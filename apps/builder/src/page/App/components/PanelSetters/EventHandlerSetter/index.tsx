@@ -2,7 +2,6 @@ import { FC, useCallback, useMemo } from "react"
 import { ListBody } from "./List/body"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { generateNewEventItem } from "@/page/App/components/PanelSetters/EventHandlerSetter/utils"
-import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { NewBaseEventHandlerSetterProps } from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
 import { BaseEventHandlerProvider } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
 import { AddActionLabel } from "@/page/App/components/PanelSetters/PublicComponent/Label/addActionLabel"
@@ -20,16 +19,12 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
     labelName,
     labelDesc,
     defaultValue,
+    eventHandlerConfig = {
+      events: [`${defaultValue}`],
+      method: [],
+    },
   } = props
 
-  const eventHandlerConfig = useMemo(
-    () =>
-      widgetBuilder(widgetType)?.eventHandlerConfig ?? {
-        events: [`${defaultValue}`],
-        method: [],
-      },
-    [widgetType, defaultValue],
-  )
   const handleAddItemAsync = useCallback(async () => {
     const { events: defaultEvents } = eventHandlerConfig
     let oldEventItem = Array.isArray(value) ? value : []

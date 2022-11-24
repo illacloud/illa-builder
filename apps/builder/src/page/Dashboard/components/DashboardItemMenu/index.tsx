@@ -12,11 +12,11 @@ import { Modal } from "@illa-design/modal"
 import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { Message } from "@illa-design/message"
 import { RootState } from "@/store"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { useNavigate } from "react-router-dom"
+import { useMessage } from "@illa-design/message"
 
 const Item = DropList.Item
 
@@ -35,6 +35,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
 
   const [renameVisible, setRenameVisible] = useState(false)
   const [duplicateVisible, setDuplicateVisible] = useState(false)
+  const message = useMessage()
 
   return (
     <>
@@ -102,13 +103,19 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                               response.data.appId,
                             ),
                           )
-                          Message.success(t("dashboard.app.trash_success"))
+                          message.success({
+                            content: t("dashboard.app.trash_success"),
+                          })
                         },
                         (failure) => {
-                          Message.success(t("dashboard.app.trash_failure"))
+                          message.success({
+                            content: t("dashboard.app.trash_failure"),
+                          })
                         },
                         (crash) => {
-                          Message.error(t("network_error"))
+                          message.error({
+                            content: t("network_error"),
+                          })
                         },
                       )
                     },

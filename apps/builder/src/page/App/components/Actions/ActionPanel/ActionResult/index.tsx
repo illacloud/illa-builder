@@ -1,5 +1,9 @@
 import { FC, RefObject, useRef, useState } from "react"
-import { CloseIcon, RightIcon, WarningCircleIcon } from "@illa-design/icon"
+import {
+  CloseIcon,
+  SuccessCircleIcon,
+  WarningCircleIcon,
+} from "@illa-design/icon"
 import { ActionResultType } from "./interface"
 import {
   applyMaxHeightStyle,
@@ -52,7 +56,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
           />
           <div css={successResultWrapperStyle}>
             <div css={resultSuccessLeftContainer}>
-              <RightIcon css={successIconStyle} fs="16px" />
+              <SuccessCircleIcon css={successIconStyle} fs="16px" />
               <span>{t("editor.action.result.title.success")}</span>
             </div>
             <CloseIcon css={resCloseIconStyle} onClick={onClose} />

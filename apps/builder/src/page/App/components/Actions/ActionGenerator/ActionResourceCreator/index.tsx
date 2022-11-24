@@ -7,6 +7,7 @@ import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfi
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
+import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
 
 export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
   const { onBack, onFinished, resourceType } = props
@@ -54,6 +55,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
             onFinished={onFinished}
           />
         )
+      case "s3":
+        return <S3ConfigElement onBack={handleBack} onFinished={onFinished} />
       case "redis":
         return (
           <RedisConfigElement onBack={handleBack} onFinished={onFinished} />

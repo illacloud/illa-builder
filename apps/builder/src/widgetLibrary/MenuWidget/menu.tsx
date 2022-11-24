@@ -122,7 +122,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     return () => {
       clearTimeout(timeoutId.current)
     }
-  }, [mode])
+  }, [mode, menuList])
 
   return (
     <div ref={wrapperRef}>

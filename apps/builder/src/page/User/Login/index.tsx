@@ -4,7 +4,6 @@ import { useTranslation, Trans } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useLocation } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
-import { Message } from "@illa-design/message"
 import { Button } from "@illa-design/button"
 import { WarningCircleIcon } from "@illa-design/icon"
 import { EMAIL_FORMAT } from "@/constants/regExp"
@@ -27,6 +26,7 @@ import { TextLink } from "@/page/User/components/TextLink"
 import { LocationState, LoginFields } from "./interface"
 import { setLocalStorage } from "@/utils/storage"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import { useMessage } from "@illa-design/message"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
@@ -42,6 +42,8 @@ export const Login: FC = () => {
   } = useForm<LoginFields>({
     mode: "onSubmit",
   })
+
+  const message = useMessage()
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
     Api.request<CurrentUser>(
       { method: "POST", url: "/auth/signin", data },
@@ -60,10 +62,14 @@ export const Login: FC = () => {
         navigate((location.state as LocationState)?.from?.pathname ?? "/", {
           replace: true,
         })
-        Message.success(t("user.sign_in.tips.success"))
+        message.success({
+          content: t("user.sign_in.tips.success"),
+        })
       },
       (res) => {
-        Message.error(t("user.sign_in.tips.fail"))
+        message.error({
+          content: t("user.sign_in.tips.fail"),
+        })
         switch (res.data.errorMessage) {
           case "no such user":
             setErrorMsg({
@@ -81,7 +87,9 @@ export const Login: FC = () => {
         }
       },
       () => {
-        Message.warning(t("network_error"))
+        message.warning({
+          content: t("network_error"),
+        })
       },
       (loading) => {
         setSubmitLoading(loading)

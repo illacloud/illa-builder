@@ -1,6 +1,9 @@
 import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
+import {
+  EventHandlerPanelConfig,
+  PanelFieldConfig,
+} from "@/page/App/components/InspectPanel/interface"
 
 export const generatorEventHandlerConfig = (
   baseWidgetName: string,
@@ -8,7 +11,7 @@ export const generatorEventHandlerConfig = (
   labelName: string = i18n.t("editor.inspect.setter_label.event_handler"),
   attrName: string = "events",
   defaultValue?: string,
-): PanelFieldConfig => {
+): EventHandlerPanelConfig => {
   return {
     id: `${baseWidgetName}-interaction-event-handler`,
     attrName: attrName,
@@ -16,6 +19,7 @@ export const generatorEventHandlerConfig = (
     setterType: "EVENT_HANDLER_SETTER",
     useCustomLayout: true,
     defaultValue: defaultValue,
+    eventHandlerConfig: { events, methods: [] },
     childrenSetter: [
       {
         id: `${baseWidgetName}-interaction-event-handler-event`,

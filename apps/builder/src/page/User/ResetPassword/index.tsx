@@ -6,7 +6,6 @@ import { Input, Password } from "@illa-design/input"
 import { Button } from "@illa-design/button"
 import { PreIcon, WarningCircleIcon } from "@illa-design/icon"
 import { Link } from "@illa-design/link"
-import { Message } from "@illa-design/message"
 import { Countdown } from "@illa-design/statistic"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { Api } from "@/api/base"
@@ -24,12 +23,14 @@ import {
   hotspotWrapperStyle,
 } from "@/page/User/style"
 import { ResetPwdFields } from "./interface"
+import { useMessage } from "@illa-design/message"
 
 export const ResetPassword: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState({ email: "", verificationCode: "" })
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const message = useMessage()
   const [verificationToken, setVerificationToken] = useState("")
   const [showCountDown, setShowCountDown] = useState(false)
   const {
@@ -53,10 +54,14 @@ export const ResetPassword: FC = () => {
       },
       () => {
         navigate("/user/login")
-        Message.success(t("user.forgot_password.tips.success"))
+        message.success({
+          content: t("user.forgot_password.tips.success"),
+        })
       },
       (res) => {
-        Message.error(t("user.forgot_password.tips.fail"))
+        message.error({
+          content: t("user.forgot_password.tips.fail"),
+        })
         switch (res.data.errorMessage) {
           case "no such user":
             setErrorMsg({
@@ -76,7 +81,9 @@ export const ResetPassword: FC = () => {
         }
       },
       () => {
-        Message.warning(t("network_error"))
+        message.warning({
+          content: t("network_error"),
+        })
       },
       (loading) => {
         setSubmitLoading(loading)
@@ -197,21 +204,25 @@ export const ResetPassword: FC = () => {
                                 },
                               },
                               (res) => {
-                                Message.success(
-                                  t(
+                                message.success({
+                                  content: t(
                                     "user.forgot_password.tips.verification_code",
                                   ),
-                                )
+                                })
                                 setVerificationToken(res.data.verificationToken)
                               },
                               () => {
-                                Message.error(
-                                  t("user.forgot_password.tips.fail_sent"),
-                                )
+                                message.error({
+                                  content: t(
+                                    "user.forgot_password.tips.fail_sent",
+                                  ),
+                                })
                                 setShowCountDown(false)
                               },
                               () => {
-                                Message.warning(t("network_error"))
+                                message.warning({
+                                  content: t("network_error"),
+                                })
                                 setShowCountDown(false)
                               },
                               () => {},
