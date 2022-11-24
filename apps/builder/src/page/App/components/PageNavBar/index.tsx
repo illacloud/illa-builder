@@ -14,7 +14,6 @@ import {
   WindowRightIcon,
 } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
-import { Message } from "@illa-design/message"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
@@ -44,11 +43,13 @@ import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { fromNow } from "@/utils/dayjs"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { useMessage } from "@illa-design/message"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const message = useMessage()
 
   const appInfo = useSelector(getAppInfo)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
@@ -95,10 +96,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         )
       },
       (e) => {
-        Message.error(t("editor.deploy.fail"))
+        message.error({
+          content: t("editor.deploy.fail"),
+        })
       },
       (e) => {
-        Message.error(t("editor.deploy.fail"))
+        message.error({
+          content: t("editor.deploy.fail"),
+        })
       },
       (loading) => {
         setDeployLoading(loading)

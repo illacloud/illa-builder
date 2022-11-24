@@ -42,9 +42,9 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
-import { Message } from "@illa-design/react"
 import { isObject } from "@/utils/typeHelper"
 import { get, set } from "lodash"
+import { useMessage } from "@illa-design/message"
 
 function getLikeInputChildrenNode(
   componentNode: ComponentNode,
@@ -114,6 +114,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     handleOnFormSubmit,
   } = props
 
+  const message = useMessage()
   const [bodyRef, bodyBounds] = useMeasure()
   const [headerRef, headerBounds] = useMeasure()
   const [footerRef, footerBounds] = useMeasure()
@@ -224,7 +225,9 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           BUILDER_CALC_CONTEXT,
         )
       } catch (e) {
-        Message.error("eventHandler run error")
+        message.error({
+          content: "eventHandler run error",
+        })
         return false
       }
     })
@@ -291,7 +294,9 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           }
           return false
         } catch (e) {
-          Message.error("eventHandler run error")
+          message.error({
+            content: "eventHandler run error",
+          })
           return false
         }
       })

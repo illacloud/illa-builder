@@ -8,8 +8,8 @@ import { Button } from "@illa-design/button"
 import { Api } from "@/api/base"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { Message } from "@illa-design/message"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
+import { useMessage } from "@illa-design/message"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()
@@ -19,6 +19,8 @@ export const SettingAccount: FC = () => {
   const [nickNameValue, setNickNameValue] = useState<string>(
     userInfo.nickname ?? "",
   )
+
+  const message = useMessage()
 
   const [errorMessage, setErrorMessage] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -100,13 +102,19 @@ export const SettingAccount: FC = () => {
                     nickname: response.data.nickname,
                   }),
                 )
-                Message.success("success!")
+                message.success({
+                  content: "success!",
+                })
               },
               (failure) => {
-                Message.error(t("setting.account.save_fail"))
+                message.error({
+                  content: t("setting.account.save_fail"),
+                })
               },
               (crash) => {
-                Message.error(t("network_error"))
+                message.error({
+                  content: t("network_error"),
+                })
               },
               (loading) => {
                 setIsLoading(loading)

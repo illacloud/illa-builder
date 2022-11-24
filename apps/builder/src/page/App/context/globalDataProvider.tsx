@@ -1,5 +1,5 @@
-import { createContext, ReactNode, FC, useState, useCallback } from "react"
-import { NotificationType, Notification } from "@illa-design/notification"
+import { createContext, FC, ReactNode, useCallback, useState } from "react"
+import { createNotification, NotificationType } from "@illa-design/notification"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
@@ -20,7 +20,6 @@ interface Props {
 
 export let BUILDER_CALC_CONTEXT = {}
 
-// {{showNotification("info","222","333")}}
 export const showNotification = (params: {
   type: NotificationType
   title: string
@@ -28,11 +27,12 @@ export const showNotification = (params: {
   duration: number
 }) => {
   const { type, title, description, duration = 4500 } = params
-  if (!type) return
-  Notification[type]({
+  const notification = createNotification()
+  notification.show({
     title,
     content: description,
     duration,
+    type,
   })
 }
 

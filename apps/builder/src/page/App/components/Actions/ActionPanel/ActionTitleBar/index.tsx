@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Api } from "@/api/base"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { Message } from "@illa-design/message"
 import { ActionTitleBarProps } from "./interface"
 import { EditableText } from "@/components/EditableText"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
@@ -25,6 +24,7 @@ import {
   onCopyActionItem,
   onDeleteActionItem,
 } from "@/page/App/components/Actions/api"
+import { useMessage } from "@illa-design/message"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
@@ -38,6 +38,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const isChanged =
     JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
 
+  const message = useMessage()
   const currentApp = useSelector(getAppInfo)
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -91,10 +92,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 dispatch(actionActions.updateActionItemReducer(newAction))
               },
               () => {
-                Message.error(t("change_fail"))
+                message.error({
+                  content: t("change_fail"),
+                })
               },
               () => {
-                Message.error(t("change_fail"))
+                message.error({
+                  content: t("change_fail"),
+                })
               },
               (l) => {
                 setLoading(l)
@@ -166,10 +171,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                     }
                   },
                   () => {
-                    Message.error(t("create_fail"))
+                    message.error({
+                      content: t("create_fail"),
+                    })
                   },
                   () => {
-                    Message.error(t("create_fail"))
+                    message.error({
+                      content: t("create_fail"),
+                    })
                   },
                   (l) => {
                     setLoading(l)
@@ -199,10 +208,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                     }
                   },
                   () => {
-                    Message.error(t("editor.action.panel.btn.save_fail"))
+                    message.error({
+                      content: t("editor.action.panel.btn.save_fail"),
+                    })
                   },
                   () => {
-                    Message.error(t("editor.action.panel.btn.save_fail"))
+                    message.error({
+                      content: t("editor.action.panel.btn.save_fail"),
+                    })
                   },
                   (l) => {
                     setLoading(l)

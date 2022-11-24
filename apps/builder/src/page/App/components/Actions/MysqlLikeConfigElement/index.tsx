@@ -28,8 +28,8 @@ import { RootState } from "@/store"
 import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Message } from "@illa-design/message"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import { useMessage } from "@illa-design/message"
 
 /**
  * include mariadb or tidb
@@ -60,6 +60,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const message = useMessage()
 
   return (
     <form
@@ -85,14 +86,20 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             },
             (response) => {
               dispatch(resourceActions.updateResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
               onFinished(response.data.resourceId)
             },
             (error) => {
-              Message.error(error.data.errorMessage)
+              message.error({
+                content: error.data.errorMessage,
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)
@@ -118,14 +125,20 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             },
             (response) => {
               dispatch(resourceActions.addResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
               onFinished(response.data.resourceId)
             },
             (error) => {
-              Message.error(error.data.errorMessage)
+              message.error({
+                content: error.data.errorMessage,
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)
@@ -507,13 +520,19 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                   },
                 },
                 (response) => {
-                  Message.success(t("dashboard.resource.test_success"))
+                  message.success({
+                    content: t("dashboard.resource.test_success"),
+                  })
                 },
                 (error) => {
-                  Message.error(error.data.errorMessage)
+                  message.error({
+                    content: error.data.errorMessage,
+                  })
                 },
                 () => {
-                  Message.error(t("dashboard.resource.test_fail"))
+                  message.error({
+                    content: t("dashboard.resource.test_fail"),
+                  })
                 },
                 (loading) => {
                   setTestLoading(loading)

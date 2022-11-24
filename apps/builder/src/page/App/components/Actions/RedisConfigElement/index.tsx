@@ -27,11 +27,11 @@ import { RootState } from "@/store"
 import { Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Message } from "@illa-design/message"
 import {
   RedisResource,
   RedisResourceInitial,
 } from "@/redux/resource/redisResource"
+import { useMessage } from "@illa-design/message"
 
 export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -39,6 +39,8 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   const { t } = useTranslation()
 
   const dispatch = useDispatch()
+
+  const message = useMessage()
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -86,14 +88,20 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             },
             (response) => {
               dispatch(resourceActions.updateResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
               onFinished(response.data.resourceId)
             },
             (error) => {
-              Message.error(error.data.errorMessage)
+              message.error({
+                content: error.data.errorMessage,
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)
@@ -119,14 +127,20 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             },
             (response) => {
               dispatch(resourceActions.addResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
               onFinished(response.data.resourceId)
             },
             (error) => {
-              Message.error(error.data.errorMessage)
+              message.error({
+                content: error.data.errorMessage,
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)
@@ -395,13 +409,19 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   },
                 },
                 (response) => {
-                  Message.success(t("dashboard.resource.test_success"))
+                  message.success({
+                    content: t("dashboard.resource.test_success"),
+                  })
                 },
                 (error) => {
-                  Message.error(error.data.errorMessage)
+                  message.error({
+                    content: error.data.errorMessage,
+                  })
                 },
                 () => {
-                  Message.error(t("dashboard.resource.test_fail"))
+                  message.error({
+                    content: t("dashboard.resource.test_fail"),
+                  })
                 },
                 (loading) => {
                   setTestLoading(loading)

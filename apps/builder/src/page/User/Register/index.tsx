@@ -6,7 +6,6 @@ import { Input, Password } from "@illa-design/input"
 import { Checkbox } from "@illa-design/checkbox"
 import { Button } from "@illa-design/button"
 import { Link } from "@illa-design/link"
-import { Message } from "@illa-design/message"
 import { Countdown } from "@illa-design/statistic"
 import { WarningCircleIcon } from "@illa-design/icon"
 import { EMAIL_FORMAT } from "@/constants/regExp"
@@ -28,6 +27,7 @@ import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { setLocalStorage } from "@/utils/storage"
 import { TextLink } from "@/page/User/components/TextLink"
+import { useMessage } from "@illa-design/message"
 
 export function getLocalLanguage(): string {
   const lang = window.navigator.language
@@ -43,6 +43,7 @@ export const Register: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const message = useMessage()
   const [showCountDown, setShowCountDown] = useState(false)
   const verificationToken = useRef<string>("")
   const {
@@ -69,7 +70,9 @@ export const Register: FC = () => {
         },
       },
       (res) => {
-        Message.success(t("user.sign_up.tips.success"))
+        message.success({
+          content: t("user.sign_up.tips.success"),
+        })
         const token = res.headers["illa-token"]
         if (!token) return
         setLocalStorage("token", token, -1)
@@ -86,7 +89,9 @@ export const Register: FC = () => {
         })
       },
       (res) => {
-        Message.error(t("user.sign_up.tips.fail"))
+        message.error({
+          content: t("user.sign_up.tips.fail"),
+        })
         switch (res.data.errorMessage) {
           case "duplicate email address":
             setErrorMsg({
@@ -106,7 +111,9 @@ export const Register: FC = () => {
         }
       },
       () => {
-        Message.warning(t("network_error"))
+        message.warning({
+          content: t("network_error"),
+        })
       },
       (loading) => {
         setSubmitLoading(loading)
@@ -254,7 +261,7 @@ export const Register: FC = () => {
                           const res = await trigger("email")
                           if (res) {
                             setShowCountDown(true)
-                            Api.request<{ verificationToken: string }>(
+                            Api.request<{ vt: string }>(
                               {
                                 method: "POST",
                                 url: "/auth/verification",
@@ -264,18 +271,23 @@ export const Register: FC = () => {
                                 },
                               },
                               (res) => {
-                                Message.success(
-                                  t("user.sign_up.tips.verification_code"),
-                                )
-                                verificationToken.current =
-                                  res.data.verificationToken
+                                message.success({
+                                  content: t(
+                                    "user.sign_up.tips.verification_code",
+                                  ),
+                                })
+                                verificationToken.current = res.data.vt
                               },
                               () => {
-                                Message.error(t("user.sign_up.tips.fail_sent"))
+                                message.error({
+                                  content: t("user.sign_up.tips.fail_sent"),
+                                })
                                 setShowCountDown(false)
                               },
                               () => {
-                                Message.warning(t("network_error"))
+                                message.warning({
+                                  content: t("network_error"),
+                                })
                                 setShowCountDown(false)
                               },
                               () => {},

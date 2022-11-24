@@ -7,7 +7,6 @@ import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
 import { Divider } from "@illa-design/divider"
 import { Empty } from "@illa-design/empty"
-import { Message } from "@illa-design/message"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import {
@@ -19,10 +18,12 @@ import {
 import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu"
 import { CreateNewModal } from "@/page/Dashboard/components/CreateNewModal"
 import { fromNow } from "@/utils/dayjs"
+import { useMessage } from "@illa-design/message"
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
   let navigate = useNavigate()
+  const message = useMessage()
 
   const appsList: DashboardApp[] = useSelector(getDashboardApps)
   const [createNewModalVisible, setCreateNewModalVisible] = useState(false)
@@ -36,7 +37,7 @@ export const DashboardApps: FC = () => {
             colorScheme="gray"
             onClick={() => {
               copy(window.location.href)
-              Message.success({ content: t("link_copied") })
+              message.success({ content: t("link_copied") })
             }}
           >
             {t("share")}
