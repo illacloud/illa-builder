@@ -27,8 +27,8 @@ export const WrappedCascaderWidget: FC<WrappedCascaderWidgetProps> = (
   } = props
   const handleChangeValue = useCallback(
     (value) => {
-      if (!disabled || !readOnly)
-        new Promise(() => {
+      if (!disabled && !readOnly)
+        new Promise((resolve) => {
           handleUpdateMultiExecutionResult([
             {
               displayName,
@@ -37,6 +37,7 @@ export const WrappedCascaderWidget: FC<WrappedCascaderWidgetProps> = (
               },
             },
           ])
+          resolve(value)
         }).then(() => {
           handleOnChange?.()
         })
@@ -112,7 +113,6 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
   } = props
 
   const finalOptions = useMemo(() => {
-    console.log("????")
     return dataSourceMode === "dynamic" ? dataSourceJS : dataSource
   }, [dataSource, dataSourceJS, dataSourceMode])
 
@@ -139,7 +139,7 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
       },
       clearValue: () => {
         handleUpdateDsl({
-          value: Array.isArray(value) ? value : [],
+          value: [],
         })
       },
     })

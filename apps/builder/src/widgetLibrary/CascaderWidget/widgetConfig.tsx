@@ -52,7 +52,7 @@ export const CASCADER_WIDGET_CONFIG: WidgetConfig = {
       ]
   }
 ]}}`,
-    defaultValue: "",
+    value: `{{["media_source_1","campaign_1-1"]}}`,
     placeholder: "",
     label: "Label",
     labelAlign: "left",
