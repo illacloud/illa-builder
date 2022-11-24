@@ -74,7 +74,7 @@ export const WrappedCascaderWidget: FC<WrappedCascaderWidgetProps> = (
       onFocus={handleFocus}
       onBlur={handleBlur}
       disabled={disabled}
-      readOnly={readOnly}
+      readonly={readOnly}
       showSearch
     />
   )
