@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import {
   LEFT_PANEL_WIDTH,
   MIDDLE_PANEL_WIDTH,
@@ -54,8 +54,17 @@ export const descriptionStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
+export const saveFailedTipStyle = css`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: ${getColor("grayBlue", "03")};
+  gap: 4px;
+`
+
 export function windowIconStyle(selected: boolean): SerializedStyles {
   return css`
+    flex: none;
     color: ${selected
       ? globalColor(`--${illaPrefix}-grayBlue-03`)
       : globalColor(`--${illaPrefix}-grayBlue-05`)};

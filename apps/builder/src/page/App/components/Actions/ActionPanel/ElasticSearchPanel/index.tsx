@@ -11,6 +11,7 @@ import {
   ElasticSearchAction,
   ElasticSearchActionList,
   IDEditorType,
+  QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -29,9 +30,9 @@ import { configActions } from "@/redux/config/configSlice"
 
 export const ElasticSearchPanel: FC = () => {
   const { t } = useTranslation()
-  const cachedAction = useSelector(
-    getCachedAction,
-  ) as ActionItem<ElasticSearchAction>
+  const cachedAction = useSelector(getCachedAction) as ActionItem<
+    ElasticSearchAction
+  >
 
   const selectedAction = useSelector(getSelectedAction)!!
 
@@ -46,6 +47,11 @@ export const ElasticSearchPanel: FC = () => {
 
   const isBodyContent = useMemo(
     () => BodyContentType.includes(cachedAction.content.operation),
+    [cachedAction.content],
+  )
+
+  const isQueryContent = useMemo(
+    () => QueryContentType.includes(cachedAction.content.operation),
     [cachedAction.content],
   )
 
@@ -64,59 +70,93 @@ export const ElasticSearchPanel: FC = () => {
           ml="16px"
           width="100%"
           onChange={(value) => {
-            let newID = ""
+            const content = {
+              operation: value,
+              index: cachedAction.content.index,
+            } as ElasticSearchAction
             if (
               cachedAction.resourceId === selectedAction.resourceId &&
               (selectedAction.content as ElasticSearchAction).operation ===
                 value
             ) {
-              newID = (selectedAction.content as ElasticSearchAction)?.id || ""
+              if (isShowID) {
+                content["id"] =
+                  (selectedAction.content as ElasticSearchAction)?.id || ""
+              }
+              if (isBodyContent) {
+                content["body"] =
+                  (selectedAction.content as ElasticSearchAction)?.body || ""
+              }
+              if (isQueryContent) {
+                content["query"] =
+                  (selectedAction.content as ElasticSearchAction)?.query || ""
+              }
             }
 
             dispatch(
               configActions.updateCachedAction({
                 ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  operation: value,
-                  ...(isShowID && { id: newID }),
-                },
+                content,
               }),
             )
           }}
           options={ElasticSearchActionList}
         />
       </div>
-      <div css={esItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.elastic.query")}
-        </span>
-        <CodeEditor
-          lineNumbers
-          css={esItemCodeEditorStyle}
-          mode="TEXT_JS"
-          height="88px"
-          value={isBodyContent ? content.body : content.query}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  ...(isBodyContent
-                    ? {
-                        body: value,
-                      }
-                    : {
-                        query: value,
-                      }),
-                },
-              }),
-            )
-          }}
-          expectedType={VALIDATION_TYPES.STRING}
-        />
-      </div>
+      {isBodyContent && (
+        <div css={esItemStyle}>
+          <span css={codeEditorLabelStyle}>
+            {t("editor.action.panel.elastic.body")}
+          </span>
+          <CodeEditor
+            lineNumbers
+            css={esItemCodeEditorStyle}
+            mode="TEXT_JS"
+            height="88px"
+            key={cachedAction.content.operation}
+            value={content.body}
+            onChange={(value) => {
+              dispatch(
+                configActions.updateCachedAction({
+                  ...cachedAction,
+                  content: {
+                    ...cachedAction.content,
+                    body: value,
+                  },
+                }),
+              )
+            }}
+            expectedType={VALIDATION_TYPES.STRING}
+          />
+        </div>
+      )}
+      {isQueryContent && (
+        <div css={esItemStyle}>
+          <span css={codeEditorLabelStyle}>
+            {t("editor.action.panel.elastic.query")}
+          </span>
+          <CodeEditor
+            lineNumbers
+            css={esItemCodeEditorStyle}
+            mode="TEXT_JS"
+            key={cachedAction.content.operation}
+            height="88px"
+            value={content.query}
+            onChange={(value) => {
+              dispatch(
+                configActions.updateCachedAction({
+                  ...cachedAction,
+                  content: {
+                    ...cachedAction.content,
+                    query: value,
+                  },
+                }),
+              )
+            }}
+            expectedType={VALIDATION_TYPES.STRING}
+          />
+        </div>
+      )}
       <div css={esItemStyle}>
         <span css={esItemLabelStyle}>
           {t("editor.action.panel.elastic.index")}

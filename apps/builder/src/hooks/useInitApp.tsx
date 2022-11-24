@@ -8,84 +8,93 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { useParams } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { IllaMode } from "@/redux/config/configState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { getIsOnline } from "@/redux/config/configSelector"
 
 export const useInitBuilderApp = (model: IllaMode) => {
   // editor default version id == 0
   let { appId, versionId = 0 } = useParams()
   const dispatch = useDispatch()
+  const isOnline = useSelector(getIsOnline)
 
   const [loadingState, setLoadingState] = useState(true)
 
   useEffect(() => {
     const controller = new AbortController()
-    new Promise<CurrentAppResp>((resolve, reject) => {
-      Api.request<CurrentAppResp>(
-        {
-          url: `/apps/${appId}/versions/${versionId}`,
-          method: "GET",
-          signal: controller.signal,
-        },
-        (response) => {
-          if (model === "edit") {
-            dispatch(configActions.resetConfig())
-          }
-          dispatch(configActions.updateIllaMode(model))
-          dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
-          dispatch(
-            componentsActions.updateComponentReducer(response.data.components),
-          )
-          dispatch(actionActions.updateActionListReducer(response.data.actions))
-
-          dispatch(
-            dragShadowActions.updateDragShadowReducer(
-              response.data.dragShadowState,
-            ),
-          )
-          dispatch(
-            dottedLineSquareActions.updateDottedLineSquareReducer(
-              response.data.dottedLineSquareState,
-            ),
-          )
-          DisplayNameGenerator.initApp(appId ?? "")
-          DisplayNameGenerator.updateDisplayNameList(
-            response.data.components,
-            response.data.actions,
-          )
-          dispatch(executionActions.startExecutionReducer())
-          if (model === "edit" && response.data.actions.length > 0) {
+    if (isOnline) {
+      new Promise<CurrentAppResp>((resolve, reject) => {
+        Api.request<CurrentAppResp>(
+          {
+            url: `/apps/${appId}/versions/${versionId}`,
+            method: "GET",
+            signal: controller.signal,
+          },
+          (response) => {
+            if (model === "edit") {
+              dispatch(configActions.resetConfig())
+            }
+            dispatch(configActions.updateIllaMode(model))
+            dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
             dispatch(
-              configActions.changeSelectedAction(response.data.actions[0]),
+              componentsActions.updateComponentReducer(
+                response.data.components,
+              ),
             )
-          }
-          resolve(response.data)
-        },
-        (e) => {
-          reject("failure")
-        },
-        (e) => {
-          reject("crash")
-        },
-        (loading) => {
-          setLoadingState(loading)
-        },
-      )
-    }).then((value) => {
-      const autoRunAction = value.actions.filter((action) => {
-        return action.triggerMode === "automate"
+            dispatch(
+              actionActions.updateActionListReducer(response.data.actions),
+            )
+
+            dispatch(
+              dragShadowActions.updateDragShadowReducer(
+                response.data.dragShadowState,
+              ),
+            )
+            dispatch(
+              dottedLineSquareActions.updateDottedLineSquareReducer(
+                response.data.dottedLineSquareState,
+              ),
+            )
+            DisplayNameGenerator.initApp(appId ?? "")
+            DisplayNameGenerator.updateDisplayNameList(
+              response.data.components,
+              response.data.actions,
+            )
+            dispatch(executionActions.startExecutionReducer())
+            if (model === "edit" && response.data.actions.length > 0) {
+              dispatch(
+                configActions.changeSelectedAction(response.data.actions[0]),
+              )
+            }
+            resolve(response.data)
+          },
+          (e) => {
+            reject("failure")
+          },
+          (e) => {
+            reject("crash")
+          },
+          (loading) => {
+            setLoadingState(loading)
+          },
+        )
+      }).then((value) => {
+        const autoRunAction = value.actions.filter((action) => {
+          return action.triggerMode === "automate"
+        })
+        autoRunAction.forEach((action) => {
+          runAction(action)
+        })
       })
-      autoRunAction.forEach((action) => {
-        runAction(action)
-      })
-    })
+    }
+
     return () => {
       controller.abort()
     }
-  }, [appId, dispatch, model, versionId])
+  }, [appId, dispatch, model, versionId, isOnline])
 
   return loadingState
 }

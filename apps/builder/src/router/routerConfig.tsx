@@ -21,7 +21,7 @@ import { Setting } from "@/page/Setting"
 export const routerConfig: RoutesObjectPro[] = [
   {
     index: true,
-    element: <Navigate to="/dashboard" />,
+    element: <Navigate to="/dashboard" replace />,
   },
   {
     path: "/dashboard",
@@ -30,7 +30,7 @@ export const routerConfig: RoutesObjectPro[] = [
     children: [
       {
         index: true,
-        element: <Navigate to="./apps" />,
+        element: <Navigate to="./apps" replace />,
         needLogin: true,
       },
       {
@@ -51,7 +51,7 @@ export const routerConfig: RoutesObjectPro[] = [
     children: [
       {
         index: true,
-        element: <Navigate to="./login" />,
+        element: <Navigate to="./login" replace />,
       },
       {
         path: "/user/login",
@@ -80,7 +80,7 @@ export const routerConfig: RoutesObjectPro[] = [
     children: [
       {
         index: true,
-        element: <Navigate to="./account" />,
+        element: <Navigate to="./account" replace />,
         needLogin: true,
       },
       {

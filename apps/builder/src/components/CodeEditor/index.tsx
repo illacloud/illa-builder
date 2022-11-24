@@ -1,13 +1,6 @@
-import {
-  forwardRef,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-} from "react"
+import { forwardRef, useEffect, useRef, useState, useCallback } from "react"
 import { Global } from "@emotion/react"
-import { cloneDeep, debounce, get } from "lodash"
+import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/lib/codemirror"
@@ -32,7 +25,6 @@ import {
   getExecutionError,
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
@@ -42,7 +34,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
       mode = "TEXT_JS",
       placeholder,
       border,
-      expectedType = VALIDATION_TYPES.STRING,
+      expectedType,
       borderRadius = "8px",
       path,
       tables = {},
@@ -88,7 +80,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     const valueChanged = useCallback(
       (currentValue: string) => {
         let calcResult: any = null
-        let previewType = expectedType
+        let previewType: string = expectedType
         setError(false)
         try {
           const isDynamic = isDynamicString(currentValue)
@@ -101,6 +93,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
           } else {
             calcResult = currentValue
           }
+          previewType = getValueType(calcResult)
 
           // [TODO]: v1 evaluate
           // if (!currentValue?.includes("{{")) {

@@ -32,6 +32,7 @@ function applyLeftLabelStyle(
     width: ${hasWidth ? w : 0};
     min-width: ${hasWidth ? w : 0};
     flex-grow: ${full ? 1 : 0};
+    flex-shrink: 0;
     text-align: ${alignment};
     ${hasWidth && marginCss}
   `

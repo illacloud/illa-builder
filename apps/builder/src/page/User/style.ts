@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import SignInBgUrl from "@/assets/sign-bg.svg"
 
 export const containerStyle: SerializedStyles = css`
@@ -108,4 +108,27 @@ export const errorIconStyle: SerializedStyles = css`
   line-height: 0;
   top: 3px;
   left: 0;
+`
+
+export const resetPasswordSubtitleWrapperStyle = css`
+  margin-top: 8px;
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  user-select: none;
+`
+
+export const hotspotWrapperStyle = css`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+`
+
+export const prevIconStyle = css`
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  flex: none;
 `

@@ -57,7 +57,7 @@ export type FieldEntityInformation = {
 
 export interface ResultPreview {
   state?: "default" | "error"
-  type?: VALIDATION_TYPES
+  type?: string
   content?: string
 }
 
