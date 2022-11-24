@@ -8,7 +8,7 @@ export const CASCADER_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.cascader.name"),
   keywords: ["cascader", "级联选择"],
   icon: <CascaderWidgetIcon />,
-  sessionType: "PRESENTATION",
+  sessionType: "SELECT",
   w: 12,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
