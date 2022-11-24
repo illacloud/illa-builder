@@ -570,6 +570,7 @@
         "loading": "Loading",
         "loop_back_to_start": "Loop back to start",
         "loop_start_to_back": "Loop start to back",
+        "mapped_value": "Mapped Value",
         "mapped_option": "Mapped Option",
         "max_count": "Max count",
         "max_date": "Max date",

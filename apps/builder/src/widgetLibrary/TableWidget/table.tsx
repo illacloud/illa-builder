@@ -1,5 +1,6 @@
-import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
+import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
 import { Table } from "@illa-design/table"
+import { Updater, RowSelectionState } from "@tanstack/table-core"
 import {
   ColumnItemShape,
   TableWidgetProps,
@@ -7,10 +8,12 @@ import {
 } from "./interface"
 import { cloneDeep } from "lodash"
 import { getCellForType } from "./utils"
+import { isObject } from "@illa-design/system"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
     const {
+      displayName,
       data,
       loading,
       emptyState,
@@ -25,6 +28,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       handleOnSortingChange,
       handleOnPaginationChange,
       handleOnColumnFiltersChange,
+      handleUpdateMultiExecutionResult,
     } = props
 
     const formatData = useMemo(() => {
@@ -33,6 +37,28 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       }
       return []
     }, [data])
+
+    const onRowSelectionChange = useCallback(
+      (value: Updater<RowSelectionState>) => {
+        if (!isObject(value)) return
+        let selectedRow: unknown[] = []
+        Object.keys(value)?.map((key) => {
+          const index = Number(key)
+          if (formatData[index]) {
+            selectedRow.push(formatData[index])
+          }
+        })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              selectedRow: selectedRow,
+            },
+          },
+        ])
+      },
+      [displayName, formatData, handleUpdateMultiExecutionResult],
+    )
 
     return (
       <Table
@@ -56,6 +82,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         onSortingChange={handleOnSortingChange}
         onPaginationChange={handleOnPaginationChange}
         onColumnFiltersChange={handleOnColumnFiltersChange}
+        onRowSelectionChange={onRowSelectionChange}
       />
     )
   },
@@ -81,6 +108,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleOnClickMenuItem,
+    ...otherProps
   } = props
 
   const defaultSort = useMemo(() => {
@@ -106,13 +135,18 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const columnsDef = useMemo(() => {
     const res: ColumnItemShape[] = []
-    columns?.forEach((item) => {
+    columns?.forEach((item, index) => {
+      const eventPath = `columns.${index}.events`
       const transItem = cloneDeep(item) as ColumnItemShape
-      transItem["cell"] = getCellForType(transItem)
+      transItem["cell"] = getCellForType(
+        transItem,
+        eventPath,
+        handleOnClickMenuItem,
+      )
       res.push(transItem)
     })
     return res
-  }, [columns])
+  }, [columns, handleOnClickMenuItem])
 
   const realDataSourceArray = useMemo(() => {
     if (dataSourceMode === "dynamic") {
@@ -140,6 +174,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   return (
     <WrappedTable
+      {...otherProps}
+      displayName={displayName}
       data={realDataSourceArray}
       emptyState={emptyState}
       loading={loading}
@@ -151,6 +187,9 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       columnVisibility={columnVisibility}
       defaultSort={defaultSort}
       multiRowSelection={multiRowSelection}
+      handleUpdateGlobalData={handleUpdateGlobalData}
+      handleDeleteGlobalData={handleDeleteGlobalData}
+      handleUpdateDsl={handleUpdateDsl}
     />
   )
 }
