@@ -32,5 +32,6 @@ module.exports = {
   rules: {
     "react/react-in-jsx-scope": "off",
     "import/default": "off",
+    "react/no-unknown-property": ["error", { ignore: ["css"] }],
   },
 }
