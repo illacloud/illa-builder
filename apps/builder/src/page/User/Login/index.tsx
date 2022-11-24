@@ -187,19 +187,15 @@ export const Login: FC = () => {
                   size="large"
                   error={!!errors.password || !!errorMsg.password}
                   variant="fill"
-                  placeholder={t("user.sign_in.placeholder.password")}
+                  placeholder={t("user.password.placeholder")}
                   borderColor="techPurple"
                 />
               )}
               rules={{
                 required: t("user.sign_in.error_message.password.require"),
-                maxLength: {
-                  value: 20,
-                  message: t("user.sign_in.error_message.password.length"),
-                },
                 minLength: {
                   value: 6,
-                  message: t("user.sign_in.error_message.password.length"),
+                  message: t("user.sign_in.error_message.password.min_length"),
                 },
               }}
             />

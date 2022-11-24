@@ -18,6 +18,7 @@ import {
   updateSelectedComponent,
   updateShowDot,
   updateCanvasShapeReducer,
+  updateDevicesOnlineStatusReducer,
 } from "@/redux/config/configReducer"
 
 const configSlice = createSlice({
@@ -41,6 +42,7 @@ const configSlice = createSlice({
     removeExpandedKey,
     updateFreezeStateReducer,
     updateCanvasShapeReducer,
+    updateDevicesOnlineStatusReducer,
   },
 })
 

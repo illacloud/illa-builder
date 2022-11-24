@@ -32,8 +32,8 @@ export const Databases: ResourceDataItem[] = [
     isDraft: false,
   },
   {
-    resourceType: "elastic",
-    isDraft: true,
+    resourceType: "elasticsearch",
+    isDraft: false,
   },
 ]
 
@@ -43,11 +43,11 @@ export const Apis: ResourceDataItem[] = [
     isDraft: false,
   },
   {
-    resourceType: "graphql",
-    isDraft: true,
+    resourceType: "s3",
+    isDraft: false,
   },
   {
-    resourceType: "s3",
+    resourceType: "graphql",
     isDraft: true,
   },
   {

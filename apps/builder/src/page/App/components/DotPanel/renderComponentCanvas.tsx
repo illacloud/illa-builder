@@ -54,6 +54,8 @@ export const RenderComponentCanvas: FC<{
   canResizeY?: boolean
   safeRowNumber: number
   blockColumns?: number
+  addedRowNumber: number
+  canAutoScroll?: boolean
 }> = (props) => {
   const {
     componentNode,
@@ -63,6 +65,8 @@ export const RenderComponentCanvas: FC<{
     canResizeY = true,
     safeRowNumber,
     blockColumns = BASIC_BLOCK_COLUMNS,
+    addedRowNumber,
+    canAutoScroll = false,
   } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
@@ -82,6 +86,7 @@ export const RenderComponentCanvas: FC<{
   const currentCanvasRef = useRef<HTMLDivElement>(
     null,
   ) as MutableRefObject<HTMLDivElement | null>
+  const autoScrollTimeoutID = useRef<number>()
 
   const unitWidth = useMemo(() => {
     return bounds.width / blockColumns
@@ -89,14 +94,6 @@ export const RenderComponentCanvas: FC<{
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
-    if (
-      componentNode.type === "CANVAS" &&
-      (!Array.isArray(componentNode.childrenNode) ||
-        componentNode.childrenNode.length === 0) &&
-      !isShowCanvasDot
-    ) {
-      return <ContainerEmptyState />
-    }
     return childrenNode?.map<ReactNode>((item) => {
       const h = item.h * UNIT_HEIGHT
       const w = item.w * unitWidth
@@ -116,6 +113,7 @@ export const RenderComponentCanvas: FC<{
               canResizeY={canResizeY}
               minHeight={minHeight}
               safeRowNumber={safeRowNumber}
+              addedRowNumber={addedRowNumber}
             />
           )
         case "EDITOR_SCALE_SQUARE":
@@ -143,15 +141,14 @@ export const RenderComponentCanvas: FC<{
       }
     })
   }, [
+    addedRowNumber,
     blockColumns,
     canResizeY,
     collisionEffect,
     componentNode.childrenNode,
     componentNode.displayName,
     componentNode.h,
-    componentNode.type,
     containerPadding,
-    isShowCanvasDot,
     minHeight,
     rowNumber,
     safeRowNumber,
@@ -443,33 +440,75 @@ export const RenderComponentCanvas: FC<{
     [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezeCanvas, componentNode],
   )
 
+  const maxY = useMemo(() => {
+    let maxY = 0
+    componentNode.childrenNode?.forEach((node) => {
+      maxY = Math.max(maxY, node.y + node.h)
+    })
+    return maxY
+  }, [componentNode.childrenNode])
+
+  const finalRowNumber = useMemo(() => {
+    return Math.max(
+      maxY,
+      Math.floor((minHeight || document.body.clientHeight) / UNIT_HEIGHT),
+    )
+  }, [maxY, minHeight])
+
   useEffect(() => {
     if (!isActive && canResizeY) {
-      const childrenNodes = componentNode.childrenNode
-      let maxY = 0
-      childrenNodes?.forEach((node) => {
-        maxY = Math.max(maxY, node.y + node.h)
-      })
       if (illaMode === "edit") {
-        setRowNumber(
-          Math.max(
-            maxY + safeRowNumber,
-            Math.floor((minHeight || document.body.clientHeight) / UNIT_HEIGHT),
-          ),
-        )
+        if (
+          finalRowNumber === maxY &&
+          finalRowNumber + addedRowNumber >= rowNumber
+        ) {
+          setRowNumber(finalRowNumber + addedRowNumber)
+          if (
+            canAutoScroll &&
+            rowNumber !== 0 &&
+            finalRowNumber + addedRowNumber !== rowNumber
+          ) {
+            clearTimeout(autoScrollTimeoutID.current)
+            autoScrollTimeoutID.current = setTimeout(() => {
+              containerRef.current?.scrollBy({
+                top: (addedRowNumber * UNIT_HEIGHT) / 4,
+                behavior: "smooth",
+              })
+            }, 60)
+          }
+        } else {
+          setRowNumber(finalRowNumber)
+        }
       } else {
         setRowNumber(maxY)
       }
     }
   }, [
-    bounds.height,
+    addedRowNumber,
+    canAutoScroll,
     canResizeY,
-    componentNode.childrenNode,
+    containerRef,
+    finalRowNumber,
     illaMode,
     isActive,
-    minHeight,
-    safeRowNumber,
+    maxY,
+    rowNumber,
   ])
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(autoScrollTimeoutID.current)
+    }
+  }, [])
+
+  if (
+    componentNode.type === "CANVAS" &&
+    (!Array.isArray(componentNode.childrenNode) ||
+      componentNode.childrenNode.length === 0) &&
+    !isShowCanvasDot
+  ) {
+    return <ContainerEmptyState />
+  }
 
   return (
     <div

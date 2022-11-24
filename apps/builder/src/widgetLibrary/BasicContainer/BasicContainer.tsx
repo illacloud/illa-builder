@@ -11,6 +11,7 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
     minHeight,
     padding,
     safeRowNumber = 8,
+    addedRowNumber = 8,
   } = props
   const containerRef: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement>(null)
@@ -29,6 +30,7 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
         canResizeY={canResizeY}
         minHeight={minHeight}
         safeRowNumber={safeRowNumber}
+        addedRowNumber={addedRowNumber}
       />
     </div>
   )

@@ -9,9 +9,16 @@ export const ColumnTypeOption = [
   { label: "Number", value: "number" },
   { label: "Percent", value: "percent" },
   { label: "Link", value: "link" },
+  { label: "Button", value: "button" },
 ]
 
-type ColumnType = "text" | "date" | "number" | "percent" | "link"
+export type ColumnType =
+  | "text"
+  | "date"
+  | "number"
+  | "percent"
+  | "link"
+  | "button"
 
 export interface ColumnItemShape
   extends Pick<ColumnDef<object>, "cell" | "id"> {
@@ -25,6 +32,7 @@ export interface ColumnItemShape
   visible?: boolean
   decimalPlaces?: number
   format?: string
+  mappedValue?: string
   custom?: boolean
 }
 
@@ -42,14 +50,30 @@ export interface WrappedTableProps
       | "columnVisibility"
       | "multiRowSelection"
       | "data"
-    > {
+    >,
+    BaseWidgetProps {
   emptyState?: string
   pageSize?: number
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
+  handleOnClickMenuItem?: (path: string) => void
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
   handleOnColumnFiltersChange?: () => void
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
 }
 
-export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {}
+export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {
+  dataSource: any[]
+  dataSourceJS: any[]
+  dataSourceMode: "select" | "dynamic"
+}
+
+export interface WrappedTableContextProps {
+  handleOnClick?: () => void
+}

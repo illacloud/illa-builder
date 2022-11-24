@@ -20,7 +20,7 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "MongoDB"
       case "redis":
         return "Redis"
-      case "elastic":
+      case "elasticsearch":
         return "Elastic Search"
       case "postgresql":
         return "PostgreSQL"
@@ -57,7 +57,7 @@ export function getResourceNameFromResourceType(
         return "MongoDB"
       case "redis":
         return "Redis"
-      case "elastic":
+      case "elasticsearch":
         return "Elastic Search"
       case "postgresql":
         return "PostgreSQL"

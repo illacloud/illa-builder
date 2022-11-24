@@ -11,6 +11,13 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { configActions } from "@/redux/config/configSlice"
 import store from "@/store"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import {
+  Resource,
+  ResourceContent,
+  ResourceType,
+} from "@/redux/resource/resourceState"
+import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 
 function getBaseActionUrl() {
   const rootState = store.getState()
@@ -75,5 +82,107 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
     },
     () => {},
     (loading) => {},
+  )
+}
+
+function getActionContentByType(data: FieldValues, type: ResourceType) {
+  switch (type) {
+    case "elasticsearch":
+      return {
+        host: data.host,
+        port: data.port.toString(),
+        username: data.username,
+        password: data.password,
+      }
+    case "s3":
+      return {
+        bucketName: data.bucketName,
+        region: data.region,
+        endpoint: data.endpoint,
+        baseURL: data.baseURL,
+        accessKeyID: data.accessKeyID,
+        secretAccessKey: data.secretAccessKey,
+      }
+  }
+}
+
+export function onActionConfigElementSubmit(
+  handleSubmit: UseFormHandleSubmit<FieldValues>,
+  resourceId: string | undefined,
+  resourceType: ResourceType,
+  finishedHandler: (resourceId: string) => void,
+  loadingHandler: (value: boolean) => void,
+) {
+  const method = resourceId != undefined ? "PUT" : "POST"
+  const url =
+    resourceId != undefined ? `/resources/${resourceId}` : `/resources`
+
+  return handleSubmit((data: FieldValues) => {
+    Api.request<Resource<ResourceContent>>(
+      {
+        method,
+        url,
+        data: {
+          ...(resourceId !== undefined && { resourceId: data.resourceId }),
+          resourceName: data.resourceName,
+          resourceType: resourceType,
+          content: getActionContentByType(data, resourceType),
+        },
+      },
+      (response) => {
+        if (resourceId !== undefined) {
+          store.dispatch(
+            resourceActions.updateResourceItemReducer(response.data),
+          )
+        } else {
+          store.dispatch(resourceActions.addResourceItemReducer(response.data))
+        }
+        Message.success(i18n.t("dashboard.resource.save_success"))
+        finishedHandler(response.data.resourceId)
+      },
+      (error) => {
+        Message.error(
+          error.data.errorMessage || i18n.t("dashboard.resource.save_fail"),
+        )
+      },
+      () => {
+        Message.error(i18n.t("dashboard.resource.save_fail"))
+      },
+      (loading) => {
+        loadingHandler(loading)
+      },
+    )
+  })
+}
+
+export function onActionConfigElementTest(
+  data: FieldValues,
+  content: ResourceContent,
+  resourceType: ResourceType,
+  loadingHandler: (value: boolean) => void,
+) {
+  return Api.request<Resource<ResourceContent>>(
+    {
+      method: "POST",
+      url: `/resources/testConnection`,
+      data: {
+        resourceId: data.resourceId,
+        resourceName: data.resourceName,
+        resourceType,
+        content,
+      },
+    },
+    (response) => {
+      Message.success(i18n.t("dashboard.resource.test_success"))
+    },
+    (error) => {
+      Message.error(error.data.errorMessage)
+    },
+    () => {
+      Message.error(i18n.t("dashboard.resource.test_fail"))
+    },
+    (loading) => {
+      loadingHandler(loading)
+    },
   )
 }

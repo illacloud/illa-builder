@@ -32,8 +32,8 @@ export const Databases: ActionDataItem[] = [
     isDraft: false,
   },
   {
-    actionType: "elastic",
-    isDraft: true,
+    actionType: "elasticsearch",
+    isDraft: false,
   },
 ]
 
@@ -43,11 +43,11 @@ export const Apis: ActionDataItem[] = [
     isDraft: false,
   },
   {
-    actionType: "graphql",
-    isDraft: true,
+    actionType: "s3",
+    isDraft: false,
   },
   {
-    actionType: "s3",
+    actionType: "graphql",
     isDraft: true,
   },
   {

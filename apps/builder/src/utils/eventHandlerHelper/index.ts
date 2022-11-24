@@ -52,7 +52,6 @@ export const transformEvents = (
     }
   }
   if (actionType === "setRouter") {
-    console.log("event", event)
     const { pagePath, viewPath } = event
     let finalPath = `/${pagePath}`
     finalPath = viewPath ? finalPath + `/${viewPath}` : finalPath
@@ -71,6 +70,7 @@ export const transformEvents = (
           if (mode === "production") {
             ILLARoute.navigate(
               originPathArray.slice(0, 6).join("/") + finalPath,
+              { replace: true },
             )
           }
         }

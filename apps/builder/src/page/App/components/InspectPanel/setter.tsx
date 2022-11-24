@@ -97,7 +97,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
           handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
           widgetDisplayName={widgetDisplayName}
-          expectedType={expectedType ?? VALIDATION_TYPES.STRING}
+          expectedType={expectedType}
           widgetType={widgetType}
           parentAttrName={parentAttrName}
           widgetOrAction={widgetOrAction}

@@ -177,6 +177,22 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       return []
     }, [realProps])
 
+    const getOnFocusEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "focus")
+      }
+      return []
+    }, [realProps])
+
+    const getOnBlurEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "blur")
+      }
+      return []
+    }, [realProps])
+
     const getOnClickMenuItemEventScripts = useCallback(
       (path: string) => {
         const events = get(realProps, path)
@@ -223,6 +239,18 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
     }, [getOnClickEventScripts])
+
+    const handleOnFocus = useCallback(() => {
+      getOnFocusEventScripts().forEach((scriptObj) => {
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+      })
+    }, [getOnFocusEventScripts])
+
+    const handleOnBlur = useCallback(() => {
+      getOnBlurEventScripts().forEach((scriptObj) => {
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+      })
+    }, [getOnBlurEventScripts])
 
     const handleOnClickMenuItem = useCallback(
       (path: string) => {
@@ -293,12 +321,17 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       shadow,
     } = realProps
 
+    const _radius = !isNaN(Number(radius)) ? radius + "px" : radius?.toString()
+    const _borderWidth = !isNaN(Number(borderWidth))
+      ? borderWidth + "px"
+      : borderWidth?.toString()
+
     return hidden ? null : (
       <div
         css={applyWrapperStylesStyle(
           borderColor,
-          borderWidth,
-          radius,
+          _borderWidth,
+          _radius,
           backgroundColor,
           shadow,
           type,
@@ -330,6 +363,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           displayName={displayName}
           childrenNode={childrenNode}
           componentNode={componentNode}
+          handleOnFocus={handleOnFocus}
+          handleOnBlur={handleOnBlur}
         />
       </div>
     )

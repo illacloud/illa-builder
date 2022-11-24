@@ -331,18 +331,14 @@ export const Register: FC = () => {
                   size="large"
                   error={!!errors.password}
                   variant="fill"
-                  placeholder={t("user.sign_up.placeholder.password")}
+                  placeholder={t("user.password.placeholder")}
                 />
               )}
               rules={{
                 required: t("user.sign_up.error_message.password.require"),
-                maxLength: {
-                  value: 20,
-                  message: t("user.sign_up.error_message.password.length"),
-                },
                 minLength: {
                   value: 6,
-                  message: t("user.sign_up.error_message.password.length"),
+                  message: t("user.sign_in.error_message.password.min_length"),
                 },
                 validate: (value) => {
                   return value.includes(" ")

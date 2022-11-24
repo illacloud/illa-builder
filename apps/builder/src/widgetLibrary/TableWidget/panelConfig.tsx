@@ -3,7 +3,10 @@ import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
-import { TABLE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/TableWidget/eventHandlerConfig"
+import {
+  TABLE_BUTTON_EVENT_HANDLER_CONFIG,
+  TABLE_EVENT_HANDLER_CONFIG,
+} from "@/widgetLibrary/TableWidget/eventHandlerConfig"
 
 const baseWidgetName = "table"
 
@@ -13,12 +16,11 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.data"),
     children: [
       {
-        id: `${baseWidgetName}-basic-data`,
-        labelName: i18n.t("editor.inspect.setter_label.data"),
-        attrName: "data",
-        isSetterSingleRow: true,
-        setterType: "TABLE_DATA_INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.ARRAY,
+        id: `${baseWidgetName}-data-source`,
+        labelName: i18n.t("editor.inspect.setter_label.data_source"),
+        useCustomLayout: true,
+        attrName: "dataSource",
+        setterType: "TABLE_DATASOURCE_SELECT_SETTER",
       },
       {
         id: `${baseWidgetName}-basic-emptyState`,
@@ -85,6 +87,13 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
+            id: `${baseWidgetName}-column-mappedValue`,
+            labelName: i18n.t("editor.inspect.setter_label.mapped_value"),
+            attrName: "mappedValue",
+            bindAttrName: ["type"],
+            setterType: "INPUT_SETTER",
+          },
+          {
             id: `${baseWidgetName}-basic-enableSorting`,
             labelName: i18n.t("editor.inspect.setter_label.enable_sorting"),
             attrName: "enableSorting",
@@ -92,6 +101,14 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.BOOLEAN,
             openDynamic: true,
             useCustomLayout: true,
+          },
+          {
+            bindAttrName: ["type"],
+            shown: (value) => value === "button",
+            ...generatorEventHandlerConfig(
+              baseWidgetName,
+              TABLE_BUTTON_EVENT_HANDLER_CONFIG.events,
+            ),
           },
         ],
       },

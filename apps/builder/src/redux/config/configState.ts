@@ -20,6 +20,7 @@ export interface ConfigState {
   freezeCanvas: boolean
   canvasHeight: number
   canvasWidth: number
+  isOnline: boolean
 }
 
 export const ConfigInitialState: ConfigState = {
@@ -37,4 +38,5 @@ export const ConfigInitialState: ConfigState = {
   freezeCanvas: false,
   canvasHeight: 1080,
   canvasWidth: 1920,
+  isOnline: true,
 }
