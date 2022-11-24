@@ -11,6 +11,13 @@ export interface Transformer {
   enable: boolean
 }
 
+export interface ActionRunResult {
+  data: {
+    Rows: Record<string, any>[]
+    Extra?: Record<string, any> | null
+  }
+}
+
 export const TransformerInitial: Transformer = {
   rawData: "",
   enable: false,
