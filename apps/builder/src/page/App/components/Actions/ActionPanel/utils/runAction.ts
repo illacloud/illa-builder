@@ -172,13 +172,22 @@ const transformDataFormat = (
       }
       if (commands === S3ActionRequestType.UPLOAD_MULTIPLE) {
         const { objectDataList = [] } = commandArgs
+        if (Array.isArray(objectDataList)) {
+          return {
+            ...content,
+            commandArgs: {
+              ...content.commandArgs,
+              objectDataList: objectDataList.map((value: string) =>
+                window.btoa(window.encodeURIComponent(value)),
+              ),
+            },
+          }
+        }
         return {
           ...content,
           commandArgs: {
             ...content.commandArgs,
-            objectDataList: objectDataList.map((value: string) =>
-              window.btoa(window.encodeURIComponent(value)),
-            ),
+            objectDataList: [window.btoa(window.encodeURIComponent(objectDataList) || "")],
           },
         }
       }
