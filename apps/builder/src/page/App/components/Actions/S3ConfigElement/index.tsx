@@ -334,6 +334,18 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
             <div css={configItemTip}>
               {t("editor.action.resource.db.tip.username_password")}
             </div>
+            <div css={configItem}>
+              <div css={labelContainer}>
+                <span
+                  css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
+                >
+                  {t("editor.action.resource.db.label.connect_type")}
+                </span>
+              </div>
+              <span css={connectTypeStyle}>
+                {t("editor.action.resource.db.tip.connect_type")}
+              </span>
+            </div>
           </>
         )}
       </div>

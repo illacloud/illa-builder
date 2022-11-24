@@ -187,7 +187,7 @@ const transformDataFormat = (
           ...content,
           commandArgs: {
             ...content.commandArgs,
-            objectDataList: [window.btoa(objectDataList || "")],
+            objectDataList: [window.btoa(window.encodeURIComponent(objectDataList) || "")],
           },
         }
       }
