@@ -20,7 +20,7 @@ import {
 } from "@/redux/config/configSelector"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { Input } from "@illa-design/input"
-import { isValidDisplayName } from "@/utils/typeHelper"
+import { isObject, isValidDisplayName } from "@/utils/typeHelper"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { Message } from "@illa-design/message"
 import { Api } from "@/api/base"
@@ -38,7 +38,12 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     const cachedAction = useSelector(getCachedAction)
 
     const error = useSelector((state: RootState) => {
-      return state.currentApp.execution.error[action.displayName]
+      const targetActionErrors =
+        state.currentApp.execution.error[action.displayName]
+      if (isObject(targetActionErrors)) {
+        return Object.keys(targetActionErrors).length > 0
+      }
+      return false
     })
 
     const currentApp = useSelector(getAppInfo)
@@ -151,7 +156,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               {error && <WarningCircleIcon css={warningCircleStyle} />}
             </div>
             {!editName ? (
-              <div css={applyActionItemTitleStyle(error !== undefined)}>
+              <div css={applyActionItemTitleStyle(error)}>
                 {action.displayName}
               </div>
             ) : (

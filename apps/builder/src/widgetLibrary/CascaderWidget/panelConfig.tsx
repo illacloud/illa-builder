@@ -14,6 +14,7 @@ export const CASCADER_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-data-source`,
         labelName: i18n.t("editor.inspect.setter_label.data_source"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.cascader_data"),
         useCustomLayout: true,
         attrName: "dataSource",
         setterType: "DATA_SOURCE_SELECT_SETTER",

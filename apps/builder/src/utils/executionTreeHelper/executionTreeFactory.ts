@@ -267,8 +267,9 @@ export class ExecutionTreeFactory {
   ) {
     const currentRawTree = cloneDeep(this.oldRawTree)
     paths.forEach((path) => {
-      const value = get(executionTree, path, undefined)
-      set(currentRawTree, path, value)
+      const rootPath = path.split(".").slice(0, 2).join(".")
+      const value = get(executionTree, rootPath, undefined)
+      set(currentRawTree, rootPath, value)
     })
     return currentRawTree
   }

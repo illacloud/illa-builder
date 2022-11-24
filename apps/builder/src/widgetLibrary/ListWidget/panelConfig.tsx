@@ -3,7 +3,6 @@ import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { DATE_TIME_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DateTimeWidget"
-import { ReactComponent as TextSizeIcon } from "@/assets/text-size-icon.svg"
 import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
 
 const baseWidgetName = "form"
