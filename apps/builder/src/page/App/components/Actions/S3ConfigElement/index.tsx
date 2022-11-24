@@ -281,7 +281,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
               required: true,
             }}
             render={({ field: { value, onChange, onBlur } }) => (
-              <Input
+              <Password
                 w="100%"
                 ml="16px"
                 mr="24px"
@@ -316,7 +316,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
               required: true,
             }}
             render={({ field: { value, onChange, onBlur } }) => (
-              <Input
+              <Password
                 w="100%"
                 ml="16px"
                 mr="24px"
