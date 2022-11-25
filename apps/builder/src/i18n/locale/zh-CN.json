@@ -216,6 +216,23 @@
             "max_file": "文件大小不能超过5M。"
           }
         },
+        "smtp": {
+          "from_email": "发件人",
+          "set_replay_email": "设置回复邮箱",
+          "replay_email": "回复",
+          "to_email": "收件人",
+          "bcc_email": "密送",
+          "cc_email": "抄送",
+          "subject": "主题",
+          "body": "正文",
+          "attachment": "附件",
+          "use_html": "使用HTML",
+          "use_raw": "使用原始文本",
+          "placeholder": {
+            "emails": "使用逗号分隔多个邮箱。",
+            "attachment": "{{[{ data: base64-encrypted file data, name: \"File name\", contentType: 'text/plain' }]}}"
+          }
+        },
         "option": {
           "resource": {
             "new": "添加资源"

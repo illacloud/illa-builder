@@ -47,11 +47,11 @@ export const Apis: ActionDataItem[] = [
     isDraft: false,
   },
   {
-    actionType: "graphql",
-    isDraft: true,
+    actionType: "smtp",
+    isDraft: false,
   },
   {
-    actionType: "smtp",
+    actionType: "graphql",
     isDraft: true,
   },
 ]

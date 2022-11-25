@@ -42,6 +42,8 @@ import {
 } from "@/redux/currentApp/action/s3Action"
 import { calculateFileSize } from "../utils/calculateFileSize"
 import { useMessage } from "@illa-design/message"
+import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
@@ -77,32 +79,51 @@ const getActionFilteredContent = (
   cachedAction: ActionItem<ActionContent> | null,
 ) => {
   let cachedActionValue: ActionItem<ActionContent> | null = cachedAction
-  if (!!cachedActionValue && cachedAction?.actionType === "elasticsearch") {
-    let content = cachedAction.content as ElasticSearchAction
-    if (!IDEditorType.includes(content.operation)) {
-      const { id = "", ...otherContent } = content
+  if (!cachedActionValue) {
+    return cachedActionValue
+  }
+  switch (cachedAction?.actionType) {
+    case "elasticsearch":
+      let content = cachedAction.content as ElasticSearchAction
+      if (!IDEditorType.includes(content.operation)) {
+        const { id = "", ...otherContent } = content
 
+        cachedActionValue = {
+          ...cachedAction,
+          content: { ...otherContent },
+        }
+        content = otherContent
+      }
+      if (!BodyContentType.includes(content.operation)) {
+        const { body = "", ...otherContent } = content
+        cachedActionValue = {
+          ...cachedActionValue,
+          content: { ...otherContent },
+        }
+        content = otherContent
+      }
+      if (!QueryContentType.includes(content.operation)) {
+        const { query = "", ...otherContent } = content
+        cachedActionValue = {
+          ...cachedActionValue,
+          content: { ...otherContent },
+        }
+      }
+      break
+    case "smtp":
+      let smtpContent = cachedAction.content as SMPTAction
+      const { to, bcc, cc } = smtpContent
       cachedActionValue = {
         ...cachedAction,
-        content: { ...otherContent },
+        content: {
+          ...smtpContent,
+          // TODO: 判断这几个字符串的形式
+          bcc: isDynamicString(bcc) ? to : `{{[${bcc}]}}`,
+          cc: isDynamicString(cc) ? to : `{{[${cc}]}}`,
+          to: isDynamicString(to) ? to : `{{[${to}]}}`,
+        },
       }
-      content = otherContent
-    }
-    if (!BodyContentType.includes(content.operation)) {
-      const { body = "", ...otherContent } = content
-      cachedActionValue = {
-        ...cachedActionValue,
-        content: { ...otherContent },
-      }
-      content = otherContent
-    }
-    if (!QueryContentType.includes(content.operation)) {
-      const { query = "", ...otherContent } = content
-      cachedActionValue = {
-        ...cachedActionValue,
-        content: { ...otherContent },
-      }
-    }
+      break
   }
   return cachedActionValue
 }

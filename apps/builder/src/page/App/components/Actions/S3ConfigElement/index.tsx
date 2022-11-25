@@ -10,7 +10,6 @@ import {
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
-  hostInputContainer,
   labelContainer,
   optionLabelStyle,
   sslStyle,

@@ -216,6 +216,26 @@
             "max_file": "The size of file can't exceed 5M."
           }
         },
+        "smtp": {
+          "from_email": "From email",
+          "set_replay_email": "Set Reply-To email",
+          "replay_email": "Reply-to email",
+          "to_email": "To email(s)",
+          "bcc_email": "Bcc email(s)",
+          "cc_email": "Cc email(s)",
+          "subject": "Subject",
+          "body": "Body",
+          "attachment": "Attachment(s)",
+          "use_html": "Use HTML",
+          "use_raw": "Use raw text",
+          "placeholder": {
+            "emails": "Use commas to separate multiple emails.",
+            "attachment": "{{[{ data: base64-encrypted file data, name: \"File name\", contentType: 'text/plain' }]}}"
+          },
+          "error": {
+            "max_file": "The size of file can't exceed 5M."
+          }
+        },
         "option": {
           "resource": {
             "new": "Create a new resource"

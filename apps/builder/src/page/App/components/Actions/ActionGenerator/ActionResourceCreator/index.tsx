@@ -8,6 +8,7 @@ import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfi
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
+import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
 
 export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
   const { onBack, onFinished, resourceType } = props
@@ -61,6 +62,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         return (
           <RedisConfigElement onBack={handleBack} onFinished={onFinished} />
         )
+      case "smtp":
+        return <SMTPConfigElement onBack={handleBack} onFinished={onFinished} />
       default:
         return null
     }
