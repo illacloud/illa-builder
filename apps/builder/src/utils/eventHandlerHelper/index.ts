@@ -10,7 +10,7 @@ import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSele
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { Message } from "@illa-design/message"
+import { createMessage } from "@illa-design/message"
 import {
   goToURL,
   showNotification,
@@ -19,6 +19,8 @@ import { get } from "lodash"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { ILLARoute } from "@/router"
 import { UpdateExecutionByDisplayNamePayload } from "@/redux/currentApp/executionTree/executionState"
+
+const message = createMessage()
 
 export const transformEvents = (
   event: any,
@@ -239,7 +241,9 @@ export const runEventHandler = (
       try {
         evaluateDynamicString("events", script, globalData)
       } catch (e) {
-        Message.error("eventHandler run error")
+        message.error({
+          content: "eventHandler run error",
+        })
       }
       return
     }
