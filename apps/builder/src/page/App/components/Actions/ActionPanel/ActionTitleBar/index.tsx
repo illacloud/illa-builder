@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Api } from "@/api/base"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { Message } from "@illa-design/message"
 import { ActionTitleBarProps } from "./interface"
 import { EditableText } from "@/components/EditableText"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
@@ -42,6 +41,7 @@ import {
   UploadContent,
 } from "@/redux/currentApp/action/s3Action"
 import { calculateFileSize } from "../utils/calculateFileSize"
+import { useMessage } from "@illa-design/message"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
@@ -110,6 +110,7 @@ const getActionFilteredContent = (
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { onActionRun } = props
 
+  const message = useMessage()
   const selectedAction = useSelector(getSelectedAction)!
   const cachedAction = useSelector(getCachedAction)
 
@@ -142,7 +143,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     switch (runMode) {
       case "run":
         if (!canRunS3Action) {
-          Message.error(t("editor.action.panel.s3.error.max_file"))
+          message.error({
+            content: t("editor.action.panel.s3.error.max_file"),
+          })
           return
         }
         setLoading(true)
@@ -166,10 +169,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
             }
           },
           () => {
-            Message.error(t("create_fail"))
+            message.error({
+              content: t("create_fail"),
+            })
           },
           () => {
-            Message.error(t("create_fail"))
+            message.error({
+              content: t("create_fail"),
+            })
           },
           (l) => {
             setLoading(l)
@@ -178,7 +185,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         break
       case "save_and_run":
         if (!canRunS3Action) {
-          Message.error(t("editor.action.panel.s3.error.max_file"))
+          message.error({
+            content: t("editor.action.panel.s3.error.max_file"),
+          })
           return
         }
         Api.request(
@@ -202,10 +211,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
             }
           },
           () => {
-            Message.error(t("editor.action.panel.btn.save_fail"))
+            message.error({
+              content: t("editor.action.panel.btn.save_fail"),
+            })
           },
           () => {
-            Message.error(t("editor.action.panel.btn.save_fail"))
+            message.error({
+              content: t("editor.action.panel.btn.save_fail"),
+            })
           },
           (l) => {
             setLoading(l)
@@ -258,10 +271,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 dispatch(actionActions.updateActionItemReducer(newAction))
               },
               () => {
-                Message.error(t("change_fail"))
+                message.error({
+                  content: t("change_fail"),
+                })
               },
               () => {
-                Message.error(t("change_fail"))
+                message.error({
+                  content: t("change_fail"),
+                })
               },
               (l) => {
                 setLoading(l)

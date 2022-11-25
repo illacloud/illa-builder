@@ -41,6 +41,7 @@ export default defineConfig((props) => {
       sourcemap: true,
     },
     server: {
+      port: 3000,
       https: true,
       proxy: {
         "/api": {
