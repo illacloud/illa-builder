@@ -7,25 +7,29 @@ import {
   iconStyle,
   typeTextStyle,
 } from "./style"
-import { ErrorIcon, CopyIcon } from "@illa-design/icon"
+import { CopyIcon, ErrorIcon } from "@illa-design/icon"
 import { isString } from "@illa-design/system"
-import { Message } from "@illa-design/message"
 import copy from "copy-to-clipboard"
+import { MessageHandler, useMessage } from "@illa-design/message"
 
 interface CodePreviewProps extends HTMLAttributes<HTMLDivElement> {
   preview?: ResultPreview
 }
 
-function copyToClipboard(content: any) {
-  const stringifiedContent = isString(content)
+function copyToClipboard(content: any, messageHandler: MessageHandler) {
+  const stringifyContent = isString(content)
     ? content
     : JSON.stringify(content, null, 2)
-  copy(stringifiedContent)
-  Message.success("copied to clipboard")
+  copy(stringifyContent)
+  messageHandler.success({
+    content: "copied to clipboard",
+  })
 }
 
 export const CodePreview: FC<CodePreviewProps> = (props) => {
   const { className, preview, ...otherProps } = props
+
+  const message = useMessage()
 
   return (
     <div className={className} css={applyPreviewStyle(preview?.state)}>
@@ -33,7 +37,7 @@ export const CodePreview: FC<CodePreviewProps> = (props) => {
         css={copyIconStyle}
         size={"10px"}
         onClick={() => {
-          copyToClipboard(preview?.content)
+          copyToClipboard(preview?.content, message)
         }}
       />
       {preview?.state === "error" ? (

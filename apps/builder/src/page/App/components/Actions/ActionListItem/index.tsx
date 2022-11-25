@@ -22,10 +22,10 @@ import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { Input } from "@illa-design/input"
 import { isObject, isValidDisplayName } from "@/utils/typeHelper"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { Message } from "@illa-design/message"
 import { Api } from "@/api/base"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { useMessage } from "@illa-design/message"
 
 const Item = DropList.Item
 
@@ -36,6 +36,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     const { t } = useTranslation()
     const selectedAction = useSelector(getSelectedAction)
     const cachedAction = useSelector(getCachedAction)
+    const message = useMessage()
 
     const error = useSelector((state: RootState) => {
       const targetActionErrors =
@@ -63,16 +64,20 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           return
         }
         if (!isValidDisplayName(newName)) {
-          Message.error(
-            t("editor.display_name.validate_error", { displayName: newName }),
-          )
+          message.error({
+            content: t("editor.display_name.validate_error", {
+              displayName: newName,
+            }),
+          })
           setEditName(false)
           return
         }
         if (DisplayNameGenerator.isAlreadyGenerate(newName)) {
-          Message.error(
-            t("editor.display_name.duplicate_error", { displayName: newName }),
-          )
+          message.error({
+            content: t("editor.display_name.duplicate_error", {
+              displayName: newName,
+            }),
+          })
           setEditName(false)
           return
         }
@@ -91,11 +96,15 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             setEditName(false)
           },
           () => {
-            Message.error(t("change_fail"))
+            message.error({
+              content: t("change_fail"),
+            })
             setEditName(false)
           },
           () => {
-            Message.error(t("change_fail"))
+            message.error({
+              content: t("change_fail"),
+            })
             setEditName(false)
           },
           (l) => {

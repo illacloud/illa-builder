@@ -1,6 +1,5 @@
 import { FC, useState } from "react"
 import { RenameModalProps } from "@/page/Dashboard/components/RenameModal/interface"
-import { Message } from "@illa-design/message"
 import { Input } from "@illa-design/input"
 import { Modal } from "@illa-design/modal"
 import { useTranslation } from "react-i18next"
@@ -9,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Api } from "@/api/base"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
+import { useMessage } from "@illa-design/message"
 
 export const RenameModal: FC<RenameModalProps> = (props) => {
   const { appId, visible, onVisibleChange } = props
@@ -26,6 +26,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
 
   const [loading, setLoading] = useState(false)
   const [name, setName] = useState(app?.appName)
+  const message = useMessage()
 
   return (
     <Modal
@@ -46,11 +47,15 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
       cancelText={t("dashboard.common.cancel")}
       onOk={() => {
         if (name === "") {
-          Message.error(t("dashboard.app.name_empty"))
+          message.error({
+            content: t("dashboard.app.name_empty"),
+          })
           return
         }
         if (appList.some((item) => item.appName === name)) {
-          Message.error(t("dashboard.app.name_existed"))
+          message.error({
+            content: t("dashboard.app.name_existed"),
+          })
           return
         }
         Api.request(
@@ -68,14 +73,20 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
                 newName: name,
               }),
             )
-            Message.success(t("dashboard.app.rename_success"))
+            message.success({
+              content: t("dashboard.app.rename_success"),
+            })
             onVisibleChange(false)
           },
           (failure) => {
-            Message.error(t("dashboard.app.rename_fail"))
+            message.error({
+              content: t("dashboard.app.rename_fail"),
+            })
           },
           (crash) => {
-            Message.error(t("network_error"))
+            message.error({
+              content: t("network_error"),
+            })
           },
           (loading) => {
             setLoading(loading)

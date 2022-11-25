@@ -22,12 +22,12 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { Api } from "@/api/base"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { Message } from "@illa-design/message"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { configActions } from "@/redux/config/configSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
+import { useMessage } from "@illa-design/message"
 
 export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   props,
@@ -50,6 +50,8 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   )
 
   const [loading, setLoading] = useState(false)
+
+  const message = useMessage()
 
   const dispatch = useDispatch()
 
@@ -121,15 +123,19 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
                   data,
                 },
                 ({ data }: { data: ActionItem<ActionContent> }) => {
-                  Message.success(
-                    t("editor.action.action_list.message.success_created"),
-                  )
+                  message.success({
+                    content: t(
+                      "editor.action.action_list.message.success_created",
+                    ),
+                  })
                   dispatch(actionActions.addActionItemReducer(data))
                   dispatch(configActions.changeSelectedAction(data))
                   onCreateAction?.(actionType, selectedResourceId)
                 },
                 () => {
-                  Message.error(t("editor.action.action_list.message.failed"))
+                  message.error({
+                    content: t("editor.action.action_list.message.failed"),
+                  })
                   DisplayNameGenerator.removeDisplayName(displayName)
                 },
                 () => {

@@ -25,7 +25,6 @@ import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
 import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
 import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   BasicAuth,
@@ -33,6 +32,7 @@ import {
   RestApiAuth,
   RestApiResource,
 } from "@/redux/resource/restapiResource"
+import { useMessage } from "@illa-design/message"
 
 function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
   let authContent: RestApiAuth | null = null
@@ -59,6 +59,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const message = useMessage()
 
   const { control, handleSubmit, formState } = useForm({
     mode: "onChange",
@@ -101,14 +102,20 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             },
             (response) => {
               dispatch(resourceActions.updateResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
               onFinished(response.data.resourceId)
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)
@@ -135,13 +142,19 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             (response) => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.addResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)
