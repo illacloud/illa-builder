@@ -45,7 +45,7 @@ export const Register: FC = () => {
   const dispatch = useDispatch()
   const message = useMessage()
   const [showCountDown, setShowCountDown] = useState(false)
-  const verificationToken = useRef<string>("")
+  const vt = useRef<string>("")
   const {
     control,
     handleSubmit,
@@ -64,7 +64,7 @@ export const Register: FC = () => {
         method: "POST",
         url: "/auth/signup",
         data: {
-          verificationToken: verificationToken.current,
+          verificationToken: vt.current,
           language: getLocalLanguage(),
           ...data,
         },
@@ -261,7 +261,7 @@ export const Register: FC = () => {
                           const res = await trigger("email")
                           if (res) {
                             setShowCountDown(true)
-                            Api.request<{ vt: string }>(
+                            Api.request<{ verificationToken: string }>(
                               {
                                 method: "POST",
                                 url: "/auth/verification",
@@ -276,7 +276,7 @@ export const Register: FC = () => {
                                     "user.sign_up.tips.verification_code",
                                   ),
                                 })
-                                verificationToken.current = res.data.vt
+                                vt.current = res.data.verificationToken
                               },
                               () => {
                                 message.error({
