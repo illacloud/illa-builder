@@ -5,7 +5,7 @@ import {
 import { omit } from "@illa-design/system"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
+import { createMessage } from "@illa-design/message"
 import i18n from "@/i18n/config"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { configActions } from "@/redux/config/configSlice"
@@ -25,6 +25,8 @@ function getBaseActionUrl() {
   return `/apps/${appId}/actions`
 }
 
+const message = createMessage()
+
 export function onCopyActionItem(action: ActionItem<ActionContent>) {
   const baseActionUrl = getBaseActionUrl()
   const newAction = omit(action, ["displayName", "actionId"])
@@ -42,14 +44,16 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
       data,
     },
     ({ data }: { data: ActionItem<ActionContent> }) => {
-      Message.success(
-        i18n.t("editor.action.action_list.message.success_created"),
-      )
+      message.success({
+        content: i18n.t("editor.action.action_list.message.success_created"),
+      })
       store.dispatch(actionActions.addActionItemReducer(data))
       store.dispatch(configActions.changeSelectedAction(data))
     },
     () => {
-      Message.error(i18n.t("editor.action.action_list.message.failed"))
+      message.error({
+        content: i18n.t("editor.action.action_list.message.failed"),
+      })
       DisplayNameGenerator.removeDisplayName(displayName)
     },
     () => {
@@ -71,14 +75,14 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
     ({ data }: { data: ActionItem<ActionContent> }) => {
       DisplayNameGenerator.removeDisplayName(displayName)
       store.dispatch(actionActions.removeActionItemReducer(displayName))
-      Message.success(
-        i18n.t("editor.action.action_list.message.success_deleted"),
-      )
+      message.success({
+        content: i18n.t("editor.action.action_list.message.success_deleted"),
+      })
     },
     () => {
-      Message.error(
-        i18n.t("editor.action.action_list.message.failed_to_delete"),
-      )
+      message.error({
+        content: i18n.t("editor.action.action_list.message.failed_to_delete"),
+      })
     },
     () => {},
     (loading) => {},
@@ -137,16 +141,21 @@ export function onActionConfigElementSubmit(
         } else {
           store.dispatch(resourceActions.addResourceItemReducer(response.data))
         }
-        Message.success(i18n.t("dashboard.resource.save_success"))
+        message.success({
+          content: i18n.t("dashboard.resource.save_success"),
+        })
         finishedHandler(response.data.resourceId)
       },
       (error) => {
-        Message.error(
-          error.data.errorMessage || i18n.t("dashboard.resource.save_fail"),
-        )
+        message.error({
+          content:
+            error.data.errorMessage || i18n.t("dashboard.resource.save_fail"),
+        })
       },
       () => {
-        Message.error(i18n.t("dashboard.resource.save_fail"))
+        message.error({
+          content: i18n.t("dashboard.resource.save_fail"),
+        })
       },
       (loading) => {
         loadingHandler(loading)
@@ -173,13 +182,19 @@ export function onActionConfigElementTest(
       },
     },
     (response) => {
-      Message.success(i18n.t("dashboard.resource.test_success"))
+      message.success({
+        content: i18n.t("dashboard.resource.test_success"),
+      })
     },
     (error) => {
-      Message.error(error.data.errorMessage)
+      message.error({
+        content: error.data.errorMessage,
+      })
     },
     () => {
-      Message.error(i18n.t("dashboard.resource.test_fail"))
+      message.error({
+        content: i18n.t("dashboard.resource.test_fail"),
+      })
     },
     (loading) => {
       loadingHandler(loading)

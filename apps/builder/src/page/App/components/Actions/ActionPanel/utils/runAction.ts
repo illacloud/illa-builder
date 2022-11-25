@@ -16,7 +16,7 @@ import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
-import { Message } from "@illa-design/message"
+import { createMessage } from "@illa-design/message"
 import {
   BodyContent,
   RestApiAction,
@@ -26,6 +26,8 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { S3ActionRequestType } from "@/redux/currentApp/action/s3Action"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
+
+const message = createMessage()
 
 function calcRealContent(content: Record<string, any>) {
   let realContent: Record<string, any> = {}
@@ -40,7 +42,9 @@ function calcRealContent(content: Record<string, any>) {
             BUILDER_CALC_CONTEXT,
           )
         } catch (e) {
-          Message.error(`maybe run error`)
+          message.error({
+            content: `maybe run error`,
+          })
         }
       } else {
         realContent[key] = calcRealContent(value)
@@ -138,7 +142,9 @@ const fetchActionResult = (
       failedEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
-      Message.error("not online")
+      message.error({
+        content: "not online",
+      })
     },
     (loading) => {},
   )
