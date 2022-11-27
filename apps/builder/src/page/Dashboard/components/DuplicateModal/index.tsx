@@ -32,7 +32,6 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
   return (
     <Modal
       w="496px"
-      simple
       closable
       autoFocus
       footerAlign="right"
@@ -40,7 +39,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
       okButtonProps={{
         colorScheme: "techPurple",
       }}
-      confirmLoading={loading}
+      okLoading={loading}
       onCancel={() => {
         onVisibleChange(false)
       }}
