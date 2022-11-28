@@ -159,6 +159,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateGlobalData(displayName, {
       defaultSort,
       columns,
+      dataSourceJS: dataSourceJS ?? [],
+      dataSource: dataSource ?? [],
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -170,6 +172,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    dataSourceJS,
+    dataSource,
   ])
 
   return (
