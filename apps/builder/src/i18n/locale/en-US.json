@@ -151,6 +151,13 @@
           "save_and_run": "Save & Run",
           "save_fail": "Failed to save"
         },
+        "elastic": {
+          "action_type": "Action Type",
+          "body": "Body",
+          "id": "Id",
+          "index": "Index",
+          "query": "Query"
+        },
         "label": {
           "event_handler": "Event Handler",
           "failure": "Failure",
@@ -180,42 +187,6 @@
           "sort_by": "Sort By",
           "update": "Update"
         },
-        "elastic": {
-          "action_type": "Action Type",
-          "query": "Query",
-          "index": "Index",
-          "id": "Id",
-          "body": "Body"
-        },
-        "s3": {
-          "action_type": "Action Type",
-          "bucket_name": "Bucket name",
-          "prefix_to_filter_reseults": "Prefix to filter results",
-          "delimiter": "Delimiter",
-          "generate_signed_url": "Generate Signed URL",
-          "expiry_duration_of_signed_url": "Expiry Duration of Signed URL(Minutes)",
-          "max_keys": "Max keys",
-          "object_key": "Object key",
-          "object_key_list": "Object key list",
-          "content_type": "Content-Type",
-          "upload_object_name": "Upload object name",
-          "upload_data": "Upload data",
-          "upload_object_name_list": "Upload object name list",
-          "upload_data_list": "Upload data list",
-          "placeholder": {
-            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
-            "object_name": "export.csv",
-            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}",
-            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}"
-          },
-          "tips": {
-            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names.",
-            "delimiter": "A delimiter is a character you use to group keys."
-          },
-          "error": {
-            "max_file": "The size of file can't exceed 5M."
-          }
-        },
         "option": {
           "resource": {
             "new": "Create a new resource"
@@ -224,6 +195,35 @@
             "manually": "Run action only when manually triggered",
             "on_change": "Run action automatically when inputs change"
           }
+        },
+        "s3": {
+          "action_type": "Action Type",
+          "bucket_name": "Bucket name",
+          "content_type": "Content-Type",
+          "delimiter": "Delimiter",
+          "error": {
+            "max_file": "The size of file can't exceed 5M."
+          },
+          "expiry_duration_of_signed_url": "Expiry Duration of Signed URL(Minutes)",
+          "generate_signed_url": "Generate Signed URL",
+          "max_keys": "Max keys",
+          "object_key": "Object key",
+          "object_key_list": "Object key list",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Prefix to filter results",
+          "tips": {
+            "delimiter": "A delimiter is a character you use to group keys.",
+            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names."
+          },
+          "upload_data": "Upload data",
+          "upload_data_list": "Upload data list",
+          "upload_object_name": "Upload object name",
+          "upload_object_name_list": "Upload object name list"
         },
         "tips": {
           "transformer": "Enable transformers to transform the result of the query to a different format."
@@ -277,24 +277,6 @@
           "title": {
             "advanced_option": "Advanced Options",
             "general_option": "GENERAL"
-          }
-        },
-        "s3": {
-          "label": {
-            "bucket_name": "Bucket name",
-            "region": "Region",
-            "custome_s3_endpoint": "Custom S3 endpoint",
-            "base_url": "Base URL",
-            "access_key": "Access key",
-            "secret_access_key": "Secret access key",
-            "use_custome_s3_endpoint": "Use custom S3 endpoint"
-          },
-          "placeholder": {
-            "region": "us-west-1",
-            "base_url": "i.e. https://example.com"
-          },
-          "tip": {
-            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces or Wasabi."
           }
         },
         "error": {
@@ -365,6 +347,24 @@
           },
           "title": {
             "advanced_option": "GENERAL"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Access key",
+            "base_url": "Base URL",
+            "bucket_name": "Bucket name",
+            "custome_s3_endpoint": "Custom S3 endpoint",
+            "region": "Region",
+            "secret_access_key": "Secret access key",
+            "use_custome_s3_endpoint": "Use custom S3 endpoint"
+          },
+          "placeholder": {
+            "base_url": "i.e. https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces or Wasabi."
           }
         },
         "transformer": {
@@ -490,6 +490,7 @@
           "focus": "Focus",
           "invalid": "Invalid",
           "paginationChange": "Page change",
+          "row_select": " 选择行",
           "sortingChange": "Sort change",
           "submit": "Submit",
           "success": "Success"
@@ -617,8 +618,8 @@
         "loading": "Loading",
         "loop_back_to_start": "Loop back to start",
         "loop_start_to_back": "Loop start to back",
-        "mapped_value": "Mapped Value",
         "mapped_option": "Mapped Option",
+        "mapped_value": "Mapped Value",
         "max_count": "Max count",
         "max_date": "Max date",
         "max_length": "Max length",

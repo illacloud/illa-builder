@@ -14,18 +14,36 @@ export interface ValidationResponse {
   errorMessage?: string
 }
 
-export type ValidateFunctionType = (value: unknown) => ValidationResponse
+export type ValidateFunctionType = (
+  value: unknown,
+  currentListName: string,
+) => ValidationResponse
 
 // TODO: @weichen errorMessage i18n
 export const validationFactory: Record<string, ValidateFunctionType> = {
-  [VALIDATION_TYPES.STRING]: (value) => {
+  [VALIDATION_TYPES.STRING]: (value, currentListName) => {
     if (value == undefined || value === "") {
       return {
         isValid: true,
         safeValue: undefined,
       }
     }
+    if (Array.isArray(value) && currentListName) {
+      const isString = typeof value[0] === "string"
+      if (!isString) {
+        return {
+          isValid: false,
+          safeValue: "",
+          errorMessage: "Must be a string",
+        }
+      }
+      return {
+        isValid: true,
+        safeValue: value[0],
+      }
+    }
     const isString = typeof value === "string"
+
     if (!isString) {
       return {
         isValid: false,
@@ -38,11 +56,17 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
       safeValue: value,
     }
   },
-  [VALIDATION_TYPES.BOOLEAN]: (value) => {
+  [VALIDATION_TYPES.BOOLEAN]: (value, currentListName) => {
     if (value == undefined || value === "") {
       return {
         isValid: true,
         safeValue: undefined,
+      }
+    }
+    if (Array.isArray(value) && currentListName) {
+      return {
+        isValid: true,
+        safeValue: value[0],
       }
     }
     const isBoolean = typeof value === "boolean"
@@ -58,11 +82,17 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
       safeValue: value,
     }
   },
-  [VALIDATION_TYPES.NUMBER]: (value) => {
+  [VALIDATION_TYPES.NUMBER]: (value, currentListName) => {
     if (value == undefined || value === "") {
       return {
         isValid: true,
         safeValue: undefined,
+      }
+    }
+    if (Array.isArray(value) && currentListName) {
+      return {
+        isValid: true,
+        safeValue: value[0],
       }
     }
     const isNumber = typeof value === "number"

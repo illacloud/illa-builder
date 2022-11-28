@@ -231,7 +231,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         return false
       }
     })
-  }, [allLikeInputChildrenNode])
+  }, [allLikeInputChildrenNode, message])
 
   const handleSetValue = useCallback(
     (value: Record<string, any>) => {
@@ -288,7 +288,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           const validateFunc = get(
             BUILDER_CALC_CONTEXT,
             `${node.displayName}.validate`,
-          )
+          ) as unknown
           if (typeof validateFunc === "function") {
             return !validateFunc()
           }
@@ -316,6 +316,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     handleOnFormSubmit,
     handleOnInvalid,
     handleOnReset,
+    message,
     resetAfterSuccessful,
     validateInputsOnSubmit,
   ])

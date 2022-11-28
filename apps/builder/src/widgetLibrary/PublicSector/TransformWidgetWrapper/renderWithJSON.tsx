@@ -8,7 +8,6 @@ import {
   BUILDER_CALC_CONTEXT,
 } from "@/page/App/context/globalDataProvider"
 import { EventsInProps } from "@/widgetLibrary/interface"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
@@ -32,14 +31,21 @@ export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   })
 }
 
-export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
+export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
     const { componentNode } = props
 
-    const { displayName, type, w, h, unitW, unitH, childrenNode } =
-      componentNode
+    const {
+      displayName,
+      type,
+      w,
+      h,
+      unitW,
+      unitH,
+      childrenNode,
+      props: nodeProps,
+    } = componentNode
 
-    const displayNameMapProps = useSelector(getExecutionResult)
     const { handleUpdateGlobalData, handleDeleteGlobalData } =
       useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
@@ -109,10 +115,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       [allComponents, componentNode, dispatch],
     )
 
-    const realProps = useMemo(
-      () => displayNameMapProps[displayName] ?? {},
-      [displayName, displayNameMapProps],
-    )
+    const realProps = useMemo(() => nodeProps ?? {}, [nodeProps])
 
     const handleUpdateDsl = useCallback(
       (value: Record<string, any>) => {
@@ -228,14 +231,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       return []
     }, [realProps])
 
-    const getOnRowSelectChangeEventScripts = useCallback(() => {
-      const events = get(realProps, "events")
-      if (events) {
-        return getEventScripts(events, "rowSelect")
-      }
-      return []
-    }, [realProps])
-
     const handleOnChange = useCallback(() => {
       getOnChangeEventScripts().forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
@@ -286,12 +281,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
     }, [getOnColumnFiltersChangeEventScripts])
-
-    const handleOnRowSelect = useCallback(() => {
-      getOnRowSelectChangeEventScripts().forEach((scriptObj) => {
-        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
-      })
-    }, [getOnRowSelectChangeEventScripts])
 
     const getOnFormSubmitEventScripts = useCallback(() => {
       const events = get(realProps, "events")
@@ -379,11 +368,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           componentNode={componentNode}
           handleOnFocus={handleOnFocus}
           handleOnBlur={handleOnBlur}
-          handleOnRowSelect={handleOnRowSelect}
         />
       </div>
     )
   },
 )
 
-TransformWidgetWrapper.displayName = "TransformWidgetWrapper"
+TransformWidgetWrapperWithJson.displayName = "TransformWidgetWrapper"

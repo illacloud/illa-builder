@@ -1,7 +1,13 @@
-import { FC, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
+import { useSelector } from "react-redux"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  getNeedComputedValueWithList,
+  realInputValueWithList,
+} from "@/page/App/components/PanelSetters/InputSetter/util"
 
 export function getPath(attrName?: string, widgetDisplayName?: string) {
   if (attrName && widgetDisplayName) {
@@ -23,22 +29,44 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     isInList,
   } = props
 
-  const _value = useMemo(() => {
-    if (typeof value === "object") {
-      return `{{${JSON.stringify(value)}}}`
-    } else {
-      return value
-    }
-  }, [value])
+  const listWidgets = useSelector(
+    getContainerListDisplayNameMappedChildrenNodeDisplayName,
+  )
 
+  const currentListDisplayName = useMemo(() => {
+    const listWidgetDisplayNames = Object.keys(listWidgets)
+    for (let i = 0; i < listWidgetDisplayNames.length; i++) {
+      if (listWidgets[listWidgetDisplayNames[i]].includes(widgetDisplayName)) {
+        return listWidgetDisplayNames[i]
+      }
+    }
+    return ""
+  }, [listWidgets, widgetDisplayName])
+
+  const finalValue = useMemo(() => {
+    if (currentListDisplayName) {
+      return realInputValueWithList(value, currentListDisplayName)
+    }
+    return value || ""
+  }, [currentListDisplayName, value])
+
+  const onChange = useCallback(
+    (value: string) => {
+      let output = value
+      if (currentListDisplayName) {
+        output = getNeedComputedValueWithList(value, currentListDisplayName)
+      }
+
+      handleUpdateDsl(attrName, output)
+    },
+    [attrName, currentListDisplayName, handleUpdateDsl],
+  )
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
       <CodeEditor
-        value={_value ?? ""}
+        value={finalValue}
         placeholder={placeholder}
-        onChange={(value) => {
-          handleUpdateDsl(attrName, value)
-        }}
+        onChange={onChange}
         mode="TEXT_JS"
         expectedType={expectedType}
         path={getPath(attrName, widgetDisplayName)}

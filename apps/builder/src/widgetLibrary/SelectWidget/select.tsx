@@ -23,7 +23,6 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     showSearch,
     inputValue,
     colorScheme,
-    handleUpdateDsl,
     handleUpdateMultiExecutionResult,
     handleOnChange,
     getValidateMessage,
@@ -106,6 +105,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     validateMessage,
+    dataSources,
     updateComponentHeight,
   } = props
 
@@ -155,6 +155,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
       mappedOption,
       manualOptions,
       options: finalOptions,
+      dataSources,
       setValue: (value: any) => {
         handleUpdateDsl({ value })
       },
@@ -188,6 +189,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     handleUpdateDsl,
     handleDeleteGlobalData,
     handleValidate,
+    dataSources,
   ])
   const wrapperRef = useRef<HTMLDivElement>(null)
 

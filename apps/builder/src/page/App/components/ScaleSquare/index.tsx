@@ -8,6 +8,7 @@ import {
 } from "react"
 import {
   ScaleSquareProps,
+  ScaleSquarePropsWithJSON,
   ScaleSquareType,
 } from "@/page/App/components/ScaleSquare/interface"
 import {
@@ -53,6 +54,7 @@ import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import store, { RootState } from "@/store"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
+import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/renderWithJSON"
 
 const { Item } = DropList
 
@@ -538,4 +540,37 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   )
 })
 
+export const ScaleSquareWithJSON = memo<ScaleSquarePropsWithJSON>(
+  (props: ScaleSquarePropsWithJSON) => {
+    const { componentNode, unitW, unitH, w, h, x, y } = props
+
+    //  1px is left border width
+    return (
+      <Rnd
+        bounds="parent"
+        size={{
+          width: w + 1,
+          height: h + 1,
+        }}
+        position={{
+          x: x,
+          y: y,
+        }}
+        enableResizing={false}
+        disableDragging
+        minWidth={componentNode.minW * unitW}
+        minHeight={componentNode.minH * unitH}
+      >
+        <div
+          className="wrapperPending"
+          css={applyWrapperPendingStyle(false, false, false, false)}
+        >
+          <TransformWidgetWrapperWithJson componentNode={componentNode} />
+        </div>
+      </Rnd>
+    )
+  },
+)
+
+ScaleSquareWithJSON.displayName = "ScaleSquareWithJSON"
 ScaleSquare.displayName = "ScaleSquare"

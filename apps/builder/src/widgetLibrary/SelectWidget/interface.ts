@@ -54,4 +54,5 @@ export interface SelectWidgetProps
     disables: boolean[]
   }
   validateMessage: string
+  dataSources: unknown[]
 }

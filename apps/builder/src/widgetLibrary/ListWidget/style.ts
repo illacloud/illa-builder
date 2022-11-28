@@ -1,9 +1,9 @@
 import { css } from "@emotion/react"
+import { getColor } from "@illa-design/theme"
 
 export const listParentContainerStyle = css`
   width: 100%;
   height: 100%;
-  background-color: white;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -18,15 +18,25 @@ export const ListParentContainerWithScroll = css`
 export const listContainerStyle = css`
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
 `
 
-export const listItemStyle = css`
-  width: 100%;
-  height: 48px;
-  background-color: blue;
-  flex: none;
-`
+export const applyListItemStyle = (
+  isFirst: boolean = false,
+  canShowBorder: boolean = false,
+  bgColor: string,
+  itemHeight?: number,
+) => {
+  return css`
+    width: 100%;
+    height: ${itemHeight ? `${itemHeight}px` : "100%"};
+    background-color: ${bgColor || "white"};
+    flex: none;
+    margin-top: ${!isFirst ? "8px" : 0};
+    border: 1px dashed
+      ${canShowBorder ? getColor("techPurple", "01") : "transparent"};
+  `
+}
 
 export const paginationWrapperStyle = css`
   display: flex;

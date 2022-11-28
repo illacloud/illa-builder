@@ -149,6 +149,7 @@ import {
   MenuWidget,
 } from "@/widgetLibrary/MenuWidget"
 import {
+  LIST_EVENT_HANDLER_CONFIG,
   LIST_PANEL_CONFIG,
   LIST_WIDGET_CONFIG,
   ListWidget,
@@ -310,11 +311,12 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: FORM_PANEL_CONFIG,
     eventHandlerConfig: FORM_EVENT_HANDLER_CONFIG,
   },
-  // LIST_WIDGET: {
-  //   widget: ListWidget,
-  //   config: LIST_WIDGET_CONFIG,
-  //   panelConfig: LIST_PANEL_CONFIG,
-  // },
+  LIST_WIDGET: {
+    widget: ListWidget,
+    config: LIST_WIDGET_CONFIG,
+    panelConfig: LIST_PANEL_CONFIG,
+    eventHandlerConfig: LIST_EVENT_HANDLER_CONFIG,
+  },
   CASCADER_WIDGET: {
     widget: CascaderWidget,
     config: CASCADER_WIDGET_CONFIG,

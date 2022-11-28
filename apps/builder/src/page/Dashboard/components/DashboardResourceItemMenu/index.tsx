@@ -6,7 +6,7 @@ import { Dropdown, DropList } from "@illa-design/dropdown"
 import { Button } from "@illa-design/button"
 import { MoreIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { Modal } from "@illa-design/modal"
+import { Modal, useModal } from "@illa-design/modal"
 import { Api } from "@/api/base"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
@@ -36,6 +36,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
   })
 
   const message = useMessage()
+  const modal = useModal()
 
   return (
     <>
@@ -68,10 +69,10 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                 title={t("dashboard.common.delete")}
                 fontColor={globalColor(`--${illaPrefix}-red-03`)}
                 onClick={() => {
-                  Modal.confirm({
-                    confirmLoading: confirmLoading,
+                  modal.show({
+                    okLoading: confirmLoading,
                     title: t("dashboard.common.delete_title"),
-                    content: t("dashboard.common.delete_content"),
+                    children: t("dashboard.common.delete_content"),
                     cancelText: t("dashboard.common.delete_cancel_text"),
                     okText: t("dashboard.common.delete_ok_text"),
                     okButtonProps: {
