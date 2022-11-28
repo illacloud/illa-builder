@@ -67,9 +67,9 @@ const getValue = (
   const index = props.row.index
   if (mappedValue) {
     if (fromCurrentRow && Array.isArray(mappedValue)) {
-      return mappedValue[index] ?? "-"
+      return `${mappedValue[index] ?? "-"}`
     }
-    return mappedValue
+    return `${mappedValue}`
   }
   return value ?? "-"
 }
