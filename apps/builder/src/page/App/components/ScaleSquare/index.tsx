@@ -521,6 +521,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             widgetHeight={h}
             containerPadding={containerPadding || 0}
             containerHeight={containerHeight}
+            widgetType={componentNode.type}
           />
 
           <TransformWidgetWrapper componentNode={componentNode} />

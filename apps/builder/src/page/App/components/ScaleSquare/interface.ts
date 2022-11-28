@@ -38,6 +38,7 @@ export interface MoveBarProps {
   widgetHeight: number
   containerHeight: number
   containerPadding: number
+  widgetType: string
 }
 
 export interface MoveBarPositionShape {

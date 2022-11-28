@@ -3,7 +3,7 @@ import {
   MoveBarPositionShape,
   ScaleSquareType,
 } from "@/page/App/components/ScaleSquare/interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
 
@@ -428,4 +428,23 @@ export const applyXDirectionDashedLineStyle = (
   border-right: ${isShowCanvasDot && !isSelected && !isDragging
     ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
     : "none"};
+`
+
+export const docIconStyle = css`
+  height: 100%;
+  margin-left: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const docTipsWrapperStyle = css`
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  color: ${getColor("grayBlue", "02")};
+  word-break: break-all;
 `

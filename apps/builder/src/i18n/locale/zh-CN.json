@@ -490,7 +490,7 @@
           "focus": "聚焦",
           "invalid": "校验失败",
           "paginationChange": "翻页配置改变",
-          "row_select": "Row select",
+          "row_select": "选择行",
           "sortingChange": "排序方式改变",
           "submit": "提交",
           "success": "成功后"
@@ -1015,6 +1015,8 @@
       "name": "输入框"
     },
     "list": {
+      "doc1": "使用 {{ currentItem }} 来访问当前项的数据。例如，根据 \"userName \"来设置列表组件中的文本组件的值：{{ currentItem.userName }}}。",
+      "doc2": "使用{{list.selectedItem.data}}来访问列表选中项的数据。例如，根据列表选中项的 \"用户名\"，设置位于列表组件外的文本组件的值：{{list.selectedItem.userName }}}。",
       "name": "列表"
     },
     "menu": {
