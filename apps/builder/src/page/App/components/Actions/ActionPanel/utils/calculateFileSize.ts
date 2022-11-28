@@ -32,7 +32,6 @@ export const isFileOversize = (data: string, type?: ActionType) => {
     return false
   }
   const content = getFileString(data)
-  console.log({ content })
   let result: boolean
   const isSMTP = type && type === "smtp"
   if (Array.isArray(content)) {
