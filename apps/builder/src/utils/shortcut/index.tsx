@@ -93,10 +93,10 @@ export const Shortcut: FC = ({ children }) => {
 
         closable: false,
         onCancel: () => {
-          modal.remove(id)
+          modal.update(id, { visible: false })
         },
         onOk: () => {
-          modal.remove(id)
+          modal.update(id, { visible: false })
           if (type === "page") {
             dispatch(
               componentsActions.deletePageNodeReducer({
