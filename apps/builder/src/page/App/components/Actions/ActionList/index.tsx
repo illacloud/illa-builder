@@ -13,7 +13,7 @@ import {
 import { Button } from "@illa-design/button"
 import { useTranslation } from "react-i18next"
 import { configActions } from "@/redux/config/configSlice"
-import { Modal } from "@illa-design/modal"
+import { useModal } from "@illa-design/modal"
 import { Empty } from "@illa-design/empty"
 import { ReactComponent as ActionListEmptyState } from "@/assets/action-list-empty-state.svg"
 import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
@@ -47,6 +47,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const modal = useModal()
 
   return (
     <div className={className} css={searchHeaderContainerStyle}>
@@ -95,8 +96,8 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                         dispatch(configActions.changeSelectedAction(action))
                       } else {
                         // show dialog
-                        Modal.confirm({
-                          content: t(
+                        modal.show({
+                          children: t(
                             "editor.action.action_list.message.confirm_switch",
                           ),
                           onOk: () => {

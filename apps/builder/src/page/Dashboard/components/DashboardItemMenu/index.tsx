@@ -8,7 +8,7 @@ import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourc
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { MoreIcon } from "@illa-design/icon"
-import { Modal } from "@illa-design/modal"
+import { Modal, useModal } from "@illa-design/modal"
 import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -36,6 +36,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const [renameVisible, setRenameVisible] = useState(false)
   const [duplicateVisible, setDuplicateVisible] = useState(false)
   const message = useMessage()
+  const modal = useModal()
 
   return (
     <>
@@ -81,10 +82,10 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                 title={t("dashboard.common.delete")}
                 fontColor={globalColor(`--${illaPrefix}-red-03`)}
                 onClick={() => {
-                  Modal.confirm({
+                  modal.show({
                     w: "496px",
                     title: t("dashboard.common.delete_title"),
-                    content: t("dashboard.common.delete_content"),
+                    children: t("dashboard.common.delete_content"),
                     cancelText: t("dashboard.common.delete_cancel_text"),
                     okText: t("dashboard.common.delete_ok_text"),
                     okButtonProps: {

@@ -231,10 +231,11 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     runMode,
     canRunS3Action,
     currentApp.appId,
-    selectedAction.actionId,
+    selectedAction?.actionId,
     t,
     onActionRun,
     dispatch,
+    message,
   ])
 
   const renderButton = useMemo(() => {

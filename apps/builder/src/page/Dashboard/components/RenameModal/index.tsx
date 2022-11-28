@@ -30,7 +30,6 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
 
   return (
     <Modal
-      simple
       closable
       autoFocus
       footerAlign="right"
@@ -39,7 +38,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
       okButtonProps={{
         colorScheme: "techPurple",
       }}
-      confirmLoading={loading}
+      okLoading={loading}
       onCancel={() => {
         onVisibleChange(false)
       }}
