@@ -1,12 +1,13 @@
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import {
   ListWidgetProps,
+  ListWidgetPropsWithChildrenNodes,
   OVERFLOW_TYPE,
   RenderTemplateContainerProps,
 } from "@/widgetLibrary/ListWidget/interface"
 import {
   listContainerStyle,
-  listItemStyle,
+  applyListItemStyle,
   listParentContainerStyle,
   ListParentContainerWithScroll,
   paginationWrapperStyle,
@@ -14,11 +15,6 @@ import {
 import useMeasure from "react-use-measure"
 import { Pagination } from "@illa-design/pagination"
 import { chunk, cloneDeep, get, isEqual, set } from "lodash"
-import { useDrop } from "react-dnd"
-import {
-  DragInfo,
-  DropResultInfo,
-} from "@/page/App/components/DotPanel/interface"
 import {
   applyBarHandlerStyle,
   applyBarPointerStyle,
@@ -33,11 +29,13 @@ import {
 } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
-
-interface DragCollection {
-  isDraggingActive: boolean
-}
+import { useSelector } from "react-redux"
+import {
+  getExecutionResult,
+  getRawTree,
+} from "@/redux/currentApp/executionTree/executionSelector"
+import { isObject } from "@/utils/typeHelper"
+import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
   const { templateComponentNodes, templateContainerHeight } = props
@@ -86,22 +84,36 @@ const handleResizeStart: ResizeStartCallback = (e) => {
   e.stopPropagation()
 }
 
-export const ListWidgetWithPagination: FC<ListWidgetProps> = (props) => {
+export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
+  props,
+) => {
   const {
-    dataSources = [1, 2, 3, 4, 5, 6],
+    dataSources,
     itemHeight = 48,
     displayName,
     currentPage,
+    childrenNode,
     handleUpdateMultiExecutionResult,
+    handleUpdateOriginalDSLMultiAttr,
+    copyComponents,
+    pageSize,
+    handleUpdateSelectedItem,
+    itemBackGroundColor,
+    illaMode,
   } = props
   const [containerRef, containerBounds] = useMeasure()
+  const [isMouseHover, setIsMouseHover] = useState(false)
 
   const itemNumber = useMemo(() => {
-    return Math.floor(containerBounds.height / itemHeight) || dataSources.length
-  }, [containerBounds.height, dataSources.length, itemHeight])
+    return (
+      pageSize ||
+      Math.floor(containerBounds.height / itemHeight) ||
+      dataSources?.length
+    )
+  }, [containerBounds.height, dataSources?.length, itemHeight, pageSize])
 
   const handleChangeCurrentPage = useCallback(
-    (pageNumber: number, pageSize: number) => {
+    (pageNumber: number) => {
       handleUpdateMultiExecutionResult([
         {
           displayName,
@@ -115,26 +127,102 @@ export const ListWidgetWithPagination: FC<ListWidgetProps> = (props) => {
   )
 
   const currentData = useMemo(() => {
-    const chunkData = chunk(dataSources, itemNumber)
+    const chunkData = chunk(copyComponents, itemNumber)
     return currentPage < chunkData.length
       ? chunkData[currentPage]
       : chunkData[0]
-  }, [currentPage, dataSources, itemNumber])
+  }, [copyComponents, currentPage, itemNumber])
+
+  const handleOnResizeTopStop: ResizeCallback = useCallback(
+    (e, dir, elementRef, delta) => {
+      const { height } = delta
+      let finalHeight = itemHeight + height
+      handleUpdateOriginalDSLMultiAttr({
+        itemHeight: finalHeight,
+      })
+    },
+    [handleUpdateOriginalDSLMultiAttr, itemHeight],
+  )
+
+  const canShowBorder = illaMode === "edit" && isMouseHover
 
   return (
-    <div css={listParentContainerStyle}>
+    <div
+      css={listParentContainerStyle}
+      onMouseEnter={() => {
+        setIsMouseHover(true)
+      }}
+      onMouseLeave={() => {
+        setIsMouseHover(false)
+      }}
+    >
       <div css={listContainerStyle} ref={containerRef}>
-        {currentData?.map((item) => {
+        {currentData.map((node, index) => {
+          if (!currentPage && index === 0) {
+            return (
+              <Resizable
+                size={{
+                  width: "100%",
+                  height: itemHeight,
+                }}
+                key={childrenNode[0].displayName}
+                bounds="parent"
+                minHeight={48}
+                maxHeight={containerBounds.height - 4}
+                handleComponent={
+                  isMouseHover ? resizeBottomHandler() : undefined
+                }
+                enable={{
+                  bottom: true,
+                }}
+                onResizeStart={handleResizeStart}
+                onResizeStop={handleOnResizeTopStop}
+              >
+                <div
+                  css={applyListItemStyle(
+                    true,
+                    canShowBorder,
+                    itemBackGroundColor,
+                  )}
+                  onClick={() => {
+                    handleUpdateSelectedItem(index)
+                  }}
+                >
+                  <RenderTemplateContainer
+                    templateComponentNodes={childrenNode[0]}
+                    templateContainerHeight={itemHeight}
+                  />
+                </div>
+                {isMouseHover && (
+                  <div css={applyDashedLineStyle(false, true, false)} />
+                )}
+              </Resizable>
+            )
+          }
           return (
-            <div css={listItemStyle} key={JSON.stringify(item)}>
-              1111
+            <div
+              css={applyListItemStyle(
+                false,
+                canShowBorder,
+                itemBackGroundColor,
+                itemHeight,
+              )}
+              key={node.displayName}
+              onClick={() => {
+                handleUpdateSelectedItem(index)
+              }}
+            >
+              <RenderCopyContainer
+                templateComponentNodes={node}
+                templateContainerHeight={itemHeight}
+              />
             </div>
           )
         })}
       </div>
       <div css={paginationWrapperStyle}>
         <Pagination
-          total={dataSources.length}
+          total={dataSources?.length}
           currentPage={currentPage}
           pageSize={itemNumber}
           size="medium"
@@ -148,17 +236,17 @@ export const ListWidgetWithPagination: FC<ListWidgetProps> = (props) => {
   )
 }
 
-export const ListWidgetWithScroll: FC<ListWidgetProps> = (props) => {
+export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
+  props,
+) => {
   const {
-    dataSources = [1, 2, 3, 4, 5, 6],
-    overflowMethod,
-    pageSize,
     itemHeight = 48,
-    displayName,
-    currentPage,
-    handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLMultiAttr,
     childrenNode,
+    copyComponents,
+    handleUpdateSelectedItem,
+    itemBackGroundColor,
+    illaMode,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
@@ -169,30 +257,6 @@ export const ListWidgetWithScroll: FC<ListWidgetProps> = (props) => {
       propsRef.current = props
     }
   }, [props])
-
-  const [{ isDraggingActive }, dropRef] = useDrop<
-    DragInfo,
-    DropResultInfo,
-    DragCollection
-  >(
-    () => ({
-      accept: ["components"],
-      hover: (dragInfo, monitor) => {},
-      drop: (dropInfo, monitor) => {
-        const { item } = dropInfo
-
-        return {
-          isDropOnCanvas: true,
-        }
-      },
-      collect: (monitor) => {
-        return {
-          isDraggingActive: monitor.isOver(),
-        }
-      },
-    }),
-    [],
-  )
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(
     (e, dir, elementRef, delta) => {
@@ -205,110 +269,7 @@ export const ListWidgetWithScroll: FC<ListWidgetProps> = (props) => {
     [handleUpdateOriginalDSLMultiAttr, itemHeight],
   )
 
-  const updateTemplateContainerNodesProps = useCallback(
-    (childrenNodes: ComponentNode[]) => {
-      let updateSlice = []
-      const newChildrenNodes = childrenNodes.map((itemContainer, index) => {
-        const currentItems = itemContainer.childrenNode
-        if (Array.isArray(currentItems) && currentItems.length > 0) {
-          const newCurrentItems = currentItems.map((currentItem) => {
-            if (
-              currentItem.props &&
-              Array.isArray(currentItem.props.$dynamicAttrPaths)
-            ) {
-              const { $dynamicAttrPaths } = currentItem.props
-              $dynamicAttrPaths.forEach((path) => {
-                const requireEvalString = get(currentItem.props, path, "")
-                let evalResult = ""
-                try {
-                  evalResult = evaluateDynamicString("", requireEvalString, {
-                    ...BUILDER_CALC_CONTEXT,
-                    [displayName]: propsRef.current,
-                  })
-                } catch (e) {
-                  console.log(e)
-                }
-                if (Array.isArray(evalResult) && evalResult.length > index) {
-                  const value = evalResult[index]
-                  set(currentItem, `props.${path}`, value)
-                  const currentItemProps = get(currentItem, "props", {})
-                  if (index === 0) {
-                    updateSlice.push({
-                      displayName: currentItem.displayName,
-                      value: {
-                        ...currentItemProps,
-                      },
-                    })
-                  }
-                }
-              })
-            }
-            if (index !== 0) {
-              set(
-                currentItem,
-                "displayName",
-                `list-child-${index}-${currentItem.displayName}`,
-              )
-            }
-            return currentItem
-          })
-          set(itemContainer, "childrenNode", newCurrentItems)
-        }
-        if (index !== 0) {
-          set(itemContainer, "displayName", `list-widget-container-${index}`)
-        }
-        return itemContainer
-      })
-      setTimeout(() => {
-        handleUpdateMultiExecutionResult(updateSlice)
-      }, 100)
-      return newChildrenNodes
-    },
-    [displayName, handleUpdateMultiExecutionResult],
-  )
-
-  const transTemplateContainerNodes = useCallback(
-    (templateContainerNode: ComponentNode) => {
-      const canvasChildrenArray: ComponentNode[] = []
-      if (dataSources.length > 0) {
-        dataSources.forEach((v, index) => {
-          canvasChildrenArray[index] = cloneDeep(templateContainerNode)
-        })
-        return updateTemplateContainerNodesProps(canvasChildrenArray)
-      } else {
-        return updateTemplateContainerNodesProps([templateContainerNode])
-      }
-    },
-    [dataSources, updateTemplateContainerNodesProps],
-  )
-
-  const renderChildrenNodes = useMemo(() => {
-    if (childrenNode && childrenNode.length > 0 && dataSources) {
-      const children = cloneDeep(childrenNode)
-      let canvas = children[0]
-      const templateContainerNodes = canvas.childrenNode
-      let finalCanvas = transTemplateContainerNodes(canvas)
-      return finalCanvas.map((node, index) => {
-        if (index === 0) {
-          return null
-        }
-        return (
-          <div
-            css={listItemStyle}
-            key={node.displayName}
-            style={{ height: `${itemHeight}px` }}
-          >
-            <RenderCopyContainer
-              templateComponentNodes={node}
-              templateContainerHeight={itemHeight}
-            />
-          </div>
-        )
-      })
-    }
-    return null
-  }, [childrenNode, dataSources, itemHeight, transTemplateContainerNodes])
-
+  const canShowBorder = illaMode === "edit" && isMouseHover
   return (
     <div
       css={ListParentContainerWithScroll}
@@ -328,26 +289,48 @@ export const ListWidgetWithScroll: FC<ListWidgetProps> = (props) => {
         bounds="parent"
         minHeight={48}
         maxHeight={containerBounds.height - 4}
-        handleComponent={
-          isMouseHover && !isDraggingActive ? resizeBottomHandler() : undefined
-        }
+        handleComponent={isMouseHover ? resizeBottomHandler() : undefined}
         enable={{
           bottom: true,
         }}
         onResizeStart={handleResizeStart}
         onResizeStop={handleOnResizeTopStop}
       >
-        <div css={listItemStyle}>
+        <div
+          css={applyListItemStyle(true, canShowBorder, itemBackGroundColor)}
+          onClick={() => {
+            handleUpdateSelectedItem(0)
+          }}
+        >
           <RenderTemplateContainer
             templateComponentNodes={childrenNode[0]}
             templateContainerHeight={itemHeight}
           />
         </div>
-        {isMouseHover && !isDraggingActive && (
-          <div css={applyDashedLineStyle(false, true, false)} />
-        )}
+        {isMouseHover && <div css={applyDashedLineStyle(false, true, false)} />}
       </Resizable>
-      {renderChildrenNodes}
+      {copyComponents?.map((node, index) => {
+        if (index === 0) return null
+        return (
+          <div
+            css={applyListItemStyle(
+              false,
+              canShowBorder,
+              itemBackGroundColor,
+              itemHeight,
+            )}
+            key={node.displayName}
+            onClick={() => {
+              handleUpdateSelectedItem(index)
+            }}
+          >
+            <RenderCopyContainer
+              templateComponentNodes={node}
+              templateContainerHeight={itemHeight}
+            />
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -358,7 +341,24 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
+    dataSources,
+    childrenNode,
+    handleUpdateMultiExecutionResult,
+    handleOnRowSelect,
+    selectedIndex,
+    itemBackGroundColor,
   } = props
+
+  const propsRef = useRef(props)
+  const executionResult = useSelector(getExecutionResult)
+  const rawTree = useSelector(getRawTree)
+  const illaMode = useSelector(getIllaMode)
+
+  useEffect(() => {
+    if (!isEqual(propsRef.current, props)) {
+      propsRef.current = props
+    }
+  }, [props])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, { ...props })
@@ -368,9 +368,148 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     }
   }, [displayName, handleDeleteGlobalData, handleUpdateGlobalData, props])
 
+  const updateTemplateContainerNodesProps = useCallback(
+    (childrenNodes: ComponentNode[]) => {
+      return childrenNodes.map((itemContainer, index) => {
+        const currentItems = itemContainer.childrenNode
+        if (Array.isArray(currentItems) && currentItems.length > 0) {
+          const newCurrentItems = currentItems.map((currentItem) => {
+            if (
+              currentItem.props &&
+              Array.isArray(currentItem.props.$dynamicAttrPaths)
+            ) {
+              const { displayName } = currentItem
+              const { $dynamicAttrPaths } = currentItem.props
+              $dynamicAttrPaths.forEach((path) => {
+                const requireEvalString = get(currentItem.props, path, "")
+                let evalResult: unknown
+                try {
+                  evalResult = evaluateDynamicString(
+                    "",
+                    requireEvalString,
+                    executionResult,
+                  )
+                } catch (e) {
+                  console.log(e)
+                  evalResult = ""
+                }
+                let value = evalResult
+                if (Array.isArray(evalResult) && evalResult.length > index) {
+                  const rawWidget = rawTree[displayName]
+                  if (rawWidget && isObject(rawWidget.$validationPaths)) {
+                    const validationPaths = rawWidget.$validationPaths
+                    const validationType = validationPaths[path]
+                    if (validationType === VALIDATION_TYPES.ARRAY) {
+                      const validationFunc = validationFactory[validationType]
+                      const { safeValue } = validationFunc(evalResult, "")
+                      value = safeValue
+                    } else {
+                      value = evalResult[index]
+                      const validationFunc = validationFactory[validationType]
+                      const { safeValue } = validationFunc(value, "")
+                      value = safeValue
+                    }
+                  }
+                }
+                set(currentItem, `props.${path}`, value)
+              })
+            }
+            if (index !== 0) {
+              set(
+                currentItem,
+                "displayName",
+                `list-child-${index}-${currentItem.displayName}`,
+              )
+            }
+            return currentItem
+          })
+          set(itemContainer, "childrenNode", newCurrentItems)
+        }
+        if (index !== 0) {
+          set(itemContainer, "displayName", `list-widget-container-${index}`)
+        }
+        return itemContainer
+      })
+    },
+    [executionResult, rawTree],
+  )
+
+  const transTemplateContainerNodes = useCallback(
+    (templateContainerNode: ComponentNode) => {
+      const canvasChildrenArray: ComponentNode[] = []
+      if (Array.isArray(dataSources) && dataSources.length > 0) {
+        dataSources.forEach((v, index) => {
+          canvasChildrenArray[index] = cloneDeep(templateContainerNode)
+        })
+        return updateTemplateContainerNodesProps(canvasChildrenArray)
+      } else {
+        return updateTemplateContainerNodesProps([templateContainerNode])
+      }
+    },
+    [dataSources, updateTemplateContainerNodesProps],
+  )
+
+  const getChildrenNodes = useMemo(() => {
+    if (childrenNode && childrenNode.length > 0 && dataSources) {
+      const children = cloneDeep(childrenNode)
+      let canvas = children[0]
+      return transTemplateContainerNodes(canvas)
+    }
+    return null
+  }, [childrenNode, dataSources, transTemplateContainerNodes])
+
+  const handleUpdateSelectedItem = useCallback(
+    (index: number) => {
+      if (!Array.isArray(dataSources)) return
+      new Promise((resolve, reject) => {
+        if (index < 0 || index > dataSources.length) {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedItem: dataSources[0],
+                selectedIndex: 0,
+              },
+            },
+          ])
+          return resolve(index)
+        } else {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedItem: dataSources[index],
+                selectedIndex: index,
+              },
+            },
+          ])
+          return resolve(index)
+        }
+      }).then(() => {
+        handleOnRowSelect()
+      })
+    },
+    [
+      dataSources,
+      displayName,
+      handleOnRowSelect,
+      handleUpdateMultiExecutionResult,
+    ],
+  )
+
   return overflowMethod === OVERFLOW_TYPE.PAGINATION ? (
-    <ListWidgetWithPagination {...props} />
+    <ListWidgetWithPagination
+      {...props}
+      copyComponents={getChildrenNodes}
+      handleUpdateSelectedItem={handleUpdateSelectedItem}
+      illaMode={illaMode}
+    />
   ) : (
-    <ListWidgetWithScroll {...props} />
+    <ListWidgetWithScroll
+      {...props}
+      copyComponents={getChildrenNodes}
+      handleUpdateSelectedItem={handleUpdateSelectedItem}
+      illaMode={illaMode}
+    />
   )
 }

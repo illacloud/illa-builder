@@ -228,6 +228,14 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       return []
     }, [realProps])
 
+    const getOnRowSelectChangeEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "rowSelect")
+      }
+      return []
+    }, [realProps])
+
     const handleOnChange = useCallback(() => {
       getOnChangeEventScripts().forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
@@ -278,6 +286,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
     }, [getOnColumnFiltersChangeEventScripts])
+
+    const handleOnRowSelect = useCallback(() => {
+      getOnRowSelectChangeEventScripts().forEach((scriptObj) => {
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+      })
+    }, [getOnRowSelectChangeEventScripts])
 
     const getOnFormSubmitEventScripts = useCallback(() => {
       const events = get(realProps, "events")
@@ -365,6 +379,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           componentNode={componentNode}
           handleOnFocus={handleOnFocus}
           handleOnBlur={handleOnBlur}
+          handleOnRowSelect={handleOnRowSelect}
         />
       </div>
     )

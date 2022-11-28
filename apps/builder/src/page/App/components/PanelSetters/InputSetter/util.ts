@@ -1,6 +1,6 @@
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
 
-export const realInputValue = (
+export const realInputValueWithList = (
   attrValue: string,
   widgetDisplayName: string,
 ) => {
@@ -20,7 +20,7 @@ export const realInputValue = (
   return value
 }
 
-export const getNeedComputedValue = (
+export const getNeedComputedValueWithList = (
   value: string,
   widgetDisplayName: string,
 ) => {

@@ -5,8 +5,8 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { useSelector } from "react-redux"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
-  getNeedComputedValue,
-  realInputValue,
+  getNeedComputedValueWithList,
+  realInputValueWithList,
 } from "@/page/App/components/PanelSetters/InputSetter/util"
 
 export function getPath(attrName?: string, widgetDisplayName?: string) {
@@ -45,7 +45,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
 
   const finalValue = useMemo(() => {
     if (currentListDisplayName) {
-      return realInputValue(value, currentListDisplayName)
+      return realInputValueWithList(value, currentListDisplayName)
     }
     return value || ""
   }, [currentListDisplayName, value])
@@ -54,7 +54,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     (value: string) => {
       let output = value
       if (currentListDisplayName) {
-        output = getNeedComputedValue(value, currentListDisplayName)
+        output = getNeedComputedValueWithList(value, currentListDisplayName)
       }
 
       handleUpdateDsl(attrName, output)
