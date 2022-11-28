@@ -26,8 +26,7 @@ export const realInputValue = (
     `{{${widgetDisplayName}.${dataPath}.map((currentRow) => ( `.length,
     attrValue.length - 4,
   )}`
-  console.log("value", value)
-  return JSToString(value)
+  return attrValue.includes("currentRow") ? JSToString(value) : attrValue
 }
 
 export const getNeedComputedValue = (
@@ -49,6 +48,7 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
     isSetterSingleRow,
     placeholder,
     attrName,
+    parentAttrName,
     handleUpdateDsl,
     expectedType,
     value,
@@ -75,9 +75,13 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
   }, [isDynamic])
 
   const handleValueChange = (value: string) => {
-    const output = getNeedComputedValue(value, dataPath, widgetDisplayName)
-    console.log(value, output, "handleValueChange")
+    const fromCurrentRow = value.includes("currentRow")
+    const output = fromCurrentRow
+      ? getNeedComputedValue(value, dataPath, widgetDisplayName)
+      : value
+    console.log(value, output, fromCurrentRow, "handleValueChange")
     handleUpdateDsl(attrName, output)
+    handleUpdateDsl(`${parentAttrName}.fromCurrentRow`, fromCurrentRow)
   }
 
   return (
