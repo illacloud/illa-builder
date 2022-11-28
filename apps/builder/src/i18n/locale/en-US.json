@@ -490,7 +490,7 @@
           "focus": "Focus",
           "invalid": "Invalid",
           "paginationChange": "Page change",
-          "row_select": " 选择行",
+          "row_select": "Row select",
           "sortingChange": "Sort change",
           "submit": "Submit",
           "success": "Success"
@@ -1015,6 +1015,8 @@
       "name": "Input"
     },
     "list": {
+      "doc1": "Use {{ currentItem }} to access the data of current item. For example, to set value of the text component which is in list component based on \"userName\": {{ currentItem.userName }}",
+      "doc2": "Use {{list.selectedItem.data}} to access the data of selected item in list component. For example, to set the value of the text component which is out of list component based on \"username\" of the selected item in the list: {{ list.selectedItem.userName }}",
       "name": "List"
     },
     "menu": {

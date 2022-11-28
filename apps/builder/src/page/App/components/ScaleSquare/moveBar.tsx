@@ -1,6 +1,8 @@
 import { FC, useMemo } from "react"
 import {
   applyMoveBarWrapperStyle,
+  docIconStyle,
+  docTipsWrapperStyle,
   dragPointIconWrapperStyle,
   freezeIconStyle,
   freezeTipsStyle,
@@ -17,6 +19,39 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useSelector } from "react-redux"
 import { getFreezeState } from "@/redux/config/configSelector"
 import { useTranslation } from "react-i18next"
+import { ReactComponent as DocIcon } from "@/assets/doc.svg"
+import { Trigger } from "@illa-design/trigger"
+
+interface WidgetDocProps {
+  widgetType: string
+}
+
+export const WidgetDoc: FC<WidgetDocProps> = (props) => {
+  const { t } = useTranslation()
+  switch (props.widgetType) {
+    case "LIST_WIDGET":
+      return (
+        <Trigger
+          content={
+            <div css={docTipsWrapperStyle}>
+              <span>{t("widget.list.doc1")}</span>
+              <span>{t("widget.list.doc2")}</span>
+            </div>
+          }
+          trigger="hover"
+          colorScheme="white"
+          position="right-start"
+        >
+          <span css={docIconStyle}>
+            <DocIcon />
+          </span>
+        </Trigger>
+      )
+
+    default:
+      return null
+  }
+}
 
 export const MoveBar: FC<MoveBarProps> = (props) => {
   const {
@@ -29,6 +64,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     widgetHeight,
     containerHeight,
     containerPadding,
+    widgetType,
   } = props
 
   const { t } = useTranslation()
@@ -85,6 +121,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
           css={warningStyle}
         />
       )}
+      <WidgetDoc widgetType={widgetType} />
     </div>
   )
 }
