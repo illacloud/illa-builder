@@ -23,8 +23,8 @@ export const listContainerStyle = css`
 
 export const listItemStyle = css`
   width: 100%;
-  height: 48px;
-  background-color: blue;
+  height: 100%;
+  background-color: white;
   flex: none;
 `
 

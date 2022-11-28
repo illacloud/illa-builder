@@ -310,11 +310,11 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: FORM_PANEL_CONFIG,
     eventHandlerConfig: FORM_EVENT_HANDLER_CONFIG,
   },
-  // LIST_WIDGET: {
-  //   widget: ListWidget,
-  //   config: LIST_WIDGET_CONFIG,
-  //   panelConfig: LIST_PANEL_CONFIG,
-  // },
+  LIST_WIDGET: {
+    widget: ListWidget,
+    config: LIST_WIDGET_CONFIG,
+    panelConfig: LIST_PANEL_CONFIG,
+  },
   CASCADER_WIDGET: {
     widget: CascaderWidget,
     config: CASCADER_WIDGET_CONFIG,

@@ -89,6 +89,20 @@ export class ExecutionTreeFactory {
             })
             set(this.errorTree, fullPath, error)
             this.debuggerData[fullPath] = error
+          } else {
+            let error = get(this.errorTree, fullPath)
+            if (Array.isArray(error)) {
+              const validationIndex = error.findIndex((v) => {
+                return v.errorType === ExecutionErrorType.VALIDATION
+              })
+              if (validationIndex !== -1) {
+                error.splice(validationIndex, 1)
+                if (error.length === 0) {
+                  unset(this.errorTree, fullPath)
+                  delete this.debuggerData[fullPath]
+                }
+              }
+            }
           }
         })
       }
@@ -297,9 +311,11 @@ export class ExecutionTreeFactory {
       diff(this.oldRawTree, evaluatedTree) || []
     this.applyDifferencesToEvalTree(differencesRawTree)
     this.applyDifferencesToEvalTree(differences)
+    console.log("this.executedTree", this.executedTree)
     this.executedTree = this.validateTree(this.executedTree)
     return {
       evaluatedTree: this.executedTree,
+      errorTree: this.errorTree,
     }
   }
 

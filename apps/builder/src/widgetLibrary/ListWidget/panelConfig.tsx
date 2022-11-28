@@ -14,9 +14,9 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-data-source`,
         labelName: i18n.t("editor.inspect.setter_label.data_source"),
-        useCustomLayout: true,
-        attrName: "dataSource",
-        setterType: "DATA_SOURCE_SELECT_SETTER",
+        attrName: "dataSources",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.ARRAY,
       },
     ],
   },
