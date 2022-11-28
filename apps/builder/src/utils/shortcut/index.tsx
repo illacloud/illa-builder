@@ -76,10 +76,9 @@ export const Shortcut: FC = ({ children }) => {
     options?: Record<string, any>,
   ) => {
     const modal = createModal()
-    if (!alreadyShowDeleteDialog && displayName.length > 0) {
+    if (displayName.length > 0) {
       const textList = displayName.join(", ").toString()
-      setAlreadyShowDeleteDialog(true)
-      modal.show({
+      const id = modal.show({
         title: t("editor.component.delete_title", {
           displayName: textList,
         }),
@@ -94,10 +93,10 @@ export const Shortcut: FC = ({ children }) => {
 
         closable: false,
         onCancel: () => {
-          setAlreadyShowDeleteDialog(false)
+          modal.remove(id)
         },
         onOk: () => {
-          setAlreadyShowDeleteDialog(false)
+          modal.remove(id)
           if (type === "page") {
             dispatch(
               componentsActions.deletePageNodeReducer({

@@ -1,4 +1,4 @@
-import { ReactComponent as FormWidgetIcon } from "@/assets/widgetCover/form.svg"
+import { ReactComponent as ListWidgetIcon } from "@/assets/widgetCover/list.svg"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
@@ -13,7 +13,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
   displayName: "list",
   widgetName: i18n.t("widget.list.name"),
   keywords: ["list", "列表"],
-  icon: <FormWidgetIcon />,
+  icon: <ListWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 32,
   h: 40,
