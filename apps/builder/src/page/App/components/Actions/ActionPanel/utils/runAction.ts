@@ -200,6 +200,18 @@ const transformDataFormat = (
         }
       }
       return content
+    case "smtp":
+      const { attachment } = content
+      if (Array.isArray(attachment) && attachment.length > 0) {
+        return {
+          ...content,
+          attachment: attachment.map((value) => ({
+            ...value,
+            data: window.btoa(window.encodeURIComponent(value.data || "")),
+          })),
+        }
+      }
+      return content
     default:
       return content
   }

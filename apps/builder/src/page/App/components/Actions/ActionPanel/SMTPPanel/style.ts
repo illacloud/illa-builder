@@ -1,11 +1,11 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const esContainerStyle = css`
+export const smtpContainerStyle = css`
   display: flex;
   flex-direction: column;
 `
-export const esItemStyle = css`
+export const smtpItemStyle = css`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -17,13 +17,22 @@ export const topDivider = css`
   min-height: 8px;
 `
 
-export const esItemLabelStyle = css`
+export const smtpItemLabelStyle = css`
   min-width: 160px;
   font-size: 14px;
+  display: flex;
+  flex-direction: column;
   font-weight: 500;
   text-align: right;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
+
+export const smtpBodyTypeStyle = css`
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+  cursor: pointer;
+  margin-top: 5px;
+`
+
 export const checkboxItemStyle = css`
   min-width: 160px;
   font-size: 14px;
@@ -33,7 +42,7 @@ export const checkboxItemStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
-export const esItemCodeEditorStyle = css`
+export const smtpItemCodeEditorStyle = css`
   width: 100%;
   margin-top: 8px;
   margin-bottom: 8px;

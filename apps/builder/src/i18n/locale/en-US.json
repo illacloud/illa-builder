@@ -211,9 +211,6 @@
           "tips": {
             "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names.",
             "delimiter": "A delimiter is a character you use to group keys."
-          },
-          "error": {
-            "max_file": "The size of file can't exceed 5M."
           }
         },
         "smtp": {
@@ -229,11 +226,8 @@
           "use_html": "Use HTML",
           "use_raw": "Use raw text",
           "placeholder": {
-            "emails": "Use commas to separate multiple emails.",
+            "emails": "{{[Use commas to separate multiple emails.]}}",
             "attachment": "{{[{ data: base64-encrypted file data, name: \"File name\", contentType: 'text/plain' }]}}"
-          },
-          "error": {
-            "max_file": "The size of file can't exceed 5M."
           }
         },
         "option": {
@@ -247,6 +241,9 @@
         },
         "tips": {
           "transformer": "Enable transformers to transform the result of the query to a different format."
+        },
+        "error":{
+          "max_file": "The size of file can't exceed 5M."
         }
       },
       "resource": {

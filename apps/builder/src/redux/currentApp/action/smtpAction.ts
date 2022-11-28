@@ -6,7 +6,7 @@ export interface SMPTAction {
   setReplyTo: boolean
   replyTo: string
   subject: string
-  contentType: string
+  contentType: SMTPActionContenType
   body: string
   attachment: string
 }
@@ -18,13 +18,13 @@ export enum SMTPActionContenType {
 
 export const SMTPActionInitial: SMPTAction = {
   from: "",
-  to: "{{[]}}",
-  bcc: "{{[]}}",
-  cc: "{{[]}}",
+  to: "",
+  bcc: "",
+  cc: "",
   setReplyTo: false,
   replyTo: "",
   subject: "",
-  contentType: "",
+  contentType: SMTPActionContenType.PLAIN,
   body: "",
-  attachment: "{{[]}}",
+  attachment: "",
 }

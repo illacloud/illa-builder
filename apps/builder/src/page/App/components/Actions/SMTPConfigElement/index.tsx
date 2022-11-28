@@ -178,7 +178,6 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
@@ -189,9 +188,6 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
             <Controller
               defaultValue={content.username}
               control={control}
-              rules={{
-                required: true,
-              }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
                   w="100%"
@@ -209,9 +205,6 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
             <Controller
               control={control}
               defaultValue={content.password}
-              rules={{
-                required: true,
-              }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
                   borderColor="techPurple"

@@ -211,9 +211,6 @@
           "tips": {
             "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。",
             "delimiter": "分隔符是一个用来分组键值的字符。"
-          },
-          "error": {
-            "max_file": "文件大小不能超过5M。"
           }
         },
         "smtp": {
@@ -229,7 +226,7 @@
           "use_html": "使用HTML",
           "use_raw": "使用原始文本",
           "placeholder": {
-            "emails": "使用逗号分隔多个邮箱。",
+            "emails": "{{[使用逗号分隔多个邮箱。]}}",
             "attachment": "{{[{ data: base64-encrypted file data, name: \"File name\", contentType: 'text/plain' }]}}"
           }
         },
@@ -244,6 +241,9 @@
         },
         "tips": {
           "transformer": "启用Transformer将查询结果转换为不同的格式"
+        },
+        "error": {
+          "max_file": "文件大小不能超过5M。"
         }
       },
       "resource": {
