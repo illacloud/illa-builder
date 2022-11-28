@@ -27,11 +27,7 @@ export const SMTPPanel: FC = () => {
   const { t } = useTranslation()
   const cachedAction = useSelector(getCachedAction) as ActionItem<SMPTAction>
   const content = cachedAction.content as SMPTAction
-
-  const [showReplyToEmail, setShowReplyToEmail] = useState(content.setReplyTo)
-  const [useHTML, setUseHTML] = useState(
-    content.contentType === SMTPActionContenType.HTML,
-  )
+  const isHTML = content.contentType === SMTPActionContenType.HTML
   const dispatch = useDispatch()
 
   const handleValueChange = useCallback(
@@ -51,20 +47,17 @@ export const SMTPPanel: FC = () => {
 
   const handleShowReplyToEmail = useCallback(
     (show: boolean) => {
-      setShowReplyToEmail(show)
       handleValueChange(show, "setReplyTo")
     },
     [handleValueChange],
   )
 
   const handleBodyTypeChange = useCallback(() => {
-    const currentType = !useHTML
-    setUseHTML(currentType)
-    const contentType = currentType
-      ? SMTPActionContenType.HTML
-      : SMTPActionContenType.PLAIN
+    const contentType = isHTML
+      ? SMTPActionContenType.PLAIN
+      : SMTPActionContenType.HTML
     handleValueChange(contentType, "contentType")
-  }, [useHTML, handleValueChange])
+  }, [handleValueChange, isHTML])
 
   return (
     <div css={smtpContainerStyle}>
@@ -93,7 +86,7 @@ export const SMTPPanel: FC = () => {
           {t("editor.action.panel.smtp.set_replay_email")}
         </span>
       </div>
-      {showReplyToEmail && (
+      {content.setReplyTo && (
         <div css={smtpItemStyle}>
           <span css={smtpItemLabelStyle}>
             {t("editor.action.panel.smtp.replay_email")}
@@ -164,7 +157,7 @@ export const SMTPPanel: FC = () => {
         <span css={smtpItemLabelStyle}>
           <span>{t("editor.action.panel.smtp.body")}</span>
           <span css={smtpBodyTypeStyle} onClick={handleBodyTypeChange}>
-            {useHTML
+            {isHTML
               ? t("editor.action.panel.smtp.use_raw")
               : t("editor.action.panel.smtp.use_html")}
           </span>
