@@ -16,6 +16,7 @@ import { ILLARoute } from "@/router"
 import { useTranslation } from "react-i18next"
 import { MessageGroup } from "@illa-design/message"
 import { NotificationGroup } from "@illa-design/notification"
+import { ModalGroup } from "@illa-design/modal"
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)
@@ -35,6 +36,7 @@ function App() {
           <Global styles={css(globalStyle)} />
           <MessageGroup />
           <NotificationGroup />
+          <ModalGroup />
           <RouterProvider router={ILLARoute} />
         </ConfigProvider>
       </GlobalDataProvider>

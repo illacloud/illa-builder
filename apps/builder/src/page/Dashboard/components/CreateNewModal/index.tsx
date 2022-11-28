@@ -25,7 +25,6 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
   return (
     <Modal
       w="496px"
-      simple
       closable
       autoFocus
       footerAlign="right"
@@ -33,7 +32,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
         colorScheme: "techPurple",
       }}
       visible={visible}
-      confirmLoading={loading}
+      okLoading={loading}
       onCancel={() => {
         onVisibleChange(false)
       }}

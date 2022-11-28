@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import hotkeys from "hotkeys-js"
-import { Modal } from "@illa-design/modal"
+import { createModal, Modal } from "@illa-design/modal"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { configActions } from "@/redux/config/configSlice"
 import { useDispatch, useSelector } from "react-redux"
@@ -75,14 +75,15 @@ export const Shortcut: FC = ({ children }) => {
     type?: "widget" | "page",
     options?: Record<string, any>,
   ) => {
+    const modal = createModal()
     if (!alreadyShowDeleteDialog && displayName.length > 0) {
       const textList = displayName.join(", ").toString()
       setAlreadyShowDeleteDialog(true)
-      Modal.confirm({
+      modal.show({
         title: t("editor.component.delete_title", {
           displayName: textList,
         }),
-        content: t("editor.component.delete_content", {
+        children: t("editor.component.delete_content", {
           displayName: textList,
         }),
         cancelText: t("editor.component.cancel"),
