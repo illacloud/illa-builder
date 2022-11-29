@@ -226,8 +226,11 @@
           "use_html": "Use HTML",
           "use_raw": "Use raw text",
           "placeholder": {
-            "emails": "{{[Use commas to separate multiple emails.]}}",
-            "attachment": "{{[{ data: base64-encrypted file data, name: \"File name\", contentType: 'text/plain' }]}}"
+            "emails": "Use commas to separate emails. i.e. {{[\"A\", \"B\"]}}",
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
+          },
+          "tips": {
+            "port": "Some ISPs may block port 25.If the connection fails, please change the \nport."
           }
         },
         "option": {
@@ -242,7 +245,7 @@
         "tips": {
           "transformer": "Enable transformers to transform the result of the query to a different format."
         },
-        "error":{
+        "error": {
           "max_file": "The size of file can't exceed 5M."
         }
       },
