@@ -12,13 +12,18 @@ import {
   labelContainer,
   optionLabelStyle,
 } from "./style"
-import { Input, Password } from "@illa-design/input"
-import { getColor } from "@illa-design/theme"
+import {
+  Input,
+  Password,
+  getColor,
+  Divider,
+  Button,
+  ButtonGroup,
+  InputNumber,
+  PaginationPreIcon,
+} from "@illa-design/react"
 import { useTranslation } from "react-i18next"
-import { Divider } from "@illa-design/divider"
 import { Controller, useForm } from "react-hook-form"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon, WarningCircleIcon } from "@illa-design/icon"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { Resource } from "@/redux/resource/resourceState"
@@ -26,7 +31,6 @@ import {
   onActionConfigElementTest,
   onActionConfigElementSubmit,
 } from "@/page/App/components/Actions/api"
-import { InputNumber } from "@illa-design/input-number"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
   SMTPResource,
