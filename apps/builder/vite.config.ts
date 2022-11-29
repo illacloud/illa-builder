@@ -28,24 +28,6 @@ export default defineConfig((props) => {
       }),
       svgr(),
       basicSsl(),
-      chunkSplitPlugin({
-        strategy: "default",
-        customSplitting: {
-          "react-vendor": [
-            "react",
-            "react-dom",
-            "@emotion/react",
-            "react-router-dom",
-          ],
-          "@illa-design-vendor": ["@illa-design/react"],
-          "app-vendor": [/src\/page\/App/],
-          "dashboard-vendor": [/src\/page\/Dashboard/],
-          "deploy-vendor": [/src\/page\/Deploy/],
-          "setting-vendor": [/src\/page\/Setting/],
-          "user-vendor": [/src\/page\/User/],
-          "status-vendor": [/src\/page\/status/],
-        },
-      }) as Plugin,
     ],
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },
