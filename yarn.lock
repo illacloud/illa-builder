@@ -1039,15 +1039,6 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@illa-design/spin@1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@illa-design/spin/-/spin-1.0.7.tgz#33a3512b998d18f4dba0188258f34e1f568d26eb"
-  integrity sha512-ZFI1UGl0XotaeqkPJtxUvDE3VCoVnlHUsvvESKywSv9YFJ//7shCobRU0Ibqds9fi+pbb54wPTELDl7iT5ni8Q==
-  dependencies:
-    "@illa-design/icon" "1.0.7"
-    "@illa-design/system" "1.0.7"
-    "@illa-design/theme" "1.0.7"
-
 "@istanbuljs/load-nyc-config@^1.0.0", "@istanbuljs/load-nyc-config@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
