@@ -1,13 +1,13 @@
 import { FC } from "react"
-import { Controller } from "react-hook-form"
-import { useTranslation } from "react-i18next"
-import { Input, Password, getColor } from "@illa-design/react"
+import { BasicAuthPanelProps } from "./interface"
 import {
   applyConfigItemLabelText,
   configItem,
   labelContainer,
 } from "@/page/App/components/Actions/RestApiConfigElement/style"
-import { BasicAuthPanelProps } from "./interface"
+import { getColor, Input, Password } from "@illa-design/react"
+import { Controller } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 
 export const BasicAuthPanel: FC<BasicAuthPanelProps> = (props) => {
   const { control, auth } = props

@@ -1,6 +1,6 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
 import { Outlet } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 import { ReactComponent as Logo } from "@/assets/illa-logo-white.svg"
 import {
   asideStyle,

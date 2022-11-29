@@ -1,6 +1,6 @@
+import store, { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { configActions } from "@/redux/config/configSlice"
-import store, { AppListenerEffectAPI, AppStartListening } from "@/store"
 
 async function handleChangeSelectedActionExecution(
   action: ReturnType<typeof configActions.changeSelectedAction>,

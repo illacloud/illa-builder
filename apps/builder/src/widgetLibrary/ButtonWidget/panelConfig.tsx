@@ -1,8 +1,8 @@
-import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { BUTTON_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ButtonWidget/eventHandlerConfig"
+import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { BUTTON_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ButtonWidget/eventHandlerConfig"
 
 const baseWidgetName = "button"
 export const BUTTON_PANEL_CONFIG: PanelConfig[] = [

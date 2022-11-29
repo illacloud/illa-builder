@@ -3,8 +3,8 @@ import {
   PanelConfig,
   PanelFieldGroupConfig,
 } from "@/page/App/components/InspectPanel/interface"
-import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { isObject } from "@/utils/typeHelper"
 
 export const generateAllTypePathsFromWidgetConfig = (
   panelConfig: PanelConfig[],

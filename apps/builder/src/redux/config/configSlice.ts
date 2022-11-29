@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { ConfigInitialState } from "@/redux/config/configState"
 import {
   changeSelectedAction,
   clearSelectedComponent,
@@ -9,17 +10,16 @@ import {
   setExpandedKey,
   updateBottomPanel,
   updateCachedAction,
-  updateCanvasShapeReducer,
   updateDebuggerVisible,
-  updateDevicesOnlineStatusReducer,
   updateFreezeStateReducer,
   updateIllaMode,
   updateLeftPanel,
   updateRightPanel,
   updateSelectedComponent,
   updateShowDot,
+  updateCanvasShapeReducer,
+  updateDevicesOnlineStatusReducer,
 } from "@/redux/config/configReducer"
-import { ConfigInitialState } from "@/redux/config/configState"
 
 const configSlice = createSlice({
   name: "builderInfo",

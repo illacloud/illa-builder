@@ -1,6 +1,6 @@
-import { getDynamicValue } from "./dynamicConverter"
 import { EVALUATION_TYPE } from "./interface"
 import { isDynamicString } from "./utils"
+import { getDynamicValue } from "./dynamicConverter"
 
 export const evaluateDynamicString = (
   keyInDataTree: string,

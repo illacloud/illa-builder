@@ -1,26 +1,4 @@
 import { FC, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  Input,
-  InputNumber,
-  PaginationPreIcon,
-  Password,
-  Switch,
-  TextArea,
-  getColor,
-  useMessage,
-} from "@illa-design/react"
-import { Api } from "@/api/base"
-import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
-import { RootState } from "@/store"
-import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -36,6 +14,28 @@ import {
   sslItem,
   sslStyle,
 } from "./style"
+import {
+  Input,
+  Password,
+  TextArea,
+  getColor,
+  Divider,
+  Switch,
+  InputNumber,
+  Button,
+  ButtonGroup,
+  PaginationPreIcon,
+  useMessage,
+} from "@illa-design/react"
+import { useTranslation } from "react-i18next"
+import { Controller, useForm } from "react-hook-form"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "@/store"
+import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
+import { Api } from "@/api/base"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 /**
  * include mariadb or tidb

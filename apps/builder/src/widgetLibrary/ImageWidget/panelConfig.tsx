@@ -1,9 +1,9 @@
-import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
-import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { IMAGE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ImageWidget/eventHandlerConfig"
+import i18n from "@/i18n/config"
+import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { IMAGE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ImageWidget/eventHandlerConfig"
 
 const baseWidgetName = "input"
 export const IMAGE_PANEL_CONFIG: PanelConfig[] = [

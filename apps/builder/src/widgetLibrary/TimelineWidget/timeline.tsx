@@ -1,8 +1,8 @@
-import { FC, forwardRef, useEffect, useMemo } from "react"
+import { forwardRef, useMemo, FC, useEffect } from "react"
 import { Timeline, TimelineItem } from "@illa-design/react"
 import {
-  TimelineWidgetProps,
   WrappedTimelineProps,
+  TimelineWidgetProps,
 } from "@/widgetLibrary/TimelineWidget/interface"
 
 export const WrappedTimeline = forwardRef<any, WrappedTimelineProps>(

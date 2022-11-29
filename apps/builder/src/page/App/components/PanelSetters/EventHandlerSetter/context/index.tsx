@@ -1,4 +1,4 @@
-import { FC, ReactNode, createContext, useCallback } from "react"
+import { createContext, ReactNode, FC, useCallback } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { generateOptionItemId } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
 

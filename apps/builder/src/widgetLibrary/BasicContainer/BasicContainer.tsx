@@ -1,8 +1,8 @@
-import { FC, MutableRefObject, useRef } from "react"
+import { FC, useRef, MutableRefObject } from "react"
 import { RenderComponentCanvas } from "@/page/App/components/DotPanel/renderComponentCanvas"
-import { CONTAINER_TYPE } from "@/redux/currentApp/editor/components/componentsState"
 import { BasicContainerProps } from "./interface"
 import { basicContainerWrapperStyle } from "./style"
+import { CONTAINER_TYPE } from "@/redux/currentApp/editor/components/componentsState"
 
 export const BasicContainer: FC<BasicContainerProps> = (props) => {
   const {

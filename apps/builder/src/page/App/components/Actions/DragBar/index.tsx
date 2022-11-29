@@ -1,7 +1,7 @@
-import React, { FC, RefObject, useEffect, useState } from "react"
-import { isNumber } from "@illa-design/react"
-import { DragBarProps } from "./interface"
+import React, { useState, useEffect, RefObject, FC } from "react"
 import { actionEditorDragBarStyle } from "./style"
+import { DragBarProps } from "./interface"
+import { isNumber } from "@illa-design/react"
 
 const handleResize = (
   resizeRef: RefObject<HTMLDivElement>,

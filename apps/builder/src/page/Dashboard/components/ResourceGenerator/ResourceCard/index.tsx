@@ -1,9 +1,9 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
+import { applyItemStyle, comingStyle, nameStyle } from "./style"
+import { ResourceCardSelectorProps } from "./interface"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
-import { ResourceCardSelectorProps } from "./interface"
-import { applyItemStyle, comingStyle, nameStyle } from "./style"
+import { useTranslation } from "react-i18next"
 
 export const ResourceCard: FC<ResourceCardSelectorProps> = (props) => {
   const { resourceType, onSelect, isDraft } = props

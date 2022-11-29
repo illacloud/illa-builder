@@ -1,6 +1,6 @@
-import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
 import { WrappedRate } from "../index"
+import "@testing-library/jest-dom"
 
 test("WrappedRate renders correctly", () => {
   const handleUpdateDSL = jest.fn()

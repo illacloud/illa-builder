@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { LiveFamilyInitialState } from "@/redux/liveFamily/liveFamilyState"
 import {
   addPresenceReducer,
   removePresenceReducer,
   updateLiveFamilyListReducer,
   updatePresenceReducer,
 } from "@/redux/liveFamily/liveFamilyReducer"
-import { LiveFamilyInitialState } from "@/redux/liveFamily/liveFamilyState"
 
 const liveFamilySlice = createSlice({
   name: "liveFamily",

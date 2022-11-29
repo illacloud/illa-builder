@@ -1,9 +1,9 @@
-import { v4 } from "uuid"
 import {
-  CONTAINER_TYPE,
   ComponentNode,
+  CONTAINER_TYPE,
   SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { v4 } from "uuid"
 import { DisplayNameGenerator } from "./generateDisplayName"
 
 export type SectionNodeType =

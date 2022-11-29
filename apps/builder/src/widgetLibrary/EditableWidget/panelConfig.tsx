@@ -1,9 +1,9 @@
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
-import i18n from "@/i18n/config"
+import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/react"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { EDITABLE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/EditableWidget/eventHandlerConfig"
+import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { EDITABLE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/EditableWidget/eventHandlerConfig"
 
 const baseWidgetName = "editable-text"
 export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [

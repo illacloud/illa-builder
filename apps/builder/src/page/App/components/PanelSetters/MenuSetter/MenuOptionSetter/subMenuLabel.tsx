@@ -1,9 +1,6 @@
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Button, DragPointIcon, Trigger } from "@illa-design/react"
-import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { MenuListSetterContext } from "./context/menuListContext"
-import { SubMenuLabelProps } from "./interface"
+import { DragPointIcon, Trigger, Button } from "@illa-design/react"
 import {
   deleteButtonStyle,
   dragItemStyle,
@@ -14,6 +11,9 @@ import {
   movableIconWrapperStyle,
   subMenuItemStyle,
 } from "./style"
+import { SubMenuLabelProps } from "./interface"
+import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
+import { MenuListSetterContext } from "./context/menuListContext"
 
 export const SubMenuLabel: FC<SubMenuLabelProps> = (props) => {
   const { index, subIndex, title, attrPath } = props

@@ -1,6 +1,6 @@
 import { ReactComponent as ImageWidgetIcon } from "@/assets/widgetCover/image.svg"
-import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
 
 export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   type: "IMAGE_WIDGET",

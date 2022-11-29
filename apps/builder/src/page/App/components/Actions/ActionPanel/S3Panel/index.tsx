@@ -1,15 +1,9 @@
 import { FC, useMemo } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { Select } from "@illa-design/react"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
-import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
   getCachedAction,
   getSelectedAction,
 } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
+import { Select } from "@illa-design/react"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
   DeleteMultipleContentInitial,
@@ -24,14 +18,20 @@ import {
   UploadContentInitial,
   UploadMultipleContentInitial,
 } from "@/redux/currentApp/action/s3Action"
-import { DeleteMultiplePart } from "./DeleteMultiplePart"
-import { DeleteOnePart } from "./DeleteOnePart"
-import { DownloadOnePart } from "./DownlodOnePart"
-import { ListAllPart } from "./ListAllPart"
-import { ReadOnePart } from "./ReadOnePart"
-import { UploadMultiplePart } from "./UploadMultiplePart"
-import { UploadPart } from "./UploadPart"
+import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { s3ContainerStyle, s3ItemLabelStyle, s3ItemStyle } from "./style"
+import { configActions } from "@/redux/config/configSlice"
+import { ReadOnePart } from "./ReadOnePart"
+import { ListAllPart } from "./ListAllPart"
+import { DownloadOnePart } from "./DownlodOnePart"
+import { DeleteOnePart } from "./DeleteOnePart"
+import { DeleteMultiplePart } from "./DeleteMultiplePart"
+import { UploadPart } from "./UploadPart"
+import { UploadMultiplePart } from "./UploadMultiplePart"
 
 export const S3Panel: FC = () => {
   const { t } = useTranslation()

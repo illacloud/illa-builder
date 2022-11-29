@@ -1,14 +1,14 @@
-import { css } from "@emotion/react"
 import { FC } from "react"
-import { Select } from "@illa-design/react"
-import { CodeEditor } from "@/components/CodeEditor"
-import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { DynamicIcon } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon"
-import { BaseDynamicSelectSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
+import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import {
   dynamicSelectHeaderStyle,
   dynamicSelectSetterStyle,
 } from "@/page/App/components/PanelSetters/SelectSetter/style"
+import { BaseDynamicSelectSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
+import { Select } from "@illa-design/react"
+import { CodeEditor } from "@/components/CodeEditor"
+import { css } from "@emotion/react"
 
 export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
   const {

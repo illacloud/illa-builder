@@ -1,6 +1,6 @@
 import { ReactComponent as LineProgressWidgetIcon } from "@/assets/widgetCover/lineProgress.svg"
-import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
 
 export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   type: "BAR_PROGRESS_WIDGET",

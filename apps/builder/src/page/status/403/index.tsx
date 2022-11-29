@@ -1,9 +1,9 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
-import { Button, Result403Icon } from "@illa-design/react"
 import { ErrorPage } from "@/page/status/errorPage"
+import { Result403Icon, Button } from "@illa-design/react"
 import { buttonStyle, iconStyle } from "@/page/status/style"
+import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 export const Page403: FC = () => {
   const navigate = useNavigate()

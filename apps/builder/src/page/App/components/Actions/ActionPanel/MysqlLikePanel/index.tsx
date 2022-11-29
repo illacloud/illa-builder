@@ -1,21 +1,21 @@
 import { FC, useEffect, useMemo, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
-import { useDispatch, useSelector } from "react-redux"
-import { isObject } from "@illa-design/react"
-import { Api } from "@/api/base"
-import { CodeEditor } from "@/components/CodeEditor"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
   mysqlContainerStyle,
   sqlInputStyle,
 } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import { CodeEditor } from "@/components/CodeEditor"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { Api } from "@/api/base"
+import { isObject } from "@illa-design/react"
+import { ResourcesData } from "@/redux/resource/resourceState"
+import { Controller, useForm } from "react-hook-form"
+import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
+import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
-import { ResourcesData } from "@/redux/resource/resourceState"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const convertResourcesToTables = (data: Record<string, unknown>) => {
   let res: Record<string, string[]> = {}

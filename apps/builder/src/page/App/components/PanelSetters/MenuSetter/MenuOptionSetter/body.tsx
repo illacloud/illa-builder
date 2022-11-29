@@ -1,9 +1,9 @@
-import { Reorder } from "framer-motion"
 import { FC, useContext } from "react"
-import { MenuItem } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/menuItem"
-import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
+import { Reorder } from "framer-motion"
 import { MenuListSetterContext } from "./context/menuListContext"
 import { EmptyBody } from "./empty"
+import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
+import { MenuItem } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/menuItem"
 
 export const ListBody: FC = () => {
   const { columnItems, handleUpdateDsl, attrPath } = useContext(

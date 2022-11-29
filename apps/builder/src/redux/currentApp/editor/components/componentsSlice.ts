@@ -1,14 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { ComponentsInitialState } from "@/redux/currentApp/editor/components/componentsState"
 import {
   addComponentReducer,
-  addPageNodeWithSortOrderReducer,
-  addSectionViewReducer,
-  addTargetPageSectionReducer,
   copyComponentReducer,
   deleteComponentNodeReducer,
-  deletePageNodeReducer,
-  deleteSectionViewReducer,
-  deleteTargetPageSectionReducer,
   resetComponentPropsReducer,
   sortComponentNodeChildrenReducer,
   updateComponentContainerReducer,
@@ -19,12 +14,17 @@ import {
   updateComponentsShape,
   updateCurrentPagePropsReducer,
   updateMultiComponentPropsReducer,
-  updateRootNodePropsReducer,
-  updateSectionViewPropsReducer,
   updateTargetPageLayoutReducer,
   updateTargetPagePropsReducer,
+  deleteTargetPageSectionReducer,
+  addTargetPageSectionReducer,
+  updateRootNodePropsReducer,
+  addPageNodeWithSortOrderReducer,
+  deletePageNodeReducer,
+  addSectionViewReducer,
+  deleteSectionViewReducer,
+  updateSectionViewPropsReducer,
 } from "@/redux/currentApp/editor/components/componentsReducer"
-import { ComponentsInitialState } from "@/redux/currentApp/editor/components/componentsState"
 
 const componentsSlice = createSlice({
   name: "components",

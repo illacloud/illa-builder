@@ -1,11 +1,11 @@
-import { Reorder } from "framer-motion"
 import { FC, useContext } from "react"
-import { MenuListSetterContext } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/context/menuListContext"
-import { SubMenuLabel } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/subMenuLabel"
-import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
-import { DragIconAndLabel } from "./dragIconAndLabel"
 import { MenuItemProps } from "./interface"
 import { optionListItemStyle } from "./style"
+import { DragIconAndLabel } from "./dragIconAndLabel"
+import { Reorder } from "framer-motion"
+import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
+import { MenuListSetterContext } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/context/menuListContext"
+import { SubMenuLabel } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/subMenuLabel"
 
 export const MenuItem: FC<MenuItemProps> = (props) => {
   const { handleUpdateDsl, attrPath } = useContext(MenuListSetterContext)

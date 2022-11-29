@@ -1,9 +1,9 @@
-import { SerializedStyles, css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { css, SerializedStyles } from "@emotion/react"
 import {
   fixedWidthStyle,
   listSetterWidthStyle,
 } from "@/page/App/components/PanelSetters/style"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const applyInputSetterWrapperStyle = (
   isSetterSingleRow: boolean = false,

@@ -1,29 +1,13 @@
 import { FC, useState } from "react"
-import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
   AddIcon,
+  PaginationPreIcon,
   Button,
   ButtonGroup,
   List,
-  PaginationPreIcon,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
-import { configActions } from "@/redux/config/configSlice"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-  actionItemInitial,
-} from "@/redux/currentApp/action/actionState"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { getAllResources } from "@/redux/resource/resourceSelector"
-import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
-import { fromNow } from "@/utils/dayjs"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionResourceSelectorProps } from "./interface"
 import {
   applyResourceItemStyle,
@@ -32,6 +16,22 @@ import {
   resourceItemTimeStyle,
   resourceItemTitleStyle,
 } from "./style"
+import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
+import { getAllResources } from "@/redux/resource/resourceSelector"
+import { fromNow } from "@/utils/dayjs"
+import { useTranslation } from "react-i18next"
+import {
+  ActionContent,
+  ActionItem,
+  actionItemInitial,
+} from "@/redux/currentApp/action/actionState"
+import { Api } from "@/api/base"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { configActions } from "@/redux/config/configSlice"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 
 export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   props,

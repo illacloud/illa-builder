@@ -1,7 +1,7 @@
-import { v4 } from "uuid"
 import { ReactComponent as RadioGroupWidgetIcon } from "@/assets/widgetCover/radioGroup.svg"
-import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import { v4 } from "uuid"
+import i18n from "@/i18n/config"
 
 export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   displayName: "radioGroup",

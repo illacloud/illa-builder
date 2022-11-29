@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { SettingLabel } from "@/page/Setting/Components/label"
 import { WarningCircleIcon } from "@illa-design/react"
 import { LabelAndSetterProps } from "@/page/Setting/Components/LabelAndSetter/interface"
 import {
@@ -7,7 +8,6 @@ import {
   publicInputMarginWrapperStyle,
   publicLabelAndInputWrapperStyle,
 } from "@/page/Setting/Components/LabelAndSetter/style"
-import { SettingLabel } from "@/page/Setting/Components/label"
 
 export const LabelAndSetter: FC<LabelAndSetterProps> = (props) => {
   const { children, errorMessage, label } = props

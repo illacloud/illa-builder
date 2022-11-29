@@ -1,22 +1,22 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
-import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
 import {
   codeEditorLabelStyle,
   s3ItemCodeEditorStyle,
   s3ItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/S3Panel/style"
+import { CodeEditor } from "@/components/CodeEditor"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
   S3Action,
   S3ActionTypeContent,
   UploadContent,
 } from "@/redux/currentApp/action/s3Action"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
+import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
 
 export const UploadPart: FC<S3ActionPartProps> = (props) => {
   const { t } = useTranslation()

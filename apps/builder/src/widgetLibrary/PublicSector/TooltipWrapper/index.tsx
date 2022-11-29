@@ -1,7 +1,7 @@
-import { FC, memo } from "react"
 import { Trigger } from "@illa-design/react"
-import { Text } from "@/widgetLibrary/TextWidget"
+import { FC, memo } from "react"
 import { TooltipWrapperProps } from "./interface"
+import { Text } from "@/widgetLibrary/TextWidget"
 
 export const TooltipWrapper: FC<TooltipWrapperProps> = memo(
   (props: TooltipWrapperProps) => {

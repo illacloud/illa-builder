@@ -1,18 +1,18 @@
-import { cloneDeep } from "lodash"
 import { FC, useCallback } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
 import {
   actionEventHandlerStyle,
   actionEventHandlerWrapperStyle,
 } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler/style"
-import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { useTranslation } from "react-i18next"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
+import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionContent } from "@/redux/currentApp/action/actionState"
+import { cloneDeep } from "lodash"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 export const ActionEventHandler: FC = () => {
   const { t } = useTranslation()

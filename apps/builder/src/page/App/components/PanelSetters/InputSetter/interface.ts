@@ -1,5 +1,5 @@
-import { ReactNode } from "react"
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
+import { ReactNode } from "react"
 
 export interface BaseInputSetterProps extends BaseSetter {
   placeholder?: string

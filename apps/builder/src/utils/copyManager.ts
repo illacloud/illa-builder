@@ -1,12 +1,12 @@
-import { onCopyActionItem } from "@/page/App/components/Actions/api"
+import { FocusManager } from "@/utils/focusManager"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import store from "@/store"
-import { FocusManager } from "@/utils/focusManager"
+import { onCopyActionItem } from "@/page/App/components/Actions/api"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export class CopyManager {

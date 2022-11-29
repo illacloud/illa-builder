@@ -1,10 +1,10 @@
 import { createSelector } from "@reduxjs/toolkit"
-import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { RootState } from "@/store"
+import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
+import { RootState } from "@/store"
 
 export const getRawTree = createSelector(
   [

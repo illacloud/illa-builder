@@ -1,6 +1,6 @@
 import { v4 } from "uuid"
-import { MenuList } from "@/widgetLibrary/MenuWidget/interface"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import { MenuList } from "@/widgetLibrary/MenuWidget/interface"
 
 export const generateMenuItemId = () => `menu-${v4()}`
 export const generateSubMenuItemId = () => `subMenu-${v4()}`

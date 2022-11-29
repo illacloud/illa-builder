@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { DottedLineSquareInitialState } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareState"
 import {
   addOrUpdateDottedLineSquareReducer,
   removeDottedLineSquareReducer,
   updateDottedLineSquareReducer,
 } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareReducer"
-import { DottedLineSquareInitialState } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareState"
 
 const dottedLineSquareSlice = createSlice({
   name: "dottedLineSquare",

@@ -1,7 +1,7 @@
 import { InputProps } from "@illa-design/react"
-import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
 export interface WrappedEditableTextProps
   extends Pick<

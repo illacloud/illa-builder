@@ -1,8 +1,8 @@
-import { ElasticSearchResource } from "./elasticSearchResource"
 import { MongoDbConfig, MongoDbResource } from "./mongodbResource"
-import { MysqlLikeResource } from "./mysqlLikeResource"
-import { RedisResource } from "./redisResource"
 import { RestApiAuth, RestApiResource } from "./restapiResource"
+import { RedisResource } from "./redisResource"
+import { MysqlLikeResource } from "./mysqlLikeResource"
+import { ElasticSearchResource } from "./elasticSearchResource"
 import { S3Resource } from "./s3Resource"
 
 export type ResourceType =

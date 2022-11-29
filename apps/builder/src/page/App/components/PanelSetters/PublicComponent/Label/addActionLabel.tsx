@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { AddIcon, Button, globalColor, illaPrefix } from "@illa-design/react"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
+import { Button, AddIcon, globalColor, illaPrefix } from "@illa-design/react"
 import { AddActionLabelProps } from "@/page/App/components/PanelSetters/PublicComponent/Label/interface"
 import { headerWrapperStyle } from "@/page/App/components/PanelSetters/PublicComponent/Label/style"
 

@@ -1,16 +1,16 @@
-import { hexToHsva } from "@uiw/color-convert/src"
-import { debounce } from "lodash"
 import { FC } from "react"
+import { debounce } from "lodash"
 import { Trigger, globalColor, illaPrefix } from "@illa-design/react"
-import { ColorPicker } from "@/page/App/components/ColorPicker"
 import {
-  ButtonContentWrapperStyle,
   alphaContentStyle,
   applyCircleStyle,
+  ButtonContentWrapperStyle,
   colorContentStyle,
   inListSetterWrapperStyle,
 } from "@/page/App/components/PanelSetters/ColorPickerSetter/style"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
+import { hexToHsva } from "@uiw/color-convert/src"
+import { ColorPicker } from "@/page/App/components/ColorPicker"
 
 export const ColorPickerSetter: FC<any> = (props) => {
   const { attrName, handleUpdateDsl, value } = props

@@ -1,7 +1,3 @@
-import { AxiosRequestConfig } from "axios"
-import { Api } from "@/api/base"
-import { ILLAWebsocket } from "@/api/ws/illaWS"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   Broadcast,
   ILLAWebSocketComponentPayload,
@@ -10,6 +6,10 @@ import {
   Signal,
   Target,
 } from "./interface"
+import { AxiosRequestConfig } from "axios"
+import { Api } from "@/api/base"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ILLAWebsocket } from "@/api/ws/illaWS"
 
 export function transformComponentReduxPayloadToWsPayload(
   componentNodes: ComponentNode[] | ComponentNode,

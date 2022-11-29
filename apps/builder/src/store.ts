@@ -1,24 +1,24 @@
 import {
-  ListenerEffectAPI,
-  TypedStartListening,
   combineReducers,
   configureStore,
   createListenerMiddleware,
+  ListenerEffectAPI,
+  TypedStartListening,
 } from "@reduxjs/toolkit"
 import { logger } from "redux-logger"
-import { reduxAsync } from "@/middleware/redux/reduxAsync"
+import resourceReducer from "@/redux/resource/resourceSlice"
+import actionReducer from "@/redux/currentApp/action/actionSlice"
+import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
+import currentUserReducer from "@/redux/currentUser/currentUserSlice"
+import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
+import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
 import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
 import configReducer from "@/redux/config/configSlice"
-import actionReducer from "@/redux/currentApp/action/actionSlice"
-import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
-import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
+import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
-import currentUserReducer from "@/redux/currentUser/currentUserSlice"
-import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
-import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
-import resourceReducer from "@/redux/resource/resourceSlice"
+import { reduxAsync } from "@/middleware/redux/reduxAsync"
 
 const listenerMiddleware = createListenerMiddleware()
 

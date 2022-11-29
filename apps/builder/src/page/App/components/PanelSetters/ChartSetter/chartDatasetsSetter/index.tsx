@@ -1,14 +1,14 @@
-import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
-import { useSelector } from "react-redux"
-import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
-import { DatasetsProvider } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"
 import { ChartDatasetsSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
-import { generateDatasetItem } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/utils"
+import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { AddActionLabel } from "@/page/App/components/PanelSetters/PublicComponent/Label/addActionLabel"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { RootState } from "@/store"
 import { ListBody } from "./listBody"
+import { DatasetsProvider } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { get } from "lodash"
+import { generateDatasetItem } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/utils"
 
 export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = (props) => {
   const {

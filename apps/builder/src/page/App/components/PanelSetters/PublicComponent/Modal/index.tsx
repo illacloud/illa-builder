@@ -1,9 +1,9 @@
-import { css } from "@emotion/react"
 import { FC, useMemo } from "react"
-import { ModalBody } from "./body"
-import { ModalHeader } from "./header"
-import { ModalProps } from "./interface"
 import { modalWrapperStyle } from "./style"
+import { ModalHeader } from "./header"
+import { ModalBody } from "./body"
+import { ModalProps } from "./interface"
+import { css } from "@emotion/react"
 
 export const BaseModal: FC<ModalProps> = (props) => {
   const {

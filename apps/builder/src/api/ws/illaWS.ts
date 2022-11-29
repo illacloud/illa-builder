@@ -1,15 +1,15 @@
-import { getPayload } from "@/api/ws/index"
 import { Callback, Signal, Target } from "@/api/ws/interface"
-import { getIsOnline } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
-import store from "@/store"
 import {
   ADD_DISPLAY_NAME,
   DisplayNameGenerator,
   REMOVE_DISPLAY_NAME,
   UPDATE_DISPLAY_NAME,
 } from "@/utils/generators/generateDisplayName"
+import store from "@/store"
 import { getLocalStorage } from "@/utils/storage"
+import { getPayload } from "@/api/ws/index"
+import { configActions } from "@/redux/config/configSlice"
+import { getIsOnline } from "@/redux/config/configSelector"
 
 const HEARTBEAT_PING_TIMEOUT = 2 * 1000
 const HEARTBEAT_PONG_TIMEOUT = 5 * 1000

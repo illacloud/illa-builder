@@ -1,9 +1,9 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
-import { getActionNameFromActionType } from "@/utils/actionResourceTransformer"
 import { ActionTypeSelectorCardProps } from "./interface"
 import { applyItemStyle, comingStyle, nameStyle } from "./style"
+import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
+import { useTranslation } from "react-i18next"
+import { getActionNameFromActionType } from "@/utils/actionResourceTransformer"
 
 export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
   const { actionType, onSelect, isDraft } = props

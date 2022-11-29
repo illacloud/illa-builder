@@ -1,24 +1,24 @@
-import { cloneDeep } from "lodash"
 import { FC, memo } from "react"
-import { useDrag } from "react-dnd"
-import { useSelector } from "react-redux"
-import { ComponentItemProps } from "@/page/App/components/ComponentPanel/interface"
-import {
-  DragCollectedInfo,
-  DragInfo,
-  DropResultInfo,
-} from "@/page/App/components/DotPanel/interface"
-import { getIllaMode } from "@/redux/config/configSelector"
-import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
-import store from "@/store"
-import { endDrag, startDrag } from "@/utils/drag/drag"
-import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 import {
   dragPreviewStyle,
   iconStyle,
   itemContainerStyle,
   nameStyle,
 } from "./style"
+import { useDrag } from "react-dnd"
+import { generateComponentNode } from "@/utils/generators/generateComponentNode"
+import {
+  DragCollectedInfo,
+  DragInfo,
+  DropResultInfo,
+} from "@/page/App/components/DotPanel/interface"
+import { useSelector } from "react-redux"
+import { getIllaMode } from "@/redux/config/configSelector"
+import { endDrag, startDrag } from "@/utils/drag/drag"
+import store from "@/store"
+import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
+import { cloneDeep } from "lodash"
+import { ComponentItemProps } from "@/page/App/components/ComponentPanel/interface"
 
 export const ComponentItem: FC<ComponentItemProps> = memo(
   (props: ComponentItemProps) => {

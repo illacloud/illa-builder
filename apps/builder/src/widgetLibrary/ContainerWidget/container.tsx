@@ -1,10 +1,10 @@
-import { FC, useEffect, useMemo, useRef } from "react"
-import useMeasure from "react-use-measure"
-import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { FC, useRef, useMemo, useEffect } from "react"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "./emptyState"
 import { containerWrapperStyle } from "./style"
+import useMeasure from "react-use-measure"
 
 export const ContainerWidget: FC<ContainerProps> = (props) => {
   const {

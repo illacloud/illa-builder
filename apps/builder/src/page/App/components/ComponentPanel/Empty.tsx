@@ -1,8 +1,8 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
 import { Empty } from "@illa-design/react"
-import { ReactComponent as EmptySearchIcon } from "@/assets/empty-search-icon.svg"
 import { emptyStyle } from "./style"
+import { useTranslation } from "react-i18next"
+import { ReactComponent as EmptySearchIcon } from "@/assets/empty-search-icon.svg"
 
 export const EmptySearchResult: FC = () => {
   const { t } = useTranslation()

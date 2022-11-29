@@ -1,6 +1,6 @@
 import { ReactComponent as RateWidgetIcon } from "@/assets/widgetCover/rate.svg"
-import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
 
 export const RATE_WIDGET_CONFIG: WidgetConfig = {
   type: "RATE_WIDGET",

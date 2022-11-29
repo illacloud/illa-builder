@@ -1,10 +1,10 @@
-import { v4 } from "uuid"
 import {
   CONTAINER_TYPE,
   PageNode,
-  SECTION_POSITION,
   SectionNode,
+  SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { v4 } from "uuid"
 
 export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   displayName: "bodySection1",

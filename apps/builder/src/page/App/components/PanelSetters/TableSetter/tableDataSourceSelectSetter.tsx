@@ -1,19 +1,19 @@
-import { debounce, get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
-import { useSelector } from "react-redux"
-import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
-import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { TableDataSourceSetterProps } from "@/page/App/components/PanelSetters/TableSetter/interface"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { debounce, get } from "lodash"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store"
 import {
   getActionExecutionResult,
   getExecutionError,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import { RootState } from "@/store"
-import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
+import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 
 export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
   props,

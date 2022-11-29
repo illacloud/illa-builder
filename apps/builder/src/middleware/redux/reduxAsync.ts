@@ -6,30 +6,30 @@ import {
 } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/interface"
 import {
-  UpdateComponentContainerPayload,
-  UpdateComponentsShapePayload,
-} from "@/redux/currentApp/editor/components/componentsPayload"
-import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
-  AddSectionViewPayload,
-  AddTargetPageSectionPayload,
-  ComponentNode,
-  CopyComponentPayload,
   DeleteComponentNodePayload,
-  DeletePageNodePayload,
-  DeleteSectionViewPayload,
-  DeleteTargetPageSectionPayload,
-  UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
-  UpdateSectionViewPropsPayload,
-  UpdateTargetPageLayoutPayload,
-  UpdateTargetPagePropsPayload,
+  UpdateComponentDisplayNamePayload,
+  ComponentNode,
+  CopyComponentPayload,
   sortComponentNodeChildrenPayload,
+  UpdateTargetPageLayoutPayload,
+  AddTargetPageSectionPayload,
+  DeleteTargetPageSectionPayload,
+  UpdateTargetPagePropsPayload,
+  DeletePageNodePayload,
+  AddSectionViewPayload,
+  DeleteSectionViewPayload,
+  UpdateSectionViewPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  UpdateComponentContainerPayload,
+  UpdateComponentsShapePayload,
+} from "@/redux/currentApp/editor/components/componentsPayload"
 import { ILLARoute } from "@/router"
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {

@@ -1,6 +1,6 @@
-import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
 import { WrappedButton } from "../index"
+import "@testing-library/jest-dom"
 
 test("WrappedButton renders correctly", () => {
   const handleOnClick = jest.fn()

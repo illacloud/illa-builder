@@ -1,11 +1,11 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
-import { Button, Select } from "@illa-design/react"
-import { Api } from "@/api/base"
-import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
+import { Button, Select } from "@illa-design/react"
+import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
+import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { Api } from "@/api/base"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
 
 const options = [

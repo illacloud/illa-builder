@@ -1,23 +1,23 @@
 import { FC, useCallback, useMemo } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { Input, Switch } from "@illa-design/react"
 import { PanelBar } from "@/components/PanelBar"
-import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
-import { ViewList } from "@/page/App/components/PagePanel/Components/ViewsList"
+import { useTranslation } from "react-i18next"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
+import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
+import { Input, Switch } from "@illa-design/react"
+import { useDispatch, useSelector } from "react-redux"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { ViewList } from "@/page/App/components/PagePanel/Components/ViewsList"
+import { RootState } from "@/store"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   PageNodeProps,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
-import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { RootState } from "@/store"
 
 export const PageBasic: FC = () => {
   const { t } = useTranslation()

@@ -1,4 +1,4 @@
-import { FC, ReactNode, createContext, useCallback } from "react"
+import { createContext, ReactNode, FC, useCallback } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { generateColumnItemId } from "../utils/generateNewColumns"

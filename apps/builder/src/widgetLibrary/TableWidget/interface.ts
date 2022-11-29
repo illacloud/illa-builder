@@ -1,7 +1,7 @@
-import { ColumnDef } from "@tanstack/react-table"
-import { HTMLAttributes } from "react"
 import { TableProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { HTMLAttributes } from "react"
+import { ColumnDef } from "@tanstack/react-table"
 
 export const ColumnTypeOption = [
   { label: "Text", value: "text" },

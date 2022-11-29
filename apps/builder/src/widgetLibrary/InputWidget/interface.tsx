@@ -1,8 +1,8 @@
 import { InputProps } from "@illa-design/react"
-import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
-import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedInputProps
   extends Pick<

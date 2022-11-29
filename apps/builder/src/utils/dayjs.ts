@@ -1,10 +1,10 @@
 /* eslint-disable import/no-named-as-default-member */
-import dayjs from "dayjs"
-import localeData from "dayjs/plugin/localeData"
 import LocalizedFormat from "dayjs/plugin/localizedFormat"
-import relativeTime from "dayjs/plugin/relativeTime"
 import updateLocale from "dayjs/plugin/updateLocale"
+import relativeTime from "dayjs/plugin/relativeTime"
 import utc from "dayjs/plugin/utc"
+import localeData from "dayjs/plugin/localeData"
+import dayjs from "dayjs"
 import i18n from "@/i18n/config"
 
 dayjs.extend(LocalizedFormat)

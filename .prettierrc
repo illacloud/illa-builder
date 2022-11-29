@@ -8,8 +8,5 @@
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "all",
-  "arrowParens": "always",
-  "importOrder": ["<THIRD_PARTY_MODULES>","^@illa-design/(.*)$", "^@/(.*)$", "^[./]"],
-  "importOrderSeparation": false,
-  "importOrderSortSpecifiers": true
+  "arrowParens": "always"
 }

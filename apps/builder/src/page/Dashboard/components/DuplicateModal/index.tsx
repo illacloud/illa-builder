@@ -1,13 +1,13 @@
 import { FC, useState } from "react"
+import { DuplicateModalProps } from "@/page/Dashboard/components/DuplicateModal/interface"
+import { Modal, Input, useMessage } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Input, Modal, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
-import { DuplicateModalProps } from "@/page/Dashboard/components/DuplicateModal/interface"
-import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { RootState } from "@/store"
+import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
+import { Api } from "@/api/base"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 
 export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
   const { appId, visible, onVisibleChange } = props

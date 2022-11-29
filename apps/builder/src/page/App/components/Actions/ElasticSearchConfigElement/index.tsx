@@ -1,29 +1,4 @@
-import { FC, useMemo, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  Input,
-  InputNumber,
-  PaginationPreIcon,
-  Password,
-  WarningCircleIcon,
-  getColor,
-} from "@illa-design/react"
-import {
-  onActionConfigElementSubmit,
-  onActionConfigElementTest,
-} from "@/page/App/components/Actions/api"
-import {
-  ElasticSearchResource,
-  ElasticSearchResourceInitial,
-} from "@/redux/resource/elasticSearchResource"
-import { Resource } from "@/redux/resource/resourceState"
-import { RootState } from "@/store"
-import { isCloudVersion, isURL } from "@/utils/typeHelper"
+import { FC, useState, useMemo } from "react"
 import { RedisConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -38,6 +13,31 @@ import {
   hostInputContainer,
   labelContainer,
 } from "./style"
+import {
+  Input,
+  Password,
+  getColor,
+  Divider,
+  InputNumber,
+  Button,
+  ButtonGroup,
+  PaginationPreIcon,
+  WarningCircleIcon,
+} from "@illa-design/react"
+import { useTranslation } from "react-i18next"
+import { Controller, useForm } from "react-hook-form"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store"
+import { Resource } from "@/redux/resource/resourceState"
+import {
+  ElasticSearchResource,
+  ElasticSearchResourceInitial,
+} from "@/redux/resource/elasticSearchResource"
+import { isCloudVersion, isURL } from "@/utils/typeHelper"
+import {
+  onActionConfigElementSubmit,
+  onActionConfigElementTest,
+} from "@/page/App/components/Actions/api"
 
 export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
   props,

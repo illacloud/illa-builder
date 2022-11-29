@@ -1,8 +1,8 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
 import { AddIcon, Link } from "@illa-design/react"
-import { HeaderProps } from "./interface"
 import { optionListHeaderStyle } from "./style"
+import { HeaderProps } from "./interface"
+import { useTranslation } from "react-i18next"
 
 export const OptionListHeader: FC<HeaderProps> = (props) => {
   const { labelName, handleAddOption } = props

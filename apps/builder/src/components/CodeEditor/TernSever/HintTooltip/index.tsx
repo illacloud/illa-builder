@@ -1,6 +1,5 @@
-import { css } from "@emotion/react"
 import { FC, useRef } from "react"
-import { TypeQueryResult } from "tern/lib/tern"
+import { css } from "@emotion/react"
 import {
   DocsIcon,
   Tag,
@@ -9,7 +8,6 @@ import {
   isObject,
   isString,
 } from "@illa-design/react"
-import { transTypeFromTern } from "@/components/CodeEditor/TernSever"
 import { HintTooltipProps, TransQuery } from "./interface"
 import {
   contentAreaStyle,
@@ -22,6 +20,8 @@ import {
   mainTitleStyle,
   titleTextStyle,
 } from "./styles"
+import { TypeQueryResult } from "tern/lib/tern"
+import { transTypeFromTern } from "@/components/CodeEditor/TernSever"
 
 const formatEvaluate = (data: any) => {
   let format = ""

@@ -1,5 +1,5 @@
-import { createSelector } from "@reduxjs/toolkit"
 import { RootState } from "@/store"
+import { createSelector } from "@reduxjs/toolkit"
 
 export const getAppInfo = (state: RootState) => {
   return state.currentApp.appInfo

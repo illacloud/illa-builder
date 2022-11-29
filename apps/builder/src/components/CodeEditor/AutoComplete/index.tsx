@@ -1,15 +1,15 @@
-import { ForwardedRef, forwardRef } from "react"
+import { forwardRef, ForwardedRef } from "react"
 import {
-  ArrayIcon,
-  ComponentIcon,
-  FunctionIcon,
-  NullIcon,
-  NumberIcon,
-  ObjectIcon,
   StringIcon,
+  NumberIcon,
+  ArrayIcon,
+  FunctionIcon,
+  ObjectIcon,
+  ComponentIcon,
+  NullIcon,
 } from "@illa-design/react"
-import { AutoCompleteItemProps, AutoCompleteItemType } from "./interface"
 import { contentStyle, itemStyle, typeStyle } from "./styles"
+import { AutoCompleteItemProps, AutoCompleteItemType } from "./interface"
 
 const IconEle = (type: AutoCompleteItemType) => {
   switch (type) {

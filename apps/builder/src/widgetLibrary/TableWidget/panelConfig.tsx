@@ -1,12 +1,12 @@
-import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
 import {
   TABLE_BUTTON_EVENT_HANDLER_CONFIG,
   TABLE_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/TableWidget/eventHandlerConfig"
-import { ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
 
 const baseWidgetName = "table"
 

@@ -1,12 +1,12 @@
-import { FC, ReactNode, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { Api } from "@/api/base"
-import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import { useEffect, FC, ReactNode } from "react"
 import { getLocalStorage } from "@/utils/storage"
+import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { Api } from "@/api/base"
+import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 
 interface CheckIsLoginWrapperProps {
   children: ReactNode

@@ -1,11 +1,11 @@
 import { FC, ReactNode } from "react"
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import {
-  CONTAINER_TYPE,
-  ComponentNode,
-} from "@/redux/currentApp/editor/components/componentsState"
-import { WidgetType } from "@/widgetLibrary/widgetBuilder"
 import { SessionType } from "./componentListBuilder"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import { WidgetType } from "@/widgetLibrary/widgetBuilder"
+import {
+  ComponentNode,
+  CONTAINER_TYPE,
+} from "@/redux/currentApp/editor/components/componentsState"
 
 export interface EventHandlerConfig {
   events: {

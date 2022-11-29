@@ -1,11 +1,11 @@
 import { FC, useCallback, useContext } from "react"
-import { useDispatch } from "react-redux"
-import { Dropdown, MoreIcon } from "@illa-design/react"
-import { EditableText } from "@/components/EditableText"
+import { MoreIcon, Dropdown } from "@illa-design/react"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ActionMenu } from "./actionMenu"
 import { panelHeaderIconWrapperStyle, panelHeaderWrapperStyle } from "./style"
+import { ActionMenu } from "./actionMenu"
+import { EditableText } from "@/components/EditableText"
+import { useDispatch } from "react-redux"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 export const PanelHeader: FC = () => {
   const { widgetDisplayName, widgetType } = useContext(SelectedPanelContext)

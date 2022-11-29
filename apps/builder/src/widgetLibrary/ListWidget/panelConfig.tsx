@@ -1,9 +1,9 @@
-import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { DATE_TIME_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DateTimeWidget"
 import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const baseWidgetName = "form"
 export const LIST_PANEL_CONFIG: PanelConfig[] = [

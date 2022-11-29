@@ -1,7 +1,7 @@
-import { FC } from "react"
+import { headerStyle, closeIconStyle } from "./style"
 import { CloseIcon } from "@illa-design/react"
 import { HeaderProps } from "./interface"
-import { closeIconStyle, headerStyle } from "./style"
+import { FC } from "react"
 
 export const ModalHeader: FC<HeaderProps> = (props) => {
   const { title, handleCloseModal } = props

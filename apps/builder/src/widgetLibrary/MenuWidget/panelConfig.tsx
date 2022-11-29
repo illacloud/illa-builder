@@ -1,14 +1,14 @@
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { MENU_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/MenuWidget/eventHandlerConfig"
 import {
   HorizontalCenterIcon,
   HorizontalEndIcon,
   HorizontalStartIcon,
   VerticalStartIcon,
 } from "@illa-design/react"
-import i18n from "@/i18n/config"
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { MENU_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/MenuWidget/eventHandlerConfig"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const baseWidgetName = "table"
 

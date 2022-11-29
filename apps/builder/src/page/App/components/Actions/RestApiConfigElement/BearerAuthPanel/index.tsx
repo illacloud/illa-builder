@@ -1,13 +1,13 @@
 import { FC } from "react"
-import { Controller } from "react-hook-form"
-import { useTranslation } from "react-i18next"
-import { Input, getColor } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
   configItem,
   labelContainer,
 } from "@/page/App/components/Actions/RestApiConfigElement/style"
+import { getColor, Input } from "@illa-design/react"
+import { Controller } from "react-hook-form"
 import { BearerAuthPanelProps } from "./interface"
+import { useTranslation } from "react-i18next"
 
 export const BearerAuthPanel: FC<BearerAuthPanelProps> = (props) => {
   const { control, auth } = props

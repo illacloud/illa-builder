@@ -1,4 +1,4 @@
-import { FC, ReactNode, createContext } from "react"
+import { createContext, ReactNode, FC } from "react"
 
 interface Injected {
   widgetType: string

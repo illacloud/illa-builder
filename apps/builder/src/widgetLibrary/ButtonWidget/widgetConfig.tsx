@@ -1,6 +1,6 @@
 import { ReactComponent as ButtonWidgetIcon } from "@/assets/widgetCover/button.svg"
-import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
 
 export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   type: "BUTTON_WIDGET",

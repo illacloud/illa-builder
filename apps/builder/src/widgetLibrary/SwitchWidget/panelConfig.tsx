@@ -1,7 +1,7 @@
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
-import i18n from "@/i18n/config"
+import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/react"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { SWITCH_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SwitchWidget/eventHandlerConfig"
 

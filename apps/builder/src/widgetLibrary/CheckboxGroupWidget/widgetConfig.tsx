@@ -1,7 +1,7 @@
-import { v4 } from "uuid"
 import { ReactComponent as CheckboxWidgetIcon } from "@/assets/widgetCover/checkBox.svg"
-import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import { v4 } from "uuid"
+import i18n from "@/i18n/config"
 
 export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
   type: "CHECKBOX_GROUP_WIDGET",

@@ -1,9 +1,9 @@
-import { Editor } from "codemirror"
-import "codemirror/addon/lint/javascript-lint"
-import "codemirror/addon/lint/lint"
-import "codemirror/addon/lint/lint.css"
-import { JSHINT } from "jshint"
 import { render } from "react-dom"
+import { JSHINT } from "jshint"
+import { Editor } from "codemirror"
+import "codemirror/addon/lint/lint"
+import "codemirror/addon/lint/javascript-lint"
+import "codemirror/addon/lint/lint.css"
 
 // @ts-ignore: create global variable
 // see in: https://github.com/codemirror/codemirror5/issues/5362

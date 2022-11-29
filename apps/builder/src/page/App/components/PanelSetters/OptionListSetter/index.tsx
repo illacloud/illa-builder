@@ -1,11 +1,11 @@
 import { FC, useCallback } from "react"
-import { useTranslation } from "react-i18next"
-import { OptionListSetterProvider } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
-import { generateNewOptionItem } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
-import { ListBody } from "./body"
 import { OptionListHeader } from "./header"
+import { ListBody } from "./body"
 import { OptionListSetterProps } from "./interface"
 import { ListStyle } from "./style"
+import { generateNewOptionItem } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
+import { OptionListSetterProvider } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
+import { useTranslation } from "react-i18next"
 
 export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
   const {

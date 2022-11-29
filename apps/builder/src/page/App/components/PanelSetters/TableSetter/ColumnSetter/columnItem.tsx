@@ -1,7 +1,7 @@
 import { FC, useRef } from "react"
-import { DragIconAndLabel } from "./dragIconAndLabel"
 import { ColumnItemProps } from "./interface"
 import { optionListItemStyle } from "./style"
+import { DragIconAndLabel } from "./dragIconAndLabel"
 
 export const ColumnItem: FC<ColumnItemProps> = (props) => {
   const { accessorKey, header, value, visible, custom, index } = props

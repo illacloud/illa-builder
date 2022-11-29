@@ -1,7 +1,7 @@
 import { ReactComponent as FormWidgetIcon } from "@/assets/widgetCover/form.svg"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
-import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const LIST_WIDGET_CONFIG: WidgetConfig = {
   type: "LIST_WIDGET",

@@ -1,17 +1,17 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
-import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
 import {
   codeEditorLabelStyle,
   mongoItemCodeEditorStyle,
   mongoItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
-import { getCachedAction } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
-import { CountContent } from "@/redux/currentApp/action/mongoDbAction"
+import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { useTranslation } from "react-i18next"
+import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
+import { useDispatch, useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
+import { CountContent } from "@/redux/currentApp/action/mongoDbAction"
+import { configActions } from "@/redux/config/configSlice"
 
 export const CountPart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()

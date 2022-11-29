@@ -1,14 +1,14 @@
 import { FC, useCallback, useContext } from "react"
-import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
+import { useTranslation } from "react-i18next"
 import { DropList, globalColor, illaPrefix } from "@illa-design/react"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
-import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { PanelHeaderActionProps } from "./interface"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 const { Item } = DropList
 

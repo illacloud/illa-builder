@@ -1,7 +1,7 @@
-import dayjs from "dayjs"
 import { ReactComponent as DateWidgetIcon } from "@/assets/widgetCover/date.svg"
-import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import dayjs from "dayjs"
+import i18n from "@/i18n/config"
 
 export const DATE_WIDGET_CONFIG: WidgetConfig = {
   type: "DATE_WIDGET",

@@ -1,5 +1,5 @@
-import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
+import { css } from "@emotion/react"
 
 export const PagePanelWrapperStyle = css`
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};

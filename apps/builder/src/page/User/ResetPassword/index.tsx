@@ -3,29 +3,29 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import {
-  Button,
-  Countdown,
   Input,
-  Link,
   Password,
+  Button,
   PreIcon,
   WarningCircleIcon,
+  Link,
+  Countdown,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
 import { EMAIL_FORMAT } from "@/constants/regExp"
+import { Api } from "@/api/base"
 import {
-  errorIconStyle,
-  errorMsgStyle,
   formLabelStyle,
   formTitleStyle,
   gridFormFieldStyle,
   gridFormStyle,
   gridItemStyle,
   gridValidStyle,
-  hotspotWrapperStyle,
-  prevIconStyle,
+  errorMsgStyle,
+  errorIconStyle,
   resetPasswordSubtitleWrapperStyle,
+  prevIconStyle,
+  hotspotWrapperStyle,
 } from "@/page/User/style"
 import { ResetPwdFields } from "./interface"
 

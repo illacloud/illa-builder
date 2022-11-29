@@ -1,24 +1,24 @@
-import { Global, css } from "@emotion/react"
-import { useEffect } from "react"
-import { DndProvider } from "react-dnd"
-import { HTML5Backend } from "react-dnd-html5-backend"
-import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { css, Global } from "@emotion/react"
 import { RouterProvider } from "react-router-dom"
+import { globalStyle } from "./style"
 import {
   ConfigProvider,
   MessageGroup,
-  ModalGroup,
   NotificationGroup,
+  ModalGroup,
 } from "@illa-design/react"
 import "@/api/base"
+import { HTML5Backend } from "react-dnd-html5-backend"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
+import { DndProvider } from "react-dnd"
+import { useSelector } from "react-redux"
 import {
   getCurrentConfigLanguage,
   getCurrentTranslateLanguage,
 } from "@/redux/currentUser/currentUserSelector"
+import { useEffect } from "react"
 import { ILLARoute } from "@/router"
-import { globalStyle } from "./style"
+import { useTranslation } from "react-i18next"
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)

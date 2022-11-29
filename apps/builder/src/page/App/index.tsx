@@ -1,36 +1,6 @@
-import { Unsubscribe } from "@reduxjs/toolkit"
-import { motion, useAnimation } from "framer-motion"
-import { FC, MouseEvent, useCallback, useEffect } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { WarningCircleIcon } from "@illa-design/react"
-import { Api } from "@/api/base"
-import { Connection } from "@/api/ws"
-import { useInitBuilderApp } from "@/hooks/useInitApp"
-import { ActionEditor } from "@/page/App/components/Actions"
-import { AppLoading } from "@/page/App/components/AppLoading"
-import { CanvasPanel } from "@/page/App/components/CanvasPanel"
-import { ComponentsManager } from "@/page/App/components/ComponentManager"
-import { Debugger } from "@/page/App/components/Debugger"
-import { setupConfigListeners } from "@/redux/config/configListener"
-import {
-  getIsOnline,
-  isOpenBottomPanel,
-  isOpenDebugger,
-  isOpenLeftPanel,
-  isOpenRightPanel,
-} from "@/redux/config/configSelector"
-import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
-import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
-import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
-import { startAppListening } from "@/store"
-import { Shortcut } from "@/utils/shortcut"
-import { DataWorkspace } from "./components/DataWorkspace"
+import { FC, useCallback, useEffect, MouseEvent } from "react"
 import { PageNavBar } from "./components/PageNavBar"
+import { DataWorkspace } from "./components/DataWorkspace"
 import {
   bottomPanelStyle,
   centerPanelStyle,
@@ -44,6 +14,36 @@ import {
   rightPanelStyle,
   waringIconStyle,
 } from "./style"
+import { Connection } from "@/api/ws"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  getIsOnline,
+  isOpenBottomPanel,
+  isOpenDebugger,
+  isOpenLeftPanel,
+  isOpenRightPanel,
+} from "@/redux/config/configSelector"
+import { CanvasPanel } from "@/page/App/components/CanvasPanel"
+import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { startAppListening } from "@/store"
+import { Unsubscribe } from "@reduxjs/toolkit"
+import { Api } from "@/api/base"
+import { useParams } from "react-router-dom"
+import { Shortcut } from "@/utils/shortcut"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { AppLoading } from "@/page/App/components/AppLoading"
+import { ActionEditor } from "@/page/App/components/Actions"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { useInitBuilderApp } from "@/hooks/useInitApp"
+import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
+import { Debugger } from "@/page/App/components/Debugger"
+import { ComponentsManager } from "@/page/App/components/ComponentManager"
+import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
+import { setupConfigListeners } from "@/redux/config/configListener"
+import { WarningCircleIcon } from "@illa-design/react"
+import { useTranslation } from "react-i18next"
+import { motion, useAnimation } from "framer-motion"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()

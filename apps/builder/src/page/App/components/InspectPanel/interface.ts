@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
 import { SetterType } from "@/page/App/components/PanelSetters"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { ReactNode } from "react"
 import { EventHandlerConfig } from "@/widgetLibrary/interface"
 
 export interface PanelHeaderActionProps {

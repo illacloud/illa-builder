@@ -1,6 +1,13 @@
 import { FC, useMemo } from "react"
-import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import {
+  applyMoveBarWrapperStyle,
+  dragPointIconWrapperStyle,
+  freezeIconStyle,
+  freezeTipsStyle,
+  MOVE_BAR_HEIGHT,
+  moveBarDisplayNameStyle,
+  warningStyle,
+} from "@/page/App/components/ScaleSquare/style"
 import {
   DragIcon,
   LockIcon,
@@ -12,16 +19,9 @@ import {
   MoveBarPositionShape,
   MoveBarProps,
 } from "@/page/App/components/ScaleSquare/interface"
-import {
-  MOVE_BAR_HEIGHT,
-  applyMoveBarWrapperStyle,
-  dragPointIconWrapperStyle,
-  freezeIconStyle,
-  freezeTipsStyle,
-  moveBarDisplayNameStyle,
-  warningStyle,
-} from "@/page/App/components/ScaleSquare/style"
+import { useSelector } from "react-redux"
 import { getFreezeState } from "@/redux/config/configSelector"
+import { useTranslation } from "react-i18next"
 
 export const MoveBar: FC<MoveBarProps> = (props) => {
   const {

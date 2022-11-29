@@ -1,23 +1,23 @@
-import { FC, useLayoutEffect, useMemo, useRef, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import useMeasure from "react-use-measure"
-import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
+import { FC, useRef, useLayoutEffect, useMemo, useState } from "react"
 import {
   PageNode,
-  SECTION_POSITION,
   SectionNode,
+  SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { RenderPageProps } from "./interface"
 import {
   LEFT_MIN_WIDTH,
-  RIGHT_MIN_WIDTH,
   RenderFooterSection,
   RenderHeaderSection,
   RenderLeftSection,
   RenderRightSection,
   RenderSection,
+  RIGHT_MIN_WIDTH,
 } from "./renderSection"
+import useMeasure from "react-use-measure"
+import { useDispatch, useSelector } from "react-redux"
+import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 const getShowNameMapSectionNode = (pageNode: PageNode) => {
   const { childrenNode = [] } = pageNode

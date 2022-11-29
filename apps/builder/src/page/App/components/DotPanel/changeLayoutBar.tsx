@@ -1,6 +1,4 @@
 import { FC } from "react"
-import { ReactComponent as ChangeLayout } from "@/assets/change-layout.svg"
-import { ChangeLayoutBarProps } from "./interface"
 import {
   changeLayoutBottomBarWrapperStyle,
   changeLayoutBottomIconStyle,
@@ -12,6 +10,8 @@ import {
   changeLayoutTopBarWrapperStyle,
   changeLayoutVerticalBarStyle,
 } from "./style"
+import { ReactComponent as ChangeLayout } from "@/assets/change-layout.svg"
+import { ChangeLayoutBarProps } from "./interface"
 
 export const ChangeLayoutTopBar: FC<ChangeLayoutBarProps> = (props) => {
   const { sectionName, changeAction, direction } = props

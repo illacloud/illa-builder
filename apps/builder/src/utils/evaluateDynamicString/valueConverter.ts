@@ -1,6 +1,6 @@
-import { Types, getType, isObject } from "@/utils/typeHelper"
-import { EVALUATION_TYPE } from "./interface"
+import { getType, isObject, Types } from "@/utils/typeHelper"
 import { filterBindingSegmentsAndRemoveQuotes } from "./utils"
+import { EVALUATION_TYPE } from "./interface"
 
 export const smartSubstituteDynamicValues = (
   originDynamicString: string,

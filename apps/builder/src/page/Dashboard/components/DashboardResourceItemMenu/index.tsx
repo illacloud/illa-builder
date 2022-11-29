@@ -1,27 +1,27 @@
 import { FC, useState } from "react"
-import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
+import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
 import {
-  Button,
-  DropList,
   Dropdown,
-  Modal,
+  DropList,
+  Button,
   MoreIcon,
-  Space,
   globalColor,
   illaPrefix,
-  useMessage,
+  Modal,
   useModal,
+  Space,
+  useMessage,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
-import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
-import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
+import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
 
 const Item = DropList.Item
 

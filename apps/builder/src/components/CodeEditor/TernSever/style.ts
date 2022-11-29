@@ -2,11 +2,11 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 import arraySvg from "./assets/array.svg"
 import booleanSvg from "./assets/boolean.svg"
-import functionSvg from "./assets/function.svg"
-import nullSvg from "./assets/null.svg"
-import numberSvg from "./assets/number.svg"
-import objectSvg from "./assets/object.svg"
 import stringSvg from "./assets/string.svg"
+import objectSvg from "./assets/object.svg"
+import numberSvg from "./assets/number.svg"
+import nullSvg from "./assets/null.svg"
+import functionSvg from "./assets/function.svg"
 
 export const ternStyle = css`
   .CodeMirror-Tern-completion {

@@ -1,7 +1,7 @@
 import { FC, useContext } from "react"
+import { ListItem } from "./listItem"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { EmptyBody } from "@/page/App/components/PanelSetters/OptionListSetter/empty"
-import { ListItem } from "./listItem"
 
 export const ListBody: FC = () => {
   const { optionItems } = useContext(OptionListSetterContext)

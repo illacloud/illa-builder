@@ -1,6 +1,6 @@
-import "@testing-library/jest-dom"
-import { fireEvent, render, screen } from "@testing-library/react"
 import { WrappedCheckbox } from "../index"
+import { fireEvent, render, screen } from "@testing-library/react"
+import "@testing-library/jest-dom"
 
 test("checkboxGroup renders correctly", () => {
   const handleUpdateDSL = jest.fn()

@@ -1,17 +1,17 @@
 import { FC, HTMLAttributes, useCallback, useRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { CloseIcon, Divider, isArray } from "@illa-design/react"
+import { Divider, CloseIcon, isArray } from "@illa-design/react"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
-import { ErrorItem } from "@/page/App/components/Debugger/components/ErrorItem"
-import { isOpenDebugger } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
-import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import {
   applyDebuggerStyle,
   containerStyle,
   errorContentStyle,
   titleStyle,
 } from "./style"
+import { useDispatch, useSelector } from "react-redux"
+import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { isOpenDebugger } from "@/redux/config/configSelector"
+import { ErrorItem } from "@/page/App/components/Debugger/components/ErrorItem"
 
 const DebuggerDefaultHeight = 300
 

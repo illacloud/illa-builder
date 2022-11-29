@@ -1,8 +1,8 @@
 import { FC } from "react"
-import { PanelHeader } from "./Components/PanelHeader/header"
-import { PageBasic } from "./Modules/Basic"
-import { PageFrame } from "./Modules/Frame"
 import { PagePanelWrapperStyle, PageScrollContainerWrapperStyle } from "./style"
+import { PageFrame } from "./Modules/Frame"
+import { PageBasic } from "./Modules/Basic"
+import { PanelHeader } from "./Components/PanelHeader/header"
 
 export const PagePanel: FC = () => {
   return (

@@ -1,8 +1,8 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useState, useCallback } from "react"
 import { Dropdown, MoreIcon } from "@illa-design/react"
+import { moreIconWrapperStyle } from "./style"
 import { ActionMenu } from "./actionMenu"
 import { MoreProps } from "./interface"
-import { moreIconWrapperStyle } from "./style"
 
 export const More: FC<MoreProps> = (props) => {
   const { index } = props

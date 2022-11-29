@@ -1,29 +1,15 @@
 import { forwardRef, useCallback, useState } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
 import {
-  DropList,
   Dropdown,
-  Input,
-  LoadingIcon,
-  WarningCircleIcon,
+  DropList,
   getColor,
   globalColor,
   illaPrefix,
+  LoadingIcon,
+  WarningCircleIcon,
+  Input,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
-import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
-import {
-  getCachedAction,
-  getSelectedAction,
-} from "@/redux/config/configSelector"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { RootState } from "@/store"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { isObject, isValidDisplayName } from "@/utils/typeHelper"
 import {
   actionIconContainer,
   actionItemDotStyle,
@@ -32,6 +18,20 @@ import {
   applyActionItemTitleStyle,
   warningCircleStyle,
 } from "./style"
+import { useTranslation } from "react-i18next"
+import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "@/store"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
+import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
+import { isObject, isValidDisplayName } from "@/utils/typeHelper"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { Api } from "@/api/base"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 
 const Item = DropList.Item
 

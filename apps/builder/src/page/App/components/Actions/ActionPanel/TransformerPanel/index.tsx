@@ -1,17 +1,17 @@
 import { FC } from "react"
-import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
-import { getCachedAction } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { useTranslation } from "react-i18next"
 import {
   transformerEditorStyle,
   transformerPanelContainerStyle,
   transformerTipStyle,
 } from "./style"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { Controller, useForm } from "react-hook-form"
+import { useDispatch, useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 export const TransformerPanel: FC = (props) => {
   const { t } = useTranslation()

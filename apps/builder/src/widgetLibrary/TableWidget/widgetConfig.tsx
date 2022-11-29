@@ -1,8 +1,8 @@
 import { ReactComponent as TableWidgetIcon } from "@/assets/widgetCover/table.svg"
-import i18n from "@/i18n/config"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import store from "@/store"
 import { WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
+import store from "@/store"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
 
 export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   displayName: "table",

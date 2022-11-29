@@ -1,7 +1,7 @@
-import { evalScript } from "./codeSandbox"
 import { EVALUATION_TYPE } from "./interface"
-import { isDynamicString } from "./utils"
 import { substituteDynamicBindingWithValues } from "./valueConverter"
+import { isDynamicString } from "./utils"
+import { evalScript } from "./codeSandbox"
 
 const getStringSnippets = (dynamicString: string): string[] => {
   let stringSnippets: string[] = []

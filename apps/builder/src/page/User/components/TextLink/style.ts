@@ -1,4 +1,4 @@
-import { SerializedStyles, css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const textLinkStyle: SerializedStyles = css`

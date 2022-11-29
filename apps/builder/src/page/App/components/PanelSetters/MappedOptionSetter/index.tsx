@@ -1,8 +1,8 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
-import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
 import { MappedOptionSetterProps } from "./interface"
 import { listStyle, listWrapperStyle, optionListHeaderStyle } from "./style"
+import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
+import { useTranslation } from "react-i18next"
 
 export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
   const { attrName, labelName, childrenSetter, widgetDisplayName } = props

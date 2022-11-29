@@ -1,7 +1,7 @@
-import { v4 } from "uuid"
 import { ReactComponent as SelectWidgetIcon } from "@/assets/widgetCover/select.svg"
-import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import { v4 } from "uuid"
+import i18n from "@/i18n/config"
 
 export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   type: "SELECT_WIDGET",

@@ -1,10 +1,10 @@
 import { FC } from "react"
 import { RadioGroup } from "@illa-design/react"
+import { BaseRadioGroupProps } from "./interface"
 import {
   applyRadioGroupWrapperStyle,
   radioGroupStyle,
 } from "@/page/App/components/PanelSetters/RadioGroupSetter/style"
-import { BaseRadioGroupProps } from "./interface"
 
 export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
   const { value, options, isSetterSingleRow, attrName, handleUpdateDsl } = props

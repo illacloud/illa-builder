@@ -1,6 +1,6 @@
 import { ReactComponent as DividerWidgetIcon } from "@/assets/widgetCover/divider.svg"
-import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
 
 export const DIVIDER_WIDGET_CONFIG: WidgetConfig = {
   type: "DIVIDER_WIDGET",

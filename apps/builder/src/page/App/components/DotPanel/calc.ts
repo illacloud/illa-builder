@@ -1,8 +1,8 @@
 import { cloneDeep } from "lodash"
-import { RefObject } from "react"
-import { DropTargetMonitor } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { DropTargetMonitor } from "react-dnd"
 import { DragInfo, DropResultInfo } from "./interface"
+import { RefObject } from "react"
 
 interface ItemPosition {
   x: number

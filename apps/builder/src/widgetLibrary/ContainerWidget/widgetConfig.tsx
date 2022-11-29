@@ -1,8 +1,8 @@
-import { v4 } from "uuid"
 import { ReactComponent as ContainerWidgetIcon } from "@/assets/widgetCover/container.svg"
-import i18n from "@/i18n/config"
-import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
+import { v4 } from "uuid"
+import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 const defaultListView = [
   { id: v4(), key: "View 1", label: "View 1" },

@@ -1,12 +1,12 @@
 import { FC, memo } from "react"
-import { useTranslation } from "react-i18next"
-import { ComponentItem } from "./ComponentItem"
 import { ComponentSessionProps } from "./interface"
 import {
   componentListContainerStyle,
   sessionContainerStyle,
   sessionTitleStyle,
 } from "./style"
+import { ComponentItem } from "./ComponentItem"
+import { useTranslation } from "react-i18next"
 
 export const ComponentSession = memo((props: ComponentSessionProps) => {
   const { title, widgetCardInfos } = props

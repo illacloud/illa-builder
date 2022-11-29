@@ -1,10 +1,10 @@
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { CONTAINER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ContainerWidget/eventHandlerConfig"
 import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
 import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
-import i18n from "@/i18n/config"
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { CONTAINER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ContainerWidget/eventHandlerConfig"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const baseWidgetName = "container"
 export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [

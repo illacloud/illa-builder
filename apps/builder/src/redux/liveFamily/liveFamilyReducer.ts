@@ -1,6 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { AddPresencePayload } from "@/redux/liveFamily/liveFamilyPayload"
 import { LiveFamilyState, Presence } from "@/redux/liveFamily/liveFamilyState"
+import { AddPresencePayload } from "@/redux/liveFamily/liveFamilyPayload"
 
 export const updateLiveFamilyListReducer: CaseReducer<
   LiveFamilyState,
