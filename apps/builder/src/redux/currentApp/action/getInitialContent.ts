@@ -6,6 +6,7 @@ import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
 import { MongoDbActionInitial } from "@/redux/currentApp/action/mongoDbAction"
 import { ElasticSearchActionInitial } from "@/redux/currentApp/action/elasticSearchAction"
 import { S3ActionInitial } from "@/redux/currentApp/action/s3Action"
+import { SMTPActionInitial } from "@/redux/currentApp/action/smtpAction"
 
 export function getInitialContent(actionType: ActionType): ActionContent {
   switch (actionType) {
@@ -26,6 +27,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return ElasticSearchActionInitial
     case "s3":
       return S3ActionInitial
+    case "smtp":
+      return SMTPActionInitial
     default:
       return {} as ActionContent
   }

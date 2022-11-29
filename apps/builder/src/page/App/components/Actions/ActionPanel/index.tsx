@@ -17,6 +17,7 @@ import { ActionPanelContainerProps } from "@/page/App/components/Actions/ActionP
 import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
 import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
+import { SMTPPanel } from "@/page/App/components/Actions/ActionPanel/SMTPPanel"
 
 export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
   const { maxHeight } = props
@@ -48,6 +49,8 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
         return <ElasticSearchPanel />
       case "s3":
         return <S3Panel />
+      case "smtp":
+        return <SMTPPanel />
       default:
         return <></>
     }

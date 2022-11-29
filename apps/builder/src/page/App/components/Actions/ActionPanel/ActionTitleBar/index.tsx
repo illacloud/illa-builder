@@ -39,36 +39,40 @@ import {
   S3ActionRequestType,
   S3ActionTypeContent,
   UploadContent,
+  UploadMultipleContent,
 } from "@/redux/currentApp/action/s3Action"
-import { calculateFileSize } from "../utils/calculateFileSize"
+import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
 import { useMessage } from "@illa-design/message"
+import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
-const MAX_SIZE = 5
+const FILE_SIZE_LIMIT_TYPE = ["s3", "smtp"]
 
-const getCanRunS3Action = (cachedAction: ActionItem<ActionContent> | null) => {
-  if (!cachedAction || cachedAction.actionType !== "s3") {
+const getCanRunAction = (cachedAction: ActionItem<ActionContent> | null) => {
+  if (
+    !cachedAction ||
+    !FILE_SIZE_LIMIT_TYPE.includes(cachedAction.actionType)
+  ) {
     return true
   }
-  const content = cachedAction.content as S3Action<S3ActionTypeContent>
-  let commandArgs, size
-
-  switch (content.commands) {
-    case S3ActionRequestType.UPLOAD:
-      commandArgs = content.commandArgs as UploadContent
-      size = calculateFileSize(commandArgs.objectData)
-      if (size > MAX_SIZE) {
-        return false
+  switch (cachedAction.actionType) {
+    case "s3":
+      const content = cachedAction.content as S3Action<S3ActionTypeContent>
+      let commandArgs
+      switch (content.commands) {
+        case S3ActionRequestType.UPLOAD:
+          commandArgs = content.commandArgs as UploadContent
+          return !isFileOversize(commandArgs.objectData)
+        case S3ActionRequestType.UPLOAD_MULTIPLE:
+          commandArgs = content.commandArgs as UploadMultipleContent
+          return !isFileOversize(commandArgs.objectDataList)
       }
       break
-    case S3ActionRequestType.UPLOAD_MULTIPLE:
-      commandArgs = content.commandArgs as UploadContent
-      size = calculateFileSize(commandArgs.objectData)
-      if (size > MAX_SIZE) {
-        return false
-      }
-      break
+    case "smtp":
+      const smtpContent = cachedAction.content as SMPTAction
+      return !isFileOversize(smtpContent?.attachment || "", "smtp")
   }
   return true
 }
@@ -77,32 +81,50 @@ const getActionFilteredContent = (
   cachedAction: ActionItem<ActionContent> | null,
 ) => {
   let cachedActionValue: ActionItem<ActionContent> | null = cachedAction
-  if (!!cachedActionValue && cachedAction?.actionType === "elasticsearch") {
-    let content = cachedAction.content as ElasticSearchAction
-    if (!IDEditorType.includes(content.operation)) {
-      const { id = "", ...otherContent } = content
-
+  if (!cachedActionValue) {
+    return cachedActionValue
+  }
+  switch (cachedAction?.actionType) {
+    case "elasticsearch":
+      let content = cachedAction.content as ElasticSearchAction
+      if (!IDEditorType.includes(content.operation)) {
+        const { id = "", ...otherContent } = content
+        cachedActionValue = {
+          ...cachedAction,
+          content: { ...otherContent },
+        }
+        content = otherContent
+      }
+      if (!BodyContentType.includes(content.operation)) {
+        const { body = "", ...otherContent } = content
+        cachedActionValue = {
+          ...cachedActionValue,
+          content: { ...otherContent },
+        }
+        content = otherContent
+      }
+      if (!QueryContentType.includes(content.operation)) {
+        const { query = "", ...otherContent } = content
+        cachedActionValue = {
+          ...cachedActionValue,
+          content: { ...otherContent },
+        }
+      }
+      break
+    case "smtp":
+      const smtpContent = cachedAction.content as SMPTAction
+      const { to, cc, bcc, attachment, ...otherContent } = smtpContent
       cachedActionValue = {
         ...cachedAction,
-        content: { ...otherContent },
+        content: {
+          ...otherContent,
+          ...(to && { to }),
+          ...(cc && { cc }),
+          ...(bcc && { bcc }),
+          ...(attachment && { attachment }),
+        },
       }
-      content = otherContent
-    }
-    if (!BodyContentType.includes(content.operation)) {
-      const { body = "", ...otherContent } = content
-      cachedActionValue = {
-        ...cachedActionValue,
-        content: { ...otherContent },
-      }
-      content = otherContent
-    }
-    if (!QueryContentType.includes(content.operation)) {
-      const { query = "", ...otherContent } = content
-      cachedActionValue = {
-        ...cachedActionValue,
-        content: { ...otherContent },
-      }
-    }
+      break
   }
   return cachedActionValue
 }
@@ -120,7 +142,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
-  const canRunS3Action = getCanRunS3Action(cachedAction)
+  const canRunAction = getCanRunAction(cachedAction)
 
   let runMode: RunMode = useMemo(() => {
     if (cachedAction != undefined && isChanged) {
@@ -142,9 +164,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
     switch (runMode) {
       case "run":
-        if (!canRunS3Action) {
+        if (!canRunAction) {
           message.error({
-            content: t("editor.action.panel.s3.error.max_file"),
+            content: t("editor.action.panel.error.max_file"),
           })
           return
         }
@@ -184,9 +206,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         )
         break
       case "save_and_run":
-        if (!canRunS3Action) {
+        if (!canRunAction) {
           message.error({
-            content: t("editor.action.panel.s3.error.max_file"),
+            content: t("editor.action.panel.error.max_file"),
           })
           return
         }
@@ -229,7 +251,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   }, [
     cachedAction,
     runMode,
-    canRunS3Action,
+    canRunAction,
     currentApp.appId,
     selectedAction?.actionId,
     t,
