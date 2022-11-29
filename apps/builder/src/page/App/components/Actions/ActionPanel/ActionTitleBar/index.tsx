@@ -72,18 +72,9 @@ const getCanRunAction = (cachedAction: ActionItem<ActionContent> | null) => {
       break
     case "smtp":
       const smtpContent = cachedAction.content as SMPTAction
-      return !isFileOversize(smtpContent.attachment, "smtp")
+      return !isFileOversize(smtpContent?.attachment || "", "smtp")
   }
   return true
-}
-
-const getActualValue = (value: string, defaultValue: string = "") => {
-  if (!value.length) {
-    return defaultValue
-  }
-  return isDynamicString(value)
-    ? value
-    : `{{['${value.replace(/\'|\"/g, "")}']}}`
 }
 
 const getActionFilteredContent = (
@@ -121,44 +112,21 @@ const getActionFilteredContent = (
       }
       break
     case "smtp":
-      let smtpContent = cachedAction.content as SMPTAction
-      const { attachment, cc, bcc, to } = smtpContent
+      const smtpContent = cachedAction.content as SMPTAction
+      const { to, cc, bcc, attachment, ...otherContent } = smtpContent
       cachedActionValue = {
         ...cachedAction,
         content: {
-          ...smtpContent,
-          attachment: getActualValue(attachment),
-          cc: getActualValue(cc),
-          bcc: getActualValue(bcc),
-          to: getActualValue(to),
+          ...otherContent,
+          ...(to && { to }),
+          ...(cc && { cc }),
+          ...(bcc && { bcc }),
+          ...(attachment && { attachment }),
         },
       }
       break
   }
   return cachedActionValue
-}
-
-const handleRunActionValue = (actionValue: ActionItem<ActionContent>) => {
-  let newActionValue = actionValue
-  if (!actionValue) {
-    return actionValue
-  }
-  switch (actionValue.actionType) {
-    case "smtp":
-      const { to, bcc, cc, attachment } = actionValue.content as SMPTAction
-      newActionValue = {
-        ...actionValue,
-        content: {
-          ...actionValue.content,
-          to: getActualValue(to, "{{[]}}"),
-          bcc: getActualValue(bcc, "{{[]}}"),
-          cc: getActualValue(cc, "{{[]}}"),
-          attachment: getActualValue(attachment, "{{[]}}"),
-        },
-      } as ActionItem<SMPTAction>
-      break
-  }
-  return newActionValue
 }
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
@@ -204,13 +172,10 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         }
         setLoading(true)
         if (cachedActionValue) {
-          runAction(
-            handleRunActionValue(cachedActionValue),
-            (result: unknown, error?: boolean) => {
-              setLoading(false)
-              onActionRun(result, error)
-            },
-          )
+          runAction(cachedActionValue, (result: unknown, error?: boolean) => {
+            setLoading(false)
+            onActionRun(result, error)
+          })
         }
         break
       case "save":
@@ -259,7 +224,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               setLoading(true)
 
               runAction(
-                handleRunActionValue(cachedActionValue),
+                cachedActionValue,
                 (result: unknown, error?: boolean) => {
                   setLoading(false)
                   onActionRun(result, error)

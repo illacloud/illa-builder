@@ -5,9 +5,9 @@ import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 import { createMessage } from "@illa-design/message"
 
 const message = createMessage()
-const MAX_SIZE = 5
+const MAX_SIZE = 5 * 1024 * 1024
 
-export const getFileString = (data: string) => {
+export const getFileValue = (data: string) => {
   let value = data
   if (isDynamicString(data)) {
     try {
@@ -24,23 +24,26 @@ export const getFileString = (data: string) => {
 export const calculateFileSize = (data: string | string[]) => {
   const bolbArr = Array.isArray(data) ? data : [data]
   const byteSize = new Blob(bolbArr).size
-  return byteSize / 1024 / 1024
+  return byteSize
 }
 
 export const isFileOversize = (data: string, type?: ActionType) => {
   if (!data.length) {
     return false
   }
-  const content = getFileString(data)
-  let result: boolean
+  const content = getFileValue(data)
   const isSMTP = type && type === "smtp"
   if (Array.isArray(content)) {
-    result = content.every((value) => {
-      const calculateValue = isSMTP ? value.data : value
+    if (content.length <= 0) {
+      return false
+    }
+    return content.every((value) => {
+      const calculateValue = isSMTP ? value.data || "" : value
+      // 空数组处理
+      console.info(6666, calculateValue, calculateFileSize(calculateValue))
       return !!(calculateFileSize(calculateValue) > MAX_SIZE)
     })
   } else {
-    result = !!(calculateFileSize(content) > MAX_SIZE)
+    return !!(calculateFileSize(content) > MAX_SIZE)
   }
-  return result
 }
