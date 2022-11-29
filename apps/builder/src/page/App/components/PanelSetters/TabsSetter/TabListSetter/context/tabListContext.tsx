@@ -1,13 +1,13 @@
-import { createContext, ReactNode, FC, useCallback, useMemo } from "react"
-import { ViewItemShape } from "../interface"
+import { get } from "lodash"
+import { FC, ReactNode, createContext, useCallback, useMemo } from "react"
+import { useSelector } from "react-redux"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { ViewItemShape } from "../interface"
 import {
   generateNewViewItem,
   generateTabItemId,
 } from "../utils/generateNewOptions"
-import { useSelector } from "react-redux"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { get } from "lodash"
 
 interface ProviderProps {
   list: ViewItemShape[]

@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { BaseSwitchProps } from "./interface"
 import { Switch } from "@illa-design/react"
 import { dynamicWidthStyle } from "@/page/App/components/PanelSetters/style"
+import { BaseSwitchProps } from "./interface"
 
 export const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
   const { value, attrName, handleUpdateDsl } = props

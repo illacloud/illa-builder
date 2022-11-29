@@ -1,10 +1,10 @@
-import { FC, useContext, useEffect, useState } from "react"
 import { Reorder } from "framer-motion"
+import { isEqual } from "lodash"
+import { FC, useContext, useEffect, useState } from "react"
+import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
 import { ColumnItem } from "./columnItem"
 import { ColumnListSetterContext } from "./context/columnListContext"
 import { EmptyBody } from "./empty"
-import { isEqual } from "lodash"
-import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
 
 export const ListBody: FC = () => {
   const { columnItems, handleUpdateDsl, attrPath } = useContext(

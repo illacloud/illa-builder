@@ -1,9 +1,9 @@
-import { ReactComponent as ChartWidgetIcon } from "@/assets/widgetCover/chart.svg"
-import { WidgetConfig } from "@/widgetLibrary/interface"
-import i18n from "@/i18n/config"
-import store from "@/store"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { v4 } from "uuid"
+import { ReactComponent as ChartWidgetIcon } from "@/assets/widgetCover/chart.svg"
+import i18n from "@/i18n/config"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import store from "@/store"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const CHART_WIDGET_CONFIG: WidgetConfig = {
   type: "CHART",

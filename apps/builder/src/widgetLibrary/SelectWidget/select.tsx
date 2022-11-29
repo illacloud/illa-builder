@@ -1,15 +1,15 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { Select } from "@illa-design/react"
-import { SelectWidgetProps, WrappedSelectProps } from "./interface"
-import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { Label } from "@/widgetLibrary/PublicSector/Label"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
+import { SelectWidgetProps, WrappedSelectProps } from "./interface"
 
 export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   const {

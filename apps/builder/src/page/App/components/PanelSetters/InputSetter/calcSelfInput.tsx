@@ -1,7 +1,7 @@
 import { FC } from "react"
+import { CodeEditor } from "@/components/CodeEditor"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
-import { CodeEditor } from "@/components/CodeEditor"
 
 export const CalcSelfInput: FC<BaseInputSetterProps> = (props) => {
   const {

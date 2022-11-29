@@ -1,6 +1,6 @@
-import { CloseIcon, Input } from "@illa-design/react"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
+import { CloseIcon, Input } from "@illa-design/react"
 import { LeftAndRightLayout } from "../../Layout/leftAndRight"
 import { SetterPadding } from "../../Layout/setterPadding"
 import { PageLabel } from "../Label"

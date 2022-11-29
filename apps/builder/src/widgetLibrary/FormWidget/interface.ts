@@ -1,5 +1,6 @@
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+
 export interface FormWIdgetProps extends BaseWidgetProps {
   childrenNode: ComponentNode[]
   showFooter: boolean

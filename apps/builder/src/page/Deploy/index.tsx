@@ -1,16 +1,16 @@
+import { Unsubscribe } from "@reduxjs/toolkit"
 import { FC, useEffect } from "react"
+import { Loading } from "@illa-design/react"
+import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import {
   deployContainerStyle,
   deployLogoStyle,
   logoStyle,
 } from "@/page/Deploy/style"
-import { Loading } from "@illa-design/react"
-import { useInitBuilderApp } from "@/hooks/useInitApp"
-import { Unsubscribe } from "@reduxjs/toolkit"
-import { startAppListening } from "@/store"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
-import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import { startAppListening } from "@/store"
 
 export const Deploy: FC = () => {
   const loadingState = useInitBuilderApp("production")

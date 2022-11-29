@@ -1,9 +1,9 @@
 // Thk appsmith
-import { parse, Node } from "acorn"
+import { Node, parse } from "acorn"
 import { ancestor } from "acorn-walk"
 import { isFinite } from "lodash"
-import { wrapCode } from "@/utils/evaluateDynamicString/utils"
 import { unescapeJS } from "@/utils/ast/unescapeJs"
+import { wrapCode } from "@/utils/evaluateDynamicString/utils"
 
 type Pattern = IdentifierNode | AssignmentPatternNode
 
@@ -218,9 +218,8 @@ export const extractIdentifiersFromCode = (code: string): string[] => {
        * could be nesting of many MemberExpressions. To find the final reference, we will
        * try to find the top level MemberExpression that does not have a MemberExpression parent.
        * */
-      let candidateTopLevelNode:
-        | IdentifierNode
-        | MemberExpressionNode = node as IdentifierNode
+      let candidateTopLevelNode: IdentifierNode | MemberExpressionNode =
+        node as IdentifierNode
       let depth = ancestors.length - 2 // start "depth" with first parent
       while (depth > 0) {
         const parent = ancestors[depth]

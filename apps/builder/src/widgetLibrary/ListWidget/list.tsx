@@ -1,18 +1,18 @@
+import { chunk } from "lodash"
 import { FC, useCallback, useMemo } from "react"
+import useMeasure from "react-use-measure"
+import { Pagination } from "@illa-design/react"
 import {
   ListWidgetProps,
   OVERFLOW_TYPE,
 } from "@/widgetLibrary/ListWidget/interface"
 import {
+  ListParentContainerWithScroll,
   listContainerStyle,
   listItemStyle,
   listParentContainerStyle,
-  ListParentContainerWithScroll,
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
-import useMeasure from "react-use-measure"
-import { Pagination } from "@illa-design/react"
-import { chunk } from "lodash"
 
 export const ListWidgetWithPagination: FC<ListWidgetProps> = (props) => {
   const {

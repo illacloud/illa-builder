@@ -1,22 +1,22 @@
 import { FC, useCallback, useMemo, useRef, useState } from "react"
+import { useSelector } from "react-redux"
+import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
+import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
+import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
+import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
+import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
+import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
+import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
+import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
+import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
+import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
+import { ActionPanelContainerProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import {
   actionContentStyle,
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
-import { useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
-import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
 import { MysqlLikePanel } from "./MysqlLikePanel"
-import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
-import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
-import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
-import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
-import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
-import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
-import { ActionPanelContainerProps } from "@/page/App/components/Actions/ActionPanel/interface"
-import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
-import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
-import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
 
 export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
   const { maxHeight } = props

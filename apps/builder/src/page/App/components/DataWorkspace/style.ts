@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
 
 export function applyJsonValueColorStyle(type: any): SerializedStyles {
   switch (type) {

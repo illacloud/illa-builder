@@ -1,35 +1,32 @@
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
 import {
-  CaretRightIcon,
-  MoreIcon,
   Button,
-  Dropdown,
+  CaretRightIcon,
   DropList,
+  Dropdown,
+  MoreIcon,
   globalColor,
   illaPrefix,
   useMessage,
 } from "@illa-design/react"
-import {
-  actionTitleBarSpaceStyle,
-  actionTitleBarStyle,
-  editableTitleBarWrapperStyle,
-} from "./style"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Api } from "@/api/base"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { ActionTitleBarProps } from "./interface"
 import { EditableText } from "@/components/EditableText"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
-import {
-  getCachedAction,
-  getSelectedAction,
-} from "@/redux/config/configSelector"
 import {
   onCopyActionItem,
   onDeleteActionItem,
 } from "@/page/App/components/Actions/api"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 import {
   BodyContentType,
   ElasticSearchAction,
@@ -37,16 +34,19 @@ import {
   QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
-import {
   S3Action,
   S3ActionRequestType,
   S3ActionTypeContent,
   UploadContent,
 } from "@/redux/currentApp/action/s3Action"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { calculateFileSize } from "../utils/calculateFileSize"
+import { ActionTitleBarProps } from "./interface"
+import {
+  actionTitleBarSpaceStyle,
+  actionTitleBarStyle,
+  editableTitleBarWrapperStyle,
+} from "./style"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"

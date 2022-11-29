@@ -1,14 +1,13 @@
+import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
+import { createMessage, omit } from "@illa-design/react"
+import { Api } from "@/api/base"
+import i18n from "@/i18n/config"
+import { configActions } from "@/redux/config/configSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { omit, createMessage } from "@illa-design/react"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { Api } from "@/api/base"
-import i18n from "@/i18n/config"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { configActions } from "@/redux/config/configSlice"
-import store from "@/store"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
@@ -16,7 +15,8 @@ import {
   ResourceContent,
   ResourceType,
 } from "@/redux/resource/resourceState"
-import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
+import store from "@/store"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 function getBaseActionUrl() {
   const rootState = store.getState()

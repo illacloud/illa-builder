@@ -1,36 +1,36 @@
 import { FC, useRef, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { useTranslation, Trans } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import {
-  Input,
-  Password,
-  Checkbox,
   Button,
-  Link,
+  Checkbox,
   Countdown,
+  Input,
+  Link,
+  Password,
   WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
-import { EMAIL_FORMAT } from "@/constants/regExp"
 import { Api } from "@/api/base"
+import { EMAIL_FORMAT } from "@/constants/regExp"
+import { TextLink } from "@/page/User/components/TextLink"
 import {
+  checkboxTextStyle,
+  descriptionStyle,
+  errorIconStyle,
+  errorMsgStyle,
   formLabelStyle,
   formTitleStyle,
   gridFormFieldStyle,
   gridFormStyle,
   gridItemStyle,
   gridValidStyle,
-  errorMsgStyle,
-  errorIconStyle,
-  checkboxTextStyle,
-  descriptionStyle,
 } from "@/page/User/style"
-import { RegisterFields, RegisterResult } from "./interface"
-import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { setLocalStorage } from "@/utils/storage"
-import { TextLink } from "@/page/User/components/TextLink"
+import { RegisterFields, RegisterResult } from "./interface"
 
 export function getLocalLanguage(): string {
   const lang = window.navigator.language

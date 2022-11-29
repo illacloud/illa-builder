@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
+import { render, screen } from "@testing-library/react"
 import { Label } from "../index"
 
 test("Render basic Label", () => {

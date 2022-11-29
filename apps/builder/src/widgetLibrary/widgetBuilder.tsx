@@ -1,94 +1,26 @@
-import { WidgetConfigs } from "./interface"
 import {
-  TEXT_PANEL_CONFIG,
-  TEXT_WIDGET_CONFIG,
-  TEXT_EVENT_HANDLER_CONFIG,
-  TextWidget,
-} from "@/widgetLibrary/TextWidget"
-import {
-  IMAGE_PANEL_CONFIG,
-  IMAGE_WIDGET_CONFIG,
-  IMAGE_EVENT_HANDLER_CONFIG,
-  ImageWidget,
-} from "@/widgetLibrary/ImageWidget"
-import {
-  SWITCH_EVENT_HANDLER_CONFIG,
-  SWITCH_PANEL_CONFIG,
-  SWITCH_WIDGET_CONFIG,
-  SwitchWidget,
-} from "@/widgetLibrary/SwitchWidget"
-import {
-  BUTTON_PANEL_CONFIG,
-  BUTTON_WIDGET_CONFIG,
-  BUTTON_EVENT_HANDLER_CONFIG,
-  ButtonWidget,
-} from "@/widgetLibrary/ButtonWidget"
-import {
-  SELECT_PANEL_CONFIG,
-  SELECT_WIDGET_CONFIG,
-  SELECT_EVENT_HANDLER_CONFIG,
-  SelectWidget,
-} from "@/widgetLibrary/SelectWidget"
-import {
-  INPUT_PANEL_CONFIG,
-  INPUT_WIDGET_CONFIG,
-  INPUT_EVENT_HANDLER_CONFIG,
-  InputWidget,
-} from "@/widgetLibrary/InputWidget"
-import {
-  RADIO_GROUP_PANEL_CONFIG,
-  RADIO_GROUP_WIDGET_CONFIG,
-  RADIO_GROUP_EVENT_HANDLER_CONFIG,
-  RadioGroupWidget,
-} from "@/widgetLibrary/RadioGroupWidget"
-import {
-  DATE_PANEL_CONFIG,
-  DATE_WIDGET_CONFIG,
-  DATE_EVENT_HANDLER_CONFIG,
-  DateWidget,
-} from "@/widgetLibrary/DateWidget"
-import {
-  DATE_TIME_PANEL_CONFIG,
-  DATE_TIME_WIDGET_CONFIG,
-  DATE_TIME_EVENT_HANDLER_CONFIG,
-  DateTimeWidget,
-} from "@/widgetLibrary/DateTimeWidget"
-import {
-  DATE_RANGE_PANEL_CONFIG,
-  DATE_RANGE_WIDGET_CONFIG,
-  DATE_RANGE_EVENT_HANDLER_CONFIG,
-  DateRangeWidget,
-} from "@/widgetLibrary/DateRangeWidget"
-import {
-  RATE_PANEL_CONFIG,
-  RATE_WIDGET_CONFIG,
-  RATE_EVENT_HANDLER_CONFIG,
-  RateWidget,
-} from "@/widgetLibrary/RateWidget"
-import {
+  BAR_PROGRESS_EVENT_HANDLER_CONFIG,
   BAR_PROGRESS_PANEL_CONFIG,
   BAR_PROGRESS_WIDGET_CONFIG,
   BarProgressWidget,
-  BAR_PROGRESS_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/BarProgressWidget"
 import {
-  CIRCLE_PROGRESS_PANEL_CONFIG,
-  CIRCLE_PROGRESS_WIDGET_CONFIG,
-  CircleProgressWidget,
-  CIRCLE_PROGRESS_EVENT_HANDLER_CONFIG,
-} from "@/widgetLibrary/CircleProgressWidget"
+  BUTTON_EVENT_HANDLER_CONFIG,
+  BUTTON_PANEL_CONFIG,
+  BUTTON_WIDGET_CONFIG,
+  ButtonWidget,
+} from "@/widgetLibrary/ButtonWidget"
 import {
-  TIMELINE_PANEL_CONFIG,
-  TIMELINE_WIDGET_CONFIG,
-  TimelineWidget,
-  TIMELINE_EVENT_HANDLER_CONFIG,
-} from "@/widgetLibrary/TimelineWidget"
+  CASCADER_PANEL_CONFIG,
+  CASCADER_WIDGET_CONFIG,
+  CascaderWidget,
+} from "@/widgetLibrary/CascaderWidget"
+import { CASCADER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/CascaderWidget/eventHandlerConfig"
 import {
-  NUMBER_INPUT_PANEL_CONFIG,
-  NUMBER_INPUT_WIDGET_CONFIG,
-  INPUT_NUMBER_EVENT_HANDLER_CONFIG,
-  NumberInputWidget,
-} from "@/widgetLibrary/NumberInputWidget"
+  CHART_PANEL_CONFIG,
+  CHART_WIDGET_CONFIG,
+  ChartWidget,
+} from "@/widgetLibrary/Chart"
 import {
   CHECKBOX_GROUP_PANEL_CONFIG,
   CHECKBOX_GROUP_WIDGET_CONFIG,
@@ -96,52 +28,70 @@ import {
   CheckboxWidget,
 } from "@/widgetLibrary/CheckboxGroupWidget"
 import {
-  RADIO_BUTTON_PANEL_CONFIG,
-  RADIO_BUTTON_WIDGET_CONFIG,
-  RADIO_BUTTON_EVENT_HANDLER_CONFIG,
-  RadioButtonWidget,
-} from "@/widgetLibrary/RadioButtonWidget"
+  CIRCLE_PROGRESS_EVENT_HANDLER_CONFIG,
+  CIRCLE_PROGRESS_PANEL_CONFIG,
+  CIRCLE_PROGRESS_WIDGET_CONFIG,
+  CircleProgressWidget,
+} from "@/widgetLibrary/CircleProgressWidget"
 import {
+  CONTAINER_EVENT_HANDLER_CONFIG,
+  CONTAINER_PANEL_CONFIG,
+  CONTAINER_WIDGET_CONFIG,
+  ContainerWidget,
+} from "@/widgetLibrary/ContainerWidget"
+import {
+  DATE_RANGE_EVENT_HANDLER_CONFIG,
+  DATE_RANGE_PANEL_CONFIG,
+  DATE_RANGE_WIDGET_CONFIG,
+  DateRangeWidget,
+} from "@/widgetLibrary/DateRangeWidget"
+import {
+  DATE_TIME_EVENT_HANDLER_CONFIG,
+  DATE_TIME_PANEL_CONFIG,
+  DATE_TIME_WIDGET_CONFIG,
+  DateTimeWidget,
+} from "@/widgetLibrary/DateTimeWidget"
+import {
+  DATE_EVENT_HANDLER_CONFIG,
+  DATE_PANEL_CONFIG,
+  DATE_WIDGET_CONFIG,
+  DateWidget,
+} from "@/widgetLibrary/DateWidget"
+import {
+  DIVIDER_EVENT_HANDLER_CONFIG,
   DIVIDER_PANEL_CONFIG,
   DIVIDER_WIDGET_CONFIG,
   DividerWidget,
-  DIVIDER_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/DividerWidget"
 import {
+  EDITABLE_EVENT_HANDLER_CONFIG,
   EDITABLE_TEXT_PANEL_CONFIG,
   EDITABLE_TEXT_WIDGET_CONFIG,
-  EDITABLE_EVENT_HANDLER_CONFIG,
   EditableTextWidget,
 } from "@/widgetLibrary/EditableWidget"
 import {
-  CHART_PANEL_CONFIG,
-  CHART_WIDGET_CONFIG,
-  ChartWidget,
-} from "@/widgetLibrary/Chart"
-import {
-  TABLE_PANEL_CONFIG,
-  TABLE_WIDGET_CONFIG,
-  TABLE_EVENT_HANDLER_CONFIG,
-  TableWidget,
-} from "@/widgetLibrary/TableWidget"
-import {
-  CONTAINER_WIDGET_CONFIG,
-  ContainerWidget,
-  CONTAINER_PANEL_CONFIG,
-  CONTAINER_EVENT_HANDLER_CONFIG,
-} from "@/widgetLibrary/ContainerWidget"
-import {
-  FormWidget,
+  FORM_EVENT_HANDLER_CONFIG,
   FORM_PANEL_CONFIG,
   FORM_WIDGET_CONFIG,
-  FORM_EVENT_HANDLER_CONFIG,
+  FormWidget,
 } from "@/widgetLibrary/FormWidget"
 import {
-  TABS_PANEL_CONFIG,
-  TABS_WIDGET_CONFIG,
-  TABS_EVENT_HANDLER_CONFIG,
-  TabsWidget,
-} from "@/widgetLibrary/TabsWidget"
+  IMAGE_EVENT_HANDLER_CONFIG,
+  IMAGE_PANEL_CONFIG,
+  IMAGE_WIDGET_CONFIG,
+  ImageWidget,
+} from "@/widgetLibrary/ImageWidget"
+import {
+  INPUT_EVENT_HANDLER_CONFIG,
+  INPUT_PANEL_CONFIG,
+  INPUT_WIDGET_CONFIG,
+  InputWidget,
+} from "@/widgetLibrary/InputWidget"
+import {
+  LIST_PANEL_CONFIG,
+  LIST_WIDGET_CONFIG,
+  ListWidget,
+} from "@/widgetLibrary/ListWidget"
 import {
   MENU_EVENT_HANDLER_CONFIG,
   MENU_PANEL_CONFIG,
@@ -149,16 +99,66 @@ import {
   MenuWidget,
 } from "@/widgetLibrary/MenuWidget"
 import {
-  LIST_PANEL_CONFIG,
-  LIST_WIDGET_CONFIG,
-  ListWidget,
-} from "@/widgetLibrary/ListWidget"
+  INPUT_NUMBER_EVENT_HANDLER_CONFIG,
+  NUMBER_INPUT_PANEL_CONFIG,
+  NUMBER_INPUT_WIDGET_CONFIG,
+  NumberInputWidget,
+} from "@/widgetLibrary/NumberInputWidget"
 import {
-  CASCADER_PANEL_CONFIG,
-  CASCADER_WIDGET_CONFIG,
-  CascaderWidget,
-} from "@/widgetLibrary/CascaderWidget"
-import { CASCADER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/CascaderWidget/eventHandlerConfig"
+  RADIO_BUTTON_EVENT_HANDLER_CONFIG,
+  RADIO_BUTTON_PANEL_CONFIG,
+  RADIO_BUTTON_WIDGET_CONFIG,
+  RadioButtonWidget,
+} from "@/widgetLibrary/RadioButtonWidget"
+import {
+  RADIO_GROUP_EVENT_HANDLER_CONFIG,
+  RADIO_GROUP_PANEL_CONFIG,
+  RADIO_GROUP_WIDGET_CONFIG,
+  RadioGroupWidget,
+} from "@/widgetLibrary/RadioGroupWidget"
+import {
+  RATE_EVENT_HANDLER_CONFIG,
+  RATE_PANEL_CONFIG,
+  RATE_WIDGET_CONFIG,
+  RateWidget,
+} from "@/widgetLibrary/RateWidget"
+import {
+  SELECT_EVENT_HANDLER_CONFIG,
+  SELECT_PANEL_CONFIG,
+  SELECT_WIDGET_CONFIG,
+  SelectWidget,
+} from "@/widgetLibrary/SelectWidget"
+import {
+  SWITCH_EVENT_HANDLER_CONFIG,
+  SWITCH_PANEL_CONFIG,
+  SWITCH_WIDGET_CONFIG,
+  SwitchWidget,
+} from "@/widgetLibrary/SwitchWidget"
+import {
+  TABLE_EVENT_HANDLER_CONFIG,
+  TABLE_PANEL_CONFIG,
+  TABLE_WIDGET_CONFIG,
+  TableWidget,
+} from "@/widgetLibrary/TableWidget"
+import {
+  TABS_EVENT_HANDLER_CONFIG,
+  TABS_PANEL_CONFIG,
+  TABS_WIDGET_CONFIG,
+  TabsWidget,
+} from "@/widgetLibrary/TabsWidget"
+import {
+  TEXT_EVENT_HANDLER_CONFIG,
+  TEXT_PANEL_CONFIG,
+  TEXT_WIDGET_CONFIG,
+  TextWidget,
+} from "@/widgetLibrary/TextWidget"
+import {
+  TIMELINE_EVENT_HANDLER_CONFIG,
+  TIMELINE_PANEL_CONFIG,
+  TIMELINE_WIDGET_CONFIG,
+  TimelineWidget,
+} from "@/widgetLibrary/TimelineWidget"
+import { WidgetConfigs } from "./interface"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {

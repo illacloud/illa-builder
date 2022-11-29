@@ -1,8 +1,4 @@
 import { FC } from "react"
-import { ListBody } from "./body"
-import { ViewListHeader } from "./header"
-import { ViewListProps } from "./interface"
-import { viewsListWrapperStyle } from "./style"
 import { useSelector } from "react-redux"
 import {
   getCanvas,
@@ -13,6 +9,10 @@ import {
   getSectionExecutionResultArray,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
+import { ListBody } from "./body"
+import { ViewListHeader } from "./header"
+import { ViewListProps } from "./interface"
+import { viewsListWrapperStyle } from "./style"
 
 export const ViewList: FC<ViewListProps> = (props) => {
   const { sectionName } = props

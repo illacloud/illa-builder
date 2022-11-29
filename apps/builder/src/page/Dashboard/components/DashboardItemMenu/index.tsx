@@ -1,26 +1,26 @@
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
+import { useNavigate } from "react-router-dom"
 import {
-  Space,
   Button,
-  Dropdown,
   DropList,
+  Dropdown,
+  MoreIcon,
+  Space,
   globalColor,
   illaPrefix,
-  MoreIcon,
-  useModal,
   useMessage,
+  useModal,
 } from "@illa-design/react"
-import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { Api } from "@/api/base"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { RootState } from "@/store"
-import { RenameModal } from "@/page/Dashboard/components/RenameModal"
+import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
+import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
-import { useNavigate } from "react-router-dom"
+import { RenameModal } from "@/page/Dashboard/components/RenameModal"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { RootState } from "@/store"
 
 const Item = DropList.Item
 

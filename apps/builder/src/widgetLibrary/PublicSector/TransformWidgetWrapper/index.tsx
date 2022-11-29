@@ -1,30 +1,30 @@
+import { cloneDeep, get } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { cloneDeep, get } from "lodash"
-import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import {
-  GLOBAL_DATA_CONTEXT,
+  applyEffectMapToComponentNodes,
+  getNearComponentNodes,
+  getReflowResult,
+} from "@/page/App/components/DotPanel/calc"
+import {
   BUILDER_CALC_CONTEXT,
+  GLOBAL_DATA_CONTEXT,
 } from "@/page/App/context/globalDataProvider"
-import { EventsInProps } from "@/widgetLibrary/interface"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { runEventHandler } from "@/utils/eventHandlerHelper"
-import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { RootState } from "@/store"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import {
-  applyEffectMapToComponentNodes,
-  getReflowResult,
-  getNearComponentNodes,
-} from "@/page/App/components/DotPanel/calc"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { RootState } from "@/store"
+import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { isObject } from "@/utils/typeHelper"
+import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
+import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { EventsInProps } from "@/widgetLibrary/interface"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {

@@ -1,7 +1,7 @@
-import store, { RootState } from "@/store"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { createSelector } from "@reduxjs/toolkit"
 import { getSelectedComponents } from "@/redux/config/configSelector"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import store, { RootState } from "@/store"
 
 export function searchDSLByDisplayName(
   displayName: string,
@@ -37,9 +37,7 @@ export function searchDsl(
   return null
 }
 
-export function flattenDslToMap(
-  rootNode: ComponentNode,
-): {
+export function flattenDslToMap(rootNode: ComponentNode): {
   [key: string]: ComponentNode
 } {
   const queue = [rootNode]
@@ -61,9 +59,7 @@ export function flattenDslToMap(
   return res
 }
 
-export function flattenAllComponentNodeToMap(
-  rootNode: ComponentNode,
-): {
+export function flattenAllComponentNodeToMap(rootNode: ComponentNode): {
   [key: string]: ComponentNode
 } {
   const queue = [rootNode]

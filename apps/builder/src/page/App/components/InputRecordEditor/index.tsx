@@ -1,20 +1,20 @@
 import { FC, useMemo } from "react"
-import { InputRecordEditorProps } from "./interface"
 import { useTranslation } from "react-i18next"
+import {
+  AddIcon,
+  Button,
+  DeleteIcon,
+  Input,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
+import { InputRecordEditorProps } from "./interface"
 import {
   applyRecordEditorContainerStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
   recordStyle,
 } from "./style"
-import {
-  Button,
-  AddIcon,
-  DeleteIcon,
-  globalColor,
-  illaPrefix,
-  Input,
-} from "@illa-design/react"
 
 export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
   const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props

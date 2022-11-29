@@ -1,13 +1,13 @@
-import { CreateNewModalProps } from "./interface"
 import { FC, useState } from "react"
-import { useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { Input, Modal, useMessage } from "@illa-design/react"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { Api } from "@/api/base"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { Input, Modal, useMessage } from "@illa-design/react"
+import { Api } from "@/api/base"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { CreateNewModalProps } from "./interface"
 
 export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
   const { visible, onVisibleChange } = props

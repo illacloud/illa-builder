@@ -1,9 +1,9 @@
 import { Diff } from "deep-diff"
-import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { isInt, isObject } from "@/utils/typeHelper"
-import { extractIdentifiersFromCode } from "@/utils/ast/ast"
 import { toPath } from "lodash"
+import { extractIdentifiersFromCode } from "@/utils/ast/ast"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
+import { isInt, isObject } from "@/utils/typeHelper"
 
 export enum RawTreeDiffEvent {
   NEW = "NEW",
@@ -67,9 +67,7 @@ export const extractReferencesFromScript = (
   return Array.from(references)
 }
 
-export function getDisplayNameAndPropertyPath(
-  fullPath: string,
-): {
+export function getDisplayNameAndPropertyPath(fullPath: string): {
   displayName: string
   attrPath: string
 } {
@@ -118,9 +116,8 @@ export const translateDiffEventToRawTreeEvent = (
     return result
   }
   const propertyPath = convertPathToString(diff.path)
-  const isUninterestingPathForUpdateTree = isUninterestingChangeForDependencyUpdate(
-    propertyPath,
-  )
+  const isUninterestingPathForUpdateTree =
+    isUninterestingChangeForDependencyUpdate(propertyPath)
   if (!!isUninterestingPathForUpdateTree) {
     return result
   }

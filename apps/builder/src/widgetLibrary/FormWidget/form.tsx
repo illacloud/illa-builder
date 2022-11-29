@@ -1,3 +1,5 @@
+import { get, set } from "lodash"
+import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import {
   FC,
   MutableRefObject,
@@ -7,44 +9,42 @@ import {
   useRef,
   useState,
 } from "react"
-import { BasicContainer } from "../BasicContainer/BasicContainer"
-import { FormWIdgetProps } from "./interface"
-import {
-  formContainerStyle,
-  formHeaderStyle,
-  formBodyStyle,
-  resizeLineStyle,
-  resizeBarStyle,
-} from "./style"
-import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
-import {
-  applyDashedLineStyle,
-  applyXDirectionDashedLineStyle,
-} from "@/page/App/components/ScaleSquare/style"
-import useMeasure from "react-use-measure"
-import {
-  FORM_BODY_MIN_HEIGHT,
-  FORM_MIN_FOOTER_HEIGHT_ROW_NUMBER,
-  FORM_MIN_HEADER_HEIGHT_ROW_NUMBER,
-  FORM_BODY_MARGIN,
-  FORM_CAN_BIND_WIDGET_TYPE,
-} from "./widgetConfig"
-import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
 import { useDrop } from "react-dnd"
+import { useDispatch, useSelector } from "react-redux"
+import useMeasure from "react-use-measure"
+import { useMessage } from "@illa-design/react"
+import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
 import {
   DragInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
-import { useDispatch, useSelector } from "react-redux"
+import {
+  applyDashedLineStyle,
+  applyXDirectionDashedLineStyle,
+} from "@/page/App/components/ScaleSquare/style"
+import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { isObject } from "@/utils/typeHelper"
-import { get, set } from "lodash"
-import { useMessage } from "@illa-design/react"
+import { BasicContainer } from "../BasicContainer/BasicContainer"
+import { FormWIdgetProps } from "./interface"
+import {
+  formBodyStyle,
+  formContainerStyle,
+  formHeaderStyle,
+  resizeBarStyle,
+  resizeLineStyle,
+} from "./style"
+import {
+  FORM_BODY_MARGIN,
+  FORM_BODY_MIN_HEIGHT,
+  FORM_CAN_BIND_WIDGET_TYPE,
+  FORM_MIN_FOOTER_HEIGHT_ROW_NUMBER,
+  FORM_MIN_HEADER_HEIGHT_ROW_NUMBER,
+} from "./widgetConfig"
 
 function getLikeInputChildrenNode(
   componentNode: ComponentNode,

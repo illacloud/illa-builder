@@ -1,15 +1,15 @@
+import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
+import { getReflowResult } from "@/page/App/components/DotPanel/calc"
+import { configActions } from "@/redux/config/configSlice"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import { AppListenerEffectAPI, AppStartListening } from "@/store"
-import { Unsubscribe, isAnyOf, AnyAction } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getReflowResult } from "@/page/App/components/DotPanel/calc"
-import { ComponentNode, CONTAINER_TYPE } from "./componentsState"
-import { configActions } from "@/redux/config/configSlice"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import { CONTAINER_TYPE, ComponentNode } from "./componentsState"
 
 function handleCopyComponentReflowEffect(
   action: ReturnType<typeof componentsActions.copyComponentReducer>,
@@ -97,11 +97,8 @@ async function handleChangeCurrentSectionWhenDelete(
   action: ReturnType<typeof componentsActions.deleteSectionViewReducer>,
   listenerApi: AppListenerEffectAPI,
 ) {
-  const {
-    viewDisplayName,
-    originPageSortedKey,
-    parentNodeName,
-  } = action.payload
+  const { viewDisplayName, originPageSortedKey, parentNodeName } =
+    action.payload
   const rootState = listenerApi.getState()
   const executionTree = getExecutionResult(rootState)
   const parentNode = executionTree[parentNodeName]
@@ -129,14 +126,16 @@ function handleUpdateComponentReflowEffect(
   const rootNode = getCanvas(rootState)
   let updateComponents: ComponentNode[] = []
   if (action.type === "components/updateComponentsShape") {
-    updateComponents = (action as ReturnType<
-      typeof componentsActions.updateComponentsShape
-    >).payload.components
+    updateComponents = (
+      action as ReturnType<typeof componentsActions.updateComponentsShape>
+    ).payload.components
   }
   if (action.type === "components/updateComponentContainerReducer") {
-    ;(action as ReturnType<
-      typeof componentsActions.updateComponentContainerReducer
-    >).payload.updateSlice.forEach((slice) => {
+    ;(
+      action as ReturnType<
+        typeof componentsActions.updateComponentContainerReducer
+      >
+    ).payload.updateSlice.forEach((slice) => {
       updateComponents.push(slice.component)
     })
   }

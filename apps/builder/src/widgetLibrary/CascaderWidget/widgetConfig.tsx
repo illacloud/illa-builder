@@ -1,6 +1,6 @@
-import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
-import i18n from "@/i18n/config"
 import { ReactComponent as CascaderWidgetIcon } from "@/assets/widgetCover/cascader.svg"
+import i18n from "@/i18n/config"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 export const CASCADER_WIDGET_CONFIG: WidgetConfig = {
   type: "CASCADER_WIDGET",

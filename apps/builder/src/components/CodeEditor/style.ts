@@ -1,9 +1,9 @@
-import chroma from "chroma-js"
 // import "@fontsource/fira-code"
-import { css, SerializedStyles } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
+import chroma from "chroma-js"
 import { globalColor, illaPrefix } from "@illa-design/react"
-import { EditorInputState } from "./interface"
 import { ternStyle } from "@/components/CodeEditor/TernSever/style"
+import { EditorInputState } from "./interface"
 
 export const codemirrorStyle = css`
   .CodeMirror {

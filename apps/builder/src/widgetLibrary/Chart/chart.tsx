@@ -1,32 +1,32 @@
-import { FC, useMemo, useRef } from "react"
 import {
-  Chart as ChartJS,
-  LineElement,
-  LineController,
-  PointElement,
-  BarElement,
-  BarController,
-  PieController,
   ArcElement,
+  BarController,
+  BarElement,
+  CategoryScale,
+  ChartData,
+  ChartDataset,
+  Chart as ChartJS,
+  ChartOptions,
+  Legend,
+  LineController,
+  LineElement,
+  LinearScale,
+  PieController,
+  PointElement,
   ScatterController,
   Title,
   Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  ChartOptions,
-  ChartDataset,
-  ChartData,
 } from "chart.js"
-import { Chart as ReactChart, Pie } from "react-chartjs-2"
+import { get, groupBy as groupByFunc } from "lodash"
+import { FC, useMemo, useRef } from "react"
+import { Pie, Chart as ReactChart } from "react-chartjs-2"
+import { globalColor, illaPrefix } from "@illa-design/react"
+import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
+import { formatDataAsObject } from "@/utils/formatData"
 import {
   ChartWidgetProps,
   WrappedChartProps,
 } from "@/widgetLibrary/Chart/interface"
-import { formatDataAsObject } from "@/utils/formatData"
-import { get, groupBy as groupByFunc } from "lodash"
-import { globalColor, illaPrefix } from "@illa-design/react"
-import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import { formatData, rotateGroupByData } from "@/widgetLibrary/Chart/utils"
 
 ChartJS.register(

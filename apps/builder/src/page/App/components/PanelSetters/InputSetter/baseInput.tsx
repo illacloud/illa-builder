@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react"
+import { CodeEditor } from "@/components/CodeEditor"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
-import { CodeEditor } from "@/components/CodeEditor"
 
 export function getPath(attrName?: string, widgetDisplayName?: string) {
   if (attrName && widgetDisplayName) {

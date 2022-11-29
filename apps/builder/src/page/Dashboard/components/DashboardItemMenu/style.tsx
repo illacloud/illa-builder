@@ -1,5 +1,5 @@
-import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
+import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
 export function applyTriggerContentItemStyle(
