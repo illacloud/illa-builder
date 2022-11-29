@@ -15,7 +15,7 @@ import {
   smtpBodyTypeStyle,
   smtpItemStyle,
 } from "./style"
-import { Checkbox } from "@illa-design/Checkbox"
+import { Checkbox } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { configActions } from "@/redux/config/configSlice"
 import {
