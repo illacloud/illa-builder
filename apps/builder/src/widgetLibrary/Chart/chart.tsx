@@ -25,7 +25,7 @@ import {
 } from "@/widgetLibrary/Chart/interface"
 import { formatDataAsObject } from "@/utils/formatData"
 import { get, groupBy as groupByFunc } from "lodash"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import { formatData, rotateGroupByData } from "@/widgetLibrary/Chart/utils"
 
@@ -213,13 +213,8 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
         return !dataset.isHidden
       })
       .map((dataset) => {
-        const {
-          datasetValues,
-          type,
-          datasetName,
-          color,
-          aggregationMethod,
-        } = dataset
+        const { datasetValues, type, datasetName, color, aggregationMethod } =
+          dataset
         let finalColor = color
         if (groupBy || chartType === "pie") {
           finalColor = get(

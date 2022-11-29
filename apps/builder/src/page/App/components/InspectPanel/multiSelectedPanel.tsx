@@ -7,7 +7,7 @@ import {
   formHeaderStyle,
   multiSelectedPanelWrapper,
 } from "@/page/App/components/InspectPanel/style"
-import { Button } from "@illa-design/button"
+import { Button } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 

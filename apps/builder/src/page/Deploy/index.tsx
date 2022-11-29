@@ -5,7 +5,7 @@ import {
   deployLogoStyle,
   logoStyle,
 } from "@/page/Deploy/style"
-import { Loading } from "@illa-design/loading"
+import { Loading } from "@illa-design/react"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { startAppListening } from "@/store"

@@ -1,5 +1,5 @@
 import { FC, useCallback, useContext, useState } from "react"
-import { Trigger } from "@illa-design/trigger"
+import { Trigger } from "@illa-design/react"
 import { get } from "lodash"
 import {
   eventAndMethodWrapperStyle,
@@ -44,12 +44,8 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
   const { index } = props
   const { t } = useTranslation()
   const [modalVisible, setModalVisible] = useState(false)
-  const {
-    widgetDisplayName,
-    attrPath,
-    childrenSetter,
-    eventItems,
-  } = useContext(BaseEventHandlerContext)
+  const { widgetDisplayName, attrPath, childrenSetter, eventItems } =
+    useContext(BaseEventHandlerContext)
 
   const event = get(eventItems, index)
   const { eventType, widgetID, queryID, widgetMethod, actionType } = event

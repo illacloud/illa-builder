@@ -6,7 +6,7 @@ import {
   unselectedTipWrapperStyle,
 } from "@/page/App/components/InspectPanel/style"
 import { ReactComponent as NoComponentSelected } from "@/assets/no-component-selected-icon.svg"
-import { Empty } from "@illa-design/empty"
+import { Empty } from "@illa-design/react"
 
 export const EmptySelected: FC = () => {
   const { t } = useTranslation()

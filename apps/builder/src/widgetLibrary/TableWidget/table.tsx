@@ -1,5 +1,5 @@
 import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
-import { Table } from "@illa-design/table"
+import { Table, isObject } from "@illa-design/react"
 import { Updater, RowSelectionState } from "@tanstack/table-core"
 import {
   ColumnItemShape,
@@ -8,7 +8,6 @@ import {
 } from "./interface"
 import { cloneDeep } from "lodash"
 import { getCellForType } from "./utils"
-import { isObject } from "@illa-design/system"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {

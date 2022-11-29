@@ -1,5 +1,5 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { css } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import arraySvg from "./assets/array.svg"
 import booleanSvg from "./assets/boolean.svg"
 import stringSvg from "./assets/string.svg"

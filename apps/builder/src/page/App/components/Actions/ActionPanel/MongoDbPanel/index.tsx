@@ -8,7 +8,7 @@ import {
   mongoItemLabelStyle,
   mongoItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
 import {
   AggregateContentInitial,

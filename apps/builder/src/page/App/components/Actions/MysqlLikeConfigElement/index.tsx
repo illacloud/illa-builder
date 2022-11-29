@@ -14,21 +14,26 @@ import {
   sslItem,
   sslStyle,
 } from "./style"
-import { Input, Password, TextArea } from "@illa-design/input"
-import { getColor } from "@illa-design/theme"
+import {
+  Input,
+  Password,
+  TextArea,
+  getColor,
+  Divider,
+  Switch,
+  InputNumber,
+  Button,
+  ButtonGroup,
+  PaginationPreIcon,
+  useMessage,
+} from "@illa-design/react"
 import { useTranslation } from "react-i18next"
-import { Divider } from "@illa-design/divider"
-import { Switch } from "@illa-design/switch"
-import { InputNumber } from "@illa-design/input-number"
 import { Controller, useForm } from "react-hook-form"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { useMessage } from "@illa-design/message"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
 import { isCloudVersion } from "@/utils/typeHelper"
 

@@ -1,5 +1,5 @@
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
-import { ButtonProps } from "@illa-design/button"
+import { ButtonProps } from "@illa-design/react"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedButtonProps

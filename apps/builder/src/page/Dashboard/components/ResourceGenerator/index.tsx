@@ -3,7 +3,7 @@ import {
   ResourceCreatorPage,
   ResourceGeneratorProps,
 } from "@/page/Dashboard/components/ResourceGenerator/interface"
-import { Modal } from "@illa-design/modal"
+import { Modal } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
 import { ResourceType } from "@/redux/resource/resourceState"
 import { ResourceTypeSelector } from "@/page/Dashboard/components/ResourceGenerator/ResourceTypeSelector"

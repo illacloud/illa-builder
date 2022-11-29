@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import hotkeys from "hotkeys-js"
-import { createModal, Modal } from "@illa-design/modal"
+import { createModal, useMessage } from "@illa-design/react"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { configActions } from "@/redux/config/configSlice"
 import { useDispatch, useSelector } from "react-redux"
@@ -25,7 +25,6 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { useMessage } from "@illa-design/message"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()

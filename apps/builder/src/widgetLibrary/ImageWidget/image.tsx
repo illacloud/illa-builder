@@ -1,5 +1,5 @@
 import { useMemo, FC, useEffect, forwardRef, useRef } from "react"
-import { Image } from "@illa-design/image"
+import { Image } from "@illa-design/react"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { ImageWidgetProps, WrappedImageProps } from "./interface"
 import { ImageWrapperStyle } from "@/widgetLibrary/ImageWidget/style"

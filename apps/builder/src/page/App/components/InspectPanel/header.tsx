@@ -1,6 +1,5 @@
 import { FC, useCallback, useContext } from "react"
-import { MoreIcon } from "@illa-design/icon"
-import { Dropdown } from "@illa-design/dropdown"
+import { MoreIcon, Dropdown } from "@illa-design/react"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { panelHeaderIconWrapperStyle, panelHeaderWrapperStyle } from "./style"
 import { ActionMenu } from "./actionMenu"

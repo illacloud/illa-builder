@@ -15,7 +15,7 @@ import { generatePageConfig } from "@/utils/generators/generatePageOrSectionConf
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { RootComponentNodeProps } from "@/redux/currentApp/editor/components/componentsState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { Dropdown } from "@illa-design/dropdown"
+import { Dropdown } from "@illa-design/react"
 import { ActionMenu } from "@/page/App/components/PagePanel/Components/PanelHeader/actionMenu"
 
 export const PageItem: FC<PageItemProps> = (props) => {

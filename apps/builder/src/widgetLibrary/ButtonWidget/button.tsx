@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react"
-import { Button } from "@illa-design/button"
+import { Button } from "@illa-design/react"
 import { ButtonWidgetProps, WrappedButtonProps } from "./interface"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
