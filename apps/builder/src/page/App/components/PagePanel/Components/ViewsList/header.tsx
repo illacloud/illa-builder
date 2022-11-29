@@ -1,4 +1,4 @@
-import { Button, PlusIcon } from "@illa-design/react"
+import { AddIcon, Button, Link, PlusIcon } from "@illa-design/react"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
@@ -44,14 +44,14 @@ export const ViewListHeader: FC<HeaderProps> = (props) => {
   return (
     <div css={viewsListHeaderWrapperStyle}>
       <span css={headerLabelStyle}>{t("editor.page.label_name.views")}</span>
-      <Button
+      <Link
         colorScheme="techPurple"
-        variant="text"
-        leftIcon={<PlusIcon css={headerAddIconStyle} />}
+        icon={<AddIcon />}
+        hoverable
         onClick={handleClickAddButton}
       >
-        {t("editor.page.label_name.add")}
-      </Button>
+        <span>{t("editor.page.label_name.add")}</span>
+      </Link>
     </div>
   )
 }

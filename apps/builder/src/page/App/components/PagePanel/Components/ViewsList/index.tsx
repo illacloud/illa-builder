@@ -3,7 +3,7 @@ import { ListBody } from "./body"
 import { ViewListHeader } from "./header"
 import { ViewListProps } from "./interface"
 import { viewsListWrapperStyle } from "./style"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import {
   getCanvas,
   searchDsl,
@@ -16,7 +16,6 @@ import { RootState } from "@/store"
 
 export const ViewList: FC<ViewListProps> = (props) => {
   const { sectionName } = props
-  const dispatch = useDispatch()
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
