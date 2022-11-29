@@ -1,5 +1,5 @@
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
-import { TextProps as ILLATextProps } from "@illa-design/typography"
+import { TextProps as ILLATextProps } from "@illa-design/react"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export type HorizontalAlign = "start" | "center" | "end"

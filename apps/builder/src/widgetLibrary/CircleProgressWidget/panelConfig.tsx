@@ -2,7 +2,7 @@ import {
   HorizontalCenterIcon,
   HorizontalEndIcon,
   HorizontalStartIcon,
-} from "@illa-design/icon"
+} from "@illa-design/react"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"

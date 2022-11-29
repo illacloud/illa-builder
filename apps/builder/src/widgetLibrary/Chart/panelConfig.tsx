@@ -1,7 +1,11 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { BarChartIcon, LineChartIcon, ScatterPlotIcon } from "@illa-design/icon"
+import {
+  BarChartIcon,
+  LineChartIcon,
+  ScatterPlotIcon,
+} from "@illa-design/react"
 import {
   chartTypeIconCss,
   chartTypeStringCss,

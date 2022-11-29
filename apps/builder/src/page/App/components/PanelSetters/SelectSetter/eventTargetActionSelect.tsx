@@ -1,6 +1,6 @@
 import { FC, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { BaseSelectSetterProps } from "./interface"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"

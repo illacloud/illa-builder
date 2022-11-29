@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { ChartColorSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { useSelector } from "react-redux"

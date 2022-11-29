@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import dayjs from "dayjs"
-import { DateRangePicker } from "@illa-design/date-picker"
+import { DateRangePicker } from "@illa-design/react"
 import { DateWidgetProps, WrappedDateRangeProps } from "./interface"
 import {
   applyLabelAndComponentWrapperStyle,

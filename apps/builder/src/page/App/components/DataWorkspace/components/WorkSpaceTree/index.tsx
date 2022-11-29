@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react"
-import { omit } from "@illa-design/system"
+import { omit } from "@illa-design/react"
 import { PanelBar } from "@/components/PanelBar"
 import { WorkSpaceTreeProps } from "./interface"
 import { applyTreeContainerStyle } from "./style"

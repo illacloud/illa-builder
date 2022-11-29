@@ -1,5 +1,5 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { css } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const itemStyle = css`
   display: flex;

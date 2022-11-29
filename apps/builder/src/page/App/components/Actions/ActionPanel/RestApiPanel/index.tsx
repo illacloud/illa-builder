@@ -8,11 +8,10 @@ import {
   topDivider,
 } from "./style"
 import { useTranslation } from "react-i18next"
-import { Select } from "@illa-design/select"
+import { Select, Input } from "@illa-design/react"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { Input } from "@illa-design/input"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"

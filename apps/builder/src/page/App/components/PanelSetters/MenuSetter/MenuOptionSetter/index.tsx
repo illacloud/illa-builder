@@ -11,7 +11,7 @@ import {
 import { generateNewMenuItem } from "./utils/generateNewMenu"
 import { MenusSetterProvider } from "./context/menuListContext"
 import { useTranslation } from "react-i18next"
-import { AddIcon } from "@illa-design/icon"
+import { AddIcon } from "@illa-design/react"
 
 export const MenuOptionSetter: FC<ColumnListSetterProps> = (props) => {
   const {

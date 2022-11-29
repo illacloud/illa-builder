@@ -11,7 +11,7 @@ import {
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
 import useMeasure from "react-use-measure"
-import { Pagination } from "@illa-design/pagination"
+import { Pagination } from "@illa-design/react"
 import { chunk } from "lodash"
 
 export const ListWidgetWithPagination: FC<ListWidgetProps> = (props) => {
