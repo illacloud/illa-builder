@@ -1,23 +1,10 @@
-import {
-  createContext,
-  ReactNode,
-  FC,
-  useState,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react"
-import {
-  NotificationType,
-  Notification,
-  createNotification,
-} from "@illa-design/notification"
+import { createContext, ReactNode, FC, useCallback, useRef } from "react"
+import { NotificationType, createNotification } from "@illa-design/notification"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
-import { cloneDeep, unset } from "lodash"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { unset } from "lodash"
 
 interface Injected {
   handleUpdateGlobalData: (key: string, value: any) => void
@@ -56,14 +43,14 @@ const runScript = (script: string) => {
 }
 
 // {{goToURL("https://www.baidu.com",true)}}
-export const goToURL = (params: { url: string; isNewTab?: boolean }) => {
-  const { url, isNewTab } = params
+export const goToURL = (params: { url: string; newTab?: boolean }) => {
+  const { url, newTab } = params
   let finalURL = url
   if (!finalURL) return
   if (!isValidUrlScheme(finalURL)) {
     finalURL = `https://${finalURL}`
   }
-  if (isNewTab) {
+  if (newTab) {
     window.open(finalURL, "_blank")
   } else {
     window.location.assign(finalURL)
