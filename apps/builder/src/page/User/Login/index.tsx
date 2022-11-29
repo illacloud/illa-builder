@@ -29,7 +29,7 @@ import {
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import { setLocalStorage } from "@/utils/storage"
-import { LocationState, LoginFields } from "./interface"
+import { LoginFields } from "./interface"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
@@ -62,7 +62,7 @@ export const Login: FC = () => {
             email: res.data.email,
           }),
         )
-        navigate((location.state as LocationState)?.from?.pathname ?? "/", {
+        navigate(location.state?.from?.pathname ?? "/", {
           replace: true,
         })
         message.success({
