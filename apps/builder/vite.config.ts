@@ -38,7 +38,6 @@ export default defineConfig((props) => {
             "react-router-dom",
           ],
           "@illa-design-vendor": ["@illa-design"],
-          utils: [/src\/utils/],
           "app-vendor": [/src\/page\/App/],
           "dashboard-vendor": [/src\/page\/Dashboard/],
           "deploy-vendor": [/src\/page\/Deploy/],
