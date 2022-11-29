@@ -1,7 +1,7 @@
 import { FC, useCallback, useMemo } from "react"
 import { PanelBar } from "@/components/PanelBar"
 import { useTranslation } from "react-i18next"
-import { InputNumber, Modal, Switch } from "@illa-design/react"
+import { InputNumber, Switch, useModal } from "@illa-design/react"
 import { ReactComponent as FrameFixedIcon } from "@/assets/rightPagePanel/frame-fixed.svg"
 import { ReactComponent as FrameResponsiveIcon } from "@/assets/rightPagePanel/frame-responsive.svg"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
@@ -90,6 +90,8 @@ export const PageFrame: FC = () => {
       : `${t("editor.page.label_name.width")}(%)`
   }, [canvasSize, t])
 
+  const modal = useModal()
+
   const handleDeleteSection = useCallback(
     (
       deleteSectionName:
@@ -100,9 +102,9 @@ export const PageFrame: FC = () => {
       options: Record<string, any>,
     ) => {
       if (!currentPageDisplayName) return
-      Modal.confirm({
+      modal.show({
         w: "496px",
-        content: t("editor.page.model_tips.delete_section_message"),
+        children: t("editor.page.model_tips.delete_section_message"),
         cancelText: t("editor.page.model_tips.cancel_button"),
         okText: t("editor.page.model_tips.ok_button"),
         okButtonProps: {
@@ -120,7 +122,7 @@ export const PageFrame: FC = () => {
         },
       })
     },
-    [currentPageDisplayName, dispatch, t],
+    [currentPageDisplayName, dispatch, modal, t],
   )
 
   const handleAddSection = useCallback(
