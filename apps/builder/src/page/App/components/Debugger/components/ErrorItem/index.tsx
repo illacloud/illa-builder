@@ -13,7 +13,7 @@ import {
   jsonStyle,
   errorExpandStyle,
 } from "./style"
-import { CaretRightIcon, ErrorIcon } from "@illa-design/icon"
+import { CaretRightIcon, ErrorIcon } from "@illa-design/react"
 import { ErrorItemProps } from "./interface"
 import { motion } from "framer-motion"
 import {

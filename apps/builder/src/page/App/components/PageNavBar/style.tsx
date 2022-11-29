@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import {
   LEFT_PANEL_WIDTH,
   MIDDLE_PANEL_WIDTH,

@@ -2,9 +2,7 @@ import { FC, useState } from "react"
 import { css } from "@emotion/react"
 import { AnimatePresence, motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
-import { Input } from "@illa-design/input"
-import { Button } from "@illa-design/button"
-import { SearchIcon } from "@illa-design/icon"
+import { Input, Button, SearchIcon } from "@illa-design/react"
 import {
   searchHeaderStyle,
   searchHeaderTitleIconStyle,

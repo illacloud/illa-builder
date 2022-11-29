@@ -2,7 +2,7 @@ import { FC, HTMLAttributes, useRef, useState } from "react"
 import { ActionList } from "./ActionList"
 import { ActionPanel } from "./ActionPanel"
 import { applyActionEditorStyle, contentContainerStyle } from "./styles"
-import { Divider } from "@illa-design/divider"
+import { Divider } from "@illa-design/react"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
 import { FocusManager } from "@/utils/focusManager"
 

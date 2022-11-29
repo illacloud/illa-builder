@@ -9,7 +9,7 @@ import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { Api } from "@/api/base"
-import { isObject } from "@illa-design/system"
+import { isObject } from "@illa-design/react"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { Controller, useForm } from "react-hook-form"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"

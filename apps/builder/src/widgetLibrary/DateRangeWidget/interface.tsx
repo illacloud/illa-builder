@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { CommonRangeProps } from "@illa-design/date-picker"
+import { CommonRangeProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"

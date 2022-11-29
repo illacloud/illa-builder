@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import { Search } from "@illa-design/input"
+import { Search } from "@illa-design/react"
 import {
   componentContainerStyle,
   searchWrapperStyle,

@@ -6,7 +6,7 @@ import {
   LineChartIcon,
   PieChartIcon,
   ScatterPlotIcon,
-} from "@illa-design/icon"
+} from "@illa-design/react"
 import {
   chartTypeIconCss,
   chartTypeStringCss,

@@ -1,5 +1,5 @@
 import { forwardRef, useMemo, FC, useEffect } from "react"
-import { Timeline, TimelineItem } from "@illa-design/timeline"
+import { Timeline, TimelineItem } from "@illa-design/react"
 import {
   WrappedTimelineProps,
   TimelineWidgetProps,

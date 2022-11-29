@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react"
-import { Modal } from "@illa-design/modal"
+import { Modal } from "@illa-design/react"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"

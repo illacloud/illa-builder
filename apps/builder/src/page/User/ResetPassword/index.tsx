@@ -2,11 +2,16 @@ import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
-import { Input, Password } from "@illa-design/input"
-import { Button } from "@illa-design/button"
-import { PreIcon, WarningCircleIcon } from "@illa-design/icon"
-import { Link } from "@illa-design/link"
-import { Countdown } from "@illa-design/statistic"
+import {
+  Input,
+  Password,
+  Button,
+  PreIcon,
+  WarningCircleIcon,
+  Link,
+  Countdown,
+  useMessage,
+} from "@illa-design/react"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { Api } from "@/api/base"
 import {
@@ -23,7 +28,6 @@ import {
   hotspotWrapperStyle,
 } from "@/page/User/style"
 import { ResetPwdFields } from "./interface"
-import { useMessage } from "@illa-design/message"
 
 export const ResetPassword: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)

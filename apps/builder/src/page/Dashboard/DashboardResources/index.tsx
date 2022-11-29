@@ -1,9 +1,7 @@
 import { FC, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { Button } from "@illa-design/button"
-import { Empty } from "@illa-design/empty"
-import { Table } from "@illa-design/table"
+import { Button, Empty, Table, Space } from "@illa-design/react"
 import {
   Resource,
   ResourceContent,
@@ -21,7 +19,6 @@ import {
   applyTableTextStyle,
   hoverStyle,
 } from "@/page/Dashboard/DashboardResources/style"
-import { Space } from "@illa-design/space"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 import { fromNow } from "@/utils/dayjs"

@@ -1,11 +1,9 @@
 import { FC, useCallback } from "react"
 import { get } from "lodash"
-import { FxIcon } from "@illa-design/icon"
-import { Switch } from "@illa-design/switch"
+import { Switch } from "@illa-design/react"
 import { DynamicSwitchProps } from "./interface"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import {
-  applyCustomIconStyle,
   applyLabelWrapperStyle,
   customAndSwitchWrapperStyle,
   dynamicSwitchInputStyle,

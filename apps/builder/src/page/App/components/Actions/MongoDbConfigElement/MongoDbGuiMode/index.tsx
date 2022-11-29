@@ -8,11 +8,14 @@ import {
   hostInputContainer,
   labelContainer,
 } from "@/page/App/components/Actions/MongoDbConfigElement/style"
-import { getColor } from "@illa-design/theme"
+import {
+  getColor,
+  Input,
+  Password,
+  RadioGroup,
+  InputNumber,
+} from "@illa-design/react"
 import { Controller } from "react-hook-form"
-import { Input, Password } from "@illa-design/input"
-import { RadioGroup } from "@illa-design/radio"
-import { InputNumber } from "@illa-design/input-number"
 import { useTranslation } from "react-i18next"
 import {
   MongoDbConnectionFormat,

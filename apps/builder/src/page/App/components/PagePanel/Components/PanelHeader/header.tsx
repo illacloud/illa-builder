@@ -1,6 +1,5 @@
 import { FC, useCallback } from "react"
-import { MoreIcon } from "@illa-design/icon"
-import { Dropdown } from "@illa-design/dropdown"
+import { MoreIcon, Dropdown } from "@illa-design/react"
 import { panelHeaderIconWrapperStyle, panelHeaderWrapperStyle } from "./style"
 import { ActionMenu } from "./actionMenu"
 import { EditableText } from "@/components/EditableText"

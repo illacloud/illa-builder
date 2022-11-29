@@ -1,5 +1,5 @@
 import { FC, useCallback, useMemo } from "react"
-import { Divider } from "@illa-design/divider"
+import { Divider } from "@illa-design/react"
 import { PanelHeader } from "@/page/App/components/InspectPanel/header"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { panelBuilder } from "@/widgetLibrary/panelBuilder"
