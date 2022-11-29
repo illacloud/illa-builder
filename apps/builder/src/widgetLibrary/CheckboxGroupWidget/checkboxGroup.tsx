@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
-import { CheckboxGroup } from "@illa-design/checkbox"
+import { CheckboxGroup } from "@illa-design/react"
 import {
   CheckboxGroupWidgetProps,
   WrappedCheckboxGroupProps,

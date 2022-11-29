@@ -22,8 +22,7 @@ import {
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { Dropdown, DropList } from "@illa-design/dropdown"
+import { globalColor, illaPrefix, Dropdown, DropList } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
 import {
   getExecutionError,

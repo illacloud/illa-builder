@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { FxIcon } from "@illa-design/icon"
+import { FxIcon } from "@illa-design/react"
 import { DynamicIconProps } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon/interface"
 import { applyCustomIconStyle } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon/style"
 

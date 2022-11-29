@@ -4,9 +4,8 @@ import {
   configItem,
   labelContainer,
 } from "@/page/App/components/Actions/RestApiConfigElement/style"
-import { getColor } from "@illa-design/theme"
+import { getColor, Input } from "@illa-design/react"
 import { Controller } from "react-hook-form"
-import { Input } from "@illa-design/input"
 import { BearerAuthPanelProps } from "./interface"
 import { useTranslation } from "react-i18next"
 

@@ -1,4 +1,4 @@
-import { ImageProps } from "@illa-design/image"
+import { ImageProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 

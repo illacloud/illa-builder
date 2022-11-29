@@ -3,7 +3,7 @@ import {
   getCachedAction,
   getSelectedAction,
 } from "@/redux/config/configSelector"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
   DeleteMultipleContentInitial,

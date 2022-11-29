@@ -5,10 +5,9 @@ import {
   configItem,
   labelContainer,
 } from "@/page/App/components/Actions/MongoDbConfigElement/style"
-import { getColor } from "@illa-design/theme"
+import { getColor, Input } from "@illa-design/react"
 import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { Input } from "@illa-design/input"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"

@@ -1,4 +1,4 @@
-import { MenuProps } from "@illa-design/menu"
+import { MenuProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import { HTMLAttributes } from "react"
 

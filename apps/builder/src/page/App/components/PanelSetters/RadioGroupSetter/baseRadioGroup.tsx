@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { RadioGroup } from "@illa-design/radio"
+import { RadioGroup } from "@illa-design/react"
 import { BaseRadioGroupProps } from "./interface"
 import {
   applyRadioGroupWrapperStyle,

@@ -1,7 +1,12 @@
 import { css, Global } from "@emotion/react"
 import { RouterProvider } from "react-router-dom"
 import { globalStyle } from "./style"
-import { ConfigProvider } from "@illa-design/config-provider"
+import {
+  ConfigProvider,
+  MessageGroup,
+  NotificationGroup,
+  ModalGroup,
+} from "@illa-design/react"
 import "@/api/base"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
@@ -14,9 +19,6 @@ import {
 import { useEffect } from "react"
 import { ILLARoute } from "@/router"
 import { useTranslation } from "react-i18next"
-import { MessageGroup } from "@illa-design/message"
-import { NotificationGroup } from "@illa-design/notification"
-import { ModalGroup } from "@illa-design/modal"
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)

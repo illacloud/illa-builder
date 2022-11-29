@@ -24,7 +24,7 @@ import {
   esItemLabelStyle,
   esItemStyle,
 } from "./style"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { configActions } from "@/redux/config/configSlice"
 

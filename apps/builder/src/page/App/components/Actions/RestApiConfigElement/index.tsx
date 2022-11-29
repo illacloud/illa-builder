@@ -15,12 +15,16 @@ import {
   labelContainer,
   optionLabelStyle,
 } from "./style"
-import { getColor } from "@illa-design/theme"
-import { Input } from "@illa-design/input"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon } from "@illa-design/icon"
-import { Divider } from "@illa-design/divider"
-import { Select } from "@illa-design/select"
+import {
+  getColor,
+  Input,
+  Button,
+  ButtonGroup,
+  PaginationPreIcon,
+  Divider,
+  Select,
+  useMessage,
+} from "@illa-design/react"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
 import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
@@ -32,7 +36,6 @@ import {
   RestApiAuth,
   RestApiResource,
 } from "@/redux/resource/restapiResource"
-import { useMessage } from "@illa-design/message"
 
 function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
   let authContent: RestApiAuth | null = null

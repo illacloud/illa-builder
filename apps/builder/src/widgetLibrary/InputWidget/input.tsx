@@ -1,5 +1,5 @@
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
-import { Input } from "@illa-design/input"
+import { Input } from "@illa-design/react"
 import { InputWidgetProps, WrappedInputProps } from "./interface"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import {

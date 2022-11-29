@@ -1,5 +1,5 @@
 import { cloneDeep, get, set } from "lodash"
-import { isObject } from "@illa-design/system"
+import { isObject } from "@illa-design/react"
 import { WidgetCardInfo } from "@/widgetLibrary/interface"
 import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 import {
@@ -69,7 +69,6 @@ export const generateComponentNode = (
       containerType === CONTAINER_TYPE.EDITOR_SCALE_SQUARE
         ? [...pathToChildren, realDisplayName]
         : pathToChildren
-    console.log("pathToChildren", pathToChildren)
     widgetInfo.childrenNode.map((childNode) => {
       if (!childrenNodeDSL) childrenNodeDSL = []
       const child = generateComponentNode(

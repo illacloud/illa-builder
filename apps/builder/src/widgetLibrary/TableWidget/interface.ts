@@ -1,4 +1,4 @@
-import { TableProps } from "@illa-design/table"
+import { TableProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import { HTMLAttributes } from "react"
 import { ColumnDef } from "@tanstack/react-table"

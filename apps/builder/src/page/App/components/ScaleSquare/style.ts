@@ -3,7 +3,7 @@ import {
   MoveBarPositionShape,
   ScaleSquareType,
 } from "@/page/App/components/ScaleSquare/interface"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
 
