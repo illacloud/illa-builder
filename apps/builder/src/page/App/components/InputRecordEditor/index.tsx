@@ -7,10 +7,14 @@ import {
   recordEditorStyle,
   recordStyle,
 } from "./style"
-import { Button } from "@illa-design/button"
-import { AddIcon, DeleteIcon } from "@illa-design/icon"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { Input } from "@illa-design/input"
+import {
+  Button,
+  AddIcon,
+  DeleteIcon,
+  globalColor,
+  illaPrefix,
+  Input,
+} from "@illa-design/react"
 
 export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
   const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props

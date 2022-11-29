@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { Input } from "@illa-design/input"
+import { Input } from "@illa-design/react"
 import {
   editableInputIconStyle,
   editableInputSetterStyle,

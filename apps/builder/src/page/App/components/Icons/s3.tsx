@@ -1,4 +1,4 @@
-import { createIcon } from "@illa-design/icon"
+import { createIcon } from "@illa-design/react"
 
 export const S3Icon = createIcon({
   title: "S3Icon",

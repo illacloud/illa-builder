@@ -3,7 +3,7 @@ import {
   CloseIcon,
   SuccessCircleIcon,
   WarningCircleIcon,
-} from "@illa-design/icon"
+} from "@illa-design/react"
 import { ActionResultType } from "./interface"
 import {
   applyMaxHeightStyle,

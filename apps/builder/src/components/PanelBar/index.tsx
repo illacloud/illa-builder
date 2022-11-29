@@ -9,7 +9,7 @@ import {
 } from "./style"
 import { PanelBarProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
-import { PlusIcon, UpIcon } from "@illa-design/icon"
+import { PlusIcon, UpIcon } from "@illa-design/react"
 
 export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
   const {

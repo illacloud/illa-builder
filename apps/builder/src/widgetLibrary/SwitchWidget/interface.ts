@@ -1,4 +1,4 @@
-import { SwitchProps } from "@illa-design/switch"
+import { SwitchProps } from "@illa-design/react"
 import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"

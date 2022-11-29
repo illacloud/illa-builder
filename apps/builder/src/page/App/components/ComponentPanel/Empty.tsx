@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { Empty } from "@illa-design/empty"
+import { Empty } from "@illa-design/react"
 import { emptyStyle } from "./style"
 import { useTranslation } from "react-i18next"
 import { ReactComponent as EmptySearchIcon } from "@/assets/empty-search-icon.svg"

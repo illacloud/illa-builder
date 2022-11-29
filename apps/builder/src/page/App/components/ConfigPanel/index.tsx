@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes } from "react"
-import { Divider } from "@illa-design/divider"
+import { Divider } from "@illa-design/react"
 import { InspectPanel } from "@/page/App/components/InspectPanel"
 import { configPanelStyle } from "./style"
 

@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { SettingLabel } from "@/page/Setting/Components/label"
-import { WarningCircleIcon } from "@illa-design/icon"
+import { WarningCircleIcon } from "@illa-design/react"
 import { LabelAndSetterProps } from "@/page/Setting/Components/LabelAndSetter/interface"
 import {
   errorLineStyle,

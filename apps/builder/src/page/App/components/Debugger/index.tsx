@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes, useCallback, useRef } from "react"
-import { Divider } from "@illa-design/divider"
+import { Divider, CloseIcon, isArray } from "@illa-design/react"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
 import {
   applyDebuggerStyle,
@@ -7,10 +7,8 @@ import {
   errorContentStyle,
   titleStyle,
 } from "./style"
-import { CloseIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { isArray } from "@illa-design/system"
 import { configActions } from "@/redux/config/configSlice"
 import { isOpenDebugger } from "@/redux/config/configSelector"
 import { ErrorItem } from "@/page/App/components/Debugger/components/ErrorItem"
