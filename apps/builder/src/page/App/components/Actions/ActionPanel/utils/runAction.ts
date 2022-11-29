@@ -16,7 +16,7 @@ import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
-import { createMessage } from "@illa-design/message"
+import { createMessage } from "@illa-design/react"
 import {
   BodyContent,
   RestApiAction,

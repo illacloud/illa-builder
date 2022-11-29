@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { ActionTypeSelectorProps } from "./interface"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
 import { categoryStyle, containerStyle, resourceListStyle } from "./style"
-import { Spin } from "@illa-design/spin"
+import { Spin, useMessage } from "@illa-design/react"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import {
@@ -17,7 +17,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { useTranslation } from "react-i18next"
 import { ActionCard } from "../ActionCard"
-import { useMessage } from "@illa-design/message"
 
 export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { onSelect } = props

@@ -1,8 +1,7 @@
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { DragPointIcon } from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
+import { DragPointIcon, Trigger } from "@illa-design/react"
 import { get } from "lodash"
 import {
   labelNameAndIconStyle,

@@ -6,7 +6,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/S3Panel/style"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { Popover } from "@illa-design/popover"
+import { Popover, Select } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
@@ -16,7 +16,6 @@ import {
   S3Action,
   S3ActionTypeContent,
 } from "@/redux/currentApp/action/s3Action"
-import { Select } from "@illa-design/select"
 import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 

@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { Variants } from "framer-motion"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 

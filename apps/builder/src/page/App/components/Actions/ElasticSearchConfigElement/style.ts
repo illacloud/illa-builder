@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix, getColor } from "@illa-design/theme"
+import { globalColor, illaPrefix, getColor } from "@illa-design/react"
 
 export const container = css`
   width: 100%;

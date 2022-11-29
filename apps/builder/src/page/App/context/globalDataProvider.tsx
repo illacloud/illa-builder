@@ -1,5 +1,5 @@
 import { createContext, ReactNode, FC, useCallback, useRef } from "react"
-import { NotificationType, createNotification } from "@illa-design/notification"
+import { NotificationType, createNotification } from "@illa-design/react"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"

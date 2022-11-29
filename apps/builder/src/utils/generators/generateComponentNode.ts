@@ -1,5 +1,5 @@
 import { cloneDeep } from "lodash"
-import { isObject } from "@illa-design/system"
+import { isObject } from "@illa-design/react"
 import { WidgetCardInfo } from "@/widgetLibrary/interface"
 import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 import {

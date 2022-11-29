@@ -11,7 +11,7 @@ import {
 import { generateNewColumnItem } from "./utils/generateNewColumns"
 import { ColumnsSetterProvider } from "./context/columnListContext"
 import { useTranslation } from "react-i18next"
-import { AddIcon } from "@illa-design/icon"
+import { AddIcon } from "@illa-design/react"
 
 export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   const {
