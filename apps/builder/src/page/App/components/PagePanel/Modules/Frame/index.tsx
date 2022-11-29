@@ -461,6 +461,7 @@ export const PageFrame: FC = () => {
                   onChange={(value) => {
                     handleUpdateShowFoldIcon(value, "leftSection")
                   }}
+                  colorScheme="techPurple"
                 />
               </SetterPadding>
             </LeftAndRightLayout>
@@ -523,6 +524,7 @@ export const PageFrame: FC = () => {
                   onChange={(value) => {
                     handleUpdateShowFoldIcon(value, "rightSection")
                   }}
+                  colorScheme="techPurple"
                 />
               </SetterPadding>
             </LeftAndRightLayout>
