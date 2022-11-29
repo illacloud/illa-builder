@@ -1,14 +1,14 @@
+import i18n from "@/i18n/config"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { RATE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RateWidget/eventHandlerConfig"
 import {
   HorizontalEndIcon,
   HorizontalStartIcon,
   HeartIcon,
   StarIcon,
-} from "@illa-design/icon"
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import i18n from "@/i18n/config"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { RATE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RateWidget/eventHandlerConfig"
+} from "@illa-design/react"
 
 const baseWidgetName = "rate"
 export const RATE_PANEL_CONFIG: PanelConfig[] = [

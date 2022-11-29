@@ -1,8 +1,8 @@
-import { SelectProps } from "@illa-design/select"
 import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { SelectProps } from "@illa-design/react"
 
 export interface WrappedSelectProps
   extends Omit<ValidateMessageOldProps, "value">,

@@ -1,10 +1,10 @@
-import { FC } from "react"
-import { Input } from "@illa-design/input"
+import { EditableInputSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
 import {
   editableInputIconStyle,
   editableInputSetterStyle,
 } from "@/page/App/components/PanelSetters/InputSetter/style"
-import { EditableInputSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
+import { Input } from "@illa-design/react"
+import { FC } from "react"
 
 export const EditableInputSetter: FC<EditableInputSetterProps> = (props) => {
   const { value, handleUpdateDsl, attrName, icon } = props

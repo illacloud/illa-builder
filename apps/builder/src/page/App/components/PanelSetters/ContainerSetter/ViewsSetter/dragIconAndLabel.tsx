@@ -1,22 +1,26 @@
-import { FC, useCallback, useContext, useMemo, MouseEvent } from "react"
-import { useSelector } from "react-redux"
-import { useTranslation } from "react-i18next"
-import { DragPointIcon, WarningCircleIcon } from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
-import { get } from "lodash"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
+import {
+  DragIconAndLabelProps,
+  ViewItemShape,
+} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import {
   applyOptionStyle,
   labelAndDragIconWrapperStyle,
   labelWrapperStyle,
   moveIconStyle,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import {
-  DragIconAndLabelProps,
-  ViewItemShape,
-} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
+  DragPointIcon,
+  WarningCircleIcon,
+  Trigger,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
+import { get } from "lodash"
+import { FC, useCallback, useContext, useMemo, MouseEvent } from "react"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 
 interface optionIconProps {
   isSelected: boolean

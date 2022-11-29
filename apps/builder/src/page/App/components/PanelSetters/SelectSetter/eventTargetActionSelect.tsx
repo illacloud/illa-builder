@@ -1,11 +1,11 @@
+import { BaseSelectSetterProps } from "./interface"
+import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
+import { getCachedAction } from "@/redux/config/configSelector"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import { Select } from "@illa-design/react"
 import { FC, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { Select } from "@illa-design/select"
-import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
-import { BaseSelectSetterProps } from "./interface"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { getCachedAction } from "@/redux/config/configSelector"
 
 export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
   const { isSetterSingleRow, attrName, handleUpdateDsl, value } = props

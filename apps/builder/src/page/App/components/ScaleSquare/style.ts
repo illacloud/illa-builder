@@ -1,9 +1,9 @@
-import { css, SerializedStyles } from "@emotion/react"
 import {
   MoveBarPositionShape,
   ScaleSquareType,
 } from "@/page/App/components/ScaleSquare/interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { css, SerializedStyles } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
 

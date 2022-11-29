@@ -1,34 +1,3 @@
-import { FC, useCallback, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useTranslation } from "react-i18next"
-import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
-import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
-
-import {
-  BugIcon,
-  CaretRightIcon,
-  ExitIcon,
-  FullScreenIcon,
-  LockIcon,
-  UnlockIcon,
-  WindowBottomIcon,
-  WindowLeftIcon,
-  WindowRightIcon,
-} from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
-import { configActions } from "@/redux/config/configSlice"
-import {
-  getFreezeState,
-  getIllaMode,
-  getIsOnline,
-  isOpenBottomPanel,
-  isOpenDebugger,
-  isOpenLeftPanel,
-  isOpenRightPanel,
-} from "@/redux/config/configSelector"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import {
   descriptionStyle,
   informationStyle,
@@ -42,12 +11,44 @@ import {
   windowIconStyle,
 } from "./style"
 import { Api } from "@/api/base"
-import { Badge } from "@illa-design/badge"
+import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
+import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
-import { fromNow } from "@/utils/dayjs"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  getFreezeState,
+  getIllaMode,
+  getIsOnline,
+  isOpenBottomPanel,
+  isOpenDebugger,
+  isOpenLeftPanel,
+  isOpenRightPanel,
+} from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { useMessage } from "@illa-design/message"
+import { fromNow } from "@/utils/dayjs"
+import {
+  BugIcon,
+  CaretRightIcon,
+  ExitIcon,
+  FullScreenIcon,
+  LockIcon,
+  UnlockIcon,
+  WindowBottomIcon,
+  WindowLeftIcon,
+  WindowRightIcon,
+  Trigger,
+  Button,
+  ButtonGroup,
+  Badge,
+  globalColor,
+  illaPrefix,
+  useMessage,
+} from "@illa-design/react"
+import { FC, useCallback, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props

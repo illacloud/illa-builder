@@ -1,8 +1,8 @@
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
+import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
+import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import i18n from "@/i18n/config"
-import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
 
 const baseWidgetName = "bar-progress"
 export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [

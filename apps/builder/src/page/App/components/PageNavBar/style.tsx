@@ -1,10 +1,10 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import {
   LEFT_PANEL_WIDTH,
   MIDDLE_PANEL_WIDTH,
   RIGHT_PANEL_WIDTH,
 } from "@/style"
+import { css, SerializedStyles } from "@emotion/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const navBarStyle = css`
   display: flex;

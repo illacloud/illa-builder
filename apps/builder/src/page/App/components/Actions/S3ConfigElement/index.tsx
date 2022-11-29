@@ -1,4 +1,3 @@
-import { FC, useState } from "react"
 import { S3ConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -10,28 +9,33 @@ import {
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
-  hostInputContainer,
   labelContainer,
   optionLabelStyle,
   sslStyle,
 } from "./style"
-import { Input, Password } from "@illa-design/input"
-import { getColor } from "@illa-design/theme"
-import { useTranslation } from "react-i18next"
-import { Divider } from "@illa-design/divider"
-import { Switch } from "@illa-design/switch"
-import { Controller, useForm } from "react-hook-form"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon, WarningCircleIcon } from "@illa-design/icon"
-import { useSelector } from "react-redux"
-import { RootState } from "@/store"
-import { Resource } from "@/redux/resource/resourceState"
-import { S3Resource, S3ResourceInitial } from "@/redux/resource/s3Resource"
 import {
   onActionConfigElementTest,
   onActionConfigElementSubmit,
 } from "@/page/App/components/Actions/api"
+import { Resource } from "@/redux/resource/resourceState"
+import { S3Resource, S3ResourceInitial } from "@/redux/resource/s3Resource"
+import { RootState } from "@/store"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
+import {
+  Input,
+  Password,
+  getColor,
+  Divider,
+  Switch,
+  Button,
+  ButtonGroup,
+  PaginationPreIcon,
+  WarningCircleIcon,
+} from "@illa-design/react"
+import { FC, useState } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 
 export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props

@@ -1,8 +1,8 @@
-import { InputNumberProps } from "@illa-design/input-number"
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
-import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { InputNumberProps } from "@illa-design/react"
 
 export interface WrappedNumberInputProps
   extends Pick<

@@ -1,6 +1,6 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { IllaMode } from "@/redux/config/configState"
+import { css, SerializedStyles } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export function applyScaleStyle(
   verticalResize: boolean,

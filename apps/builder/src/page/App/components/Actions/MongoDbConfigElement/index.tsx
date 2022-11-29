@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { sslStyle } from "../MysqlLikeConfigElement/style"
 import { MongoDbConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -11,30 +11,34 @@ import {
   optionLabelStyle,
   sslItem,
 } from "./style"
-import { Input, TextArea } from "@illa-design/input"
-import { getColor } from "@illa-design/theme"
-import { useTranslation } from "react-i18next"
-import { Divider } from "@illa-design/divider"
-import { Controller, useForm } from "react-hook-form"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon } from "@illa-design/icon"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/store"
-import { Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
+import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
+import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
 import {
   MongoDbConfig,
   MongoDbResource,
   MongoDbResourceInitial,
   MongoDbSSL,
 } from "@/redux/resource/mongodbResource"
-import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
-import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
-import { sslStyle } from "../MysqlLikeConfigElement/style"
-import { Switch } from "@illa-design/switch"
-import { RadioGroup } from "@illa-design/radio"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { useMessage } from "@illa-design/message"
+import { Resource } from "@/redux/resource/resourceState"
+import { RootState } from "@/store"
+import {
+  Input,
+  TextArea,
+  getColor,
+  Divider,
+  Button,
+  ButtonGroup,
+  PaginationPreIcon,
+  Switch,
+  RadioGroup,
+  useMessage,
+} from "@illa-design/react"
+import { FC, useState } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
 
 export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props

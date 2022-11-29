@@ -1,7 +1,7 @@
-import { FC } from "react"
-import { Select } from "@illa-design/select"
 import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
+import { Select } from "@illa-design/react"
+import { FC } from "react"
 
 export const SearchSelectSetter: FC<BaseSelectSetterProps> = (props) => {
   const { isSetterSingleRow, options, attrName, handleUpdateDsl, value } = props

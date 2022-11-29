@@ -1,6 +1,6 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import alpha from "@/assets/alpha.svg"
+import { css, SerializedStyles } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export function applyCircleStyle(color: string): SerializedStyles {
   return css`

@@ -1,6 +1,6 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { illaPrefix, globalColor } from "@illa-design/theme"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
+import { css, SerializedStyles } from "@emotion/react"
+import { illaPrefix, globalColor } from "@illa-design/react"
 
 export const dynamicSwitchWrapperStyle = css`
   display: flex;

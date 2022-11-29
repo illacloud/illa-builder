@@ -1,12 +1,11 @@
-import { FC, useCallback } from "react"
-import { MoreIcon } from "@illa-design/icon"
-import { Dropdown } from "@illa-design/dropdown"
-import { panelHeaderIconWrapperStyle, panelHeaderWrapperStyle } from "./style"
 import { ActionMenu } from "./actionMenu"
+import { panelHeaderIconWrapperStyle, panelHeaderWrapperStyle } from "./style"
 import { EditableText } from "@/components/EditableText"
-import { useDispatch, useSelector } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { MoreIcon, Dropdown } from "@illa-design/react"
+import { FC, useCallback } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 export const PanelHeader: FC = () => {
   const rootNodeProps = useSelector(getRootNodeExecutionResult)

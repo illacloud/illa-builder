@@ -1,14 +1,7 @@
-import { FC, useState } from "react"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { useTranslation, Trans } from "react-i18next"
-import { useDispatch } from "react-redux"
-import { useNavigate, useLocation } from "react-router-dom"
-import { Input, Password } from "@illa-design/input"
-import { Button } from "@illa-design/button"
-import { WarningCircleIcon } from "@illa-design/icon"
-import { EMAIL_FORMAT } from "@/constants/regExp"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { LocationState, LoginFields } from "./interface"
 import { Api } from "@/api/base"
+import { EMAIL_FORMAT } from "@/constants/regExp"
+import { TextLink } from "@/page/User/components/TextLink"
 import {
   formLabelStyle,
   formTitleStyle,
@@ -22,11 +15,21 @@ import {
   forgotPwdStyle,
   forgotPwdContainerStyle,
 } from "@/page/User/style"
-import { TextLink } from "@/page/User/components/TextLink"
-import { LocationState, LoginFields } from "./interface"
-import { setLocalStorage } from "@/utils/storage"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
-import { useMessage } from "@illa-design/message"
+import { setLocalStorage } from "@/utils/storage"
+import {
+  Input,
+  Password,
+  Button,
+  WarningCircleIcon,
+  useMessage,
+} from "@illa-design/react"
+import { FC, useState } from "react"
+import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { useTranslation, Trans } from "react-i18next"
+import { useDispatch } from "react-redux"
+import { useNavigate, useLocation } from "react-router-dom"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)

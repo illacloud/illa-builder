@@ -1,22 +1,26 @@
+import { Api } from "@/api/base"
+import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
+import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
+import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
+import { RenameModal } from "@/page/Dashboard/components/RenameModal"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { RootState } from "@/store"
+import {
+  Space,
+  Button,
+  Dropdown,
+  DropList,
+  globalColor,
+  illaPrefix,
+  MoreIcon,
+  useModal,
+  useMessage,
+} from "@illa-design/react"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
-import { Space } from "@illa-design/space"
-import { Button } from "@illa-design/button"
-import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
-import { Dropdown, DropList } from "@illa-design/dropdown"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { MoreIcon } from "@illa-design/icon"
-import { Modal, useModal } from "@illa-design/modal"
-import { Api } from "@/api/base"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { RootState } from "@/store"
-import { RenameModal } from "@/page/Dashboard/components/RenameModal"
-import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { useNavigate } from "react-router-dom"
-import { useMessage } from "@illa-design/message"
 
 const Item = DropList.Item
 

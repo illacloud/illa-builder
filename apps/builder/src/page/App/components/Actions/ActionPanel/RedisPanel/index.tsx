@@ -1,22 +1,22 @@
-import { FC, useEffect, useState } from "react"
 import { Api } from "@/api/base"
-import { sqlInputStyle } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { CodeEditor } from "@/components/CodeEditor"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { isObject } from "@illa-design/system"
-import { ResourcesData } from "@/redux/resource/resourceState"
+import { sqlInputStyle } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
+import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { getCachedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import {
   RedisAction,
   RedisActionInitial,
 } from "@/redux/currentApp/action/redisAction"
+import { ResourcesData } from "@/redux/resource/resourceState"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { isObject } from "@illa-design/react"
+import { FC, useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import { getCachedAction } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
 
 const convertResourcesToTables = (data: Record<string, unknown>) => {
   let res: Record<string, string[]> = {}

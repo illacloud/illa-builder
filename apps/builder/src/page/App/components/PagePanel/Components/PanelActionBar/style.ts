@@ -1,5 +1,5 @@
-import { illaPrefix, globalColor } from "@illa-design/theme"
 import { css } from "@emotion/react"
+import { illaPrefix, globalColor } from "@illa-design/react"
 
 export const panelActionBarWrapperStyle = css`
   display: flex;

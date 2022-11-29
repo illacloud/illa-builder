@@ -1,15 +1,15 @@
-import { FC, useState } from "react"
-import { Search } from "@illa-design/input"
+import { ComponentSession } from "./ComponentSession"
+import { EmptySearchResult } from "./Empty"
+import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import {
   componentContainerStyle,
   searchWrapperStyle,
   sessionListContainerStyle,
 } from "./style"
-import { ComponentPanelProps, ComponentSessionProps } from "./interface"
-import { ComponentSession } from "./ComponentSession"
 import { getMatchComponent } from "./utils"
-import { EmptySearchResult } from "./Empty"
 import { buildComponentList } from "@/widgetLibrary/componentListBuilder"
+import { Search } from "@illa-design/react"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 
 export const ComponentPanel: FC<ComponentPanelProps> = (props) => {

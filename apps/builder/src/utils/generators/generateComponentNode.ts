@@ -1,12 +1,12 @@
-import { cloneDeep } from "lodash"
-import { isObject } from "@illa-design/system"
-import { WidgetCardInfo } from "@/widgetLibrary/interface"
-import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 import {
   ComponentNode,
   CONTAINER_TYPE,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { WidgetCardInfo } from "@/widgetLibrary/interface"
+import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
+import { isObject } from "@illa-design/react"
+import { cloneDeep } from "lodash"
 
 export const generateComponentNode = (
   widgetInfo: Partial<WidgetCardInfo>,

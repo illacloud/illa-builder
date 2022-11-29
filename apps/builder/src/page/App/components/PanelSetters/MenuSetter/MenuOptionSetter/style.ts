@@ -1,6 +1,6 @@
-import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
+import { css } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const optionListHeaderStyle = css`
   width: 100%;

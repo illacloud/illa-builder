@@ -1,11 +1,11 @@
-import { forwardRef, useMemo, FC, useEffect } from "react"
-import { Progress } from "@illa-design/progress"
 import {
   WrappedCircleProgressProps,
   CircleProgressWidgetProps,
 } from "./interface"
 import { applyContainerCss } from "@/widgetLibrary/CircleProgressWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { Progress } from "@illa-design/react"
+import { forwardRef, useMemo, FC, useEffect } from "react"
 
 export const WrappedCircleProgress = forwardRef<
   any,

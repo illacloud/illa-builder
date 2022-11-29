@@ -1,9 +1,9 @@
-import { useMemo, FC, useEffect, forwardRef, useRef } from "react"
-import { Image } from "@illa-design/image"
-import { isValidUrlScheme } from "@/utils/typeHelper"
 import { ImageWidgetProps, WrappedImageProps } from "./interface"
+import { isValidUrlScheme } from "@/utils/typeHelper"
 import { ImageWrapperStyle } from "@/widgetLibrary/ImageWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { Image } from "@illa-design/react"
+import { useMemo, FC, useEffect, forwardRef, useRef } from "react"
 
 export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
   (props, ref) => {

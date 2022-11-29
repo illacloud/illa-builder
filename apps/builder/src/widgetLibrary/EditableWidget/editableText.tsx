@@ -1,17 +1,16 @@
-import { FC, useCallback, useEffect, useRef, useState } from "react"
-import { PenIcon } from "@illa-design/icon"
-import { Input } from "@illa-design/input"
-import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { Label } from "@/widgetLibrary/PublicSector/Label"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import { PenIcon, Input } from "@illa-design/react"
+import { FC, useCallback, useEffect, useRef, useState } from "react"
 
 export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
   const {

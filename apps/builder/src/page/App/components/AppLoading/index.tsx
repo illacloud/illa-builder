@@ -1,12 +1,12 @@
-import { FC, HTMLAttributes, useState } from "react"
-import { Loading } from "@illa-design/loading"
-import { loadingStyle, contentStyle } from "@/page/App/style"
 import {
   leftAnimationStyle,
   rightAnimationStyle,
   navStyle,
   containerStyle,
 } from "./style"
+import { loadingStyle, contentStyle } from "@/page/App/style"
+import { Loading } from "@illa-design/react"
+import { FC, HTMLAttributes, useState } from "react"
 
 export const AppLoading: FC<HTMLAttributes<HTMLDivElement>> = () => {
   const [showLoading, setShowLoading] = useState<boolean>()

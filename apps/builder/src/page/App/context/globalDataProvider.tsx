@@ -1,23 +1,10 @@
-import {
-  createContext,
-  ReactNode,
-  FC,
-  useState,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react"
-import {
-  NotificationType,
-  Notification,
-  createNotification,
-} from "@illa-design/notification"
-import { isValidUrlScheme } from "@/utils/typeHelper"
-import { useSelector } from "react-redux"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
-import { cloneDeep, unset } from "lodash"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { isValidUrlScheme } from "@/utils/typeHelper"
+import { NotificationType, createNotification } from "@illa-design/react"
+import { unset } from "lodash"
+import { createContext, ReactNode, FC, useCallback, useRef } from "react"
+import { useSelector } from "react-redux"
 
 interface Injected {
   handleUpdateGlobalData: (key: string, value: any) => void

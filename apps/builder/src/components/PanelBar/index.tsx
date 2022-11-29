@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useState, MouseEvent } from "react"
+import { PanelBarProps } from "./interface"
 import {
   addIconHotpotStyle,
   applyPanelBarOpenedIconStyle,
@@ -7,9 +7,9 @@ import {
   panelBarItemContentStyle,
   panelBarTitleStyle,
 } from "./style"
-import { PanelBarProps } from "./interface"
+import { PlusIcon, UpIcon } from "@illa-design/react"
 import { AnimatePresence, motion } from "framer-motion"
-import { PlusIcon, UpIcon } from "@illa-design/icon"
+import { FC, memo, useCallback, useState, MouseEvent } from "react"
 
 export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
   const {

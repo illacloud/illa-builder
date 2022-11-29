@@ -1,8 +1,4 @@
-import { FC, memo, useCallback, useMemo } from "react"
-import { get, isEqual, set } from "lodash"
-import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
-import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
 import {
   labelStyle,
   listSetterWrapperStyle,
@@ -10,7 +6,11 @@ import {
   resetButtonStyle,
   resetIconStyle,
 } from "./style"
-import { ResetIcon } from "@illa-design/icon"
+import { PanelLabel } from "@/page/App/components/InspectPanel/label"
+import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
+import { ResetIcon } from "@illa-design/react"
+import { get, isEqual, set } from "lodash"
+import { FC, memo, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 
 export const ListSetter: FC<ListSetterProps> = memo(

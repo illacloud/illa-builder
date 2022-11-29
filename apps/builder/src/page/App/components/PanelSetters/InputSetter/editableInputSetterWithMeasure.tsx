@@ -1,10 +1,10 @@
-import { FC, useCallback, FocusEvent } from "react"
-import { Input } from "@illa-design/input"
+import { EditableInputSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
 import {
   editableInputIconStyle,
   editableInputSetterStyle,
 } from "@/page/App/components/PanelSetters/InputSetter/style"
-import { EditableInputSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
+import { Input } from "@illa-design/react"
+import { FC, useCallback, FocusEvent } from "react"
 
 const valueWithMeasureRegex = /^\d+(\.\d+)?(px|vh|vw|%|em|rem|cm|mm|in|pt|pc)$/
 

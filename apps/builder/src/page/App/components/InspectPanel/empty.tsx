@@ -1,12 +1,12 @@
-import { FC } from "react"
-import { useTranslation } from "react-i18next"
+import { ReactComponent as NoComponentSelected } from "@/assets/no-component-selected-icon.svg"
 import {
   unselectedTipIconStyle,
   unselectedTipTextStyle,
   unselectedTipWrapperStyle,
 } from "@/page/App/components/InspectPanel/style"
-import { ReactComponent as NoComponentSelected } from "@/assets/no-component-selected-icon.svg"
-import { Empty } from "@illa-design/empty"
+import { Empty } from "@illa-design/react"
+import { FC } from "react"
+import { useTranslation } from "react-i18next"
 
 export const EmptySelected: FC = () => {
   const { t } = useTranslation()

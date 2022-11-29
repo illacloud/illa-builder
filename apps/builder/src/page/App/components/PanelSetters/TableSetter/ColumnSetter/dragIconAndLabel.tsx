@@ -1,12 +1,4 @@
-import { FC, useCallback, useContext, useState } from "react"
-import { useTranslation } from "react-i18next"
-import {
-  ReduceIcon,
-  DragPointIcon,
-  EyeOffIcon,
-  EyeOnIcon,
-} from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
+import { DragIconAndLabelProps } from "./interface"
 import {
   baseIconStyle,
   dragItemStyle,
@@ -15,9 +7,17 @@ import {
   labelNameWrapperStyle,
   movableIconWrapperStyle,
 } from "./style"
-import { DragIconAndLabelProps } from "./interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/context/columnListContext"
+import {
+  ReduceIcon,
+  DragPointIcon,
+  EyeOffIcon,
+  EyeOnIcon,
+  Trigger,
+} from "@illa-design/react"
+import { FC, useCallback, useContext, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, label, visible, custom } = props

@@ -1,5 +1,4 @@
-import { FC } from "react"
-import { TabPane, Tabs } from "@illa-design/tabs"
+import { SettingLayout } from "@/page/Setting/Components/Layout"
 import {
   backAreaStyle,
   preIconStyle,
@@ -7,11 +6,11 @@ import {
   tabPreTextStyle,
   tabSuffixStyle,
 } from "@/page/Setting/style"
-import { PreIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
-import { useNavigate, Outlet, useLocation } from "react-router-dom"
+import { TabPane, Tabs, PreIcon } from "@illa-design/react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { SettingLayout } from "@/page/Setting/Components/Layout"
+import { useNavigate, Outlet, useLocation } from "react-router-dom"
 
 export const SettingTabNavBar: FC = () => {
   const navigate = useNavigate()

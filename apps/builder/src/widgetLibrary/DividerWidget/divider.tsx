@@ -1,7 +1,7 @@
-import { FC, forwardRef, useEffect, useMemo } from "react"
-import { Divider } from "@illa-design/divider"
 import { WrappedDividerProps, DividerWidgetProps } from "./interface"
 import { dividerContainerStyle } from "./style"
+import { Divider } from "@illa-design/react"
+import { FC, forwardRef, useEffect, useMemo } from "react"
 
 export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
   (props, ref) => {

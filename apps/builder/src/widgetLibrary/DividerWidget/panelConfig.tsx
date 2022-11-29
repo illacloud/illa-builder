@@ -1,12 +1,12 @@
+import { ReactComponent as TextSizeIcon } from "@/assets/text-size-icon.svg"
+import i18n from "@/i18n/config"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   HorizontalCenterIcon,
   HorizontalEndIcon,
   HorizontalStartIcon,
-} from "@illa-design/icon"
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import i18n from "@/i18n/config"
-import { ReactComponent as TextSizeIcon } from "@/assets/text-size-icon.svg"
+} from "@illa-design/react"
 
 const baseWidgetName = "divider"
 export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [

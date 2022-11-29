@@ -1,13 +1,3 @@
-import { FC } from "react"
-import { useTranslation } from "react-i18next"
-import { useLocation, useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
-import { TabPane, Tabs } from "@illa-design/tabs"
-import { DownIcon } from "@illa-design/icon"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { Divider } from "@illa-design/divider"
-import { Dropdown } from "@illa-design/dropdown"
-import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import {
   containerStyle,
   expandStyle,
@@ -20,9 +10,23 @@ import {
   settingItemStyle,
   settingListStyle,
 } from "./style"
-import { clearLocalStorage } from "@/utils/storage"
+import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
+import { clearLocalStorage } from "@/utils/storage"
+import {
+  TabPane,
+  Tabs,
+  DownIcon,
+  globalColor,
+  illaPrefix,
+  Divider,
+  Dropdown,
+} from "@illa-design/react"
+import { FC } from "react"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const SettingTrigger: FC<{
   avatarBgColor: string

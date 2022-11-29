@@ -1,5 +1,5 @@
-import { FC, useCallback } from "react"
 import { ListBody } from "./body"
+import { ColumnsSetterProvider } from "./context/columnListContext"
 import { ColumnListSetterProps } from "./interface"
 import {
   addIconStyle,
@@ -9,9 +9,9 @@ import {
   optionListHeaderStyle,
 } from "./style"
 import { generateNewColumnItem } from "./utils/generateNewColumns"
-import { ColumnsSetterProvider } from "./context/columnListContext"
+import { AddIcon } from "@illa-design/react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
-import { AddIcon } from "@illa-design/icon"
 
 export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   const {

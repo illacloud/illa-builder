@@ -1,6 +1,4 @@
-import { FC } from "react"
-import { debounce } from "lodash"
-import { Trigger } from "@illa-design/trigger"
+import { ColorPicker } from "@/page/App/components/ColorPicker"
 import {
   alphaContentStyle,
   applyCircleStyle,
@@ -9,9 +7,10 @@ import {
   inListSetterWrapperStyle,
 } from "@/page/App/components/PanelSetters/ColorPickerSetter/style"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { Trigger, globalColor, illaPrefix } from "@illa-design/react"
 import { hexToHsva } from "@uiw/color-convert/src"
-import { ColorPicker } from "@/page/App/components/ColorPicker"
+import { debounce } from "lodash"
+import { FC } from "react"
 
 export const ColorPickerSetter: FC<any> = (props) => {
   const { attrName, handleUpdateDsl, value } = props

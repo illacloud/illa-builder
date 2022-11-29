@@ -1,27 +1,27 @@
-import { FC } from "react"
+import { CodeEditor } from "@/components/CodeEditor"
 import {
   codeMirrorStyle,
   transformRadioStyle,
   transformSpaceStyle,
   transformTitleStyle,
 } from "@/page/App/components/Actions/ActionPanel/TransformerComponent/style"
-import { CodeEditor } from "@/components/CodeEditor"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
-import { useTranslation } from "react-i18next"
-import { RadioGroup } from "@illa-design/radio"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { useDispatch, useSelector } from "react-redux"
 import {
   getCachedAction,
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import {
   Transformer,
   TransformerInitial,
   TransformerInitialTrue,
 } from "@/redux/currentApp/action/actionState"
+import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { RadioGroup } from "@illa-design/react"
+import { FC } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
 
 export const TransformerComponent: FC = () => {
   const { t } = useTranslation()

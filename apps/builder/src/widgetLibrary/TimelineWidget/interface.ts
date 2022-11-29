@@ -1,5 +1,5 @@
-import { TimelineProps } from "@illa-design/timeline"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { TimelineProps } from "@illa-design/react"
 
 export interface WrappedTimelineProps
   extends Pick<TimelineProps, "direction" | "pending"> {

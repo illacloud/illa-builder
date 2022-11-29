@@ -1,6 +1,4 @@
-import { FC, useCallback, useMemo, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { configActions } from "@/redux/config/configSlice"
+import { ErrorItemProps } from "./interface"
 import {
   errorIconStyle,
   errorItemStyle,
@@ -13,16 +11,18 @@ import {
   jsonStyle,
   errorExpandStyle,
 } from "./style"
-import { CaretRightIcon, ErrorIcon } from "@illa-design/icon"
-import { ErrorItemProps } from "./interface"
-import { motion } from "framer-motion"
+import { JsonView } from "@/page/App/components/Debugger/components/JsonView"
+import { configActions } from "@/redux/config/configSlice"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getDisplayNameAndPropertyPath } from "@/utils/executionTreeHelper/utils"
+import { CaretRightIcon, ErrorIcon } from "@illa-design/react"
+import { motion } from "framer-motion"
 import { get } from "lodash"
-import { JsonView } from "@/page/App/components/Debugger/components/JsonView"
+import { FC, useCallback, useMemo, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 export const ErrorItem: FC<ErrorItemProps> = (props) => {
   const { item, pathName } = props

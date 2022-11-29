@@ -1,18 +1,22 @@
-import { FC, useContext, useMemo } from "react"
-import { useSelector } from "react-redux"
-import { useTranslation } from "react-i18next"
-import { DragPointIcon, WarningCircleIcon } from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
-import { get } from "lodash"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { TabListSetterContext } from "./context/tabListContext"
+import { DragIconAndLabelProps, ViewItemShape } from "./interface"
 import {
   labelAndDragIconWrapperStyle,
   labelWrapperStyle,
   moveIconStyle,
 } from "./style"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { TabListSetterContext } from "./context/tabListContext"
-import { DragIconAndLabelProps, ViewItemShape } from "./interface"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  Trigger,
+  DragPointIcon,
+  WarningCircleIcon,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
+import { get } from "lodash"
+import { FC, useContext, useMemo } from "react"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index } = props

@@ -1,7 +1,7 @@
-import { css } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
-import { SerializedStyles } from "@emotion/serialize"
 import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH, NAVBAR_HEIGHT } from "@/style"
+import { css } from "@emotion/react"
+import { SerializedStyles } from "@emotion/serialize"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const editorContainerStyle = css`
   display: flex;

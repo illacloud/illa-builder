@@ -1,5 +1,5 @@
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
-import { DividerTextAlign } from "@illa-design/divider"
+import { DividerTextAlign } from "@illa-design/react"
 
 export interface WrappedDividerProps {
   text: string

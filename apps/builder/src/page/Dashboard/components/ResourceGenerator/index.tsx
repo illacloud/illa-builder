@@ -1,15 +1,15 @@
-import { FC, useState } from "react"
+import { modalContentStyle } from "./style"
+import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
+import { ResourceTypeSelector } from "@/page/Dashboard/components/ResourceGenerator/ResourceTypeSelector"
 import {
   ResourceCreatorPage,
   ResourceGeneratorProps,
 } from "@/page/Dashboard/components/ResourceGenerator/interface"
-import { Modal } from "@illa-design/modal"
-import { useTranslation } from "react-i18next"
 import { ResourceType } from "@/redux/resource/resourceState"
-import { ResourceTypeSelector } from "@/page/Dashboard/components/ResourceGenerator/ResourceTypeSelector"
-import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
-import { modalContentStyle } from "./style"
+import { Modal } from "@illa-design/react"
+import { FC, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
   const { visible, onClose } = props

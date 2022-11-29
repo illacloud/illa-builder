@@ -1,15 +1,15 @@
+import i18n from "@/i18n/config"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { TABS_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/TabsWidget/eventHandlerConfig"
 import {
   HorizontalCenterIcon,
   HorizontalEndIcon,
   HorizontalStartIcon,
   VerticalEndIcon,
   VerticalStartIcon,
-} from "@illa-design/icon"
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import i18n from "@/i18n/config"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { TABS_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/TabsWidget/eventHandlerConfig"
+} from "@illa-design/react"
 
 const baseWidgetName = "tabs"
 export const TABS_PANEL_CONFIG: PanelConfig[] = [

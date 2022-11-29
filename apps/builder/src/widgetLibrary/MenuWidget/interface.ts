@@ -1,5 +1,5 @@
-import { MenuProps } from "@illa-design/menu"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { MenuProps } from "@illa-design/react"
 import { HTMLAttributes } from "react"
 
 export type MenuHorizontalAlign = "flex-start" | "center" | "flex-end"

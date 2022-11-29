@@ -1,20 +1,19 @@
-import { FC, useCallback, useContext, useRef, useState } from "react"
+import { TabListSetterContext } from "./context/tabListContext"
+import { DragIconAndLabel } from "./dragIconAndLabel"
+import { ViewItemShape } from "./interface"
 import {
   actionWrapperStyle,
   copyIconStyle,
   iconStyle,
   listItemTriggerWrapperStyle,
 } from "./style"
-import { ViewItemShape } from "./interface"
-import { CopyIcon, ReduceIcon } from "@illa-design/icon"
-import { DragIconAndLabel } from "./dragIconAndLabel"
-import { TabListSetterContext } from "./context/tabListContext"
-import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { Trigger } from "@illa-design/trigger"
-import { useTranslation } from "react-i18next"
-import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { DragItem } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
+import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
+import { CopyIcon, ReduceIcon, Trigger } from "@illa-design/react"
 import { Identifier } from "dnd-core"
+import { FC, useCallback, useContext, useRef, useState } from "react"
+import { useDrag, useDrop, XYCoord } from "react-dnd"
+import { useTranslation } from "react-i18next"
 
 interface ListItemProps {
   value: ViewItemShape

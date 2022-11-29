@@ -1,9 +1,9 @@
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
+import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import i18n from "@/i18n/config"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { DATE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DateWidget/eventHandlerConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
 
 const baseWidgetName = "date"
 export const DATE_PANEL_CONFIG: PanelConfig[] = [

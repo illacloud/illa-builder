@@ -1,15 +1,11 @@
+import { Api } from "@/api/base"
+import i18n from "@/i18n/config"
+import { configActions } from "@/redux/config/configSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { omit } from "@illa-design/system"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { Api } from "@/api/base"
-import { createMessage } from "@illa-design/message"
-import i18n from "@/i18n/config"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { configActions } from "@/redux/config/configSlice"
-import store from "@/store"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
@@ -17,6 +13,9 @@ import {
   ResourceContent,
   ResourceType,
 } from "@/redux/resource/resourceState"
+import store from "@/store"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { omit, createMessage } from "@illa-design/react"
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 
 function getBaseActionUrl() {

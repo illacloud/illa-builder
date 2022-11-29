@@ -1,10 +1,9 @@
-import { FC } from "react"
-import { MinusIcon, PlusIcon } from "@illa-design/icon"
-import { Button } from "@illa-design/button"
 import { controlStyle, numStyle } from "./style"
-import { useDispatch, useSelector } from "react-redux"
-import { configActions } from "@/redux/config/configSlice"
 import { getScale } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { MinusIcon, PlusIcon, Button } from "@illa-design/react"
+import { FC } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 export const ZoomControl: FC = (props) => {
   const dispatch = useDispatch()

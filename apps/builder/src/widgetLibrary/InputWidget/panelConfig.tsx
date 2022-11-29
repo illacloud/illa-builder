@@ -1,9 +1,9 @@
-import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
+import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import i18n from "@/i18n/config"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { INPUT_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/InputWidget/eventHandlerConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/react"
 
 const baseWidgetName = "input"
 export const INPUT_PANEL_CONFIG: PanelConfig[] = [

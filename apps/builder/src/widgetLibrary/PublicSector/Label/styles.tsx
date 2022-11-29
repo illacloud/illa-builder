@@ -1,6 +1,6 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { LabelAlignType, LabelPositionType } from "./interface"
+import { css, SerializedStyles } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 const baseLabelCss = css`
   display: block;

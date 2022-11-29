@@ -1,19 +1,18 @@
-import { FC, useState } from "react"
-import { isArray, isObject, isString } from "@illa-design/system"
-import {
-  applyExpandIconStyle,
-  jsonContentAnimation,
-} from "@/page/App/components/Debugger/components/ErrorItem/style"
-import { CaretRightIcon } from "@illa-design/icon"
-import { motion } from "framer-motion"
 import { JsonViewProps } from "./interface"
-import { applyJsonValueColorStyle } from "@/page/App/components/DataWorkspace/style"
 import {
   applyLevelStyle,
   itemDescStyle,
   jsonExpandStyle,
   jsonStyle,
 } from "./style"
+import { applyJsonValueColorStyle } from "@/page/App/components/DataWorkspace/style"
+import {
+  applyExpandIconStyle,
+  jsonContentAnimation,
+} from "@/page/App/components/Debugger/components/ErrorItem/style"
+import { isArray, isObject, isString, CaretRightIcon } from "@illa-design/react"
+import { motion } from "framer-motion"
+import { FC, useState } from "react"
 
 export const JsonView: FC<JsonViewProps> = (props) => {
   const { name, value, level = 0 } = props

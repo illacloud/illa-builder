@@ -1,6 +1,4 @@
-import { FC, memo, useCallback, useMemo, MouseEvent } from "react"
-import { CaretRightIcon } from "@illa-design/icon"
-import { motion } from "framer-motion"
+import { WorkSpaceTreeNode } from "./WorkSpaceTreeNode"
 import { WorkSpaceTreeItemProps } from "./interface"
 import {
   applyExpandIconStyle,
@@ -10,10 +8,12 @@ import {
   itemNameStyle,
   jsonContentAnimation,
 } from "./style"
-import { useDispatch, useSelector } from "react-redux"
 import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { WorkSpaceTreeNode } from "./WorkSpaceTreeNode"
+import { CaretRightIcon } from "@illa-design/react"
+import { motion } from "framer-motion"
+import { FC, memo, useCallback, useMemo, MouseEvent } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
   (props: WorkSpaceTreeItemProps) => {

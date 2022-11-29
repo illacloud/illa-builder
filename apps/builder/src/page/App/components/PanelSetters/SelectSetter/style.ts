@@ -1,6 +1,6 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { fixedWidthStyle } from "@/page/App/components/PanelSetters/style"
+import { css, SerializedStyles } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const applyBaseSelectWrapperStyle = (
   isSetterSingleRow: boolean = false,

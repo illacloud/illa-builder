@@ -1,26 +1,17 @@
 import {
-  FC,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
-import { InputNumber } from "@illa-design/input-number"
-import { LoadingIcon } from "@illa-design/icon"
-import {
   NumberInputWidgetProps,
   WrappedNumberInputProps,
 } from "@/widgetLibrary/NumberInputWidget/interface"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { Label } from "@/widgetLibrary/PublicSector/Label"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import { InputNumber, LoadingIcon } from "@illa-design/react"
+import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
 
 const parserThousand = (value: number | string) =>
   `${value}`.replace(/\d+/, function (s) {

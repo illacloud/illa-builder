@@ -1,7 +1,7 @@
-import { css, keyframes } from "@emotion/react"
-import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH, NAVBAR_HEIGHT } from "@/style"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { leftPanelStyle, rightPanelStyle, navbarStyle } from "@/page/App/style"
+import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH, NAVBAR_HEIGHT } from "@/style"
+import { css, keyframes } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 const enlargeNavBar = keyframes`
   0% {

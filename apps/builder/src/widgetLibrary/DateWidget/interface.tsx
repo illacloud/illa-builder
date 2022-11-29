@@ -1,9 +1,9 @@
-import { ReactNode } from "react"
-import { DatePickerProps } from "@illa-design/date-picker"
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
-import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { DatePickerProps } from "@illa-design/react"
+import { ReactNode } from "react"
 
 export interface WrappedDateProps
   extends Pick<

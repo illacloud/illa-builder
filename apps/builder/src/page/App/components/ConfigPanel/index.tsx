@@ -1,7 +1,7 @@
-import { FC, HTMLAttributes } from "react"
-import { Divider } from "@illa-design/divider"
-import { InspectPanel } from "@/page/App/components/InspectPanel"
 import { configPanelStyle } from "./style"
+import { InspectPanel } from "@/page/App/components/InspectPanel"
+import { Divider } from "@illa-design/react"
+import { FC, HTMLAttributes } from "react"
 
 interface ConfigPanelProps extends HTMLAttributes<HTMLDivElement> {}
 

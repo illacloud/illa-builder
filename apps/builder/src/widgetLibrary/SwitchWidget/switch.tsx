@@ -1,18 +1,13 @@
-import { FC, useEffect, useRef } from "react"
-import { Switch } from "@illa-design/switch"
 import { SwitchWidgetProps, WrappedSwitchProps } from "./interface"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
-import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { Switch } from "@illa-design/react"
+import { FC, useEffect, useRef } from "react"
 
 export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
-  const {
-    value,
-    disabled,
-    colorScheme,
-    handleUpdateDsl,
-    handleOnChange,
-  } = props
+  const { value, disabled, colorScheme, handleUpdateDsl, handleOnChange } =
+    props
 
   return (
     <Switch
