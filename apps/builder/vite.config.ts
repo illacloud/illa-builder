@@ -2,6 +2,7 @@ import basicSsl from "@vitejs/plugin-basic-ssl"
 import react from "@vitejs/plugin-react"
 import { resolve } from "path"
 import { defineConfig, loadEnv } from "vite"
+import { chunkSplitPlugin } from "vite-plugin-chunk-split"
 import svgr from "vite-plugin-svgr"
 
 // https://vitejs.dev/config/
@@ -27,6 +28,27 @@ export default defineConfig((props) => {
       }),
       svgr(),
       basicSsl(),
+      chunkSplitPlugin({
+        strategy: "default",
+        customSplitting: {
+          "react-vendor": [
+            "react",
+            "react-dom",
+            "@emotion/react",
+            "react-router-dom",
+          ],
+          "@illa-design-vendor": ["@illa-design"],
+          utils: [/src\/utils/],
+          "app-vendor": [/src\/page\/App/],
+          "dashboard-vendor": [/src\/page\/Dashboard/],
+          "deploy-vendor": [/src\/page\/Deploy/],
+          "setting-vendor": [/src\/page\/Setting/],
+          "user-vendor": [/src\/page\/User/],
+          "status-vendor": [/src\/page\/status/],
+          "widget-library": [/src\/widgetLibrary/],
+          "icons-library": [/src\/assets/],
+        },
+      }) as Plugin,
     ],
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },
@@ -39,6 +61,7 @@ export default defineConfig((props) => {
     },
     build: {
       sourcemap: true,
+      reportCompressedSize: false,
     },
     server: {
       port: 3000,
