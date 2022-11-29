@@ -226,8 +226,11 @@
           "use_html": "使用HTML",
           "use_raw": "使用原始文本",
           "placeholder": {
-            "emails": "{{[使用逗号分隔多个邮箱。]}}",
-            "attachment": "{{[{ data: base64-encrypted file data, name: \"File name\", contentType: 'text/plain' }]}}"
+            "emails": "用逗号分隔邮箱。如{{[\"A\", \"B\"]}}",
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
+          },
+          "tips": {
+            "port": "一些互联网服务提供商可能会禁用端口25。如果连接失败，请修改端口。"
           }
         },
         "option": {

@@ -180,6 +180,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
             />
           </div>
         </div>
+        <div css={configItemTip}>{t("editor.action.panel.smtp.tips.port")}</div>
         <div css={configItem}>
           <div css={labelContainer}>
             <span
