@@ -48,6 +48,7 @@ export interface WrappedTableProps
       | "overFlow"
       | "pagination"
       | "defaultSort"
+      | "rowSelection"
       | "columnVisibility"
       | "multiRowSelection"
       | "data"
@@ -57,6 +58,7 @@ export interface WrappedTableProps
   pageSize?: number
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
+  selectedRow?: any[]
   handleOnClickMenuItem?: (path: string) => void
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
