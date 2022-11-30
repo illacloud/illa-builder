@@ -2,7 +2,7 @@ import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { createMessage } from "@illa-design/message"
+import { createMessage } from "@illa-design/react"
 
 const message = createMessage()
 const MAX_SIZE = 5 * 1024 * 1024
