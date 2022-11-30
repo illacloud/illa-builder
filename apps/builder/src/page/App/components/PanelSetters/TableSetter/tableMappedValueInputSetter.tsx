@@ -16,7 +16,7 @@ function getPath(attrName?: string, widgetDisplayName?: string) {
   }
 }
 
-export const realInputValue = (
+const realInputValue = (
   attrValue: string,
   dataPath: string,
   widgetDisplayName: string,
@@ -29,7 +29,7 @@ export const realInputValue = (
   return attrValue.includes("currentRow") ? JSToString(value) : attrValue
 }
 
-export const getNeedComputedValue = (
+const getNeedComputedValue = (
   value: string,
   dataPath: string,
   widgetDisplayName: string,
@@ -79,7 +79,6 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
     const output = fromCurrentRow
       ? getNeedComputedValue(value, dataPath, widgetDisplayName)
       : value
-    console.log(value, output, fromCurrentRow, "handleValueChange")
     handleUpdateDsl(attrName, output)
     handleUpdateDsl(`${parentAttrName}.fromCurrentRow`, fromCurrentRow)
   }
