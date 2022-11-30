@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
 
 export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
-  const { visible, onVisibleChange } = props
+  const { visible, onVisibleChange, onCreateSuccess } = props
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -52,6 +52,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
             },
           },
           (response) => {
+            onCreateSuccess()
             dispatch(
               dashboardAppActions.addDashboardAppReducer({
                 app: response.data,

@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom"
 import copy from "copy-to-clipboard"
 import {
   Button,
+  Divider,
+  Empty,
   List,
   ListItem,
   ListItemMeta,
-  Divider,
-  Empty,
   useMessage,
 } from "@illa-design/react"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
@@ -91,6 +91,9 @@ export const DashboardApps: FC = () => {
         {appsList.length == 0 && <Empty paddingVertical="120px" />}
       </div>
       <CreateNewModal
+        onCreateSuccess={() => {
+          setCreateNewModalVisible(false)
+        }}
         visible={createNewModalVisible}
         onVisibleChange={(visible) => {
           setCreateNewModalVisible(visible)

@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
 import {
+  Button,
   Dropdown,
   DropList,
-  Button,
-  MoreIcon,
   globalColor,
   illaPrefix,
   Modal,
-  useModal,
+  MoreIcon,
   Space,
   useMessage,
+  useModal,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
@@ -33,7 +33,6 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const [confirmLoading, setConfirmLoading] = useState(false)
   const [resourceEditorVisible, setResourceEditorVisible] = useState(false)
 
   const resource = useSelector((state: RootState) => {
@@ -74,8 +73,8 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                 title={t("dashboard.common.delete")}
                 fontColor={globalColor(`--${illaPrefix}-red-03`)}
                 onClick={() => {
-                  modal.show({
-                    okLoading: confirmLoading,
+                  const modalId = modal.show({
+                    blockOkHide: true,
                     title: t("dashboard.common.delete_title"),
                     children: t("dashboard.common.delete_content"),
                     cancelText: t("dashboard.common.delete_cancel_text"),
@@ -85,40 +84,38 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                     },
                     closable: false,
                     onOk: () => {
-                      return new Promise((resolve) => {
-                        Api.request<Resource<ResourceContent>>(
-                          {
-                            url: `/resources/${resourceId}`,
-                            method: "DELETE",
-                          },
-                          (response) => {
-                            dispatch(
-                              resourceActions.removeResourceItemReducer(
-                                response.data.resourceId,
-                              ),
-                            )
-                            message.success({
-                              content: t("dashboard.resource.delete_success"),
-                            })
-                            resolve("finish")
-                          },
-                          (failure) => {
-                            message.error({
-                              content: t("dashboard.resource.delete_fail"),
-                            })
-                            resolve("finish")
-                          },
-                          (crash) => {
-                            message.error({
-                              content: t("network_error"),
-                            })
-                            resolve("finish")
-                          },
-                          (loading) => {
-                            setConfirmLoading(loading)
-                          },
-                        )
-                      })
+                      Api.request<Resource<ResourceContent>>(
+                        {
+                          url: `/resources/${resourceId}`,
+                          method: "DELETE",
+                        },
+                        (response) => {
+                          dispatch(
+                            resourceActions.removeResourceItemReducer(
+                              response.data.resourceId,
+                            ),
+                          )
+                          message.success({
+                            content: t("dashboard.resource.delete_success"),
+                          })
+                          // modal.close(modalId)
+                        },
+                        (failure) => {
+                          message.error({
+                            content: t("dashboard.resource.delete_fail"),
+                          })
+                        },
+                        (crash) => {
+                          message.error({
+                            content: t("network_error"),
+                          })
+                        },
+                        (loading) => {
+                          modal.update(modalId, {
+                            okLoading: loading,
+                          })
+                        },
+                      )
                     },
                   })
                 }}

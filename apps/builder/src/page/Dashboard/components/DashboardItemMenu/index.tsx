@@ -86,8 +86,9 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                 title={t("dashboard.common.delete")}
                 fontColor={globalColor(`--${illaPrefix}-red-03`)}
                 onClick={() => {
-                  modal.show({
+                  const modalId = modal.show({
                     w: "496px",
+                    blockOkHide: true,
                     title: t("dashboard.common.delete_title"),
                     children: t("dashboard.common.delete_content"),
                     cancelText: t("dashboard.common.delete_cancel_text"),
@@ -111,6 +112,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                           message.success({
                             content: t("dashboard.app.trash_success"),
                           })
+                          modal.close(modalId)
                         },
                         (failure) => {
                           message.success({
@@ -120,6 +122,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                         (crash) => {
                           message.error({
                             content: t("network_error"),
+                          })
+                        },
+                        (loading) => {
+                          modal.update(modalId, {
+                            okLoading: loading,
                           })
                         },
                       )
