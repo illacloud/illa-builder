@@ -144,8 +144,9 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     },
     [handleUpdateOriginalDSLMultiAttr, itemHeight],
   )
+  const isEditor = illaMode === "edit"
 
-  const canShowBorder = illaMode === "edit" && isMouseHover
+  const canShowBorder = isEditor && isMouseHover
 
   return (
     <div
@@ -199,6 +200,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 false,
                 canShowBorder,
                 itemBackGroundColor,
+                isEditor,
                 itemHeight,
               )}
               key={node.displayName}
@@ -263,7 +265,8 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
     [handleUpdateOriginalDSLMultiAttr, itemHeight],
   )
 
-  const canShowBorder = illaMode === "edit" && isMouseHover
+  const isEditor = illaMode === "edit"
+  const canShowBorder = isEditor && isMouseHover
   return (
     <div
       css={ListParentContainerWithScroll}
@@ -311,6 +314,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
               false,
               canShowBorder,
               itemBackGroundColor,
+              isEditor,
               itemHeight,
             )}
             key={node.displayName}

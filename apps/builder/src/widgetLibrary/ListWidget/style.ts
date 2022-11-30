@@ -25,6 +25,7 @@ export const applyListItemStyle = (
   isFirst: boolean = false,
   canShowBorder: boolean = false,
   bgColor: string,
+  isEditor: boolean = false,
   itemHeight?: number,
 ) => {
   return css`
@@ -35,6 +36,7 @@ export const applyListItemStyle = (
     margin-top: ${!isFirst ? "8px" : 0};
     border: 1px dashed
       ${canShowBorder ? getColor("techPurple", "01") : "transparent"};
+    opacity: ${isEditor && !isFirst ? 0.5 : 1};
   `
 }
 
