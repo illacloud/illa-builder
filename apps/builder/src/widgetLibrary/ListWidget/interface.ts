@@ -15,6 +15,7 @@ export interface ListWidgetProps extends BaseWidgetProps {
   handleOnRowSelect: () => void
   selectedIndex: number
   itemBackGroundColor: string
+  disabled: boolean
 }
 
 export interface RenderTemplateContainerProps {

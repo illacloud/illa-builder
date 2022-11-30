@@ -343,8 +343,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     childrenNode,
     handleUpdateMultiExecutionResult,
     handleOnRowSelect,
-    selectedIndex,
-    itemBackGroundColor,
+    disabled,
   } = props
 
   const propsRef = useRef(props)
@@ -418,6 +417,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                 "displayName",
                 `list-child-${index}-${currentItem.displayName}`,
               )
+              set(currentItem, "props.disabled", disabled || false)
             }
             return currentItem
           })
@@ -429,7 +429,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
         return itemContainer
       })
     },
-    [executionResult, rawTree],
+    [disabled, executionResult, rawTree],
   )
 
   const transTemplateContainerNodes = useCallback(
@@ -458,7 +458,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
 
   const handleUpdateSelectedItem = useCallback(
     (index: number) => {
-      if (!Array.isArray(dataSources)) return
+      if (!Array.isArray(dataSources) || disabled) return
       new Promise((resolve, reject) => {
         let value
         if (index < 0 || index > dataSources.length) {

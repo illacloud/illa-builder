@@ -15,6 +15,7 @@ import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformW
 import { RootState } from "@/store"
 import {
   getCanvas,
+  getContainerListDisplayNameMappedChildrenNodeDisplayName,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -36,11 +37,14 @@ export const getEventScripts = (events: EventsInProps[], eventType: string) => {
 export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
     const { componentNode } = props
-
+    const displayNameMapProps = useSelector(getExecutionResult)
     const { displayName, type, w, h, unitW, unitH, childrenNode } =
       componentNode
 
-    const displayNameMapProps = useSelector(getExecutionResult)
+    const realProps = useMemo(
+      () => displayNameMapProps[displayName] ?? {},
+      [displayName, displayNameMapProps],
+    )
     const { handleUpdateGlobalData, handleDeleteGlobalData } =
       useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
@@ -56,6 +60,35 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         return []
       },
     )
+
+    const containerListMapChildName = useSelector(
+      getContainerListDisplayNameMappedChildrenNodeDisplayName,
+    )
+
+    const listContainerDisabled = useMemo(() => {
+      const listWidgetDisplayNames = Object.keys(containerListMapChildName)
+      let currentListDisplayName = ""
+      for (let i = 0; i < listWidgetDisplayNames.length; i++) {
+        if (
+          containerListMapChildName[listWidgetDisplayNames[i]].includes(
+            displayName,
+          )
+        ) {
+          currentListDisplayName = listWidgetDisplayNames[i]
+          break
+        }
+      }
+      if (!currentListDisplayName) return realProps?.disabled || false
+      const listWidgetProps = displayNameMapProps[currentListDisplayName]
+      if (Object.hasOwn(listWidgetProps, "disabled"))
+        return listWidgetProps.disabled
+      return realProps?.disabled || false
+    }, [
+      containerListMapChildName,
+      displayName,
+      displayNameMapProps,
+      realProps?.disabled,
+    ])
 
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
@@ -108,11 +141,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         }
       },
       [allComponents, componentNode, dispatch],
-    )
-
-    const realProps = useMemo(
-      () => displayNameMapProps[displayName] ?? {},
-      [displayName, displayNameMapProps],
     )
 
     const handleUpdateDsl = useCallback(
@@ -333,11 +361,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       })
     }, [getOnFormInvalidEventScripts])
 
-    if (!type) return null
     const widget = widgetBuilder(type)
     if (!widget) return null
-    const Component = widget.widget
 
+    const Component = widget.widget
     const {
       hidden,
       borderColor,
@@ -392,6 +419,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleOnFocus={handleOnFocus}
           handleOnBlur={handleOnBlur}
           handleOnRowSelect={handleOnRowSelect}
+          disabled={listContainerDisabled}
         />
       </div>
     )

@@ -50,71 +50,6 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
       useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
 
-    const allComponents = useSelector<RootState, ComponentNode[]>(
-      (rootState) => {
-        const rootNode = getCanvas(rootState)
-        const parentNodeDisplayName = componentNode.parentNode
-        const target = searchDsl(rootNode, parentNodeDisplayName)
-        if (target) {
-          return target.childrenNode || []
-        }
-        return []
-      },
-    )
-
-    const updateComponentHeight = useCallback(
-      (newHeight: number) => {
-        const newH = Math.ceil((newHeight + 6) / componentNode.unitH)
-        if (newH === componentNode.h) return
-        const newItem = {
-          ...componentNode,
-          h: Math.max(newH, componentNode.minH),
-        }
-        const cloneDeepAllComponents = cloneDeep(allComponents)
-        const findIndex = cloneDeepAllComponents.findIndex(
-          (node) => node.displayName === newItem.displayName,
-        )
-        cloneDeepAllComponents.splice(findIndex, 1, newItem)
-        if (componentNode.h < newItem.h) {
-          const result = getReflowResult(newItem, cloneDeepAllComponents, false)
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: componentNode.parentNode || "root",
-                childNodes: result.finalState,
-              },
-            ]),
-          )
-        }
-        if (componentNode.h > newItem.h) {
-          const effectRows = componentNode.h - newItem.h
-          const effectMap = getNearComponentNodes(
-            componentNode,
-            cloneDeepAllComponents,
-          )
-          effectMap.set(newItem.displayName, newItem)
-          effectMap.forEach((node) => {
-            if (node.displayName !== componentNode.displayName) {
-              node.y -= effectRows
-            }
-          })
-          let finalState = applyEffectMapToComponentNodes(
-            effectMap,
-            allComponents,
-          )
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: componentNode.parentNode || "root",
-                childNodes: finalState,
-              },
-            ]),
-          )
-        }
-      },
-      [allComponents, componentNode, dispatch],
-    )
-
     const realProps = useMemo(() => nodeProps ?? {}, [nodeProps])
 
     const handleUpdateDsl = useCallback(
@@ -359,7 +294,6 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
           handleOnPaginationChange={handleOnPaginationChange}
           handleOnColumnFiltersChange={handleOnColumnFiltersChange}
           handleUpdateDsl={handleUpdateDsl}
-          updateComponentHeight={updateComponentHeight}
           handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
           handleOnFormSubmit={handleOnFormSubmit}
           handleOnFormInvalid={handleOnFormInvalid}

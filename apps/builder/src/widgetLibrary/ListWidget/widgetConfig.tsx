@@ -36,7 +36,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
         },
         {
           ...TEXT_WIDGET_CONFIG,
-          w: 30,
+          w: 20,
           h: 5,
           x: 22,
           y: 8,
