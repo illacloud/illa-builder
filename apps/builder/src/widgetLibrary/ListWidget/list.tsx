@@ -486,6 +486,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     },
     [
       dataSources,
+      disabled,
       displayName,
       handleOnRowSelect,
       handleUpdateGlobalData,
