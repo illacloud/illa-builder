@@ -90,8 +90,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-column-mappedValue`,
             labelName: i18n.t("editor.inspect.setter_label.mapped_value"),
             attrName: "mappedValue",
-            bindAttrName: ["type"],
-            setterType: "INPUT_SETTER",
+            setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+            placeholder: "{{currentRow}}",
           },
           {
             id: `${baseWidgetName}-basic-enableSorting`,
