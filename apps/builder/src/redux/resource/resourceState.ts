@@ -4,6 +4,7 @@ import { RedisResource } from "./redisResource"
 import { MysqlLikeResource } from "./mysqlLikeResource"
 import { ElasticSearchResource } from "./elasticSearchResource"
 import { S3Resource } from "./s3Resource"
+import { SMTPResource } from "@/redux/resource/smtpResource"
 
 export type ResourceType =
   | "mysql"
@@ -19,6 +20,7 @@ export type ResourceType =
   | "s3"
 
 export type ResourceContent =
+  | SMTPResource
   | S3Resource
   | ElasticSearchResource
   | MysqlLikeResource

@@ -172,7 +172,7 @@ const transformDataFormat = (
           ...content,
           commandArgs: {
             ...content.commandArgs,
-            objectData: window.btoa(window.encodeURIComponent(objectData)),
+            objectData: btoa(encodeURIComponent(objectData)),
           },
         }
       }
@@ -184,7 +184,7 @@ const transformDataFormat = (
             commandArgs: {
               ...content.commandArgs,
               objectDataList: objectDataList.map((value: string) =>
-                window.btoa(window.encodeURIComponent(value)),
+                btoa(encodeURIComponent(value)),
               ),
             },
           }
@@ -193,10 +193,25 @@ const transformDataFormat = (
           ...content,
           commandArgs: {
             ...content.commandArgs,
-            objectDataList: [
-              window.btoa(window.encodeURIComponent(objectDataList) || ""),
-            ],
+            objectDataList: [btoa(encodeURIComponent(objectDataList) || "")],
           },
+        }
+      }
+      return content
+    case "smtp":
+      const { attachment } = content
+      if (Array.isArray(attachment)) {
+        return {
+          ...content,
+          attachment: attachment.map((value) => ({
+            ...value,
+            data: btoa(encodeURIComponent(value.data || "")),
+          })),
+        }
+      } else if (attachment) {
+        return {
+          ...content,
+          attachment: [btoa(encodeURIComponent(attachment || ""))],
         }
       }
       return content

@@ -211,9 +211,26 @@
           "tips": {
             "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。",
             "delimiter": "分隔符是一个用来分组键值的字符。"
+          }
+        },
+        "smtp": {
+          "from_email": "发件人",
+          "set_replay_email": "设置回复邮箱",
+          "replay_email": "回复",
+          "to_email": "收件人",
+          "bcc_email": "密送",
+          "cc_email": "抄送",
+          "subject": "主题",
+          "body": "正文",
+          "attachment": "附件",
+          "use_html": "使用HTML",
+          "use_raw": "使用原始文本",
+          "placeholder": {
+            "emails": "用逗号分隔邮箱。如{{[\"A\", \"B\"]}}",
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
           },
-          "error": {
-            "max_file": "文件大小不能超过5M。"
+          "tips": {
+            "port": "一些互联网服务提供商可能会禁用端口25。如果连接失败，请修改端口。"
           }
         },
         "option": {
@@ -227,6 +244,9 @@
         },
         "tips": {
           "transformer": "启用Transformer将查询结果转换为不同的格式"
+        },
+        "error": {
+          "max_file": "文件大小不能超过5M。"
         }
       },
       "resource": {

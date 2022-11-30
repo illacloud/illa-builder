@@ -106,6 +106,13 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         accessKeyID: data.accessKeyID,
         secretAccessKey: data.secretAccessKey,
       }
+    case "smtp":
+      return {
+        host: data.host,
+        port: +data.port,
+        username: data.username,
+        password: data.password,
+      }
   }
 }
 
