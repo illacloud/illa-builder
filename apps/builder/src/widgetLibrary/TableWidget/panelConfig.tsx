@@ -40,12 +40,6 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         openDynamic: true,
         useCustomLayout: true,
       },
-      {
-        id: `${baseWidgetName}-column-test`,
-        labelName: i18n.t("editor.inspect.setter_label.format"),
-        attrName: "test",
-        setterType: "INPUT_SETTER",
-      },
     ],
   },
   {
