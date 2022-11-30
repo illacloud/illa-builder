@@ -5,9 +5,8 @@ import {
   configItem,
   labelContainer,
 } from "@/page/App/components/Actions/RestApiConfigElement/style"
-import { getColor } from "@illa-design/theme"
+import { getColor, Input, Password } from "@illa-design/react"
 import { Controller } from "react-hook-form"
-import { Input, Password } from "@illa-design/input"
 import { useTranslation } from "react-i18next"
 
 export const BasicAuthPanel: FC<BasicAuthPanelProps> = (props) => {

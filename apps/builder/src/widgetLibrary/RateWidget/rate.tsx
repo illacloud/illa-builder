@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from "react"
-import { Rate } from "@illa-design/rate"
+import { Rate } from "@illa-design/react"
 import { RateWidgetProps, WrappedRateProps } from "./interface"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"

@@ -1,14 +1,5 @@
-import {
-  FC,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
-import { InputNumber } from "@illa-design/input-number"
-import { LoadingIcon } from "@illa-design/icon"
+import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import { InputNumber, LoadingIcon } from "@illa-design/react"
 import {
   NumberInputWidgetProps,
   WrappedNumberInputProps,

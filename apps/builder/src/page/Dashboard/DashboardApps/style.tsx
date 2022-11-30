@@ -1,6 +1,6 @@
 import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const appsContainerStyle: SerializedStyles = css`
   display: flex;

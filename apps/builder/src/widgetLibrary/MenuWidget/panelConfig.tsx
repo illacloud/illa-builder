@@ -8,7 +8,7 @@ import {
   HorizontalEndIcon,
   HorizontalStartIcon,
   VerticalStartIcon,
-} from "@illa-design/icon"
+} from "@illa-design/react"
 
 const baseWidgetName = "table"
 

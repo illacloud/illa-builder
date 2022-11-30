@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { SelectWidgetProps, WrappedSelectProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 import {

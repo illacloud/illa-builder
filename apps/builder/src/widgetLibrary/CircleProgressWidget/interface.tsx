@@ -1,4 +1,4 @@
-import { ProgressProps } from "@illa-design/progress"
+import { ProgressProps } from "@illa-design/react"
 import {
   BaseComponentNodeProps,
   BaseWidgetProps,

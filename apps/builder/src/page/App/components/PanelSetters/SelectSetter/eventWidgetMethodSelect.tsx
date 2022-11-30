@@ -1,5 +1,5 @@
 import { FC, useEffect, useMemo } from "react"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { get } from "lodash"
 import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
@@ -42,8 +42,8 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   }, [widgetDisplayNameMapProps, selectedWidgetID])
   const finalOptions = useMemo(() => {
     let tmpOptions: string[] = []
-    const eventHandlerConfig = widgetBuilder(selectedWidgetType)
-      ?.eventHandlerConfig
+    const eventHandlerConfig =
+      widgetBuilder(selectedWidgetType)?.eventHandlerConfig
     if (eventHandlerConfig) {
       tmpOptions = eventHandlerConfig.methods
     }

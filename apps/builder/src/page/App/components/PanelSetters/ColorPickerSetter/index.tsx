@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { debounce } from "lodash"
-import { Trigger } from "@illa-design/trigger"
+import { Trigger, globalColor, illaPrefix } from "@illa-design/react"
 import {
   alphaContentStyle,
   applyCircleStyle,
@@ -9,7 +9,6 @@ import {
   inListSetterWrapperStyle,
 } from "@/page/App/components/PanelSetters/ColorPickerSetter/style"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { hexToHsva } from "@uiw/color-convert/src"
 import { ColorPicker } from "@/page/App/components/ColorPicker"
 

@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const actionEventHandlerStyle = css`
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};

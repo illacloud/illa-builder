@@ -1,8 +1,6 @@
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
-import { dayjsPro, isNumber } from "@illa-design/system"
+import { dayjsPro, isNumber, Link, Button } from "@illa-design/react"
 import { CellContext } from "@tanstack/table-core"
-import { Link } from "@illa-design/link"
-import { Button } from "@illa-design/button"
 import { FC } from "react"
 
 export const tansTableDataToColumns = (

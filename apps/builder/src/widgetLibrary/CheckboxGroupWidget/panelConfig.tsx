@@ -1,5 +1,5 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"

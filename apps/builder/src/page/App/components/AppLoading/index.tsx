@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes, useState } from "react"
-import { Loading } from "@illa-design/loading"
+import { Loading } from "@illa-design/react"
 import { loadingStyle, contentStyle } from "@/page/App/style"
 import {
   leftAnimationStyle,

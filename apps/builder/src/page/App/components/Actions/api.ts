@@ -2,10 +2,9 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { omit } from "@illa-design/system"
+import { omit, createMessage } from "@illa-design/react"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { Api } from "@/api/base"
-import { createMessage } from "@illa-design/message"
 import i18n from "@/i18n/config"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { configActions } from "@/redux/config/configSlice"
