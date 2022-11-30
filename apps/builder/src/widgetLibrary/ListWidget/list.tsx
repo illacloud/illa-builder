@@ -128,6 +128,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
 
   const currentData = useMemo(() => {
     const chunkData = chunk(copyComponents, itemNumber)
+    if (chunkData.length === 0) return []
     return currentPage < chunkData.length
       ? chunkData[currentPage]
       : chunkData[0]
@@ -157,47 +158,40 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       }}
     >
       <div css={listContainerStyle} ref={containerRef}>
+        <Resizable
+          size={{
+            width: "100%",
+            height: itemHeight,
+          }}
+          key={childrenNode[0].displayName}
+          bounds="parent"
+          minHeight={48}
+          maxHeight={containerBounds.height - 4}
+          handleComponent={isMouseHover ? resizeBottomHandler() : undefined}
+          enable={{
+            bottom: true,
+          }}
+          onResizeStart={handleResizeStart}
+          onResizeStop={handleOnResizeTopStop}
+        >
+          <div
+            css={applyListItemStyle(true, canShowBorder, itemBackGroundColor)}
+            onClick={() => {
+              handleUpdateSelectedItem(0)
+            }}
+          >
+            <RenderTemplateContainer
+              templateComponentNodes={childrenNode[0]}
+              templateContainerHeight={itemHeight}
+            />
+          </div>
+          {isMouseHover && (
+            <div css={applyDashedLineStyle(false, true, false)} />
+          )}
+        </Resizable>
         {currentData.map((node, index) => {
           if (!currentPage && index === 0) {
-            return (
-              <Resizable
-                size={{
-                  width: "100%",
-                  height: itemHeight,
-                }}
-                key={childrenNode[0].displayName}
-                bounds="parent"
-                minHeight={48}
-                maxHeight={containerBounds.height - 4}
-                handleComponent={
-                  isMouseHover ? resizeBottomHandler() : undefined
-                }
-                enable={{
-                  bottom: true,
-                }}
-                onResizeStart={handleResizeStart}
-                onResizeStop={handleOnResizeTopStop}
-              >
-                <div
-                  css={applyListItemStyle(
-                    true,
-                    canShowBorder,
-                    itemBackGroundColor,
-                  )}
-                  onClick={() => {
-                    handleUpdateSelectedItem(index)
-                  }}
-                >
-                  <RenderTemplateContainer
-                    templateComponentNodes={childrenNode[0]}
-                    templateContainerHeight={itemHeight}
-                  />
-                </div>
-                {isMouseHover && (
-                  <div css={applyDashedLineStyle(false, true, false)} />
-                )}
-              </Resizable>
-            )
+            return null
           }
           return (
             <div
