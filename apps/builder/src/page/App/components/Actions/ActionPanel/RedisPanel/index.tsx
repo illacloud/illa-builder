@@ -6,7 +6,7 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { isObject } from "@illa-design/system"
+import { isObject } from "@illa-design/react"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import {

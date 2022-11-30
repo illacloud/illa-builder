@@ -2,12 +2,16 @@ import { FC, useRef, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation, Trans } from "react-i18next"
 import { useNavigate } from "react-router-dom"
-import { Input, Password } from "@illa-design/input"
-import { Checkbox } from "@illa-design/checkbox"
-import { Button } from "@illa-design/button"
-import { Link } from "@illa-design/link"
-import { Countdown } from "@illa-design/statistic"
-import { WarningCircleIcon } from "@illa-design/icon"
+import {
+  Input,
+  Password,
+  Checkbox,
+  Button,
+  Link,
+  Countdown,
+  WarningCircleIcon,
+  useMessage,
+} from "@illa-design/react"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { Api } from "@/api/base"
 import {
@@ -27,7 +31,6 @@ import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { setLocalStorage } from "@/utils/storage"
 import { TextLink } from "@/page/User/components/TextLink"
-import { useMessage } from "@illa-design/message"
 
 export function getLocalLanguage(): string {
   const lang = window.navigator.language

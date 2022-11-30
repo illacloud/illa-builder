@@ -1,4 +1,4 @@
-import { isString } from "@illa-design/system"
+import { isString } from "@illa-design/react"
 
 const DISPLAY_NAME_REGEX = /^([a-zA-Z_$])([a-zA-Z0-9_$])*$/
 

@@ -1,7 +1,13 @@
 import { FC, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
-import { Button, ButtonGroup } from "@illa-design/button"
+import {
+  AddIcon,
+  PaginationPreIcon,
+  Button,
+  ButtonGroup,
+  List,
+  useMessage,
+} from "@illa-design/react"
 import { ActionResourceSelectorProps } from "./interface"
 import {
   applyResourceItemStyle,
@@ -12,7 +18,6 @@ import {
 } from "./style"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { List } from "@illa-design/list"
 import { fromNow } from "@/utils/dayjs"
 import { useTranslation } from "react-i18next"
 import {
@@ -27,7 +32,6 @@ import { configActions } from "@/redux/config/configSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
-import { useMessage } from "@illa-design/message"
 
 export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   props,

@@ -1,5 +1,5 @@
 import { forwardRef, useMemo, FC, useEffect } from "react"
-import { Progress } from "@illa-design/progress"
+import { Progress } from "@illa-design/react"
 import {
   WrappedCircleProgressProps,
   CircleProgressWidgetProps,

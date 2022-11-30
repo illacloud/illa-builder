@@ -14,14 +14,19 @@ import {
   optionLabelStyle,
   sslStyle,
 } from "./style"
-import { Input, Password } from "@illa-design/input"
-import { getColor } from "@illa-design/theme"
+import {
+  Input,
+  Password,
+  getColor,
+  Divider,
+  Switch,
+  Button,
+  ButtonGroup,
+  PaginationPreIcon,
+  WarningCircleIcon,
+} from "@illa-design/react"
 import { useTranslation } from "react-i18next"
-import { Divider } from "@illa-design/divider"
-import { Switch } from "@illa-design/switch"
 import { Controller, useForm } from "react-hook-form"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon, WarningCircleIcon } from "@illa-design/icon"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { Resource } from "@/redux/resource/resourceState"

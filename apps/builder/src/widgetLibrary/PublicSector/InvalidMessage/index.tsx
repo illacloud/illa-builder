@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { invalidateMessageCss } from "./style"
-import { WarningCircleIcon } from "@illa-design/icon"
+import { WarningCircleIcon } from "@illa-design/react"
 import { ValidateMessageNewProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
 export const InvalidMessage: FC<ValidateMessageNewProps> = (props) => {

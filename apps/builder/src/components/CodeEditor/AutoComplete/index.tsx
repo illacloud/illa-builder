@@ -7,7 +7,7 @@ import {
   ObjectIcon,
   ComponentIcon,
   NullIcon,
-} from "@illa-design/icon"
+} from "@illa-design/react"
 import { contentStyle, itemStyle, typeStyle } from "./styles"
 import { AutoCompleteItemProps, AutoCompleteItemType } from "./interface"
 

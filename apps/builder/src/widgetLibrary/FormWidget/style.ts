@@ -1,4 +1,4 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { css } from "@emotion/react"
 export const formContainerStyle = css`
   width: 100%;

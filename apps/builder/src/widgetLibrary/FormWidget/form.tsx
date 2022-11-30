@@ -44,7 +44,7 @@ import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { isObject } from "@/utils/typeHelper"
 import { get, set } from "lodash"
-import { useMessage } from "@illa-design/message"
+import { useMessage } from "@illa-design/react"
 
 function getLikeInputChildrenNode(
   componentNode: ComponentNode,

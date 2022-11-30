@@ -3,7 +3,7 @@ import {
   fixedWidthStyle,
   listSetterWidthStyle,
 } from "@/page/App/components/PanelSetters/style"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const applyInputSetterWrapperStyle = (
   isSetterSingleRow: boolean = false,

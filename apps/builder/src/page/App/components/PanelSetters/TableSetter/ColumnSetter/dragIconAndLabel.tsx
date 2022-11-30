@@ -5,8 +5,8 @@ import {
   DragPointIcon,
   EyeOffIcon,
   EyeOnIcon,
-} from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
+  Trigger,
+} from "@illa-design/react"
 import {
   baseIconStyle,
   dragItemStyle,
