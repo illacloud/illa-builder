@@ -62,7 +62,7 @@ export const Login: FC = () => {
             email: res.data.email,
           }),
         )
-        navigate((location.state as LocationState)?.from?.pathname ?? "/", {
+        navigate(location.state?.from?.pathname ?? "/", {
           replace: true,
         })
         message.success({

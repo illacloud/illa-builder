@@ -24,11 +24,8 @@ export const PageBasic: FC = () => {
   const dispatch = useDispatch()
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
 
-  const {
-    currentPageIndex,
-    pageSortedKey,
-    homepageDisplayName,
-  } = rootExecutionProps
+  const { currentPageIndex, pageSortedKey, homepageDisplayName } =
+    rootExecutionProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const pageProps = useSelector<RootState>((state) => {
     const canvas = getCanvas(state)
@@ -99,7 +96,11 @@ export const PageBasic: FC = () => {
           size="small"
         />
         <SetterPadding>
-          <Switch checked={isHomepage} onChange={handleChangeIsHomePage} />
+          <Switch
+            checked={isHomepage}
+            onChange={handleChangeIsHomePage}
+            colorScheme="techPurple"
+          />
         </SetterPadding>
       </LeftAndRightLayout>
       <LeftAndRightLayout>

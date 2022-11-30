@@ -97,11 +97,8 @@ async function handleChangeCurrentSectionWhenDelete(
   action: ReturnType<typeof componentsActions.deleteSectionViewReducer>,
   listenerApi: AppListenerEffectAPI,
 ) {
-  const {
-    viewDisplayName,
-    originPageSortedKey,
-    parentNodeName,
-  } = action.payload
+  const { viewDisplayName, originPageSortedKey, parentNodeName } =
+    action.payload
   const rootState = listenerApi.getState()
   const executionTree = getExecutionResult(rootState)
   const parentNode = executionTree[parentNodeName]
@@ -129,14 +126,16 @@ function handleUpdateComponentReflowEffect(
   const rootNode = getCanvas(rootState)
   let updateComponents: ComponentNode[] = []
   if (action.type === "components/updateComponentsShape") {
-    updateComponents = (action as ReturnType<
-      typeof componentsActions.updateComponentsShape
-    >).payload.components
+    updateComponents = (
+      action as ReturnType<typeof componentsActions.updateComponentsShape>
+    ).payload.components
   }
   if (action.type === "components/updateComponentContainerReducer") {
-    ;(action as ReturnType<
-      typeof componentsActions.updateComponentContainerReducer
-    >).payload.updateSlice.forEach((slice) => {
+    ;(
+      action as ReturnType<
+        typeof componentsActions.updateComponentContainerReducer
+      >
+    ).payload.updateSlice.forEach((slice) => {
       updateComponents.push(slice.component)
     })
   }

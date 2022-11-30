@@ -134,7 +134,7 @@ export const formatData = (
   }
 }
 
-export const rotateGroupByData = function(matrix: number[][]) {
+export const rotateGroupByData = function (matrix: number[][]) {
   const result: number[][] = new Array(matrix[0]?.length || 0)
     .fill(0)
     .map(() => {
