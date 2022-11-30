@@ -456,29 +456,26 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     (index: number) => {
       if (!Array.isArray(dataSources)) return
       new Promise((resolve, reject) => {
+        let value
         if (index < 0 || index > dataSources.length) {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                selectedItem: dataSources[0],
-                selectedIndex: 0,
-              },
-            },
-          ])
-          return resolve(index)
+          value = {
+            selectedItem: dataSources[0],
+            selectedIndex: 0,
+          }
         } else {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                selectedItem: dataSources[index],
-                selectedIndex: index,
-              },
-            },
-          ])
-          return resolve(index)
+          value = {
+            selectedItem: dataSources[index],
+            selectedIndex: index,
+          }
         }
+        handleUpdateGlobalData?.(displayName, value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value,
+          },
+        ])
+        resolve(value)
       }).then(() => {
         handleOnRowSelect()
       })
@@ -487,6 +484,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
       dataSources,
       displayName,
       handleOnRowSelect,
+      handleUpdateGlobalData,
       handleUpdateMultiExecutionResult,
     ],
   )

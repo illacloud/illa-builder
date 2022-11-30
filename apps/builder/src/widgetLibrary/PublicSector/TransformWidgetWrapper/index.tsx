@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { cloneDeep, get } from "lodash"
+import { cloneDeep, get, set } from "lodash"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import {
@@ -25,6 +25,7 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { isObject } from "@/utils/typeHelper"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -228,14 +229,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       return []
     }, [realProps])
 
-    const getOnRowSelectChangeEventScripts = useCallback(() => {
-      const events = get(realProps, "events")
-      if (events) {
-        return getEventScripts(events, "rowSelect")
-      }
-      return []
-    }, [realProps])
-
     const handleOnChange = useCallback(() => {
       getOnChangeEventScripts().forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
@@ -288,10 +281,29 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     }, [getOnColumnFiltersChangeEventScripts])
 
     const handleOnRowSelect = useCallback(() => {
-      getOnRowSelectChangeEventScripts().forEach((scriptObj) => {
+      const originEvents = get(componentNode.props, "events", [])
+      const dynamicPaths = get(componentNode.props, "$dynamicAttrPaths", [])
+      const needRunEvents = cloneDeep(originEvents)
+      dynamicPaths?.forEach((path: string) => {
+        const realPath = path.split(".").slice(1).join(".")
+        try {
+          const dynamicString = get(needRunEvents, realPath, "")
+          if (dynamicString) {
+            const calcValue = evaluateDynamicString(
+              "",
+              dynamicString,
+              BUILDER_CALC_CONTEXT,
+            )
+            set(needRunEvents, realPath, calcValue)
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      })
+      needRunEvents.forEach((scriptObj: any) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
-    }, [getOnRowSelectChangeEventScripts])
+    }, [componentNode.props])
 
     const getOnFormSubmitEventScripts = useCallback(() => {
       const events = get(realProps, "events")

@@ -4,7 +4,7 @@ import { isValidUrlScheme } from "@/utils/typeHelper"
 import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
-import { unset } from "lodash"
+import { get, set, unset } from "lodash"
 
 interface Injected {
   handleUpdateGlobalData: (key: string, value: any) => void
@@ -74,14 +74,17 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
   })
 
   const handleUpdateGlobalData = useCallback((key: string, value: any) => {
-    BUILDER_CALC_CONTEXT = {
-      ...BUILDER_CALC_CONTEXT,
-      [key]: value,
+    const oldValue = get(globalDataRef.current, key, {})
+    const newValue = {
+      ...oldValue,
+      ...value,
     }
+
+    set(globalDataRef.current, key, newValue)
   }, [])
 
   const handleDeleteGlobalData = useCallback((key: string) => {
-    unset(BUILDER_CALC_CONTEXT, key)
+    unset(globalDataRef.current, key)
   }, [])
 
   const value = {
