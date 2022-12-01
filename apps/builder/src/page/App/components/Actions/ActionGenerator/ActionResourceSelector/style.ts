@@ -39,6 +39,8 @@ export const resourceItemTitleStyle = css`
   margin-left: 8px;
   flex: 1;
   font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
