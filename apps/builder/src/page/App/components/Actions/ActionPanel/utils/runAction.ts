@@ -107,7 +107,7 @@ const fetchActionResult = (
   displayName: string,
   appId: string,
   actionId: string,
-  actionContent: MysqlLikeAction | RestApiAction<BodyContent>,
+  actionContent: ActionContent,
   successEvent: any[] = [],
   failedEvent: any[] = [],
   transformer: Transformer,
@@ -177,8 +177,9 @@ const transformDataFormat = (
   actionType: string,
   content: Record<string, any>,
 ) => {
+  console.log("actionType", actionType)
   switch (actionType) {
-    case "s3":
+    case "s3": {
       const { commands, commandArgs } = content
       if (commands === S3ActionRequestType.UPLOAD) {
         const { objectData } = commandArgs
@@ -212,7 +213,8 @@ const transformDataFormat = (
         }
       }
       return content
-    case "smtp":
+    }
+    case "smtp": {
       const { attachment } = content
       if (Array.isArray(attachment)) {
         return {
@@ -229,6 +231,19 @@ const transformDataFormat = (
         }
       }
       return content
+    }
+    case "restapi": {
+      if (content.bodyType === "raw" && content.body?.content) {
+        return {
+          ...content,
+          body: {
+            ...content.body,
+            content: JSON.stringify(content.body.content),
+          },
+        }
+      }
+      return content
+    }
     default:
       return content
   }
@@ -257,9 +272,10 @@ export const runAction = (
     const realFailedEvent: any[] = isTrigger
       ? failedEvent || []
       : getRealEventHandler(failedEvent)
-    const actionContent = transformDataFormat(actionType, realContent) as
-      | MysqlLikeAction
-      | RestApiAction<BodyContent>
+    const actionContent = transformDataFormat(
+      actionType,
+      realContent,
+    ) as ActionContent
     fetchActionResult(
       resourceId || "",
       actionType,
