@@ -31,7 +31,21 @@ const message = createMessage()
 
 function calcRealContent(content: Record<string, any>) {
   let realContent: Record<string, any> = {}
-  if (Array.isArray(content) || isObject(content)) {
+  if (Array.isArray(content)) {
+    realContent = content.map((item) => {
+      if (isDynamicString(item)) {
+        try {
+          return evaluateDynamicString("", item, BUILDER_CALC_CONTEXT)
+        } catch (e) {
+          message.error({
+            content: `maybe run error`,
+          })
+        }
+      } else {
+        return calcRealContent(item)
+      }
+    })
+  } else if (isObject(content)) {
     for (let key in content) {
       const value = content[key]
       if (isDynamicString(value)) {
