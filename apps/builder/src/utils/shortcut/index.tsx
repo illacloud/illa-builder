@@ -1,4 +1,4 @@
-import hotkeys from "hotkeys-js"
+import hotkeys from "react-hotkeys-hook"
 import { FC, ReactNode, useCallback, useEffect, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslation } from "react-i18next"

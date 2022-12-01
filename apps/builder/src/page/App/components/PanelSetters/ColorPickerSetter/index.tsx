@@ -1,4 +1,4 @@
-import { hexToHsva } from "@uiw/color-convert/src"
+import { hexToHsva } from "@uiw/react-color"
 import { debounce } from "lodash"
 import { FC } from "react"
 import { Trigger, globalColor, illaPrefix } from "@illa-design/react"

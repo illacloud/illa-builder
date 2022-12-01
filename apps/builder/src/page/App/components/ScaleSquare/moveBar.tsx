@@ -8,7 +8,7 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { Trigger } from "@illa-design/trigger"
+import { Trigger } from "@illa-design/react"
 import { ReactComponent as DocIcon } from "@/assets/doc.svg"
 import {
   MoveBarPositionShape,
