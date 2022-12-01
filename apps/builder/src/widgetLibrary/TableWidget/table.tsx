@@ -82,6 +82,8 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         formatData,
         handleUpdateMultiExecutionResult,
         handleUpdateOriginalDSLMultiAttr,
+        mode,
+        multiRowSelection,
       ],
     )
 
