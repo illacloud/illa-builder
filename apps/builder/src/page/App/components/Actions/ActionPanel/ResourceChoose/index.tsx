@@ -133,6 +133,7 @@ export const ResourceChoose: FC = () => {
           </Select>
           <Select
             ml="8px"
+            w="auto"
             colorScheme="techPurple"
             value={action.triggerMode}
             onChange={(value) => {
