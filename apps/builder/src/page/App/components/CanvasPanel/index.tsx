@@ -1,16 +1,16 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import { LockIcon } from "@illa-design/react"
+import { DotPanel } from "@/page/App/components/DotPanel"
+import { getFreezeState, getIllaMode } from "@/redux/config/configSelector"
+import { FocusManager } from "@/utils/focusManager"
+import { CanvasPanelProps } from "./interface"
 import {
   applyScaleContainerStyle,
   messageStyle,
   messageWrapperStyle,
 } from "./style"
-import { CanvasPanelProps } from "./interface"
-import { DotPanel } from "@/page/App/components/DotPanel"
-import { useDispatch, useSelector } from "react-redux"
-import { LockIcon } from "@illa-design/icon"
-import { getFreezeState, getIllaMode } from "@/redux/config/configSelector"
-import { FocusManager } from "@/utils/focusManager"
 
 export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const { ...otherProps } = props

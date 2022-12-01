@@ -1,17 +1,17 @@
 import { FC } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { CodeEditor } from "@/components/CodeEditor"
+import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
 import {
   codeEditorLabelStyle,
   mongoItemCodeEditorStyle,
   mongoItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
-import { CodeEditor } from "@/components/CodeEditor"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { useTranslation } from "react-i18next"
-import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import { DeleteManyContent } from "@/redux/currentApp/action/mongoDbAction"
 import { getCachedAction } from "@/redux/config/configSelector"
-import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
+import { DeleteManyContent } from "@/redux/currentApp/action/mongoDbAction"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DeleteManyPart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()

@@ -1,28 +1,28 @@
+import { motion } from "framer-motion"
+import { get } from "lodash"
 import { FC, useCallback, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { CaretRightIcon, ErrorIcon } from "@illa-design/react"
+import { JsonView } from "@/page/App/components/Debugger/components/JsonView"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  errorIconStyle,
-  errorItemStyle,
-  nameStyle,
-  sourceStyle,
-  applyExpandIconStyle,
-  jsonContentAnimation,
-  errorContainerStyle,
-  errorMessageStyle,
-  jsonStyle,
-  errorExpandStyle,
-} from "./style"
-import { CaretRightIcon, ErrorIcon } from "@illa-design/icon"
-import { ErrorItemProps } from "./interface"
-import { motion } from "framer-motion"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getDisplayNameAndPropertyPath } from "@/utils/executionTreeHelper/utils"
-import { get } from "lodash"
-import { JsonView } from "@/page/App/components/Debugger/components/JsonView"
+import { ErrorItemProps } from "./interface"
+import {
+  applyExpandIconStyle,
+  errorContainerStyle,
+  errorExpandStyle,
+  errorIconStyle,
+  errorItemStyle,
+  errorMessageStyle,
+  jsonContentAnimation,
+  jsonStyle,
+  nameStyle,
+  sourceStyle,
+} from "./style"
 
 export const ErrorItem: FC<ErrorItemProps> = (props) => {
   const { item, pathName } = props

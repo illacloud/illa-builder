@@ -1,4 +1,26 @@
 import { FC, useState } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  Input,
+  InputNumber,
+  PaginationPreIcon,
+  Password,
+  Switch,
+  TextArea,
+  getColor,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
+import { RootState } from "@/store"
+import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -14,23 +36,6 @@ import {
   sslItem,
   sslStyle,
 } from "./style"
-import { Input, Password, TextArea } from "@illa-design/input"
-import { getColor } from "@illa-design/theme"
-import { useTranslation } from "react-i18next"
-import { Divider } from "@illa-design/divider"
-import { Switch } from "@illa-design/switch"
-import { InputNumber } from "@illa-design/input-number"
-import { Controller, useForm } from "react-hook-form"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon } from "@illa-design/icon"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/store"
-import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
-import { Api } from "@/api/base"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Message } from "@illa-design/message"
-import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 /**
  * include mariadb or tidb
@@ -61,6 +66,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const message = useMessage()
 
   return (
     <form
@@ -86,14 +92,20 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             },
             (response) => {
               dispatch(resourceActions.updateResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
               onFinished(response.data.resourceId)
             },
             (error) => {
-              Message.error(error.data.errorMessage)
+              message.error({
+                content: error.data.errorMessage,
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)
@@ -119,14 +131,20 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             },
             (response) => {
               dispatch(resourceActions.addResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
               onFinished(response.data.resourceId)
             },
             (error) => {
-              Message.error(error.data.errorMessage)
+              message.error({
+                content: error.data.errorMessage,
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)
@@ -514,13 +532,19 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                   },
                 },
                 (response) => {
-                  Message.success(t("dashboard.resource.test_success"))
+                  message.success({
+                    content: t("dashboard.resource.test_success"),
+                  })
                 },
                 (error) => {
-                  Message.error(error.data.errorMessage)
+                  message.error({
+                    content: error.data.errorMessage,
+                  })
                 },
                 () => {
-                  Message.error(t("dashboard.resource.test_fail"))
+                  message.error({
+                    content: t("dashboard.resource.test_fail"),
+                  })
                 },
                 (loading) => {
                   setTestLoading(loading)

@@ -1,11 +1,11 @@
-import { FC, useContext, useRef } from "react"
-import { DragItem, ListItemProps } from "./interface"
-import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { Identifier } from "dnd-core"
-import { optionListItemStyle } from "./style"
+import { FC, useContext, useRef } from "react"
+import { XYCoord, useDrag, useDrop } from "react-dnd"
+import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { DragIconAndLabel } from "@/page/App/components/PanelSetters/OptionListSetter/dragIconAndLabel"
 import { More } from "@/page/App/components/PanelSetters/OptionListSetter/more"
-import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
+import { DragItem, ListItemProps } from "./interface"
+import { optionListItemStyle } from "./style"
 
 export const ListItem: FC<ListItemProps> = (props) => {
   const { id, label, value, index } = props

@@ -1,9 +1,9 @@
+import { PanelBar } from "@/components/PanelBar"
 import {
   PanelConfig,
   PanelFieldConfig,
   PanelFieldGroupConfig,
 } from "@/page/App/components/InspectPanel/interface"
-import { PanelBar } from "@/components/PanelBar"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
 

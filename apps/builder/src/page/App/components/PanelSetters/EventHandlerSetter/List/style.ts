@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const listItemStyle = css`
   width: 100%;
@@ -12,7 +12,7 @@ export const listItemStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   font-size: 12px;
 
-  :not(:first-child) {
+  :not(:first-of-type) {
     margin-top: 8px;
   }
 

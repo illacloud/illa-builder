@@ -1,8 +1,8 @@
-import { CheckboxGroupProps } from "@illa-design/checkbox"
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { CheckboxGroupProps } from "@illa-design/react"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
-import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedCheckboxGroupProps
   extends Pick<

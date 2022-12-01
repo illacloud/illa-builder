@@ -1,6 +1,6 @@
-import chroma from "chroma-js"
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import chroma from "chroma-js"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const searchHeaderStyle = css`
   width: 100%;

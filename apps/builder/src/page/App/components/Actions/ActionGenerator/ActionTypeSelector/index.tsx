@@ -1,23 +1,22 @@
 import { FC, useState } from "react"
-import { ActionTypeSelectorProps } from "./interface"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { Spin, useMessage } from "@illa-design/react"
+import { Api } from "@/api/base"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
-import { categoryStyle, containerStyle, resourceListStyle } from "./style"
-import { Spin } from "@illa-design/spin"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { configActions } from "@/redux/config/configSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
   actionItemInitial,
 } from "@/redux/currentApp/action/actionState"
-import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { configActions } from "@/redux/config/configSlice"
-import { useDispatch, useSelector } from "react-redux"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { useTranslation } from "react-i18next"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionCard } from "../ActionCard"
+import { ActionTypeSelectorProps } from "./interface"
+import { categoryStyle, containerStyle, resourceListStyle } from "./style"
 
 export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { onSelect } = props
@@ -26,6 +25,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const appInfo = useSelector(getAppInfo)
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const message = useMessage()
 
   return (
     <Spin css={containerStyle} colorScheme="techPurple" loading={loading}>
@@ -38,9 +38,8 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                 key={prop.actionType}
                 onSelect={(item) => {
                   if (item === "transformer") {
-                    const displayName = DisplayNameGenerator.generateDisplayName(
-                      item,
-                    )
+                    const displayName =
+                      DisplayNameGenerator.generateDisplayName(item)
                     const initialContent = getInitialContent(item)
                     const data: Partial<ActionItem<ActionContent>> = {
                       actionType: item,
@@ -55,19 +54,21 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                         data,
                       },
                       ({ data }: { data: ActionItem<ActionContent> }) => {
-                        Message.success(
-                          t(
+                        message.success({
+                          content: t(
                             "editor.action.action_list.message.success_created",
                           ),
-                        )
+                        })
                         dispatch(actionActions.addActionItemReducer(data))
                         dispatch(configActions.changeSelectedAction(data))
                         onSelect(item)
                       },
                       () => {
-                        Message.error(
-                          t("editor.action.action_list.message.failed"),
-                        )
+                        message.error({
+                          content: t(
+                            "editor.action.action_list.message.failed",
+                          ),
+                        })
                         DisplayNameGenerator.removeDisplayName(displayName)
                       },
                       () => {

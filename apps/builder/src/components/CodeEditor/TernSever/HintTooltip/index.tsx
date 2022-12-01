@@ -1,9 +1,15 @@
-import { FC, useRef } from "react"
 import { css } from "@emotion/react"
-import { DocsIcon } from "@illa-design/icon"
-import { Tag } from "@illa-design/tag"
-import { Trigger } from "@illa-design/trigger"
-import { isArray, isObject, isString } from "@illa-design/system"
+import { FC, useRef } from "react"
+import { TypeQueryResult } from "tern/lib/tern"
+import {
+  DocsIcon,
+  Tag,
+  Trigger,
+  isArray,
+  isObject,
+  isString,
+} from "@illa-design/react"
+import { transTypeFromTern } from "@/components/CodeEditor/TernSever"
 import { HintTooltipProps, TransQuery } from "./interface"
 import {
   contentAreaStyle,
@@ -16,8 +22,6 @@ import {
   mainTitleStyle,
   titleTextStyle,
 } from "./styles"
-import { TypeQueryResult } from "tern/lib/tern"
-import { transTypeFromTern } from "@/components/CodeEditor/TernSever"
 
 const formatEvaluate = (data: any) => {
   let format = ""

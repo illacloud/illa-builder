@@ -1,11 +1,9 @@
-import { FC, useCallback, useMemo, useState, ChangeEvent } from "react"
+import { ChangeEvent, FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Password } from "@illa-design/input"
-import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
-import { Button } from "@illa-design/button"
-import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
+import { Button, Password, useMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
+import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
+import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 
 const validatePasswordEmpty = (password: string) => {
   return !password
@@ -29,21 +27,17 @@ const validateConfirmationAndNewEqual = (
 export const SettingPassword: FC = () => {
   const { t } = useTranslation()
   const [currentPassword, setCurrentPassword] = useState<string>("")
-  const [
-    currentPasswordErrorMessage,
-    setCurrentPasswordErrorMessage,
-  ] = useState<string>("")
+  const [currentPasswordErrorMessage, setCurrentPasswordErrorMessage] =
+    useState<string>("")
 
+  const message = useMessage()
   const [newPassword, setNewPassword] = useState<string>("")
-  const [newPasswordErrorMessage, setNewPasswordErrorMessage] = useState<
-    string
-  >("")
+  const [newPasswordErrorMessage, setNewPasswordErrorMessage] =
+    useState<string>("")
 
   const [confirmPassword, setConfirmPassword] = useState<string>("")
-  const [
-    confirmPasswordErrorMessage,
-    setConfirmPasswordErrorMessage,
-  ] = useState("")
+  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
+    useState("")
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -159,17 +153,23 @@ export const SettingPassword: FC = () => {
         setCurrentPassword("")
         setNewPassword("")
         setConfirmPassword("")
-        Message.success(t("edit_success"))
+        message.success({
+          content: t("edit_success"),
+        })
       },
       (failure) => {
         //  TODO: need error code unique,to show error message
         const { data } = failure
         if (data?.errorCode === 400) {
-          Message.error(failure.data.errorMessage)
+          message.error({
+            content: failure.data.errorMessage,
+          })
         }
       },
       (crash) => {
-        Message.error(t("network_error"))
+        message.error({
+          content: t("network_error"),
+        })
       },
       (loading) => {
         setIsLoading(loading)

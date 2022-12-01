@@ -1,8 +1,8 @@
 import { FC } from "react"
+import { ResourceCard } from "@/page/Dashboard/components/ResourceGenerator/ResourceCard"
+import { ResourceTypeList } from "@/page/Dashboard/components/ResourceGenerator/config"
 import { ResourceTypeSelectorProps } from "./interface"
 import { categoryStyle, containerStyle, resourceListStyle } from "./style"
-import { ResourceTypeList } from "@/page/Dashboard/components/ResourceGenerator/config"
-import { ResourceCard } from "@/page/Dashboard/components/ResourceGenerator/ResourceCard"
 
 export const ResourceTypeSelector: FC<ResourceTypeSelectorProps> = (props) => {
   const { onSelect } = props

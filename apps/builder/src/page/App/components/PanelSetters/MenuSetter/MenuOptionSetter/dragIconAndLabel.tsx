@@ -1,7 +1,9 @@
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { DragPointIcon, AddIcon } from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
+import { AddIcon, Button, DragPointIcon, Trigger } from "@illa-design/react"
+import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
+import { MenuListSetterContext } from "./context/menuListContext"
+import { DragIconAndLabelProps } from "./interface"
 import {
   addIconStyle,
   deleteButtonStyle,
@@ -12,10 +14,6 @@ import {
   modalStyle,
   movableIconWrapperStyle,
 } from "./style"
-import { DragIconAndLabelProps } from "./interface"
-import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { MenuListSetterContext } from "./context/menuListContext"
-import { Button } from "@illa-design/button"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, title } = props

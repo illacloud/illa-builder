@@ -1,6 +1,6 @@
-import { getSnippets } from "./dynamicConverter"
-import { isObject } from "@/utils/typeHelper"
 import { formatDataAsArray, formatDataAsObject } from "@/utils/formatData"
+import { isObject } from "@/utils/typeHelper"
+import { getSnippets } from "./dynamicConverter"
 
 export const QUOTED_DYNAMIC_STRING_REGEX = /["']({{[\s\S]*?}})["']/g
 export const DYNAMIC_STRING_REG = /{{([\s\S]*?)}}/
@@ -79,9 +79,7 @@ export const wrapCode = (code: string) => {
     })
   `
 }
-export function getDisplayNameAndAttrPath(
-  fullPath: string,
-): {
+export function getDisplayNameAndAttrPath(fullPath: string): {
   displayName: string
   attrPath: string
 } {

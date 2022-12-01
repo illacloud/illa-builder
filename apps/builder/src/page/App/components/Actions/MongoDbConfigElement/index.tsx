@@ -1,4 +1,32 @@
 import { FC, useState } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  Input,
+  PaginationPreIcon,
+  RadioGroup,
+  Switch,
+  TextArea,
+  getColor,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
+import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
+import {
+  MongoDbConfig,
+  MongoDbResource,
+  MongoDbResourceInitial,
+  MongoDbSSL,
+} from "@/redux/resource/mongodbResource"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Resource } from "@/redux/resource/resourceState"
+import { RootState } from "@/store"
+import { sslStyle } from "../MysqlLikeConfigElement/style"
 import { MongoDbConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -11,30 +39,6 @@ import {
   optionLabelStyle,
   sslItem,
 } from "./style"
-import { Input, TextArea } from "@illa-design/input"
-import { getColor } from "@illa-design/theme"
-import { useTranslation } from "react-i18next"
-import { Divider } from "@illa-design/divider"
-import { Controller, useForm } from "react-hook-form"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon } from "@illa-design/icon"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/store"
-import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
-import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
-import {
-  MongoDbConfig,
-  MongoDbResource,
-  MongoDbResourceInitial,
-  MongoDbSSL,
-} from "@/redux/resource/mongodbResource"
-import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
-import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
-import { sslStyle } from "../MysqlLikeConfigElement/style"
-import { Switch } from "@illa-design/switch"
-import { RadioGroup } from "@illa-design/radio"
-import { resourceActions } from "@/redux/resource/resourceSlice"
 
 export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -42,6 +46,8 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const { t } = useTranslation()
 
   const dispatch = useDispatch()
+
+  const message = useMessage()
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -103,14 +109,20 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                 dispatch(
                   resourceActions.updateResourceItemReducer(response.data),
                 )
-                Message.success(t("dashboard.resource.save_success"))
+                message.success({
+                  content: t("dashboard.resource.save_success"),
+                })
                 onFinished(response.data.resourceId)
               },
               () => {
-                Message.error(t("dashboard.resource.save_fail"))
+                message.error({
+                  content: t("dashboard.resource.save_fail"),
+                })
               },
               () => {
-                Message.error(t("dashboard.resource.save_fail"))
+                message.error({
+                  content: t("dashboard.resource.save_fail"),
+                })
               },
               (loading) => {
                 setSaving(loading)
@@ -148,13 +160,19 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
               (response) => {
                 onFinished(response.data.resourceId)
                 dispatch(resourceActions.addResourceItemReducer(response.data))
-                Message.success(t("dashboard.resource.save_success"))
+                message.success({
+                  content: t("dashboard.resource.save_success"),
+                })
               },
               () => {
-                Message.error(t("dashboard.resource.save_fail"))
+                message.error({
+                  content: t("dashboard.resource.save_fail"),
+                })
               },
               () => {
-                Message.error(t("dashboard.resource.save_fail"))
+                message.error({
+                  content: t("dashboard.resource.save_fail"),
+                })
               },
               (loading) => {
                 setSaving(loading)
@@ -187,14 +205,20 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                 dispatch(
                   resourceActions.updateResourceItemReducer(response.data),
                 )
-                Message.success(t("dashboard.resource.save_success"))
+                message.success({
+                  content: t("dashboard.resource.save_success"),
+                })
                 onFinished(response.data.resourceId)
               },
               () => {
-                Message.error(t("dashboard.resource.save_fail"))
+                message.error({
+                  content: t("dashboard.resource.save_fail"),
+                })
               },
               () => {
-                Message.error(t("dashboard.resource.save_fail"))
+                message.error({
+                  content: t("dashboard.resource.save_fail"),
+                })
               },
               (loading) => {
                 setSaving(loading)
@@ -224,13 +248,19 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
               (response) => {
                 onFinished(response.data.resourceId)
                 dispatch(resourceActions.addResourceItemReducer(response.data))
-                Message.success(t("dashboard.resource.save_success"))
+                message.success({
+                  content: t("dashboard.resource.save_success"),
+                })
               },
               () => {
-                Message.error(t("dashboard.resource.save_fail"))
+                message.error({
+                  content: t("dashboard.resource.save_fail"),
+                })
               },
               () => {
-                Message.error(t("dashboard.resource.save_fail"))
+                message.error({
+                  content: t("dashboard.resource.save_fail"),
+                })
               },
               (loading) => {
                 setSaving(loading)
@@ -472,13 +502,19 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                     },
                   },
                   (response) => {
-                    Message.success(t("dashboard.resource.test_success"))
+                    message.success({
+                      content: t("dashboard.resource.test_success"),
+                    })
                   },
                   (error) => {
-                    Message.error(error.data.errorMessage)
+                    message.error({
+                      content: error.data.errorMessage,
+                    })
                   },
                   () => {
-                    Message.error(t("dashboard.resource.test_fail"))
+                    message.error({
+                      content: t("dashboard.resource.test_fail"),
+                    })
                   },
                   (loading) => {
                     setTestLoading(loading)
@@ -507,13 +543,19 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                     },
                   },
                   (response) => {
-                    Message.success(t("dashboard.resource.test_success"))
+                    message.success({
+                      content: t("dashboard.resource.test_success"),
+                    })
                   },
                   (error) => {
-                    Message.error(error.data.errorMessage)
+                    message.error({
+                      content: error.data.errorMessage,
+                    })
                   },
                   () => {
-                    Message.error(t("dashboard.resource.test_fail"))
+                    message.error({
+                      content: t("dashboard.resource.test_fail"),
+                    })
                   },
                   (loading) => {
                     setTestLoading(loading)

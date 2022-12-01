@@ -1,7 +1,7 @@
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
-import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
-import { TabsProps } from "@illa-design/tabs"
+import { TabsProps } from "@illa-design/react"
 import { viewListItemShaper } from "@/widgetLibrary/ContainerWidget/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedTabsProps extends TabsProps, BaseWidgetProps {
   value?: string

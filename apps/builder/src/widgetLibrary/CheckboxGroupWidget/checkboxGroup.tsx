@@ -1,18 +1,18 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
-import { CheckboxGroup } from "@illa-design/checkbox"
-import {
-  CheckboxGroupWidgetProps,
-  WrappedCheckboxGroupProps,
-} from "./interface"
-import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
+import { CheckboxGroup } from "@illa-design/react"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   applyCenterLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
+import {
+  CheckboxGroupWidgetProps,
+  WrappedCheckboxGroupProps,
+} from "./interface"
 
 export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
   const {

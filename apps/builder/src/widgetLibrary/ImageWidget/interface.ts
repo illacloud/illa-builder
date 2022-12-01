@@ -1,6 +1,6 @@
-import { ImageProps } from "@illa-design/image"
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { ImageProps } from "@illa-design/react"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedImageProps
   extends Pick<ImageProps, "width" | "height" | "radius"> {

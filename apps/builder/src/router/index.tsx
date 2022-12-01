@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
-import { routerConfig } from "@/router/routerConfig"
-import { RoutesObjectPro } from "@/router/interface"
 import { CheckIsLogin } from "@/auth"
+import { RoutesObjectPro } from "@/router/interface"
+import { routerConfig } from "@/router/routerConfig"
 
 const wrappedRouter = (routesConfig: RoutesObjectPro[]) => {
   return routesConfig.map((routeItem: RoutesObjectPro) => {

@@ -1,12 +1,12 @@
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
 import {
   TABLE_BUTTON_EVENT_HANDLER_CONFIG,
   TABLE_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/TableWidget/eventHandlerConfig"
+import { ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
 
 const baseWidgetName = "table"
 
@@ -89,9 +89,10 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-column-mappedValue`,
             labelName: i18n.t("editor.inspect.setter_label.mapped_value"),
+            labelDesc: i18n.t("editor.inspect.setter_tooltip.mapped_value"),
             attrName: "mappedValue",
-            bindAttrName: ["type"],
-            setterType: "INPUT_SETTER",
+            setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+            placeholder: "{{currentRow.col}}",
           },
           {
             id: `${baseWidgetName}-basic-enableSorting`,
@@ -145,6 +146,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-multiRowSelection`,
         labelName: i18n.t("editor.inspect.setter_label.multi_row_selection"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.multi_row_selection"),
         attrName: "multiRowSelection",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,

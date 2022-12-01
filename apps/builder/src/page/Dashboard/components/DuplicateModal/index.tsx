@@ -1,15 +1,13 @@
 import { FC, useState } from "react"
-import { DuplicateModalProps } from "@/page/Dashboard/components/DuplicateModal/interface"
-import { Modal } from "@illa-design/modal"
-import { Message } from "@illa-design/message"
 import { useTranslation } from "react-i18next"
-import { Input } from "@illa-design/input"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/store"
-import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
+import { Input, Modal, useMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { DuplicateModalProps } from "@/page/Dashboard/components/DuplicateModal/interface"
+import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { RootState } from "@/store"
 
 export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
   const { appId, visible, onVisibleChange } = props
@@ -27,11 +25,11 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
 
   const [loading, setLoading] = useState(false)
   const [name, setName] = useState("")
+  const message = useMessage()
 
   return (
     <Modal
       w="496px"
-      simple
       closable
       autoFocus
       footerAlign="right"
@@ -39,17 +37,21 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
       okButtonProps={{
         colorScheme: "techPurple",
       }}
-      confirmLoading={loading}
+      okLoading={loading}
       onCancel={() => {
         onVisibleChange(false)
       }}
       onOk={() => {
         if (name === undefined || name === "") {
-          Message.error(t("dashboard.app.name_empty"))
+          message.error({
+            content: t("dashboard.app.name_empty"),
+          })
           return
         }
         if (appList.some((item) => item.appName === name)) {
-          Message.error(t("dashboard.app.name_existed"))
+          message.error({
+            content: t("dashboard.app.name_existed"),
+          })
           return
         }
         Api.request<DashboardApp>(
@@ -69,10 +71,14 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
             onVisibleChange(false)
           },
           (failure) => {
-            Message.error(t("dashboard.app.duplicate_fail"))
+            message.error({
+              content: t("dashboard.app.duplicate_fail"),
+            })
           },
           (crash) => {
-            Message.error(t("network_error"))
+            message.error({
+              content: t("network_error"),
+            })
           },
           (loading) => {
             setLoading(loading)

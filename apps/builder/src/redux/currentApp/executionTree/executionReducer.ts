@@ -1,12 +1,12 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
+import { applyChange } from "deep-diff"
 import {
   DependenciesState,
   ErrorShape,
   ExecutionState,
-  setExecutionResultPayload,
   UpdateExecutionByDisplayNamePayload,
+  setExecutionResultPayload,
 } from "@/redux/currentApp/executionTree/executionState"
-import { applyChange } from "deep-diff"
 
 export const setDependenciesReducer: CaseReducer<
   ExecutionState,

@@ -1,7 +1,29 @@
 import { FC, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
-import { Button, ButtonGroup } from "@illa-design/button"
+import {
+  AddIcon,
+  Button,
+  ButtonGroup,
+  List,
+  PaginationPreIcon,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
+import { configActions } from "@/redux/config/configSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import {
+  ActionContent,
+  ActionItem,
+  actionItemInitial,
+} from "@/redux/currentApp/action/actionState"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { getAllResources } from "@/redux/resource/resourceSelector"
+import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
+import { fromNow } from "@/utils/dayjs"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionResourceSelectorProps } from "./interface"
 import {
   applyResourceItemStyle,
@@ -10,24 +32,6 @@ import {
   resourceItemTimeStyle,
   resourceItemTitleStyle,
 } from "./style"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
-import { getAllResources } from "@/redux/resource/resourceSelector"
-import { List } from "@illa-design/list"
-import { fromNow } from "@/utils/dayjs"
-import { useTranslation } from "react-i18next"
-import {
-  ActionContent,
-  ActionItem,
-  actionItemInitial,
-} from "@/redux/currentApp/action/actionState"
-import { Api } from "@/api/base"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { Message } from "@illa-design/message"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { configActions } from "@/redux/config/configSlice"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 
 export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   props,
@@ -50,6 +54,8 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   )
 
   const [loading, setLoading] = useState(false)
+
+  const message = useMessage()
 
   const dispatch = useDispatch()
 
@@ -121,15 +127,19 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
                   data,
                 },
                 ({ data }: { data: ActionItem<ActionContent> }) => {
-                  Message.success(
-                    t("editor.action.action_list.message.success_created"),
-                  )
+                  message.success({
+                    content: t(
+                      "editor.action.action_list.message.success_created",
+                    ),
+                  })
                   dispatch(actionActions.addActionItemReducer(data))
                   dispatch(configActions.changeSelectedAction(data))
                   onCreateAction?.(actionType, selectedResourceId)
                 },
                 () => {
-                  Message.error(t("editor.action.action_list.message.failed"))
+                  message.error({
+                    content: t("editor.action.action_list.message.failed"),
+                  })
                   DisplayNameGenerator.removeDisplayName(displayName)
                 },
                 () => {

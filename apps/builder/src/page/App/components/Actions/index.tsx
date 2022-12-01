@@ -1,10 +1,10 @@
 import { FC, HTMLAttributes, useRef, useState } from "react"
+import { Divider } from "@illa-design/react"
+import { DragBar } from "@/page/App/components/Actions/DragBar"
+import { FocusManager } from "@/utils/focusManager"
 import { ActionList } from "./ActionList"
 import { ActionPanel } from "./ActionPanel"
 import { applyActionEditorStyle, contentContainerStyle } from "./styles"
-import { Divider } from "@illa-design/divider"
-import { DragBar } from "@/page/App/components/Actions/DragBar"
-import { FocusManager } from "@/utils/focusManager"
 
 const ActionEditorDefaultHeight = 300
 

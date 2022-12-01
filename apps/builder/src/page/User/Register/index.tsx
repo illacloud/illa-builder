@@ -1,33 +1,36 @@
 import { FC, useRef, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { useTranslation, Trans } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { Input, Password } from "@illa-design/input"
-import { Checkbox } from "@illa-design/checkbox"
-import { Button } from "@illa-design/button"
-import { Link } from "@illa-design/link"
-import { Message } from "@illa-design/message"
-import { Countdown } from "@illa-design/statistic"
-import { WarningCircleIcon } from "@illa-design/icon"
-import { EMAIL_FORMAT } from "@/constants/regExp"
-import { Api } from "@/api/base"
 import {
+  Button,
+  Checkbox,
+  Countdown,
+  Input,
+  Link,
+  Password,
+  WarningCircleIcon,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { EMAIL_FORMAT } from "@/constants/regExp"
+import { TextLink } from "@/page/User/components/TextLink"
+import {
+  checkboxTextStyle,
+  descriptionStyle,
+  errorIconStyle,
+  errorMsgStyle,
   formLabelStyle,
   formTitleStyle,
   gridFormFieldStyle,
   gridFormStyle,
   gridItemStyle,
   gridValidStyle,
-  errorMsgStyle,
-  errorIconStyle,
-  checkboxTextStyle,
-  descriptionStyle,
 } from "@/page/User/style"
-import { RegisterFields, RegisterResult } from "./interface"
-import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { setLocalStorage } from "@/utils/storage"
-import { TextLink } from "@/page/User/components/TextLink"
+import { RegisterFields, RegisterResult } from "./interface"
 
 export function getLocalLanguage(): string {
   const lang = window.navigator.language
@@ -43,8 +46,9 @@ export const Register: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const message = useMessage()
   const [showCountDown, setShowCountDown] = useState(false)
-  const verificationToken = useRef<string>("")
+  const vt = useRef<string>("")
   const {
     control,
     handleSubmit,
@@ -63,13 +67,15 @@ export const Register: FC = () => {
         method: "POST",
         url: "/auth/signup",
         data: {
-          verificationToken: verificationToken.current,
+          verificationToken: vt.current,
           language: getLocalLanguage(),
           ...data,
         },
       },
       (res) => {
-        Message.success(t("user.sign_up.tips.success"))
+        message.success({
+          content: t("user.sign_up.tips.success"),
+        })
         const token = res.headers["illa-token"]
         if (!token) return
         setLocalStorage("token", token, -1)
@@ -86,7 +92,9 @@ export const Register: FC = () => {
         })
       },
       (res) => {
-        Message.error(t("user.sign_up.tips.fail"))
+        message.error({
+          content: t("user.sign_up.tips.fail"),
+        })
         switch (res.data.errorMessage) {
           case "duplicate email address":
             setErrorMsg({
@@ -106,7 +114,9 @@ export const Register: FC = () => {
         }
       },
       () => {
-        Message.warning(t("network_error"))
+        message.warning({
+          content: t("network_error"),
+        })
       },
       (loading) => {
         setSubmitLoading(loading)
@@ -264,18 +274,23 @@ export const Register: FC = () => {
                                 },
                               },
                               (res) => {
-                                Message.success(
-                                  t("user.sign_up.tips.verification_code"),
-                                )
-                                verificationToken.current =
-                                  res.data.verificationToken
+                                message.success({
+                                  content: t(
+                                    "user.sign_up.tips.verification_code",
+                                  ),
+                                })
+                                vt.current = res.data.verificationToken
                               },
                               () => {
-                                Message.error(t("user.sign_up.tips.fail_sent"))
+                                message.error({
+                                  content: t("user.sign_up.tips.fail_sent"),
+                                })
                                 setShowCountDown(false)
                               },
                               () => {
-                                Message.warning(t("network_error"))
+                                message.warning({
+                                  content: t("network_error"),
+                                })
                                 setShowCountDown(false)
                               },
                               () => {},

@@ -1,5 +1,6 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { SerializedStyles, css } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
+
 // import "@fontsource/fira-code"
 
 export const jsonStyle = css`

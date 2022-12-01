@@ -1,6 +1,29 @@
 import { forwardRef, useCallback, useState } from "react"
-import { Dropdown, DropList } from "@illa-design/dropdown"
-import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  DropList,
+  Dropdown,
+  Input,
+  LoadingIcon,
+  WarningCircleIcon,
+  getColor,
+  globalColor,
+  illaPrefix,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
+import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { RootState } from "@/store"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { isObject, isValidDisplayName } from "@/utils/typeHelper"
 import {
   actionIconContainer,
   actionItemDotStyle,
@@ -9,23 +32,6 @@ import {
   applyActionItemTitleStyle,
   warningCircleStyle,
 } from "./style"
-import { LoadingIcon, WarningCircleIcon } from "@illa-design/icon"
-import { useTranslation } from "react-i18next"
-import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/store"
-import {
-  getCachedAction,
-  getSelectedAction,
-} from "@/redux/config/configSelector"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
-import { Input } from "@illa-design/input"
-import { isObject, isValidDisplayName } from "@/utils/typeHelper"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { Message } from "@illa-design/message"
-import { Api } from "@/api/base"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 
 const Item = DropList.Item
 
@@ -36,6 +42,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     const { t } = useTranslation()
     const selectedAction = useSelector(getSelectedAction)
     const cachedAction = useSelector(getCachedAction)
+    const message = useMessage()
 
     const error = useSelector((state: RootState) => {
       const targetActionErrors =
@@ -63,16 +70,20 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           return
         }
         if (!isValidDisplayName(newName)) {
-          Message.error(
-            t("editor.display_name.validate_error", { displayName: newName }),
-          )
+          message.error({
+            content: t("editor.display_name.validate_error", {
+              displayName: newName,
+            }),
+          })
           setEditName(false)
           return
         }
         if (DisplayNameGenerator.isAlreadyGenerate(newName)) {
-          Message.error(
-            t("editor.display_name.duplicate_error", { displayName: newName }),
-          )
+          message.error({
+            content: t("editor.display_name.duplicate_error", {
+              displayName: newName,
+            }),
+          })
           setEditName(false)
           return
         }
@@ -91,11 +102,15 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             setEditName(false)
           },
           () => {
-            Message.error(t("change_fail"))
+            message.error({
+              content: t("change_fail"),
+            })
             setEditName(false)
           },
           () => {
-            Message.error(t("change_fail"))
+            message.error({
+              content: t("change_fail"),
+            })
             setEditName(false)
           },
           (l) => {

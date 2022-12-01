@@ -1,9 +1,9 @@
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
+import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import i18n from "@/i18n/config"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { INPUT_NUMBER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/NumberInputWidget/eventHandlerConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const widgetBaseName = "number-input"
 export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [

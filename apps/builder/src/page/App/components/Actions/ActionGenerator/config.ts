@@ -1,5 +1,5 @@
-import { ActionType } from "@/redux/currentApp/action/actionState"
 import i18n from "@/i18n/config"
+import { ActionType } from "@/redux/currentApp/action/actionState"
 
 export interface ActionDataItem {
   actionType: ActionType
@@ -47,11 +47,11 @@ export const Apis: ActionDataItem[] = [
     isDraft: false,
   },
   {
-    actionType: "graphql",
-    isDraft: true,
+    actionType: "smtp",
+    isDraft: false,
   },
   {
-    actionType: "smtp",
+    actionType: "graphql",
     isDraft: true,
   },
 ]

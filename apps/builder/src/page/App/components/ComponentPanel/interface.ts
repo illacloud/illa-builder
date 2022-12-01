@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react"
-import { WidgetCardInfo } from "@/widgetLibrary/interface"
 import { SessionType } from "@/widgetLibrary/componentListBuilder"
+import { WidgetCardInfo } from "@/widgetLibrary/interface"
 
 export interface ComponentPanelProps extends HTMLAttributes<HTMLDivElement> {
   componentList?: ComponentSessionProps[]

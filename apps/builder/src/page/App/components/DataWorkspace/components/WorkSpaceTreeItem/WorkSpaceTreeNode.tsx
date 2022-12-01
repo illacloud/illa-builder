@@ -1,8 +1,9 @@
+import { css } from "@emotion/react"
+import { motion } from "framer-motion"
 import { FC, memo } from "react"
-import { WorkSpaceTreeNodeProps } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem/interface"
 import { useDispatch, useSelector } from "react-redux"
-import { getExpandedKeys } from "@/redux/config/configSelector"
-import { isArray, isObject } from "@illa-design/system"
+import { CaretRightIcon, isArray, isObject } from "@illa-design/react"
+import { WorkSpaceTreeNodeProps } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem/interface"
 import {
   applyExpandIconStyle,
   applyItemContainerStyle,
@@ -14,11 +15,9 @@ import {
   jsonNameStyle,
   jsonValueStyle,
 } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem/style"
-import { configActions } from "@/redux/config/configSlice"
-import { CaretRightIcon } from "@illa-design/icon"
-import { motion } from "framer-motion"
-import { css } from "@emotion/react"
 import { applyJsonValueColorStyle } from "@/page/App/components/DataWorkspace/style"
+import { getExpandedKeys } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 export const renderJsonValue = (value: any) => {
   const type = typeof value

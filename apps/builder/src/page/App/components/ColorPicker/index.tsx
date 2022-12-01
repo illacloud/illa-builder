@@ -1,9 +1,9 @@
 import Sketch from "@uiw/react-color-sketch"
 import { SwatchPresetColor } from "@uiw/react-color-swatch"
 import { FC, useMemo } from "react"
-import { ColorPickerProps } from "./interface"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { ColorPickerProps } from "./interface"
 
 export const ColorPicker: FC<ColorPickerProps> = (props) => {
   const { onChange, selectedColor } = props

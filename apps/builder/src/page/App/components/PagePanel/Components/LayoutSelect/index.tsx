@@ -1,5 +1,14 @@
-import { ExpandIcon, Modal, Trigger } from "@illa-design/react"
 import { FC, useCallback } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch } from "react-redux"
+import { ExpandIcon, Trigger, useModal } from "@illa-design/react"
+import { ReactComponent as DefaultIcon } from "@/assets/rightPagePanel/layout/default.svg"
+import { ReactComponent as PresetAIcon } from "@/assets/rightPagePanel/layout/preset-a.svg"
+import { ReactComponent as PresetBIcon } from "@/assets/rightPagePanel/layout/preset-b.svg"
+import { ReactComponent as PresetCIcon } from "@/assets/rightPagePanel/layout/preset-c.svg"
+import { ReactComponent as PresetDIcon } from "@/assets/rightPagePanel/layout/preset-d.svg"
+import { ReactComponent as PresetEIcon } from "@/assets/rightPagePanel/layout/preset-e.svg"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   LayoutOptionItemProps,
   LayoutOptionsPanelProps,
@@ -12,16 +21,6 @@ import {
   layoutOptionsPanelWrapperStyle,
   layoutSelectWrapperStyle,
 } from "./style"
-import { ReactComponent as DefaultIcon } from "@/assets/rightPagePanel/layout/default.svg"
-import { ReactComponent as PresetAIcon } from "@/assets/rightPagePanel/layout/preset-a.svg"
-import { ReactComponent as PresetBIcon } from "@/assets/rightPagePanel/layout/preset-b.svg"
-import { ReactComponent as PresetCIcon } from "@/assets/rightPagePanel/layout/preset-c.svg"
-import { ReactComponent as PresetDIcon } from "@/assets/rightPagePanel/layout/preset-d.svg"
-import { ReactComponent as PresetEIcon } from "@/assets/rightPagePanel/layout/preset-e.svg"
-import { useDispatch, useSelector } from "react-redux"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getCurrentPageDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
-import { useTranslation } from "react-i18next"
 
 export const LAYOUT_OPTIONS = [
   {
@@ -46,12 +45,13 @@ export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
     props
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const modal = useModal()
 
   const handleChangeLayout = useCallback(() => {
     if (selectedValue === value || !currentPageName) return
-    Modal.confirm({
+    modal.show({
       w: "496px",
-      content: t("editor.page.model_tips.change_layout_message"),
+      children: t("editor.page.model_tips.change_layout_message"),
       cancelText: t("editor.page.model_tips.cancel_button"),
       okText: t("editor.page.model_tips.ok_button"),
       okButtonProps: {
@@ -73,7 +73,7 @@ export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
         )
       },
     })
-  }, [currentPageName, dispatch, selectedValue, t, value])
+  }, [currentPageName, dispatch, modal, selectedValue, t, value])
 
   return (
     <div css={layoutOptionItemWrapperStyle} onClick={handleChangeLayout}>

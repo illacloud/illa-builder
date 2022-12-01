@@ -1,19 +1,17 @@
-import { FC, useCallback } from "react"
 import { get } from "lodash"
-import { FxIcon } from "@illa-design/icon"
-import { Switch } from "@illa-design/switch"
-import { DynamicSwitchProps } from "./interface"
+import { FC, useCallback } from "react"
+import { Switch } from "@illa-design/react"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
+import { DynamicIcon } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { BaseInput } from "../InputSetter/baseInput"
+import { DynamicSwitchProps } from "./interface"
 import {
-  applyCustomIconStyle,
   applyLabelWrapperStyle,
   customAndSwitchWrapperStyle,
   dynamicSwitchInputStyle,
   dynamicSwitchWrapperStyle,
 } from "./style"
-import { BaseInput } from "../InputSetter/baseInput"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { DynamicIcon } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon"
 
 export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const {

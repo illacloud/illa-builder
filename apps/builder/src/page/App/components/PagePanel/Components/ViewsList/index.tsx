@@ -1,9 +1,5 @@
 import { FC } from "react"
-import { ListBody } from "./body"
-import { ViewListHeader } from "./header"
-import { ViewListProps } from "./interface"
-import { viewsListWrapperStyle } from "./style"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import {
   getCanvas,
   searchDsl,
@@ -13,10 +9,13 @@ import {
   getSectionExecutionResultArray,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
+import { ListBody } from "./body"
+import { ViewListHeader } from "./header"
+import { ViewListProps } from "./interface"
+import { viewsListWrapperStyle } from "./style"
 
 export const ViewList: FC<ViewListProps> = (props) => {
   const { sectionName } = props
-  const dispatch = useDispatch()
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]

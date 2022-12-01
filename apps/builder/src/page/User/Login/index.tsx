@@ -1,32 +1,35 @@
 import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { useTranslation, Trans } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useNavigate, useLocation } from "react-router-dom"
-import { Input, Password } from "@illa-design/input"
-import { Message } from "@illa-design/message"
-import { Button } from "@illa-design/button"
-import { WarningCircleIcon } from "@illa-design/icon"
-import { EMAIL_FORMAT } from "@/constants/regExp"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { Api } from "@/api/base"
+import { useLocation, useNavigate } from "react-router-dom"
 import {
+  Button,
+  Input,
+  Password,
+  WarningCircleIcon,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { EMAIL_FORMAT } from "@/constants/regExp"
+import { TextLink } from "@/page/User/components/TextLink"
+import {
+  descriptionStyle,
+  errorIconStyle,
+  errorMsgStyle,
+  forgotPwdContainerStyle,
+  forgotPwdStyle,
   formLabelStyle,
   formTitleStyle,
   gridFormFieldStyle,
   gridFormStyle,
   gridItemStyle,
-  descriptionStyle,
   gridValidStyle,
-  errorMsgStyle,
-  errorIconStyle,
-  forgotPwdStyle,
-  forgotPwdContainerStyle,
 } from "@/page/User/style"
-import { TextLink } from "@/page/User/components/TextLink"
-import { LocationState, LoginFields } from "./interface"
-import { setLocalStorage } from "@/utils/storage"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import { setLocalStorage } from "@/utils/storage"
+import { LocationState, LoginFields } from "./interface"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
@@ -42,6 +45,8 @@ export const Login: FC = () => {
   } = useForm<LoginFields>({
     mode: "onSubmit",
   })
+
+  const message = useMessage()
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
     Api.request<CurrentUser>(
       { method: "POST", url: "/auth/signin", data },
@@ -57,13 +62,17 @@ export const Login: FC = () => {
             email: res.data.email,
           }),
         )
-        navigate((location.state as LocationState)?.from?.pathname ?? "/", {
+        navigate(location.state?.from?.pathname ?? "/", {
           replace: true,
         })
-        Message.success(t("user.sign_in.tips.success"))
+        message.success({
+          content: t("user.sign_in.tips.success"),
+        })
       },
       (res) => {
-        Message.error(t("user.sign_in.tips.fail"))
+        message.error({
+          content: t("user.sign_in.tips.fail"),
+        })
         switch (res.data.errorMessage) {
           case "no such user":
             setErrorMsg({
@@ -81,7 +90,9 @@ export const Login: FC = () => {
         }
       },
       () => {
-        Message.warning(t("network_error"))
+        message.warning({
+          content: t("network_error"),
+        })
       },
       (loading) => {
         setSubmitLoading(loading)

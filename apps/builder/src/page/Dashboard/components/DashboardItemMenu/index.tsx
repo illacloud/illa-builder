@@ -1,22 +1,26 @@
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
-import { Space } from "@illa-design/space"
-import { Button } from "@illa-design/button"
-import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
-import { Dropdown, DropList } from "@illa-design/dropdown"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { MoreIcon } from "@illa-design/icon"
-import { Modal } from "@illa-design/modal"
-import { Api } from "@/api/base"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { Message } from "@illa-design/message"
-import { RootState } from "@/store"
-import { RenameModal } from "@/page/Dashboard/components/RenameModal"
-import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { useNavigate } from "react-router-dom"
+import {
+  Button,
+  DropList,
+  Dropdown,
+  MoreIcon,
+  Space,
+  globalColor,
+  illaPrefix,
+  useMessage,
+  useModal,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
+import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
+import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
+import { RenameModal } from "@/page/Dashboard/components/RenameModal"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { RootState } from "@/store"
 
 const Item = DropList.Item
 
@@ -35,6 +39,8 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
 
   const [renameVisible, setRenameVisible] = useState(false)
   const [duplicateVisible, setDuplicateVisible] = useState(false)
+  const message = useMessage()
+  const modal = useModal()
 
   return (
     <>
@@ -80,10 +86,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                 title={t("dashboard.common.delete")}
                 fontColor={globalColor(`--${illaPrefix}-red-03`)}
                 onClick={() => {
-                  Modal.confirm({
+                  const modalId = modal.show({
                     w: "496px",
+                    blockOkHide: true,
                     title: t("dashboard.common.delete_title"),
-                    content: t("dashboard.common.delete_content"),
+                    children: t("dashboard.common.delete_content"),
                     cancelText: t("dashboard.common.delete_cancel_text"),
                     okText: t("dashboard.common.delete_ok_text"),
                     okButtonProps: {
@@ -102,13 +109,25 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                               response.data.appId,
                             ),
                           )
-                          Message.success(t("dashboard.app.trash_success"))
+                          message.success({
+                            content: t("dashboard.app.trash_success"),
+                          })
+                          modal.close(modalId)
                         },
                         (failure) => {
-                          Message.success(t("dashboard.app.trash_failure"))
+                          message.success({
+                            content: t("dashboard.app.trash_failure"),
+                          })
                         },
                         (crash) => {
-                          Message.error(t("network_error"))
+                          message.error({
+                            content: t("network_error"),
+                          })
+                        },
+                        (loading) => {
+                          modal.update(modalId, {
+                            okLoading: loading,
+                          })
                         },
                       )
                     },

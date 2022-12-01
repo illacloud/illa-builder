@@ -1,18 +1,13 @@
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { Select } from "@illa-design/select"
-import { BaseSelectSetterProps } from "./interface"
+import { Select } from "@illa-design/react"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getPageExecutionResultArray } from "@/redux/currentApp/executionTree/executionSelector"
+import { BaseSelectSetterProps } from "./interface"
 
 export const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
-  const {
-    isSetterSingleRow,
-    attrName,
-    handleUpdateDsl,
-    value,
-    placeholder,
-  } = props
+  const { isSetterSingleRow, attrName, handleUpdateDsl, value, placeholder } =
+    props
   const pageArray = useSelector(getPageExecutionResultArray)
 
   const finalOptions = useMemo(() => {

@@ -1,29 +1,29 @@
+import { get } from "lodash"
 import { FC, memo, useCallback, useMemo } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { ViewListSetterProvider } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
 import { Header } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/header"
 import {
   ViewItemShape,
   ViewSetterProps,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
-import { generateNewViewItem } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/utils/generateNewOptions"
 import { ListBody } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/listBody"
-import { ViewListSetterProvider } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
-import { get } from "lodash"
-import { useDispatch, useSelector } from "react-redux"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import {
   setterPublicWrapper,
   viewSetterWrapperStyle,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
-import { generateComponentNode } from "@/utils/generators/generateComponentNode"
-import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import store, { RootState } from "@/store"
-import { useTranslation } from "react-i18next"
+import { generateNewViewItem } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/utils/generateNewOptions"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import store, { RootState } from "@/store"
+import { generateComponentNode } from "@/utils/generators/generateComponentNode"
+import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 export const ViewsSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {

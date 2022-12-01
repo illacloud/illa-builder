@@ -1,10 +1,11 @@
-import { MysqlLikeAction } from "./mysqlLikeAction"
-import { BodyContent, RestApiAction } from "./restapiAction"
-import { TransformerAction } from "./transformerAction"
-import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
-import { RedisAction } from "./redisAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
+import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
+import { MysqlLikeAction } from "./mysqlLikeAction"
+import { RedisAction } from "./redisAction"
+import { BodyContent, RestApiAction } from "./restapiAction"
 import { S3Action, S3ActionTypeContent } from "./s3Action"
+import { SMPTAction } from "./smtpAction"
+import { TransformerAction } from "./transformerAction"
 
 export interface Transformer {
   rawData: string
@@ -69,6 +70,7 @@ export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
 }
 
 export type ActionContent =
+  | SMPTAction
   | S3Action<S3ActionTypeContent>
   | ElasticSearchAction
   | MysqlLikeAction

@@ -1,10 +1,31 @@
 import { FC, useState } from "react"
-import { RestApiConfigElementProps } from "./interface"
-import { useTranslation } from "react-i18next"
 import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/store"
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  Input,
+  PaginationPreIcon,
+  Select,
+  getColor,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
+import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
+import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource } from "@/redux/resource/resourceState"
+import {
+  BasicAuth,
+  BearerAuth,
+  RestApiAuth,
+  RestApiResource,
+} from "@/redux/resource/restapiResource"
+import { RootState } from "@/store"
+import { RestApiConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -15,24 +36,6 @@ import {
   labelContainer,
   optionLabelStyle,
 } from "./style"
-import { getColor } from "@illa-design/theme"
-import { Input } from "@illa-design/input"
-import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon } from "@illa-design/icon"
-import { Divider } from "@illa-design/divider"
-import { Select } from "@illa-design/select"
-import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
-import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
-import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
-import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import {
-  BasicAuth,
-  BearerAuth,
-  RestApiAuth,
-  RestApiResource,
-} from "@/redux/resource/restapiResource"
 
 function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
   let authContent: RestApiAuth | null = null
@@ -59,6 +62,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const message = useMessage()
 
   const { control, handleSubmit, formState } = useForm({
     mode: "onChange",
@@ -101,14 +105,20 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             },
             (response) => {
               dispatch(resourceActions.updateResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
               onFinished(response.data.resourceId)
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)
@@ -135,13 +145,19 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             (response) => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.addResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
+              message.success({
+                content: t("dashboard.resource.save_success"),
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             () => {
-              Message.error(t("dashboard.resource.save_fail"))
+              message.error({
+                content: t("dashboard.resource.save_fail"),
+              })
             },
             (loading) => {
               setSaving(loading)

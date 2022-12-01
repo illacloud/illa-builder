@@ -1,14 +1,15 @@
+import { RowSelectionState, Updater } from "@tanstack/table-core"
+import { cloneDeep } from "lodash"
 import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
-import { Table } from "@illa-design/table"
-import { Updater, RowSelectionState } from "@tanstack/table-core"
+import { useSelector } from "react-redux"
+import { Table, isNumber, isObject } from "@illa-design/react"
+import { getIllaMode } from "@/redux/config/configSelector"
 import {
   ColumnItemShape,
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { cloneDeep } from "lodash"
 import { getCellForType } from "./utils"
-import { isObject } from "@illa-design/system"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -22,6 +23,8 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       download,
       overFlow,
       pageSize,
+      rowSelection,
+      selectedRow,
       defaultSort,
       columnVisibility,
       multiRowSelection,
@@ -29,7 +32,9 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       handleOnPaginationChange,
       handleOnColumnFiltersChange,
       handleUpdateMultiExecutionResult,
+      handleUpdateOriginalDSLMultiAttr,
     } = props
+    const mode = useSelector(getIllaMode)
 
     const formatData = useMemo(() => {
       if (Array.isArray(data)) {
@@ -39,25 +44,47 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
     }, [data])
 
     const onRowSelectionChange = useCallback(
-      (value: Updater<RowSelectionState>) => {
-        if (!isObject(value)) return
-        let selectedRow: unknown[] = []
-        Object.keys(value)?.map((key) => {
-          const index = Number(key)
-          if (formatData[index]) {
-            selectedRow.push(formatData[index])
+      (value?: RowSelectionState | number) => {
+        let selectedRow = []
+        if (multiRowSelection) {
+          if (isObject(value)) {
+            Object.keys(value)?.map((key) => {
+              const index = Number(key)
+              if (formatData[index]) {
+                selectedRow.push(formatData[index])
+              }
+            })
           }
-        })
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              selectedRow: selectedRow,
+        } else {
+          if (isNumber(value) && formatData[value]) {
+            selectedRow.push(formatData[value])
+          }
+        }
+        if (mode === "edit") {
+          handleUpdateOriginalDSLMultiAttr({
+            selectedRow: selectedRow,
+            rowSelection: value,
+          })
+        } else {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedRow: selectedRow,
+                rowSelection: value,
+              },
             },
-          },
-        ])
+          ])
+        }
       },
-      [displayName, formatData, handleUpdateMultiExecutionResult],
+      [
+        displayName,
+        formatData,
+        handleUpdateMultiExecutionResult,
+        handleUpdateOriginalDSLMultiAttr,
+        mode,
+        multiRowSelection,
+      ],
     )
 
     return (
@@ -68,6 +95,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         pinedHeader
         w="100%"
         h="100%"
+        rowSelection={rowSelection}
         data={formatData}
         columns={columns}
         filter={filter}
@@ -92,6 +120,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   const {
     data,
     emptyState,
+    selectedRow,
+    rowSelection,
     loading,
     columns,
     filter,
@@ -159,6 +189,10 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateGlobalData(displayName, {
       defaultSort,
       columns,
+      selectedRow,
+      rowSelection,
+      dataSourceJS: dataSourceJS ?? [],
+      dataSource: dataSource ?? [],
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -167,14 +201,19 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     displayName,
     defaultSort,
     columns,
+    selectedRow,
+    rowSelection,
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    dataSourceJS,
+    dataSource,
   ])
 
   return (
     <WrappedTable
       {...otherProps}
+      selectedRow={selectedRow}
       displayName={displayName}
       data={realDataSourceArray}
       emptyState={emptyState}

@@ -1,4 +1,14 @@
 import { FC, useState } from "react"
+import { Controller } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import {
+  Input,
+  InputNumber,
+  Password,
+  RadioGroup,
+  getColor,
+} from "@illa-design/react"
 import { MongoDbConfigModeProps } from "@/page/App/components/Actions/MongoDbConfigElement/interface"
 import {
   applyConfigItemLabelText,
@@ -8,21 +18,14 @@ import {
   hostInputContainer,
   labelContainer,
 } from "@/page/App/components/Actions/MongoDbConfigElement/style"
-import { getColor } from "@illa-design/theme"
-import { Controller } from "react-hook-form"
-import { Input, Password } from "@illa-design/input"
-import { RadioGroup } from "@illa-design/radio"
-import { InputNumber } from "@illa-design/input-number"
-import { useTranslation } from "react-i18next"
 import {
   MongoDbConnectionFormat,
   MongoDbGuiConfigContent,
   MongoDbGuiConfigContentInitial,
   MongoDbResource,
 } from "@/redux/resource/mongodbResource"
-import { useSelector } from "react-redux"
-import { RootState } from "@/store"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { RootState } from "@/store"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {

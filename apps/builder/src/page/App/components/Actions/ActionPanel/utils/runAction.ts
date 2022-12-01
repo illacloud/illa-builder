@@ -1,3 +1,6 @@
+import { createMessage } from "@illa-design/react"
+import { Api } from "@/api/base"
+import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
   ActionContent,
   ActionItem,
@@ -5,31 +8,44 @@ import {
   Events,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
+import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
+import {
+  BodyContent,
+  RestApiAction,
+} from "@/redux/currentApp/action/restapiAction"
+import { S3ActionRequestType } from "@/redux/currentApp/action/s3Action"
+import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import {
   isDynamicString,
   wrapFunctionCode,
 } from "@/utils/evaluateDynamicString/utils"
-import { Api } from "@/api/base"
-import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
-import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
-import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
-import { Message } from "@illa-design/message"
-import {
-  BodyContent,
-  RestApiAction,
-} from "@/redux/currentApp/action/restapiAction"
 import { isObject } from "@/utils/typeHelper"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { S3ActionRequestType } from "@/redux/currentApp/action/s3Action"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
+const message = createMessage()
+
 function calcRealContent(content: Record<string, any>) {
   let realContent: Record<string, any> = {}
-  if (Array.isArray(content) || isObject(content)) {
+  if (Array.isArray(content)) {
+    realContent = content.map((item) => {
+      if (isDynamicString(item)) {
+        try {
+          return evaluateDynamicString("", item, BUILDER_CALC_CONTEXT)
+        } catch (e) {
+          message.error({
+            content: `maybe run error`,
+          })
+        }
+      } else {
+        return calcRealContent(item)
+      }
+    })
+  } else if (isObject(content)) {
     for (let key in content) {
       const value = content[key]
       if (isDynamicString(value)) {
@@ -40,7 +56,9 @@ function calcRealContent(content: Record<string, any>) {
             BUILDER_CALC_CONTEXT,
           )
         } catch (e) {
-          Message.error(`maybe run error`)
+          message.error({
+            content: `maybe run error`,
+          })
         }
       } else {
         realContent[key] = calcRealContent(value)
@@ -89,7 +107,7 @@ const fetchActionResult = (
   displayName: string,
   appId: string,
   actionId: string,
-  actionContent: MysqlLikeAction | RestApiAction<BodyContent>,
+  actionContent: ActionContent,
   successEvent: any[] = [],
   failedEvent: any[] = [],
   transformer: Transformer,
@@ -138,7 +156,9 @@ const fetchActionResult = (
       failedEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
-      Message.error("not online")
+      message.error({
+        content: "not online",
+      })
     },
     (loading) => {},
   )
@@ -157,8 +177,9 @@ const transformDataFormat = (
   actionType: string,
   content: Record<string, any>,
 ) => {
+  console.log("actionType", actionType)
   switch (actionType) {
-    case "s3":
+    case "s3": {
       const { commands, commandArgs } = content
       if (commands === S3ActionRequestType.UPLOAD) {
         const { objectData } = commandArgs
@@ -166,7 +187,7 @@ const transformDataFormat = (
           ...content,
           commandArgs: {
             ...content.commandArgs,
-            objectData: window.btoa(window.encodeURIComponent(objectData)),
+            objectData: btoa(encodeURIComponent(objectData)),
           },
         }
       }
@@ -178,7 +199,7 @@ const transformDataFormat = (
             commandArgs: {
               ...content.commandArgs,
               objectDataList: objectDataList.map((value: string) =>
-                window.btoa(window.encodeURIComponent(value)),
+                btoa(encodeURIComponent(value)),
               ),
             },
           }
@@ -187,11 +208,42 @@ const transformDataFormat = (
           ...content,
           commandArgs: {
             ...content.commandArgs,
-            objectDataList: [window.btoa(window.encodeURIComponent(objectDataList) || "")],
+            objectDataList: [btoa(encodeURIComponent(objectDataList) || "")],
           },
         }
       }
       return content
+    }
+    case "smtp": {
+      const { attachment } = content
+      if (Array.isArray(attachment)) {
+        return {
+          ...content,
+          attachment: attachment.map((value) => ({
+            ...value,
+            data: btoa(encodeURIComponent(value.data || "")),
+          })),
+        }
+      } else if (attachment) {
+        return {
+          ...content,
+          attachment: [btoa(encodeURIComponent(attachment || ""))],
+        }
+      }
+      return content
+    }
+    case "restapi": {
+      if (content.bodyType === "raw" && content.body?.content) {
+        return {
+          ...content,
+          body: {
+            ...content.body,
+            content: JSON.stringify(content.body.content),
+          },
+        }
+      }
+      return content
+    }
     default:
       return content
   }
@@ -220,9 +272,10 @@ export const runAction = (
     const realFailedEvent: any[] = isTrigger
       ? failedEvent || []
       : getRealEventHandler(failedEvent)
-    const actionContent = transformDataFormat(actionType, realContent) as
-      | MysqlLikeAction
-      | RestApiAction<BodyContent>
+    const actionContent = transformDataFormat(
+      actionType,
+      realContent,
+    ) as ActionContent
     fetchActionResult(
       resourceId || "",
       actionType,

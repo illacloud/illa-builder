@@ -1,16 +1,16 @@
-import { AnyAction, isAnyOf, Unsubscribe } from "@reduxjs/toolkit"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
+import { diff } from "deep-diff"
+import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getExecutionResult,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import { diff } from "deep-diff"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
-import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
+import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 
 export let executionTree: ExecutionTreeFactory | undefined
 
@@ -98,10 +98,16 @@ async function handleStartExecutionOnCanvas(
     const executionResult =
       executionTree.updateTreeFromExecution(oldExecutionTree)
     const evaluatedTree = executionResult.evaluatedTree
+    const errorTree = executionResult.errorTree
     const updates = diff(oldExecutionTree, evaluatedTree) || []
     listenerApi.dispatch(
       executionActions.setExecutionResultReducer({
         updates,
+      }),
+    )
+    listenerApi.dispatch(
+      executionActions.setExecutionErrorReducer({
+        ...errorTree,
       }),
     )
   }

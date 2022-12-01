@@ -1,13 +1,14 @@
-import { FC, ReactNode, useMemo, useCallback } from "react"
-import { ResourceEditorProps } from "./interface"
+import { FC, ReactNode, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { getAllResources } from "@/redux/resource/resourceSelector"
-import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
-import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
-import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
-import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
+import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
+import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
+import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
+import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
+import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
+import { getAllResources } from "@/redux/resource/resourceSelector"
+import { ResourceEditorProps } from "./interface"
 
 export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
   const { onBack, onFinished, resourceType } = props
@@ -61,6 +62,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         return (
           <RedisConfigElement onBack={handleBack} onFinished={onFinished} />
         )
+      case "smtp":
+        return <SMTPConfigElement onBack={handleBack} onFinished={onFinished} />
       default:
         return null
     }

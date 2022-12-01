@@ -1,9 +1,7 @@
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
-import { dayjsPro, isNumber } from "@illa-design/system"
 import { CellContext } from "@tanstack/table-core"
-import { Link } from "@illa-design/link"
-import { Button } from "@illa-design/button"
 import { FC } from "react"
+import { Button, Link, dayjsPro, isNumber } from "@illa-design/react"
+import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
 export const tansTableDataToColumns = (
   data: Record<any, any>[],
@@ -58,6 +56,22 @@ const RenderTableButton: FC<{
   )
 }
 
+const getValue = (
+  props: CellContext<any, any>,
+  mappedValue?: string,
+  fromCurrentRow?: boolean,
+) => {
+  const value = props.getValue()
+  const index = props.row.index
+  if (mappedValue) {
+    if (fromCurrentRow && Array.isArray(mappedValue)) {
+      return `${mappedValue[index] ?? "-"}`
+    }
+    return `${mappedValue}`
+  }
+  return value ?? "-"
+}
+
 export const getCellForType = (
   data: ColumnItemShape,
   eventPath: string,
@@ -68,6 +82,7 @@ export const getCellForType = (
     decimalPlaces = 0,
     format = "YYYY-MM-DD",
     mappedValue,
+    fromCurrentRow,
   } = data
 
   switch (type) {
@@ -75,38 +90,42 @@ export const getCellForType = (
       return (props: CellContext<any, any>) => `${props.getValue() ?? "-"}`
     case "text":
       return (props: CellContext<any, any>) => {
-        return `${mappedValue ? mappedValue : props.getValue() ?? "-"}`
+        return getValue(props, mappedValue, fromCurrentRow)
       }
     case "link":
       return (props: CellContext<any, any>) => {
+        const value = getValue(props, mappedValue, fromCurrentRow)
         return RenderTableLink({
           cell: props,
-          mappedValue,
+          mappedValue: value,
         })
       }
     case "number":
       return (props: CellContext<any, any>) => {
-        const formatVal = Number(mappedValue ? mappedValue : props?.getValue())
+        const value = getValue(props, mappedValue, fromCurrentRow)
+        const formatVal = Number(value)
         return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
       }
     case "percent":
       return (props: CellContext<any, any>) => {
-        const formatVal = Number(mappedValue ? mappedValue : props?.getValue())
+        const value = getValue(props, mappedValue, fromCurrentRow)
+        const formatVal = Number(value)
         return isNumber(formatVal)
           ? `${(formatVal * 100).toFixed(decimalPlaces)}%`
           : "-"
       }
     case "date":
       return (props: CellContext<any, any>) => {
-        const cellValue = mappedValue ? mappedValue : props?.getValue()
-        const formatVal = dayjsPro(cellValue).format(format)
+        const value = getValue(props, mappedValue, fromCurrentRow)
+        const formatVal = dayjsPro(value).format(format)
         return formatVal ? formatVal : "-"
       }
     case "button":
       return (props: CellContext<any, any>) => {
+        const value = getValue(props, mappedValue, fromCurrentRow)
         return RenderTableButton({
           cell: props,
-          mappedValue,
+          mappedValue: value,
           eventPath,
           handleOnClickMenuItem,
         })

@@ -1,12 +1,12 @@
-import {
-  DragIcon,
-  globalColor,
-  illaPrefix,
-  Trigger,
-  WarningCircleIcon,
-} from "@illa-design/react"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
+import {
+  DragIcon,
+  Trigger,
+  WarningCircleIcon,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
 import { LabelNameAndDragIconProps } from "./interface"
 import {
   labelNameAndDragIconWrapperStyle,
@@ -17,13 +17,8 @@ import {
 } from "./style"
 
 export const LabelNameAndDragIcon: FC<LabelNameAndDragIconProps> = (props) => {
-  const {
-    name,
-    isDuplicationKey,
-    isSelected,
-    index,
-    handleChangSectionView,
-  } = props
+  const { name, isDuplicationKey, isSelected, index, handleChangSectionView } =
+    props
   const { t } = useTranslation()
   return (
     <div css={labelNameAndDragIconWrapperStyle}>

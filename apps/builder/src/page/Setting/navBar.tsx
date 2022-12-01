@@ -1,12 +1,12 @@
 import { FC } from "react"
+import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
+import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import {
   navBarLogoStyle,
   navBarStyle,
   navBarTabStyle,
 } from "@/page/Setting/style"
-import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
-import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
 
 export const SettingNavBar: FC = () => {
   const { t } = useTranslation()

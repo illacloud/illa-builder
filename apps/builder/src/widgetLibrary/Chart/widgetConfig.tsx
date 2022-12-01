@@ -1,8 +1,9 @@
+import { v4 } from "uuid"
 import { ReactComponent as ChartWidgetIcon } from "@/assets/widgetCover/chart.svg"
-import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
-import store from "@/store"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import store from "@/store"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const CHART_WIDGET_CONFIG: WidgetConfig = {
   type: "CHART",
@@ -17,12 +18,42 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
 }
 
 export function initChartWidgetDefaultProps() {
-  const rootState = store.getState()
-  const actions = getActionList(rootState)
-  if (!actions.length) return {}
-  const action = actions[0]
   return {
-    dataSource: `{{${action.displayName}.data}}`,
+    dataSourceJS: `{{[
+  {
+    month: "April",
+    users: 3700,
+    incomes: 4000,
+  },
+  {
+    month: "May",
+    users: 5400,
+    incomes: 8700,
+  },
+  {
+    month: "June",
+    users: 6000,
+    incomes: 12000,
+  },
+  {
+    month: "July",
+    users: 8000,
+    incomes: 14000,
+  },
+]}}`,
     chartType: "bar",
+    dataSourceMode: "dynamic",
+    xAxis: "month",
+    datasets: [
+      {
+        id: v4(),
+        datasetName: "Dataset 1",
+        datasetValues: "users",
+        aggregationMethod: "SUM",
+        type: "bar",
+        color: "#165DFF",
+      },
+    ],
+    $dynamicAttrPaths: ["dataSourceJS"],
   }
 }

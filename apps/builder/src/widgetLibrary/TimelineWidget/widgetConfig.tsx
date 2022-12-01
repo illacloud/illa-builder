@@ -1,6 +1,6 @@
 import { ReactComponent as TimelineWidgetIcon } from "@/assets/widgetCover/timeline.svg"
-import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   type: "TIMELINE_WIDGET",
