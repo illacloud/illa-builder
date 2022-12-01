@@ -69,6 +69,7 @@ export interface WrappedTableProps
       value: Record<string, any>
     }[],
   ) => void
+  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
 }
 
 export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {

@@ -8,6 +8,8 @@ import {
 } from "./interface"
 import { cloneDeep } from "lodash"
 import { getCellForType } from "./utils"
+import { useSelector } from "react-redux"
+import { getIllaMode } from "@/redux/config/configSelector"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -30,7 +32,9 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       handleOnPaginationChange,
       handleOnColumnFiltersChange,
       handleUpdateMultiExecutionResult,
+      handleUpdateOriginalDSLMultiAttr,
     } = props
+    const mode = useSelector(getIllaMode)
 
     const formatData = useMemo(() => {
       if (Array.isArray(data)) {
@@ -56,17 +60,29 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
             selectedRow.push(formatData[value])
           }
         }
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              selectedRow: selectedRow,
-              rowSelection: value,
+        if (mode === "edit") {
+          handleUpdateOriginalDSLMultiAttr({
+            selectedRow: selectedRow,
+            rowSelection: value,
+          })
+        } else {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedRow: selectedRow,
+                rowSelection: value,
+              },
             },
-          },
-        ])
+          ])
+        }
       },
-      [displayName, formatData, handleUpdateMultiExecutionResult],
+      [
+        displayName,
+        formatData,
+        handleUpdateMultiExecutionResult,
+        handleUpdateOriginalDSLMultiAttr,
+      ],
     )
 
     return (
