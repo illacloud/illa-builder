@@ -64,8 +64,12 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (
 
   const selectedOptions = useMemo(() => {
     if (!isObject(dataSources)) return []
-    return Object.keys(dataSources).map((key) => key)
-  }, [dataSources])
+    let options = Object.keys(dataSources).map((key) => key)
+    if (attrName === "groupBy" && value) {
+      options.unshift("—")
+    }
+    return options
+  }, [attrName, dataSources, value])
 
   const datasets: ChartDatasetShape[] = useMemo(() => {
     return get(insertValues, "datasets", [])
@@ -99,11 +103,11 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (
           const newDatasets = generateNewDatasets(!!newValue)
           handleUpdateMultiAttrDSL?.({
             datasets: newDatasets,
-            [attrName]: newValue,
+            [attrName]: newValue === "—" ? undefined : newValue,
           })
         } else {
           handleUpdateMultiAttrDSL?.({
-            [attrName]: newValue,
+            [attrName]: newValue === "—" ? undefined : newValue,
           })
         }
       } else {

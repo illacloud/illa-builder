@@ -169,6 +169,10 @@ export class ILLAWebsocket {
   }
 
   public send(message: string) {
-    this.ws?.send(message)
+    try {
+      this.ws?.send(message)
+    } catch (e) {
+      console.error(e)
+    }
   }
 }

@@ -35,11 +35,11 @@
     "copy-to-clipboard": "^3.3.2",
     "dayjs": "^1.11.5",
     "deep-diff": "^1.0.2",
+    "events": "^3.3.0",
     "framer-motion": "^7.6.12",
     "i18next": "^21.6.16",
     "i18next-browser-languagedetector": "^6.1.4",
     "jshint": "^2.13.6",
-    "events": "^3.3.0",
     "lodash": "^4.17.21",
     "qs": "^6.11.0",
     "re-resizable": "^6.9.9",
@@ -101,7 +101,7 @@
     "turbo": "^1.6.3",
     "typescript": "^4.9.3",
     "vite": "^3.2.4",
-    "vite-plugin-chunk-split": "^0.2.2",
+    "vite-plugin-chunk-split": "^0.4.4",
     "vite-plugin-istanbul": "^2.7.3",
     "vite-plugin-svgr": "^2.1.0"
   }

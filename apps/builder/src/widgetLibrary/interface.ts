@@ -74,6 +74,7 @@ export interface BaseWidgetProps {
     }[],
   ) => void
   updateComponentHeight: (newHeight: number) => void
+  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
 }
 
 export interface BaseComponentNodeProps {

@@ -26,6 +26,8 @@ import {
 import { validationFactory } from "@/utils/validationFactory"
 import { applyChange, Diff, diff } from "deep-diff"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import store from "@/store"
 
 export class ExecutionTreeFactory {
   dependenciesState: DependenciesState = {}
@@ -69,13 +71,28 @@ export class ExecutionTreeFactory {
         return current
       }
       const validationPaths = widgetOrAction.$validationPaths
+      const listWidgets =
+        getContainerListDisplayNameMappedChildrenNodeDisplayName(
+          store.getState(),
+        )
+      const listWidgetDisplayNames = Object.keys(listWidgets)
+      let currentListDisplayName = ""
+      for (let i = 0; i < listWidgetDisplayNames.length; i++) {
+        if (listWidgets[listWidgetDisplayNames[i]].includes(displayName)) {
+          currentListDisplayName = listWidgetDisplayNames[i]
+          break
+        }
+      }
       if (isObject(validationPaths)) {
         Object.keys(validationPaths).forEach((validationPath) => {
           const validationType = validationPaths[validationPath]
           const fullPath = `${displayName}.${validationPath}`
           const validationFunc = validationFactory[validationType]
           const value = get(widgetOrAction, validationPath)
-          const { isValid, safeValue, errorMessage } = validationFunc(value)
+          const { isValid, safeValue, errorMessage } = validationFunc(
+            value,
+            currentListDisplayName,
+          )
           set(current, fullPath, safeValue)
           if (!isValid) {
             let error = get(this.errorTree, fullPath)
@@ -89,6 +106,20 @@ export class ExecutionTreeFactory {
             })
             set(this.errorTree, fullPath, error)
             this.debuggerData[fullPath] = error
+          } else {
+            let error = get(this.errorTree, fullPath)
+            if (Array.isArray(error)) {
+              const validationIndex = error.findIndex((v) => {
+                return v.errorType === ExecutionErrorType.VALIDATION
+              })
+              if (validationIndex !== -1) {
+                error.splice(validationIndex, 1)
+                if (error.length === 0) {
+                  unset(this.errorTree, fullPath)
+                  delete this.debuggerData[fullPath]
+                }
+              }
+            }
           }
         })
       }
@@ -309,10 +340,7 @@ export class ExecutionTreeFactory {
       currentExecutionTree,
     )
     const orderPath = this.calcSubTreeSortOrder(differences, currentRawTree)
-    const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
-      currentRawTree,
-      orderPath,
-    )
+    const { evaluatedTree } = this.executeTree(currentRawTree, orderPath)
     const differencesRawTree: Diff<Record<string, any>, Record<string, any>>[] =
       diff(this.oldRawTree, evaluatedTree) || []
     this.applyDifferencesToEvalTree(differencesRawTree)
@@ -320,6 +348,7 @@ export class ExecutionTreeFactory {
     this.executedTree = this.validateTree(this.executedTree)
     return {
       evaluatedTree: this.executedTree,
+      errorTree: this.errorTree,
     }
   }
 

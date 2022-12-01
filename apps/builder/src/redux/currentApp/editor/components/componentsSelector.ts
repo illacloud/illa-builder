@@ -2,6 +2,7 @@ import store, { RootState } from "@/store"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { createSelector } from "@reduxjs/toolkit"
 import { getSelectedComponents } from "@/redux/config/configSelector"
+import { get, set } from "lodash"
 
 export function searchDSLByDisplayName(
   displayName: string,
@@ -37,9 +38,7 @@ export function searchDsl(
   return null
 }
 
-export function flattenDslToMap(
-  rootNode: ComponentNode,
-): {
+export function flattenDslToMap(rootNode: ComponentNode): {
   [key: string]: ComponentNode
 } {
   const queue = [rootNode]
@@ -61,9 +60,7 @@ export function flattenDslToMap(
   return res
 }
 
-export function flattenAllComponentNodeToMap(
-  rootNode: ComponentNode,
-): {
+export function flattenAllComponentNodeToMap(rootNode: ComponentNode): {
   [key: string]: ComponentNode
 } {
   const queue = [rootNode]
@@ -210,3 +207,52 @@ export const getRootNodeProps = createSelector([getCanvas], (rootNode) => {
     }
   return rootNode.props
 })
+
+export const getContainerListWidget = createSelector(
+  [getFlattenArrayComponentNodes],
+  (componentNodes) => {
+    if (!Array.isArray(componentNodes)) {
+      return null
+    }
+
+    return componentNodes.filter((node) => {
+      return node.type === "LIST_WIDGET"
+    })
+  },
+)
+
+const dfsWithListNode = (
+  containerNode: ComponentNode,
+  result: Record<string, string[]>,
+  listDisplayName: string,
+) => {
+  containerNode.childrenNode?.forEach((node) => {
+    if (!Array.isArray(get(result, listDisplayName))) {
+      set(result, listDisplayName, [])
+    }
+    result[listDisplayName].push(node.displayName)
+    dfsWithListNode(node, result, listDisplayName)
+  })
+}
+
+export const getContainerListDisplayNameMappedChildrenNodeDisplayName =
+  createSelector([getContainerListWidget], (listNodes) => {
+    const displayNameMappedChildren: Record<string, string[]> = {}
+    if (!listNodes) return displayNameMappedChildren
+    listNodes.forEach((node) => {
+      const containerNode = node.childrenNode[0]
+      if (!Array.isArray(get(displayNameMappedChildren, node.displayName))) {
+        set(displayNameMappedChildren, node.displayName, [])
+      }
+      displayNameMappedChildren[node.displayName].push(
+        containerNode.displayName,
+      )
+      dfsWithListNode(
+        containerNode,
+        displayNameMappedChildren,
+        node.displayName,
+      )
+    })
+
+    return displayNameMappedChildren
+  })

@@ -151,6 +151,13 @@
           "save_and_run": "保存 & 运行",
           "save_fail": "保存失败"
         },
+        "elastic": {
+          "action_type": "Action Type",
+          "body": "Body",
+          "id": "Id",
+          "index": "Index",
+          "query": "Query"
+        },
         "label": {
           "event_handler": "事件处理器",
           "failure": "失败",
@@ -180,38 +187,43 @@
           "sort_by": "Sort By",
           "update": "Update"
         },
-        "elastic": {
-          "action_type": "Action Type",
-          "query": "Query",
-          "index": "Index",
-          "id": "Id",
-          "body": "Body"
+        "option": {
+          "resource": {
+            "new": "添加资源"
+          },
+          "trigger": {
+            "manually": "手动触发时执行",
+            "on_change": "当输入更改时自动执行"
+          }
         },
         "s3": {
           "action_type": "Action Type",
           "bucket_name": "桶名",
-          "prefix_to_filter_reseults": "用于过滤结果的前缀",
+          "content_type": "内容类型",
           "delimiter": "分隔符",
-          "generate_signed_url": "生成签名网址",
+          "error": {
+            "max_file": "文件大小不能超过5M。"
+          },
           "expiry_duration_of_signed_url": "签名网址的有效期(分钟)",
+          "generate_signed_url": "生成签名网址",
           "max_keys": "最大键值",
           "object_key": "对象键值",
           "object_key_list": "对象键值列表",
-          "content_type": "内容类型",
-          "upload_object_name": "上传对象名称",
-          "upload_data": "上传数据",
-          "upload_object_name_list": "上传对象名称列表",
-          "upload_data_list": "上传数据列表",
           "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
             "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
             "object_name": "export.csv",
-            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}",
-            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}"
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
           },
+          "prefix_to_filter_reseults": "用于过滤结果的前缀",
           "tips": {
             "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。",
             "delimiter": "分隔符是一个用来分组键值的字符。"
-          }
+          },
+          "upload_data": "上传数据",
+          "upload_data_list": "上传数据列表",
+          "upload_object_name": "上传对象名称",
+          "upload_object_name_list": "上传对象名称列表"
         },
         "smtp": {
           "from_email": "发件人",
@@ -231,15 +243,6 @@
           },
           "tips": {
             "port": "一些互联网服务提供商可能会禁用端口25。如果连接失败，请修改端口。"
-          }
-        },
-        "option": {
-          "resource": {
-            "new": "添加资源"
-          },
-          "trigger": {
-            "manually": "手动触发时执行",
-            "on_change": "当输入更改时自动执行"
           }
         },
         "tips": {
@@ -297,24 +300,6 @@
           "title": {
             "advanced_option": "高级配置",
             "general_option": "通用"
-          }
-        },
-        "s3": {
-          "label": {
-            "bucket_name": "桶名",
-            "region": "区域",
-            "custome_s3_endpoint": "自定义S3端点",
-            "base_url": "基准网址",
-            "access_key": "访问密钥",
-            "secret_access_key": "秘密访问密钥",
-            "use_custome_s3_endpoint": "使用自定义S3端点"
-          },
-          "placeholder": {
-            "region": "us-west-1",
-            "base_url": "例如https://example.com"
-          },
-          "tip": {
-            "custome_s3_endpoint_tip": "用于连接到其他非S3服务，如Digital Ocean Spaces或Wasabi。"
           }
         },
         "error": {
@@ -385,6 +370,24 @@
           },
           "title": {
             "advanced_option": "通用"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "访问密钥",
+            "base_url": "基准网址",
+            "bucket_name": "桶名",
+            "custome_s3_endpoint": "自定义S3端点",
+            "region": "区域",
+            "secret_access_key": "秘密访问密钥",
+            "use_custome_s3_endpoint": "使用自定义S3端点"
+          },
+          "placeholder": {
+            "base_url": "例如https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "用于连接到其他非S3服务，如Digital Ocean Spaces或Wasabi。"
           }
         },
         "transformer": {
@@ -510,6 +513,7 @@
           "focus": "聚焦",
           "invalid": "校验失败",
           "paginationChange": "翻页配置改变",
+          "row_select": "选择行",
           "sortingChange": "排序方式改变",
           "submit": "提交",
           "success": "成功后"
@@ -637,8 +641,8 @@
         "loading": "加载中",
         "loop_back_to_start": "列表循环",
         "loop_start_to_back": "列表循环",
-        "mapped_value": "映射值",
         "mapped_option": "映射选项",
+        "mapped_value": "映射值",
         "max_count": "最大数量",
         "max_date": "最大日期",
         "max_length": "最大长度",
@@ -1036,6 +1040,8 @@
       "name": "输入框"
     },
     "list": {
+      "doc1": "使用 {{ currentItem }} 来访问当前项的数据。例如，根据 \"userName \"来设置列表组件中的文本组件的值：{{ currentItem.userName }}}。",
+      "doc2": "使用{{list.selectedItem.data}}来访问列表选中项的数据。例如，根据列表选中项的 \"用户名\"，设置位于列表组件外的文本组件的值：{{list.selectedItem.userName }}}。",
       "name": "列表"
     },
     "menu": {

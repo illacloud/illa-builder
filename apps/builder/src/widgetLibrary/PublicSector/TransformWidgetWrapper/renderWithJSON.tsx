@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { cloneDeep, get, set } from "lodash"
+import { cloneDeep, get } from "lodash"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import {
@@ -8,14 +8,12 @@ import {
   BUILDER_CALC_CONTEXT,
 } from "@/page/App/context/globalDataProvider"
 import { EventsInProps } from "@/widgetLibrary/interface"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { RootState } from "@/store"
 import {
   getCanvas,
-  getContainerListDisplayNameMappedChildrenNodeDisplayName,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -26,7 +24,6 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { isObject } from "@/utils/typeHelper"
-import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -34,114 +31,26 @@ export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   })
 }
 
-export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
+export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
     const { componentNode } = props
-    const displayNameMapProps = useSelector(getExecutionResult)
-    const { displayName, type, w, h, unitW, unitH, childrenNode } =
-      componentNode
 
-    const realProps = useMemo(
-      () => displayNameMapProps[displayName] ?? {},
-      [displayName, displayNameMapProps],
-    )
+    const {
+      displayName,
+      type,
+      w,
+      h,
+      unitW,
+      unitH,
+      childrenNode,
+      props: nodeProps,
+    } = componentNode
+
     const { handleUpdateGlobalData, handleDeleteGlobalData } =
       useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
 
-    const allComponents = useSelector<RootState, ComponentNode[]>(
-      (rootState) => {
-        const rootNode = getCanvas(rootState)
-        const parentNodeDisplayName = componentNode.parentNode
-        const target = searchDsl(rootNode, parentNodeDisplayName)
-        if (target) {
-          return target.childrenNode || []
-        }
-        return []
-      },
-    )
-
-    const containerListMapChildName = useSelector(
-      getContainerListDisplayNameMappedChildrenNodeDisplayName,
-    )
-
-    const listContainerDisabled = useMemo(() => {
-      const listWidgetDisplayNames = Object.keys(containerListMapChildName)
-      let currentListDisplayName = ""
-      for (let i = 0; i < listWidgetDisplayNames.length; i++) {
-        if (
-          containerListMapChildName[listWidgetDisplayNames[i]].includes(
-            displayName,
-          )
-        ) {
-          currentListDisplayName = listWidgetDisplayNames[i]
-          break
-        }
-      }
-      if (!currentListDisplayName) return realProps?.disabled || false
-      const listWidgetProps = displayNameMapProps[currentListDisplayName]
-      if (Object.hasOwn(listWidgetProps, "disabled"))
-        return listWidgetProps.disabled
-      return realProps?.disabled || false
-    }, [
-      containerListMapChildName,
-      displayName,
-      displayNameMapProps,
-      realProps?.disabled,
-    ])
-
-    const updateComponentHeight = useCallback(
-      (newHeight: number) => {
-        const newH = Math.ceil((newHeight + 6) / componentNode.unitH)
-        if (newH === componentNode.h) return
-        const newItem = {
-          ...componentNode,
-          h: Math.max(newH, componentNode.minH),
-        }
-        const cloneDeepAllComponents = cloneDeep(allComponents)
-        const findIndex = cloneDeepAllComponents.findIndex(
-          (node) => node.displayName === newItem.displayName,
-        )
-        cloneDeepAllComponents.splice(findIndex, 1, newItem)
-        if (componentNode.h < newItem.h) {
-          const result = getReflowResult(newItem, cloneDeepAllComponents, false)
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: componentNode.parentNode || "root",
-                childNodes: result.finalState,
-              },
-            ]),
-          )
-        }
-        if (componentNode.h > newItem.h) {
-          const effectRows = componentNode.h - newItem.h
-          const effectMap = getNearComponentNodes(
-            componentNode,
-            cloneDeepAllComponents,
-          )
-          effectMap.set(newItem.displayName, newItem)
-          effectMap.forEach((node) => {
-            if (node.displayName !== componentNode.displayName) {
-              node.y -= effectRows
-            }
-          })
-          let finalState = applyEffectMapToComponentNodes(
-            effectMap,
-            allComponents,
-          )
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: componentNode.parentNode || "root",
-                childNodes: finalState,
-              },
-            ]),
-          )
-        }
-      },
-      [allComponents, componentNode, dispatch],
-    )
+    const realProps = useMemo(() => nodeProps ?? {}, [nodeProps])
 
     const handleUpdateDsl = useCallback(
       (value: Record<string, any>) => {
@@ -308,31 +217,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       })
     }, [getOnColumnFiltersChangeEventScripts])
 
-    const handleOnRowSelect = useCallback(() => {
-      const originEvents = get(componentNode.props, "events", [])
-      const dynamicPaths = get(componentNode.props, "$dynamicAttrPaths", [])
-      const needRunEvents = cloneDeep(originEvents)
-      dynamicPaths?.forEach((path: string) => {
-        const realPath = path.split(".").slice(1).join(".")
-        try {
-          const dynamicString = get(needRunEvents, realPath, "")
-          if (dynamicString) {
-            const calcValue = evaluateDynamicString(
-              "",
-              dynamicString,
-              BUILDER_CALC_CONTEXT,
-            )
-            set(needRunEvents, realPath, calcValue)
-          }
-        } catch (e) {
-          console.log(e)
-        }
-      })
-      needRunEvents.forEach((scriptObj: any) => {
-        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
-      })
-    }, [componentNode.props])
-
     const getOnFormSubmitEventScripts = useCallback(() => {
       const events = get(realProps, "events")
       if (events) {
@@ -361,10 +245,11 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       })
     }, [getOnFormInvalidEventScripts])
 
+    if (!type) return null
     const widget = widgetBuilder(type)
     if (!widget) return null
-
     const Component = widget.widget
+
     const {
       hidden,
       borderColor,
@@ -409,7 +294,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleOnPaginationChange={handleOnPaginationChange}
           handleOnColumnFiltersChange={handleOnColumnFiltersChange}
           handleUpdateDsl={handleUpdateDsl}
-          updateComponentHeight={updateComponentHeight}
           handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
           handleOnFormSubmit={handleOnFormSubmit}
           handleOnFormInvalid={handleOnFormInvalid}
@@ -418,12 +302,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           componentNode={componentNode}
           handleOnFocus={handleOnFocus}
           handleOnBlur={handleOnBlur}
-          handleOnRowSelect={handleOnRowSelect}
-          disabled={listContainerDisabled}
         />
       </div>
     )
   },
 )
 
-TransformWidgetWrapper.displayName = "TransformWidgetWrapper"
+TransformWidgetWrapperWithJson.displayName = "TransformWidgetWrapper"
