@@ -1,15 +1,38 @@
 import { FC, useMemo } from "react"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
-import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { Select } from "@illa-design/react"
+import { CodeEditor } from "@/components/CodeEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { AggregatePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/AggregatePart"
+import { BulkWritePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/BulkWritePart"
+import { CommandPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/Command"
+import { CountPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/CountPart"
+import { DeleteManyPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/DeleteManyPart"
+import { DeleteOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/DeleteOnePart"
+import { DistinctPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/DistinctPart"
+import { FindOneAndUpdatePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/FindOneAndUpdatePart"
+import { FindOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/FindOnePart"
+import { FindPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/FindPart"
+import { InsertManyPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/InertManyPart"
+import { InsertOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/InertOnePart"
+import { UpdateManyPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/UpdateManyPart"
+import { UpdateOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/UpdateOnePart"
+import { ListCollectionsPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/listCollectionsPart"
 import {
   mongoContainerStyle,
   mongoItemCodeEditorStyle,
   mongoItemLabelStyle,
   mongoItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
-import { Select } from "@illa-design/react"
-import { useTranslation } from "react-i18next"
+import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
   AggregateContentInitial,
   BulkWriteContentInitial,
@@ -30,30 +53,7 @@ import {
   UpdateManyContentInitial,
   UpdateOneContentInitial,
 } from "@/redux/currentApp/action/mongoDbAction"
-import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { AggregatePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/AggregatePart"
-import { useDispatch, useSelector } from "react-redux"
-import {
-  getCachedAction,
-  getSelectedAction,
-} from "@/redux/config/configSelector"
-import { BulkWritePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/BulkWritePart"
-import { CountPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/CountPart"
-import { DeleteManyPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/DeleteManyPart"
-import { DistinctPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/DistinctPart"
-import { FindPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/FindPart"
-import { FindOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/FindOnePart"
-import { FindOneAndUpdatePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/FindOneAndUpdatePart"
-import { InsertManyPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/InertManyPart"
-import { InsertOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/InertOnePart"
-import { ListCollectionsPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/listCollectionsPart"
-import { UpdateManyPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/UpdateManyPart"
-import { UpdateOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/UpdateOnePart"
-import { CommandPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/Command"
-import { DeleteOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/DeleteOnePart"
-import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export const MongoDbPanel: FC = () => {
   const { t } = useTranslation()

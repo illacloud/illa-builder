@@ -1,20 +1,20 @@
+import { cloneDeep } from "lodash"
 import { FC, HTMLAttributes, MouseEvent, useCallback } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { configActions } from "@/redux/config/configSlice"
-import {
-  getActionExecutionResultArray,
-  getWidgetExecutionResultArray,
-} from "@/redux/currentApp/executionTree/executionSelector"
+import { useDispatch, useSelector } from "react-redux"
+import { WorkSpaceTree } from "@/page/App/components/DataWorkspace/components/WorkSpaceTree"
 import {
   getSelectedAction,
   getSelectedComponents,
 } from "@/redux/config/configSelector"
-import { WorkSpaceTree } from "@/page/App/components/DataWorkspace/components/WorkSpaceTree"
+import { configActions } from "@/redux/config/configSlice"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import {
+  getActionExecutionResultArray,
+  getWidgetExecutionResultArray,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { getGlobalInfoExecutionResult } from "@/redux/currentUser/currentUserSelector"
 import { FocusManager } from "@/utils/focusManager"
-import { cloneDeep } from "lodash"
 import { PageSpaceTree } from "./components/PageSpaceTree"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}

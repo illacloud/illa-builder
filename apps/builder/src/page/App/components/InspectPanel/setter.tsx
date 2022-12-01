@@ -1,13 +1,13 @@
-import { useContext, useMemo, memo } from "react"
 import { get } from "lodash"
-import { applySetterWrapperStyle, applySetterPublicWrapperStyle } from "./style"
-import { PanelSetterProps } from "./interface"
-import { getSetterByType } from "@/page/App/components/PanelSetters"
-import { PanelLabel } from "./label"
-import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { memo, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { PanelSetterProps } from "./interface"
+import { PanelLabel } from "./label"
+import { applySetterPublicWrapperStyle, applySetterWrapperStyle } from "./style"
 
 export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const {

@@ -1,10 +1,31 @@
 import { FC, useState } from "react"
-import { RestApiConfigElementProps } from "./interface"
-import { useTranslation } from "react-i18next"
 import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/store"
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  Input,
+  PaginationPreIcon,
+  Select,
+  getColor,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
+import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
+import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource } from "@/redux/resource/resourceState"
+import {
+  BasicAuth,
+  BearerAuth,
+  RestApiAuth,
+  RestApiResource,
+} from "@/redux/resource/restapiResource"
+import { RootState } from "@/store"
+import { RestApiConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -15,27 +36,6 @@ import {
   labelContainer,
   optionLabelStyle,
 } from "./style"
-import {
-  getColor,
-  Input,
-  Button,
-  ButtonGroup,
-  PaginationPreIcon,
-  Divider,
-  Select,
-  useMessage,
-} from "@illa-design/react"
-import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
-import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
-import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
-import { Api } from "@/api/base"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import {
-  BasicAuth,
-  BearerAuth,
-  RestApiAuth,
-  RestApiResource,
-} from "@/redux/resource/restapiResource"
 
 function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
   let authContent: RestApiAuth | null = null

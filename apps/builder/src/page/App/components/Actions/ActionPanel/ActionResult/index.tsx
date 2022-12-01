@@ -1,9 +1,14 @@
 import { FC, RefObject, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import {
   CloseIcon,
   SuccessCircleIcon,
   WarningCircleIcon,
 } from "@illa-design/react"
+import { ApiError } from "@/api/base"
+import { CodeEditor } from "@/components/CodeEditor"
+import { DragBar } from "@/page/App/components/Actions/DragBar"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ActionResultType } from "./interface"
 import {
   applyMaxHeightStyle,
@@ -16,11 +21,6 @@ import {
   successIconStyle,
   successResultWrapperStyle,
 } from "./style"
-import { CodeEditor } from "@/components/CodeEditor"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { ApiError } from "@/api/base"
-import { DragBar } from "@/page/App/components/Actions/DragBar"
-import { useTranslation } from "react-i18next"
 
 interface ActionResultProps {
   result?: ActionResultType

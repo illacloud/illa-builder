@@ -1,4 +1,28 @@
 import { FC, useState } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  Input,
+  InputNumber,
+  PaginationPreIcon,
+  Password,
+  Switch,
+  getColor,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import {
+  RedisResource,
+  RedisResourceInitial,
+} from "@/redux/resource/redisResource"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Resource } from "@/redux/resource/resourceState"
+import { RootState } from "@/store"
+import { isCloudVersion } from "@/utils/typeHelper"
 import { RedisConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -13,30 +37,6 @@ import {
   optionLabelStyle,
   sslStyle,
 } from "./style"
-import {
-  Input,
-  Password,
-  getColor,
-  Divider,
-  Switch,
-  InputNumber,
-  Button,
-  ButtonGroup,
-  PaginationPreIcon,
-  useMessage,
-} from "@illa-design/react"
-import { useTranslation } from "react-i18next"
-import { Controller, useForm } from "react-hook-form"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/store"
-import { Resource } from "@/redux/resource/resourceState"
-import { Api } from "@/api/base"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import {
-  RedisResource,
-  RedisResourceInitial,
-} from "@/redux/resource/redisResource"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props

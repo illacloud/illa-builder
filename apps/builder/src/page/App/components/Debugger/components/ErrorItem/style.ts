@@ -1,6 +1,6 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { SerializedStyles, css } from "@emotion/react"
 import { Variants } from "framer-motion"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const errorContainerStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-techPink-07`)};

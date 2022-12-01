@@ -1,27 +1,27 @@
+import { ChartType } from "chart.js"
+import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
-import { ChartTypeSelectSetterProps } from "./interface"
-import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
+import { useSelector } from "react-redux"
 import {
   BarChartIcon,
   LineChartIcon,
   PieChartIcon,
   ScatterPlotIcon,
 } from "@illa-design/react"
+import i18n from "@/i18n/config"
+import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
+import { CHART_PRESET_COLOR } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import {
   chartTypeIconCss,
   chartTypeStringCss,
 } from "@/page/App/components/PanelSetters/ChartSetter/style"
-import i18n from "@/i18n/config"
-import { useSelector } from "react-redux"
-import { RootState } from "@/store"
+import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import { get } from "lodash"
-import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
-import { ChartType } from "chart.js"
-import { CHART_PRESET_COLOR } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
+import { RootState } from "@/store"
+import { ChartTypeSelectSetterProps } from "./interface"
 
 const typeOptions = [
   {

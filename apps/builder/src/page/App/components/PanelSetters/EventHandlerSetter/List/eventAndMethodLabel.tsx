@@ -1,16 +1,16 @@
-import { FC, useCallback, useContext, useState } from "react"
-import { Trigger } from "@illa-design/react"
 import { get } from "lodash"
+import { FC, useCallback, useContext, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { Trigger } from "@illa-design/react"
+import i18n from "@/i18n/config"
+import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
+import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
+import { EventAndMethodLabelProps } from "./interface"
 import {
   eventAndMethodWrapperStyle,
   eventNameStyle,
   methodNameStyle,
 } from "./style"
-import { EventAndMethodLabelProps } from "./interface"
-import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
-import { useTranslation } from "react-i18next"
-import i18n from "@/i18n/config"
 
 const getMethodName = (
   actionType: string,

@@ -1,14 +1,14 @@
 import { FC, useCallback, useMemo } from "react"
-import { BaseInputSetterProps } from "./interface"
-import { applyInputSetterWrapperStyle } from "./style"
-import { CodeEditor } from "@/components/CodeEditor"
 import { useSelector } from "react-redux"
-import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { CodeEditor } from "@/components/CodeEditor"
+import { getPath } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
 import {
   getNeedComputedValueWithList,
   realInputValueWithList,
 } from "@/page/App/components/PanelSetters/InputSetter/util"
-import { getPath } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { BaseInputSetterProps } from "./interface"
+import { applyInputSetterWrapperStyle } from "./style"
 
 export const CalcSelfInput: FC<BaseInputSetterProps> = (props) => {
   const {

@@ -1,10 +1,10 @@
-import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
+import { ChartType } from "chart.js"
 import {
   PanelFieldConfig,
   PanelLabelProps,
 } from "@/page/App/components/InspectPanel/interface"
+import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/Chart"
-import { ChartType } from "chart.js"
 
 export interface ListItemProps {
   color: string

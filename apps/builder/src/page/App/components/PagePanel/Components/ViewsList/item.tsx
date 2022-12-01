@@ -1,9 +1,10 @@
-import { ReduceIcon, Trigger } from "@illa-design/react"
 import { FC, useMemo, useState } from "react"
-import { LabelNameAndDragIcon } from "./labelName"
-import { deleteIconStyle, itemWrapperStyle } from "./style"
+import { ReduceIcon, Trigger } from "@illa-design/react"
 import { ItemProps } from "./interface"
+import { LabelNameAndDragIcon } from "./labelName"
 import { Modal } from "./modal"
+import { deleteIconStyle, itemWrapperStyle } from "./style"
+
 export const Item: FC<ItemProps> = (props) => {
   const {
     name,

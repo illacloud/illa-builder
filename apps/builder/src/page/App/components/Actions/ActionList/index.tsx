@@ -1,26 +1,18 @@
 import { FC, HTMLAttributes, useState } from "react"
-import {
-  List,
-  Button,
-  useModal,
-  Empty,
-  AddIcon,
-  Space,
-} from "@illa-design/react"
-import { useDispatch, useSelector } from "react-redux"
-import { ActionListItem } from "@/page/App/components/Actions/ActionListItem"
-import { SearchHeader } from "@/page/App/components/Actions/SearchHeader"
-import {
-  actionListEmptyStyle,
-  addNewActionButtonStyle,
-  listContainerStyle,
-  listStyle,
-  searchHeaderContainerStyle,
-} from "./style"
 import { useTranslation } from "react-i18next"
-import { configActions } from "@/redux/config/configSlice"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  AddIcon,
+  Button,
+  Empty,
+  List,
+  Space,
+  useModal,
+} from "@illa-design/react"
 import { ReactComponent as ActionListEmptyState } from "@/assets/action-list-empty-state.svg"
 import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
+import { ActionListItem } from "@/page/App/components/Actions/ActionListItem"
+import { SearchHeader } from "@/page/App/components/Actions/SearchHeader"
 import {
   onCopyActionItem,
   onDeleteActionItem,
@@ -29,7 +21,15 @@ import {
   getCachedAction,
   getSelectedAction,
 } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import {
+  actionListEmptyStyle,
+  addNewActionButtonStyle,
+  listContainerStyle,
+  listStyle,
+  searchHeaderContainerStyle,
+} from "./style"
 
 export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { className } = props

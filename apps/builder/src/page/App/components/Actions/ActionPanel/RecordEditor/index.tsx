@@ -1,5 +1,15 @@
 import { FC, useMemo } from "react"
+import { useTranslation } from "react-i18next"
+import {
+  AddIcon,
+  Button,
+  DeleteIcon,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
+import { CodeEditor } from "@/components/CodeEditor"
 import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/RecordEditor/interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   applyRecordEditorContainerStyle,
   recordEditorLabelStyle,
@@ -8,16 +18,6 @@ import {
   recordStyle,
   recordValueStyle,
 } from "./style"
-import { CodeEditor } from "@/components/CodeEditor"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import {
-  Button,
-  AddIcon,
-  DeleteIcon,
-  globalColor,
-  illaPrefix,
-} from "@illa-design/react"
-import { useTranslation } from "react-i18next"
 
 export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props
