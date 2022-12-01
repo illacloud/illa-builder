@@ -1,5 +1,5 @@
 import hotkeys from "hotkeys-js"
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, ReactNode, useCallback, useEffect, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -26,7 +26,7 @@ import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 
-export const Shortcut: FC = ({ children }) => {
+export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
