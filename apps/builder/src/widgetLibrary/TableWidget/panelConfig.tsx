@@ -89,9 +89,10 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-column-mappedValue`,
             labelName: i18n.t("editor.inspect.setter_label.mapped_value"),
+            labelDesc: i18n.t("editor.inspect.setter_tooltip.mapped_value"),
             attrName: "mappedValue",
             setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
-            placeholder: "{{currentRow}}",
+            placeholder: "{{currentRow.col}}",
           },
           {
             id: `${baseWidgetName}-basic-enableSorting`,
@@ -145,6 +146,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-multiRowSelection`,
         labelName: i18n.t("editor.inspect.setter_label.multi_row_selection"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.multi_row_selection"),
         attrName: "multiRowSelection",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,

@@ -728,6 +728,8 @@
         "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
         "loading": "Whether the component should show a loading indicator.",
         "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
+        "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Use {{ table.selectedRow.data }} to access data. If you enable Multi-Row Selection, it will return an array, you can use it like this: {{ table1.selectedRow.data[0].email }} . And if you don't enable Multi-Row Selection, it will return an object, you can use it like this {{ table1.selectedRow.data.email }}.",
         "only_run_when": "Conditions that must be met before the event executes.",
         "placeholder": "The value will be shown when the input field is empty.",
         "progress_percentage": "The percentage value is between 0 and 100.",

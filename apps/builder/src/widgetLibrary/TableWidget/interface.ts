@@ -48,6 +48,7 @@ export interface WrappedTableProps
       | "overFlow"
       | "pagination"
       | "defaultSort"
+      | "rowSelection"
       | "columnVisibility"
       | "multiRowSelection"
       | "data"
@@ -57,6 +58,7 @@ export interface WrappedTableProps
   pageSize?: number
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
+  selectedRow?: any[]
   handleOnClickMenuItem?: (path: string) => void
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
@@ -67,6 +69,7 @@ export interface WrappedTableProps
       value: Record<string, any>
     }[],
   ) => void
+  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
 }
 
 export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {
