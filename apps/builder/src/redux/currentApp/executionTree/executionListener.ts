@@ -98,10 +98,16 @@ async function handleStartExecutionOnCanvas(
     const executionResult =
       executionTree.updateTreeFromExecution(oldExecutionTree)
     const evaluatedTree = executionResult.evaluatedTree
+    const errorTree = executionResult.errorTree
     const updates = diff(oldExecutionTree, evaluatedTree) || []
     listenerApi.dispatch(
       executionActions.setExecutionResultReducer({
         updates,
+      }),
+    )
+    listenerApi.dispatch(
+      executionActions.setExecutionErrorReducer({
+        ...errorTree,
       }),
     )
   }

@@ -143,7 +143,8 @@ export const transformEvents = (
       widgetMethod === "clearValue" ||
       widgetMethod === "toggle" ||
       widgetMethod === "focus" ||
-      widgetMethod === "reset"
+      widgetMethod === "reset" ||
+      widgetMethod === "rowSelect"
     ) {
       return {
         script: `{{${widgetID}.${widgetMethod}()}}`,
