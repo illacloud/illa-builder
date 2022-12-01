@@ -98,7 +98,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                           message.success({
                             content: t("dashboard.resource.delete_success"),
                           })
-                          // modal.close(modalId)
+                          modal.close(modalId)
                         },
                         (failure) => {
                           message.error({
