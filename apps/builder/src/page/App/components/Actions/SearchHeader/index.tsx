@@ -1,10 +1,9 @@
-import { FC, useState } from "react"
 import { css } from "@emotion/react"
 import { AnimatePresence, motion } from "framer-motion"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Input } from "@illa-design/input"
-import { Button } from "@illa-design/button"
-import { SearchIcon } from "@illa-design/icon"
+import { Button, Input, SearchIcon } from "@illa-design/react"
+import { SearchHeaderProps } from "./interface"
 import {
   searchHeaderStyle,
   searchHeaderTitleIconStyle,
@@ -14,7 +13,6 @@ import {
   searchInputIconStyle,
   searchInputStyle,
 } from "./style"
-import { SearchHeaderProps } from "./interface"
 
 export const SearchHeader: FC<SearchHeaderProps> = (props) => {
   const { onSearch } = props

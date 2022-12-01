@@ -1,24 +1,29 @@
 import { FC, useCallback, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
-import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
-
+import { useDispatch, useSelector } from "react-redux"
 import {
+  Badge,
   BugIcon,
+  Button,
+  ButtonGroup,
   CaretRightIcon,
   ExitIcon,
   FullScreenIcon,
   LockIcon,
+  Trigger,
   UnlockIcon,
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
-} from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
-import { Button, ButtonGroup } from "@illa-design/button"
+  globalColor,
+  illaPrefix,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
-import { configActions } from "@/redux/config/configSlice"
+import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import {
   getFreezeState,
   getIllaMode,
@@ -28,7 +33,10 @@ import {
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { fromNow } from "@/utils/dayjs"
 import {
   descriptionStyle,
   informationStyle,
@@ -41,13 +49,6 @@ import {
   windowIconBodyStyle,
   windowIconStyle,
 } from "./style"
-import { Api } from "@/api/base"
-import { Badge } from "@illa-design/badge"
-import { DeployResp } from "@/page/App/components/PageNavBar/resp"
-import { fromNow } from "@/utils/dayjs"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { useMessage } from "@illa-design/message"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props

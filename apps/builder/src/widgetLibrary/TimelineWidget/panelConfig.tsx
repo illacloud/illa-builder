@@ -1,6 +1,6 @@
+import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import i18n from "@/i18n/config"
 
 const baseWidgetName = "timeline"
 export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [

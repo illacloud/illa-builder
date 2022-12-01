@@ -1,10 +1,10 @@
-import { ReactComponent as FormWidgetIcon } from "@/assets/widgetCover/form.svg"
-import { WidgetConfig } from "@/widgetLibrary/interface"
-import i18n from "@/i18n/config"
-import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
-import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
-import { BUTTON_WIDGET_CONFIG } from "../ButtonWidget"
 import { v4 } from "uuid"
+import { ReactComponent as FormWidgetIcon } from "@/assets/widgetCover/form.svg"
+import i18n from "@/i18n/config"
+import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
+import { WidgetConfig } from "@/widgetLibrary/interface"
+import { BUTTON_WIDGET_CONFIG } from "../ButtonWidget"
 
 export const FORM_WIDGET_CONFIG: WidgetConfig = {
   type: "FORM_WIDGET",

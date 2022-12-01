@@ -1,6 +1,6 @@
+import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
 import { WrappedDate } from "../index"
-import "@testing-library/jest-dom"
 
 test("WrappedDate renders correctly", () => {
   const handleUpdateDSL = jest.fn()

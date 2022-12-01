@@ -1,4 +1,4 @@
-import { TimelineProps } from "@illa-design/timeline"
+import { TimelineProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedTimelineProps

@@ -18,6 +18,16 @@ export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   columnsNumber: number
 }
 
+export interface ScaleSquarePropsWithJSON {
+  componentNode: ComponentNode
+  h: number
+  w: number
+  x: number
+  y: number
+  unitW: number
+  unitH: number
+}
+
 export interface MoveBarProps {
   displayName: string
   isError: boolean
@@ -28,6 +38,7 @@ export interface MoveBarProps {
   widgetHeight: number
   containerHeight: number
   containerPadding: number
+  widgetType: string
 }
 
 export interface MoveBarPositionShape {

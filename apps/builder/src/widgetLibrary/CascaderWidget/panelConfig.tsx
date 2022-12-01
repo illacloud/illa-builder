@@ -1,9 +1,9 @@
-import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
+import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import i18n from "@/i18n/config"
+import { CASCADER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/CascaderWidget/eventHandlerConfig"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { SELECT_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SelectWidget/eventHandlerConfig"
 
 const baseWidgetName = "cascader"
 export const CASCADER_PANEL_CONFIG: PanelConfig[] = [
@@ -112,7 +112,7 @@ export const CASCADER_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          SELECT_EVENT_HANDLER_CONFIG.events,
+          CASCADER_EVENT_HANDLER_CONFIG.events,
         ),
       },
       {

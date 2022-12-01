@@ -1,15 +1,15 @@
-import { FC, useCallback, useEffect, useRef } from "react"
 import dayjs from "dayjs"
-import { DatePicker } from "@illa-design/date-picker"
-import { DateWidgetProps, WrappedDateProps } from "./interface"
+import { FC, useCallback, useEffect, useRef } from "react"
+import { DatePicker } from "@illa-design/react"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { Label } from "@/widgetLibrary/PublicSector/Label"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
+import { DateWidgetProps, WrappedDateProps } from "./interface"
 
 export const WrappedDate: FC<WrappedDateProps> = (props) => {
   const {

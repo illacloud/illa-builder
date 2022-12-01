@@ -1,11 +1,15 @@
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import {
+  BarChartIcon,
+  LineChartIcon,
+  ScatterPlotIcon,
+} from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { BarChartIcon, LineChartIcon, ScatterPlotIcon } from "@illa-design/icon"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   chartTypeIconCss,
   chartTypeStringCss,
 } from "@/page/App/components/PanelSetters/ChartSetter/style"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/Chart/interface"
 
 const datasetsTypeOption = [

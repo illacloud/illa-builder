@@ -1,8 +1,8 @@
-import { css, SerializedStyles } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
 // import "@fontsource/fira-code"
 import chroma from "chroma-js"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Variants } from "framer-motion"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const itemNameStyle: SerializedStyles = css`
   font-weight: 600;

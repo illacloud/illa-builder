@@ -1,24 +1,24 @@
-import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
-import {
-  searchDsl,
-  getCanvas,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { getIllaMode } from "@/redux/config/configSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import store from "@/store"
-import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
+import { get } from "lodash"
+import { createMessage } from "@illa-design/react"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { createMessage } from "@illa-design/message"
 import {
   goToURL,
   showNotification,
 } from "@/page/App/context/globalDataProvider"
-import { get } from "lodash"
+import { getIllaMode } from "@/redux/config/configSelector"
+import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
+import {
+  getCanvas,
+  searchDsl,
+} from "@/redux/currentApp/editor/components/componentsSelector"
+import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { ILLARoute } from "@/router"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { UpdateExecutionByDisplayNamePayload } from "@/redux/currentApp/executionTree/executionState"
+import { ILLARoute } from "@/router"
+import store from "@/store"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 const message = createMessage()
 
@@ -143,7 +143,8 @@ export const transformEvents = (
       widgetMethod === "clearValue" ||
       widgetMethod === "toggle" ||
       widgetMethod === "focus" ||
-      widgetMethod === "reset"
+      widgetMethod === "reset" ||
+      widgetMethod === "rowSelect"
     ) {
       return {
         script: `{{${widgetID}.${widgetMethod}()}}`,

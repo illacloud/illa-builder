@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
-import { CommonRangeProps } from "@illa-design/date-picker"
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { CommonRangeProps } from "@illa-design/react"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedDateRangeProps
   extends Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme"> {

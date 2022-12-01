@@ -1,11 +1,9 @@
-import { FC, useCallback, useMemo, useState, ChangeEvent } from "react"
+import { ChangeEvent, FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Password } from "@illa-design/input"
-import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
-import { Button } from "@illa-design/button"
-import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
+import { Button, Password, useMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
-import { useMessage } from "@illa-design/message"
+import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
+import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 
 const validatePasswordEmpty = (password: string) => {
   return !password

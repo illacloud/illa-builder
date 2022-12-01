@@ -1,23 +1,10 @@
 import { FC, useCallback, useMemo } from "react"
-import { PanelBar } from "@/components/PanelBar"
 import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
 import { InputNumber, Switch, useModal } from "@illa-design/react"
 import { ReactComponent as FrameFixedIcon } from "@/assets/rightPagePanel/frame-fixed.svg"
 import { ReactComponent as FrameResponsiveIcon } from "@/assets/rightPagePanel/frame-responsive.svg"
-import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
-import { LayoutSelect } from "@/page/App/components/PagePanel/Components/LayoutSelect"
-import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
-import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
-import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
-import { useDispatch, useSelector } from "react-redux"
-import {
-  getCanvas,
-  searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
-import { PageNodeProps } from "@/redux/currentApp/editor/components/componentsState"
-import { PanelActionBar } from "@/page/App/components/PagePanel/Components/PanelActionBar"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getCanvasShape } from "@/redux/config/configSelector"
+import { PanelBar } from "@/components/PanelBar"
 import {
   BODY_MIN_HEIGHT,
   BODY_MIN_WIDTH,
@@ -26,9 +13,22 @@ import {
   LEFT_MIN_WIDTH,
   RIGHT_MIN_WIDTH,
 } from "@/page/App/components/DotPanel/renderSection"
-import { groupWrapperStyle } from "./style"
+import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
+import { LayoutSelect } from "@/page/App/components/PagePanel/Components/LayoutSelect"
+import { PanelActionBar } from "@/page/App/components/PagePanel/Components/PanelActionBar"
+import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
+import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
+import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
+import { getCanvasShape } from "@/redux/config/configSelector"
+import {
+  getCanvas,
+  searchDsl,
+} from "@/redux/currentApp/editor/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { PageNodeProps } from "@/redux/currentApp/editor/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
+import { groupWrapperStyle } from "./style"
 
 const getRealCanvasWidth = (
   canvasSize: "fixed" | "responsive",
@@ -461,6 +461,7 @@ export const PageFrame: FC = () => {
                   onChange={(value) => {
                     handleUpdateShowFoldIcon(value, "leftSection")
                   }}
+                  colorScheme="techPurple"
                 />
               </SetterPadding>
             </LeftAndRightLayout>
@@ -523,6 +524,7 @@ export const PageFrame: FC = () => {
                   onChange={(value) => {
                     handleUpdateShowFoldIcon(value, "rightSection")
                   }}
+                  colorScheme="techPurple"
                 />
               </SetterPadding>
             </LeftAndRightLayout>

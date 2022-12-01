@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
 export const optionListHeaderStyle = css`
@@ -25,7 +25,6 @@ export const headerActionButtonStyle = css`
 `
 
 export const addIconStyle = css`
-  margin-right: 4px;
   font-size: 12px;
 `
 

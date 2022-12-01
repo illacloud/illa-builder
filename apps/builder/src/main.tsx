@@ -1,13 +1,12 @@
-import * as React from "react"
-import * as ReactDOM from "react-dom"
-import App from "./App"
-import { Provider } from "react-redux"
-import store from "./store"
-import "@/i18n/config"
-import "@/utils/dayjs"
-
 import * as Sentry from "@sentry/react"
 import { BrowserTracing } from "@sentry/tracing"
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import { Provider } from "react-redux"
+import "@/i18n/config"
+import "@/utils/dayjs"
+import App from "./App"
+import store from "./store"
 
 if (
   import.meta.env.VITE_INSTANCE_ID === "CLOUD" &&
@@ -21,11 +20,12 @@ if (
   })
 }
 
-ReactDOM.render(
-  <React.StrictMode>
+const root = createRoot(document.getElementById("root")!!)
+
+root.render(
+  <StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById("root"),
+  </StrictMode>,
 )

@@ -1,7 +1,7 @@
-import { ReactComponent as TabsWidgetIcon } from "@/assets/widgetCover/tabs.svg"
-import { WidgetConfig } from "@/widgetLibrary/interface"
-import i18n from "@/i18n/config"
 import { v4 } from "uuid"
+import { ReactComponent as TabsWidgetIcon } from "@/assets/widgetCover/tabs.svg"
+import i18n from "@/i18n/config"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 
 const defaultTabList = [
   { id: v4(), key: "Tab 1", label: "Tab 1" },

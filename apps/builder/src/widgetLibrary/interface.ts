@@ -1,11 +1,11 @@
 import { FC, ReactNode } from "react"
-import { SessionType } from "./componentListBuilder"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { WidgetType } from "@/widgetLibrary/widgetBuilder"
 import {
-  ComponentNode,
   CONTAINER_TYPE,
+  ComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { WidgetType } from "@/widgetLibrary/widgetBuilder"
+import { SessionType } from "./componentListBuilder"
 
 export interface EventHandlerConfig {
   events: {
@@ -74,6 +74,7 @@ export interface BaseWidgetProps {
     }[],
   ) => void
   updateComponentHeight: (newHeight: number) => void
+  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
 }
 
 export interface BaseComponentNodeProps {

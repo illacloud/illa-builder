@@ -1,7 +1,7 @@
-import { RootState } from "@/store"
-import { enUS, Locale, zhCN } from "@illa-design/config-provider"
 import { createSelector } from "@reduxjs/toolkit"
+import { Locale, enUS, zhCN } from "@illa-design/react"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
+import { RootState } from "@/store"
 
 export const getCurrentUser = (state: RootState) => {
   return state.currentUser

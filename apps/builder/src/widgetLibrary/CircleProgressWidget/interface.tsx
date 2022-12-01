@@ -1,10 +1,11 @@
-import { ProgressProps } from "@illa-design/progress"
+import { ProgressProps } from "@illa-design/react"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import {
   BaseComponentNodeProps,
   BaseWidgetProps,
 } from "@/widgetLibrary/interface"
-import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
-import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+
 export type Alignment = "start" | "center" | "end"
 export interface WrappedCircleProgressProps
   extends Pick<

@@ -1,14 +1,14 @@
+import { debounce, get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
+import { useSelector } from "react-redux"
+import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
-import { useSelector } from "react-redux"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
-import { RootState } from "@/store"
-import { debounce, get } from "lodash"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
-import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
+import { RootState } from "@/store"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DataSourceSetter: FC<ChartDataSourceSetterProps> = (props) => {
   const { handleUpdateDsl, widgetDisplayName, labelName, labelDesc } = props

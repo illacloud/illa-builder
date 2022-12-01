@@ -1,21 +1,18 @@
-import { getType, isObject, Types } from "@/utils/typeHelper"
-import { filterBindingSegmentsAndRemoveQuotes } from "./utils"
+import { Types, getType, isObject } from "@/utils/typeHelper"
 import { EVALUATION_TYPE } from "./interface"
+import { filterBindingSegmentsAndRemoveQuotes } from "./utils"
 
 export const smartSubstituteDynamicValues = (
   originDynamicString: string,
   originStringSnippets: string[],
   originValues: unknown[],
 ): string => {
-  const {
-    dynamicString,
-    stringSnippets,
-    values,
-  } = filterBindingSegmentsAndRemoveQuotes(
-    originDynamicString,
-    originStringSnippets,
-    originValues,
-  )
+  const { dynamicString, stringSnippets, values } =
+    filterBindingSegmentsAndRemoveQuotes(
+      originDynamicString,
+      originStringSnippets,
+      originValues,
+    )
   let finalBinding = dynamicString
   stringSnippets.forEach((b, i) => {
     const value = values[i]

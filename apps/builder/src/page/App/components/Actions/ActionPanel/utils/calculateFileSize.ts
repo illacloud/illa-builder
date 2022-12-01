@@ -1,8 +1,8 @@
+import { createMessage } from "@illa-design/react"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { createMessage } from "@illa-design/message"
 
 const message = createMessage()
 const MAX_SIZE = 5 * 1024 * 1024
@@ -39,8 +39,6 @@ export const isFileOversize = (data: string, type?: ActionType) => {
     }
     return content.every((value) => {
       const calculateValue = isSMTP ? value.data || "" : value
-      // 空数组处理
-      console.info(6666, calculateValue, calculateFileSize(calculateValue))
       return !!(calculateFileSize(calculateValue) > MAX_SIZE)
     })
   } else {

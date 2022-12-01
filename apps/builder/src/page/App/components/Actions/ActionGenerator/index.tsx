@@ -1,18 +1,18 @@
 import { FC, useEffect, useState } from "react"
-import { Modal } from "@illa-design/modal"
-import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
-import { ActionTypeSelector } from "./ActionTypeSelector"
-import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
-import { ActionType } from "@/redux/currentApp/action/actionState"
-import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import { Modal } from "@illa-design/react"
+import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
+import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
+import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
+import { ActionType } from "@/redux/currentApp/action/actionState"
+import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
   getResourceNameFromResourceType,
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
-import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
-import { useSelector } from "react-redux"
-import { getAllResources } from "@/redux/resource/resourceSelector"
+import { ActionTypeSelector } from "./ActionTypeSelector"
+import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props

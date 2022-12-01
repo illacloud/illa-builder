@@ -1,7 +1,7 @@
-import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { createContext, ReactNode, FC, useCallback } from "react"
-import { v4 } from "uuid"
 import { cloneDeep } from "lodash"
+import { FC, ReactNode, createContext, useCallback } from "react"
+import { v4 } from "uuid"
+import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
 interface ProviderProps {
   datasets: any[]
@@ -21,13 +21,8 @@ interface ContextShape extends Omit<ProviderProps, "children"> {
 export const DatasetsContext = createContext<ContextShape>({} as ContextShape)
 
 export const DatasetsProvider: FC<ProviderProps> = (props) => {
-  const {
-    children,
-    datasets,
-    widgetDisplayName,
-    attrPath,
-    handleUpdateDsl,
-  } = props
+  const { children, datasets, widgetDisplayName, attrPath, handleUpdateDsl } =
+    props
 
   const handleDeleteDataSet = useCallback(
     (index: number) => {

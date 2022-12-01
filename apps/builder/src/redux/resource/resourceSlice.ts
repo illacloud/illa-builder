@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { resourceInitialState } from "@/redux/resource/resourceState"
 import {
-  updateResourceListReducer,
   addResourceItemReducer,
-  updateResourceItemReducer,
   removeResourceItemReducer,
+  updateResourceItemReducer,
+  updateResourceListReducer,
 } from "@/redux/resource/resourceReducer"
+import { resourceInitialState } from "@/redux/resource/resourceState"
 
 const resourceSlice = createSlice({
   name: "resource",

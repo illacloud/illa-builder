@@ -1,12 +1,12 @@
-import { cloneDeep } from "lodash"
-import { isObject } from "@illa-design/system"
-import { WidgetCardInfo } from "@/widgetLibrary/interface"
-import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
+import { cloneDeep, get, set } from "lodash"
+import { isObject } from "@illa-design/react"
 import {
-  ComponentNode,
   CONTAINER_TYPE,
+  ComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { WidgetCardInfo } from "@/widgetLibrary/interface"
+import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 
 export const generateComponentNode = (
   widgetInfo: Partial<WidgetCardInfo>,
@@ -101,5 +101,28 @@ export const generateComponentNode = (
     childrenNode: childrenNodeDSL,
     props: props ?? {},
   }
+  if (baseDSL.type === "LIST_WIDGET") {
+    baseDSL = transformListWidget(baseDSL)
+  }
+  return baseDSL
+}
+
+function transformListWidget(baseDSL: ComponentNode) {
+  const container = baseDSL.childrenNode[0]
+  let templateChildren = container.childrenNode
+  templateChildren.map((node) => {
+    const props = node.props
+    if (props && Array.isArray(props.$dynamicAttrPaths)) {
+      props.$dynamicAttrPaths.forEach((path) => {
+        const originValue = get(node, `props.${path}`, "")
+        const finalValue = originValue.replace(
+          "templateDisplayName",
+          baseDSL.displayName,
+        )
+        set(node, `props.${path}`, finalValue)
+      })
+    }
+    return node
+  })
   return baseDSL
 }

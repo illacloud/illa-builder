@@ -1,4 +1,12 @@
+import copy from "copy-to-clipboard"
 import { FC, HTMLAttributes } from "react"
+import {
+  CopyIcon,
+  ErrorIcon,
+  MessageHandler,
+  isString,
+  useMessage,
+} from "@illa-design/react"
 import { ResultPreview } from "./interface"
 import {
   applyPreviewStyle,
@@ -7,10 +15,6 @@ import {
   iconStyle,
   typeTextStyle,
 } from "./style"
-import { CopyIcon, ErrorIcon } from "@illa-design/icon"
-import { isString } from "@illa-design/system"
-import copy from "copy-to-clipboard"
-import { MessageHandler, useMessage } from "@illa-design/message"
 
 interface CodePreviewProps extends HTMLAttributes<HTMLDivElement> {
   preview?: ResultPreview

@@ -1,34 +1,31 @@
 import { FC, useCallback, useMemo } from "react"
-import { PanelBar } from "@/components/PanelBar"
 import { useTranslation } from "react-i18next"
-import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
-import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
-import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
-import { Input, Switch } from "@illa-design/react"
 import { useDispatch, useSelector } from "react-redux"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { Input, Switch } from "@illa-design/react"
+import { PanelBar } from "@/components/PanelBar"
+import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { ViewList } from "@/page/App/components/PagePanel/Components/ViewsList"
-import { RootState } from "@/store"
+import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
+import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   PageNodeProps,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
 
 export const PageBasic: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
 
-  const {
-    currentPageIndex,
-    pageSortedKey,
-    homepageDisplayName,
-  } = rootExecutionProps
+  const { currentPageIndex, pageSortedKey, homepageDisplayName } =
+    rootExecutionProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const pageProps = useSelector<RootState>((state) => {
     const canvas = getCanvas(state)
@@ -99,7 +96,11 @@ export const PageBasic: FC = () => {
           size="small"
         />
         <SetterPadding>
-          <Switch checked={isHomepage} onChange={handleChangeIsHomePage} />
+          <Switch
+            checked={isHomepage}
+            onChange={handleChangeIsHomePage}
+            colorScheme="techPurple"
+          />
         </SetterPadding>
       </LeftAndRightLayout>
       <LeftAndRightLayout>

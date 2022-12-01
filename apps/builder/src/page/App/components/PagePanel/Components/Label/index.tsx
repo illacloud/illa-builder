@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { labelStyle } from "./style"
 import { Trigger } from "@illa-design/react"
 import { PageLabelProps } from "./interface"
+import { labelStyle } from "./style"
 
 export const PageLabel: FC<PageLabelProps> = (props) => {
   const { tooltip, labelName, size } = props

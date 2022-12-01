@@ -1,23 +1,22 @@
 import { FC, useState } from "react"
-import { ActionTypeSelectorProps } from "./interface"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { Spin, useMessage } from "@illa-design/react"
+import { Api } from "@/api/base"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
-import { categoryStyle, containerStyle, resourceListStyle } from "./style"
-import { Spin } from "@illa-design/spin"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { configActions } from "@/redux/config/configSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
   actionItemInitial,
 } from "@/redux/currentApp/action/actionState"
-import { Api } from "@/api/base"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { configActions } from "@/redux/config/configSlice"
-import { useDispatch, useSelector } from "react-redux"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { useTranslation } from "react-i18next"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionCard } from "../ActionCard"
-import { useMessage } from "@illa-design/message"
+import { ActionTypeSelectorProps } from "./interface"
+import { categoryStyle, containerStyle, resourceListStyle } from "./style"
 
 export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { onSelect } = props

@@ -1,10 +1,9 @@
 import { FC } from "react"
-import { ErrorPage } from "@/page/status/errorPage"
-import { Result500Icon } from "@illa-design/icon"
-import { buttonStyle, iconStyle } from "@/page/status/style"
-import { Button } from "@illa-design/button"
-import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
+import { Button, Result500Icon } from "@illa-design/react"
+import { ErrorPage } from "@/page/status/errorPage"
+import { buttonStyle, iconStyle } from "@/page/status/style"
 
 export const Page500: FC = () => {
   const navigate = useNavigate()

@@ -1,5 +1,5 @@
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface BaseSetter {
   isSetterSingleRow?: boolean

@@ -1,12 +1,9 @@
-import { FC, useCallback, useEffect, useState } from "react"
-import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import hotkeys from "hotkeys-js"
-import { createModal, Modal } from "@illa-design/modal"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { configActions } from "@/redux/config/configSlice"
-import { useDispatch, useSelector } from "react-redux"
-import { useTranslation } from "react-i18next"
+import { FC, ReactNode, useCallback, useEffect, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { createModal, useMessage } from "@illa-design/react"
 import {
   getFreezeState,
   getIllaMode,
@@ -14,20 +11,22 @@ import {
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
-import { CopyManager } from "@/utils/copyManager"
-import { FocusManager } from "@/utils/focusManager"
-import { RootState } from "@/store"
+import { configActions } from "@/redux/config/configSlice"
 import {
   flattenAllComponentNodeToMap,
   getCanvas,
-  searchDsl,
   searchDSLByDisplayName,
+  searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { useMessage } from "@illa-design/message"
+import { RootState } from "@/store"
+import { CopyManager } from "@/utils/copyManager"
+import { FocusManager } from "@/utils/focusManager"
+import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 
-export const Shortcut: FC = ({ children }) => {
+export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -76,10 +75,9 @@ export const Shortcut: FC = ({ children }) => {
     options?: Record<string, any>,
   ) => {
     const modal = createModal()
-    if (!alreadyShowDeleteDialog && displayName.length > 0) {
+    if (displayName.length > 0) {
       const textList = displayName.join(", ").toString()
-      setAlreadyShowDeleteDialog(true)
-      modal.show({
+      const id = modal.show({
         title: t("editor.component.delete_title", {
           displayName: textList,
         }),
@@ -94,10 +92,10 @@ export const Shortcut: FC = ({ children }) => {
 
         closable: false,
         onCancel: () => {
-          setAlreadyShowDeleteDialog(false)
+          modal.update(id, { visible: false })
         },
         onOk: () => {
-          setAlreadyShowDeleteDialog(false)
+          modal.update(id, { visible: false })
           if (type === "page") {
             dispatch(
               componentsActions.deletePageNodeReducer({

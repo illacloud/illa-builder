@@ -1,6 +1,6 @@
+import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
 import { WrappedDateTime } from "../index"
-import "@testing-library/jest-dom"
 
 test("WrappedDateTime renders correctly", () => {
   const handleUpdateDSL = jest.fn()

@@ -1,23 +1,27 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { FC, useCallback, useContext, useState } from "react"
 import {
+  EyeOffIcon,
+  EyeOnIcon,
+  Trigger,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
+import { ReactComponent as DeleteIcon } from "@/assets/delete-dataset-icon.svg"
+import { DatasetsContext } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"
+import { ListItemProps } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
+import {
+  ListItemWrapperCss,
+  applyColorToneStyle,
   applyListItemDataNameAreaStyle,
   applyListItemMethodAreaStyle,
-  ListItemWrapperCss,
-  listItemInfoAreaStyle,
   applySingleColorAreaStyle,
   baseIconStyle,
-  listItemActionAreaStyle,
-  eyeIconStyle,
   colorToneWrapperStyle,
-  applyColorToneStyle,
+  eyeIconStyle,
+  listItemActionAreaStyle,
+  listItemInfoAreaStyle,
 } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/style"
-import { EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
-import { ReactComponent as DeleteIcon } from "@/assets/delete-dataset-icon.svg"
-import { ListItemProps } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { Trigger } from "@illa-design/trigger"
-import { DatasetsContext } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"
 
 export const CHART_COLOR_TYPE_CONFIG = {
   "illa-preset": [

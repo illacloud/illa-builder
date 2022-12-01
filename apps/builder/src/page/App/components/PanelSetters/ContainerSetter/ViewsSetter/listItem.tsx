@@ -1,22 +1,21 @@
+import { Identifier } from "dnd-core"
 import { FC, useCallback, useContext, useRef, useState } from "react"
+import { XYCoord, useDrag, useDrop } from "react-dnd"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import { CopyIcon, ReduceIcon, Trigger } from "@illa-design/react"
+import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
+import { DragIconAndLabel } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/dragIconAndLabel"
+import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import {
   actionWrapperStyle,
   copyIconStyle,
   iconStyle,
   listItemTriggerWrapperStyle,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
-import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
-import { CopyIcon, ReduceIcon } from "@illa-design/icon"
-import { DragIconAndLabel } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/dragIconAndLabel"
-import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
-import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { Trigger } from "@illa-design/trigger"
-import { useTranslation } from "react-i18next"
-import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { DragItem } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
-import { Identifier } from "dnd-core"
-import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { useSelector } from "react-redux"
+import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 
 interface ListItemProps {

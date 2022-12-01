@@ -81,7 +81,8 @@ export const applyWrapperStylesStyle = (
     height: 100%;
     border: ${borderStyle};
     border-radius: ${radius};
-    background-color: ${widgetType === "CONTAINER_WIDGET"
+    background-color: ${widgetType === "CONTAINER_WIDGET" ||
+    widgetType === "LIST_WIDGET"
       ? backgroundColor || "white"
       : "transparent"};
     box-shadow: ${shadowStyle};

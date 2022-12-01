@@ -1,4 +1,4 @@
-import { createIcon } from "@illa-design/icon"
+import { createIcon } from "@illa-design/react"
 
 export const DataDogIcon = createIcon({
   title: "DataDogIcon",

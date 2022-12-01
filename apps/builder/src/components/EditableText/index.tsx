@@ -1,12 +1,10 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Input } from "@illa-design/input"
-import { PenIcon } from "@illa-design/icon"
+import { Input, PenIcon, useMessage } from "@illa-design/react"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { isValidDisplayName } from "@/utils/typeHelper"
 import { EditableTextProps } from "./interface"
 import { EditableTextWrapperStyle, textStyle } from "./style"
-import { isValidDisplayName } from "@/utils/typeHelper"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { useMessage } from "@illa-design/message"
 
 export const EditableText: FC<EditableTextProps> = (props) => {
   const { displayName, updateDisplayNameByBlur } = props

@@ -1,9 +1,9 @@
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/CheckboxGroupWidget/eventHandlerConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const baseWidgetName = "checkboxGroup"
 export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [

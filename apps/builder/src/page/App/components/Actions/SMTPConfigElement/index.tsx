@@ -1,4 +1,28 @@
 import { FC, useState } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  Input,
+  InputNumber,
+  PaginationPreIcon,
+  Password,
+  getColor,
+} from "@illa-design/react"
+import {
+  onActionConfigElementSubmit,
+  onActionConfigElementTest,
+} from "@/page/App/components/Actions/api"
+import { Resource } from "@/redux/resource/resourceState"
+import {
+  SMTPResource,
+  SMTPResourceInitial,
+} from "@/redux/resource/smtpResource"
+import { RootState } from "@/store"
+import { isCloudVersion } from "@/utils/typeHelper"
 import { SMTPConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -12,30 +36,6 @@ import {
   labelContainer,
   optionLabelStyle,
 } from "./style"
-import {
-  Input,
-  Password,
-  getColor,
-  Divider,
-  Button,
-  ButtonGroup,
-  InputNumber,
-  PaginationPreIcon,
-} from "@illa-design/react"
-import { useTranslation } from "react-i18next"
-import { Controller, useForm } from "react-hook-form"
-import { useSelector } from "react-redux"
-import { RootState } from "@/store"
-import { Resource } from "@/redux/resource/resourceState"
-import {
-  onActionConfigElementTest,
-  onActionConfigElementSubmit,
-} from "@/page/App/components/Actions/api"
-import { isCloudVersion } from "@/utils/typeHelper"
-import {
-  SMTPResource,
-  SMTPResourceInitial,
-} from "@/redux/resource/smtpResource"
 
 export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props

@@ -1,8 +1,8 @@
+import { BuilderInfo } from "@/redux/builderInfo/builderInfoState"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { BuilderInfo } from "@/redux/builderInfo/builderInfoState"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
 
 export interface RawTreeShape {

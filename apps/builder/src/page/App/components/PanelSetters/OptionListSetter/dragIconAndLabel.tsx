@@ -1,18 +1,17 @@
-import { FC, useCallback, useContext, useMemo, useState } from "react"
-import { useSelector } from "react-redux"
-import { useTranslation } from "react-i18next"
-import { DragPointIcon } from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
 import { get } from "lodash"
+import { FC, useCallback, useContext, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import { DragPointIcon, Trigger } from "@illa-design/react"
+import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
+import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import {
   labelNameAndIconStyle,
   labelNameWrapperStyle,
   movableIconWrapperStyle,
 } from "@/page/App/components/PanelSetters/OptionListSetter/style"
-import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
-import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index } = props

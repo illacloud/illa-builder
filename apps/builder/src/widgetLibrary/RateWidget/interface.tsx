@@ -1,7 +1,7 @@
-import { RateProps } from "@illa-design/rate"
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { RateProps } from "@illa-design/react"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedRateProps
   extends Pick<RateProps, "allowHalf" | "allowClear" | "disabled"> {

@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
 import { MenuMode } from "@/widgetLibrary/MenuWidget/interface"
 
 export const menuItemLabelStyle = css`

@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { DashboardAppsInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import {
   addDashboardAppReducer,
   removeDashboardAppReducer,
   renameDashboardAppReducer,
   updateDashboardAppListReducer,
 } from "@/redux/dashboard/apps/dashboardAppReducer"
+import { DashboardAppsInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 
 const dashboardAppSlice = createSlice({
   name: "apps",

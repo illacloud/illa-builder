@@ -1,10 +1,10 @@
 import { createSelector } from "@reduxjs/toolkit"
+import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
-import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
 import { RootState } from "@/store"
+import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
 
 export const getRawTree = createSelector(
   [
@@ -27,7 +27,7 @@ export const getExecution = (state: RootState) => state.currentApp.execution
 
 export const getExecutionResult = createSelector(
   [getExecution],
-  (execution) => execution.result,
+  (execution) => execution.result || {},
 )
 
 export const getExecutionError = createSelector(
@@ -52,7 +52,7 @@ export const getWidgetExecutionResult = createSelector(
     const widgetExecutionResult: Record<string, any> = {}
     Object.keys(executionResult).forEach((key) => {
       const widgetOrAction = executionResult[key]
-      if (widgetOrAction.$type === "WIDGET") {
+      if (widgetOrAction && widgetOrAction.$type === "WIDGET") {
         widgetExecutionResult[key] = widgetOrAction
       }
     })
@@ -81,7 +81,10 @@ export const getPageExecutionResultArray = createSelector(
   (widgetExecutionResult) => {
     const widgetExecutionResultArray: Record<string, any>[] = []
     Object.keys(widgetExecutionResult).forEach((key) => {
-      if (widgetExecutionResult[key].$widgetType === "PAGE_NODE") {
+      if (
+        widgetExecutionResult[key] &&
+        widgetExecutionResult[key].$widgetType === "PAGE_NODE"
+      ) {
         widgetExecutionResultArray.push({
           ...widgetExecutionResult[key],
           displayName: key,
@@ -97,7 +100,10 @@ export const getSectionExecutionResultArray = createSelector(
   (widgetExecutionResult) => {
     const sectionExecutionResult: Record<string, any> = {}
     Object.keys(widgetExecutionResult).forEach((key) => {
-      if (widgetExecutionResult[key].$widgetType === "SECTION_NODE") {
+      if (
+        widgetExecutionResult[key] &&
+        widgetExecutionResult[key].$widgetType === "SECTION_NODE"
+      ) {
         sectionExecutionResult[key] = {
           ...widgetExecutionResult[key],
           displayName: key,
@@ -128,7 +134,7 @@ export const getActionExecutionResult = createSelector(
     const actionExecutionResult: Record<string, any> = {}
     Object.keys(executionResult).forEach((key) => {
       const widgetOrAction = executionResult[key]
-      if (widgetOrAction.$type === "ACTION") {
+      if (widgetOrAction && widgetOrAction.$type === "ACTION") {
         actionExecutionResult[key] = widgetOrAction
       }
     })

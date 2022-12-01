@@ -1,17 +1,16 @@
+import { Dispatch } from "@reduxjs/toolkit"
 import { FC, useEffect, useState } from "react"
-import { Outlet } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import { Loading } from "@illa-design/loading"
-import { CloseIcon } from "@illa-design/icon"
-import { Button } from "@illa-design/button"
-import { DashboardTitleBar } from "@/page/Dashboard/components/DashboardTitleBar"
-import { Connection } from "@/api/ws"
-import { Api } from "@/api/base"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { useDispatch } from "react-redux"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { Outlet } from "react-router-dom"
+import { Button, CloseIcon, Loading } from "@illa-design/react"
+import { Api } from "@/api/base"
+import { Connection } from "@/api/ws"
+import { DashboardTitleBar } from "@/page/Dashboard/components/DashboardTitleBar"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import {
   containerStyle,
   errorBodyStyle,
@@ -21,7 +20,6 @@ import {
   errorTitleStyle,
   loadingStyle,
 } from "./style"
-import { Dispatch } from "@reduxjs/toolkit"
 
 function requestData(
   dispatch: Dispatch,

@@ -1,7 +1,7 @@
-import { TableProps } from "@illa-design/table"
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
-import { HTMLAttributes } from "react"
 import { ColumnDef } from "@tanstack/react-table"
+import { HTMLAttributes } from "react"
+import { TableProps } from "@illa-design/react"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export const ColumnTypeOption = [
   { label: "Text", value: "text" },
@@ -34,6 +34,7 @@ export interface ColumnItemShape
   format?: string
   mappedValue?: string
   custom?: boolean
+  fromCurrentRow?: boolean
 }
 
 export interface WrappedTableProps
@@ -47,6 +48,7 @@ export interface WrappedTableProps
       | "overFlow"
       | "pagination"
       | "defaultSort"
+      | "rowSelection"
       | "columnVisibility"
       | "multiRowSelection"
       | "data"
@@ -56,6 +58,7 @@ export interface WrappedTableProps
   pageSize?: number
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
+  selectedRow?: any[]
   handleOnClickMenuItem?: (path: string) => void
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
@@ -66,6 +69,7 @@ export interface WrappedTableProps
       value: Record<string, any>
     }[],
   ) => void
+  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
 }
 
 export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {
