@@ -50,7 +50,7 @@ importers:
       '@emotion/jest': ^11.7.1
       '@emotion/react': ^11.10.0
       '@fontsource/fira-code': ^4.5.10
-      '@illa-design/react': '*'
+      '@illa-design/react': workspace:*
       '@reduxjs/toolkit': ^1.8.1
       '@sentry/react': ^7.17.3
       '@sentry/tracing': ^7.17.3
@@ -131,7 +131,7 @@ importers:
     dependencies:
       '@emotion/react': 11.10.5_fan5qbzahqtxlm5dzefqlqx5ia
       '@fontsource/fira-code': 4.5.12
-      '@illa-design/react': 1.0.8_2zx2umvpluuhvlq44va5bta2da
+      '@illa-design/react': link:../../illa-design/packages/react
       '@reduxjs/toolkit': 1.9.1_k4ae6lp43ej6mezo3ztvx6pykq
       '@sentry/react': 7.22.0_react@18.2.0
       '@sentry/tracing': 7.22.0
@@ -2312,21 +2312,6 @@ packages:
       - '@types/react'
     dev: false
 
-  /@floating-ui/react-dom-interactions/0.12.0_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-UBC37z3BvAZ4r3QzD6pDBn8v1S0xSNGLiqdueDM2Tgl/E1bPvEiSpu71uwOTm5qXM22mDGmohJfX/SXF/nQ8nw==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@floating-ui/react-dom': 1.0.1_biqbaboplfbrettd7655fr4n2y
-      aria-hidden: 1.2.2_fan5qbzahqtxlm5dzefqlqx5ia
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      tabbable: 6.0.1
-    transitivePeerDependencies:
-      - '@types/react'
-    dev: false
-
   /@floating-ui/react-dom/1.0.1:
     resolution: {integrity: sha512-UW0t1Gi8ikbDRr8cQPVcqIDMBwUEENe5V4wlHWdrJ5egFnRQFBV9JirauTBFI6S8sM1qFUC1i+qa3g87E6CLTw==}
     peerDependencies:
@@ -2334,17 +2319,6 @@ packages:
       react-dom: '>=16.8.0'
     dependencies:
       '@floating-ui/dom': 1.0.7
-    dev: false
-
-  /@floating-ui/react-dom/1.0.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-UW0t1Gi8ikbDRr8cQPVcqIDMBwUEENe5V4wlHWdrJ5egFnRQFBV9JirauTBFI6S8sM1qFUC1i+qa3g87E6CLTw==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@floating-ui/dom': 1.0.7
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@fontsource/fira-code/4.5.12:
@@ -2370,882 +2344,6 @@ packages:
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
-
-  /@illa-design/alert/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-Xd/Nl6arZ+BQpo/IRRsGPp6Quy15pGrb8nSqFOuR9WLoz9UaM8AVm+xIACRq9gEwDsQdyBoRkWZR4kuG8xCfsA==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/avatar/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-g/O84L9/n1km599dvdBqsfzdjp7Nn2kOnSQv48Nhhd4h19FgczntLvpBSZ8Xx93a6ggSz476dM53Aj9JqeyJuw==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/image': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/back-top/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-afM2tXoRe5TNzRkwKpZtXTPFGeRXXF8btHz9H2X9a7KeCUu1rTYHEpcUsJOg6tj7RYV4tm2GPqKBnuSrJf5w6g==}
-    dependencies:
-      '@illa-design/button': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/badge/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-4YckiBi/fVMxXRSKUse70B9a8r9lJMxBdXWwm95o18nIL6FP8OBstyTC+BUfMLUiypBU+5/wtgQIEvASGZCpDQ==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/breadcrumb/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-npPa83CtVpLD090HPu+rbfgUM61udVNbpP4nHpP9QidyY3sjNnm6VXbLCb6iCss1URIseXJFp7f2PxhHvqpDcg==}
-    dependencies:
-      '@illa-design/dropdown': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/menu': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/button/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-S0lcoZUnNk8mlhZmTx4U1Lc5/VBouE9RShw4xKnN8kSvR5mUKAoeVGBaLdliz4EDAkG8l44Ke7nCByIyV5X6iw==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/calendar/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-qvdczeRjIYc2YwscDwSPhUnNjlyflnOkaJY0si80g2UW+KNrJiwqYNz/GHKEc2aY+5+KOfS7OS0+P4D+O1pT/g==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/select': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/card/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-aWHiQxZ0zhELfT0kIkzOH1ppWbyPuHVA4VP8R5K03sR7d9TTfZabjY/ZeulUwS3LXSxfSlqI9y9se767wCRYbg==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/space': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/spin': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/cascader/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-SHEBLprGyW1VhUPhPny5HPasxn4HzgKZybGj9+QiP9qxooymFkIUbLEfHEgMvfFZv9/mq2k9tLPFi+f0Y2LJdA==}
-    dependencies:
-      '@illa-design/checkbox': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/empty': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/list': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/select': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/checkbox/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-2fHnIQzydPl9pPKTInQc5sjKSAXCNM9+3DJK1IbMapQQsF5lp3uj+9BShXh7py6jPY08E3JGIPASXjEknbjuGw==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/collapse/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-mUE2J8o/6kTzTrL38RFwh0sSPwHakNfr7+8SOw1+xGYbFMmu9uJcfOMZ2H4KY1fpcuEE/IkDaOVgNVfWpLXboQ==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/comment/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-3c0qUykodatapZasbWfIbYQKFIa0fQ/aMS22rAkC+J387rJPgh54qXCkFRB2uRW4cpmBU9YmdTYepCyVYQYHPA==}
-    dependencies:
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/config-provider/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-0GM3tm0jVc46jWbzPc9rXr8LsUtyMAn5RFJynrwoAf1Jspu1PW8hAZ0ZZeqEWQ0fBQYIvzmYf+C5ofX+/vzaUw==}
-    dependencies:
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/date-picker/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-E00OSt5JAauHAyRa33z3IjVnc6fvKGTT+aDSE4jldc6+21Nc8ZVOqGnybX7/DgqtyOVLyf71i6ZVzQmC3Rv/wA==}
-    dependencies:
-      '@illa-design/calendar': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/select': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/time-picker': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/description/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-tO4ykrIkABvjz4bgsVHuK1I/Nvau4ozbt1/3Q9Cy8GWt8kraftIUGhYypr5cJC9ba05bFJtTP8YzO/pL05TcRg==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/divider/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-5Umi58jg65oe6Naszpx+lNi04yCOWoRX0aicTaSTSnvSF4kQw3O+WMyBvHiGprtRyhePQFaVycRLPDVTr034DQ==}
-    dependencies:
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/drawer/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-7KdZb0bGWApLMMkM6xUNWxhemDbGXzTh6A+EDx6ZTRbSEeEPkf3DSf2J0EDYfW9G8i8QdCt4k95zwefPAcfXqg==}
-    dependencies:
-      '@illa-design/button': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/config-provider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      react-focus-lock: 2.9.2_fan5qbzahqtxlm5dzefqlqx5ia
-      react-remove-scroll: 2.5.5_fan5qbzahqtxlm5dzefqlqx5ia
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/dropdown/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-C+azLcR3e1SIXYlfdGFaCax94aqBd82u+daeFObC2CLQSieC5jwlB5zMmEsUHl63cksqz3DDxY95/B2Pv/LxKA==}
-    dependencies:
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/empty/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-wrSH+b3lrkdg0NM+pssXpRZFJTfRzWbwrl52RFAkHCbHD2OtLLAfVAZw4QaoGhyjU4qFXik2fxqTEzDsC1xDqA==}
-    dependencies:
-      '@illa-design/config-provider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/image': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/grid/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-yQH8xYUCdCbx7F62k7Ld/OmQdT3RsKOL3ym/nQACeY3E3YgHDd00B7KOnYThYd/0Fog9v2DAChD1A7ePAgLTrg==}
-    dependencies:
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/icon/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-h5t/KaXzl6tYnL1HJWtbC3hdR4e3S+Mvi5a2ej6XUzDEJnqwMdAPx41/AVpm+9t5YFF82iddcVNDOBOhKberNw==}
-    dependencies:
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/image/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-xbHfL2Cr3iCLxSFr8TpAOfeCiVQAst9FZ6QJ4Ds44av5R2YuOBdKf7Nd85BZcWjkBFxrC7QECZBRfeCUvl1VKw==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/input-number/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-apmuI4aagyST2SMJfCfPjTw9ONDww7DS8O0NQbFi6sEiS6hPfR17n8tUjCcEl5gucWwWiUcmZzHkRpT72e1x4Q==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/input': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/input-tag/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-g6ufuAY5C305SWDumzap8Q4EFCbeMAxzlaPAqT3J2rB0deSg2Y1QAcZLf4d7YQFc4GqSDsPdBMCU2qn6f7/Ttg==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/input': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/tag': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/input/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-SBsz12dgLrPnOnW3pP/0WsEAGMElH4eklEeVBfZgZqRmw3eG1zZbZhVNPSgE7CStRzD33+NAG/cq4eyZ5UrKSQ==}
-    dependencies:
-      '@illa-design/button': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/link/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-JdRbAiPlmZHhtQN6Nz6vp2/27Fy+kohTfBYwidmV91rLmZ/p7PTNXLT77ZhY13QBqsVBMbD4eoxEGzrjC3cA0g==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/list/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-ykFzUwN5K6rBXu87uDoA7yt6Y+6wW38b3tlk3NfrUGtQ/zrJNOruC1Ikx/zKW49bPMe+ZXSoaJrUFjvkGCgLxA==}
-    dependencies:
-      '@illa-design/avatar': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/divider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/typography': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      rc-virtual-list: 3.4.11_biqbaboplfbrettd7655fr4n2y
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/loading/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-fGo9PzJWbPtzk0JtfyxxRwB3noqxY8M+LNtOoZmQLM5y7s9xUiiTPeejH1zQybf0RaQABGitE6YsMS5tHSPMLg==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/menu/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-5QW3/l7OOE+cWzTtFhtRr6z1D0F5FTxmznUhm9Sj2I26CA7IznXuOcAy+O8++RulwskTtqaRnibx2uFoGb353Q==}
-    dependencies:
-      '@illa-design/dropdown': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/message/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-rWTuhk4BZHzQ8vsgcEBngBroppoD9UNefDhLs0OrtERZL8jL5IhGJds7PclFBgq1pOZWv1Ha+o4ZHnKZMiwmpg==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/modal/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-KKxdsnQ3OPUSkHGNIJxI4wiYK/2A9kpSE8WXwXSuuXm5YxUbhTOg5UaFUG+0gqCD0Jksn3EdkPOQ207qx6g50w==}
-    dependencies:
-      '@illa-design/button': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/config-provider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      react-focus-lock: 2.9.2_fan5qbzahqtxlm5dzefqlqx5ia
-      react-hotkeys-hook: 3.4.7_biqbaboplfbrettd7655fr4n2y
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/notification/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-Ti94DBEigB97BsdjoDXNN9xeQDcKl8zDr36iLoN7WzhtdLvqLR2UGgKcDBhnfrt4SAsDLKIYUaHqDGj374onMQ==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/page-header/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-QHrXz3zBTGnjKCaJZwysmqH/iIgoV+vxk3X8iz4zSndeUbEs9llGKsTZI7q+HDXcr/MwYH+s8ryKqKv2ZGykKA==}
-    dependencies:
-      '@illa-design/breadcrumb': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/divider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/pagination/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-3ECX66gZZXZY/4TSjal5gtdrpzJTejB11jF7eNWnxpFRFHohjvUcZ/W9Dkk6cMdhGD8nKUMt1gLhNSV+fckLAw==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/input': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/select': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/popconfirm/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-9a3daiZvJsHleO8Sxb6I2OCSLlfw47QMTZUNkIT6HyLBRtYugFIsGJ4ulK3UjPZmy/Tc0HFQ97MQF/gUGj4ALg==}
-    dependencies:
-      '@illa-design/button': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/config-provider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/typography': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/popover/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-1m/xD26Wr91oDaw9q7RA80rGLLP4YBq1nqfVnUMHM+qdxgMUQsjeKzXXi8Hz88FC0E/Can1MUeWBwzyt7Xm45Q==}
-    dependencies:
-      '@illa-design/link': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/typography': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/progress/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-hQWZHiIObadsGPdlppa1MHZT085kmuUBpWN8OmWjGpOuOuI+QoSSjn//a5azdmUrE82HydQ4ckh2ztLF57h7bg==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/space': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/radio/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-fHx8RHb175at39+hGaRf2KkYXCAqLYU5WC63RIJ4LXLoSFccM/HN0Zv+9rcvG9xUEusYQOJ9zlLSOeH4G86J6A==}
-    dependencies:
-      '@illa-design/space': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/rate/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-qhdz9uoJsgE2+GHCOpX7m8vpR//wZ+eVnCR+N9sFQal8W5IRfRukwAE/2iLNR5NvH+9iPZWySFierk6ikjB3zQ==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/react/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-CJylRe9iTPdN5S5CpPtsJ1Dhjy1os0ctt4UHFvpzta1YGEWzMPsRtiDk7Lg421biYoViZimXUb5bw/eOs2zeyA==}
-    dependencies:
-      '@illa-design/alert': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/avatar': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/back-top': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/badge': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/button': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/calendar': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/card': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/cascader': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/checkbox': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/collapse': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/comment': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/config-provider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/date-picker': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/description': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/divider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/drawer': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/dropdown': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/empty': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/grid': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/image': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/input': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/input-number': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/input-tag': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/link': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/list': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/loading': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/menu': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/message': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/modal': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/notification': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/page-header': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/pagination': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/popconfirm': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/popover': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/progress': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/radio': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/rate': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/result': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/select': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/skeleton': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/slider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/space': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/spin': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/statistic': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/steps': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/switch': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/table': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/tabs': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/tag': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/time-picker': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/timeline': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/typography': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/result/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-WkbuZVap/bS12jT304WXtHfV1ILcdjftJtFHaQ2uz+nFQFV30Y9ihWWKzJKZae02N8le2TyVQ7/PuvIYqYkfzw==}
-    dependencies:
-      '@illa-design/button': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/select/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-Ft0h8p4+e41foODFjtU8Jmuc68PMTFWICwhoTTr4/hywejmMwMdRUOQCp3eld3qUP95kVnAAKT7EsTz+kNKxmw==}
-    dependencies:
-      '@illa-design/checkbox': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/empty': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/input': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/input-tag': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/list': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/skeleton/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-VC1Cdux61VYLFF3R7hlkq3typXV5wycxt347N4Xe01hnOBAzybVC4bL3u+wJrg53WU5JQ+Q3Tz9LSwk54AxazA==}
-    dependencies:
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/slider/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-5U12X8C/YTGG/7aNLHBkBLk3d52ySVGTejryI0SW9jzLLxwGWkQq1aehTkjLmAUhzU06hrMCOnutrXjR8urHBg==}
-    dependencies:
-      '@illa-design/input-number': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/space/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-dt6DStGJ7sMF/Q0PLwLtMXtG8al4EAXmMv2JW+DMXK3xBLPIaI5oRDB25FGWtYB2g8sW6tWgs/sphI8lPSucnw==}
-    dependencies:
-      '@illa-design/divider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/spin/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-EYUA4GdP5v4oXXHbK7LdEgTuTcNK7LKFQA8Mkdk6yfUxlJ1H11KYOGMm+roU3yrfu2EjBXclfysZIMeQSKzxgw==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/statistic/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-ZF3X01l/oSJnzpqL5DQBGJcCJlKQ4QV8oc774iL4hUDoYv6EjV3o5bq9oRt2vQfwCkmoduwj+Wz0FCeCiFDH4A==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/steps/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-zkvEIQI7t3/CCCTTSTWakA3RhqZuk2XCwnjjWjXgrtVu2M/htFZe+giJRyzLwQ3b8x5NgwBEG+6zJigBx1Y7WA==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/switch/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-bhvwf8Dr1qM1zkUHTiikNsnzMONmZ0lWDU+JV7xZ7zjzJ+tfly+rhBK1Wz4xN63MxfSa8NEN+/EeJG8KmHp+Iw==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/system/1.0.8_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-jMdPcheguaO5IuKoH7vNxttTBaupiRwN2Z/GiMSgN/WOaK0Y0Iz/Im1hd9C/jT+Ox6j1MIg8WacPjj3+qzZODw==}
-    dependencies:
-      dayjs: 1.11.6
-      number-precision: 1.6.0
-      react-fast-compare: 3.2.0
-      react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
-      uuid: 8.3.2
-    transitivePeerDependencies:
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/table/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-6CUxmn82T5NbiUHSdOZLEIRbplbvFRCqF1hgVUaZpjoYzcPSaml9zLalXCw+hTMjRKN5UKcTWAqSc/iwFWWFdw==}
-    dependencies:
-      '@illa-design/button': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/checkbox': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/pagination': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@tanstack/match-sorter-utils': 8.7.0
-      '@tanstack/react-table': 8.7.0_biqbaboplfbrettd7655fr4n2y
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/tabs/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-aJXYaFr1D/f3tw3X2ZjS9qoRfZa6NF0kEteQ/scB/NSu5omm+EY2yhrs6QSYLnENVBFvosxtoN5K4ZU4bm7GnA==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/tag/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-Oskqq3YNOdoMTRtDKIRigjdNGtUAvxnHMruKUbNzVK1mb4nH91r9/udliKzJwtqgwoVMncM1EldrI4ZgJV2+dQ==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/theme/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-4KqiDIwvKiTfw1zctb1dldDHvqlU69IQ/XylUPgDZzpbNS0mLeVJVdoHa7BZVAT/iZvqlbr74tphCiOJgIJn/A==}
-    dependencies:
-      '@emotion/react': 11.10.5_fan5qbzahqtxlm5dzefqlqx5ia
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@juggle/resize-observer': 3.4.0
-      chroma-js: 2.4.2
-      color: 4.2.3
-      debounce: 1.2.1
-      framer-motion: 7.6.15_biqbaboplfbrettd7655fr4n2y
-      react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/time-picker/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-fcBGG5L6dSWpXUC3TG+n/oEqLVN1WY/ZoQDaC4juGWzUVh4vethGJHoTDum0cg/nCD7CjK4qLKHCvW8YJ8xusw==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/input': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/timeline/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-8Z8t/0NfhXPsTVFi/mbtdN0h3AESVdrhRbSvjnb5QmTWharKLJQCrRYHUDo89PEAiTx+ktGK7Aix1ugtpvhAWA==}
-    dependencies:
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/spin': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/trigger/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-ZMrmXxK7z79eLev9nz0kg57R+8h6XVEs6KP6qkjIhbV70J8s4E9s7LzFh84JS3YFWOsl74shIHBXPvW/OReMQw==}
-    dependencies:
-      '@floating-ui/react-dom-interactions': 0.12.0_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/config-provider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
-
-  /@illa-design/typography/1.0.8_2zx2umvpluuhvlq44va5bta2da:
-    resolution: {integrity: sha512-q5RJ4ei569uxrbnWNMLoKA8DdXv/87077xGk3419aN+dh0yv/IzRr8Q45jVW0yvvV5D4/RPvzOb2N6t3qAB3/A==}
-    dependencies:
-      '@illa-design/config-provider': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/icon': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/system': 1.0.8_biqbaboplfbrettd7655fr4n2y
-      '@illa-design/theme': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-      '@illa-design/trigger': 1.0.8_2zx2umvpluuhvlq44va5bta2da
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
-      - react
-      - react-dom
-    dev: false
 
   /@istanbuljs/load-nyc-config/1.1.0:
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==}
@@ -3520,10 +2618,6 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
-
-  /@juggle/resize-observer/3.4.0:
-    resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
-    dev: false
 
   /@manypkg/find-root/1.1.0:
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -3911,18 +3005,6 @@ packages:
       react-dom: '>=16'
     dependencies:
       '@tanstack/table-core': 8.7.0
-
-  /@tanstack/react-table/8.7.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-VJ+9rsymDLaSU35rWOfX0bwNXnpW1i+T14wi+sHx8lxwAsfg6IY1Yw7FPfGADvUFP5eQn2t4nlohAJd+IoEj/Q==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-    dependencies:
-      '@tanstack/table-core': 8.7.0
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
 
   /@tanstack/table-core/8.7.0:
     resolution: {integrity: sha512-DRiRbOAmDHapzUBd4/C4Yy+FTug4fdGp5sdZWWfCq4wxRoaXQraQgbzmK23a3QcbwLFtLeNezPkZrqbJWuX+VA==}
@@ -4959,21 +4041,6 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      tslib: 2.4.1
-    dev: false
-
-  /aria-hidden/1.2.2_fan5qbzahqtxlm5dzefqlqx5ia:
-    resolution: {integrity: sha512-6y/ogyDTk/7YAe91T3E2PR1ALVKyM2QbTio5HwM+N1Q6CMlCKhvClyIjkckBswa0f2xJhjsfzIGa1yVSe1UMVA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.9.0 || ^17.0.0 || ^18.0.0
-      react: ^16.9.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.25
-      react: 18.2.0
       tslib: 2.4.1
     dev: false
 
@@ -10156,20 +9223,6 @@ packages:
       resize-observer-polyfill: 1.5.1
     dev: false
 
-  /rc-resize-observer/1.2.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-6W+UzT3PyDM0wVCEHfoW3qTHPTvbdSgiA43buiy8PzmeMnfgnDeb9NjdimMXMl3/TcrvvWl5RRVdp+NqcR47pQ==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-    dependencies:
-      '@babel/runtime': 7.20.6
-      classnames: 2.3.2
-      rc-util: 5.24.8_biqbaboplfbrettd7655fr4n2y
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      resize-observer-polyfill: 1.5.1
-    dev: false
-
   /rc-util/5.24.8:
     resolution: {integrity: sha512-AS222gRVeH5RDdaRUd9ur9/E9MMQn5sZA3d4Z1vGU7JXW9dxD9kPijax00RG+dU2EJTfwySstFLDoSqpAPMNKw==}
     peerDependencies:
@@ -10177,19 +9230,6 @@ packages:
       react-dom: '>=16.9.0'
     dependencies:
       '@babel/runtime': 7.20.6
-      react-is: 16.13.1
-      shallowequal: 1.1.0
-    dev: false
-
-  /rc-util/5.24.8_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-AS222gRVeH5RDdaRUd9ur9/E9MMQn5sZA3d4Z1vGU7JXW9dxD9kPijax00RG+dU2EJTfwySstFLDoSqpAPMNKw==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-    dependencies:
-      '@babel/runtime': 7.20.6
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
       react-is: 16.13.1
       shallowequal: 1.1.0
     dev: false
@@ -10205,21 +9245,6 @@ packages:
       classnames: 2.3.2
       rc-resize-observer: 1.2.0
       rc-util: 5.24.8
-    dev: false
-
-  /rc-virtual-list/3.4.11_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-BvUUH60kkeTBPigN5F89HtGaA5jSP4y2aM6cJ4dk9Y42I9yY+h6i08wF6UKeDcxdfOU8j3I5HxkSS/xA77J3wA==}
-    engines: {node: '>=8.x'}
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-    dependencies:
-      '@babel/runtime': 7.20.6
-      classnames: 2.3.2
-      rc-resize-observer: 1.2.0_biqbaboplfbrettd7655fr4n2y
-      rc-util: 5.24.8_biqbaboplfbrettd7655fr4n2y
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /re-resizable/6.9.6_biqbaboplfbrettd7655fr4n2y:
@@ -10268,15 +9293,6 @@ packages:
       react: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.20.6
-    dev: false
-
-  /react-clientside-effect/1.2.6_react@18.2.0:
-    resolution: {integrity: sha512-XGGGRQAKY+q25Lz9a/4EPqom7WRjz3z9R2k4jhVKA/puQFH/5Nt27vFZYql4m4NVNdUvX8PS3O7r/Zzm7cjUlg==}
-    peerDependencies:
-      react: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.20.6
-      react: 18.2.0
     dev: false
 
   /react-dnd-html5-backend/16.0.1:
@@ -10356,25 +9372,6 @@ packages:
       react-clientside-effect: 1.2.6
       use-callback-ref: 1.3.0
       use-sidecar: 1.1.2
-    dev: false
-
-  /react-focus-lock/2.9.2_fan5qbzahqtxlm5dzefqlqx5ia:
-    resolution: {integrity: sha512-5JfrsOKyA5Zn3h958mk7bAcfphr24jPoMoznJ8vaJF6fUrPQ8zrtEd3ILLOK8P5jvGxdMd96OxWNjDzATfR2qw==}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.20.6
-      '@types/react': 18.0.25
-      focus-lock: 0.11.4
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-clientside-effect: 1.2.6_react@18.2.0
-      use-callback-ref: 1.3.0_fan5qbzahqtxlm5dzefqlqx5ia
-      use-sidecar: 1.1.2_fan5qbzahqtxlm5dzefqlqx5ia
     dev: false
 
   /react-hook-form/7.40.0_react@18.2.0:
@@ -10537,22 +9534,6 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /react-remove-scroll-bar/2.3.4_fan5qbzahqtxlm5dzefqlqx5ia:
-    resolution: {integrity: sha512-63C4YQBUt0m6ALadE9XV56hV8BgJWDmmTPY758iIJjfQKt2nYwoUrPk0LXRXcB/yIj82T1/Ixfdpdk68LwIB0A==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.25
-      react: 18.2.0
-      react-style-singleton: 2.2.1_fan5qbzahqtxlm5dzefqlqx5ia
-      tslib: 2.4.1
-    dev: false
-
   /react-remove-scroll/2.5.5:
     resolution: {integrity: sha512-ImKhrzJJsyXJfBZ4bzu8Bwpka14c/fQt0k+cyFp/PBhTfyDnU5hjOtM4AG/0AMyy8oKzOTR0lDgJIM7pYXI0kw==}
     engines: {node: '>=10'}
@@ -10568,25 +9549,6 @@ packages:
       tslib: 2.4.1
       use-callback-ref: 1.3.0
       use-sidecar: 1.1.2
-    dev: false
-
-  /react-remove-scroll/2.5.5_fan5qbzahqtxlm5dzefqlqx5ia:
-    resolution: {integrity: sha512-ImKhrzJJsyXJfBZ4bzu8Bwpka14c/fQt0k+cyFp/PBhTfyDnU5hjOtM4AG/0AMyy8oKzOTR0lDgJIM7pYXI0kw==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.25
-      react: 18.2.0
-      react-remove-scroll-bar: 2.3.4_fan5qbzahqtxlm5dzefqlqx5ia
-      react-style-singleton: 2.2.1_fan5qbzahqtxlm5dzefqlqx5ia
-      tslib: 2.4.1
-      use-callback-ref: 1.3.0_fan5qbzahqtxlm5dzefqlqx5ia
-      use-sidecar: 1.1.2_fan5qbzahqtxlm5dzefqlqx5ia
     dev: false
 
   /react-rnd/10.3.7_biqbaboplfbrettd7655fr4n2y:
@@ -10640,23 +9602,6 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /react-style-singleton/2.2.1_fan5qbzahqtxlm5dzefqlqx5ia:
-    resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.25
-      get-nonce: 1.0.1
-      invariant: 2.2.4
-      react: 18.2.0
-      tslib: 2.4.1
-    dev: false
-
   /react-textarea-autosize/8.4.0_fan5qbzahqtxlm5dzefqlqx5ia:
     resolution: {integrity: sha512-YrTFaEHLgJsi8sJVYHBzYn+mkP3prGkmP2DKb/tm0t7CLJY5t1Rxix8070LAKb0wby7bl/lf2EeHkuMihMZMwQ==}
     engines: {node: '>=10'}
@@ -10681,20 +9626,6 @@ packages:
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
-    dev: false
-
-  /react-transition-group/4.4.5_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
-    peerDependencies:
-      react: '>=16.6.0'
-      react-dom: '>=16.6.0'
-    dependencies:
-      '@babel/runtime': 7.20.6
-      dom-helpers: 5.2.1
-      loose-envify: 1.4.0
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-universal-interface/0.6.2_react@18.2.0+tslib@2.4.1:
@@ -12133,21 +11064,6 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /use-callback-ref/1.3.0_fan5qbzahqtxlm5dzefqlqx5ia:
-    resolution: {integrity: sha512-3FT9PRuRdbB9HfXhEq35u4oZkvpJ5kuYbpqhCfmiZyReuRgpnhDlbr2ZEnnuS0RrJAPn6l23xjFg9kpDM+Ms7w==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.25
-      react: 18.2.0
-      tslib: 2.4.1
-    dev: false
-
   /use-composed-ref/1.3.0_react@18.2.0:
     resolution: {integrity: sha512-GLMG0Jc/jiKov/3Ulid1wbv3r54K9HlMW29IWcDFPEqFkSO2nS0MuefWgMJpeHQ9YJeXDL3ZUF+P3jdXlZX/cQ==}
     peerDependencies:
@@ -12194,22 +11110,6 @@ packages:
         optional: true
     dependencies:
       detect-node-es: 1.1.0
-      tslib: 2.4.1
-    dev: false
-
-  /use-sidecar/1.1.2_fan5qbzahqtxlm5dzefqlqx5ia:
-    resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.9.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.25
-      detect-node-es: 1.1.0
-      react: 18.2.0
       tslib: 2.4.1
     dev: false
 
