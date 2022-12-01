@@ -1,6 +1,6 @@
 import { FC } from "react"
-import { listWrapperStyle } from "./style"
 import { BaseBodyProps } from "./interface"
+import { listWrapperStyle } from "./style"
 
 export const BaseModalBody: FC<BaseBodyProps> = (props) => {
   const { children } = props

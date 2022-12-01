@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { Button, AddIcon } from "@illa-design/react"
-import { HeaderLabelStyle, HeaderWrapperStyle } from "./style"
 import { useTranslation } from "react-i18next"
+import { AddIcon, Button } from "@illa-design/react"
+import { HeaderLabelStyle, HeaderWrapperStyle } from "./style"
 
 export interface HeaderProps {
   labelName: string

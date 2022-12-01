@@ -1,6 +1,6 @@
-import { WrappedSwitch } from "../index"
-import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
+import { fireEvent, render, screen } from "@testing-library/react"
+import { WrappedSwitch } from "../index"
 
 test("switch renders correctly", () => {
   const handleUpdateDSL = jest.fn()

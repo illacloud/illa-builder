@@ -1,13 +1,13 @@
 import { FC, useCallback, useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { useTranslation } from "react-i18next"
-import { Input, Button, useMessage } from "@illa-design/react"
-import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
+import { useDispatch, useSelector } from "react-redux"
+import { Button, Input, useMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
+import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { CurrentUser } from "@/redux/currentUser/currentUserState"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()

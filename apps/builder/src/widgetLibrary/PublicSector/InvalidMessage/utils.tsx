@@ -1,5 +1,5 @@
-import { ValidateCheckProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import i18n from "@/i18n/config"
+import { ValidateCheckProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
 export const invalidMessage = new Map<string, string>([
   ["maxLength", "editor.validate_message.max_length"],

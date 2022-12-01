@@ -1,6 +1,6 @@
-import { createContext, ReactNode, FC, useCallback } from "react"
-import { OptionItemShape } from "../interface"
+import { FC, ReactNode, createContext, useCallback } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
+import { OptionItemShape } from "../interface"
 import { generateOptionItemId } from "../utils/generateNewOptions"
 
 interface ProviderProps {

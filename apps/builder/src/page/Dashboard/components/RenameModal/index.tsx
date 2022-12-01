@@ -1,12 +1,12 @@
 import { FC, useState } from "react"
-import { RenameModalProps } from "@/page/Dashboard/components/RenameModal/interface"
-import { Input, Modal, useMessage } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
-import { RootState } from "@/store"
 import { useDispatch, useSelector } from "react-redux"
+import { Input, Modal, useMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { RenameModalProps } from "@/page/Dashboard/components/RenameModal/interface"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { RootState } from "@/store"
 
 export const RenameModal: FC<RenameModalProps> = (props) => {
   const { appId, visible, onVisibleChange } = props

@@ -1,6 +1,6 @@
-import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { SerializedStyles } from "@emotion/react"
 import { ReactNode } from "react"
+import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
 export interface HeaderProps {
   title: string

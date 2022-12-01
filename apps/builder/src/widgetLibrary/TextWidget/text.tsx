@@ -1,10 +1,10 @@
 import { FC, useEffect } from "react"
-import { TextProps, TextWidgetProps } from "./interface"
-import { Paragraph, Text as ILLAText, Link } from "@illa-design/react"
-import { applyAlignStyle, fullWidthAndFullHeightStyle } from "./style"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { TextProps, TextWidgetProps } from "./interface"
+import { applyAlignStyle, fullWidthAndFullHeightStyle } from "./style"
 
 export const Text: FC<TextProps> = (props) => {
   const {

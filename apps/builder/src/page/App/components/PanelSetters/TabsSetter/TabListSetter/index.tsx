@@ -1,14 +1,14 @@
-import { FC, memo, useCallback, useMemo } from "react"
-import { Header } from "./header"
-import { ViewItemShape, ViewSetterProps } from "./interface"
-import { generateNewViewItem } from "./utils/generateNewOptions"
-import { ListBody } from "./listBody"
-import { TabListSetterProvider } from "./context/tabListContext"
 import { get } from "lodash"
+import { FC, memo, useCallback, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { TabListSetterProvider } from "./context/tabListContext"
+import { Header } from "./header"
+import { ViewItemShape, ViewSetterProps } from "./interface"
+import { ListBody } from "./listBody"
 import { setterPublicWrapper, viewSetterWrapperStyle } from "./style"
-import { useTranslation } from "react-i18next"
+import { generateNewViewItem } from "./utils/generateNewOptions"
 
 export const TabListSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {

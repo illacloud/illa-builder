@@ -1,6 +1,6 @@
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { IllaMode } from "@/redux/config/configState"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export enum OVERFLOW_TYPE {
   PAGINATION = "PAGINATION",

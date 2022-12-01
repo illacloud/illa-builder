@@ -1,11 +1,11 @@
 // string for component
 import { Connection, getPayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/interface"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"

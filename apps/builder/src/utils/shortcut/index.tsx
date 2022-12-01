@@ -1,12 +1,9 @@
-import { FC, useCallback, useEffect, useState } from "react"
-import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import hotkeys from "hotkeys-js"
-import { createModal, useMessage } from "@illa-design/react"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { configActions } from "@/redux/config/configSlice"
-import { useDispatch, useSelector } from "react-redux"
-import { useTranslation } from "react-i18next"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { createModal, useMessage } from "@illa-design/react"
 import {
   getFreezeState,
   getIllaMode,
@@ -14,17 +11,20 @@ import {
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
-import { CopyManager } from "@/utils/copyManager"
-import { FocusManager } from "@/utils/focusManager"
-import { RootState } from "@/store"
+import { configActions } from "@/redux/config/configSlice"
 import {
   flattenAllComponentNodeToMap,
   getCanvas,
-  searchDsl,
   searchDSLByDisplayName,
+  searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
+import { CopyManager } from "@/utils/copyManager"
+import { FocusManager } from "@/utils/focusManager"
+import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()

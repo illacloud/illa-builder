@@ -1,15 +1,15 @@
+import { RowSelectionState, Updater } from "@tanstack/table-core"
+import { cloneDeep } from "lodash"
 import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
-import { Table, isObject, isNumber } from "@illa-design/react"
-import { Updater, RowSelectionState } from "@tanstack/table-core"
+import { useSelector } from "react-redux"
+import { Table, isNumber, isObject } from "@illa-design/react"
+import { getIllaMode } from "@/redux/config/configSelector"
 import {
   ColumnItemShape,
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { cloneDeep } from "lodash"
 import { getCellForType } from "./utils"
-import { useSelector } from "react-redux"
-import { getIllaMode } from "@/redux/config/configSelector"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {

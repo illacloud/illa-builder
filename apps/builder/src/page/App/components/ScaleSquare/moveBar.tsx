@@ -1,15 +1,6 @@
 import { FC, useMemo } from "react"
-import {
-  applyMoveBarWrapperStyle,
-  docIconStyle,
-  docTipsWrapperStyle,
-  dragPointIconWrapperStyle,
-  freezeIconStyle,
-  freezeTipsStyle,
-  MOVE_BAR_HEIGHT,
-  moveBarDisplayNameStyle,
-  warningStyle,
-} from "@/page/App/components/ScaleSquare/style"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import {
   DragIcon,
   LockIcon,
@@ -17,15 +8,24 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
+import { Trigger } from "@illa-design/trigger"
+import { ReactComponent as DocIcon } from "@/assets/doc.svg"
 import {
   MoveBarPositionShape,
   MoveBarProps,
 } from "@/page/App/components/ScaleSquare/interface"
-import { useSelector } from "react-redux"
+import {
+  MOVE_BAR_HEIGHT,
+  applyMoveBarWrapperStyle,
+  docIconStyle,
+  docTipsWrapperStyle,
+  dragPointIconWrapperStyle,
+  freezeIconStyle,
+  freezeTipsStyle,
+  moveBarDisplayNameStyle,
+  warningStyle,
+} from "@/page/App/components/ScaleSquare/style"
 import { getFreezeState } from "@/redux/config/configSelector"
-import { useTranslation } from "react-i18next"
-import { ReactComponent as DocIcon } from "@/assets/doc.svg"
-import { Trigger } from "@illa-design/trigger"
 
 interface WidgetDocProps {
   widgetType: string

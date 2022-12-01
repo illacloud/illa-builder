@@ -1,4 +1,28 @@
+import { chunk, cloneDeep, get, isEqual, set } from "lodash"
+import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useSelector } from "react-redux"
+import useMeasure from "react-use-measure"
+import { Pagination } from "@illa-design/react"
+import {
+  applyBarHandlerStyle,
+  applyBarPointerStyle,
+  applyDashedLineStyle,
+} from "@/page/App/components/ScaleSquare/style"
+import { getIllaMode } from "@/redux/config/configSelector"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  getExecutionResult,
+  getRawTree,
+} from "@/redux/currentApp/executionTree/executionSelector"
+import store from "@/store"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { isObject } from "@/utils/typeHelper"
+import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
+import {
+  BasicContainer,
+  BasicContainerWithJSON,
+} from "@/widgetLibrary/BasicContainer/BasicContainer"
 import {
   ListWidgetProps,
   ListWidgetPropsWithChildrenNodes,
@@ -6,36 +30,12 @@ import {
   RenderTemplateContainerProps,
 } from "@/widgetLibrary/ListWidget/interface"
 import {
-  listContainerStyle,
-  applyListItemStyle,
-  listParentContainerStyle,
   ListParentContainerWithScroll,
+  applyListItemStyle,
+  listContainerStyle,
+  listParentContainerStyle,
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
-import useMeasure from "react-use-measure"
-import { Pagination } from "@illa-design/react"
-import { chunk, cloneDeep, get, isEqual, set } from "lodash"
-import {
-  applyBarHandlerStyle,
-  applyBarPointerStyle,
-  applyDashedLineStyle,
-} from "@/page/App/components/ScaleSquare/style"
-import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
-import store from "@/store"
-import { getIllaMode } from "@/redux/config/configSelector"
-import {
-  BasicContainer,
-  BasicContainerWithJSON,
-} from "@/widgetLibrary/BasicContainer/BasicContainer"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { useSelector } from "react-redux"
-import {
-  getExecutionResult,
-  getRawTree,
-} from "@/redux/currentApp/executionTree/executionSelector"
-import { isObject } from "@/utils/typeHelper"
-import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
   const { templateComponentNodes, templateContainerHeight } = props

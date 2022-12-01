@@ -1,35 +1,35 @@
 import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { useTranslation, Trans } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import {
+  Button,
   Input,
   Password,
-  Button,
   WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
-import { EMAIL_FORMAT } from "@/constants/regExp"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { Api } from "@/api/base"
+import { EMAIL_FORMAT } from "@/constants/regExp"
+import { TextLink } from "@/page/User/components/TextLink"
 import {
+  descriptionStyle,
+  errorIconStyle,
+  errorMsgStyle,
+  forgotPwdContainerStyle,
+  forgotPwdStyle,
   formLabelStyle,
   formTitleStyle,
   gridFormFieldStyle,
   gridFormStyle,
   gridItemStyle,
-  descriptionStyle,
   gridValidStyle,
-  errorMsgStyle,
-  errorIconStyle,
-  forgotPwdStyle,
-  forgotPwdContainerStyle,
 } from "@/page/User/style"
-import { TextLink } from "@/page/User/components/TextLink"
-import { LocationState, LoginFields } from "./interface"
-import { setLocalStorage } from "@/utils/storage"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import { setLocalStorage } from "@/utils/storage"
+import { LocationState, LoginFields } from "./interface"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)

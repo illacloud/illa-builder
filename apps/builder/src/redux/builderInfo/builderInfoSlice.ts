@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { BuilderInfoInitialState } from "@/redux/builderInfo/builderInfoState"
 import { updateLanguageReducer } from "@/redux/builderInfo/builderInfoReducer"
+import { BuilderInfoInitialState } from "@/redux/builderInfo/builderInfoState"
 
 const builderInfoSlice = createSlice({
   name: "builderInfo",

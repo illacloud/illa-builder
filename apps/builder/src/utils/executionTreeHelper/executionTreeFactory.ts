@@ -1,6 +1,16 @@
-import { isObject } from "@/utils/typeHelper"
-import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
+import { Diff, applyChange, diff } from "deep-diff"
 import { cloneDeep, flatten, get, set, unset } from "lodash"
+import toposort from "toposort"
+import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  DependenciesState,
+  ExecutionErrorType,
+  ExecutionState,
+} from "@/redux/currentApp/executionTree/executionState"
+import store from "@/store"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { getSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import {
   getAllPaths,
   getDisplayNameAndAttrPath,
@@ -8,14 +18,7 @@ import {
   isDynamicString,
   wrapFunctionCode,
 } from "@/utils/evaluateDynamicString/utils"
-import { getSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
-import toposort from "toposort"
-import {
-  DependenciesState,
-  ExecutionErrorType,
-  ExecutionState,
-} from "@/redux/currentApp/executionTree/executionState"
-import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import {
   convertPathToString,
   extractReferencesFromScript,
@@ -23,11 +26,8 @@ import {
   isAction,
   isWidget,
 } from "@/utils/executionTreeHelper/utils"
+import { isObject } from "@/utils/typeHelper"
 import { validationFactory } from "@/utils/validationFactory"
-import { applyChange, Diff, diff } from "deep-diff"
-import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
-import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
-import store from "@/store"
 
 export class ExecutionTreeFactory {
   dependenciesState: DependenciesState = {}

@@ -1,32 +1,32 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { useLocation, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
+import { useLocation, useNavigate } from "react-router-dom"
 import {
+  Divider,
+  DownIcon,
+  Dropdown,
   TabPane,
   Tabs,
-  DownIcon,
   globalColor,
   illaPrefix,
-  Divider,
-  Dropdown,
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { ILLARoute } from "@/router"
+import { clearLocalStorage } from "@/utils/storage"
 import {
+  applyUserAvatarStyle,
   containerStyle,
   expandStyle,
   navBarAvatarContainerStyle,
   navBarLogoContainerStyle,
   settingBodyStyle,
-  settingUserStyle,
-  applyUserAvatarStyle,
-  usernameStyle,
   settingItemStyle,
   settingListStyle,
+  settingUserStyle,
+  usernameStyle,
 } from "./style"
-import { clearLocalStorage } from "@/utils/storage"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { ILLARoute } from "@/router"
 
 const SettingTrigger: FC<{
   avatarBgColor: string
