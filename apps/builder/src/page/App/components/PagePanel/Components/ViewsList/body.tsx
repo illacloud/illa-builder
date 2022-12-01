@@ -13,12 +13,8 @@ import { clone, cloneDeep, isEqual, set } from "lodash"
 export const ListBody: FC<BodyProps> = (props) => {
   const { sectionNodeExecutionResult } = props
   const dispatch = useDispatch()
-  const {
-    sectionViewConfigs,
-    currentViewIndex,
-    viewSortedKey,
-    displayName,
-  } = sectionNodeExecutionResult
+  const { sectionViewConfigs, currentViewIndex, viewSortedKey, displayName } =
+    sectionNodeExecutionResult
 
   const [items, setItems] = useState(sectionViewConfigs)
 

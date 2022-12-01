@@ -15,11 +15,8 @@ export const DotPanel: FC = () => {
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
   const mode = useSelector(getIllaMode)
 
-  const {
-    currentPageIndex,
-    pageSortedKey,
-    homepageDisplayName,
-  } = rootExecutionProps
+  const { currentPageIndex, pageSortedKey, homepageDisplayName } =
+    rootExecutionProps
   let { pageName } = useParams()
   const currentDisplayName = useMemo(() => {
     if (mode === "production") {

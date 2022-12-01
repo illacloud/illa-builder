@@ -17,13 +17,8 @@ import {
 } from "./style"
 
 export const LabelNameAndDragIcon: FC<LabelNameAndDragIconProps> = (props) => {
-  const {
-    name,
-    isDuplicationKey,
-    isSelected,
-    index,
-    handleChangSectionView,
-  } = props
+  const { name, isDuplicationKey, isSelected, index, handleChangSectionView } =
+    props
   const { t } = useTranslation()
   return (
     <div css={labelNameAndDragIconWrapperStyle}>
