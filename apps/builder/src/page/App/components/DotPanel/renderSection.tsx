@@ -1,14 +1,26 @@
+import { AnimatePresence, motion } from "framer-motion"
 import {
-  useEffect,
-  useRef,
-  forwardRef,
   MutableRefObject,
-  useState,
+  forwardRef,
   useCallback,
+  useEffect,
   useMemo,
+  useRef,
+  useState,
 } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
+import useMeasure from "react-use-measure"
+import { NextIcon, PreIcon } from "@illa-design/react"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  ChangeLayoutBottomBar,
+  ChangeLayoutLeftBar,
+  ChangeLayoutRightBar,
+  ChangeLayoutTopBar,
+} from "./changeLayoutBar"
 import {
   RenderFooterSectionProps,
   RenderHeaderSectionProps,
@@ -16,43 +28,31 @@ import {
   RenderRightSectionProps,
   RenderSectionProps,
 } from "./interface"
+import { RenderComponentCanvas } from "./renderComponentCanvas"
 import {
+  applyContainerWrapperStyle,
   applyFooterSectionWrapperStyle,
   applyHeaderSectionWrapperStyle,
+  applyLeftAnimationWrapperStyle,
   applyLeftSectionWrapperStyle,
+  applyNoBottomPaddingStyle,
+  applyRightAnimationWrapperStyle,
   applyRightSectionWrapperStyle,
-  applyContainerWrapperStyle,
+  applySideBarWrapperStyle,
+  disabledHorizontalBarWrapperStyle,
+  footerHeightTipsStyle,
+  headerHeightTipsStyle,
+  leftOpenFoldPositionStyle,
+  leftWidthTipsStyle,
+  openFoldWrapperStyle,
   resizeHorizontalBarStyle,
   resizeHorizontalBarWrapperStyle,
   resizeVerticalBarStyle,
   resizeVerticalBarWrapperStyle,
-  applySideBarWrapperStyle,
-  sideBarIconStyle,
-  openFoldWrapperStyle,
-  leftOpenFoldPositionStyle,
-  applyNoBottomPaddingStyle,
   rightOpenFoldPositionStyle,
-  disabledHorizontalBarWrapperStyle,
-  applyLeftAnimationWrapperStyle,
-  applyRightAnimationWrapperStyle,
-  leftWidthTipsStyle,
   rightWidthTipsStyle,
-  headerHeightTipsStyle,
-  footerHeightTipsStyle,
+  sideBarIconStyle,
 } from "./style"
-import { RenderComponentCanvas } from "./renderComponentCanvas"
-import useMeasure from "react-use-measure"
-import {
-  ChangeLayoutBottomBar,
-  ChangeLayoutLeftBar,
-  ChangeLayoutRightBar,
-  ChangeLayoutTopBar,
-} from "./changeLayoutBar"
-import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
-import { PreIcon, NextIcon } from "@illa-design/react"
-import { motion, AnimatePresence } from "framer-motion"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { useParams } from "react-router-dom"
 
 export const HEADER_MIN_HEIGHT = 96
 export const FOOTER_MIN_HEIGHT = 96

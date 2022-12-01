@@ -1,11 +1,11 @@
 import { FC } from "react"
+import { LockIcon, MinusIcon, PlusIcon, UnlockIcon } from "@illa-design/react"
+import { PanelActionBarProps } from "./interface"
 import {
   baseIconStyle,
   clickHotpotWrapperStyle,
   panelActionBarWrapperStyle,
 } from "./style"
-import { LockIcon, UnlockIcon, MinusIcon, PlusIcon } from "@illa-design/react"
-import { PanelActionBarProps } from "./interface"
 
 export const PanelActionBar: FC<PanelActionBarProps> = (props) => {
   const { isFixed, hasPanel, addPanelAction, deletePanelAction } = props

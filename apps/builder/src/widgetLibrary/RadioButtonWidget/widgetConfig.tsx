@@ -1,7 +1,7 @@
-import { ReactComponent as RadioButtonWidgetIcon } from "@/assets/widgetCover/radioButton.svg"
-import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
+import { ReactComponent as RadioButtonWidgetIcon } from "@/assets/widgetCover/radioButton.svg"
 import i18n from "@/i18n/config"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
   type: "RADIO_BUTTON_WIDGET",

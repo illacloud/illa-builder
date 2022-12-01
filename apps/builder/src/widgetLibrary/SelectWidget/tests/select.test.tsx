@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
+import { render, screen } from "@testing-library/react"
 import { WrappedSelect } from "../index"
+
 const options = [
   "Beijing",
   "Shanghai",

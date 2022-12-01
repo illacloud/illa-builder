@@ -1,4 +1,32 @@
 import { FC, useContext, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  AddIcon,
+  ButtonProps,
+  Modal,
+  Option,
+  PenIcon,
+  Select,
+  Space,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
+import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
+import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
+import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
+import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { getAllResources } from "@/redux/resource/resourceSelector"
+import {
+  getResourceNameFromResourceType,
+  getResourceTypeFromActionType,
+} from "@/utils/actionResourceTransformer"
 import {
   createNewStyle,
   itemContainer,
@@ -8,34 +36,6 @@ import {
   resourceEndStyle,
   resourceTitleStyle,
 } from "./style"
-import { useTranslation } from "react-i18next"
-import {
-  Option,
-  Select,
-  Space,
-  AddIcon,
-  PenIcon,
-  ButtonProps,
-  globalColor,
-  illaPrefix,
-  Modal,
-} from "@illa-design/react"
-import { useDispatch, useSelector } from "react-redux"
-import { getAllResources } from "@/redux/resource/resourceSelector"
-import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
-import { configActions } from "@/redux/config/configSlice"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
-import {
-  getResourceNameFromResourceType,
-  getResourceTypeFromActionType,
-} from "@/utils/actionResourceTransformer"
-import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
-import {
-  getCachedAction,
-  getSelectedAction,
-} from "@/redux/config/configSelector"
-import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
 
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()

@@ -1,7 +1,7 @@
-import { AddIcon, Button, Link, PlusIcon } from "@illa-design/react"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
+import { AddIcon, Button, Link, PlusIcon } from "@illa-design/react"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
 import { generateSectionContainerConfig } from "@/utils/generators/generatePageOrSectionConfig"

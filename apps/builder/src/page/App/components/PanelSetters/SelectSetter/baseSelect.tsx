@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Select } from "@illa-design/react"
-import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
+import { BaseSelectSetterProps } from "./interface"
 
 export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
   const {

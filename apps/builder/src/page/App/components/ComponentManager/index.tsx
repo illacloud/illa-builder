@@ -1,14 +1,14 @@
-import { TabPane, Tabs } from "@illa-design/react"
-import { useTranslation } from "react-i18next"
 import { FC, HTMLAttributes, useEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { getSelectedComponents } from "@/redux/config/configSelector"
-import { componentPanelCss } from "./style"
-import { FocusManager } from "@/utils/focusManager"
-import { ConfigPanel } from "@/page/App/components/ConfigPanel"
+import { TabPane, Tabs } from "@illa-design/react"
 import { ComponentPanel } from "@/page/App/components/ComponentPanel"
+import { ConfigPanel } from "@/page/App/components/ConfigPanel"
 import { PagePanel } from "@/page/App/components/PagePanel"
+import { getSelectedComponents } from "@/redux/config/configSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
+import { FocusManager } from "@/utils/focusManager"
+import { componentPanelCss } from "./style"
 
 export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   props,

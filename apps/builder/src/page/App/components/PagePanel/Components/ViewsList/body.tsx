@@ -1,14 +1,14 @@
-import { FC, useCallback, useEffect, useState } from "react"
-import { viewsListBodyWrapperStyle } from "./style"
-import { Item } from "./item"
-import { BodyProps } from "./interface"
-import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
-import { useDispatch } from "react-redux"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { Reorder } from "framer-motion"
-import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
 import { clone, cloneDeep, isEqual, set } from "lodash"
+import { FC, useCallback, useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { BodyProps } from "./interface"
+import { Item } from "./item"
+import { viewsListBodyWrapperStyle } from "./style"
 
 export const ListBody: FC<BodyProps> = (props) => {
   const { sectionNodeExecutionResult } = props

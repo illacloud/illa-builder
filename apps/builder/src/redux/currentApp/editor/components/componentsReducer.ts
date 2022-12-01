@@ -1,40 +1,40 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
+import { cloneDeep } from "lodash"
 import {
+  UpdateComponentContainerPayload,
+  UpdateComponentsShapePayload,
+} from "@/redux/currentApp/editor/components/componentsPayload"
+import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  AddSectionViewPayload,
   AddTargetPageSectionPayload,
   ComponentNode,
   ComponentsState,
   CopyComponentPayload,
   DeleteComponentNodePayload,
+  DeletePageNodePayload,
+  DeleteSectionViewPayload,
   DeleteTargetPageSectionPayload,
   PageNodeProps,
+  RootComponentNode,
   RootComponentNodeProps,
-  sortComponentNodeChildrenPayload,
+  SectionViewShape,
   UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
+  UpdateSectionViewPropsPayload,
   UpdateTargetPageLayoutPayload,
   UpdateTargetPagePropsPayload,
-  RootComponentNode,
-  DeletePageNodePayload,
-  AddSectionViewPayload,
-  DeleteSectionViewPayload,
-  SectionViewShape,
-  UpdateSectionViewPropsPayload,
+  sortComponentNodeChildrenPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
-import { cloneDeep } from "lodash"
-import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
-import { isObject } from "@/utils/typeHelper"
-import {
-  UpdateComponentContainerPayload,
-  UpdateComponentsShapePayload,
-} from "@/redux/currentApp/editor/components/componentsPayload"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import {
   generateSectionConfig,
   generateSectionContainerConfig,
   layoutValueMapGenerateConfig,
 } from "@/utils/generators/generatePageOrSectionConfig"
+import { isObject } from "@/utils/typeHelper"
 
 export const updateComponentReducer: CaseReducer<
   ComponentsState,

@@ -1,6 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import * as Sentry from "@sentry/react"
+import { CurrentUser } from "@/redux/currentUser/currentUserState"
 
 export const updateCurrentUserReducer: CaseReducer<
   CurrentUser,

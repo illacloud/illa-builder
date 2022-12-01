@@ -1,6 +1,6 @@
 import { FC, memo } from "react"
-import { emptyBodyStyle } from "@/page/App/components/PanelSetters/EventHandlerSetter/List/style"
 import { useTranslation } from "react-i18next"
+import { emptyBodyStyle } from "@/page/App/components/PanelSetters/EventHandlerSetter/List/style"
 
 export const EventHandlerEmpty: FC = memo(() => {
   const { t } = useTranslation()

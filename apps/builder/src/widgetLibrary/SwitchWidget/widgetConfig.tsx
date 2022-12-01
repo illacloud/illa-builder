@@ -1,6 +1,6 @@
 import { ReactComponent as SwitchWidgetIcon } from "@/assets/widgetCover/switch.svg"
-import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
   displayName: "switch",

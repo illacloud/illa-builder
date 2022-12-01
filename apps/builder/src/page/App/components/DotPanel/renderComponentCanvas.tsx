@@ -1,3 +1,4 @@
+import { throttle } from "lodash"
 import {
   FC,
   MutableRefObject,
@@ -9,39 +10,38 @@ import {
   useRef,
   useState,
 } from "react"
+import { useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  getFreezeState,
-  getIllaMode,
-  isShowDot,
-} from "@/redux/config/configSelector"
-import { ScaleSquare } from "@/page/App/components/ScaleSquare"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import {
-  applyComponentCanvasStyle,
-  borderLineStyle,
-} from "@/page/App/components/DotPanel/style"
 import useMeasure from "react-use-measure"
-import { configActions } from "@/redux/config/configSlice"
+import {
+  getDragResult,
+  getReflowResult,
+  isAddAction,
+} from "@/page/App/components/DotPanel/calc"
+import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
 import {
   DebounceUpdateReflow,
   DragInfo,
   DropCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import {
-  getDragResult,
-  getReflowResult,
-  isAddAction,
-} from "@/page/App/components/DotPanel/calc"
-import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
-import { throttle } from "lodash"
-import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
-import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
-import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import {
+  applyComponentCanvasStyle,
+  borderLineStyle,
+} from "@/page/App/components/DotPanel/style"
+import { ScaleSquare } from "@/page/App/components/ScaleSquare"
+import {
+  getFreezeState,
+  getIllaMode,
+  isShowDot,
+} from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 const UNIT_HEIGHT = 8
 const BASIC_BLOCK_COLUMNS = 64

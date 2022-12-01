@@ -1,13 +1,12 @@
-import { createRoot } from "react-dom/client"
-import { StrictMode } from "react"
-import App from "./App"
-import { Provider } from "react-redux"
-import store from "./store"
-import "@/i18n/config"
-import "@/utils/dayjs"
-
 import * as Sentry from "@sentry/react"
 import { BrowserTracing } from "@sentry/tracing"
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import { Provider } from "react-redux"
+import "@/i18n/config"
+import "@/utils/dayjs"
+import App from "./App"
+import store from "./store"
 
 if (
   import.meta.env.VITE_INSTANCE_ID === "CLOUD" &&

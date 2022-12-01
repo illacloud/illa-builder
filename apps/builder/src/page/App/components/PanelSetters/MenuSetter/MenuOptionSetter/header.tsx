@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { optionListHeaderStyle } from "./style"
-import { HeaderProps } from "./interface"
 import { useTranslation } from "react-i18next"
+import { HeaderProps } from "./interface"
+import { optionListHeaderStyle } from "./style"
 
 export const OptionListHeader: FC<HeaderProps> = (props) => {
   const { labelName } = props

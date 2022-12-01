@@ -1,5 +1,5 @@
-import chroma from "chroma-js"
 import { css } from "@emotion/react"
+import chroma from "chroma-js"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const searchHeaderStyle = css`

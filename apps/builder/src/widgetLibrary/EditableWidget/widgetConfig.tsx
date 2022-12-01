@@ -1,6 +1,6 @@
 import { ReactComponent as EditableTextWidgetIcon } from "@/assets/widgetCover/editableText.svg"
-import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const EDITABLE_TEXT_WIDGET_CONFIG: WidgetConfig = {
   type: "EDITABLE_TEXT_WIDGET",

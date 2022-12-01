@@ -1,10 +1,16 @@
-import { useTranslation } from "react-i18next"
 import { FC, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { Select } from "@illa-design/react"
+import { CodeEditor } from "@/components/CodeEditor"
+import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
   getCachedAction,
   getSelectedAction,
 } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
   BodyContentType,
@@ -13,10 +19,7 @@ import {
   IDEditorType,
   QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
-import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import {
   codeEditorLabelStyle,
   esContainerStyle,
@@ -24,9 +27,6 @@ import {
   esItemLabelStyle,
   esItemStyle,
 } from "./style"
-import { Select } from "@illa-design/react"
-import { CodeEditor } from "@/components/CodeEditor"
-import { configActions } from "@/redux/config/configSlice"
 
 export const ElasticSearchPanel: FC = () => {
   const { t } = useTranslation()

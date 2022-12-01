@@ -1,26 +1,26 @@
-import { FC, useCallback, useContext, useMemo, MouseEvent } from "react"
-import { useSelector } from "react-redux"
+import { get } from "lodash"
+import { FC, MouseEvent, useCallback, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import {
   DragPointIcon,
-  WarningCircleIcon,
   Trigger,
+  WarningCircleIcon,
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { get } from "lodash"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
+import {
+  DragIconAndLabelProps,
+  ViewItemShape,
+} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import {
   applyOptionStyle,
   labelAndDragIconWrapperStyle,
   labelWrapperStyle,
   moveIconStyle,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
-import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
-import {
-  DragIconAndLabelProps,
-  ViewItemShape,
-} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 
 interface optionIconProps {
   isSelected: boolean

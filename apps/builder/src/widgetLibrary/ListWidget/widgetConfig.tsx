@@ -1,12 +1,12 @@
-import { ReactComponent as ListWidgetIcon } from "@/assets/widgetCover/list.svg"
-import { WidgetConfig } from "@/widgetLibrary/interface"
-import i18n from "@/i18n/config"
-import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
-import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
-import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
-import { IMAGE_WIDGET_CONFIG } from "@/widgetLibrary/ImageWidget"
-import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"
 import { v4 } from "uuid"
+import { ReactComponent as ListWidgetIcon } from "@/assets/widgetCover/list.svg"
+import i18n from "@/i18n/config"
+import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"
+import { IMAGE_WIDGET_CONFIG } from "@/widgetLibrary/ImageWidget"
+import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
+import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const LIST_WIDGET_CONFIG: WidgetConfig = {
   type: "LIST_WIDGET",

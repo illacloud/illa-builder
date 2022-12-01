@@ -1,13 +1,13 @@
 import { FC, useCallback, useMemo } from "react"
-import { BaseInputSetterProps } from "./interface"
-import { applyInputSetterWrapperStyle } from "./style"
-import { CodeEditor } from "@/components/CodeEditor"
 import { useSelector } from "react-redux"
-import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { CodeEditor } from "@/components/CodeEditor"
 import {
   getNeedComputedValueWithList,
   realInputValueWithList,
 } from "@/page/App/components/PanelSetters/InputSetter/util"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { BaseInputSetterProps } from "./interface"
+import { applyInputSetterWrapperStyle } from "./style"
 
 export function getPath(attrName?: string, widgetDisplayName?: string) {
   if (attrName && widgetDisplayName) {

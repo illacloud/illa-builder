@@ -1,9 +1,9 @@
 import { FC, useEffect, useRef } from "react"
 import { Rate } from "@illa-design/react"
-import { RateWidgetProps, WrappedRateProps } from "./interface"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
-import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { RateWidgetProps, WrappedRateProps } from "./interface"
 
 export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
   const {

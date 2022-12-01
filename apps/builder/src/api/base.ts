@@ -1,11 +1,11 @@
 // eslint-disable-next-line import/no-named-as-default
 import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { clearLocalStorage, getLocalStorage } from "@/utils/storage"
 import {
   addRequestPendingPool,
   removeRequestPendingPool,
 } from "@/api/helpers/axiosPendingPool"
 import { ILLARoute } from "@/router"
+import { clearLocalStorage, getLocalStorage } from "@/utils/storage"
 
 export interface Success {
   status: string // always ok

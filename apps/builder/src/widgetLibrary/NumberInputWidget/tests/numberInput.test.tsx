@@ -1,6 +1,6 @@
-import { WrappedInputNumber } from "../index"
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { WrappedInputNumber } from "../index"
 
 test("Input Number renders correctly", async () => {
   const handleUpdateDSL = jest.fn()

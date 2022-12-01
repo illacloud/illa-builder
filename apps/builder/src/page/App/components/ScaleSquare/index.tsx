@@ -1,16 +1,30 @@
+import { cloneDeep, get, throttle } from "lodash"
 import {
-  memo,
   MouseEvent,
+  memo,
   useCallback,
   useContext,
   useMemo,
   useRef,
 } from "react"
+import { useDrag } from "react-dnd"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
+import { DropList, Dropdown, globalColor, illaPrefix } from "@illa-design/react"
+import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
+import { getReflowResult } from "@/page/App/components/DotPanel/calc"
+import {
+  DragCollectedInfo,
+  DragInfo,
+  DropResultInfo,
+} from "@/page/App/components/DotPanel/interface"
 import {
   ScaleSquareProps,
   ScaleSquarePropsWithJSON,
   ScaleSquareType,
 } from "@/page/App/components/ScaleSquare/interface"
+import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
 import {
   applyBarHandlerStyle,
   applyBarPointerStyle,
@@ -19,41 +33,27 @@ import {
   applySquarePointerStyle,
   applyWrapperPendingStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
-import { useDispatch, useSelector } from "react-redux"
-import { configActions } from "@/redux/config/configSlice"
-import { globalColor, illaPrefix, Dropdown, DropList } from "@illa-design/react"
-import { useTranslation } from "react-i18next"
-import {
-  getExecutionError,
-  getExecutionResult,
-} from "@/redux/currentApp/executionTree/executionSelector"
 import {
   getIllaMode,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
-import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
-import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
+import { configActions } from "@/redux/config/configSlice"
+import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
-  DragCollectedInfo,
-  DragInfo,
-  DropResultInfo,
-} from "@/page/App/components/DotPanel/interface"
-import { endDrag, startDrag } from "@/utils/drag/drag"
-import { cloneDeep, get, throttle } from "lodash"
-import { getReflowResult } from "@/page/App/components/DotPanel/calc"
-import { CopyManager } from "@/utils/copyManager"
-import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
-import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
+  getExecutionError,
+  getExecutionResult,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import store, { RootState } from "@/store"
-import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
+import { CopyManager } from "@/utils/copyManager"
+import { endDrag, startDrag } from "@/utils/drag/drag"
+import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/renderWithJSON"
+import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 const { Item } = DropList
 

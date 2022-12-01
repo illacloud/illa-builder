@@ -1,9 +1,9 @@
 // Thk appsmith
-import { parse, Node } from "acorn"
+import { Node, parse } from "acorn"
 import { ancestor } from "acorn-walk"
 import { isFinite } from "lodash"
-import { wrapCode } from "@/utils/evaluateDynamicString/utils"
 import { unescapeJS } from "@/utils/ast/unescapeJs"
+import { wrapCode } from "@/utils/evaluateDynamicString/utils"
 
 type Pattern = IdentifierNode | AssignmentPatternNode
 

@@ -1,4 +1,32 @@
 import { FC, useState } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  Input,
+  PaginationPreIcon,
+  RadioGroup,
+  Switch,
+  TextArea,
+  getColor,
+  useMessage,
+} from "@illa-design/react"
+import { Api } from "@/api/base"
+import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
+import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
+import {
+  MongoDbConfig,
+  MongoDbResource,
+  MongoDbResourceInitial,
+  MongoDbSSL,
+} from "@/redux/resource/mongodbResource"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Resource } from "@/redux/resource/resourceState"
+import { RootState } from "@/store"
+import { sslStyle } from "../MysqlLikeConfigElement/style"
 import { MongoDbConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -11,34 +39,6 @@ import {
   optionLabelStyle,
   sslItem,
 } from "./style"
-import {
-  Input,
-  TextArea,
-  getColor,
-  Divider,
-  Button,
-  ButtonGroup,
-  PaginationPreIcon,
-  Switch,
-  RadioGroup,
-  useMessage,
-} from "@illa-design/react"
-import { useTranslation } from "react-i18next"
-import { Controller, useForm } from "react-hook-form"
-import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@/store"
-import { Resource } from "@/redux/resource/resourceState"
-import { Api } from "@/api/base"
-import {
-  MongoDbConfig,
-  MongoDbResource,
-  MongoDbResourceInitial,
-  MongoDbSSL,
-} from "@/redux/resource/mongodbResource"
-import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
-import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
-import { sslStyle } from "../MysqlLikeConfigElement/style"
-import { resourceActions } from "@/redux/resource/resourceSlice"
 
 export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
