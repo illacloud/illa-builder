@@ -88,6 +88,7 @@ importers:
       eslint: ^8.28.0
       events: ^3.3.0
       framer-motion: ^7.6.12
+      hotkeys-js: ^3.10.1
       i18next: ^21.6.16
       i18next-browser-languagedetector: ^6.1.4
       jest: ^29.3.1
@@ -148,6 +149,7 @@ importers:
       deep-diff: 1.0.2
       events: 3.3.0
       framer-motion: 7.6.15_biqbaboplfbrettd7655fr4n2y
+      hotkeys-js: 3.10.1
       i18next: 21.10.0
       i18next-browser-languagedetector: 6.1.8
       jshint: 2.13.6
@@ -7444,6 +7446,10 @@ packages:
     dependencies:
       lru-cache: 6.0.0
     dev: true
+
+  /hotkeys-js/3.10.1:
+    resolution: {integrity: sha512-mshqjgTqx8ee0qryHvRgZaZDxTwxam/2yTQmQlqAWS3+twnq1jsY9Yng9zB7lWq6WRrjTbTOc7knNwccXQiAjQ==}
+    dev: false
 
   /hotkeys-js/3.9.4:
     resolution: {integrity: sha512-2zuLt85Ta+gIyvs4N88pCYskNrxf1TFv3LR9t5mdAZIX8BcgQQ48F2opUptvHa6m8zsy5v/a0i9mWzTrlNWU0Q==}

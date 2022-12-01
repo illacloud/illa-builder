@@ -65,7 +65,8 @@
     "tern": "^0.24.3",
     "toposort": "^2.0.2",
     "uuid": "^8.3.2",
-    "chroma-js": "^2.1.2"
+    "chroma-js": "^2.1.2",
+    "hotkeys-js": "^3.10.1"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
