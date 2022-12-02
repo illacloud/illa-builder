@@ -31,6 +31,7 @@ import {
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { setLocalStorage } from "@/utils/storage"
 import { RegisterFields, RegisterResult } from "./interface"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export function getLocalLanguage(): string {
   const lang = window.navigator.language
@@ -221,7 +222,7 @@ export const Register: FC = () => {
             )}
           </div>
         </section>
-        {import.meta.env.VITE_INSTANCE_ID === "CLOUD" && (
+        {isCloudVersion && (
           <section css={gridItemStyle}>
             <label css={formLabelStyle}>
               {t("user.sign_up.fields.verification_code")}
