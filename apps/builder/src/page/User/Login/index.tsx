@@ -29,7 +29,8 @@ import {
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import { setLocalStorage } from "@/utils/storage"
-import { LocationState, LoginFields } from "./interface"
+import { LoginFields } from "./interface"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
@@ -144,11 +145,15 @@ export const Login: FC = () => {
               )}
               rules={{
                 required: t("user.sign_in.error_message.email.require"),
-                pattern: {
-                  value: EMAIL_FORMAT,
-                  message: t(
-                    "user.sign_in.error_message.email.invalid_pattern",
-                  ),
+                validate: (value: string) => {
+                  if (isCloudVersion && !EMAIL_FORMAT.test(value)) {
+                    return t("user.sign_up.error_message.email.invalid_pattern")
+                  }
+                  return value === "root"
+                    ? true
+                    : EMAIL_FORMAT.test(value)
+                    ? true
+                    : t("user.sign_up.error_message.email.invalid_pattern")
                 },
               }}
             />

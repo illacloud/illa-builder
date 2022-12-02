@@ -51,8 +51,6 @@ export function getPayload<T>(
   })
 }
 
-export const wsMap = new Map()
-
 export class Connection {
   static roomMap: Map<string, ILLAWebsocket> = new Map()
 

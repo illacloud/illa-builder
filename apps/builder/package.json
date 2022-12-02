@@ -13,14 +13,14 @@
     "preview": "vite preview",
     "test": "npx patch-package && npx jest && npx cypress run-ct -b chrome",
     "report:combined": "sh ./scripts/merge-coverage.sh",
-    "posttest": "yarn report:combined",
+    "posttest": "pnpm report:combined",
     "e2e": "npx cypress open-ct",
     "unit": "npx jest"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@fontsource/fira-code": "^4.5.10",
-    "@illa-design/react": "*",
+    "@illa-design/react": "workspace:*",
     "@reduxjs/toolkit": "^1.8.1",
     "@sentry/react": "^7.17.3",
     "@sentry/tracing": "^7.17.3",
@@ -64,13 +64,15 @@
     "remark-gfm": "^3.0.1",
     "tern": "^0.24.3",
     "toposort": "^2.0.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "chroma-js": "^2.1.2",
+    "hotkeys-js": "^3.10.1"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
     "@changesets/cli": "^2.18.1",
     "@cypress/code-coverage": "^3.9.12",
-    "@cypress/react": "^5.12.4",
+    "@cypress/react": "^7.0.1",
     "@cypress/vite-dev-server": "^2.2.2",
     "@emotion/jest": "^11.7.1",
     "@testing-library/cypress": "^8.0.7",
