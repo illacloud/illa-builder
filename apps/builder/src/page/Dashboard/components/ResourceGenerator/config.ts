@@ -35,6 +35,10 @@ export const Databases: ResourceDataItem[] = [
     resourceType: "elasticsearch",
     isDraft: false,
   },
+  {
+    resourceType: "supabase",
+    isDraft: false,
+  },
 ]
 
 export const Apis: ResourceDataItem[] = [
