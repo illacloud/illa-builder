@@ -7,6 +7,7 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "scripts": {
+    "preinstall": "cd illa-design && pnpm install",
     "dev": "turbo run dev",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=10240 turbo run build-cloud",
     "build-self": "NODE_OPTIONS=--max-old-space-size=10240 turbo run build-self",

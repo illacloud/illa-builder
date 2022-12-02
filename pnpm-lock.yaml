@@ -133,8 +133,8 @@ importers:
       '@fontsource/fira-code': 4.5.12
       '@illa-design/react': link:../../illa-design/packages/react
       '@reduxjs/toolkit': 1.9.1_k4ae6lp43ej6mezo3ztvx6pykq
-      '@sentry/react': 7.22.0_react@18.2.0
-      '@sentry/tracing': 7.22.0
+      '@sentry/react': 7.23.0_react@18.2.0
+      '@sentry/tracing': 7.23.0
       '@uiw/react-color': 1.1.1_biqbaboplfbrettd7655fr4n2y
       '@uiw/react-color-sketch': 1.1.1_biqbaboplfbrettd7655fr4n2y
       '@uiw/react-color-swatch': 1.1.1_biqbaboplfbrettd7655fr4n2y
@@ -148,7 +148,7 @@ importers:
       dayjs: 1.11.6
       deep-diff: 1.0.2
       events: 3.3.0
-      framer-motion: 7.6.15_biqbaboplfbrettd7655fr4n2y
+      framer-motion: 7.6.17_biqbaboplfbrettd7655fr4n2y
       hotkeys-js: 3.10.1
       i18next: 21.10.0
       i18next-browser-languagedetector: 6.1.8
@@ -614,11 +614,12 @@ importers:
 
   illa-design/packages/modal:
     specifiers:
-      '@illa-design/button': workspace:*
-      '@illa-design/config-provider': workspace:*
-      '@illa-design/icon': workspace:*
-      '@illa-design/system': workspace:*
-      '@illa-design/theme': workspace:*
+      '@illa-design/button': 1.0.7
+      '@illa-design/config-provider': 1.0.7
+      '@illa-design/icon': 1.0.7
+      '@illa-design/system': 1.0.7
+      '@illa-design/theme': 1.0.7
+      '@illa-design/trigger': 1.0.7
       react-focus-lock: ^2.8.1
       react-hotkeys-hook: ^3.4.6
       uuid: ^8.3.2
@@ -628,6 +629,7 @@ importers:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      '@illa-design/trigger': link:../trigger
       react-focus-lock: 2.9.2
       react-hotkeys-hook: 3.4.7
       uuid: 8.3.2
@@ -2769,59 +2771,59 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sentry/browser/7.22.0:
-    resolution: {integrity: sha512-8MA+f46+T3G7fb4BYYX9Wl3bMDloG5a3Ng0GWdBeq6DE2tXVHeCvba8Yrrcnn1qFHpmnOn5Nz4xWBUDs3uBFxA==}
+  /@sentry/browser/7.23.0:
+    resolution: {integrity: sha512-2/dLGOSaM5AvlRdMgYxDyxPxkUUqYyxF7QZ0NicdIXkKXa0fM38IdibeXrE8XzC7rF2B7DQZ6U7uDb1Yry60ig==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/core': 7.22.0
-      '@sentry/types': 7.22.0
-      '@sentry/utils': 7.22.0
+      '@sentry/core': 7.23.0
+      '@sentry/types': 7.23.0
+      '@sentry/utils': 7.23.0
       tslib: 1.14.1
     dev: false
 
-  /@sentry/core/7.22.0:
-    resolution: {integrity: sha512-qYJiJrL1mfQQln84mNunBRUkXq7xDGQQoNh4Sz9VYP5698va51zmS5BLYRCZ5CkPwRYNuhUqlUXN7bpYGYOOIA==}
+  /@sentry/core/7.23.0:
+    resolution: {integrity: sha512-oNLGsscSdMs1urCbpwe868NsoJWyeTOQXOm5w2e78yE7G6zm2Ra473NQio3lweaEvjQgSGpFyEfAn/3ubZbtPw==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.22.0
-      '@sentry/utils': 7.22.0
+      '@sentry/types': 7.23.0
+      '@sentry/utils': 7.23.0
       tslib: 1.14.1
     dev: false
 
-  /@sentry/react/7.22.0_react@18.2.0:
-    resolution: {integrity: sha512-nbZD+bobhV65r/4mpfRgGct1nrYWEmnNzTYZM4PQyPyImuk/VmNNdnzP3BLWqAnV4LvbVWEkgZIcquN8yA098g==}
+  /@sentry/react/7.23.0_react@18.2.0:
+    resolution: {integrity: sha512-MY8WhhImMYEbF8YMPHxs/fhQ9DftmWz1KxT52jEcZUAYfbwmt8zVy4LfBUpMNA4rFy72E9k4DsFQtD0FwCcp3g==}
     engines: {node: '>=8'}
     peerDependencies:
       react: 15.x || 16.x || 17.x || 18.x
     dependencies:
-      '@sentry/browser': 7.22.0
-      '@sentry/types': 7.22.0
-      '@sentry/utils': 7.22.0
+      '@sentry/browser': 7.23.0
+      '@sentry/types': 7.23.0
+      '@sentry/utils': 7.23.0
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
       tslib: 1.14.1
     dev: false
 
-  /@sentry/tracing/7.22.0:
-    resolution: {integrity: sha512-s68aSnrRaWQ+Z5oG9ozIegUkofZy9PwicuXYEPA8K/R30F1CVpHvDZ/3KlFnByl+aXTbAyLBQzN2sAObB5g4pQ==}
+  /@sentry/tracing/7.23.0:
+    resolution: {integrity: sha512-sbwvf6gjLgUTkBwZQOV7RkZPah7KnnpeVcwnNl+vigq6FNgNtejz53FFCo6t4mNGZSerfWbEy/c3C1LMX9AaXw==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/core': 7.22.0
-      '@sentry/types': 7.22.0
-      '@sentry/utils': 7.22.0
+      '@sentry/core': 7.23.0
+      '@sentry/types': 7.23.0
+      '@sentry/utils': 7.23.0
       tslib: 1.14.1
     dev: false
 
-  /@sentry/types/7.22.0:
-    resolution: {integrity: sha512-LhCL+wb1Jch+OesB2CIt6xpfO1Ab6CRvoNYRRzVumWPLns1T3ZJkarYfhbLaOEIb38EIbPgREdxn2AJT560U4Q==}
+  /@sentry/types/7.23.0:
+    resolution: {integrity: sha512-fZ5XfVRswVZhKoCutQ27UpIHP16tvyc6ws+xq+njHv8Jg8gFBCoOxlJxuFhegD2xxylAn1aiSHNAErFWdajbpA==}
     engines: {node: '>=8'}
     dev: false
 
-  /@sentry/utils/7.22.0:
-    resolution: {integrity: sha512-1GiNw1opIngxg0nktCTc9wibh4/LV12kclrnB9dAOHrqazZXHXZRAkjqrhQphKcMpT+3By91W6EofjaDt5a/hg==}
+  /@sentry/utils/7.23.0:
+    resolution: {integrity: sha512-ad/XXH03MfgDH/7N7FjKEOVaKrfQWdMaE0nCxZCr2RrvlitlmGQmPpms95epr1CpzSU3BDRImlILx6+TlrXOgg==}
     engines: {node: '>=8'}
     dependencies:
-      '@sentry/types': 7.22.0
+      '@sentry/types': 7.23.0
       tslib: 1.14.1
     dev: false
 
@@ -5719,7 +5721,7 @@ packages:
       eslint: 8.28.0
       has: 1.0.3
       jsx-ast-utils: 3.3.3
-      language-tags: 1.0.5
+      language-tags: 1.0.6
       minimatch: 3.1.2
       semver: 6.3.0
     dev: true
@@ -6216,8 +6218,8 @@ packages:
       mime-types: 2.1.35
     dev: true
 
-  /framer-motion/7.6.15_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-z3LPTWWq3zlmtxtZyCHWyucNRHg8iXXeLo9cFQwCIgOT8mp3gWFzU+KrGQ9h3QJFx79G9MVqAcuIN6dVhhuFQQ==}
+  /framer-motion/7.6.17_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-NmGBjKMCWlTDT156zR8G+jcpiM8OXbvmlgf1CPsVNk5x2RqJ9tieBKMNr6/OjJhirwyOp9s8bt8TsfrrCBIsEw==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -7785,8 +7787,8 @@ packages:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
     dev: true
 
-  /language-tags/1.0.5:
-    resolution: {integrity: sha512-qJhlO9cGXi6hBGKoxEG/sKZDAHD5Hnu9Hs4WbOY3pCWXDhw0N8x1NenNzm2EnNLkLkk7J2SdxAkDSbb6ftT+UQ==}
+  /language-tags/1.0.6:
+    resolution: {integrity: sha512-HNkaCgM8wZgE/BZACeotAAgpL9FUjEnhgF0FVQMIgH//zqTPreLYMb3rWYkYAqPoF75Jwuycp1da7uz66cfFQg==}
     dependencies:
       language-subtag-registry: 0.3.22
     dev: true
