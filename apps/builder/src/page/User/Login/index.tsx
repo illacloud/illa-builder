@@ -7,8 +7,8 @@ import {
   Button,
   Input,
   Password,
-  WarningCircleIcon,
   useMessage,
+  WarningCircleIcon,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { EMAIL_FORMAT } from "@/constants/regExp"
@@ -29,7 +29,7 @@ import {
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import { setLocalStorage } from "@/utils/storage"
-import { LocationState, LoginFields } from "./interface"
+import { LoginFields } from "./interface"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
