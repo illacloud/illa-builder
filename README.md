@@ -45,7 +45,16 @@ The most convenient way to try ILLA Builder is by creating an ILLA account on [F
 5. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
 6. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
 
-## How to Build you tool
+## Self-hosted
+    
+The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [Click here](https://www.illacloud.com/docs/illa-cli) for more details.
+After successfully deployed, you can register with email address or log in with the following information: 
+<p align="left">Username (email): root</p>
+<p align="left">Password: password</p>
+
+    
+    
+## How to build you tool
 
 #### 🎯 Step 1: Connect to your database
 <p align="center">
