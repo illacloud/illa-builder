@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
+import { SerializedStyles } from "@emotion/react"
 
 export const applyValidateMessageWrapperStyle = (
   labelWidth: number,
