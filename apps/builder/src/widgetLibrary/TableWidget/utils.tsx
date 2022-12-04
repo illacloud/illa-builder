@@ -23,6 +23,24 @@ export const tansTableDataToColumns = (
   return columns
 }
 
+export const transTableColumnEvent = (events: any[], columnLength: number) => {
+  let res: Record<string, any> = {}
+  for (let i = 0; i < columnLength; i++) {
+    res[i] = []
+    events.forEach((event) => {
+      const rowEvent: Record<string, any> = { ...event }
+      if (event?.fromCurrentRow) {
+        const keys = Object.keys(event?.fromCurrentRow)
+        keys.forEach((key) => {
+          rowEvent[key] = event?.[key]?.[i]
+        })
+      }
+      res[i].push(rowEvent)
+    })
+  }
+  return res
+}
+
 const RenderTableLink: FC<{
   cell: CellContext<any, any>
   mappedValue?: string
@@ -44,9 +62,10 @@ const RenderTableButton: FC<{
   handleOnClickMenuItem?: (path: string) => void
 }> = (props) => {
   const { cell, mappedValue, eventPath, handleOnClickMenuItem } = props
+  const path = `${eventPath}.${cell.row.index}`
 
   const clickEvent = () => {
-    handleOnClickMenuItem?.(eventPath)
+    handleOnClickMenuItem?.(path)
   }
 
   return (
@@ -59,12 +78,12 @@ const RenderTableButton: FC<{
 const getValue = (
   props: CellContext<any, any>,
   mappedValue?: string,
-  fromCurrentRow?: boolean,
+  fromCurrentRow?: Record<string, boolean>,
 ) => {
   const value = props.getValue()
   const index = props.row.index
   if (mappedValue) {
-    if (fromCurrentRow && Array.isArray(mappedValue)) {
+    if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
       return `${mappedValue[index] ?? "-"}`
     }
     return `${mappedValue}`
