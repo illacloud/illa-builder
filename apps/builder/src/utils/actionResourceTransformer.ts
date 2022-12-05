@@ -10,7 +10,7 @@ export function getActionTypeFromResourceType(
 export function getActionNameFromActionType(actionType: ActionType): string {
   if (actionType) {
     switch (actionType) {
-      case "supabase":
+      case "supabasedb":
         return "Supabase DB"
       case "mysql":
         return "MySQL"
@@ -49,7 +49,7 @@ export function getResourceNameFromResourceType(
 ): string {
   if (resourceType) {
     switch (resourceType) {
-      case "supabase":
+      case "supabasedb":
         return "Supabase DB"
       case "mysql":
         return "MySQL"

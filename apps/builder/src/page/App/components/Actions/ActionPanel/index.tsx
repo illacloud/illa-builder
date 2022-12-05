@@ -32,7 +32,7 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
 
   const panel = useMemo(() => {
     switch (cachedAction?.actionType) {
-      case "supabase":
+      case "supabasedb":
       case "mysql":
       case "tidb":
       case "mariadb":

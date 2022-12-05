@@ -36,7 +36,7 @@ export const Databases: ActionDataItem[] = [
     isDraft: false,
   },
   {
-    actionType: "supabase",
+    actionType: "supabasedb",
     isDraft: false,
   },
 ]
