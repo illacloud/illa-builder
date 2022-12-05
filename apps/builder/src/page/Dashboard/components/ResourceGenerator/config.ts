@@ -36,7 +36,7 @@ export const Databases: ResourceDataItem[] = [
     isDraft: false,
   },
   {
-    resourceType: "supabase",
+    resourceType: "supabasedb",
     isDraft: false,
   },
 ]

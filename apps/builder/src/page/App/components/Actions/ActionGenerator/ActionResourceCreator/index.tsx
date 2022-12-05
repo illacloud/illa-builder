@@ -30,7 +30,7 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
 
   let renderElement: ReactNode | null = useMemo(() => {
     switch (resourceType) {
-      case "supabase":
+      case "supabasedb":
       case "tidb":
       case "mariadb":
       case "mysql":

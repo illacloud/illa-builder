@@ -39,7 +39,7 @@ export interface Events {
 }
 
 export type ActionType =
-  | "supabase"
+  | "supabasedb"
   | "mysql"
   | "restapi"
   | "graphql"

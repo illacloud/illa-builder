@@ -23,7 +23,7 @@ export function getIconFromResourceType(
   size: string,
 ): ReactElement | null {
   switch (type) {
-    case "supabase":
+    case "supabasedb":
       return <SupabaseIcon size={size} />
     case "graphql":
       return <GraphQLIcon size={size} />
@@ -60,7 +60,7 @@ export function getIconFromActionType(
       return <GraphQLIcon size={size} />
     case "elasticsearch":
       return <ElasticIcon size={size} />
-    case "supabase":
+    case "supabasedb":
       return <SupabaseIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
