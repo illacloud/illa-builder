@@ -97,7 +97,7 @@ ILLA 커뮤니티에 가입하여 아이디어, 제안 또는 질문을 공유�
 ## 🌱 기부금
 
 기부에 대해 생각하고 계십니까? ILLA에 대한 모든 종류의 기여는 크게 감사하고 환영합니다! 참여 방법에 대한 자세한 내용은 [기여 가이드](./CONTRIBUTING.md)를 확인하세요.
-<p>모든 기여에 감사드립니다 ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
+<p>모든 기여에 감사드립니다 ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">기여자</a></p>
 
 ## 🔥 우리는 고용 중이다
 
