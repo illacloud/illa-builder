@@ -20,21 +20,21 @@ The core team is monitoring for pull requests. We will review your pull request 
 
 1. Fork the repository and create your branch from develop.
 2. Run `git submodule init && git submodule update` in the repository root.
-3. Run yarn in the repository root.
+3. Run pnpm in the repository root.
 4. If you’ve fixed a bug or added code that should be tested!
-5. Format your code with prettier (yarn prettier).
-6. Make sure your code lints (yarn lint).
+5. Format your code with prettier (pnpm prettier).
+6. Make sure your code lints (pnpm lint).
 
 ## Contribution Prerequisites
 
-- You have Node installed at LTS and Yarn at v1.22.0+.
+- You have Node installed at LTS and pnpm
 - You are familiar with Git.
 
 ## Development Workflow
 
-After cloning Illa-builder, run yarn to fetch its dependencies. Then, you can run several commands:
+After cloning Illa-builder, run pnpm to fetch its dependencies. Then, you can run several commands:
 
-- `yarn build-cloud` creates a production version with Illa-builder.
-- `yarn lint` checks the code style.
-- `yarn format` format your code with prettier
-- `yarn dev`  preview in real time while coding
+- `pnpm build-cloud` creates a production version with Illa-builder.
+- `pnpm lint` checks the code style.
+- `pnpm format` format your code with prettier
+- `pnpm dev`  preview in real time while coding
