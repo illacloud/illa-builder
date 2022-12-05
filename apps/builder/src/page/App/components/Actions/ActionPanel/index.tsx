@@ -26,12 +26,13 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
   const cachedAction = useSelector(getCachedAction)
   const [actionResult, setActionResult] = useState<ActionResultType>()
 
-  const run = useCallback((result, error) => {
+  const run = useCallback((result: any, error: any) => {
     setActionResult({ result, error })
   }, [])
 
   const panel = useMemo(() => {
     switch (cachedAction?.actionType) {
+      case "supabase":
       case "mysql":
       case "tidb":
       case "mariadb":
