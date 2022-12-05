@@ -54,7 +54,7 @@ After successfully deployed, you can register with email address or log in with 
 
     
     
-## How to build you tool
+## How to build your tool
 
 #### 🎯 Step 1: Connect to your database
 <p align="center">
