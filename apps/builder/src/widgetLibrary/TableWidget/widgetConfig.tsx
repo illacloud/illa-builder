@@ -12,7 +12,7 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   type: "TABLE_WIDGET",
   icon: <TableWidgetIcon />,
   keywords: ["Table", "表格"],
-  sessionType: "PRESENTATION",
+  sessionType: "DATE",
   defaults: initTableWidgetDefaultProps(),
 }
 
