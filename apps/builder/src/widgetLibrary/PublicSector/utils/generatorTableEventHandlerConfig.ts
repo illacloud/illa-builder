@@ -90,6 +90,7 @@ export const generatorTableEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-Value`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.table_set_value"),
         setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
@@ -141,6 +142,7 @@ export const generatorTableEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-URL`,
         labelName: "URL",
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.table_set_value"),
         setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "url",
         bindAttrName: ["actionType"],
@@ -301,7 +303,7 @@ export const generatorTableEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-enabled`,
         labelName: i18n.t("editor.inspect.setter_label.only_run_when"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.only_run_when"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.table_only_run_when"),
         setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "enabled",
