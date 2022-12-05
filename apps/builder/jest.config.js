@@ -21,7 +21,7 @@ module.exports = {
     "^@/(.*)$": "<rootDir>/src/$1",
     "^@assets/(.*)$": "<rootDir>/src/assets/$1",
   },
-  setupFilesAfterEnv: ['<rootDir>/illa-design/setup-jest.js'],
+  setupFilesAfterEnv: ["<rootDir>/setup-jest.js"],
   roots: ["./src"],
   globals: {
     "ts-jest": {
