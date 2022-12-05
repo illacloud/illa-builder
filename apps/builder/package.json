@@ -51,7 +51,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.30.0",
     "react-hotkeys-hook": "^3.4.6",
-    "react-i18next": "^11.16.7",
+    "react-i18next": "^12.0.0",
     "react-json-view": "^1.21.3",
     "react-markdown": "^8.0.3",
     "react-redux": "^8.0.1",
@@ -66,7 +66,8 @@
     "toposort": "^2.0.2",
     "uuid": "^8.3.2",
     "chroma-js": "^2.1.2",
-    "hotkeys-js": "^3.10.1"
+    "hotkeys-js": "^3.10.1",
+    "@tanstack/react-table": "^8.5.11"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
