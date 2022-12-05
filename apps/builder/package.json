@@ -89,6 +89,7 @@
     "@types/react-dom": "^18.0.9",
     "@types/redux-logger": "^3.0.9",
     "@types/sinon": "^10.0.11",
+    "@types/lodash": "^4.14.191",
     "@types/toposort": "^2.0.3",
     "@types/uuid": "^8.3.4",
     "@types/ws": "^8.5.3",

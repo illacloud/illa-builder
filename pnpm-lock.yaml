@@ -63,6 +63,7 @@ importers:
       '@types/deep-diff': ^1.0.1
       '@types/jest': ^29.2.3
       '@types/jshint': ^2.12.1
+      '@types/lodash': ^4.14.191
       '@types/qs': ^6.9.7
       '@types/react': ^18.0.25
       '@types/react-dom': ^18.0.9
@@ -195,6 +196,7 @@ importers:
       '@types/deep-diff': 1.0.1
       '@types/jest': 29.2.3
       '@types/jshint': 2.12.1
+      '@types/lodash': 4.14.191
       '@types/qs': 6.9.7
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
@@ -3269,6 +3271,10 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
     dev: true
 
   /@types/mdast/3.0.10:
