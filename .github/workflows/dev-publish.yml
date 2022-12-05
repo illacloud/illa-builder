@@ -21,6 +21,10 @@ jobs:
         with:
           submodules: true
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -34,16 +38,16 @@ jobs:
           path: |
             node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-builder-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-builder-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-builder-${{ hashFiles('yarn.lock') }}
+            ${{ runner.os }}-builder-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Check builder Install/Build Cache
         run: ls -lah node_modules | head -5
 
       - name: Install Dependencies
         if: steps.cache-builder-node-modules.outputs.cache-hit != 'true'
-        run: yarn install
+        run: pnpm install
 
   build:
     needs:
@@ -74,14 +78,14 @@ jobs:
           path: |
             node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-builder-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-builder-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-builder-${{ hashFiles('yarn.lock') }}
+            ${{ runner.os }}-builder-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Publish docker image
         run: echo "Publishing docker image..."
 
       - name: Build Static Page
         run: |
-          yarn build-cloud
+          pnpm build-cloud
 

@@ -10,8 +10,8 @@ import {
   Input,
   Link,
   Password,
-  WarningCircleIcon,
   useMessage,
+  WarningCircleIcon,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { EMAIL_FORMAT } from "@/constants/regExp"
@@ -31,6 +31,7 @@ import {
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { setLocalStorage } from "@/utils/storage"
 import { RegisterFields, RegisterResult } from "./interface"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export function getLocalLanguage(): string {
   const lang = window.navigator.language
@@ -221,104 +222,109 @@ export const Register: FC = () => {
             )}
           </div>
         </section>
-        <section css={gridItemStyle}>
-          <label css={formLabelStyle}>
-            {t("user.sign_up.fields.verification_code")}
-          </label>
-          <div css={gridValidStyle}>
-            <Controller
-              name="verificationCode"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  borderColor="techPurple"
-                  maxLength={6}
-                  onChange={(value, event) => {
-                    field.onChange(event)
-                    if (errorMsg.verificationCode !== "") {
-                      setErrorMsg({ ...errorMsg, verificationCode: "" })
+        {isCloudVersion && (
+          <section css={gridItemStyle}>
+            <label css={formLabelStyle}>
+              {t("user.sign_up.fields.verification_code")}
+            </label>
+            <div css={gridValidStyle}>
+              <Controller
+                name="verificationCode"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    borderColor="techPurple"
+                    maxLength={6}
+                    onChange={(value, event) => {
+                      field.onChange(event)
+                      if (errorMsg.verificationCode !== "") {
+                        setErrorMsg({ ...errorMsg, verificationCode: "" })
+                      }
+                    }}
+                    size="large"
+                    error={
+                      !!errors.verificationCode || !!errorMsg.verificationCode
                     }
-                  }}
-                  size="large"
-                  error={
-                    !!errors.verificationCode || !!errorMsg.verificationCode
-                  }
-                  variant="fill"
-                  suffix={{
-                    render: showCountDown ? (
-                      <Countdown
-                        value={Date.now() + 1000 * 60}
-                        mode="builder"
-                        now={Date.now()}
-                        format="ss"
-                        onFinish={() => {
-                          setShowCountDown(false)
-                        }}
-                      />
-                    ) : (
-                      <Link
-                        colorScheme="techPurple"
-                        hoverable={false}
-                        onClick={async () => {
-                          const res = await trigger("email")
-                          if (res) {
-                            setShowCountDown(true)
-                            Api.request<{ verificationToken: string }>(
-                              {
-                                method: "POST",
-                                url: "/auth/verification",
-                                data: {
-                                  email: getValues("email"),
-                                  usage: "signup",
+                    variant="fill"
+                    suffix={{
+                      render: showCountDown ? (
+                        <Countdown
+                          value={Date.now() + 1000 * 60}
+                          mode="builder"
+                          now={Date.now()}
+                          format="ss"
+                          onFinish={() => {
+                            setShowCountDown(false)
+                          }}
+                        />
+                      ) : (
+                        <Link
+                          colorScheme="techPurple"
+                          hoverable={false}
+                          onClick={async () => {
+                            const res = await trigger("email")
+                            if (res) {
+                              setShowCountDown(true)
+                              Api.request<{ verificationToken: string }>(
+                                {
+                                  method: "POST",
+                                  url: "/auth/verification",
+                                  data: {
+                                    email: getValues("email"),
+                                    usage: "signup",
+                                  },
                                 },
-                              },
-                              (res) => {
-                                message.success({
-                                  content: t(
-                                    "user.sign_up.tips.verification_code",
-                                  ),
-                                })
-                                vt.current = res.data.verificationToken
-                              },
-                              () => {
-                                message.error({
-                                  content: t("user.sign_up.tips.fail_sent"),
-                                })
-                                setShowCountDown(false)
-                              },
-                              () => {
-                                message.warning({
-                                  content: t("network_error"),
-                                })
-                                setShowCountDown(false)
-                              },
-                              () => {},
-                            )
-                          }
-                        }}
-                      >
-                        {t("user.sign_up.actions.send")}
-                      </Link>
-                    ),
-                  }}
-                  placeholder={t("user.sign_up.placeholder.verification_code")}
-                />
+                                (res) => {
+                                  message.success({
+                                    content: t(
+                                      "user.sign_up.tips.verification_code",
+                                    ),
+                                  })
+                                  vt.current = res.data.verificationToken
+                                },
+                                () => {
+                                  message.error({
+                                    content: t("user.sign_up.tips.fail_sent"),
+                                  })
+                                  setShowCountDown(false)
+                                },
+                                () => {
+                                  message.warning({
+                                    content: t("network_error"),
+                                  })
+                                  setShowCountDown(false)
+                                },
+                                () => {},
+                              )
+                            }
+                          }}
+                        >
+                          {t("user.sign_up.actions.send")}
+                        </Link>
+                      ),
+                    }}
+                    placeholder={t(
+                      "user.sign_up.placeholder.verification_code",
+                    )}
+                  />
+                )}
+                rules={{
+                  required: t(
+                    "user.sign_up.error_message.verification_code.require",
+                  ),
+                }}
+              />
+              {(errors.verificationCode || errorMsg.verificationCode) && (
+                <div css={errorMsgStyle}>
+                  <WarningCircleIcon css={errorIconStyle} />
+                  {errors.verificationCode?.message ||
+                    errorMsg.verificationCode}
+                </div>
               )}
-              rules={{
-                required: t(
-                  "user.sign_up.error_message.verification_code.require",
-                ),
-              }}
-            />
-            {(errors.verificationCode || errorMsg.verificationCode) && (
-              <div css={errorMsgStyle}>
-                <WarningCircleIcon css={errorIconStyle} />
-                {errors.verificationCode?.message || errorMsg.verificationCode}
-              </div>
-            )}
-          </div>
-        </section>
+            </div>
+          </section>
+        )}
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>
             {t("user.sign_up.fields.password")}
