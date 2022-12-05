@@ -17,14 +17,14 @@ const options = [
     label: "简体中文",
     value: "zh-CN",
   },
-  {
-    label: "한국인",
-    value: "ko-KR",
-  },
-  {
-    label: "日本語",
-    value: "ja-JP",
-  },
+  // {
+  //   label: "한국인",
+  //   value: "ko-KR",
+  // },
+  // {
+  //   label: "日本語",
+  //   value: "ja-JP",
+  // },
 ]
 
 export const SettingOthers: FC = () => {
