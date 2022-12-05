@@ -7,6 +7,9 @@
 <h1 align="center"><a href="https://fast-try.illacloud.com/">ILLA Builder (Beta)</a></h1>
 <p align="center">ILLA는 개발자가 내부 도구를 구축할 수 있는 강력한 오픈 소스 로우 코드 플랫폼입니다. ILLA의 구성 요소 및 작업 라이브러리를 사용하여 개발자는 도구를 구축하는 데 엄청난 시간을 절약할 수 있습니다. </p>
 
+<div align="center">
+<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">Chinese</a> | Korean | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">Japanese</a>
+</div>
 
 <p align="center">
 <a href="https://fast-try.illacloud.com/">
