@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center"><a href="https://fast-try.illacloud.com/">ILLA Builder (Beta)</a></h1>
-<p align="center">ILLA is a robust open source low-code patform for developers to build internal tools. By using ILLA's library of Components and Actions developers can save massive amounts of time on building tools. </p>
+<p align="center">ILLA is a robust open source low-code platform for developers to build internal tools. By using ILLA's library of Components and Actions, developers can save massive amounts of time on building tools. </p>
 
 
 <p align="center">
