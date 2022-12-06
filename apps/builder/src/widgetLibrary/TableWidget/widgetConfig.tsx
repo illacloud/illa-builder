@@ -41,7 +41,7 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
 export function initTableWidgetDefaultProps() {
   return {
     dataSourceMode: "dynamic",
-    dataSourceJS: `{{${JSON.stringify(originData)}}}`,
+    dataSourceJS: `{{${JSON.stringify(originData, null, "  ")}}}`,
     columns: tansTableDataToColumns(originData),
     emptyState: "No rows found",
     overFlow: "pagination",
