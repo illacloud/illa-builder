@@ -1,4 +1,5 @@
-import { CellContext, ColumnDef } from "@tanstack/react-table"
+import { ColumnDef } from "@tanstack/react-table"
+import { CellContext } from "@tanstack/table-core"
 import { FC, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"

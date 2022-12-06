@@ -13,8 +13,7 @@
     "build-self": "NODE_OPTIONS=--max-old-space-size=10240 turbo run build-self",
     "prepare": "husky install",
     "format": "prettier --write \"apps/**/*.{ts,tsx}\"",
-    "lint": "eslint \"apps/**/src/**\" --ext \".ts,.tsx\" --config \".eslintrc.js\"",
-    "test": "turbo run test"
+    "lint": "eslint \"apps/**/src/**\" --ext \".ts,.tsx\" --config \".eslintrc.js\""
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -34,5 +33,11 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "turbo": "^1.6.3"
+  },
+  "nyc": {
+    "report-dir": "cypress-coverage",
+    "reporter": [
+      "lcov"
+    ]
   }
 }
