@@ -7,6 +7,7 @@ import { ActionContent, ActionType } from "./actionState"
 import { MysqlLikeActionInitial } from "./mysqlLikeAction"
 import { RestApiActionInitial } from "./restapiAction"
 import { TransformerActionInitial } from "./transformerAction"
+import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
 
 export function getInitialContent(actionType: ActionType): ActionContent {
   switch (actionType) {
@@ -29,6 +30,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return S3ActionInitial
     case "smtp":
       return SMTPActionInitial
+    case "firebase":
+      return FirebaseActionInitial
     default:
       return {} as ActionContent
   }

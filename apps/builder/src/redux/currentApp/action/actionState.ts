@@ -6,6 +6,10 @@ import { BodyContent, RestApiAction } from "./restapiAction"
 import { S3Action, S3ActionTypeContent } from "./s3Action"
 import { SMPTAction } from "./smtpAction"
 import { TransformerAction } from "./transformerAction"
+import {
+  FirebaseAction,
+  FirebaseContentType,
+} from "@/redux/currentApp/action/firebaseAction"
 
 export interface Transformer {
   rawData: string
@@ -39,6 +43,7 @@ export interface Events {
 }
 
 export type ActionType =
+  | "firebase"
   | "mysql"
   | "restapi"
   | "graphql"
@@ -70,6 +75,7 @@ export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
 }
 
 export type ActionContent =
+  | FirebaseAction<FirebaseContentType>
   | SMPTAction
   | S3Action<S3ActionTypeContent>
   | ElasticSearchAction

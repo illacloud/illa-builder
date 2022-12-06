@@ -17,7 +17,8 @@ import {
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
-import { MysqlLikePanel } from "./MysqlLikePanel"
+import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
+import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
 
 export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
   const { maxHeight } = props
@@ -50,7 +51,9 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
       case "s3":
         return <S3Panel />
       case "smtp":
-        return <SMTPPanel />
+      // return <SMTPPanel />
+      case "firebase":
+        return <FirebasePanel />
       default:
         return <></>
     }

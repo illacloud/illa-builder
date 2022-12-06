@@ -90,6 +90,12 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
 
 function getActionContentByType(data: FieldValues, type: ResourceType) {
   switch (type) {
+    case "firebase":
+      return {
+        databaseUrl: data.databaseUrl,
+        projectID: data.projectID,
+        privateKey: data.privateKey,
+      }
     case "elasticsearch":
       return {
         host: data.host,
