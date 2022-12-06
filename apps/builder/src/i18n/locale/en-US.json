@@ -163,7 +163,7 @@
           "failure": "Failure",
           "resource": "Resource",
           "success": "Success",
-          "transformer": "Transformer"
+          "transformer": "transformer"
         },
         "menu": {
           "more": {
@@ -413,7 +413,7 @@
         }
       },
       "type": {
-        "api": "API",
+        "api": "APIs",
         "database": "Database",
         "js_transformer": "JavaScript Transformer"
       }
