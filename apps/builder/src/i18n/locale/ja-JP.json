@@ -1,0 +1,1098 @@
+{
+  "Logout": "Log out",
+  "Setting": "Setting",
+  "apps": "Apps",
+  "back": "Back",
+  "btn": {
+    "choose_file": "Choose a file"
+  },
+  "change_fail": "Failed to change",
+  "change_success": "Change successfully",
+  "collision_message": "Press D or K  and drag the component into container",
+  "create_fail": "Failed to create",
+  "create_new": "Create New",
+  "create_new_app": "Create New",
+  "created_at": "Created at",
+  "dashboard": {
+    "app": {
+      "all_apps": "All Apps",
+      "create_app": "Create App",
+      "duplicate_fail": "Failed to duplicate",
+      "duplicate_placeholder": "Enter your app name here",
+      "edited_time": "Edited at {{ time }} by {{ user }}",
+      "name_empty": "Please enter a name",
+      "name_existed": "Name already taken",
+      "rename_app": "Rename App",
+      "rename_fail": "Failed to rename",
+      "rename_success": "Renamed successfully",
+      "trash_failure": "Failed to delete",
+      "trash_success": "Deleted successfully"
+    },
+    "common": {
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "delete_cancel_text": "Cancel",
+      "delete_content": "This will break Apps and Query Library queries that use this resource",
+      "delete_ok_text": "Delete",
+      "delete_title": "Are you sure?",
+      "error_button": "Retry",
+      "error_description": "There is a problem with your operation.",
+      "error_title": "Error"
+    },
+    "resource": {
+      "create_resource": "Create New",
+      "created": "Created",
+      "dbname": "Database Name",
+      "delete_fail": "Failed to delete",
+      "delete_success": "Deleted successfully",
+      "resource_name": "Name",
+      "resource_type": "Type",
+      "save_fail": "Failed to save",
+      "save_success": "Save successfully",
+      "test_fail": "Failed to test",
+      "test_success": "Test successfully"
+    }
+  },
+  "dayjs": {
+    "just_now": "Just now"
+  },
+  "deploy": "Deploy",
+  "description": {
+    "part1": "This is an example without namespaces."
+  },
+  "dont_need_save": "ILLA will continue to try auto-saving your work.",
+  "duplicate": "Duplicate",
+  "edit": "Edit",
+  "edit_at": "Edited at",
+  "edit_failed": "Failed to save, please check your network.",
+  "edit_success": "Edited successfully",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Back",
+            "create_action": "Create Action",
+            "new_resource": "New Resource"
+          },
+          "selector": {
+            "title": "Select action type"
+          },
+          "title": {
+            "choose_resource": "Choose a resource "
+          }
+        },
+        "btn": {
+          "close": "close",
+          "new": "New"
+        },
+        "contextMenu": {
+          "delete": "Delete",
+          "duplicate": "Duplicate",
+          "rename": "Rename"
+        },
+        "message": {
+          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
+          "failed": "Failed to connect to server",
+          "load_action_list_fail": "Failed to get Action list: {{message}}",
+          "load_resource_fail": "Failed to get resource list: {{message}}",
+          "name_already_exist": "Already exists",
+          "please_input_name": "Please input name",
+          "success_created": "Successfully created",
+          "success_deleted": "Successfully deleted",
+          "success_saved": "Successfully saved",
+          "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter"
+        },
+        "placeholder": {
+          "search": "search"
+        },
+        "runtime": {
+          "backend": "Backend",
+          "execute_resource": "execute resource",
+          "frontend": "Frontend",
+          "handle_response": "handle response",
+          "post_processing": "post processing",
+          "prepare_query": "Prepare query",
+          "response_size": "Response size",
+          "total": "Total",
+          "transfer_data": "transfer data",
+          "transformer": "transformer"
+        },
+        "tips": {
+          "empty": "Add an action to begin working with data from a connected resource.",
+          "not_found": "No search results"
+        },
+        "title": "Action List"
+      },
+      "form": {
+        "btn": {
+          "back": "Back",
+          "save_changes": "Save Resource",
+          "test_connection": "Test Connection"
+        },
+        "required": "This is required",
+        "title": {
+          "api": "APIs",
+          "configure": "Configure {{ name }}",
+          "database": "DATABASES",
+          "select": "Select Resource Type"
+        },
+        "validate": {
+          "required": "{name} is required"
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Disable",
+          "enable": "Enable",
+          "new": "New",
+          "run": "Run",
+          "save": "Save",
+          "save_and_run": "Save & Run",
+          "save_fail": "Failed to save"
+        },
+        "elastic": {
+          "action_type": "Action Type",
+          "body": "Body",
+          "id": "Id",
+          "index": "Index",
+          "query": "Query"
+        },
+        "label": {
+          "event_handler": "Event Handler",
+          "failure": "Failure",
+          "resource": "Resource",
+          "success": "Success",
+          "transformer": "Transformer"
+        },
+        "menu": {
+          "more": {
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Action Type",
+          "aggregation": "Aggregation",
+          "collection": "Collection",
+          "document": "Document",
+          "field": "Field",
+          "filter": "Filter",
+          "limit": "Limit",
+          "operations": "Operations",
+          "options": "Options",
+          "projection": "Projection",
+          "query": "Query",
+          "skip": "Skip",
+          "sort_by": "Sort By",
+          "update": "Update"
+        },
+        "option": {
+          "resource": {
+            "new": "Create a new resource"
+          },
+          "trigger": {
+            "manually": "Run action only when manually triggered",
+            "on_change": "Run action automatically when inputs change"
+          }
+        },
+        "s3": {
+          "action_type": "Action Type",
+          "bucket_name": "Bucket name",
+          "content_type": "Content-Type",
+          "delimiter": "Delimiter",
+          "error": {
+            "max_file": "The size of file can't exceed 5M."
+          },
+          "expiry_duration_of_signed_url": "Expiry Duration of Signed URL(Minutes)",
+          "generate_signed_url": "Generate Signed URL",
+          "max_keys": "Max keys",
+          "object_key": "Object key",
+          "object_key_list": "Object key list",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Prefix to filter results",
+          "tips": {
+            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names.",
+            "delimiter": "A delimiter is a character you use to group keys."
+          },
+          "upload_data": "Upload data",
+          "upload_data_list": "Upload data list",
+          "upload_object_name": "Upload object name",
+          "upload_object_name_list": "Upload object name list"
+        },
+        "smtp": {
+          "from_email": "From email",
+          "set_replay_email": "Set Reply-To email",
+          "replay_email": "Reply-to email",
+          "to_email": "To email(s)",
+          "bcc_email": "Bcc email(s)",
+          "cc_email": "Cc email(s)",
+          "subject": "Subject",
+          "body": "Body",
+          "attachment": "Attachment(s)",
+          "use_html": "Use HTML",
+          "use_raw": "Use raw text",
+          "placeholder": {
+            "emails": "Use commas to separate emails. i.e. {{[\"A\", \"B\"]}}",
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
+          },
+          "tips": {
+            "port": "Some ISPs may block port 25.If the connection fails, please change the \nport."
+          }
+        },
+        "tips": {
+          "transformer": "Enable transformers to transform the result of the query to a different format."
+        },
+        "error": {
+          "max_file": "The size of file can't exceed 5M."
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Coming Soon"
+        },
+        "db": {
+          "label": {
+            "ca_certificate": "CA Certificate",
+            "client_certificate": "Client Certificate",
+            "client_key": "Client Key",
+            "config_type": "Config Type",
+            "connect_type": "Connect Type",
+            "connection_format": "Connection format",
+            "connection_string": "Connection String",
+            "database": "Database",
+            "database_index": "Database Index",
+            "hostname": "Hostname",
+            "hostname_port": "Hostname/Port",
+            "hosturl": "Host Url",
+            "mongodb_connection_dns_seed_list": "DNS seed list connection",
+            "mongodb_connection_standard": "Standard Connection",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Client Cert and Key",
+            "name": "Name",
+            "port": "Port",
+            "private_key": "Private Key",
+            "ssl_options": "SSL options",
+            "username_password": "Username/Password"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_production",
+            "database_index": "default 0",
+            "hostname": "Hostname",
+            "hosturl": "i.e. https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "password": "Password",
+            "username": "Username"
+          },
+          "tip": {
+            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
+            "name": "The name for resource when creating actions in the ILLA.",
+            "ssl_options": "SSL is used when available",
+            "username_password": "Credentials will be encrypted & stored securely on our servers."
+          },
+          "title": {
+            "advanced_option": "Advanced Options",
+            "general_option": "GENERAL"
+          }
+        },
+        "error": {
+          "invalid_url": "Please enter a valid URL, for example, https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "New"
+          },
+          "label": {
+            "access_token": "Access Token",
+            "access_token_lifespan": "Access Token\n lifespan(optiinal)",
+            "access_token_url": "Access Token URL",
+            "action_type": "Action Type",
+            "audience": "Audience",
+            "authentication": "Authentication",
+            "authorization_url": "Authorization URL",
+            "base_url": "Base URL",
+            "basic_auth_password": "Basic Auth password",
+            "basic_auth_username": "Basic Auth username",
+            "bearerToken": "Bearer Token",
+            "body": "Body",
+            "client_id": "Client ID",
+            "client_secret": "Client Secret",
+            "configure_oauth2": "Configuring OAuth 2.0",
+            "cookies": "Cookies",
+            "copy_url_to_application": "Copy this URL to your application",
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
+            "extra_body_values": "Extra Body Values",
+            "forward_all_cookies": "Forward All Cookies",
+            "headers": "Headers",
+            "list_of_cookies_to_forward": "List Of Cookies To\n Forward",
+            "name": "Name",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Refresh Token",
+            "scopes": "Scopes (separated by\n a space)",
+            "share_oauth2_credentials_between_users": "Share OAuth2.0 credentials between users",
+            "url_parameters": "URL Parameters",
+            "use_client_credentials_auth": "Use client credentials auth"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Basic Auth",
+              "bearer": "Bearer",
+              "none": "None",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Token Lifespan in seconds",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "i.e.\"Internal Admin API\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "Use the absolute URL (e.g https://example.com)",
+            "database": "i.e.\"Users DB(readonly)\"",
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
+            "param_key": "key",
+            "param_value": "value",
+            "password": "password",
+            "username": "username"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN.",
+            "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "name": "The name for resource when creating actions in the ILLA."
+          },
+          "title": {
+            "advanced_option": "GENERAL"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Access key",
+            "base_url": "Base URL",
+            "bucket_name": "Bucket name",
+            "custome_s3_endpoint": "Custom S3 endpoint",
+            "region": "Region",
+            "secret_access_key": "Secret access key",
+            "use_custome_s3_endpoint": "Use custom S3 endpoint"
+          },
+          "placeholder": {
+            "base_url": "i.e. https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces or Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
+          },
+          "tip": {
+            "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
+          }
+        }
+      },
+      "resource_choose": {
+        "deleted": "Deleted"
+      },
+      "result": {
+        "title": {
+          "api_request": "API Request",
+          "error": "Query ran fail",
+          "json": "JSON",
+          "response": "Response",
+          "success": "Query ran successfully",
+          "table": "Table"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Database",
+        "js_transformer": "JavaScript Transformer"
+      }
+    },
+    "component": {
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "delete_content": "Delete it maybe make some bugs，please confirm.",
+      "delete_title": "Are you sure you want to delete {{ displayName}}?"
+    },
+    "context_menu": {
+      "delete": "Delete",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "ACTIONS & TRANSFORMERS ",
+      "components_title": "COMPONENTS ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "PAGES"
+    },
+    "deploy": {
+      "fail": "Failed to deploy"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" already exists",
+      "validate_error": "\"{{ displayName }}\" must start with a letter or \"_\", and can only contain letters, numbers, \"_\", or \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Delete",
+          "reset_state": "Reset state",
+          "view_documentation": "View documentation"
+        }
+      },
+      "multi_selected_header": "{{ number }} components selected",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Bar chart",
+          "line": "Line chart",
+          "pie": "Pie chart",
+          "scatterplot": "Scatterplot"
+        },
+        "color_picker": {
+          "prefabricated": "Prefabricated color",
+          "title": "Edit color"
+        },
+        "column_setter": {
+          "label": "Columns ({{number}})",
+          "new": "New",
+          "title": "Title"
+        },
+        "event_handler_list": {
+          "empty": "Trigger queries, control components, or call other APIs in response to component events.",
+          "incomplete_selection": "Incomplete selection",
+          "new": "New",
+          "title": "Edit event handler"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Delete",
+          "label": "Menus ({{number}})",
+          "new": "New",
+          "sub": "Sub"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "No label",
+          "model_title": "Edit Options",
+          "new": "New",
+          "title": "Options"
+        },
+        "select_page_setter": {
+          "placeholder": "Select a page"
+        },
+        "select_view_setter": {
+          "placeholder": "Select a view"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Views"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Change",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Filter change",
+          "fail": "Fail",
+          "focus": "Focus",
+          "invalid": "Invalid",
+          "paginationChange": "Page change",
+          "row_select": "Row select",
+          "sortingChange": "Sort change",
+          "submit": "Submit",
+          "success": "Success"
+        }
+      },
+      "setter_default_value": {
+        "fill": "Fill",
+        "message_type": {
+          "error": "Error",
+          "info": "Info",
+          "success": "Success",
+          "warning": "Warning"
+        },
+        "outline": "Outline",
+        "validation_pattern": {
+          "email": "Email",
+          "regex": "Regex",
+          "url": "URL"
+        }
+      },
+      "setter_group": {
+        "adornments": "ADORNMENTS",
+        "basic": "BASIC",
+        "column": "COLUMNS",
+        "data": "DATA",
+        "interaction": "INTERACTION",
+        "label": "LABEL",
+        "layout": "LAYOUT",
+        "menu": "MENU",
+        "options": "OPTIONS",
+        "pagination": "PAGINATION",
+        "row_selection": "ROW SELECTION",
+        "sort": "SORT",
+        "style": "STYLE",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "VALIDATION",
+        "views": "VIEWS"
+      },
+      "setter_label": {
+        "action": "Action",
+        "align": "Align",
+        "allow_clear": "Allow clear",
+        "allow_half": "Allow half",
+        "alt_text": "Alt text",
+        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "background": "Background",
+        "background_color": "Background",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Caption",
+        "chart_title": "Title",
+        "chart_type": "Chart type",
+        "color": "Color",
+        "colors": "Colors",
+        "column_title": "Column title",
+        "column_type": "Column type",
+        "columns": "Columns",
+        "component": "Component",
+        "config_type": "Config type",
+        "container": "Container",
+        "content": "Content",
+        "control_component": "Control component",
+        "custom_rule": "Custom rule",
+        "data": "Data",
+        "data_source": "Data source",
+        "data_sources": "Data sources",
+        "dataset": {
+          "aggregation_method": "Aggregation method",
+          "name": "Dataset name",
+          "remove": "Remove dataset",
+          "value": "Dataset values"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Decimal place",
+        "decimal_places": "Decimal places",
+        "default_sort_key": "Column",
+        "default_sort_order": "Direction",
+        "default_tab": "Default tab",
+        "default_value": "Default value",
+        "default_views": "Default view",
+        "description": "Description",
+        "direction": "Direction",
+        "disable_submit": "Disable submit",
+        "disabled": "Disabled",
+        "download": "Download",
+        "duration": "Duration",
+        "empty_state": "Empty state",
+        "enable_sorting": "Enable Sorting",
+        "end_data": "End date",
+        "end_placeholder": "End placeholder",
+        "event": "Event",
+        "event_handler": "Event handler",
+        "expansion_method": "Expansion method",
+        "failure": "Failure",
+        "filter": "Filter",
+        "font_size": "Font size",
+        "form_data_key": "Form Data Key",
+        "format": "Format",
+        "go_to_url": "Go to URL",
+        "group_by": "Group by",
+        "group_layout": "Group layout",
+        "hidden": "Hidden",
+        "hidden_label": "Hidden label",
+        "hide_validation_message": "Hide validation message",
+        "hide_value_label": "Hide value label",
+        "horizontal_alignment": "Horizontal alignment",
+        "icon": "Icon",
+        "image_source": "Image source",
+        "img_height": "Height",
+        "img_width": "Width",
+        "index": "Index",
+        "item_background_color": "Item background",
+        "items": "Items",
+        "key": "Key",
+        "label": "Label",
+        "label_alignment": "Alignment",
+        "label_position": "Position",
+        "label_width": "Width(%)",
+        "layout": "Layout",
+        "legend_position": "Legend position",
+        "link_to_container": "Link to a container",
+        "links_color": "Links",
+        "loading": "Loading",
+        "loop_back_to_start": "Loop back to start",
+        "loop_start_to_back": "Loop start to back",
+        "mapped_option": "Mapped Option",
+        "mapped_value": "Mapped Value",
+        "max_count": "Max count",
+        "max_date": "Max date",
+        "max_length": "Max length",
+        "maximum": "Maximum",
+        "method": "Method",
+        "min_date": "Min date",
+        "min_length": "Min Length",
+        "minimum": "Minimum",
+        "multi_row_selection": "Multi-Row Selection",
+        "new_tab": "New tab",
+        "only_run_when": "Only run when",
+        "overFlow": "OverFlow",
+        "page": "Page",
+        "pageSize": "PageSize",
+        "pattern": "Pattern",
+        "pending": "Pending",
+        "placeholder": "Placeholder",
+        "prefix_text": "Prefix text",
+        "radius": "Radius",
+        "read_only": "Read only",
+        "regex": "Regex",
+        "required_field": "Required field",
+        "reset_after_successful_submit": "Reset after successful submit",
+        "router": "Router",
+        "run_script": "Run script",
+        "scale_type": "Scale Type",
+        "set_router": "Set router",
+        "set_temporary_state": "Set temporary state",
+        "shadow": "Shadow",
+        "show_character_count": "Show character count",
+        "show_clear_button": "Show clear button",
+        "show_footer": "Show footer",
+        "show_header": "Show header",
+        "show_notification": "Show notification",
+        "sort": "Sort",
+        "start_date": "Start date",
+        "start_placeholder": "Start placeholder",
+        "step_size": "Step size",
+        "stroke_width": "Stroke width",
+        "style": "Style",
+        "styles": "Styles",
+        "submit_form": "Submit form",
+        "success": "Success",
+        "suffix_text": "Suffix text",
+        "text": "Text",
+        "text_align": "Text align",
+        "text_size": "Text size",
+        "theme_color": "Theme color",
+        "thousand_separator": "Thousand separator",
+        "time_format": "Time format",
+        "title": "Title",
+        "tooltip": "Tooltip",
+        "trail_color": "Trail color",
+        "trigger_query": "Trigger query",
+        "type": "Type",
+        "validate_inputs_on_submit": "Validate inputs on submit",
+        "value": "Value",
+        "value_labels": "Value labels",
+        "variant": "Variant",
+        "vertical_alignment": "Vertical alignment",
+        "width": "Width",
+        "x_axis_name": "X-axis name",
+        "x_axis_title": "X-axis title",
+        "x_axis_type": "X-axis type",
+        "x_axis_value": "X-axis value",
+        "y_axis_name": "Y-axis name",
+        "y_axis_title": "Y-axis title"
+      },
+      "setter_tooltip": {
+        "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
+        "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
+        "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
+        "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
+        "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
+        "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
+        "download": "Show download button in toolbar.",
+        "filter": "Show filter button in toolbar.",
+        "form_data_key": "Specify a key of a wrapping form component when constructing the data attribute.",
+        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
+        "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
+        "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "loading": "Whether the component should show a loading indicator.",
+        "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
+        "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Use {{ table.selectedRow.data }} to access data. If you enable Multi-Row Selection, it will return an array, you can use it like this: {{ table1.selectedRow.data[0].email }} . And if you don't enable Multi-Row Selection, it will return an object, you can use it like this {{ table1.selectedRow.data.email }}.",
+        "only_run_when": "Conditions that must be met before the event executes.",
+        "placeholder": "The value will be shown when the input field is empty.",
+        "progress_percentage": "The percentage value is between 0 and 100.",
+        "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannot be modified.",
+        "required_field": "Valid only when the switch is on.",
+        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
+        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
+        "timeline_direction": "Change the direction of the timeline.",
+        "timeline_pending": "Whether to show a node with a pending status.",
+        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported."
+      },
+      "tab_title": "Inspect",
+      "unselected_tip1": "No components selected.",
+      "unselected_tip2": "Click on a component to select it."
+    },
+    "page": {
+      "label_name": {
+        "add": "Add",
+        "body": "Body",
+        "default_view": "Default view",
+        "edit_view": "Edit view",
+        "footer": "Footer",
+        "header": "Header",
+        "key": "Key",
+        "left_panel": "Left panel",
+        "preset": "Preset",
+        "right_panel": "Right panel",
+        "set_as_homepage": "Set as homepage",
+        "show_fold_icon": "Show fold icon",
+        "view_path": "View path",
+        "views": "Views",
+        "width": "Width"
+      },
+      "model_tips": {
+        "cancel_button": "Cancel",
+        "change_layout_message": "After changing the layout, all data will be cleared. This operation can't be recovered, please confirm",
+        "delete_section_message": "After hiding, the data in this section will be cleared. This operation can't be recovered, please confirm",
+        "ok_button": "Confirm"
+      },
+      "panel_bar_title": {
+        "basic": "BASIC",
+        "frame": "FRAME"
+      },
+      "tab_title": "Page",
+      "tooltips": {
+        "show_fold_icon": "Show a button to collapse or expand the panel",
+        "view_path": "A string after example.com/app/page/ to access this view"
+      }
+    },
+    "validate_message": {
+      "email": "Please enter a valid email address",
+      "max_length": "Must be no more than {{ number }} characters",
+      "max_value": "Must be less than {{ number }}",
+      "min_length": "Must be at least {{ number }} characters",
+      "min_value": "Must be greater than {{ number }}",
+      "regex": "Please match the requested format",
+      "required": "This field is required",
+      "url": "Please enter a valid URL"
+    },
+    "widget_picker": {
+      "empty_tip": "Sorry, no search results",
+      "search_placeholder": "search",
+      "sessions": {
+        "calendar": "Calendar inputs",
+        "commonly": "Commonly components",
+        "container": "Container and form",
+        "data": "Data",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Presentation",
+        "selects": "Select inputs"
+      },
+      "tab_title": "Insert"
+    }
+  },
+  "exit_preview": "Exit Preview",
+  "freeze_collision": "Freeze collision",
+  "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
+  "freeze_tips": "The canvas is frozen. Click here to unfreeze it.",
+  "link_copied": "Link Copied",
+  "network_error": "Network disconnected. Please check this device's network",
+  "not_online_tips": "Network disconnected. Please check this device's network",
+  "preview": "Preview",
+  "remove_fail": "Failed to remove",
+  "rename": "Rename",
+  "resources": "Resources",
+  "retry": "Retry",
+  "save": "Save",
+  "setting": {
+    "account": {
+      "email": "Email",
+      "empty_username": "Please enter your username",
+      "error_username": "Username must be 3~15 characters",
+      "save": "Save Changes",
+      "save_fail": "Failed to save",
+      "title": "ACCOUNT",
+      "username": "Username"
+    },
+    "other": {
+      "language": "Language",
+      "save": "Save Changes",
+      "title": "SETTING"
+    },
+    "password": {
+      "confirm_password": "Confirmation password",
+      "current_password": "Old password",
+      "empty_password": "Please enter your password",
+      "error_format_password": "Password must be 6~20 characters",
+      "error_match_password": "Your password and confirmation password do not match",
+      "error_password_has_empty": "Password cannot include spaces",
+      "error_validate_password": "Your password can only contain numbers, letters and punctuations",
+      "new_password": "New password",
+      "submit_button": "Submit",
+      "title": "PASSWORD"
+    }
+  },
+  "share": "Share",
+  "status": {
+    "403": {
+      "des": "Access denied"
+    },
+    "404": {
+      "again": "Refresh",
+      "des": "It seems that the page you were looking for could not be found."
+    },
+    "500": {
+      "des": "Oops, something went wrong. Please try again later."
+    },
+    "back": "Back to homepage"
+  },
+  "title": "Welcome to illa",
+  "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
+  "user": {
+    "description": "An open-source low-code platform for developers.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Send code"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account.",
+          "require": "Please enter your email"
+        },
+        "newPassword": {
+          "require": "Please enter your password"
+        },
+        "verification_code": {
+          "expired": "Verification code expired",
+          "invalid": "Invalid verification code",
+          "require": "Please enter verification code"
+        }
+      },
+      "fields": {
+        "email": "Email",
+        "newPassword": "New Password",
+        "verification_code": "Verification code"
+      },
+      "placeholder": {
+        "email": "Enter your email",
+        "verification_code": "Please enter verification code"
+      },
+      "subtitle": "Back to sign in",
+      "tips": {
+        "fail": "Failed to reset password",
+        "fail_sent": "Failed to send verification code",
+        "success": "Reset password successfully",
+        "verification_code": "Verification code sent"
+      },
+      "title": "Reset Password"
+    },
+    "password": {
+      "placeholder": "Enter your new password(at least 6 characters)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Sign in"
+      },
+      "description": {
+        "forgot_password": "Forgot Password?",
+        "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>",
+        "register": "New user? <0>Create an account</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account.",
+          "require": "Please enter your email"
+        },
+        "password": {
+          "incorrect": "Incorrect email or password",
+          "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
+          "min_length": "The password must be at least 6 characters",
+          "require": "Please enter password"
+        }
+      },
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "placeholder": {
+        "email": "Enter your email"
+      },
+      "tips": {
+        "fail": "Failed to sign in",
+        "success": "Signed in successfully"
+      },
+      "title": "Welcome back"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Create Account",
+        "send": "Send code"
+      },
+      "description": {
+        "login": "Already have an account? <0>Sign in</0>",
+        "policy": "By clicking Create Account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
+        "subscribe": "I am willing to receive the updates and news about ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "An account with that email address already exists.",
+          "require": "Please enter your email"
+        },
+        "password": {
+          "require": "Please enter password"
+        },
+        "username": {
+          "length": "The username must be 3~15 characters",
+          "require": "Please enter username"
+        },
+        "verification_code": {
+          "expired": "Verification code expired",
+          "invalid": "Invalid verification code",
+          "require": "Please enter verification code"
+        }
+      },
+      "fields": {
+        "email": "Email",
+        "password": "Password",
+        "username": "Username",
+        "verification_code": "Verification code"
+      },
+      "placeholder": {
+        "email": "Enter your email",
+        "username": "Enter your username",
+        "verification_code": "Please enter verification code"
+      },
+      "tips": {
+        "fail": "Failed to sign up",
+        "fail_sent": "Failed to send verification code",
+        "success": "Signed up successfully",
+        "verification_code": "Verification code sent"
+      },
+      "title": "Sign up"
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Bar Progress"
+    },
+    "button": {
+      "default_text": "Button",
+      "name": "Button"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Chart"
+    },
+    "check_box_group": {
+      "name": "Checkbox Group"
+    },
+    "circle_progress": {
+      "name": "Circle Progress"
+    },
+    "container": {
+      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here",
+      "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
+      "name": "Container"
+    },
+    "date": {
+      "name": "Date"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Date Time",
+      "placeholder": "Select time"
+    },
+    "divider_progress": {
+      "name": "Divider"
+    },
+    "editable_text": {
+      "name": "Editable Text"
+    },
+    "form": {
+      "name": "Form"
+    },
+    "image": {
+      "name": "Image"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Use {{ currentItem }} to access the data of current item. For example, to set value of the text component which is in list component based on \"userName\": {{ currentItem.userName }}",
+      "doc2": "Use {{list.selectedItem.data}} to access the data of selected item in list component. For example, to set the value of the text component which is out of list component based on \"username\" of the selected item in the list: {{ list.selectedItem.userName }}",
+      "name": "List"
+    },
+    "menu": {
+      "name": "Menu"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Left",
+      "right": "Right",
+      "select_options": {
+        "manual": "Manual",
+        "mapped": "Mapped"
+      },
+      "top": "Top"
+    },
+    "radio_button": {
+      "name": "Radio Button"
+    },
+    "radio_group": {
+      "name": "Radio group"
+    },
+    "rate": {
+      "name": "Rate"
+    },
+    "select": {
+      "name": "Select"
+    },
+    "switch": {
+      "name": "Switch"
+    },
+    "table": {
+      "ascend": "Asc",
+      "descend": "Desc",
+      "name": "Table",
+      "pagination": "Pagination",
+      "scroll": "Scroll"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Hello!",
+      "name": "Text",
+      "text_model": "Plain text"
+    },
+    "timeline": {
+      "horizontal": "horizontal",
+      "name": "Timeline",
+      "vertical": "vertical"
+    }
+  }
+}
