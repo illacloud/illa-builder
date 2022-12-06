@@ -36,6 +36,7 @@ export interface ColumnItemShape
   custom?: boolean
   fromCurrentRow?: Record<string, boolean>
   events?: any[]
+  columnIndex?: number
 }
 
 export interface WrappedTableProps

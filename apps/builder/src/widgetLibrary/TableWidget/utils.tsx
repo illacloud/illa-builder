@@ -5,10 +5,21 @@ import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
 export const tansTableDataToColumns = (
   data: Record<any, any>[],
+  oldOrders?: Array<number>,
 ): ColumnItemShape[] => {
   const columns: ColumnItemShape[] = []
+  let cur = 0
+  const oldOrder = (cur: number) => {
+    return oldOrders?.[cur] ?? -1
+  }
+
   if (data && data.length > 0) {
-    Object.keys(data[0]).forEach((key) => {
+    Object.keys(data[0]).forEach((key, index) => {
+      let columnIndex = index
+      if (index === oldOrder(cur)) {
+        columnIndex += 1
+        cur += 1
+      }
       columns.push({
         id: key,
         header: key,
@@ -17,10 +28,23 @@ export const tansTableDataToColumns = (
         type: "text",
         visible: true,
         format: "YYYY-MM-DD",
-      })
+        columnIndex,
+      } as ColumnItemShape)
     })
   }
   return columns
+}
+
+export const concatCustomAndNewColumns = (
+  customColumns: ColumnItemShape[],
+  newColumns: ColumnItemShape[],
+) => {
+  return customColumns.concat(newColumns).sort((a, b) => {
+    if (isNumber(a.columnIndex) && isNumber(b.columnIndex)) {
+      return a.columnIndex - b.columnIndex
+    }
+    return 0
+  })
 }
 
 export const transTableColumnEvent = (events: any[], columnLength: number) => {
