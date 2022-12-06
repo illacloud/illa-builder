@@ -1,155 +1,155 @@
 {
-  "Logout": "注销",
+  "Logout": "退出登录",
   "Setting": "设置",
-  "apps": "应用程序",
-  "back": "后退",
+  "apps": "项目",
+  "back": "返回",
   "btn": {
-    "choose_file": "选择一个文件"
+    "choose_file": "选择文件"
   },
-  "change_fail": "更改失败",
-  "change_success": "更改成功",
-  "collision_message": "按 D 或 K 将组件拖动到容器",
-  "create_fail": "更改失败",
+  "change_fail": "修改失败",
+  "change_success": "修改成功",
+  "collision_message": "按住D或K键，将组件拖进容器",
+  "create_fail": "创建失败",
   "create_new": "创建",
-  "create_new_app": "创建",
-  "created_at": "创建于：",
+  "create_new_app": "创建项目",
+  "created_at": "创建于",
   "dashboard": {
     "app": {
-      "all_apps": "All Apps",
-      "create_app": "Create App",
-      "duplicate_fail": "Failed to duplicate",
-      "duplicate_placeholder": "Enter your app name here",
-      "edited_time": "Edited at {{ time }} by {{ user }}",
-      "name_empty": "Please enter a name",
-      "name_existed": "Name already taken",
-      "rename_app": "Rename App",
-      "rename_fail": "Failed to rename",
-      "rename_success": "Renamed successfully",
-      "trash_failure": "Failed to delete",
-      "trash_success": "Deleted successfully"
+      "all_apps": "所有项目",
+      "create_app": "创建App",
+      "duplicate_fail": "复制失败",
+      "duplicate_placeholder": "请输入项目名称",
+      "edited_time": "由 {{ user }} 在 {{ time }} 编辑",
+      "name_empty": "请输入项目名称",
+      "name_existed": "名称已被占用",
+      "rename_app": "重命名项目",
+      "rename_fail": "重命名失败",
+      "rename_success": "修改成功",
+      "trash_failure": "删除失败",
+      "trash_success": "删除成功"
     },
     "common": {
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "delete_cancel_text": "Cancel",
-      "delete_content": "This will break Apps and Query Library queries that use this resource",
-      "delete_ok_text": "Delete",
-      "delete_title": "Are you sure?",
-      "error_button": "Retry",
-      "error_description": "There is a problem with your operation.",
-      "error_title": "Error"
+      "cancel": "取消",
+      "delete": "删除",
+      "delete_cancel_text": "取消",
+      "delete_content": "删除将中断使用此资源的应用程序和查询库查询",
+      "delete_ok_text": "删除",
+      "delete_title": "确认",
+      "error_button": "重试",
+      "error_description": "请求错误",
+      "error_title": "错误"
     },
     "resource": {
-      "create_resource": "创建",
-      "created": "Created",
-      "dbname": "Database Name",
-      "delete_fail": "Failed to delete",
-      "delete_success": "Deleted successfully",
-      "resource_name": "Name",
-      "resource_type": "Type",
-      "save_fail": "Failed to save",
-      "save_success": "Save successfully",
-      "test_fail": "Failed to test",
-      "test_success": "Test successfully"
+      "create_resource": "创建资源",
+      "created": "创建时间",
+      "dbname": "数据库名",
+      "delete_fail": "删除失败",
+      "delete_success": "删除成功",
+      "resource_name": "名称",
+      "resource_type": "类型",
+      "save_fail": "保存失败",
+      "save_success": "保存成功",
+      "test_fail": "测试失败",
+      "test_success": "测试成功"
     }
   },
   "dayjs": {
-    "just_now": "Just now"
+    "just_now": "刚刚"
   },
-  "deploy": "Deploy",
+  "deploy": "发布",
   "description": {
-    "part1": "This is an example without namespaces."
+    "part1": "这是一个示例。"
   },
-  "dont_need_save": "ILLA will continue to try auto-saving your work.",
-  "duplicate": "Duplicate",
-  "edit": "Edit",
-  "edit_at": "Edited at",
-  "edit_failed": "Failed to save, please check your network.",
-  "edit_success": "Edited successfully",
+  "dont_need_save": "ILLA会自动保存你的创作.",
+  "duplicate": "复制",
+  "edit": "编辑",
+  "edit_at": "上次编辑于",
+  "edit_failed": "保存失败，请检查网络连接。",
+  "edit_success": "修改成功！",
   "editor": {
     "action": {
       "action_list": {
         "action_generator": {
           "btns": {
-            "back": "后退",
-            "create_action": "Create Action",
-            "new_resource": "New Resource"
+            "back": "返回",
+            "create_action": "创建 Action",
+            "new_resource": "添加资源"
           },
           "selector": {
-            "title": "Select action type"
+            "title": "选择 Action 类型"
           },
           "title": {
-            "choose_resource": "Choose a resource "
+            "choose_resource": "资源选择 "
           }
         },
         "btn": {
-          "close": "close",
-          "new": "New"
+          "close": "关闭",
+          "new": "新建"
         },
         "contextMenu": {
-          "delete": "Delete",
-          "duplicate": "Duplicate",
-          "rename": "Rename"
+          "delete": "删除",
+          "duplicate": "复制",
+          "rename": "重命名"
         },
         "message": {
-          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
-          "failed": "Failed to connect to server",
-          "load_action_list_fail": "Failed to get Action list: {{message}}",
-          "load_resource_fail": "Failed to get resource list: {{message}}",
-          "name_already_exist": "Already exists",
-          "please_input_name": "Please input name",
-          "success_created": "Successfully created",
-          "success_deleted": "Successfully deleted",
-          "success_saved": "Successfully saved",
-          "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter"
+          "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
+          "failed": "服务器连接失败",
+          "load_action_list_fail": "获取 Action 列表失败: {{message}}",
+          "load_resource_fail": "获取资源列表失败: {{message}}",
+          "name_already_exist": "名称已经存在",
+          "please_input_name": "请输入名称",
+          "success_created": "创建成功",
+          "success_deleted": "删除成功",
+          "success_saved": "保存成功",
+          "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头"
         },
         "placeholder": {
-          "search": "search"
+          "search": "搜索"
         },
         "runtime": {
-          "backend": "Backend",
-          "execute_resource": "execute resource",
-          "frontend": "Frontend",
-          "handle_response": "handle response",
-          "post_processing": "post processing",
-          "prepare_query": "Prepare query",
-          "response_size": "Response size",
-          "total": "Total",
-          "transfer_data": "transfer data",
-          "transformer": "transformer"
+          "backend": "后端",
+          "execute_resource": "服务器处理",
+          "frontend": "前端",
+          "handle_response": "处理返回",
+          "post_processing": "后处理",
+          "prepare_query": "查询准备",
+          "response_size": "响应大小 ",
+          "total": "总用时",
+          "transfer_data": "传输数据",
+          "transformer": "Transformer"
         },
         "tips": {
-          "empty": "Add an action to begin working with data from a connected resource.",
-          "not_found": "No search results"
+          "empty": "添加 Action 以开始处理连接资源中的数据",
+          "not_found": "抱歉，没有搜索结果"
         },
-        "title": "Action List"
+        "title": "Action 列表"
       },
       "form": {
         "btn": {
           "back": "后退",
-          "save_changes": "Save Resource",
-          "test_connection": "Test Connection"
+          "save_changes": "保存资源",
+          "test_connection": "测试连接"
         },
-        "required": "This is required",
+        "required": "这是必填项",
         "title": {
-          "api": "APIs",
-          "configure": "Configure {{ name }}",
-          "database": "DATABASES",
-          "select": "Select Resource Type"
+          "api": "API",
+          "configure": "配置 {{ name }}",
+          "database": "数据库",
+          "select": "选择资源类型"
         },
         "validate": {
-          "required": "{name} is required"
+          "required": "请输入{name}"
         }
       },
       "panel": {
         "btn": {
-          "disable": "Disable",
-          "enable": "Enable",
-          "new": "New",
-          "run": "Run",
-          "save": "Save",
-          "save_and_run": "Save & Run",
-          "save_fail": "Failed to save"
+          "disable": "关闭",
+          "enable": "开启",
+          "new": "新增",
+          "run": "运行",
+          "save": "保存",
+          "save_and_run": "保存 & 运行",
+          "save_fail": "保存失败"
         },
         "elastic": {
           "action_type": "Action Type",
@@ -159,16 +159,16 @@
           "query": "Query"
         },
         "label": {
-          "event_handler": "Event Handler",
-          "failure": "Failure",
-          "resource": "Resource",
-          "success": "Success",
+          "event_handler": "事件处理器",
+          "failure": "失败",
+          "resource": "资源",
+          "success": "成功",
           "transformer": "Transformer"
         },
         "menu": {
           "more": {
-            "delete": "Delete",
-            "duplicate": "Duplicate"
+            "delete": "删除",
+            "duplicate": "复制"
           }
         },
         "mongodb": {
@@ -189,162 +189,162 @@
         },
         "option": {
           "resource": {
-            "new": "Create a new resource"
+            "new": "添加资源"
           },
           "trigger": {
-            "manually": "Run action only when manually triggered",
-            "on_change": "Run action automatically when inputs change"
+            "manually": "手动触发时执行",
+            "on_change": "当输入更改时自动执行"
           }
         },
         "s3": {
           "action_type": "Action Type",
-          "bucket_name": "Bucket name",
-          "content_type": "Content-Type",
-          "delimiter": "Delimiter",
+          "bucket_name": "桶名",
+          "content_type": "内容类型",
+          "delimiter": "分隔符",
           "error": {
-            "max_file": "The size of file can't exceed 5M."
+            "max_file": "文件大小不能超过5M。"
           },
-          "expiry_duration_of_signed_url": "Expiry Duration of Signed URL(Minutes)",
-          "generate_signed_url": "Generate Signed URL",
-          "max_keys": "Max keys",
-          "object_key": "Object key",
-          "object_key_list": "Object key list",
+          "expiry_duration_of_signed_url": "签名网址的有效期(分钟)",
+          "generate_signed_url": "生成签名网址",
+          "max_keys": "最大键值",
+          "object_key": "对象键值",
+          "object_key_list": "对象键值列表",
           "placeholder": {
             "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
             "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
             "object_name": "export.csv",
             "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
           },
-          "prefix_to_filter_reseults": "Prefix to filter results",
+          "prefix_to_filter_reseults": "用于过滤结果的前缀",
           "tips": {
-            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names.",
-            "delimiter": "A delimiter is a character you use to group keys."
+            "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。",
+            "delimiter": "分隔符是一个用来分组键值的字符。"
           },
-          "upload_data": "Upload data",
-          "upload_data_list": "Upload data list",
-          "upload_object_name": "Upload object name",
-          "upload_object_name_list": "Upload object name list"
+          "upload_data": "上传数据",
+          "upload_data_list": "上传数据列表",
+          "upload_object_name": "上传对象名称",
+          "upload_object_name_list": "上传对象名称列表"
         },
         "smtp": {
-          "from_email": "From email",
-          "set_replay_email": "Set Reply-To email",
-          "replay_email": "Reply-to email",
-          "to_email": "To email(s)",
-          "bcc_email": "Bcc email(s)",
-          "cc_email": "Cc email(s)",
-          "subject": "Subject",
-          "body": "Body",
-          "attachment": "Attachment(s)",
-          "use_html": "Use HTML",
-          "use_raw": "Use raw text",
+          "from_email": "发件人",
+          "set_replay_email": "设置回复邮箱",
+          "replay_email": "回复",
+          "to_email": "收件人",
+          "bcc_email": "密送",
+          "cc_email": "抄送",
+          "subject": "主题",
+          "body": "正文",
+          "attachment": "附件",
+          "use_html": "使用HTML",
+          "use_raw": "使用原始文本",
           "placeholder": {
-            "emails": "Use commas to separate emails. i.e. {{[\"A\", \"B\"]}}",
+            "emails": "用逗号分隔邮箱。如{{[\"A\", \"B\"]}}",
             "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
           },
           "tips": {
-            "port": "Some ISPs may block port 25.If the connection fails, please change the \nport."
+            "port": "一些互联网服务提供商可能会禁用端口25。如果连接失败，请修改端口。"
           }
         },
         "tips": {
-          "transformer": "Enable transformers to transform the result of the query to a different format."
+          "transformer": "启用Transformer将查询结果转换为不同的格式"
         },
         "error": {
-          "max_file": "The size of file can't exceed 5M."
+          "max_file": "文件大小不能超过5M。"
         }
       },
       "resource": {
         "card": {
-          "coming_soon": "Coming Soon"
+          "coming_soon": "即将更新"
         },
         "db": {
           "label": {
-            "ca_certificate": "CA Certificate",
-            "client_certificate": "Client Certificate",
-            "client_key": "Client Key",
-            "config_type": "Config Type",
-            "connect_type": "Connect Type",
-            "connection_format": "Connection format",
-            "connection_string": "Connection String",
-            "database": "Database",
-            "database_index": "Database Index",
-            "hostname": "Hostname",
-            "hostname_port": "Hostname/Port",
-            "hosturl": "Host Url",
+            "ca_certificate": "服务端证书",
+            "client_certificate": "客户端证书",
+            "client_key": "客户端密钥",
+            "config_type": "配置类型",
+            "connect_type": "连接类型",
+            "connection_format": "连接方式",
+            "connection_string": "连接地址",
+            "database": "数据库名称",
+            "database_index": "数据库索引",
+            "hostname": "主机",
+            "hostname_port": "主机/端口",
+            "hosturl": "主机URL",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
             "mongodb_ssl_ca": "CA Cert",
             "mongodb_ssl_client": "Client Cert and Key",
-            "name": "Name",
-            "port": "Port",
-            "private_key": "Private Key",
-            "ssl_options": "SSL options",
-            "username_password": "Username/Password"
+            "name": "名称",
+            "port": "端口",
+            "private_key": "私钥",
+            "ssl_options": "SSL 选项",
+            "username_password": "用户名/密码"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
-            "database_index": "default 0",
-            "hostname": "Hostname",
-            "hosturl": "i.e. https://example.com",
+            "database_index": "默认 0",
+            "hostname": "主机名",
+            "hosturl": "例如 https://example.com",
             "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "password": "Password",
-            "username": "Username"
+            "password": "密码",
+            "username": "用户名"
           },
           "tip": {
-            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
-            "name": "The name for resource when creating actions in the ILLA.",
-            "ssl_options": "SSL is used when available",
-            "username_password": "Credentials will be encrypted & stored securely on our servers."
+            "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
+            "name": "为这个在ILLA中的资源命名",
+            "ssl_options": "可用时使用 SSL",
+            "username_password": "凭证将被加密并安全存储在我们的服务器上"
           },
           "title": {
-            "advanced_option": "Advanced Options",
-            "general_option": "GENERAL"
+            "advanced_option": "高级配置",
+            "general_option": "通用"
           }
         },
         "error": {
-          "invalid_url": "Please enter a valid URL, for example, https://example.com"
+          "invalid_url": "请输入可用的URL，例如http://example.com"
         },
         "restapi": {
           "btns": {
-            "new": "New"
+            "new": "新增"
           },
           "label": {
             "access_token": "Access Token",
-            "access_token_lifespan": "Access Token\n lifespan(optiinal)",
-            "access_token_url": "Access Token URL",
-            "action_type": "Action Type",
+            "access_token_lifespan": "Access Token lifespan(optiinal)",
+            "access_token_url": "Access token url",
+            "action_type": "Action type",
             "audience": "Audience",
-            "authentication": "Authentication",
-            "authorization_url": "Authorization URL",
+            "authentication": "API 认证",
+            "authorization_url": "authorization url",
             "base_url": "Base URL",
-            "basic_auth_password": "Basic Auth password",
-            "basic_auth_username": "Basic Auth username",
-            "bearerToken": "Bearer Token",
+            "basic_auth_password": "基础认证密码",
+            "basic_auth_username": "基础认证用户名",
+            "bearerToken": "Bearer 令牌",
             "body": "Body",
             "client_id": "Client ID",
-            "client_secret": "Client Secret",
-            "configure_oauth2": "Configuring OAuth 2.0",
+            "client_secret": "Client secret",
+            "configure_oauth2": "配置OAuth 2.0",
             "cookies": "Cookies",
-            "copy_url_to_application": "Copy this URL to your application",
+            "copy_url_to_application": "复制URL",
             "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
-            "extra_body_values": "Extra Body Values",
-            "forward_all_cookies": "Forward All Cookies",
+            "extra_body_values": "Extra body value",
+            "forward_all_cookies": "转发所有 Cookies",
             "headers": "Headers",
-            "list_of_cookies_to_forward": "List Of Cookies To\n Forward",
-            "name": "Name",
-            "oauth_callback_url": "OAuth callback URL",
+            "list_of_cookies_to_forward": "要转发的 cookie 列表",
+            "name": "名称",
+            "oauth_callback_url": "OAuth回调URL",
             "refresh_token": "Refresh Token",
-            "scopes": "Scopes (separated by\n a space)",
-            "share_oauth2_credentials_between_users": "Share OAuth2.0 credentials between users",
-            "url_parameters": "URL Parameters",
-            "use_client_credentials_auth": "Use client credentials auth"
+            "scopes": "Scopes",
+            "share_oauth2_credentials_between_users": "在用户之间共享 OAuth2.0 凭据",
+            "url_parameters": "URL parameters",
+            "use_client_credentials_auth": "使用客户端凭据身份验证"
           },
           "option": {
             "authentication": {
-              "basic_auth": "Basic Auth",
+              "basic_auth": "基础认证",
               "bearer": "Bearer",
-              "none": "None",
+              "none": "无",
               "oauth2": "OAuth 2.0"
             }
           },
@@ -353,41 +353,41 @@
             "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
             "api": "i.e.\"Internal Admin API\"",
             "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
-            "base_url": "Use the absolute URL (e.g https://example.com)",
+            "base_url": "请使用绝对 URL (e.g https://example.com)",
             "database": "i.e.\"Users DB(readonly)\"",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "key",
             "param_value": "value",
-            "password": "password",
-            "username": "username"
+            "password": "密码",
+            "username": "用户名"
           },
           "tip": {
             "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN.",
             "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
-            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
-            "name": "The name for resource when creating actions in the ILLA."
+            "get_req_auto_run": "(GET 请求) 当参数改变时会自动执行",
+            "name": "在 ILLA 中创建 Action 时的资源名称"
           },
           "title": {
-            "advanced_option": "GENERAL"
+            "advanced_option": "通用"
           }
         },
         "s3": {
           "label": {
-            "access_key": "Access key",
-            "base_url": "Base URL",
-            "bucket_name": "Bucket name",
-            "custome_s3_endpoint": "Custom S3 endpoint",
-            "region": "Region",
-            "secret_access_key": "Secret access key",
-            "use_custome_s3_endpoint": "Use custom S3 endpoint"
+            "access_key": "访问密钥",
+            "base_url": "基准网址",
+            "bucket_name": "桶名",
+            "custome_s3_endpoint": "自定义S3端点",
+            "region": "区域",
+            "secret_access_key": "秘密访问密钥",
+            "use_custome_s3_endpoint": "使用自定义S3端点"
           },
           "placeholder": {
-            "base_url": "i.e. https://example.com",
+            "base_url": "例如https://example.com",
             "region": "us-west-1"
           },
           "tip": {
-            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces or Wasabi."
+            "custome_s3_endpoint_tip": "用于连接到其他非S3服务，如Digital Ocean Spaces或Wasabi。"
           }
         },
         "transformer": {
@@ -395,107 +395,107 @@
             "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
           "tip": {
-            "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
+            "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
           }
         }
       },
       "resource_choose": {
-        "deleted": "Deleted"
+        "deleted": "已删除"
       },
       "result": {
         "title": {
-          "api_request": "API Request",
-          "error": "Query ran fail",
+          "api_request": "API 请求参数",
+          "error": "查询失败",
           "json": "JSON",
-          "response": "Response",
-          "success": "Query ran successfully",
-          "table": "Table"
+          "response": "返回结果",
+          "success": "查询成功",
+          "table": "表格"
         }
       },
       "type": {
         "api": "API",
-        "database": "Database",
+        "database": "数据库",
         "js_transformer": "JavaScript Transformer"
       }
     },
     "component": {
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "delete_content": "Delete it maybe make some bugs，please confirm.",
-      "delete_title": "Are you sure you want to delete {{ displayName}}?"
+      "cancel": "取消",
+      "delete": "删除",
+      "delete_content": "删除它后无法恢复，可能会导致程序出错，请确认引用后删除",
+      "delete_title": "你想要删除 {{ displayName }} 吗？"
     },
     "context_menu": {
-      "delete": "Delete",
-      "duplicate": "Duplicate"
+      "delete": "删除",
+      "duplicate": "复制"
     },
     "data_work_space": {
-      "actions_title": "ACTIONS & TRANSFORMERS ",
-      "components_title": "COMPONENTS ",
-      "globals_title": "GLOBALS ",
-      "pages_title": "PAGES"
+      "actions_title": "ACTIONS 列表 ",
+      "components_title": "组件列表 ",
+      "globals_title": "全局变量 ",
+      "pages_title": "页面列表"
     },
     "deploy": {
-      "fail": "Failed to deploy"
+      "fail": "部署失败"
     },
     "display_name": {
-      "duplicate_error": "\"{{ displayName }}\" already exists",
-      "validate_error": "\"{{ displayName }}\" must start with a letter or \"_\", and can only contain letters, numbers, \"_\", or \"$\""
+      "duplicate_error": "\"{{ displayName }}\" 已存在",
+      "validate_error": "\"{{ displayName }}\" 必须由字母或\"_\"开始, 并且只能包含字符，数字，\"_\", 或者 \"$\""
     },
     "inspect": {
       "header": {
         "action_menu": {
-          "delete": "Delete",
-          "reset_state": "Reset state",
+          "delete": "删除",
+          "reset_state": "重置状态",
           "view_documentation": "View documentation"
         }
       },
-      "multi_selected_header": "{{ number }} components selected",
+      "multi_selected_header": "已选中 {{ number }} 个组件",
       "setter_content": {
         "chart_type": {
-          "bar": "Bar chart",
-          "line": "Line chart",
-          "pie": "Pie chart",
-          "scatterplot": "Scatterplot"
+          "bar": "柱状图",
+          "line": "折线图",
+          "pie": "饼图",
+          "scatterplot": "散点图"
         },
         "color_picker": {
           "prefabricated": "Prefabricated color",
           "title": "Edit color"
         },
         "column_setter": {
-          "label": "Columns ({{number}})",
-          "new": "New",
-          "title": "Title"
+          "label": "列 ({{number}})",
+          "new": "新建",
+          "title": "标题"
         },
         "event_handler_list": {
-          "empty": "Trigger queries, control components, or call other APIs in response to component events.",
-          "incomplete_selection": "Incomplete selection",
-          "new": "New",
-          "title": "Edit event handler"
+          "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
+          "incomplete_selection": "不完整的选择",
+          "new": "新建",
+          "title": "编辑事件处理器"
         },
         "list_setter": {
-          "reset": "Reset"
+          "reset": "重置"
         },
         "menu_setter": {
-          "delete": "Delete",
-          "label": "Menus ({{number}})",
-          "new": "New",
-          "sub": "Sub"
+          "delete": "删除",
+          "label": "菜单 ({{number}})",
+          "new": "新建",
+          "sub": "子菜单"
         },
         "option_list": {
           "action_menu": {
-            "delete": "Delete",
-            "duplicate": "Duplicate"
+            "delete": "删除",
+            "duplicate": "复制"
           },
-          "list_no_label": "No label",
-          "model_title": "Edit Options",
-          "new": "New",
-          "title": "Options"
+          "list_no_label": "无标签",
+          "model_title": "编辑选项",
+          "new": "新建",
+          "title": "选项"
         },
         "select_page_setter": {
-          "placeholder": "Select a page"
+          "placeholder": "选择一个页面"
         },
         "select_view_setter": {
-          "placeholder": "Select a view"
+          "placeholder": "选择一个视图路径"
         },
         "tabs_setter": {
           "tabs": "Tabs"
@@ -504,595 +504,595 @@
           "views": "Views"
         },
         "widget_action_type_name": {
-          "blur": "Blur",
-          "change": "Change",
-          "click": "Click",
-          "clickMenuItem": "Click",
-          "columnFiltersChange": "Filter change",
-          "fail": "Fail",
-          "focus": "Focus",
-          "invalid": "Invalid",
-          "paginationChange": "Page change",
-          "row_select": "Row select",
-          "sortingChange": "Sort change",
-          "submit": "Submit",
-          "success": "Success"
+          "blur": "失焦",
+          "change": "内容改变",
+          "click": "单击",
+          "clickMenuItem": "单击",
+          "columnFiltersChange": "行筛选改变",
+          "fail": "失败后",
+          "focus": "聚焦",
+          "invalid": "校验失败",
+          "paginationChange": "翻页配置改变",
+          "row_select": "选择行",
+          "sortingChange": "排序方式改变",
+          "submit": "提交",
+          "success": "成功后"
         }
       },
       "setter_default_value": {
-        "fill": "Fill",
+        "fill": "填充",
         "message_type": {
-          "error": "Error",
-          "info": "Info",
-          "success": "Success",
-          "warning": "Warning"
+          "error": "错误",
+          "info": "信息",
+          "success": "成功",
+          "warning": "警告"
         },
-        "outline": "Outline",
+        "outline": "描边",
         "validation_pattern": {
-          "email": "Email",
-          "regex": "Regex",
+          "email": " 邮箱",
+          "regex": "正则表达式",
           "url": "URL"
         }
       },
       "setter_group": {
-        "adornments": "ADORNMENTS",
-        "basic": "BASIC",
-        "column": "COLUMNS",
-        "data": "DATA",
-        "interaction": "INTERACTION",
-        "label": "LABEL",
-        "layout": "LAYOUT",
-        "menu": "MENU",
-        "options": "OPTIONS",
-        "pagination": "PAGINATION",
-        "row_selection": "ROW SELECTION",
-        "sort": "SORT",
-        "style": "STYLE",
-        "tabs": "TABS",
-        "toolbar": "TOOLBAR",
-        "validation": "VALIDATION",
-        "views": "VIEWS"
+        "adornments": "额外修饰属性",
+        "basic": "基础",
+        "column": "列",
+        "data": "数据",
+        "interaction": "交互",
+        "label": "标签",
+        "layout": "布局",
+        "menu": "菜单",
+        "options": "选项",
+        "pagination": "翻页",
+        "row_selection": "行选择",
+        "sort": "排序",
+        "style": "风格",
+        "tabs": "选项卡",
+        "toolbar": "工具栏",
+        "validation": "验证",
+        "views": "视图"
       },
       "setter_label": {
-        "action": "Action",
-        "align": "Align",
-        "allow_clear": "Allow clear",
-        "allow_half": "Allow half",
-        "alt_text": "Alt text",
-        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
-        "background": "Background",
-        "background_color": "Background",
-        "border": "Border",
-        "border_width": "Border Width",
-        "caption": "Caption",
-        "chart_title": "Title",
-        "chart_type": "Chart type",
-        "color": "Color",
-        "colors": "Colors",
-        "column_title": "Column title",
-        "column_type": "Column type",
-        "columns": "Columns",
-        "component": "Component",
-        "config_type": "Config type",
-        "container": "Container",
-        "content": "Content",
-        "control_component": "Control component",
-        "custom_rule": "Custom rule",
-        "data": "Data",
-        "data_source": "Data source",
-        "data_sources": "Data sources",
+        "action": "动作",
+        "align": "对齐",
+        "allow_clear": "允许清除",
+        "allow_half": "允许一半",
+        "alt_text": "替换文本",
+        "alt_text_desc": "屏幕阅读器可访问的图像描述。如果无法加载图像，这也会作为备用方案进行渲染。",
+        "background": "背景",
+        "background_color": "背景色",
+        "border": "描边",
+        "border_width": "边框宽度",
+        "caption": "副标题",
+        "chart_title": "标题",
+        "chart_type": "图表类型",
+        "color": "颜色",
+        "colors": "颜色",
+        "column_title": "列标题",
+        "column_type": "列类型",
+        "columns": "列数据",
+        "component": "组件",
+        "config_type": "配置类型",
+        "container": "容器",
+        "content": "内容",
+        "control_component": "控制组件",
+        "custom_rule": "自定义规则",
+        "data": "数据",
+        "data_source": "数据源",
+        "data_sources": "数据源",
         "dataset": {
-          "aggregation_method": "Aggregation method",
-          "name": "Dataset name",
-          "remove": "Remove dataset",
-          "value": "Dataset values"
+          "aggregation_method": "聚合方式",
+          "name": "数据集名称",
+          "remove": "移除数据集",
+          "value": "数据列"
         },
-        "dataset_config": "Dataset config",
-        "datasets": "Datasets",
-        "decimal_place": "Decimal place",
-        "decimal_places": "Decimal places",
-        "default_sort_key": "Column",
-        "default_sort_order": "Direction",
-        "default_tab": "Default tab",
-        "default_value": "Default value",
-        "default_views": "Default view",
-        "description": "Description",
-        "direction": "Direction",
-        "disable_submit": "Disable submit",
-        "disabled": "Disabled",
-        "download": "Download",
-        "duration": "Duration",
-        "empty_state": "Empty state",
-        "enable_sorting": "Enable Sorting",
-        "end_data": "End date",
-        "end_placeholder": "End placeholder",
-        "event": "Event",
-        "event_handler": "Event handler",
-        "expansion_method": "Expansion method",
-        "failure": "Failure",
-        "filter": "Filter",
-        "font_size": "Font size",
-        "form_data_key": "Form Data Key",
-        "format": "Format",
-        "go_to_url": "Go to URL",
-        "group_by": "Group by",
-        "group_layout": "Group layout",
-        "hidden": "Hidden",
-        "hidden_label": "Hidden label",
-        "hide_validation_message": "Hide validation message",
-        "hide_value_label": "Hide value label",
-        "horizontal_alignment": "Horizontal alignment",
-        "icon": "Icon",
-        "image_source": "Image source",
-        "img_height": "Height",
-        "img_width": "Width",
-        "index": "Index",
-        "item_background_color": "Item background",
-        "items": "Items",
-        "key": "Key",
-        "label": "Label",
-        "label_alignment": "Alignment",
-        "label_position": "Position",
-        "label_width": "Width(%)",
-        "layout": "Layout",
-        "legend_position": "Legend position",
-        "link_to_container": "Link to a container",
-        "links_color": "Links",
-        "loading": "Loading",
-        "loop_back_to_start": "Loop back to start",
-        "loop_start_to_back": "Loop start to back",
-        "mapped_option": "Mapped Option",
-        "mapped_value": "Mapped Value",
-        "max_count": "Max count",
-        "max_date": "Max date",
-        "max_length": "Max length",
-        "maximum": "Maximum",
-        "method": "Method",
-        "min_date": "Min date",
-        "min_length": "Min Length",
-        "minimum": "Minimum",
-        "multi_row_selection": "Multi-Row Selection",
-        "new_tab": "New tab",
-        "only_run_when": "Only run when",
-        "overFlow": "OverFlow",
-        "page": "Page",
-        "pageSize": "PageSize",
-        "pattern": "Pattern",
-        "pending": "Pending",
-        "placeholder": "Placeholder",
-        "prefix_text": "Prefix text",
-        "radius": "Radius",
-        "read_only": "Read only",
-        "regex": "Regex",
-        "required_field": "Required field",
-        "reset_after_successful_submit": "Reset after successful submit",
-        "router": "Router",
-        "run_script": "Run script",
-        "scale_type": "Scale Type",
-        "set_router": "Set router",
-        "set_temporary_state": "Set temporary state",
-        "shadow": "Shadow",
-        "show_character_count": "Show character count",
-        "show_clear_button": "Show clear button",
-        "show_footer": "Show footer",
-        "show_header": "Show header",
-        "show_notification": "Show notification",
-        "sort": "Sort",
-        "start_date": "Start date",
-        "start_placeholder": "Start placeholder",
-        "step_size": "Step size",
-        "stroke_width": "Stroke width",
-        "style": "Style",
-        "styles": "Styles",
-        "submit_form": "Submit form",
-        "success": "Success",
-        "suffix_text": "Suffix text",
-        "text": "Text",
-        "text_align": "Text align",
-        "text_size": "Text size",
-        "theme_color": "Theme color",
-        "thousand_separator": "Thousand separator",
-        "time_format": "Time format",
-        "title": "Title",
-        "tooltip": "Tooltip",
-        "trail_color": "Trail color",
-        "trigger_query": "Trigger query",
-        "type": "Type",
-        "validate_inputs_on_submit": "Validate inputs on submit",
-        "value": "Value",
-        "value_labels": "Value labels",
-        "variant": "Variant",
-        "vertical_alignment": "Vertical alignment",
-        "width": "Width",
-        "x_axis_name": "X-axis name",
-        "x_axis_title": "X-axis title",
-        "x_axis_type": "X-axis type",
-        "x_axis_value": "X-axis value",
-        "y_axis_name": "Y-axis name",
-        "y_axis_title": "Y-axis title"
+        "dataset_config": "数据集配置",
+        "datasets": "数据集",
+        "decimal_place": "小数位",
+        "decimal_places": "小数位数",
+        "default_sort_key": "排序列",
+        "default_sort_order": "顺序",
+        "default_tab": "默认值",
+        "default_value": "默认值",
+        "default_views": "默认视图",
+        "description": "描述",
+        "direction": "方向",
+        "disable_submit": "禁用提交",
+        "disabled": "禁用",
+        "download": "下载",
+        "duration": "持续时间",
+        "empty_state": "空状态",
+        "enable_sorting": "排序",
+        "end_data": "结束日期",
+        "end_placeholder": "结束日期占位符",
+        "event": "事件",
+        "event_handler": "事件处理器",
+        "expansion_method": "展开方式",
+        "failure": "请求失败",
+        "filter": "筛选",
+        "font_size": "字号",
+        "form_data_key": "表单数据键值",
+        "format": "格式化",
+        "go_to_url": "跳转链接",
+        "group_by": "分组标签",
+        "group_layout": "组内布局",
+        "hidden": "隐藏",
+        "hidden_label": "隐藏标签",
+        "hide_validation_message": "隐藏验证信息",
+        "hide_value_label": "隐藏值标签",
+        "horizontal_alignment": "水平对齐",
+        "icon": "图标",
+        "image_source": "图片来源",
+        "img_height": "高度",
+        "img_width": "宽度",
+        "index": "索引",
+        "item_background_color": "项目背景色",
+        "items": "项",
+        "key": "键值",
+        "label": "标签",
+        "label_alignment": "对齐",
+        "label_position": "位置",
+        "label_width": "宽度(%)",
+        "layout": "布局",
+        "legend_position": "图例位置",
+        "link_to_container": "是否关联到容器",
+        "links_color": "链接色",
+        "loading": "加载中",
+        "loop_back_to_start": "列表循环",
+        "loop_start_to_back": "列表循环",
+        "mapped_option": "映射选项",
+        "mapped_value": "映射值",
+        "max_count": "最大数量",
+        "max_date": "最大日期",
+        "max_length": "最大长度",
+        "maximum": "最大值",
+        "method": "方法",
+        "min_date": "最小日期",
+        "min_length": "最小长度",
+        "minimum": "最小值",
+        "multi_row_selection": "多行选择",
+        "new_tab": "在新标签中打开",
+        "only_run_when": "先决条件",
+        "overFlow": "翻页方式",
+        "page": "页面",
+        "pageSize": "每页行数",
+        "pattern": "模式",
+        "pending": "待处理节点",
+        "placeholder": "占位符",
+        "prefix_text": "前缀文本",
+        "radius": "圆角",
+        "read_only": "只读",
+        "regex": "正则表达式",
+        "required_field": "必需字段",
+        "reset_after_successful_submit": "提交成功后重置输入内容",
+        "router": "路由",
+        "run_script": "运行脚本",
+        "scale_type": "缩放类型",
+        "set_router": "设置路由",
+        "set_temporary_state": "设置临时状态",
+        "shadow": "阴影",
+        "show_character_count": "展示字符数量",
+        "show_clear_button": "展示清除按钮",
+        "show_footer": "显示操作区",
+        "show_header": "显示标题区",
+        "show_notification": "展示通知",
+        "sort": "排序",
+        "start_date": "开始日期",
+        "start_placeholder": "开始日期占位符",
+        "step_size": "步长",
+        "stroke_width": "描边宽度",
+        "style": "样式",
+        "styles": "样式",
+        "submit_form": "提交表单",
+        "success": "请求成功",
+        "suffix_text": "后缀文本",
+        "text": "文本",
+        "text_align": "文本对齐",
+        "text_size": "文本大小",
+        "theme_color": "主题色",
+        "thousand_separator": "千位分隔符",
+        "time_format": "时间格式化",
+        "title": " 标题",
+        "tooltip": "提示",
+        "trail_color": "描边颜色",
+        "trigger_query": "触发请求",
+        "type": "类型",
+        "validate_inputs_on_submit": "提交时校验输入",
+        "value": "值",
+        "value_labels": "维度",
+        "variant": "样式",
+        "vertical_alignment": "垂直对齐",
+        "width": "宽度",
+        "x_axis_name": "横坐标名称",
+        "x_axis_title": "X轴标题",
+        "x_axis_type": "X轴类型",
+        "x_axis_value": "X 轴",
+        "y_axis_name": "纵坐标名称",
+        "y_axis_title": "Y轴标题"
       },
       "setter_tooltip": {
-        "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
-        "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
-        "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
-        "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
-        "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
-        "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
-        "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
-        "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
-        "download": "Show download button in toolbar.",
-        "filter": "Show filter button in toolbar.",
-        "form_data_key": "Specify a key of a wrapping form component when constructing the data attribute.",
-        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
-        "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
-        "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
-        "loading": "Whether the component should show a loading indicator.",
-        "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
-        "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
-        "multi_row_selection": "Use {{ table.selectedRow.data }} to access data. If you enable Multi-Row Selection, it will return an array, you can use it like this: {{ table1.selectedRow.data[0].email }} . And if you don't enable Multi-Row Selection, it will return an object, you can use it like this {{ table1.selectedRow.data.email }}.",
-        "only_run_when": "Conditions that must be met before the event executes.",
-        "placeholder": "The value will be shown when the input field is empty.",
-        "progress_percentage": "The percentage value is between 0 and 100.",
-        "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannot be modified.",
-        "required_field": "Valid only when the switch is on.",
-        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
-        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
-        "timeline_direction": "Change the direction of the timeline.",
-        "timeline_pending": "Whether to show a node with a pending status.",
-        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported."
+        "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
+        "cascader_data": "每个选项必须是JSON格式，包含value和label两个键，值可以自定义。通过使用数组,可以创建同一级别的选项，添加 children 属性可以添加子集",
+        "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
+        "custom_rule": "在此处输入验证规则。 验证规则应该由 JavaScript 构成。",
+        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
+        "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
+        "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
+        "disabled_submit": "禁用提交时，调用form.submit()方法的组件也会被禁用。",
+        "download": "在工具栏显示下载按钮。",
+        "filter": "在工具栏显示筛选按钮。",
+        "form_data_key": "在构建数据属性时，指定一个包装表单组件的键。",
+        "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态。",
+        "hide_validation_message": "当验证输入有误时隐藏错误信息。您可以通过编写 JavaScript 对是否隐藏进行动态修改。",
+        "input_default_value": "输入框的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变输入框的默认值。",
+        "loading": "控制组件是否为加载状态。",
+        "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项。",
+        "mapped_value": "使用 {{ currentRow }} 来访问当前行的数据。例如，根据 \"成本 \"和 \"点击次数 \"列计算得到\"每次点击成本\"：\n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "您可以使用{{table.selectedRow.data}}来访问数据。如果您启用了多行选择，它将返回一个数组，您可以像这样使用它：{{ table1.selectedRow.data[0].email }}}。如果您没有启用多行选择，它将返回一个对象，你可以像这样使用它：{{ table1.selectedRow.data.email }}。",
+        "only_run_when": "在此输入该事件执行前必须满足的条件。",
+        "placeholder": "当输入中没有值时，展示的信息。",
+        "progress_percentage": "进度条的数值范围为 0-100。",
+        "read_only": "控制组件是否为只读状态。只读组件的内容可以被选中和聚焦，但不能被修改。",
+        "required_field": "在开关开启后对输入框执行验证。",
+        "switch_default_value": "设置开关的初始状态。您可以通过 JavaScript 动态改变开关的初始状态。",
+        "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
+        "timeline_direction": "切换时间轴的方向。",
+        "timeline_pending": "是否显示一个待处理状态的节点。",
+        "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。"
       },
-      "tab_title": "Inspect",
-      "unselected_tip1": "No components selected.",
-      "unselected_tip2": "Click on a component to select it."
+      "tab_title": "属性",
+      "unselected_tip1": "没有组件被选中。",
+      "unselected_tip2": "请点击组件以选中。"
     },
     "page": {
       "label_name": {
-        "add": "Add",
-        "body": "Body",
-        "default_view": "Default view",
-        "edit_view": "Edit view",
-        "footer": "Footer",
-        "header": "Header",
-        "key": "Key",
-        "left_panel": "Left panel",
-        "preset": "Preset",
-        "right_panel": "Right panel",
-        "set_as_homepage": "Set as homepage",
-        "show_fold_icon": "Show fold icon",
-        "view_path": "View path",
-        "views": "Views",
-        "width": "Width"
+        "add": "新建",
+        "body": "主体",
+        "default_view": "默认视图",
+        "edit_view": "编辑视图",
+        "footer": "页脚",
+        "header": "页头",
+        "key": "键值",
+        "left_panel": "左侧面板",
+        "preset": "预设",
+        "right_panel": "右侧面板",
+        "set_as_homepage": "设置为主页",
+        "show_fold_icon": "显示折叠按钮",
+        "view_path": "视图路径",
+        "views": "视图",
+        "width": "宽度"
       },
       "model_tips": {
-        "cancel_button": "Cancel",
-        "change_layout_message": "After changing the layout, all data will be cleared. This operation can't be recovered, please confirm",
-        "delete_section_message": "After hiding, the data in this section will be cleared. This operation can't be recovered, please confirm",
-        "ok_button": "Confirm"
+        "cancel_button": "取消",
+        "change_layout_message": "改变布局将清空所有数据，该操作无法恢复，请确认",
+        "delete_section_message": "隐藏后，这个部分的数据会被清空，该操作无法恢复，请确认",
+        "ok_button": "确认"
       },
       "panel_bar_title": {
-        "basic": "BASIC",
-        "frame": "FRAME"
+        "basic": "基础",
+        "frame": "画布"
       },
-      "tab_title": "Page",
+      "tab_title": "页面",
       "tooltips": {
-        "show_fold_icon": "Show a button to collapse or expand the panel",
-        "view_path": "A string after example.com/app/page/ to access this view"
+        "show_fold_icon": "显示一个按钮，用于收起或展开面板",
+        "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图"
       }
     },
     "validate_message": {
-      "email": "Please enter a valid email address",
-      "max_length": "Must be no more than {{ number }} characters",
-      "max_value": "Must be less than {{ number }}",
-      "min_length": "Must be at least {{ number }} characters",
-      "min_value": "Must be greater than {{ number }}",
-      "regex": "Please match the requested format",
-      "required": "This field is required",
-      "url": "Please enter a valid URL"
+      "email": "请输入有效的电子邮箱",
+      "max_length": "请输入最多{{ number }}个字符",
+      "max_value": "请输入不大于{{ number }}的值",
+      "min_length": "请输入至少{{ number }}个字符",
+      "min_value": "请输入不小于{{ number }} 的值",
+      "regex": "请按照要求的格式填写",
+      "required": "必填",
+      "url": "请输入有效的URL"
     },
     "widget_picker": {
-      "empty_tip": "Sorry, no search results",
-      "search_placeholder": "search",
+      "empty_tip": "抱歉，没有搜索结果",
+      "search_placeholder": "搜索",
       "sessions": {
-        "calendar": "Calendar inputs",
-        "commonly": "Commonly components",
-        "container": "Container and form",
-        "data": "Data",
-        "inputs": "Inputs",
+        "calendar": "日历类组件",
+        "commonly": "常用组件",
+        "container": "容器类组件",
+        "data": "数据类组件",
+        "inputs": "输入类组件",
         "navigation": "Navigation",
-        "presentation": "Presentation",
-        "selects": "Select inputs"
+        "presentation": "展示类组件",
+        "selects": "选择类组件"
       },
-      "tab_title": "Insert"
+      "tab_title": "组件"
     }
   },
-  "exit_preview": "Exit Preview",
-  "freeze_collision": "Freeze collision",
-  "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
-  "freeze_tips": "The canvas is frozen. Click here to unfreeze it.",
-  "link_copied": "Link Copied",
-  "network_error": "Network disconnected. Please check this device's network",
-  "not_online_tips": "Network disconnected. Please check this device's network",
-  "preview": "Preview",
-  "remove_fail": "Failed to remove",
-  "rename": "Rename",
-  "resources": "Resources",
-  "retry": "Retry",
-  "save": "Save",
+  "exit_preview": "退出预览",
+  "freeze_collision": "冻结碰撞",
+  "freeze_messages": "画布处于冻结状态，可以将组件拖入或拖出容器。",
+  "freeze_tips": "画布已冻结，点击解冻。",
+  "link_copied": "链接已复制",
+  "network_error": "网络异常",
+  "not_online_tips": "网络已断开，请检查此设备的网络",
+  "preview": "预览",
+  "remove_fail": "删除失败",
+  "rename": "重命名",
+  "resources": "资源",
+  "retry": "重试",
+  "save": "保存",
   "setting": {
     "account": {
-      "email": "Email",
-      "empty_username": "Please enter your username",
-      "error_username": "Username must be 3~15 characters",
-      "save": "Save Changes",
-      "save_fail": "Failed to save",
-      "title": "ACCOUNT",
-      "username": "Username"
+      "email": "邮箱",
+      "empty_username": "用户名不能为空",
+      "error_username": "用户名须为3～15个字符",
+      "save": "保存",
+      "save_fail": "保存失败",
+      "title": "账号",
+      "username": "用户名"
     },
     "other": {
-      "language": "Language",
-      "save": "Save Changes",
-      "title": "SETTING"
+      "language": "语言",
+      "save": "保存",
+      "title": "设置"
     },
     "password": {
-      "confirm_password": "Confirmation password",
-      "current_password": "Old password",
-      "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 6~20 characters",
-      "error_match_password": "Your password and confirmation password do not match",
-      "error_password_has_empty": "Password cannot include spaces",
-      "error_validate_password": "Your password can only contain numbers, letters and punctuations",
-      "new_password": "New password",
-      "submit_button": "Submit",
-      "title": "PASSWORD"
+      "confirm_password": "确认新密码",
+      "current_password": "旧密码",
+      "empty_password": "密码不能为空",
+      "error_format_password": "密码须为6～20个字符",
+      "error_match_password": "新密码不一致，请重试 ",
+      "error_password_has_empty": "密码不能包含空格",
+      "error_validate_password": "密码只能包含数字、字母、标点符号",
+      "new_password": "新密码",
+      "submit_button": "提交",
+      "title": "密码"
     }
   },
-  "share": "Share",
+  "share": "分享",
   "status": {
     "403": {
-      "des": "Access denied"
+      "des": "访问被拒绝"
     },
     "404": {
-      "again": "Refresh",
-      "des": "It seems that the page you were looking for could not be found."
+      "again": "刷新",
+      "des": "您访问的页面不存在"
     },
     "500": {
-      "des": "Oops, something went wrong. Please try again later."
+      "des": "请求失败，请稍后再试。"
     },
-    "back": "Back to homepage"
+    "back": "回到主页"
   },
-  "title": "Welcome to illa",
-  "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
+  "title": "欢迎来到艾拉云",
+  "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
   "user": {
-    "description": "An open-source low-code platform for developers.",
+    "description": "专属于开发者的开源低代码平台。",
     "forgot_password": {
       "actions": {
-        "reset": "Reset",
-        "send": "Send code"
+        "reset": "重置",
+        "send": "获取验证码"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "Please enter a valid email address",
-          "registered": "The email address doesn't associate with an account.",
-          "require": "Please enter your email"
+          "invalid_pattern": "邮箱格式不正确",
+          "registered": "此邮箱未注册",
+          "require": "邮箱不能为空"
         },
         "newPassword": {
-          "require": "Please enter your password"
+          "require": "密码不能为空"
         },
         "verification_code": {
-          "expired": "Verification code expired",
-          "invalid": "Invalid verification code",
-          "require": "Please enter verification code"
+          "expired": "验证码已过期",
+          "invalid": "验证码错误",
+          "require": "请输入验证码"
         }
       },
       "fields": {
-        "email": "Email",
-        "newPassword": "New Password",
-        "verification_code": "Verification code"
+        "email": "邮箱",
+        "newPassword": "新密码",
+        "verification_code": "验证码"
       },
       "placeholder": {
-        "email": "Enter your email",
-        "verification_code": "Please enter verification code"
+        "email": "请输入邮箱",
+        "verification_code": "请输入验证码"
       },
-      "subtitle": "Back to sign in",
+      "subtitle": "返回登录",
       "tips": {
-        "fail": "Failed to reset password",
-        "fail_sent": "Failed to send verification code",
-        "success": "Reset password successfully",
-        "verification_code": "Verification code sent"
+        "fail": "重置密码失败",
+        "fail_sent": "发送验证码失败",
+        "success": "重置密码成功",
+        "verification_code": "验证码已发送"
       },
-      "title": "Reset Password"
+      "title": "重置密码"
     },
     "password": {
-      "placeholder": "Enter your new password(at least 6 characters)"
+      "placeholder": "请输入密码（不少于6个字符）"
     },
     "sign_in": {
       "actions": {
-        "login": "Sign in"
+        "login": "登录"
       },
       "description": {
-        "forgot_password": "Forgot Password?",
-        "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-        "register": "New user? <0>Create an account</0>"
+        "forgot_password": "忘记密码?",
+        "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+        "register": "新用户？<0>注册账号</0>"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "Please enter a valid email address",
-          "registered": "The email address doesn't associate with an account.",
-          "require": "Please enter your email"
+          "invalid_pattern": "邮箱格式不正确",
+          "registered": "此邮箱未注册",
+          "require": "邮箱不能为空"
         },
         "password": {
-          "incorrect": "Incorrect email or password",
-          "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
-          "min_length": "The password must be at least 6 characters",
-          "require": "Please enter password"
+          "incorrect": "请输入正确的账号密码",
+          "locked": "密码输错超过5次，账户将被锁定1小时",
+          "min_length": "密码须至少6个字符",
+          "require": "密码不能为空"
         }
       },
       "fields": {
-        "email": "Email",
-        "password": "Password"
+        "email": "邮箱",
+        "password": "密码"
       },
       "placeholder": {
-        "email": "Enter your email"
+        "email": "请输入邮箱"
       },
       "tips": {
-        "fail": "Failed to sign in",
-        "success": "Signed in successfully"
+        "fail": "登录失败",
+        "success": "登录成功"
       },
-      "title": "Welcome back"
+      "title": "欢迎回来"
     },
     "sign_up": {
       "actions": {
-        "create": "Create Account",
-        "send": "Send code"
+        "create": "创建账户",
+        "send": "获取验证码"
       },
       "description": {
-        "login": "Already have an account? <0>Sign in</0>",
-        "policy": "By clicking Create Account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-        "subscribe": "I am willing to receive the updates and news about ILLA"
+        "login": "已有账户？ <0>登录</0>",
+        "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+        "subscribe": "订阅ILLA的动态"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "Please enter a valid email address",
-          "registered": "An account with that email address already exists.",
-          "require": "Please enter your email"
+          "invalid_pattern": "邮箱格式不正确",
+          "registered": "此邮箱已注册，请登录",
+          "require": "邮箱不能为空"
         },
         "password": {
-          "require": "Please enter password"
+          "require": "密码不能为空"
         },
         "username": {
-          "length": "The username must be 3~15 characters",
-          "require": "Please enter username"
+          "length": "用户名须为3～15个字符",
+          "require": "用户名不能为空"
         },
         "verification_code": {
-          "expired": "Verification code expired",
-          "invalid": "Invalid verification code",
-          "require": "Please enter verification code"
+          "expired": "验证码已过期",
+          "invalid": "验证码错误",
+          "require": "请输入验证码"
         }
       },
       "fields": {
-        "email": "Email",
-        "password": "Password",
-        "username": "Username",
-        "verification_code": "Verification code"
+        "email": "邮箱",
+        "password": "密码",
+        "username": "用户名",
+        "verification_code": "验证码"
       },
       "placeholder": {
-        "email": "Enter your email",
-        "username": "Enter your username",
-        "verification_code": "Please enter verification code"
+        "email": "请输入邮箱",
+        "username": "请输入用户名",
+        "verification_code": "请输入验证码"
       },
       "tips": {
-        "fail": "Failed to sign up",
-        "fail_sent": "Failed to send verification code",
-        "success": "Signed up successfully",
-        "verification_code": "Verification code sent"
+        "fail": "注册失败",
+        "fail_sent": "发送验证码失败",
+        "success": "注册成功",
+        "verification_code": "验证码已发送"
       },
-      "title": "Sign up"
+      "title": "注册"
     }
   },
   "widget": {
     "bar_progress": {
-      "name": "Bar Progress"
+      "name": "条形进度条"
     },
     "button": {
       "default_text": "Button",
-      "name": "Button"
+      "name": "按钮"
     },
     "cascader": {
-      "name": "Cascader"
+      "name": "级联选择"
     },
     "chart": {
-      "name": "Chart"
+      "name": "图表"
     },
     "check_box_group": {
-      "name": "Checkbox Group"
+      "name": "复选框组"
     },
     "circle_progress": {
-      "name": "Circle Progress"
+      "name": "圆形进度条"
     },
     "container": {
-      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here",
-      "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
-      "name": "Container"
+      "empty": "按住 <keyPress>D</keyPress> 或 <keyPress>K</keyPress> ，将组件拖入容器",
+      "key_duplicated": "键值重复，请使用唯一值以避免报错。",
+      "name": "容器"
     },
     "date": {
-      "name": "Date"
+      "name": "日期选择器"
     },
     "date_range": {
-      "name": "Date range"
+      "name": "日期范围选择器"
     },
     "date_time": {
-      "name": "Date Time",
-      "placeholder": "Select time"
+      "name": "日期时间选择器",
+      "placeholder": "请选择时间"
     },
     "divider_progress": {
-      "name": "Divider"
+      "name": "分割线"
     },
     "editable_text": {
-      "name": "Editable Text"
+      "name": "可编辑文本"
     },
     "form": {
-      "name": "Form"
+      "name": "表单"
     },
     "image": {
-      "name": "Image"
+      "name": "图片"
     },
     "input": {
-      "name": "Input"
+      "name": "输入框"
     },
     "list": {
-      "doc1": "Use {{ currentItem }} to access the data of current item. For example, to set value of the text component which is in list component based on \"userName\": {{ currentItem.userName }}",
-      "doc2": "Use {{list.selectedItem.data}} to access the data of selected item in list component. For example, to set the value of the text component which is out of list component based on \"username\" of the selected item in the list: {{ list.selectedItem.userName }}",
-      "name": "List"
+      "doc1": "使用 {{ currentItem }} 来访问当前项的数据。例如，根据 \"userName \"来设置列表组件中的文本组件的值：{{ currentItem.userName }}}。",
+      "doc2": "使用{{list.selectedItem.data}}来访问列表选中项的数据。例如，根据列表选中项的 \"用户名\"，设置位于列表组件外的文本组件的值：{{list.selectedItem.userName }}}。",
+      "name": "列表"
     },
     "menu": {
-      "name": "Menu"
+      "name": "菜单"
     },
     "number_input": {
-      "name": "Number Input"
+      "name": "数字输入框"
     },
     "public": {
-      "left": "Left",
-      "right": "Right",
+      "left": "左",
+      "right": "右",
       "select_options": {
-        "manual": "Manual",
-        "mapped": "Mapped"
+        "manual": "自动",
+        "mapped": "手动"
       },
-      "top": "Top"
+      "top": "上"
     },
     "radio_button": {
-      "name": "Radio Button"
+      "name": "按钮单选"
     },
     "radio_group": {
-      "name": "Radio group"
+      "name": "单选框组"
     },
     "rate": {
-      "name": "Rate"
+      "name": "评分"
     },
     "select": {
-      "name": "Select"
+      "name": "选择器"
     },
     "switch": {
-      "name": "Switch"
+      "name": "开关"
     },
     "table": {
-      "ascend": "Asc",
-      "descend": "Desc",
-      "name": "Table",
-      "pagination": "Pagination",
-      "scroll": "Scroll"
+      "ascend": "升序",
+      "descend": "降序",
+      "name": "表格",
+      "pagination": "翻页",
+      "scroll": "滚动"
     },
     "tabs": {
-      "name": "Tabs"
+      "name": "选项卡"
     },
     "text": {
-      "default_value": "👋 Hello!",
-      "name": "Text",
-      "text_model": "Plain text"
+      "default_value": "👋 嗨！",
+      "name": "文本",
+      "text_model": "纯文本"
     },
     "timeline": {
-      "horizontal": "horizontal",
-      "name": "Timeline",
-      "vertical": "vertical"
+      "horizontal": "横向",
+      "name": "时间线",
+      "vertical": "纵向"
     }
   }
 }
