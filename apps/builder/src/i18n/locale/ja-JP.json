@@ -12,7 +12,7 @@
   "collision_message": "D または K キーを押したまま、コンポーネントをコンテナーにドラッグします。",
   "create_fail": "作成に失敗しました",
   "create_new": "作成",
-  "create_new_app": "作成",
+  "create_new_app": "プロジェクトを作成",
   "created_at": "ビルトイン",
   "dashboard": {
     "app": {
@@ -537,563 +537,563 @@
       },
       "setter_group": {
         "adornments": "追加の修飾子",
-        "basic": "ベース",
-        "column": "リスト",
-        "data": "データ",
-        "interaction": "相互作用する",
-        "label": "ラベル",
-        "layout": "レイアウト",
-        "menu": "メニュー",
-        "options": "オプション",
-        "pagination": "ページをめくる",
-        "row_selection": "回線選択",
-        "sort": "分類する",
-        "style": "スタイル",
-        "tabs": "タブ",
-        "toolbar": "ツールバー",
-        "validation": "確認",
-        "views": "見る"
+        "basic": "BASIC",
+        "column": "COLUMNS",
+        "data": "DATA",
+        "interaction": "INTERACTION",
+        "label": "LABEL",
+        "layout": "LAYOUT",
+        "menu": "MENU",
+        "options": "OPTIONS",
+        "pagination": "PAGINATION",
+        "row_selection": "ROW SELECTION",
+        "sort": "SORT",
+        "style": "STYLE",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "VALIDATION",
+        "views": "VIEWS"
       },
       "setter_label": {
-        "action": "アクション",
-        "align": "整列する",
-        "allow_clear": "クリアを許可",
-        "allow_half": "半分許可する",
-        "alt_text": "テキストを置き換える",
-        "alt_text_desc": "スクリーン リーダーでアクセスできる画像の説明。これは、画像を読み込めない場合のフォールバックとしてもレンダリングされます。",
-        "background": "バックグラウンド",
-        "background_color": "背景色",
-        "border": "脳卒中",
-        "border_width": "ボーダー幅",
-        "caption": "字幕",
-        "chart_title": "題名",
-        "chart_type": "チャートタイプ",
-        "color": "色",
-        "colors": "色",
-        "column_title": "列ヘッダー",
-        "column_type": "列タイプ",
-        "columns": "列データ",
-        "component": "コンポーネント",
-        "config_type": "構成タイプ",
-        "container": "容器",
-        "content": "コンテンツ",
-        "control_component": "コントロールユニット",
-        "custom_rule": "カスタム ルール",
-        "data": "データ",
-        "data_source": "情報源",
-        "data_sources": "情報源",
+        "action": "Action",
+        "align": "Align",
+        "allow_clear": "Allow clear",
+        "allow_half": "Allow half",
+        "alt_text": "Alt text",
+        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "background": "Background",
+        "background_color": "Background",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Caption",
+        "chart_title": "Title",
+        "chart_type": "Chart type",
+        "color": "Color",
+        "colors": "Colors",
+        "column_title": "Column title",
+        "column_type": "Column type",
+        "columns": "Columns",
+        "component": "Component",
+        "config_type": "Config type",
+        "container": "Container",
+        "content": "Content",
+        "control_component": "Control component",
+        "custom_rule": "Custom rule",
+        "data": "Data",
+        "data_source": "Data source",
+        "data_sources": "Data sources",
         "dataset": {
-          "aggregation_method": "集計方法",
-          "name": "データセット名",
-          "remove": "データセットを削除",
-          "value": "データ列"
+          "aggregation_method": "Aggregation method",
+          "name": "Dataset name",
+          "remove": "Remove dataset",
+          "value": "Dataset values"
         },
-        "dataset_config": "データセット構成",
-        "datasets": "データセット",
-        "decimal_place": "小数位",
-        "decimal_places": "小数位",
-        "default_sort_key": "ソート列",
-        "default_sort_order": "注文",
-        "default_tab": "デフォルト",
-        "default_value": "デフォルト",
-        "default_views": "デフォルトビュー",
-        "description": "説明",
-        "direction": "方向",
-        "disable_submit": "送信を無効にする",
-        "disabled": "無効",
-        "download": "ダウンロード",
-        "duration": "間隔",
-        "empty_state": "空の状態",
-        "enable_sorting": "分類する",
-        "end_data": "終了日",
-        "end_placeholder": "終了日のプレースホルダー",
-        "event": "イベント",
-        "event_handler": "イベントハンドラ",
-        "expansion_method": "拡張方法",
-        "failure": "要求が失敗しました",
-        "filter": "フィルター",
-        "font_size": "フォントサイズ",
-        "form_data_key": "フォームデータキー",
-        "format": "フォーマット",
-        "go_to_url": "ジャンプリンク",
-        "group_by": "グループ ラベル",
-        "group_layout": "グループのレイアウト",
-        "hidden": "隠れる",
-        "hidden_label": "隠しラベル",
-        "hide_validation_message": "確認情報を非表示にする",
-        "hide_value_label": "隠し値ラベル",
-        "horizontal_alignment": "水平方向の配置",
-        "icon": "アイコン",
-        "image_source": "画像ソース",
-        "img_height": "高い",
-        "img_width": "幅",
-        "index": "索引",
-        "item_background_color": "アイテムの背景色",
-        "items": "アイテム",
-        "key": "キー値",
-        "label": "ラベル",
-        "label_alignment": "整列する",
-        "label_position": "位置",
-        "label_width": "幅（％）",
-        "layout": "レイアウト",
-        "legend_position": "凡例の位置",
-        "link_to_container": "コンテナに関連付けられているか",
-        "links_color": "リンクの色",
-        "loading": "読み込み中",
-        "loop_back_to_start": "リストループ",
-        "loop_start_to_back": "リストループ",
-        "mapped_option": "マッピング オプション",
-        "mapped_value": "マップ値",
-        "max_count": "最大数量",
-        "max_date": "最大日付",
-        "max_length": "最大長",
-        "maximum": "最大値",
-        "method": "方法",
-        "min_date": "最短日",
-        "min_length": "最小の長さ",
-        "minimum": "最小値",
-        "multi_row_selection": "複数行選択",
-        "new_tab": "新しいタブで開く",
-        "only_run_when": "前提条件",
-        "overFlow": "ページめくり方法",
-        "page": "ページ",
-        "pageSize": "1 ページあたりの行数",
-        "pattern": "モデル",
-        "pending": "保留中のノード",
-        "placeholder": "プレースホルダー",
-        "prefix_text": "接頭辞テキスト",
-        "radius": "フィレット",
-        "read_only": "読み取り専用",
-        "regex": "正規表現",
-        "required_field": "必須フィールド",
-        "reset_after_successful_submit": "送信成功後に入力内容をリセット",
-        "router": "ルーティング",
-        "run_script": "スクリプトを実行",
-        "scale_type": "ズームタイプ",
-        "set_router": "ルーティングを設定する",
-        "set_temporary_state": "一時的な状態を設定",
-        "shadow": "影の多い",
-        "show_character_count": "文字数表示",
-        "show_clear_button": "クリアボタンを表示",
-        "show_footer": "表示操作エリア",
-        "show_header": "タイトルエリアを表示",
-        "show_notification": "通知を表示する",
-        "sort": "分類する",
-        "start_date": "開始日",
-        "start_placeholder": "開始日のプレースホルダー",
-        "step_size": "刻み幅",
-        "stroke_width": "ストローク幅",
-        "style": "スタイル",
-        "styles": "スタイル",
-        "submit_form": "フォームを送信",
-        "success": "成功したリクエスト",
-        "suffix_text": "サフィックステキスト",
-        "text": "文章",
-        "text_align": "テキストの配置",
-        "text_size": "文字サイズ",
-        "theme_color": "テーマカラー",
-        "thousand_separator": "桁区切り",
-        "time_format": "時間のフォーマット",
-        "title": "題名",
-        "tooltip": "ヒント",
-        "trail_color": "ストロークの色",
-        "trigger_query": "トリガーリクエスト",
-        "type": "タイプ",
-        "validate_inputs_on_submit": "送信時に入力を検証する",
-        "value": "価値",
-        "value_labels": "寸法",
-        "variant": "スタイル",
-        "vertical_alignment": "垂直方向の配置",
-        "width": "幅",
-        "x_axis_name": "横座標名",
-        "x_axis_title": "X 軸のタイトル",
-        "x_axis_type": "X軸タイプ",
-        "x_axis_value": "X軸",
-        "y_axis_name": "通称",
-        "y_axis_title": "Y 軸のタイトル"
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Decimal place",
+        "decimal_places": "Decimal places",
+        "default_sort_key": "Column",
+        "default_sort_order": "Direction",
+        "default_tab": "Default tab",
+        "default_value": "Default value",
+        "default_views": "Default view",
+        "description": "Description",
+        "direction": "Direction",
+        "disable_submit": "Disable submit",
+        "disabled": "Disabled",
+        "download": "Download",
+        "duration": "Duration",
+        "empty_state": "Empty state",
+        "enable_sorting": "Enable Sorting",
+        "end_data": "End date",
+        "end_placeholder": "End placeholder",
+        "event": "Event",
+        "event_handler": "Event handler",
+        "expansion_method": "Expansion method",
+        "failure": "Failure",
+        "filter": "Filter",
+        "font_size": "Font size",
+        "form_data_key": "Form Data Key",
+        "format": "Format",
+        "go_to_url": "Go to URL",
+        "group_by": "Group by",
+        "group_layout": "Group layout",
+        "hidden": "Hidden",
+        "hidden_label": "Hidden label",
+        "hide_validation_message": "Hide validation message",
+        "hide_value_label": "Hide value label",
+        "horizontal_alignment": "Horizontal alignment",
+        "icon": "Icon",
+        "image_source": "Image source",
+        "img_height": "Height",
+        "img_width": "Width",
+        "index": "Index",
+        "item_background_color": "Item background",
+        "items": "Items",
+        "key": "Key",
+        "label": "Label",
+        "label_alignment": "Alignment",
+        "label_position": "Position",
+        "label_width": "Width(%)",
+        "layout": "Layout",
+        "legend_position": "Legend position",
+        "link_to_container": "Link to a container",
+        "links_color": "Links",
+        "loading": "Loading",
+        "loop_back_to_start": "Loop back to start",
+        "loop_start_to_back": "Loop start to back",
+        "mapped_option": "Mapped Option",
+        "mapped_value": "Mapped Value",
+        "max_count": "Max count",
+        "max_date": "Max date",
+        "max_length": "Max length",
+        "maximum": "Maximum",
+        "method": "Method",
+        "min_date": "Min date",
+        "min_length": "Min Length",
+        "minimum": "Minimum",
+        "multi_row_selection": "Multi-Row Selection",
+        "new_tab": "New tab",
+        "only_run_when": "Only run when",
+        "overFlow": "OverFlow",
+        "page": "Page",
+        "pageSize": "PageSize",
+        "pattern": "Pattern",
+        "pending": "Pending",
+        "placeholder": "Placeholder",
+        "prefix_text": "Prefix text",
+        "radius": "Radius",
+        "read_only": "Read only",
+        "regex": "Regex",
+        "required_field": "Required field",
+        "reset_after_successful_submit": "Reset after successful submit",
+        "router": "Router",
+        "run_script": "Run script",
+        "scale_type": "Scale Type",
+        "set_router": "Set router",
+        "set_temporary_state": "Set temporary state",
+        "shadow": "Shadow",
+        "show_character_count": "Show character count",
+        "show_clear_button": "Show clear button",
+        "show_footer": "Show footer",
+        "show_header": "Show header",
+        "show_notification": "Show notification",
+        "sort": "Sort",
+        "start_date": "Start date",
+        "start_placeholder": "Start placeholder",
+        "step_size": "Step size",
+        "stroke_width": "Stroke width",
+        "style": "Style",
+        "styles": "Styles",
+        "submit_form": "Submit form",
+        "success": "Success",
+        "suffix_text": "Suffix text",
+        "text": "Text",
+        "text_align": "Text align",
+        "text_size": "Text size",
+        "theme_color": "Theme color",
+        "thousand_separator": "Thousand separator",
+        "time_format": "Time format",
+        "title": "Title",
+        "tooltip": "Tooltip",
+        "trail_color": "Trail color",
+        "trigger_query": "Trigger query",
+        "type": "Type",
+        "validate_inputs_on_submit": "Validate inputs on submit",
+        "value": "Value",
+        "value_labels": "Value labels",
+        "variant": "Variant",
+        "vertical_alignment": "Vertical alignment",
+        "width": "Width",
+        "x_axis_name": "X-axis name",
+        "x_axis_title": "X-axis title",
+        "x_axis_type": "X-axis type",
+        "x_axis_value": "X-axis value",
+        "y_axis_name": "Y-axis name",
+        "y_axis_title": "Y-axis title"
       },
       "setter_tooltip": {
-        "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
-        "cascader_data": "各オプションは、値とラベルの 2 つのキーを含む JSON 形式である必要があり、値はカスタマイズできます。配列を使用すると、同じレベルでオプションを作成できます。子属性を追加すると、サブセットを追加できます",
-        "component_default_value": "コンポーネントのデフォルト値。ボックスに JavaScript ステートメントを入力することで、テンプレート構文を使用してデフォルト値を動的に変更できます。",
-        "custom_rule": "ここに検証ルールを入力します。検証ルールは JavaScript で構成する必要があります。",
-        "date_format": "標準化された時刻形式については、[dayJs](https:\/\/day.js.org\/docs\/en\/parse\/string-format) を参照してください。",
-        "default_value": "入力ボックスのデフォルト値。テンプレート構文を使用して JavaScript ステートメントをボックスに入力し、入力ボックスのデフォルト値を動的に変更できます。",
-        "disabled": "コンポーネントを無効にするかどうかを制御します。コンポーネントが無効になっている場合、そのコンポーネントは変更できません。",
-        "disabled_submit": "送信が無効になると、form.submit() メソッドを呼び出したコンポーネントも無効になります。",
-        "download": "ツールバーにダウンロードボタンを表示します。",
-        "filter": "ツールバーにフィルター ボタンを表示します。",
-        "form_data_key": "data 属性を作成するときは、フォーム コンポーネントをラップするキーを指定します。",
-        "hidden": "コンポーネントを非表示にするかどうかを動的に制御します。ここに動的に変化するブール値を入力して、コンポーネントの非表示の状態を変更できます。",
-        "hide_validation_message": "検証入力が間違っている場合、エラー メッセージを非表示にします。 JavaScript を記述することで、非表示にするかどうかを動的に変更できます。",
-        "input_default_value": "入力ボックスのデフォルト値。テンプレート構文を使用して JavaScript ステートメントをボックスに入力し、入力ボックスのデフォルト値を動的に変更できます。",
-        "loading": "コンポーネントが読み込まれるかどうかを制御します。",
-        "map_data_option": "数値またはキー値のオブジェクトを使用してオプションをマップします。データ ソース内のすべてのアイテムは、すべてのオプションにマップされます。",
-        "mapped_value": "{{ currentRow }} を使用して、現在の行のデータにアクセスします。たとえば、「コスト」列と「クリック数」列から計算された「クリック単価」は次のようになります。\n {{ currentRow.cost \/ currentRow.clickTimes }}",
-        "multi_row_selection": "{{table.selectedRow.data}}を使用してデータにアクセスできます。複数行の選択が有効になっている場合は、次のように使用できる配列が返されます: {{ table1.selectedRow.data[0].email }}}。複数行選択を有効にしていない場合は、{{ table1.selectedRow.data.email }} のように使用できるオブジェクトが返されます。",
-        "only_run_when": "このイベントが実行される前に満たす必要がある条件をここに入力します。",
-        "placeholder": "入力に値がない場合に表示するメッセージ。",
-        "progress_percentage": "プログレス バーの値の範囲は 0 ～ 100 です。",
-        "read_only": "コンポーネントが読み取り専用かどうかを制御します。読み取り専用コンポーネントのコンテンツを選択してフォーカスすることはできますが、変更することはできません。",
-        "required_field": "スイッチがオンになった後、入力ボックスで検証を実行します。",
-        "switch_default_value": "スイッチの初期状態を設定します。 JavaScript を使用して、スイッチの初期状態を動的に変更できます。",
-        "text_value": "マークダウン モードまたはプレーン テキスト モードで値を入力することを選択できます。リンクは Markdown モードでのみ入力できます。",
-        "timeline_direction": "時間軸の方向を切り替えます。",
-        "timeline_pending": "保留中のノードを表示するかどうか。",
-        "tooltip": "ユーザーは入力ボックスにプロンプトの内容を入力でき、マウスをコンポーネントに置くとプロンプト情報が表示され、Markdown 形式がサポートされます。"
+        "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
+        "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
+        "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
+        "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
+        "date_format": "A valid date format string. See [dayJS](https:\/\/day.js.org\/docs\/en\/parse\/string-format).",
+        "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
+        "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
+        "download": "Show download button in toolbar.",
+        "filter": "Show filter button in toolbar.",
+        "form_data_key": "Specify a key of a wrapping form component when constructing the data attribute.",
+        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
+        "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
+        "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "loading": "Whether the component should show a loading indicator.",
+        "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
+        "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost \/ currentRow.clickTimes }}",
+        "multi_row_selection": "Use {{ table.selectedRow.data }} to access data. If you enable Multi-Row Selection, it will return an array, you can use it like this: {{ table1.selectedRow.data[0].email }} . And if you don't enable Multi-Row Selection, it will return an object, you can use it like this {{ table1.selectedRow.data.email }}.",
+        "only_run_when": "Conditions that must be met before the event executes.",
+        "placeholder": "The value will be shown when the input field is empty.",
+        "progress_percentage": "The percentage value is between 0 and 100.",
+        "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannot be modified.",
+        "required_field": "Valid only when the switch is on.",
+        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
+        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
+        "timeline_direction": "Change the direction of the timeline.",
+        "timeline_pending": "Whether to show a node with a pending status.",
+        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported."
       },
-      "tab_title": "属性",
-      "unselected_tip1": "コンポーネントが選択されていません。",
-      "unselected_tip2": "コンポーネントをクリックして選択してください。"
+      "tab_title": "Inspect",
+      "unselected_tip1": "No components selected.",
+      "unselected_tip2": "Click on a component to select it."
     },
     "page": {
       "label_name": {
-        "add": "新築",
-        "body": "本体",
-        "default_view": "デフォルトビュー",
-        "edit_view": "ビューを編集",
-        "footer": "フッター",
-        "header": "ヘッダ",
-        "key": "キー値",
-        "left_panel": "左パネル",
-        "preset": "プリセット",
-        "right_panel": "右パネル",
-        "set_as_homepage": "ホームページとして設定",
-        "show_fold_icon": "折りたたみボタンを表示",
-        "view_path": "ビューパス",
-        "views": "見る",
-        "width": "幅"
+        "add": "Add",
+        "body": "Body",
+        "default_view": "Default view",
+        "edit_view": "Edit view",
+        "footer": "Footer",
+        "header": "Header",
+        "key": "Key",
+        "left_panel": "Left panel",
+        "preset": "Preset",
+        "right_panel": "Right panel",
+        "set_as_homepage": "Set as homepage",
+        "show_fold_icon": "Show fold icon",
+        "view_path": "View path",
+        "views": "Views",
+        "width": "Width"
       },
       "model_tips": {
-        "cancel_button": "キャンセル",
-        "change_layout_message": "レイアウトを変更するとすべてのデータが消去されます。この操作は元に戻せません。確認してください",
-        "delete_section_message": "非表示にした後、この部分のデータは消去されます。この操作を元に戻すことはできません。確認してください",
-        "ok_button": "確認"
+        "cancel_button": "Cancel",
+        "change_layout_message": "After changing the layout, all data will be cleared. This operation can't be recovered, please confirm",
+        "delete_section_message": "After hiding, the data in this section will be cleared. This operation can't be recovered, please confirm",
+        "ok_button": "Confirm"
       },
       "panel_bar_title": {
-        "basic": "ベース",
-        "frame": "キャンバス"
+        "basic": "BASIC",
+        "frame": "FRAME"
       },
-      "tab_title": "ページ",
+      "tab_title": "Page",
       "tooltips": {
-        "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
-        "view_path": "このビューにアクセスするための文字列スペル example.com\/app\/page\/"
+        "show_fold_icon": "Show a button to collapse or expand the panel",
+        "view_path": "A string after example.com\/app\/page\/ to access this view"
       }
     },
     "validate_message": {
-      "email": "有効なメールアドレスを入力してください",
-      "max_length": "{{数字}}文字まで入力してください",
-      "max_value": "{{数値}}以下の値を入力してください",
-      "min_length": "少なくとも {{ 数字 }} 文字を入力してください",
-      "min_value": "{{数値}}以上の値を入力してください",
-      "regex": "必要なフォーマットに入力してください",
-      "required": "必要",
-      "url": "有効なURLを入力してください"
+      "email": "Please enter a valid email address",
+      "max_length": "Must be no more than {{ number }} characters",
+      "max_value": "Must be less than {{ number }}",
+      "min_length": "Must be at least {{ number }} characters",
+      "min_value": "Must be greater than {{ number }}",
+      "regex": "Please match the requested format",
+      "required": "This field is required",
+      "url": "Please enter a valid URL"
     },
     "widget_picker": {
-      "empty_tip": "申し訳ありませんが、検索結果はありません",
-      "search_placeholder": "探す",
+      "empty_tip": "Sorry, no search results",
+      "search_placeholder": "search",
       "sessions": {
-        "calendar": "カレンダー コンポーネント",
-        "commonly": "共通コンポーネント",
-        "container": "コンテナ クラス コンポーネント",
-        "data": "データ クラス コンポーネント",
-        "inputs": "入力クラス コンポーネント",
-        "navigation": "ナビゲーション",
-        "presentation": "クラス コンポーネントの表示",
-        "selects": "クラスコンポーネントを選択"
+        "calendar": "Calendar inputs",
+        "commonly": "Commonly components",
+        "container": "Container and form",
+        "data": "Data",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Presentation",
+        "selects": "Select inputs"
       },
-      "tab_title": "コンポーネント"
+      "tab_title": "Insert"
     }
   },
-  "exit_preview": "プレビューを終了",
-  "freeze_collision": "フリーズ衝突",
-  "freeze_messages": "キャンバスが固定され、コンポーネントをコンテナにドラッグしたり、コンテナからドラッグしたりできます。",
-  "freeze_tips": "キャンバスがフリーズしています。クリックしてフリーズを解除してください。",
-  "link_copied": "リンクをコピーしました",
-  "network_error": "ネットワーク異常",
-  "not_online_tips": "ネットワークが切断されています。このデバイスのネットワークを確認してください",
-  "preview": "プレビュー",
-  "remove_fail": "削除できませんでした",
-  "rename": "名前を変更",
-  "resources": "資源",
-  "retry": "リトライ",
-  "save": "保存",
+  "exit_preview": "Exit Preview",
+  "freeze_collision": "Freeze collision",
+  "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
+  "freeze_tips": "The canvas is frozen. Click here to unfreeze it.",
+  "link_copied": "Link Copied",
+  "network_error": "Network disconnected. Please check this device's network",
+  "not_online_tips": "Network disconnected. Please check this device's network",
+  "preview": "Preview",
+  "remove_fail": "Failed to remove",
+  "rename": "Rename",
+  "resources": "Resources",
+  "retry": "Retry",
+  "save": "Save",
   "setting": {
     "account": {
-      "email": "郵便",
-      "empty_username": "ユーザー名を空にすることはできません",
-      "error_username": "ユーザー名は 3 ～ 15 文字である必要があります",
-      "save": "保存",
-      "save_fail": "保存に失敗しました",
-      "title": "アカウント",
-      "username": "ユーザー名"
+      "email": "Email",
+      "empty_username": "Please enter your username",
+      "error_username": "Username must be 3~15 characters",
+      "save": "Save Changes",
+      "save_fail": "Failed to save",
+      "title": "ACCOUNT",
+      "username": "Username"
     },
     "other": {
-      "language": "言語",
-      "save": "保存",
-      "title": "設定"
+      "language": "Language",
+      "save": "Save Changes",
+      "title": "SETTING"
     },
     "password": {
-      "confirm_password": "新しいパスワードを確認する",
-      "current_password": "以前のパスワード",
-      "empty_password": "パスワードを空白にすることはできません",
-      "error_format_password": "パスワードは 6 ～ 20 文字である必要があります",
-      "error_match_password": "新しいパスワードが一致しません。もう一度お試しください",
-      "error_password_has_empty": "パスワードにはスペースを含めることはできません",
-      "error_validate_password": "パスワードには、数字、文字、句読点のみを含めることができます",
-      "new_password": "新しいパスワード",
-      "submit_button": "参加する",
-      "title": "パスワード"
+      "confirm_password": "Confirmation password",
+      "current_password": "Old password",
+      "empty_password": "Please enter your password",
+      "error_format_password": "Password must be 6~20 characters",
+      "error_match_password": "Your password and confirmation password do not match",
+      "error_password_has_empty": "Password cannot include spaces",
+      "error_validate_password": "Your password can only contain numbers, letters and punctuations",
+      "new_password": "New password",
+      "submit_button": "Submit",
+      "title": "PASSWORD"
     }
   },
-  "share": "シェア",
+  "share": "Share",
   "status": {
     "403": {
-      "des": "アクセスが拒否されました"
+      "des": "Access denied"
     },
     "404": {
-      "again": "リフレッシュする",
-      "des": "アクセスしているページは存在しません"
+      "again": "Refresh",
+      "des": "It seems that the page you were looking for could not be found."
     },
     "500": {
-      "des": "リクエストに失敗しました。しばらくしてからもう一度お試しください。"
+      "des": "Oops, something went wrong. Please try again later."
     },
-    "back": "ホームページに戻ります"
+    "back": "Back to homepage"
   },
-  "title": "エラ クラウドへようこそ",
-  "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
+  "title": "Welcome to illa",
+  "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
   "user": {
-    "description": "開発者専用のオープンソースのローコード プラットフォーム。",
+    "description": "An open-source low-code platform for developers.",
     "forgot_password": {
       "actions": {
-        "reset": "リセット",
-        "send": "確認コードを取得する"
+        "reset": "Reset",
+        "send": "Send code"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "メール形式が正しくありません",
-          "registered": "このメールアドレスは登録されていません",
-          "require": "電子メールを空にすることはできません"
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account.",
+          "require": "Please enter your email"
         },
         "newPassword": {
-          "require": "パスワードを空白にすることはできません"
+          "require": "Please enter your password"
         },
         "verification_code": {
-          "expired": "確認コードの有効期限が切れています",
-          "invalid": "確認コード エラー",
-          "require": "確認コードを入力してください"
+          "expired": "Verification code expired",
+          "invalid": "Invalid verification code",
+          "require": "Please enter verification code"
         }
       },
       "fields": {
-        "email": "郵便",
-        "newPassword": "新しいパスワード",
-        "verification_code": "検証コード"
+        "email": "Email",
+        "newPassword": "New Password",
+        "verification_code": "Verification code"
       },
       "placeholder": {
-        "email": "メールアドレスを入力してください",
-        "verification_code": "確認コードを入力してください"
+        "email": "Enter your email",
+        "verification_code": "Please enter verification code"
       },
-      "subtitle": "戻る ログイン",
+      "subtitle": "Back to sign in",
       "tips": {
-        "fail": "パスワードのリセットに失敗しました",
-        "fail_sent": "確認コードを送信できませんでした",
-        "success": "パスワードのリセットが成功しました",
-        "verification_code": "確認コードが送信されました"
+        "fail": "Failed to reset password",
+        "fail_sent": "Failed to send verification code",
+        "success": "Reset password successfully",
+        "verification_code": "Verification code sent"
       },
-      "title": "パスワードを再設定する"
+      "title": "Reset Password"
     },
     "password": {
-      "placeholder": "パスワードを入力してください（6文字以上）"
+      "placeholder": "Enter your new password(at least 6 characters)"
     },
     "sign_in": {
       "actions": {
-        "login": "ログイン"
+        "login": "Sign in"
       },
       "description": {
-        "forgot_password": "パスワードをお忘れですか？",
-        "policy": "[ログイン] をクリックして、 < 0 >サービス利用規約< \/0 >および< 1 >プライバシー規約< \/1 >を読み、同意したことを示します。",
-        "register": "新しいユーザー？ < 0 >アカウント登録< \/0 >"
+        "forgot_password": "Forgot Password?",
+        "policy": "By clicking Sign in, I agree to <0>Privacy Policy<\/0> and <1>terms<\/1>",
+        "register": "New user? <0>Create an account<\/0>"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "メールのフォーマットが正しくありません",
-          "registered": "このメールアドレスは登録されていません",
-          "require": "電子メールを空にすることはできません"
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account.",
+          "require": "Please enter your email"
         },
         "password": {
-          "incorrect": "正しいアカウント パスワードを入力してください",
-          "locked": "5回以上間違ったパスワードを入力すると、アカウントは1時間ロックされます",
-          "min_length": "パスワードは最低でも6文字必要です",
-          "require": "パスワードを空白にすることはできません"
+          "incorrect": "Incorrect email or password",
+          "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
+          "min_length": "The password must be at least 6 characters",
+          "require": "Please enter password"
         }
       },
       "fields": {
-        "email": "郵便",
-        "password": "パスワード"
+        "email": "Email",
+        "password": "Password"
       },
       "placeholder": {
-        "email": "メールアドレスを入力してください"
+        "email": "Enter your email"
       },
       "tips": {
-        "fail": "ログインに失敗しました",
-        "success": "ログイン成功"
+        "fail": "Failed to sign in",
+        "success": "Signed in successfully"
       },
-      "title": "お帰りなさい"
+      "title": "Welcome back"
     },
     "sign_up": {
       "actions": {
-        "create": "アカウントを作成する",
-        "send": "確認コードを取得する"
+        "create": "Create Account",
+        "send": "Send code"
       },
       "description": {
-        "login": "すでにアカウントをお持ちですか？ < 0 >ログイン< \/0 >",
-        "policy": "[今すぐ登録] をクリックして、 < 0 >サービス利用規約< \/0 >および< 1 >プライバシー規約< \/1 >を読み、同意したことを示します。",
-        "subscribe": "ILLAのニュースを購読する"
+        "login": "Already have an account? <0>Sign in<\/0>",
+        "policy": "By clicking Create Account, I agree to <0>Privacy Policy<\/0> and <1>terms<\/1>",
+        "subscribe": "I am willing to receive the updates and news about ILLA"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "メールのフォーマットが正しくありません",
-          "registered": "このメールはすでに登録されています。ログインしてください",
-          "require": "電子メールを空にすることはできません"
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "An account with that email address already exists.",
+          "require": "Please enter your email"
         },
         "password": {
-          "require": "パスワードを空白にすることはできません"
+          "require": "Please enter password"
         },
         "username": {
-          "length": "ユーザー名は 3 ～ 15 文字である必要があります",
-          "require": "ユーザー名を空にすることはできません"
+          "length": "The username must be 3~15 characters",
+          "require": "Please enter username"
         },
         "verification_code": {
-          "expired": "確認コードの有効期限が切れています",
-          "invalid": "確認コード エラー",
-          "require": "確認コードを入力してください"
+          "expired": "Verification code expired",
+          "invalid": "Invalid verification code",
+          "require": "Please enter verification code"
         }
       },
       "fields": {
-        "email": "郵便",
-        "password": "パスワード",
-        "username": "ユーザー名",
-        "verification_code": "検証コード"
+        "email": "Email",
+        "password": "Password",
+        "username": "Username",
+        "verification_code": "Verification code"
       },
       "placeholder": {
-        "email": "メールアドレスを入力してください",
-        "username": "ユーザー名を入力してください",
-        "verification_code": "確認コードを入力してください"
+        "email": "Enter your email",
+        "username": "Enter your username",
+        "verification_code": "Please enter verification code"
       },
       "tips": {
-        "fail": "登録に失敗しました",
-        "fail_sent": "確認コードを送信できませんでした",
-        "success": "登録完了",
-        "verification_code": "確認コードが送信されました"
+        "fail": "Failed to sign up",
+        "fail_sent": "Failed to send verification code",
+        "success": "Signed up successfully",
+        "verification_code": "Verification code sent"
       },
-      "title": "登録"
+      "title": "Sign up"
     }
   },
   "widget": {
     "bar_progress": {
-      "name": "バー進行状況バー"
+      "name": "Bar Progress"
     },
     "button": {
-      "default_text": "ボタン",
-      "name": "ボタン"
+      "default_text": "Button",
+      "name": "Button"
     },
     "cascader": {
-      "name": "カスケード選択"
+      "name": "Cascader"
     },
     "chart": {
-      "name": "チャート"
+      "name": "Chart"
     },
     "check_box_group": {
-      "name": "チェックボックスグループ"
+      "name": "Checkbox Group"
     },
     "circle_progress": {
-      "name": "円形の進行状況バー"
+      "name": "Circle Progress"
     },
     "container": {
-      "empty": "<keyPress> D <\/keyPress>または<keyPress> K <\/keyPress>を押したまま、コンポーネントをコンテナにドラッグします",
-      "key_duplicated": "キー値が重複しています。エラーを避けるために一意の値を使用してください。",
-      "name": "容器"
+      "empty": "Press <keyPress>D<\/keyPress> or <keyPress>K<\/keyPress> and drag components here",
+      "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
+      "name": "Container"
     },
     "date": {
-      "name": "日付ピッカー"
+      "name": "Date"
     },
     "date_range": {
-      "name": "日付範囲ピッカー"
+      "name": "Date range"
     },
     "date_time": {
-      "name": "日時ピッカー",
-      "placeholder": "時間を選択してください"
+      "name": "Date Time",
+      "placeholder": "Select time"
     },
     "divider_progress": {
-      "name": "境界線"
+      "name": "Divider"
     },
     "editable_text": {
-      "name": "編集可能なテキスト"
+      "name": "Editable Text"
     },
     "form": {
-      "name": "形"
+      "name": "Form"
     },
     "image": {
-      "name": "写真"
+      "name": "Image"
     },
     "input": {
-      "name": "入力ボックス"
+      "name": "Input"
     },
     "list": {
-      "doc1": "{{ currentItem }} を使用して、現在のアイテムのデータにアクセスします。たとえば、「userName」に基づいてリスト コンポーネントのテキスト コンポーネントの値を設定するには、{{ currentItem.userName }}} のようにします。",
-      "doc2": "{{list.selectedItem.data}}を使用して、リスト内の選択された項目のデータにアクセスします。たとえば、リスト選択項目の「ユーザー名」に従って、リスト コンポーネントの外側にあるテキスト コンポーネントの値を設定します: {{list.selectedItem.userName }}}。",
-      "name": "リスト"
+      "doc1": "Use {{ currentItem }} to access the data of current item. For example, to set value of the text component which is in list component based on \"userName\": {{ currentItem.userName }}",
+      "doc2": "Use {{list.selectedItem.data}} to access the data of selected item in list component. For example, to set the value of the text component which is out of list component based on \"username\" of the selected item in the list: {{ list.selectedItem.userName }}",
+      "name": "List"
     },
     "menu": {
-      "name": "メニュー"
+      "name": "Menu"
     },
     "number_input": {
-      "name": "数字入力ボックス"
+      "name": "Number Input"
     },
     "public": {
-      "left": "左",
-      "right": "右",
+      "left": "Left",
+      "right": "Right",
       "select_options": {
-        "manual": "自動",
-        "mapped": "マニュアル"
+        "manual": "Manual",
+        "mapped": "Mapped"
       },
-      "top": "優れました"
+      "top": "Top"
     },
     "radio_button": {
-      "name": "ボタンラジオ"
+      "name": "Radio Button"
     },
     "radio_group": {
-      "name": "ラジオグループ"
+      "name": "Radio group"
     },
     "rate": {
-      "name": "スコア"
+      "name": "Rate"
     },
     "select": {
-      "name": "セレクタ"
+      "name": "Select"
     },
     "switch": {
-      "name": "スイッチ"
+      "name": "Switch"
     },
     "table": {
-      "ascend": "昇順",
-      "descend": "降順",
-      "name": "シート",
-      "pagination": "ページをめくる",
-      "scroll": "スクロール"
+      "ascend": "Asc",
+      "descend": "Desc",
+      "name": "Table",
+      "pagination": "Pagination",
+      "scroll": "Scroll"
     },
     "tabs": {
-      "name": "タブ"
+      "name": "Tabs"
     },
     "text": {
-      "default_value": "👋こんにちは！",
-      "name": "文章",
-      "text_model": "平文"
+      "default_value": "👋 Hello!",
+      "name": "Text",
+      "text_model": "Plain text"
     },
     "timeline": {
       "horizontal": "水平",
-      "name": "タイムライン",
-      "vertical": "肖像画"
+      "name": "Timeline",
+      "vertical": "vertical"
     }
   }
 }
