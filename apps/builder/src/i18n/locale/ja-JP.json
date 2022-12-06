@@ -12,7 +12,7 @@
   "collision_message": "D または K キーを押したまま、コンポーネントをコンテナーにドラッグします。",
   "create_fail": "作成に失敗しました",
   "create_new": "作成",
-  "create_new_app": "プロジェクトを作成",
+  "create_new_app": "作成",
   "created_at": "ビルトイン",
   "dashboard": {
     "app": {
