@@ -1,154 +1,154 @@
 {
-  "Logout": "Log out",
-  "Setting": "Setting",
-  "apps": "Apps",
-  "back": "Back",
+  "Logout": "ログアウト",
+  "Setting": "設定",
+  "apps": "アプリ",
+  "back": "戻る",
   "btn": {
-    "choose_file": "Choose a file"
+    "choose_file": "ファイルを選択"
   },
-  "change_fail": "Failed to change",
-  "change_success": "Change successfully",
-  "collision_message": "Press D or K  and drag the component into container",
-  "create_fail": "Failed to create",
-  "create_new": "Create New",
+  "change_fail": "変更に失敗しました",
+  "change_success": "変更が完了しました",
+  "collision_message": "D または K を押してコンポーネントをコンテナにドラッグします",
+  "create_fail": "作成に失敗しました",
+  "create_new": "新規作成",
   "create_new_app": "Create New",
-  "created_at": "Created at",
+  "created_at": "作成日時",
   "dashboard": {
     "app": {
-      "all_apps": "All Apps",
-      "create_app": "Create App",
-      "duplicate_fail": "Failed to duplicate",
-      "duplicate_placeholder": "Enter your app name here",
-      "edited_time": "Edited at {{ time }} by {{ user }}",
-      "name_empty": "Please enter a name",
-      "name_existed": "Name already taken",
-      "rename_app": "Rename App",
-      "rename_fail": "Failed to rename",
-      "rename_success": "Renamed successfully",
-      "trash_failure": "Failed to delete",
-      "trash_success": "Deleted successfully"
+      "all_apps": "すべてのアプリ",
+      "create_app": "アプリを作成",
+      "duplicate_fail": "複製に失敗しました",
+      "duplicate_placeholder": "アプリ名を入力してください",
+      "edited_time": "{{ time }} によって {{ user }} に編集されました",
+      "name_empty": "名前を入力してください",
+      "name_existed": "名前は既に使用されています",
+      "rename_app": "アプリの名前を変更",
+      "rename_fail": "名前を変更できませんでした",
+      "rename_success": "名前を変更しました",
+      "trash_failure": "削除に失敗",
+      "trash_success": "削除に成功しました"
     },
     "common": {
-      "cancel": "Cancel",
-      "delete": "Delete",
+      "cancel": "キャンセル",
+      "delete": "削除",
       "delete_cancel_text": "Cancel",
-      "delete_content": "This will break Apps and Query Library queries that use this resource",
+      "delete_content": "このリソースを使用するアプリとクエリライブラリのクエリが壊れます",
       "delete_ok_text": "Delete",
-      "delete_title": "Are you sure?",
-      "error_button": "Retry",
-      "error_description": "There is a problem with your operation.",
-      "error_title": "Error"
+      "delete_title": "よろしいですか？",
+      "error_button": "再試行する",
+      "error_description": "あなたの操作に問題があります。",
+      "error_title": "エラー"
     },
     "resource": {
       "create_resource": "Create New",
-      "created": "Created",
-      "dbname": "Database Name",
+      "created": "作成済み",
+      "dbname": "データベース名",
       "delete_fail": "Failed to delete",
       "delete_success": "Deleted successfully",
-      "resource_name": "Name",
-      "resource_type": "Type",
-      "save_fail": "Failed to save",
-      "save_success": "Save successfully",
-      "test_fail": "Failed to test",
-      "test_success": "Test successfully"
+      "resource_name": "名前",
+      "resource_type": "タイプ",
+      "save_fail": "保存に失敗しました",
+      "save_success": "正常に保存しました",
+      "test_fail": "テストに失敗しました",
+      "test_success": "テストに成功しました"
     }
   },
   "dayjs": {
-    "just_now": "Just now"
+    "just_now": "現在"
   },
-  "deploy": "Deploy",
+  "deploy": "デプロイ",
   "description": {
-    "part1": "This is an example without namespaces."
+    "part1": "これは名前空間のない例です。"
   },
-  "dont_need_save": "ILLA will continue to try auto-saving your work.",
+  "dont_need_save": "ILLAはあなたの仕事を自動保存しようとし続けます。",
   "duplicate": "Duplicate",
-  "edit": "Edit",
-  "edit_at": "Edited at",
-  "edit_failed": "Failed to save, please check your network.",
-  "edit_success": "Edited successfully",
+  "edit": "編集",
+  "edit_at": "編集日時",
+  "edit_failed": "保存に失敗しました。ネットワークを確認してください。",
+  "edit_success": "編集に成功しました",
   "editor": {
     "action": {
       "action_list": {
         "action_generator": {
           "btns": {
             "back": "Back",
-            "create_action": "Create Action",
-            "new_resource": "New Resource"
+            "create_action": "アクションを作成",
+            "new_resource": "新しいリソース"
           },
           "selector": {
-            "title": "Select action type"
+            "title": "アクションの種類を選択"
           },
           "title": {
-            "choose_resource": "Choose a resource "
+            "choose_resource": "リソースを選択 "
           }
         },
         "btn": {
-          "close": "close",
-          "new": "New"
+          "close": "閉じる",
+          "new": "新規作成"
         },
         "contextMenu": {
           "delete": "Delete",
           "duplicate": "Duplicate",
-          "rename": "Rename"
+          "rename": "名前の変更"
         },
         "message": {
-          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
-          "failed": "Failed to connect to server",
-          "load_action_list_fail": "Failed to get Action list: {{message}}",
-          "load_resource_fail": "Failed to get resource list: {{message}}",
-          "name_already_exist": "Already exists",
-          "please_input_name": "Please input name",
-          "success_created": "Successfully created",
-          "success_deleted": "Successfully deleted",
-          "success_saved": "Successfully saved",
-          "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter"
+          "confirm_switch": "クエリを保存しませんでした。変更を破棄してもよろしいですか？",
+          "failed": "サーバーへの接続に失敗しました",
+          "load_action_list_fail": "アクションリストの取得に失敗しました: {{message}}",
+          "load_resource_fail": "リソースリストの取得に失敗しました: {{message}}",
+          "name_already_exist": "既に存在します",
+          "please_input_name": "名前を入力してください",
+          "success_created": "作成に成功しました",
+          "success_deleted": "削除されました",
+          "success_saved": "正常に保存しました",
+          "valid_name": "文字、数字、'_' または '$' のみを含めることができます。'_' または文字で始まります。"
         },
         "placeholder": {
-          "search": "search"
+          "search": "検索"
         },
         "runtime": {
-          "backend": "Backend",
-          "execute_resource": "execute resource",
+          "backend": "バックエンド",
+          "execute_resource": "リソースを実行",
           "frontend": "Frontend",
-          "handle_response": "handle response",
-          "post_processing": "post processing",
-          "prepare_query": "Prepare query",
-          "response_size": "Response size",
-          "total": "Total",
-          "transfer_data": "transfer data",
-          "transformer": "transformer"
+          "handle_response": "レスポンスの処理",
+          "post_processing": "ポストプロセス",
+          "prepare_query": "クエリの準備",
+          "response_size": "応答サイズ",
+          "total": "合計",
+          "transfer_data": "データの転送",
+          "transformer": "トランス"
         },
         "tips": {
-          "empty": "Add an action to begin working with data from a connected resource.",
-          "not_found": "No search results"
+          "empty": "接続されたリソースからのデータを扱うアクションを追加します。",
+          "not_found": "検索結果がありません"
         },
-        "title": "Action List"
+        "title": "アクションリスト"
       },
       "form": {
         "btn": {
           "back": "Back",
-          "save_changes": "Save Resource",
-          "test_connection": "Test Connection"
+          "save_changes": "リソースを保存",
+          "test_connection": "接続をテスト"
         },
-        "required": "This is required",
+        "required": "これは必須項目です",
         "title": {
-          "api": "APIs",
-          "configure": "Configure {{ name }}",
-          "database": "DATABASES",
-          "select": "Select Resource Type"
+          "api": "API",
+          "configure": "{{ name }} を設定",
+          "database": "データ",
+          "select": "リソースタイプの選択"
         },
         "validate": {
-          "required": "{name} is required"
+          "required": "{name} が必要です"
         }
       },
       "panel": {
         "btn": {
-          "disable": "Disable",
-          "enable": "Enable",
+          "disable": "無効",
+          "enable": "有効にする",
           "new": "New",
-          "run": "Run",
-          "save": "Save",
-          "save_and_run": "Save & Run",
+          "run": "実行",
+          "save": "保存",
+          "save_and_run": "保存して実行",
           "save_fail": "Failed to save"
         },
         "elastic": {
@@ -159,10 +159,10 @@
           "query": "クエリ"
         },
         "label": {
-          "event_handler": "Event Handler",
-          "failure": "Failure",
-          "resource": "Resource",
-          "success": "Success",
+          "event_handler": "イベントハンドラー",
+          "failure": "失敗",
+          "resource": "リソース",
+          "success": "成功",
           "transformer": "トランス"
         },
         "menu": {
@@ -172,7 +172,7 @@
           }
         },
         "mongodb": {
-          "action_type": "アクションタイプ",
+          "action_type": "Action Type",
           "aggregation": "アグリゲーション",
           "collection": "コレクション",
           "document": "ドキュメント",
@@ -182,71 +182,71 @@
           "operations": "操作",
           "options": "オプション",
           "projection": "投影図",
-          "query": "クエリ",
+          "query": "Query",
           "skip": "スキップ",
           "sort_by": "並び替え",
           "update": "更新"
         },
         "option": {
           "resource": {
-            "new": "Create a new resource"
+            "new": "新しいリソースを作成"
           },
           "trigger": {
-            "manually": "Run action only when manually triggered",
-            "on_change": "Run action automatically when inputs change"
+            "manually": "手動でトリガーした場合のみアクションを実行",
+            "on_change": "入力が変更されたときに自動的にアクションを実行"
           }
         },
         "s3": {
-          "action_type": "アクションタイプ",
-          "bucket_name": "Bucket name",
-          "content_type": "Content-Type",
-          "delimiter": "Delimiter",
+          "action_type": "Action Type",
+          "bucket_name": "バケット名",
+          "content_type": "コンテンツタイプ",
+          "delimiter": "区切り文字",
           "error": {
-            "max_file": "The size of file can't exceed 5M."
+            "max_file": "ファイルのサイズは5Mを超えることはできません。"
           },
-          "expiry_duration_of_signed_url": "Expiry Duration of Signed URL(Minutes)",
-          "generate_signed_url": "Generate Signed URL",
-          "max_keys": "Max keys",
-          "object_key": "Object key",
-          "object_key_list": "Object key list",
+          "expiry_duration_of_signed_url": "署名済みURLの有効期間 (分)",
+          "generate_signed_url": "署名済みURLを生成",
+          "max_keys": "最大キー",
+          "object_key": "オブジェクトキー",
+          "object_key_list": "オブジェクトキーリスト",
           "placeholder": {
             "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
             "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.t\"]}}",
             "object_name": "export.csv",
             "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
           },
-          "prefix_to_filter_reseults": "Prefix to filter results",
+          "prefix_to_filter_reseults": "検索結果をフィルタするためのプレフィックス",
           "tips": {
-            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names.",
-            "delimiter": "A delimiter is a character you use to group keys."
+            "max_keys": "レスポンスに返されるキーの最大数を設定します。デフォルトでは、アクションは最大1,000のキー名を返します。",
+            "delimiter": "区切り文字は、キーをグループ化するために使用する文字です。"
           },
-          "upload_data": "Upload data",
-          "upload_data_list": "Upload data list",
-          "upload_object_name": "Upload object name",
-          "upload_object_name_list": "Upload object name list"
+          "upload_data": "データをアップロード",
+          "upload_data_list": "データリストをアップロード",
+          "upload_object_name": "オブジェクト名をアップロード",
+          "upload_object_name_list": "オブジェクト名リストをアップロード"
         },
         "smtp": {
-          "from_email": "From email",
-          "set_replay_email": "Set Reply-To email",
-          "replay_email": "Reply-to email",
-          "to_email": "To email(s)",
-          "bcc_email": "Bcc email(s)",
+          "from_email": "メールから",
+          "set_replay_email": "返信先メールアドレスを設定",
+          "replay_email": "返信先メールアドレス",
+          "to_email": "宛先メールアドレス",
+          "bcc_email": "Bcc のメールアドレス",
           "cc_email": "Cc email(s)",
-          "subject": "Subject",
-          "body": "本文",
-          "attachment": "Attachment(s)",
-          "use_html": "Use HTML",
-          "use_raw": "Use raw text",
+          "subject": "件名",
+          "body": "Body",
+          "attachment": "添付ファイル",
+          "use_html": "HTMLを使用",
+          "use_raw": "未加工テキストを使用",
           "placeholder": {
-            "emails": "Use commas to separate emails. i.e. {{[\"A\", \"B\"]}}",
+            "emails": "コンマを使用してメールを分けます。例： {{[\"A\", \"B\"]}}",
             "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
           },
           "tips": {
-            "port": "Some ISPs may block port 25.If the connection fails, please change the \nport."
+            "port": "一部の ISP は、ポート 25 をブロックすることがあります。接続に失敗した場合は、 \nポートを変更してください。"
           }
         },
         "tips": {
-          "transformer": "Enable transformers to transform the result of the query to a different format."
+          "transformer": "クエリの結果を別のフォーマットに変換するためにトランスフォーマーを有効にします。"
         },
         "error": {
           "max_file": "The size of file can't exceed 5M."
@@ -254,56 +254,56 @@
       },
       "resource": {
         "card": {
-          "coming_soon": "Coming Soon"
+          "coming_soon": "近日公開"
         },
         "db": {
           "label": {
-            "ca_certificate": "CA Certificate",
-            "client_certificate": "Client Certificate",
-            "client_key": "Client Key",
-            "config_type": "Config Type",
-            "connect_type": "Connect Type",
-            "connection_format": "Connection format",
-            "connection_string": "Connection String",
-            "database": "Database",
-            "database_index": "Database Index",
+            "ca_certificate": "CA 証明書",
+            "client_certificate": "クライアント証明書",
+            "client_key": "クライアントキー",
+            "config_type": "設定タイプ",
+            "connect_type": "接続タイプ",
+            "connection_format": "接続フォーマット",
+            "connection_string": "接続文字列",
+            "database": "データベース",
+            "database_index": "データベースインデックス",
             "hostname": "Hostname",
-            "hostname_port": "Hostname/Port",
-            "hosturl": "Host Url",
+            "hostname_port": "ホスト名/ポート",
+            "hosturl": "ホスト Url",
             "mongodb_connection_dns_seed_list": "DNSシードリスト接続",
             "mongodb_connection_standard": "標準接続",
             "mongodb_ssl_ca": "CA Cert",
             "mongodb_ssl_client": "Client Cert and Key",
             "name": "Name",
-            "port": "Port",
-            "private_key": "Private Key",
-            "ssl_options": "SSL options",
-            "username_password": "Username/Password"
+            "port": "ポート",
+            "private_key": "プライベートキー",
+            "ssl_options": "SSL オプション",
+            "username_password": "ユーザー名/パスワード"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
-            "database_index": "default 0",
+            "database_index": "デフォルト 0",
             "hostname": "Hostname",
-            "hosturl": "i.e. https://example.com",
+            "hosturl": "例: https://example.com",
             "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "name": "「ユーザーDB(readonly)」または「内部管理者 API」",
-            "password": "Password",
-            "username": "Username"
+            "password": "パスワード",
+            "username": "ユーザー名"
           },
           "tip": {
-            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
-            "name": "The name for resource when creating actions in the ILLA.",
-            "ssl_options": "SSL is used when available",
-            "username_password": "Credentials will be encrypted & stored securely on our servers."
+            "connect_type": "クラウド:ILLAサーバーは安全にデータベースに接続します。",
+            "name": "ILLAでアクションを作成する際のリソース名です。",
+            "ssl_options": "利用可能な場合はSSLを使用します",
+            "username_password": "認証情報は暗号化され、当社のサーバーに安全に保存されます。"
           },
           "title": {
-            "advanced_option": "Advanced Options",
-            "general_option": "GENERAL"
+            "advanced_option": "詳細オプション",
+            "general_option": "全般"
           }
         },
         "error": {
-          "invalid_url": "Please enter a valid URL, for example, https://example.com"
+          "invalid_url": "有効な URL を入力してください。例えば https://example.com"
         },
         "restapi": {
           "btns": {
@@ -311,40 +311,40 @@
           },
           "label": {
             "access_token": "アクセストークン",
-            "access_token_lifespan": "Access Token\n lifespan(optiinal)",
-            "access_token_url": "Access Token URL",
-            "action_type": "アクションタイプ",
+            "access_token_lifespan": "アクセストークン\n 寿命(optiinal)",
+            "access_token_url": "アクセストークンURL",
+            "action_type": "Action Type",
             "audience": "オーディエンス:",
-            "authentication": "Authentication",
-            "authorization_url": "Authorization URL",
+            "authentication": "認証",
+            "authorization_url": "認証URL",
             "base_url": "ベースURL",
-            "basic_auth_password": "Basic Auth password",
-            "basic_auth_username": "Basic Auth username",
-            "bearerToken": "Bearer Token",
-            "body": "本文",
+            "basic_auth_password": "ベーシック認証パスワード",
+            "basic_auth_username": "ベーシック認証ユーザー名",
+            "bearerToken": "ベアラートトークン",
+            "body": "Body",
             "client_id": "クライアント ID",
-            "client_secret": "Client Secret",
-            "configure_oauth2": "Configuring OAuth 2.0",
+            "client_secret": "クライアントシークレット",
+            "configure_oauth2": "OAuth 2.0 の構成",
             "cookies": "Cookie",
-            "copy_url_to_application": "Copy this URL to your application",
+            "copy_url_to_application": "このURLをアプリケーションにコピー",
             "enable_auth_verification_endpoint": "認証エンドポイントを有効にする",
-            "extra_body_values": "Extra Body Values",
-            "forward_all_cookies": "Forward All Cookies",
+            "extra_body_values": "追加の体値",
+            "forward_all_cookies": "すべての Cookie を転送",
             "headers": "ヘッダー",
-            "list_of_cookies_to_forward": "List Of Cookies To\n Forward",
+            "list_of_cookies_to_forward": "クッキーのリスト へ\n 転送",
             "name": "Name",
             "oauth_callback_url": "OAuth callback URL",
             "refresh_token": "トークンを更新",
-            "scopes": "Scopes (separated by\n a space)",
-            "share_oauth2_credentials_between_users": "Share OAuth2.0 credentials between users",
-            "url_parameters": "URL Parameters",
-            "use_client_credentials_auth": "Use client credentials auth"
+            "scopes": "Scopes (スペースで区切られた\n)",
+            "share_oauth2_credentials_between_users": "ユーザー間で OAuth2.0 資格情報を共有",
+            "url_parameters": "URL パラメータ",
+            "use_client_credentials_auth": "クライアント資格情報の認証を使用する"
           },
           "option": {
             "authentication": {
-              "basic_auth": "Basic Auth",
+              "basic_auth": "ベーシック認証",
               "bearer": "ベラー",
-              "none": "None",
+              "none": "なし",
               "oauth2": "OAuth 2.0"
             }
           },
@@ -353,19 +353,19 @@
             "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
             "api": "「Internal Admin API」",
             "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
-            "base_url": "Use the absolute URL (e.g https://example.com)",
+            "base_url": "絶対 URL を使用してください (例: https://example.com)",
             "database": "すなわち、「ユーザーDB(読み取り専用)」。",
-            "name": "「ユーザーDB(readonly)」または「内部管理者 API」",
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "キー",
             "param_value": "値",
-            "password": "password",
-            "username": "username"
+            "password": "パスワード",
+            "username": "ユーザー名"
           },
           "tip": {
             "configure_oauth2": "OAuth 2.0 は複雑な仕様です。ILLA は現在、サーバサイド OAuth 2.0 認証フローとクライアント資格情報フローをサポートしています。 どちらの場合も、API リクエストに OAuth アクセストークンを置く場所を ILLA に知らせるためには、OAUTH2_TOKENプレースホルダを使用する必要があります。 一般的な場所は、Authorization: Bearer OAUTH2_TOKENなどのヘッダです。",
             "extra_body_values": "GET または HEAD リクエストには追加のボディ値は渡されません",
-            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "get_req_auto_run": "(GETのREQ)はパラメーターの変更を受けた場合に自動的に実行されます。",
             "name": "The name for resource when creating actions in the ILLA."
           },
           "title": {
@@ -374,20 +374,20 @@
         },
         "s3": {
           "label": {
-            "access_key": "Access key",
-            "base_url": "ベースURL",
+            "access_key": "アクセスキー",
+            "base_url": "Base URL",
             "bucket_name": "Bucket name",
-            "custome_s3_endpoint": "Custom S3 endpoint",
-            "region": "Region",
-            "secret_access_key": "Secret access key",
-            "use_custome_s3_endpoint": "Use custom S3 endpoint"
+            "custome_s3_endpoint": "カスタムS3エンドポイント",
+            "region": "地域",
+            "secret_access_key": "シークレットアクセスキー",
+            "use_custome_s3_endpoint": "カスタムS3エンドポイントを使用"
           },
           "placeholder": {
             "base_url": "i.e. https://example.com",
             "region": "us-west-1"
           },
           "tip": {
-            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces or Wasabi."
+            "custome_s3_endpoint_tip": "これは、Digital Ocean SpacesやWasabiなどの他のS3以外のサービスに接続するために使用されます。"
           }
         },
         "transformer": {
@@ -395,21 +395,21 @@
             "tip": "// Tip: 外部参照を変数に割り当てる代わりに、中括弧を外します。"
           },
           "tip": {
-            "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
+            "external_reference": "定義した変数への外部参照を作成できます。例: {{ transformer2.value }}。 "
           }
         }
       },
       "resource_choose": {
-        "deleted": "Deleted"
+        "deleted": "削除しました"
       },
       "result": {
         "title": {
-          "api_request": "API Request",
-          "error": "Query ran fail",
+          "api_request": "APIリクエスト",
+          "error": "実行されたクエリは失敗しました",
           "json": "JSON",
-          "response": "Response",
-          "success": "Query ran successfully",
-          "table": "Table"
+          "response": "回答",
+          "success": "クエリの実行に成功しました",
+          "table": "表"
         }
       },
       "type": {
@@ -421,25 +421,25 @@
     "component": {
       "cancel": "Cancel",
       "delete": "Delete",
-      "delete_content": "Delete it maybe make some bugs，please confirm.",
-      "delete_title": "Are you sure you want to delete {{ displayName}}?"
+      "delete_content": "それを削除すると、多分いくつかのバグを作る、確認してください。",
+      "delete_title": "{{ displayName}} を削除してもよろしいですか？"
     },
     "context_menu": {
       "delete": "Delete",
       "duplicate": "Duplicate"
     },
     "data_work_space": {
-      "actions_title": "ACTIONS & TRANSFORMERS ",
-      "components_title": "COMPONENTS ",
+      "actions_title": "アクションと転送 ",
+      "components_title": "コンポーネント ",
       "globals_title": "GLOBALS ",
-      "pages_title": "PAGES"
+      "pages_title": "ページ"
     },
     "deploy": {
-      "fail": "Failed to deploy"
+      "fail": "デプロイに失敗しました"
     },
     "display_name": {
-      "duplicate_error": "\"{{ displayName }}\" already exists",
-      "validate_error": "\"{{ displayName }}\" must start with a letter or \"_\", and can only contain letters, numbers, \"_\", or \"$\""
+      "duplicate_error": "\"{{ displayName }}\" は既に存在します",
+      "validate_error": "\"{{ displayName }}\" は文字または\"_\"で始まる必要があり、文字、数字、\"_\"、または\"$\"のみを含めることができます"
     },
     "inspect": {
       "header": {
@@ -449,28 +449,28 @@
           "view_documentation": "ドキュメントを表示"
         }
       },
-      "multi_selected_header": "{{ number }} components selected",
+      "multi_selected_header": "{{ number }} 個のコンポーネントが選択されました",
       "setter_content": {
         "chart_type": {
-          "bar": "Bar chart",
-          "line": "Line chart",
-          "pie": "Pie chart",
-          "scatterplot": "Scatterplot"
+          "bar": "棒グラフ",
+          "line": "折れ線グラフ",
+          "pie": "円グラフ",
+          "scatterplot": "散布図"
         },
         "color_picker": {
           "prefabricated": "プレハブの色",
           "title": "色を編集"
         },
         "column_setter": {
-          "label": "Columns ({{number}})",
+          "label": "列 ({{number}})",
           "new": "New",
-          "title": "Title"
+          "title": "タイトル"
         },
         "event_handler_list": {
-          "empty": "Trigger queries, control components, or call other APIs in response to component events.",
-          "incomplete_selection": "Incomplete selection",
+          "empty": "トリガクエリ、コンポーネントのイベントに応じてコンポーネントを制御したり、他のAPIを呼び出したりします。",
+          "incomplete_selection": "未完了の選択",
           "new": "New",
-          "title": "Edit event handler"
+          "title": "イベントハンドラの編集"
         },
         "list_setter": {
           "reset": "Reset"
@@ -486,16 +486,16 @@
             "delete": "Delete",
             "duplicate": "Duplicate"
           },
-          "list_no_label": "No label",
-          "model_title": "Edit Options",
+          "list_no_label": "ラベルがありません",
+          "model_title": "オプションを編集",
           "new": "New",
-          "title": "オプション"
+          "title": "Options"
         },
         "select_page_setter": {
-          "placeholder": "Select a page"
+          "placeholder": "ページを選択"
         },
         "select_view_setter": {
-          "placeholder": "Select a view"
+          "placeholder": "ビューを選択"
         },
         "tabs_setter": {
           "tabs": "Tabs"
@@ -505,269 +505,269 @@
         },
         "widget_action_type_name": {
           "blur": "Blur",
-          "change": "Change",
+          "change": "変更",
           "click": "Click",
           "clickMenuItem": "Click",
-          "columnFiltersChange": "Filter change",
-          "fail": "Fail",
-          "focus": "Focus",
-          "invalid": "Invalid",
-          "paginationChange": "Page change",
-          "row_select": "Row select",
-          "sortingChange": "Sort change",
-          "submit": "Submit",
+          "columnFiltersChange": "フィルタの変更",
+          "fail": "失敗",
+          "focus": "フォーカス",
+          "invalid": "無効です",
+          "paginationChange": "ページ変更",
+          "row_select": "行の選択",
+          "sortingChange": "並べ替え変更",
+          "submit": "送信",
           "success": "Success"
         }
       },
       "setter_default_value": {
-        "fill": "Fill",
+        "fill": "塗りつぶし",
         "message_type": {
           "error": "Error",
-          "info": "Info",
+          "info": "情報",
           "success": "Success",
-          "warning": "Warning"
+          "warning": "警告"
         },
-        "outline": "Outline",
+        "outline": "概要",
         "validation_pattern": {
-          "email": "Email",
-          "regex": "Regex",
+          "email": "Eメールアドレス",
+          "regex": "正規表現",
           "url": "URL"
         }
       },
       "setter_group": {
-        "adornments": "ADORNMENTS",
-        "basic": "BASIC",
+        "adornments": "追加情報",
+        "basic": "基本",
         "column": "COLUMNS",
-        "data": "DATA",
-        "interaction": "INTERACTION",
+        "data": "データ",
+        "interaction": "相互作用",
         "label": "LABEL",
         "layout": "LAYOUT",
-        "menu": "MENU",
-        "options": "OPTIONS",
-        "pagination": "PAGINATION",
-        "row_selection": "ROW SELECTION",
-        "sort": "SORT",
-        "style": "STYLE",
+        "menu": "メニュー",
+        "options": "オプション",
+        "pagination": "Pagination",
+        "row_selection": "ROW選択",
+        "sort": "並び替え",
+        "style": "スタイル",
         "tabs": "TABS",
-        "toolbar": "TOOLBAR",
-        "validation": "VALIDATION",
-        "views": "VIEWS"
+        "toolbar": "ツール",
+        "validation": "値",
+        "views": "表示"
       },
       "setter_label": {
-        "action": "Action",
+        "action": "アクション",
         "align": "Align",
-        "allow_clear": "Allow clear",
-        "allow_half": "Allow half",
-        "alt_text": "Alt text",
-        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
-        "background": "Background",
+        "allow_clear": "削除を許可",
+        "allow_half": "半分を許可",
+        "alt_text": "Altテキスト",
+        "alt_text_desc": "スクリーンリーダー用の画像のアクセス可能な説明です。画像の読み込みに失敗した場合は、フォールバックとしてレンダリングされます。",
+        "background": "背景",
         "background_color": "Background",
         "border": "Border",
         "border_width": "Border Width",
-        "caption": "Caption",
+        "caption": "図表番号",
         "chart_title": "Title",
-        "chart_type": "Chart type",
-        "color": "Color",
-        "colors": "Colors",
-        "column_title": "Column title",
-        "column_type": "Column type",
-        "columns": "Columns",
-        "component": "Component",
-        "config_type": "Config type",
-        "container": "Container",
-        "content": "Content",
-        "control_component": "Control component",
-        "custom_rule": "Custom rule",
-        "data": "Data",
-        "data_source": "Data source",
-        "data_sources": "Data sources",
+        "chart_type": "グラフの種類",
+        "color": "色",
+        "colors": "色",
+        "column_title": "カラムタイトル",
+        "column_type": "列の種類",
+        "columns": "列",
+        "component": "コンポーネント",
+        "config_type": "設定タイプ",
+        "container": "コンテナ",
+        "content": "コンテンツ",
+        "control_component": "コンポーネントの制御",
+        "custom_rule": "カスタムルール",
+        "data": "データ",
+        "data_source": "データソース",
+        "data_sources": "データソース",
         "dataset": {
-          "aggregation_method": "Aggregation method",
-          "name": "Dataset name",
+          "aggregation_method": "集計方法",
+          "name": "データセット名",
           "remove": "Remove dataset",
-          "value": "Dataset values"
+          "value": "データセットの値"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
-        "decimal_place": "Decimal place",
-        "decimal_places": "Decimal places",
-        "default_sort_key": "Column",
-        "default_sort_order": "Direction",
+        "decimal_place": "小数点以下桁数",
+        "decimal_places": "小数点以下の桁数",
+        "default_sort_key": "列",
+        "default_sort_order": "方向",
         "default_tab": "Default tab",
-        "default_value": "Default value",
-        "default_views": "Default view",
-        "description": "Description",
+        "default_value": "既定値",
+        "default_views": "デフォルトの表示",
+        "description": "説明",
         "direction": "Direction",
-        "disable_submit": "Disable submit",
-        "disabled": "Disabled",
-        "download": "Download",
-        "duration": "Duration",
-        "empty_state": "Empty state",
-        "enable_sorting": "Enable Sorting",
-        "end_data": "End date",
-        "end_placeholder": "End placeholder",
-        "event": "Event",
-        "event_handler": "Event handler",
+        "disable_submit": "送信を無効化",
+        "disabled": "無効",
+        "download": "ダウンロード",
+        "duration": "期間",
+        "empty_state": "空の状態",
+        "enable_sorting": "並べ替えを有効にする",
+        "end_data": "終了日",
+        "end_placeholder": "プレースホルダを終了",
+        "event": "イベント",
+        "event_handler": "イベントハンドラ：",
         "expansion_method": "Expansion method",
         "failure": "Failure",
-        "filter": "フィルター",
+        "filter": "Filter",
         "font_size": "Font size",
-        "form_data_key": "Form Data Key",
-        "format": "Format",
-        "go_to_url": "Go to URL",
-        "group_by": "Group by",
-        "group_layout": "Group layout",
+        "form_data_key": "フォームデータキー",
+        "format": "書式",
+        "go_to_url": "URL に移動",
+        "group_by": "グループ化",
+        "group_layout": "グループのレイアウト",
         "hidden": "Hidden",
-        "hidden_label": "Hidden label",
-        "hide_validation_message": "Hide validation message",
-        "hide_value_label": "Hide value label",
-        "horizontal_alignment": "Horizontal alignment",
-        "icon": "Icon",
-        "image_source": "Image source",
-        "img_height": "Height",
+        "hidden_label": "非表示ラベル",
+        "hide_validation_message": "検証メッセージを隠す",
+        "hide_value_label": "値のラベルを隠す",
+        "horizontal_alignment": "水平方向の配置",
+        "icon": "アイコン",
+        "image_source": "画像ソース",
+        "img_height": "高さ",
         "img_width": "Width",
-        "index": "目次と索引",
-        "item_background_color": "Item background",
-        "items": "Items",
-        "key": "Key",
-        "label": "Label",
-        "label_alignment": "Alignment",
-        "label_position": "Position",
+        "index": "Index",
+        "item_background_color": "アイテムの背景",
+        "items": "アイテム",
+        "key": "キー",
+        "label": "ラベル",
+        "label_alignment": "配置",
+        "label_position": "位置",
         "label_width": "Width(%)",
-        "layout": "Layout",
-        "legend_position": "Legend position",
-        "link_to_container": "Link to a container",
-        "links_color": "Links",
-        "loading": "Loading",
-        "loop_back_to_start": "Loop back to start",
-        "loop_start_to_back": "Loop start to back",
-        "mapped_option": "Mapped Option",
-        "mapped_value": "Mapped Value",
-        "max_count": "Max count",
-        "max_date": "Max date",
-        "max_length": "Max length",
-        "maximum": "Maximum",
-        "method": "Method",
-        "min_date": "Min date",
-        "min_length": "Min Length",
-        "minimum": "Minimum",
-        "multi_row_selection": "Multi-Row Selection",
+        "layout": "レイアウト",
+        "legend_position": "凡例の位置",
+        "link_to_container": "コンテナへのリンク",
+        "links_color": "リンク",
+        "loading": "読み込み中",
+        "loop_back_to_start": "ループバックして開始",
+        "loop_start_to_back": "ループ開始から戻ります",
+        "mapped_option": "マッピングされたオプション",
+        "mapped_value": "マッピングした値",
+        "max_count": "最大数",
+        "max_date": "最大日付",
+        "max_length": "最大長さ",
+        "maximum": "最大値",
+        "method": "方法",
+        "min_date": "最小日付",
+        "min_length": "最小長さ",
+        "minimum": "最小",
+        "multi_row_selection": "複数行選択",
         "new_tab": "New tab",
-        "only_run_when": "Only run when",
-        "overFlow": "OverFlow",
-        "page": "Page",
-        "pageSize": "PageSize",
-        "pattern": "Pattern",
-        "pending": "Pending",
-        "placeholder": "Placeholder",
-        "prefix_text": "Prefix text",
+        "only_run_when": "実行時のみ",
+        "overFlow": "オーバーフロー",
+        "page": "ページ",
+        "pageSize": "ページサイズ",
+        "pattern": "パターン",
+        "pending": "保留中",
+        "placeholder": "プレースホルダー",
+        "prefix_text": "プレフィックステキスト",
         "radius": "Radius",
-        "read_only": "Read only",
+        "read_only": "読み取り専用",
         "regex": "Regex",
-        "required_field": "Required field",
-        "reset_after_successful_submit": "Reset after successful submit",
+        "required_field": "必須項目",
+        "reset_after_successful_submit": "送信成功後にリセット",
         "router": "Router",
-        "run_script": "Run script",
-        "scale_type": "Scale Type",
-        "set_router": "Set router",
-        "set_temporary_state": "Set temporary state",
-        "shadow": "Shadow",
-        "show_character_count": "Show character count",
-        "show_clear_button": "Show clear button",
-        "show_footer": "Show footer",
-        "show_header": "Show header",
-        "show_notification": "Show notification",
-        "sort": "Sort",
-        "start_date": "Start date",
-        "start_placeholder": "Start placeholder",
-        "step_size": "Step size",
-        "stroke_width": "Stroke width",
-        "style": "Style",
+        "run_script": "スクリプトを実行",
+        "scale_type": "スケールタイプ",
+        "set_router": "ルーターを設定",
+        "set_temporary_state": "一時状態を設定",
+        "shadow": "影",
+        "show_character_count": "文字数を表示",
+        "show_clear_button": "クリアボタンを表示",
+        "show_footer": "フッターを表示",
+        "show_header": "ヘッダーを表示",
+        "show_notification": "通知を表示",
+        "sort": "並べ替え",
+        "start_date": "開始日",
+        "start_placeholder": "プレイスホルダーを開始",
+        "step_size": "ステップサイズ",
+        "stroke_width": "ストロークの幅",
+        "style": "スタイル",
         "styles": "Styles",
-        "submit_form": "Submit form",
+        "submit_form": "フォームを送信",
         "success": "Success",
-        "suffix_text": "Suffix text",
-        "text": "Text",
+        "suffix_text": "サフィックステキスト",
+        "text": "テキスト",
         "text_align": "Text align",
-        "text_size": "Text size",
-        "theme_color": "Theme color",
-        "thousand_separator": "Thousand separator",
-        "time_format": "Time format",
+        "text_size": "文字サイズ",
+        "theme_color": "テーマの色",
+        "thousand_separator": "千の区切り文字",
+        "time_format": "時刻の形式",
         "title": "Title",
-        "tooltip": "Tooltip",
-        "trail_color": "Trail color",
-        "trigger_query": "Trigger query",
+        "tooltip": "ツールチップ",
+        "trail_color": "軌跡の色",
+        "trigger_query": "トリガークエリ",
         "type": "Type",
-        "validate_inputs_on_submit": "Validate inputs on submit",
-        "value": "Value",
-        "value_labels": "Value labels",
-        "variant": "Variant",
-        "vertical_alignment": "Vertical alignment",
+        "validate_inputs_on_submit": "送信時に入力を検証する",
+        "value": "値",
+        "value_labels": "値のラベル",
+        "variant": "バリアント型",
+        "vertical_alignment": "縦方向の配置",
         "width": "Width",
-        "x_axis_name": "X-axis name",
-        "x_axis_title": "X-axis title",
-        "x_axis_type": "X-axis type",
-        "x_axis_value": "X-axis value",
-        "y_axis_name": "Y-axis name",
-        "y_axis_title": "Y-axis title"
+        "x_axis_name": "X軸名",
+        "x_axis_title": "X軸タイトル",
+        "x_axis_type": "X軸タイプ",
+        "x_axis_value": "X軸の値",
+        "y_axis_name": "Y軸名",
+        "y_axis_title": "Y軸タイトル"
       },
       "setter_tooltip": {
-        "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
-        "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
-        "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
-        "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
-        "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
-        "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
-        "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
-        "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
-        "download": "Show download button in toolbar.",
-        "filter": "Show filter button in toolbar.",
-        "form_data_key": "Specify a key of a wrapping form component when constructing the data attribute.",
-        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
-        "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
+        "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの制御、またはリソース内のデータを呼び出します。複数の非同期アクションは並列に実行されます。",
+        "cascader_data": "各オプションはJSON形式で、キー、値、ラベルの2つを含んでいる必要があります。 配列を使用することで、同じレベルでオプションを作成することができます。また、子オプションは \"children\" 属性を使用して作成することができます。 ",
+        "component_default_value": "コンポーネントの初期値。{{}}でJavaScriptを入力すると、初期値を動的に変更できます。",
+        "custom_rule": "ここでバリデーションロジックを作成します。ルールはJavaScriptで行われ、{{}}でカバーされる必要があります。",
+        "date_format": "有効な日付フォーマット文字列。 [dayJS](https://day.js.org/docs/en/parse/string-format)を参照してください。",
+        "default_value": "入力ボックスの初期値。{{}}でJavaScriptを入力することで、入力フィールドの初期値を動的に変更できます。",
+        "disabled": "コンポーネントが無効化されているかどうかのステータスを制御します。無効化されている場合、コンポーネントを変更またはフォーカスすることはできません。",
+        "disabled_submit": "無効にすると、form.submit() メソッドを呼び出すコンポーネントも無効になります。",
+        "download": "ツールバーにダウンロードボタンを表示する。",
+        "filter": "ツールバーにフィルタボタンを表示します。",
+        "form_data_key": "data 属性を構築する際に、ラッピングフォームコンポーネントのキーを指定します。",
+        "hidden": "コンポーネントが非表示であるかどうかを動的に制御します。動的ブール値を使用して非表示の状態を変更できます。",
+        "hide_validation_message": "入力値が正しくない場合は非表示の状態を切り替えることでエラーメッセージを非表示にできます。 非表示状態はJavaScriptで動的に変更できます。",
         "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
-        "loading": "Whether the component should show a loading indicator.",
-        "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
+        "loading": "コンポーネントがロードインジケータを表示するかどうか。",
+        "map_data_option": "値の配列または配列にマップされたキーのオブジェクトを使用します。データソース内の各アイテムは、各オプションにマップされます。",
         "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
         "multi_row_selection": "Use {{ table.selectedRow.data }} to access data. If you enable Multi-Row Selection, it will return an array, you can use it like this: {{ table1.selectedRow.data[0].email }} . And if you don't enable Multi-Row Selection, it will return an object, you can use it like this {{ table1.selectedRow.data.email }}.",
-        "only_run_when": "Conditions that must be met before the event executes.",
-        "placeholder": "The value will be shown when the input field is empty.",
-        "progress_percentage": "The percentage value is between 0 and 100.",
-        "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannot be modified.",
-        "required_field": "Valid only when the switch is on.",
-        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
-        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
-        "timeline_direction": "Change the direction of the timeline.",
-        "timeline_pending": "Whether to show a node with a pending status.",
-        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported."
+        "only_run_when": "イベントが実行される前に条件を満たす必要があります。",
+        "placeholder": "値は入力フィールドが空の場合に表示されます。",
+        "progress_percentage": "パーセンテージ値は0から100の間です。",
+        "read_only": "読み取り専用かどうかの状態を制御します。読み取り専用のコンポーネントを選択できますが、変更することはできません。",
+        "required_field": "スイッチがオンの場合のみ有効です。",
+        "switch_default_value": "スイッチの初期状態を設定します。JavaScriptで動的にデフォルト値を変更できます。",
+        "text_value": "MarkdownモードまたはPlainテキストモードのいずれかで値を入力することができます。マークダウンモードのリンクのみ認識できます。",
+        "timeline_direction": "タイムラインの方向を変更する。",
+        "timeline_pending": "保留中の状態を持つノードを表示するかどうか。",
+        "tooltip": "ユーザーはコンポーネントのツールチップをここに入力できます。ツールチップはフォーカスされたときに表示されます。Markdown 形式がサポートされています。"
       },
-      "tab_title": "Inspect",
-      "unselected_tip1": "No components selected.",
-      "unselected_tip2": "Click on a component to select it."
+      "tab_title": "調査",
+      "unselected_tip1": "コンポーネントが選択されていません。",
+      "unselected_tip2": "コンポーネントをクリックして選択します。"
     },
     "page": {
       "label_name": {
-        "add": "Add",
-        "body": "本文",
+        "add": "追加",
+        "body": "Body",
         "default_view": "Default view",
-        "edit_view": "Edit view",
-        "footer": "Footer",
-        "header": "Header",
+        "edit_view": "ビューを編集",
+        "footer": "フッター",
+        "header": "ヘッダー",
         "key": "Key",
-        "left_panel": "Left panel",
+        "left_panel": "左パネル",
         "preset": "Preset",
-        "right_panel": "Right panel",
-        "set_as_homepage": "Set as homepage",
-        "show_fold_icon": "Show fold icon",
-        "view_path": "View path",
-        "views": "ビュー",
+        "right_panel": "右パネル",
+        "set_as_homepage": "ホームページとして設定",
+        "show_fold_icon": "折りたたみアイコンを表示",
+        "view_path": "パスを表示",
+        "views": "Views",
         "width": "Width"
       },
       "model_tips": {
         "cancel_button": "Cancel",
-        "change_layout_message": "After changing the layout, all data will be cleared. This operation can't be recovered, please confirm",
-        "delete_section_message": "After hiding, the data in this section will be cleared. This operation can't be recovered, please confirm",
-        "ok_button": "Confirm"
+        "change_layout_message": "レイアウトを変更すると、すべてのデータが消去されます。この操作は復元できません。確認してください",
+        "delete_section_message": "非表示にすると、このセクションのデータが消去されます。この操作は復元できません。確認してください。",
+        "ok_button": "確認する"
       },
       "panel_bar_title": {
         "basic": "BASIC",
@@ -775,144 +775,144 @@
       },
       "tab_title": "Page",
       "tooltips": {
-        "show_fold_icon": "Show a button to collapse or expand the panel",
-        "view_path": "A string after example.com/app/page/ to access this view"
+        "show_fold_icon": "パネルを折りたたんだり展開したりするボタンを表示する",
+        "view_path": "このビューにアクセスするための文字列example.com/app/page/"
       }
     },
     "validate_message": {
-      "email": "Please enter a valid email address",
-      "max_length": "Must be no more than {{ number }} characters",
-      "max_value": "Must be less than {{ number }}",
-      "min_length": "Must be at least {{ number }} characters",
-      "min_value": "Must be greater than {{ number }}",
-      "regex": "Please match the requested format",
-      "required": "This field is required",
-      "url": "Please enter a valid URL"
+      "email": "有効なメールアドレスを入力してください",
+      "max_length": "{{ number }} 文字以下にしてください",
+      "max_value": "{{ number }} より小さくなければなりません",
+      "min_length": "少なくとも {{ number }} 文字以上でなければなりません",
+      "min_value": "{{ number }} より大きくなければなりません",
+      "regex": "要求されたフォーマットに一致してください",
+      "required": "このフィールドは必須項目です",
+      "url": "有効な URL を入力してください"
     },
     "widget_picker": {
-      "empty_tip": "Sorry, no search results",
+      "empty_tip": "検索結果がありません。",
       "search_placeholder": "search",
       "sessions": {
-        "calendar": "Calendar inputs",
-        "commonly": "Commonly components",
-        "container": "Container and form",
+        "calendar": "カレンダーの入力",
+        "commonly": "一般的なコンポーネント",
+        "container": "コンテナとフォーム",
         "data": "Data",
         "inputs": "Inputs",
         "navigation": "Navigation",
-        "presentation": "Presentation",
-        "selects": "Select inputs"
+        "presentation": "プレゼンテーション",
+        "selects": "入力を選択"
       },
       "tab_title": "Insert"
     }
   },
-  "exit_preview": "Exit Preview",
-  "freeze_collision": "Freeze collision",
-  "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
-  "freeze_tips": "The canvas is frozen. Click here to unfreeze it.",
-  "link_copied": "Link Copied",
-  "network_error": "Network disconnected. Please check this device's network",
+  "exit_preview": "プレビュー終了",
+  "freeze_collision": "衝突を凍結する",
+  "freeze_messages": "キャンバスが凍結されています。コンポーネントをコンテナ内またはコンテナ外にドラッグできます。",
+  "freeze_tips": "キャンバスが凍結されています。ここをクリックして凍結を解除します。",
+  "link_copied": "リンクがコピーされました",
+  "network_error": "ネットワークが切断されました。この端末のネットワークを確認してください。",
   "not_online_tips": "Network disconnected. Please check this device's network",
-  "preview": "Preview",
-  "remove_fail": "Failed to remove",
+  "preview": "プレビュー",
+  "remove_fail": "削除に失敗しました",
   "rename": "Rename",
-  "resources": "Resources",
+  "resources": "リソース",
   "retry": "Retry",
   "save": "Save",
   "setting": {
     "account": {
       "email": "Email",
-      "empty_username": "Please enter your username",
-      "error_username": "Username must be 3~15 characters",
-      "save": "Save Changes",
+      "empty_username": "ユーザー名を入力してください",
+      "error_username": "ユーザー名は3〜15文字でなければなりません",
+      "save": "変更を保存",
       "save_fail": "Failed to save",
-      "title": "ACCOUNT",
+      "title": "アカウント",
       "username": "Username"
     },
     "other": {
-      "language": "Language",
+      "language": "言語",
       "save": "Save Changes",
-      "title": "SETTING"
+      "title": "設定"
     },
     "password": {
-      "confirm_password": "Confirmation password",
-      "current_password": "Old password",
-      "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 6~20 characters",
-      "error_match_password": "Your password and confirmation password do not match",
-      "error_password_has_empty": "Password cannot include spaces",
-      "error_validate_password": "Your password can only contain numbers, letters and punctuations",
-      "new_password": "New password",
+      "confirm_password": "確認パスワード",
+      "current_password": "古いパスワード",
+      "empty_password": "パスワードを入力してください",
+      "error_format_password": "パスワードは6〜20文字でなければなりません",
+      "error_match_password": "パスワードと確認用パスワードが一致しません",
+      "error_password_has_empty": "パスワードにスペースを含めることはできません",
+      "error_validate_password": "パスワードには数字、文字、句読点のみを含めることができます",
+      "new_password": "新しいパスワード",
       "submit_button": "Submit",
-      "title": "PASSWORD"
+      "title": "パスワード"
     }
   },
-  "share": "Share",
+  "share": "共有",
   "status": {
     "403": {
-      "des": "Access denied"
+      "des": "アクセスが拒否されました"
     },
     "404": {
-      "again": "Refresh",
-      "des": "It seems that the page you were looking for could not be found."
+      "again": "更新",
+      "des": "お探しのページが見つかりませんでした。"
     },
     "500": {
-      "des": "Oops, something went wrong. Please try again later."
+      "des": "エラーが発生しました。しばらくしてからもう一度お試しください。"
     },
-    "back": "Back to homepage"
+    "back": "ホームページに戻る"
   },
-  "title": "Welcome to illa",
-  "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
+  "title": "illaへようこそ",
+  "unfreeze_tips": "キャンバスをフリーズし、コンポーネントをコンテナ内またはコンテナ外にドラッグします。(D または K)",
   "user": {
-    "description": "An open-source low-code platform for developers.",
+    "description": "開発者向けのオープンソースのローコードプラットフォーム。",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
-        "send": "Send code"
+        "send": "コードを送信"
       },
       "error_message": {
         "email": {
           "invalid_pattern": "Please enter a valid email address",
-          "registered": "The email address doesn't associate with an account.",
-          "require": "Please enter your email"
+          "registered": "メールアドレスはアカウントに関連付けられていません。",
+          "require": "メールアドレスを入力してください"
         },
         "newPassword": {
           "require": "Please enter your password"
         },
         "verification_code": {
-          "expired": "Verification code expired",
-          "invalid": "Invalid verification code",
-          "require": "Please enter verification code"
+          "expired": "認証コードの有効期限が切れました",
+          "invalid": "無効な検証コード",
+          "require": "確認コードを入力してください"
         }
       },
       "fields": {
         "email": "Email",
-        "newPassword": "New Password",
-        "verification_code": "Verification code"
+        "newPassword": "新しいパスワード",
+        "verification_code": "認証コード"
       },
       "placeholder": {
-        "email": "Enter your email",
+        "email": "メールアドレスを入力してください",
         "verification_code": "Please enter verification code"
       },
-      "subtitle": "Back to sign in",
+      "subtitle": "サインインに戻る",
       "tips": {
-        "fail": "Failed to reset password",
-        "fail_sent": "Failed to send verification code",
-        "success": "Reset password successfully",
-        "verification_code": "Verification code sent"
+        "fail": "パスワードのリセットに失敗しました",
+        "fail_sent": "認証コードの送信に失敗しました",
+        "success": "パスワードをリセットしました",
+        "verification_code": "認証コードが送信されました"
       },
-      "title": "Reset Password"
+      "title": "パスワードのリセット"
     },
     "password": {
-      "placeholder": "Enter your new password(at least 6 characters)"
+      "placeholder": "新しいパスワードを入力してください（6文字以上）"
     },
     "sign_in": {
       "actions": {
-        "login": "Sign in"
+        "login": "サインイン"
       },
       "description": {
-        "forgot_password": "Forgot Password?",
-        "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-        "register": "New user? <0>Create an account</0>"
+        "forgot_password": "パスワードをお忘れですか？",
+        "policy": "サインインをクリックすることで、<0>プライバシーポリシー</0>および<1>条件</1>に同意します。",
+        "register": "新規ユーザーですか? <0>アカウントを作成</0>。"
       },
       "error_message": {
         "email": {
@@ -921,10 +921,10 @@
           "require": "Please enter your email"
         },
         "password": {
-          "incorrect": "Incorrect email or password",
-          "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
-          "min_length": "The password must be at least 6 characters",
-          "require": "Please enter password"
+          "incorrect": "メールアドレスまたはパスワードが間違っています",
+          "locked": "試行回数が多すぎます。パスワードをリセットするか、1時間後にもう一度お試しください。",
+          "min_length": "パスワードは6文字以上でなければなりません",
+          "require": "パスワードを入力してください"
         }
       },
       "fields": {
@@ -935,33 +935,33 @@
         "email": "Enter your email"
       },
       "tips": {
-        "fail": "Failed to sign in",
-        "success": "Signed in successfully"
+        "fail": "サインインに失敗しました",
+        "success": "正常にサインインしました"
       },
-      "title": "Welcome back"
+      "title": "おかえりなさい"
     },
     "sign_up": {
       "actions": {
-        "create": "Create Account",
+        "create": "アカウントを作成",
         "send": "Send code"
       },
       "description": {
-        "login": "Already have an account? <0>Sign in</0>",
-        "policy": "By clicking Create Account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-        "subscribe": "I am willing to receive the updates and news about ILLA"
+        "login": "すでにアカウントをお持ちですか？<0>サインイン</0>",
+        "policy": "アカウント作成をクリックすることで、<0>プライバシーポリシー</0>および<1>規約</1>に同意します。",
+        "subscribe": "私はILLAの最新情報とニュースを受け取りたいと思っています"
       },
       "error_message": {
         "email": {
           "invalid_pattern": "Please enter a valid email address",
-          "registered": "An account with that email address already exists.",
+          "registered": "そのメールアドレスのアカウントは既に存在します。",
           "require": "Please enter your email"
         },
         "password": {
           "require": "Please enter password"
         },
         "username": {
-          "length": "The username must be 3~15 characters",
-          "require": "Please enter username"
+          "length": "ユーザー名は3〜15文字でなければなりません",
+          "require": "ユーザー名を入力してください"
         },
         "verification_code": {
           "expired": "Verification code expired",
@@ -977,64 +977,64 @@
       },
       "placeholder": {
         "email": "Enter your email",
-        "username": "Enter your username",
+        "username": "ユーザー名を入力してください",
         "verification_code": "Please enter verification code"
       },
       "tips": {
-        "fail": "Failed to sign up",
+        "fail": "サインアップに失敗しました",
         "fail_sent": "Failed to send verification code",
-        "success": "Signed up successfully",
+        "success": "正常にサインアップしました",
         "verification_code": "Verification code sent"
       },
-      "title": "Sign up"
+      "title": "新規登録"
     }
   },
   "widget": {
     "bar_progress": {
-      "name": "Bar Progress"
+      "name": "酒場の進捗状況"
     },
     "button": {
       "default_text": "ボタン",
-      "name": "ボタン"
+      "name": "Button"
     },
     "cascader": {
       "name": "Cascader"
     },
     "chart": {
-      "name": "Chart"
+      "name": "グラフ"
     },
     "check_box_group": {
-      "name": "Checkbox Group"
+      "name": "チェックボックスグループ"
     },
     "circle_progress": {
-      "name": "Circle Progress"
+      "name": "円の進捗状況"
     },
     "container": {
-      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here",
-      "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
+      "empty": "<keyPress>D</keyPress> または <keyPress>K</keyPress> を押してコンポーネントをここにドラッグします",
+      "key_duplicated": "キーは重複しています。エラーを避けるために一意のキーを使用してください。",
       "name": "Container"
     },
     "date": {
-      "name": "Date"
+      "name": "日付"
     },
     "date_range": {
       "name": "Date range"
     },
     "date_time": {
-      "name": "Date Time",
-      "placeholder": "Select time"
+      "name": "日付時刻",
+      "placeholder": "時間を選択"
     },
     "divider_progress": {
       "name": "Divider"
     },
     "editable_text": {
-      "name": "Editable Text"
+      "name": "編集可能なテキスト"
     },
     "form": {
-      "name": "Form"
+      "name": "フォーム"
     },
     "image": {
-      "name": "Image"
+      "name": "画像"
     },
     "input": {
       "name": "Input"
@@ -1042,57 +1042,57 @@
     "list": {
       "doc1": "Use {{ currentItem }} to access the data of current item. For example, to set value of the text component which is in list component based on \"userName\": {{ currentItem.userName }}",
       "doc2": "Use {{list.selectedItem.data}} to access the data of selected item in list component. For example, to set the value of the text component which is out of list component based on \"username\" of the selected item in the list: {{ list.selectedItem.userName }}",
-      "name": "List"
+      "name": "リスト"
     },
     "menu": {
-      "name": "Menu"
+      "name": "メニュー"
     },
     "number_input": {
       "name": "Number Input"
     },
     "public": {
-      "left": "Left",
-      "right": "Right",
+      "left": "左",
+      "right": "右",
       "select_options": {
-        "manual": "Manual",
-        "mapped": "Mapped"
+        "manual": "マニュアル",
+        "mapped": "マップされました"
       },
-      "top": "Top"
+      "top": "上"
     },
     "radio_button": {
       "name": "Radio Button"
     },
     "radio_group": {
-      "name": "Radio group"
+      "name": "無線グループ"
     },
     "rate": {
-      "name": "Rate"
+      "name": "利率"
     },
     "select": {
-      "name": "Select"
+      "name": "選択"
     },
     "switch": {
-      "name": "Switch"
+      "name": "切り替え"
     },
     "table": {
       "ascend": "Asc",
       "descend": "Desc",
       "name": "Table",
-      "pagination": "Pagination",
-      "scroll": "Scroll"
+      "pagination": "改ページ",
+      "scroll": "スクロール"
     },
     "tabs": {
       "name": "Tabs"
     },
     "text": {
-      "default_value": "👋 Hello!",
+      "default_value": "👋 こんにちは!",
       "name": "Text",
-      "text_model": "Plain text"
+      "text_model": "プレーンテキスト"
     },
     "timeline": {
-      "horizontal": "horizontal",
-      "name": "Timeline",
-      "vertical": "vertical"
+      "horizontal": "水平方向",
+      "name": "タイムライン",
+      "vertical": "垂直方向"
     }
   }
 }
