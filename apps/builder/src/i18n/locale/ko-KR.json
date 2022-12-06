@@ -541,559 +541,559 @@
         "column": "목록",
         "data": "데이터",
         "interaction": "상호 작용하다",
-        "label": "LABEL",
-        "layout": "LAYOUT",
-        "menu": "MENU",
-        "options": "OPTIONS",
-        "pagination": "PAGINATION",
-        "row_selection": "ROW SELECTION",
-        "sort": "SORT",
-        "style": "STYLE",
-        "tabs": "TABS",
-        "toolbar": "TOOLBAR",
-        "validation": "VALIDATION",
-        "views": "VIEWS"
+        "label": "상표",
+        "layout": "형세",
+        "menu": "메뉴",
+        "options": "옵션",
+        "pagination": "페이지를 넘기다",
+        "row_selection": "라인 선택",
+        "sort": "정렬하다",
+        "style": "스타일",
+        "tabs": "탭",
+        "toolbar": "툴바",
+        "validation": "확인하다",
+        "views": "보다"
       },
       "setter_label": {
-        "action": "Action",
-        "align": "Align",
-        "allow_clear": "Allow clear",
-        "allow_half": "Allow half",
-        "alt_text": "Alt text",
-        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
-        "background": "Background",
-        "background_color": "Background",
-        "border": "Border",
-        "border_width": "Border Width",
-        "caption": "Caption",
-        "chart_title": "Title",
-        "chart_type": "Chart type",
-        "color": "Color",
-        "colors": "Colors",
-        "column_title": "Column title",
-        "column_type": "Column type",
-        "columns": "Columns",
-        "component": "Component",
-        "config_type": "Config type",
-        "container": "Container",
-        "content": "Content",
-        "control_component": "Control component",
-        "custom_rule": "Custom rule",
-        "data": "Data",
-        "data_source": "Data source",
-        "data_sources": "Data sources",
+        "action": "동작",
+        "align": "맞추다",
+        "allow_clear": "클리어 허용",
+        "allow_half": "절반 허용",
+        "alt_text": "텍스트 바꾸기",
+        "alt_text_desc": "화면 판독기에서 액세스할 수 있는 이미지 설명입니다. 또한 이미지를 로드할 수 없는 경우 대비책으로 렌더링됩니다.",
+        "background": "배경",
+        "background_color": "배경색",
+        "border": "뇌졸중",
+        "border_width": "테두리 폭",
+        "caption": "부제",
+        "chart_title": "제목",
+        "chart_type": "차트 유형",
+        "color": "색깔",
+        "colors": "색깔",
+        "column_title": "열 머리글",
+        "column_type": "열 유형",
+        "columns": "열 데이터",
+        "component": "구성 요소",
+        "config_type": "구성 유형",
+        "container": "컨테이너",
+        "content": "콘텐츠",
+        "control_component": "제어 장치",
+        "custom_rule": "맞춤 규칙",
+        "data": "데이터",
+        "data_source": "데이터 소스",
+        "data_sources": "데이터 소스",
         "dataset": {
-          "aggregation_method": "Aggregation method",
-          "name": "Dataset name",
-          "remove": "Remove dataset",
-          "value": "Dataset values"
+          "aggregation_method": "집계 방법",
+          "name": "데이터 세트 이름",
+          "remove": "데이터 세트 제거",
+          "value": "데이터 열"
         },
-        "dataset_config": "Dataset config",
-        "datasets": "Datasets",
-        "decimal_place": "Decimal place",
-        "decimal_places": "Decimal places",
-        "default_sort_key": "Column",
-        "default_sort_order": "Direction",
-        "default_tab": "Default tab",
-        "default_value": "Default value",
-        "default_views": "Default view",
-        "description": "Description",
-        "direction": "Direction",
-        "disable_submit": "Disable submit",
-        "disabled": "Disabled",
-        "download": "Download",
-        "duration": "Duration",
-        "empty_state": "Empty state",
-        "enable_sorting": "Enable Sorting",
-        "end_data": "End date",
-        "end_placeholder": "End placeholder",
-        "event": "Event",
-        "event_handler": "Event handler",
-        "expansion_method": "Expansion method",
-        "failure": "Failure",
-        "filter": "Filter",
-        "font_size": "Font size",
-        "form_data_key": "Form Data Key",
-        "format": "Format",
-        "go_to_url": "Go to URL",
-        "group_by": "Group by",
-        "group_layout": "Group layout",
-        "hidden": "Hidden",
-        "hidden_label": "Hidden label",
-        "hide_validation_message": "Hide validation message",
-        "hide_value_label": "Hide value label",
-        "horizontal_alignment": "Horizontal alignment",
-        "icon": "Icon",
-        "image_source": "Image source",
-        "img_height": "Height",
-        "img_width": "Width",
-        "index": "Index",
-        "item_background_color": "Item background",
-        "items": "Items",
-        "key": "Key",
-        "label": "Label",
-        "label_alignment": "Alignment",
-        "label_position": "Position",
-        "label_width": "Width(%)",
-        "layout": "Layout",
-        "legend_position": "Legend position",
-        "link_to_container": "Link to a container",
-        "links_color": "Links",
-        "loading": "Loading",
-        "loop_back_to_start": "Loop back to start",
-        "loop_start_to_back": "Loop start to back",
-        "mapped_option": "Mapped Option",
-        "mapped_value": "Mapped Value",
-        "max_count": "Max count",
-        "max_date": "Max date",
-        "max_length": "Max length",
-        "maximum": "Maximum",
-        "method": "Method",
-        "min_date": "Min date",
-        "min_length": "Min Length",
-        "minimum": "Minimum",
-        "multi_row_selection": "Multi-Row Selection",
-        "new_tab": "New tab",
-        "only_run_when": "Only run when",
-        "overFlow": "OverFlow",
-        "page": "Page",
-        "pageSize": "PageSize",
-        "pattern": "Pattern",
-        "pending": "Pending",
-        "placeholder": "Placeholder",
-        "prefix_text": "Prefix text",
-        "radius": "Radius",
-        "read_only": "Read only",
-        "regex": "Regex",
-        "required_field": "Required field",
-        "reset_after_successful_submit": "Reset after successful submit",
-        "router": "Router",
-        "run_script": "Run script",
-        "scale_type": "Scale Type",
-        "set_router": "Set router",
-        "set_temporary_state": "Set temporary state",
-        "shadow": "Shadow",
-        "show_character_count": "Show character count",
-        "show_clear_button": "Show clear button",
-        "show_footer": "Show footer",
-        "show_header": "Show header",
-        "show_notification": "Show notification",
-        "sort": "Sort",
-        "start_date": "Start date",
-        "start_placeholder": "Start placeholder",
-        "step_size": "Step size",
-        "stroke_width": "Stroke width",
-        "style": "Style",
-        "styles": "Styles",
-        "submit_form": "Submit form",
-        "success": "Success",
-        "suffix_text": "Suffix text",
-        "text": "Text",
-        "text_align": "Text align",
-        "text_size": "Text size",
-        "theme_color": "Theme color",
-        "thousand_separator": "Thousand separator",
-        "time_format": "Time format",
-        "title": "Title",
-        "tooltip": "Tooltip",
-        "trail_color": "Trail color",
-        "trigger_query": "Trigger query",
-        "type": "Type",
-        "validate_inputs_on_submit": "Validate inputs on submit",
-        "value": "Value",
-        "value_labels": "Value labels",
-        "variant": "Variant",
-        "vertical_alignment": "Vertical alignment",
-        "width": "Width",
-        "x_axis_name": "X-axis name",
-        "x_axis_title": "X-axis title",
-        "x_axis_type": "X-axis type",
-        "x_axis_value": "X-axis value",
-        "y_axis_name": "Y-axis name",
-        "y_axis_title": "Y-axis title"
+        "dataset_config": "데이터 세트 구성",
+        "datasets": "데이터 세트",
+        "decimal_place": "소수 자릿수",
+        "decimal_places": "소수 자릿수",
+        "default_sort_key": "열 정렬",
+        "default_sort_order": "주문하다",
+        "default_tab": "기본값",
+        "default_value": "기본값",
+        "default_views": "기본 보기",
+        "description": "설명하다",
+        "direction": "방향",
+        "disable_submit": "제출 비활성화",
+        "disabled": "장애가 있는",
+        "download": "다운로드",
+        "duration": "지속",
+        "empty_state": "빈 상태",
+        "enable_sorting": "정렬하다",
+        "end_data": "종료 날짜",
+        "end_placeholder": "종료 날짜 자리 표시자",
+        "event": "이벤트",
+        "event_handler": "이벤트 핸들러",
+        "expansion_method": "확장 방법",
+        "failure": "요청 실패",
+        "filter": "필터",
+        "font_size": "글꼴 크기",
+        "form_data_key": "양식 데이터 키",
+        "format": "체재",
+        "go_to_url": "점프 링크",
+        "group_by": "그룹 레이블",
+        "group_layout": "그룹 레이아웃",
+        "hidden": "숨다",
+        "hidden_label": "숨겨진 라벨",
+        "hide_validation_message": "확인 정보 숨기기",
+        "hide_value_label": "숨겨진 값 레이블",
+        "horizontal_alignment": "수평 정렬",
+        "icon": "상",
+        "image_source": "이미지 출처",
+        "img_height": "높은",
+        "img_width": "너비",
+        "index": "인덱스",
+        "item_background_color": "아이템 배경색",
+        "items": "안건",
+        "key": "핵심 가치",
+        "label": "상표",
+        "label_alignment": "맞추다",
+        "label_position": "위치",
+        "label_width": "너비(%)",
+        "layout": "형세",
+        "legend_position": "레전드 위치",
+        "link_to_container": "컨테이너와 연결되어 있습니까?",
+        "links_color": "링크 색상",
+        "loading": "로드 중",
+        "loop_back_to_start": "목록 루프",
+        "loop_start_to_back": "목록 루프",
+        "mapped_option": "매핑 옵션",
+        "mapped_value": "맵 값",
+        "max_count": "최대 수량",
+        "max_date": "최대 날짜",
+        "max_length": "최대 길이",
+        "maximum": "최대값",
+        "method": "방법",
+        "min_date": "최소 날짜",
+        "min_length": "최소 길이",
+        "minimum": "최소값",
+        "multi_row_selection": "여러 행 선택",
+        "new_tab": "새 탭에서 열기",
+        "only_run_when": "전제 조건",
+        "overFlow": "페이지 넘김 방법",
+        "page": "페이지",
+        "pageSize": "페이지당 라인",
+        "pattern": "모델",
+        "pending": "보류 중인 노드",
+        "placeholder": "자리 표시자",
+        "prefix_text": "접두사 텍스트",
+        "radius": "나사",
+        "read_only": "읽기 전용",
+        "regex": "정규 표현식",
+        "required_field": "필수 입력 사항",
+        "reset_after_successful_submit": "성공적인 제출 후 입력 콘텐츠 재설정",
+        "router": "라우팅",
+        "run_script": "스크립트 실행",
+        "scale_type": "확대\/축소 유형",
+        "set_router": "라우팅 설정",
+        "set_temporary_state": "임시 상태 설정",
+        "shadow": "그림자",
+        "show_character_count": "문자 수 표시",
+        "show_clear_button": "지우기 버튼 표시",
+        "show_footer": "디스플레이 작동 영역",
+        "show_header": "제목 영역 표시",
+        "show_notification": "디스플레이 알림",
+        "sort": "정렬하다",
+        "start_date": "시작일",
+        "start_placeholder": "시작 날짜 자리 표시자",
+        "step_size": "단계 크기",
+        "stroke_width": "획 폭",
+        "style": "스타일",
+        "styles": "스타일",
+        "submit_form": "양식 제출",
+        "success": "성공적인 요청",
+        "suffix_text": "접미사 텍스트",
+        "text": "텍스트",
+        "text_align": "텍스트 정렬",
+        "text_size": "텍스트 크기",
+        "theme_color": "테마 색상",
+        "thousand_separator": "천 단위 구분 기호",
+        "time_format": "시간 형식",
+        "title": "제목",
+        "tooltip": "힌트",
+        "trail_color": "획 색상",
+        "trigger_query": "트리거 요청",
+        "type": "유형",
+        "validate_inputs_on_submit": "제출 시 입력 유효성 검사",
+        "value": "값",
+        "value_labels": "치수",
+        "variant": "스타일",
+        "vertical_alignment": "수직 정렬",
+        "width": "너비",
+        "x_axis_name": "가로 좌표 이름",
+        "x_axis_title": "X축 제목",
+        "x_axis_type": "X축 유형",
+        "x_axis_value": "X축",
+        "y_axis_name": "좌표 이름",
+        "y_axis_title": "Y축 제목"
       },
       "setter_tooltip": {
-        "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
-        "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
-        "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
-        "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
-        "date_format": "A valid date format string. See [dayJS](https:\/\/day.js.org\/docs\/en\/parse\/string-format).",
-        "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
-        "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
-        "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
-        "download": "Show download button in toolbar.",
-        "filter": "Show filter button in toolbar.",
-        "form_data_key": "Specify a key of a wrapping form component when constructing the data attribute.",
-        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
-        "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
-        "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
-        "loading": "Whether the component should show a loading indicator.",
-        "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
-        "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost \/ currentRow.clickTimes }}",
-        "multi_row_selection": "Use {{ table.selectedRow.data }} to access data. If you enable Multi-Row Selection, it will return an array, you can use it like this: {{ table1.selectedRow.data[0].email }} . And if you don't enable Multi-Row Selection, it will return an object, you can use it like this {{ table1.selectedRow.data.email }}.",
-        "only_run_when": "Conditions that must be met before the event executes.",
-        "placeholder": "The value will be shown when the input field is empty.",
-        "progress_percentage": "The percentage value is between 0 and 100.",
-        "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannot be modified.",
-        "required_field": "Valid only when the switch is on.",
-        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
-        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
-        "timeline_direction": "Change the direction of the timeline.",
-        "timeline_pending": "Whether to show a node with a pending status.",
-        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported."
+        "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
+        "cascader_data": "각 옵션은 값과 레이블이라는 두 개의 키를 포함하는 JSON 형식이어야 하며 값은 사용자 정의할 수 있습니다. 배열을 사용하면 동일한 수준에서 옵션을 만들 수 있으며 하위 속성을 추가하면 하위 집합을 추가할 수 있습니다.",
+        "component_default_value": "구성 요소의 기본값입니다. 상자에 JavaScript 문을 입력하면 템플릿 구문을 사용하여 기본값을 동적으로 변경할 수 있습니다.",
+        "custom_rule": "여기에 유효성 검사 규칙을 입력합니다. 유효성 검사 규칙은 JavaScript로 구성되어야 합니다.",
+        "date_format": "표준화된 시간 형식은 [dayJs](https:\/\/day.js.org\/docs\/en\/parse\/string-format)를 참조하세요.",
+        "default_value": "입력란의 기본값입니다. 템플릿 구문을 사용하여 상자에 JavaScript 문을 입력하여 입력 상자의 기본값을 동적으로 변경할 수 있습니다.",
+        "disabled": "구성 요소의 비활성화 여부를 제어합니다. 구성 요소가 비활성화되면 구성 요소를 수정할 수 없습니다.",
+        "disabled_submit": "제출이 비활성화되면 form.submit() 메서드를 호출한 구성 요소도 비활성화됩니다.",
+        "download": "툴바에 다운로드 버튼을 표시합니다.",
+        "filter": "도구 모음에 필터 버튼을 표시합니다.",
+        "form_data_key": "데이터 속성을 작성할 때 양식 구성요소를 감싸는 키를 지정하십시오.",
+        "hidden": "구성 요소를 숨길지 여부를 동적으로 제어합니다. 여기에 동적으로 변경되는 부울 값을 입력하여 구성 요소의 숨겨진 상태를 변경할 수 있습니다.",
+        "hide_validation_message": "유효성 검사 입력이 잘못된 경우 오류 메시지를 숨깁니다. JavaScript를 작성하여 숨길지 여부를 동적으로 수정할 수 있습니다.",
+        "input_default_value": "입력란의 기본값입니다. 템플릿 구문을 사용하여 상자에 JavaScript 문을 입력하여 입력 상자의 기본값을 동적으로 변경할 수 있습니다.",
+        "loading": "구성 요소가 로드되는지 여부를 제어합니다.",
+        "map_data_option": "숫자 값 또는 키-값 개체를 사용하여 옵션을 매핑합니다. 데이터 소스의 모든 항목은 모든 옵션에 매핑됩니다.",
+        "mapped_value": "{{ currentRow }}를 사용하여 현재 행의 데이터에 액세스합니다. 예를 들어 '비용' 및 '클릭수' 열에서 계산된 '클릭당 비용'은 다음과 같습니다.\n {{ currentRow.cost \/ currentRow.clickTimes }}",
+        "multi_row_selection": "{{table.selectedRow.data}} 를 사용하여 데이터에 액세스할 수 있습니다. 다중 행 선택이 활성화된 경우 다음과 같이 사용할 수 있는 배열을 반환합니다. {{ table1.selectedRow.data[0].email }}}. 다중 행 선택을 활성화하지 않은 경우 {{ table1.selectedRow.data.email }}과 같이 사용할 수 있는 객체를 반환합니다.",
+        "only_run_when": "이 이벤트가 실행되기 전에 충족되어야 하는 조건을 여기에 입력하십시오.",
+        "placeholder": "입력에 값이 없을 때 표시할 메시지입니다.",
+        "progress_percentage": "진행률 표시줄의 값 범위는 0-100입니다.",
+        "read_only": "구성 요소가 읽기 전용인지 여부를 제어합니다. 읽기 전용 구성 요소의 내용을 선택하고 초점을 맞출 수 있지만 수정할 수는 없습니다.",
+        "required_field": "스위치를 켠 후 입력 상자에서 유효성 검사를 수행합니다.",
+        "switch_default_value": "스위치의 초기 상태를 설정합니다. JavaScript를 통해 스위치의 초기 상태를 동적으로 변경할 수 있습니다.",
+        "text_value": "Markdown 모드 또는 일반 텍스트 모드에서 값을 입력하도록 선택할 수 있습니다. 링크는 Markdown 모드에서만 입력할 수 있습니다.",
+        "timeline_direction": "시간 축의 방향을 전환합니다.",
+        "timeline_pending": "보류 중인 노드를 표시할지 여부입니다.",
+        "tooltip": "사용자는 입력란에 프롬프트 내용을 입력할 수 있으며 마우스를 컴포넌트 위에 올려 놓으면 프롬프트 정보가 표시되며 Markdown 형식을 지원합니다."
       },
-      "tab_title": "Inspect",
-      "unselected_tip1": "No components selected.",
-      "unselected_tip2": "Click on a component to select it."
+      "tab_title": "속성",
+      "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
+      "unselected_tip2": "구성 요소를 클릭하여 선택하십시오."
     },
     "page": {
       "label_name": {
-        "add": "Add",
-        "body": "Body",
-        "default_view": "Default view",
-        "edit_view": "Edit view",
-        "footer": "Footer",
-        "header": "Header",
-        "key": "Key",
-        "left_panel": "Left panel",
-        "preset": "Preset",
-        "right_panel": "Right panel",
-        "set_as_homepage": "Set as homepage",
-        "show_fold_icon": "Show fold icon",
-        "view_path": "View path",
-        "views": "Views",
-        "width": "Width"
+        "add": "새 빌드",
+        "body": "본체",
+        "default_view": "기본 보기",
+        "edit_view": "보기 편집",
+        "footer": "보행인",
+        "header": "헤더",
+        "key": "핵심 가치",
+        "left_panel": "왼쪽 패널",
+        "preset": "프리셋",
+        "right_panel": "오른쪽 패널",
+        "set_as_homepage": "시작 페이지로 설정",
+        "show_fold_icon": "축소 버튼 표시",
+        "view_path": "경로 보기",
+        "views": "보다",
+        "width": "너비"
       },
       "model_tips": {
-        "cancel_button": "Cancel",
-        "change_layout_message": "After changing the layout, all data will be cleared. This operation can't be recovered, please confirm",
-        "delete_section_message": "After hiding, the data in this section will be cleared. This operation can't be recovered, please confirm",
-        "ok_button": "Confirm"
+        "cancel_button": "취소",
+        "change_layout_message": "레이아웃을 변경하면 모든 데이터가 지워집니다. 이 작업은 취소할 수 없습니다. 확인하십시오.",
+        "delete_section_message": "숨긴 후에는 이 부분의 데이터가 지워지며 이 작업은 복구할 수 없습니다. 확인하시기 바랍니다.",
+        "ok_button": "확인하다"
       },
       "panel_bar_title": {
-        "basic": "BASIC",
-        "frame": "FRAME"
+        "basic": "베이스",
+        "frame": "캔버스"
       },
-      "tab_title": "Page",
+      "tab_title": "페이지",
       "tooltips": {
-        "show_fold_icon": "Show a button to collapse or expand the panel",
-        "view_path": "A string after example.com\/app\/page\/ to access this view"
+        "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
+        "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com\/app\/page\/"
       }
     },
     "validate_message": {
-      "email": "Please enter a valid email address",
-      "max_length": "Must be no more than {{ number }} characters",
-      "max_value": "Must be less than {{ number }}",
-      "min_length": "Must be at least {{ number }} characters",
-      "min_value": "Must be greater than {{ number }}",
-      "regex": "Please match the requested format",
-      "required": "This field is required",
-      "url": "Please enter a valid URL"
+      "email": "유효한 이메일 주소를 입력하세요",
+      "max_length": "최대 {{ number }}자까지 입력하세요.",
+      "max_value": "{{ 숫자 }}보다 크지 않은 값을 입력하세요.",
+      "min_length": "{{ 숫자 }}자 이상 입력하세요.",
+      "min_value": "{{ number }} 이상의 값을 입력하세요.",
+      "regex": "필요한 형식을 입력하세요.",
+      "required": "필수의",
+      "url": "유효한 URL을 입력 해주세요"
     },
     "widget_picker": {
-      "empty_tip": "Sorry, no search results",
-      "search_placeholder": "search",
+      "empty_tip": "죄송합니다, 검색 결과가 없습니다",
+      "search_placeholder": "검색",
       "sessions": {
-        "calendar": "Calendar inputs",
-        "commonly": "Commonly components",
-        "container": "Container and form",
-        "data": "Data",
-        "inputs": "Inputs",
-        "navigation": "Navigation",
-        "presentation": "Presentation",
-        "selects": "Select inputs"
+        "calendar": "캘린더 구성 요소",
+        "commonly": "공통 구성 요소",
+        "container": "컨테이너 클래스 구성 요소",
+        "data": "데이터 클래스 구성요소",
+        "inputs": "입력 클래스 구성요소",
+        "navigation": "항해",
+        "presentation": "디스플레이 클래스 구성요소",
+        "selects": "클래스 구성 요소 선택"
       },
-      "tab_title": "Insert"
+      "tab_title": "구성 요소"
     }
   },
-  "exit_preview": "Exit Preview",
-  "freeze_collision": "Freeze collision",
-  "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
-  "freeze_tips": "The canvas is frozen. Click here to unfreeze it.",
-  "link_copied": "Link Copied",
-  "network_error": "Network disconnected. Please check this device's network",
-  "not_online_tips": "Network disconnected. Please check this device's network",
-  "preview": "Preview",
-  "remove_fail": "Failed to remove",
-  "rename": "Rename",
-  "resources": "Resources",
-  "retry": "Retry",
-  "save": "Save",
+  "exit_preview": "미리보기 종료",
+  "freeze_collision": "동결 충돌",
+  "freeze_messages": "캔버스가 고정되고 구성 요소를 컨테이너 안팎으로 끌 수 있습니다.",
+  "freeze_tips": "캔버스가 고정되었습니다. 고정을 해제하려면 클릭하세요.",
+  "link_copied": "링크 복사됨",
+  "network_error": "네트워크 이상",
+  "not_online_tips": "네트워크 연결이 끊어졌습니다. 이 장치의 네트워크를 확인하십시오.",
+  "preview": "시사",
+  "remove_fail": "삭제하지 못했습니다",
+  "rename": "이름 바꾸기",
+  "resources": "자원",
+  "retry": "다시 해 보다",
+  "save": "저장",
   "setting": {
     "account": {
-      "email": "Email",
-      "empty_username": "Please enter your username",
-      "error_username": "Username must be 3~15 characters",
-      "save": "Save Changes",
-      "save_fail": "Failed to save",
-      "title": "ACCOUNT",
-      "username": "Username"
+      "email": "우편",
+      "empty_username": "사용자 이름은 비워둘 수 없습니다.",
+      "error_username": "사용자 이름은 3~15자여야 합니다.",
+      "save": "저장",
+      "save_fail": "저장 실패",
+      "title": "계정",
+      "username": "사용자 이름"
     },
     "other": {
-      "language": "Language",
-      "save": "Save Changes",
-      "title": "SETTING"
+      "language": "언어",
+      "save": "저장",
+      "title": "설정"
     },
     "password": {
-      "confirm_password": "Confirmation password",
-      "current_password": "Old password",
-      "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 6~20 characters",
-      "error_match_password": "Your password and confirmation password do not match",
-      "error_password_has_empty": "Password cannot include spaces",
-      "error_validate_password": "Your password can only contain numbers, letters and punctuations",
-      "new_password": "New password",
-      "submit_button": "Submit",
-      "title": "PASSWORD"
+      "confirm_password": "새 비밀번호 확인",
+      "current_password": "기존 비밀번호",
+      "empty_password": "비밀번호는 비워둘 수 없습니다.",
+      "error_format_password": "비밀번호는 6~20자여야 합니다.",
+      "error_match_password": "새 비밀번호가 일치하지 않습니다. 다시 시도하십시오.",
+      "error_password_has_empty": "비밀번호는 공백을 포함할 수 없습니다.",
+      "error_validate_password": "비밀번호는 숫자, 문자, 구두점만 포함할 수 있습니다.",
+      "new_password": "새 비밀번호",
+      "submit_button": "제출하다",
+      "title": "비밀번호"
     }
   },
-  "share": "Share",
+  "share": "공유하다",
   "status": {
     "403": {
-      "des": "Access denied"
+      "des": "접근 불가"
     },
     "404": {
-      "again": "Refresh",
-      "des": "It seems that the page you were looking for could not be found."
+      "again": "새로 고침",
+      "des": "방문 중인 페이지가 존재하지 않습니다"
     },
     "500": {
-      "des": "Oops, something went wrong. Please try again later."
+      "des": "요청에 실패했습니다. 나중에 다시 시도하십시오."
     },
-    "back": "Back to homepage"
+    "back": "홈페이지로 돌아 가기"
   },
-  "title": "Welcome to illa",
-  "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
+  "title": "엘라 클라우드에 오신 것을 환영합니다",
+  "unfreeze_tips": "캔버스를 고정한 후 구성 요소를 컨테이너 안팎으로 드래그할 수 있습니다. (디 또는 케이)",
   "user": {
-    "description": "An open-source low-code platform for developers.",
+    "description": "개발자 전용 오픈 소스 로우 코드 플랫폼입니다.",
     "forgot_password": {
       "actions": {
-        "reset": "Reset",
-        "send": "Send code"
+        "reset": "초기화",
+        "send": "확인 코드 받기"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "Please enter a valid email address",
-          "registered": "The email address doesn't associate with an account.",
-          "require": "Please enter your email"
+          "invalid_pattern": "이메일 형식이 잘못되었습니다.",
+          "registered": "이 이메일 주소는 등록되지 않았습니다.",
+          "require": "이메일은 비워둘 수 없습니다."
         },
         "newPassword": {
-          "require": "Please enter your password"
+          "require": "비밀번호는 비워둘 수 없습니다."
         },
         "verification_code": {
-          "expired": "Verification code expired",
-          "invalid": "Invalid verification code",
-          "require": "Please enter verification code"
+          "expired": "인증 코드가 만료되었습니다.",
+          "invalid": "인증 코드 오류",
+          "require": "인증 코드를 입력하세요"
         }
       },
       "fields": {
-        "email": "Email",
-        "newPassword": "New Password",
-        "verification_code": "Verification code"
+        "email": "우편",
+        "newPassword": "새 비밀번호",
+        "verification_code": "확인 코드"
       },
       "placeholder": {
-        "email": "Enter your email",
-        "verification_code": "Please enter verification code"
+        "email": "이메일을 입력해주세요",
+        "verification_code": "인증 코드를 입력하세요"
       },
-      "subtitle": "Back to sign in",
+      "subtitle": "다시 로그인",
       "tips": {
-        "fail": "Failed to reset password",
-        "fail_sent": "Failed to send verification code",
-        "success": "Reset password successfully",
-        "verification_code": "Verification code sent"
+        "fail": "비밀번호 재설정 실패",
+        "fail_sent": "인증 코드를 보내지 못했습니다.",
+        "success": "비밀번호 재설정 성공",
+        "verification_code": "인증 코드 전송됨"
       },
-      "title": "Reset Password"
+      "title": "암호를 재설정"
     },
     "password": {
-      "placeholder": "Enter your new password(at least 6 characters)"
+      "placeholder": "비밀번호를 입력해주세요(6자 이상)"
     },
     "sign_in": {
       "actions": {
-        "login": "Sign in"
+        "login": "로그인"
       },
       "description": {
-        "forgot_password": "Forgot Password?",
-        "policy": "By clicking Sign in, I agree to <0>Privacy Policy<\/0> and <1>terms<\/1>",
-        "register": "New user? <0>Create an account<\/0>"
+        "forgot_password": "비밀번호를 잊으 셨나요?",
+        "policy": "\"로그인\"을 클릭하여 < 0 > 서비스 약관 < \/0 > 및 < 1 > 개인 정보 보호 계약 < \/1 > 을 읽고 동의했음을 나타냅니다.",
+        "register": "새로운 사용자? < 0 > 계정 등록 < \/0 >"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "Please enter a valid email address",
-          "registered": "The email address doesn't associate with an account.",
-          "require": "Please enter your email"
+          "invalid_pattern": "이메일 형식이 잘못되었습니다.",
+          "registered": "이 이메일 주소는 등록되지 않았습니다.",
+          "require": "이메일은 비워둘 수 없습니다."
         },
         "password": {
-          "incorrect": "Incorrect email or password",
-          "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
-          "min_length": "The password must be at least 6 characters",
-          "require": "Please enter password"
+          "incorrect": "정확한 계정 비밀번호를 입력해주세요",
+          "locked": "5회 이상 잘못된 비밀번호를 입력하면 1시간 동안 계정이 잠깁니다.",
+          "min_length": "비밀번호는 6자 이상이어야 합니다.",
+          "require": "비밀번호는 비워둘 수 없습니다."
         }
       },
       "fields": {
-        "email": "Email",
-        "password": "Password"
+        "email": "우편",
+        "password": "비밀번호"
       },
       "placeholder": {
-        "email": "Enter your email"
+        "email": "이메일을 입력해주세요"
       },
       "tips": {
-        "fail": "Failed to sign in",
-        "success": "Signed in successfully"
+        "fail": "로그인 실패",
+        "success": "성공적 로그인"
       },
-      "title": "Welcome back"
+      "title": "다시 오신 것을 환영합니다"
     },
     "sign_up": {
       "actions": {
-        "create": "Create Account",
-        "send": "Send code"
+        "create": "계정 생성",
+        "send": "확인 코드 받기"
       },
       "description": {
-        "login": "Already have an account? <0>Sign in<\/0>",
-        "policy": "By clicking Create Account, I agree to <0>Privacy Policy<\/0> and <1>terms<\/1>",
-        "subscribe": "I am willing to receive the updates and news about ILLA"
+        "login": "이미 계정이 있습니까? < 0 > 로그인 < \/0 >",
+        "policy": "\"지금 등록\"을 클릭하여 < 0 > 서비스 약관 < \/0 > 및 < 1 > 개인 정보 보호 계약 < \/1 > 을 읽고 동의했음을 나타냅니다.",
+        "subscribe": "ILLA의 소식을 구독하세요"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "Please enter a valid email address",
-          "registered": "An account with that email address already exists.",
-          "require": "Please enter your email"
+          "invalid_pattern": "이메일 형식이 잘못되었습니다.",
+          "registered": "이미 등록된 이메일입니다. 로그인하세요.",
+          "require": "이메일은 비워둘 수 없습니다."
         },
         "password": {
-          "require": "Please enter password"
+          "require": "비밀번호는 비워둘 수 없습니다."
         },
         "username": {
-          "length": "The username must be 3~15 characters",
-          "require": "Please enter username"
+          "length": "사용자 이름은 3~15자여야 합니다.",
+          "require": "사용자 이름은 비워둘 수 없습니다."
         },
         "verification_code": {
-          "expired": "Verification code expired",
-          "invalid": "Invalid verification code",
-          "require": "Please enter verification code"
+          "expired": "인증 코드가 만료되었습니다.",
+          "invalid": "인증 코드 오류",
+          "require": "인증 코드를 입력하세요"
         }
       },
       "fields": {
-        "email": "Email",
-        "password": "Password",
-        "username": "Username",
-        "verification_code": "Verification code"
+        "email": "우편",
+        "password": "비밀번호",
+        "username": "사용자 이름",
+        "verification_code": "확인 코드"
       },
       "placeholder": {
-        "email": "Enter your email",
-        "username": "Enter your username",
-        "verification_code": "Please enter verification code"
+        "email": "이메일을 입력해주세요",
+        "username": "사용자 이름을 입력하십시오",
+        "verification_code": "인증 코드를 입력하세요"
       },
       "tips": {
-        "fail": "Failed to sign up",
-        "fail_sent": "Failed to send verification code",
-        "success": "Signed up successfully",
-        "verification_code": "Verification code sent"
+        "fail": "등록 실패",
+        "fail_sent": "인증 코드를 보내지 못했습니다.",
+        "success": "등록 성공",
+        "verification_code": "인증 코드 전송됨"
       },
-      "title": "Sign up"
+      "title": "등록하다"
     }
   },
   "widget": {
     "bar_progress": {
-      "name": "Bar Progress"
+      "name": "바 진행률 표시줄"
     },
     "button": {
-      "default_text": "Button",
-      "name": "Button"
+      "default_text": "단추",
+      "name": "단추"
     },
     "cascader": {
-      "name": "Cascader"
+      "name": "캐스케이드 선택"
     },
     "chart": {
-      "name": "Chart"
+      "name": "차트"
     },
     "check_box_group": {
-      "name": "Checkbox Group"
+      "name": "확인란 그룹"
     },
     "circle_progress": {
-      "name": "Circle Progress"
+      "name": "원형 진행률 표시줄"
     },
     "container": {
-      "empty": "Press <keyPress>D<\/keyPress> or <keyPress>K<\/keyPress> and drag components here",
-      "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
-      "name": "Container"
+      "empty": "<keyPress> D <\/keyPress> 또는 <keyPress> K <\/keyPress> 를 누른 상태에서 구성 요소를 컨테이너로 드래그",
+      "key_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오.",
+      "name": "컨테이너"
     },
     "date": {
-      "name": "Date"
+      "name": "날짜 선택기"
     },
     "date_range": {
-      "name": "Date range"
+      "name": "날짜 범위 선택기"
     },
     "date_time": {
-      "name": "Date Time",
-      "placeholder": "Select time"
+      "name": "날짜 시간 선택기",
+      "placeholder": "시간을 선택하세요."
     },
     "divider_progress": {
-      "name": "Divider"
+      "name": "구분선"
     },
     "editable_text": {
-      "name": "Editable Text"
+      "name": "편집 가능한 텍스트"
     },
     "form": {
-      "name": "Form"
+      "name": "형태"
     },
     "image": {
-      "name": "Image"
+      "name": "그림"
     },
     "input": {
-      "name": "Input"
+      "name": "입력 상자"
     },
     "list": {
-      "doc1": "Use {{ currentItem }} to access the data of current item. For example, to set value of the text component which is in list component based on \"userName\": {{ currentItem.userName }}",
-      "doc2": "Use {{list.selectedItem.data}} to access the data of selected item in list component. For example, to set the value of the text component which is out of list component based on \"username\" of the selected item in the list: {{ list.selectedItem.userName }}",
-      "name": "List"
+      "doc1": "{{ currentItem }}을 사용하여 현재 항목의 데이터에 액세스합니다. 예를 들어 \"userName\"을 기준으로 목록 구성 요소의 텍스트 구성 요소 값을 설정하려면 {{ currentItem.userName }}}을 입력합니다.",
+      "doc2": "{{list.selectedItem.data}} 를 사용하여 목록에서 선택한 항목의 데이터에 액세스합니다. 예를 들어 목록 선택 항목의 \"사용자 이름\"에 따라 목록 구성 요소 외부에 있는 텍스트 구성 요소의 값을 {{list.selectedItem.userName }}}로 설정합니다.",
+      "name": "목록"
     },
     "menu": {
-      "name": "Menu"
+      "name": "메뉴"
     },
     "number_input": {
-      "name": "Number Input"
+      "name": "숫자 입력 상자"
     },
     "public": {
-      "left": "Left",
-      "right": "Right",
+      "left": "왼쪽",
+      "right": "오른쪽",
       "select_options": {
-        "manual": "Manual",
-        "mapped": "Mapped"
+        "manual": "자동적 인",
+        "mapped": "수동"
       },
-      "top": "Top"
+      "top": "우수한"
     },
     "radio_button": {
-      "name": "Radio Button"
+      "name": "버튼 라디오"
     },
     "radio_group": {
-      "name": "Radio group"
+      "name": "라디오 그룹"
     },
     "rate": {
-      "name": "Rate"
+      "name": "점수"
     },
     "select": {
-      "name": "Select"
+      "name": "선택자"
     },
     "switch": {
-      "name": "Switch"
+      "name": "스위치"
     },
     "table": {
-      "ascend": "Asc",
-      "descend": "Desc",
-      "name": "Table",
-      "pagination": "Pagination",
-      "scroll": "Scroll"
+      "ascend": "오름차순",
+      "descend": "내림차순",
+      "name": "시트",
+      "pagination": "페이지를 넘기다",
+      "scroll": "스크롤"
     },
     "tabs": {
-      "name": "Tabs"
+      "name": "탭"
     },
     "text": {
-      "default_value": "👋 Hello!",
-      "name": "Text",
-      "text_model": "Plain text"
+      "default_value": "👋 안녕하세요!",
+      "name": "텍스트",
+      "text_model": "일반 텍스트"
     },
     "timeline": {
       "horizontal": "수평의",
-      "name": "Timeline",
-      "vertical": "vertical"
+      "name": "타임라인",
+      "vertical": "초상화"
     }
   }
 }
