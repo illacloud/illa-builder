@@ -114,7 +114,7 @@
           "handle_response": "处理返回",
           "post_processing": "后处理",
           "prepare_query": "查询准备",
-          "response_size": "响应大小 ",
+          "response_size": "响应大小",
           "total": "总用时",
           "transfer_data": "传输数据",
           "transformer": "Transformer"
@@ -317,7 +317,7 @@
             "action_type": "Action type",
             "audience": "Audience",
             "authentication": "API 认证",
-            "authorization_url": "authorization url",
+            "authorization_url": "Authorization url",
             "base_url": "Base URL",
             "basic_auth_password": "基础认证密码",
             "basic_auth_username": "基础认证用户名",
@@ -396,7 +396,7 @@
             "tip": "\/\/ Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
           "tip": {
-            "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
+            "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }} "
           }
         }
       },
@@ -530,7 +530,7 @@
         },
         "outline": "描边",
         "validation_pattern": {
-          "email": " 邮箱",
+          "email": "邮箱",
           "regex": "正则表达式",
           "url": "URL"
         }
@@ -694,7 +694,7 @@
         "theme_color": "主题色",
         "thousand_separator": "千位分隔符",
         "time_format": "时间格式化",
-        "title": " 标题",
+        "title": "标题",
         "tooltip": "提示",
         "trail_color": "描边颜色",
         "trigger_query": "触发请求",
@@ -714,10 +714,10 @@
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
-        "cascader_data": "每个选项必须是JSON格式，包含value和label两个键，值可以自定义。通过使用数组,可以创建同一级别的选项，添加 children 属性可以添加子集",
+        "cascader_data": "每个选项必须是JSON格式，包含value和label两个键，值可以自定义。通过使用数组, 可以创建同一级别的选项，添加 children 属性可以添加子集 ",
         "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
         "custom_rule": "在此处输入验证规则。 验证规则应该由 JavaScript 构成。",
-        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https:\/\/day.js.org\/docs\/en\/parse\/string-format)",
+        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https:\/\/day.js.org\/docs\/en\/parse\/string-format) ",
         "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
         "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
         "disabled_submit": "禁用提交时，调用form.submit()方法的组件也会被禁用。",
@@ -782,9 +782,9 @@
     },
     "validate_message": {
       "email": "请输入有效的电子邮箱",
-      "max_length": "请输入最多{{ number }}个字符",
-      "max_value": "请输入不大于{{ number }}的值",
-      "min_length": "请输入至少{{ number }}个字符",
+      "max_length": "请输入最多 {{ number }} 个字符",
+      "max_value": "请输入不大于 {{ number }} 的值",
+      "min_length": "请输入至少 {{ number }} 个字符",
       "min_value": "请输入不小于{{ number }} 的值",
       "regex": "请按照要求的格式填写",
       "required": "必填",
@@ -839,7 +839,7 @@
       "current_password": "旧密码",
       "empty_password": "密码不能为空",
       "error_format_password": "密码须为6～20个字符",
-      "error_match_password": "新密码不一致，请重试 ",
+      "error_match_password": "新密码不一致，请重试",
       "error_password_has_empty": "密码不能包含空格",
       "error_validate_password": "密码只能包含数字、字母、标点符号",
       "new_password": "新密码",
@@ -913,7 +913,7 @@
       "description": {
         "forgot_password": "忘记密码?",
         "policy": "点击「登录」表示已阅读并同意<0>服务条款<\/0>和<1>隐私协议<\/1>",
-        "register": "新用户？<0>注册账号<\/0>"
+        "register": "新用户？<0>创建一个账号<\/0>"
       },
       "error_message": {
         "email": {
