@@ -1,5 +1,4 @@
 {
-  "welcome_header": "Hello world!",
   "Logout": "退出登录",
   "Setting": "设置",
   "apps": "项目",
@@ -212,7 +211,7 @@
           "object_key_list": "对象键值列表",
           "placeholder": {
             "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
-            "object_key_list": "{{[\"myDir\/file1.txt\", \"myDir\/file2.txt\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
             "object_name": "export.csv",
             "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
           },
@@ -269,7 +268,7 @@
             "database": "数据库名称",
             "database_index": "数据库索引",
             "hostname": "主机",
-            "hostname_port": "主机\/端口",
+            "hostname_port": "主机/端口",
             "hosturl": "主机URL",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
@@ -279,14 +278,14 @@
             "port": "端口",
             "private_key": "私钥",
             "ssl_options": "SSL 选项",
-            "username_password": "用户名\/密码"
+            "username_password": "用户名/密码"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
             "database_index": "默认 0",
             "hostname": "主机名",
-            "hosturl": "例如 https:\/\/example.com",
+            "hosturl": "例如 https://example.com",
             "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "密码",
@@ -304,7 +303,7 @@
           }
         },
         "error": {
-          "invalid_url": "请输入可用的URL，例如http:\/\/example.com"
+          "invalid_url": "请输入可用的URL，例如http://example.com"
         },
         "restapi": {
           "btns": {
@@ -351,13 +350,13 @@
           },
           "placeholder": {
             "access_token_lifespan": "Token Lifespan in seconds",
-            "access_token_url": "https:\/\/www.googleapis.com\/oauth2\/v4\/token",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
             "api": "i.e.\"Internal Admin API\"",
-            "authorization_url": "https:\/\/accounts.google.com\/o\/oauth2\/v2\/auth",
-            "base_url": "请使用绝对 URL (e.g https:\/\/example.com)",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "请使用绝对 URL (e.g https://example.com)",
             "database": "i.e.\"Users DB(readonly)\"",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "oauth_callback_url": "https:\/\/oauth.retool.com\/oauth\/user\/oauthcallback",
+            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "key",
             "param_value": "value",
             "password": "密码",
@@ -384,7 +383,7 @@
             "use_custome_s3_endpoint": "使用自定义S3端点"
           },
           "placeholder": {
-            "base_url": "例如https:\/\/example.com",
+            "base_url": "例如https://example.com",
             "region": "us-west-1"
           },
           "tip": {
@@ -393,7 +392,7 @@
         },
         "transformer": {
           "placeholder": {
-            "tip": "\/\/ Tip: assign your external references to variables instead of chaining off the curly brackets."
+            "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
           "tip": {
             "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
@@ -717,7 +716,7 @@
         "cascader_data": "每个选项必须是JSON格式，包含value和label两个键，值可以自定义。通过使用数组,可以创建同一级别的选项，添加 children 属性可以添加子集",
         "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
         "custom_rule": "在此处输入验证规则。 验证规则应该由 JavaScript 构成。",
-        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https:\/\/day.js.org\/docs\/en\/parse\/string-format)",
+        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
         "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
         "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
         "disabled_submit": "禁用提交时，调用form.submit()方法的组件也会被禁用。",
@@ -729,7 +728,7 @@
         "input_default_value": "输入框的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变输入框的默认值。",
         "loading": "控制组件是否为加载状态。",
         "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项。",
-        "mapped_value": "使用 {{ currentRow }} 来访问当前行的数据。例如，根据 \"成本 \"和 \"点击次数 \"列计算得到\"每次点击成本\"：\n  {{ currentRow.cost \/ currentRow.clickTimes }}",
+        "mapped_value": "使用 {{ currentRow }} 来访问当前行的数据。例如，根据 \"成本 \"和 \"点击次数 \"列计算得到\"每次点击成本\"：\n  {{ currentRow.cost / currentRow.clickTimes }}",
         "multi_row_selection": "您可以使用{{table.selectedRow.data}}来访问数据。如果您启用了多行选择，它将返回一个数组，您可以像这样使用它：{{ table1.selectedRow.data[0].email }}}。如果您没有启用多行选择，它将返回一个对象，你可以像这样使用它：{{ table1.selectedRow.data.email }}。",
         "only_run_when": "在此输入该事件执行前必须满足的条件。",
         "placeholder": "当输入中没有值时，展示的信息。",
@@ -777,7 +776,7 @@
       "tab_title": "页面",
       "tooltips": {
         "show_fold_icon": "显示一个按钮，用于收起或展开面板",
-        "view_path": "一个拼example.com\/app\/page\/后面的字符串，用来访问这个视图"
+        "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图"
       }
     },
     "validate_message": {
@@ -912,8 +911,8 @@
       },
       "description": {
         "forgot_password": "忘记密码?",
-        "policy": "点击「登录」表示已阅读并同意<0>服务条款<\/0>和<1>隐私协议<\/1>",
-        "register": "新用户？<0>注册账号<\/0>"
+        "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+        "register": "新用户？<0>注册账号</0>"
       },
       "error_message": {
         "email": {
@@ -947,8 +946,8 @@
         "send": "获取验证码"
       },
       "description": {
-        "login": "已有账户？ <0>登录<\/0>",
-        "policy": "点击「立即注册」表示已阅读并同意<0>服务条款<\/0>和<1>隐私协议<\/1>",
+        "login": "已有账户？ <0>登录</0>",
+        "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
         "subscribe": "订阅ILLA的动态"
       },
       "error_message": {
@@ -1011,7 +1010,7 @@
       "name": "圆形进度条"
     },
     "container": {
-      "empty": "按住 <keyPress>D<\/keyPress> 或 <keyPress>K<\/keyPress> ，将组件拖入容器",
+      "empty": "按住 <keyPress>D</keyPress> 或 <keyPress>K</keyPress> ，将组件拖入容器",
       "key_duplicated": "键值重复，请使用唯一值以避免报错。",
       "name": "容器"
     },
