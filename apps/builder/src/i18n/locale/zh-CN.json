@@ -545,555 +545,555 @@
         "layout": "布局",
         "menu": "菜单",
         "options": "选项",
-        "pagination": "翻页",
-        "row_selection": "行选择",
-        "sort": "排序",
-        "style": "风格",
-        "tabs": "选项卡",
-        "toolbar": "工具栏",
-        "validation": "验证",
-        "views": "视图"
+        "pagination": "PAGINATION",
+        "row_selection": "ROW SELECTION",
+        "sort": "SORT",
+        "style": "STYLE",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "VALIDATION",
+        "views": "VIEWS"
       },
       "setter_label": {
-        "action": "动作",
-        "align": "对齐",
-        "allow_clear": "允许清除",
-        "allow_half": "允许一半",
-        "alt_text": "替换文本",
-        "alt_text_desc": "屏幕阅读器可访问的图像描述。如果无法加载图像，这也会作为备用方案进行渲染。",
-        "background": "背景",
-        "background_color": "背景色",
-        "border": "描边",
-        "border_width": "边框宽度",
-        "caption": "副标题",
-        "chart_title": "标题",
-        "chart_type": "图表类型",
-        "color": "颜色",
-        "colors": "颜色",
-        "column_title": "列标题",
-        "column_type": "列类型",
-        "columns": "列数据",
-        "component": "组件",
-        "config_type": "配置类型",
-        "container": "容器",
-        "content": "内容",
-        "control_component": "控制组件",
-        "custom_rule": "自定义规则",
-        "data": "数据",
-        "data_source": "数据源",
-        "data_sources": "数据源",
+        "action": "Action",
+        "align": "Align",
+        "allow_clear": "Allow clear",
+        "allow_half": "Allow half",
+        "alt_text": "Alt text",
+        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "background": "Background",
+        "background_color": "Background",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Caption",
+        "chart_title": "Title",
+        "chart_type": "Chart type",
+        "color": "Color",
+        "colors": "Colors",
+        "column_title": "Column title",
+        "column_type": "Column type",
+        "columns": "Columns",
+        "component": "Component",
+        "config_type": "Config type",
+        "container": "Container",
+        "content": "Content",
+        "control_component": "Control component",
+        "custom_rule": "Custom rule",
+        "data": "Data",
+        "data_source": "Data source",
+        "data_sources": "Data sources",
         "dataset": {
-          "aggregation_method": "聚合方式",
-          "name": "数据集名称",
-          "remove": "移除数据集",
-          "value": "数据列"
+          "aggregation_method": "Aggregation method",
+          "name": "Dataset name",
+          "remove": "Remove dataset",
+          "value": "Dataset values"
         },
-        "dataset_config": "数据集配置",
-        "datasets": "数据集",
-        "decimal_place": "小数位",
-        "decimal_places": "小数位数",
-        "default_sort_key": "排序列",
-        "default_sort_order": "顺序",
-        "default_tab": "默认值",
-        "default_value": "默认值",
-        "default_views": "默认视图",
-        "description": "描述",
-        "direction": "方向",
-        "disable_submit": "禁用提交",
-        "disabled": "禁用",
-        "download": "下载",
-        "duration": "持续时间",
-        "empty_state": "空状态",
-        "enable_sorting": "排序",
-        "end_data": "结束日期",
-        "end_placeholder": "结束日期占位符",
-        "event": "事件",
-        "event_handler": "事件处理器",
-        "expansion_method": "展开方式",
-        "failure": "请求失败",
-        "filter": "筛选",
-        "font_size": "字号",
-        "form_data_key": "表单数据键值",
-        "format": "格式化",
-        "go_to_url": "跳转链接",
-        "group_by": "分组标签",
-        "group_layout": "组内布局",
-        "hidden": "隐藏",
-        "hidden_label": "隐藏标签",
-        "hide_validation_message": "隐藏验证信息",
-        "hide_value_label": "隐藏值标签",
-        "horizontal_alignment": "水平对齐",
-        "icon": "图标",
-        "image_source": "图片来源",
-        "img_height": "高度",
-        "img_width": "宽度",
-        "index": "索引",
-        "item_background_color": "项目背景色",
-        "items": "项",
-        "key": "键值",
-        "label": "标签",
-        "label_alignment": "对齐",
-        "label_position": "位置",
-        "label_width": "宽度(%)",
-        "layout": "布局",
-        "legend_position": "图例位置",
-        "link_to_container": "是否关联到容器",
-        "links_color": "链接色",
-        "loading": "加载中",
-        "loop_back_to_start": "列表循环",
-        "loop_start_to_back": "列表循环",
-        "mapped_option": "映射选项",
-        "mapped_value": "映射值",
-        "max_count": "最大数量",
-        "max_date": "最大日期",
-        "max_length": "最大长度",
-        "maximum": "最大值",
-        "method": "方法",
-        "min_date": "最小日期",
-        "min_length": "最小长度",
-        "minimum": "最小值",
-        "multi_row_selection": "多行选择",
-        "new_tab": "在新标签中打开",
-        "only_run_when": "先决条件",
-        "overFlow": "翻页方式",
-        "page": "页面",
-        "pageSize": "每页行数",
-        "pattern": "模式",
-        "pending": "待处理节点",
-        "placeholder": "占位符",
-        "prefix_text": "前缀文本",
-        "radius": "圆角",
-        "read_only": "只读",
-        "regex": "正则表达式",
-        "required_field": "必需字段",
-        "reset_after_successful_submit": "提交成功后重置输入内容",
-        "router": "路由",
-        "run_script": "运行脚本",
-        "scale_type": "缩放类型",
-        "set_router": "设置路由",
-        "set_temporary_state": "设置临时状态",
-        "shadow": "阴影",
-        "show_character_count": "展示字符数量",
-        "show_clear_button": "展示清除按钮",
-        "show_footer": "显示操作区",
-        "show_header": "显示标题区",
-        "show_notification": "展示通知",
-        "sort": "排序",
-        "start_date": "开始日期",
-        "start_placeholder": "开始日期占位符",
-        "step_size": "步长",
-        "stroke_width": "描边宽度",
-        "style": "样式",
-        "styles": "样式",
-        "submit_form": "提交表单",
-        "success": "请求成功",
-        "suffix_text": "后缀文本",
-        "text": "文本",
-        "text_align": "文本对齐",
-        "text_size": "文本大小",
-        "theme_color": "主题色",
-        "thousand_separator": "千位分隔符",
-        "time_format": "时间格式化",
-        "title": "标题",
-        "tooltip": "提示",
-        "trail_color": "描边颜色",
-        "trigger_query": "触发请求",
-        "type": "类型",
-        "validate_inputs_on_submit": "提交时校验输入",
-        "value": "值",
-        "value_labels": "维度",
-        "variant": "样式",
-        "vertical_alignment": "垂直对齐",
-        "width": "宽度",
-        "x_axis_name": "横坐标名称",
-        "x_axis_title": "X轴标题",
-        "x_axis_type": "X轴类型",
-        "x_axis_value": "X 轴",
-        "y_axis_name": "纵坐标名称",
-        "y_axis_title": "Y轴标题"
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Decimal place",
+        "decimal_places": "Decimal places",
+        "default_sort_key": "Column",
+        "default_sort_order": "Direction",
+        "default_tab": "Default tab",
+        "default_value": "Default value",
+        "default_views": "Default view",
+        "description": "Description",
+        "direction": "Direction",
+        "disable_submit": "Disable submit",
+        "disabled": "Disabled",
+        "download": "Download",
+        "duration": "Duration",
+        "empty_state": "Empty state",
+        "enable_sorting": "Enable Sorting",
+        "end_data": "End date",
+        "end_placeholder": "End placeholder",
+        "event": "Event",
+        "event_handler": "Event handler",
+        "expansion_method": "Expansion method",
+        "failure": "Failure",
+        "filter": "Filter",
+        "font_size": "Font size",
+        "form_data_key": "Form Data Key",
+        "format": "Format",
+        "go_to_url": "Go to URL",
+        "group_by": "Group by",
+        "group_layout": "Group layout",
+        "hidden": "Hidden",
+        "hidden_label": "Hidden label",
+        "hide_validation_message": "Hide validation message",
+        "hide_value_label": "Hide value label",
+        "horizontal_alignment": "Horizontal alignment",
+        "icon": "Icon",
+        "image_source": "Image source",
+        "img_height": "Height",
+        "img_width": "Width",
+        "index": "Index",
+        "item_background_color": "Item background",
+        "items": "Items",
+        "key": "Key",
+        "label": "Label",
+        "label_alignment": "Alignment",
+        "label_position": "Position",
+        "label_width": "Width(%)",
+        "layout": "Layout",
+        "legend_position": "Legend position",
+        "link_to_container": "Link to a container",
+        "links_color": "Links",
+        "loading": "Loading",
+        "loop_back_to_start": "Loop back to start",
+        "loop_start_to_back": "Loop start to back",
+        "mapped_option": "Mapped Option",
+        "mapped_value": "Mapped Value",
+        "max_count": "Max count",
+        "max_date": "Max date",
+        "max_length": "Max length",
+        "maximum": "Maximum",
+        "method": "Method",
+        "min_date": "Min date",
+        "min_length": "Min Length",
+        "minimum": "Minimum",
+        "multi_row_selection": "Multi-Row Selection",
+        "new_tab": "New tab",
+        "only_run_when": "Only run when",
+        "overFlow": "OverFlow",
+        "page": "Page",
+        "pageSize": "PageSize",
+        "pattern": "Pattern",
+        "pending": "Pending",
+        "placeholder": "Placeholder",
+        "prefix_text": "Prefix text",
+        "radius": "Radius",
+        "read_only": "Read only",
+        "regex": "Regex",
+        "required_field": "Required field",
+        "reset_after_successful_submit": "Reset after successful submit",
+        "router": "Router",
+        "run_script": "Run script",
+        "scale_type": "Scale Type",
+        "set_router": "Set router",
+        "set_temporary_state": "Set temporary state",
+        "shadow": "Shadow",
+        "show_character_count": "Show character count",
+        "show_clear_button": "Show clear button",
+        "show_footer": "Show footer",
+        "show_header": "Show header",
+        "show_notification": "Show notification",
+        "sort": "Sort",
+        "start_date": "Start date",
+        "start_placeholder": "Start placeholder",
+        "step_size": "Step size",
+        "stroke_width": "Stroke width",
+        "style": "Style",
+        "styles": "Styles",
+        "submit_form": "Submit form",
+        "success": "Success",
+        "suffix_text": "Suffix text",
+        "text": "Text",
+        "text_align": "Text align",
+        "text_size": "Text size",
+        "theme_color": "Theme color",
+        "thousand_separator": "Thousand separator",
+        "time_format": "Time format",
+        "title": "Title",
+        "tooltip": "Tooltip",
+        "trail_color": "Trail color",
+        "trigger_query": "Trigger query",
+        "type": "Type",
+        "validate_inputs_on_submit": "Validate inputs on submit",
+        "value": "Value",
+        "value_labels": "Value labels",
+        "variant": "Variant",
+        "vertical_alignment": "Vertical alignment",
+        "width": "Width",
+        "x_axis_name": "X-axis name",
+        "x_axis_title": "X-axis title",
+        "x_axis_type": "X-axis type",
+        "x_axis_value": "X-axis value",
+        "y_axis_name": "Y-axis name",
+        "y_axis_title": "Y-axis title"
       },
       "setter_tooltip": {
-        "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
-        "cascader_data": "每个选项必须是JSON格式，包含value和label两个键，值可以自定义。通过使用数组, 可以创建同一级别的选项，添加 children 属性可以添加子集 ",
-        "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
-        "custom_rule": "在此处输入验证规则。 验证规则应该由 JavaScript 构成。",
-        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https:\/\/day.js.org\/docs\/en\/parse\/string-format) ",
-        "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
-        "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
-        "disabled_submit": "禁用提交时，调用form.submit()方法的组件也会被禁用。",
-        "download": "在工具栏显示下载按钮。",
-        "filter": "在工具栏显示筛选按钮。",
-        "form_data_key": "在构建数据属性时，指定一个包装表单组件的键。",
-        "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态。",
-        "hide_validation_message": "当验证输入有误时隐藏错误信息。您可以通过编写 JavaScript 对是否隐藏进行动态修改。",
-        "input_default_value": "输入框的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变输入框的默认值。",
-        "loading": "控制组件是否为加载状态。",
-        "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项。",
-        "mapped_value": "使用 {{ currentRow }} 来访问当前行的数据。例如，根据 \"成本 \"和 \"点击次数 \"列计算得到\"每次点击成本\"：\n  {{ currentRow.cost \/ currentRow.clickTimes }}",
-        "multi_row_selection": "您可以使用{{table.selectedRow.data}}来访问数据。如果您启用了多行选择，它将返回一个数组，您可以像这样使用它：{{ table1.selectedRow.data[0].email }}}。如果您没有启用多行选择，它将返回一个对象，你可以像这样使用它：{{ table1.selectedRow.data.email }}。",
-        "only_run_when": "在此输入该事件执行前必须满足的条件。",
-        "placeholder": "当输入中没有值时，展示的信息。",
-        "progress_percentage": "进度条的数值范围为 0-100。",
-        "read_only": "控制组件是否为只读状态。只读组件的内容可以被选中和聚焦，但不能被修改。",
-        "required_field": "在开关开启后对输入框执行验证。",
-        "switch_default_value": "设置开关的初始状态。您可以通过 JavaScript 动态改变开关的初始状态。",
-        "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
-        "timeline_direction": "切换时间轴的方向。",
-        "timeline_pending": "是否显示一个待处理状态的节点。",
-        "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。"
+        "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
+        "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
+        "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
+        "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
+        "date_format": "A valid date format string. See [dayJS](https:\/\/day.js.org\/docs\/en\/parse\/string-format).",
+        "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
+        "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
+        "download": "Show download button in toolbar.",
+        "filter": "Show filter button in toolbar.",
+        "form_data_key": "Specify a key of a wrapping form component when constructing the data attribute.",
+        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
+        "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
+        "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "loading": "Whether the component should show a loading indicator.",
+        "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
+        "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost \/ currentRow.clickTimes }}",
+        "multi_row_selection": "Use {{ table.selectedRow.data }} to access data. If you enable Multi-Row Selection, it will return an array, you can use it like this: {{ table1.selectedRow.data[0].email }} . And if you don't enable Multi-Row Selection, it will return an object, you can use it like this {{ table1.selectedRow.data.email }}.",
+        "only_run_when": "Conditions that must be met before the event executes.",
+        "placeholder": "The value will be shown when the input field is empty.",
+        "progress_percentage": "The percentage value is between 0 and 100.",
+        "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannot be modified.",
+        "required_field": "Valid only when the switch is on.",
+        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
+        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
+        "timeline_direction": "Change the direction of the timeline.",
+        "timeline_pending": "Whether to show a node with a pending status.",
+        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported."
       },
-      "tab_title": "属性",
-      "unselected_tip1": "没有组件被选中。",
-      "unselected_tip2": "请点击组件以选中。"
+      "tab_title": "Inspect",
+      "unselected_tip1": "No components selected.",
+      "unselected_tip2": "Click on a component to select it."
     },
     "page": {
       "label_name": {
-        "add": "新建",
-        "body": "主体",
-        "default_view": "默认视图",
-        "edit_view": "编辑视图",
-        "footer": "页脚",
-        "header": "页头",
-        "key": "键值",
-        "left_panel": "左侧面板",
-        "preset": "预设",
-        "right_panel": "右侧面板",
-        "set_as_homepage": "设置为主页",
-        "show_fold_icon": "显示折叠按钮",
-        "view_path": "视图路径",
-        "views": "视图",
-        "width": "宽度"
+        "add": "Add",
+        "body": "Body",
+        "default_view": "Default view",
+        "edit_view": "Edit view",
+        "footer": "Footer",
+        "header": "Header",
+        "key": "Key",
+        "left_panel": "Left panel",
+        "preset": "Preset",
+        "right_panel": "Right panel",
+        "set_as_homepage": "Set as homepage",
+        "show_fold_icon": "Show fold icon",
+        "view_path": "View path",
+        "views": "Views",
+        "width": "Width"
       },
       "model_tips": {
-        "cancel_button": "取消",
-        "change_layout_message": "改变布局将清空所有数据，该操作无法恢复，请确认",
-        "delete_section_message": "隐藏后，这个部分的数据会被清空，该操作无法恢复，请确认",
-        "ok_button": "确认"
+        "cancel_button": "Cancel",
+        "change_layout_message": "After changing the layout, all data will be cleared. This operation can't be recovered, please confirm",
+        "delete_section_message": "After hiding, the data in this section will be cleared. This operation can't be recovered, please confirm",
+        "ok_button": "Confirm"
       },
       "panel_bar_title": {
-        "basic": "基础",
-        "frame": "画布"
+        "basic": "BASIC",
+        "frame": "FRAME"
       },
-      "tab_title": "页面",
+      "tab_title": "Page",
       "tooltips": {
-        "show_fold_icon": "显示一个按钮，用于收起或展开面板",
-        "view_path": "一个拼example.com\/app\/page\/后面的字符串，用来访问这个视图"
+        "show_fold_icon": "Show a button to collapse or expand the panel",
+        "view_path": "A string after example.com\/app\/page\/ to access this view"
       }
     },
     "validate_message": {
-      "email": "请输入有效的电子邮箱",
-      "max_length": "请输入最多 {{ number }} 个字符",
-      "max_value": "请输入不大于 {{ number }} 的值",
-      "min_length": "请输入至少 {{ number }} 个字符",
-      "min_value": "请输入不小于{{ number }} 的值",
-      "regex": "请按照要求的格式填写",
-      "required": "必填",
-      "url": "请输入有效的URL"
+      "email": "Please enter a valid email address",
+      "max_length": "Must be no more than {{ number }} characters",
+      "max_value": "Must be less than {{ number }}",
+      "min_length": "Must be at least {{ number }} characters",
+      "min_value": "Must be greater than {{ number }}",
+      "regex": "Please match the requested format",
+      "required": "This field is required",
+      "url": "Please enter a valid URL"
     },
     "widget_picker": {
-      "empty_tip": "抱歉，没有搜索结果",
-      "search_placeholder": "搜索",
+      "empty_tip": "Sorry, no search results",
+      "search_placeholder": "search",
       "sessions": {
-        "calendar": "日历类组件",
-        "commonly": "常用组件",
-        "container": "容器类组件",
-        "data": "数据类组件",
-        "inputs": "输入类组件",
+        "calendar": "Calendar inputs",
+        "commonly": "Commonly components",
+        "container": "Container and form",
+        "data": "Data",
+        "inputs": "Inputs",
         "navigation": "Navigation",
-        "presentation": "展示类组件",
-        "selects": "选择类组件"
+        "presentation": "Presentation",
+        "selects": "Select inputs"
       },
-      "tab_title": "组件"
+      "tab_title": "Insert"
     }
   },
-  "exit_preview": "退出预览",
-  "freeze_collision": "冻结碰撞",
-  "freeze_messages": "画布处于冻结状态，可以将组件拖入或拖出容器。",
-  "freeze_tips": "画布已冻结，点击解冻。",
-  "link_copied": "链接已复制",
-  "network_error": "网络异常",
-  "not_online_tips": "网络已断开，请检查此设备的网络",
-  "preview": "预览",
-  "remove_fail": "删除失败",
-  "rename": "重命名",
-  "resources": "资源",
-  "retry": "重试",
-  "save": "保存",
+  "exit_preview": "Exit Preview",
+  "freeze_collision": "Freeze collision",
+  "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
+  "freeze_tips": "The canvas is frozen. Click here to unfreeze it.",
+  "link_copied": "Link Copied",
+  "network_error": "Network disconnected. Please check this device's network",
+  "not_online_tips": "Network disconnected. Please check this device's network",
+  "preview": "Preview",
+  "remove_fail": "Failed to remove",
+  "rename": "Rename",
+  "resources": "Resources",
+  "retry": "Retry",
+  "save": "Save",
   "setting": {
     "account": {
-      "email": "邮箱",
-      "empty_username": "用户名不能为空",
-      "error_username": "用户名须为3～15个字符",
-      "save": "保存",
-      "save_fail": "保存失败",
-      "title": "账号",
-      "username": "用户名"
+      "email": "Email",
+      "empty_username": "Please enter your username",
+      "error_username": "Username must be 3~15 characters",
+      "save": "Save Changes",
+      "save_fail": "Failed to save",
+      "title": "ACCOUNT",
+      "username": "Username"
     },
     "other": {
-      "language": "语言",
-      "save": "保存",
-      "title": "设置"
+      "language": "Language",
+      "save": "Save Changes",
+      "title": "SETTING"
     },
     "password": {
-      "confirm_password": "确认新密码",
-      "current_password": "旧密码",
-      "empty_password": "密码不能为空",
-      "error_format_password": "密码须为6～20个字符",
-      "error_match_password": "新密码不一致，请重试",
-      "error_password_has_empty": "密码不能包含空格",
-      "error_validate_password": "密码只能包含数字、字母、标点符号",
-      "new_password": "新密码",
-      "submit_button": "提交",
-      "title": "密码"
+      "confirm_password": "Confirmation password",
+      "current_password": "Old password",
+      "empty_password": "Please enter your password",
+      "error_format_password": "Password must be 6~20 characters",
+      "error_match_password": "Your password and confirmation password do not match",
+      "error_password_has_empty": "Password cannot include spaces",
+      "error_validate_password": "Your password can only contain numbers, letters and punctuations",
+      "new_password": "New password",
+      "submit_button": "Submit",
+      "title": "PASSWORD"
     }
   },
-  "share": "分享",
+  "share": "Share",
   "status": {
     "403": {
-      "des": "访问被拒绝"
+      "des": "Access denied"
     },
     "404": {
-      "again": "刷新",
-      "des": "您访问的页面不存在"
+      "again": "Refresh",
+      "des": "It seems that the page you were looking for could not be found."
     },
     "500": {
-      "des": "请求失败，请稍后再试。"
+      "des": "Oops, something went wrong. Please try again later."
     },
-    "back": "回到主页"
+    "back": "Back to homepage"
   },
-  "title": "欢迎来到艾拉云",
-  "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
+  "title": "Welcome to illa",
+  "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
   "user": {
-    "description": "专属于开发者的开源低代码平台。",
+    "description": "An open-source low-code platform for developers.",
     "forgot_password": {
       "actions": {
-        "reset": "重置",
-        "send": "获取验证码"
+        "reset": "Reset",
+        "send": "Send code"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "邮箱格式不正确",
-          "registered": "此邮箱未注册",
-          "require": "邮箱不能为空"
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account.",
+          "require": "Please enter your email"
         },
         "newPassword": {
-          "require": "密码不能为空"
+          "require": "Please enter your password"
         },
         "verification_code": {
-          "expired": "验证码已过期",
-          "invalid": "验证码错误",
-          "require": "请输入验证码"
+          "expired": "Verification code expired",
+          "invalid": "Invalid verification code",
+          "require": "Please enter verification code"
         }
       },
       "fields": {
-        "email": "邮箱",
-        "newPassword": "新密码",
-        "verification_code": "验证码"
+        "email": "Email",
+        "newPassword": "New Password",
+        "verification_code": "Verification code"
       },
       "placeholder": {
-        "email": "请输入邮箱",
-        "verification_code": "请输入验证码"
+        "email": "Enter your email",
+        "verification_code": "Please enter verification code"
       },
-      "subtitle": "返回登录",
+      "subtitle": "Back to sign in",
       "tips": {
-        "fail": "重置密码失败",
-        "fail_sent": "发送验证码失败",
-        "success": "重置密码成功",
-        "verification_code": "验证码已发送"
+        "fail": "Failed to reset password",
+        "fail_sent": "Failed to send verification code",
+        "success": "Reset password successfully",
+        "verification_code": "Verification code sent"
       },
-      "title": "重置密码"
+      "title": "Reset Password"
     },
     "password": {
-      "placeholder": "请输入密码（不少于6个字符）"
+      "placeholder": "Enter your new password(at least 6 characters)"
     },
     "sign_in": {
       "actions": {
-        "login": "登录"
+        "login": "Sign in"
       },
       "description": {
-        "forgot_password": "忘记密码?",
-        "policy": "点击「登录」表示已阅读并同意<0>服务条款<\/0>和<1>隐私协议<\/1>",
-        "register": "新用户？<0>创建一个账号<\/0>"
+        "forgot_password": "Forgot Password?",
+        "policy": "By clicking Sign in, I agree to <0>Privacy Policy<\/0> and <1>terms<\/1>",
+        "register": "New user? <0>Create an account<\/0>"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "邮箱格式不正确",
-          "registered": "此邮箱未注册",
-          "require": "邮箱不能为空"
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account.",
+          "require": "Please enter your email"
         },
         "password": {
-          "incorrect": "请输入正确的账号密码",
-          "locked": "密码输错超过5次，账户将被锁定1小时",
-          "min_length": "密码须至少6个字符",
-          "require": "密码不能为空"
+          "incorrect": "Incorrect email or password",
+          "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
+          "min_length": "The password must be at least 6 characters",
+          "require": "Please enter password"
         }
       },
       "fields": {
-        "email": "邮箱",
-        "password": "密码"
+        "email": "Email",
+        "password": "Password"
       },
       "placeholder": {
-        "email": "请输入邮箱"
+        "email": "Enter your email"
       },
       "tips": {
-        "fail": "登录失败",
-        "success": "登录成功"
+        "fail": "Failed to sign in",
+        "success": "Signed in successfully"
       },
-      "title": "欢迎回来"
+      "title": "Welcome back"
     },
     "sign_up": {
       "actions": {
-        "create": "创建账户",
-        "send": "获取验证码"
+        "create": "Create Account",
+        "send": "Send code"
       },
       "description": {
-        "login": "已有账户？ <0>登录<\/0>",
-        "policy": "点击「立即注册」表示已阅读并同意<0>服务条款<\/0>和<1>隐私协议<\/1>",
-        "subscribe": "订阅ILLA的动态"
+        "login": "Already have an account? <0>Sign in<\/0>",
+        "policy": "By clicking Create Account, I agree to <0>Privacy Policy<\/0> and <1>terms<\/1>",
+        "subscribe": "I am willing to receive the updates and news about ILLA"
       },
       "error_message": {
         "email": {
-          "invalid_pattern": "邮箱格式不正确",
-          "registered": "此邮箱已注册，请登录",
-          "require": "邮箱不能为空"
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "An account with that email address already exists.",
+          "require": "Please enter your email"
         },
         "password": {
-          "require": "密码不能为空"
+          "require": "Please enter password"
         },
         "username": {
-          "length": "用户名须为3～15个字符",
-          "require": "用户名不能为空"
+          "length": "The username must be 3~15 characters",
+          "require": "Please enter username"
         },
         "verification_code": {
-          "expired": "验证码已过期",
-          "invalid": "验证码错误",
-          "require": "请输入验证码"
+          "expired": "Verification code expired",
+          "invalid": "Invalid verification code",
+          "require": "Please enter verification code"
         }
       },
       "fields": {
-        "email": "邮箱",
-        "password": "密码",
-        "username": "用户名",
-        "verification_code": "验证码"
+        "email": "Email",
+        "password": "Password",
+        "username": "Username",
+        "verification_code": "Verification code"
       },
       "placeholder": {
-        "email": "请输入邮箱",
-        "username": "请输入用户名",
-        "verification_code": "请输入验证码"
+        "email": "Enter your email",
+        "username": "Enter your username",
+        "verification_code": "Please enter verification code"
       },
       "tips": {
-        "fail": "注册失败",
-        "fail_sent": "发送验证码失败",
-        "success": "注册成功",
-        "verification_code": "验证码已发送"
+        "fail": "Failed to sign up",
+        "fail_sent": "Failed to send verification code",
+        "success": "Signed up successfully",
+        "verification_code": "Verification code sent"
       },
-      "title": "注册"
+      "title": "Sign up"
     }
   },
   "widget": {
     "bar_progress": {
-      "name": "条形进度条"
+      "name": "Bar Progress"
     },
     "button": {
       "default_text": "Button",
-      "name": "按钮"
+      "name": "Button"
     },
     "cascader": {
-      "name": "级联选择"
+      "name": "Cascader"
     },
     "chart": {
-      "name": "图表"
+      "name": "Chart"
     },
     "check_box_group": {
-      "name": "复选框组"
+      "name": "Checkbox Group"
     },
     "circle_progress": {
-      "name": "圆形进度条"
+      "name": "Circle Progress"
     },
     "container": {
-      "empty": "按住 <keyPress>D<\/keyPress> 或 <keyPress>K<\/keyPress> ，将组件拖入容器",
-      "key_duplicated": "键值重复，请使用唯一值以避免报错。",
-      "name": "容器"
+      "empty": "Press <keyPress>D<\/keyPress> or <keyPress>K<\/keyPress> and drag components here",
+      "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
+      "name": "Container"
     },
     "date": {
-      "name": "日期选择器"
+      "name": "Date"
     },
     "date_range": {
-      "name": "日期范围选择器"
+      "name": "Date range"
     },
     "date_time": {
-      "name": "日期时间选择器",
-      "placeholder": "请选择时间"
+      "name": "Date Time",
+      "placeholder": "Select time"
     },
     "divider_progress": {
-      "name": "分割线"
+      "name": "Divider"
     },
     "editable_text": {
-      "name": "可编辑文本"
+      "name": "Editable Text"
     },
     "form": {
-      "name": "表单"
+      "name": "Form"
     },
     "image": {
-      "name": "图片"
+      "name": "Image"
     },
     "input": {
-      "name": "输入框"
+      "name": "Input"
     },
     "list": {
-      "doc1": "使用 {{ currentItem }} 来访问当前项的数据。例如，根据 \"userName \"来设置列表组件中的文本组件的值：{{ currentItem.userName }}}。",
-      "doc2": "使用{{list.selectedItem.data}}来访问列表选中项的数据。例如，根据列表选中项的 \"用户名\"，设置位于列表组件外的文本组件的值：{{list.selectedItem.userName }}}。",
-      "name": "列表"
+      "doc1": "Use {{ currentItem }} to access the data of current item. For example, to set value of the text component which is in list component based on \"userName\": {{ currentItem.userName }}",
+      "doc2": "Use {{list.selectedItem.data}} to access the data of selected item in list component. For example, to set the value of the text component which is out of list component based on \"username\" of the selected item in the list: {{ list.selectedItem.userName }}",
+      "name": "List"
     },
     "menu": {
-      "name": "菜单"
+      "name": "Menu"
     },
     "number_input": {
-      "name": "数字输入框"
+      "name": "Number Input"
     },
     "public": {
-      "left": "左",
-      "right": "右",
+      "left": "Left",
+      "right": "Right",
       "select_options": {
-        "manual": "自动",
-        "mapped": "手动"
+        "manual": "Manual",
+        "mapped": "Mapped"
       },
-      "top": "上"
+      "top": "Top"
     },
     "radio_button": {
-      "name": "按钮单选"
+      "name": "Radio Button"
     },
     "radio_group": {
-      "name": "单选框组"
+      "name": "Radio group"
     },
     "rate": {
-      "name": "评分"
+      "name": "Rate"
     },
     "select": {
-      "name": "选择器"
+      "name": "Select"
     },
     "switch": {
-      "name": "开关"
+      "name": "Switch"
     },
     "table": {
-      "ascend": "升序",
-      "descend": "降序",
-      "name": "表格",
-      "pagination": "翻页",
-      "scroll": "滚动"
+      "ascend": "Asc",
+      "descend": "Desc",
+      "name": "Table",
+      "pagination": "Pagination",
+      "scroll": "Scroll"
     },
     "tabs": {
-      "name": "选项卡"
+      "name": "Tabs"
     },
     "text": {
-      "default_value": "👋 嗨！",
-      "name": "文本",
-      "text_model": "纯文本"
+      "default_value": "👋 Hello!",
+      "name": "Text",
+      "text_model": "Plain text"
     },
     "timeline": {
       "horizontal": "横向",
-      "name": "时间线",
-      "vertical": "纵向"
+      "name": "Timeline",
+      "vertical": "vertical"
     }
   }
 }
