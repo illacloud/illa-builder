@@ -21,10 +21,11 @@ import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/comp
 interface ListItemProps {
   value: ViewItemShape
   index: number
+  label?: string
 }
 
 export const ListItem: FC<ListItemProps> = (props) => {
-  const { value, index } = props
+  const { value, label, index } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
     handleDeleteOptionItem,
@@ -45,50 +46,50 @@ export const ListItem: FC<ListItemProps> = (props) => {
     setModalVisible(false)
   }, [])
 
-  const [, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
-    accept: "VIEW_ITEM",
-    collect(monitor) {
-      return {
-        handlerId: monitor.getHandlerId(),
-      }
-    },
-    hover(item: DragItem, monitor) {
-      if (!dragRef.current) {
-        return
-      }
-      const dragIndex = item.index
-      const hoverIndex = index
-      if (dragIndex === hoverIndex) {
-        return
-      }
-      const hoverBoundingRect = dragRef.current?.getBoundingClientRect()
-      const hoverMiddleY =
-        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-      const clientOffset = monitor.getClientOffset()
-      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return
-      }
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return
-      }
-      handleMoveOptionItem(dragIndex, hoverIndex)
-      item.index = hoverIndex
-    },
-  })
-
-  const [{ isDragging }, drag] = useDrag({
-    type: "VIEW_ITEM",
-    item: () => {
-      return { index }
-    },
-    collect: (monitor: any) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  })
-
-  drag(drop(dragRef))
-  const opacity = isDragging ? 0 : 1
+  // const [, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
+  //   accept: "VIEW_ITEM",
+  //   collect(monitor) {
+  //     return {
+  //       handlerId: monitor.getHandlerId(),
+  //     }
+  //   },
+  //   hover(item: DragItem, monitor) {
+  //     if (!dragRef.current) {
+  //       return
+  //     }
+  //     const dragIndex = item.index
+  //     const hoverIndex = index
+  //     if (dragIndex === hoverIndex) {
+  //       return
+  //     }
+  //     const hoverBoundingRect = dragRef.current?.getBoundingClientRect()
+  //     const hoverMiddleY =
+  //       (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+  //     const clientOffset = monitor.getClientOffset()
+  //     const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
+  //     if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+  //       return
+  //     }
+  //     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+  //       return
+  //     }
+  //     handleMoveOptionItem(dragIndex, hoverIndex)
+  //     item.index = hoverIndex
+  //   },
+  // })
+  //
+  // const [{ isDragging }, drag] = useDrag({
+  //   type: "VIEW_ITEM",
+  //   item: () => {
+  //     return { index }
+  //   },
+  //   collect: (monitor: any) => ({
+  //     isDragging: monitor.isDragging(),
+  //   }),
+  // })
+  //
+  // drag(drop(dragRef))
+  const opacity = 1
 
   const singleSelectedComponentNode = useSelector(
     getComponentNodeBySingleSelected,
@@ -136,7 +137,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
       }}
     >
       <span css={listItemTriggerWrapperStyle} style={{ opacity }} ref={dragRef}>
-        <DragIconAndLabel index={index} />
+        <DragIconAndLabel index={index} label={label} />
         <span css={actionWrapperStyle}>
           <CopyIcon
             css={copyIconStyle}

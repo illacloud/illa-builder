@@ -32,7 +32,7 @@ const OptionIcon: FC<optionIconProps> = ({ isSelected, onClick }) => {
 }
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
-  const { index } = props
+  const { index, label } = props
   const {
     widgetDisplayName,
     attrPath,
@@ -85,7 +85,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
           isSelected={currentViewIndex === index}
           onClick={handleChangeCurrentView}
         />
-        <span style={{ maxWidth: "147px" }}>{labelName}</span>
+        <span style={{ maxWidth: "147px" }}>{label}</span>
         {isDuplicationKey && (
           <Trigger
             trigger="hover"
