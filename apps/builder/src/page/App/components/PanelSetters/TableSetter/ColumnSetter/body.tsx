@@ -38,7 +38,10 @@ export const ListBody: FC = () => {
             key={item.accessorKey}
             value={item}
             onDragEnd={() => {
-              handleUpdateDsl(attrPath, items)
+              const orderItems = items.map((item, index) => {
+                return { ...item, columnIndex: index }
+              })
+              handleUpdateDsl(attrPath, orderItems)
             }}
           >
             <ColumnItem

@@ -1,8 +1,30 @@
 import { ReactComponent as TableWidgetIcon } from "@/assets/widgetCover/table.svg"
 import i18n from "@/i18n/config"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import store from "@/store"
 import { WidgetConfig } from "@/widgetLibrary/interface"
+import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
+
+const originData = [
+  {
+    month: "April",
+    users: 3700,
+    incomes: 4000,
+  },
+  {
+    month: "May",
+    users: 5400,
+    incomes: 8700,
+  },
+  {
+    month: "June",
+    users: 6000,
+    incomes: 12000,
+  },
+  {
+    month: "July",
+    users: 8000,
+    incomes: 14000,
+  },
+]
 
 export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   displayName: "table",
@@ -12,20 +34,15 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   type: "TABLE_WIDGET",
   icon: <TableWidgetIcon />,
   keywords: ["Table", "表格"],
-  sessionType: "PRESENTATION",
+  sessionType: "DATA",
   defaults: initTableWidgetDefaultProps(),
 }
 
 export function initTableWidgetDefaultProps() {
-  const rootState = store.getState()
-  const actions = getActionList(rootState)
-  const dataSource = actions.length
-    ? `{{${actions[0]?.displayName}.data}}`
-    : undefined
-
   return {
-    dataSource,
-    columns: [],
+    dataSourceMode: "dynamic",
+    dataSourceJS: `{{${JSON.stringify(originData, null, "  ")}}}`,
+    columns: tansTableDataToColumns(originData),
     emptyState: "No rows found",
     overFlow: "pagination",
     download: false,

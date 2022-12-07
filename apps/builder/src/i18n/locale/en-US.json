@@ -105,7 +105,7 @@
           "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter"
         },
         "placeholder": {
-          "search": "search"
+          "search": "Search"
         },
         "runtime": {
           "backend": "Backend",
@@ -158,6 +158,9 @@
           "id": "Id",
           "index": "Index",
           "query": "Query"
+        },
+        "error": {
+          "max_file": "The size of file can't exceed 5M."
         },
         "label": {
           "event_handler": "Event Handler",
@@ -218,8 +221,8 @@
           },
           "prefix_to_filter_reseults": "Prefix to filter results",
           "tips": {
-            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names.",
-            "delimiter": "A delimiter is a character you use to group keys."
+            "delimiter": "A delimiter is a character you use to group keys.",
+            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names."
           },
           "upload_data": "Upload data",
           "upload_data_list": "Upload data list",
@@ -227,30 +230,27 @@
           "upload_object_name_list": "Upload object name list"
         },
         "smtp": {
-          "from_email": "From email",
-          "set_replay_email": "Set Reply-To email",
-          "replay_email": "Reply-to email",
-          "to_email": "To email(s)",
-          "bcc_email": "Bcc email(s)",
-          "cc_email": "Cc email(s)",
-          "subject": "Subject",
-          "body": "Body",
           "attachment": "Attachment(s)",
-          "use_html": "Use HTML",
-          "use_raw": "Use raw text",
+          "bcc_email": "Bcc email(s)",
+          "body": "Body",
+          "cc_email": "Cc email(s)",
+          "from_email": "From email",
           "placeholder": {
-            "emails": "Use commas to separate emails. i.e. {{[\"A\", \"B\"]}}",
-            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Use commas to separate emails. i.e. {{[\"A\", \"B\"]}}"
           },
+          "replay_email": "Reply-to email",
+          "set_replay_email": "Set Reply-To email",
+          "subject": "Subject",
           "tips": {
             "port": "Some ISPs may block port 25.If the connection fails, please change the \nport."
-          }
+          },
+          "to_email": "To email(s)",
+          "use_html": "Use HTML",
+          "use_raw": "Use raw text"
         },
         "tips": {
           "transformer": "Enable transformers to transform the result of the query to a different format."
-        },
-        "error": {
-          "max_file": "The size of file can't exceed 5M."
         }
       },
       "resource": {
@@ -730,13 +730,16 @@
         "loading": "Whether the component should show a loading indicator.",
         "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
         "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost \/ currentRow.clickTimes }}",
-        "multi_row_selection": "Use {{ table.selectedRow.data }} to access data. If you enable Multi-Row Selection, it will return an array, you can use it like this: {{ table1.selectedRow.data[0].email }} . And if you don't enable Multi-Row Selection, it will return an object, you can use it like this {{ table1.selectedRow.data.email }}.",
+        "multi_row_selection": "Use {{table.selectedRow[n].columnName}} to access data.",
         "only_run_when": "Conditions that must be met before the event executes.",
         "placeholder": "The value will be shown when the input field is empty.",
         "progress_percentage": "The percentage value is between 0 and 100.",
         "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannot be modified.",
         "required_field": "Valid only when the switch is on.",
         "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
+        "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
         "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
         "timeline_direction": "Change the direction of the timeline.",
         "timeline_pending": "Whether to show a node with a pending status.",
@@ -792,7 +795,7 @@
     },
     "widget_picker": {
       "empty_tip": "Sorry, no search results",
-      "search_placeholder": "search",
+      "search_placeholder": "Search",
       "sessions": {
         "calendar": "Calendar inputs",
         "commonly": "Commonly components",
