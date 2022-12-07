@@ -45,7 +45,7 @@ export const GetUserByPhonePart: FC<FirebaseActionPartProps> = (props) => {
     <>
       <div css={actionItemStyle}>
         <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.firebase.uid")}
+          {t("editor.action.panel.firebase.phone_number")}
         </span>
         <CodeEditor
           css={actionItemCodeEditorStyle}

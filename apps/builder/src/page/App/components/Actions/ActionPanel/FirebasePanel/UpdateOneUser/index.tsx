@@ -57,7 +57,7 @@ export const UpdateOneUserPart: FC<FirebaseActionPartProps> = (props) => {
       </div>
       <div css={actionItemStyle}>
         <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.firebase.uid")}
+          {t("editor.action.panel.firebase.user_object")}
         </span>
         <CodeEditor
           css={actionItemCodeEditorStyle}

@@ -6,6 +6,7 @@ import {
   codeEditorLabelStyle,
   actionItemCodeEditorStyle,
   actionItemStyle,
+  actionItemTip,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -55,8 +56,7 @@ export const GetCollectionsPart: FC<FirebaseActionPartProps> = (props) => {
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
-      <div css={actionItemStyle}>
-        <span css={codeEditorLabelStyle}></span>
+      <div css={actionItemTip}>
         <span>
           {t("editor.action.panel.firebase.tips.parent_document_id_tips")}
         </span>

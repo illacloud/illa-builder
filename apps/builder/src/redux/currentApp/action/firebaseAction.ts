@@ -275,9 +275,14 @@ export interface FirestoreQuery {
 
 export type QueryFirebase = FirestoreQuery
 
+export enum CollectionType {
+  DROPDOWN = "dropdown",
+  RAW = "raw",
+}
+
 export const QueryFirebaseInitial: QueryFirebase = {
   collection: "",
-  collectionType: "",
+  collectionType: CollectionType.DROPDOWN,
   where: [
     {
       operation: "",
@@ -303,7 +308,7 @@ export type InsertDocument = DocumentOperation
 
 export const InsertDocumentInitial: InsertDocument = {
   collection: "",
-  collectionType: "",
+  collectionType: CollectionType.DROPDOWN,
   documentID: "",
   value: "",
 }
@@ -312,7 +317,7 @@ export type UpdateDocument = DocumentOperation
 
 export const UpdateDocumentInitial: UpdateDocument = {
   collection: "",
-  collectionType: "",
+  collectionType: CollectionType.DROPDOWN,
   documentID: "",
   value: "",
 }
@@ -321,7 +326,7 @@ export type GetDocumentByID = Omit<DocumentOperation, "value">
 
 export const GetDocumentByIDInitial: GetDocumentByID = {
   collection: "",
-  collectionType: "",
+  collectionType: CollectionType.DROPDOWN,
   documentID: "",
 }
 
@@ -329,7 +334,7 @@ export type DeleteDocument = Omit<DocumentOperation, "value">
 
 export const DeleteDocumentInitial: DeleteDocument = {
   collection: "",
-  collectionType: "",
+  collectionType: CollectionType.DROPDOWN,
   documentID: "",
 }
 
@@ -345,7 +350,7 @@ export type QueryCollectionGroup = FirestoreQuery
 
 export const QueryCollectionGroupInitial: QueryCollectionGroup = {
   collection: "",
-  collectionType: "",
+  collectionType: CollectionType.DROPDOWN,
   where: [
     {
       operation: "",
@@ -413,6 +418,12 @@ export const InitialValue = {
   [RealtimeActionTypeValue.APPEND_DATA_TO_LIST]: AppendDataToListInitial,
 }
 
+export const ServiceTypeInitialValue = {
+  [ServiceTypeValue.AUTH]: GetUserByIDInitial,
+  [ServiceTypeValue.FIRESTORE]: QueryFirebaseInitial,
+  [ServiceTypeValue.REALTIME]: QueryDatabaseInitial,
+}
+
 export type ActionTypeValue =
   | AuthActionTypeValue
   | FirestoreActionTypeValue
@@ -447,7 +458,5 @@ export interface FirebaseAction<T extends FirebaseContentType> {
 export const FirebaseActionInitial: FirebaseAction<GetUserByID> = {
   service: ServiceTypeValue.AUTH,
   operation: "",
-  options: {
-    uid: "",
-  },
+  options: GetUserByIDInitial,
 }

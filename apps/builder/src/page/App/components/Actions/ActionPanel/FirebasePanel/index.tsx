@@ -19,12 +19,16 @@ import {
 import {
   ActionTypeList,
   ActionTypeValue,
+  ServiceTypeValue,
   AuthActionTypeValue,
   FirebaseAction,
   FirebaseContentType,
   FirebaseServiceType,
   FirestoreActionTypeValue,
   InitialValue,
+  RealtimeActionTypeValue,
+  FirebaseActionInitial,
+  ServiceTypeInitialValue,
 } from "@/redux/currentApp/action/firebaseAction"
 import { GetUserByIDPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByID"
 import { GetUserByEmailPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByEmail"
@@ -40,6 +44,10 @@ import { GetDocumentByIDPart } from "@/page/App/components/Actions/ActionPanel/F
 import { DeleteOneDocumentPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/DeleteOneDocument"
 import { GetCollectionsPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetCollections"
 import { QueryCollectionGroupPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/QueryCollectionGroup"
+import { QueryDatabasePart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/QueryDatabase"
+import { UpdateDataPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateData"
+import { SetDataPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/SetData"
+import { AppendDataToListPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/AppendDataToList"
 
 export const FirebasePanel: FC = () => {
   const { t } = useTranslation()
@@ -54,30 +62,48 @@ export const FirebasePanel: FC = () => {
 
   const handleValueChange = useCallback(
     (value: string, name: string) => {
-      let options: FirebaseContentType = content.options
-      const selectedContent =
-        selectedAction.content as FirebaseAction<FirebaseContentType>
-      if (
-        cachedAction.resourceId === selectedAction.resourceId &&
-        (selectedContent.service === value ||
-          selectedContent.operation === value)
-      ) {
-        options = selectedContent.options
-      } else {
-        if (name === "operation") {
-          options = InitialValue[value as ActionTypeValue]
-        }
+      // let options: FirebaseContentType = content.options
+      // const selectedContent =
+      //   selectedAction.content as FirebaseAction<FirebaseContentType>
+      // if (
+      //   cachedAction.resourceId === selectedAction.resourceId &&
+      //   (selectedContent.service === value ||
+      //     selectedContent.operation === value)
+      // ) {
+      //   options = selectedContent.options
+      // } else {
+      //   if (name === "operation") {
+      //     options = InitialValue[value as ActionTypeValue]
+      //   }
+      // }
+      switch (name) {
+        case "operation":
+          let options = InitialValue[value as ActionTypeValue]
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...cachedAction.content,
+                operation: value,
+                options,
+              },
+            }),
+          )
+          break
+        case "service":
+          const initialOptions =
+            ServiceTypeInitialValue[value as ServiceTypeValue]
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...FirebaseActionInitial,
+                service: value as ServiceTypeValue,
+                options: initialOptions,
+              },
+            }),
+          )
       }
-      dispatch(
-        configActions.updateCachedAction({
-          ...cachedAction,
-          content: {
-            ...cachedAction.content,
-            [name]: value,
-            options,
-          },
-        }),
-      )
     },
     [dispatch, cachedAction, content],
   )
@@ -115,6 +141,14 @@ export const FirebasePanel: FC = () => {
         return <GetCollectionsPart {...props} />
       case FirestoreActionTypeValue.QUERY_COLLECTION_GROUP:
         return <QueryCollectionGroupPart {...props} />
+      case RealtimeActionTypeValue.QUERY_DATABASE:
+        return <QueryDatabasePart {...props} />
+      case RealtimeActionTypeValue.SET_DATA:
+        return <SetDataPart {...props} />
+      case RealtimeActionTypeValue.UPDATE_DATA:
+        return <UpdateDataPart {...props} />
+      case RealtimeActionTypeValue.APPEND_DATA_TO_LIST:
+        return <AppendDataToListPart {...props} />
     }
   }, [content])
 

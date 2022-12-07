@@ -256,7 +256,7 @@
           "next_page_token": "下一页token",
           "collection": "集合",
           "where": "where",
-          "limit": "limit",
+          "limit": "Limit",
           "order_by": "Order by",
           "ordering_direction": "Ordering direction",
           "use_start_at": "Use startAt",
@@ -280,8 +280,8 @@
             "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}"
           },
           "tips": {
-            "document_id": "空白时将自动生成ID。",
-            "parent_document_id_tips": "为空时选择最外层目录。"
+            "document_id": "空白时将自动生成ID",
+            "parent_document_id_tips": "为空时选择最外层目录"
           }
         },
         "tips": {

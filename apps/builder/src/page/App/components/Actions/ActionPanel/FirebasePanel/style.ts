@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { globalColor, getColor, illaPrefix } from "@illa-design/react"
 
 export const actionContainerStyle = css`
   display: flex;
@@ -61,4 +61,12 @@ export const codeEditorLabelStyle = css`
   justify-content: end;
   align-items: center;
   align-self: start;
+`
+
+export const actionItemTip = `
+ font-size: 14px;
+  margin-left: 192px;
+  white-space: pre-line;
+  padding-bottom: 6px;
+  color: ${getColor("grayBlue", "04")};
 `
