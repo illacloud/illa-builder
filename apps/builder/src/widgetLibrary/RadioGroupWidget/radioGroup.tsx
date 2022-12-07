@@ -160,7 +160,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const timeoutId = useRef<number>()
   const updateHeight = useCallback(() => {
-    timeoutId.current = setTimeout(() => {
+    timeoutId.current = window.setTimeout(() => {
       if (wrapperRef.current) {
         updateComponentHeight(wrapperRef.current?.clientHeight)
       }
