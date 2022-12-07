@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit"
-import { Locale, enUS, zhCN } from "@illa-design/react"
+import { Locale, enUS, zhCN, jaJP, koKR } from "@illa-design/react"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { RootState } from "@/store"
 
@@ -16,6 +16,12 @@ export const getCurrentConfigLanguage = (state: RootState) => {
       break
     case "zh-CN":
       selectedLocale = zhCN
+      break
+    case "ja-JP":
+      selectedLocale = jaJP
+      break
+    case "ko-KR":
+      selectedLocale = koKR
       break
     default:
       selectedLocale = enUS

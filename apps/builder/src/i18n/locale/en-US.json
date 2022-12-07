@@ -1,4 +1,5 @@
 {
+  "welcome_header": "你好",
   "Logout": "Log out",
   "Setting": "Setting",
   "apps": "Apps",
@@ -214,7 +215,7 @@
           "object_key_list": "Object key list",
           "placeholder": {
             "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
-            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_key_list": "{{[\"myDir\/file1.txt\", \"myDir\/file2.txt\"]}}",
             "object_name": "export.csv",
             "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
           },
@@ -268,7 +269,7 @@
             "database": "Database",
             "database_index": "Database Index",
             "hostname": "Hostname",
-            "hostname_port": "Hostname/Port",
+            "hostname_port": "Hostname\/Port",
             "hosturl": "Host Url",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
@@ -278,14 +279,14 @@
             "port": "Port",
             "private_key": "Private Key",
             "ssl_options": "SSL options",
-            "username_password": "Username/Password"
+            "username_password": "Username\/Password"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
             "database_index": "default 0",
             "hostname": "Hostname",
-            "hosturl": "i.e. https://example.com",
+            "hosturl": "i.e. https:\/\/example.com",
             "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "Password",
@@ -303,7 +304,7 @@
           }
         },
         "error": {
-          "invalid_url": "Please enter a valid URL, for example, https://example.com"
+          "invalid_url": "Please enter a valid URL, for example, https:\/\/example.com"
         },
         "restapi": {
           "btns": {
@@ -350,13 +351,13 @@
           },
           "placeholder": {
             "access_token_lifespan": "Token Lifespan in seconds",
-            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "access_token_url": "https:\/\/www.googleapis.com\/oauth2\/v4\/token",
             "api": "i.e.\"Internal Admin API\"",
-            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
-            "base_url": "Use the absolute URL (e.g https://example.com)",
+            "authorization_url": "https:\/\/accounts.google.com\/o\/oauth2\/v2\/auth",
+            "base_url": "Use the absolute URL (e.g https:\/\/example.com)",
             "database": "i.e.\"Users DB(readonly)\"",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
+            "oauth_callback_url": "https:\/\/oauth.retool.com\/oauth\/user\/oauthcallback",
             "param_key": "key",
             "param_value": "value",
             "password": "password",
@@ -383,7 +384,7 @@
             "use_custome_s3_endpoint": "Use custom S3 endpoint"
           },
           "placeholder": {
-            "base_url": "i.e. https://example.com",
+            "base_url": "i.e. https:\/\/example.com",
             "region": "us-west-1"
           },
           "tip": {
@@ -392,7 +393,7 @@
         },
         "transformer": {
           "placeholder": {
-            "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
+            "tip": "\/\/ Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
           "tip": {
             "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
@@ -716,7 +717,7 @@
         "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
         "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
         "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
-        "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "date_format": "A valid date format string. See [dayJS](https:\/\/day.js.org\/docs\/en\/parse\/string-format).",
         "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
         "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
         "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
@@ -728,7 +729,7 @@
         "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
         "loading": "Whether the component should show a loading indicator.",
         "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option.",
-        "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "mapped_value": "Use {{ currentRow }} to access the data of current row. For example, to calculate \"cost per click\" based on columns \"cost\" and \"clickTimes\": \n  {{ currentRow.cost \/ currentRow.clickTimes }}",
         "multi_row_selection": "Use {{table.selectedRow[n].columnName}} to access data.",
         "only_run_when": "Conditions that must be met before the event executes.",
         "placeholder": "The value will be shown when the input field is empty.",
@@ -779,7 +780,7 @@
       "tab_title": "Page",
       "tooltips": {
         "show_fold_icon": "Show a button to collapse or expand the panel",
-        "view_path": "A string after example.com/app/page/ to access this view"
+        "view_path": "A string after example.com\/app\/page\/ to access this view"
       }
     },
     "validate_message": {
@@ -914,8 +915,8 @@
       },
       "description": {
         "forgot_password": "Forgot Password?",
-        "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-        "register": "New user? <0>Create an account</0>"
+        "policy": "By clicking Sign in, I agree to <0>Privacy Policy<\/0> and <1>terms<\/1>",
+        "register": "New user? <0>Create an account<\/0>"
       },
       "error_message": {
         "email": {
@@ -949,8 +950,8 @@
         "send": "Send code"
       },
       "description": {
-        "login": "Already have an account? <0>Sign in</0>",
-        "policy": "By clicking Create Account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
+        "login": "Already have an account? <0>Sign in<\/0>",
+        "policy": "By clicking Create Account, I agree to <0>Privacy Policy<\/0> and <1>terms<\/1>",
         "subscribe": "I am willing to receive the updates and news about ILLA"
       },
       "error_message": {
@@ -1013,7 +1014,7 @@
       "name": "Circle Progress"
     },
     "container": {
-      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here",
+      "empty": "Press <keyPress>D<\/keyPress> or <keyPress>K<\/keyPress> and drag components here",
       "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
       "name": "Container"
     },
@@ -1093,7 +1094,7 @@
       "text_model": "Plain text"
     },
     "timeline": {
-      "horizontal": "horizontal",
+      "horizontal": "Horizontal",
       "name": "Timeline",
       "vertical": "vertical"
     }
