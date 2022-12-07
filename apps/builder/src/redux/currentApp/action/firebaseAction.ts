@@ -170,27 +170,23 @@ export const ActionTypeList = {
 
 export enum OperationType {
   EQUAL = "==",
-  NOE_EQUAL = "!=",
   GREATER = ">",
   LESS = "<",
   LESS_EQUAL = "<=",
   GREATER_EQUAL = ">=",
   CONTAINS = "contains",
   IN = "in",
-  NOT_IN = "not in",
   CONTAINS_ANY = "array contains any",
 }
 
 export const OperationList = [
   OperationType.EQUAL,
-  OperationType.NOE_EQUAL,
   OperationType.GREATER,
   OperationType.LESS,
   OperationType.LESS_EQUAL,
   OperationType.GREATER_EQUAL,
   OperationType.CONTAINS,
   OperationType.IN,
-  OperationType.NOT_IN,
   OperationType.CONTAINS_ANY,
 ]
 
@@ -268,9 +264,9 @@ export interface FirestoreQuery {
   orderBy: string
   direction: string
   useStartAt: boolean
-  startAt?: string
+  startAt: string
   useEndAt: boolean
-  endAt?: string
+  endAt: string
 }
 
 export type QueryFirebase = FirestoreQuery
@@ -294,6 +290,8 @@ export const QueryFirebaseInitial: QueryFirebase = {
   orderBy: "",
   direction: "",
   useStartAt: false,
+  startAt: "",
+  endAt: "",
   useEndAt: false,
 }
 
@@ -361,6 +359,8 @@ export const QueryCollectionGroupInitial: QueryCollectionGroup = {
   limit: "",
   orderBy: "",
   direction: "",
+  startAt: "",
+  endAt: "",
   useStartAt: false,
   useEndAt: false,
 }

@@ -5,10 +5,7 @@ import { Select } from "@illa-design/react"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import {
-  getCachedAction,
-  getSelectedAction,
-} from "@/redux/config/configSelector"
+import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
@@ -17,6 +14,7 @@ import {
   actionItemStyle,
 } from "./style"
 import {
+  Params,
   ActionTypeList,
   ActionTypeValue,
   ServiceTypeValue,
@@ -54,28 +52,12 @@ export const FirebasePanel: FC = () => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     FirebaseAction<FirebaseContentType>
   >
-  const selectedAction = useSelector(getSelectedAction) as ActionItem<
-    FirebaseAction<FirebaseContentType>
-  >
   const content = cachedAction.content as FirebaseAction<FirebaseContentType>
+  const options = content.options as FirebaseContentType
   const dispatch = useDispatch()
 
   const handleValueChange = useCallback(
     (value: string, name: string) => {
-      // let options: FirebaseContentType = content.options
-      // const selectedContent =
-      //   selectedAction.content as FirebaseAction<FirebaseContentType>
-      // if (
-      //   cachedAction.resourceId === selectedAction.resourceId &&
-      //   (selectedContent.service === value ||
-      //     selectedContent.operation === value)
-      // ) {
-      //   options = selectedContent.options
-      // } else {
-      //   if (name === "operation") {
-      //     options = InitialValue[value as ActionTypeValue]
-      //   }
-      // }
       switch (name) {
         case "operation":
           let options = InitialValue[value as ActionTypeValue]
@@ -108,12 +90,32 @@ export const FirebasePanel: FC = () => {
     [dispatch, cachedAction, content],
   )
 
+  const handleOptionsValueChange = useCallback(
+    (value: string | boolean | Params[], name: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...cachedAction.content,
+            options: {
+              ...options,
+              [name]: value,
+            },
+          },
+        }),
+      )
+    },
+    [dispatch, cachedAction, options],
+  )
+
   const renderInputBody = useMemo(() => {
     const props = {
       options: content.options,
+      handleValueChange: handleOptionsValueChange,
     }
     switch (content.operation) {
       case AuthActionTypeValue.GET_USER_BY_UID:
+      case AuthActionTypeValue.DELETE_ONE_USER:
         return <GetUserByIDPart {...props} />
       case AuthActionTypeValue.GET_USER_BY_EMAIL:
         return <GetUserByEmailPart {...props} />

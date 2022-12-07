@@ -1,6 +1,7 @@
 export interface Params {
   key: string
   value: string
+  [key: string]: string
 }
 
 export type RestApiAuthType = "none" | "basic" | "bearer"

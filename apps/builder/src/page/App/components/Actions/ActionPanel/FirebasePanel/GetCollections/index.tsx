@@ -1,66 +1,24 @@
-import { FC, useCallback } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
-import {
-  codeEditorLabelStyle,
-  actionItemCodeEditorStyle,
-  actionItemStyle,
-  actionItemTip,
-} from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
-import { getCachedAction } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
-import {
-  FirebaseAction,
-  FirebaseContentType,
-  GetCollections,
-} from "@/redux/currentApp/action/firebaseAction"
+import { GetCollections } from "@/redux/currentApp/action/firebaseAction"
+import { InputEditor } from "@/page/App/components/InputEditor"
 
 export const GetCollectionsPart: FC<FirebaseActionPartProps> = (props) => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const cachedAction = useSelector(getCachedAction) as ActionItem<
-    FirebaseAction<FirebaseContentType>
-  >
   const options = props.options as GetCollections
-
-  const handleValueChange = (value: string | boolean, name: string) => {
-    dispatch(
-      configActions.updateCachedAction({
-        ...cachedAction,
-        content: {
-          ...cachedAction.content,
-          options: {
-            ...options,
-            [name]: value,
-          },
-        },
-      }),
-    )
-  }
+  const { handleValueChange } = props
 
   return (
     <>
-      <div css={actionItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.firebase.document_id")}
-        </span>
-        <CodeEditor
-          css={actionItemCodeEditorStyle}
-          mode="TEXT_JS"
-          value={options.parentDocumentID}
-          onChange={(value) => handleValueChange(value, "parentDocumentID")}
-          expectedType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={actionItemTip}>
-        <span>
-          {t("editor.action.panel.firebase.tips.parent_document_id_tips")}
-        </span>
-      </div>
+      <InputEditor
+        title={t("editor.action.panel.firebase.parent_document_id")}
+        value={options.parentDocumentID}
+        onChange={(value) => handleValueChange(value, "parentDocumentID")}
+        expectedType={VALIDATION_TYPES.STRING}
+        tips={t("editor.action.panel.firebase.tips.parent_document_id_tips")}
+      />
     </>
   )
 }
