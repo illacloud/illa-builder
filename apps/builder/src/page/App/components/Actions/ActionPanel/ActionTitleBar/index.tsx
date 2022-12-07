@@ -268,11 +268,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     return runMode === "run" ? cachedAction?.actionType !== "transformer" : true
   }, [cachedAction?.actionType, runMode])
 
-  useEffect(() => {
-    // Clear the previous result when changing the selected action
-    onActionRun(undefined)
-  }, [cachedAction?.actionId, onActionRun])
-
   if (selectedAction == undefined || cachedAction === undefined) {
     return <></>
   }

@@ -5,12 +5,18 @@ import { FocusManager } from "@/utils/focusManager"
 import { ActionList } from "./ActionList"
 import { ActionPanel } from "./ActionPanel"
 import { applyActionEditorStyle, contentContainerStyle } from "./styles"
+import { ActionPanelFunctionProps } from "@/page/App/components/Actions/ActionPanel/interface"
 
 const ActionEditorDefaultHeight = 300
 
 export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const panelRef = useRef<HTMLDivElement | null>(null)
+  const actionPanelFuncRef = useRef<ActionPanelFunctionProps>({})
   const [maxHeight, setMaxHeight] = useState<number>()
+
+  const onChangeSelectedAction = () => {
+    actionPanelFuncRef.current?.clearActionResult?.()
+  }
 
   return (
     <div
@@ -37,8 +43,8 @@ export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
       />
       <Divider direction="horizontal" />
       <div css={contentContainerStyle}>
-        <ActionList />
-        <ActionPanel maxHeight={maxHeight} />
+        <ActionList onChangeSelectedAction={onChangeSelectedAction} />
+        <ActionPanel ref={actionPanelFuncRef} maxHeight={maxHeight} />
       </div>
     </div>
   )
