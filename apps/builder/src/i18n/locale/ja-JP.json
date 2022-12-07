@@ -159,6 +159,9 @@
           "index": "索引",
           "query": "クエリ"
         },
+        "error": {
+          "max_file": "ファイルサイズは 5M を超えることはできません。"
+        },
         "label": {
           "event_handler": "イベントハンドラ",
           "failure": "不合格",
@@ -212,14 +215,14 @@
           "object_key_list": "オブジェクトのキー値リスト",
           "placeholder": {
             "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\n sXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNho30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\n YW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\n MFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
-            "object_key_list": "{{[\"myDir\/file1.txt\", \"myDir\/file2.txt\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
             "object_name": "export.csv",
             "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
           },
           "prefix_to_filter_reseults": "結果のフィルタリングに使用されるプレフィックス",
           "tips": {
-            "max_keys": "応答で返されるキーの最大数を設定します。デフォルトでは、アクションは最大 1000 個のキー名を返します。",
-            "delimiter": "セパレータは、キー値をグループ化するために使用される文字です。"
+            "delimiter": "セパレータは、キー値をグループ化するために使用される文字です。",
+            "max_keys": "応答で返されるキーの最大数を設定します。デフォルトでは、アクションは最大 1000 個のキー名を返します。"
           },
           "upload_data": "データのアップロード",
           "upload_data_list": "アップロードデータ一覧",
@@ -227,30 +230,27 @@
           "upload_object_name_list": "オブジェクト名リストのアップロード"
         },
         "smtp": {
-          "from_email": "差出人",
-          "set_replay_email": "返信メールを設定する",
-          "replay_email": "返事",
-          "to_email": "受取人",
-          "bcc_email": "BCC",
-          "cc_email": "cc",
-          "subject": "テーマ",
-          "body": "文章",
           "attachment": "付録",
-          "use_html": "HTML を使用する",
-          "use_raw": "生のテキストを使用する",
+          "bcc_email": "BCC",
+          "body": "文章",
+          "cc_email": "cc",
+          "from_email": "差出人",
           "placeholder": {
-            "emails": "メールボックスはコンマで区切ります。 {{[\"A\", \"B\"]}} など",
-            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "メールボックスはコンマで区切ります。 {{[\"A\", \"B\"]}} など"
           },
+          "replay_email": "返事",
+          "set_replay_email": "返信メールを設定する",
+          "subject": "テーマ",
           "tips": {
             "port": "一部のインターネット サービス プロバイダーは、ポート 25 を無効にしている場合があります。接続に失敗した場合は、ポートを変更してください。"
-          }
+          },
+          "to_email": "受取人",
+          "use_html": "HTML を使用する",
+          "use_raw": "生のテキストを使用する"
         },
         "tips": {
           "transformer": "Transformer でクエリ結果をさまざまな形式に変換できるようにする"
-        },
-        "error": {
-          "max_file": "ファイルサイズは 5M を超えることはできません。"
         }
       },
       "resource": {
@@ -269,7 +269,7 @@
             "database": "名前データベース",
             "database_index": "データベース インデックス",
             "hostname": "ザ・ホスト",
-            "hostname_port": "ホスト\/ポート",
+            "hostname_port": "ホスト/ポート",
             "hosturl": "ホスト URL",
             "mongodb_connection_dns_seed_list": "DNS シード リスト接続",
             "mongodb_connection_standard": "標準接続",
@@ -286,7 +286,7 @@
             "database": "acme_production",
             "database_index": "デフォルト 0",
             "hostname": "CPU名",
-            "hosturl": "たとえば、https:\/\/example.com",
+            "hosturl": "たとえば、https://example.com",
             "mongo_certificate": "-----RSA 秘密鍵の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----END RSA 秘密鍵-----\n -----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----\n",
             "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
             "password": "パスワード",
@@ -304,7 +304,7 @@
           }
         },
         "error": {
-          "invalid_url": "http:\/\/example.com などの有効な URL を入力してください"
+          "invalid_url": "http://example.com などの有効な URL を入力してください"
         },
         "restapi": {
           "btns": {
@@ -351,13 +351,13 @@
           },
           "placeholder": {
             "access_token_lifespan": "トークンの有効期間 (秒)",
-            "access_token_url": "https:\/\/www.googleapis.com\/oauth2\/v4\/token",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
             "api": "つまり、「内部管理 API」",
-            "authorization_url": "https:\/\/accounts.google.com\/o\/oauth2\/v2\/auth",
-            "base_url": "絶対 URL を使用してください (例: https:\/\/example.com)",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "絶対 URL を使用してください (例: https://example.com)",
             "database": "つまり、「ユーザーDB（読み取り専用）」",
             "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
-            "oauth_callback_url": "https:\/\/oauth.retool.com\/oauth\/user\/oauthcallback",
+            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "鍵",
             "param_value": "価値",
             "password": "パスワード",
@@ -384,7 +384,7 @@
             "use_custome_s3_endpoint": "カスタム S3 エンドポイントを使用する"
           },
           "placeholder": {
-            "base_url": "たとえば、https:\/\/example.com",
+            "base_url": "たとえば、https://example.com",
             "region": "us-west-1"
           },
           "tip": {
@@ -393,7 +393,7 @@
         },
         "transformer": {
           "placeholder": {
-            "tip": "\/\/ ヒント: 中かっこを連鎖させるのではなく、外部参照を変数に割り当てます。"
+            "tip": "// ヒント: 中かっこを連鎖させるのではなく、外部参照を変数に割り当てます。"
           },
           "tip": {
             "external_reference": "定義済み変数への外部参照を作成できます。たとえば、{{Transformer2.value}}"
@@ -717,7 +717,7 @@
         "cascader_data": "各オプションは、値とラベルの 2 つのキーを含む JSON 形式である必要があり、値はカスタマイズできます。配列を使用すると、同じレベルでオプションを作成できます。子属性を追加すると、サブセットを追加できます",
         "component_default_value": "コンポーネントのデフォルト値。ボックスに JavaScript ステートメントを入力することで、テンプレート構文を使用してデフォルト値を動的に変更できます。",
         "custom_rule": "ここに検証ルールを入力します。検証ルールは JavaScript で構成する必要があります。",
-        "date_format": "標準化された時刻形式については、[dayJs](https:\/\/day.js.org\/docs\/en\/parse\/string-format) を参照してください。",
+        "date_format": "標準化された時刻形式については、[dayJs](https://day.js.org/docs/en/parse/string-format) を参照してください。",
         "default_value": "入力ボックスのデフォルト値。テンプレート構文を使用して JavaScript ステートメントをボックスに入力し、入力ボックスのデフォルト値を動的に変更できます。",
         "disabled": "コンポーネントを無効にするかどうかを制御します。コンポーネントが無効になっている場合、そのコンポーネントは変更できません。",
         "disabled_submit": "送信が無効になると、form.submit() メソッドを呼び出したコンポーネントも無効になります。",
@@ -729,7 +729,7 @@
         "input_default_value": "入力ボックスのデフォルト値。テンプレート構文を使用して JavaScript ステートメントをボックスに入力し、入力ボックスのデフォルト値を動的に変更できます。",
         "loading": "コンポーネントが読み込まれるかどうかを制御します。",
         "map_data_option": "数値またはキー値のオブジェクトを使用してオプションをマップします。データ ソース内のすべてのアイテムは、すべてのオプションにマップされます。",
-        "mapped_value": "{{ currentRow }} を使用して、現在の行のデータにアクセスします。たとえば、「コスト」列と「クリック数」列から計算された「クリック単価」は次のようになります。\n {{ currentRow.cost \/ currentRow.clickTimes }}",
+        "mapped_value": "{{ currentRow }} を使用して、現在の行のデータにアクセスします。たとえば、「コスト」列と「クリック数」列から計算された「クリック単価」は次のようになります。\n {{ currentRow.cost / currentRow.clickTimes }}",
         "multi_row_selection": "{{table.selectedRow.data}}を使用してデータにアクセスできます。複数行の選択が有効になっている場合は、次のように使用できる配列が返されます: {{ table1.selectedRow.data[0].email }}}。複数行選択を有効にしていない場合は、{{ table1.selectedRow.data.email }} のように使用できるオブジェクトが返されます。",
         "only_run_when": "このイベントが実行される前に満たす必要がある条件をここに入力します。",
         "placeholder": "入力に値がない場合に表示するメッセージ。",
@@ -737,6 +737,9 @@
         "read_only": "コンポーネントが読み取り専用かどうかを制御します。読み取り専用コンポーネントのコンテンツを選択してフォーカスすることはできますが、変更することはできません。",
         "required_field": "スイッチがオンになった後、入力ボックスで検証を実行します。",
         "switch_default_value": "スイッチの初期状態を設定します。 JavaScript を使用して、スイッチの初期状態を動的に変更できます。",
+        "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
         "text_value": "マークダウン モードまたはプレーン テキスト モードで値を入力することを選択できます。リンクは Markdown モードでのみ入力できます。",
         "timeline_direction": "時間軸の方向を切り替えます。",
         "timeline_pending": "保留中のノードを表示するかどうか。",
@@ -777,7 +780,7 @@
       "tab_title": "ページ",
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
-        "view_path": "このビューにアクセスするための文字列スペル example.com\/app\/page\/"
+        "view_path": "このビューにアクセスするための文字列スペル example.com/app/page/"
       }
     },
     "validate_message": {
@@ -912,8 +915,8 @@
       },
       "description": {
         "forgot_password": "パスワードをお忘れですか？",
-        "policy": "[ログイン] をクリックして、 < 0 >サービス利用規約< \/0 >および< 1 >プライバシー規約< \/1 >を読み、同意したことを示します。",
-        "register": "新しいユーザー？ < 0 >アカウント登録< \/0 >"
+        "policy": "[ログイン] をクリックして、 < 0 >サービス利用規約< /0 >および< 1 >プライバシー規約< /1 >を読み、同意したことを示します。",
+        "register": "新しいユーザー？ < 0 >アカウント登録< /0 >"
       },
       "error_message": {
         "email": {
@@ -947,8 +950,8 @@
         "send": "確認コードを取得する"
       },
       "description": {
-        "login": "すでにアカウントをお持ちですか？ < 0 >ログイン< \/0 >",
-        "policy": "[今すぐ登録] をクリックして、 < 0 >サービス利用規約< \/0 >および< 1 >プライバシー規約< \/1 >を読み、同意したことを示します。",
+        "login": "すでにアカウントをお持ちですか？ < 0 >ログイン< /0 >",
+        "policy": "[今すぐ登録] をクリックして、 < 0 >サービス利用規約< /0 >および< 1 >プライバシー規約< /1 >を読み、同意したことを示します。",
         "subscribe": "ILLAのニュースを購読する"
       },
       "error_message": {
@@ -1011,7 +1014,7 @@
       "name": "円形の進行状況バー"
     },
     "container": {
-      "empty": "<keyPress> D <\/keyPress>または<keyPress> K <\/keyPress>を押したまま、コンポーネントをコンテナにドラッグします",
+      "empty": "<keyPress> D </keyPress>または<keyPress> K </keyPress>を押したまま、コンポーネントをコンテナにドラッグします",
       "key_duplicated": "キー値が重複しています。エラーを避けるために一意の値を使用してください。",
       "name": "容器"
     },
