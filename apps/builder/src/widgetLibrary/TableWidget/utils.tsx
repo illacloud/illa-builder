@@ -3,20 +3,20 @@ import { FC } from "react"
 import { Button, Link, dayjsPro, isNumber } from "@illa-design/react"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
+const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
+  return oldOrders?.[cur] ?? -1
+}
+
 export const tansTableDataToColumns = (
   data: Record<any, any>[],
   oldOrders?: Array<number>,
 ): ColumnItemShape[] => {
   const columns: ColumnItemShape[] = []
   let cur = 0
-  const oldOrder = (cur: number) => {
-    return oldOrders?.[cur] ?? -1
-  }
-
   if (data && data.length > 0) {
     Object.keys(data[0]).forEach((key, index) => {
       let columnIndex = index
-      if (index === oldOrder(cur)) {
+      if (index === getOldOrder(cur, oldOrders)) {
         columnIndex += 1
         cur += 1
       }
