@@ -260,7 +260,7 @@
           "order_by": "Order by",
           "ordering_direction": "Ordering direction",
           "use_start_at": "Use startAt",
-          "use_end_at": "use endAt",
+          "use_end_at": "Use endAt",
           "start_at": "Start At",
           "end_at": "End At",
           "document_id": "Document ID",

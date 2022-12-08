@@ -14,8 +14,8 @@ export const DeleteOneUserPart: FC<FirebaseActionPartProps> = (props) => {
     <>
       <InputEditor
         title={t("editor.action.panel.firebase.uid")}
-        value={options.uid}
-        onChange={(value) => handleValueChange(value, "uid")}
+        value={options.filter}
+        onChange={(value) => handleValueChange(value, "filter")}
         expectedType={VALIDATION_TYPES.STRING}
       />
     </>

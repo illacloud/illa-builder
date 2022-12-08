@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next"
-import { FC, useCallback } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { Select } from "@illa-design/react"
 import {
   actionBodyTypeStyle,
@@ -14,11 +14,18 @@ import {
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { CollectionInputProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionInput/interface"
+import { Api } from "@/api/base"
+import { ResourcesData } from "@/redux/resource/resourceState"
+import { useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
 
 export const CollectionInput: FC<CollectionInputProps> = (props) => {
   const { t } = useTranslation()
   const { handleValueChange, collectionType, value } = props
   const isDropdown = collectionType === CollectionType.DROPDOWN
+  const action = useSelector(getCachedAction)!
+
+  const [collectionSelect, setCollectionSelect] = useState<string[]>([])
 
   const handleCollectionTypeChange = useCallback(() => {
     const contentType = isDropdown
@@ -28,6 +35,25 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
   }, [handleValueChange, isDropdown])
 
   const handleChange = (value: string) => handleValueChange(value, "collection")
+
+  useEffect(() => {
+    Api.request(
+      {
+        url: `resources/${action.resourceId}/meta`,
+        method: "GET",
+      },
+      ({ data }: { data: ResourcesData }) => {
+        let tables: string[] = []
+        if (data.schema) {
+          tables = (data.schema.collections || []) as string[]
+        }
+        setCollectionSelect(tables)
+      },
+      () => {},
+      () => {},
+      () => {},
+    )
+  }, [action.resourceId])
 
   return (
     <div css={actionItemStyle}>
@@ -51,7 +77,7 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
             "editor.action.panel.firebase.placeholder.select_collection",
           )}
           onChange={handleChange}
-          options={FirebaseServiceType}
+          options={collectionSelect}
         />
       ) : (
         <CodeEditor

@@ -9,7 +9,7 @@ export enum ServiceTypeLabel {
 export enum ServiceTypeValue {
   AUTH = "auth",
   FIRESTORE = "firestore",
-  REALTIME = "realtime",
+  REALTIME = "database",
 }
 
 export const FirebaseServiceType = [
@@ -38,13 +38,13 @@ export enum AuthActionTypeLabel {
 }
 
 export enum AuthActionTypeValue {
-  GET_USER_BY_UID = "Get user by UID",
-  GET_USER_BY_EMAIL = "Get user by email",
-  GET_USER_BY_PHONE = "Get user by phone number",
-  CREATE_ONE_USER = "Create a user",
-  UPDATE_ONE_USER = "Update a user",
-  DELETE_ONE_USER = "Delete a user",
-  LIST_USERS = "List users",
+  GET_USER_BY_UID = "uid",
+  GET_USER_BY_EMAIL = "email",
+  GET_USER_BY_PHONE = "phone",
+  CREATE_ONE_USER = "create",
+  UPDATE_ONE_USER = "update",
+  DELETE_ONE_USER = "delete",
+  LIST_USERS = "list",
 }
 
 export const AuthActionType = [
@@ -89,13 +89,13 @@ export enum FirestoreActionTypeLabel {
 }
 
 export enum FirestoreActionTypeValue {
-  QUERY_FIREBASE = "query",
+  QUERY_FIREBASE = "query_fs",
   INSERT_DOCUMENT = "insert_doc",
   UPDATE_DOCUMENT = "update_doc",
   GET_DOCUMENT_BY_ID = "get_doc",
   DELETE_ONE_DOCUMENT = "delete_doc",
-  GET_COLLECTIONS = "get_collections",
-  QUERY_COLLECTION_GROUP = "query_collection",
+  GET_COLLECTIONS = "get_colls",
+  QUERY_COLLECTION_GROUP = "query_coll",
 }
 
 export const FirestoreActionType = [
@@ -137,10 +137,10 @@ export enum RealtimeActionTypeLabel {
 }
 
 export enum RealtimeActionTypeValue {
-  QUERY_DATABASE = "query_database",
-  SET_DATA = "set_data",
-  UPDATE_DATA = "update_data",
-  APPEND_DATA_TO_LIST = "append_list",
+  QUERY_DATABASE = "query",
+  SET_DATA = "set",
+  UPDATE_DATA = "update",
+  APPEND_DATA_TO_LIST = "append",
 }
 
 export const RealtimeActionType = [
@@ -191,68 +191,73 @@ export const OperationList = [
 ]
 
 export interface GetUserByID {
-  uid: string
+  filter: string
 }
 
 export const GetUserByIDInitial: GetUserByID = {
-  uid: "",
+  filter: "",
 }
 
 export interface GetUserByEmail {
-  email: string
+  filter: string
 }
 
 export const GetUserByEmailInitial: GetUserByEmail = {
-  email: "",
+  filter: "",
 }
 
 export interface GetUserByPhone {
-  phone: string
+  filter: string
 }
 
 export const GetUserByPhoneInitial: GetUserByPhone = {
-  phone: "",
+  filter: "",
+}
+
+export interface DeleteOneUser {
+  filter: string
+}
+
+export const DeleteOneUserInitial: DeleteOneUser = {
+  filter: "",
 }
 
 export interface CreateUser {
-  userObj: string
+  object: string
 }
 
 export const CreateUserInitial: CreateUser = {
-  userObj: "",
+  object: "",
 }
 
 export interface UpdateOneUser {
   uid: string
-  userObj: string
+  object: string
 }
 
 export const UpdateOneUserInitial: UpdateOneUser = {
   uid: "",
-  userObj: "",
-}
-
-export interface DeleteOneUser {
-  uid: string
-}
-
-export const DeleteOneUserInitial: DeleteOneUser = {
-  uid: "",
+  object: "",
 }
 
 export interface ListUsers {
-  listLen: string
-  pageToken: string
+  number: string
+  token: string
 }
 
 export const ListUsersInitial: ListUsers = {
-  listLen: "",
-  pageToken: "",
+  number: "",
+  token: "",
 }
 
 export interface Params {
-  key: string
-  operation: string
+  field: string
+  condition: string
+  value: string
+}
+
+export interface CheckboxParams {
+  trigger: boolean
   value: string
 }
 
@@ -262,18 +267,16 @@ export interface FirestoreQuery {
   where: Params[]
   limit: string
   orderBy: string
-  direction: string
-  useStartAt: boolean
-  startAt: string
-  useEndAt: boolean
-  endAt: string
+  orderDirection: string
+  startAt: CheckboxParams
+  endAt: CheckboxParams
 }
 
 export type QueryFirebase = FirestoreQuery
 
 export enum CollectionType {
-  DROPDOWN = "dropdown",
-  RAW = "raw",
+  DROPDOWN = "select",
+  RAW = "input",
 }
 
 export const QueryFirebaseInitial: QueryFirebase = {
@@ -281,24 +284,28 @@ export const QueryFirebaseInitial: QueryFirebase = {
   collectionType: CollectionType.DROPDOWN,
   where: [
     {
-      operation: "",
-      key: "",
+      condition: "",
+      field: "",
       value: "",
     },
   ],
   limit: "",
   orderBy: "",
-  direction: "",
-  useStartAt: false,
-  startAt: "",
-  endAt: "",
-  useEndAt: false,
+  orderDirection: "",
+  startAt: {
+    trigger: false,
+    value: "",
+  },
+  endAt: {
+    trigger: false,
+    value: "",
+  },
 }
 
 export interface DocumentOperation {
   collection: string
   collectionType: string
-  documentID: string
+  id: string
   value: string
 }
 
@@ -307,7 +314,7 @@ export type InsertDocument = DocumentOperation
 export const InsertDocumentInitial: InsertDocument = {
   collection: "",
   collectionType: CollectionType.DROPDOWN,
-  documentID: "",
+  id: "",
   value: "",
 }
 
@@ -316,7 +323,7 @@ export type UpdateDocument = DocumentOperation
 export const UpdateDocumentInitial: UpdateDocument = {
   collection: "",
   collectionType: CollectionType.DROPDOWN,
-  documentID: "",
+  id: "",
   value: "",
 }
 
@@ -325,7 +332,7 @@ export type GetDocumentByID = Omit<DocumentOperation, "value">
 export const GetDocumentByIDInitial: GetDocumentByID = {
   collection: "",
   collectionType: CollectionType.DROPDOWN,
-  documentID: "",
+  id: "",
 }
 
 export type DeleteDocument = Omit<DocumentOperation, "value">
@@ -333,15 +340,15 @@ export type DeleteDocument = Omit<DocumentOperation, "value">
 export const DeleteDocumentInitial: DeleteDocument = {
   collection: "",
   collectionType: CollectionType.DROPDOWN,
-  documentID: "",
+  id: "",
 }
 
 export interface GetCollections {
-  parentDocumentID: string
+  parent: string
 }
 
 export const GetCollectionsInitial: GetCollections = {
-  parentDocumentID: "",
+  parent: "",
 }
 
 export type QueryCollectionGroup = FirestoreQuery
@@ -351,50 +358,54 @@ export const QueryCollectionGroupInitial: QueryCollectionGroup = {
   collectionType: CollectionType.DROPDOWN,
   where: [
     {
-      operation: "",
-      key: "",
+      condition: "",
+      field: "",
       value: "",
     },
   ],
   limit: "",
   orderBy: "",
-  direction: "",
-  startAt: "",
-  endAt: "",
-  useStartAt: false,
-  useEndAt: false,
+  orderDirection: "",
+  startAt: {
+    trigger: false,
+    value: "",
+  },
+  endAt: {
+    trigger: false,
+    value: "",
+  },
 }
 
 export interface Database {
-  databaseRef: string
-  objectToSet: string
+  ref: string
+  object: string
 }
 
-export type QueryDatabase = Pick<Database, "databaseRef">
+export type QueryDatabase = Pick<Database, "ref">
 
 export const QueryDatabaseInitial: QueryDatabase = {
-  databaseRef: "",
+  ref: "",
 }
 
 export type SetData = Database
 
 export const SetDataInitial: SetData = {
-  databaseRef: "",
-  objectToSet: "",
+  ref: "",
+  object: "",
 }
 
 export type UpdateData = Database
 
 export const UpdateDataInitial: UpdateData = {
-  databaseRef: "",
-  objectToSet: "",
+  ref: "",
+  object: "",
 }
 
 export type AppendDataToList = Database
 
 export const AppendDataToListInitial: AppendDataToList = {
-  databaseRef: "",
-  objectToSet: "",
+  ref: "",
+  object: "",
 }
 export const InitialValue = {
   [AuthActionTypeValue.GET_USER_BY_UID]: GetUserByIDInitial,
@@ -457,6 +468,6 @@ export interface FirebaseAction<T extends FirebaseContentType> {
 
 export const FirebaseActionInitial: FirebaseAction<GetUserByID> = {
   service: ServiceTypeValue.AUTH,
-  operation: "",
+  operation: AuthActionTypeValue.GET_USER_BY_UID,
   options: GetUserByIDInitial,
 }

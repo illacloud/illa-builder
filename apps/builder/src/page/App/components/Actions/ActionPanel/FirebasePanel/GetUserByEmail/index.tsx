@@ -14,8 +14,8 @@ export const GetUserByEmailPart: FC<FirebaseActionPartProps> = (props) => {
     <>
       <InputEditor
         title={t("editor.action.panel.firebase.email")}
-        value={options.email}
-        onChange={(value) => handleValueChange(value, "email")}
+        value={options.filter}
+        onChange={(value) => handleValueChange(value, "filter")}
         expectedType={VALIDATION_TYPES.STRING}
       />
     </>

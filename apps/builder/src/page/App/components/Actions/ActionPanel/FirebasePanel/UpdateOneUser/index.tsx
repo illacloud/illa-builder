@@ -20,8 +20,8 @@ export const UpdateOneUserPart: FC<FirebaseActionPartProps> = (props) => {
       />
       <InputEditor
         title={t("editor.action.panel.firebase.user_object")}
-        value={options.userObj}
-        onChange={(value) => handleValueChange(value, "userObj")}
+        value={options.object}
+        onChange={(value) => handleValueChange(value, "object")}
         expectedType={VALIDATION_TYPES.STRING}
       />
     </>

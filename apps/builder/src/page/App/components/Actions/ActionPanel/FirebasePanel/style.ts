@@ -49,6 +49,13 @@ export const actionItemCodeEditorStyle = css`
   margin-left: 16px;
 `
 
+export const actionItemRecordEditorStyle = css`
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 0;
+`
+
 export const codeEditorLabelStyle = css`
   min-width: 160px;
   font-size: 14px;

@@ -23,8 +23,8 @@ export const UpdateDocumentPart: FC<FirebaseActionPartProps> = (props) => {
       />
       <InputEditor
         title={t("editor.action.panel.firebase.document_id")}
-        value={options.documentID}
-        onChange={(value) => handleValueChange(value, "documentID")}
+        value={options.id}
+        onChange={(value) => handleValueChange(value, "id")}
         expectedType={VALIDATION_TYPES.STRING}
       />
       <InputEditor

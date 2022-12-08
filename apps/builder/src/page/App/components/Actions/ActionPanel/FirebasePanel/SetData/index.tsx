@@ -14,14 +14,14 @@ export const SetDataPart: FC<FirebaseActionPartProps> = (props) => {
     <>
       <InputEditor
         title={t("editor.action.panel.firebase.database_ref")}
-        value={options.databaseRef}
-        onChange={(value) => handleValueChange(value, "databaseRef")}
+        value={options.ref}
+        onChange={(value) => handleValueChange(value, "ref")}
         expectedType={VALIDATION_TYPES.STRING}
       />
       <InputEditor
         title={t("editor.action.panel.firebase.object_to_set")}
-        value={options.objectToSet}
-        onChange={(value) => handleValueChange(value, "objectToSet")}
+        value={options.object}
+        onChange={(value) => handleValueChange(value, "object")}
         expectedType={VALIDATION_TYPES.STRING}
       />
     </>

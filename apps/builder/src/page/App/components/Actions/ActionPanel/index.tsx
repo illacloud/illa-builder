@@ -51,7 +51,7 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
       case "s3":
         return <S3Panel />
       case "smtp":
-      // return <SMTPPanel />
+        return <SMTPPanel />
       case "firebase":
         return <FirebasePanel />
       default:

@@ -14,8 +14,8 @@ export const GetUserByPhonePart: FC<FirebaseActionPartProps> = (props) => {
     <>
       <InputEditor
         title={t("editor.action.panel.firebase.phone_number")}
-        value={options.phone}
-        onChange={(value) => handleValueChange(value, "phone")}
+        value={options.filter}
+        onChange={(value) => handleValueChange(value, "filter")}
         expectedType={VALIDATION_TYPES.STRING}
       />
     </>

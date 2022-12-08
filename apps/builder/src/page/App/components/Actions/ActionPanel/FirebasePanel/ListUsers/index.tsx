@@ -14,14 +14,14 @@ export const ListUsersPart: FC<FirebaseActionPartProps> = (props) => {
     <>
       <InputEditor
         title={t("editor.action.panel.firebase.len_of_list")}
-        value={options.listLen}
-        onChange={(value) => handleValueChange(value, "listLen")}
+        value={options.number}
+        onChange={(value) => handleValueChange(value, "number")}
         expectedType={VALIDATION_TYPES.STRING}
       />
       <InputEditor
         title={t("editor.action.panel.firebase.next_page_token")}
-        value={options.pageToken}
-        onChange={(value) => handleValueChange(value, "pageToken")}
+        value={options.token}
+        onChange={(value) => handleValueChange(value, "token")}
         expectedType={VALIDATION_TYPES.STRING}
       />
     </>

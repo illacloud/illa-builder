@@ -14,8 +14,8 @@ export const QueryDatabasePart: FC<FirebaseActionPartProps> = (props) => {
     <>
       <InputEditor
         title={t("editor.action.panel.firebase.database_ref")}
-        value={options.databaseRef}
-        onChange={(value) => handleValueChange(value, "databaseRef")}
+        value={options.ref}
+        onChange={(value) => handleValueChange(value, "ref")}
         expectedType={VALIDATION_TYPES.STRING}
       />
     </>

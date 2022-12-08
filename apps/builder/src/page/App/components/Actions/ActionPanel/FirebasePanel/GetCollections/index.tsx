@@ -14,8 +14,8 @@ export const GetCollectionsPart: FC<FirebaseActionPartProps> = (props) => {
     <>
       <InputEditor
         title={t("editor.action.panel.firebase.parent_document_id")}
-        value={options.parentDocumentID}
-        onChange={(value) => handleValueChange(value, "parentDocumentID")}
+        value={options.parent}
+        onChange={(value) => handleValueChange(value, "parent")}
         expectedType={VALIDATION_TYPES.STRING}
         tips={t("editor.action.panel.firebase.tips.parent_document_id_tips")}
       />

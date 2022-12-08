@@ -5,7 +5,10 @@ import { Select } from "@illa-design/react"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import { getCachedAction } from "@/redux/config/configSelector"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
@@ -27,6 +30,7 @@ import {
   RealtimeActionTypeValue,
   FirebaseActionInitial,
   ServiceTypeInitialValue,
+  CheckboxParams,
 } from "@/redux/currentApp/action/firebaseAction"
 import { GetUserByIDPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByID"
 import { GetUserByEmailPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByEmail"
@@ -52,6 +56,9 @@ export const FirebasePanel: FC = () => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     FirebaseAction<FirebaseContentType>
   >
+  const selectedAction = useSelector(getSelectedAction)!
+  const selectedContent =
+    selectedAction.content as FirebaseAction<FirebaseContentType>
   const content = cachedAction.content as FirebaseAction<FirebaseContentType>
   const options = content.options as FirebaseContentType
   const dispatch = useDispatch()
@@ -61,6 +68,12 @@ export const FirebasePanel: FC = () => {
       switch (name) {
         case "operation":
           let options = InitialValue[value as ActionTypeValue]
+          if (
+            content.service === selectedContent.service &&
+            selectedContent.operation === value
+          ) {
+            options = selectedContent.options
+          }
           dispatch(
             configActions.updateCachedAction({
               ...cachedAction,
@@ -79,7 +92,7 @@ export const FirebasePanel: FC = () => {
             configActions.updateCachedAction({
               ...cachedAction,
               content: {
-                ...FirebaseActionInitial,
+                operation: "",
                 service: value as ServiceTypeValue,
                 options: initialOptions,
               },
@@ -87,11 +100,11 @@ export const FirebasePanel: FC = () => {
           )
       }
     },
-    [dispatch, cachedAction, content],
+    [dispatch, cachedAction, content, selectedContent],
   )
 
   const handleOptionsValueChange = useCallback(
-    (value: string | boolean | Params[], name: string) => {
+    (value: string | boolean | Params[] | CheckboxParams, name: string) => {
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
@@ -115,8 +128,9 @@ export const FirebasePanel: FC = () => {
     }
     switch (content.operation) {
       case AuthActionTypeValue.GET_USER_BY_UID:
-      case AuthActionTypeValue.DELETE_ONE_USER:
         return <GetUserByIDPart {...props} />
+      case AuthActionTypeValue.DELETE_ONE_USER:
+        return <DeleteOneUserPart {...props} />
       case AuthActionTypeValue.GET_USER_BY_EMAIL:
         return <GetUserByEmailPart {...props} />
       case AuthActionTypeValue.GET_USER_BY_PHONE:
@@ -125,8 +139,6 @@ export const FirebasePanel: FC = () => {
         return <CreateOneUserPart {...props} />
       case AuthActionTypeValue.UPDATE_ONE_USER:
         return <UpdateOneUserPart {...props} />
-      case AuthActionTypeValue.DELETE_ONE_USER:
-        return <DeleteOneUserPart {...props} />
       case AuthActionTypeValue.LIST_USERS:
         return <ListUsersPart {...props} />
       case FirestoreActionTypeValue.QUERY_FIREBASE:

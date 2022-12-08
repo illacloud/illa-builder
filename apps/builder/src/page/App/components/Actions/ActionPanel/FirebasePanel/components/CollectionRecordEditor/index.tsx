@@ -1,10 +1,13 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
-import { Input, Select } from "@illa-design/react"
+import { Select } from "@illa-design/react"
 import { OperationList, Params } from "@/redux/currentApp/action/firebaseAction"
-import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { Controller, useForm } from "react-hook-form"
 import { CollectionRecordEditorProps } from "./interface"
+import { CodeEditor } from "@/components/CodeEditor"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
+import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 
 export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
   props,
@@ -27,11 +30,11 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
     ) => {
       const value = getValues()[name]
       let newRecords: Params[] = [...value]
-      const curOperation = operation || newRecords[index].operation || ""
+      const curOperation = operation || newRecords[index].condition || ""
       newRecords[index] = {
-        key,
+        field: key,
         value: v,
-        operation: curOperation,
+        condition: curOperation,
       }
       onChange(newRecords)
       handleValueChange(newRecords, "where")
@@ -46,17 +49,17 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
         defaultValue={defaultValue}
         render={({ field: { value, onChange } }) => {
           return (
-            <InputRecordEditor
+            <RecordEditor
               label={t("editor.action.panel.firebase.where")}
               records={value}
               customRender={(record, index) => (
                 <>
-                  <Input
-                    w="100%"
-                    borderColor="techPurple"
-                    value={record.key}
-                    placeholder="key"
-                    bdRadius="8px 0 0 8px"
+                  <CodeEditor
+                    css={actionItemRecordEditorStyle}
+                    mode="TEXT_JS"
+                    placeholder="field"
+                    value={record.field}
+                    borderRadius="0"
                     onChange={(val) => {
                       handleChange(
                         index,
@@ -66,18 +69,19 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                         onChange,
                       )
                     }}
+                    expectedType={VALIDATION_TYPES.STRING}
                   />
                   <Select
                     colorScheme="techPurple"
                     showSearch={true}
-                    defaultValue={record.operation}
-                    value={record.operation}
+                    defaultValue={record.condition}
+                    value={record.condition}
                     width="100%"
                     bdRadius="0"
                     onChange={(val) =>
                       handleChange(
                         index,
-                        record.key,
+                        record.field,
                         record.value,
                         val,
                         onChange,
@@ -85,33 +89,33 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                     }
                     options={OperationList}
                   />
-                  <Input
-                    w="100%"
-                    borderColor="techPurple"
+                  <CodeEditor
+                    css={actionItemRecordEditorStyle}
+                    mode="TEXT_JS"
                     placeholder="value"
                     value={record.value}
-                    ml="-1px"
-                    bdRadius="0"
+                    borderRadius="0"
                     onChange={(val) => {
                       handleChange(
                         index,
-                        record.key,
+                        record.field,
                         val,
-                        record.operation,
+                        record.condition,
                         onChange,
                       )
                     }}
+                    expectedType={VALIDATION_TYPES.STRING}
                   />
                 </>
               )}
               onAdd={() => {
-                onChange([...value, { key: "", value: "", operation: "" }])
+                onChange([...value, { field: "", value: "", condition: "" }])
               }}
               onDelete={(index, record) => {
                 let newRecords = [...value]
                 newRecords.splice(index, 1)
                 if (newRecords.length === 0) {
-                  newRecords = [{ key: "", value: "", operation: "" }]
+                  newRecords = [{ field: "", value: "", condition: "" }]
                 }
                 onChange(newRecords)
               }}
