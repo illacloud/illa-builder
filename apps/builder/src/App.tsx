@@ -1,4 +1,4 @@
-import { css, Global } from "@emotion/react"
+import { Global, css } from "@emotion/react"
 import { useEffect } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
@@ -19,13 +19,11 @@ import {
 } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
 import { globalStyle } from "./style"
-import { getIllaMode } from "@/redux/config/configSelector"
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)
   const currentUserLanguage = useSelector(getCurrentTranslateLanguage)
   const { i18n } = useTranslation()
-  const mode = useSelector(getIllaMode)
 
   useEffect(() => {
     if (!!currentUserLanguage) {
@@ -38,8 +36,8 @@ function App() {
       <GlobalDataProvider>
         <ConfigProvider locale={configLanguage}>
           <Global styles={css(globalStyle)} />
-          <MessageGroup pt={mode !== "production" ? "46px" : "0"} />
-          <NotificationGroup pt={mode !== "production" ? "46px" : "0"} />
+          <MessageGroup />
+          <NotificationGroup />
           <ModalGroup />
           <RouterProvider router={ILLARoute} />
         </ConfigProvider>
