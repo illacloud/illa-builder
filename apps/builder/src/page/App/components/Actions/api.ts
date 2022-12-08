@@ -94,7 +94,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       return {
         databaseUrl: data.databaseUrl,
         projectID: data.projectID,
-        privateKey: btoa(encodeURIComponent(data.privateKey)),
+        privateKey: JSON.parse(data.privateKey),
       }
     case "elasticsearch":
       return {
@@ -134,6 +134,15 @@ export function onActionConfigElementSubmit(
     resourceId != undefined ? `/resources/${resourceId}` : `/resources`
 
   return handleSubmit((data: FieldValues) => {
+    let content
+    try {
+      content = getActionContentByType(data, resourceType)
+    } catch (e) {
+      message.error({
+        content: i18n.t("editor.action.resource.db.invalid_private.key"),
+      })
+      return
+    }
     Api.request<Resource<ResourceContent>>(
       {
         method,
@@ -142,7 +151,7 @@ export function onActionConfigElementSubmit(
           ...(resourceId !== undefined && { resourceId: data.resourceId }),
           resourceName: data.resourceName,
           resourceType: resourceType,
-          content: getActionContentByType(data, resourceType),
+          content,
         },
       },
       (response) => {
