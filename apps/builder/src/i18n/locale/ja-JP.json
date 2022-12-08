@@ -1,5 +1,4 @@
 {
-  "welcome_header": "こんにちは世界！",
   "Logout": "サインアウト",
   "Setting": "設定",
   "apps": "事業",
@@ -159,9 +158,6 @@
           "index": "索引",
           "query": "クエリ"
         },
-        "error": {
-          "max_file": "ファイルサイズは 5M を超えることはできません。"
-        },
         "label": {
           "event_handler": "イベントハンドラ",
           "failure": "不合格",
@@ -221,8 +217,8 @@
           },
           "prefix_to_filter_reseults": "結果のフィルタリングに使用されるプレフィックス",
           "tips": {
-            "delimiter": "セパレータは、キー値をグループ化するために使用される文字です。",
-            "max_keys": "応答で返されるキーの最大数を設定します。デフォルトでは、アクションは最大 1000 個のキー名を返します。"
+            "max_keys": "応答で返されるキーの最大数を設定します。デフォルトでは、アクションは最大 1000 個のキー名を返します。",
+            "delimiter": "セパレータは、キー値をグループ化するために使用される文字です。"
           },
           "upload_data": "データのアップロード",
           "upload_data_list": "アップロードデータ一覧",
@@ -230,27 +226,30 @@
           "upload_object_name_list": "オブジェクト名リストのアップロード"
         },
         "smtp": {
-          "attachment": "付録",
-          "bcc_email": "BCC",
-          "body": "文章",
-          "cc_email": "cc",
           "from_email": "差出人",
-          "placeholder": {
-            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
-            "emails": "メールボックスはコンマで区切ります。 {{[\"A\", \"B\"]}} など"
-          },
-          "replay_email": "返事",
           "set_replay_email": "返信メールを設定する",
+          "replay_email": "返事",
+          "to_email": "受取人",
+          "bcc_email": "BCC",
+          "cc_email": "cc",
           "subject": "テーマ",
+          "body": "文章",
+          "attachment": "付録",
+          "use_html": "HTML を使用する",
+          "use_raw": "生のテキストを使用する",
+          "placeholder": {
+            "emails": "メールボックスはコンマで区切ります。 {{[\"A\", \"B\"]}} など",
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
+          },
           "tips": {
             "port": "一部のインターネット サービス プロバイダーは、ポート 25 を無効にしている場合があります。接続に失敗した場合は、ポートを変更してください。"
-          },
-          "to_email": "受取人",
-          "use_html": "HTML を使用する",
-          "use_raw": "生のテキストを使用する"
+          }
         },
         "tips": {
           "transformer": "Transformer でクエリ結果をさまざまな形式に変換できるようにする"
+        },
+        "error": {
+          "max_file": "ファイルサイズは 5M を超えることはできません。"
         }
       },
       "resource": {
@@ -737,9 +736,6 @@
         "read_only": "コンポーネントが読み取り専用かどうかを制御します。読み取り専用コンポーネントのコンテンツを選択してフォーカスすることはできますが、変更することはできません。",
         "required_field": "スイッチがオンになった後、入力ボックスで検証を実行します。",
         "switch_default_value": "スイッチの初期状態を設定します。 JavaScript を使用して、スイッチの初期状態を動的に変更できます。",
-        "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
-        "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
-        "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
         "text_value": "マークダウン モードまたはプレーン テキスト モードで値を入力することを選択できます。リンクは Markdown モードでのみ入力できます。",
         "timeline_direction": "時間軸の方向を切り替えます。",
         "timeline_pending": "保留中のノードを表示するかどうか。",
