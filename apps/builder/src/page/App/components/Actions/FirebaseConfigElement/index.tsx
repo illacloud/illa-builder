@@ -239,7 +239,9 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
             rules={{
               required: true,
             }}
-            defaultValue={JSON.stringify(content.privateKey)}
+            defaultValue={
+              content.privateKey ? JSON.stringify(content.privateKey) : ""
+            }
             render={({ field: { value, onChange, onBlur } }) => (
               <TextArea
                 ml="16px"
