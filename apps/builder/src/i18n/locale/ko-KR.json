@@ -159,6 +159,9 @@
           "index": "색인",
           "query": "질문"
         },
+        "error": {
+          "max_file": "파일 크기는 5M를 초과할 수 없습니다."
+        },
         "label": {
           "event_handler": "이벤트 핸들러",
           "failure": "불합격",
@@ -212,14 +215,14 @@
           "object_key_list": "객체 키-값 목록",
           "placeholder": {
             "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\n sXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\n YW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\n MFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
-            "object_key_list": "{{[\"myDir\/file1.txt\", \"myDir\/file2.txt\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
             "object_name": "내보내기.csv",
             "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
           },
           "prefix_to_filter_reseults": "결과를 필터링하는 데 사용되는 접두사",
           "tips": {
-            "max_keys": "응답에서 반환되는 최대 키 수를 설정합니다. 기본적으로 작업은 최대 1000개의 키 이름을 반환합니다.",
-            "delimiter": "구분 기호는 키-값을 그룹화하는 데 사용되는 문자입니다."
+            "delimiter": "구분 기호는 키-값을 그룹화하는 데 사용되는 문자입니다.",
+            "max_keys": "응답에서 반환되는 최대 키 수를 설정합니다. 기본적으로 작업은 최대 1000개의 키 이름을 반환합니다."
           },
           "upload_data": "데이터 업로드",
           "upload_data_list": "데이터 목록 업로드",
@@ -227,30 +230,27 @@
           "upload_object_name_list": "개체 이름 목록 업로드"
         },
         "smtp": {
-          "from_email": "보내는 사람",
-          "set_replay_email": "회신 이메일 설정",
-          "replay_email": "회신하다",
-          "to_email": "받는 사람",
-          "bcc_email": "숨은참조",
-          "cc_email": "참조",
-          "subject": "주제",
-          "body": "텍스트",
           "attachment": "부록",
-          "use_html": "HTML 사용",
-          "use_raw": "원시 텍스트 사용",
+          "bcc_email": "숨은참조",
+          "body": "텍스트",
+          "cc_email": "참조",
+          "from_email": "보내는 사람",
           "placeholder": {
-            "emails": "사서함은 쉼표로 구분하십시오. {{[\"A\", \"B\"]}}와 같은",
-            "attachment": "{{[{ 데이터: 'exp', 이름: 'exp', contentType: 'exp' }]}}"
+            "attachment": "{{[{ 데이터: 'exp', 이름: 'exp', contentType: 'exp' }]}}",
+            "emails": "사서함은 쉼표로 구분하십시오. {{[\"A\", \"B\"]}}와 같은"
           },
+          "replay_email": "회신하다",
+          "set_replay_email": "회신 이메일 설정",
+          "subject": "주제",
           "tips": {
             "port": "일부 인터넷 서비스 제공업체는 포트 25를 비활성화할 수 있습니다. 연결에 실패하면 포트를 수정하십시오."
-          }
+          },
+          "to_email": "받는 사람",
+          "use_html": "HTML 사용",
+          "use_raw": "원시 텍스트 사용"
         },
         "tips": {
           "transformer": "Transformer를 사용하여 쿼리 결과를 다른 형식으로 변환"
-        },
-        "error": {
-          "max_file": "파일 크기는 5M를 초과할 수 없습니다."
         }
       },
       "resource": {
@@ -269,7 +269,7 @@
             "database": "이름 데이터베이스",
             "database_index": "데이터베이스 인덱스",
             "hostname": "주인",
-            "hostname_port": "호스트\/포트",
+            "hostname_port": "호스트/포트",
             "hosturl": "호스트 URL",
             "mongodb_connection_dns_seed_list": "DNS 시드 목록 연결",
             "mongodb_connection_standard": "표준 연결",
@@ -286,7 +286,7 @@
             "database": "acme_production",
             "database_index": "기본값 0",
             "hostname": "CPU 이름",
-            "hosturl": "예를 들어 https:\/\/example.com",
+            "hosturl": "예를 들어 https://example.com",
             "mongo_certificate": "-----RSA 개인 키 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----RSA 개인 키 종료-----\n -----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----\n",
             "name": "ie \"Users DB(읽기전용)\" 또는 \"Internal Admin API\"",
             "password": "비밀번호",
@@ -304,7 +304,7 @@
           }
         },
         "error": {
-          "invalid_url": "http:\/\/example.com과 같은 유효한 URL을 입력하세요."
+          "invalid_url": "http://example.com과 같은 유효한 URL을 입력하세요."
         },
         "restapi": {
           "btns": {
@@ -351,13 +351,13 @@
           },
           "placeholder": {
             "access_token_lifespan": "토큰 수명(초)",
-            "access_token_url": "https:\/\/www.googleapis.com\/oauth2\/v4\/token",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
             "api": "즉 \"내부 관리 API\"",
-            "authorization_url": "https:\/\/accounts.google.com\/o\/oauth2\/v2\/auth",
-            "base_url": "절대 URL을 사용하세요(예: https:\/\/example.com).",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "절대 URL을 사용하세요(예: https://example.com).",
             "database": "즉 \"사용자 DB(읽기전용)\"",
             "name": "ie \"Users DB(읽기전용)\" 또는 \"Internal Admin API\"",
-            "oauth_callback_url": "https:\/\/oauth.retool.com\/oauth\/user\/oauthcallback",
+            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "열쇠",
             "param_value": "값",
             "password": "비밀번호",
@@ -384,7 +384,7 @@
             "use_custome_s3_endpoint": "사용자 지정 S3 엔드포인트 사용"
           },
           "placeholder": {
-            "base_url": "예를 들어 https:\/\/example.com",
+            "base_url": "예를 들어 https://example.com",
             "region": "미국 서부-1"
           },
           "tip": {
@@ -393,7 +393,7 @@
         },
         "transformer": {
           "placeholder": {
-            "tip": "\/\/ 팁: 중괄호를 연결하는 대신 외부 참조를 변수에 할당하십시오."
+            "tip": "// 팁: 중괄호를 연결하는 대신 외부 참조를 변수에 할당하십시오."
           },
           "tip": {
             "external_reference": "정의된 변수에 대한 외부 참조를 생성할 수 있습니다. 예를 들어 {{ transformer2.value }}"
@@ -669,7 +669,7 @@
         "reset_after_successful_submit": "성공적인 제출 후 입력 콘텐츠 재설정",
         "router": "라우팅",
         "run_script": "스크립트 실행",
-        "scale_type": "확대\/축소 유형",
+        "scale_type": "확대/축소 유형",
         "set_router": "라우팅 설정",
         "set_temporary_state": "임시 상태 설정",
         "shadow": "그림자",
@@ -717,7 +717,7 @@
         "cascader_data": "각 옵션은 값과 레이블이라는 두 개의 키를 포함하는 JSON 형식이어야 하며 값은 사용자 정의할 수 있습니다. 배열을 사용하면 동일한 수준에서 옵션을 만들 수 있으며 하위 속성을 추가하면 하위 집합을 추가할 수 있습니다.",
         "component_default_value": "구성 요소의 기본값입니다. 상자에 JavaScript 문을 입력하면 템플릿 구문을 사용하여 기본값을 동적으로 변경할 수 있습니다.",
         "custom_rule": "여기에 유효성 검사 규칙을 입력합니다. 유효성 검사 규칙은 JavaScript로 구성되어야 합니다.",
-        "date_format": "표준화된 시간 형식은 [dayJs](https:\/\/day.js.org\/docs\/en\/parse\/string-format)를 참조하세요.",
+        "date_format": "표준화된 시간 형식은 [dayJs](https://day.js.org/docs/en/parse/string-format)를 참조하세요.",
         "default_value": "입력란의 기본값입니다. 템플릿 구문을 사용하여 상자에 JavaScript 문을 입력하여 입력 상자의 기본값을 동적으로 변경할 수 있습니다.",
         "disabled": "구성 요소의 비활성화 여부를 제어합니다. 구성 요소가 비활성화되면 구성 요소를 수정할 수 없습니다.",
         "disabled_submit": "제출이 비활성화되면 form.submit() 메서드를 호출한 구성 요소도 비활성화됩니다.",
@@ -729,7 +729,7 @@
         "input_default_value": "입력란의 기본값입니다. 템플릿 구문을 사용하여 상자에 JavaScript 문을 입력하여 입력 상자의 기본값을 동적으로 변경할 수 있습니다.",
         "loading": "구성 요소가 로드되는지 여부를 제어합니다.",
         "map_data_option": "숫자 값 또는 키-값 개체를 사용하여 옵션을 매핑합니다. 데이터 소스의 모든 항목은 모든 옵션에 매핑됩니다.",
-        "mapped_value": "{{ currentRow }}를 사용하여 현재 행의 데이터에 액세스합니다. 예를 들어 '비용' 및 '클릭수' 열에서 계산된 '클릭당 비용'은 다음과 같습니다.\n {{ currentRow.cost \/ currentRow.clickTimes }}",
+        "mapped_value": "{{ currentRow }}를 사용하여 현재 행의 데이터에 액세스합니다. 예를 들어 '비용' 및 '클릭수' 열에서 계산된 '클릭당 비용'은 다음과 같습니다.\n {{ currentRow.cost / currentRow.clickTimes }}",
         "multi_row_selection": "{{table.selectedRow.data}} 를 사용하여 데이터에 액세스할 수 있습니다. 다중 행 선택이 활성화된 경우 다음과 같이 사용할 수 있는 배열을 반환합니다. {{ table1.selectedRow.data[0].email }}}. 다중 행 선택을 활성화하지 않은 경우 {{ table1.selectedRow.data.email }}과 같이 사용할 수 있는 객체를 반환합니다.",
         "only_run_when": "이 이벤트가 실행되기 전에 충족되어야 하는 조건을 여기에 입력하십시오.",
         "placeholder": "입력에 값이 없을 때 표시할 메시지입니다.",
@@ -737,6 +737,9 @@
         "read_only": "구성 요소가 읽기 전용인지 여부를 제어합니다. 읽기 전용 구성 요소의 내용을 선택하고 초점을 맞출 수 있지만 수정할 수는 없습니다.",
         "required_field": "스위치를 켠 후 입력 상자에서 유효성 검사를 수행합니다.",
         "switch_default_value": "스위치의 초기 상태를 설정합니다. JavaScript를 통해 스위치의 초기 상태를 동적으로 변경할 수 있습니다.",
+        "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
         "text_value": "Markdown 모드 또는 일반 텍스트 모드에서 값을 입력하도록 선택할 수 있습니다. 링크는 Markdown 모드에서만 입력할 수 있습니다.",
         "timeline_direction": "시간 축의 방향을 전환합니다.",
         "timeline_pending": "보류 중인 노드를 표시할지 여부입니다.",
@@ -777,7 +780,7 @@
       "tab_title": "페이지",
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
-        "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com\/app\/page\/"
+        "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/"
       }
     },
     "validate_message": {
@@ -912,8 +915,8 @@
       },
       "description": {
         "forgot_password": "비밀번호를 잊으 셨나요?",
-        "policy": "\"로그인\"을 클릭하여 < 0 > 서비스 약관 < \/0 > 및 < 1 > 개인 정보 보호 계약 < \/1 > 을 읽고 동의했음을 나타냅니다.",
-        "register": "새로운 사용자? < 0 > 계정 등록 < \/0 >"
+        "policy": "\"로그인\"을 클릭하여 < 0 > 서비스 약관 < /0 > 및 < 1 > 개인 정보 보호 계약 < /1 > 을 읽고 동의했음을 나타냅니다.",
+        "register": "새로운 사용자? < 0 > 계정 등록 < /0 >"
       },
       "error_message": {
         "email": {
@@ -947,8 +950,8 @@
         "send": "확인 코드 받기"
       },
       "description": {
-        "login": "이미 계정이 있습니까? < 0 > 로그인 < \/0 >",
-        "policy": "\"지금 등록\"을 클릭하여 < 0 > 서비스 약관 < \/0 > 및 < 1 > 개인 정보 보호 계약 < \/1 > 을 읽고 동의했음을 나타냅니다.",
+        "login": "이미 계정이 있습니까? < 0 > 로그인 < /0 >",
+        "policy": "\"지금 등록\"을 클릭하여 < 0 > 서비스 약관 < /0 > 및 < 1 > 개인 정보 보호 계약 < /1 > 을 읽고 동의했음을 나타냅니다.",
         "subscribe": "ILLA의 소식을 구독하세요"
       },
       "error_message": {
@@ -1011,7 +1014,7 @@
       "name": "원형 진행률 표시줄"
     },
     "container": {
-      "empty": "<keyPress> D <\/keyPress> 또는 <keyPress> K <\/keyPress> 를 누른 상태에서 구성 요소를 컨테이너로 드래그",
+      "empty": "<keyPress> D </keyPress> 또는 <keyPress> K </keyPress> 를 누른 상태에서 구성 요소를 컨테이너로 드래그",
       "key_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오.",
       "name": "컨테이너"
     },
