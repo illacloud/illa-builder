@@ -1,5 +1,4 @@
 {
-  "welcome_header": "안녕 세상!",
   "Logout": "로그아웃",
   "Setting": "설정",
   "apps": "프로젝트",
@@ -159,9 +158,6 @@
           "index": "색인",
           "query": "질문"
         },
-        "error": {
-          "max_file": "파일 크기는 5M를 초과할 수 없습니다."
-        },
         "label": {
           "event_handler": "이벤트 핸들러",
           "failure": "불합격",
@@ -221,8 +217,8 @@
           },
           "prefix_to_filter_reseults": "결과를 필터링하는 데 사용되는 접두사",
           "tips": {
-            "delimiter": "구분 기호는 키-값을 그룹화하는 데 사용되는 문자입니다.",
-            "max_keys": "응답에서 반환되는 최대 키 수를 설정합니다. 기본적으로 작업은 최대 1000개의 키 이름을 반환합니다."
+            "max_keys": "응답에서 반환되는 최대 키 수를 설정합니다. 기본적으로 작업은 최대 1000개의 키 이름을 반환합니다.",
+            "delimiter": "구분 기호는 키-값을 그룹화하는 데 사용되는 문자입니다."
           },
           "upload_data": "데이터 업로드",
           "upload_data_list": "데이터 목록 업로드",
@@ -230,27 +226,30 @@
           "upload_object_name_list": "개체 이름 목록 업로드"
         },
         "smtp": {
-          "attachment": "부록",
-          "bcc_email": "숨은참조",
-          "body": "텍스트",
-          "cc_email": "참조",
           "from_email": "보내는 사람",
-          "placeholder": {
-            "attachment": "{{[{ 데이터: 'exp', 이름: 'exp', contentType: 'exp' }]}}",
-            "emails": "사서함은 쉼표로 구분하십시오. {{[\"A\", \"B\"]}}와 같은"
-          },
-          "replay_email": "회신하다",
           "set_replay_email": "회신 이메일 설정",
+          "replay_email": "회신하다",
+          "to_email": "받는 사람",
+          "bcc_email": "숨은참조",
+          "cc_email": "참조",
           "subject": "주제",
+          "body": "텍스트",
+          "attachment": "부록",
+          "use_html": "HTML 사용",
+          "use_raw": "원시 텍스트 사용",
+          "placeholder": {
+            "emails": "사서함은 쉼표로 구분하십시오. {{[\"A\", \"B\"]}}와 같은",
+            "attachment": "{{[{ 데이터: 'exp', 이름: 'exp', contentType: 'exp' }]}}"
+          },
           "tips": {
             "port": "일부 인터넷 서비스 제공업체는 포트 25를 비활성화할 수 있습니다. 연결에 실패하면 포트를 수정하십시오."
-          },
-          "to_email": "받는 사람",
-          "use_html": "HTML 사용",
-          "use_raw": "원시 텍스트 사용"
+          }
         },
         "tips": {
           "transformer": "Transformer를 사용하여 쿼리 결과를 다른 형식으로 변환"
+        },
+        "error": {
+          "max_file": "파일 크기는 5M를 초과할 수 없습니다."
         }
       },
       "resource": {
@@ -737,9 +736,6 @@
         "read_only": "구성 요소가 읽기 전용인지 여부를 제어합니다. 읽기 전용 구성 요소의 내용을 선택하고 초점을 맞출 수 있지만 수정할 수는 없습니다.",
         "required_field": "스위치를 켠 후 입력 상자에서 유효성 검사를 수행합니다.",
         "switch_default_value": "스위치의 초기 상태를 설정합니다. JavaScript를 통해 스위치의 초기 상태를 동적으로 변경할 수 있습니다.",
-        "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
-        "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
-        "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
         "text_value": "Markdown 모드 또는 일반 텍스트 모드에서 값을 입력하도록 선택할 수 있습니다. 링크는 Markdown 모드에서만 입력할 수 있습니다.",
         "timeline_direction": "시간 축의 방향을 전환합니다.",
         "timeline_pending": "보류 중인 노드를 표시할지 여부입니다.",
