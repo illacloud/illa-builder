@@ -1,4 +1,11 @@
-import { FC, useCallback, useMemo, useRef, useState } from "react"
+import {
+  forwardRef,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  useImperativeHandle,
+} from "react"
 import { useSelector } from "react-redux"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
@@ -11,7 +18,10 @@ import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
 import { SMTPPanel } from "@/page/App/components/Actions/ActionPanel/SMTPPanel"
 import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
 import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
-import { ActionPanelContainerProps } from "@/page/App/components/Actions/ActionPanel/interface"
+import {
+  ActionPanelContainerProps,
+  ActionPanelFunctionProps,
+} from "@/page/App/components/Actions/ActionPanel/interface"
 import {
   actionContentStyle,
   actionPanelStyle,
@@ -19,16 +29,38 @@ import {
 import { getCachedAction } from "@/redux/config/configSelector"
 import { MysqlLikePanel } from "./MysqlLikePanel"
 
-export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
+export const ActionPanel = forwardRef<
+  ActionPanelFunctionProps,
+  ActionPanelContainerProps
+>((props, ref) => {
   const { maxHeight } = props
   const panelRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const actionResultRef = useRef<HTMLDivElement>(null)
   const cachedAction = useSelector(getCachedAction)
   const [actionResult, setActionResult] = useState<ActionResultType>()
 
-  const run = useCallback((result: any, error: any) => {
+  const clearActionResult = () => {
+    setActionResult(undefined)
+    if (contentRef.current) {
+      contentRef.current.style.paddingBottom = "48px"
+    }
+  }
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      clearActionResult,
+    }),
+    [],
+  )
+
+  const run = (result: unknown, error?: boolean) => {
+    if (actionResult && actionResultRef.current) {
+      actionResultRef.current.style.height = "auto"
+    }
     setActionResult({ result, error })
-  }, [])
+  }
 
   const panel = useMemo(() => {
     switch (cachedAction?.actionType) {
@@ -57,13 +89,6 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
     }
   }, [cachedAction])
 
-  const clearActionResult = () => {
-    setActionResult(undefined)
-    if (contentRef.current) {
-      contentRef.current.style.paddingBottom = "48px"
-    }
-  }
-
   if (cachedAction === null || cachedAction === undefined) {
     return <></>
   }
@@ -80,6 +105,7 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
           {panel}
         </div>
         <ActionResult
+          ref={actionResultRef}
           result={actionResult}
           onClose={clearActionResult}
           maxHeight={maxHeight}
@@ -88,6 +114,6 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
       </ActionPanelContext.Provider>
     </div>
   )
-}
+})
 
 ActionPanel.displayName = "ActionPanel"

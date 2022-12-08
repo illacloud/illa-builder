@@ -32,13 +32,9 @@ const OptionIcon: FC<optionIconProps> = ({ isSelected, onClick }) => {
 }
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
-  const { index } = props
-  const {
-    widgetDisplayName,
-    attrPath,
-    currentViewIndex,
-    handleUpdateCurrentViewIndex,
-  } = useContext(ViewListSetterContext)
+  const { index, label, isSelected } = props
+  const { widgetDisplayName, attrPath, handleUpdateCurrentViewIndex } =
+    useContext(ViewListSetterContext)
 
   const { t } = useTranslation()
   const executionResult = useSelector(getExecutionResult)
@@ -62,13 +58,6 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     return otherViewKeys.some((viewKey) => viewKey == currentViews.key)
   }, [otherViewKeys, currentViews])
 
-  const labelName = useMemo(() => {
-    return get(
-      executionResult,
-      `${widgetDisplayName}.${attrPath}.${index}.label`,
-    )
-  }, [executionResult, widgetDisplayName, attrPath, index])
-
   const handleChangeCurrentView = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
       e.stopPropagation()
@@ -81,11 +70,8 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     <span css={labelAndDragIconWrapperStyle}>
       <DragPointIcon css={moveIconStyle} id="dragIcon" />
       <div css={labelWrapperStyle}>
-        <OptionIcon
-          isSelected={currentViewIndex === index}
-          onClick={handleChangeCurrentView}
-        />
-        <span style={{ maxWidth: "147px" }}>{labelName}</span>
+        <OptionIcon isSelected={isSelected} onClick={handleChangeCurrentView} />
+        <span style={{ maxWidth: "147px" }}>{label}</span>
         {isDuplicationKey && (
           <Trigger
             trigger="hover"

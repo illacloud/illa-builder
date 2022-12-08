@@ -158,12 +158,21 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   ])
 
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const timeoutId = useRef<number>()
+  const updateHeight = useCallback(() => {
+    timeoutId.current = window.setTimeout(() => {
+      if (wrapperRef.current) {
+        updateComponentHeight(wrapperRef.current?.clientHeight)
+      }
+    }, 200)
+  }, [updateComponentHeight])
 
   useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
+    updateHeight()
+    return () => {
+      clearTimeout(timeoutId.current)
     }
-  }, [validateMessage, finalOptions, labelPosition, updateComponentHeight])
+  }, [labelPosition, direction, finalOptions, validateMessage])
 
   return (
     <div ref={wrapperRef}>

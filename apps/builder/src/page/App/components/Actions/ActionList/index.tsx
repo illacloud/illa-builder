@@ -30,9 +30,17 @@ import {
   listStyle,
   searchHeaderContainerStyle,
 } from "./style"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 
-export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
-  const { className } = props
+export interface ActionListProps extends HTMLAttributes<HTMLDivElement> {
+  onChangeSelectedAction: () => void
+}
+
+export const ActionList: FC<ActionListProps> = (props) => {
+  const { className, onChangeSelectedAction } = props
 
   const selectedAction = useSelector(getSelectedAction)
   const cachedAction = useSelector(getCachedAction)
@@ -50,6 +58,11 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const modal = useModal()
+
+  const changeSelectedAction = (action: ActionItem<ActionContent>) => {
+    onChangeSelectedAction()
+    dispatch(configActions.changeSelectedAction(action))
+  }
 
   return (
     <div className={className} css={searchHeaderContainerStyle}>
@@ -86,7 +99,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                   onDeleteItem={onDeleteActionItem}
                   onItemClick={(action) => {
                     if (selectedAction === null) {
-                      dispatch(configActions.changeSelectedAction(action))
+                      changeSelectedAction(action)
                       return
                     }
                     // is a change action
@@ -95,7 +108,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                         JSON.stringify(cachedAction) ===
                         JSON.stringify(selectedAction)
                       ) {
-                        dispatch(configActions.changeSelectedAction(action))
+                        changeSelectedAction(action)
                       } else {
                         // show dialog
                         modal.show({
@@ -103,7 +116,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                             "editor.action.action_list.message.confirm_switch",
                           ),
                           onOk: () => {
-                            dispatch(configActions.changeSelectedAction(action))
+                            changeSelectedAction(action)
                           },
                         })
                       }
@@ -135,6 +148,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
       <ActionGenerator
         visible={generatorVisible}
         onClose={() => setGeneratorVisible(false)}
+        onCreateAction={onChangeSelectedAction}
       />
     </div>
   )
