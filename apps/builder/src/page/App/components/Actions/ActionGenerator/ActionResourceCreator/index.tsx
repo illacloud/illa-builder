@@ -37,6 +37,7 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
     switch (resourceType) {
       case "firebase":
         return <FirebaseConfigElement {...generalProps} />
+      case "supabasedb":
       case "tidb":
       case "mariadb":
       case "mysql":

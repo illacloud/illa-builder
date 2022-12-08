@@ -11,6 +11,7 @@ import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
 
 export function getInitialContent(actionType: ActionType): ActionContent {
   switch (actionType) {
+    case "supabasedb":
     case "mariadb":
     case "tidb":
     case "mysql":
