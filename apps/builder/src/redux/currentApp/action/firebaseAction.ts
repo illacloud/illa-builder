@@ -179,15 +179,50 @@ export enum OperationType {
   CONTAINS_ANY = "array contains any",
 }
 
-export const OperationList = [
-  OperationType.EQUAL,
-  OperationType.GREATER,
-  OperationType.LESS,
-  OperationType.LESS_EQUAL,
-  OperationType.GREATER_EQUAL,
-  OperationType.CONTAINS,
-  OperationType.IN,
-  OperationType.CONTAINS_ANY,
+export enum OperationTypeValue {
+  EQUAL = "==",
+  GREATER = ">",
+  LESS = "<",
+  LESS_EQUAL = "<=",
+  GREATER_EQUAL = ">=",
+  CONTAINS = "array-contains",
+  IN = "in",
+  CONTAINS_ANY = "array-contains-any",
+}
+
+export const OperationSelectList = [
+  {
+    label: OperationType.EQUAL,
+    value: OperationTypeValue.EQUAL,
+  },
+  {
+    label: OperationType.GREATER,
+    value: OperationTypeValue.GREATER,
+  },
+  {
+    label: OperationType.LESS,
+    value: OperationTypeValue.LESS,
+  },
+  {
+    label: OperationType.LESS_EQUAL,
+    value: OperationTypeValue.LESS_EQUAL,
+  },
+  {
+    label: OperationType.GREATER_EQUAL,
+    value: OperationTypeValue.GREATER_EQUAL,
+  },
+  {
+    label: OperationType.CONTAINS,
+    value: OperationTypeValue.CONTAINS,
+  },
+  {
+    label: OperationType.IN,
+    value: OperationTypeValue.IN,
+  },
+  {
+    label: OperationType.CONTAINS_ANY,
+    value: OperationTypeValue.CONTAINS_ANY,
+  },
 ]
 
 export interface GetUserByID {
