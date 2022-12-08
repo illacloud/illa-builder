@@ -72,13 +72,14 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
 
   const handleConnectionTest = () => {
     const data = getValues()
-    let content
+
     try {
-      content = {
+      const content = {
         databaseUrl: data.databaseUrl,
         projectID: data.projectID,
         privateKey: JSON.parse(data.privateKey),
       }
+
       onActionConfigElementTest(data, content, "firebase", setTestLoading)
     } catch (e) {
       message.error({
@@ -238,7 +239,7 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
             rules={{
               required: true,
             }}
-            defaultValue={content.privateKey}
+            defaultValue={JSON.stringify(content.privateKey)}
             render={({ field: { value, onChange, onBlur } }) => (
               <TextArea
                 ml="16px"

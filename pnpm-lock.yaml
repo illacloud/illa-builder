@@ -207,11 +207,13 @@ importers:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
       react-use: ^17.4.0
       react-use-measure: ^2.1.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: 7.6.17
       react-use: 17.4.0
       react-use-measure: 2.1.1
 
@@ -220,10 +222,12 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: 7.6.17
 
   illa-design/packages/avatar:
     specifiers:
@@ -325,6 +329,7 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      framer-motion: ^7.6.12
       react-fast-compare: ^3.2.0
     dependencies:
       '@illa-design/checkbox': link:../checkbox
@@ -335,6 +340,7 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+      framer-motion: 7.6.17
       react-fast-compare: 3.2.0
 
   illa-design/packages/checkbox:
@@ -429,6 +435,7 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
       react-focus-lock: ^2.8.1
       react-remove-scroll: ^2.5.4
     dependencies:
@@ -437,6 +444,7 @@ importers:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: 7.6.17
       react-focus-lock: 2.9.2
       react-remove-scroll: 2.5.5
 
@@ -526,6 +534,7 @@ importers:
       '@illa-design/tag': workspace:*
       '@illa-design/theme': workspace:*
       chroma-js: ^2.1.2
+      framer-motion: ^7.6.12
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/input': link:../input
@@ -533,6 +542,7 @@ importers:
       '@illa-design/tag': link:../tag
       '@illa-design/theme': link:../theme
       chroma-js: 2.4.2
+      framer-motion: 7.6.17
 
   illa-design/packages/link:
     specifiers:
@@ -577,6 +587,7 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      framer-motion: ^7.6.12
       react-use-measure: ^2.1.1
     dependencies:
       '@illa-design/dropdown': link:../dropdown
@@ -584,6 +595,7 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+      framer-motion: 7.6.17
       react-use-measure: 2.1.1
 
   illa-design/packages/message:
@@ -591,21 +603,24 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
       uuid: ^8.3.2
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: 7.6.17
       uuid: 8.3.2
 
   illa-design/packages/modal:
     specifiers:
-      '@illa-design/button': 1.0.7
-      '@illa-design/config-provider': 1.0.7
-      '@illa-design/icon': 1.0.7
-      '@illa-design/system': 1.0.7
-      '@illa-design/theme': 1.0.7
-      '@illa-design/trigger': 1.0.7
+      '@illa-design/button': 1.0.10
+      '@illa-design/config-provider': 1.0.10
+      '@illa-design/icon': 1.0.10
+      '@illa-design/system': 1.0.10
+      '@illa-design/theme': 1.0.10
+      '@illa-design/trigger': 1.0.10
+      framer-motion: ^7.6.12
       react-focus-lock: ^2.8.1
       react-hotkeys-hook: ^3.4.6
       uuid: ^8.3.2
@@ -616,6 +631,7 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+      framer-motion: 7.6.17
       react-focus-lock: 2.9.2
       react-hotkeys-hook: 3.4.7
       uuid: 8.3.2
@@ -625,11 +641,13 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
       uuid: ^8.3.2
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: 7.6.17
       uuid: 8.3.2
 
   illa-design/packages/page-header:
@@ -1090,12 +1108,14 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
     dependencies:
       '@floating-ui/react-dom-interactions': 0.12.0
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: 7.6.17
 
   illa-design/packages/typography:
     specifiers:
@@ -2628,7 +2648,7 @@ packages:
     dev: false
 
   /@tanstack/table-core/8.7.0:
-    resolution: {integrity: sha512-DRiRbOAmDHapzUBd4/C4Yy+FTug4fdGp5sdZWWfCq4wxRoaXQraQgbzmK23a3QcbwLFtLeNezPkZrqbJWuX+VA==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-DRiRbOAmDHapzUBd4/C4Yy+FTug4fdGp5sdZWWfCq4wxRoaXQraQgbzmK23a3QcbwLFtLeNezPkZrqbJWuX+VA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.7.0.tgz}
     engines: {node: '>=12'}
 
   /@testing-library/cypress/8.0.7_cypress@11.2.0:
@@ -5497,6 +5517,22 @@ packages:
       combined-stream: 1.0.8
       mime-types: 2.1.35
     dev: true
+
+  /framer-motion/7.6.17:
+    resolution: {integrity: sha512-NmGBjKMCWlTDT156zR8G+jcpiM8OXbvmlgf1CPsVNk5x2RqJ9tieBKMNr6/OjJhirwyOp9s8bt8TsfrrCBIsEw==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@motionone/dom': 10.13.1
+      framesync: 6.1.2
+      hey-listen: 1.0.8
+      popmotion: 11.0.5
+      style-value-types: 5.1.2
+      tslib: 2.4.0
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    dev: false
 
   /framer-motion/7.6.17_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-NmGBjKMCWlTDT156zR8G+jcpiM8OXbvmlgf1CPsVNk5x2RqJ9tieBKMNr6/OjJhirwyOp9s8bt8TsfrrCBIsEw==}
