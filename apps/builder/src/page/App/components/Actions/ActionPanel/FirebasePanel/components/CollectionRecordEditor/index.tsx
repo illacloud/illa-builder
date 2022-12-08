@@ -43,94 +43,92 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
   )
 
   return (
-    <>
-      <Controller
-        control={control}
-        defaultValue={defaultValue}
-        render={({ field: { value, onChange } }) => {
-          return (
-            <RecordEditor
-              label={t("editor.action.panel.firebase.where")}
-              records={value}
-              customRender={(record, index) => (
-                <>
-                  <CodeEditor
-                    css={actionItemRecordEditorStyle}
-                    mode="TEXT_JS"
-                    placeholder="field"
-                    value={record.field}
-                    borderRadius="0"
-                    onChange={(val) => {
-                      handleChange(
-                        index,
-                        val,
-                        record.value,
-                        record.operation,
-                        onChange,
-                      )
-                    }}
-                    expectedType={VALIDATION_TYPES.STRING}
-                  />
-                  <Select
-                    colorScheme="techPurple"
-                    showSearch={true}
-                    defaultValue={record.condition}
-                    value={record.condition}
-                    width="100%"
-                    bdRadius="0"
-                    onChange={(val) =>
-                      handleChange(
-                        index,
-                        record.field,
-                        record.value,
-                        val,
-                        onChange,
-                      )
-                    }
-                    options={OperationList}
-                  />
-                  <CodeEditor
-                    css={actionItemRecordEditorStyle}
-                    mode="TEXT_JS"
-                    placeholder="value"
-                    value={record.value}
-                    borderRadius="0"
-                    onChange={(val) => {
-                      handleChange(
-                        index,
-                        record.field,
-                        val,
-                        record.condition,
-                        onChange,
-                      )
-                    }}
-                    expectedType={VALIDATION_TYPES.STRING}
-                  />
-                </>
-              )}
-              onAdd={() => {
-                onChange([...value, { field: "", value: "", condition: "" }])
-              }}
-              onDelete={(index, record) => {
-                let newRecords = [...value]
-                newRecords.splice(index, 1)
-                if (newRecords.length === 0) {
-                  newRecords = [{ field: "", value: "", condition: "" }]
-                }
-                onChange(newRecords)
-              }}
-              onChangeKey={(index, key, v) =>
-                handleChange(index, key, v, "", onChange)
+    <Controller
+      control={control}
+      defaultValue={defaultValue}
+      render={({ field: { value, onChange } }) => {
+        return (
+          <RecordEditor
+            label={t("editor.action.panel.firebase.where")}
+            records={value}
+            customRender={(record, index) => (
+              <>
+                <CodeEditor
+                  css={actionItemRecordEditorStyle}
+                  mode="TEXT_JS"
+                  placeholder="field"
+                  value={record.field}
+                  borderRadius="0"
+                  onChange={(val) => {
+                    handleChange(
+                      index,
+                      val,
+                      record.value,
+                      record.operation,
+                      onChange,
+                    )
+                  }}
+                  expectedType={VALIDATION_TYPES.STRING}
+                />
+                <Select
+                  colorScheme="techPurple"
+                  showSearch={true}
+                  defaultValue={record.condition}
+                  value={record.condition}
+                  width="100%"
+                  bdRadius="0"
+                  onChange={(val: string) =>
+                    handleChange(
+                      index,
+                      record.field,
+                      record.value,
+                      val,
+                      onChange,
+                    )
+                  }
+                  options={OperationList}
+                />
+                <CodeEditor
+                  css={actionItemRecordEditorStyle}
+                  mode="TEXT_JS"
+                  placeholder="value"
+                  value={record.value}
+                  borderRadius="0"
+                  onChange={(val) => {
+                    handleChange(
+                      index,
+                      record.field,
+                      val,
+                      record.condition,
+                      onChange,
+                    )
+                  }}
+                  expectedType={VALIDATION_TYPES.STRING}
+                />
+              </>
+            )}
+            onAdd={() => {
+              onChange([...value, { field: "", value: "", condition: "" }])
+            }}
+            onDelete={(index, record) => {
+              let newRecords = [...value]
+              newRecords.splice(index, 1)
+              if (newRecords.length === 0) {
+                newRecords = [{ field: "", value: "", condition: "" }]
               }
-              onChangeValue={(index, key, v) =>
-                handleChange(index, key, v, "", onChange)
-              }
-            />
-          )
-        }}
-        name={name}
-      />
-    </>
+              onChange(newRecords)
+            }}
+            onChangeKey={(index, key, v) =>
+              handleChange(index, key, v, "", onChange)
+            }
+            onChangeValue={(index, key, v) =>
+              handleChange(index, key, v, "", onChange)
+            }
+          />
+        )
+      }}
+      name={name}
+    />
   )
 }
 

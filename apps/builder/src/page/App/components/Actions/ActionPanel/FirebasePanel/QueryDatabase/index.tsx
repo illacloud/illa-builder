@@ -11,14 +11,12 @@ export const QueryDatabasePart: FC<FirebaseActionPartProps> = (props) => {
   const { handleValueChange } = props
 
   return (
-    <>
-      <InputEditor
-        title={t("editor.action.panel.firebase.database_ref")}
-        value={options.ref}
-        onChange={(value) => handleValueChange(value, "ref")}
-        expectedType={VALIDATION_TYPES.STRING}
-      />
-    </>
+    <InputEditor
+      title={t("editor.action.panel.firebase.database_ref")}
+      value={options.ref}
+      onChange={(value) => handleValueChange(value, "ref")}
+      expectedType={VALIDATION_TYPES.STRING}
+    />
   )
 }
 
