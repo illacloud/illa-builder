@@ -11,6 +11,7 @@ import {
   getColor,
   TextArea,
   Popover,
+  useMessage,
   Link,
   WarningCircleIcon,
 } from "@illa-design/react"
@@ -47,6 +48,7 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
   const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
+  const message = useMessage()
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -67,16 +69,23 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [baseURLOpen, setBaseURLOpen] = useState(false)
 
   const handleConnectionTest = () => {
     const data = getValues()
-    const content = {
-      databaseUrl: data.databaseUrl,
-      projectID: data.projectID,
-      privateKey: data.privateKey,
+
+    try {
+      const content = {
+        databaseUrl: data.databaseUrl,
+        projectID: data.projectID,
+        privateKey: JSON.parse(data.privateKey),
+      }
+
+      onActionConfigElementTest(data, content, "firebase", setTestLoading)
+    } catch (e) {
+      message.error({
+        content: t("editor.action.resource.db.invalid_private.key"),
+      })
     }
-    onActionConfigElementTest(data, content, "firebase", setTestLoading)
   }
 
   return (
@@ -230,7 +239,7 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
             rules={{
               required: true,
             }}
-            defaultValue={content.privateKey}
+            defaultValue={JSON.stringify(content.privateKey)}
             render={({ field: { value, onChange, onBlur } }) => (
               <TextArea
                 ml="16px"
