@@ -24,12 +24,17 @@ import {
 } from "@/utils/evaluateDynamicString/utils"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { isObject } from "@/utils/typeHelper"
+import {
+  AuthActionTypeValue,
+  FirestoreActionTypeValue,
+  ServiceTypeValue,
+} from "@/redux/currentApp/action/firebaseAction"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
 const message = createMessage()
 
-function calcRealContent(content: Record<string, any>) {
+export const calcRealContent = (content: Record<string, any>) => {
   let realContent: Record<string, any> = {}
   if (Array.isArray(content)) {
     realContent = content.map((item) => {
@@ -177,7 +182,6 @@ const transformDataFormat = (
   actionType: string,
   content: Record<string, any>,
 ) => {
-  console.log("actionType", actionType)
   switch (actionType) {
     case "s3": {
       const { commands, commandArgs } = content
@@ -244,6 +248,36 @@ const transformDataFormat = (
       }
       return content
     }
+    case "firebase":
+      const { service, operation } = content
+      if (
+        service === ServiceTypeValue.AUTH &&
+        operation === AuthActionTypeValue.LIST_USERS
+      ) {
+        const { number = "", ...others } = content.options
+        return {
+          ...content,
+          options: {
+            ...others,
+            ...(number !== "" && { number }),
+          },
+        }
+      }
+      if (
+        service === ServiceTypeValue.FIRESTORE &&
+        (operation === FirestoreActionTypeValue.QUERY_FIREBASE ||
+          operation === FirestoreActionTypeValue.QUERY_COLLECTION_GROUP)
+      ) {
+        const { limit = "", ...others } = content.options
+        return {
+          ...content,
+          options: {
+            ...others,
+            ...(limit !== "" && { limit }),
+          },
+        }
+      }
+      return content
     default:
       return content
   }

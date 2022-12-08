@@ -278,7 +278,6 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >

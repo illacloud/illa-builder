@@ -110,25 +110,11 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
 
   const handleChangeSelect = useCallback(
     (value: any) => {
-      const data = evaluateDynamicString("", value, actionExecutionResult)
-      if (Array.isArray(data)) {
-        let newColumns = tansTableDataToColumns(data)
-        if (newColumns?.length) {
-          handleUpdateMultiAttrDSL?.({
-            columns: newColumns.concat(customColumns),
-            dataSource: value,
-          })
-          return
-        }
-      }
-      handleUpdateDsl("dataSource", value)
+      handleUpdateMultiAttrDSL?.({
+        dataSource: value,
+      })
     },
-    [
-      actionExecutionResult,
-      customColumns,
-      handleUpdateDsl,
-      handleUpdateMultiAttrDSL,
-    ],
+    [handleUpdateMultiAttrDSL],
   )
 
   return (

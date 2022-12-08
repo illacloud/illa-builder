@@ -20,7 +20,15 @@ import {
 } from "./style"
 
 export const RecordEditor: FC<RecordEditorProps> = (props) => {
-  const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props
+  const {
+    records,
+    customRender,
+    label,
+    onDelete,
+    onAdd,
+    onChangeKey,
+    onChangeValue,
+  } = props
 
   const { t } = useTranslation()
 
@@ -28,6 +36,27 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
     return (
       <>
         {records?.map((record, index) => {
+          if (customRender) {
+            return (
+              <div css={recordStyle} key={index}>
+                {customRender(record, index)}
+                <Button
+                  ml="-1px"
+                  variant="outline"
+                  bdRadius="0 8px 8px 0"
+                  colorScheme="grayBlue"
+                  onClick={() => {
+                    onDelete(index, record)
+                  }}
+                  leftIcon={
+                    <DeleteIcon
+                      color={globalColor(`--${illaPrefix}-grayBlue-08`)}
+                    />
+                  }
+                />
+              </div>
+            )
+          }
           return (
             <div css={recordStyle} key={index}>
               <CodeEditor

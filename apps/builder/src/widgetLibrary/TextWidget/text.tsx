@@ -4,7 +4,11 @@ import remarkGfm from "remark-gfm"
 import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TextProps, TextWidgetProps } from "./interface"
-import { applyAlignStyle, fullWidthAndFullHeightStyle } from "./style"
+import {
+  applyAlignStyle,
+  fullWidthAndFullHeightStyle,
+  textStyle,
+} from "./style"
 
 export const Text: FC<TextProps> = (props) => {
   const {
@@ -19,11 +23,12 @@ export const Text: FC<TextProps> = (props) => {
   return (
     <div css={applyAlignStyle(horizontalAlign, verticalAlign)}>
       {disableMarkdown ? (
-        <ILLAText colorScheme={colorScheme} fs={fs}>
+        <ILLAText css={textStyle} colorScheme={colorScheme} fs={fs}>
           {value}
         </ILLAText>
       ) : (
         <ReactMarkdown
+          css={textStyle}
           remarkPlugins={[remarkGfm]}
           components={{
             a: ({ node, ...props }) => (

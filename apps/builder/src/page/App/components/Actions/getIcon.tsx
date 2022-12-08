@@ -10,18 +10,22 @@ import { RedisIcon } from "@/page/App/components/Icons/redis"
 import { RestApiIcon } from "@/page/App/components/Icons/restapi"
 import { S3Icon } from "@/page/App/components/Icons/s3"
 import { SmtpIcon } from "@/page/App/components/Icons/smtp"
+import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
 import { SnowflakeIcon } from "@/page/App/components/Icons/snowflake"
 import { TidbIcon } from "@/page/App/components/Icons/tidb"
 import { TransformerIcon } from "@/page/App/components/Icons/transformer"
 import { ZapierIcon } from "@/page/App/components/Icons/zapier"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
+import { SupabaseIcon } from "@/page/App/components/Icons/supabase"
 
 export function getIconFromResourceType(
   type: ResourceType,
   size: string,
 ): ReactElement | null {
   switch (type) {
+    case "supabasedb":
+      return <SupabaseIcon size={size} />
     case "graphql":
       return <GraphQLIcon size={size} />
     case "elasticsearch":
@@ -44,6 +48,8 @@ export function getIconFromResourceType(
       return <RedisIcon size={size} />
     case "postgresql":
       return <PostgreSqlIcon size={size} />
+    case "firebase":
+      return <FirebaseIcon size={size} />
   }
   return null
 }
@@ -57,6 +63,8 @@ export function getIconFromActionType(
       return <GraphQLIcon size={size} />
     case "elasticsearch":
       return <ElasticIcon size={size} />
+    case "supabasedb":
+      return <SupabaseIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
     case "transformer":
@@ -77,6 +85,8 @@ export function getIconFromActionType(
       return <RedisIcon size={size} />
     case "postgresql":
       return <PostgreSqlIcon size={size} />
+    case "firebase":
+      return <FirebaseIcon size={size} />
   }
   return null
 }

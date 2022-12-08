@@ -1,0 +1,1145 @@
+{
+  "Logout": "サインアウト",
+  "Setting": "設定",
+  "apps": "事業",
+  "back": "戻る",
+  "btn": {
+    "choose_file": "ファイルを選択"
+  },
+  "change_fail": "編集に失敗する",
+  "change_success": "正常に変更されました",
+  "collision_message": "D または K キーを押したまま、コンポーネントをコンテナーにドラッグします。",
+  "create_fail": "作成に失敗しました",
+  "create_new": "作成",
+  "create_new_app": "プロジェクトを作成",
+  "created_at": "ビルトイン",
+  "dashboard": {
+    "app": {
+      "all_apps": "全てのアイテム",
+      "create_app": "アプリを作成する",
+      "duplicate_fail": "複製に失敗しました",
+      "duplicate_placeholder": "プロジェクト名を入力してください",
+      "edited_time": "{{ ユーザー }} によって {{ 時間 }} に編集されました",
+      "name_empty": "プロジェクト名を入力してください",
+      "name_existed": "名前は使用中",
+      "rename_app": "プロジェクトの名前を変更",
+      "rename_fail": "名前を変更できませんでした",
+      "rename_success": "正常に変更されました",
+      "trash_failure": "削除できませんでした",
+      "trash_success": "正常に削除されました"
+    },
+    "common": {
+      "cancel": "キャンセル",
+      "delete": "消去",
+      "delete_cancel_text": "キャンセル",
+      "delete_content": "削除すると、このリソースを使用するアプリケーションとクエリ ライブラリ クエリが破損します",
+      "delete_ok_text": "消去",
+      "delete_title": "確認",
+      "error_button": "リトライ",
+      "error_description": "間違ったリクエスト",
+      "error_title": "間違い"
+    },
+    "resource": {
+      "create_resource": "リソースを作成する",
+      "created": "作成時間",
+      "dbname": "データストレージ名",
+      "delete_fail": "削除できませんでした",
+      "delete_success": "正常に削除されました",
+      "resource_name": "名前",
+      "resource_type": "タイプ",
+      "save_fail": "保存に失敗しました",
+      "save_success": "正常に保存されました",
+      "test_fail": "テストに失敗しました",
+      "test_success": "テスト成功"
+    }
+  },
+  "dayjs": {
+    "just_now": "ただ"
+  },
+  "deploy": "リリース",
+  "description": {
+    "part1": "ここに例があります。"
+  },
+  "dont_need_save": "ILLA はあなたの作品を自動的に保存します。",
+  "duplicate": "コピー",
+  "edit": "編集",
+  "edit_at": "最終編集日",
+  "edit_failed": "保存できませんでした。ネットワーク接続を確認してください。",
+  "edit_success": "正常に変更されました!",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "戻る",
+            "create_action": "アクションを作成",
+            "new_resource": "リソースを追加する"
+          },
+          "selector": {
+            "title": "アクションタイプを選択"
+          },
+          "title": {
+            "choose_resource": "リソースの選択"
+          }
+        },
+        "btn": {
+          "close": "閉鎖",
+          "new": "新築"
+        },
+        "contextMenu": {
+          "delete": "消去",
+          "duplicate": "コピー",
+          "rename": "名前を変更"
+        },
+        "message": {
+          "confirm_switch": "保存されたクエリがありません。変更を破棄してもよろしいですか?",
+          "failed": "サーバー接続に失敗しました",
+          "load_action_list_fail": "アクション リストの取得に失敗しました: {{message}}",
+          "load_resource_fail": "リソース リストの取得に失敗しました: {{message}}",
+          "name_already_exist": "名前はすでに存在します",
+          "please_input_name": "名前を入力してください",
+          "success_created": "正常に作成されました",
+          "success_deleted": "正常に削除されました",
+          "success_saved": "正常に保存されました",
+          "valid_name": "文字、数字、「_」または「$」のみを使用できます。「_」または文字で始めてください"
+        },
+        "placeholder": {
+          "search": "探す"
+        },
+        "runtime": {
+          "backend": "後部",
+          "execute_resource": "サーバー処理",
+          "frontend": "フロントエンド",
+          "handle_response": "返品処理",
+          "post_processing": "後処理",
+          "prepare_query": "クエリの準備",
+          "response_size": "応答サイズ",
+          "total": "合計時間",
+          "transfer_data": "データ転送",
+          "transformer": "変成器"
+        },
+        "tips": {
+          "empty": "アクションを追加して、接続リソースでデータの処理を開始します",
+          "not_found": "申し訳ありませんが、検索結果はありません"
+        },
+        "title": "アクションリスト"
+      },
+      "form": {
+        "btn": {
+          "back": "あとずさりする",
+          "save_changes": "資源を節約する",
+          "test_connection": "テスト接続"
+        },
+        "required": "これは必須です",
+        "title": {
+          "api": "API",
+          "configure": "構成 {{ 名前 }}",
+          "database": "データベース",
+          "select": "リソースの種類を選択"
+        },
+        "validate": {
+          "required": "{name}入力してください"
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "閉鎖",
+          "enable": "オンにする",
+          "new": "追加",
+          "run": "走る",
+          "save": "保存",
+          "save_and_run": "保存して実行",
+          "save_fail": "保存に失敗しました"
+        },
+        "elastic": {
+          "action_type": "アクションタイプ",
+          "body": "体",
+          "id": "ID",
+          "index": "索引",
+          "query": "クエリ"
+        },
+        "error": {
+          "max_file": "ファイルサイズは 5M を超えることはできません。"
+        },
+        "label": {
+          "event_handler": "イベントハンドラ",
+          "failure": "不合格",
+          "resource": "資源",
+          "success": "成功",
+          "transformer": "変成器"
+        },
+        "menu": {
+          "more": {
+            "delete": "消去",
+            "duplicate": "コピー"
+          }
+        },
+        "mongodb": {
+          "action_type": "アクションタイプ",
+          "aggregation": "集計",
+          "collection": "コレクション",
+          "document": "書類",
+          "field": "分野",
+          "filter": "フィルター",
+          "limit": "リミット",
+          "operations": "オペレーション",
+          "options": "オプション",
+          "projection": "投影",
+          "query": "クエリ",
+          "skip": "スキップ",
+          "sort_by": "並び替え",
+          "update": "アップデート"
+        },
+        "option": {
+          "resource": {
+            "new": "リソースを追加する"
+          },
+          "trigger": {
+            "manually": "手動でトリガーされたときに実行されます",
+            "on_change": "入力変化時に自動実行"
+          }
+        },
+        "s3": {
+          "action_type": "アクションタイプ",
+          "bucket_name": "バケット名",
+          "content_type": "コンテンツ タイプ",
+          "delimiter": "デリミタ",
+          "error": {
+            "max_file": "ファイルサイズは 5M を超えることはできません。"
+          },
+          "expiry_duration_of_signed_url": "署名付き URL の有効期間 (分)",
+          "generate_signed_url": "署名付き URL を生成する",
+          "max_keys": "最大キー値",
+          "object_key": "オブジェクトキー",
+          "object_key_list": "オブジェクトのキー値リスト",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\n sXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNho30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\n YW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\n MFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "結果のフィルタリングに使用されるプレフィックス",
+          "tips": {
+            "delimiter": "セパレータは、キー値をグループ化するために使用される文字です。",
+            "max_keys": "応答で返されるキーの最大数を設定します。デフォルトでは、アクションは最大 1000 個のキー名を返します。"
+          },
+          "upload_data": "データのアップロード",
+          "upload_data_list": "アップロードデータ一覧",
+          "upload_object_name": "アップロード オブジェクト名",
+          "upload_object_name_list": "オブジェクト名リストのアップロード"
+        },
+        "smtp": {
+          "attachment": "付録",
+          "bcc_email": "BCC",
+          "body": "文章",
+          "cc_email": "cc",
+          "from_email": "差出人",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "メールボックスはコンマで区切ります。 {{[\"A\", \"B\"]}} など"
+          },
+          "replay_email": "返事",
+          "set_replay_email": "返信メールを設定する",
+          "subject": "テーマ",
+          "tips": {
+            "port": "一部のインターネット サービス プロバイダーは、ポート 25 を無効にしている場合があります。接続に失敗した場合は、ポートを変更してください。"
+          },
+          "to_email": "受取人",
+          "use_html": "HTML を使用する",
+          "use_raw": "生のテキストを使用する"
+        },
+        "firebase": {
+          "service_type": "Service Type",
+          "action_type": "Action Type",
+          "uid": "UID",
+          "email": "郵便",
+          "phone_number": "電話番号",
+          "user_object": "User object ",
+          "len_of_list": "リストの長さ ",
+          "next_page_token": "次のページトークン",
+          "collection": "Collection",
+          "where": "where",
+          "limit": "Limit",
+          "order_by": "Order by",
+          "ordering_direction": "Ordering direction",
+          "use_start_at": "Use startAt",
+          "use_end_at": "Use endAt",
+          "start_at": "Start At",
+          "end_at": "End At",
+          "document_id": "Document ID",
+          "value": "value",
+          "parent_document_id": "Parent document ID",
+          "database_ref": "Database ref",
+          "object_to_set": "Object to set",
+          "use_raw_id": "Use raw id",
+          "use_a_dropdown": "Use a dropdown",
+          "placeholder": {
+            "select_collection": "Select a collection",
+            "input_collection": "Enter a collection",
+            "select_an_action": "Select an action",
+            "key": "key",
+            "value": "value",
+            "asc": "asc",
+            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}"
+          },
+          "tips": {
+            "document_id": "Leave blank for autogenerated ID.",
+            "parent_document_id_tips": "Leave blank for top-level collections."
+          }
+        },
+        "tips": {
+          "transformer": "Transformer でクエリ結果をさまざまな形式に変換できるようにする"
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "すぐに更新されます"
+        },
+        "db": {
+          "label": {
+            "ca_certificate": "サーバー証明書",
+            "client_certificate": "クライアント証明書",
+            "client_key": "クライアントキー",
+            "config_type": "構成タイプ",
+            "connect_type": "接続タイプ",
+            "connection_format": "接続方法",
+            "connection_string": "接続アドレス",
+            "database": "名前データベース",
+            "database_index": "データベース インデックス",
+            "hostname": "ザ・ホスト",
+            "hostname_port": "ホスト/ポート",
+            "hosturl": "ホスト URL",
+            "mongodb_connection_dns_seed_list": "DNS シード リスト接続",
+            "mongodb_connection_standard": "標準接続",
+            "mongodb_ssl_ca": "CA証明書",
+            "mongodb_ssl_client": "クライアント証明書とキー",
+            "name": "名前",
+            "port": "ポート",
+            "private_key": "秘密鍵",
+            "ssl_options": "SSL オプション",
+            "username_password": "ユーザー名パスワード",
+            "firebase_database_url": "Firebase Database URL",
+            "firebase_project_id": "Firestore Project ID",
+            "private_key_hover": "The private key is associated with a Service Account with Firebase privileges."
+          },
+          "placeholder": {
+            "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
+            "database": "acme_production",
+            "database_index": "デフォルト 0",
+            "hostname": "CPU名",
+            "hosturl": "たとえば、https://example.com",
+            "mongo_certificate": "-----RSA 秘密鍵の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----END RSA 秘密鍵-----\n -----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----\n",
+            "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
+            "password": "パスワード",
+            "username": "ユーザー名",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}"
+          },
+          "tip": {
+            "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
+            "name": "このリソースにILLAで名前を付ける",
+            "ssl_options": "可能な場合は SSL を使用する",
+            "username_password": "資格情報は暗号化され、サーバーに安全に保存されます",
+            "private_key": "Click here to see how to obtain this key"
+          },
+          "title": {
+            "advanced_option": "詳細設定",
+            "general_option": "ユニバーサル"
+          }
+        },
+        "error": {
+          "invalid_url": "http://example.com などの有効な URL を入力してください"
+        },
+        "restapi": {
+          "btns": {
+            "new": "追加"
+          },
+          "label": {
+            "access_token": "アクセストークン",
+            "access_token_lifespan": "アクセス トークンの有効期間 (オプション)",
+            "access_token_url": "アクセストークンのURL",
+            "action_type": "アクションタイプ",
+            "audience": "観客",
+            "authentication": "API認証",
+            "authorization_url": "承認 URL",
+            "base_url": "ベース URL",
+            "basic_auth_password": "基本認証パスワード",
+            "basic_auth_username": "基本認証のユーザー名",
+            "bearerToken": "無記名トークン",
+            "body": "体",
+            "client_id": "クライアントID",
+            "client_secret": "クライアント シークレット",
+            "configure_oauth2": "OAuth 2.0 の構成",
+            "cookies": "クッキー",
+            "copy_url_to_application": "URLをコピー",
+            "enable_auth_verification_endpoint": "認証検証エンドポイントを有効にする",
+            "extra_body_values": "エクストラボディバリュー",
+            "forward_all_cookies": "すべての Cookie を転送する",
+            "headers": "ヘッダー",
+            "list_of_cookies_to_forward": "転送する Cookie のリスト",
+            "name": "名前",
+            "oauth_callback_url": "OAuth コールバック URL",
+            "refresh_token": "リフレッシュトークン",
+            "scopes": "スコープ",
+            "share_oauth2_credentials_between_users": "ユーザー間で OAuth2.0 クレデンシャルを共有する",
+            "url_parameters": "URL パラメータ",
+            "use_client_credentials_auth": "クライアント資格情報を使用して認証する"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "基本認証",
+              "bearer": "ベアラー",
+              "none": "なし",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "トークンの有効期間 (秒)",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "つまり、「内部管理 API」",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "絶対 URL を使用してください (例: https://example.com)",
+            "database": "つまり、「ユーザーDB（読み取り専用）」",
+            "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
+            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
+            "param_key": "鍵",
+            "param_value": "価値",
+            "password": "パスワード",
+            "username": "ユーザー名"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 は複雑な仕様です. ILLA は現在、サーバー側の OAuth 2.0 認証フローとクライアント資格情報フローをサポートしています. どちらの場合も、OAuth アクセス トークンを配置する場所を ILLA に通知するには、OAUTH2_TOKEN プレースホルダーを使用する必要がありますAPI リクエスト. これの一般的な場所は、Authorization: Bearer OAUTH2_TOKEN などのヘッダーにあります。",
+            "extra_body_values": "GET または HEAD リクエストでは、余分な本文の値は渡されません",
+            "get_req_auto_run": "(GET リクエスト) は、パラメータが変更されると自動的に実行されます",
+            "name": "ILLAでアクションを作成する際のリソース名"
+          },
+          "title": {
+            "advanced_option": "ユニバーサル"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "アクセスキー",
+            "base_url": "ベース URL",
+            "bucket_name": "バケット名",
+            "custome_s3_endpoint": "カスタム S3 エンドポイント",
+            "region": "範囲",
+            "secret_access_key": "シークレット アクセス キー",
+            "use_custome_s3_endpoint": "カスタム S3 エンドポイントを使用する"
+          },
+          "placeholder": {
+            "base_url": "たとえば、https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Digital Ocean Spaces や Wasabi など、S3 以外の他のサービスに接続するため。"
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// ヒント: 中かっこを連鎖させるのではなく、外部参照を変数に割り当てます。"
+          },
+          "tip": {
+            "external_reference": "定義済み変数への外部参照を作成できます。たとえば、{{Transformer2.value}}"
+          }
+        }
+      },
+      "resource_choose": {
+        "deleted": "削除された"
+      },
+      "result": {
+        "title": {
+          "api_request": "API リクエスト パラメータ",
+          "error": "クエリに失敗しました",
+          "json": "JSON",
+          "response": "結果を返す",
+          "success": "検索成功",
+          "table": "シート"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "データベース",
+        "js_transformer": "JavaScript トランスフォーマー"
+      }
+    },
+    "component": {
+      "cancel": "キャンセル",
+      "delete": "消去",
+      "delete_content": "削除すると元に戻すことができず、プログラム エラーの原因となる場合があります。参照を確認して削除してください。",
+      "delete_title": "{{ displayName }} を削除しますか?"
+    },
+    "context_menu": {
+      "delete": "消去",
+      "duplicate": "コピー"
+    },
+    "data_work_space": {
+      "actions_title": "アクションリスト",
+      "components_title": "コンポーネントリスト",
+      "globals_title": "グローバル変数",
+      "pages_title": "ページリスト"
+    },
+    "deploy": {
+      "fail": "展開に失敗しました"
+    },
+    "display_name": {
+      "duplicate_error": "「{{ displayName }}」はすでに存在します",
+      "validate_error": "「{{ displayName }}」は文字または「_」で始まる必要があり、文字、数字、「_」、または「$」のみを含めることができます"
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "消去",
+          "reset_state": "ステータスをリセット",
+          "view_documentation": "ドキュメントを見る"
+        }
+      },
+      "multi_selected_header": "{{ number }} 個のコンポーネントが選択されました",
+      "setter_content": {
+        "chart_type": {
+          "bar": "ヒストグラム",
+          "line": "折れ線グラフ",
+          "pie": "円グラフ",
+          "scatterplot": "散布図"
+        },
+        "color_picker": {
+          "prefabricated": "プレハブカラー",
+          "title": "色を編集"
+        },
+        "column_setter": {
+          "label": "列 ( {{number}} )",
+          "new": "新築",
+          "title": "題名"
+        },
+        "event_handler_list": {
+          "empty": "コンポーネント イベントに応答して、クエリをトリガーしたり、コンポーネントを制御したり、他の API を呼び出したりします。",
+          "incomplete_selection": "不完全な選択",
+          "new": "新築",
+          "title": "イベントハンドラを編集"
+        },
+        "list_setter": {
+          "reset": "リセット"
+        },
+        "menu_setter": {
+          "delete": "消去",
+          "label": "メニュー ( {{number}} )",
+          "new": "新築",
+          "sub": "サブメニュー"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "消去",
+            "duplicate": "コピー"
+          },
+          "list_no_label": "ラベルなし",
+          "model_title": "編集オプション",
+          "new": "新築",
+          "title": "オプション"
+        },
+        "select_page_setter": {
+          "placeholder": "ページを選択"
+        },
+        "select_view_setter": {
+          "placeholder": "ビューパスを選択"
+        },
+        "tabs_setter": {
+          "tabs": "タブ"
+        },
+        "view_setter": {
+          "views": "ビュー"
+        },
+        "widget_action_type_name": {
+          "blur": "焦点が合っていない",
+          "change": "内容変更",
+          "click": "クリック",
+          "clickMenuItem": "クリック",
+          "columnFiltersChange": "行フィルターの変更",
+          "fail": "失敗した後",
+          "focus": "集中",
+          "invalid": "検証に失敗しました",
+          "paginationChange": "ページめくり構成の変更",
+          "row_select": "行を選択",
+          "sortingChange": "変化で並べ替え",
+          "submit": "参加する",
+          "success": "成功後"
+        }
+      },
+      "setter_default_value": {
+        "fill": "充填",
+        "message_type": {
+          "error": "間違い",
+          "info": "情報",
+          "success": "成功",
+          "warning": "暖かい"
+        },
+        "outline": "脳卒中",
+        "validation_pattern": {
+          "email": "郵便",
+          "regex": "正規表現",
+          "url": "URL"
+        }
+      },
+      "setter_group": {
+        "adornments": "追加の修飾子",
+        "basic": "ベース",
+        "column": "リスト",
+        "data": "データ",
+        "interaction": "相互作用する",
+        "label": "ラベル",
+        "layout": "レイアウト",
+        "menu": "メニュー",
+        "options": "オプション",
+        "pagination": "ページをめくる",
+        "row_selection": "回線選択",
+        "sort": "分類する",
+        "style": "スタイル",
+        "tabs": "タブ",
+        "toolbar": "ツールバー",
+        "validation": "確認",
+        "views": "見る"
+      },
+      "setter_label": {
+        "action": "アクション",
+        "align": "整列する",
+        "allow_clear": "クリアを許可",
+        "allow_half": "半分許可する",
+        "alt_text": "テキストを置き換える",
+        "alt_text_desc": "スクリーン リーダーでアクセスできる画像の説明。これは、画像を読み込めない場合のフォールバックとしてもレンダリングされます。",
+        "background": "バックグラウンド",
+        "background_color": "背景色",
+        "border": "脳卒中",
+        "border_width": "ボーダー幅",
+        "caption": "字幕",
+        "chart_title": "題名",
+        "chart_type": "チャートタイプ",
+        "color": "色",
+        "colors": "色",
+        "column_title": "列ヘッダー",
+        "column_type": "列タイプ",
+        "columns": "列データ",
+        "component": "コンポーネント",
+        "config_type": "構成タイプ",
+        "container": "容器",
+        "content": "コンテンツ",
+        "control_component": "コントロールユニット",
+        "custom_rule": "カスタム ルール",
+        "data": "データ",
+        "data_source": "情報源",
+        "data_sources": "情報源",
+        "dataset": {
+          "aggregation_method": "集計方法",
+          "name": "データセット名",
+          "remove": "データセットを削除",
+          "value": "データ列"
+        },
+        "dataset_config": "データセット構成",
+        "datasets": "データセット",
+        "decimal_place": "小数位",
+        "decimal_places": "小数位",
+        "default_sort_key": "ソート列",
+        "default_sort_order": "注文",
+        "default_tab": "デフォルト",
+        "default_value": "デフォルト",
+        "default_views": "デフォルトビュー",
+        "description": "説明",
+        "direction": "方向",
+        "disable_submit": "送信を無効にする",
+        "disabled": "無効",
+        "download": "ダウンロード",
+        "duration": "間隔",
+        "empty_state": "空の状態",
+        "enable_sorting": "分類する",
+        "end_data": "終了日",
+        "end_placeholder": "終了日のプレースホルダー",
+        "event": "イベント",
+        "event_handler": "イベントハンドラ",
+        "expansion_method": "拡張方法",
+        "failure": "要求が失敗しました",
+        "filter": "フィルター",
+        "font_size": "フォントサイズ",
+        "form_data_key": "フォームデータキー",
+        "format": "フォーマット",
+        "go_to_url": "ジャンプリンク",
+        "group_by": "グループ ラベル",
+        "group_layout": "グループのレイアウト",
+        "hidden": "隠れる",
+        "hidden_label": "隠しラベル",
+        "hide_validation_message": "確認情報を非表示にする",
+        "hide_value_label": "隠し値ラベル",
+        "horizontal_alignment": "水平方向の配置",
+        "icon": "アイコン",
+        "image_source": "画像ソース",
+        "img_height": "高い",
+        "img_width": "幅",
+        "index": "索引",
+        "item_background_color": "アイテムの背景色",
+        "items": "アイテム",
+        "key": "キー値",
+        "label": "ラベル",
+        "label_alignment": "整列する",
+        "label_position": "位置",
+        "label_width": "幅（％）",
+        "layout": "レイアウト",
+        "legend_position": "凡例の位置",
+        "link_to_container": "コンテナに関連付けられているか",
+        "links_color": "リンクの色",
+        "loading": "読み込み中",
+        "loop_back_to_start": "リストループ",
+        "loop_start_to_back": "リストループ",
+        "mapped_option": "マッピング オプション",
+        "mapped_value": "マップ値",
+        "max_count": "最大数量",
+        "max_date": "最大日付",
+        "max_length": "最大長",
+        "maximum": "最大値",
+        "method": "方法",
+        "min_date": "最短日",
+        "min_length": "最小の長さ",
+        "minimum": "最小値",
+        "multi_row_selection": "複数行選択",
+        "new_tab": "新しいタブで開く",
+        "only_run_when": "前提条件",
+        "overFlow": "ページめくり方法",
+        "page": "ページ",
+        "pageSize": "1 ページあたりの行数",
+        "pattern": "モデル",
+        "pending": "保留中のノード",
+        "placeholder": "プレースホルダー",
+        "prefix_text": "接頭辞テキスト",
+        "radius": "フィレット",
+        "read_only": "読み取り専用",
+        "regex": "正規表現",
+        "required_field": "必須フィールド",
+        "reset_after_successful_submit": "送信成功後に入力内容をリセット",
+        "router": "ルーティング",
+        "run_script": "スクリプトを実行",
+        "scale_type": "ズームタイプ",
+        "set_router": "ルーティングを設定する",
+        "set_temporary_state": "一時的な状態を設定",
+        "shadow": "影の多い",
+        "show_character_count": "文字数表示",
+        "show_clear_button": "クリアボタンを表示",
+        "show_footer": "表示操作エリア",
+        "show_header": "タイトルエリアを表示",
+        "show_notification": "通知を表示する",
+        "sort": "分類する",
+        "start_date": "開始日",
+        "start_placeholder": "開始日のプレースホルダー",
+        "step_size": "刻み幅",
+        "stroke_width": "ストローク幅",
+        "style": "スタイル",
+        "styles": "スタイル",
+        "submit_form": "フォームを送信",
+        "success": "成功したリクエスト",
+        "suffix_text": "サフィックステキスト",
+        "text": "文章",
+        "text_align": "テキストの配置",
+        "text_size": "文字サイズ",
+        "theme_color": "テーマカラー",
+        "thousand_separator": "桁区切り",
+        "time_format": "時間のフォーマット",
+        "title": "題名",
+        "tooltip": "ヒント",
+        "trail_color": "ストロークの色",
+        "trigger_query": "トリガーリクエスト",
+        "type": "タイプ",
+        "validate_inputs_on_submit": "送信時に入力を検証する",
+        "value": "価値",
+        "value_labels": "寸法",
+        "variant": "スタイル",
+        "vertical_alignment": "垂直方向の配置",
+        "width": "幅",
+        "x_axis_name": "横座標名",
+        "x_axis_title": "X 軸のタイトル",
+        "x_axis_type": "X軸タイプ",
+        "x_axis_value": "X軸",
+        "y_axis_name": "通称",
+        "y_axis_title": "Y 軸のタイトル"
+      },
+      "setter_tooltip": {
+        "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
+        "cascader_data": "各オプションは、値とラベルの 2 つのキーを含む JSON 形式である必要があり、値はカスタマイズできます。配列を使用すると、同じレベルでオプションを作成できます。子属性を追加すると、サブセットを追加できます",
+        "component_default_value": "コンポーネントのデフォルト値。ボックスに JavaScript ステートメントを入力することで、テンプレート構文を使用してデフォルト値を動的に変更できます。",
+        "custom_rule": "ここに検証ルールを入力します。検証ルールは JavaScript で構成する必要があります。",
+        "date_format": "標準化された時刻形式については、[dayJs](https://day.js.org/docs/en/parse/string-format) を参照してください。",
+        "default_value": "入力ボックスのデフォルト値。テンプレート構文を使用して JavaScript ステートメントをボックスに入力し、入力ボックスのデフォルト値を動的に変更できます。",
+        "disabled": "コンポーネントを無効にするかどうかを制御します。コンポーネントが無効になっている場合、そのコンポーネントは変更できません。",
+        "disabled_submit": "送信が無効になると、form.submit() メソッドを呼び出したコンポーネントも無効になります。",
+        "download": "ツールバーにダウンロードボタンを表示します。",
+        "filter": "ツールバーにフィルター ボタンを表示します。",
+        "form_data_key": "data 属性を作成するときは、フォーム コンポーネントをラップするキーを指定します。",
+        "hidden": "コンポーネントを非表示にするかどうかを動的に制御します。ここに動的に変化するブール値を入力して、コンポーネントの非表示の状態を変更できます。",
+        "hide_validation_message": "検証入力が間違っている場合、エラー メッセージを非表示にします。 JavaScript を記述することで、非表示にするかどうかを動的に変更できます。",
+        "input_default_value": "入力ボックスのデフォルト値。テンプレート構文を使用して JavaScript ステートメントをボックスに入力し、入力ボックスのデフォルト値を動的に変更できます。",
+        "loading": "コンポーネントが読み込まれるかどうかを制御します。",
+        "map_data_option": "数値またはキー値のオブジェクトを使用してオプションをマップします。データ ソース内のすべてのアイテムは、すべてのオプションにマップされます。",
+        "mapped_value": "{{ currentRow }} を使用して、現在の行のデータにアクセスします。たとえば、「コスト」列と「クリック数」列から計算された「クリック単価」は次のようになります。\n {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "{{table.selectedRow.data}}を使用してデータにアクセスできます。複数行の選択が有効になっている場合は、次のように使用できる配列が返されます: {{ table1.selectedRow.data[0].email }}}。複数行選択を有効にしていない場合は、{{ table1.selectedRow.data.email }} のように使用できるオブジェクトが返されます。",
+        "only_run_when": "このイベントが実行される前に満たす必要がある条件をここに入力します。",
+        "placeholder": "入力に値がない場合に表示するメッセージ。",
+        "progress_percentage": "プログレス バーの値の範囲は 0 ～ 100 です。",
+        "read_only": "コンポーネントが読み取り専用かどうかを制御します。読み取り専用コンポーネントのコンテンツを選択してフォーカスすることはできますが、変更することはできません。",
+        "required_field": "スイッチがオンになった後、入力ボックスで検証を実行します。",
+        "switch_default_value": "スイッチの初期状態を設定します。 JavaScript を使用して、スイッチの初期状態を動的に変更できます。",
+        "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "マークダウン モードまたはプレーン テキスト モードで値を入力することを選択できます。リンクは Markdown モードでのみ入力できます。",
+        "timeline_direction": "時間軸の方向を切り替えます。",
+        "timeline_pending": "保留中のノードを表示するかどうか。",
+        "tooltip": "ユーザーは入力ボックスにプロンプトの内容を入力でき、マウスをコンポーネントに置くとプロンプト情報が表示され、Markdown 形式がサポートされます。"
+      },
+      "tab_title": "属性",
+      "unselected_tip1": "コンポーネントが選択されていません。",
+      "unselected_tip2": "コンポーネントをクリックして選択してください。"
+    },
+    "page": {
+      "label_name": {
+        "add": "新築",
+        "body": "本体",
+        "default_view": "デフォルトビュー",
+        "edit_view": "ビューを編集",
+        "footer": "フッター",
+        "header": "ヘッダ",
+        "key": "キー値",
+        "left_panel": "左パネル",
+        "preset": "プリセット",
+        "right_panel": "右パネル",
+        "set_as_homepage": "ホームページとして設定",
+        "show_fold_icon": "折りたたみボタンを表示",
+        "view_path": "ビューパス",
+        "views": "見る",
+        "width": "幅"
+      },
+      "model_tips": {
+        "cancel_button": "キャンセル",
+        "change_layout_message": "レイアウトを変更するとすべてのデータが消去されます。この操作は元に戻せません。確認してください",
+        "delete_section_message": "非表示にした後、この部分のデータは消去されます。この操作を元に戻すことはできません。確認してください",
+        "ok_button": "確認"
+      },
+      "panel_bar_title": {
+        "basic": "ベース",
+        "frame": "キャンバス"
+      },
+      "tab_title": "ページ",
+      "tooltips": {
+        "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
+        "view_path": "このビューにアクセスするための文字列スペル example.com/app/page/"
+      }
+    },
+    "validate_message": {
+      "email": "有効なメールアドレスを入力してください",
+      "max_length": "{{数字}}文字まで入力してください",
+      "max_value": "{{数値}}以下の値を入力してください",
+      "min_length": "少なくとも {{ 数字 }} 文字を入力してください",
+      "min_value": "{{数値}}以上の値を入力してください",
+      "regex": "必要なフォーマットに入力してください",
+      "required": "必要",
+      "url": "有効なURLを入力してください"
+    },
+    "widget_picker": {
+      "empty_tip": "申し訳ありませんが、検索結果はありません",
+      "search_placeholder": "探す",
+      "sessions": {
+        "calendar": "カレンダー コンポーネント",
+        "commonly": "共通コンポーネント",
+        "container": "コンテナ クラス コンポーネント",
+        "data": "データ クラス コンポーネント",
+        "inputs": "入力クラス コンポーネント",
+        "navigation": "ナビゲーション",
+        "presentation": "クラス コンポーネントの表示",
+        "selects": "クラスコンポーネントを選択"
+      },
+      "tab_title": "コンポーネント"
+    }
+  },
+  "exit_preview": "プレビューを終了",
+  "freeze_collision": "フリーズ衝突",
+  "freeze_messages": "キャンバスが固定され、コンポーネントをコンテナにドラッグしたり、コンテナからドラッグしたりできます。",
+  "freeze_tips": "キャンバスがフリーズしています。クリックしてフリーズを解除してください。",
+  "link_copied": "リンクをコピーしました",
+  "network_error": "ネットワーク異常",
+  "not_online_tips": "ネットワークが切断されています。このデバイスのネットワークを確認してください",
+  "preview": "プレビュー",
+  "remove_fail": "削除できませんでした",
+  "rename": "名前を変更",
+  "resources": "資源",
+  "retry": "リトライ",
+  "save": "保存",
+  "setting": {
+    "account": {
+      "email": "郵便",
+      "empty_username": "ユーザー名を空にすることはできません",
+      "error_username": "ユーザー名は 3 ～ 15 文字である必要があります",
+      "save": "保存",
+      "save_fail": "保存に失敗しました",
+      "title": "アカウント",
+      "username": "ユーザー名"
+    },
+    "other": {
+      "language": "言語",
+      "save": "保存",
+      "title": "設定"
+    },
+    "password": {
+      "confirm_password": "新しいパスワードを確認する",
+      "current_password": "以前のパスワード",
+      "empty_password": "パスワードを空白にすることはできません",
+      "error_format_password": "パスワードは 6 ～ 20 文字である必要があります",
+      "error_match_password": "新しいパスワードが一致しません。もう一度お試しください",
+      "error_password_has_empty": "パスワードにはスペースを含めることはできません",
+      "error_validate_password": "パスワードには、数字、文字、句読点のみを含めることができます",
+      "new_password": "新しいパスワード",
+      "submit_button": "参加する",
+      "title": "パスワード"
+    }
+  },
+  "share": "シェア",
+  "status": {
+    "403": {
+      "des": "アクセスが拒否されました"
+    },
+    "404": {
+      "again": "リフレッシュする",
+      "des": "アクセスしているページは存在しません"
+    },
+    "500": {
+      "des": "リクエストに失敗しました。しばらくしてからもう一度お試しください。"
+    },
+    "back": "ホームページに戻ります"
+  },
+  "title": "エラ クラウドへようこそ",
+  "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
+  "user": {
+    "description": "開発者専用のオープンソースのローコード プラットフォーム。",
+    "forgot_password": {
+      "actions": {
+        "reset": "リセット",
+        "send": "確認コードを取得する"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "メール形式が正しくありません",
+          "registered": "このメールアドレスは登録されていません",
+          "require": "電子メールを空にすることはできません"
+        },
+        "newPassword": {
+          "require": "パスワードを空白にすることはできません"
+        },
+        "verification_code": {
+          "expired": "確認コードの有効期限が切れています",
+          "invalid": "確認コード エラー",
+          "require": "確認コードを入力してください"
+        }
+      },
+      "fields": {
+        "email": "郵便",
+        "newPassword": "新しいパスワード",
+        "verification_code": "検証コード"
+      },
+      "placeholder": {
+        "email": "メールアドレスを入力してください",
+        "verification_code": "確認コードを入力してください"
+      },
+      "subtitle": "戻る ログイン",
+      "tips": {
+        "fail": "パスワードのリセットに失敗しました",
+        "fail_sent": "確認コードを送信できませんでした",
+        "success": "パスワードのリセットが成功しました",
+        "verification_code": "確認コードが送信されました"
+      },
+      "title": "パスワードを再設定する"
+    },
+    "password": {
+      "placeholder": "パスワードを入力してください（6文字以上）"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "ログイン"
+      },
+      "description": {
+        "forgot_password": "パスワードをお忘れですか？",
+        "policy": "[ログイン] をクリックして、 < 0 >サービス利用規約< /0 >および< 1 >プライバシー規約< /1 >を読み、同意したことを示します。",
+        "register": "新しいユーザー？ < 0 >アカウント登録< /0 >"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "メールのフォーマットが正しくありません",
+          "registered": "このメールアドレスは登録されていません",
+          "require": "電子メールを空にすることはできません"
+        },
+        "password": {
+          "incorrect": "正しいアカウント パスワードを入力してください",
+          "locked": "5回以上間違ったパスワードを入力すると、アカウントは1時間ロックされます",
+          "min_length": "パスワードは最低でも6文字必要です",
+          "require": "パスワードを空白にすることはできません"
+        }
+      },
+      "fields": {
+        "email": "郵便",
+        "password": "パスワード"
+      },
+      "placeholder": {
+        "email": "メールアドレスを入力してください"
+      },
+      "tips": {
+        "fail": "ログインに失敗しました",
+        "success": "ログイン成功"
+      },
+      "title": "お帰りなさい"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "アカウントを作成する",
+        "send": "確認コードを取得する"
+      },
+      "description": {
+        "login": "すでにアカウントをお持ちですか？ < 0 >ログイン< /0 >",
+        "policy": "[今すぐ登録] をクリックして、 < 0 >サービス利用規約< /0 >および< 1 >プライバシー規約< /1 >を読み、同意したことを示します。",
+        "subscribe": "ILLAのニュースを購読する"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "メールのフォーマットが正しくありません",
+          "registered": "このメールはすでに登録されています。ログインしてください",
+          "require": "電子メールを空にすることはできません"
+        },
+        "password": {
+          "require": "パスワードを空白にすることはできません"
+        },
+        "username": {
+          "length": "ユーザー名は 3 ～ 15 文字である必要があります",
+          "require": "ユーザー名を空にすることはできません"
+        },
+        "verification_code": {
+          "expired": "確認コードの有効期限が切れています",
+          "invalid": "確認コード エラー",
+          "require": "確認コードを入力してください"
+        }
+      },
+      "fields": {
+        "email": "郵便",
+        "password": "パスワード",
+        "username": "ユーザー名",
+        "verification_code": "検証コード"
+      },
+      "placeholder": {
+        "email": "メールアドレスを入力してください",
+        "username": "ユーザー名を入力してください",
+        "verification_code": "確認コードを入力してください"
+      },
+      "tips": {
+        "fail": "登録に失敗しました",
+        "fail_sent": "確認コードを送信できませんでした",
+        "success": "登録完了",
+        "verification_code": "確認コードが送信されました"
+      },
+      "title": "登録"
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "バー進行状況バー"
+    },
+    "button": {
+      "default_text": "ボタン",
+      "name": "ボタン"
+    },
+    "cascader": {
+      "name": "カスケード選択"
+    },
+    "chart": {
+      "name": "チャート"
+    },
+    "check_box_group": {
+      "name": "チェックボックスグループ"
+    },
+    "circle_progress": {
+      "name": "円形の進行状況バー"
+    },
+    "container": {
+      "empty": "<keyPress> D </keyPress>または<keyPress> K </keyPress>を押したまま、コンポーネントをコンテナにドラッグします",
+      "key_duplicated": "キー値が重複しています。エラーを避けるために一意の値を使用してください。",
+      "name": "容器"
+    },
+    "date": {
+      "name": "日付ピッカー"
+    },
+    "date_range": {
+      "name": "日付範囲ピッカー"
+    },
+    "date_time": {
+      "name": "日時ピッカー",
+      "placeholder": "時間を選択してください"
+    },
+    "divider_progress": {
+      "name": "境界線"
+    },
+    "editable_text": {
+      "name": "編集可能なテキスト"
+    },
+    "form": {
+      "name": "形"
+    },
+    "image": {
+      "name": "写真"
+    },
+    "input": {
+      "name": "入力ボックス"
+    },
+    "list": {
+      "doc1": "{{ currentItem }} を使用して、現在のアイテムのデータにアクセスします。たとえば、「userName」に基づいてリスト コンポーネントのテキスト コンポーネントの値を設定するには、{{ currentItem.userName }}} のようにします。",
+      "doc2": "{{list.selectedItem.data}}を使用して、リスト内の選択された項目のデータにアクセスします。たとえば、リスト選択項目の「ユーザー名」に従って、リスト コンポーネントの外側にあるテキスト コンポーネントの値を設定します: {{list.selectedItem.userName }}}。",
+      "name": "リスト"
+    },
+    "menu": {
+      "name": "メニュー"
+    },
+    "number_input": {
+      "name": "数字入力ボックス"
+    },
+    "public": {
+      "left": "左",
+      "right": "右",
+      "select_options": {
+        "manual": "自動",
+        "mapped": "マニュアル"
+      },
+      "top": "優れました"
+    },
+    "radio_button": {
+      "name": "ボタンラジオ"
+    },
+    "radio_group": {
+      "name": "ラジオグループ"
+    },
+    "rate": {
+      "name": "スコア"
+    },
+    "select": {
+      "name": "セレクタ"
+    },
+    "switch": {
+      "name": "スイッチ"
+    },
+    "table": {
+      "ascend": "昇順",
+      "descend": "降順",
+      "name": "シート",
+      "pagination": "ページをめくる",
+      "scroll": "スクロール"
+    },
+    "tabs": {
+      "name": "タブ"
+    },
+    "text": {
+      "default_value": "👋こんにちは！",
+      "name": "文章",
+      "text_model": "平文"
+    },
+    "timeline": {
+      "horizontal": "水平",
+      "name": "タイムライン",
+      "vertical": "肖像画"
+    }
+  }
+}
