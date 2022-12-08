@@ -17,6 +17,7 @@ export const ListUsersPart: FC<FirebaseActionPartProps> = (props) => {
         value={options.number}
         onChange={(value) => handleValueChange(value, "number")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={"{{1000}}"}
       />
       <InputEditor
         title={t("editor.action.panel.firebase.next_page_token")}

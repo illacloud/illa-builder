@@ -94,7 +94,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       return {
         databaseUrl: data.databaseUrl,
         projectID: data.projectID,
-        privateKey: data.privateKey,
+        privateKey: btoa(encodeURIComponent(data.privateKey)),
       }
     case "elasticsearch":
       return {
