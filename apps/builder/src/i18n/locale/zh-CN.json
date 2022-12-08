@@ -345,6 +345,9 @@
           "title": {
             "advanced_option": "高级配置",
             "general_option": "通用"
+          },
+          "invalid_private": {
+            "key": "私钥无效 "
           }
         },
         "error": {
