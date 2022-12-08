@@ -110,7 +110,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   const updateHeight = useCallback(() => {
-    timeoutId.current = setTimeout(() => {
+    timeoutId.current = window.setTimeout(() => {
       if (wrapperRef.current) {
         updateComponentHeight(wrapperRef.current?.clientHeight)
       }
