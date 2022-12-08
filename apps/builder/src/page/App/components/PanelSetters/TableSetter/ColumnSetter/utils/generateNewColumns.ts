@@ -14,6 +14,5 @@ export const generateNewColumnItem = (number: number): ColumnItemShape => {
     visible: true,
     custom: true,
     format: "YYYY-MM-DD",
-    columnIndex: number - 1,
-  } as ColumnItemShape
+  }
 }

@@ -11,7 +11,7 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.chart.name"),
   keywords: ["Chart", "图表"],
   icon: <ChartWidgetIcon />,
-  sessionType: "DATA",
+  sessionType: "DATE",
   w: 20,
   h: 40,
   defaults: initChartWidgetDefaultProps,

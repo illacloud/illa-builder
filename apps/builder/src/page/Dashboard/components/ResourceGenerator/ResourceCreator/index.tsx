@@ -26,6 +26,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       onFinished,
     }
     switch (finalResourceType) {
+      case "supabasedb":
       case "tidb":
       case "mariadb":
       case "mysql":

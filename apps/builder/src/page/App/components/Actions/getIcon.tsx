@@ -16,12 +16,15 @@ import { TransformerIcon } from "@/page/App/components/Icons/transformer"
 import { ZapierIcon } from "@/page/App/components/Icons/zapier"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
+import { SupabaseIcon } from "@/page/App/components/Icons/supabase"
 
 export function getIconFromResourceType(
   type: ResourceType,
   size: string,
 ): ReactElement | null {
   switch (type) {
+    case "supabasedb":
+      return <SupabaseIcon size={size} />
     case "graphql":
       return <GraphQLIcon size={size} />
     case "elasticsearch":
@@ -57,6 +60,8 @@ export function getIconFromActionType(
       return <GraphQLIcon size={size} />
     case "elasticsearch":
       return <ElasticIcon size={size} />
+    case "supabasedb":
+      return <SupabaseIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
     case "transformer":

@@ -7,6 +7,7 @@ import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { S3Resource } from "./s3Resource"
 
 export type ResourceType =
+  | "supabasedb"
   | "mysql"
   | "restapi"
   | "graphql"

@@ -10,6 +10,7 @@ import { TransformerActionInitial } from "./transformerAction"
 
 export function getInitialContent(actionType: ActionType): ActionContent {
   switch (actionType) {
+    case "supabasedb":
     case "mariadb":
     case "tidb":
     case "mysql":

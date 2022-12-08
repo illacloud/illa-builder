@@ -35,6 +35,10 @@ export const Databases: ActionDataItem[] = [
     actionType: "elasticsearch",
     isDraft: false,
   },
+  {
+    actionType: "supabasedb",
+    isDraft: false,
+  },
 ]
 
 export const Apis: ActionDataItem[] = [

@@ -11,8 +11,7 @@ export interface HeaderProps {
   handleAddOption: () => void
 }
 
-export interface ColumnItemProps
-  extends Omit<ColumnItemShape, "disabled" | "cell"> {
+export interface ColumnItemProps extends Omit<ColumnItemShape, "disabled"> {
   index: number
 }
 

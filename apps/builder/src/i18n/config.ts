@@ -4,21 +4,13 @@ import LanguageDetector from "i18next-browser-languagedetector"
 import { initReactI18next } from "react-i18next"
 import enUS from "./locale/en-US.json"
 import zhCN from "./locale/zh-CN.json"
-import jaJP from "./locale/ja-JP.json"
-import koKR from "./locale/ko-KR.json"
 
 export const resources = {
-  "en-US": {
+  en: {
     translation: enUS,
   },
-  "zh-CN": {
+  zh: {
     translation: zhCN,
-  },
-  "ja-JP": {
-    translation: jaJP,
-  },
-  "ko-KR": {
-    translation: koKR,
   },
 } as const
 
@@ -26,7 +18,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en_US",
+    fallbackLng: "en",
     debug: false,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

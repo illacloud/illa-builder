@@ -1,0 +1,9 @@
+{
+  "viewportWidth": 500,
+  "viewportHeight": 500,
+  "component": {
+    "testFiles": "**/tests/*.e2e.{ts,tsx}",
+    "componentFolder": "src"
+  },
+  "defaultCommandTimeout": 20000
+}

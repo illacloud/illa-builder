@@ -9,12 +9,7 @@ import {
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import {
-  concatCustomAndNewColumns,
-  getCellForType,
-  tansTableDataToColumns,
-  transTableColumnEvent,
-} from "./utils"
+import { getCellForType } from "./utils"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -144,7 +139,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleOnClickMenuItem,
-    handleUpdateOriginalDSLMultiAttr,
     ...otherProps
   } = props
 
@@ -172,7 +166,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   const columnsDef = useMemo(() => {
     const res: ColumnItemShape[] = []
     columns?.forEach((item, index) => {
-      const eventPath = `rowEvents.${index}`
+      const eventPath = `columns.${index}.events`
       const transItem = cloneDeep(item) as ColumnItemShape
       transItem["cell"] = getCellForType(
         transItem,
@@ -190,17 +184,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     }
     return dataSource ? dataSource : []
   }, [dataSource, dataSourceJS, dataSourceMode])
-
-  const rowEvents = useMemo(() => {
-    const res: Record<string, any> = {}
-    columns?.forEach((item, index) => {
-      const { events } = item as ColumnItemShape
-      if (events) {
-        res[index] = transTableColumnEvent(events, realDataSourceArray.length)
-      }
-    })
-    return res
-  }, [columns, realDataSourceArray?.length])
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -227,29 +210,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     dataSource,
   ])
 
-  useEffect(() => {
-    handleUpdateOriginalDSLMultiAttr({
-      rowEvents,
-    })
-  }, [rowEvents])
-
-  useEffect(() => {
-    const customColumns = columnsDef?.filter((item: any) => item.custom) ?? []
-    const customOrders = customColumns
-      .map((item) => item.columnIndex)
-      .filter((v) => v) as number[]
-    const newColumns = tansTableDataToColumns(realDataSourceArray, customOrders)
-    if (newColumns?.length) {
-      const reorderColumns = concatCustomAndNewColumns(
-        customColumns,
-        newColumns,
-      )
-      handleUpdateOriginalDSLMultiAttr?.({
-        columns: reorderColumns,
-      })
-    }
-  }, [realDataSourceArray])
-
   return (
     <WrappedTable
       {...otherProps}
@@ -268,7 +228,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       multiRowSelection={multiRowSelection}
       handleUpdateGlobalData={handleUpdateGlobalData}
       handleDeleteGlobalData={handleDeleteGlobalData}
-      handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
       handleUpdateDsl={handleUpdateDsl}
     />
   )
