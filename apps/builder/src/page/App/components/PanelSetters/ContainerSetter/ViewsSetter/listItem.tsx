@@ -1,6 +1,4 @@
-import { Identifier } from "dnd-core"
-import { FC, useCallback, useContext, useRef, useState } from "react"
-import { XYCoord, useDrag, useDrop } from "react-dnd"
+import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { CopyIcon, ReduceIcon, Trigger } from "@illa-design/react"
@@ -14,7 +12,6 @@ import {
   iconStyle,
   listItemTriggerWrapperStyle,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
-import { DragItem } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 
@@ -22,10 +19,11 @@ interface ListItemProps {
   value: ViewItemShape
   index: number
   label?: string
+  isSelected: boolean
 }
 
 export const ListItem: FC<ListItemProps> = (props) => {
-  const { value, label, index } = props
+  const { value, label, index, isSelected } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
     handleDeleteOptionItem,
@@ -33,63 +31,15 @@ export const ListItem: FC<ListItemProps> = (props) => {
     attrPath,
     widgetDisplayName,
     childrenSetter,
-    handleMoveOptionItem,
     handleUpdateDsl,
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
   } = useContext(ViewListSetterContext)
   const { t } = useTranslation()
 
-  const dragRef = useRef<HTMLSpanElement>(null)
-
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)
   }, [])
-
-  // const [, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
-  //   accept: "VIEW_ITEM",
-  //   collect(monitor) {
-  //     return {
-  //       handlerId: monitor.getHandlerId(),
-  //     }
-  //   },
-  //   hover(item: DragItem, monitor) {
-  //     if (!dragRef.current) {
-  //       return
-  //     }
-  //     const dragIndex = item.index
-  //     const hoverIndex = index
-  //     if (dragIndex === hoverIndex) {
-  //       return
-  //     }
-  //     const hoverBoundingRect = dragRef.current?.getBoundingClientRect()
-  //     const hoverMiddleY =
-  //       (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-  //     const clientOffset = monitor.getClientOffset()
-  //     const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
-  //     if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-  //       return
-  //     }
-  //     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-  //       return
-  //     }
-  //     handleMoveOptionItem(dragIndex, hoverIndex)
-  //     item.index = hoverIndex
-  //   },
-  // })
-  //
-  // const [{ isDragging }, drag] = useDrag({
-  //   type: "VIEW_ITEM",
-  //   item: () => {
-  //     return { index }
-  //   },
-  //   collect: (monitor: any) => ({
-  //     isDragging: monitor.isDragging(),
-  //   }),
-  // })
-  //
-  // drag(drop(dragRef))
-  const opacity = 1
 
   const singleSelectedComponentNode = useSelector(
     getComponentNodeBySingleSelected,
@@ -136,8 +86,8 @@ export const ListItem: FC<ListItemProps> = (props) => {
         setModalVisible(visible)
       }}
     >
-      <span css={listItemTriggerWrapperStyle} style={{ opacity }} ref={dragRef}>
-        <DragIconAndLabel index={index} label={label} />
+      <span css={listItemTriggerWrapperStyle}>
+        <DragIconAndLabel index={index} label={label} isSelected={isSelected} />
         <span css={actionWrapperStyle}>
           <CopyIcon
             css={copyIconStyle}
