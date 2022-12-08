@@ -9,6 +9,7 @@ import { FirebaseResource } from "@/redux/resource/firebaseResource"
 
 export type ResourceType =
   | "firebase"
+  | "supabasedb"
   | "mysql"
   | "restapi"
   | "graphql"
