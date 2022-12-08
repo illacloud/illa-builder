@@ -15,7 +15,7 @@ import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
-  const { visible, onClose } = props
+  const { visible, onClose, onCreateAction } = props
   const [currentStep, setCurrentStep] = useState<ActionCreatorPage>("select")
 
   const [currentActionType, setCurrentActionType] = useState<ActionType | null>(
@@ -106,6 +106,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
               }}
               onCreateAction={(actionType, resourceId) => {
                 setCurrentStep("select")
+                onCreateAction()
                 onClose()
               }}
             />

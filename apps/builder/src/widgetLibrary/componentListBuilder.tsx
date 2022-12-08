@@ -14,7 +14,7 @@ export const sessionTypeMapSessionNameKey = {
   SELECT: i18n.t("editor.widget_picker.sessions.selects"),
   CALENDAR: i18n.t("editor.widget_picker.sessions.calendar"),
   PRESENTATION: i18n.t("editor.widget_picker.sessions.presentation"),
-  DATE: i18n.t("editor.widget_picker.sessions.data"),
+  DATA: i18n.t("editor.widget_picker.sessions.data"),
   CONTAINER: i18n.t("editor.widget_picker.sessions.container"),
   NAVIGATION: i18n.t("editor.widget_picker.sessions.navigation"),
 }
@@ -45,7 +45,7 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
     SELECT: [],
     CALENDAR: [],
     PRESENTATION: [],
-    DATE: [],
+    DATA: [],
     CONTAINER: [],
     NAVIGATION: [],
   }

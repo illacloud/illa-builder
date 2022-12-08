@@ -18,4 +18,6 @@ export interface ViewSetterProps extends BaseSetter {
 
 export interface DragIconAndLabelProps {
   index: number
+  label?: string
+  isSelected: boolean
 }

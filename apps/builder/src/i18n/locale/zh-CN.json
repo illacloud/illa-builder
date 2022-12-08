@@ -1,4 +1,5 @@
 {
+  "welcome_header": "Hello world!",
   "Logout": "退出登录",
   "Setting": "设置",
   "apps": "项目",
@@ -158,6 +159,9 @@
           "index": "Index",
           "query": "Query"
         },
+        "error": {
+          "max_file": "文件大小不能超过5M。"
+        },
         "label": {
           "event_handler": "事件处理器",
           "failure": "失败",
@@ -217,8 +221,8 @@
           },
           "prefix_to_filter_reseults": "用于过滤结果的前缀",
           "tips": {
-            "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。",
-            "delimiter": "分隔符是一个用来分组键值的字符。"
+            "delimiter": "分隔符是一个用来分组键值的字符。",
+            "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。"
           },
           "upload_data": "上传数据",
           "upload_data_list": "上传数据列表",
@@ -226,24 +230,24 @@
           "upload_object_name_list": "上传对象名称列表"
         },
         "smtp": {
-          "from_email": "发件人",
-          "set_replay_email": "设置回复邮箱",
-          "replay_email": "回复",
-          "to_email": "收件人",
-          "bcc_email": "密送",
-          "cc_email": "抄送",
-          "subject": "主题",
-          "body": "正文",
           "attachment": "附件",
-          "use_html": "使用HTML",
-          "use_raw": "使用原始文本",
+          "bcc_email": "密送",
+          "body": "正文",
+          "cc_email": "抄送",
+          "from_email": "发件人",
           "placeholder": {
-            "emails": "用逗号分隔邮箱。如{{[\"A\", \"B\"]}}",
-            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}"
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "用逗号分隔邮箱。如{{[\"A\", \"B\"]}}"
           },
+          "replay_email": "回复",
+          "set_replay_email": "设置回复邮箱",
+          "subject": "主题",
           "tips": {
             "port": "一些互联网服务提供商可能会禁用端口25。如果连接失败，请修改端口。"
-          }
+          },
+          "to_email": "收件人",
+          "use_html": "使用HTML",
+          "use_raw": "使用原始文本"
         },
         "firebase": {
           "service_type": "Service Type",
@@ -286,9 +290,6 @@
         },
         "tips": {
           "transformer": "启用Transformer将查询结果转换为不同的格式"
-        },
-        "error": {
-          "max_file": "文件大小不能超过5M。"
         }
       },
       "resource": {
@@ -774,13 +775,16 @@
         "loading": "控制组件是否为加载状态。",
         "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项。",
         "mapped_value": "使用 {{ currentRow }} 来访问当前行的数据。例如，根据 \"成本 \"和 \"点击次数 \"列计算得到\"每次点击成本\"：\n  {{ currentRow.cost / currentRow.clickTimes }}",
-        "multi_row_selection": "您可以使用{{table.selectedRow.data}}来访问数据。如果您启用了多行选择，它将返回一个数组，您可以像这样使用它：{{ table1.selectedRow.data[0].email }}}。如果您没有启用多行选择，它将返回一个对象，你可以像这样使用它：{{ table1.selectedRow.data.email }}。",
+        "multi_row_selection": "您可以使用{{table.selectedRow[n].columnName}}来访问数据。",
         "only_run_when": "在此输入该事件执行前必须满足的条件。",
         "placeholder": "当输入中没有值时，展示的信息。",
         "progress_percentage": "进度条的数值范围为 0-100。",
         "read_only": "控制组件是否为只读状态。只读组件的内容可以被选中和聚焦，但不能被修改。",
         "required_field": "在开关开启后对输入框执行验证。",
         "switch_default_value": "设置开关的初始状态。您可以通过 JavaScript 动态改变开关的初始状态。",
+        "table_only_run_when": "事件执行前必须满足的条件。使用{{ currentRow }}来访问当前行的数据。例如，只在 \"imgSize \"小于5120时运行：{{ currentRow.imgSize <= 5120 }}}。",
+        "table_set_value": "使用currentRow来访问当前行的数据。例如，根据 \"电子邮件 \"来设置可编辑文本（editableText）组件的值：  {{ currentRow.email }}.\n  同时，您还可以通过在组件的INSPECT中使用{{ table. selectedRow[n] }}来设置值：{{ table1.selectedRow[n].email }}。",
+        "table_url": "使用 {{ currentRow }} 来访问当前行的数据。例如，要进入参数为 \"appid \"的网址。{{ \"www.example.com/#\" + currentRow.appid }}",
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
         "timeline_direction": "切换时间轴的方向。",
         "timeline_pending": "是否显示一个待处理状态的节点。",

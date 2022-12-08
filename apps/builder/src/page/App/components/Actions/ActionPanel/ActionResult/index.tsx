@@ -1,4 +1,11 @@
-import { FC, RefObject, useRef, useState } from "react"
+import {
+  forwardRef,
+  RefObject,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import {
   CloseIcon,
@@ -29,62 +36,66 @@ interface ActionResultProps {
   onClose: () => void
 }
 
-export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { result, maxHeight, placeholderRef, onClose } = props
-  const res = result?.result
-  const panelRef = useRef<HTMLDivElement>(null)
-  const { t } = useTranslation()
-  const [dragMaxHeight, setDragMaxHeight] = useState<number>()
+export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
+  (props, ref) => {
+    const { result, maxHeight, placeholderRef, onClose } = props
+    const res = result?.result
+    const panelRef = useRef<HTMLDivElement>(null)
+    const { t } = useTranslation()
+    const [dragMaxHeight, setDragMaxHeight] = useState<number>()
 
-  return res ? (
-    <div
-      css={[resultContainerStyle, applyMaxHeightStyle(maxHeight)]}
-      ref={panelRef}
-    >
-      {result?.error ? (
-        <div css={errorResultWrapperStyle}>
-          <WarningCircleIcon css={errorIconStyle} fs="16px" />
-          <span>{(res as ApiError)?.errorMessage?.toString()}</span>
-        </div>
-      ) : (
-        <>
-          <DragBar
-            resizeRef={panelRef}
-            placeholderRef={placeholderRef}
-            minHeight={40}
-            maxHeight={dragMaxHeight}
-          />
-          <div css={successResultWrapperStyle}>
-            <div css={resultSuccessLeftContainer}>
-              <SuccessCircleIcon css={successIconStyle} fs="16px" />
-              <span>{t("editor.action.result.title.success")}</span>
-            </div>
-            <CloseIcon css={resCloseIconStyle} onClick={onClose} />
+    useImperativeHandle(ref, () => panelRef.current as HTMLDivElement, [res])
+
+    return res ? (
+      <div
+        css={[resultContainerStyle, applyMaxHeightStyle(maxHeight)]}
+        ref={panelRef}
+      >
+        {result?.error ? (
+          <div css={errorResultWrapperStyle}>
+            <WarningCircleIcon css={errorIconStyle} fs="16px" />
+            <span>{(res as ApiError)?.errorMessage?.toString()}</span>
           </div>
-          <CodeEditor
-            css={codeStyle}
-            ref={(ele) => {
-              if (ele?.scrollHeight) {
-                setDragMaxHeight(ele?.scrollHeight + 40)
-              }
-              if (placeholderRef?.current && ele?.clientHeight) {
-                placeholderRef.current.style.paddingBottom = `${
-                  ele?.clientHeight + 48
-                }px`
-              }
-            }}
-            mode={"JSON"}
-            expectedType={VALIDATION_TYPES.STRING}
-            value={JSON.stringify(res, null, 2)}
-            border={"unset"}
-            borderRadius={"0"}
-            readOnly
-            lineNumbers
-          />
-        </>
-      )}
-    </div>
-  ) : null
-}
+        ) : (
+          <>
+            <DragBar
+              resizeRef={panelRef}
+              placeholderRef={placeholderRef}
+              minHeight={40}
+              maxHeight={dragMaxHeight}
+            />
+            <div css={successResultWrapperStyle}>
+              <div css={resultSuccessLeftContainer}>
+                <SuccessCircleIcon css={successIconStyle} fs="16px" />
+                <span>{t("editor.action.result.title.success")}</span>
+              </div>
+              <CloseIcon css={resCloseIconStyle} onClick={onClose} />
+            </div>
+            <CodeEditor
+              css={codeStyle}
+              ref={(ele) => {
+                if (ele?.scrollHeight) {
+                  setDragMaxHeight(ele?.scrollHeight + 40)
+                }
+                if (placeholderRef?.current && ele?.clientHeight) {
+                  placeholderRef.current.style.paddingBottom = `${
+                    ele?.clientHeight + 48
+                  }px`
+                }
+              }}
+              mode={"JSON"}
+              expectedType={VALIDATION_TYPES.STRING}
+              value={JSON.stringify(res, null, 2)}
+              border={"unset"}
+              borderRadius={"0"}
+              readOnly
+              lineNumbers
+            />
+          </>
+        )}
+      </div>
+    ) : null
+  },
+)
 
 ActionResult.displayName = "ActionResult"
