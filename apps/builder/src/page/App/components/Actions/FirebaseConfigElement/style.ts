@@ -32,7 +32,9 @@ export const configItem = css`
 export const privateKeyItem = css`
   display: flex;
   width: 100%;
+  margin-top: 6px;
   flex-direction: row;
+  padding-top: 8px;
 `
 
 export const divider = css`

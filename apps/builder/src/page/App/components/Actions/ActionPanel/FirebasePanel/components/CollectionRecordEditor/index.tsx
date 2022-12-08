@@ -1,7 +1,10 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/react"
-import { OperationList, Params } from "@/redux/currentApp/action/firebaseAction"
+import {
+  OperationSelectList,
+  Params,
+} from "@/redux/currentApp/action/firebaseAction"
 import { Controller, useForm } from "react-hook-form"
 import { CollectionRecordEditorProps } from "./interface"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -86,7 +89,7 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                       onChange,
                     )
                   }
-                  options={OperationList}
+                  options={OperationSelectList}
                 />
                 <CodeEditor
                   css={actionItemRecordEditorStyle}
