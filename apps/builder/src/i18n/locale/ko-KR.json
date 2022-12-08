@@ -266,7 +266,7 @@
           "use_end_at": "Use endAt",
           "start_at": "Start At",
           "end_at": "End At",
-          "document_id": "Document ID",
+          "document_id": "문서 ID",
           "value": "value",
           "parent_document_id": "Parent document ID",
           "database_ref": "Database ref",
@@ -344,6 +344,9 @@
           "title": {
             "advanced_option": "고급 구성",
             "general_option": "만능인"
+          },
+          "invalid_private": {
+            "key": "올바르지 않은 개인 키 "
           }
         },
         "error": {
