@@ -27,7 +27,11 @@
     },
     "types": [
       "vite/client",
-      "vite-plugin-svgr/client"
+      "vite-plugin-svgr/client",
+      "jest",
+      "@testing-library/jest-dom",
+      "node",
+      "@testing-library/react"
     ]
   },
   "include": [
@@ -35,7 +39,7 @@
     "./src/**/*.ts"
   ],
   "exclude": [
-    "./src/**/tests/*.e2e.tsx",
-    "./src/**/tests/*.e2e.ts"
+    "**/tests/*.e2e.tsx",
+    "**/tests/*.test.tsx"
   ]
 }

@@ -1,3 +1,4 @@
 packages:
   - "apps/builder"
+  - "apps/e2e"
   - "illa-design/packages/*"
