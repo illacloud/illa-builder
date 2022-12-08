@@ -11,6 +11,7 @@ import {
   illaPrefix,
   useMessage,
 } from "@illa-design/react"
+import i18n from "@/i18n/config"
 import { Api } from "@/api/base"
 import { EditableText } from "@/components/EditableText"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
@@ -59,7 +60,7 @@ const getCanRunAction = (cachedAction: ActionItem<ActionContent> | null) => {
     !cachedAction ||
     !FILE_SIZE_LIMIT_TYPE.includes(cachedAction.actionType)
   ) {
-    return true
+    return [true, ""]
   }
   switch (cachedAction.actionType) {
     case "s3":
@@ -68,22 +69,29 @@ const getCanRunAction = (cachedAction: ActionItem<ActionContent> | null) => {
       switch (content.commands) {
         case S3ActionRequestType.UPLOAD:
           commandArgs = content.commandArgs as UploadContent
-          return !isFileOversize(commandArgs.objectData)
+          return [
+            !isFileOversize(commandArgs.objectData),
+            i18n.t("editor.action.panel.error.max_file"),
+          ]
         case S3ActionRequestType.UPLOAD_MULTIPLE:
           commandArgs = content.commandArgs as UploadMultipleContent
-          return !isFileOversize(commandArgs.objectDataList)
+          return [
+            !isFileOversize(commandArgs.objectDataList),
+            i18n.t("editor.action.panel.error.max_file"),
+          ]
       }
       break
     case "smtp":
       const smtpContent = cachedAction.content as SMPTAction
-      return !isFileOversize(smtpContent?.attachment || "", "smtp")
+      return [
+        !isFileOversize(smtpContent?.attachment || "", "smtp"),
+        i18n.t("editor.action.panel.error.max_file"),
+      ]
   }
-  return true
+  return [true, ""]
 }
 
-const getActionFilteredContent = (
-  cachedAction: ActionItem<ActionContent> | null,
-) => {
+const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
   let cachedActionValue: ActionItem<ActionContent> | null = cachedAction
   if (!cachedActionValue) {
     return cachedActionValue
@@ -138,7 +146,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   const message = useMessage()
   const selectedAction = useSelector(getSelectedAction)!
-  const cachedAction = useSelector(getCachedAction)
+  const cachedAction = useSelector(getCachedAction)!
 
   const isChanged =
     JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
@@ -146,7 +154,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
-  const canRunAction = getCanRunAction(cachedAction)
+  const [canRunAction, canNotRunMessage] = getCanRunAction(cachedAction)
 
   let runMode: RunMode = useMemo(() => {
     if (cachedAction != undefined && isChanged) {
@@ -163,14 +171,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   }, [isChanged, cachedAction])
 
   const handleActionOperation = useCallback(() => {
-    let cachedActionValue: ActionItem<ActionContent> | null =
+    let cachedActionValue: ActionItem<ActionContent> =
       getActionFilteredContent(cachedAction)
 
     switch (runMode) {
       case "run":
         if (!canRunAction) {
           message.error({
-            content: t("editor.action.panel.error.max_file"),
+            content: canNotRunMessage,
           })
           return
         }
@@ -212,7 +220,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       case "save_and_run":
         if (!canRunAction) {
           message.error({
-            content: t("editor.action.panel.error.max_file"),
+            content: canNotRunMessage,
           })
           return
         }
@@ -267,11 +275,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const renderButton = useMemo(() => {
     return runMode === "run" ? cachedAction?.actionType !== "transformer" : true
   }, [cachedAction?.actionType, runMode])
-
-  useEffect(() => {
-    // Clear the previous result when changing the selected action
-    onActionRun(undefined)
-  }, [cachedAction?.actionId, onActionRun])
 
   if (selectedAction == undefined || cachedAction === undefined) {
     return <></>

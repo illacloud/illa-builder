@@ -34,7 +34,9 @@ export interface ColumnItemShape
   format?: string
   mappedValue?: string
   custom?: boolean
-  fromCurrentRow?: boolean
+  fromCurrentRow?: Record<string, boolean>
+  events?: any[]
+  columnIndex?: number
 }
 
 export interface WrappedTableProps

@@ -1,4 +1,4 @@
-import { Reorder } from "framer-motion"
+import { AnimatePresence, Reorder } from "framer-motion"
 import { isEqual } from "lodash"
 import { FC, useContext, useEffect, useState } from "react"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
@@ -22,38 +22,44 @@ export const ListBody: FC = () => {
     return <EmptyBody />
 
   return (
-    <Reorder.Group
-      axis="y"
-      initial={false}
-      values={items}
-      onReorder={setItems}
-      css={removeNativeStyle}
-    >
-      {items.map((item, index) => {
-        const { label, value, header, accessorKey, visible, custom, id } = item
-        return (
-          <Reorder.Item
-            initial={false}
-            css={removeNativeStyle}
-            key={item.accessorKey}
-            value={item}
-            onDragEnd={() => {
-              handleUpdateDsl(attrPath, items)
-            }}
-          >
-            <ColumnItem
-              key={accessorKey}
-              accessorKey={accessorKey}
-              header={header}
-              value={value}
-              visible={visible}
-              custom={custom}
-              index={index}
-              id={id}
-            />
-          </Reorder.Item>
-        )
-      })}
-    </Reorder.Group>
+    <AnimatePresence initial={false}>
+      <Reorder.Group
+        axis="y"
+        initial={false}
+        values={items}
+        onReorder={setItems}
+        css={removeNativeStyle}
+      >
+        {items.map((item, index) => {
+          const { label, value, header, accessorKey, visible, custom, id } =
+            item
+          return (
+            <Reorder.Item
+              initial={false}
+              css={removeNativeStyle}
+              key={item.accessorKey}
+              value={item}
+              onDragEnd={() => {
+                const orderItems = items.map((item, index) => {
+                  return { ...item, columnIndex: index }
+                })
+                handleUpdateDsl(attrPath, orderItems)
+              }}
+            >
+              <ColumnItem
+                key={accessorKey}
+                accessorKey={accessorKey}
+                header={header}
+                value={value}
+                visible={visible}
+                custom={custom}
+                index={index}
+                id={id}
+              />
+            </Reorder.Item>
+          )
+        })}
+      </Reorder.Group>
+    </AnimatePresence>
   )
 }

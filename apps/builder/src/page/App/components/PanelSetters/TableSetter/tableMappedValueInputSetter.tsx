@@ -79,8 +79,13 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
     const output = fromCurrentRow
       ? getNeedComputedValue(value, dataPath, widgetDisplayName)
       : value
+    const name = attrName.substring(
+      parentAttrName ? parentAttrName?.length + 1 : 0,
+    )
     handleUpdateDsl(attrName, output)
-    handleUpdateDsl(`${parentAttrName}.fromCurrentRow`, fromCurrentRow)
+    handleUpdateDsl(`${parentAttrName}.fromCurrentRow`, {
+      [name]: fromCurrentRow,
+    })
   }
 
   return (

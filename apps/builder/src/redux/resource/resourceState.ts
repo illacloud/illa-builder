@@ -5,8 +5,11 @@ import { MysqlLikeResource } from "./mysqlLikeResource"
 import { RedisResource } from "./redisResource"
 import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { S3Resource } from "./s3Resource"
+import { FirebaseResource } from "@/redux/resource/firebaseResource"
 
 export type ResourceType =
+  | "firebase"
+  | "supabasedb"
   | "mysql"
   | "restapi"
   | "graphql"
@@ -20,6 +23,7 @@ export type ResourceType =
   | "s3"
 
 export type ResourceContent =
+  | FirebaseResource
   | SMTPResource
   | S3Resource
   | ElasticSearchResource
