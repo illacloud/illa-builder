@@ -27,7 +27,8 @@ import {
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
-import { MysqlLikePanel } from "./MysqlLikePanel"
+import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
+import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
 
 export const ActionPanel = forwardRef<
   ActionPanelFunctionProps,
@@ -83,6 +84,8 @@ export const ActionPanel = forwardRef<
         return <S3Panel />
       case "smtp":
         return <SMTPPanel />
+      case "firebase":
+        return <FirebasePanel />
       default:
         return <></>
     }

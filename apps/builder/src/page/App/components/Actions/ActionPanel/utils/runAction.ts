@@ -29,7 +29,7 @@ export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
 const message = createMessage()
 
-function calcRealContent(content: Record<string, any>) {
+export const calcRealContent = (content: Record<string, any>) => {
   let realContent: Record<string, any> = {}
   if (Array.isArray(content)) {
     realContent = content.map((item) => {
@@ -177,7 +177,6 @@ const transformDataFormat = (
   actionType: string,
   content: Record<string, any>,
 ) => {
-  console.log("actionType", actionType)
   switch (actionType) {
     case "s3": {
       const { commands, commandArgs } = content

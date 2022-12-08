@@ -9,6 +9,7 @@ import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
 import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
 import { RootState } from "@/store"
+import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
@@ -65,6 +66,14 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "elasticsearch":
         return (
           <ElasticSearchConfigElement
+            resourceId={resourceId}
+            onBack={handleBack}
+            onFinished={onFinished}
+          />
+        )
+      case "firebase":
+        return (
+          <FirebaseConfigElement
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}

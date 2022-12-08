@@ -24,6 +24,8 @@
     "@reduxjs/toolkit": "^1.8.1",
     "@sentry/react": "^7.17.3",
     "@sentry/tracing": "^7.17.3",
+    "@tanstack/react-table": "^8.5.11",
+    "@tanstack/table-core": "^8.7.0",
     "@uiw/react-color": "^1.1.0",
     "@uiw/react-color-sketch": "^1.1.0",
     "@uiw/react-color-swatch": "^1.1.0",
@@ -66,8 +68,7 @@
     "remark-gfm": "^3.0.1",
     "tern": "^0.24.3",
     "toposort": "^2.0.2",
-    "uuid": "^8.3.2",
-    "@tanstack/react-table": "^8.5.11"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
@@ -86,9 +87,9 @@
     "@types/ws": "^8.5.3",
     "@vitejs/plugin-basic-ssl": "^0.1.2",
     "@vitejs/plugin-react": "^2.2.0",
+    "e2e": "workspace:*",
     "typescript": "^4.9.3",
     "vite": "^3.2.4",
-    "vite-plugin-svgr": "^2.1.0",
-    "e2e": "workspace:*"
+    "vite-plugin-svgr": "^2.1.0"
   }
 }
