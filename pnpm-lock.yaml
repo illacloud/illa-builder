@@ -207,11 +207,13 @@ importers:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
       react-use: ^17.4.0
       react-use-measure: ^2.1.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
       react-use: 17.4.0
       react-use-measure: 2.1.1
 
@@ -220,10 +222,12 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
 
   illa-design/packages/avatar:
     specifiers:
@@ -325,6 +329,7 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      framer-motion: ^7.6.12
       react-fast-compare: ^3.2.0
     dependencies:
       '@illa-design/checkbox': link:../checkbox
@@ -335,6 +340,7 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
       react-fast-compare: 3.2.0
 
   illa-design/packages/checkbox:
@@ -429,6 +435,7 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
       react-focus-lock: ^2.8.1
       react-remove-scroll: ^2.5.4
     dependencies:
@@ -437,6 +444,7 @@ importers:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
       react-focus-lock: 2.9.2
       react-remove-scroll: 2.5.5
 
@@ -526,6 +534,7 @@ importers:
       '@illa-design/tag': workspace:*
       '@illa-design/theme': workspace:*
       chroma-js: ^2.1.2
+      framer-motion: ^7.6.12
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/input': link:../input
@@ -533,6 +542,7 @@ importers:
       '@illa-design/tag': link:../tag
       '@illa-design/theme': link:../theme
       chroma-js: 2.4.2
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
 
   illa-design/packages/link:
     specifiers:
@@ -577,6 +587,7 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      framer-motion: ^7.6.12
       react-use-measure: ^2.1.1
     dependencies:
       '@illa-design/dropdown': link:../dropdown
@@ -584,6 +595,7 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
       react-use-measure: 2.1.1
 
   illa-design/packages/message:
@@ -591,21 +603,24 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
       uuid: ^8.3.2
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
       uuid: 8.3.2
 
   illa-design/packages/modal:
     specifiers:
-      '@illa-design/button': 1.0.7
-      '@illa-design/config-provider': 1.0.7
-      '@illa-design/icon': 1.0.7
-      '@illa-design/system': 1.0.7
-      '@illa-design/theme': 1.0.7
-      '@illa-design/trigger': 1.0.7
+      '@illa-design/button': 1.0.10
+      '@illa-design/config-provider': 1.0.10
+      '@illa-design/icon': 1.0.10
+      '@illa-design/system': 1.0.10
+      '@illa-design/theme': 1.0.10
+      '@illa-design/trigger': 1.0.10
+      framer-motion: ^7.6.12
       react-focus-lock: ^2.8.1
       react-hotkeys-hook: ^3.4.6
       uuid: ^8.3.2
@@ -616,6 +631,7 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
       react-focus-lock: 2.9.2
       react-hotkeys-hook: 3.4.7
       uuid: 8.3.2
@@ -625,11 +641,13 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
       uuid: ^8.3.2
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
       uuid: 8.3.2
 
   illa-design/packages/page-header:
@@ -1090,12 +1108,14 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      framer-motion: ^7.6.12
     dependencies:
       '@floating-ui/react-dom-interactions': 0.12.0
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: registry.npmjs.org/framer-motion/7.6.17
 
   illa-design/packages/typography:
     specifiers:
@@ -1693,13 +1713,6 @@ packages:
       human-id: 1.0.2
       prettier: 2.8.0
     dev: true
-
-  /@colors/colors/1.5.0:
-    resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
-    engines: {node: '>=0.1.90'}
-    requiresBuild: true
-    dev: true
-    optional: true
 
   /@commitlint/cli/17.3.0:
     resolution: {integrity: sha512-/H0md7TsKflKzVPz226VfXzVafJFO1f9+r2KcFvmBu08V0T56lZU1s8WL7/xlxqLMqBTVaBf7Ixtc4bskdEEZg==}
@@ -2596,7 +2609,7 @@ packages:
       react: '>=16'
       react-dom: '>=16'
     dependencies:
-      '@tanstack/table-core': registry.npmjs.org/@tanstack/table-core/8.7.0
+      '@tanstack/table-core': 8.7.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -2894,14 +2907,6 @@ packages:
     dependencies:
       '@types/yargs-parser': 21.0.0
     dev: true
-
-  /@types/yauzl/2.10.0:
-    resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
-    requiresBuild: true
-    dependencies:
-      '@types/node': 18.11.10
-    dev: true
-    optional: true
 
   /@typescript-eslint/eslint-plugin/5.45.0_vbnhqcxlbs7ynbxw44hu2vq7eq:
     resolution: {integrity: sha512-CXXHNlf0oL+Yg021cxgOdMHNTXD17rHkq7iW6RFHoybdFgQBjU3yIXhhcPpGwr1CjZlo6ET8C6tzX5juQoXeGA==}
@@ -3861,7 +3866,7 @@ packages:
     dependencies:
       string-width: 4.2.3
     optionalDependencies:
-      '@colors/colors': 1.5.0
+      '@colors/colors': registry.npmjs.org/@colors/colors/1.5.0
     dev: true
 
   /cli-truncate/2.1.0:
@@ -5081,7 +5086,7 @@ packages:
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
-      '@types/yauzl': 2.10.0
+      '@types/yauzl': registry.npmjs.org/@types/yauzl/2.10.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -6294,7 +6299,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: registry.npmjs.org/graceful-fs/4.2.10
     dev: true
 
   /jsonparse/1.3.1:
@@ -9132,65 +9137,17 @@ packages:
       safe-buffer: 5.2.1
     dev: true
 
-  /turbo-darwin-64/1.6.3:
-    resolution: {integrity: sha512-QmDIX0Yh1wYQl0bUS0gGWwNxpJwrzZU2GIAYt3aOKoirWA2ecnyb3R6ludcS1znfNV2MfunP+l8E3ncxUHwtjA==}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /turbo-darwin-arm64/1.6.3:
-    resolution: {integrity: sha512-75DXhFpwE7CinBbtxTxH08EcWrxYSPFow3NaeFwsG8aymkWXF+U2aukYHJA6I12n9/dGqf7yRXzkF0S/9UtdyQ==}
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /turbo-linux-64/1.6.3:
-    resolution: {integrity: sha512-O9uc6J0yoRPWdPg9THRQi69K6E2iZ98cRHNvus05lZbcPzZTxJYkYGb5iagCmCW/pq6fL4T4oLWAd6evg2LGQA==}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /turbo-linux-arm64/1.6.3:
-    resolution: {integrity: sha512-dCy667qqEtZIhulsRTe8hhWQNCJO0i20uHXv7KjLHuFZGCeMbWxB8rsneRoY+blf8+QNqGuXQJxak7ayjHLxiA==}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /turbo-windows-64/1.6.3:
-    resolution: {integrity: sha512-lKRqwL3mrVF09b9KySSaOwetehmGknV9EcQTF7d2dxngGYYX1WXoQLjFP9YYH8ZV07oPm+RUOAKSCQuDuMNhiA==}
-    cpu: [x64]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /turbo-windows-arm64/1.6.3:
-    resolution: {integrity: sha512-BXY1sDPEA1DgPwuENvDCD8B7Hb0toscjus941WpL8CVd10hg9pk/MWn9CNgwDO5Q9ks0mw+liDv2EMnleEjeNA==}
-    cpu: [arm64]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /turbo/1.6.3:
     resolution: {integrity: sha512-FtfhJLmEEtHveGxW4Ye/QuY85AnZ2ZNVgkTBswoap7UMHB1+oI4diHPNyqrQLG4K1UFtCkjOlVoLsllUh/9QRw==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      turbo-darwin-64: 1.6.3
-      turbo-darwin-arm64: 1.6.3
-      turbo-linux-64: 1.6.3
-      turbo-linux-arm64: 1.6.3
-      turbo-windows-64: 1.6.3
-      turbo-windows-arm64: 1.6.3
+      turbo-darwin-64: registry.npmjs.org/turbo-darwin-64/1.6.3
+      turbo-darwin-arm64: registry.npmjs.org/turbo-darwin-arm64/1.6.3
+      turbo-linux-64: registry.npmjs.org/turbo-linux-64/1.6.3
+      turbo-linux-arm64: registry.npmjs.org/turbo-linux-arm64/1.6.3
+      turbo-windows-64: registry.npmjs.org/turbo-windows-64/1.6.3
+      turbo-windows-arm64: registry.npmjs.org/turbo-windows-arm64/1.6.3
     dev: true
 
   /tweetnacl/0.14.5:
@@ -9737,6 +9694,15 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
+  registry.npmjs.org/@colors/colors/1.5.0:
+    resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@colors/colors/-/colors-1.5.0.tgz}
+    name: '@colors/colors'
+    version: 1.5.0
+    engines: {node: '>=0.1.90'}
+    requiresBuild: true
+    dev: true
+    optional: true
+
   registry.npmjs.org/@emotion/is-prop-valid/0.8.8:
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz}
     name: '@emotion/is-prop-valid'
@@ -9769,12 +9735,81 @@ packages:
     dev: true
     optional: true
 
+  registry.npmjs.org/@motionone/animation/10.14.0:
+    resolution: {integrity: sha512-h+1sdyBP8vbxEBW5gPFDnj+m2DCqdlAuf2g6Iafb1lcMnqjsRXWlPw1AXgvUMXmreyhqmPbJqoNfIKdytampRQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@motionone/animation/-/animation-10.14.0.tgz}
+    name: '@motionone/animation'
+    version: 10.14.0
+    dependencies:
+      '@motionone/easing': registry.npmjs.org/@motionone/easing/10.14.0
+      '@motionone/types': registry.npmjs.org/@motionone/types/10.14.0
+      '@motionone/utils': registry.npmjs.org/@motionone/utils/10.14.0
+      tslib: registry.npmjs.org/tslib/2.4.1
+    dev: false
+
+  registry.npmjs.org/@motionone/dom/10.13.1:
+    resolution: {integrity: sha512-zjfX+AGMIt/fIqd/SL1Lj93S6AiJsEA3oc5M9VkUr+Gz+juRmYN1vfvZd6MvEkSqEjwPQgcjN7rGZHrDB9APfQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@motionone/dom/-/dom-10.13.1.tgz}
+    name: '@motionone/dom'
+    version: 10.13.1
+    dependencies:
+      '@motionone/animation': registry.npmjs.org/@motionone/animation/10.14.0
+      '@motionone/generators': registry.npmjs.org/@motionone/generators/10.14.0
+      '@motionone/types': registry.npmjs.org/@motionone/types/10.14.0
+      '@motionone/utils': registry.npmjs.org/@motionone/utils/10.14.0
+      hey-listen: registry.npmjs.org/hey-listen/1.0.8
+      tslib: registry.npmjs.org/tslib/2.4.1
+    dev: false
+
+  registry.npmjs.org/@motionone/easing/10.14.0:
+    resolution: {integrity: sha512-2vUBdH9uWTlRbuErhcsMmt1jvMTTqvGmn9fHq8FleFDXBlHFs5jZzHJT9iw+4kR1h6a4SZQuCf72b9ji92qNYA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@motionone/easing/-/easing-10.14.0.tgz}
+    name: '@motionone/easing'
+    version: 10.14.0
+    dependencies:
+      '@motionone/utils': registry.npmjs.org/@motionone/utils/10.14.0
+      tslib: registry.npmjs.org/tslib/2.4.1
+    dev: false
+
+  registry.npmjs.org/@motionone/generators/10.14.0:
+    resolution: {integrity: sha512-6kRHezoFfIjFN7pPpaxmkdZXD36tQNcyJe3nwVqwJ+ZfC0e3rFmszR8kp9DEVFs9QL/akWjuGPSLBI1tvz+Vjg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@motionone/generators/-/generators-10.14.0.tgz}
+    name: '@motionone/generators'
+    version: 10.14.0
+    dependencies:
+      '@motionone/types': registry.npmjs.org/@motionone/types/10.14.0
+      '@motionone/utils': registry.npmjs.org/@motionone/utils/10.14.0
+      tslib: registry.npmjs.org/tslib/2.4.1
+    dev: false
+
+  registry.npmjs.org/@motionone/types/10.14.0:
+    resolution: {integrity: sha512-3bNWyYBHtVd27KncnJLhksMFQ5o2MSdk1cA/IZqsHtA9DnRM1SYgN01CTcJ8Iw8pCXF5Ocp34tyAjY7WRpOJJQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@motionone/types/-/types-10.14.0.tgz}
+    name: '@motionone/types'
+    version: 10.14.0
+    dev: false
+
+  registry.npmjs.org/@motionone/utils/10.14.0:
+    resolution: {integrity: sha512-sLWBLPzRqkxmOTRzSaD3LFQXCPHvDzyHJ1a3VP9PRzBxyVd2pv51/gMOsdAcxQ9n+MIeGJnxzXBYplUHKj4jkw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@motionone/utils/-/utils-10.14.0.tgz}
+    name: '@motionone/utils'
+    version: 10.14.0
+    dependencies:
+      '@motionone/types': registry.npmjs.org/@motionone/types/10.14.0
+      hey-listen: registry.npmjs.org/hey-listen/1.0.8
+      tslib: registry.npmjs.org/tslib/2.4.1
+    dev: false
+
   registry.npmjs.org/@tanstack/table-core/8.7.0:
     resolution: {integrity: sha512-DRiRbOAmDHapzUBd4/C4Yy+FTug4fdGp5sdZWWfCq4wxRoaXQraQgbzmK23a3QcbwLFtLeNezPkZrqbJWuX+VA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@tanstack/table-core/-/table-core-8.7.0.tgz}
     name: '@tanstack/table-core'
     version: 8.7.0
     engines: {node: '>=12'}
     dev: false
+
+  registry.npmjs.org/@types/yauzl/2.10.0:
+    resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@types/yauzl/-/yauzl-2.10.0.tgz}
+    name: '@types/yauzl'
+    version: 2.10.0
+    requiresBuild: true
+    dependencies:
+      '@types/node': 18.11.10
+    dev: true
+    optional: true
 
   registry.npmjs.org/esbuild-android-64/0.15.16:
     resolution: {integrity: sha512-Vwkv/sT0zMSgPSVO3Jlt1pUbnZuOgtOQJkJkyyJFAlLe7BiT8e9ESzo0zQSx4c3wW4T6kGChmKDPMbWTgtliQA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/esbuild-android-64/-/esbuild-android-64-0.15.16.tgz}
@@ -9996,6 +10031,32 @@ packages:
     dev: true
     optional: true
 
+  registry.npmjs.org/framer-motion/7.6.17:
+    resolution: {integrity: sha512-NmGBjKMCWlTDT156zR8G+jcpiM8OXbvmlgf1CPsVNk5x2RqJ9tieBKMNr6/OjJhirwyOp9s8bt8TsfrrCBIsEw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/framer-motion/-/framer-motion-7.6.17.tgz}
+    name: framer-motion
+    version: 7.6.17
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@motionone/dom': registry.npmjs.org/@motionone/dom/10.13.1
+      framesync: registry.npmjs.org/framesync/6.1.2
+      hey-listen: registry.npmjs.org/hey-listen/1.0.8
+      popmotion: registry.npmjs.org/popmotion/11.0.5
+      style-value-types: registry.npmjs.org/style-value-types/5.1.2
+      tslib: registry.npmjs.org/tslib/2.4.0
+    optionalDependencies:
+      '@emotion/is-prop-valid': registry.npmjs.org/@emotion/is-prop-valid/0.8.8
+    dev: false
+
+  registry.npmjs.org/framesync/6.1.2:
+    resolution: {integrity: sha512-jBTqhX6KaQVDyus8muwZbBeGGP0XgujBRbQ7gM7BRdS3CadCZIHiawyzYLnafYcvZIh5j8WE7cxZKFn7dXhu9g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/framesync/-/framesync-6.1.2.tgz}
+    name: framesync
+    version: 6.1.2
+    dependencies:
+      tslib: registry.npmjs.org/tslib/2.4.0
+    dev: false
+
   registry.npmjs.org/fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz}
     name: fsevents
@@ -10010,6 +10071,104 @@ packages:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.10.tgz}
     name: graceful-fs
     version: 4.2.10
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmjs.org/hey-listen/1.0.8:
+    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/hey-listen/-/hey-listen-1.0.8.tgz}
+    name: hey-listen
+    version: 1.0.8
+    dev: false
+
+  registry.npmjs.org/popmotion/11.0.5:
+    resolution: {integrity: sha512-la8gPM1WYeFznb/JqF4GiTkRRPZsfaj2+kCxqQgr2MJylMmIKUwBfWW8Wa5fml/8gmtlD5yI01MP1QCZPWmppA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/popmotion/-/popmotion-11.0.5.tgz}
+    name: popmotion
+    version: 11.0.5
+    dependencies:
+      framesync: registry.npmjs.org/framesync/6.1.2
+      hey-listen: registry.npmjs.org/hey-listen/1.0.8
+      style-value-types: registry.npmjs.org/style-value-types/5.1.2
+      tslib: registry.npmjs.org/tslib/2.4.0
+    dev: false
+
+  registry.npmjs.org/style-value-types/5.1.2:
+    resolution: {integrity: sha512-Vs9fNreYF9j6W2VvuDTP7kepALi7sk0xtk2Tu8Yxi9UoajJdEVpNpCov0HsLTqXvNGKX+Uv09pkozVITi1jf3Q==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/style-value-types/-/style-value-types-5.1.2.tgz}
+    name: style-value-types
+    version: 5.1.2
+    dependencies:
+      hey-listen: registry.npmjs.org/hey-listen/1.0.8
+      tslib: registry.npmjs.org/tslib/2.4.0
+    dev: false
+
+  registry.npmjs.org/tslib/2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz}
+    name: tslib
+    version: 2.4.0
+    dev: false
+
+  registry.npmjs.org/tslib/2.4.1:
+    resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/tslib/-/tslib-2.4.1.tgz}
+    name: tslib
+    version: 2.4.1
+    dev: false
+
+  registry.npmjs.org/turbo-darwin-64/1.6.3:
+    resolution: {integrity: sha512-QmDIX0Yh1wYQl0bUS0gGWwNxpJwrzZU2GIAYt3aOKoirWA2ecnyb3R6ludcS1znfNV2MfunP+l8E3ncxUHwtjA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/turbo-darwin-64/-/turbo-darwin-64-1.6.3.tgz}
+    name: turbo-darwin-64
+    version: 1.6.3
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmjs.org/turbo-darwin-arm64/1.6.3:
+    resolution: {integrity: sha512-75DXhFpwE7CinBbtxTxH08EcWrxYSPFow3NaeFwsG8aymkWXF+U2aukYHJA6I12n9/dGqf7yRXzkF0S/9UtdyQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/turbo-darwin-arm64/-/turbo-darwin-arm64-1.6.3.tgz}
+    name: turbo-darwin-arm64
+    version: 1.6.3
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmjs.org/turbo-linux-64/1.6.3:
+    resolution: {integrity: sha512-O9uc6J0yoRPWdPg9THRQi69K6E2iZ98cRHNvus05lZbcPzZTxJYkYGb5iagCmCW/pq6fL4T4oLWAd6evg2LGQA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/turbo-linux-64/-/turbo-linux-64-1.6.3.tgz}
+    name: turbo-linux-64
+    version: 1.6.3
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmjs.org/turbo-linux-arm64/1.6.3:
+    resolution: {integrity: sha512-dCy667qqEtZIhulsRTe8hhWQNCJO0i20uHXv7KjLHuFZGCeMbWxB8rsneRoY+blf8+QNqGuXQJxak7ayjHLxiA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/turbo-linux-arm64/-/turbo-linux-arm64-1.6.3.tgz}
+    name: turbo-linux-arm64
+    version: 1.6.3
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmjs.org/turbo-windows-64/1.6.3:
+    resolution: {integrity: sha512-lKRqwL3mrVF09b9KySSaOwetehmGknV9EcQTF7d2dxngGYYX1WXoQLjFP9YYH8ZV07oPm+RUOAKSCQuDuMNhiA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/turbo-windows-64/-/turbo-windows-64-1.6.3.tgz}
+    name: turbo-windows-64
+    version: 1.6.3
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmjs.org/turbo-windows-arm64/1.6.3:
+    resolution: {integrity: sha512-BXY1sDPEA1DgPwuENvDCD8B7Hb0toscjus941WpL8CVd10hg9pk/MWn9CNgwDO5Q9ks0mw+liDv2EMnleEjeNA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/turbo-windows-arm64/-/turbo-windows-arm64-1.6.3.tgz}
+    name: turbo-windows-arm64
+    version: 1.6.3
+    cpu: [arm64]
+    os: [win32]
     requiresBuild: true
     dev: true
     optional: true

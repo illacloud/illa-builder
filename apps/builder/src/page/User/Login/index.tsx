@@ -7,8 +7,8 @@ import {
   Button,
   Input,
   Password,
-  WarningCircleIcon,
   useMessage,
+  WarningCircleIcon,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { EMAIL_FORMAT } from "@/constants/regExp"
