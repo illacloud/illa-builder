@@ -103,6 +103,10 @@ ILLA 커뮤니티에 가입하여 아이디어, 제안 또는 질문을 공유�
 기부에 대해 생각하고 계십니까? ILLA에 대한 모든 종류의 기여는 크게 감사하고 환영합니다! 참여 방법에 대한 자세한 내용은 [기여 가이드](./CONTRIBUTING.md)를 확인하세요.
 <p>모든 기여에 감사드립니다 ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">기여자</a></p>
 
+## 📢 번역 중
+
+`apps/builder/src/i18n/locale/*` 디렉토리는 Crowdin을 통해 자동으로 최신 상태로 유지됩니다. 기여하고 싶다면 [공식 번역 페이지](https://crowdin.com/project/illa-builder)를 참조하세요.
+    
 ## 🔥 우리는 고용 중이다
 
 열정적이고 창의적인 팀을 찾고 계십니까? 우리는 다음 직책에 엔지니어를 적극적으로 고용하고 있습니다:
