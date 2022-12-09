@@ -24,23 +24,28 @@ export const resources = {
 
 export const languageKeys = Object.keys(resources)
 
+export const formatLanguage = (code: string) => {
+  if (code) {
+    if (languageKeys.includes(code)) {
+      return code
+    }
+    const mainLanguage = code.slice(0, 2)
+    for (let i = 0; i < languageKeys.length; i++) {
+      if (languageKeys[i].slice(0, 2) === mainLanguage) {
+        return languageKeys[i]
+      }
+    }
+  }
+  return "en-US"
+}
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     fallbackLng: (code) => {
-      if (code) {
-        if (languageKeys.includes(code)) {
-          return [code, "en-US"]
-        }
-        const mainLanguage = code.slice(0, 2)
-        for (let i = 0; i < languageKeys.length; i++) {
-          if (languageKeys[i].slice(0, 2) === mainLanguage) {
-            return [languageKeys[i], "en-US"]
-          }
-        }
-      }
-      return "en-US"
+      const language = formatLanguage(code)
+      return [language, "en-US"]
     },
     debug: false,
     interpolation: {
