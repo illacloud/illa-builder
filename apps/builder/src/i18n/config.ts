@@ -22,16 +22,19 @@ export const resources = {
   },
 } as const
 
+export const languageKeys = Object.keys(resources)
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en_US",
+    fallbackLng: "en-US",
     debug: false,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
     resources,
+    detection: {},
   })
 
 export default i18n
