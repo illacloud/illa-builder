@@ -18,15 +18,14 @@
 </a>
 </p>
 
-
 <p align="center">
   <a href="https://discord.gg/illacloud"><img src="https://img.shields.io/badge/chat-Discord-7289DA?logo=discord" height=18></a>
   <a href="https://twitter.com/illacloudHQ"><img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white" height=18></a>
   <a href="https://github.com/orgs/illacloud/discussions"><img src="https://img.shields.io/badge/discussions-GitHub-333333?logo=github" height=18></a>
+  <a title="Crowdin" target="_blank" href="https://crowdin.com/project/illa-builder"><img src="https://badges.crowdin.net/illa-builder/localized.svg"  height=18></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/illacloud/illa-builder" height=18></a>
   <a href="./CONTRIBUTING.md"><img src="https://badgen.net/badge/PRs/Welcome/green?icon=storybook" height=18></a>
 </p>
-
 
 
 ## 🚀始めましょう
@@ -103,7 +102,11 @@ ILLA コミュニティに参加して、アイデア、提案、質問を共有
 貢献を考えていますか？ ILLA へのあらゆる種類の貢献を歓迎します。 参加方法の詳細については、[貢献ガイド](./CONTRIBUTING.md) をご覧ください。
 <p>からのすべての貢献に感謝します ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">貢献者</a></p>
 
-## 🔥 募集中です
+## 📢 翻訳
+
+`apps/builder/src/i18n/locale/*` ディレクトリは Crowdin によって自動的に更新されます。貢献したい場合は、[公式翻訳ページ](https://crowdin.com/project/illa-builder) を参照してください。
+
+## 🔥 募集中
 
 情熱的でクリエイティブなチームをお探しですか? 以下の職種のエンジニアを積極的に採用しています。
 

@@ -23,10 +23,10 @@
   <a href="https://discord.gg/illacloud"><img src="https://img.shields.io/badge/chat-Discord-7289DA?logo=discord" height=18></a>
   <a href="https://twitter.com/illacloudHQ"><img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white" height=18></a>
   <a href="https://github.com/orgs/illacloud/discussions"><img src="https://img.shields.io/badge/discussions-GitHub-333333?logo=github" height=18></a>
+  <a title="Crowdin" target="_blank" href="https://crowdin.com/project/illa-builder"><img src="https://badges.crowdin.net/illa-builder/localized.svg"  height=18></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/illacloud/illa-builder" height=18></a>
   <a href="./CONTRIBUTING.md"><img src="https://badgen.net/badge/PRs/Welcome/green?icon=storybook" height=18></a>
 </p>
-
 
 
 ## 🚀시작하다
@@ -103,6 +103,10 @@ ILLA 커뮤니티에 가입하여 아이디어, 제안 또는 질문을 공유�
 기부에 대해 생각하고 계십니까? ILLA에 대한 모든 종류의 기여는 크게 감사하고 환영합니다! 참여 방법에 대한 자세한 내용은 [기여 가이드](./CONTRIBUTING.md)를 확인하세요.
 <p>모든 기여에 감사드립니다 ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">기여자</a></p>
 
+## 📢 번역 중
+
+`apps/builder/src/i18n/locale/*` 디렉토리는 Crowdin을 통해 자동으로 최신 상태로 유지됩니다. 기여하고 싶다면 [공식 번역 페이지](https://crowdin.com/project/illa-builder)를 참조하세요.
+    
 ## 🔥 우리는 고용 중이다
 
 열정적이고 창의적인 팀을 찾고 계십니까? 우리는 다음 직책에 엔지니어를 적극적으로 고용하고 있습니다:
