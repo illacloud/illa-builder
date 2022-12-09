@@ -335,7 +335,6 @@
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}"
           },
           "tip": {
-            "private_key": "点此查看如何生成密钥",
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
             "name": "为这个在ILLA中的资源命名",
             "ssl_options": "可用时使用 SSL",
