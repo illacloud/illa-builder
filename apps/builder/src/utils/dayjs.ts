@@ -5,7 +5,7 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat"
 import relativeTime from "dayjs/plugin/relativeTime"
 import updateLocale from "dayjs/plugin/updateLocale"
 import utc from "dayjs/plugin/utc"
-import i18n from "@/i18n/config"
+import i18n, { formatLanguage } from "@/i18n/config"
 
 dayjs.extend(LocalizedFormat)
 dayjs.extend(relativeTime)
@@ -19,11 +19,11 @@ const PER_HOUR = PER_MINUTE * 60
 const PER_DAY = PER_HOUR * 24
 
 const FORMAT_RULE = {
-  "zh-cn": {
+  "zh-CN": {
     inYear: "MMMD日 HH:MM",
     otherYear: "YYYY年MMMDD日HH:MM",
   },
-  en: {
+  "en-US": {
     inYear: "HH:MM MMM DD",
     otherYear: "HH:MM MMM DD, YYYY",
   },
@@ -31,37 +31,41 @@ const FORMAT_RULE = {
 
 async function initDayjs() {
   const local = localStorage.getItem("i18nextLng") || "en-US"
-  switch (local) {
-    case "zh":
+  const language = formatLanguage(local)
+  switch (language) {
     case "zh-CN":
       await import("dayjs/locale/zh-cn")
-      dayjs.locale(local)
+      dayjs.locale("zh-CN")
       break
-    case "en":
     case "en-US":
     default:
       await import("dayjs/locale/en")
-      dayjs.locale("en")
+      dayjs.locale("en-US")
       break
   }
 }
+
 initDayjs()
 
 export const fromNow = (date: string) => {
   if (!date) return ""
   const now = dayjs()
   const diff = now.diff(date)
-  const local = dayjs.locale() as "zh-cn" | "en"
+  const local = dayjs.locale() as "zh-CN" | "en-US"
   if (diff / PER_MINUTE <= 1) {
     return i18n.t("dayjs.just_now")
   }
 
   if (diff / PER_DAY >= 7 && dayjs(date).isSame(now, "year")) {
-    return dayjs(date).format(FORMAT_RULE[local].inYear)
+    return dayjs(date).format(
+      FORMAT_RULE[local]?.inYear || FORMAT_RULE["en-US"].inYear,
+    )
   }
 
   if (diff / PER_DAY >= 7 && !dayjs(date).isSame(now, "year")) {
-    return dayjs(date).format(FORMAT_RULE[local].otherYear)
+    return dayjs(date).format(
+      FORMAT_RULE[local].otherYear || FORMAT_RULE["en-US"].otherYear,
+    )
   }
   return dayjs(date).fromNow()
 }

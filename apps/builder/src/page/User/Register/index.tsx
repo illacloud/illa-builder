@@ -32,22 +32,12 @@ import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { getLocalStorage, setLocalStorage } from "@/utils/storage"
 import { RegisterFields, RegisterResult } from "./interface"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { languageKeys } from "@/i18n/config"
+import { formatLanguage, languageKeys } from "@/i18n/config"
 
 export function getLocalLanguage(): string {
   const lang = getLocalStorage("i18nextLng")
-  if (lang) {
-    if (languageKeys.includes(lang)) {
-      return lang
-    }
-    const mainLanguage = lang.slice(0, 2)
-    for (let i = 0; i < languageKeys.length; i++) {
-      if (languageKeys[i].slice(0, 2) === mainLanguage) {
-        return languageKeys[i]
-      }
-    }
-  }
-  return "en-US"
+  const finalLang = formatLanguage(lang)
+  return finalLang
 }
 
 export const Register: FC = () => {
