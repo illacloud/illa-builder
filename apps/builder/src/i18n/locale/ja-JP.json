@@ -19,7 +19,7 @@
       "create_app": "アプリを作成する",
       "duplicate_fail": "複製に失敗しました",
       "duplicate_placeholder": "プロジェクト名を入力してください",
-      "edited_time": "{{ ユーザー }} によって {{ 時間 }} に編集されました",
+      "edited_time": "{{ time }} によって {{ user }} に編集されました",
       "name_empty": "プロジェクト名を入力してください",
       "name_existed": "名前は使用中",
       "rename_app": "プロジェクトの名前を変更",
@@ -133,7 +133,7 @@
         "required": "これは必須です",
         "title": {
           "api": "API",
-          "configure": "構成 {{ 名前 }}",
+          "configure": "{{ name }} を設定",
           "database": "データベース",
           "select": "リソースの種類を選択"
         },
@@ -831,9 +831,9 @@
     },
     "validate_message": {
       "email": "有効なメールアドレスを入力してください",
-      "max_length": "{{数字}}文字まで入力してください",
-      "max_value": "{{数値}}以下の値を入力してください",
-      "min_length": "少なくとも {{ 数字 }} 文字を入力してください",
+      "max_length": "{{ number }} 文字以下にしてください",
+      "max_value": "{{ number }} より小さくなければなりません",
+      "min_length": "少なくとも {{ number }} 文字以上でなければなりません",
       "min_value": "{{数値}}以上の値を入力してください",
       "regex": "必要なフォーマットに入力してください",
       "required": "必要",

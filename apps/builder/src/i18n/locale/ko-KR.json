@@ -19,7 +19,7 @@
       "create_app": "앱 만들기",
       "duplicate_fail": "복제 실패",
       "duplicate_placeholder": "프로젝트 이름을 입력하세요.",
-      "edited_time": "{{ 사용자 }}님이 {{ 시간 }}에 수정함",
+      "edited_time": "{{ time }} 님이 {{ user }} 에 수정함",
       "name_empty": "프로젝트 이름을 입력하세요.",
       "name_existed": "이미 사용 중인 이름",
       "rename_app": "프로젝트 이름 바꾸기",
@@ -133,7 +133,7 @@
         "required": "이것은 필수입니다",
         "title": {
           "api": "아피스",
-          "configure": "구성 {{ 이름 }}",
+          "configure": "구성 {{ name }}",
           "database": "데이터 베이스",
           "select": "리소스 유형 선택"
         },
@@ -832,8 +832,8 @@
     "validate_message": {
       "email": "유효한 이메일 주소를 입력하세요",
       "max_length": "최대 {{ number }}자까지 입력하세요.",
-      "max_value": "{{ 숫자 }}보다 크지 않은 값을 입력하세요.",
-      "min_length": "{{ 숫자 }}자 이상 입력하세요.",
+      "max_value": "{{ number }} 보다 크지 않은 값을 입력하세요.",
+      "min_length": "{{ number }} 자 이상 입력하세요.",
       "min_value": "{{ number }} 이상의 값을 입력하세요.",
       "regex": "필요한 형식을 입력하세요.",
       "required": "필수의",
@@ -1091,7 +1091,7 @@
     },
     "list": {
       "doc1": "{{ currentItem }}을 사용하여 현재 항목의 데이터에 액세스합니다. 예를 들어 \"userName\"을 기준으로 목록 구성 요소의 텍스트 구성 요소 값을 설정하려면 {{ currentItem.userName }}}을 입력합니다.",
-      "doc2": "{{list.selectedItem.data}} 를 사용하여 목록에서 선택한 항목의 데이터에 액세스합니다. 예를 들어 목록 선택 항목의 \"사용자 이름\"에 따라 목록 구성 요소 외부에 있는 텍스트 구성 요소의 값을 {{list.selectedItem.userName }}}로 설정합니다.",
+      "doc2": "{{list.selectedItem.data}} 를 사용하여 목록에서 선택한 항목의 데이터에 액세스합니다. 예를 들어 목록 선택 항목의 \"사용자 이름\"에 따라 목록 구성 요소 외부에 있는 텍스트 구성 요소의 값을 {{ list.selectedItem.userName }}로 설정합니다.",
       "name": "목록"
     },
     "menu": {
