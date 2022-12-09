@@ -102,6 +102,10 @@ ILLA コミュニティに参加して、アイデア、提案、質問を共有
 貢献を考えていますか？ ILLA へのあらゆる種類の貢献を歓迎します。 参加方法の詳細については、[貢献ガイド](./CONTRIBUTING.md) をご覧ください。
 <p>からのすべての貢献に感謝します ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">貢献者</a></p>
 
+## 📢 翻訳
+
+`apps/builder/src/i18n/locale/*` ディレクトリは Crowdin によって自動的に更新されます。貢献したい場合は、[公式翻訳ページ](https://crowdin.com/project/illa-builder) を参照してください。
+
 ## 🔥 募集中です
 
 情熱的でクリエイティブなチームをお探しですか? 以下の職種のエンジニアを積極的に採用しています。
