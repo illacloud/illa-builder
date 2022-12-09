@@ -107,6 +107,10 @@ Join ILLA Community to share your ideas, suggestions, or questions and connect w
 Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
 <p>Appreciate all the contributions from ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
 
+## 📢 Translating
+
+The `apps/builder/src/i18n/locale/*` dirs are kept up-to-date automatically via Crowdin. See our [official translation page](https://crowdin.com/project/illa-builder) in case you like to contribute.
+
 ## 🔥 We're Hiring
 
 Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
