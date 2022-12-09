@@ -28,7 +28,20 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en-US",
+    fallbackLng: (code) => {
+      if (code) {
+        if (languageKeys.includes(code)) {
+          return code
+        }
+        const mainLanguage = code.slice(0, 2)
+        for (let i = 0; i < languageKeys.length; i++) {
+          if (languageKeys[i].slice(0, 2) === mainLanguage) {
+            return languageKeys[i]
+          }
+        }
+      }
+      return "en-US"
+    },
     debug: false,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
