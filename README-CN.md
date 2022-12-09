@@ -105,6 +105,10 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 考虑为ILLA社区作出贡献？非常感谢和欢迎大家对ILLA的各种贡献！查看[贡献指南](./CONTRIBUTING.md)，了解有关如何参与的详细信息。
 <p>感谢 ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">贡献者们</a> 为ILLA做出的贡献</p>
 
+## 📢 翻译
+
+`apps/builder/src/i18n/locale/*`目录是通过Crowdin自动更新的。如果你想作出贡献，请查看我们的[官方翻译页面](https://crowdin.com/project/illa-builder)。
+
 ## 🔥正在招聘
 
 你寻找一个充满激情和创造力的团队吗？ 我们正在积极招聘工程师担任以下职位：
