@@ -52,6 +52,7 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
     >
       <Tabs
         variant="text"
+        size="large"
         activeKey={activeKey}
         colorScheme="grayBlue"
         onChange={(key) => {
