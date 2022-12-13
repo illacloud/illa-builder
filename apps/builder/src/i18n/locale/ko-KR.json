@@ -320,7 +320,8 @@
             "username_password": "사용자 이름 비밀번호",
             "firebase_database_url": "Firebase Database URL",
             "firebase_project_id": "Firestore Project ID",
-            "private_key_hover": "The private key is associated with a Service Account with Firebase privileges."
+            "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
+            "self_signed_certificate": "자가 서명 인증서 사용"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
