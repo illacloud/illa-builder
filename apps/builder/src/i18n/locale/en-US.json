@@ -320,7 +320,8 @@
             "username_password": "Username/Password",
             "firebase_database_url": "Firebase Database URL",
             "firebase_project_id": "Firestore Project ID",
-            "private_key_hover": "The private key is associated with a Service Account with Firebase privileges."
+            "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
+            "self_signed_certificate": "Use self-signed certificate"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
