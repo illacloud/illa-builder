@@ -320,7 +320,8 @@
             "username_password": "用户名/密码",
             "firebase_database_url": "Firebase数据库URL",
             "firebase_project_id": "Firebase项目ID",
-            "private_key_hover": "与具有Firebase权限的服务账户相关的私钥。"
+            "private_key_hover": "与具有Firebase权限的服务账户相关的私钥。",
+            "self_signed_certificate": "使用自签名证书"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
