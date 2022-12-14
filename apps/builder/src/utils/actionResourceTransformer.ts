@@ -34,6 +34,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "SMTP"
       case "firebase":
         return "Firebase"
+      case "clickhouse":
+        return "ClickHouse"
       case "s3":
         return "Amazon S3"
       case "transformer":
@@ -77,6 +79,8 @@ export function getResourceNameFromResourceType(
         return "Amazon S3"
       case "firebase":
         return "Firebase"
+      case "clickhouse":
+        return "ClickHouse"
       default:
         return ""
     }

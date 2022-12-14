@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
@@ -13,15 +13,11 @@ import {
   Switch,
   TextArea,
   getColor,
-  useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
-import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
-import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { MysqlLikeConfigElementProps } from "./interface"
+import { ClickhouseConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -36,37 +32,23 @@ import {
   sslItem,
   sslStyle,
 } from "./style"
+import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
+import {
+  onActionConfigElementSubmit,
+  onActionConfigElementTest,
+} from "@/page/App/components/Actions/api"
 
 /**
  * include mariadb or tidb
  * @param props
  * @constructor
  */
-
-const getResourceDefaultPort = (resourceType: string) => {
-  switch (resourceType) {
-    case "postgresql":
-    case "supabasedb":
-      return "5432"
-    case "mysql":
-    case "mariadb":
-      return "3306"
-    case "tidb":
-      return "4000"
-    default:
-      return "3306"
-  }
-}
-
-export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
+export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   props,
 ) => {
-  const { onBack, resourceType, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
-
-  const dispatch = useDispatch()
-
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
     shouldUnregister: true,
@@ -75,99 +57,26 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
       (r) => r.resourceId === resourceId,
-    ) as Resource<MysqlLikeResource>
+    ) as Resource<ClickhouseResource>
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
+  const [selfSigned, setSelfSigned] = useState(
+    resource?.content.ssl.selfSigned ?? false,
+  )
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-  const message = useMessage()
 
   return (
     <form
-      onSubmit={handleSubmit((data, event) => {
-        if (resourceId != undefined) {
-          Api.request<Resource<MysqlLikeResource>>(
-            {
-              method: "PUT",
-              url: `/resources/${resourceId}`,
-              data: {
-                resourceId: data.resourceId,
-                resourceName: data.resourceName,
-                resourceType: resource.resourceType,
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseName: data.databaseName,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                  ssl: generateSSLConfig(sslOpen, data),
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.updateResourceItemReducer(response.data))
-              message.success({
-                content: t("dashboard.resource.save_success"),
-              })
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              message.error({
-                content: error.data.errorMessage,
-              })
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        } else {
-          Api.request<Resource<MysqlLikeResource>>(
-            {
-              method: "POST",
-              url: `/resources`,
-              data: {
-                resourceName: data.resourceName,
-                resourceType,
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseName: data.databaseName,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                  ssl: generateSSLConfig(sslOpen, data),
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.addResourceItemReducer(response.data))
-              message.success({
-                content: t("dashboard.resource.save_success"),
-              })
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              message.error({
-                content: error.data.errorMessage,
-              })
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        }
-      })}
+      onSubmit={onActionConfigElementSubmit(
+        handleSubmit,
+        resourceId,
+        "clickhouse",
+        onFinished,
+        setSaving,
+      )}
     >
       <div css={container}>
         <div css={divider} />
@@ -259,7 +168,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                   borderColor="techPurple"
                   w="142px"
                   ml="8px"
-                  placeholder={getResourceDefaultPort(resourceType)}
+                  placeholder="8443"
                 />
               )}
               name="port"
@@ -300,7 +209,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
@@ -309,11 +217,8 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
           </div>
           <div css={hostInputContainer}>
             <Controller
-              defaultValue={resource?.content.databaseUsername}
+              defaultValue={resource?.content.username}
               control={control}
-              rules={{
-                required: true,
-              }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
                   w="100%"
@@ -326,14 +231,11 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                   )}
                 />
               )}
-              name="databaseUsername"
+              name="username"
             />
             <Controller
               control={control}
-              defaultValue={resource?.content.databasePassword}
-              rules={{
-                required: true,
-              }}
+              defaultValue={resource?.content.password}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
                   borderColor="techPurple"
@@ -347,7 +249,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                   )}
                 />
               )}
-              name="databasePassword"
+              name="password"
             />
           </div>
         </div>
@@ -398,6 +300,9 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                 onChange={(open) => {
                   onChange(open)
                   setSSLOpen(open)
+                  if (!open) {
+                    setSelfSigned(open)
+                  }
                 }}
                 onBlur={onBlur}
               />
@@ -409,6 +314,31 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
           </span>
         </div>
         {sslOpen && (
+          <div css={configItem}>
+            <div css={labelContainer}></div>
+            <Controller
+              control={control}
+              defaultValue={resource?.content.ssl.selfSigned}
+              render={({ field: { value, onChange, onBlur } }) => (
+                <Switch
+                  checked={value}
+                  ml="16px"
+                  colorScheme="techPurple"
+                  onChange={(open) => {
+                    onChange(open)
+                    setSelfSigned(open)
+                  }}
+                  onBlur={onBlur}
+                />
+              )}
+              name="selfSigned"
+            />
+            <span css={sslStyle}>
+              {t("editor.action.resource.db.label.self_signed_certificate")}
+            </span>
+          </div>
+        )}
+        {selfSigned && (
           <>
             <div css={sslItem}>
               <div css={labelContainer}>
@@ -426,7 +356,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               </div>
               <Controller
                 control={control}
-                defaultValue={resource?.content.ssl.serverCert}
+                defaultValue={resource?.content.ssl.caCert}
                 rules={{
                   required: true,
                 }}
@@ -443,7 +373,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                     )}
                   />
                 )}
-                name="serverCert"
+                name="caCert"
               />
             </div>
             <div css={sslItem}>
@@ -459,7 +389,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               </div>
               <Controller
                 control={control}
-                defaultValue={resource?.content.ssl.clientKey}
+                defaultValue={resource?.content.ssl.privateKey}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -473,7 +403,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                     )}
                   />
                 )}
-                name="clientKey"
+                name="privateKey"
               />
             </div>
             <div css={sslItem}>
@@ -529,42 +459,18 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             type="button"
             onClick={() => {
               const data = getValues()
-              Api.request<Resource<MysqlLikeResource>>(
+              onActionConfigElementTest(
+                data,
                 {
-                  method: "POST",
-                  url: `/resources/testConnection`,
-                  data: {
-                    resourceId: data.resourceId,
-                    resourceName: data.resourceName,
-                    resourceType,
-                    content: {
-                      host: data.host,
-                      port: data.port.toString(),
-                      databaseName: data.databaseName,
-                      databaseUsername: data.databaseUsername,
-                      databasePassword: data.databasePassword,
-                      ssl: generateSSLConfig(sslOpen, data),
-                    },
-                  },
+                  host: data.host,
+                  port: data.port.toString(),
+                  username: data.username,
+                  password: data.password,
+                  databaseName: data.databaseName,
+                  ssl: generateSSLConfig(sslOpen, data, "clickhouse"),
                 },
-                (response) => {
-                  message.success({
-                    content: t("dashboard.resource.test_success"),
-                  })
-                },
-                (error) => {
-                  message.error({
-                    content: error.data.errorMessage,
-                  })
-                },
-                () => {
-                  message.error({
-                    content: t("dashboard.resource.test_fail"),
-                  })
-                },
-                (loading) => {
-                  setTestLoading(loading)
-                },
+                "clickhouse",
+                setTestLoading,
               )
             }}
           >
@@ -584,4 +490,4 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   )
 }
 
-MysqlLikeConfigElement.displayName = "MysqlConfigElement"
+ClickhouseConfigElement.displayName = "ClickhouseConfigElement"

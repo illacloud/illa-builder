@@ -10,6 +10,7 @@ import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigEleme
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { ResourceEditorProps } from "./interface"
+import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
 
 export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
   const { onBack, onFinished, resourceType } = props
@@ -37,6 +38,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
     switch (resourceType) {
       case "firebase":
         return <FirebaseConfigElement {...generalProps} />
+      case "clickhouse":
+        return <ClickhouseConfigElement {...generalProps} />
       case "supabasedb":
       case "tidb":
       case "mariadb":
