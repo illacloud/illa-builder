@@ -1029,7 +1029,8 @@
       "placeholder": {
         "email": "请输入邮箱",
         "username": "请输入用户名",
-        "verification_code": "请输入验证码"
+        "verification_code": "请输入验证码",
+        "enter_verification_code": "Enter verification code"
       },
       "tips": {
         "fail": "注册失败",
