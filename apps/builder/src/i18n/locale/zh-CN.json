@@ -1030,7 +1030,8 @@
         "email": "请输入邮箱",
         "username": "请输入用户名",
         "verification_code": "请输入验证码",
-        "enter_verification_code": "Enter verification code"
+        "enter_verification_code": "Enter verification code",
+        "enter_password": "Enter your password"
       },
       "tips": {
         "fail": "注册失败",
@@ -1038,7 +1039,13 @@
         "success": "注册成功",
         "verification_code": "验证码已发送"
       },
-      "title": "注册"
+      "title": "注册",
+      "agreement": {
+        "using_illa": "By using ILLA you are agreeing to our",
+        "privacy_policy": "privacy policy",
+        "terms_of_service": "terms of service",
+        "and": "and"
+      }
     }
   },
   "widget": {
@@ -1146,5 +1153,31 @@
       "name": "时间线",
       "vertical": "纵向"
     }
-  }
+  },
+  "mob": {
+    "user": {
+      "sign_up": {
+        "fields": {
+          "password": "Password(at least 6 characters)"
+        }
+      }
+    }
+  },
+  "user_management": {
+    "role": {
+      "owner": "Owner",
+      "admin": "Administer",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    }
+  },
+  "invite_members": "Invite members",
+  "invite_link": "Invite link",
+  "invite_link_copy": "Copy",
+  "turn_off_invite_links": "Turn off invite links",
+  "update_invite_links": "Update invite links",
+  "share_secret_link": "Share a secret link people can use to join your team.",
+  "turn_on_invite_links": "Turn on invite links.",
+  "invite_by_email": "Invite by email",
+  "invite": "Invite"
 }
