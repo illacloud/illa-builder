@@ -7,8 +7,8 @@
     "choose_file": "ファイルを選択"
   },
   "change_fail": "編集に失敗する",
-  "change_success": "正常に変更されました",
-  "collision_message": "D または K キーを押したまま、コンポーネントをコンテナーにドラッグします。",
+  "change_success": "変更されました",
+  "collision_message": "D が K を押したまま、コンポーネントをコンテナーにドラッグします。",
   "create_fail": "作成に失敗しました",
   "create_new": "作成",
   "create_new_app": "プロジェクトを作成",
@@ -323,7 +323,8 @@
             "private_key": "秘密鍵",
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL オプション",
-            "username_password": "ユーザー名パスワード"
+            "username_password": "ユーザー名パスワード",
+            "self_signed_certificate": "自己署名証明書を使用"
           },
           "placeholder": {
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
@@ -562,7 +563,7 @@
           "paginationChange": "ページめくり構成の変更",
           "row_select": "行を選択",
           "sortingChange": "変化で並べ替え",
-          "submit": "参加する",
+          "submit": "確認する",
           "success": "成功後"
         }
       },
