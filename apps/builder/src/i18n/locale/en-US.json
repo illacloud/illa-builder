@@ -1030,7 +1030,8 @@
         "email": "Enter your email",
         "username": "Enter your username",
         "verification_code": "Please enter verification code",
-        "enter_verification_code": "Enter verification code"
+        "enter_verification_code": "Enter verification code",
+        "enter_password": "Enter your password"
       },
       "tips": {
         "fail": "Failed to sign up",
@@ -1038,7 +1039,13 @@
         "success": "Signed up successfully",
         "verification_code": "Verification code sent"
       },
-      "title": "Sign up"
+      "title": "Sign up",
+      "agreement": {
+        "using_illa": "By using ILLA you are agreeing to our",
+        "privacy_policy": "privacy policy",
+        "terms_of_service": "terms of service",
+        "and": "and"
+      }
     }
   },
   "widget": {
@@ -1146,5 +1153,31 @@
       "name": "Timeline",
       "vertical": "vertical"
     }
-  }
+  },
+  "mob": {
+    "user": {
+      "sign_up": {
+        "fields": {
+          "password": "Password(at least 6 characters)"
+        }
+      }
+    }
+  },
+  "user_management": {
+    "role": {
+      "owner": "Owner",
+      "admin": "Administer",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    }
+  },
+  "invite_members": "Invite members",
+  "invite_link": "Invite link",
+  "invite_link_copy": "Copy",
+  "turn_off_invite_links": "Turn off invite links",
+  "update_invite_links": "Update invite links",
+  "share_secret_link": "Share a secret link people can use to join your team.",
+  "turn_on_invite_links": "Turn on invite links.",
+  "invite_by_email": "Invite by email",
+  "invite": "Invite"
 }
