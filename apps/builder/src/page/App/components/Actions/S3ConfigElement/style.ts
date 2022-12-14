@@ -29,12 +29,6 @@ export const configItem = css`
   flex-direction: row;
 `
 
-export const sslItem = css`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-`
-
 export const divider = css`
   height: 16px;
 `
@@ -69,6 +63,7 @@ export const configItemTip = css`
   font-size: 14px;
   margin-left: 192px;
   margin-bottom: 6px;
+  white-space: pre-line;
   color: ${getColor("grayBlue", "04")};
 `
 

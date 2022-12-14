@@ -40,6 +40,7 @@ export const resourceItemTitleStyle = css`
   flex: 1;
   font-weight: 500;
   text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
