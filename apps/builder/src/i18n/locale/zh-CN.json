@@ -161,6 +161,45 @@
         "error": {
           "max_file": "文件大小不能超过5M。"
         },
+        "firebase": {
+          "action_type": "Action Type",
+          "collection": "集合",
+          "database_ref": "Database ref",
+          "document_id": "文档ID",
+          "email": "邮箱",
+          "end_at": "End At",
+          "len_of_list": "列表长度",
+          "limit": "Limit",
+          "next_page_token": "下一页token",
+          "object_to_set": "Object to set",
+          "order_by": "Order by",
+          "ordering_direction": "Ordering direction",
+          "parent_document_id": "父文档ID",
+          "phone_number": "手机号码",
+          "placeholder": {
+            "asc": "asc",
+            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}",
+            "input_collection": "输入一个集合",
+            "key": "key",
+            "select_an_action": "Select an action",
+            "select_collection": "选择一个集合",
+            "value": "value"
+          },
+          "service_type": "Service Type",
+          "start_at": "Start At",
+          "tips": {
+            "document_id": "空白时将自动生成ID",
+            "parent_document_id_tips": "为空时选择最外层目录"
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Use a dropdown",
+          "use_end_at": "Use endAt",
+          "use_raw_id": "Use raw id",
+          "use_start_at": "Use startAt",
+          "user_object": "用户对象",
+          "value": "值",
+          "where": "where"
+        },
         "label": {
           "event_handler": "事件处理器",
           "failure": "失败",
@@ -248,45 +287,6 @@
           "use_html": "使用HTML",
           "use_raw": "使用原始文本"
         },
-        "firebase": {
-          "service_type": "Service Type",
-          "action_type": "Action Type",
-          "uid": "UID",
-          "email": "邮箱",
-          "phone_number": "手机号码",
-          "user_object": "用户对象",
-          "len_of_list": "列表长度",
-          "next_page_token": "下一页token",
-          "collection": "集合",
-          "where": "where",
-          "limit": "Limit",
-          "order_by": "Order by",
-          "ordering_direction": "Ordering direction",
-          "use_start_at": "Use startAt",
-          "use_end_at": "Use endAt",
-          "start_at": "Start At",
-          "end_at": "End At",
-          "document_id": "文档ID",
-          "value": "值",
-          "parent_document_id": "父文档ID",
-          "database_ref": "Database ref",
-          "object_to_set": "Object to set",
-          "use_raw_id": "Use raw id",
-          "use_a_dropdown": "Use a dropdown",
-          "placeholder": {
-            "select_collection": "选择一个集合",
-            "input_collection": "输入一个集合",
-            "select_an_action": "Select an action",
-            "key": "key",
-            "value": "value",
-            "asc": "asc",
-            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}"
-          },
-          "tips": {
-            "document_id": "空白时将自动生成ID",
-            "parent_document_id_tips": "为空时选择最外层目录"
-          }
-        },
         "tips": {
           "transformer": "启用Transformer将查询结果转换为不同的格式"
         }
@@ -296,6 +296,9 @@
           "coming_soon": "即将更新"
         },
         "db": {
+          "invalid_private": {
+            "key": "私钥无效 "
+          },
           "label": {
             "ca_certificate": "服务端证书",
             "client_certificate": "客户端证书",
@@ -306,6 +309,8 @@
             "connection_string": "连接地址",
             "database": "数据库名称",
             "database_index": "数据库索引",
+            "firebase_database_url": "Firebase数据库URL",
+            "firebase_project_id": "Firebase项目ID",
             "hostname": "主机",
             "hostname_port": "主机/端口",
             "hosturl": "主机URL",
@@ -316,12 +321,9 @@
             "name": "名称",
             "port": "端口",
             "private_key": "私钥",
-            "ssl_options": "SSL 选项",
-            "username_password": "用户名/密码",
-            "firebase_database_url": "Firebase数据库URL",
-            "firebase_project_id": "Firebase项目ID",
             "private_key_hover": "与具有Firebase权限的服务账户相关的私钥。",
-            "self_signed_certificate": "使用自签名证书"
+            "ssl_options": "SSL 选项",
+            "username_password": "用户名/密码"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -332,22 +334,19 @@
             "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "密码",
-            "username": "用户名",
-            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}"
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "用户名"
           },
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
             "name": "为这个在ILLA中的资源命名",
+            "private_key": "点此查看如何生成密钥",
             "ssl_options": "可用时使用 SSL",
-            "username_password": "凭证将被加密并安全存储在我们的服务器上",
-            "private_key": "点此查看如何生成密钥"
+            "username_password": "凭证将被加密并安全存储在我们的服务器上"
           },
           "title": {
             "advanced_option": "高级配置",
             "general_option": "通用"
-          },
-          "invalid_private": {
-            "key": "私钥无效 "
           }
         },
         "error": {
