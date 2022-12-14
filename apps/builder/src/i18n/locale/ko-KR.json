@@ -1029,7 +1029,8 @@
       "placeholder": {
         "email": "이메일을 입력해주세요",
         "username": "사용자 이름을 입력하십시오",
-        "verification_code": "인증 코드를 입력하세요"
+        "verification_code": "인증 코드를 입력하세요",
+        "enter_verification_code": "Enter verification code"
       },
       "tips": {
         "fail": "등록 실패",
