@@ -1029,7 +1029,8 @@
       "placeholder": {
         "email": "Enter your email",
         "username": "Enter your username",
-        "verification_code": "Please enter verification code"
+        "verification_code": "Please enter verification code",
+        "enter_verification_code": "Enter verification code"
       },
       "tips": {
         "fail": "Failed to sign up",
