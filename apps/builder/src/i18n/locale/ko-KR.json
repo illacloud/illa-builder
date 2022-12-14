@@ -1030,7 +1030,8 @@
         "email": "이메일을 입력해주세요",
         "username": "사용자 이름을 입력하십시오",
         "verification_code": "인증 코드를 입력하세요",
-        "enter_verification_code": "Enter verification code"
+        "enter_verification_code": "Enter verification code",
+        "enter_password": "Enter your password"
       },
       "tips": {
         "fail": "등록 실패",
@@ -1038,7 +1039,13 @@
         "success": "등록 성공",
         "verification_code": "인증 코드 전송됨"
       },
-      "title": "등록하다"
+      "title": "등록하다",
+      "agreement": {
+        "using_illa": "By using ILLA you are agreeing to our",
+        "privacy_policy": "privacy policy",
+        "terms_of_service": "terms of service",
+        "and": "and"
+      }
     }
   },
   "widget": {
@@ -1146,5 +1153,31 @@
       "name": "타임라인",
       "vertical": "초상화"
     }
-  }
+  },
+  "mob": {
+    "user": {
+      "sign_up": {
+        "fields": {
+          "password": "Password(at least 6 characters)"
+        }
+      }
+    }
+  },
+  "user_management": {
+    "role": {
+      "owner": "Owner",
+      "admin": "Administer",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    }
+  },
+  "invite_members": "Invite members",
+  "invite_link": "Invite link",
+  "invite_link_copy": "Copy",
+  "turn_off_invite_links": "Turn off invite links",
+  "update_invite_links": "Update invite links",
+  "share_secret_link": "Share a secret link people can use to join your team.",
+  "turn_on_invite_links": "Turn on invite links.",
+  "invite_by_email": "Invite by email",
+  "invite": "Invite"
 }
