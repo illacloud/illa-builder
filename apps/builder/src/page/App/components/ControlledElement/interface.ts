@@ -1,6 +1,14 @@
 import { Control, RegisterOptions } from "react-hook-form"
 import { ReactNode } from "react"
 
+export type ControlledType =
+  | "input"
+  | "number"
+  | "switch"
+  | "password"
+  | "textarea"
+  | "none"
+
 export interface ContrilledElementProps {
   title: string
   isRequired?: boolean
@@ -11,7 +19,7 @@ export interface ContrilledElementProps {
   styles?: Record<string, string>[]
   tips?: string | ReactNode
   error?: boolean
-  controlledType: string | string[]
+  controlledType: ControlledType | ControlledType[]
   control: Control
   rules?: RegisterOptions[]
   onValueChange?: (value: string | boolean) => void
