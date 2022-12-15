@@ -34,11 +34,6 @@ import {
 } from "@/page/App/components/Actions/api"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 
-/**
- * include mariadb or tidb
- * @param props
- * @constructor
- */
 export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   props,
 ) => {
