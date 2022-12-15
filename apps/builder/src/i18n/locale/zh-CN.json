@@ -1179,5 +1179,76 @@
   "share_secret_link": "Share a secret link people can use to join your team.",
   "turn_on_invite_links": "Turn on invite links.",
   "invite_by_email": "Invite by email",
-  "invite": "Invite"
+  "invite": "Invite",
+  "invited_suc": "Invited successfully",
+  "failed_to_invite": "Failed to invite",
+  "updated_suc": "Updated successfully",
+  "failed_to_update": "Failed to update",
+  "Member": "Member",
+  "Permission": "Permission",
+  "member": "Member",
+  "permission": "Permission",
+  "operation": "Operation",
+  "transfer_ownership": "Transfer ownership",
+  "remove": "Remove",
+  "Are you sure you want to transfer ownership": "Are you sure you want to transfer ownership?",
+  "After transferring, your permission will change to administrator": {
+    "": "After transferring, your permission will change to administrator."
+  },
+  "Transfer": "Transfer",
+  "Cancel": "Cancel",
+  "Successfully transferred": "Successfully transferred",
+  "Failed to transfer": "Failed to transfer",
+  "Are you sure you want to remove [username]?": "Are you sure you want to remove [username]?",
+  "After removal, the user will not be able to access the team": {
+    "": "After removal, the user will not be able to access the team."
+  },
+  "Remove": "Remove",
+  "Successfully removed": "Successfully removed",
+  "Failed to remove": "Failed to remove",
+  "Pending": "Pending",
+  "Updated successfully": "Updated successfully",
+  "Failed to update": "Failed to update",
+  "Allow editors and viewers to invite members": {
+    " ": "Allow editors and viewers to invite members. "
+  },
+  "Create team": "Create team",
+  "Team name": "Team name",
+  "Team domain": "Team domain",
+  "": {
+    "illacloud": {
+      "com": ".illacloud.com"
+    }
+  },
+  "Save": "Save",
+  "already existed": {
+    "": "already existed."
+  },
+  "is available": {
+    "": "is available."
+  },
+  "Invitation code": "Invitation code",
+  "ILLA Cloud is in beta test": {
+    " Please input your invitation code": {
+      "": "ILLA Cloud is in beta test. Please input your invitation code."
+    }
+  },
+  "Need an invitation code?": "Need an invitation code?",
+  "Contact ILLA": "Contact ILLA",
+  "Create a new team": "Create a new team",
+  "You have no teams": "You have no teams",
+  "Workspace": "Workspace",
+  "Team settings": "Team settings",
+  "ILLA Builder": "ILLA Builder",
+  "Apps": "Apps",
+  "App": "App",
+  "Resources": "Resources",
+  "Resource": "Resource",
+  "Edited at a minute ago": "Edited at a minute ago",
+  "Edited at [n] minutes ago": "Edited at [n] minutes ago",
+  "Edited at an hour ago": "Edited at an hour ago",
+  "Edited at [n] hours ago": "Edited at [n] hours ago",
+  "Edited at a day ago": "Edited at a day ago",
+  "Edited at [n] days ago": "Edited at [n] days ago",
+  "Edited at just now": "Edited at just now"
 }
