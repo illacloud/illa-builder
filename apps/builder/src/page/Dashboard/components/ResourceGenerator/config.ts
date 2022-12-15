@@ -36,11 +36,11 @@ export const Databases: ResourceDataItem[] = [
     isDraft: false,
   },
   {
-    resourceType: "firebase",
+    resourceType: "supabasedb",
     isDraft: false,
   },
   {
-    resourceType: "supabasedb",
+    resourceType: "clickhouse",
     isDraft: false,
   },
 ]
@@ -52,6 +52,10 @@ export const Apis: ResourceDataItem[] = [
   },
   {
     resourceType: "s3",
+    isDraft: false,
+  },
+  {
+    resourceType: "firebase",
     isDraft: false,
   },
   {
