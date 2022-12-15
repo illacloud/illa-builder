@@ -2,6 +2,8 @@ import {
   applyConfigItemLabelText,
   labelContainer,
   hostInputContainer,
+  sslStyle,
+  configItemTip,
   applyConfigItemContainer,
 } from "./style"
 import { FC, useCallback } from "react"
@@ -14,11 +16,7 @@ import {
   TextArea,
 } from "@illa-design/react"
 import { Controller } from "react-hook-form"
-import {
-  configItemTip,
-  sslStyle,
-} from "@/page/App/components/Actions/S3ConfigElement/style"
-import { ContrilledElementProps } from "@/page/App/components/ControlledElement/interface"
+import { ContrilledElementProps } from "./interface"
 
 export const ControlledElement: FC<ContrilledElementProps> = (props) => {
   const {
