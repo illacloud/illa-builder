@@ -45,6 +45,7 @@ export interface Events {
 export type ActionType =
   | "firebase"
   | "supabasedb"
+  | "clickhouse"
   | "mysql"
   | "restapi"
   | "graphql"

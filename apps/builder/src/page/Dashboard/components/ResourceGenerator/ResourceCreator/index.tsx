@@ -10,6 +10,7 @@ import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigEleme
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
 import { RootState } from "@/store"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
+import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
@@ -90,6 +91,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         )
       case "smtp":
         return <SMTPConfigElement {...configElementProps} />
+      case "clickhouse":
+        return <ClickhouseConfigElement {...configElementProps} />
       default:
         return null
     }

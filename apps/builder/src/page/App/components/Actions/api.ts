@@ -11,6 +11,7 @@ import {
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
+  generateSSLConfig,
   Resource,
   ResourceContent,
   ResourceType,
@@ -118,6 +119,15 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         port: +data.port,
         username: data.username,
         password: data.password,
+      }
+    case "clickhouse":
+      return {
+        host: data.host,
+        port: +data.port,
+        username: data.username,
+        password: data.password,
+        databaseName: data.databaseName,
+        ssl: generateSSLConfig(!!data.ssl, data, "clickhouse"),
       }
   }
 }

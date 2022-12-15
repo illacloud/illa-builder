@@ -65,6 +65,7 @@ export const ActionPanel = forwardRef<
 
   const panel = useMemo(() => {
     switch (cachedAction?.actionType) {
+      case "clickhouse":
       case "supabasedb":
       case "mysql":
       case "tidb":

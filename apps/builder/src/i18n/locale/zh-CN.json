@@ -161,6 +161,45 @@
         "error": {
           "max_file": "文件大小不能超过5M。"
         },
+        "firebase": {
+          "action_type": "Action Type",
+          "collection": "集合",
+          "database_ref": "Database ref",
+          "document_id": "文档ID",
+          "email": "邮箱",
+          "end_at": "End At",
+          "len_of_list": "列表长度",
+          "limit": "Limit",
+          "next_page_token": "下一页token",
+          "object_to_set": "Object to set",
+          "order_by": "Order by",
+          "ordering_direction": "Ordering direction",
+          "parent_document_id": "父文档ID",
+          "phone_number": "手机号码",
+          "placeholder": {
+            "asc": "asc",
+            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}",
+            "input_collection": "输入一个集合",
+            "key": "key",
+            "select_an_action": "Select an action",
+            "select_collection": "选择一个集合",
+            "value": "value"
+          },
+          "service_type": "Service Type",
+          "start_at": "Start At",
+          "tips": {
+            "document_id": "空白时将自动生成ID",
+            "parent_document_id_tips": "为空时选择最外层目录"
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Use a dropdown",
+          "use_end_at": "Use endAt",
+          "use_raw_id": "Use raw id",
+          "use_start_at": "Use startAt",
+          "user_object": "用户对象",
+          "value": "值",
+          "where": "where"
+        },
         "label": {
           "event_handler": "事件处理器",
           "failure": "失败",
@@ -248,45 +287,6 @@
           "use_html": "使用HTML",
           "use_raw": "使用原始文本"
         },
-        "firebase": {
-          "service_type": "Service Type",
-          "action_type": "Action Type",
-          "uid": "UID",
-          "email": "邮箱",
-          "phone_number": "手机号码",
-          "user_object": "用户对象",
-          "len_of_list": "列表长度",
-          "next_page_token": "下一页token",
-          "collection": "集合",
-          "where": "where",
-          "limit": "Limit",
-          "order_by": "Order by",
-          "ordering_direction": "Ordering direction",
-          "use_start_at": "Use startAt",
-          "use_end_at": "Use endAt",
-          "start_at": "Start At",
-          "end_at": "End At",
-          "document_id": "文档ID",
-          "value": "值",
-          "parent_document_id": "父文档ID",
-          "database_ref": "Database ref",
-          "object_to_set": "Object to set",
-          "use_raw_id": "Use raw id",
-          "use_a_dropdown": "Use a dropdown",
-          "placeholder": {
-            "select_collection": "选择一个集合",
-            "input_collection": "输入一个集合",
-            "select_an_action": "Select an action",
-            "key": "key",
-            "value": "value",
-            "asc": "asc",
-            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}"
-          },
-          "tips": {
-            "document_id": "空白时将自动生成ID",
-            "parent_document_id_tips": "为空时选择最外层目录"
-          }
-        },
         "tips": {
           "transformer": "启用Transformer将查询结果转换为不同的格式"
         }
@@ -296,6 +296,9 @@
           "coming_soon": "即将更新"
         },
         "db": {
+          "invalid_private": {
+            "key": "私钥无效 "
+          },
           "label": {
             "ca_certificate": "服务端证书",
             "client_certificate": "客户端证书",
@@ -306,6 +309,8 @@
             "connection_string": "连接地址",
             "database": "数据库名称",
             "database_index": "数据库索引",
+            "firebase_database_url": "Firebase数据库URL",
+            "firebase_project_id": "Firebase项目ID",
             "hostname": "主机",
             "hostname_port": "主机/端口",
             "hosturl": "主机URL",
@@ -316,11 +321,10 @@
             "name": "名称",
             "port": "端口",
             "private_key": "私钥",
+            "private_key_hover": "与具有Firebase权限的服务账户相关的私钥。",
             "ssl_options": "SSL 选项",
             "username_password": "用户名/密码",
-            "firebase_database_url": "Firebase数据库URL",
-            "firebase_project_id": "Firebase项目ID",
-            "private_key_hover": "与具有Firebase权限的服务账户相关的私钥。"
+            "self_signed_certificate": "使用自签名证书"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -331,22 +335,20 @@
             "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "密码",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "用户名",
-            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}"
+            "default": "default"
           },
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
             "name": "为这个在ILLA中的资源命名",
+            "private_key": "点此查看如何生成密钥",
             "ssl_options": "可用时使用 SSL",
-            "username_password": "凭证将被加密并安全存储在我们的服务器上",
-            "private_key": "点此查看如何生成密钥"
+            "username_password": "凭证将被加密并安全存储在我们的服务器上"
           },
           "title": {
             "advanced_option": "高级配置",
             "general_option": "通用"
-          },
-          "invalid_private": {
-            "key": "私钥无效 "
           }
         },
         "error": {
@@ -1028,7 +1030,9 @@
       "placeholder": {
         "email": "请输入邮箱",
         "username": "请输入用户名",
-        "verification_code": "请输入验证码"
+        "verification_code": "请输入验证码",
+        "enter_verification_code": "Enter verification code",
+        "enter_password": "Enter your password"
       },
       "tips": {
         "fail": "注册失败",
@@ -1036,7 +1040,13 @@
         "success": "注册成功",
         "verification_code": "验证码已发送"
       },
-      "title": "注册"
+      "title": "注册",
+      "agreement": {
+        "using_illa": "By using ILLA you are agreeing to our",
+        "privacy_policy": "privacy policy",
+        "terms_of_service": "terms of service",
+        "and": "and"
+      }
     }
   },
   "widget": {
@@ -1143,6 +1153,149 @@
       "horizontal": "横向",
       "name": "时间线",
       "vertical": "纵向"
+    }
+  },
+  "mob": {
+    "user": {
+      "sign_up": {
+        "fields": {
+          "password": "Password(at least 6 characters)"
+        }
+      }
+    }
+  },
+  "user_management": {
+    "role": {
+      "owner": "Owner",
+      "admin": "Administer",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    }
+  },
+  "invite_members": "Invite members",
+  "invite_link": "Invite link",
+  "invite_link_copy": "Copy",
+  "turn_off_invite_links": "Turn off invite links",
+  "update_invite_links": "Update invite links",
+  "share_secret_link": "Share a secret link people can use to join your team.",
+  "turn_on_invite_links": "Turn on invite links.",
+  "invite_by_email": "Invite by email",
+  "invite": "Invite",
+  "invited_suc": "Invited successfully",
+  "failed_to_invite": "Failed to invite",
+  "updated_suc": "Updated successfully",
+  "failed_to_update": "Failed to update",
+  "Member": "Member",
+  "Permission": "Permission",
+  "member": "Member",
+  "permission": "Permission",
+  "operation": "Operation",
+  "transfer_ownership": "Transfer ownership",
+  "remove": "Remove",
+  "Are you sure you want to transfer ownership": "Are you sure you want to transfer ownership?",
+  "After transferring, your permission will change to administrator": {
+    "": "After transferring, your permission will change to administrator."
+  },
+  "Transfer": "Transfer",
+  "Cancel": "Cancel",
+  "Successfully transferred": "Successfully transferred",
+  "Failed to transfer": "Failed to transfer",
+  "Are you sure you want to remove [username]?": "Are you sure you want to remove [username]?",
+  "After removal, the user will not be able to access the team": {
+    "": "After removal, the user will not be able to access the team."
+  },
+  "Remove": "Remove",
+  "Successfully removed": "Successfully removed",
+  "Failed to remove": "Failed to remove",
+  "Pending": "Pending",
+  "Updated successfully": "Updated successfully",
+  "Failed to update": "Failed to update",
+  "Allow editors and viewers to invite members": {
+    " ": "Allow editors and viewers to invite members. "
+  },
+  "Create team": "Create team",
+  "Team name": "Team name",
+  "Team domain": "Team domain",
+  "": {
+    "illacloud": {
+      "com": ".illacloud.com"
+    }
+  },
+  "Save": "Save",
+  "already existed": {
+    "": "already existed."
+  },
+  "is available": {
+    "": "is available."
+  },
+  "Invitation code": "Invitation code",
+  "ILLA Cloud is in beta test": {
+    " Please input your invitation code": {
+      "": "ILLA Cloud is in beta test. Please input your invitation code."
+    }
+  },
+  "Need an invitation code?": "Need an invitation code?",
+  "Contact ILLA": "Contact ILLA",
+  "Create a new team": "Create a new team",
+  "You have no teams": "You have no teams",
+  "Workspace": "Workspace",
+  "Team settings": "Team settings",
+  "ILLA Builder": "ILLA Builder",
+  "Apps": "Apps",
+  "App": "App",
+  "Resources": "Resources",
+  "Resource": "Resource",
+  "Edited at a minute ago": "Edited at a minute ago",
+  "Edited at [n] minutes ago": "Edited at [n] minutes ago",
+  "Edited at an hour ago": "Edited at an hour ago",
+  "Edited at [n] hours ago": "Edited at [n] hours ago",
+  "Edited at a day ago": "Edited at a day ago",
+  "Edited at [n] days ago": "Edited at [n] days ago",
+  "Edited at just now": "Edited at just now",
+  "Leave team": "Leave team",
+  "Delete team": "Delete team",
+  "Are you sure you want to leave this team?": "Are you sure you want to leave this team?",
+  "You will not be able to access any team resources after leaving": {
+    "": "You will not be able to access any team resources after leaving."
+  },
+  "Leave": "Leave",
+  "Are you sure you want to delete this team?": "Are you sure you want to delete this team?",
+  "The team domain will be unavailable after deletion, and all members will be removed from this team": {
+    "": "The team domain will be unavailable after deletion, and all members will be removed from this team."
+  },
+  "Delete": "Delete",
+  "Team info": "Team info",
+  "Edit": "Edit",
+  "Save Changes": "Save Changes",
+  "Adjust the avater": "Adjust the avater",
+  "Crop": "Crop",
+  "For the better editing experience, please visit this page on desktop": "For the better editing experience, please visit this page on desktop",
+  "Continue to visit": "Continue to visit",
+  "Create successfully": {
+    " It will take about 1 to 3 minutes to build the domain": {
+      " Visit the new team via www": {
+        "illacloud": {
+          "com/[domain] before the build succeeds": {
+            " ": "Create successfully. It will take about 1 to 3 minutes to build the domain. Visit the new team via www.illacloud.com/[domain] before the build succeeds. "
+          }
+        }
+      }
+    }
+  },
+  "It will take about 1 to 3 minutes to build the new domain": {
+    " Visit the new team via www": {
+      "illacloud": {
+        "com/[domain] before the build succeeds": {
+          " ": "It will take about 1 to 3 minutes to build the new domain. Visit the new team via www.illacloud.com/[domain] before the build succeeds. "
+        }
+      }
+    },
+    " Visit the team via www": {
+      "illacloud": {
+        "com/[domain] before the build succeeds": {
+          " ": "It will take about 1 to 3 minutes to build the new domain. Visit the team via www.illacloud.com/[domain] before the build succeeds. "
+        }
+      }
     }
   }
 }

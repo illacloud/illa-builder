@@ -24,7 +24,7 @@ export const labelContainer = css`
 
 export const configItem = css`
   display: flex;
-  height: 48px;
+  min-height: 48px;
   align-items: center;
   flex-direction: row;
 `
@@ -62,8 +62,7 @@ export function applyConfigItemLabelText(
 export const configItemTip = css`
   font-size: 14px;
   margin-left: 192px;
-  margin-bottom: 6px;
-  white-space: pre-line;
+  padding-bottom: 6px;
   color: ${getColor("grayBlue", "04")};
 `
 

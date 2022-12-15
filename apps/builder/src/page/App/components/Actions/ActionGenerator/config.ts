@@ -36,11 +36,11 @@ export const Databases: ActionDataItem[] = [
     isDraft: false,
   },
   {
-    actionType: "firebase",
+    actionType: "supabasedb",
     isDraft: false,
   },
   {
-    actionType: "supabasedb",
+    actionType: "clickhouse",
     isDraft: false,
   },
 ]
@@ -52,6 +52,10 @@ export const Apis: ActionDataItem[] = [
   },
   {
     actionType: "s3",
+    isDraft: false,
+  },
+  {
+    actionType: "firebase",
     isDraft: false,
   },
   {

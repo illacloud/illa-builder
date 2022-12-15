@@ -42,6 +42,22 @@ import {
  * @param props
  * @constructor
  */
+
+const getResourceDefaultPort = (resourceType: string) => {
+  switch (resourceType) {
+    case "postgresql":
+    case "supabasedb":
+      return "5432"
+    case "mysql":
+    case "mariadb":
+      return "3306"
+    case "tidb":
+      return "4000"
+    default:
+      return "3306"
+  }
+}
+
 export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   props,
 ) => {
@@ -243,7 +259,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                   borderColor="techPurple"
                   w="142px"
                   ml="8px"
-                  placeholder="3306"
+                  placeholder={getResourceDefaultPort(resourceType)}
                 />
               )}
               name="port"

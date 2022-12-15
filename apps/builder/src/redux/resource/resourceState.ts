@@ -6,6 +6,7 @@ import { RedisResource } from "./redisResource"
 import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { S3Resource } from "./s3Resource"
 import { FirebaseResource } from "@/redux/resource/firebaseResource"
+import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 
 export type ResourceType =
   | "firebase"
@@ -21,8 +22,10 @@ export type ResourceType =
   | "tidb"
   | "smtp"
   | "s3"
+  | "clickhouse"
 
 export type ResourceContent =
+  | ClickhouseResource
   | FirebaseResource
   | SMTPResource
   | S3Resource
@@ -55,24 +58,50 @@ export interface DbSSL {
   clientCert: string
 }
 
+export interface ClickhouseSSL {
+  ssl: boolean
+  selfSigned: boolean
+  privateKey: string
+  clientCert: string
+  caCert: string
+}
+
 export function generateSSLConfig(
   open: boolean,
   data: { [p: string]: any },
-): DbSSL {
-  if (open) {
-    return {
-      ssl: true,
-      clientKey: data.clientKey,
-      clientCert: data.clientCert,
-      serverCert: data.serverCert,
-    } as DbSSL
-  } else {
-    return {
-      ssl: false,
-      clientKey: "",
-      clientCert: "",
-      serverCert: "",
-    } as DbSSL
+  type?: string,
+): DbSSL | ClickhouseSSL {
+  switch (type) {
+    case "clickhouse":
+      return open
+        ? ({
+            ssl: true,
+            selfSigned: data.selfSigned,
+            privateKey: data.privateKey,
+            clientCert: data.clientCert,
+            caCert: data.caCert,
+          } as ClickhouseSSL)
+        : ({
+            ssl: false,
+            selfSigned: false,
+            privateKey: "",
+            clientCert: "",
+            caCert: "",
+          } as ClickhouseSSL)
+    default:
+      return open
+        ? ({
+            ssl: true,
+            clientKey: data.clientKey,
+            clientCert: data.clientCert,
+            serverCert: data.serverCert,
+          } as DbSSL)
+        : ({
+            ssl: false,
+            clientKey: "",
+            clientCert: "",
+            serverCert: "",
+          } as DbSSL)
   }
 }
 
