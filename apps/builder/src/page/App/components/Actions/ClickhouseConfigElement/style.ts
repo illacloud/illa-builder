@@ -29,12 +29,6 @@ export const configItem = css`
   flex-direction: row;
 `
 
-export const sslItem = css`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-`
-
 export const divider = css`
   height: 16px;
 `

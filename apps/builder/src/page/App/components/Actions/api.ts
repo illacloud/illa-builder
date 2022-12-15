@@ -123,7 +123,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "clickhouse":
       return {
         host: data.host,
-        port: data.port.toString(),
+        port: +data.port,
         username: data.username,
         password: data.password,
         databaseName: data.databaseName,

@@ -6,12 +6,7 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  Input,
-  InputNumber,
   PaginationPreIcon,
-  Password,
-  Switch,
-  TextArea,
   getColor,
 } from "@illa-design/react"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
@@ -26,17 +21,15 @@ import {
   container,
   divider,
   footerStyle,
-  hostInputContainer,
   labelContainer,
   optionLabelStyle,
-  sslItem,
-  sslStyle,
 } from "./style"
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
 
 /**
  * include mariadb or tidb
@@ -80,39 +73,19 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     >
       <div css={container}>
         <div css={divider} />
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.name")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={resource?.resourceName ?? ""}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                borderColor="techPurple"
-                placeholder={t("editor.action.resource.db.placeholder.name")}
-              />
-            )}
-            name="resourceName"
-          />
-        </div>
-        <div css={configItemTip}>
-          {t("editor.action.resource.restapi.tip.name")}
-        </div>
+        <ControlledElement
+          controlledType="input"
+          isRequired
+          title={t("editor.action.resource.db.label.name")}
+          control={control}
+          defaultValue={resource?.resourceName ?? ""}
+          rules={{
+            required: true,
+          }}
+          placeholders={[t("editor.action.resource.db.placeholder.name")]}
+          name="resourceName"
+          tips={t("editor.action.resource.restapi.tip.name")}
+        />
         <Divider
           direction="horizontal"
           ml="24px"
@@ -124,135 +97,65 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.general_option")}
         </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.hostname_port")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={resource?.content.host}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  borderColor="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.hostname",
-                  )}
-                />
-              )}
-              name="host"
-            />
-            <Controller
-              defaultValue={resource?.content.port}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <InputNumber
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  borderColor="techPurple"
-                  w="142px"
-                  ml="8px"
-                  placeholder="8443"
-                />
-              )}
-              name="port"
-            />
-          </div>
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.database")}
-            </span>
-          </div>
-          <Controller
-            defaultValue={resource?.content.databaseName}
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                borderColor="techPurple"
-                placeholder={t(
-                  "editor.action.resource.db.placeholder.database",
-                )}
-              />
-            )}
-            name="databaseName"
-          />
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.username_password")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={resource?.content.username}
-              control={control}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  borderColor="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.username",
-                  )}
-                />
-              )}
-              name="username"
-            />
-            <Controller
-              control={control}
-              defaultValue={resource?.content.password}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Password
-                  borderColor="techPurple"
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  ml="8px"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.password",
-                  )}
-                />
-              )}
-              name="password"
-            />
-          </div>
-        </div>
+        <ControlledElement
+          controlledType={["input", "number"]}
+          isRequired
+          title={t("editor.action.resource.db.label.hostname_port")}
+          control={control}
+          defaultValue={[
+            resource?.content.host,
+            String(resource?.content.port || ""),
+          ]}
+          rules={{
+            required: true,
+          }}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.hostname"),
+            "8443",
+          ]}
+          name={["host", "port"]}
+          styles={[
+            {},
+            {
+              w: "142px",
+              ml: "8px",
+            },
+          ]}
+        />
+        <ControlledElement
+          controlledType={["input"]}
+          isRequired
+          title={t("editor.action.resource.db.label.database")}
+          control={control}
+          defaultValue={resource?.content.databaseName}
+          rules={{
+            required: true,
+          }}
+          placeholders={[t("editor.action.resource.db.placeholder.database")]}
+          name="databaseName"
+        />
+
+        <ControlledElement
+          controlledType={["input", "password"]}
+          title={t("editor.action.resource.db.label.username_password")}
+          control={control}
+          defaultValue={[
+            resource?.content.username,
+            resource?.content.password,
+          ]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.username"),
+            t("editor.action.resource.db.placeholder.password"),
+          ]}
+          name={["username", "password"]}
+          styles={[
+            {},
+            {
+              ml: "8px",
+            },
+          ]}
+        />
+
         {isCloudVersion && (
           <>
             <div css={configItemTip}>
@@ -283,159 +186,73 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.advanced_option")}
         </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.db.label.ssl_options")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={resource?.content.ssl.ssl}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Switch
-                checked={value}
-                ml="16px"
-                colorScheme="techPurple"
-                onChange={(open) => {
-                  onChange(open)
-                  setSSLOpen(open)
-                  if (!open) {
-                    setSelfSigned(open)
-                  }
-                }}
-                onBlur={onBlur}
-              />
-            )}
-            name="ssl"
-          />
-          <span css={sslStyle}>
-            {t("editor.action.resource.db.tip.ssl_options")}
-          </span>
-        </div>
+
+        <ControlledElement
+          controlledType={["switch"]}
+          title={t("editor.action.resource.db.label.ssl_options")}
+          control={control}
+          defaultValue={resource?.content.ssl.ssl}
+          name="ssl"
+          onValueChange={(open) => {
+            setSSLOpen(!!open)
+            if (!open) {
+              setSelfSigned(!!open)
+            }
+          }}
+          contentLabel={t("editor.action.resource.db.tip.ssl_options")}
+        />
+
         {sslOpen && (
-          <div css={configItem}>
-            <div css={labelContainer}></div>
-            <Controller
-              control={control}
-              defaultValue={resource?.content.ssl.selfSigned}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Switch
-                  checked={value}
-                  ml="16px"
-                  colorScheme="techPurple"
-                  onChange={(open) => {
-                    onChange(open)
-                    setSelfSigned(open)
-                  }}
-                  onBlur={onBlur}
-                />
-              )}
-              name="selfSigned"
-            />
-            <span css={sslStyle}>
-              {t("editor.action.resource.db.label.self_signed_certificate")}
-            </span>
-          </div>
+          <ControlledElement
+            controlledType={["switch"]}
+            title={""}
+            control={control}
+            defaultValue={resource?.content.ssl.selfSigned}
+            name="selfSigned"
+            onValueChange={(open) => {
+              setSelfSigned(!!open)
+            }}
+            contentLabel={t(
+              "editor.action.resource.db.label.self_signed_certificate",
+            )}
+          />
         )}
         {selfSigned && (
           <>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                  *
-                </span>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.ca_certificate")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={resource?.content.ssl.caCert}
-                rules={{
-                  required: true,
-                }}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    onBlur={onBlur}
-                    onChange={onChange}
-                    value={value}
-                    autoSize
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="caCert"
-              />
-            </div>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.client_key")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={resource?.content.ssl.privateKey}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    autoSize
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="privateKey"
-              />
-            </div>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.client_certificate")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={resource?.content.ssl.clientCert}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    autoSize
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="clientCert"
-              />
-            </div>
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.resource.db.label.ca_certificate")}
+              isRequired
+              rules={{
+                required: true,
+              }}
+              control={control}
+              defaultValue={resource?.content.ssl.caCert}
+              name="caCert"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.resource.db.label.client_key")}
+              control={control}
+              defaultValue={resource?.content.ssl.privateKey}
+              name="privateKey"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.resource.db.label.client_certificate")}
+              control={control}
+              defaultValue={resource?.content.ssl.clientCert}
+              name="clientCert"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
           </>
         )}
       </div>
@@ -463,7 +280,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
                 data,
                 {
                   host: data.host,
-                  port: data.port.toString(),
+                  port: +data.port,
                   username: data.username,
                   password: data.password,
                   databaseName: data.databaseName,
