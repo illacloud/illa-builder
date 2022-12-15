@@ -13,6 +13,6 @@ export interface ContrilledElementProps {
   error?: boolean
   controlledType: string | string[]
   control: Control
-  rules?: RegisterOptions
+  rules?: RegisterOptions[]
   onValueChange?: (value: string | boolean) => void
 }

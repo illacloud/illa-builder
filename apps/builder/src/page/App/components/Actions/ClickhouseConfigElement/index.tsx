@@ -8,10 +8,11 @@ import {
   Divider,
   PaginationPreIcon,
   getColor,
+  WarningCircleIcon,
 } from "@illa-design/react"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { isCloudVersion } from "@/utils/typeHelper"
+import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { ClickhouseConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -30,6 +31,10 @@ import {
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
+import {
+  errorIconStyle,
+  errorMsgStyle,
+} from "@/page/App/components/Actions/FirebaseConfigElement/style"
 
 /**
  * include mariadb or tidb
@@ -79,9 +84,11 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           title={t("editor.action.resource.db.label.name")}
           control={control}
           defaultValue={resource?.resourceName ?? ""}
-          rules={{
-            required: true,
-          }}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}
           name="resourceName"
           tips={t("editor.action.resource.restapi.tip.name")}
@@ -106,9 +113,19 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             resource?.content.host,
             String(resource?.content.port || ""),
           ]}
-          rules={{
-            required: true,
-          }}
+          rules={[
+            {
+              required: t("editor.action.resource.error.invalid_url"),
+              validate: (value: string) => {
+                return isURL(value)
+                  ? true
+                  : t("editor.action.resource.error.invalid_url")
+              },
+            },
+            {
+              required: true,
+            },
+          ]}
           placeholders={[
             t("editor.action.resource.db.placeholder.hostname"),
             "8443",
@@ -121,6 +138,18 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
               ml: "8px",
             },
           ]}
+          tips={
+            <>
+              {formState.errors.host && (
+                <div css={errorMsgStyle}>
+                  <>
+                    <WarningCircleIcon css={errorIconStyle} />
+                    {formState.errors.host.message}
+                  </>
+                </div>
+              )}
+            </>
+          }
         />
         <ControlledElement
           controlledType={["input"]}
@@ -128,9 +157,11 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           title={t("editor.action.resource.db.label.database")}
           control={control}
           defaultValue={resource?.content.databaseName}
-          rules={{
-            required: true,
-          }}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
           placeholders={[t("editor.action.resource.db.placeholder.database")]}
           name="databaseName"
         />
@@ -223,9 +254,11 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
               controlledType={["textarea"]}
               title={t("editor.action.resource.db.label.ca_certificate")}
               isRequired
-              rules={{
-                required: true,
-              }}
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
               control={control}
               defaultValue={resource?.content.ssl.caCert}
               name="caCert"

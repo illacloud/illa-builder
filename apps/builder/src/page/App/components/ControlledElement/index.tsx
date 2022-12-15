@@ -15,7 +15,7 @@ import {
   InputNumber,
   TextArea,
 } from "@illa-design/react"
-import { Controller } from "react-hook-form"
+import { Controller, RegisterOptions } from "react-hook-form"
 import { ContrilledElementProps } from "./interface"
 
 export const ControlledElement: FC<ContrilledElementProps> = (props) => {
@@ -31,7 +31,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
     controlledType,
     control,
     error,
-    rules,
+    rules = [],
     onValueChange,
   } = props
 
@@ -50,6 +50,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
       name: string,
       defaultValue: string | boolean,
       placeholder: string,
+      rules: RegisterOptions,
       style: Record<string, string> | undefined = {},
     ) => {
       switch (type) {
@@ -159,7 +160,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
           )
       }
     },
-    [contentLabel, control, error, onValueChange, rules],
+    [contentLabel, control, error, onValueChange],
   )
 
   return (
@@ -181,6 +182,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
                 names[index],
                 defaultValues[index],
                 placeholders[index],
+                rules[index],
                 styles[index],
               ),
             )}
