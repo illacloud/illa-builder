@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useState, useCallback } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -59,6 +59,41 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
 
+  const handleConnectionTest = useCallback(() => {
+    const data = getValues()
+    onActionConfigElementTest(
+      data,
+      {
+        host: data.host,
+        port: +data.port,
+        username: data.username,
+        password: data.password,
+        databaseName: data.databaseName,
+        ssl: generateSSLConfig(sslOpen, data, "clickhouse"),
+      },
+      "clickhouse",
+      setTestLoading,
+    )
+  }, [setTestLoading, getValues, sslOpen])
+
+  const handleURLValidate = useCallback(
+    (value: string) => {
+      return isURL(value) ? true : t("editor.action.resource.error.invalid_url")
+    },
+    [t],
+  )
+
+  const handleSwitchValueChange = useCallback((open: boolean | string) => {
+    setSSLOpen(!!open)
+    if (!open) {
+      setSelfSigned(!!open)
+    }
+  }, [])
+
+  const handleSelfSignedValueChange = useCallback((open: boolean | string) => {
+    setSelfSigned(!!open)
+  }, [])
+
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
@@ -109,11 +144,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           rules={[
             {
               required: t("editor.action.resource.error.invalid_url"),
-              validate: (value: string) => {
-                return isURL(value)
-                  ? true
-                  : t("editor.action.resource.error.invalid_url")
-              },
+              validate: handleURLValidate,
             },
             {
               required: true,
@@ -217,12 +248,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           control={control}
           defaultValue={resource?.content.ssl.ssl}
           name="ssl"
-          onValueChange={(open) => {
-            setSSLOpen(!!open)
-            if (!open) {
-              setSelfSigned(!!open)
-            }
-          }}
+          onValueChange={handleSwitchValueChange}
           contentLabel={t("editor.action.resource.db.tip.ssl_options")}
         />
 
@@ -233,9 +259,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             control={control}
             defaultValue={resource?.content.ssl.selfSigned}
             name="selfSigned"
-            onValueChange={(open) => {
-              setSelfSigned(!!open)
-            }}
+            onValueChange={handleSelfSignedValueChange}
             contentLabel={t(
               "editor.action.resource.db.label.self_signed_certificate",
             )}
@@ -288,9 +312,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           variant="text"
           colorScheme="gray"
           type="button"
-          onClick={() => {
-            onBack()
-          }}
+          onClick={onBack}
         >
           {t("back")}
         </Button>
@@ -300,22 +322,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             loading={testLoading}
             disabled={!formState.isValid}
             type="button"
-            onClick={() => {
-              const data = getValues()
-              onActionConfigElementTest(
-                data,
-                {
-                  host: data.host,
-                  port: +data.port,
-                  username: data.username,
-                  password: data.password,
-                  databaseName: data.databaseName,
-                  ssl: generateSSLConfig(sslOpen, data, "clickhouse"),
-                },
-                "clickhouse",
-                setTestLoading,
-              )
-            }}
+            onClick={handleConnectionTest}
           >
             {t("editor.action.form.btn.test_connection")}
           </Button>
