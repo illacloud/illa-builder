@@ -128,7 +128,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           ]}
           placeholders={[
             t("editor.action.resource.db.placeholder.hostname"),
-            "8443",
+            "9440",
           ]}
           name={["host", "port"]}
           styles={[
@@ -162,7 +162,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
               required: true,
             },
           ]}
-          placeholders={[t("editor.action.resource.db.placeholder.database")]}
+          placeholders={[t("editor.action.resource.db.placeholder.default")]}
           name="databaseName"
         />
 

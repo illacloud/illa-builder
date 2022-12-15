@@ -43,8 +43,14 @@ export const DashboardResources: FC = () => {
     return resourcesList.map((resource: Resource<ResourceContent>) => {
       let dbName = "Null"
       switch (resource.resourceType) {
+        case "firebase":
+        case "smtp":
         case "restapi":
+        case "elasticsearch":
+        case "s3":
           break
+        case "clickhouse":
+        case "supabasedb":
         case "postgresql":
         case "mysql":
         case "tidb":
