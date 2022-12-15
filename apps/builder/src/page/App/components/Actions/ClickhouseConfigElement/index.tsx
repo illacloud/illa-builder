@@ -24,17 +24,15 @@ import {
   footerStyle,
   labelContainer,
   optionLabelStyle,
-} from "./style"
+  errorIconStyle,
+  errorMsgStyle,
+} from "@/page/App/components/Actions/ClickhouseConfigElement/style"
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
-import {
-  errorIconStyle,
-  errorMsgStyle,
-} from "@/page/App/components/Actions/FirebaseConfigElement/style"
 
 /**
  * include mariadb or tidb
