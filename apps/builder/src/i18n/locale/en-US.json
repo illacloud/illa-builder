@@ -1297,5 +1297,9 @@
         }
       }
     }
-  }
+  },
+  "If your database uses an inbound firewall, please add ILLA's IP addresses to your database's allowlist so ILLA can connect to your database": {
+    " ": "If your database uses an inbound firewall, please add ILLA's IP addresses to your database's allowlist so ILLA can connect to your database. "
+  },
+  "Copied!": "Copied!"
 }
