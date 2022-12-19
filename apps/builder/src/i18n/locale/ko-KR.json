@@ -1300,7 +1300,8 @@
   },
   "app_share": {
     "modal": {
-      "make_public": "Make the app public"
+      "make_public": "Make the app public",
+      "copy_link": "Copy"
     }
   }
 }
