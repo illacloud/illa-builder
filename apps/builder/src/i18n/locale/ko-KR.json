@@ -1297,5 +1297,10 @@
         }
       }
     }
+  },
+  "app_share": {
+    "modal": {
+      "make_public": "Make the app public"
+    }
   }
 }
