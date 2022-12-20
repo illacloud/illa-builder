@@ -1303,5 +1303,15 @@
       "make_public": "Make the app public",
       "copy_link": "Copy"
     }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Fixed"
+      },
+      "modal": {
+        "auto": "Auto"
+      }
+    }
   }
 }
