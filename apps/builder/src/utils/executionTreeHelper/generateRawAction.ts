@@ -66,5 +66,6 @@ export const generateRawAction = (
     content,
     $type: "ACTION",
     $dynamicAttrPaths,
+    data: undefined,
   }
 }

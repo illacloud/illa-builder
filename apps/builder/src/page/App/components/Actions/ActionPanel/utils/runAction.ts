@@ -144,7 +144,14 @@ const fetchActionResult = (
       resultCallback?.(calcResult, false)
       actionDisplayNameMapFetchResult[displayName] = calcResult
       if (!isTrigger) {
-        store.dispatch(executionActions.startExecutionReducer())
+        store.dispatch(
+          executionActions.updateExecutionByDisplayNameReducer({
+            displayName: displayName,
+            value: {
+              data: calcResult,
+            },
+          }),
+        )
       }
       successEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
