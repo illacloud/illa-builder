@@ -50,7 +50,7 @@ const canvasSizeOptions = [
     label: (
       <div css={optionListWrapperStyle}>
         <FrameResponsiveIcon />
-        <span>{i18n.t("page.size.modal.auto")}</span>
+        <span>{i18n.t("page.size.model.auto")}</span>
       </div>
     ),
     value: "auto",
@@ -59,7 +59,7 @@ const canvasSizeOptions = [
     label: (
       <div css={optionListWrapperStyle}>
         <FrameFixedIcon />
-        <span>{i18n.t("page.size.modal.fixed")}</span>
+        <span>{i18n.t("page.size.model.fixed")}</span>
       </div>
     ),
     value: "fixed",
