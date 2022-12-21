@@ -363,7 +363,8 @@
           },
           "title": {
             "advanced_option": "고급 구성",
-            "general_option": "만능인"
+            "general_option": "만능인",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
           }
         },
         "error": {
