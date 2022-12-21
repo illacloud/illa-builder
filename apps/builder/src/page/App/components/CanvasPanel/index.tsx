@@ -6,11 +6,7 @@ import { DotPanel } from "@/page/App/components/DotPanel"
 import { getFreezeState, getIllaMode } from "@/redux/config/configSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { CanvasPanelProps } from "./interface"
-import {
-  applyScaleContainerStyle,
-  messageStyle,
-  messageWrapperStyle,
-} from "./style"
+import { messageStyle, messageWrapperStyle, scaleContainerStyle } from "./style"
 
 export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const { ...otherProps } = props
@@ -22,7 +18,7 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   return (
     <div
       {...otherProps}
-      css={applyScaleContainerStyle(100)}
+      css={scaleContainerStyle}
       onClick={() => {
         FocusManager.switchFocus("canvas")
       }}

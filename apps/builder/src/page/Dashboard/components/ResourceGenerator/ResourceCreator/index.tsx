@@ -1,6 +1,8 @@
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
+import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
@@ -9,8 +11,6 @@ import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
 import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
 import { RootState } from "@/store"
-import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
-import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props

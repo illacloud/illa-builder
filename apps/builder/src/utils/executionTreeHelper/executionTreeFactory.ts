@@ -273,17 +273,7 @@ export class ExecutionTreeFactory {
       currentRawTree,
     )
 
-    const diffExecution: Diff<RawTreeShape, RawTreeShape>[] =
-      diff(currentExecution, currentRawTree) || []
-    const executionUpdatePaths = this.getUpdatePathFromDifferences(differences)
-
-    currentExecution = this.updateExecutionTreeByUpdatePaths(
-      executionUpdatePaths,
-      currentRawTree,
-      currentExecution,
-    )
-    const newDiff = [...differences, ...diffExecution]
-    const path = this.calcSubTreeSortOrder(newDiff, currentExecution)
+    const path = this.calcSubTreeSortOrder(differences, currentExecution)
     const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       currentExecution,
       path,
@@ -383,7 +373,6 @@ export class ExecutionTreeFactory {
       )
       dependenciesMap = { ...dependenciesMap, ...widgetOrActionDependencies }
     })
-
     Object.keys(dependenciesMap).forEach((key) => {
       dependenciesMap[key] = flatten(
         dependenciesMap[key].map((script) => {

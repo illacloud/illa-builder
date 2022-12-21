@@ -1,5 +1,11 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
+import {
+  FOOTER_MIN_HEIGHT,
+  HEADER_MIN_HEIGHT,
+  LEFT_MIN_WIDTH,
+  RIGHT_MIN_WIDTH,
+} from "@/page/App/components/DotPanel/renderSection"
 import { IllaMode } from "@/redux/config/configState"
 
 export function applyScaleStyle(
@@ -201,7 +207,7 @@ export const applyHeaderSectionWrapperStyle = (
     height: ${height};
     display: flex;
     flex-direction: column;
-    min-height: 96px;
+    min-height: ${HEADER_MIN_HEIGHT}px;
   `
 }
 
@@ -218,7 +224,7 @@ export const applyFooterSectionWrapperStyle = (
     height: ${height};
     display: flex;
     flex-direction: column-reverse;
-    min-height: 96px;
+    min-height: ${FOOTER_MIN_HEIGHT}px;
   `
 }
 
@@ -235,7 +241,7 @@ export const applyLeftSectionWrapperStyle = (
     width: ${width};
     display: flex;
     flex-direction: row;
-    min-width: ${isFold ? 0 : "240px"};
+    min-width: ${isFold ? 0 : `${LEFT_MIN_WIDTH}px`};
   `
 }
 
@@ -252,7 +258,7 @@ export const applyRightSectionWrapperStyle = (
     width: ${width};
     display: flex;
     flex-direction: row-reverse;
-    min-width: ${isFold ? 0 : "240px"};
+    min-width: ${isFold ? 0 : `${RIGHT_MIN_WIDTH}px`};
   `
 }
 
@@ -440,3 +446,58 @@ export const footerHeightTipsStyle = css`
   top: -20px;
   left: calc(50% - 18px);
 `
+
+export const pageContainerWrapperStyle = css`
+  width: 100%;
+  height: 100%;
+  border: 1px solid ${getColor("grayBlue", "09")};
+`
+
+export const applyPageContainerWrapperStyle = (mode: IllaMode) => {
+  const borderStyle =
+    mode === "edit"
+      ? css`
+          border: 1px solid ${getColor("grayBlue", "09")};
+        `
+      : null
+  return css`
+    width: 100%;
+    height: 100%;
+    ${borderStyle}
+  `
+}
+
+export const applyCanvasContainerWrapperStyle = (width: string) => {
+  return css`
+    width: ${width};
+    height: 100%;
+    position: relative;
+    background-color: ${getColor("white", "01")};
+    flex: none;
+    margin: 0 auto;
+  `
+}
+
+export const applyViewportContainerWrapperStyle = (
+  mode: IllaMode,
+  width?: number,
+  height?: number,
+) => {
+  return css`
+    width: ${mode === "production"
+      ? "100%"
+      : width != undefined
+      ? `${width}px`
+      : "100%"};
+    height: ${mode === "production"
+      ? "100%"
+      : height != undefined
+      ? `${height}px`
+      : "100%"};
+    background-color: ${mode === "edit"
+      ? "#f7f8fa"
+      : `${getColor("white", "01")}`};
+    overflow: auto;
+    margin: 0 auto;
+  `
+}

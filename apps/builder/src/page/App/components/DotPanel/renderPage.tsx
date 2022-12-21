@@ -1,6 +1,11 @@
 import { FC, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
+import {
+  applyCanvasContainerWrapperStyle,
+  applyPageContainerWrapperStyle,
+  pageContainerWrapperStyle,
+} from "@/page/App/components/DotPanel/style"
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
@@ -31,7 +36,7 @@ const getShowNameMapSectionNode = (pageNode: PageNode) => {
 }
 
 const getLeftAndRightWidth = (
-  canvasSize: "responsive" | "fixed",
+  canvasSize: "auto" | "fixed",
   width: number,
   containerWidth: number,
 ) => {
@@ -59,6 +64,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   const { props: pageProps } = pageNode
   const {
     canvasSize,
+    canvasWidth,
     hasLeft,
     hasRight,
     hasFooter,
@@ -133,7 +139,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     )
     return hasLeft
       ? isLeftFold
-        ? 32
+        ? 40
         : leftWidthPX <= LEFT_MIN_WIDTH
         ? LEFT_MIN_WIDTH
         : leftWidthPX
@@ -148,7 +154,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     )
     return hasRight
       ? isRightFold
-        ? 32
+        ? 40
         : rightWidthPX <= RIGHT_MIN_WIDTH
         ? RIGHT_MIN_WIDTH
         : rightWidthPX
@@ -351,71 +357,78 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   )
     return null
 
+  const finalCanvasWidth =
+    canvasSize === "fixed" ? `${canvasWidth}px` : `${canvasWidth}%`
+
   return (
-    <div style={{ width: "100%", height: "100%" }} ref={containerRef}>
-      {hasHeader && headerSection && currentPageDisplayName && (
-        <RenderHeaderSection
-          sectionNode={headerSection}
-          ref={headerRef}
-          topHeight={topHeight}
-          offsetTop={bounds.top}
-          mode={mode}
-          footerHeight={hasFooter ? bottomHeight : 0}
-          containerHeight={bounds.height}
-          currentPageDisplayName={currentPageDisplayName}
-          leftPosition={leftPosition}
-          rightPosition={rightPosition}
-        />
-      )}
-      {hasLeft && leftSection && currentPageDisplayName && (
-        <RenderLeftSection
-          sectionNode={leftSection}
-          ref={leftRef}
-          offsetLeft={bounds.left}
-          containerWidth={bounds.width}
-          mode={mode}
-          leftWidth={realLeftWidth}
-          rightWidth={realRightWidth}
-          currentPageDisplayName={currentPageDisplayName}
-          leftPosition={leftPosition}
-          showFoldIcon={showLeftFoldIcon}
-          isFold={isLeftFold}
-          setIsLeftFold={setIsLeftFold}
-        />
-      )}
-      {bodySection && currentPageDisplayName && (
-        <RenderSection sectionNode={bodySection} ref={bodyRef} mode={mode} />
-      )}
-      {hasRight && rightSection && currentPageDisplayName && (
-        <RenderRightSection
-          sectionNode={rightSection}
-          ref={rightRef}
-          offsetLeft={bounds.left}
-          containerWidth={bounds.width}
-          mode={mode}
-          leftWidth={realLeftWidth}
-          currentPageDisplayName={currentPageDisplayName}
-          rightPosition={rightPosition}
-          showFoldIcon={showRightFoldIcon}
-          isFold={isRightFold}
-          rightWidth={realRightWidth}
-          setIsRightFold={setIsRightFold}
-        />
-      )}
-      {hasFooter && footerSection && currentPageDisplayName && (
-        <RenderFooterSection
-          sectionNode={footerSection}
-          ref={footerRef}
-          bottomHeight={bottomHeight}
-          offsetTop={bounds.top}
-          containerHeight={bounds.height}
-          mode={mode}
-          headerHeight={hasHeader ? topHeight : 0}
-          currentPageDisplayName={currentPageDisplayName}
-          leftPosition={leftPosition}
-          rightPosition={rightPosition}
-        />
-      )}
+    <div css={applyCanvasContainerWrapperStyle(finalCanvasWidth)}>
+      <div css={applyPageContainerWrapperStyle(mode)} ref={containerRef}>
+        {hasHeader && headerSection && currentPageDisplayName && (
+          <RenderHeaderSection
+            sectionNode={headerSection}
+            ref={headerRef}
+            topHeight={topHeight}
+            offsetTop={bounds.top}
+            mode={mode}
+            footerHeight={hasFooter ? bottomHeight : 0}
+            containerHeight={bounds.height}
+            currentPageDisplayName={currentPageDisplayName}
+            leftPosition={leftPosition}
+            rightPosition={rightPosition}
+          />
+        )}
+        {hasLeft && leftSection && currentPageDisplayName && (
+          <RenderLeftSection
+            sectionNode={leftSection}
+            ref={leftRef}
+            offsetLeft={bounds.left}
+            containerWidth={bounds.width}
+            mode={mode}
+            leftWidth={realLeftWidth}
+            rightWidth={realRightWidth}
+            currentPageDisplayName={currentPageDisplayName}
+            leftPosition={leftPosition}
+            showFoldIcon={showLeftFoldIcon}
+            isFold={isLeftFold}
+            setIsLeftFold={setIsLeftFold}
+            canvasSize={canvasSize}
+          />
+        )}
+        {bodySection && currentPageDisplayName && (
+          <RenderSection sectionNode={bodySection} ref={bodyRef} mode={mode} />
+        )}
+        {hasRight && rightSection && currentPageDisplayName && (
+          <RenderRightSection
+            sectionNode={rightSection}
+            ref={rightRef}
+            offsetLeft={bounds.left}
+            containerWidth={bounds.width}
+            mode={mode}
+            leftWidth={realLeftWidth}
+            currentPageDisplayName={currentPageDisplayName}
+            rightPosition={rightPosition}
+            showFoldIcon={showRightFoldIcon}
+            isFold={isRightFold}
+            rightWidth={realRightWidth}
+            setIsRightFold={setIsRightFold}
+            canvasSize={canvasSize}
+          />
+        )}
+        {hasFooter && footerSection && currentPageDisplayName && (
+          <RenderFooterSection
+            sectionNode={footerSection}
+            ref={footerRef}
+            bottomHeight={bottomHeight}
+            offsetTop={bounds.top}
+            containerHeight={bounds.height}
+            mode={mode}
+            headerHeight={hasHeader ? topHeight : 0}
+            currentPageDisplayName={currentPageDisplayName}
+            leftPosition={leftPosition}
+            rightPosition={rightPosition}
+          />
+        )}
+      </div>
     </div>
   )
 }

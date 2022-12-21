@@ -1,10 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
-import {
-  LEFT_PANEL_WIDTH,
-  MIDDLE_PANEL_WIDTH,
-  RIGHT_PANEL_WIDTH,
-} from "@/style"
 
 export const navBarStyle = css`
   display: flex;
@@ -88,4 +83,86 @@ export const windowIconBodyStyle = css`
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
+`
+
+export const previewButtonGroupWrapperStyle = css`
+  margin-left: 24px;
+`
+
+export const closeIconStyle = css`
+  width: 8px;
+  height: 8px;
+  color: ${getColor("grayBlue", "04")};
+`
+
+export const hasMarginClosIconStyle = css`
+  margin-left: 8px;
+  margin-right: 8px;
+  ${closeIconStyle}
+`
+
+export const viewportFontStyle = css`
+  font-size: 12px;
+  color: #000;
+`
+
+export const downIconStyle = css`
+  color: ${getColor("grayBlue", "04")};
+`
+
+export const previewPopContentWrapperStyle = css`
+  width: 239px;
+  height: 168px;
+  background-color: ${getColor("white", "01")};
+  border: 1px solid ${getColor("grayBlue", "08")};
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  position: relative;
+`
+
+export const previewPopContentHeaderStyle = css`
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
+  padding: 8px 8px 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const resetLabelStyle = css`
+  font-weight: 500;
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+`
+export const resetIconStyle = css`
+  font-size: 14px;
+  color: ${getColor("grayBlue", "02")};
+`
+
+export const resetButtonContentStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+`
+
+export const inputAreaWrapperStyle = css`
+  padding: 8px 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const inputAreaLabelWrapperStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 20px;
+`
+
+export const saveButtonWrapperStyle = css`
+  padding: 0 16px;
+  position: absolute;
+  bottom: 16px;
+  width: 100%;
 `

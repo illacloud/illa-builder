@@ -1,10 +1,10 @@
 import { FC } from "react"
 import { Checkbox } from "@illa-design/react"
-import { actionItemStyle, codeEditorLabelStyle } from "./style"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { CheckboxInputProps } from "@/page/App/components/CheckboxInput/interface"
 import { checkboxItemStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
+import { CheckboxInputProps } from "@/page/App/components/CheckboxInput/interface"
 import { InputEditor } from "@/page/App/components/InputEditor"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { actionItemStyle, codeEditorLabelStyle } from "./style"
 
 export const CheckboxInput: FC<CheckboxInputProps> = (props) => {
   const {

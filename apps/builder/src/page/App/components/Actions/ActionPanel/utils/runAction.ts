@@ -8,6 +8,11 @@ import {
   Events,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
+import {
+  AuthActionTypeValue,
+  FirestoreActionTypeValue,
+  ServiceTypeValue,
+} from "@/redux/currentApp/action/firebaseAction"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import {
   BodyContent,
@@ -24,11 +29,6 @@ import {
 } from "@/utils/evaluateDynamicString/utils"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { isObject } from "@/utils/typeHelper"
-import {
-  AuthActionTypeValue,
-  FirestoreActionTypeValue,
-  ServiceTypeValue,
-} from "@/redux/currentApp/action/firebaseAction"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
@@ -144,7 +144,14 @@ const fetchActionResult = (
       resultCallback?.(calcResult, false)
       actionDisplayNameMapFetchResult[displayName] = calcResult
       if (!isTrigger) {
-        store.dispatch(executionActions.startExecutionReducer())
+        store.dispatch(
+          executionActions.updateExecutionByDisplayNameReducer({
+            displayName: displayName,
+            value: {
+              data: calcResult,
+            },
+          }),
+        )
       }
       successEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
