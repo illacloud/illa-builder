@@ -336,7 +336,8 @@
             "disable_introspection": "Disable Introspection",
             "value": "Value",
             "add_to": "Add to",
-            "header_prefix": "Header prefix"
+            "header_prefix": "Header prefix",
+            "key": "Key"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -841,7 +842,8 @@
       "tab_title": "Page",
       "tooltips": {
         "show_fold_icon": "Show a button to collapse or expand the panel",
-        "view_path": "A string after example.com/app/page/ to access this view"
+        "view_path": "A string after example.com/app/page/ to access this view",
+        "auto_cavnas_width": "The width of page as a percentage of the browser width."
       }
     },
     "validate_message": {
@@ -1178,12 +1180,12 @@
   "fram_size": {
     "invalide_tips": "Please enter a value not less than {{ size }}."
   },
-  "键值： editor": {
+  " editor": {
     "action": {
       "resource": {
         "db": {
           "label": {
-            "key": "Key"
+            "introspection": "Introspection"
           }
         }
       }
