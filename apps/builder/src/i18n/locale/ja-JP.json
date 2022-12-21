@@ -289,6 +289,14 @@
         },
         "tips": {
           "transformer": "Transformer でクエリ結果をさまざまな形式に変換できるようにする"
+        },
+        "graphql": {
+          "query": "Query",
+          "variables": "Variables",
+          "headers": "ヘッダー",
+          "placeholder": {
+            "query": "# Use $ to add a variable into your query (e.g. $category ) \nquery ($owner: String!, $name: String!){\n  repository(owner: $owner, name: $name) \n}"
+          }
         }
       },
       "resource": {
@@ -324,7 +332,11 @@
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL オプション",
             "username_password": "ユーザー名パスワード",
-            "self_signed_certificate": "自己署名証明書を使用"
+            "self_signed_certificate": "自己署名証明書を使用",
+            "disable_introspection": "Disable Introspection",
+            "value": "Value",
+            "add_to": "Add to",
+            "header_prefix": "Header prefix"
           },
           "placeholder": {
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
@@ -344,7 +356,8 @@
             "name": "このリソースにILLAで名前を付ける",
             "private_key": "Click here to see how to obtain this key",
             "ssl_options": "可能な場合は SSL を使用する",
-            "username_password": "資格情報は暗号化され、サーバーに安全に保存されます"
+            "username_password": "資格情報は暗号化され、サーバーに安全に保存されます",
+            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
           },
           "title": {
             "advanced_option": "詳細設定",
@@ -1157,14 +1170,23 @@
   "page": {
     "size": {
       "model": {
-        "fixed": "固定幅"
-      },
-      "modal": {
+        "fixed": "固定幅",
         "auto": "てきおう"
       }
     }
   },
   "fram_size": {
     "invalide_tips": "Please enter a value not less than {{ size }}."
+  },
+  "键值： editor": {
+    "action": {
+      "resource": {
+        "db": {
+          "label": {
+            "key": "Key"
+          }
+        }
+      }
+    }
   }
 }
