@@ -864,7 +864,13 @@
   "link_copied": "リンクをコピーしました",
   "network_error": "ネットワーク異常",
   "not_online_tips": "ネットワークが切断されています。このデバイスのネットワークを確認してください",
-  "preview": "プレビュー",
+  "preview": {
+    "viewport": {
+      "size": "Size",
+      "reset": "リセット",
+      "save": "保存"
+    }
+  },
   "remove_fail": "削除できませんでした",
   "rename": "名前を変更",
   "resources": "資源",
@@ -1156,5 +1162,8 @@
         "auto": "てきおう"
       }
     }
+  },
+  "fram_size": {
+    "invalide_tips": "Please enter a value not less than {{ size }}."
   }
 }
