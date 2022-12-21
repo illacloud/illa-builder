@@ -336,7 +336,8 @@
             "disable_introspection": "Disable Introspection",
             "value": "Value",
             "add_to": "Add to",
-            "header_prefix": "Header prefix"
+            "header_prefix": "Header prefix",
+            "key": "Key"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -841,7 +842,8 @@
       "tab_title": "页面",
       "tooltips": {
         "show_fold_icon": "显示一个按钮，用于收起或展开面板",
-        "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图"
+        "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图",
+        "auto_cavnas_width": "页面宽度占浏览器宽度的百分比。"
       }
     },
     "validate_message": {
@@ -1178,12 +1180,12 @@
   "fram_size": {
     "invalide_tips": "请输入不小于 {{ size }} 的值。"
   },
-  "键值： editor": {
+  " editor": {
     "action": {
       "resource": {
         "db": {
           "label": {
-            "key": "Key"
+            "introspection": "Introspection"
           }
         }
       }
