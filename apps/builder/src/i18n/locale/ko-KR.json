@@ -864,7 +864,13 @@
   "link_copied": "링크 복사됨",
   "network_error": "네트워크 이상",
   "not_online_tips": "네트워크 연결이 끊어졌습니다. 이 장치의 네트워크를 확인하십시오.",
-  "preview": "시사",
+  "preview": {
+    "viewport": {
+      "size": "Size",
+      "reset": "초기화",
+      "save": "저장"
+    }
+  },
   "remove_fail": "삭제하지 못했습니다",
   "rename": "이름 바꾸기",
   "resources": "자원",
@@ -1156,5 +1162,8 @@
         "auto": "적응성"
       }
     }
+  },
+  "fram_size": {
+    "invalide_tips": "Please enter a value not less than {{ size }}."
   }
 }
