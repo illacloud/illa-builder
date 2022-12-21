@@ -337,8 +337,7 @@
             "value": "Value",
             "add_to": "Add to",
             "header_prefix": "Header prefix",
-            "key": "Key",
-            "introspection": "Introspection"
+            "key": "Key"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -363,7 +362,8 @@
           },
           "title": {
             "advanced_option": "Advanced Options",
-            "general_option": "GENERAL"
+            "general_option": "GENERAL",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
           }
         },
         "error": {
@@ -1180,5 +1180,16 @@
   },
   "fram_size": {
     "invalide_tips": "Please enter a value not less than {{ size }}."
+  },
+  " editor": {
+    "action": {
+      "resource": {
+        "db": {
+          "label": {
+            "introspection": "Introspection"
+          }
+        }
+      }
+    }
   }
 }
