@@ -869,7 +869,8 @@
       "size": "Size",
       "reset": "リセット",
       "save": "保存"
-    }
+    },
+    "button_text": "プレビュー"
   },
   "remove_fail": "削除できませんでした",
   "rename": "名前を変更",
