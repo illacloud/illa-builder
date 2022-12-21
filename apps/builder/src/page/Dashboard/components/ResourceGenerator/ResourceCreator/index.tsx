@@ -11,6 +11,7 @@ import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenera
 import { RootState } from "@/store"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
+import { GraphQLConfigElement } from "@/page/App/components/Actions/GraphQLConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
@@ -81,6 +82,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             onFinished={onFinished}
           />
         )
+      case "graphql":
+        return <GraphQLConfigElement {...configElementProps} />
       case "s3":
         return (
           <S3ConfigElement

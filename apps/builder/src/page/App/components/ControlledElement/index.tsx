@@ -11,16 +11,18 @@ import {
   Input,
   Password,
   Switch,
+  Select,
   getColor,
   InputNumber,
   TextArea,
+  Checkbox,
 } from "@illa-design/react"
 import { Controller, RegisterOptions } from "react-hook-form"
 import { ContrilledElementProps } from "./interface"
 
 export const ControlledElement: FC<ContrilledElementProps> = (props) => {
   const {
-    title,
+    title = "",
     contentLabel,
     isRequired = false,
     defaultValue,
@@ -31,6 +33,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
     controlledType,
     control,
     error,
+    options = [],
     rules = [],
     onValueChange,
   } = props
@@ -70,6 +73,48 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
                   error={error}
                   borderColor="techPurple"
                   placeholder={placeholder}
+                />
+              )}
+              name={name}
+            />
+          )
+        case "checkbox":
+          return (
+            <>
+              <Controller
+                control={control}
+                defaultValue={defaultValue}
+                rules={rules}
+                render={({ field: { value, onChange, onBlur } }) => (
+                  <Checkbox
+                    {...style}
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    checked={value}
+                    placeholder={placeholder}
+                  />
+                )}
+                name={name}
+              />
+              <span css={sslStyle}>{contentLabel}</span>
+            </>
+          )
+        case "select":
+          return (
+            <Controller
+              control={control}
+              defaultValue={defaultValue}
+              rules={rules}
+              render={({ field: { value, onChange, onBlur } }) => (
+                <Select
+                  value={value}
+                  onBlur={onBlur}
+                  onChange={(value) => {
+                    onValueChange?.(value)
+                    onChange(value)
+                  }}
+                  colorScheme="techPurple"
+                  options={options}
                 />
               )}
               name={name}

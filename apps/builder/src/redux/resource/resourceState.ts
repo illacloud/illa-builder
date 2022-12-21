@@ -7,6 +7,7 @@ import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { S3Resource } from "./s3Resource"
 import { FirebaseResource } from "@/redux/resource/firebaseResource"
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
+import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
 
 export type ResourceType =
   | "firebase"
@@ -31,6 +32,7 @@ export type ResourceContent =
   | S3Resource
   | ElasticSearchResource
   | MysqlLikeResource
+  | GraphQLResource<GraphQLAuth>
   | RestApiResource<RestApiAuth>
   | RedisResource
   | MongoDbResource<MongoDbConfig>
