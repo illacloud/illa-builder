@@ -363,7 +363,8 @@
           },
           "title": {
             "advanced_option": "詳細設定",
-            "general_option": "ユニバーサル"
+            "general_option": "ユニバーサル",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
           }
         },
         "error": {
