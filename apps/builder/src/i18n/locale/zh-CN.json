@@ -864,7 +864,13 @@
   "link_copied": "链接已复制",
   "network_error": "网络异常",
   "not_online_tips": "网络已断开，请检查此设备的网络",
-  "preview": "预览",
+  "preview": {
+    "viewport": {
+      "size": "尺寸",
+      "reset": "重置",
+      "save": "保存"
+    }
+  },
   "remove_fail": "删除失败",
   "rename": "重命名",
   "resources": "资源",
@@ -1156,5 +1162,8 @@
         "auto": "自适应"
       }
     }
+  },
+  "fram_size": {
+    "invalide_tips": "请输入不小于 {{ size }} 的值。"
   }
 }
