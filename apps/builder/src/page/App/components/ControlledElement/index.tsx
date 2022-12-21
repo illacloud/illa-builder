@@ -6,7 +6,7 @@ import {
   configItemTip,
   applyConfigItemContainer,
 } from "./style"
-import { FC, useCallback } from "react"
+import { FC, Fragment, useCallback } from "react"
 import {
   Input,
   Password,
@@ -89,8 +89,12 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
                   <Checkbox
                     {...style}
                     onBlur={onBlur}
-                    onChange={onChange}
+                    onChange={(value) => {
+                      onChange(value)
+                      onValueChange?.(value)
+                    }}
                     checked={value}
+                    colorScheme="techPurple"
                     placeholder={placeholder}
                   />
                 )}
@@ -221,16 +225,18 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
         </div>
         {!!filteredType.length && (
           <div css={hostInputContainer}>
-            {filteredType.map((type, index) =>
-              getElementByControlledType(
-                type,
-                names[index],
-                defaultValues[index],
-                placeholders[index],
-                rules[index],
-                styles[index],
-              ),
-            )}
+            {filteredType.map((type, index) => (
+              <Fragment key={index}>
+                {getElementByControlledType(
+                  type,
+                  names[index],
+                  defaultValues[index],
+                  placeholders[index],
+                  rules[index],
+                  styles[index],
+                )}
+              </Fragment>
+            ))}
           </div>
         )}
       </div>

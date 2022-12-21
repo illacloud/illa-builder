@@ -1,12 +1,5 @@
 import { FC, useCallback, useState } from "react"
-import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { Input, getColor } from "@illa-design/react"
-import {
-  applyConfigItemLabelText,
-  configItem,
-  labelContainer,
-} from "@/page/App/components/Actions/GraphQLConfigElement/style"
 import { APIKeyAuthPanelProps } from "./interface"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
@@ -16,7 +9,6 @@ import {
 
 export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
   const { control, auth } = props
-
   const { t } = useTranslation()
   const [addToValue, setAddToValue] = useState<APIKeyAddToValue>(
     APIKeyAddToValue.HEADER,
@@ -29,7 +21,7 @@ export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
   return (
     <>
       <ControlledElement
-        title={t("editor.action.resource.restapi.label.bearerToken")}
+        title={t("editor.action.resource.db.label.key")}
         isRequired
         defaultValue={auth?.key ?? ""}
         name={"key"}
@@ -42,7 +34,7 @@ export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
         control={control}
       />
       <ControlledElement
-        title={t("editor.action.resource.restapi.label.bearerToken")}
+        title={t("editor.action.resource.db.label.value")}
         isRequired
         defaultValue={auth?.value ?? ""}
         name={"value"}
@@ -55,7 +47,7 @@ export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
         control={control}
       />
       <ControlledElement
-        title={t("editor.action.resource.restapi.label.bearerToken")}
+        title={t("editor.action.resource.db.label.add_to")}
         isRequired
         defaultValue={auth?.addTo ?? APIKeyAddToValue.HEADER}
         name={"addTo"}
@@ -71,7 +63,7 @@ export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
       />
       {addToValue === APIKeyAddToValue.URLPARAMS && (
         <ControlledElement
-          title={t("editor.action.resource.restapi.label.bearerToken")}
+          title={t("editor.action.resource.db.label.header_prefix")}
           defaultValue={auth?.headerPrefix ?? "Bearer"}
           name={"headerPrefix"}
           controlledType={["input"]}

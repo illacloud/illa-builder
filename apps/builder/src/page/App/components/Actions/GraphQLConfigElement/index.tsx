@@ -81,11 +81,20 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
     resource?.content.authentication ?? GraphQLAuthValue.NONE,
   )
   const [testLoading, setTestLoading] = useState(false)
+  const [disableIntrospection, setDisableIntrospection] =
+    useState<boolean>(false)
 
   const handleURLValidate = useCallback(
     (value: string) =>
       isURL(value) ? true : t("editor.action.resource.error.invalid_url"),
     [t],
+  )
+
+  const handleDisableIntrospectionChange = useCallback(
+    (value: string | boolean) => {
+      setDisableIntrospection(!!value)
+    },
+    [],
   )
 
   const handleAuthenticationChange = useCallback((value: string | boolean) => {
@@ -248,7 +257,6 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
             auth={resource?.content.authContent as ApiKeyAuth}
           />
         )}
-
         <Divider
           direction="horizontal"
           ml="24px"
@@ -258,16 +266,21 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
           w="unset"
         />
         <div css={optionLabelStyle}>
-          {t("editor.action.resource.title.graphql_introspection")}
+          {t("editor.action.resource.db.title.graphql_introspection")}
         </div>
-
         <ControlledElement
           title=""
-          contentLabel={t("editor.action.resource.label.graphql_introspection")}
+          contentLabel={
+            !disableIntrospection
+              ? t("editor.action.resource.db.label.introspection")
+              : t("editor.action.resource.db.label.disable_introspection")
+          }
           defaultValue={resource?.content.disableIntrospection ?? false}
           name={"disableIntrospection"}
           controlledType={["checkbox"]}
+          onValueChange={handleDisableIntrospectionChange}
           control={control}
+          tips={t("editor.action.resource.db.tip.introspection")}
         />
       </div>
 
