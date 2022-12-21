@@ -1,10 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
-import {
-  LEFT_PANEL_WIDTH,
-  MIDDLE_PANEL_WIDTH,
-  RIGHT_PANEL_WIDTH,
-} from "@/style"
 
 export const navBarStyle = css`
   display: flex;
@@ -88,4 +83,25 @@ export const windowIconBodyStyle = css`
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
+`
+
+export const previewButtonGroupWrapperStyle = css`
+  margin-left: 24px;
+`
+
+export const closeIconStyle = css`
+  width: 8px;
+  height: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+  color: ${getColor("grayBlue", "04")};
+`
+
+export const viewportFontStyle = css`
+  font-size: 12px;
+  color: #000;
+`
+
+export const downIconStyle = css`
+  color: ${getColor("grayBlue", "04")};
 `

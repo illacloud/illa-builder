@@ -104,6 +104,7 @@ export interface RenderLeftSectionProps {
   showFoldIcon: boolean
   isFold: boolean
   setIsLeftFold: (isFold: boolean) => void
+  canvasSize: "auto" | "fixed"
 }
 
 export interface RenderRightSectionProps {
@@ -118,6 +119,7 @@ export interface RenderRightSectionProps {
   showFoldIcon: boolean
   isFold: boolean
   setIsRightFold: (isFold: boolean) => void
+  canvasSize: "auto" | "fixed"
 }
 
 export interface RenderContainerProps {

@@ -18,6 +18,8 @@ import {
   globalColor,
   illaPrefix,
   useMessage,
+  CloseIcon,
+  DownIcon,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
@@ -38,17 +40,57 @@ import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import { fromNow } from "@/utils/dayjs"
 import {
+  closeIconStyle,
   descriptionStyle,
+  downIconStyle,
   informationStyle,
   logoCursorStyle,
   nameStyle,
   navBarStyle,
+  previewButtonGroupWrapperStyle,
   rowCenter,
   saveFailedTipStyle,
   viewControlStyle,
+  viewportFontStyle,
   windowIconBodyStyle,
   windowIconStyle,
 } from "./style"
+import { getViewportSizeSelector } from "@/redux/currentApp/editor/components/componentsSelector"
+
+const PreviewButtonGroup: FC = () => {
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const viewportSize = useSelector(getViewportSizeSelector)
+  return (
+    <div css={previewButtonGroupWrapperStyle}>
+      <Button
+        colorScheme="gray"
+        variant="outline"
+        bdRadius="8px 0 0 8px"
+        rightIcon={<DownIcon css={downIconStyle} />}
+      >
+        <span css={viewportFontStyle}>
+          {viewportSize.viewportWidth ?? "--"}
+        </span>
+        <CloseIcon css={closeIconStyle} />
+        <span css={viewportFontStyle}>
+          {viewportSize.viewportHeight ?? "--"}
+        </span>
+      </Button>
+      <Button
+        colorScheme="gray"
+        leftIcon={<FullScreenIcon />}
+        variant="outline"
+        bdRadius="0 8px 8px 0"
+        onClick={() => {
+          dispatch(configActions.updateIllaMode("preview"))
+        }}
+      >
+        {t("preview")}
+      </Button>
+    </div>
+  )
+}
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
@@ -162,6 +204,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             >
               <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
             </span>
+            <PreviewButtonGroup />
           </>
         )}
       </div>
@@ -208,15 +251,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 onClick={handleClickFreezeIcon}
               />
             </Trigger>
-            <Button
-              colorScheme="gray"
-              leftIcon={<FullScreenIcon />}
-              onClick={() => {
-                dispatch(configActions.updateIllaMode("preview"))
-              }}
-            >
-              {t("preview")}
-            </Button>
+
             <Button
               loading={deployLoading}
               colorScheme="techPurple"

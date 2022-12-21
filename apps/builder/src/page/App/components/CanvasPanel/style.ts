@@ -1,18 +1,13 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
-export function applyScaleContainerStyle(scale: number): SerializedStyles {
-  return css`
-    transform: scale(${scale / 100});
-    transform-origin: 50% 0;
-    background: ${globalColor(`--${illaPrefix}-white-01`)};
-    box-sizing: border-box;
-    min-width: 148px;
-    overflow-y: hidden;
-    height: 100%;
-    position: relative;
-  `
-}
+export const scaleContainerStyle = css`
+  box-sizing: border-box;
+  min-width: 148px;
+  height: 100%;
+  background: #f7f8fa;
+  overflow: auto;
+`
 
 export const messageWrapperStyle = css`
   top: 16px;
