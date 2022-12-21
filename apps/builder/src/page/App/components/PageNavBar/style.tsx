@@ -60,6 +60,9 @@ export const saveFailedTipStyle = css`
 export function windowIconStyle(selected: boolean): SerializedStyles {
   return css`
     flex: none;
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
     color: ${selected
       ? globalColor(`--${illaPrefix}-grayBlue-03`)
       : globalColor(`--${illaPrefix}-grayBlue-05`)};
