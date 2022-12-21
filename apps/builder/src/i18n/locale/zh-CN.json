@@ -363,7 +363,8 @@
           },
           "title": {
             "advanced_option": "高级配置",
-            "general_option": "通用"
+            "general_option": "通用",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
           }
         },
         "error": {
