@@ -864,7 +864,13 @@
   "link_copied": "Link Copied",
   "network_error": "Network disconnected. Please check this device's network",
   "not_online_tips": "Network disconnected. Please check this device's network",
-  "preview": "Preview",
+  "preview": {
+    "viewport": {
+      "size": "Size",
+      "reset": "Reset",
+      "save": "Save"
+    }
+  },
   "remove_fail": "Failed to remove",
   "rename": "Rename",
   "resources": "Resources",
@@ -1156,5 +1162,8 @@
         "auto": "Auto"
       }
     }
+  },
+  "fram_size": {
+    "invalide_tips": "Please enter a value not less than {{ size }}."
   }
 }
