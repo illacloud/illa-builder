@@ -450,7 +450,22 @@ export const footerHeightTipsStyle = css`
 export const pageContainerWrapperStyle = css`
   width: 100%;
   height: 100%;
+  border: 1px solid ${getColor("grayBlue", "09")};
 `
+
+export const applyPageContainerWrapperStyle = (mode: IllaMode) => {
+  const borderStyle =
+    mode === "edit"
+      ? css`
+          border: 1px solid ${getColor("grayBlue", "09")};
+        `
+      : null
+  return css`
+    width: 100%;
+    height: 100%;
+    ${borderStyle}
+  `
+}
 
 export const applyCanvasContainerWrapperStyle = (width: string) => {
   return css`
@@ -458,7 +473,6 @@ export const applyCanvasContainerWrapperStyle = (width: string) => {
     height: 100%;
     position: relative;
     background-color: ${getColor("white", "01")};
-    border: 1px solid ${getColor("grayBlue", "09")};
     flex: none;
     margin: 0 auto;
   `
@@ -480,8 +494,9 @@ export const applyViewportContainerWrapperStyle = (
       : height != undefined
       ? `${height}px`
       : "100%"};
-    background-color: #f7f8fa;
-    border: 1px solid black;
+    background-color: ${mode === "edit"
+      ? "#f7f8fa"
+      : `${getColor("white", "01")}`};
     overflow: auto;
     margin: 0 auto;
   `

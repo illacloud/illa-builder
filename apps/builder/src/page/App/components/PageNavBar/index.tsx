@@ -92,9 +92,26 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
     typeof viewportWidth != "undefined" || typeof viewportHeight != "undefined"
 
   const handleUpdateInputWidth = useCallback((value?: number) => {
+    setInputWidth(value)
+  }, [])
+  const handleOnBlurInputHeight = useCallback(() => {
     if (
-      value != undefined &&
-      value < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH
+      inputHeight != undefined &&
+      inputHeight < BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT
+    ) {
+      message.error({
+        content: t("page.app.preview.inputWidthError", {
+          size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
+        }),
+      })
+      setInputHeight(BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT)
+      return
+    }
+  }, [inputHeight, message, t])
+  const handleOnBlurInputWidth = useCallback(() => {
+    if (
+      inputWidth != undefined &&
+      inputWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH
     ) {
       message.error({
         content: t("page.app.preview.inputWidthError", {
@@ -104,26 +121,10 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
       setInputWidth(BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH)
       return
     }
-    setInputWidth(value)
+  }, [inputWidth, message, t])
+  const handleUpdateInputHeight = useCallback((value?: number) => {
+    setInputHeight(value)
   }, [])
-  const handleUpdateInputHeight = useCallback(
-    (value?: number) => {
-      if (
-        value != undefined &&
-        value < BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT
-      ) {
-        message.error({
-          content: t("page.app.preview.inputWidthError", {
-            size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
-          }),
-        })
-        setInputHeight(BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT)
-        return
-      }
-      setInputHeight(value)
-    },
-    [message, t],
-  )
   const onClickSaveButton = useCallback(() => {
     dispatch(
       componentsActions.updateViewportSizeReducer({
@@ -173,6 +174,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
             value={inputWidth}
             placeholder="--"
             onChange={handleUpdateInputWidth}
+            onBlur={handleOnBlurInputWidth}
           />
           <CloseIcon css={closeIconStyle} />
           <InputNumber
@@ -180,6 +182,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
             value={inputHeight}
             placeholder="--"
             onChange={handleUpdateInputHeight}
+            onBlur={handleOnBlurInputHeight}
           />
         </div>
       </div>

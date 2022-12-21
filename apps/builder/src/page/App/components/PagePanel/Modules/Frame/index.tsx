@@ -421,66 +421,71 @@ export const PageFrame: FC = () => {
     (value?: number) => {
       if (!currentPageDisplayName || value == undefined) return
 
-      if (canvasSize === "fixed") {
-        let newProps: Partial<PageNodeProps> = {
-          canvasWidth: value,
-        }
-        if (value < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
-          message.error({
-            content: t("page.app.preview.inputWidthError", {
-              size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
-            }),
-          })
-          newProps = {
-            canvasWidth: BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH,
-            leftWidth: LEFT_MIN_WIDTH,
-            rightWidth: RIGHT_MIN_WIDTH,
-          }
-        }
-        dispatch(
-          componentsActions.updateTargetPagePropsReducer({
-            pageName: currentPageDisplayName,
-            newProps,
+      let newProps = {
+        canvasWidth: value,
+      }
+      dispatch(
+        componentsActions.updateTargetPagePropsReducer({
+          pageName: currentPageDisplayName,
+          newProps,
+        }),
+      )
+    },
+    [currentPageDisplayName, dispatch],
+  )
+
+  const handleBlurCanvasWidth = useCallback(() => {
+    if (canvasSize === "fixed") {
+      if (canvasWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
+        message.error({
+          content: t("page.app.preview.inputWidthError", {
+            size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
           }),
-        )
-      } else {
-        let newProps = {
-          canvasWidth: value,
-        }
-        const originalWidth = canvasShape.canvasWidth / (finalCanvasWidth / 100)
-        const currentWidth = originalWidth * (value / 100)
-        if (currentWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
-          message.error({
-            content: t("page.app.preview.inputWidthError", {
-              size:
-                (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
-                (originalWidth / 100),
-            }),
-          })
-          newProps = {
-            canvasWidth:
-              (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
-              (originalWidth / 100),
-          }
-        }
+        })
         dispatch(
           componentsActions.updateTargetPagePropsReducer({
             pageName: currentPageDisplayName,
-            newProps,
+            newProps: {
+              canvasWidth: BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH,
+              leftWidth: LEFT_MIN_WIDTH,
+              rightWidth: RIGHT_MIN_WIDTH,
+            },
           }),
         )
       }
-    },
-    [
-      canvasShape.canvasWidth,
-      canvasSize,
-      currentPageDisplayName,
-      dispatch,
-      finalCanvasWidth,
-      message,
-      t,
-    ],
-  )
+    } else {
+      const originalWidth = canvasShape.canvasWidth / (finalCanvasWidth / 100)
+      const currentWidth = originalWidth * (canvasWidth / 100)
+      if (currentWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
+        message.error({
+          content: t("page.app.preview.inputWidthError", {
+            size:
+              (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
+              (originalWidth / 100),
+          }),
+        })
+        dispatch(
+          componentsActions.updateTargetPagePropsReducer({
+            pageName: currentPageDisplayName,
+            newProps: {
+              canvasWidth:
+                (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
+                (originalWidth / 100),
+            },
+          }),
+        )
+      }
+    }
+  }, [
+    canvasShape.canvasWidth,
+    canvasSize,
+    canvasWidth,
+    currentPageDisplayName,
+    dispatch,
+    finalCanvasWidth,
+    message,
+    t,
+  ])
 
   return (
     <PanelBar title={t("editor.page.panel_bar_title.frame")}>
@@ -502,6 +507,7 @@ export const PageFrame: FC = () => {
             value={finalCanvasWidth.toFixed(0)}
             borderColor="techPurple"
             onChange={handleChangeCanvasWidth}
+            onBlur={handleBlurCanvasWidth}
           />
         </SetterPadding>
       </LeftAndRightLayout>

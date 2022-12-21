@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
   applyCanvasContainerWrapperStyle,
+  applyPageContainerWrapperStyle,
   pageContainerWrapperStyle,
 } from "@/page/App/components/DotPanel/style"
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
@@ -361,7 +362,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
 
   return (
     <div css={applyCanvasContainerWrapperStyle(finalCanvasWidth)}>
-      <div css={pageContainerWrapperStyle} ref={containerRef}>
+      <div css={applyPageContainerWrapperStyle(mode)} ref={containerRef}>
         {hasHeader && headerSection && currentPageDisplayName && (
           <RenderHeaderSection
             sectionNode={headerSection}
