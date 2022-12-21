@@ -864,7 +864,14 @@
   "link_copied": "リンクをコピーしました",
   "network_error": "ネットワーク異常",
   "not_online_tips": "ネットワークが切断されています。このデバイスのネットワークを確認してください",
-  "preview": "プレビュー",
+  "preview": {
+    "viewport": {
+      "size": "Size",
+      "reset": "リセット",
+      "save": "保存"
+    },
+    "button_text": "プレビュー"
+  },
   "remove_fail": "削除できませんでした",
   "rename": "名前を変更",
   "resources": "資源",
@@ -1030,9 +1037,7 @@
       "placeholder": {
         "email": "メールアドレスを入力してください",
         "username": "ユーザー名を入力してください",
-        "verification_code": "確認コードを入力してください",
-        "enter_verification_code": "Enter verification code",
-        "enter_password": "Enter your password"
+        "verification_code": "確認コードを入力してください"
       },
       "tips": {
         "fail": "登録に失敗しました",
@@ -1040,13 +1045,7 @@
         "success": "登録完了",
         "verification_code": "確認コードが送信されました"
       },
-      "title": "登録",
-      "agreement": {
-        "using_illa": "By using ILLA you are agreeing to our",
-        "privacy_policy": "privacy policy",
-        "terms_of_service": "terms of service",
-        "and": "and"
-      }
+      "title": "登録"
     }
   },
   "widget": {
@@ -1155,147 +1154,17 @@
       "vertical": "肖像画"
     }
   },
-  "mob": {
-    "user": {
-      "sign_up": {
-        "fields": {
-          "password": "Password(at least 6 characters)"
-        }
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "固定幅"
+      },
+      "modal": {
+        "auto": "てきおう"
       }
     }
   },
-  "user_management": {
-    "role": {
-      "owner": "Owner",
-      "admin": "Administer",
-      "editor": "Editor",
-      "viewer": "Viewer"
-    }
-  },
-  "invite_members": "Invite members",
-  "invite_link": "Invite link",
-  "invite_link_copy": "Copy",
-  "turn_off_invite_links": "Turn off invite links",
-  "update_invite_links": "Update invite links",
-  "share_secret_link": "Share a secret link people can use to join your team.",
-  "turn_on_invite_links": "Turn on invite links.",
-  "invite_by_email": "Invite by email",
-  "invite": "Invite",
-  "invited_suc": "Invited successfully",
-  "failed_to_invite": "Failed to invite",
-  "updated_suc": "Updated successfully",
-  "failed_to_update": "Failed to update",
-  "Member": "Member",
-  "Permission": "Permission",
-  "member": "Member",
-  "permission": "Permission",
-  "operation": "Operation",
-  "transfer_ownership": "Transfer ownership",
-  "remove": "Remove",
-  "Are you sure you want to transfer ownership": "Are you sure you want to transfer ownership?",
-  "After transferring, your permission will change to administrator": {
-    "": "After transferring, your permission will change to administrator."
-  },
-  "Transfer": "Transfer",
-  "Cancel": "Cancel",
-  "Successfully transferred": "Successfully transferred",
-  "Failed to transfer": "Failed to transfer",
-  "Are you sure you want to remove [username]?": "Are you sure you want to remove [username]?",
-  "After removal, the user will not be able to access the team": {
-    "": "After removal, the user will not be able to access the team."
-  },
-  "Remove": "Remove",
-  "Successfully removed": "Successfully removed",
-  "Failed to remove": "Failed to remove",
-  "Pending": "Pending",
-  "Updated successfully": "Updated successfully",
-  "Failed to update": "Failed to update",
-  "Allow editors and viewers to invite members": {
-    " ": "Allow editors and viewers to invite members. "
-  },
-  "Create team": "Create team",
-  "Team name": "Team name",
-  "Team domain": "Team domain",
-  "": {
-    "illacloud": {
-      "com": ".illacloud.com"
-    }
-  },
-  "Save": "Save",
-  "already existed": {
-    "": "already existed."
-  },
-  "is available": {
-    "": "is available."
-  },
-  "Invitation code": "Invitation code",
-  "ILLA Cloud is in beta test": {
-    " Please input your invitation code": {
-      "": "ILLA Cloud is in beta test. Please input your invitation code."
-    }
-  },
-  "Need an invitation code?": "Need an invitation code?",
-  "Contact ILLA": "Contact ILLA",
-  "Create a new team": "Create a new team",
-  "You have no teams": "You have no teams",
-  "Workspace": "Workspace",
-  "Team settings": "Team settings",
-  "ILLA Builder": "ILLA Builder",
-  "Apps": "Apps",
-  "App": "App",
-  "Resources": "Resources",
-  "Resource": "Resource",
-  "Edited at a minute ago": "Edited at a minute ago",
-  "Edited at [n] minutes ago": "Edited at [n] minutes ago",
-  "Edited at an hour ago": "Edited at an hour ago",
-  "Edited at [n] hours ago": "Edited at [n] hours ago",
-  "Edited at a day ago": "Edited at a day ago",
-  "Edited at [n] days ago": "Edited at [n] days ago",
-  "Edited at just now": "Edited at just now",
-  "Leave team": "Leave team",
-  "Delete team": "Delete team",
-  "Are you sure you want to leave this team?": "Are you sure you want to leave this team?",
-  "You will not be able to access any team resources after leaving": {
-    "": "You will not be able to access any team resources after leaving."
-  },
-  "Leave": "Leave",
-  "Are you sure you want to delete this team?": "Are you sure you want to delete this team?",
-  "The team domain will be unavailable after deletion, and all members will be removed from this team": {
-    "": "The team domain will be unavailable after deletion, and all members will be removed from this team."
-  },
-  "Delete": "Delete",
-  "Team info": "Team info",
-  "Edit": "Edit",
-  "Save Changes": "Save Changes",
-  "Adjust the avater": "Adjust the avater",
-  "Crop": "Crop",
-  "For the better editing experience, please visit this page on desktop": "For the better editing experience, please visit this page on desktop",
-  "Continue to visit": "Continue to visit",
-  "Create successfully": {
-    " It will take about 1 to 3 minutes to build the domain": {
-      " Visit the new team via www": {
-        "illacloud": {
-          "com/[domain] before the build succeeds": {
-            " ": "Create successfully. It will take about 1 to 3 minutes to build the domain. Visit the new team via www.illacloud.com/[domain] before the build succeeds. "
-          }
-        }
-      }
-    }
-  },
-  "It will take about 1 to 3 minutes to build the new domain": {
-    " Visit the new team via www": {
-      "illacloud": {
-        "com/[domain] before the build succeeds": {
-          " ": "It will take about 1 to 3 minutes to build the new domain. Visit the new team via www.illacloud.com/[domain] before the build succeeds. "
-        }
-      }
-    },
-    " Visit the team via www": {
-      "illacloud": {
-        "com/[domain] before the build succeeds": {
-          " ": "It will take about 1 to 3 minutes to build the new domain. Visit the team via www.illacloud.com/[domain] before the build succeeds. "
-        }
-      }
-    }
+  "fram_size": {
+    "invalide_tips": "Please enter a value not less than {{ size }}."
   }
 }
