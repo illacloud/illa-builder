@@ -52,6 +52,7 @@ importers:
       '@sentry/tracing': ^7.17.3
       '@tanstack/react-table': ^8.5.11
       '@tanstack/table-core': ^8.7.0
+      '@types/chroma-js': ^2.1.4
       '@types/codemirror': ^5.60.5
       '@types/deep-diff': ^1.0.1
       '@types/jest': ^29.2.3
@@ -73,7 +74,7 @@ importers:
       acorn-walk: ^8.2.0
       axios: ^0.26.1
       chart.js: ^3.9.1
-      chroma-js: ^2.1.2
+      chroma-js: ^2.4.2
       codemirror: ^5.65.5
       copy-to-clipboard: ^3.3.2
       dayjs: ^1.11.5
@@ -168,6 +169,7 @@ importers:
     devDependencies:
       '@changesets/changelog-github': 0.4.7
       '@changesets/cli': 2.25.2
+      '@types/chroma-js': registry.npmjs.org/@types/chroma-js/2.1.4
       '@types/codemirror': 5.60.5
       '@types/deep-diff': 1.0.1
       '@types/jest': 29.2.3
@@ -7176,6 +7178,12 @@ packages:
     resolution: {integrity: sha512-HnYpAE1Y6kRyKM/XkEuiRQhTHvkzMBurTHnpFLYLBGPIylZNPs9jJcuOOYWxPLJCSEtmZT0Y8rHDokKN7rRTig==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@types/aria-query/-/aria-query-4.2.2.tgz}
     name: '@types/aria-query'
     version: 4.2.2
+    dev: true
+
+  registry.npmjs.org/@types/chroma-js/2.1.4:
+    resolution: {integrity: sha512-l9hWzP7cp7yleJUI7P2acmpllTJNYf5uU6wh50JzSIZt3fFHe+w2FM6w9oZGBTYzjjm2qHdnQvI+fF/JF/E5jQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@types/chroma-js/-/chroma-js-2.1.4.tgz}
+    name: '@types/chroma-js'
+    version: 2.1.4
     dev: true
 
   registry.npmjs.org/@types/color-convert/2.0.0:

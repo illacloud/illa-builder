@@ -33,7 +33,7 @@
     "acorn-walk": "^8.2.0",
     "axios": "^0.26.1",
     "chart.js": "^3.9.1",
-    "chroma-js": "^2.1.2",
+    "chroma-js": "^2.4.2",
     "codemirror": "^5.65.5",
     "copy-to-clipboard": "^3.3.2",
     "dayjs": "^1.11.5",
@@ -73,6 +73,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
     "@changesets/cli": "^2.18.1",
+    "@types/chroma-js": "^2.1.4",
     "@types/codemirror": "^5.60.5",
     "@types/deep-diff": "^1.0.1",
     "@types/jest": "^29.2.3",
