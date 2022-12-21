@@ -1172,10 +1172,6 @@
       "viewer": "Viewer"
     }
   },
-  "invite_members": "Invite members",
-  "invite_link": "Invite link",
-  "invite_link_copy": "Copy",
-  "turn_off_invite_links": "Turn off invite links",
   "update_invite_links": "Update invite links",
   "share_secret_link": "Share a secret link people can use to join your team.",
   "turn_on_invite_links": "Turn on invite links.",
