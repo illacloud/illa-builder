@@ -289,6 +289,14 @@
         },
         "tips": {
           "transformer": "Enable transformers to transform the result of the query to a different format."
+        },
+        "graphql": {
+          "query": "Query",
+          "variables": "Variables",
+          "headers": "Headers",
+          "placeholder": {
+            "query": "# Use $ to add a variable into your query (e.g. $category ) \r\nquery ($owner: String!, $name: String!){\r\n  repository(owner: $owner, name: $name) \r\n}"
+          }
         }
       },
       "resource": {
@@ -324,7 +332,11 @@
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL options",
             "username_password": "Username/Password",
-            "self_signed_certificate": "Use self-signed certificate"
+            "self_signed_certificate": "Use self-signed certificate",
+            "disable_introspection": "Disable Introspection",
+            "value": "Value",
+            "add_to": "Add to",
+            "header_prefix": "Header prefix"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -344,7 +356,8 @@
             "name": "The name for resource when creating actions in the ILLA.",
             "private_key": "Click here to see how to obtain this key",
             "ssl_options": "SSL is used when available",
-            "username_password": "Credentials will be encrypted & stored securely on our servers."
+            "username_password": "Credentials will be encrypted & stored securely on our servers.",
+            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
           },
           "title": {
             "advanced_option": "Advanced Options",
@@ -1157,14 +1170,23 @@
   "page": {
     "size": {
       "model": {
-        "fixed": "Fixed"
-      },
-      "modal": {
+        "fixed": "Fixed",
         "auto": "Auto"
       }
     }
   },
   "fram_size": {
     "invalide_tips": "Please enter a value not less than {{ size }}."
+  },
+  "键值： editor": {
+    "action": {
+      "resource": {
+        "db": {
+          "label": {
+            "key": "Key"
+          }
+        }
+      }
+    }
   }
 }
