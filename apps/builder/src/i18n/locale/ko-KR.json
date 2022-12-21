@@ -289,6 +289,14 @@
         },
         "tips": {
           "transformer": "Transformer를 사용하여 쿼리 결과를 다른 형식으로 변환"
+        },
+        "graphql": {
+          "query": "질문",
+          "variables": "변수",
+          "headers": "헤더",
+          "placeholder": {
+            "query": "# Use $ to add a variable into your query (e.g. $category ) \nquery ($owner: String!, $name: String!){\n  repository(owner: $owner, name: $name) \n}"
+          }
         }
       },
       "resource": {
@@ -324,7 +332,12 @@
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL 옵션",
             "username_password": "사용자 이름 비밀번호",
-            "self_signed_certificate": "자가 서명 인증서 사용"
+            "self_signed_certificate": "자가 서명 인증서 사용",
+            "disable_introspection": "Disable Introspection",
+            "value": "Value",
+            "add_to": "Add to",
+            "header_prefix": "Header prefix",
+            "key": "Key"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -344,7 +357,8 @@
             "name": "ILLA에서 이 자원의 이름을 지정하십시오.",
             "private_key": "Click here to see how to obtain this key",
             "ssl_options": "가능한 경우 SSL 사용",
-            "username_password": "자격 증명은 암호화되어 서버에 안전하게 저장됩니다."
+            "username_password": "자격 증명은 암호화되어 서버에 안전하게 저장됩니다.",
+            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
           },
           "title": {
             "advanced_option": "고급 구성",
@@ -828,7 +842,8 @@
       "tab_title": "페이지",
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
-        "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/"
+        "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/",
+        "auto_cavnas_width": "The width of page as a percentage of the browser width."
       }
     },
     "validate_message": {
@@ -1157,14 +1172,23 @@
   "page": {
     "size": {
       "model": {
-        "fixed": "고정 너비"
-      },
-      "modal": {
+        "fixed": "고정 너비",
         "auto": "적응성"
       }
     }
   },
   "fram_size": {
     "invalide_tips": "Please enter a value not less than {{ size }}."
+  },
+  " editor": {
+    "action": {
+      "resource": {
+        "db": {
+          "label": {
+            "introspection": "Introspection"
+          }
+        }
+      }
+    }
   }
 }

@@ -50,7 +50,7 @@ const canvasSizeOptions = [
     label: (
       <div css={optionListWrapperStyle}>
         <FrameResponsiveIcon />
-        <span>{i18n.t("page.size.modal.auto")}</span>
+        <span>{i18n.t("page.size.model.auto")}</span>
       </div>
     ),
     value: "auto",
@@ -59,7 +59,7 @@ const canvasSizeOptions = [
     label: (
       <div css={optionListWrapperStyle}>
         <FrameFixedIcon />
-        <span>{i18n.t("page.size.modal.fixed")}</span>
+        <span>{i18n.t("page.size.model.fixed")}</span>
       </div>
     ),
     value: "fixed",
@@ -500,7 +500,15 @@ export const PageFrame: FC = () => {
         />
       </LeftAndRightLayout>
       <LeftAndRightLayout>
-        <PageLabel labelName={t("editor.page.label_name.width")} size="big" />
+        <PageLabel
+          labelName={t("editor.page.label_name.width")}
+          size="big"
+          tooltip={
+            finalCanvasSize !== "fixed"
+              ? t("editor.page.tooltips.auto_canvas_width")
+              : undefined
+          }
+        />
         <SetterPadding>
           <InputNumber
             w="96px"
@@ -662,6 +670,7 @@ export const PageFrame: FC = () => {
               value={bodyWidth.toFixed(0)}
               onChange={handleUpdateBodyPanelWidth}
               step={1}
+              disabled={!hasLeft && !hasRight}
             />
           </SetterPadding>
         </LeftAndRightLayout>
