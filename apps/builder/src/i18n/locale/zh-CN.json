@@ -869,7 +869,8 @@
       "size": "尺寸",
       "reset": "重置",
       "save": "保存"
-    }
+    },
+    "button_text": "预览"
   },
   "remove_fail": "删除失败",
   "rename": "重命名",
