@@ -1,5 +1,5 @@
-import { Control, RegisterOptions } from "react-hook-form"
 import { ReactNode } from "react"
+import { Control, RegisterOptions } from "react-hook-form"
 
 export type ControlledType =
   | "input"

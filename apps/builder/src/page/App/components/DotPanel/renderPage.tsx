@@ -1,6 +1,10 @@
 import { FC, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
+import {
+  applyCanvasContainerWrapperStyle,
+  pageContainerWrapperStyle,
+} from "@/page/App/components/DotPanel/style"
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
@@ -18,10 +22,6 @@ import {
   RenderRightSection,
   RenderSection,
 } from "./renderSection"
-import {
-  applyCanvasContainerWrapperStyle,
-  pageContainerWrapperStyle,
-} from "@/page/App/components/DotPanel/style"
 
 const getShowNameMapSectionNode = (pageNode: PageNode) => {
   const { childrenNode = [] } = pageNode

@@ -1,12 +1,12 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
-import { IllaMode } from "@/redux/config/configState"
 import {
   FOOTER_MIN_HEIGHT,
   HEADER_MIN_HEIGHT,
   LEFT_MIN_WIDTH,
   RIGHT_MIN_WIDTH,
 } from "@/page/App/components/DotPanel/renderSection"
+import { IllaMode } from "@/redux/config/configState"
 
 export function applyScaleStyle(
   verticalResize: boolean,

@@ -11,10 +11,10 @@ import {
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
-  generateSSLConfig,
   Resource,
   ResourceContent,
   ResourceType,
+  generateSSLConfig,
 } from "@/redux/resource/resourceState"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"

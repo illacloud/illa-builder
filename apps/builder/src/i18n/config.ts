@@ -3,9 +3,9 @@ import i18n from "i18next"
 import LanguageDetector from "i18next-browser-languagedetector"
 import { initReactI18next } from "react-i18next"
 import enUS from "./locale/en-US.json"
-import zhCN from "./locale/zh-CN.json"
 import jaJP from "./locale/ja-JP.json"
 import koKR from "./locale/ko-KR.json"
+import zhCN from "./locale/zh-CN.json"
 
 export const resources = {
   "en-US": {

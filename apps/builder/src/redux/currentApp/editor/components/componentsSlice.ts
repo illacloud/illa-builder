@@ -23,6 +23,7 @@ import {
   updateSectionViewPropsReducer,
   updateTargetPageLayoutReducer,
   updateTargetPagePropsReducer,
+  updateViewportSizeReducer,
 } from "@/redux/currentApp/editor/components/componentsReducer"
 import { ComponentsInitialState } from "@/redux/currentApp/editor/components/componentsState"
 
@@ -53,6 +54,7 @@ const componentsSlice = createSlice({
     addSectionViewReducer,
     deleteSectionViewReducer,
     updateSectionViewPropsReducer,
+    updateViewportSizeReducer,
   },
 })
 

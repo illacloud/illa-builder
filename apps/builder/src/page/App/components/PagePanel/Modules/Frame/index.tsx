@@ -1,10 +1,17 @@
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { InputNumber, RadioGroup, Switch, useModal } from "@illa-design/react"
+import {
+  InputNumber,
+  RadioGroup,
+  Switch,
+  useMessage,
+  useModal,
+} from "@illa-design/react"
 import { ReactComponent as FrameFixedIcon } from "@/assets/rightPagePanel/frame-fixed.svg"
 import { ReactComponent as FrameResponsiveIcon } from "@/assets/rightPagePanel/frame-responsive.svg"
 import { PanelBar } from "@/components/PanelBar"
+import i18n from "@/i18n/config"
 import {
   BODY_MIN_HEIGHT,
   BODY_MIN_WIDTH,
@@ -21,6 +28,7 @@ import { PanelActionBar } from "@/page/App/components/PagePanel/Components/Panel
 import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
+import { optionListWrapperStyle } from "@/page/App/components/PagePanel/style"
 import { getCanvasShape } from "@/redux/config/configSelector"
 import {
   getCanvas,
@@ -31,8 +39,6 @@ import { PageNodeProps } from "@/redux/currentApp/editor/components/componentsSt
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { groupWrapperStyle } from "./style"
-import { optionListWrapperStyle } from "@/page/App/components/PagePanel/style"
-import i18n from "@/i18n/config"
 
 const getRealCanvasWidth = (canvasWidth: unknown) => {
   if (typeof canvasWidth !== "number") return 100
@@ -44,7 +50,7 @@ const canvasSizeOptions = [
     label: (
       <div css={optionListWrapperStyle}>
         <FrameResponsiveIcon />
-        <span>Auto</span>
+        <span>{i18n.t("page.size.modal.auto")}</span>
       </div>
     ),
     value: "auto",
@@ -53,7 +59,7 @@ const canvasSizeOptions = [
     label: (
       <div css={optionListWrapperStyle}>
         <FrameFixedIcon />
-        <span>Fixed</span>
+        <span>{i18n.t("page.size.modal.fixed")}</span>
       </div>
     ),
     value: "fixed",
@@ -69,6 +75,7 @@ export const PageFrame: FC = () => {
     const canvas = getCanvas(state)
     return searchDsl(canvas, currentPageDisplayName)?.props || {}
   }) as PageNodeProps
+  const message = useMessage()
 
   const canvasShape = useSelector(getCanvasShape)
   const dispatch = useDispatch()
@@ -419,6 +426,11 @@ export const PageFrame: FC = () => {
           canvasWidth: value,
         }
         if (value < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
+          message.error({
+            content: t("page.app.preview.inputWidthError", {
+              size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
+            }),
+          })
           newProps = {
             canvasWidth: BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH,
             leftWidth: LEFT_MIN_WIDTH,
@@ -438,6 +450,13 @@ export const PageFrame: FC = () => {
         const originalWidth = canvasShape.canvasWidth / (finalCanvasWidth / 100)
         const currentWidth = originalWidth * (value / 100)
         if (currentWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
+          message.error({
+            content: t("page.app.preview.inputWidthError", {
+              size:
+                (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
+                (originalWidth / 100),
+            }),
+          })
           newProps = {
             canvasWidth:
               (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
@@ -458,6 +477,8 @@ export const PageFrame: FC = () => {
       currentPageDisplayName,
       dispatch,
       finalCanvasWidth,
+      message,
+      t,
     ],
   )
 
