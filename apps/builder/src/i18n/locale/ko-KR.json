@@ -869,7 +869,8 @@
       "size": "Size",
       "reset": "초기화",
       "save": "저장"
-    }
+    },
+    "button_text": "시사"
   },
   "remove_fail": "삭제하지 못했습니다",
   "rename": "이름 바꾸기",
