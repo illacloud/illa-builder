@@ -869,7 +869,8 @@
       "size": "Size",
       "reset": "Reset",
       "save": "Save"
-    }
+    },
+    "button_text": "Preview"
   },
   "remove_fail": "Failed to remove",
   "rename": "Rename",
