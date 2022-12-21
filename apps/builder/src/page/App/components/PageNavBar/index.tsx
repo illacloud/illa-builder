@@ -238,7 +238,7 @@ const PreviewButtonGroup: FC = () => {
           dispatch(configActions.updateIllaMode("preview"))
         }}
       >
-        {t("preview")}
+        {t("preview.button_text")}
       </Button>
     </div>
   )
