@@ -289,6 +289,14 @@
         },
         "tips": {
           "transformer": "启用Transformer将查询结果转换为不同的格式"
+        },
+        "graphql": {
+          "query": "Query",
+          "variables": "Variables",
+          "headers": "Headers",
+          "placeholder": {
+            "query": "# Use $ to add a variable into your query (e.g. $category ) \nquery ($owner: String!, $name: String!){\n  repository(owner: $owner, name: $name) \n}"
+          }
         }
       },
       "resource": {
@@ -324,7 +332,12 @@
             "private_key_hover": "与具有Firebase权限的服务账户相关的私钥。",
             "ssl_options": "SSL 选项",
             "username_password": "用户名/密码",
-            "self_signed_certificate": "使用自签名证书"
+            "self_signed_certificate": "使用自签名证书",
+            "disable_introspection": "Disable Introspection",
+            "value": "Value",
+            "add_to": "Add to",
+            "header_prefix": "Header prefix",
+            "key": "Key"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -344,7 +357,8 @@
             "name": "为这个在ILLA中的资源命名",
             "private_key": "点此查看如何生成密钥",
             "ssl_options": "可用时使用 SSL",
-            "username_password": "凭证将被加密并安全存储在我们的服务器上"
+            "username_password": "凭证将被加密并安全存储在我们的服务器上",
+            "introspection": "如果你的GraphQL端点不支持introspection查询，就开启该开关。请注意，禁用introspection会降低GraphQL的可用性，因为该资源的自动完成和提示将不再工作。"
           },
           "title": {
             "advanced_option": "高级配置",
@@ -828,7 +842,8 @@
       "tab_title": "页面",
       "tooltips": {
         "show_fold_icon": "显示一个按钮，用于收起或展开面板",
-        "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图"
+        "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图",
+        "auto_cavnas_width": "页面宽度占浏览器宽度的百分比。"
       }
     },
     "validate_message": {
@@ -1157,14 +1172,23 @@
   "page": {
     "size": {
       "model": {
-        "fixed": "固定宽度"
-      },
-      "modal": {
+        "fixed": "固定宽度",
         "auto": "自适应"
       }
     }
   },
   "fram_size": {
     "invalide_tips": "请输入不小于 {{ size }} 的值。"
+  },
+  " editor": {
+    "action": {
+      "resource": {
+        "db": {
+          "label": {
+            "introspection": "Introspection"
+          }
+        }
+      }
+    }
   }
 }
