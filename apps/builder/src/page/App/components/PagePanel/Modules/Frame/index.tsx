@@ -670,6 +670,7 @@ export const PageFrame: FC = () => {
               value={bodyWidth.toFixed(0)}
               onChange={handleUpdateBodyPanelWidth}
               step={1}
+              disabled={!hasLeft && !hasRight}
             />
           </SetterPadding>
         </LeftAndRightLayout>
