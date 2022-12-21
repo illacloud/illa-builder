@@ -337,7 +337,8 @@
             "value": "Value",
             "add_to": "Add to",
             "header_prefix": "Header prefix",
-            "key": "Key"
+            "key": "Key",
+            "introspection": "Introspection"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -1179,16 +1180,5 @@
   },
   "fram_size": {
     "invalide_tips": "Please enter a value not less than {{ size }}."
-  },
-  " editor": {
-    "action": {
-      "resource": {
-        "db": {
-          "label": {
-            "introspection": "Introspection"
-          }
-        }
-      }
-    }
   }
 }
