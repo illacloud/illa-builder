@@ -845,7 +845,7 @@
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
         "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/",
-        "auto_cavnas_width": "The width of page as a percentage of the browser width."
+        "auto_canvas_width": "The width of page as a percentage of the browser width."
       }
     },
     "validate_message": {
