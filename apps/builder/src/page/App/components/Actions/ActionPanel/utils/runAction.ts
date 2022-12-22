@@ -278,6 +278,12 @@ const transformDataFormat = (
         }
       }
       return content
+    case "graphql": {
+      return {
+        ...content,
+        query: content.query.replace(/\n/g, ""),
+      }
+    }
     default:
       return content
   }

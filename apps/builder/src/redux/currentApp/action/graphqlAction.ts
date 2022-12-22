@@ -1,7 +1,5 @@
-export interface Params {
-  key: string
-  value: string
-}
+import { Params } from "@/redux/resource/restapiResource"
+
 export interface GraphQLAction {
   query: string
   variables: Params[]
