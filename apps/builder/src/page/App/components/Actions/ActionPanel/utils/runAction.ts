@@ -108,6 +108,7 @@ const downloadActionResult = (
 
 const transformRawData = (rawData: unknown, actionType: ActionType) => {
   switch (actionType) {
+    case "graphql":
     case "restapi": {
       if (Array.isArray(rawData) && rawData.length > 0) {
         return rawData[0]
