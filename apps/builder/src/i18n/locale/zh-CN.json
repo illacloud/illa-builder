@@ -1179,7 +1179,7 @@
       }
     }
   },
-  "fram_size": {
-    "invalide_tips": "请输入不小于 {{ size }} 的值。"
+  "frame_size": {
+    "invalid_tips": "请输入不小于 {{ size }} 的值。"
   }
 }
