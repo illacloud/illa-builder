@@ -829,7 +829,8 @@
         "show_fold_icon": "Show fold icon",
         "view_path": "View path",
         "views": "Views",
-        "width": "Width"
+        "width": "Width",
+        "height": "Height"
       },
       "model_tips": {
         "cancel_button": "Cancel",
