@@ -457,20 +457,19 @@ export const PageFrame: FC = () => {
       const originalWidth = canvasShape.canvasWidth / (finalCanvasWidth / 100)
       const currentWidth = originalWidth * (canvasWidth / 100)
       if (currentWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
+        const minWidth =
+          (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
+          (originalWidth / 100)
         message.error({
           content: t("frame_size.invalid_tips", {
-            size:
-              (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
-              (originalWidth / 100),
+            size: minWidth.toFixed(0),
           }),
         })
         dispatch(
           componentsActions.updateTargetPagePropsReducer({
             pageName: currentPageDisplayName,
             newProps: {
-              canvasWidth:
-                (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
-                (originalWidth / 100),
+              canvasWidth: minWidth,
             },
           }),
         )
