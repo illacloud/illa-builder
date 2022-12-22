@@ -829,7 +829,8 @@
         "show_fold_icon": "显示折叠按钮",
         "view_path": "视图路径",
         "views": "视图",
-        "width": "宽度"
+        "width": "宽度",
+        "height": "高度"
       },
       "model_tips": {
         "cancel_button": "取消",
