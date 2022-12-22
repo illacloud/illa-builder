@@ -208,6 +208,8 @@ const PreviewButtonGroup: FC = () => {
   const closePopContent = useCallback(() => {
     setPopContentVisible(false)
   }, [])
+  const mode = useSelector(getIllaMode)
+
   return (
     <div css={previewButtonGroupWrapperStyle}>
       <Trigger
@@ -228,7 +230,7 @@ const PreviewButtonGroup: FC = () => {
         _css={triggerStyle}
       >
         <Button
-          colorScheme="gray"
+          colorScheme="grayBlue"
           variant="fill"
           bdRadius="8px 0 0 8px"
           rightIcon={<DownIcon css={downIconStyle} />}
@@ -248,15 +250,19 @@ const PreviewButtonGroup: FC = () => {
       </Trigger>
       <span css={lineStyle} />
       <Button
-        colorScheme="gray"
-        leftIcon={<FullScreenIcon />}
+        colorScheme="grayBlue"
+        leftIcon={mode === "edit" ? <FullScreenIcon /> : <ExitIcon />}
         variant="fill"
         bdRadius="0 8px 8px 0"
         onClick={() => {
-          dispatch(configActions.updateIllaMode("preview"))
+          if (mode === "edit") {
+            dispatch(configActions.updateIllaMode("preview"))
+          } else {
+            dispatch(configActions.updateIllaMode("edit"))
+          }
         }}
       >
-        {t("preview.button_text")}
+        {mode === "edit" ? t("preview.button_text") : t("exit_preview")}
       </Button>
     </div>
   )
@@ -328,9 +334,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       },
     )
   }, [appInfo.appId, t])
-  const handleClickExitPreview = useCallback(() => {
-    dispatch(configActions.updateIllaMode("edit"))
-  }, [dispatch])
 
   return (
     <div className={className} css={navBarStyle}>
@@ -374,12 +377,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             >
               <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
             </span>
-            <PreviewButtonGroup />
           </>
         )}
+        <PreviewButtonGroup />
       </div>
-      <div>
-        {mode === "edit" && (
+      {mode === "edit" && (
+        <div>
           <ButtonGroup spacing={"8px"}>
             <Badge count={debuggerData && Object.keys(debuggerData).length}>
               <Button
@@ -432,19 +435,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               {t("deploy")}
             </Button>
           </ButtonGroup>
-        )}
-        {mode === "preview" && (
-          <ButtonGroup spacing={"8px"}>
-            <Button
-              onClick={handleClickExitPreview}
-              colorScheme="techPurple"
-              leftIcon={<ExitIcon />}
-            >
-              {t("exit_preview")}
-            </Button>
-          </ButtonGroup>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   )
 }
