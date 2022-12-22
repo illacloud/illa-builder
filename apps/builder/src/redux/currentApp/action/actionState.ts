@@ -10,6 +10,7 @@ import {
   FirebaseAction,
   FirebaseContentType,
 } from "@/redux/currentApp/action/firebaseAction"
+import { GraphQLAction } from "@/redux/currentApp/action/graphqlAction"
 
 export interface Transformer {
   rawData: string
@@ -85,6 +86,7 @@ export type ActionContent =
   | RestApiAction<BodyContent>
   | TransformerAction
   | RedisAction
+  | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

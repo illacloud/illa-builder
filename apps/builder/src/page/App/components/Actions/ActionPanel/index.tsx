@@ -29,6 +29,7 @@ import {
 import { getCachedAction } from "@/redux/config/configSelector"
 import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
 import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
+import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
 
 export const ActionPanel = forwardRef<
   ActionPanelFunctionProps,
@@ -88,6 +89,8 @@ export const ActionPanel = forwardRef<
         return <SMTPPanel />
       case "firebase":
         return <FirebasePanel />
+      case "graphql":
+        return <GraphQLPanel />
       default:
         return <></>
     }

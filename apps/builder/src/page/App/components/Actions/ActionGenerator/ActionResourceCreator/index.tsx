@@ -11,6 +11,7 @@ import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseCon
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { ResourceEditorProps } from "./interface"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
+import { GraphQLConfigElement } from "@/page/App/components/Actions/GraphQLConfigElement"
 
 export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
   const { onBack, onFinished, resourceType } = props
@@ -40,6 +41,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         return <FirebaseConfigElement {...generalProps} />
       case "clickhouse":
         return <ClickhouseConfigElement {...generalProps} />
+      case "graphql":
+        return <GraphQLConfigElement {...generalProps} />
       case "supabasedb":
       case "tidb":
       case "mariadb":

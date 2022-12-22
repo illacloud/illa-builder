@@ -215,7 +215,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 dispatch(configActions.updateIllaMode("preview"))
               }}
             >
-              {t("preview")}
+              {t("preview.button_text")}
             </Button>
             <Button
               loading={deployLoading}

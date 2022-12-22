@@ -18,6 +18,12 @@ import {
 } from "@/redux/resource/resourceState"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { RestApiAuth } from "@/redux/resource/restapiResource"
+import {
+  APIKeyAddToValue,
+  GraphQLAuth,
+  GraphQLAuthValue,
+} from "@/redux/resource/graphqlResource"
 
 function getBaseActionUrl() {
   const rootState = store.getState()
@@ -89,6 +95,35 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
   )
 }
 
+export function generateGraphQLAuthContent(data: {
+  [p: string]: any
+}): GraphQLAuth | null {
+  let authContent: GraphQLAuth | null = null
+  switch (data.authentication) {
+    case GraphQLAuthValue.BASIC:
+      authContent = {
+        username: data.username,
+        password: data.password,
+      }
+      break
+    case GraphQLAuthValue.BEARER:
+      authContent = {
+        bearerToken: data.token,
+      }
+    case GraphQLAuthValue.APIKEY:
+      authContent = {
+        key: data.key,
+        value: data.value,
+        addTo: data.addTo,
+        headerPrefix: data.headerPrefix,
+      }
+      break
+    default:
+      break
+  }
+  return authContent
+}
+
 function getActionContentByType(data: FieldValues, type: ResourceType) {
   switch (type) {
     case "firebase":
@@ -129,6 +164,16 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         databaseName: data.databaseName,
         ssl: generateSSLConfig(!!data.ssl, data, "clickhouse"),
       }
+    case "graphql":
+      return {
+        baseUrl: data.baseUrl,
+        urlParams: data.urlParams,
+        headers: data.headers,
+        cookies: data.cookies,
+        authentication: data.authentication,
+        disableIntrospection: data.disableIntrospection,
+        authContent: generateGraphQLAuthContent(data),
+      }
   }
 }
 
@@ -144,6 +189,7 @@ export function onActionConfigElementSubmit(
     resourceId != undefined ? `/resources/${resourceId}` : `/resources`
 
   return handleSubmit((data: FieldValues) => {
+    console.log({ data })
     let content
     try {
       content = getActionContentByType(data, resourceType)
