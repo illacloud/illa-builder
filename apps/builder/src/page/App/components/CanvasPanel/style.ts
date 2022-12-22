@@ -9,6 +9,7 @@ export const applyScaleContainerStyle = (mode: IllaMode) => {
     height: 100%;
     background: ${mode === "edit" ? "#f7f8fa" : "#fff"};
     overflow: auto;
+    flex: 1;
   `
 }
 

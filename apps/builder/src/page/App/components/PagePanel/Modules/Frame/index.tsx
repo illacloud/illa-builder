@@ -500,7 +500,7 @@ export const PageFrame: FC = () => {
       </LeftAndRightLayout>
       <LeftAndRightLayout>
         <PageLabel
-          labelName={t("editor.page.label_name.width")}
+          labelName={widthI18n}
           size="big"
           tooltip={
             finalCanvasSize !== "fixed"
