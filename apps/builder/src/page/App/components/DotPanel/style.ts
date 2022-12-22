@@ -450,22 +450,7 @@ export const footerHeightTipsStyle = css`
 export const pageContainerWrapperStyle = css`
   width: 100%;
   height: 100%;
-  border: 1px solid ${getColor("grayBlue", "09")};
 `
-
-export const applyPageContainerWrapperStyle = (mode: IllaMode) => {
-  const borderStyle =
-    mode === "edit"
-      ? css`
-          border: 1px solid ${getColor("grayBlue", "09")};
-        `
-      : null
-  return css`
-    width: 100%;
-    height: 100%;
-    ${borderStyle}
-  `
-}
 
 export const applyCanvasContainerWrapperStyle = (width: string) => {
   return css`
@@ -484,7 +469,7 @@ export const applyViewportContainerWrapperStyle = (
   height?: number,
 ) => {
   const borderStyle =
-    mode === "edit"
+    mode === "edit" && width != undefined
       ? css`
           border: 1px solid ${getColor("grayBlue", "09")};
         `

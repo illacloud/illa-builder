@@ -90,6 +90,14 @@ export const windowIconBodyStyle = css`
 
 export const previewButtonGroupWrapperStyle = css`
   margin-left: 24px;
+  display: flex;
+  align-items: center;
+`
+export const lineStyle = css`
+  display: inline-block;
+  width: 1px;
+  height: 32px;
+  background-color: ${getColor("grayBlue", "08")};
 `
 
 export const triggerStyle = css`
@@ -112,6 +120,7 @@ export const viewportFontStyle = css`
   color: #000;
   width: 48px;
   display: inline-block;
+  user-select: none;
 `
 
 export const downIconStyle = css`
