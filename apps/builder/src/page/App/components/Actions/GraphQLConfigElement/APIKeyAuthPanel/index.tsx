@@ -61,11 +61,11 @@ export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
         control={control}
         options={APIKeyAddToSelect}
       />
-      {addToValue === APIKeyAddToValue.URLPARAMS && (
+      {addToValue === APIKeyAddToValue.HEADER && (
         <ControlledElement
           title={t("editor.action.resource.db.label.header_prefix")}
           defaultValue={auth?.headerPrefix ?? "Bearer"}
-          name={"headerPrefix"}
+          name="headerPrefix"
           controlledType={["input"]}
           control={control}
         />

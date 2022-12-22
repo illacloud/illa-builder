@@ -15,7 +15,7 @@ export enum GraphQLAuthValue {
   NONE = "none",
   BASIC = "basic",
   BEARER = "bearer",
-  APIKEY = "apikey",
+  APIKEY = "apiKey",
 }
 
 export const GraphQLAuthTypeSelect = [

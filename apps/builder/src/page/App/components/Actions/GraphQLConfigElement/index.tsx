@@ -269,15 +269,13 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
           {t("editor.action.resource.db.title.graphql_introspection")}
         </div>
         <ControlledElement
-          title=""
-          contentLabel={
-            !disableIntrospection
-              ? t("editor.action.resource.db.label.introspection")
-              : t("editor.action.resource.db.label.disable_introspection")
-          }
+          title={t("editor.action.resource.db.label.introspection")}
+          contentLabel={t(
+            "editor.action.resource.db.label.disable_introspection",
+          )}
           defaultValue={resource?.content.disableIntrospection ?? false}
           name={"disableIntrospection"}
-          controlledType={["checkbox"]}
+          controlledType={["switch"]}
           onValueChange={handleDisableIntrospectionChange}
           control={control}
           tips={t("editor.action.resource.db.tip.introspection")}
