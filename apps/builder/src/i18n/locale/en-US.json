@@ -1179,7 +1179,7 @@
       }
     }
   },
-  "fram_size": {
-    "invalide_tips": "Please enter a value not less than {{ size }}."
+  "frame_size": {
+    "invalid_tips": "Please enter a value not less than {{ size }}."
   }
 }
