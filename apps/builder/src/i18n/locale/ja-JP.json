@@ -845,7 +845,7 @@
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
         "view_path": "このビューにアクセスするための文字列スペル example.com/app/page/",
-        "auto_cavnas_width": "The width of page as a percentage of the browser width."
+        "auto_canvas_width": "The width of page as a percentage of the browser width."
       }
     },
     "validate_message": {
