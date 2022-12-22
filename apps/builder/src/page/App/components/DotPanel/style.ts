@@ -483,6 +483,12 @@ export const applyViewportContainerWrapperStyle = (
   width?: number,
   height?: number,
 ) => {
+  const borderStyle =
+    mode === "edit"
+      ? css`
+          border: 1px solid ${getColor("grayBlue", "09")};
+        `
+      : null
   return css`
     width: ${mode === "production"
       ? "100%"
@@ -494,10 +500,9 @@ export const applyViewportContainerWrapperStyle = (
       : height != undefined
       ? `${height}px`
       : "100%"};
-    background-color: ${mode === "edit"
-      ? "#f7f8fa"
-      : `${getColor("white", "01")}`};
+    background-color: ${getColor("white", "01")};
     overflow: auto;
     margin: 0 auto;
+    ${borderStyle}
   `
 }
