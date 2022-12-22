@@ -1,4 +1,4 @@
-import { css, Global } from "@emotion/react"
+import { Global, css } from "@emotion/react"
 import { useEffect } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
@@ -13,13 +13,13 @@ import {
 } from "@illa-design/react"
 import "@/api/base"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
+import { getIllaMode } from "@/redux/config/configSelector"
 import {
   getCurrentConfigLanguage,
   getCurrentTranslateLanguage,
 } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
 import { globalStyle } from "./style"
-import { getIllaMode } from "@/redux/config/configSelector"
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)

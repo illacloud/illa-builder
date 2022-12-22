@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, getColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const actionItemStyle = css`
   display: flex;

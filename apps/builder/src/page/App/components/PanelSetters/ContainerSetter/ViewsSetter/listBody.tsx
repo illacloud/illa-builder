@@ -1,3 +1,5 @@
+import { AnimatePresence, Reorder } from "framer-motion"
+import { isEqual, omit } from "lodash"
 import {
   FC,
   useCallback,
@@ -6,15 +8,13 @@ import {
   useMemo,
   useState,
 } from "react"
+import { useDispatch } from "react-redux"
 import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
-import { ListItem } from "./listItem"
-import { isEqual, omit } from "lodash"
+import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
-import { AnimatePresence, Reorder } from "framer-motion"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
-import { useDispatch } from "react-redux"
+import { ListItem } from "./listItem"
 
 interface ItemsProps extends ViewItemShape {
   childrenNode?: ComponentNode

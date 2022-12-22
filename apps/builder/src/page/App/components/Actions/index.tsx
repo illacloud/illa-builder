@@ -1,11 +1,11 @@
 import { FC, HTMLAttributes, useRef, useState } from "react"
 import { Divider } from "@illa-design/react"
+import { ActionPanelFunctionProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
 import { FocusManager } from "@/utils/focusManager"
 import { ActionList } from "./ActionList"
 import { ActionPanel } from "./ActionPanel"
 import { applyActionEditorStyle, contentContainerStyle } from "./styles"
-import { ActionPanelFunctionProps } from "@/page/App/components/Actions/ActionPanel/interface"
 
 const ActionEditorDefaultHeight = 300
 

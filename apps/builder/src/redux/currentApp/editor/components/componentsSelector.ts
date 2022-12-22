@@ -256,3 +256,19 @@ export const getContainerListDisplayNameMappedChildrenNodeDisplayName =
 
     return displayNameMappedChildren
   })
+
+export const getViewportSizeSelector = createSelector(
+  [getCanvas],
+  (rootComponentNode) => {
+    if (!rootComponentNode || !rootComponentNode.props)
+      return {
+        viewportWidth: undefined,
+        viewportHeight: undefined,
+      }
+    const { viewportWidth, viewportHeight } = rootComponentNode.props
+    return {
+      viewportWidth: viewportWidth,
+      viewportHeight: viewportHeight,
+    }
+  },
+)

@@ -10,11 +10,12 @@ import {
   Input,
   Link,
   Password,
-  useMessage,
   WarningCircleIcon,
+  useMessage,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { EMAIL_FORMAT } from "@/constants/regExp"
+import { formatLanguage, languageKeys } from "@/i18n/config"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
   checkboxTextStyle,
@@ -30,9 +31,8 @@ import {
 } from "@/page/User/style"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { getLocalStorage, setLocalStorage } from "@/utils/storage"
-import { RegisterFields, RegisterResult } from "./interface"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { formatLanguage, languageKeys } from "@/i18n/config"
+import { RegisterFields, RegisterResult } from "./interface"
 
 export function getLocalLanguage(): string {
   const lang = getLocalStorage("i18nextLng")

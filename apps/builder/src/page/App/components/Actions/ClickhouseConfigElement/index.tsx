@@ -1,4 +1,4 @@
-import { FC, useState, useCallback } from "react"
+import { FC, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -7,13 +7,9 @@ import {
   ButtonGroup,
   Divider,
   PaginationPreIcon,
-  getColor,
   WarningCircleIcon,
+  getColor,
 } from "@illa-design/react"
-import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
-import { RootState } from "@/store"
-import { isCloudVersion, isURL } from "@/utils/typeHelper"
-import { ClickhouseConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -21,18 +17,22 @@ import {
   connectTypeStyle,
   container,
   divider,
+  errorIconStyle,
+  errorMsgStyle,
   footerStyle,
   labelContainer,
   optionLabelStyle,
-  errorIconStyle,
-  errorMsgStyle,
 } from "@/page/App/components/Actions/ClickhouseConfigElement/style"
-import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
+import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
+import { RootState } from "@/store"
+import { isCloudVersion, isURL } from "@/utils/typeHelper"
+import { ClickhouseConfigElementProps } from "./interface"
 
 export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   props,

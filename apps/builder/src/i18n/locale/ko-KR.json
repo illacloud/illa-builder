@@ -289,6 +289,14 @@
         },
         "tips": {
           "transformer": "Transformer를 사용하여 쿼리 결과를 다른 형식으로 변환"
+        },
+        "graphql": {
+          "query": "질문",
+          "variables": "변수",
+          "headers": "헤더",
+          "placeholder": {
+            "query": "# Use $ to add a variable into your query (e.g. $category ) \nquery ($owner: String!, $name: String!){\n  repository(owner: $owner, name: $name) \n}"
+          }
         }
       },
       "resource": {
@@ -324,7 +332,13 @@
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL 옵션",
             "username_password": "사용자 이름 비밀번호",
-            "self_signed_certificate": "자가 서명 인증서 사용"
+            "self_signed_certificate": "자가 서명 인증서 사용",
+            "disable_introspection": "Disable Introspection",
+            "value": "Value",
+            "add_to": "Add to",
+            "header_prefix": "Header prefix",
+            "key": "Key",
+            "introspection": "Introspection"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -344,11 +358,13 @@
             "name": "ILLA에서 이 자원의 이름을 지정하십시오.",
             "private_key": "Click here to see how to obtain this key",
             "ssl_options": "가능한 경우 SSL 사용",
-            "username_password": "자격 증명은 암호화되어 서버에 안전하게 저장됩니다."
+            "username_password": "자격 증명은 암호화되어 서버에 안전하게 저장됩니다.",
+            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
           },
           "title": {
             "advanced_option": "고급 구성",
-            "general_option": "만능인"
+            "general_option": "만능인",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
           }
         },
         "error": {
@@ -813,7 +829,8 @@
         "show_fold_icon": "축소 버튼 표시",
         "view_path": "경로 보기",
         "views": "보다",
-        "width": "너비"
+        "width": "너비",
+        "height": "높은"
       },
       "model_tips": {
         "cancel_button": "취소",
@@ -828,7 +845,8 @@
       "tab_title": "페이지",
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
-        "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/"
+        "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/",
+        "auto_canvas_width": "The width of page as a percentage of the browser width."
       }
     },
     "validate_message": {
@@ -864,7 +882,14 @@
   "link_copied": "링크 복사됨",
   "network_error": "네트워크 이상",
   "not_online_tips": "네트워크 연결이 끊어졌습니다. 이 장치의 네트워크를 확인하십시오.",
-  "preview": "시사",
+  "preview": {
+    "viewport": {
+      "size": "Size",
+      "reset": "초기화",
+      "save": "저장"
+    },
+    "button_text": "시사"
+  },
   "remove_fail": "삭제하지 못했습니다",
   "rename": "이름 바꾸기",
   "resources": "자원",
@@ -1030,9 +1055,7 @@
       "placeholder": {
         "email": "이메일을 입력해주세요",
         "username": "사용자 이름을 입력하십시오",
-        "verification_code": "인증 코드를 입력하세요",
-        "enter_verification_code": "Enter verification code",
-        "enter_password": "Enter your password"
+        "verification_code": "인증 코드를 입력하세요"
       },
       "tips": {
         "fail": "등록 실패",
@@ -1040,13 +1063,7 @@
         "success": "등록 성공",
         "verification_code": "인증 코드 전송됨"
       },
-      "title": "등록하다",
-      "agreement": {
-        "using_illa": "By using ILLA you are agreeing to our",
-        "privacy_policy": "privacy policy",
-        "terms_of_service": "terms of service",
-        "and": "and"
-      }
+      "title": "등록하다"
     }
   },
   "widget": {
@@ -1155,147 +1172,15 @@
       "vertical": "초상화"
     }
   },
-  "mob": {
-    "user": {
-      "sign_up": {
-        "fields": {
-          "password": "Password(at least 6 characters)"
-        }
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "고정 너비",
+        "auto": "적응성"
       }
     }
   },
-  "user_management": {
-    "role": {
-      "owner": "Owner",
-      "admin": "Administer",
-      "editor": "Editor",
-      "viewer": "Viewer"
-    }
-  },
-  "invite_members": "Invite members",
-  "invite_link": "Invite link",
-  "invite_link_copy": "Copy",
-  "turn_off_invite_links": "Turn off invite links",
-  "update_invite_links": "Update invite links",
-  "share_secret_link": "Share a secret link people can use to join your team.",
-  "turn_on_invite_links": "Turn on invite links.",
-  "invite_by_email": "Invite by email",
-  "invite": "Invite",
-  "invited_suc": "Invited successfully",
-  "failed_to_invite": "Failed to invite",
-  "updated_suc": "Updated successfully",
-  "failed_to_update": "Failed to update",
-  "Member": "Member",
-  "Permission": "Permission",
-  "member": "Member",
-  "permission": "Permission",
-  "operation": "Operation",
-  "transfer_ownership": "Transfer ownership",
-  "remove": "Remove",
-  "Are you sure you want to transfer ownership": "Are you sure you want to transfer ownership?",
-  "After transferring, your permission will change to administrator": {
-    "": "After transferring, your permission will change to administrator."
-  },
-  "Transfer": "Transfer",
-  "Cancel": "Cancel",
-  "Successfully transferred": "Successfully transferred",
-  "Failed to transfer": "Failed to transfer",
-  "Are you sure you want to remove [username]?": "Are you sure you want to remove [username]?",
-  "After removal, the user will not be able to access the team": {
-    "": "After removal, the user will not be able to access the team."
-  },
-  "Remove": "Remove",
-  "Successfully removed": "Successfully removed",
-  "Failed to remove": "Failed to remove",
-  "Pending": "Pending",
-  "Updated successfully": "Updated successfully",
-  "Failed to update": "Failed to update",
-  "Allow editors and viewers to invite members": {
-    " ": "Allow editors and viewers to invite members. "
-  },
-  "Create team": "Create team",
-  "Team name": "Team name",
-  "Team domain": "Team domain",
-  "": {
-    "illacloud": {
-      "com": ".illacloud.com"
-    }
-  },
-  "Save": "Save",
-  "already existed": {
-    "": "already existed."
-  },
-  "is available": {
-    "": "is available."
-  },
-  "Invitation code": "Invitation code",
-  "ILLA Cloud is in beta test": {
-    " Please input your invitation code": {
-      "": "ILLA Cloud is in beta test. Please input your invitation code."
-    }
-  },
-  "Need an invitation code?": "Need an invitation code?",
-  "Contact ILLA": "Contact ILLA",
-  "Create a new team": "Create a new team",
-  "You have no teams": "You have no teams",
-  "Workspace": "Workspace",
-  "Team settings": "Team settings",
-  "ILLA Builder": "ILLA Builder",
-  "Apps": "Apps",
-  "App": "App",
-  "Resources": "Resources",
-  "Resource": "Resource",
-  "Edited at a minute ago": "Edited at a minute ago",
-  "Edited at [n] minutes ago": "Edited at [n] minutes ago",
-  "Edited at an hour ago": "Edited at an hour ago",
-  "Edited at [n] hours ago": "Edited at [n] hours ago",
-  "Edited at a day ago": "Edited at a day ago",
-  "Edited at [n] days ago": "Edited at [n] days ago",
-  "Edited at just now": "Edited at just now",
-  "Leave team": "Leave team",
-  "Delete team": "Delete team",
-  "Are you sure you want to leave this team?": "Are you sure you want to leave this team?",
-  "You will not be able to access any team resources after leaving": {
-    "": "You will not be able to access any team resources after leaving."
-  },
-  "Leave": "Leave",
-  "Are you sure you want to delete this team?": "Are you sure you want to delete this team?",
-  "The team domain will be unavailable after deletion, and all members will be removed from this team": {
-    "": "The team domain will be unavailable after deletion, and all members will be removed from this team."
-  },
-  "Delete": "Delete",
-  "Team info": "Team info",
-  "Edit": "Edit",
-  "Save Changes": "Save Changes",
-  "Adjust the avater": "Adjust the avater",
-  "Crop": "Crop",
-  "For the better editing experience, please visit this page on desktop": "For the better editing experience, please visit this page on desktop",
-  "Continue to visit": "Continue to visit",
-  "Create successfully": {
-    " It will take about 1 to 3 minutes to build the domain": {
-      " Visit the new team via www": {
-        "illacloud": {
-          "com/[domain] before the build succeeds": {
-            " ": "Create successfully. It will take about 1 to 3 minutes to build the domain. Visit the new team via www.illacloud.com/[domain] before the build succeeds. "
-          }
-        }
-      }
-    }
-  },
-  "It will take about 1 to 3 minutes to build the new domain": {
-    " Visit the new team via www": {
-      "illacloud": {
-        "com/[domain] before the build succeeds": {
-          " ": "It will take about 1 to 3 minutes to build the new domain. Visit the new team via www.illacloud.com/[domain] before the build succeeds. "
-        }
-      }
-    },
-    " Visit the team via www": {
-      "illacloud": {
-        "com/[domain] before the build succeeds": {
-          " ": "It will take about 1 to 3 minutes to build the new domain. Visit the team via www.illacloud.com/[domain] before the build succeeds. "
-        }
-      }
-    }
+  "frame_size": {
+    "invalid_tips": "Please enter a value not less than {{ size }}."
   }
 }

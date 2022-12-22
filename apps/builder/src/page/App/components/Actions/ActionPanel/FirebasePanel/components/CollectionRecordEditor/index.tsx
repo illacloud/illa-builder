@@ -1,16 +1,16 @@
 import { FC, useCallback } from "react"
+import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/react"
+import { CodeEditor } from "@/components/CodeEditor"
+import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
+import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import {
   OperationSelectList,
   Params,
 } from "@/redux/currentApp/action/firebaseAction"
-import { Controller, useForm } from "react-hook-form"
-import { CollectionRecordEditorProps } from "./interface"
-import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
+import { CollectionRecordEditorProps } from "./interface"
 
 export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
   props,

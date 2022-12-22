@@ -5,9 +5,14 @@ import {
   ActionContent,
   ActionItem,
   ActionRunResult,
-  Events,
+  ActionType,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
+import {
+  AuthActionTypeValue,
+  FirestoreActionTypeValue,
+  ServiceTypeValue,
+} from "@/redux/currentApp/action/firebaseAction"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import {
   BodyContent,
@@ -24,11 +29,6 @@ import {
 } from "@/utils/evaluateDynamicString/utils"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { isObject } from "@/utils/typeHelper"
-import {
-  AuthActionTypeValue,
-  FirestoreActionTypeValue,
-  ServiceTypeValue,
-} from "@/redux/currentApp/action/firebaseAction"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
@@ -106,9 +106,22 @@ const downloadActionResult = (
   document.body.removeChild(a)
 }
 
+const transformRawData = (rawData: unknown, actionType: ActionType) => {
+  switch (actionType) {
+    case "restapi": {
+      if (Array.isArray(rawData) && rawData.length > 0) {
+        return rawData[0]
+      }
+      return rawData
+    }
+    default:
+      return rawData
+  }
+}
+
 const fetchActionResult = (
   resourceId: string,
-  actionType: string,
+  actionType: ActionType,
   displayName: string,
   appId: string,
   actionId: string,
@@ -139,12 +152,19 @@ const fetchActionResult = (
         const { ContentType, ObjectKey } = extraData
         downloadActionResult(ContentType, ObjectKey, rawData[0].objectData)
       }
-
-      let calcResult = runTransformer(transformer, rawData)
+      const transRawData = transformRawData(rawData, actionType)
+      let calcResult = runTransformer(transformer, transRawData)
       resultCallback?.(calcResult, false)
       actionDisplayNameMapFetchResult[displayName] = calcResult
       if (!isTrigger) {
-        store.dispatch(executionActions.startExecutionReducer())
+        store.dispatch(
+          executionActions.updateExecutionByDisplayNameReducer({
+            displayName: displayName,
+            value: {
+              data: calcResult,
+            },
+          }),
+        )
       }
       successEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
@@ -278,6 +298,12 @@ const transformDataFormat = (
         }
       }
       return content
+    case "graphql": {
+      return {
+        ...content,
+        query: content.query.replace(/\n/g, ""),
+      }
+    }
     default:
       return content
   }

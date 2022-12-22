@@ -7,18 +7,22 @@ import {
   ButtonGroup,
   Divider,
   Input,
-  PaginationPreIcon,
-  getColor,
-  TextArea,
-  Popover,
-  useMessage,
   Link,
+  PaginationPreIcon,
+  Popover,
+  TextArea,
   WarningCircleIcon,
+  getColor,
+  useMessage,
 } from "@illa-design/react"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import {
+  FirebaseResource,
+  FirebaseResourceInitial,
+} from "@/redux/resource/firebaseResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
@@ -37,10 +41,6 @@ import {
   optionLabelStyle,
   privateKeyItem,
 } from "./style"
-import {
-  FirebaseResource,
-  FirebaseResourceInitial,
-} from "@/redux/resource/firebaseResource"
 
 export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
   props,
