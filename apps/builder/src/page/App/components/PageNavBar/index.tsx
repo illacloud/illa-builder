@@ -100,7 +100,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
       inputHeight < BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT
     ) {
       message.error({
-        content: t("page.app.preview.inputWidthError", {
+        content: t("frame_size.invalid_tips", {
           size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
         }),
       })
@@ -114,7 +114,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
       inputWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH
     ) {
       message.error({
-        content: t("page.app.preview.inputWidthError", {
+        content: t("frame_size.invalid_tips", {
           size: BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH,
         }),
       })

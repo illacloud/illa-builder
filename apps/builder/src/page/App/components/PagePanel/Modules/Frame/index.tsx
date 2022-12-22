@@ -438,7 +438,7 @@ export const PageFrame: FC = () => {
     if (canvasSize === "fixed") {
       if (canvasWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
         message.error({
-          content: t("page.app.preview.inputWidthError", {
+          content: t("frame_size.invalid_tips", {
             size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
           }),
         })
@@ -458,7 +458,7 @@ export const PageFrame: FC = () => {
       const currentWidth = originalWidth * (canvasWidth / 100)
       if (currentWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
         message.error({
-          content: t("page.app.preview.inputWidthError", {
+          content: t("frame_size.invalid_tips", {
             size:
               (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
               (originalWidth / 100),
