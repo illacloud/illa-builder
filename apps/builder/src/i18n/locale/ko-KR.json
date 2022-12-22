@@ -829,7 +829,8 @@
         "show_fold_icon": "축소 버튼 표시",
         "view_path": "경로 보기",
         "views": "보다",
-        "width": "너비"
+        "width": "너비",
+        "height": "높은"
       },
       "model_tips": {
         "cancel_button": "취소",
