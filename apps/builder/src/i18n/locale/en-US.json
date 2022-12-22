@@ -337,7 +337,8 @@
             "value": "Value",
             "add_to": "Add to",
             "header_prefix": "Header prefix",
-            "key": "Key"
+            "key": "Key",
+            "introspection": "Introspection"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -362,7 +363,8 @@
           },
           "title": {
             "advanced_option": "Advanced Options",
-            "general_option": "GENERAL"
+            "general_option": "GENERAL",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
           }
         },
         "error": {
@@ -827,7 +829,8 @@
         "show_fold_icon": "Show fold icon",
         "view_path": "View path",
         "views": "Views",
-        "width": "Width"
+        "width": "Width",
+        "height": "Height"
       },
       "model_tips": {
         "cancel_button": "Cancel",
@@ -843,7 +846,7 @@
       "tooltips": {
         "show_fold_icon": "Show a button to collapse or expand the panel",
         "view_path": "A string after example.com/app/page/ to access this view",
-        "auto_cavnas_width": "The width of page as a percentage of the browser width."
+        "auto_canvas_width": "The width of page as a percentage of the browser width."
       }
     },
     "validate_message": {
@@ -1177,18 +1180,7 @@
       }
     }
   },
-  "fram_size": {
-    "invalide_tips": "Please enter a value not less than {{ size }}."
-  },
-  " editor": {
-    "action": {
-      "resource": {
-        "db": {
-          "label": {
-            "introspection": "Introspection"
-          }
-        }
-      }
-    }
+  "frame_size": {
+    "invalid_tips": "Please enter a value not less than {{ size }}."
   }
 }

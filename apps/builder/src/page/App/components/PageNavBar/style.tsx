@@ -92,6 +92,10 @@ export const previewButtonGroupWrapperStyle = css`
   margin-left: 24px;
 `
 
+export const triggerStyle = css`
+  z-index: 10;
+`
+
 export const closeIconStyle = css`
   width: 8px;
   height: 8px;
@@ -105,8 +109,9 @@ export const hasMarginClosIconStyle = css`
 `
 
 export const viewportFontStyle = css`
-  font-size: 12px;
   color: #000;
+  width: 48px;
+  display: inline-block;
 `
 
 export const downIconStyle = css`
@@ -114,7 +119,7 @@ export const downIconStyle = css`
 `
 
 export const previewPopContentWrapperStyle = css`
-  width: 239px;
+  width: 280px;
   height: 168px;
   background-color: ${getColor("white", "01")};
   border: 1px solid ${getColor("grayBlue", "08")};
@@ -159,7 +164,7 @@ export const inputAreaWrapperStyle = css`
 export const inputAreaLabelWrapperStyle = css`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   line-height: 20px;
 `
 

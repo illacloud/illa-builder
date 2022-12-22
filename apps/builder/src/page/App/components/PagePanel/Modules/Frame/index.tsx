@@ -438,7 +438,7 @@ export const PageFrame: FC = () => {
     if (canvasSize === "fixed") {
       if (canvasWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
         message.error({
-          content: t("page.app.preview.inputWidthError", {
+          content: t("frame_size.invalid_tips", {
             size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
           }),
         })
@@ -457,20 +457,19 @@ export const PageFrame: FC = () => {
       const originalWidth = canvasShape.canvasWidth / (finalCanvasWidth / 100)
       const currentWidth = originalWidth * (canvasWidth / 100)
       if (currentWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
+        const minWidth =
+          (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
+          (originalWidth / 100)
         message.error({
-          content: t("page.app.preview.inputWidthError", {
-            size:
-              (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
-              (originalWidth / 100),
+          content: t("frame_size.invalid_tips", {
+            size: minWidth.toFixed(0),
           }),
         })
         dispatch(
           componentsActions.updateTargetPagePropsReducer({
             pageName: currentPageDisplayName,
             newProps: {
-              canvasWidth:
-                (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
-                (originalWidth / 100),
+              canvasWidth: minWidth,
             },
           }),
         )
@@ -706,7 +705,7 @@ export const PageFrame: FC = () => {
         {hasHeader && (
           <LeftAndRightLayout>
             <PageLabel
-              labelName={`${t("editor.page.label_name.width")}(px)`}
+              labelName={`${t("editor.page.label_name.height")}(px)`}
               size="small"
             />
             <SetterPadding>
@@ -752,7 +751,7 @@ export const PageFrame: FC = () => {
         {hasFooter && (
           <LeftAndRightLayout>
             <PageLabel
-              labelName={`${t("editor.page.label_name.width")}(px)`}
+              labelName={`${t("editor.page.label_name.height")}(px)`}
               size="small"
             />
             <SetterPadding>

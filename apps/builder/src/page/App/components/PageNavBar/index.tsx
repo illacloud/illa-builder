@@ -74,6 +74,7 @@ import {
   rowCenter,
   saveButtonWrapperStyle,
   saveFailedTipStyle,
+  triggerStyle,
   viewControlStyle,
   viewportFontStyle,
   windowIconBodyStyle,
@@ -100,7 +101,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
       inputHeight < BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT
     ) {
       message.error({
-        content: t("page.app.preview.inputWidthError", {
+        content: t("frame_size.invalid_tips", {
           size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
         }),
       })
@@ -114,7 +115,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
       inputWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH
     ) {
       message.error({
-        content: t("page.app.preview.inputWidthError", {
+        content: t("frame_size.invalid_tips", {
           size: BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH,
         }),
       })
@@ -170,7 +171,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
         </div>
         <div css={inputAreaLabelWrapperStyle}>
           <InputNumber
-            w="64px"
+            w="80px"
             value={inputWidth}
             placeholder="--"
             onChange={handleUpdateInputWidth}
@@ -178,7 +179,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
           />
           <CloseIcon css={closeIconStyle} />
           <InputNumber
-            w="64px"
+            w="80px"
             value={inputHeight}
             placeholder="--"
             onChange={handleUpdateInputHeight}
@@ -209,10 +210,11 @@ const PreviewButtonGroup: FC = () => {
             viewportWidth={viewportSize.viewportWidth}
           />
         }
-        position="bottom"
+        position="bottom-start"
         showArrow={false}
         withoutPadding
         colorScheme="white"
+        _css={triggerStyle}
       >
         <Button
           colorScheme="gray"
@@ -221,11 +223,15 @@ const PreviewButtonGroup: FC = () => {
           rightIcon={<DownIcon css={downIconStyle} />}
         >
           <span css={viewportFontStyle}>
-            {viewportSize.viewportWidth ?? "--"}
+            {viewportSize.viewportWidth
+              ? viewportSize.viewportWidth + "px"
+              : "--"}
           </span>
           <CloseIcon css={hasMarginClosIconStyle} />
           <span css={viewportFontStyle}>
-            {viewportSize.viewportHeight ?? "--"}
+            {viewportSize.viewportHeight
+              ? viewportSize.viewportHeight + "px"
+              : "--"}
           </span>
         </Button>
       </Trigger>

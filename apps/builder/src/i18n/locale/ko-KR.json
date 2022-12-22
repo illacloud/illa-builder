@@ -337,7 +337,8 @@
             "value": "Value",
             "add_to": "Add to",
             "header_prefix": "Header prefix",
-            "key": "Key"
+            "key": "Key",
+            "introspection": "Introspection"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -362,7 +363,8 @@
           },
           "title": {
             "advanced_option": "고급 구성",
-            "general_option": "만능인"
+            "general_option": "만능인",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
           }
         },
         "error": {
@@ -827,7 +829,8 @@
         "show_fold_icon": "축소 버튼 표시",
         "view_path": "경로 보기",
         "views": "보다",
-        "width": "너비"
+        "width": "너비",
+        "height": "높은"
       },
       "model_tips": {
         "cancel_button": "취소",
@@ -843,7 +846,7 @@
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
         "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/",
-        "auto_cavnas_width": "The width of page as a percentage of the browser width."
+        "auto_canvas_width": "The width of page as a percentage of the browser width."
       }
     },
     "validate_message": {
@@ -1177,18 +1180,7 @@
       }
     }
   },
-  "fram_size": {
-    "invalide_tips": "Please enter a value not less than {{ size }}."
-  },
-  " editor": {
-    "action": {
-      "resource": {
-        "db": {
-          "label": {
-            "introspection": "Introspection"
-          }
-        }
-      }
-    }
+  "frame_size": {
+    "invalid_tips": "Please enter a value not less than {{ size }}."
   }
 }

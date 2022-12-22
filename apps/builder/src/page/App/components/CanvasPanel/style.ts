@@ -1,13 +1,16 @@
-import { SerializedStyles, css } from "@emotion/react"
+import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
+import { IllaMode } from "@/redux/config/configState"
 
-export const scaleContainerStyle = css`
-  box-sizing: border-box;
-  min-width: 148px;
-  height: 100%;
-  background: #f7f8fa;
-  overflow: auto;
-`
+export const applyScaleContainerStyle = (mode: IllaMode) => {
+  return css`
+    box-sizing: border-box;
+    min-width: 148px;
+    height: 100%;
+    background: ${mode === "edit" ? "#f7f8fa" : "#fff"};
+    overflow: auto;
+  `
+}
 
 export const messageWrapperStyle = css`
   top: 16px;

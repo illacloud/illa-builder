@@ -337,7 +337,8 @@
             "value": "Value",
             "add_to": "Add to",
             "header_prefix": "Header prefix",
-            "key": "Key"
+            "key": "Key",
+            "introspection": "Introspection"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -362,7 +363,8 @@
           },
           "title": {
             "advanced_option": "高级配置",
-            "general_option": "通用"
+            "general_option": "通用",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
           }
         },
         "error": {
@@ -827,7 +829,8 @@
         "show_fold_icon": "显示折叠按钮",
         "view_path": "视图路径",
         "views": "视图",
-        "width": "宽度"
+        "width": "宽度",
+        "height": "高度"
       },
       "model_tips": {
         "cancel_button": "取消",
@@ -843,7 +846,7 @@
       "tooltips": {
         "show_fold_icon": "显示一个按钮，用于收起或展开面板",
         "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图",
-        "auto_cavnas_width": "页面宽度占浏览器宽度的百分比。"
+        "auto_canvas_width": "页面宽度占浏览器宽度的百分比。"
       }
     },
     "validate_message": {
@@ -1177,18 +1180,7 @@
       }
     }
   },
-  "fram_size": {
-    "invalide_tips": "请输入不小于 {{ size }} 的值。"
-  },
-  " editor": {
-    "action": {
-      "resource": {
-        "db": {
-          "label": {
-            "introspection": "Introspection"
-          }
-        }
-      }
-    }
+  "frame_size": {
+    "invalid_tips": "请输入不小于 {{ size }} 的值。"
   }
 }
