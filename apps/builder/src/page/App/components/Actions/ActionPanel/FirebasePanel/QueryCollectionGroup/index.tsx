@@ -1,15 +1,15 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
-import {
-  QueryCollectionGroup,
-  CollectionType,
-} from "@/redux/currentApp/action/firebaseAction"
-import { CollectionRecordEditor } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor"
 import { CollectionInput } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionInput"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { CollectionRecordEditor } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor"
+import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
 import { CheckboxInput } from "@/page/App/components/CheckboxInput"
+import { InputEditor } from "@/page/App/components/InputEditor"
+import {
+  CollectionType,
+  QueryCollectionGroup,
+} from "@/redux/currentApp/action/firebaseAction"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const QueryCollectionGroupPart: FC<FirebaseActionPartProps> = (
   props,

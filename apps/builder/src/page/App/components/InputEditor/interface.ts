@@ -1,3 +1,4 @@
+import { EditorMode, EditorModes } from "@/components/CodeEditor/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface ControlledInputProps {
@@ -7,4 +8,7 @@ export interface ControlledInputProps {
   expectedType?: VALIDATION_TYPES
   placeholder?: string
   tips?: string
+  lineNumbers?: boolean
+  mode?: EditorMode
+  style?: Record<string, string>
 }

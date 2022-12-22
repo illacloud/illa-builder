@@ -1,7 +1,7 @@
 import { ReactComponent as TableWidgetIcon } from "@/assets/widgetCover/table.svg"
 import i18n from "@/i18n/config"
-import { WidgetConfig } from "@/widgetLibrary/interface"
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 
 const originData = [
   {

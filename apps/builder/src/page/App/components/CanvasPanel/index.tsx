@@ -22,7 +22,7 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   return (
     <div
       {...otherProps}
-      css={applyScaleContainerStyle(100)}
+      css={applyScaleContainerStyle(mode)}
       onClick={() => {
         FocusManager.switchFocus("canvas")
       }}

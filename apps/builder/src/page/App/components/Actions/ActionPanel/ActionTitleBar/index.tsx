@@ -11,9 +11,9 @@ import {
   illaPrefix,
   useMessage,
 } from "@illa-design/react"
-import i18n from "@/i18n/config"
 import { Api } from "@/api/base"
 import { EditableText } from "@/components/EditableText"
+import i18n from "@/i18n/config"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import {

@@ -80,6 +80,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
               />
               <Button
                 ml="-1px"
+                type="button"
                 variant="outline"
                 minW="32px"
                 bdRadius="0 8px 8px 0"
@@ -107,14 +108,13 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
         {recordList}
         <span>
           <Button
+            type="button"
             mb="8px"
             pd="1px 8px"
             colorScheme="techPurple"
             size="medium"
             variant="text"
-            onClick={() => {
-              onAdd()
-            }}
+            onClick={onAdd}
             leftIcon={
               <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />
             }

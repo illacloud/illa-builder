@@ -82,8 +82,8 @@ export const BASIC_APP_CONFIG: PageNode[] = [
     y: -1,
     z: 0,
     props: {
-      canvasSize: "responsive",
-      canvasWidth: "auto",
+      canvasSize: "auto",
+      canvasWidth: 100,
       layout: "default",
       leftPosition: SECTION_POSITION.NONE,
       rightPosition: SECTION_POSITION.NONE,

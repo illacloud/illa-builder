@@ -1,3 +1,6 @@
+import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
+import { FirebaseResource } from "@/redux/resource/firebaseResource"
+import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
 import { SMTPResource } from "@/redux/resource/smtpResource"
 import { ElasticSearchResource } from "./elasticSearchResource"
 import { MongoDbConfig, MongoDbResource } from "./mongodbResource"
@@ -5,8 +8,6 @@ import { MysqlLikeResource } from "./mysqlLikeResource"
 import { RedisResource } from "./redisResource"
 import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { S3Resource } from "./s3Resource"
-import { FirebaseResource } from "@/redux/resource/firebaseResource"
-import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 
 export type ResourceType =
   | "firebase"
@@ -31,6 +32,7 @@ export type ResourceContent =
   | S3Resource
   | ElasticSearchResource
   | MysqlLikeResource
+  | GraphQLResource<GraphQLAuth>
   | RestApiResource<RestApiAuth>
   | RedisResource
   | MongoDbResource<MongoDbConfig>

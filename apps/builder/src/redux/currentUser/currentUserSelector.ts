@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit"
-import { Locale, enUS, zhCN, jaJP, koKR } from "@illa-design/react"
+import { Locale, enUS, jaJP, koKR, zhCN } from "@illa-design/react"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { RootState } from "@/store"
 

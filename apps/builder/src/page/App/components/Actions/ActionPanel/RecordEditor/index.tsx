@@ -21,6 +21,7 @@ import {
 
 export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const {
+    name,
     records,
     customRender,
     label,
@@ -46,7 +47,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   bdRadius="0 8px 8px 0"
                   colorScheme="grayBlue"
                   onClick={() => {
-                    onDelete(index, record)
+                    onDelete(index, record, name)
                   }}
                   leftIcon={
                     <DeleteIcon
@@ -68,7 +69,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 borderRadius="8px 0 0 8px"
                 expectedType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
-                  onChangeKey(index, value, record.value)
+                  onChangeKey(index, value, record.value, name)
                 }}
               />
               <CodeEditor
@@ -80,7 +81,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 borderRadius="0 0 0 0"
                 expectedType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
-                  onChangeValue(index, record.key, value)
+                  onChangeValue(index, record.key, value, name)
                 }}
               />
               <Button
@@ -89,7 +90,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 bdRadius="0 8px 8px 0"
                 colorScheme="grayBlue"
                 onClick={() => {
-                  onDelete(index, record)
+                  onDelete(index, record, name)
                 }}
                 leftIcon={
                   <DeleteIcon
@@ -102,7 +103,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
         })}
       </>
     )
-  }, [onChangeKey, onChangeValue, onDelete, records])
+  }, [customRender, name, onChangeKey, onChangeValue, onDelete, records])
 
   return (
     <div css={applyRecordEditorContainerStyle(label)}>
@@ -117,7 +118,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
             size="medium"
             variant="text"
             onClick={() => {
-              onAdd()
+              onAdd(name)
             }}
             leftIcon={
               <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />

@@ -573,3 +573,13 @@ export const deleteSectionViewReducer: CaseReducer<
   if (sectionViewConfigsIndex === -1) return
   parentNode.props.sectionViewConfigs.splice(sectionViewConfigsIndex, 1)
 }
+
+export const updateViewportSizeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<{ viewportWidth?: number; viewportHeight?: number }>
+> = (state, action) => {
+  if (!state) return
+  if (!state.props) state.props = {}
+  state.props.viewportWidth = action.payload.viewportWidth
+  state.props.viewportHeight = action.payload.viewportHeight
+}
