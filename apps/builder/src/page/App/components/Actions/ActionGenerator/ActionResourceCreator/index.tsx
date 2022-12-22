@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
+import { GraphQLConfigElement } from "@/page/App/components/Actions/GraphQLConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
@@ -40,6 +41,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         return <FirebaseConfigElement {...generalProps} />
       case "clickhouse":
         return <ClickhouseConfigElement {...generalProps} />
+      case "graphql":
+        return <GraphQLConfigElement {...generalProps} />
       case "supabasedb":
       case "tidb":
       case "mariadb":

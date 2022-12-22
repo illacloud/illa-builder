@@ -1,5 +1,6 @@
 import { ElasticSearchActionInitial } from "@/redux/currentApp/action/elasticSearchAction"
 import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
+import { GraphQLActionInitial } from "@/redux/currentApp/action/graphqlAction"
 import { MongoDbActionInitial } from "@/redux/currentApp/action/mongoDbAction"
 import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
 import { S3ActionInitial } from "@/redux/currentApp/action/s3Action"
@@ -34,6 +35,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return SMTPActionInitial
     case "firebase":
       return FirebaseActionInitial
+    case "graphql":
+      return GraphQLActionInitial
     default:
       return {} as ActionContent
   }

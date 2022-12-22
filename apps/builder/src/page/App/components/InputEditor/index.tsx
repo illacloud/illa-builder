@@ -17,14 +17,19 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
     value,
     tips,
     placeholder,
+    style = {},
+    mode = "TEXT_JS",
+    lineNumbers = false,
   } = props
   return (
     <>
       <div css={actionItemStyle}>
         <span css={codeEditorLabelStyle}>{title}</span>
         <CodeEditor
+          {...style}
+          lineNumbers={lineNumbers}
           css={actionItemCodeEditorStyle}
-          mode="TEXT_JS"
+          mode={mode}
           value={value}
           onChange={onChange}
           expectedType={expectedType}

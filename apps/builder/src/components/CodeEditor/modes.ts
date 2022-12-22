@@ -23,6 +23,19 @@ defineMode(EditorModes.Postgre_SQL_JS, function (config) {
   })
 })
 
+defineMode(EditorModes.GRAPHQL, function (config) {
+  return multiplexingMode(getMode(config, { name: "application/graphql" }), {
+    open: "{{",
+    close: "}}",
+    mode: getMode(config, {
+      name: "application/json",
+    }),
+    delimStyle: "illa-expression",
+    innerStyle: "illa-expression",
+    parseDelimiters: false,
+  })
+})
+
 defineMode(EditorModes.TEXT_JS, function (config) {
   return multiplexingMode(getMode(config, EditorModes.TEXT), {
     open: "{{",

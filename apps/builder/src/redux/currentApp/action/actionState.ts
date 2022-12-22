@@ -2,6 +2,7 @@ import {
   FirebaseAction,
   FirebaseContentType,
 } from "@/redux/currentApp/action/firebaseAction"
+import { GraphQLAction } from "@/redux/currentApp/action/graphqlAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { MysqlLikeAction } from "./mysqlLikeAction"
@@ -85,6 +86,7 @@ export type ActionContent =
   | RestApiAction<BodyContent>
   | TransformerAction
   | RedisAction
+  | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

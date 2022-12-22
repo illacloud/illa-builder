@@ -12,6 +12,7 @@ import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/Acti
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
 import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
+import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
 import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
@@ -88,6 +89,8 @@ export const ActionPanel = forwardRef<
         return <SMTPPanel />
       case "firebase":
         return <FirebasePanel />
+      case "graphql":
+        return <GraphQLPanel />
       default:
         return <></>
     }
