@@ -8,6 +8,7 @@ import {
 } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { EditorModes } from "@/components/CodeEditor/interface"
 
 export const InputEditor: FC<ControlledInputProps> = (props) => {
   const {
@@ -17,14 +18,19 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
     value,
     tips,
     placeholder,
+    style = {},
+    mode = "TEXT_JS",
+    lineNumbers = false,
   } = props
   return (
     <>
       <div css={actionItemStyle}>
         <span css={codeEditorLabelStyle}>{title}</span>
         <CodeEditor
+          {...style}
+          lineNumbers={lineNumbers}
           css={actionItemCodeEditorStyle}
-          mode="TEXT_JS"
+          mode={mode}
           value={value}
           onChange={onChange}
           expectedType={expectedType}

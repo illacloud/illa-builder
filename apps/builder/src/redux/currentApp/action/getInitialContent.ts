@@ -8,6 +8,7 @@ import { MysqlLikeActionInitial } from "./mysqlLikeAction"
 import { RestApiActionInitial } from "./restapiAction"
 import { TransformerActionInitial } from "./transformerAction"
 import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
+import { GraphQLActionInitial } from "@/redux/currentApp/action/graphqlAction"
 
 export function getInitialContent(actionType: ActionType): ActionContent {
   switch (actionType) {
@@ -34,6 +35,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return SMTPActionInitial
     case "firebase":
       return FirebaseActionInitial
+    case "graphql":
+      return GraphQLActionInitial
     default:
       return {} as ActionContent
   }
