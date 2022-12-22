@@ -706,7 +706,7 @@ export const PageFrame: FC = () => {
         {hasHeader && (
           <LeftAndRightLayout>
             <PageLabel
-              labelName={`${t("editor.page.label_name.width")}(px)`}
+              labelName={`${t("editor.page.label_name.height")}(px)`}
               size="small"
             />
             <SetterPadding>
@@ -752,7 +752,7 @@ export const PageFrame: FC = () => {
         {hasFooter && (
           <LeftAndRightLayout>
             <PageLabel
-              labelName={`${t("editor.page.label_name.width")}(px)`}
+              labelName={`${t("editor.page.label_name.height")}(px)`}
               size="small"
             />
             <SetterPadding>
