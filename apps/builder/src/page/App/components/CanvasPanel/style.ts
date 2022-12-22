@@ -1,16 +1,14 @@
-import { SerializedStyles, css } from "@emotion/react"
+import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
+import { IllaMode } from "@/redux/config/configState"
 
-export function applyScaleContainerStyle(scale: number): SerializedStyles {
+export const applyScaleContainerStyle = (mode: IllaMode) => {
   return css`
-    transform: scale(${scale / 100});
-    transform-origin: 50% 0;
-    background: ${globalColor(`--${illaPrefix}-white-01`)};
     box-sizing: border-box;
     min-width: 148px;
-    overflow-y: hidden;
     height: 100%;
-    position: relative;
+    background: ${mode === "edit" ? "#f7f8fa" : "#fff"};
+    overflow: auto;
   `
 }
 

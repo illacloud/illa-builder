@@ -1,5 +1,5 @@
-import { Params } from "@/redux/resource/restapiResource"
 import { ReactNode } from "react"
+import { Params } from "@/redux/resource/restapiResource"
 
 export interface RecordEditorProps {
   label: string

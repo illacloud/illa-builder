@@ -1,5 +1,5 @@
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { EditorMode, EditorModes } from "@/components/CodeEditor/interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface ControlledInputProps {
   title: string

@@ -412,6 +412,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           }
+          case "updateViewportSizeReducer":
           case "updateRootNodePropsReducer": {
             const rootNode = getCanvas(store.getState())
             if (!rootNode) break

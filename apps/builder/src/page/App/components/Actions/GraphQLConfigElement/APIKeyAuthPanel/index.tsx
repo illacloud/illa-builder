@@ -1,11 +1,11 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { APIKeyAuthPanelProps } from "./interface"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
   APIKeyAddToSelect,
   APIKeyAddToValue,
 } from "@/redux/resource/graphqlResource"
+import { APIKeyAuthPanelProps } from "./interface"
 
 export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
   const { control, auth } = props

@@ -45,6 +45,9 @@ export interface RootComponentNodeProps {
   currentPageIndex: number
   pageSortedKey: string[]
   homepageDisplayName?: string
+
+  viewportWidth?: number
+  viewportHeight?: number
 }
 
 export interface RootComponentNode extends ComponentNode {
@@ -53,8 +56,8 @@ export interface RootComponentNode extends ComponentNode {
 }
 
 export interface PageNodeProps {
-  canvasSize: "responsive" | "fixed"
-  canvasWidth: string
+  canvasSize: "auto" | "fixed"
+  canvasWidth: number
   layout: string
   leftPosition: SECTION_POSITION
   rightPosition: SECTION_POSITION

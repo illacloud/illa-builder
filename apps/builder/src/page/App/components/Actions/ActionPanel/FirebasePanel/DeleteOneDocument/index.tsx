@@ -1,13 +1,13 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { CollectionInput } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionInput"
 import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import {
   CollectionType,
   DeleteDocument,
 } from "@/redux/currentApp/action/firebaseAction"
-import { CollectionInput } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionInput"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DeleteOneDocumentPart: FC<FirebaseActionPartProps> = (props) => {
   const { t } = useTranslation()

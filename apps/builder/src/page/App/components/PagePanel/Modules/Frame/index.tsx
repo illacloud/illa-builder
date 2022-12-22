@@ -1,13 +1,22 @@
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { InputNumber, Switch, useModal } from "@illa-design/react"
+import {
+  InputNumber,
+  RadioGroup,
+  Switch,
+  useMessage,
+  useModal,
+} from "@illa-design/react"
 import { ReactComponent as FrameFixedIcon } from "@/assets/rightPagePanel/frame-fixed.svg"
 import { ReactComponent as FrameResponsiveIcon } from "@/assets/rightPagePanel/frame-responsive.svg"
 import { PanelBar } from "@/components/PanelBar"
+import i18n from "@/i18n/config"
 import {
   BODY_MIN_HEIGHT,
   BODY_MIN_WIDTH,
+  DEFAULT_PERCENT_WIDTH,
+  DEFAULT_PX_WIDTH,
   FOOTER_MIN_HEIGHT,
   HEADER_MIN_HEIGHT,
   LEFT_MIN_WIDTH,
@@ -19,6 +28,7 @@ import { PanelActionBar } from "@/page/App/components/PagePanel/Components/Panel
 import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
+import { optionListWrapperStyle } from "@/page/App/components/PagePanel/style"
 import { getCanvasShape } from "@/redux/config/configSelector"
 import {
   getCanvas,
@@ -30,17 +40,30 @@ import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/exe
 import { RootState } from "@/store"
 import { groupWrapperStyle } from "./style"
 
-const getRealCanvasWidth = (
-  canvasSize: "fixed" | "responsive",
-  canvasWidth: string,
-) => {
-  if (canvasSize === "fixed") return canvasWidth
-  return "auto"
+const getRealCanvasWidth = (canvasWidth: unknown) => {
+  if (typeof canvasWidth !== "number") return 100
+  return canvasWidth
 }
 
 const canvasSizeOptions = [
-  { label: <FrameFixedIcon />, value: "fixed" },
-  { label: <FrameResponsiveIcon />, value: "responsive" },
+  {
+    label: (
+      <div css={optionListWrapperStyle}>
+        <FrameResponsiveIcon />
+        <span>{i18n.t("page.size.model.auto")}</span>
+      </div>
+    ),
+    value: "auto",
+  },
+  {
+    label: (
+      <div css={optionListWrapperStyle}>
+        <FrameFixedIcon />
+        <span>{i18n.t("page.size.model.fixed")}</span>
+      </div>
+    ),
+    value: "fixed",
+  },
 ]
 
 export const PageFrame: FC = () => {
@@ -52,6 +75,7 @@ export const PageFrame: FC = () => {
     const canvas = getCanvas(state)
     return searchDsl(canvas, currentPageDisplayName)?.props || {}
   }) as PageNodeProps
+  const message = useMessage()
 
   const canvasShape = useSelector(getCanvasShape)
   const dispatch = useDispatch()
@@ -76,14 +100,14 @@ export const PageFrame: FC = () => {
   } = pageProps
 
   const bodyWidth = useMemo(() => {
-    if (canvasSize === "responsive") {
-      return 100 - leftWidth - rightWidth
-    } else {
-      return 0
-    }
-  }, [canvasSize, leftWidth, rightWidth])
+    if (canvasSize === "fixed") return canvasWidth - leftWidth - rightWidth
+    return 100 - leftWidth - rightWidth
+  }, [canvasSize, canvasWidth, leftWidth, rightWidth])
 
-  const finalCanvasWidth = getRealCanvasWidth(canvasSize, canvasWidth)
+  const finalCanvasWidth = getRealCanvasWidth(canvasWidth)
+
+  const finalCanvasSize = canvasSize === "fixed" ? "fixed" : "auto"
+
   const widthI18n = useMemo(() => {
     return canvasSize === "fixed"
       ? `${t("editor.page.label_name.width")}(px)`
@@ -152,7 +176,8 @@ export const PageFrame: FC = () => {
       let finalValue = value
       let finalLeftValue = leftWidth
       let finalRightValue = rightWidth
-      if (canvasSize === "responsive") {
+      if (canvasSize === "fixed") {
+      } else {
         let finalLeftValuePX = (finalLeftValue / 100) * canvasShape.canvasWidth
         let finalRightValuePX =
           (finalRightValue / 100) * canvasShape.canvasWidth
@@ -181,8 +206,6 @@ export const PageFrame: FC = () => {
           finalRightValue = (RIGHT_MIN_WIDTH / canvasShape.canvasWidth) * 100
         }
       }
-      if (canvasSize === "fixed") {
-      }
 
       dispatch(
         componentsActions.updateTargetPagePropsReducer({
@@ -208,7 +231,8 @@ export const PageFrame: FC = () => {
     (value?: number) => {
       if (!currentPageDisplayName || !value) return
       let finalValue = value
-      if (canvasSize === "responsive") {
+      if (canvasSize === "fixed") {
+      } else {
         const leftWidthPX = (value / 100) * canvasShape.canvasWidth
         const currentRightWidthPX = (rightWidth / 100) * canvasShape.canvasWidth
         if (
@@ -223,8 +247,6 @@ export const PageFrame: FC = () => {
         if ((value / 100) * canvasShape.canvasWidth < LEFT_MIN_WIDTH) {
           finalValue = (LEFT_MIN_WIDTH / canvasShape.canvasWidth) * 100
         }
-      }
-      if (canvasSize === "fixed") {
       }
 
       dispatch(
@@ -249,7 +271,8 @@ export const PageFrame: FC = () => {
     (value?: number) => {
       if (!currentPageDisplayName || !value) return
       let finalValue = value
-      if (canvasSize === "responsive") {
+      if (canvasSize === "fixed") {
+      } else {
         const rightWidthPX = (value / 100) * canvasShape.canvasWidth
         const currentLeftWidthPX = (leftWidth / 100) * canvasShape.canvasWidth
         if (
@@ -264,8 +287,6 @@ export const PageFrame: FC = () => {
         if ((value / 100) * canvasShape.canvasWidth < RIGHT_MIN_WIDTH) {
           finalValue = (RIGHT_MIN_WIDTH / canvasShape.canvasWidth) * 100
         }
-      }
-      if (canvasSize === "fixed") {
       }
 
       dispatch(
@@ -290,15 +311,14 @@ export const PageFrame: FC = () => {
     (value?: number) => {
       if (!currentPageDisplayName || !value) return
       let finalValue = value
-      if (canvasSize === "responsive") {
+      if (canvasSize === "fixed") {
+      } else {
         if (canvasShape.canvasHeight - value - bottomHeight < BODY_MIN_HEIGHT) {
           finalValue = canvasShape.canvasHeight - bottomHeight - BODY_MIN_HEIGHT
         }
         if (value < HEADER_MIN_HEIGHT) {
           finalValue = HEADER_MIN_HEIGHT
         }
-      }
-      if (canvasSize === "fixed") {
       }
 
       dispatch(
@@ -323,15 +343,14 @@ export const PageFrame: FC = () => {
     (value?: number) => {
       if (!currentPageDisplayName || !value) return
       let finalValue = value
-      if (canvasSize === "responsive") {
+      if (canvasSize === "fixed") {
+      } else {
         if (canvasShape.canvasHeight - value - topHeight < BODY_MIN_HEIGHT) {
           finalValue = canvasShape.canvasHeight - topHeight - BODY_MIN_HEIGHT
         }
         if (value < FOOTER_MIN_HEIGHT) {
           finalValue = FOOTER_MIN_HEIGHT
         }
-      }
-      if (canvasSize === "fixed") {
       }
 
       dispatch(
@@ -371,31 +390,135 @@ export const PageFrame: FC = () => {
     [currentPageDisplayName, dispatch],
   )
 
+  const handleUpdateFrameSize = useCallback(
+    (value: "auto" | "fixed") => {
+      if (canvasSize === value || !currentPageDisplayName) return
+      const newProps: Partial<PageNodeProps> = {
+        canvasSize: value,
+        canvasWidth:
+          value === "fixed"
+            ? DEFAULT_PX_WIDTH.CANVAS
+            : DEFAULT_PERCENT_WIDTH.CANVAS,
+      }
+      if (value === "fixed") {
+        if (hasLeft) newProps.leftWidth = DEFAULT_PX_WIDTH.LEFT
+        if (hasRight) newProps.rightWidth = DEFAULT_PX_WIDTH.RIGHT
+      } else {
+        if (hasLeft) newProps.leftWidth = DEFAULT_PERCENT_WIDTH.LEFT
+        if (hasRight) newProps.rightWidth = DEFAULT_PERCENT_WIDTH.RIGHT
+      }
+      dispatch(
+        componentsActions.updateTargetPagePropsReducer({
+          pageName: currentPageDisplayName,
+          newProps,
+        }),
+      )
+    },
+    [canvasSize, currentPageDisplayName, dispatch, hasLeft, hasRight],
+  )
+
+  const handleChangeCanvasWidth = useCallback(
+    (value?: number) => {
+      if (!currentPageDisplayName || value == undefined) return
+
+      let newProps = {
+        canvasWidth: value,
+      }
+      dispatch(
+        componentsActions.updateTargetPagePropsReducer({
+          pageName: currentPageDisplayName,
+          newProps,
+        }),
+      )
+    },
+    [currentPageDisplayName, dispatch],
+  )
+
+  const handleBlurCanvasWidth = useCallback(() => {
+    if (canvasSize === "fixed") {
+      if (canvasWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
+        message.error({
+          content: t("frame_size.invalid_tips", {
+            size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
+          }),
+        })
+        dispatch(
+          componentsActions.updateTargetPagePropsReducer({
+            pageName: currentPageDisplayName,
+            newProps: {
+              canvasWidth: BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH,
+              leftWidth: LEFT_MIN_WIDTH,
+              rightWidth: RIGHT_MIN_WIDTH,
+            },
+          }),
+        )
+      }
+    } else {
+      const originalWidth = canvasShape.canvasWidth / (finalCanvasWidth / 100)
+      const currentWidth = originalWidth * (canvasWidth / 100)
+      if (currentWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) {
+        const minWidth =
+          (BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH) /
+          (originalWidth / 100)
+        message.error({
+          content: t("frame_size.invalid_tips", {
+            size: minWidth.toFixed(0),
+          }),
+        })
+        dispatch(
+          componentsActions.updateTargetPagePropsReducer({
+            pageName: currentPageDisplayName,
+            newProps: {
+              canvasWidth: minWidth,
+            },
+          }),
+        )
+      }
+    }
+  }, [
+    canvasShape.canvasWidth,
+    canvasSize,
+    canvasWidth,
+    currentPageDisplayName,
+    dispatch,
+    finalCanvasWidth,
+    message,
+    t,
+  ])
+
   return (
     <PanelBar title={t("editor.page.panel_bar_title.frame")}>
-      {/* <LeftAndRightLayout>
+      <LeftAndRightLayout>
         <RadioGroup
           type="button"
           options={canvasSizeOptions}
-          value={canvasSize}
+          value={finalCanvasSize}
           w="100%"
+          colorScheme="grayBlue"
+          onChange={handleUpdateFrameSize}
         />
       </LeftAndRightLayout>
       <LeftAndRightLayout>
         <PageLabel
-          labelName={`${t("editor.page.label_name.width")}(px)`}
+          labelName={t("editor.page.label_name.width")}
           size="big"
+          tooltip={
+            finalCanvasSize !== "fixed"
+              ? t("editor.page.tooltips.auto_canvas_width")
+              : undefined
+          }
         />
         <SetterPadding>
-          <Input
+          <InputNumber
             w="96px"
-            value={finalCanvasWidth}
-            disabled={canvasSize === "responsive"}
+            value={finalCanvasWidth.toFixed(0)}
             borderColor="techPurple"
+            onChange={handleChangeCanvasWidth}
+            onBlur={handleBlurCanvasWidth}
           />
         </SetterPadding>
       </LeftAndRightLayout>
-      <PanelDivider /> */}
+      <PanelDivider />
       <LeftAndRightLayout>
         <PageLabel labelName={t("editor.page.label_name.preset")} size="big" />
         <SetterPadding>
@@ -546,6 +669,7 @@ export const PageFrame: FC = () => {
               value={bodyWidth.toFixed(0)}
               onChange={handleUpdateBodyPanelWidth}
               step={1}
+              disabled={!hasLeft && !hasRight}
             />
           </SetterPadding>
         </LeftAndRightLayout>
@@ -581,7 +705,7 @@ export const PageFrame: FC = () => {
         {hasHeader && (
           <LeftAndRightLayout>
             <PageLabel
-              labelName={`${t("editor.page.label_name.width")}(px)`}
+              labelName={`${t("editor.page.label_name.height")}(px)`}
               size="small"
             />
             <SetterPadding>
@@ -627,7 +751,7 @@ export const PageFrame: FC = () => {
         {hasFooter && (
           <LeftAndRightLayout>
             <PageLabel
-              labelName={`${t("editor.page.label_name.width")}(px)`}
+              labelName={`${t("editor.page.label_name.height")}(px)`}
               size="small"
             />
             <SetterPadding>

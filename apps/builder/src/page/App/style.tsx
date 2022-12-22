@@ -1,5 +1,4 @@
 import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import { LEFT_PANEL_WIDTH, NAVBAR_HEIGHT, RIGHT_PANEL_WIDTH } from "@/style"
 
@@ -46,8 +45,7 @@ export const leftPanelStyle = css`
 `
 
 export const centerPanelStyle = css`
-  flex-grow: 1;
-  height: 0;
+  height: 100%;
   width: 100%;
 `
 

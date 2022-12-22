@@ -1,24 +1,24 @@
-import {
-  applyConfigItemLabelText,
-  labelContainer,
-  hostInputContainer,
-  sslStyle,
-  configItemTip,
-  applyConfigItemContainer,
-} from "./style"
 import { FC, Fragment, useCallback } from "react"
-import {
-  Input,
-  Password,
-  Switch,
-  Select,
-  getColor,
-  InputNumber,
-  TextArea,
-  Checkbox,
-} from "@illa-design/react"
 import { Controller, RegisterOptions } from "react-hook-form"
+import {
+  Checkbox,
+  Input,
+  InputNumber,
+  Password,
+  Select,
+  Switch,
+  TextArea,
+  getColor,
+} from "@illa-design/react"
 import { ContrilledElementProps } from "./interface"
+import {
+  applyConfigItemContainer,
+  applyConfigItemLabelText,
+  configItemTip,
+  hostInputContainer,
+  labelContainer,
+  sslStyle,
+} from "./style"
 
 export const ControlledElement: FC<ContrilledElementProps> = (props) => {
   const {

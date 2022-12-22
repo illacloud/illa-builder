@@ -1,38 +1,36 @@
 import { FC, useCallback, useState } from "react"
+import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { Controller, useForm } from "react-hook-form"
-import { RootState } from "@/store"
-import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
 import {
   Button,
   ButtonGroup,
   Divider,
-  PaginationPreIcon,
   Input,
+  PaginationPreIcon,
   WarningCircleIcon,
 } from "@illa-design/react"
+import {
+  errorIconStyle,
+  errorMsgStyle,
+} from "@/page/App/components/Actions/ClickhouseConfigElement/style"
+import { APIKeyAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/APIKeyAuthPanel"
+import { BasicAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/BasicAuthPanel"
+import { BearerAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/BearerAuthPanel"
 import {
   container,
   divider,
   footerStyle,
   optionLabelStyle,
 } from "@/page/App/components/Actions/GraphQLConfigElement/style"
-import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
-import { BasicAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/BasicAuthPanel"
-import { BearerAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/BearerAuthPanel"
-import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
   generateGraphQLAuthContent,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
-import {
-  errorIconStyle,
-  errorMsgStyle,
-} from "@/page/App/components/Actions/ClickhouseConfigElement/style"
-import { isURL } from "@/utils/typeHelper"
+import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import {
   ApiKeyAuth,
   BasicAuth,
@@ -42,7 +40,9 @@ import {
   GraphQLAuthValue,
   GraphQLResource,
 } from "@/redux/resource/graphqlResource"
-import { APIKeyAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/APIKeyAuthPanel"
+import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
+import { RootState } from "@/store"
+import { isURL } from "@/utils/typeHelper"
 
 export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, onFinished, resourceId } = props

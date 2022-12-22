@@ -43,8 +43,8 @@ import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
-const UNIT_HEIGHT = 8
-const BASIC_BLOCK_COLUMNS = 64
+export const UNIT_HEIGHT = 8
+export const BASIC_BLOCK_COLUMNS = 64
 
 export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode

@@ -9,21 +9,21 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import {
-  generateSSLConfig,
-  Resource,
-  ResourceContent,
-  ResourceType,
-} from "@/redux/resource/resourceState"
-import store from "@/store"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { RestApiAuth } from "@/redux/resource/restapiResource"
 import {
   APIKeyAddToValue,
   GraphQLAuth,
   GraphQLAuthValue,
 } from "@/redux/resource/graphqlResource"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import {
+  Resource,
+  ResourceContent,
+  ResourceType,
+  generateSSLConfig,
+} from "@/redux/resource/resourceState"
+import { RestApiAuth } from "@/redux/resource/restapiResource"
+import store from "@/store"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 function getBaseActionUrl() {
   const rootState = store.getState()

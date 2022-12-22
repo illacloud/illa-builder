@@ -1,14 +1,13 @@
 import { FC } from "react"
+import { CodeEditor } from "@/components/CodeEditor"
 import { ControlledInputProps } from "@/page/App/components/InputEditor/interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   actionItemCodeEditorStyle,
   actionItemStyle,
-  codeEditorLabelStyle,
   actionItemTip,
+  codeEditorLabelStyle,
 } from "./style"
-import { CodeEditor } from "@/components/CodeEditor"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { EditorModes } from "@/components/CodeEditor/interface"
 
 export const InputEditor: FC<ControlledInputProps> = (props) => {
   const {

@@ -1,18 +1,18 @@
 import { FC, useCallback } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
-import { GraphQLAction } from "@/redux/currentApp/action/graphqlAction"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
-import { useTranslation } from "react-i18next"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { GraphQLAction } from "@/redux/currentApp/action/graphqlAction"
 import { Params } from "@/redux/resource/restapiResource"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const GraphQLPanel: FC = () => {
   const { t } = useTranslation()

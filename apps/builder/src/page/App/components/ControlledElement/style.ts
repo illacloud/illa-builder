@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export function applyConfigItemContainer(hasTextarea: boolean) {
