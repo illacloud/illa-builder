@@ -108,8 +108,9 @@ export function generateGraphQLAuthContent(data: {
       break
     case GraphQLAuthValue.BEARER:
       authContent = {
-        bearerToken: data.token,
+        bearerToken: data.bearerToken,
       }
+      break
     case GraphQLAuthValue.APIKEY:
       authContent = {
         key: data.key,
