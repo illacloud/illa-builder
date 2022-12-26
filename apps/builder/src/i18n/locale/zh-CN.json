@@ -830,7 +830,8 @@
         "view_path": "视图路径",
         "views": "视图",
         "width": "宽度",
-        "height": "高度"
+        "height": "高度",
+        "columns": "列数"
       },
       "model_tips": {
         "cancel_button": "取消",
