@@ -13,6 +13,7 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
     padding,
     safeRowNumber = 8,
     addedRowNumber = 8,
+    blockColumns,
   } = props
   const containerRef: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement>(null)
@@ -32,6 +33,7 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
         minHeight={minHeight}
         safeRowNumber={safeRowNumber}
         addedRowNumber={addedRowNumber}
+        blockColumns={blockColumns}
       />
     </div>
   )
@@ -45,6 +47,7 @@ export const BasicContainerWithJSON: FC<BasicContainerProps> = (props) => {
     padding,
     safeRowNumber = 8,
     addedRowNumber = 8,
+    blockColumns,
   } = props
   const containerRef: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement>(null)
@@ -63,6 +66,7 @@ export const BasicContainerWithJSON: FC<BasicContainerProps> = (props) => {
         minHeight={minHeight}
         safeRowNumber={safeRowNumber}
         addedRowNumber={addedRowNumber}
+        blockColumns={blockColumns}
       />
     </div>
   )

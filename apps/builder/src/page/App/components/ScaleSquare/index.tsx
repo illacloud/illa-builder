@@ -70,7 +70,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     containerHeight,
     childrenNode,
     collisionEffect,
-    columnsNumber,
+    blockColumns,
   } = props
 
   const canRenderDashedLine = !collisionEffect.has(componentNode.displayName)
@@ -263,7 +263,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         return {
           item: componentNode,
           childrenNodes,
-          currentColumnNumber: columnsNumber,
+          currentColumnNumber: blockColumns,
         }
       },
       collect: (monitor) => {
@@ -523,7 +523,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             widgetType={componentNode.type}
           />
 
-          <TransformWidgetWrapper componentNode={componentNode} />
+          <TransformWidgetWrapper
+            componentNode={componentNode}
+            blockColumns={blockColumns}
+          />
           {canRenderDashedLine && (
             <div
               css={applyDashedLineStyle(
@@ -542,7 +545,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
 export const ScaleSquareWithJSON = memo<ScaleSquarePropsWithJSON>(
   (props: ScaleSquarePropsWithJSON) => {
-    const { componentNode, unitW, unitH, w, h, x, y } = props
+    const { componentNode, unitW, unitH, w, h, x, y, blockColumns } = props
 
     //  1px is left border width
     return (
@@ -565,7 +568,10 @@ export const ScaleSquareWithJSON = memo<ScaleSquarePropsWithJSON>(
           className="wrapperPending"
           css={applyWrapperPendingStyle(false, false, false, false)}
         >
-          <TransformWidgetWrapperWithJson componentNode={componentNode} />
+          <TransformWidgetWrapperWithJson
+            componentNode={componentNode}
+            blockColumns={blockColumns}
+          />
         </div>
       </Rnd>
     )

@@ -38,7 +38,8 @@ import {
 } from "@/widgetLibrary/ListWidget/style"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
-  const { templateComponentNodes, templateContainerHeight } = props
+  const { templateComponentNodes, templateContainerHeight, blockColumns } =
+    props
   return (
     <BasicContainer
       componentNode={templateComponentNodes}
@@ -46,12 +47,14 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
       minHeight={templateContainerHeight - 16}
       padding={8}
       addedRowNumber={0}
+      blockColumns={blockColumns}
     />
   )
 }
 
 const RenderCopyContainer: FC<RenderTemplateContainerProps> = (props) => {
-  const { templateComponentNodes, templateContainerHeight } = props
+  const { templateComponentNodes, templateContainerHeight, blockColumns } =
+    props
   return (
     <BasicContainerWithJSON
       componentNode={templateComponentNodes}
@@ -59,6 +62,7 @@ const RenderCopyContainer: FC<RenderTemplateContainerProps> = (props) => {
       minHeight={templateContainerHeight - 16}
       padding={8}
       addedRowNumber={0}
+      blockColumns={blockColumns}
     />
   )
 }
@@ -100,6 +104,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     handleUpdateSelectedItem,
     itemBackGroundColor,
     illaMode,
+    blockColumns,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
@@ -184,6 +189,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
             <RenderTemplateContainer
               templateComponentNodes={childrenNode[0]}
               templateContainerHeight={itemHeight}
+              blockColumns={blockColumns}
             />
           </div>
           {isMouseHover && (
@@ -211,6 +217,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
               <RenderCopyContainer
                 templateComponentNodes={node}
                 templateContainerHeight={itemHeight}
+                blockColumns={blockColumns}
               />
             </div>
           )
@@ -243,6 +250,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
     handleUpdateSelectedItem,
     itemBackGroundColor,
     illaMode,
+    blockColumns,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
@@ -302,6 +310,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
           <RenderTemplateContainer
             templateComponentNodes={childrenNode[0]}
             templateContainerHeight={itemHeight}
+            blockColumns={blockColumns}
           />
         </div>
         {isMouseHover && <div css={applyDashedLineStyle(false, true, false)} />}
@@ -325,6 +334,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
             <RenderCopyContainer
               templateComponentNodes={node}
               templateContainerHeight={itemHeight}
+              blockColumns={blockColumns}
             />
           </div>
         )

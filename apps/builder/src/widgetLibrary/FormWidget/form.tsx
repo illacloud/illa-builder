@@ -107,6 +107,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     disabledSubmit,
     resetAfterSuccessful,
     validateInputsOnSubmit,
+    blockColumns,
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -387,9 +388,10 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         minHeight={headerBounds.height - 16}
         padding={8}
         addedRowNumber={0}
+        blockColumns={blockColumns}
       />
     )
-  }, [childrenNode, headerBounds.height])
+  }, [blockColumns, childrenNode, headerBounds.height])
 
   const renderBody = useMemo(() => {
     const bodyComponentNode = childrenNode[1]
@@ -400,9 +402,10 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         padding={8}
         safeRowNumber={1}
         addedRowNumber={20}
+        blockColumns={blockColumns}
       />
     )
-  }, [bodyBounds.height, childrenNode])
+  }, [blockColumns, bodyBounds.height, childrenNode])
 
   const renderFooter = useMemo(() => {
     const footerComponentNode = childrenNode[2]
@@ -413,9 +416,10 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         minHeight={footerBounds.height - 2 * 8}
         padding={8}
         addedRowNumber={0}
+        blockColumns={blockColumns}
       />
     )
-  }, [childrenNode, footerBounds.height])
+  }, [blockColumns, childrenNode, footerBounds.height])
 
   const resizeTopHandler = useMemo(() => {
     return {
