@@ -23,6 +23,7 @@ import {
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
+import { getIllaMode } from "@/redux/config/configSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -125,6 +126,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     null,
   ) as MutableRefObject<HTMLDivElement | null>
   const [isMouseHover, setIsMouseHover] = useState(false)
+  const illaMode = useSelector(getIllaMode)
   const executionResult = useSelector(getExecutionResult)
 
   const dispatch = useDispatch()
@@ -535,7 +537,9 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           minHeight={headerMinHeight}
           maxHeight={headerMaxHeight}
           handleComponent={
-            isMouseHover && !isDraggingActive ? resizeTopHandler : undefined
+            illaMode === "edit" && isMouseHover && !isDraggingActive
+              ? resizeTopHandler
+              : undefined
           }
           enable={{
             bottom: true,
@@ -546,14 +550,14 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           <div css={formHeaderStyle} ref={headerRef}>
             {renderHeader}
           </div>
-          {isMouseHover && !isDraggingActive && (
+          {isMouseHover && !isDraggingActive && illaMode === "edit" && (
             <div css={applyDashedLineStyle(false, true, false)} />
           )}
         </Resizable>
       )}
       <div css={formBodyStyle} ref={bodyRef}>
         {renderBody}
-        {isMouseHover && !isDraggingActive && (
+        {isMouseHover && !isDraggingActive && illaMode === "edit" && (
           <div css={applyXDirectionDashedLineStyle(false, true, false)} />
         )}
       </div>
@@ -566,7 +570,9 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           minHeight={footerMinHeight}
           maxHeight={footerMaxHeight}
           handleComponent={
-            isMouseHover && !isDraggingActive ? resizeBottomHandler : undefined
+            illaMode === "edit" && isMouseHover && !isDraggingActive
+              ? resizeBottomHandler
+              : undefined
           }
           enable={{
             top: true,
@@ -577,7 +583,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           <div css={formHeaderStyle} ref={footerRef}>
             {renderFooter}
           </div>
-          {isMouseHover && !isDraggingActive && (
+          {isMouseHover && !isDraggingActive && illaMode === "edit" && (
             <div
               css={applyDashedLineStyle(false, true, false, footerMaxHeight)}
             />

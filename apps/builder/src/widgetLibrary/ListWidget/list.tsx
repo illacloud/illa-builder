@@ -181,7 +181,12 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
           onResizeStop={handleOnResizeTopStop}
         >
           <div
-            css={applyListItemStyle(true, canShowBorder, itemBackGroundColor)}
+            css={applyListItemStyle(
+              true,
+              canShowBorder,
+              itemBackGroundColor,
+              isEditor,
+            )}
             onClick={() => {
               handleUpdateSelectedItem(0)
             }}
@@ -192,7 +197,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
               blockColumns={blockColumns}
             />
           </div>
-          {isMouseHover && (
+          {canShowBorder && (
             <div css={applyDashedLineStyle(false, true, false)} />
           )}
         </Resizable>
@@ -302,7 +307,12 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
         onResizeStop={handleOnResizeTopStop}
       >
         <div
-          css={applyListItemStyle(true, canShowBorder, itemBackGroundColor)}
+          css={applyListItemStyle(
+            true,
+            canShowBorder,
+            itemBackGroundColor,
+            isEditor,
+          )}
           onClick={() => {
             handleUpdateSelectedItem(0)
           }}
@@ -313,7 +323,9 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
             blockColumns={blockColumns}
           />
         </div>
-        {isMouseHover && <div css={applyDashedLineStyle(false, true, false)} />}
+        {canShowBorder && (
+          <div css={applyDashedLineStyle(false, true, false)} />
+        )}
       </Resizable>
       {copyComponents?.map((node, index) => {
         if (index === 0) return null
