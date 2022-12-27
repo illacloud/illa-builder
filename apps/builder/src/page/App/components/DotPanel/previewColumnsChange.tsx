@@ -16,7 +16,8 @@ export const PreviewColumnsChange: FC<PreviewColumnsChangeProps> = (props) => {
       css={previewColumnsWrapperStyle}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.15, ease: "easeInOut" }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
+      exit={{ opacity: 0 }}
     >
       {new Array(columns).fill(0).map((_, index) => {
         return (

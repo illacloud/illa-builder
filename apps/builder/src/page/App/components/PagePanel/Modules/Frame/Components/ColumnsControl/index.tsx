@@ -1,11 +1,12 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { InputNumber } from "@illa-design/react"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
 import { ColumnsControlProps } from "@/page/App/components/PagePanel/Modules/Frame/Components/ColumnsControl/interface"
+import { getCurrentPageSectionColumns } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   BASIC_BLOCK_COLUMNS,
@@ -17,6 +18,7 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
   const { t } = useTranslation()
   const [inputValue, setInputValue] = useState<number | undefined>(columns)
   const dispatch = useDispatch()
+  const columnsConfig = useSelector(getCurrentPageSectionColumns)
 
   const handleBlur = useCallback(() => {
     if (!inputValue || !currentPageDisplayName) return
@@ -51,9 +53,12 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
         newProps: {
           [attrName]: finalColumns,
         },
+        options: {
+          ...columnsConfig,
+        },
       }),
     )
-  }, [attrName, currentPageDisplayName, dispatch, inputValue])
+  }, [attrName, columnsConfig, currentPageDisplayName, dispatch, inputValue])
 
   return (
     <LeftAndRightLayout>

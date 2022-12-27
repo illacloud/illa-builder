@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion"
 import { throttle } from "lodash"
 import {
   FC,
@@ -594,9 +595,11 @@ export const RenderComponentCanvas: FC<{
         unitW={unitWidth}
         unitH={UNIT_HEIGHT}
       />
-      {componentNode.type === "CONTAINER_NODE" && ShowColumnsChange && (
-        <PreviewColumnsChange unitWidth={unitWidth} columns={blockColumns} />
-      )}
+      <AnimatePresence>
+        {componentNode.type === "CONTAINER_NODE" && ShowColumnsChange && (
+          <PreviewColumnsChange unitWidth={unitWidth} columns={blockColumns} />
+        )}
+      </AnimatePresence>
     </div>
   )
 }

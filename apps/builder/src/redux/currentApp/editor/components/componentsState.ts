@@ -157,6 +157,7 @@ export interface UpdateTargetPageLayoutPayload {
 export interface UpdateTargetPagePropsPayload {
   pageName: string
   newProps: Partial<PageNodeProps>
+  options?: Record<string, unknown>
 }
 
 export interface UpdateRootNodePropsPayload {}
