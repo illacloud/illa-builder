@@ -28,6 +28,7 @@ import { PanelActionBar } from "@/page/App/components/PagePanel/Components/Panel
 import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
+import { ColumnsControl } from "@/page/App/components/PagePanel/Modules/Frame/Components/ColumnsControl"
 import { optionListWrapperStyle } from "@/page/App/components/PagePanel/style"
 import { getCanvasShape } from "@/redux/config/configSelector"
 import {
@@ -57,7 +58,7 @@ const getDefaultColumns = (attrName: string, value?: number) => {
     }
 
     default: {
-      break
+      return BASIC_BLOCK_COLUMNS
     }
   }
 }
@@ -497,46 +498,6 @@ export const PageFrame: FC = () => {
     [canvasSize, currentPageDisplayName, dispatch, hasLeft, hasRight],
   )
 
-  const handleChangeSectionColumns = useCallback(
-    (attrName: string, value?: number) => {
-      if (!value || !currentPageDisplayName) return
-      let finalColumns = value
-      switch (attrName) {
-        case "rightColumns":
-        case "leftColumns": {
-          if (finalColumns > LEFT_OR_RIGHT_DEFAULT_COLUMNS) {
-            finalColumns = LEFT_OR_RIGHT_DEFAULT_COLUMNS
-          }
-          break
-        }
-        case "bodyColumns":
-        case "footerColumns":
-        case "headerColumns": {
-          if (finalColumns > BASIC_BLOCK_COLUMNS) {
-            finalColumns = BASIC_BLOCK_COLUMNS
-          }
-          break
-        }
-
-        default: {
-          break
-        }
-      }
-      if (finalColumns < 2) {
-        finalColumns = 2
-      }
-      dispatch(
-        componentsActions.updateTargetPagePropsReducer({
-          pageName: currentPageDisplayName,
-          newProps: {
-            [attrName]: finalColumns,
-          },
-        }),
-      )
-    },
-    [currentPageDisplayName, dispatch],
-  )
-
   const handleChangeCanvasWidth = useCallback(
     (value?: number) => {
       if (!currentPageDisplayName || value == undefined) return
@@ -692,20 +653,12 @@ export const PageFrame: FC = () => {
                 />
               </SetterPadding>
             </LeftAndRightLayout>
-            <LeftAndRightLayout>
-              <PageLabel labelName="Columns" size="small" />
-              <SetterPadding>
-                <InputNumber
-                  w="96px"
-                  value={getDefaultColumns("leftColumns", leftColumns)}
-                  borderColor="techPurple"
-                  onChange={(value) => {
-                    handleChangeSectionColumns("leftColumns", value)
-                  }}
-                  step={1}
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
+            <ColumnsControl
+              labelName={t("editor.page.label_name.columns")}
+              columns={getDefaultColumns("leftColumns", leftColumns)}
+              attrName="leftColumns"
+              currentPageDisplayName={currentPageDisplayName}
+            />
             <LeftAndRightLayout>
               <PageLabel
                 labelName={t("editor.page.label_name.show_fold_icon")}
@@ -769,20 +722,12 @@ export const PageFrame: FC = () => {
                 />
               </SetterPadding>
             </LeftAndRightLayout>
-            <LeftAndRightLayout>
-              <PageLabel labelName="Columns" size="small" />
-              <SetterPadding>
-                <InputNumber
-                  w="96px"
-                  value={getDefaultColumns("rightColumns", rightColumns)}
-                  borderColor="techPurple"
-                  onChange={(value) => {
-                    handleChangeSectionColumns("rightColumns", value)
-                  }}
-                  step={1}
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
+            <ColumnsControl
+              labelName={t("editor.page.label_name.columns")}
+              columns={getDefaultColumns("rightColumns", rightColumns)}
+              attrName="rightColumns"
+              currentPageDisplayName={currentPageDisplayName}
+            />
             <LeftAndRightLayout>
               <PageLabel
                 labelName={t("editor.page.label_name.show_fold_icon")}
@@ -821,20 +766,12 @@ export const PageFrame: FC = () => {
             />
           </SetterPadding>
         </LeftAndRightLayout>
-        <LeftAndRightLayout>
-          <PageLabel labelName="Columns" size="small" />
-          <SetterPadding>
-            <InputNumber
-              w="96px"
-              value={getDefaultColumns("bodyColumns", bodyColumns)}
-              borderColor="techPurple"
-              onChange={(value) => {
-                handleChangeSectionColumns("bodyColumns", value)
-              }}
-              step={1}
-            />
-          </SetterPadding>
-        </LeftAndRightLayout>
+        <ColumnsControl
+          labelName={t("editor.page.label_name.columns")}
+          columns={getDefaultColumns("bodyColumns", bodyColumns)}
+          attrName="bodyColumns"
+          currentPageDisplayName={currentPageDisplayName}
+        />
       </div>
       <PanelDivider hasMargin={false} />
       <div css={groupWrapperStyle}>
@@ -881,20 +818,12 @@ export const PageFrame: FC = () => {
                 />
               </SetterPadding>
             </LeftAndRightLayout>
-            <LeftAndRightLayout>
-              <PageLabel labelName="Columns" size="small" />
-              <SetterPadding>
-                <InputNumber
-                  w="96px"
-                  value={getDefaultColumns("headerColumns", headerColumns)}
-                  borderColor="techPurple"
-                  onChange={(value) => {
-                    handleChangeSectionColumns("headerColumns", value)
-                  }}
-                  step={1}
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
+            <ColumnsControl
+              labelName={t("editor.page.label_name.columns")}
+              columns={getDefaultColumns("headerColumns", headerColumns)}
+              attrName="headerColumns"
+              currentPageDisplayName={currentPageDisplayName}
+            />
           </>
         )}
       </div>
@@ -943,20 +872,12 @@ export const PageFrame: FC = () => {
                 />
               </SetterPadding>
             </LeftAndRightLayout>
-            <LeftAndRightLayout>
-              <PageLabel labelName="Columns" size="small" />
-              <SetterPadding>
-                <InputNumber
-                  w="96px"
-                  value={getDefaultColumns("footerColumns", footerColumns)}
-                  borderColor="techPurple"
-                  onChange={(value) => {
-                    handleChangeSectionColumns("footerColumns", value)
-                  }}
-                  step={1}
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
+            <ColumnsControl
+              labelName={t("editor.page.label_name.columns")}
+              columns={getDefaultColumns("footerColumns", footerColumns)}
+              attrName="footerColumns"
+              currentPageDisplayName={currentPageDisplayName}
+            />
           </>
         )}
       </div>
