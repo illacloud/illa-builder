@@ -217,7 +217,10 @@ export const RenderComponentCanvas: FC<{
 
           const scaleItem: ComponentNode = {
             ...item,
-            w: item.w * scale,
+            w:
+              Math.ceil(item.w * scale) < item.minW
+                ? item.minW
+                : Math.ceil(item.w * scale),
           }
           let dragResult
           if (
@@ -356,7 +359,10 @@ export const RenderComponentCanvas: FC<{
 
           const scaleItem: ComponentNode = {
             ...item,
-            w: item.w * scale,
+            w:
+              Math.ceil(item.w * scale) < item.minW
+                ? item.minW
+                : Math.ceil(item.w * scale),
           }
           let dragResult
           if (
@@ -459,7 +465,11 @@ export const RenderComponentCanvas: FC<{
         const { item, currentColumnNumber } = dragInfo
         let nodeWidth = item?.w ?? 0
         let nodeHeight = item?.h ?? 0
-        nodeWidth = nodeWidth * (blockColumns / currentColumnNumber)
+        nodeWidth =
+          Math.ceil(nodeWidth * (blockColumns / currentColumnNumber)) <
+          item.minW
+            ? item.minW
+            : Math.ceil(nodeWidth * (blockColumns / currentColumnNumber))
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
           nodeWidth: nodeWidth,
