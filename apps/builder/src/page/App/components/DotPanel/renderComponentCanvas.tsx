@@ -109,7 +109,7 @@ export const RenderComponentCanvas: FC<{
         clearTimeout(canShowColumnsTimeoutChange.current)
       }
     }
-  }, [blockColumns])
+  }, [blockColumns, dispatch])
 
   const [canvasRef, bounds] = useMeasure()
   const currentCanvasRef = useRef<HTMLDivElement>(

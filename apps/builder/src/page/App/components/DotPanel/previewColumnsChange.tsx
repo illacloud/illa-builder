@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import { FC } from "react"
 import {
   applyPreviewColumnsStyle,
@@ -11,12 +12,17 @@ interface PreviewColumnsChangeProps {
 export const PreviewColumnsChange: FC<PreviewColumnsChangeProps> = (props) => {
   const { columns, unitWidth } = props
   return (
-    <div css={previewColumnsWrapperStyle}>
+    <motion.div
+      css={previewColumnsWrapperStyle}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.15, ease: "easeInOut" }}
+    >
       {new Array(columns).fill(0).map((_, index) => {
         return (
           <div key={index} css={applyPreviewColumnsStyle(index, unitWidth)} />
         )
       })}
-    </div>
+    </motion.div>
   )
 }
