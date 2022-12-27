@@ -830,7 +830,8 @@
         "view_path": "View path",
         "views": "Views",
         "width": "Width",
-        "height": "Height"
+        "height": "Height",
+        "columns": "Columns"
       },
       "model_tips": {
         "cancel_button": "Cancel",
