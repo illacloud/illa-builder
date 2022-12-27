@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion"
 import { throttle } from "lodash"
 import {
   FC,
@@ -25,6 +26,7 @@ import {
   DropCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
+import { PreviewColumnsChange } from "@/page/App/components/DotPanel/previewColumnsChange"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
 import {
   applyComponentCanvasStyle,
@@ -39,12 +41,12 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 export const UNIT_HEIGHT = 8
-export const BASIC_BLOCK_COLUMNS = 64
 
 export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
@@ -82,6 +84,34 @@ export const RenderComponentCanvas: FC<{
     new Map<string, ComponentNode>(),
   )
 
+  const prevBlockColumns = useRef(blockColumns)
+  const [ShowColumnsChange, setShowColumnsChange] = useState(false)
+  const canShowColumnsTimeoutChange = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (prevBlockColumns.current !== blockColumns) {
+      prevBlockColumns.current = blockColumns
+      setShowColumnsChange(true)
+      dispatch(configActions.updateShowDot(true))
+      if (canShowColumnsTimeoutChange.current) {
+        clearTimeout(canShowColumnsTimeoutChange.current)
+      }
+      canShowColumnsTimeoutChange.current = setTimeout(() => {
+        setShowColumnsChange(false)
+        dispatch(configActions.updateShowDot(false))
+        if (canShowColumnsTimeoutChange.current) {
+          clearTimeout(canShowColumnsTimeoutChange.current)
+        }
+      }, 2000)
+    }
+
+    return () => {
+      if (canShowColumnsTimeoutChange.current) {
+        clearTimeout(canShowColumnsTimeoutChange.current)
+      }
+    }
+  }, [blockColumns, dispatch])
+
   const [canvasRef, bounds] = useMeasure()
   const currentCanvasRef = useRef<HTMLDivElement>(
     null,
@@ -114,6 +144,7 @@ export const RenderComponentCanvas: FC<{
               minHeight={minHeight}
               safeRowNumber={safeRowNumber}
               addedRowNumber={addedRowNumber}
+              blockColumns={blockColumns}
             />
           )
         case "EDITOR_SCALE_SQUARE":
@@ -133,7 +164,7 @@ export const RenderComponentCanvas: FC<{
               containerPadding={containerPadding}
               childrenNode={componentNode.childrenNode}
               collisionEffect={collisionEffect}
-              columnsNumber={blockColumns}
+              blockColumns={blockColumns}
             />
           )
         default:
@@ -187,7 +218,10 @@ export const RenderComponentCanvas: FC<{
 
           const scaleItem: ComponentNode = {
             ...item,
-            w: item.w * scale,
+            w:
+              Math.ceil(item.w * scale) < item.minW
+                ? item.minW
+                : Math.ceil(item.w * scale),
           }
           let dragResult
           if (
@@ -326,7 +360,10 @@ export const RenderComponentCanvas: FC<{
 
           const scaleItem: ComponentNode = {
             ...item,
-            w: item.w * scale,
+            w:
+              Math.ceil(item.w * scale) < item.minW
+                ? item.minW
+                : Math.ceil(item.w * scale),
           }
           let dragResult
           if (
@@ -429,7 +466,11 @@ export const RenderComponentCanvas: FC<{
         const { item, currentColumnNumber } = dragInfo
         let nodeWidth = item?.w ?? 0
         let nodeHeight = item?.h ?? 0
-        nodeWidth = nodeWidth * (blockColumns / currentColumnNumber)
+        nodeWidth =
+          Math.ceil(nodeWidth * (blockColumns / currentColumnNumber)) <
+          item.minW
+            ? item.minW
+            : Math.ceil(nodeWidth * (blockColumns / currentColumnNumber))
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
           nodeWidth: nodeWidth,
@@ -554,6 +595,11 @@ export const RenderComponentCanvas: FC<{
         unitW={unitWidth}
         unitH={UNIT_HEIGHT}
       />
+      <AnimatePresence>
+        {componentNode.type === "CONTAINER_NODE" && ShowColumnsChange && (
+          <PreviewColumnsChange unitWidth={unitWidth} columns={blockColumns} />
+        )}
+      </AnimatePresence>
     </div>
   )
 }

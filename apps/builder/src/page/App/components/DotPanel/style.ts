@@ -450,22 +450,7 @@ export const footerHeightTipsStyle = css`
 export const pageContainerWrapperStyle = css`
   width: 100%;
   height: 100%;
-  border: 1px solid ${getColor("grayBlue", "09")};
 `
-
-export const applyPageContainerWrapperStyle = (mode: IllaMode) => {
-  const borderStyle =
-    mode === "edit"
-      ? css`
-          border: 1px solid ${getColor("grayBlue", "09")};
-        `
-      : null
-  return css`
-    width: 100%;
-    height: 100%;
-    ${borderStyle}
-  `
-}
 
 export const applyCanvasContainerWrapperStyle = (width: string) => {
   return css`
@@ -484,7 +469,7 @@ export const applyViewportContainerWrapperStyle = (
   height?: number,
 ) => {
   const borderStyle =
-    mode === "edit"
+    mode === "edit" && width != undefined
       ? css`
           border: 1px solid ${getColor("grayBlue", "09")};
         `
@@ -504,5 +489,24 @@ export const applyViewportContainerWrapperStyle = (
     overflow: auto;
     margin: 0 auto;
     ${borderStyle}
+  `
+}
+
+export const previewColumnsWrapperStyle = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+`
+
+export const applyPreviewColumnsStyle = (index: number, unitWidth: number) => {
+  return css`
+    width: ${unitWidth}px;
+    height: 100%;
+    background-color: ${index % 2 === 0
+      ? "rgba(101, 74, 236, 0.08)"
+      : "transparent"};
   `
 }

@@ -1,14 +1,24 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
+import { cloneDeep } from "lodash"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { configActions } from "@/redux/config/configSlice"
 import {
   getCanvas,
+  getCurrentPageBodySectionComponentsSelector,
+  getCurrentPageFooterSectionComponentsSelector,
+  getCurrentPageHeaderSectionComponentsSelector,
+  getCurrentPageLeftSectionComponentsSelector,
+  getCurrentPageRightSectionComponentsSelector,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import {
+  BASIC_BLOCK_COLUMNS,
+  LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+} from "@/utils/generators/generatePageOrSectionConfig"
 import { CONTAINER_TYPE, ComponentNode } from "./componentsState"
 
 function handleCopyComponentReflowEffect(
@@ -118,6 +128,186 @@ async function handleChangeCurrentSectionWhenDelete(
   }
 }
 
+const modifyComponentNodeX = (
+  componentNode: ComponentNode,
+  oldColumns: number,
+  currentColumns: number,
+) => {
+  const resultComponentNode = cloneDeep(componentNode)
+  const { x, w } = resultComponentNode
+  const scale = currentColumns / oldColumns
+  const scaleW = Math.ceil(w * scale)
+  const scaleX = Math.ceil(x * scale)
+  resultComponentNode.w =
+    scaleW < resultComponentNode.minW ? resultComponentNode.minW : scaleW
+  resultComponentNode.x = scaleX
+
+  if (resultComponentNode.x >= currentColumns) {
+    resultComponentNode.x = currentColumns - resultComponentNode.w
+  }
+  if (resultComponentNode.x < 0) {
+    resultComponentNode.x = 0
+  }
+  if (resultComponentNode.x + resultComponentNode.w >= currentColumns) {
+    const newW = currentColumns - resultComponentNode.x
+    resultComponentNode.w =
+      newW < resultComponentNode.minW ? resultComponentNode.minW : newW
+    if (resultComponentNode.w === resultComponentNode.minW) {
+      resultComponentNode.x = currentColumns - resultComponentNode.w
+    }
+  }
+  return resultComponentNode
+}
+
+const modifyComponentNodeY = (
+  componentNodes: ComponentNode[],
+  rootNode: ComponentNode,
+) => {
+  const effectResultMap = new Map<string, ComponentNode>()
+
+  if (Array.isArray(componentNodes) && componentNodes.length > 0) {
+    const allComponents = cloneDeep(componentNodes)
+    const baseComponentNode = allComponents[0]
+    const parentDisplayName = baseComponentNode.parentNode
+    let parentNode = searchDsl(rootNode, parentDisplayName)
+    if (!parentNode) {
+      return
+    }
+
+    let otherComponents: ComponentNode[] = allComponents
+    if (effectResultMap.has(parentNode.displayName)) {
+      parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
+      otherComponents = parentNode.childrenNode
+    }
+
+    const { finalState } = getReflowResult(
+      baseComponentNode,
+      otherComponents,
+      false,
+    )
+    effectResultMap.set(parentNode.displayName, {
+      ...parentNode,
+      childrenNode: finalState,
+    })
+  }
+  return effectResultMap
+}
+
+function reflowComponentNodesByUpdateColumns(
+  sectionChildrenNodes: Record<string, ComponentNode[]>,
+  oldColumns: number,
+  newColumns: number,
+  rootNode: ComponentNode,
+  listenerApi: AppListenerEffectAPI,
+) {
+  Object.keys(sectionChildrenNodes).forEach((key) => {
+    const componentNodes = sectionChildrenNodes[key]
+    const modifyXComponentNode: ComponentNode[] = []
+
+    componentNodes.forEach((component) => {
+      modifyXComponentNode.push(
+        modifyComponentNodeX(component, oldColumns, newColumns as number),
+      )
+    })
+    const effectResultMap = modifyComponentNodeY(modifyXComponentNode, rootNode)
+
+    if (effectResultMap) {
+      effectResultMap.forEach((value, key) => {
+        listenerApi.dispatch(
+          componentsActions.updateComponentReflowReducer([
+            {
+              parentDisplayName: key,
+              childNodes: value.childrenNode,
+            },
+          ]),
+        )
+      })
+    }
+  })
+}
+
+function handleUpdateTargetPagePropsEffect(
+  action: ReturnType<typeof componentsActions.updateTargetPagePropsReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const {
+    payload: { newProps, options },
+  } = action
+  const rootState = listenerApi.getState()
+  const rootNode = getCanvas(rootState)
+  if (!rootNode) return
+  if (newProps.hasOwnProperty("bodyColumns") && options) {
+    const oldColumns = options.bodyColumns as number
+
+    const sectionChildrenNodes = cloneDeep(
+      getCurrentPageBodySectionComponentsSelector(rootState),
+    )
+    reflowComponentNodesByUpdateColumns(
+      sectionChildrenNodes,
+      oldColumns,
+      newProps.bodyColumns ?? BASIC_BLOCK_COLUMNS,
+      rootNode,
+      listenerApi,
+    )
+  }
+  if (newProps.hasOwnProperty("leftColumns") && options) {
+    const oldColumns = options.leftColumns as number
+
+    const sectionChildrenNodes = cloneDeep(
+      getCurrentPageLeftSectionComponentsSelector(rootState),
+    )
+    reflowComponentNodesByUpdateColumns(
+      sectionChildrenNodes,
+      oldColumns,
+      newProps.leftColumns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rootNode,
+      listenerApi,
+    )
+  }
+  if (newProps.hasOwnProperty("rightColumns") && options) {
+    const oldColumns = options.rightColumns as number
+
+    const sectionChildrenNodes = cloneDeep(
+      getCurrentPageRightSectionComponentsSelector(rootState),
+    )
+    reflowComponentNodesByUpdateColumns(
+      sectionChildrenNodes,
+      oldColumns,
+      newProps.rightColumns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rootNode,
+      listenerApi,
+    )
+  }
+  if (newProps.hasOwnProperty("headerColumns") && options) {
+    const oldColumns = options.headerColumns as number
+
+    const sectionChildrenNodes = cloneDeep(
+      getCurrentPageHeaderSectionComponentsSelector(rootState),
+    )
+    reflowComponentNodesByUpdateColumns(
+      sectionChildrenNodes,
+      oldColumns,
+      newProps.headerColumns ?? BASIC_BLOCK_COLUMNS,
+      rootNode,
+      listenerApi,
+    )
+  }
+  if (newProps.hasOwnProperty("footerColumns") && options) {
+    const oldColumns = options.footerColumns as number
+
+    const sectionChildrenNodes = cloneDeep(
+      getCurrentPageFooterSectionComponentsSelector(rootState),
+    )
+    reflowComponentNodesByUpdateColumns(
+      sectionChildrenNodes,
+      oldColumns,
+      newProps.footerColumns ?? BASIC_BLOCK_COLUMNS,
+      rootNode,
+      listenerApi,
+    )
+  }
+}
+
 function handleUpdateComponentReflowEffect(
   action: AnyAction,
   listenApi: AppListenerEffectAPI,
@@ -194,6 +384,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.deleteSectionViewReducer,
       effect: handleChangeCurrentSectionWhenDelete,
+    }),
+    startListening({
+      actionCreator: componentsActions.updateTargetPagePropsReducer,
+      effect: handleUpdateTargetPagePropsEffect,
     }),
   ]
 

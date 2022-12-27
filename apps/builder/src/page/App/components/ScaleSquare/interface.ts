@@ -15,7 +15,7 @@ export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   containerPadding: number
   childrenNode: ComponentNode[]
   collisionEffect: Map<string, ComponentNode>
-  columnsNumber: number
+  blockColumns: number
 }
 
 export interface ScaleSquarePropsWithJSON {
@@ -26,6 +26,7 @@ export interface ScaleSquarePropsWithJSON {
   y: number
   unitW: number
   unitH: number
+  blockColumns: number
 }
 
 export interface MoveBarProps {

@@ -830,7 +830,8 @@
         "view_path": "ビューパス",
         "views": "見る",
         "width": "幅",
-        "height": "高い"
+        "height": "高い",
+        "columns": "Columns"
       },
       "model_tips": {
         "cancel_button": "キャンセル",

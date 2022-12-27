@@ -5,7 +5,7 @@ import {
   ActionContent,
   ActionItem,
   ActionRunResult,
-  Events,
+  ActionType,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
 import {
@@ -106,9 +106,23 @@ const downloadActionResult = (
   document.body.removeChild(a)
 }
 
+const transformRawData = (rawData: unknown, actionType: ActionType) => {
+  switch (actionType) {
+    case "graphql":
+    case "restapi": {
+      if (Array.isArray(rawData) && rawData.length > 0) {
+        return rawData[0]
+      }
+      return rawData
+    }
+    default:
+      return rawData
+  }
+}
+
 const fetchActionResult = (
   resourceId: string,
-  actionType: string,
+  actionType: ActionType,
   displayName: string,
   appId: string,
   actionId: string,
@@ -139,8 +153,8 @@ const fetchActionResult = (
         const { ContentType, ObjectKey } = extraData
         downloadActionResult(ContentType, ObjectKey, rawData[0].objectData)
       }
-
-      let calcResult = runTransformer(transformer, rawData)
+      const transRawData = transformRawData(rawData, actionType)
+      let calcResult = runTransformer(transformer, transRawData)
       resultCallback?.(calcResult, false)
       actionDisplayNameMapFetchResult[displayName] = calcResult
       if (!isTrigger) {

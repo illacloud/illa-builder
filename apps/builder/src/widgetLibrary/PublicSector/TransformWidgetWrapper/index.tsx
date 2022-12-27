@@ -36,7 +36,7 @@ export const getEventScripts = (events: EventsInProps[], eventType: string) => {
 
 export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
-    const { componentNode } = props
+    const { componentNode, blockColumns } = props
     const displayNameMapProps = useSelector(getExecutionResult)
     const { displayName, type, w, h, unitW, unitH, childrenNode } =
       componentNode
@@ -396,6 +396,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           h={h}
           unitW={unitW}
           unitH={unitH}
+          blockColumns={blockColumns}
           handleUpdateGlobalData={handleUpdateGlobalData}
           handleDeleteGlobalData={handleDeleteGlobalData}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}

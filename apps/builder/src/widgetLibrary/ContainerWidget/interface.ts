@@ -19,4 +19,6 @@ export interface ContainerProps extends BaseWidgetProps {
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   h: number
   unitH: number
+
+  blockColumns: number
 }

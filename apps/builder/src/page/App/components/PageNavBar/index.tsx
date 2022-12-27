@@ -62,6 +62,7 @@ import {
   informationStyle,
   inputAreaLabelWrapperStyle,
   inputAreaWrapperStyle,
+  lineStyle,
   logoCursorStyle,
   nameStyle,
   navBarStyle,
@@ -82,7 +83,7 @@ import {
 } from "./style"
 
 const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
-  const { viewportHeight, viewportWidth } = props
+  const { viewportHeight, viewportWidth, closePopContent } = props
   const [inputWidth, setInputWidth] = useState(viewportWidth)
   const [inputHeight, setInputHeight] = useState(viewportHeight)
   const dispatch = useDispatch()
@@ -127,13 +128,14 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
     setInputHeight(value)
   }, [])
   const onClickSaveButton = useCallback(() => {
+    closePopContent()
     dispatch(
       componentsActions.updateViewportSizeReducer({
         viewportWidth: inputWidth,
         viewportHeight: inputHeight,
       }),
     )
-  }, [dispatch, inputHeight, inputWidth])
+  }, [closePopContent, dispatch, inputHeight, inputWidth])
 
   const onClickResetButton = useCallback(() => {
     dispatch(
@@ -172,6 +174,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
         <div css={inputAreaLabelWrapperStyle}>
           <InputNumber
             w="80px"
+            borderColor="techPurple"
             value={inputWidth}
             placeholder="--"
             onChange={handleUpdateInputWidth}
@@ -180,6 +183,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
           <CloseIcon css={closeIconStyle} />
           <InputNumber
             w="80px"
+            borderColor="techPurple"
             value={inputHeight}
             placeholder="--"
             onChange={handleUpdateInputHeight}
@@ -200,6 +204,12 @@ const PreviewButtonGroup: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const viewportSize = useSelector(getViewportSizeSelector)
+  const [popContentVisible, setPopContentVisible] = useState(false)
+  const closePopContent = useCallback(() => {
+    setPopContentVisible(false)
+  }, [])
+  const mode = useSelector(getIllaMode)
+
   return (
     <div css={previewButtonGroupWrapperStyle}>
       <Trigger
@@ -208,8 +218,11 @@ const PreviewButtonGroup: FC = () => {
           <PreviewPopContent
             viewportHeight={viewportSize.viewportHeight}
             viewportWidth={viewportSize.viewportWidth}
+            closePopContent={closePopContent}
           />
         }
+        popupVisible={popContentVisible}
+        onVisibleChange={setPopContentVisible}
         position="bottom-start"
         showArrow={false}
         withoutPadding
@@ -217,8 +230,8 @@ const PreviewButtonGroup: FC = () => {
         _css={triggerStyle}
       >
         <Button
-          colorScheme="gray"
-          variant="outline"
+          colorScheme="grayBlue"
+          variant="fill"
           bdRadius="8px 0 0 8px"
           rightIcon={<DownIcon css={downIconStyle} />}
         >
@@ -235,16 +248,21 @@ const PreviewButtonGroup: FC = () => {
           </span>
         </Button>
       </Trigger>
+      <span css={lineStyle} />
       <Button
-        colorScheme="gray"
-        leftIcon={<FullScreenIcon />}
-        variant="outline"
+        colorScheme="grayBlue"
+        leftIcon={mode === "edit" ? <FullScreenIcon /> : <ExitIcon />}
+        variant="fill"
         bdRadius="0 8px 8px 0"
         onClick={() => {
-          dispatch(configActions.updateIllaMode("preview"))
+          if (mode === "edit") {
+            dispatch(configActions.updateIllaMode("preview"))
+          } else {
+            dispatch(configActions.updateIllaMode("edit"))
+          }
         }}
       >
-        {t("preview.button_text")}
+        {mode === "edit" ? t("preview.button_text") : t("exit_preview")}
       </Button>
     </div>
   )
@@ -316,9 +334,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       },
     )
   }, [appInfo.appId, t])
-  const handleClickExitPreview = useCallback(() => {
-    dispatch(configActions.updateIllaMode("edit"))
-  }, [dispatch])
 
   return (
     <div className={className} css={navBarStyle}>
@@ -362,12 +377,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             >
               <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
             </span>
-            <PreviewButtonGroup />
           </>
         )}
+        <PreviewButtonGroup />
       </div>
-      <div>
-        {mode === "edit" && (
+      {mode === "edit" && (
+        <div>
           <ButtonGroup spacing={"8px"}>
             <Badge count={debuggerData && Object.keys(debuggerData).length}>
               <Button
@@ -420,19 +435,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               {t("deploy")}
             </Button>
           </ButtonGroup>
-        )}
-        {mode === "preview" && (
-          <ButtonGroup spacing={"8px"}>
-            <Button
-              onClick={handleClickExitPreview}
-              colorScheme="techPurple"
-              leftIcon={<ExitIcon />}
-            >
-              {t("exit_preview")}
-            </Button>
-          </ButtonGroup>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   )
 }
