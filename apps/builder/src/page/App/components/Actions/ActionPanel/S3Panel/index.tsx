@@ -1,4 +1,3 @@
-import { S3 } from "@aws-sdk/client-s3"
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"

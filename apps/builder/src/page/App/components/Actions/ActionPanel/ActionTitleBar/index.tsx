@@ -6,7 +6,6 @@ import {
 import { FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Readable } from "stream"
 import {
   Button,
   CaretRightIcon,
@@ -178,7 +177,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     }
   }, [isChanged, cachedAction])
 
-  function _base64ToArrayBuffer(base64: string) {
+  function base64ToArrayBuffer(base64: string) {
     let binary_string = window.atob(base64)
     let len = binary_string.length
     let bytes = new Uint8Array(len)
@@ -246,7 +245,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               Bucket: bucketName,
               Key: commandArgs.objectKey,
               Body: isValidBase64.test(commandArgs.objectData)
-                ? _base64ToArrayBuffer(commandArgs.objectData)
+                ? base64ToArrayBuffer(commandArgs.objectData)
                 : commandArgs.objectData,
               ...(commandArgs.contentType && {
                 ContentType: commandArgs.contentType,
@@ -270,7 +269,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                   Bucket: bucketName,
                   Key: realObjectKeyList[i],
                   Body: isValidBase64.test(realObjectDataList[i])
-                    ? _base64ToArrayBuffer(realObjectDataList[i])
+                    ? base64ToArrayBuffer(realObjectDataList[i])
                     : realObjectDataList[i],
                   ...(commandArgs.contentType && {
                     ContentType: commandArgs.contentType,

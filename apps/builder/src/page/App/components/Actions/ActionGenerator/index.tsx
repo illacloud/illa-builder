@@ -86,7 +86,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
               if (actionType == "transformer") {
                 onClose()
               } else {
-                console.log(666)
                 setCurrentStep("createAction")
                 setCurrentActionType(actionType)
               }
