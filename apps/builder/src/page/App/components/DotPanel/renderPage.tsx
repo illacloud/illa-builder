@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
   applyCanvasContainerWrapperStyle,
+  maskStyle,
+  modalStyle,
   pageContainerWrapperStyle,
 } from "@/page/App/components/DotPanel/style"
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
@@ -428,6 +430,9 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           />
         )}
       </div>
+      {/*<div css={maskStyle}>*/}
+      {/*  <div css={modalStyle}></div>*/}
+      {/*</div>*/}
     </div>
   )
 }
