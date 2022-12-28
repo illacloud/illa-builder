@@ -92,15 +92,24 @@ function runTransformer(transformer: Transformer, rawData: any) {
   return calcResult
 }
 
-const downloadActionResult = (
+export const isValidBase64 =
+  /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$/
+
+export const downloadActionResult = (
   contentType: string,
   fileName: string,
   data: string,
 ) => {
+  const isBase64 = isValidBase64.test(data)
+  let href = ""
+  if (!isBase64) {
+    let blob = new Blob([data], { type: contentType })
+    href = URL.createObjectURL(blob)
+  }
   const a = document.createElement("a")
   a.download = fileName
   a.style.display = "none"
-  a.href = `data:${contentType};base64,${data}`
+  a.href = isBase64 ? `data:${contentType};base64,${data}` : href
   document.body.appendChild(a)
   a.click()
   document.body.removeChild(a)

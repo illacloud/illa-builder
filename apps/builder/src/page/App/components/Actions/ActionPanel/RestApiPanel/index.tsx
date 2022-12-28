@@ -13,8 +13,10 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
   BodyContent,
+  BodyType,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
 import { Resource } from "@/redux/resource/resourceState"
@@ -36,8 +38,12 @@ import {
 export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
 
-  const cachedAction = useSelector(getCachedAction)!!
-  const selectedAction = useSelector(getSelectedAction)!!
+  const cachedAction = useSelector(getCachedAction) as ActionItem<
+    RestApiAction<BodyContent>
+  >
+  const selectedAction = useSelector(getSelectedAction) as ActionItem<
+    RestApiAction<BodyContent>
+  >
 
   const content = cachedAction.content as RestApiAction<BodyContent>
   const dispatch = useDispatch()
@@ -62,7 +68,7 @@ export const RestApiPanel: FC = () => {
           maxW="160px"
           options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
           onChange={(value) => {
-            let newBodyType = "none"
+            let newBodyType: BodyType = "none"
             let newBody = null
 
             if (value !== "GET") {

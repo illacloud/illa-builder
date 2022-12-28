@@ -1,3 +1,4 @@
+import { S3 } from "@aws-sdk/client-s3"
 import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -26,7 +27,7 @@ import {
 } from "@/redux/currentApp/action/s3Action"
 import { DeleteMultiplePart } from "./DeleteMultiplePart"
 import { DeleteOnePart } from "./DeleteOnePart"
-import { DownloadOnePart } from "./DownlodOnePart"
+import { DownloadOnePart } from "./DownloadOnePart"
 import { ListAllPart } from "./ListAllPart"
 import { ReadOnePart } from "./ReadOnePart"
 import { UploadMultiplePart } from "./UploadMultiplePart"
@@ -40,9 +41,7 @@ export const S3Panel: FC = () => {
     S3Action<S3ActionTypeContent>
   >
   const selectedAction = useSelector(getSelectedAction)!
-
   const dispatch = useDispatch()
-
   let content = cachedAction.content as S3Action<S3ActionTypeContent>
 
   const renderInputBody = useMemo(() => {
