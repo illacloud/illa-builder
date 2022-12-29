@@ -41,6 +41,7 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
@@ -58,6 +59,7 @@ export const RenderComponentCanvas: FC<{
   blockColumns?: number
   addedRowNumber: number
   canAutoScroll?: boolean
+  sectionName?: string
 }> = (props) => {
   const {
     componentNode,
@@ -69,6 +71,7 @@ export const RenderComponentCanvas: FC<{
     blockColumns = BASIC_BLOCK_COLUMNS,
     addedRowNumber,
     canAutoScroll = false,
+    sectionName,
   } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
@@ -84,33 +87,71 @@ export const RenderComponentCanvas: FC<{
     new Map<string, ComponentNode>(),
   )
 
-  const prevBlockColumns = useRef(blockColumns)
   const [ShowColumnsChange, setShowColumnsChange] = useState(false)
   const canShowColumnsTimeoutChange = useRef<number | null>(null)
 
-  useEffect(() => {
-    if (prevBlockColumns.current !== blockColumns) {
-      prevBlockColumns.current = blockColumns
-      setShowColumnsChange(true)
-      dispatch(configActions.updateShowDot(true))
+  const showColumnsPreview = useCallback(() => {
+    dispatch(configActions.updateShowDot(true))
+    setShowColumnsChange(true)
+  }, [dispatch])
+  const hideColumnsPreview = useCallback(() => {
+    dispatch(configActions.updateShowDot(false))
+    setShowColumnsChange(false)
+  }, [dispatch])
+
+  const showColumnsChangePreview = useCallback(() => {
+    if (canShowColumnsTimeoutChange.current) {
+      clearTimeout(canShowColumnsTimeoutChange.current)
+    }
+    canShowColumnsTimeoutChange.current = setTimeout(() => {
+      setShowColumnsChange(false)
+      dispatch(configActions.updateShowDot(false))
       if (canShowColumnsTimeoutChange.current) {
         clearTimeout(canShowColumnsTimeoutChange.current)
       }
-      canShowColumnsTimeoutChange.current = setTimeout(() => {
-        setShowColumnsChange(false)
-        dispatch(configActions.updateShowDot(false))
-        if (canShowColumnsTimeoutChange.current) {
-          clearTimeout(canShowColumnsTimeoutChange.current)
-        }
-      }, 2000)
+    }, 2000)
+  }, [dispatch])
+
+  useEffect(() => {
+    if (sectionName) {
+      ILLAEventbus.on(
+        `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_${sectionName}`,
+        showColumnsPreview,
+      )
+      ILLAEventbus.on(
+        `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_${sectionName}`,
+        hideColumnsPreview,
+      )
+      ILLAEventbus.on(
+        `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_${sectionName}`,
+        showColumnsChangePreview,
+      )
     }
 
     return () => {
-      if (canShowColumnsTimeoutChange.current) {
-        clearTimeout(canShowColumnsTimeoutChange.current)
+      if (sectionName) {
+        ILLAEventbus.off(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_${sectionName}`,
+          showColumnsPreview,
+        )
+        ILLAEventbus.off(
+          `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_${sectionName}`,
+          hideColumnsPreview,
+        )
+        ILLAEventbus.off(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_${sectionName}`,
+          showColumnsChangePreview,
+        )
       }
     }
-  }, [blockColumns, dispatch])
+  }, [
+    blockColumns,
+    dispatch,
+    hideColumnsPreview,
+    sectionName,
+    showColumnsChangePreview,
+    showColumnsPreview,
+  ])
 
   const [canvasRef, bounds] = useMeasure()
   const currentCanvasRef = useRef<HTMLDivElement>(
@@ -466,11 +507,13 @@ export const RenderComponentCanvas: FC<{
         const { item, currentColumnNumber } = dragInfo
         let nodeWidth = item?.w ?? 0
         let nodeHeight = item?.h ?? 0
+
         nodeWidth =
           Math.ceil(nodeWidth * (blockColumns / currentColumnNumber)) <
           item.minW
             ? item.minW
             : Math.ceil(nodeWidth * (blockColumns / currentColumnNumber))
+
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
           nodeWidth: nodeWidth,
@@ -492,9 +535,9 @@ export const RenderComponentCanvas: FC<{
   const finalRowNumber = useMemo(() => {
     return Math.max(
       maxY,
-      Math.floor((minHeight || document.body.clientHeight) / UNIT_HEIGHT),
+      Math.floor((minHeight || bounds.height) / UNIT_HEIGHT),
     )
-  }, [maxY, minHeight])
+  }, [bounds.height, maxY, minHeight])
 
   useEffect(() => {
     if (!isActive && canResizeY) {

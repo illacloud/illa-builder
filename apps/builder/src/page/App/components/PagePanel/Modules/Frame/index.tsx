@@ -600,16 +600,21 @@ export const PageFrame: FC = () => {
         </SetterPadding>
       </LeftAndRightLayout>
       <PanelDivider />
-      <LeftAndRightLayout>
-        <PageLabel labelName={t("editor.page.label_name.preset")} size="big" />
-        <SetterPadding>
-          <LayoutSelect
-            value={layout}
-            currentPageName={currentPageDisplayName}
+      <div css={groupWrapperStyle}>
+        <LeftAndRightLayout>
+          <PageLabel
+            labelName={t("editor.page.label_name.preset")}
+            size="big"
           />
-        </SetterPadding>
-      </LeftAndRightLayout>
-      <PanelDivider />
+          <SetterPadding>
+            <LayoutSelect
+              value={layout}
+              currentPageName={currentPageDisplayName}
+            />
+          </SetterPadding>
+        </LeftAndRightLayout>
+      </div>
+      <PanelDivider hasMargin={false} />
       <div css={groupWrapperStyle}>
         <LeftAndRightLayout>
           <PageLabel

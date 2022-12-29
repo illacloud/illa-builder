@@ -141,21 +141,37 @@ const modifyComponentNodeX = (
   resultComponentNode.w =
     scaleW < resultComponentNode.minW ? resultComponentNode.minW : scaleW
   resultComponentNode.x = scaleX
-
-  if (resultComponentNode.x >= currentColumns) {
-    resultComponentNode.x = currentColumns - resultComponentNode.w
-  }
-  if (resultComponentNode.x < 0) {
-    resultComponentNode.x = 0
-  }
-  if (resultComponentNode.x + resultComponentNode.w >= currentColumns) {
-    const newW = currentColumns - resultComponentNode.x
-    resultComponentNode.w =
-      newW < resultComponentNode.minW ? resultComponentNode.minW : newW
-    if (resultComponentNode.w === resultComponentNode.minW) {
-      resultComponentNode.x = currentColumns - resultComponentNode.w
+  if (resultComponentNode.w === resultComponentNode.minW) {
+    let diff = currentColumns - (resultComponentNode.x + resultComponentNode.w)
+    while (diff < 0) {
+      resultComponentNode.x--
+      diff++
+      if (resultComponentNode.x < 0) {
+        resultComponentNode.x = 0
+        break
+      }
+    }
+  } else {
+    let diff = currentColumns - (resultComponentNode.x + resultComponentNode.w)
+    while (diff < 0) {
+      resultComponentNode.w--
+      diff++
+      if (resultComponentNode.w < resultComponentNode.minW) {
+        resultComponentNode.x = resultComponentNode.minW
+        diff = currentColumns - (resultComponentNode.x + resultComponentNode.w)
+        while (diff < 0) {
+          resultComponentNode.x--
+          diff++
+          if (resultComponentNode.x < 0) {
+            resultComponentNode.x = 0
+            break
+          }
+        }
+        break
+      }
     }
   }
+
   return resultComponentNode
 }
 
@@ -167,28 +183,48 @@ const modifyComponentNodeY = (
 
   if (Array.isArray(componentNodes) && componentNodes.length > 0) {
     const allComponents = cloneDeep(componentNodes)
-    const baseComponentNode = allComponents[0]
-    const parentDisplayName = baseComponentNode.parentNode
-    let parentNode = searchDsl(rootNode, parentDisplayName)
-    if (!parentNode) {
-      return
-    }
+    const walkedSetDisplayName: Set<string> = new Set()
+    allComponents.forEach((baseComponentNode) => {
+      const parentDisplayName = baseComponentNode.parentNode as string
+      let parentNode = searchDsl(rootNode, parentDisplayName)
+      if (!parentNode) {
+        return
+      }
+      effectResultMap.set(parentDisplayName, {
+        ...parentNode,
+        childrenNode: allComponents,
+      })
+      let otherComponents: ComponentNode[] = allComponents
 
-    let otherComponents: ComponentNode[] = allComponents
-    if (effectResultMap.has(parentNode.displayName)) {
-      parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
-      otherComponents = parentNode.childrenNode
-    }
+      otherComponents = otherComponents.filter((node) => {
+        if (node.displayName === baseComponentNode.displayName) {
+          return true
+        }
+        return !walkedSetDisplayName.has(node.displayName)
+      })
 
-    const { finalState } = getReflowResult(
-      baseComponentNode,
-      otherComponents,
-      false,
-    )
-    effectResultMap.set(parentNode.displayName, {
-      ...parentNode,
-      childrenNode: finalState,
-    })
+      const { effectResultMap: reflowEffectMap } = getReflowResult(
+        baseComponentNode,
+        otherComponents,
+        false,
+      )
+      walkedSetDisplayName.add(baseComponentNode.displayName)
+      reflowEffectMap.forEach((value, key) => {
+        if (parentNode) {
+          const index = allComponents.findIndex(
+            (node) => node.displayName === key,
+          )
+          if (index === -1) {
+            return
+          }
+          allComponents.splice(index, 1, value)
+          effectResultMap.set(parentDisplayName, {
+            ...parentNode,
+            childrenNode: allComponents,
+          })
+        }
+      })
+    }, [])
   }
   return effectResultMap
 }
@@ -210,7 +246,6 @@ function reflowComponentNodesByUpdateColumns(
       )
     })
     const effectResultMap = modifyComponentNodeY(modifyXComponentNode, rootNode)
-
     if (effectResultMap) {
       effectResultMap.forEach((value, key) => {
         listenerApi.dispatch(
