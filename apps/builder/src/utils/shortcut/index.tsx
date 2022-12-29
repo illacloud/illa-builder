@@ -1,4 +1,3 @@
-import hotkeys from "hotkeys-js"
 import { FC, ReactNode, useCallback, useEffect, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslation } from "react-i18next"
@@ -272,7 +271,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   useHotkeys(
     "*",
     (keyboardEvent) => {
-      if (hotkeys.ctrl || hotkeys.command) {
+      if (keyboardEvent.key === "Meta" || keyboardEvent.key === "Ctrl") {
         if (keyboardEvent.type === "keydown") {
           dispatch(configActions.updateShowDot(true))
         } else if (keyboardEvent.type === "keyup") {

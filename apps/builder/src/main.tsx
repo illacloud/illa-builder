@@ -10,7 +10,8 @@ import store from "./store"
 
 if (
   import.meta.env.VITE_INSTANCE_ID === "CLOUD" &&
-  import.meta.env.VITE_SENTRY_SERVER_API
+  import.meta.env.VITE_SENTRY_SERVER_API &&
+  import.meta.env.DEV
 ) {
   Sentry.init({
     dsn: import.meta.env.VITE_SENTRY_SERVER_API,

@@ -9,4 +9,5 @@ export interface BasicContainerProps {
   padding?: number
   safeRowNumber?: number
   addedRowNumber: number
+  blockColumns?: number
 }
