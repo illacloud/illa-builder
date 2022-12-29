@@ -9,7 +9,7 @@
 <p align="center">ILLA 是一个强大的开源低代码平台，供开发人员构建内部工具。 通过使用 ILLA 的组件和操作库，开发人员可以节省大量构建工具的时间。 </p>
 
 <div align="center">
-<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | Chinese | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">Korean</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">Japanese</a>
+<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | 简体中文 | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
 </div>
 <br>
 <p align="center">

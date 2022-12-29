@@ -10,6 +10,12 @@ export interface WrappedTabsProps extends TabsProps, BaseWidgetProps {
   tabList?: viewListItemShaper[]
   handleOnChange?: () => void
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
 }
 
 export interface TabsWidgetProps
@@ -22,5 +28,11 @@ export interface TabsWidgetProps
   handleUpdateOriginalDSLOtherMultiAttr: (
     displayName: string,
     updateSlice: Record<string, any>,
+  ) => void
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
   ) => void
 }
