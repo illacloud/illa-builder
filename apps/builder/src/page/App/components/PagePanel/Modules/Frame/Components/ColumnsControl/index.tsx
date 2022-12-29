@@ -23,12 +23,10 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
   const columnsConfig = useSelector(getCurrentPageSectionColumns)
 
   useEffect(() => {
-    if (prevColumns?.current !== columns) {
-      prevColumns.current = columns
-    }
     if (prevColumns?.current !== columns && inputValue !== columns) {
       setInputValue(columns)
     }
+    prevColumns.current = columns
   }, [columns, inputValue])
 
   const showColumns = useCallback(() => {
@@ -153,7 +151,10 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
   }, [attrName])
 
   const handleBlur = useCallback(() => {
-    if (!inputValue || !currentPageDisplayName) return
+    if (!inputValue || !currentPageDisplayName) {
+      hideColumns()
+      return
+    }
     let finalColumns = inputValue
     switch (attrName) {
       case "rightColumns":
@@ -184,6 +185,7 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
     } else {
       showColumnsChange()
     }
+    setInputValue(finalColumns)
     dispatch(
       componentsActions.updateTargetPagePropsReducer({
         pageName: currentPageDisplayName,
