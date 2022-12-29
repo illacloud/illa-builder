@@ -272,7 +272,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         }
       },
     }),
-    [illaMode, componentNode],
+    [illaMode, componentNode, blockColumns],
   )
 
   const resizeHandler = useMemo(() => {

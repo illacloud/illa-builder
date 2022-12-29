@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { InputNumber } from "@illa-design/react"
@@ -17,8 +17,15 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
   const { columns, currentPageDisplayName, attrName } = props
   const { t } = useTranslation()
   const [inputValue, setInputValue] = useState<number | undefined>(columns)
+  const prevColumns = useRef(columns)
   const dispatch = useDispatch()
   const columnsConfig = useSelector(getCurrentPageSectionColumns)
+  useEffect(() => {
+    if (prevColumns?.current !== columns && inputValue !== columns) {
+      setInputValue(columns)
+      prevColumns.current = columns
+    }
+  }, [columns, inputValue])
 
   const handleBlur = useCallback(() => {
     if (!inputValue || !currentPageDisplayName) return
@@ -66,7 +73,7 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
       <SetterPadding>
         <InputNumber
           w="96px"
-          value={columns}
+          value={inputValue}
           borderColor="techPurple"
           onChange={setInputValue}
           onBlur={handleBlur}

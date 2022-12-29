@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion"
-import { throttle } from "lodash"
+import { cloneDeep, throttle } from "lodash"
 import {
   FC,
   MutableRefObject,
@@ -466,11 +466,13 @@ export const RenderComponentCanvas: FC<{
         const { item, currentColumnNumber } = dragInfo
         let nodeWidth = item?.w ?? 0
         let nodeHeight = item?.h ?? 0
+
         nodeWidth =
           Math.ceil(nodeWidth * (blockColumns / currentColumnNumber)) <
           item.minW
             ? item.minW
             : Math.ceil(nodeWidth * (blockColumns / currentColumnNumber))
+
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
           nodeWidth: nodeWidth,
@@ -492,9 +494,9 @@ export const RenderComponentCanvas: FC<{
   const finalRowNumber = useMemo(() => {
     return Math.max(
       maxY,
-      Math.floor((minHeight || document.body.clientHeight) / UNIT_HEIGHT),
+      Math.floor((minHeight || bounds.height) / UNIT_HEIGHT),
     )
-  }, [maxY, minHeight])
+  }, [bounds.height, maxY, minHeight])
 
   useEffect(() => {
     if (!isActive && canResizeY) {
