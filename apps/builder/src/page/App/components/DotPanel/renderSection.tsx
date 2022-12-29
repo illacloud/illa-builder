@@ -140,6 +140,7 @@ export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
               addedRowNumber={40}
               canAutoScroll
               blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+              sectionName="BODY_SECTION"
             />
           )}
         </div>
@@ -392,6 +393,7 @@ export const RenderHeaderSection = forwardRef<
             safeRowNumber={0}
             addedRowNumber={5}
             blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+            sectionName="HEADER_SECTION"
           />
         )}
       </div>
@@ -660,6 +662,7 @@ export const RenderFooterSection = forwardRef<
             safeRowNumber={0}
             addedRowNumber={5}
             blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+            sectionName="FOOTER_SECTION"
           />
         )}
       </div>
@@ -937,6 +940,7 @@ export const RenderLeftSection = forwardRef<
               blockColumns={columns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS}
               addedRowNumber={40}
               canAutoScroll
+              sectionName="LEFT_SECTION"
             />
           )}
           {showFoldIcon && (
@@ -1258,6 +1262,7 @@ export const RenderRightSection = forwardRef<
               blockColumns={columns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS}
               addedRowNumber={40}
               canAutoScroll
+              sectionName="RIGHT_SECTION"
             />
           )}
           {showFoldIcon && (

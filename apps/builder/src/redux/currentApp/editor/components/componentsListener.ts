@@ -171,7 +171,6 @@ const modifyComponentNodeX = (
       }
     }
   }
-  console.log("finalResultComponentNode", cloneDeep(resultComponentNode))
 
   return resultComponentNode
 }

@@ -8,6 +8,7 @@ import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadd
 import { ColumnsControlProps } from "@/page/App/components/PagePanel/Modules/Frame/Components/ColumnsControl/interface"
 import { getCurrentPageSectionColumns } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
@@ -20,12 +21,136 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
   const prevColumns = useRef(columns)
   const dispatch = useDispatch()
   const columnsConfig = useSelector(getCurrentPageSectionColumns)
+
   useEffect(() => {
-    if (prevColumns?.current !== columns && inputValue !== columns) {
-      setInputValue(columns)
+    if (prevColumns?.current !== columns) {
       prevColumns.current = columns
     }
+    if (prevColumns?.current !== columns && inputValue !== columns) {
+      setInputValue(columns)
+    }
   }, [columns, inputValue])
+
+  const showColumns = useCallback(() => {
+    switch (attrName) {
+      case "rightColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_RIGHT_SECTION`,
+        )
+        break
+      }
+
+      case "leftColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_LEFT_SECTION`,
+        )
+        break
+      }
+      case "bodyColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_BODY_SECTION`,
+        )
+        break
+      }
+      case "footerColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_FOOTER_SECTION`,
+        )
+        break
+      }
+      case "headerColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_HEADER_SECTION`,
+        )
+        break
+      }
+      default: {
+        break
+      }
+    }
+  }, [attrName])
+
+  const handleFocusInput = useCallback(() => {
+    showColumns()
+  }, [showColumns])
+
+  const hideColumns = useCallback(() => {
+    switch (attrName) {
+      case "rightColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_RIGHT_SECTION`,
+        )
+        break
+      }
+
+      case "leftColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_LEFT_SECTION`,
+        )
+        break
+      }
+      case "bodyColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_BODY_SECTION`,
+        )
+        break
+      }
+      case "footerColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_FOOTER_SECTION`,
+        )
+        break
+      }
+      case "headerColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_HEADER_SECTION`,
+        )
+        break
+      }
+      default: {
+        break
+      }
+    }
+  }, [attrName])
+
+  const showColumnsChange = useCallback(() => {
+    switch (attrName) {
+      case "rightColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_RIGHT_SECTION`,
+        )
+        break
+      }
+
+      case "leftColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_LEFT_SECTION`,
+        )
+        break
+      }
+      case "bodyColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_BODY_SECTION`,
+        )
+        break
+      }
+      case "footerColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_FOOTER_SECTION`,
+        )
+        break
+      }
+      case "headerColumns": {
+        ILLAEventbus.emit(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_HEADER_SECTION`,
+        )
+        break
+      }
+      default: {
+        break
+      }
+    }
+  }, [attrName])
 
   const handleBlur = useCallback(() => {
     if (!inputValue || !currentPageDisplayName) return
@@ -54,6 +179,11 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
     if (finalColumns < 2) {
       finalColumns = 2
     }
+    if (finalColumns === columns) {
+      hideColumns()
+    } else {
+      showColumnsChange()
+    }
     dispatch(
       componentsActions.updateTargetPagePropsReducer({
         pageName: currentPageDisplayName,
@@ -65,7 +195,16 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
         },
       }),
     )
-  }, [attrName, columnsConfig, currentPageDisplayName, dispatch, inputValue])
+  }, [
+    attrName,
+    columns,
+    columnsConfig,
+    currentPageDisplayName,
+    dispatch,
+    hideColumns,
+    inputValue,
+    showColumnsChange,
+  ])
 
   return (
     <LeftAndRightLayout>
@@ -78,6 +217,7 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
           onChange={setInputValue}
           onBlur={handleBlur}
           step={1}
+          onFocus={handleFocusInput}
         />
       </SetterPadding>
     </LeftAndRightLayout>
