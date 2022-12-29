@@ -37,16 +37,12 @@ export const downloadActionResult = (
 }
 
 export const isValidBase64 = (str: string) => {
-  // try {
-  //   return atob(btoa(str))
-  // } catch (e) {
-  //   return false
-  // }
-
-  return (
-    str.length % 4 === 0 &&
-    /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$/.test(str)
-  )
+  try {
+    window.atob(str)
+    return true
+  } catch (e) {
+    return false
+  }
 }
 
 export function base64ToArrayBuffer(base64: string) {
