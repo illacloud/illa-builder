@@ -8,6 +8,7 @@ export const actionEditorDragBarStyle = css`
   position: absolute;
   transition: all 0.2s;
   height: 5px;
+  z-index: 10;
 
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
