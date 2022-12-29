@@ -620,8 +620,8 @@ export const RenderComponentCanvas: FC<{
 
         nodeWidth =
           Math.ceil(nodeWidth * (blockColumns / currentColumnNumber)) <
-          item.minW
-            ? item.minW
+          (item?.minW ?? 2)
+            ? item?.minW ?? 2
             : Math.ceil(nodeWidth * (blockColumns / currentColumnNumber))
 
         return {
