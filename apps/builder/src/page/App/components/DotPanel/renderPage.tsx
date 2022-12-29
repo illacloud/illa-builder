@@ -365,7 +365,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     canvasSize === "fixed" ? `${canvasWidth}px` : `${canvasWidth}%`
 
   return (
-    <div css={applyCanvasContainerWrapperStyle(finalCanvasWidth)}>
+    <div css={applyCanvasContainerWrapperStyle(finalCanvasWidth, mode)}>
       <div css={pageContainerWrapperStyle} ref={containerRef}>
         {hasHeader && headerSection && currentPageDisplayName && (
           <RenderHeaderSection
