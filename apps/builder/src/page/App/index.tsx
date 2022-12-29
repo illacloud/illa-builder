@@ -24,13 +24,11 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
-import { S3Resource } from "@/redux/resource/s3Resource"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
 import { DataWorkspace } from "./components/DataWorkspace"

@@ -175,7 +175,6 @@ const fetchS3ClientResult = async (
         result = encodeToBase64(
           (await downloadRes?.Body?.transformToByteArray()) || new Uint8Array(),
         )
-        console.log(666, result)
         downloadActionResult(
           downloadRes.ContentType || "",
           downloadCommandArgs.objectKey,
