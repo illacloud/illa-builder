@@ -16,6 +16,10 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import {
+  BASIC_BLOCK_COLUMNS,
+  LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+} from "@/utils/generators/generatePageOrSectionConfig"
+import {
   ChangeLayoutBottomBar,
   ChangeLayoutLeftBar,
   ChangeLayoutRightBar,
@@ -75,7 +79,7 @@ export const DEFAULT_PX_WIDTH = {
 
 export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
   (props, ref) => {
-    const { sectionNode, mode } = props
+    const { sectionNode, mode, columns } = props
     const executionResult = useSelector(getExecutionResult)
     const sectionNodeProps = executionResult[sectionNode.displayName] || {}
     const [containerBoundRef, containerBound] = useMeasure()
@@ -135,6 +139,8 @@ export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
               safeRowNumber={0}
               addedRowNumber={40}
               canAutoScroll
+              blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+              sectionName="BODY_SECTION"
             />
           )}
         </div>
@@ -159,6 +165,7 @@ export const RenderHeaderSection = forwardRef<
     currentPageDisplayName,
     leftPosition,
     rightPosition,
+    columns,
   } = props
   const [isResizeActive, setIsResizeActive] = useState(false)
   const [heightPX, setHeightPX] = useState(topHeight)
@@ -385,6 +392,8 @@ export const RenderHeaderSection = forwardRef<
             minHeight={containerBound.height - 16}
             safeRowNumber={0}
             addedRowNumber={5}
+            blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+            sectionName="HEADER_SECTION"
           />
         )}
       </div>
@@ -419,6 +428,7 @@ export const RenderFooterSection = forwardRef<
     currentPageDisplayName,
     leftPosition,
     rightPosition,
+    columns,
   } = props
   const executionResult = useSelector(getExecutionResult)
   const [isResizeActive, setIsResizeActive] = useState(false)
@@ -651,6 +661,8 @@ export const RenderFooterSection = forwardRef<
             minHeight={containerBound.height - 16}
             safeRowNumber={0}
             addedRowNumber={5}
+            blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+            sectionName="FOOTER_SECTION"
           />
         )}
       </div>
@@ -688,6 +700,7 @@ export const RenderLeftSection = forwardRef<
     leftWidth,
     setIsLeftFold,
     canvasSize,
+    columns,
   } = props
 
   const executionResult = useSelector(getExecutionResult)
@@ -924,9 +937,10 @@ export const RenderLeftSection = forwardRef<
                   : containerBound.height - 16
               }
               safeRowNumber={0}
-              blockColumns={16}
+              blockColumns={columns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS}
               addedRowNumber={40}
               canAutoScroll
+              sectionName="LEFT_SECTION"
             />
           )}
           {showFoldIcon && (
@@ -1007,6 +1021,7 @@ export const RenderRightSection = forwardRef<
     rightWidth,
     setIsRightFold,
     canvasSize,
+    columns,
   } = props
 
   const executionResult = useSelector(getExecutionResult)
@@ -1244,9 +1259,10 @@ export const RenderRightSection = forwardRef<
                   : containerBound.height - 16
               }
               safeRowNumber={0}
-              blockColumns={16}
+              blockColumns={columns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS}
               addedRowNumber={40}
               canAutoScroll
+              sectionName="RIGHT_SECTION"
             />
           )}
           {showFoldIcon && (

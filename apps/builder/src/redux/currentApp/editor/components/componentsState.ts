@@ -75,6 +75,11 @@ export interface PageNodeProps {
   bottomHeight: number
   showLeftFoldIcon: boolean
   showRightFoldIcon: boolean
+  leftColumns?: number
+  rightColumns?: number
+  bodyColumns?: number
+  headerColumns?: number
+  footerColumns?: number
 }
 export interface PageNode extends ComponentNode {
   type: "PAGE_NODE"
@@ -88,24 +93,20 @@ export interface SectionViewShape {
   path: string
 }
 
-export interface LeftOrRightSectionNodeProps {
-  showFoldIcon: boolean
+export interface BaseSectionNodeProps {
   currentViewIndex: number
   viewSortedKey: string[]
   sectionViewConfigs: SectionViewShape[]
   defaultViewKey: string
 }
 
-export interface HeaderOrBottomSectionNodeProps {
-  currentViewIndex: number
-  viewSortedKey: string[]
-  sectionViewConfigs: SectionViewShape[]
-  defaultViewKey: string
+export interface LeftOrRightSectionNodeProps extends BaseSectionNodeProps {
+  showFoldIcon: boolean
 }
 
 export type SectionNodeProps =
   | LeftOrRightSectionNodeProps
-  | HeaderOrBottomSectionNodeProps
+  | BaseSectionNodeProps
 
 export interface SectionNode extends ComponentNode {
   type: "SECTION_NODE"
@@ -156,6 +157,7 @@ export interface UpdateTargetPageLayoutPayload {
 export interface UpdateTargetPagePropsPayload {
   pageName: string
   newProps: Partial<PageNodeProps>
+  options?: Record<string, unknown>
 }
 
 export interface UpdateRootNodePropsPayload {}

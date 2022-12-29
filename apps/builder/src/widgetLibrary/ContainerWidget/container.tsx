@@ -18,10 +18,10 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     viewList,
     tooltipText,
     childrenNode,
+    blockColumns,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
   const [containerRef, containerBounds] = useMeasure()
-
   useEffect(() => {
     if (typeof preCurrentViewIndex.current !== "number") {
       preCurrentViewIndex.current = currentIndex
@@ -42,11 +42,12 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           padding={4}
           safeRowNumber={1}
           addedRowNumber={20}
+          blockColumns={blockColumns}
         />
       )
     }
     return <ContainerEmptyState />
-  }, [childrenNode, containerBounds.height, currentIndex])
+  }, [blockColumns, childrenNode, containerBounds.height, currentIndex])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
