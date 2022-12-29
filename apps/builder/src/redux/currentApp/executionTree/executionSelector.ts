@@ -39,7 +39,7 @@ export const getExecutionDebuggerData = createSelector(
   [getExecution],
   (execution) => execution.debuggerData ?? {},
 )
-const IGNORE_WIDGET_TYPES = new Set<string>([
+export const IGNORE_WIDGET_TYPES = new Set<string>([
   "PAGE_NODE",
   "SECTION_NODE",
   "CANVAS",
