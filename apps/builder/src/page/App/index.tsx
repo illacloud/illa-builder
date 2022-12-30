@@ -1,11 +1,10 @@
-import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
 import { FC, MouseEvent, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { WarningCircleIcon } from "@illa-design/react"
+import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { Connection } from "@/api/ws"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
@@ -137,7 +136,9 @@ export const Editor: FC = () => {
           <div css={contentStyle}>
             {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
             <div css={middlePanelStyle}>
-              <CanvasPanel css={centerPanelStyle} />
+              <TriggerProvider renderInBody zIndex={8}>
+                <CanvasPanel css={centerPanelStyle} />
+              </TriggerProvider>
               {showBottomPanel && !showDebugger ? (
                 <ActionEditor css={bottomPanelStyle} />
               ) : null}

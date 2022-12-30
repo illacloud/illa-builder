@@ -830,7 +830,8 @@
         "view_path": "경로 보기",
         "views": "보다",
         "width": "너비",
-        "height": "높은"
+        "height": "높은",
+        "columns": "Columns"
       },
       "model_tips": {
         "cancel_button": "취소",

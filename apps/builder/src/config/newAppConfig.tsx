@@ -5,6 +5,10 @@ import {
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  BASIC_BLOCK_COLUMNS,
+  LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+} from "@/utils/generators/generatePageOrSectionConfig"
 
 export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   displayName: "bodySection1",
@@ -101,6 +105,11 @@ export const BASIC_APP_CONFIG: PageNode[] = [
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
     childrenNode: [BASIC_BODY_SECTION_CONFIG],
   },

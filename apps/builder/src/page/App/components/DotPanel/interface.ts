@@ -63,40 +63,37 @@ export interface RenderPageProps {
   currentPageDisplayName: string
 }
 
-export interface RenderSectionProps {
+export interface RenderBasicSectionProps {
   sectionNode: SectionNode
   mode: IllaMode
+  columns?: number
 }
 
-export interface RenderHeaderSectionProps {
-  sectionNode: SectionNode
+export interface RenderSectionProps extends RenderBasicSectionProps {}
+
+export interface RenderHeaderSectionProps extends RenderBasicSectionProps {
   topHeight: number
   offsetTop: number
   containerHeight: number
-  mode: IllaMode
   footerHeight: number
   currentPageDisplayName: string
   leftPosition: SECTION_POSITION
   rightPosition: SECTION_POSITION
 }
 
-export interface RenderFooterSectionProps {
-  sectionNode: SectionNode
+export interface RenderFooterSectionProps extends RenderBasicSectionProps {
   bottomHeight: number
   offsetTop: number
   containerHeight: number
-  mode: IllaMode
   headerHeight: number
   currentPageDisplayName: string
   leftPosition: SECTION_POSITION
   rightPosition: SECTION_POSITION
 }
 
-export interface RenderLeftSectionProps {
-  sectionNode: SectionNode
+export interface RenderLeftSectionProps extends RenderBasicSectionProps {
   offsetLeft: number
   containerWidth: number
-  mode: IllaMode
   leftWidth: number
   rightWidth: number
   currentPageDisplayName: string
@@ -107,11 +104,9 @@ export interface RenderLeftSectionProps {
   canvasSize: "auto" | "fixed"
 }
 
-export interface RenderRightSectionProps {
-  sectionNode: SectionNode
+export interface RenderRightSectionProps extends RenderBasicSectionProps {
   offsetLeft: number
   containerWidth: number
-  mode: IllaMode
   leftWidth: number
   rightWidth: number
   currentPageDisplayName: string

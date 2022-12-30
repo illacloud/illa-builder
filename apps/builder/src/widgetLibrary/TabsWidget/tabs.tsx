@@ -66,6 +66,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     handleDeleteGlobalData,
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateOriginalDSLOtherMultiAttr,
+    handleUpdateMultiExecutionResult,
     tooltipText,
     colorScheme,
     tabPosition,
@@ -99,20 +100,26 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   }, [navigateContainer, tabList, viewList])
 
   const handleUpdateMultiAttrDSL = useCallback(
-    (updateSlice) => {
-      handleUpdateOriginalDSLMultiAttr?.(updateSlice)
+    (updateSlice: Record<string, any>) => {
+      let allUpdateSLice = [
+        {
+          displayName,
+          value: updateSlice,
+        },
+      ]
       if (navigateContainer && linkWidgetDisplayName) {
-        handleUpdateOriginalDSLOtherMultiAttr?.(
-          linkWidgetDisplayName,
-          updateSlice,
-        )
+        allUpdateSLice.push({
+          displayName: linkWidgetDisplayName,
+          value: updateSlice,
+        })
       }
+      handleUpdateMultiExecutionResult?.(allUpdateSLice)
     },
     [
+      displayName,
       navigateContainer,
       linkWidgetDisplayName,
-      handleUpdateOriginalDSLMultiAttr,
-      handleUpdateOriginalDSLOtherMultiAttr,
+      handleUpdateMultiExecutionResult,
     ],
   )
 

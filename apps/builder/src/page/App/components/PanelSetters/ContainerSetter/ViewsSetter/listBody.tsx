@@ -29,12 +29,14 @@ export const ListBody: FC = () => {
     attrPath,
     handleUpdateMultiAttrDSL,
   } = useContext(ViewListSetterContext)
-
-  const [items, setItems] = useState<ItemsProps[]>(
-    viewsList.map((view, index) => {
+  const originItems: ItemsProps[] = viewsList.map((view, index) => {
+    if (Array.isArray(componentNode.childrenNode)) {
       return { ...view, childrenNode: componentNode.childrenNode[index] }
-    }),
-  )
+    }
+    return { ...view, childrenNode: {} as ComponentNode }
+  })
+
+  const [items, setItems] = useState<ItemsProps[]>(originItems)
   const currentSelected = useMemo(
     () => viewsList[currentViewIndex],
     [viewsList, currentViewIndex],
@@ -75,7 +77,10 @@ export const ListBody: FC = () => {
     if (!isEqual(viewsList, items)) {
       setItems(
         viewsList.map((view, index) => {
-          return { ...view, childrenNode: componentNode.childrenNode[index] }
+          if (Array.isArray(componentNode.childrenNode)) {
+            return { ...view, childrenNode: componentNode.childrenNode[index] }
+          }
+          return { ...view, childrenNode: {} as ComponentNode }
         }),
       )
     }

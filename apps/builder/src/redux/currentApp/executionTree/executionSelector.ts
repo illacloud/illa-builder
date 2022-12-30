@@ -39,7 +39,7 @@ export const getExecutionDebuggerData = createSelector(
   [getExecution],
   (execution) => execution.debuggerData ?? {},
 )
-const IGNORE_WIDGET_TYPES = new Set<string>([
+export const IGNORE_WIDGET_TYPES = new Set<string>([
   "PAGE_NODE",
   "SECTION_NODE",
   "CANVAS",
@@ -160,6 +160,7 @@ export const getCurrentPageDisplayName = createSelector(
   [getRootNodeExecutionResult],
   (rootNode) => {
     const { pageSortedKey, currentPageIndex } = rootNode
+    if (currentPageIndex > pageSortedKey.lengths) return pageSortedKey[0]
     return pageSortedKey[currentPageIndex]
   },
 )

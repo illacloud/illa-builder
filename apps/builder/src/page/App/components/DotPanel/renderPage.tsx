@@ -80,6 +80,11 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     isRightFixed,
     showLeftFoldIcon,
     showRightFoldIcon,
+    leftColumns,
+    rightColumns,
+    headerColumns,
+    footerColumns,
+    bodyColumns,
   } = pageProps
 
   const [isLeftFold, setIsLeftFold] = useState(false)
@@ -360,7 +365,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     canvasSize === "fixed" ? `${canvasWidth}px` : `${canvasWidth}%`
 
   return (
-    <div css={applyCanvasContainerWrapperStyle(finalCanvasWidth)}>
+    <div css={applyCanvasContainerWrapperStyle(finalCanvasWidth, mode)}>
       <div css={pageContainerWrapperStyle} ref={containerRef}>
         {hasHeader && headerSection && currentPageDisplayName && (
           <RenderHeaderSection
@@ -374,6 +379,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             currentPageDisplayName={currentPageDisplayName}
             leftPosition={leftPosition}
             rightPosition={rightPosition}
+            columns={headerColumns}
           />
         )}
         {hasLeft && leftSection && currentPageDisplayName && (
@@ -391,10 +397,16 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             isFold={isLeftFold}
             setIsLeftFold={setIsLeftFold}
             canvasSize={canvasSize}
+            columns={leftColumns}
           />
         )}
         {bodySection && currentPageDisplayName && (
-          <RenderSection sectionNode={bodySection} ref={bodyRef} mode={mode} />
+          <RenderSection
+            sectionNode={bodySection}
+            ref={bodyRef}
+            mode={mode}
+            columns={bodyColumns}
+          />
         )}
         {hasRight && rightSection && currentPageDisplayName && (
           <RenderRightSection
@@ -411,6 +423,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             rightWidth={realRightWidth}
             setIsRightFold={setIsRightFold}
             canvasSize={canvasSize}
+            columns={rightColumns}
           />
         )}
         {hasFooter && footerSection && currentPageDisplayName && (
@@ -425,6 +438,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             currentPageDisplayName={currentPageDisplayName}
             leftPosition={leftPosition}
             rightPosition={rightPosition}
+            columns={footerColumns}
           />
         )}
       </div>
