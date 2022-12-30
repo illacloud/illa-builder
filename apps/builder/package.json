@@ -3,7 +3,7 @@
   "description": "Help every Developer as fast as to build Business Tools",
   "repository": "git@github.com:illacloud/illa-builder.git",
   "private": true,
-  "author": "illa Cloud",
+  "author": "ILLA Cloud <opensource@illasoft.com>",
   "license": "Apache-2.0",
   "version": "1.3.2",
   "scripts": {
