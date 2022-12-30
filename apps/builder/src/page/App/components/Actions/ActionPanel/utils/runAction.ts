@@ -123,10 +123,16 @@ const calculateFetchResultDisplayName = (
   rawData: any,
   transformer: Transformer,
   resultCallback?: (data: unknown, error: boolean) => void,
+  actionCommand?: string,
 ) => {
   const transRawData = transformRawData(rawData, actionType)
   let calcResult = runTransformer(transformer, transRawData)
-  resultCallback?.(calcResult, false)
+  let data = calcResult
+  if (actionCommand && actionCommand === S3ActionRequestType.READ_ONE) {
+    const { Body = {}, ...otherData } = calcResult
+    data = { ...otherData, Body: {} }
+  }
+  resultCallback?.(data, false)
   actionDisplayNameMapFetchResult[displayName] = calcResult
   if (!isTrigger) {
     store.dispatch(
@@ -165,20 +171,23 @@ const fetchS3ClientResult = async (
       case S3ActionRequestType.READ_ONE:
         let commandArgs = actionContent.commandArgs
         const res = await getObject(commandArgs.objectKey)
-        result = encodeToBase64(
-          (await res?.Body?.transformToByteArray()) || new Uint8Array(),
-        )
+        result = {
+          ...res,
+          Body: encodeToBase64(
+            (await res?.Body?.transformToByteArray()) || new Uint8Array(),
+          ),
+        }
         break
       case S3ActionRequestType.DOWNLOAD_ONE:
         let downloadCommandArgs = actionContent.commandArgs
         const downloadRes = await getObject(downloadCommandArgs.objectKey)
-        result = encodeToBase64(
+        const value = encodeToBase64(
           (await downloadRes?.Body?.transformToByteArray()) || new Uint8Array(),
         )
         downloadActionResult(
           downloadRes.ContentType || "",
           downloadCommandArgs.objectKey,
-          result || "",
+          value || "",
         )
         break
       case S3ActionRequestType.UPLOAD:
@@ -210,6 +219,7 @@ const fetchS3ClientResult = async (
       result,
       transformer,
       resultCallback,
+      commands,
     )
     runAllEventHandler(successEvent)
   } catch (e) {
