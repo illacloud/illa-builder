@@ -8,7 +8,7 @@ import {
   Divider,
   Input,
   InputNumber,
-  PaginationPreIcon,
+  PreviousIcon,
   Password,
   Switch,
   getColor,
@@ -179,7 +179,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t("editor.action.resource.db.placeholder.name")}
               />
             )}
@@ -219,7 +219,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   placeholder={t(
                     "editor.action.resource.db.placeholder.hostname",
                   )}
@@ -238,7 +238,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="142px"
                   ml="8px"
                   placeholder="6379"
@@ -267,7 +267,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t(
                   "editor.action.resource.db.placeholder.database_index",
                 )}
@@ -294,7 +294,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   placeholder={t(
                     "editor.action.resource.db.placeholder.username",
                   )}
@@ -307,7 +307,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
               defaultValue={content.databasePassword}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="100%"
                   onBlur={onBlur}
                   onChange={onChange}
@@ -383,7 +383,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

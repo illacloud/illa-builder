@@ -125,8 +125,10 @@ export const S3Panel: FC = () => {
           defaultValue={content.commands}
           value={content.commands}
           ml="16px"
-          width="100%"
-          onChange={handleActionChange}
+          w="100%"
+          onChange={(v) => {
+            handleActionChange(v as S3ActionRequestType)
+          }}
           options={S3ActionList}
         />
       </div>

@@ -12,6 +12,7 @@ import {
   illaPrefix,
   useMessage,
   useModal,
+  DropListItem,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
@@ -23,7 +24,7 @@ import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 
-const Item = DropList.Item
+const Item = DropListItem
 
 export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
   props,
@@ -62,13 +63,15 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           dropList={
             <DropList width={"184px"}>
               <Item
-                key={"edit"}
+                value="edit"
+                key="edit"
                 title={t("edit")}
                 onClick={() => {
                   setResourceEditorVisible(true)
                 }}
               />
               <Item
+                value="delete"
                 key={"delete"}
                 title={t("dashboard.common.delete")}
                 fontColor={globalColor(`--${illaPrefix}-red-03`)}

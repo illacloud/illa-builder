@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Popover, Select } from "@illa-design/react"
+import { Popover, Select, SelectOptionObject } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
 import {
@@ -18,16 +18,17 @@ import {
   S3ActionTypeContent,
 } from "@/redux/currentApp/action/s3Action"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { SelectOptions } from "@/page/App/components/PanelSetters/TableSetter/interface"
 
-const SelectOption = [
+const SelectOption: SelectOptionObject[] = [
   {
     label: "No",
     value: 0,
-  },
+  } as SelectOptionObject,
   {
     label: "Yes",
     value: 1,
-  },
+  } as SelectOptionObject,
 ]
 
 export const ListAllPart: FC<S3ActionPartProps> = (props) => {
@@ -109,7 +110,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           showSearch={true}
           value={+commandArgs.signedURL}
           ml="16px"
-          width="100%"
+          w="100%"
           onChange={(value) => handleValueChange(!!value, "signedURL")}
           options={SelectOption}
         />

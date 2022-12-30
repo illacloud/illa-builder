@@ -78,14 +78,14 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                   showSearch={true}
                   defaultValue={record.condition}
                   value={record.condition}
-                  width="100%"
+                  w="100%"
                   bdRadius="0"
-                  onChange={(val: string) =>
+                  onChange={(val) =>
                     handleChange(
                       index,
                       record.field,
                       record.value,
-                      val,
+                      val as string,
                       onChange,
                     )
                   }

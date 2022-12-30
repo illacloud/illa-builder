@@ -14,7 +14,7 @@ export const EditableInputSetter: FC<EditableInputSetterProps> = (props) => {
       <div style={{ width: "130px" }}>
         <Input
           withoutNormalBorder
-          borderColor="techPurple"
+          colorScheme="techPurple"
           value={value}
           onChange={(value) => {
             handleUpdateDsl(attrName, value)

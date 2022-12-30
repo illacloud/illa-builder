@@ -154,7 +154,7 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.nickname}
                   variant="fill"
@@ -196,7 +196,7 @@ export const Register: FC = () => {
                       setErrorMsg({ ...errorMsg, email: "" })
                     }
                   }}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.email || !!errorMsg.email}
                   variant="fill"
@@ -233,7 +233,7 @@ export const Register: FC = () => {
                 render={({ field }) => (
                   <Input
                     {...field}
-                    borderColor="techPurple"
+                    colorScheme="techPurple"
                     maxLength={6}
                     onChange={(value, event) => {
                       field.onChange(event)
@@ -335,7 +335,7 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.password}
                   variant="fill"

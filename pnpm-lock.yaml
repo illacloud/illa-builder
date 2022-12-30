@@ -285,26 +285,6 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
 
-  illa-design/packages/calendar:
-    specifiers:
-      '@illa-design/button': workspace:*
-      '@illa-design/config-provider': workspace:*
-      '@illa-design/icon': workspace:*
-      '@illa-design/radio': workspace:*
-      '@illa-design/select': workspace:*
-      '@illa-design/system': workspace:*
-      '@illa-design/theme': workspace:*
-      dayjs: ^1.10.7
-    dependencies:
-      '@illa-design/button': link:../button
-      '@illa-design/config-provider': link:../config-provider
-      '@illa-design/icon': link:../icon
-      '@illa-design/radio': link:../radio
-      '@illa-design/select': link:../select
-      '@illa-design/system': link:../system
-      '@illa-design/theme': link:../theme
-      dayjs: 1.11.6
-
   illa-design/packages/card:
     specifiers:
       '@illa-design/icon': workspace:*
@@ -324,24 +304,20 @@ importers:
       '@illa-design/checkbox': workspace:*
       '@illa-design/empty': workspace:*
       '@illa-design/icon': workspace:*
-      '@illa-design/list': workspace:*
-      '@illa-design/select': workspace:*
+      '@illa-design/input': workspace:*
+      '@illa-design/input-tag': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
-      framer-motion: ^7.6.12
-      react-fast-compare: ^3.2.0
     dependencies:
       '@illa-design/checkbox': link:../checkbox
       '@illa-design/empty': link:../empty
       '@illa-design/icon': link:../icon
-      '@illa-design/list': link:../list
-      '@illa-design/select': link:../select
+      '@illa-design/input': link:../input
+      '@illa-design/input-tag': link:../input-tag
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
-      framer-motion: 7.6.17
-      react-fast-compare: 3.2.0
 
   illa-design/packages/checkbox:
     specifiers:
@@ -383,30 +359,6 @@ importers:
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
-
-  illa-design/packages/date-picker:
-    specifiers:
-      '@illa-design/button': workspace:*
-      '@illa-design/calendar': workspace:*
-      '@illa-design/icon': workspace:*
-      '@illa-design/input': workspace:*
-      '@illa-design/select': workspace:*
-      '@illa-design/system': workspace:*
-      '@illa-design/theme': workspace:*
-      '@illa-design/time-picker': workspace:*
-      '@illa-design/trigger': workspace:*
-      dayjs: ^1.10.7
-    dependencies:
-      '@illa-design/button': link:../button
-      '@illa-design/calendar': link:../calendar
-      '@illa-design/icon': link:../icon
-      '@illa-design/input': link:../input
-      '@illa-design/select': link:../select
-      '@illa-design/system': link:../system
-      '@illa-design/theme': link:../theme
-      '@illa-design/time-picker': link:../time-picker
-      '@illa-design/trigger': link:../trigger
-      dayjs: 1.11.6
 
   illa-design/packages/description:
     specifiers:
@@ -500,49 +452,45 @@ importers:
 
   illa-design/packages/input:
     specifiers:
-      '@illa-design/button': workspace:*
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
-      chroma-js: ^2.1.2
     dependencies:
-      '@illa-design/button': link:../button
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
-      chroma-js: 2.4.2
 
   illa-design/packages/input-number:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/input': workspace:*
+      '@illa-design/space': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
-      number-precision: ^1.6.0
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/input': link:../input
+      '@illa-design/space': link:../space
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
-      number-precision: 1.6.0
 
   illa-design/packages/input-tag:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/input': workspace:*
+      '@illa-design/space': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/tag': workspace:*
       '@illa-design/theme': workspace:*
-      chroma-js: ^2.1.2
-      framer-motion: ^7.6.12
+      react-use-measure: ^2.1.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/input': link:../input
+      '@illa-design/space': link:../space
       '@illa-design/system': link:../system
       '@illa-design/tag': link:../tag
       '@illa-design/theme': link:../theme
-      chroma-js: 2.4.2
-      framer-motion: 7.6.17
+      react-use-measure: 2.1.1
 
   illa-design/packages/link:
     specifiers:
@@ -668,7 +616,6 @@ importers:
     specifiers:
       '@illa-design/config-provider': workspace:*
       '@illa-design/icon': workspace:*
-      '@illa-design/input': workspace:*
       '@illa-design/select': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
@@ -676,7 +623,6 @@ importers:
     dependencies:
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/icon': link:../icon
-      '@illa-design/input': link:../input
       '@illa-design/select': link:../select
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
@@ -765,14 +711,12 @@ importers:
       '@illa-design/back-top': workspace:*
       '@illa-design/badge': workspace:*
       '@illa-design/button': workspace:*
-      '@illa-design/calendar': workspace:*
       '@illa-design/card': workspace:*
       '@illa-design/cascader': workspace:*
       '@illa-design/checkbox': workspace:*
       '@illa-design/collapse': workspace:*
       '@illa-design/comment': workspace:*
       '@illa-design/config-provider': workspace:*
-      '@illa-design/date-picker': workspace:*
       '@illa-design/description': workspace:*
       '@illa-design/divider': workspace:*
       '@illa-design/drawer': workspace:*
@@ -801,7 +745,6 @@ importers:
       '@illa-design/result': workspace:*
       '@illa-design/select': workspace:*
       '@illa-design/skeleton': workspace:*
-      '@illa-design/slider': workspace:*
       '@illa-design/space': workspace:*
       '@illa-design/spin': workspace:*
       '@illa-design/statistic': workspace:*
@@ -812,7 +755,6 @@ importers:
       '@illa-design/tabs': workspace:*
       '@illa-design/tag': workspace:*
       '@illa-design/theme': workspace:*
-      '@illa-design/time-picker': workspace:*
       '@illa-design/timeline': workspace:*
       '@illa-design/trigger': workspace:*
       '@illa-design/typography': workspace:*
@@ -823,14 +765,12 @@ importers:
       '@illa-design/back-top': link:../back-top
       '@illa-design/badge': link:../badge
       '@illa-design/button': link:../button
-      '@illa-design/calendar': link:../calendar
       '@illa-design/card': link:../card
       '@illa-design/cascader': link:../cascader
       '@illa-design/checkbox': link:../checkbox
       '@illa-design/collapse': link:../collapse
       '@illa-design/comment': link:../comment
       '@illa-design/config-provider': link:../config-provider
-      '@illa-design/date-picker': link:../date-picker
       '@illa-design/description': link:../description
       '@illa-design/divider': link:../divider
       '@illa-design/drawer': link:../drawer
@@ -859,7 +799,6 @@ importers:
       '@illa-design/result': link:../result
       '@illa-design/select': link:../select
       '@illa-design/skeleton': link:../skeleton
-      '@illa-design/slider': link:../slider
       '@illa-design/space': link:../space
       '@illa-design/spin': link:../spin
       '@illa-design/statistic': link:../statistic
@@ -870,7 +809,6 @@ importers:
       '@illa-design/tabs': link:../tabs
       '@illa-design/tag': link:../tag
       '@illa-design/theme': link:../theme
-      '@illa-design/time-picker': link:../time-picker
       '@illa-design/timeline': link:../timeline
       '@illa-design/trigger': link:../trigger
       '@illa-design/typography': link:../typography
@@ -889,29 +827,25 @@ importers:
 
   illa-design/packages/select:
     specifiers:
-      '@illa-design/button': workspace:*
       '@illa-design/checkbox': workspace:*
+      '@illa-design/dropdown': workspace:*
       '@illa-design/empty': workspace:*
       '@illa-design/icon': workspace:*
       '@illa-design/input': workspace:*
       '@illa-design/input-tag': workspace:*
-      '@illa-design/list': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
-      chroma-js: ^2.1.2
     dependencies:
-      '@illa-design/button': link:../button
       '@illa-design/checkbox': link:../checkbox
+      '@illa-design/dropdown': link:../dropdown
       '@illa-design/empty': link:../empty
       '@illa-design/icon': link:../icon
       '@illa-design/input': link:../input
       '@illa-design/input-tag': link:../input-tag
-      '@illa-design/list': link:../list
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
-      chroma-js: 2.4.2
 
   illa-design/packages/skeleton:
     specifiers:
@@ -920,20 +854,6 @@ importers:
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
-
-  illa-design/packages/slider:
-    specifiers:
-      '@illa-design/input-number': workspace:*
-      '@illa-design/system': workspace:*
-      '@illa-design/theme': workspace:*
-      '@illa-design/trigger': workspace:*
-      number-precision: ^1.6.0
-    dependencies:
-      '@illa-design/input-number': link:../input-number
-      '@illa-design/system': link:../system
-      '@illa-design/theme': link:../theme
-      '@illa-design/trigger': link:../trigger
-      number-precision: 1.6.0
 
   illa-design/packages/space:
     specifiers:
@@ -1057,37 +977,14 @@ importers:
     specifiers:
       '@illa-design/system': workspace:*
       '@types/color': ^3.0.3
+      chroma-js: ^2.4.2
       color: ^4.2.3
     dependencies:
       '@illa-design/system': link:../system
+      chroma-js: 2.4.2
       color: 4.2.3
     devDependencies:
       '@types/color': 3.0.3
-
-  illa-design/packages/time-picker:
-    specifiers:
-      '@illa-design/button': workspace:*
-      '@illa-design/config-provider': workspace:*
-      '@illa-design/icon': workspace:*
-      '@illa-design/input': workspace:*
-      '@illa-design/system': workspace:*
-      '@illa-design/theme': workspace:*
-      '@illa-design/trigger': workspace:*
-      '@types/debounce': ^1.2.1
-      dayjs: ^1.10.7
-      debounce: ^1.2.1
-    dependencies:
-      '@illa-design/button': link:../button
-      '@illa-design/config-provider': link:../config-provider
-      '@illa-design/icon': link:../icon
-      '@illa-design/input': link:../input
-      '@illa-design/system': link:../system
-      '@illa-design/theme': link:../theme
-      '@illa-design/trigger': link:../trigger
-      dayjs: 1.11.6
-      debounce: 1.2.1
-    devDependencies:
-      '@types/debounce': 1.2.1
 
   illa-design/packages/timeline:
     specifiers:
@@ -2734,10 +2631,6 @@ packages:
     resolution: {integrity: sha512-X//qzJ3d3Zj82J9sC/C18ZY5f43utPbAJ6PhYt/M7uG6etcF6MRpKdN880KBy43B0BMzSfeT96MzrsNjFI3GbA==}
     dependencies:
       '@types/color-convert': 2.0.0
-    dev: true
-
-  /@types/debounce/1.2.1:
-    resolution: {integrity: sha512-epMsEE85fi4lfmJUH/89/iV/LI+F5CvNIvmgs5g5jYFPfhO2S/ae8WSsLOKWdwtoaZw9Q2IhJ4tQ5tFCcS/4HA==}
     dev: true
 
   /@types/debug/4.1.7:

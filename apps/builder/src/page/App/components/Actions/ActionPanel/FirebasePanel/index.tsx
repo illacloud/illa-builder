@@ -164,7 +164,7 @@ export const FirebasePanel: FC = () => {
       case RealtimeActionTypeValue.APPEND_DATA_TO_LIST:
         return <AppendDataToListPart {...props} />
     }
-  }, [content])
+  }, [content.operation, content.options, handleOptionsValueChange])
 
   return (
     <div css={actionContainerStyle}>
@@ -179,8 +179,8 @@ export const FirebasePanel: FC = () => {
           defaultValue={content.service}
           value={content.service}
           ml="16px"
-          width="100%"
-          onChange={(value) => handleValueChange(value, "service")}
+          w="100%"
+          onChange={(value) => handleValueChange(value as string, "service")}
           options={FirebaseServiceType}
         />
       </div>
@@ -194,11 +194,11 @@ export const FirebasePanel: FC = () => {
           defaultValue={content.operation}
           value={content.operation}
           ml="16px"
-          width="100%"
+          w="100%"
           placeholder={t(
             "editor.action.panel.firebase.placeholder.select_an_action",
           )}
-          onChange={(value) => handleValueChange(value, "operation")}
+          onChange={(value) => handleValueChange(value as string, "operation")}
           options={ActionTypeList[content.service]}
         />
       </div>

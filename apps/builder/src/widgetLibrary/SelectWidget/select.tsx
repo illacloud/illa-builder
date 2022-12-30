@@ -21,7 +21,6 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     loading,
     readOnly,
     showSearch,
-    inputValue,
     colorScheme,
     handleUpdateMultiExecutionResult,
     handleOnChange,
@@ -65,7 +64,6 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
       loading={loading}
       readOnly={readOnly}
       showSearch={showSearch}
-      inputValue={inputValue}
       colorScheme={colorScheme}
       onChange={onChangeSelectValue}
     />
@@ -83,7 +81,6 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     loading,
     readOnly,
     showSearch,
-    inputValue,
     colorScheme,
     optionConfigureMode,
     mappedOption,
@@ -149,7 +146,6 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
       loading,
       readOnly,
       showSearch,
-      inputValue,
       colorScheme,
       optionConfigureMode,
       mappedOption,
@@ -180,7 +176,6 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     loading,
     readOnly,
     showSearch,
-    inputValue,
     colorScheme,
     optionConfigureMode,
     mappedOption,

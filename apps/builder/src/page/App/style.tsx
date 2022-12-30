@@ -1,5 +1,4 @@
 import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import { LEFT_PANEL_WIDTH, NAVBAR_HEIGHT, RIGHT_PANEL_WIDTH } from "@/style"
 

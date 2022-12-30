@@ -58,7 +58,7 @@ export const RestApiPanel: FC = () => {
           colorScheme="techPurple"
           ml="16px"
           value={content.method}
-          width="160px"
+          w="160px"
           maxW="160px"
           options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
           onChange={(value) => {
@@ -91,7 +91,7 @@ export const RestApiPanel: FC = () => {
         <Input
           minW="230px"
           maxW="500px"
-          borderColor="techPurple"
+          bdColor="techPurple"
           bdRadius="8px 0 0 8px"
           value={
             currentResource?.content

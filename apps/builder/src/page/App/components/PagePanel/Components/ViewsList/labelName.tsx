@@ -6,6 +6,7 @@ import {
   WarningCircleIcon,
   globalColor,
   illaPrefix,
+  DragPointIcon,
 } from "@illa-design/react"
 import { LabelNameAndDragIconProps } from "./interface"
 import {
@@ -22,7 +23,7 @@ export const LabelNameAndDragIcon: FC<LabelNameAndDragIconProps> = (props) => {
   const { t } = useTranslation()
   return (
     <div css={labelNameAndDragIconWrapperStyle}>
-      <DragIcon css={moveIconStyle} className="dragIcon" />
+      <DragPointIcon css={moveIconStyle} className="dragIcon" />
       <div css={selectedIconAndLabelNameWrapperStyle}>
         <div
           css={selectedIconStyle(isSelected)}

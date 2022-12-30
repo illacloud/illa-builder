@@ -117,7 +117,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             <Select
               bdRadius="0 8px 8px 0"
               colorScheme="techPurple"
-              width="162px"
+              w="162px"
               ml="-1px"
               value={(body as RawBody<RawBodyContent>).type}
               options={["text", "json", "xml", "javascript", "html"]}

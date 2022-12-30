@@ -117,7 +117,7 @@ export const MongoDbPanel: FC = () => {
           defaultValue={content.actionType}
           value={content.actionType}
           ml="16px"
-          width="100%"
+          w="100%"
           onChange={(value) => {
             let newTypeContent: MongoDbActionTypeContent =
               AggregateContentInitial

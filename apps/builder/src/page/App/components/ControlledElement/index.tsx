@@ -68,7 +68,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
                   onChange={onChange}
                   value={value}
                   error={error}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   placeholder={placeholder}
                 />
               )}
@@ -110,7 +110,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="100%"
                   placeholder={placeholder}
                   {...style}
@@ -127,7 +127,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
               rules={rules}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="100%"
                   onBlur={onBlur}
                   onChange={onChange}

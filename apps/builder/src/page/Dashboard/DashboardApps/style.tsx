@@ -1,5 +1,4 @@
-import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const appsContainerStyle: SerializedStyles = css`
@@ -30,6 +29,7 @@ export const listTitleStyle: SerializedStyles = css`
 export const hoverStyle = css`
   &:hover {
     cursor: pointer;
+
     .dashboardAppEditButton {
       visibility: visible;
     }

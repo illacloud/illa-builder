@@ -8,7 +8,7 @@ import {
   Input,
   Link,
   Password,
-  PreIcon,
+  PreviousIcon,
   WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
@@ -108,7 +108,7 @@ export const ResetPassword: FC = () => {
           onClick={onClickBackToLogin}
         >
           <span css={hotspotWrapperStyle}>
-            <PreIcon css={prevIconStyle} />
+            <PreviousIcon css={prevIconStyle} />
             {t("user.forgot_password.subtitle")}
           </span>
         </div>
@@ -131,7 +131,7 @@ export const ResetPassword: FC = () => {
                       setErrorMsg({ ...errorMsg, email: "" })
                     }
                   }}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.email || !!errorMsg.email}
                   variant="fill"
@@ -167,7 +167,7 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   onChange={(value, event) => {
                     field.onChange(event)
                     if (errorMsg.verificationCode !== "") {
@@ -268,7 +268,7 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.newPassword}
                   variant="fill"

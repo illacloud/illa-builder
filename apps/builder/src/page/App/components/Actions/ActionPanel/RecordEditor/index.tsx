@@ -102,7 +102,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
         })}
       </>
     )
-  }, [onChangeKey, onChangeValue, onDelete, records])
+  }, [customRender, onChangeKey, onChangeValue, onDelete, records])
 
   return (
     <div css={applyRecordEditorContainerStyle(label)}>

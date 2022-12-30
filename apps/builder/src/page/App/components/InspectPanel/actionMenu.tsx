@@ -43,12 +43,14 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   return (
     <DropList width="184px">
       <Item
+        value="reset"
         key="reset"
         title={t("editor.inspect.header.action_menu.reset_state")}
         onClick={handleClickDropListItem}
       />
       <Item
         key="delete"
+        value="delete"
         title={t("editor.inspect.header.action_menu.delete")}
         fontColor={globalColor(`--${illaPrefix}-red-03`)}
         onClick={() => {

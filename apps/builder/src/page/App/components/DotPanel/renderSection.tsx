@@ -11,7 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import useMeasure from "react-use-measure"
-import { NextIcon, PreIcon } from "@illa-design/react"
+import { NextIcon, PreviousIcon } from "@illa-design/react"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -899,7 +899,10 @@ export const RenderLeftSection = forwardRef<
           )}
           {showFoldIcon && (
             <div css={applySideBarWrapperStyle("left")}>
-              <PreIcon css={sideBarIconStyle} onClick={handleOnClickFoldIcon} />
+              <PreviousIcon
+                css={sideBarIconStyle}
+                onClick={handleOnClickFoldIcon}
+              />
             </div>
           )}
         </div>

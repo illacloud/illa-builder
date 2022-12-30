@@ -6,7 +6,7 @@ import {
   Button,
   ButtonGroup,
   List,
-  PaginationPreIcon,
+  PreviousIcon,
   useMessage,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
@@ -88,7 +88,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
       />
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           onClick={() => {

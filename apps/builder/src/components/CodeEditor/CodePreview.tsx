@@ -2,7 +2,7 @@ import copy from "copy-to-clipboard"
 import { FC, HTMLAttributes } from "react"
 import {
   CopyIcon,
-  ErrorIcon,
+  ErrorCircleIcon,
   MessageHandler,
   isString,
   useMessage,
@@ -46,7 +46,7 @@ export const CodePreview: FC<CodePreviewProps> = (props) => {
       />
       {preview?.state === "error" ? (
         <div css={typeTextStyle}>
-          <ErrorIcon size={"12px"} css={iconStyle} />
+          <ErrorCircleIcon size={"12px"} css={iconStyle} />
           Error
         </div>
       ) : (

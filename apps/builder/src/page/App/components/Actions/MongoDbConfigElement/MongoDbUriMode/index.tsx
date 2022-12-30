@@ -64,7 +64,7 @@ export const MongoDbUriMode: FC<MongoDbConfigModeProps> = (props) => {
             ml="16px"
             mr="24px"
             value={value}
-            borderColor="techPurple"
+            colorScheme="techPurple"
             placeholder={
               "mongodb+srv://admin:password@host/mydb?retryWrites=true&w=majority"
             }

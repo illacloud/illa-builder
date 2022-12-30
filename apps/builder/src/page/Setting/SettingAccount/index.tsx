@@ -57,7 +57,7 @@ export const SettingAccount: FC = () => {
           value={userInfo?.email}
           disabled
           size="large"
-          borderColor="techPurple"
+          colorScheme="techPurple"
           variant="fill"
         />
       </LabelAndSetter>

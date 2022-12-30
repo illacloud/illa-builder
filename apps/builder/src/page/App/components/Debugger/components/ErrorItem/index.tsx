@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { get } from "lodash"
 import { FC, useCallback, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { CaretRightIcon, ErrorIcon } from "@illa-design/react"
+import { CaretRightIcon, ErrorCircleIcon } from "@illa-design/react"
 import { JsonView } from "@/page/App/components/Debugger/components/JsonView"
 import { configActions } from "@/redux/config/configSlice"
 import {
@@ -54,7 +54,7 @@ export const ErrorItem: FC<ErrorItemProps> = (props) => {
     <div css={errorContainerStyle}>
       <div css={errorItemStyle}>
         <div>
-          <ErrorIcon size={"16px"} css={errorIconStyle} />
+          <ErrorCircleIcon size={"16px"} css={errorIconStyle} />
           <span
             css={[errorExpandStyle, applyExpandIconStyle(isExpanded)]}
             onClick={() => {

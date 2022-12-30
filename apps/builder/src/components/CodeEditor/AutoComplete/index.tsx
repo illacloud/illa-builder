@@ -1,13 +1,11 @@
 import { ForwardedRef, forwardRef } from "react"
-import {
-  ArrayIcon,
-  ComponentIcon,
-  FunctionIcon,
-  NullIcon,
-  NumberIcon,
-  ObjectIcon,
-  StringIcon,
-} from "@illa-design/react"
+import { ReactComponent as ArrayIcon } from "@/assets/codeEditor/variabletype-array.svg"
+import { ReactComponent as ComponentIcon } from "@/assets/codeEditor/variabletype-component.svg"
+import { ReactComponent as FunctionIcon } from "@/assets/codeEditor/variabletype-function.svg"
+import { ReactComponent as NullIcon } from "@/assets/codeEditor/variabletype-null.svg"
+import { ReactComponent as NumberIcon } from "@/assets/codeEditor/variabletype-number.svg"
+import { ReactComponent as ObjectIcon } from "@/assets/codeEditor/variabletype-object.svg"
+import { ReactComponent as StringIcon } from "@/assets/codeEditor/variabletype-string.svg"
 import { AutoCompleteItemProps, AutoCompleteItemType } from "./interface"
 import { contentStyle, itemStyle, typeStyle } from "./styles"
 

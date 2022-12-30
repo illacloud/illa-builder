@@ -17,6 +17,7 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
     <DropList width="184px">
       <Item
         key="duplicate"
+        value="duplicate"
         title={t(
           "editor.inspect.setter_content.option_list.action_menu.duplicate",
         )}
@@ -27,6 +28,7 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
       />
       <Item
         key="delete"
+        value="delete"
         title={t(
           "editor.inspect.setter_content.option_list.action_menu.delete",
         )}

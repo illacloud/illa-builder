@@ -231,7 +231,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateOriginalDSLMultiAttr({
       rowEvents,
     })
-  }, [rowEvents])
+  }, [handleUpdateOriginalDSLMultiAttr, rowEvents])
 
   useEffect(() => {
     const customColumns = columnsDef?.filter((item: any) => item.custom) ?? []
@@ -248,7 +248,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
         columns: reorderColumns,
       })
     }
-  }, [realDataSourceArray])
+  }, [columnsDef, handleUpdateOriginalDSLMultiAttr, realDataSourceArray])
 
   return (
     <WrappedTable

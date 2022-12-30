@@ -7,7 +7,7 @@ import {
   ButtonGroup,
   Divider,
   Input,
-  PaginationPreIcon,
+  PreviousIcon,
   Password,
   Switch,
   WarningCircleIcon,
@@ -111,7 +111,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t("editor.action.resource.db.placeholder.name")}
               />
             )}
@@ -151,7 +151,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
               />
             )}
             name="bucketName"
@@ -180,7 +180,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t("editor.action.resource.s3.placeholder.region")}
               />
             )}
@@ -249,7 +249,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
                     onBlur={onBlur}
                     onChange={onChange}
                     value={value}
-                    borderColor="techPurple"
+                    colorScheme="techPurple"
                     placeholder={t(
                       "editor.action.resource.s3.placeholder.base_url",
                     )}
@@ -292,7 +292,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
               />
             )}
             name="accessKeyID"
@@ -327,7 +327,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
               />
             )}
             name="secretAccessKey"
@@ -355,7 +355,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

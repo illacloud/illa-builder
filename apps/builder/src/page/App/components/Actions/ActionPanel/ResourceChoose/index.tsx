@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
   AddIcon,
-  ButtonProps,
   Modal,
   Option,
   PenIcon,
@@ -78,7 +77,7 @@ export const ResourceChoose: FC = () => {
                     ...action,
                     // selected resource is same as action type
                     actionType: resource.resourceType,
-                    resourceId: value,
+                    resourceId: value as string,
                     content:
                       selectedAction.actionType === value
                         ? selectedAction.content
@@ -88,21 +87,18 @@ export const ResourceChoose: FC = () => {
                 onChangeSelectedResource?.()
               }
             }}
-            addonAfter={{
-              buttonProps: {
-                variant: "outline",
-                colorScheme: "grayBlue",
-                leftIcon: (
-                  <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-04`)} />
-                ),
-                onClick: () => {
+            addAfter={
+              <PenIcon
+                color={globalColor(`--${illaPrefix}-grayBlue-04`)}
+                onClick={() => {
                   setEditorVisible(true)
-                },
-              } as ButtonProps,
-            }}
+                }}
+              />
+            }
           >
             <Option
               key="create"
+              value="create"
               isSelectOption={false}
               onClick={() => {
                 setGeneratorVisible(true)
@@ -140,7 +136,7 @@ export const ResourceChoose: FC = () => {
               dispatch(
                 configActions.updateCachedAction({
                   ...action,
-                  triggerMode: value,
+                  triggerMode: value as string,
                 }),
               )
             }}

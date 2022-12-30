@@ -16,7 +16,7 @@ export const ListBody: FC = () => {
     if (!isEqual(columnItems, items)) {
       setItems(columnItems)
     }
-  }, [columnItems])
+  }, [columnItems, items])
 
   if (!columnItems || !Array.isArray(columnItems) || columnItems.length === 0)
     return <EmptyBody />

@@ -2,26 +2,26 @@ import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
-  DragIcon,
-  LockIcon,
-  WarningCircleIcon,
+  DragPointIcon,
   globalColor,
   illaPrefix,
+  LockIcon,
+  Trigger,
+  WarningCircleIcon,
 } from "@illa-design/react"
-import { Trigger } from "@illa-design/react"
 import { ReactComponent as DocIcon } from "@/assets/doc.svg"
 import {
   MoveBarPositionShape,
   MoveBarProps,
 } from "@/page/App/components/ScaleSquare/interface"
 import {
-  MOVE_BAR_HEIGHT,
   applyMoveBarWrapperStyle,
   docIconStyle,
   docTipsWrapperStyle,
   dragPointIconWrapperStyle,
   freezeIconStyle,
   freezeTipsStyle,
+  MOVE_BAR_HEIGHT,
   moveBarDisplayNameStyle,
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
@@ -116,7 +116,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
         </>
       ) : (
         <>
-          <DragIcon css={dragPointIconWrapperStyle} />
+          <DragPointIcon css={dragPointIconWrapperStyle} />
           <span css={moveBarDisplayNameStyle}>{displayName}</span>
         </>
       )}
