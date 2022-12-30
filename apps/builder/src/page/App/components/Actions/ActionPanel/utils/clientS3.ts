@@ -65,7 +65,7 @@ export const encodeToBase64 = (uint8array: Uint8Array) => {
 }
 
 export const initS3Client = (resourceList: Resource<ResourceContent>[]) => {
-  resourceList.map((resource) => {
+  resourceList.forEach((resource) => {
     if (resource.resourceType === "s3") {
       const content = resource.content
       const { accessKeyID, secretAccessKey, region, bucketName } =
