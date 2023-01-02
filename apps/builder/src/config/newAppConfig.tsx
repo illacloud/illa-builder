@@ -1,6 +1,7 @@
 import { v4 } from "uuid"
 import {
   CONTAINER_TYPE,
+  ModalSectionNode,
   PageNode,
   SECTION_POSITION,
   SectionNode,
@@ -62,6 +63,31 @@ export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   ],
 }
 
+export const BASIC_MODAL_SECTION_CONFIG: ModalSectionNode = {
+  displayName: "modalSection1",
+  parentNode: "page1",
+  showName: "modalSection",
+  isDragging: false,
+  isResizing: false,
+  type: "MODAL_SECTION_NODE",
+  containerType: CONTAINER_TYPE.EDITOR_LAYOUT_SQUARE,
+  verticalResize: true,
+  h: 0,
+  w: 0,
+  minH: 0,
+  minW: 0,
+  unitW: 0,
+  unitH: 0,
+  x: -1,
+  y: -1,
+  z: 0,
+  props: {
+    currentIndex: -1,
+    sortedKey: [],
+  },
+  childrenNode: [],
+}
+
 export const BASIC_APP_CONFIG: PageNode[] = [
   {
     displayName: "page1",
@@ -102,6 +128,6 @@ export const BASIC_APP_CONFIG: PageNode[] = [
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
     },
-    childrenNode: [BASIC_BODY_SECTION_CONFIG],
+    childrenNode: [BASIC_BODY_SECTION_CONFIG, BASIC_MODAL_SECTION_CONFIG],
   },
 ]

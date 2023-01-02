@@ -2,17 +2,11 @@ import { RefObject } from "react"
 import { IllaMode } from "@/redux/config/configState"
 import {
   ComponentNode,
+  ModalSectionNode,
   PageNode,
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
-
-export interface DragPosition {
-  squareX: number
-  squareY: number
-  renderX: number
-  renderY: number
-}
 
 export interface DragInfo {
   item: ComponentNode
@@ -47,12 +41,6 @@ export interface PreviewPlaceholderProps {
   h: number
 }
 
-export interface RenderComponentCanvasProps {
-  componentNode: ComponentNode
-  containerRef: RefObject<HTMLDivElement>
-  minHeight?: number
-}
-
 export interface DebounceUpdateReflow {
   parentDisplayName: string
   childNodes: ComponentNode[]
@@ -65,6 +53,12 @@ export interface RenderPageProps {
 
 export interface RenderSectionProps {
   sectionNode: SectionNode
+  mode: IllaMode
+}
+
+export interface RenderModalSectionProps {
+  sectionNode: ModalSectionNode
+
   mode: IllaMode
 }
 
@@ -120,10 +114,6 @@ export interface RenderRightSectionProps {
   isFold: boolean
   setIsRightFold: (isFold: boolean) => void
   canvasSize: "auto" | "fixed"
-}
-
-export interface RenderContainerProps {
-  containerNode: SectionNode
 }
 
 export interface ChangeLayoutBarProps {

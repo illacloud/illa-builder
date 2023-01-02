@@ -2,6 +2,7 @@ import { v4 } from "uuid"
 import {
   CONTAINER_TYPE,
   ComponentNode,
+  ModalSectionNode,
   SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { DisplayNameGenerator } from "./generateDisplayName"
@@ -12,6 +13,7 @@ export type SectionNodeType =
   | "rightSection"
   | "headerSection"
   | "footerSection"
+  | "modalSection"
 
 export const generateSectionContainerConfig = (
   parentNode: string,
@@ -92,6 +94,41 @@ export const generateSectionConfig = (
   }
 }
 
+export const generateModalSectionConfig = (
+  parentNode: string,
+  showName: SectionNodeType,
+): ModalSectionNode => {
+  const displayName = DisplayNameGenerator.generateDisplayName(
+    "MODAL_SECTION_NODE",
+    showName,
+  )
+
+  return {
+    displayName: displayName,
+    parentNode: parentNode,
+    showName: showName,
+    isDragging: false,
+    isResizing: false,
+    type: "MODAL_SECTION_NODE",
+    containerType: CONTAINER_TYPE.EDITOR_LAYOUT_SQUARE,
+    verticalResize: true,
+    h: 0,
+    w: 0,
+    minH: 0,
+    minW: 0,
+    unitW: 0,
+    unitH: 0,
+    x: -1,
+    y: -1,
+    z: 0,
+    props: {
+      currentIndex: -1,
+      sortedKey: [],
+    },
+    childrenNode: [],
+  }
+}
+
 export const defaultPageProps = {
   canvasSize: "auto",
   canvasWidth: 100,
@@ -145,6 +182,10 @@ export const generatePageConfig = () => {
 
 export const generateDefaultLayoutConfig = (currentDisplayName: string) => {
   const childrenNode = generateSectionConfig(currentDisplayName, "bodySection")
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -184,7 +225,7 @@ export const generateDefaultLayoutConfig = (currentDisplayName: string) => {
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
     },
-    childrenNode: [childrenNode],
+    childrenNode: [childrenNode, modalSectionNode],
   }
 }
 
@@ -197,6 +238,11 @@ export const generatePresetALayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "bodySection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -236,7 +282,7 @@ export const generatePresetALayoutConfig = (currentDisplayName: string) => {
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
     },
-    childrenNode: [leftSectionNode, bodySectionNode],
+    childrenNode: [leftSectionNode, bodySectionNode, modalSectionNode],
   }
 }
 
@@ -253,6 +299,11 @@ export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "footerSection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -290,7 +341,12 @@ export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
       isHeaderFixed: true,
       isFooterFixed: true,
     },
-    childrenNode: [headerSectionNode, bodySectionNode, footerSectionNode],
+    childrenNode: [
+      headerSectionNode,
+      bodySectionNode,
+      footerSectionNode,
+      modalSectionNode,
+    ],
   }
 }
 
@@ -311,6 +367,11 @@ export const generatePresetCLayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "footerSection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -355,6 +416,7 @@ export const generatePresetCLayoutConfig = (currentDisplayName: string) => {
       leftSectionNode,
       bodySectionNode,
       footerSectionNode,
+      modalSectionNode,
     ],
   }
 }
@@ -380,6 +442,11 @@ export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "footerSection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -425,6 +492,7 @@ export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
       leftSectionNode,
       bodySectionNode,
       footerSectionNode,
+      modalSectionNode,
     ],
   }
 }
@@ -446,6 +514,11 @@ export const generatePresetELayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "footerSection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -490,6 +563,7 @@ export const generatePresetELayoutConfig = (currentDisplayName: string) => {
       leftSectionNode,
       bodySectionNode,
       footerSectionNode,
+      modalSectionNode,
     ],
   }
 }

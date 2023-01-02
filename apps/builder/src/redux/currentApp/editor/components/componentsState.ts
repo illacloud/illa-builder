@@ -112,6 +112,16 @@ export interface SectionNode extends ComponentNode {
   props: SectionNodeProps
 }
 
+export interface ModalSectionNodeProps {
+  sortedKey: string[]
+  currentIndex: number
+}
+
+export interface ModalSectionNode extends ComponentNode {
+  type: "MODAL_SECTION_NODE"
+  props: ModalSectionNodeProps
+}
+
 export type ComponentsState = ComponentNode | null
 export const ComponentsInitialState: ComponentsState = null
 
@@ -195,4 +205,9 @@ export interface DeleteSectionViewPayload {
 export interface UpdateSectionViewPropsPayload {
   parentNodeName: string
   newProps: Record<string, any>
+}
+
+export interface AddModalComponentPayload {
+  currentPageDisplayName: string
+  modalComponentNode: ComponentNode
 }

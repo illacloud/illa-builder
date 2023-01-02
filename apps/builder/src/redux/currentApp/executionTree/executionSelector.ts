@@ -45,6 +45,7 @@ const IGNORE_WIDGET_TYPES = new Set<string>([
   "CANVAS",
   "DOT_PANEL",
   "MODAL_WIDGET",
+  "MODAL_SECTION_NODE",
 ])
 
 export const getWidgetExecutionResult = createSelector(

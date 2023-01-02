@@ -39,6 +39,7 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
@@ -73,6 +74,10 @@ export const RenderComponentCanvas: FC<{
   const illaMode = useSelector(getIllaMode)
   const isFreezeCanvas = useSelector(getFreezeState)
   const dispatch = useDispatch()
+
+  const rootNodeProps = useSelector(getRootNodeExecutionResult)
+  const { currentPageIndex, pageSortedKey } = rootNodeProps
+  const currentPageDisplayName = pageSortedKey[currentPageIndex]
 
   const [xy, setXY] = useState([0, 0])
   const [lunchXY, setLunchXY] = useState([0, 0])
@@ -257,30 +262,33 @@ export const RenderComponentCanvas: FC<{
             unitH: UNIT_HEIGHT,
           }
 
-          /**
-           * only when add component nodes
-           */
-          if (indexOfChildrenNodes === -1) {
-            const allChildrenNodes = [...childrenNodes, newItem]
-            const { finalState, effectResultMap } = getReflowResult(
-              newItem,
-              allChildrenNodes,
-            )
-            finalChildrenNodes = finalState
-            finalEffectResultMap = effectResultMap
-          } else {
-            const indexOfChildren = childrenNodes.findIndex(
-              (node) => node.displayName === newItem.displayName,
-            )
-            const allChildrenNodes = [...childrenNodes]
-            allChildrenNodes.splice(indexOfChildren, 1, newItem)
-            const { finalState, effectResultMap } = getReflowResult(
-              newItem,
-              allChildrenNodes,
-            )
-            finalChildrenNodes = finalState
-            finalEffectResultMap = effectResultMap
+          if (item.type !== "MODAL_WIDGET") {
+            /**
+             * only when add component nodes
+             */
+            if (indexOfChildrenNodes === -1) {
+              const allChildrenNodes = [...childrenNodes, newItem]
+              const { finalState, effectResultMap } = getReflowResult(
+                newItem,
+                allChildrenNodes,
+              )
+              finalChildrenNodes = finalState
+              finalEffectResultMap = effectResultMap
+            } else {
+              const indexOfChildren = childrenNodes.findIndex(
+                (node) => node.displayName === newItem.displayName,
+              )
+              const allChildrenNodes = [...childrenNodes]
+              allChildrenNodes.splice(indexOfChildren, 1, newItem)
+              const { finalState, effectResultMap } = getReflowResult(
+                newItem,
+                allChildrenNodes,
+              )
+              finalChildrenNodes = finalState
+              finalEffectResultMap = effectResultMap
+            }
           }
+
           if (!isFreezeCanvas) {
             const updateSlice = [
               {
@@ -382,7 +390,16 @@ export const RenderComponentCanvas: FC<{
            * add new nodes
            */
           if (item.x === -1 && item.y === -1) {
-            dispatch(componentsActions.addComponentReducer([newItem]))
+            if (item.type === "MODAL_WIDGET") {
+              dispatch(
+                componentsActions.addModalComponentReducer({
+                  currentPageDisplayName,
+                  modalComponentNode: newItem,
+                }),
+              )
+            } else {
+              dispatch(componentsActions.addComponentReducer([newItem]))
+            }
           } else {
             /**
              * update node when change container
@@ -437,7 +454,15 @@ export const RenderComponentCanvas: FC<{
         }
       },
     }),
-    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezeCanvas, componentNode],
+    [
+      bounds,
+      unitWidth,
+      UNIT_HEIGHT,
+      canDrop,
+      isFreezeCanvas,
+      componentNode,
+      currentPageDisplayName,
+    ],
   )
 
   const maxY = useMemo(() => {

@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
   applyCanvasContainerWrapperStyle,
-  maskStyle,
-  modalStyle,
   pageContainerWrapperStyle,
 } from "@/page/App/components/DotPanel/style"
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  ModalSectionNode,
   PageNode,
   SECTION_POSITION,
   SectionNode,
@@ -21,16 +20,20 @@ import {
   RenderFooterSection,
   RenderHeaderSection,
   RenderLeftSection,
+  RenderModalSection,
   RenderRightSection,
   RenderSection,
 } from "./renderSection"
 
 const getShowNameMapSectionNode = (pageNode: PageNode) => {
   const { childrenNode = [] } = pageNode
-  const nameMapSection: Map<string, SectionNode> = new Map()
+  const nameMapSection: Map<string, SectionNode | ModalSectionNode> = new Map()
   childrenNode.forEach((node) => {
     if (node.type === "SECTION_NODE") {
       nameMapSection.set(node.showName, node as SectionNode)
+    }
+    if (node.type === "MODAL_SECTION_NODE") {
+      nameMapSection.set(node.showName, node as ModalSectionNode)
     }
   })
   return nameMapSection
@@ -344,11 +347,24 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     topHeight,
   ])
 
-  const headerSection = showNameMapSectionNode.get("headerSection")
-  const bodySection = showNameMapSectionNode.get("bodySection")
-  const leftSection = showNameMapSectionNode.get("leftSection")
-  const rightSection = showNameMapSectionNode.get("rightSection")
-  const footerSection = showNameMapSectionNode.get("footerSection")
+  const headerSection = showNameMapSectionNode.get("headerSection") as
+    | SectionNode
+    | undefined
+  const bodySection = showNameMapSectionNode.get("bodySection") as
+    | SectionNode
+    | undefined
+  const leftSection = showNameMapSectionNode.get("leftSection") as
+    | SectionNode
+    | undefined
+  const rightSection = showNameMapSectionNode.get("rightSection") as
+    | SectionNode
+    | undefined
+  const footerSection = showNameMapSectionNode.get("footerSection") as
+    | SectionNode
+    | undefined
+  const modalSection = showNameMapSectionNode.get("modalSection") as
+    | ModalSectionNode
+    | undefined
 
   if (
     !pageNode ||
@@ -430,9 +446,9 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           />
         )}
       </div>
-      {/*<div css={maskStyle}>*/}
-      {/*  <div css={modalStyle}></div>*/}
-      {/*</div>*/}
+      {modalSection && (
+        <RenderModalSection sectionNode={modalSection} mode={mode} />
+      )}
     </div>
   )
 }

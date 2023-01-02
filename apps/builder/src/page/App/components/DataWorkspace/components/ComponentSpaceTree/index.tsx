@@ -9,10 +9,12 @@ import { WorkSpaceTreeGroup } from "@/page/App/components/DataWorkspace/componen
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { updateModalDisplayReducer } from "@/redux/currentApp/executionTree/executionReducer"
 import {
   getGeneralWidgetExecutionResultArray,
   getModalWidgetExecutionResultArray,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { FocusManager } from "@/utils/focusManager"
 
 export const ComponentSpaceTree: FC = () => {
@@ -104,6 +106,35 @@ export const ComponentSpaceTree: FC = () => {
     ],
   )
 
+  const handleModalComponentSelect = useCallback(
+    (selectedKeys: string[], e: MouseEvent<HTMLDivElement>) => {
+      if (e.metaKey) {
+        handleSelectComponentWhenPressMetaKey(selectedKeys)
+        return
+      }
+      if (e.shiftKey) {
+        handleSelectComponentWhenPressShiftKey(
+          selectedKeys,
+          generalWidgetExecutionArray,
+        )
+        return
+      }
+      dispatch(
+        executionActions.updateModalDisplayReducer({
+          displayName: selectedKeys[0],
+          display: true,
+        }),
+      )
+      dispatch(configActions.updateSelectedComponent(selectedKeys))
+    },
+    [
+      dispatch,
+      handleSelectComponentWhenPressMetaKey,
+      handleSelectComponentWhenPressShiftKey,
+      generalWidgetExecutionArray,
+    ],
+  )
+
   const componentTotalNumber =
     generalWidgetExecutionArray.length + modalWidgetExecutionArray.length
 
@@ -132,7 +163,7 @@ export const ComponentSpaceTree: FC = () => {
           key={data.displayName}
           title={data.displayName}
           data={omit(data, hiddenFields)}
-          // handleSelect={handleSelect}
+          handleSelect={handleModalComponentSelect}
           isSelected={selectedComponents?.includes(data.displayName)}
         />
       )

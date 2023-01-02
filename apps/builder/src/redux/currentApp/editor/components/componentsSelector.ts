@@ -127,6 +127,7 @@ export const getAllComponentDisplayNameMapProps = createSelector(
     Object.keys(components).forEach((key) => {
       res[key] = {
         ...components[key].props,
+        $parentNode: components[key].parentNode,
         $type: "WIDGET",
         $widgetType: components[key].type,
       }

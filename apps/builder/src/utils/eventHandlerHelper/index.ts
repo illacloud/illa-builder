@@ -207,6 +207,20 @@ export const transformEvents = (
         enabled,
       }
     }
+
+    if (widgetMethod === "openModal" || widgetMethod === "closeModal") {
+      return {
+        script: () => {
+          store.dispatch(
+            executionActions.updateModalDisplayReducer({
+              display: widgetMethod === "openModal",
+              displayName: widgetID,
+            }),
+          )
+        },
+        enabled,
+      }
+    }
   }
   if (actionType === "datasource") {
     const rootState = store.getState()
