@@ -582,8 +582,8 @@
           "sortingChange": "Sort change",
           "submit": "Submit",
           "success": "Success",
-          "open_modal": "Open modal",
-          "close_modal": "Close modal"
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Close modal"
         }
       },
       "setter_default_value": {
