@@ -1,4 +1,3 @@
-import { RefObject } from "react"
 import { IllaMode } from "@/redux/config/configState"
 import {
   ComponentNode,

@@ -21,6 +21,8 @@ import {
   SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import store from "@/store"
 import {
   ChangeLayoutBottomBar,
   ChangeLayoutLeftBar,
@@ -1324,12 +1326,26 @@ RenderRightSection.displayName = "RenderRightSection"
 export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
   const { sectionNode, mode } = props
   const executionResult = useSelector(getExecutionResult)
+  const dispatch = useDispatch()
   const sectionNodeProps = (executionResult[sectionNode.displayName] ||
     {}) as ModalSectionNodeProps
   const [containerBoundRef, containerBound] = useMeasure()
   const containerRef = useRef<HTMLDivElement>(
     null,
   ) as MutableRefObject<HTMLDivElement | null>
+
+  const handleOnClickMask = useCallback(
+    (displayName: string) => {
+      dispatch(
+        executionActions.updateModalDisplayReducer({
+          display: false,
+          displayName,
+        }),
+      )
+    },
+    [dispatch],
+  )
+
   if (!sectionNodeProps) return null
 
   const { sortedKey = [], currentIndex = -1 } = sectionNodeProps
@@ -1345,9 +1361,19 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
     })
   }
   if (!currentComponentNode) return null
+  const displayName = currentComponentNode.displayName
+
+  const currentComponentNodeProps = executionResult[displayName] || {}
 
   return (
-    <div css={maskStyle}>
+    <div
+      css={maskStyle}
+      onClick={() => {
+        if (currentComponentNodeProps?.clickMaskClose) {
+          handleOnClickMask(displayName)
+        }
+      }}
+    >
       <div
         css={applyModalWrapperStyle(mode)}
         ref={(ele) => {

@@ -2,9 +2,31 @@ import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
 import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import { MODAL_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ModalWidget/eventHandlerConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const baseWidgetName = "modal"
 export const MODAL_PANEL_CONFIG: PanelConfig[] = [
+  {
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
+    children: [
+      {
+        ...generatorEventHandlerConfig(
+          baseWidgetName,
+          MODAL_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
+      {
+        id: `${baseWidgetName}-closeOnMaskClick`,
+        label: i18n.t("editor.inspect.setter.click_mask_close"),
+        attrName: "clickMaskClose",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
+      },
+    ],
+  },
   {
     id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),

@@ -3,6 +3,7 @@ import {
   FC,
   MutableRefObject,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -47,7 +48,16 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
     footerHeight,
     unitH,
     handleUpdateOriginalDSLMultiAttr,
+    handleOnOpenModal,
+    handleOnCloseModal,
   } = props
+
+  useEffect(() => {
+    handleOnOpenModal && handleOnOpenModal()
+    return () => {
+      handleOnCloseModal && handleOnCloseModal()
+    }
+  }, [handleOnCloseModal, handleOnOpenModal])
 
   const [bodyRef, bodyBounds] = useMeasure()
   const [headerRef, headerBounds] = useMeasure()
