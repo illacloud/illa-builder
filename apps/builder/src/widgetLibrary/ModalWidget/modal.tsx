@@ -47,17 +47,26 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
     headerHeight,
     footerHeight,
     unitH,
+    isVisible,
     handleUpdateOriginalDSLMultiAttr,
     handleOnOpenModal,
     handleOnCloseModal,
   } = props
 
+  const prevVisible = useRef(isVisible)
+
   useEffect(() => {
-    handleOnOpenModal && handleOnOpenModal()
-    return () => {
-      handleOnCloseModal && handleOnCloseModal()
+    if (isVisible && !prevVisible.current) {
+      handleOnOpenModal && handleOnOpenModal()
+      prevVisible.current = isVisible
     }
-  }, [handleOnCloseModal, handleOnOpenModal])
+    return () => {
+      if (!isVisible && prevVisible.current) {
+        handleOnCloseModal && handleOnCloseModal()
+        prevVisible.current = isVisible
+      }
+    }
+  }, [handleOnCloseModal, handleOnOpenModal, isVisible])
 
   const [bodyRef, bodyBounds] = useMeasure()
   const [headerRef, headerBounds] = useMeasure()

@@ -17,12 +17,10 @@ import { ScaleSquareOnlyHasResize } from "@/page/App/components/ScaleSquare"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   ComponentNode,
-  ModalSectionNodeProps,
   SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import store from "@/store"
 import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
@@ -1343,8 +1341,6 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
   const { sectionNode, mode } = props
   const executionResult = useSelector(getExecutionResult)
   const dispatch = useDispatch()
-  const sectionNodeProps = (executionResult[sectionNode.displayName] ||
-    {}) as ModalSectionNodeProps
   const [containerBoundRef, containerBound] = useMeasure()
   const containerRef = useRef<HTMLDivElement>(
     null,
@@ -1362,20 +1358,18 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
     [dispatch],
   )
 
-  if (!sectionNodeProps) return null
-
-  const { sortedKey = [], currentIndex = -1 } = sectionNodeProps
-
-  if (!Array.isArray(sectionNode.childrenNode) || currentIndex === -1)
+  if (
+    !Array.isArray(sectionNode.childrenNode) ||
+    sectionNode.childrenNode.length === 0
+  )
     return null
 
-  const currentDisplayName = sortedKey[currentIndex]
-  let currentComponentNode: ComponentNode | undefined
-  if (currentDisplayName) {
-    currentComponentNode = sectionNode.childrenNode.find((node) => {
-      return node.displayName === currentDisplayName
+  let currentComponentNode: ComponentNode | undefined =
+    sectionNode.childrenNode.find((node) => {
+      const realProps = executionResult[node.displayName]
+      return realProps.isVisible
     })
-  }
+
   if (!currentComponentNode) return null
   const displayName = currentComponentNode.displayName
 
@@ -1411,7 +1405,7 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
             containerPadding={8}
             childrenNode={currentComponentNode.childrenNode}
             collisionEffect={new Map()}
-            columnsNumber={6}
+            blockColumns={6}
           />
         )}
       </div>

@@ -193,7 +193,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     [componentNode.displayName, dispatch, illaMode, selectedComponents],
   )
 
-  const handleOnResizeStop = useCallback(
+  const handleOnResizeStop: RndResizeCallback = useCallback(
     (e, dir, ref, delta, position) => {
       const { width, height } = delta
       const finalWidth = Math.round((w + width) / unitW)
@@ -591,7 +591,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
     containerHeight,
     childrenNode,
     collisionEffect,
-    columnsNumber,
+    blockColumns,
   } = props
 
   const canRenderDashedLine = !collisionEffect.has(componentNode.displayName)
@@ -898,7 +898,10 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             widgetType={componentNode.type}
           />
 
-          <TransformWidgetWrapper componentNode={componentNode} />
+          <TransformWidgetWrapper
+            componentNode={componentNode}
+            blockColumns={blockColumns}
+          />
           {canRenderDashedLine && (
             <div
               css={applyDashedLineStyle(isSelected, isShowCanvasDot, false)}

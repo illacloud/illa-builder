@@ -541,10 +541,11 @@ export const maskStyle = css`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #7f7f7f;
+  background-color: ${getColor("blackAlpha", "02")};
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 8;
 `
 
 export const modalStyle = css`

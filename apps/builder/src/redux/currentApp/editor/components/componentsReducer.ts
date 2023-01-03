@@ -92,13 +92,11 @@ export const addModalComponentReducer: CaseReducer<
       currentPageDisplayName,
       "modalSection",
     )
-    newModalSectionNode.props.sortedKey = [modalComponentNode.displayName]
     modalComponentNode.parentNode = newModalSectionNode.displayName
     newModalSectionNode.childrenNode = [modalComponentNode]
     currentPageNode.childrenNode.push(newModalSectionNode)
   } else {
     modalComponentNode.parentNode = modalSectionNode.displayName
-    modalSectionNode.props.sortedKey.push(modalComponentNode.displayName)
     if (!Array.isArray(modalSectionNode.childrenNode)) {
       modalSectionNode.childrenNode = []
     }
