@@ -27,14 +27,23 @@ export const configItem = css`
   height: 48px;
   align-items: center;
   flex-direction: row;
+  padding-left: 24px;
+`
+
+export const connectType = css`
+  display: flex;
+  height: 38px;
+  align-items: center;
+  flex-direction: row;
+  padding-left: 24px;
 `
 
 export const privateKeyItem = css`
   display: flex;
   width: 100%;
-  margin-top: 6px;
   flex-direction: row;
   padding-top: 8px;
+  padding-left: 24px;
 `
 
 export const divider = css`
@@ -69,13 +78,23 @@ export function applyConfigItemLabelText(
 
 export const configItemTip = css`
   font-size: 14px;
+  font-weight: 400;
   margin-left: 192px;
-  margin-bottom: 6px;
+  padding-bottom: 8px;
+  padding-left: 24px;
+  height: 30px;
   color: ${getColor("grayBlue", "04")};
+`
+
+export const linkItem = css`
+  height: 22px;
 `
 
 export const connectTypeStyle = css`
   font-size: 14px;
+  height: 22px;
+  display: flex;
+  align-items: center;
   color: ${getColor("grayBlue", "02")};
   margin-left: 16px;
 `
@@ -90,9 +109,10 @@ export const optionLabelStyle = css`
   height: 38px;
   display: flex;
   font-size: 14px;
+  font-weight: 500;
+  padding: 8px 24px;
   color: ${getColor("grayBlue", "04")};
   align-items: center;
-  padding-left: 24px;
 `
 
 export const errorMsgStyle: SerializedStyles = css`

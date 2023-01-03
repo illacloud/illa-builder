@@ -47,6 +47,7 @@ import {
 } from "@/redux/currentApp/action/firebaseAction"
 import {
   actionContainerStyle,
+  actionItemContainer,
   actionItemLabelStyle,
   actionItemStyle,
 } from "./style"
@@ -169,41 +170,44 @@ export const FirebasePanel: FC = () => {
   return (
     <div css={actionContainerStyle}>
       <ResourceChoose />
-      <div css={actionItemStyle}>
-        <span css={actionItemLabelStyle}>
-          {t("editor.action.panel.firebase.service_type")}
-        </span>
-        <Select
-          colorScheme="techPurple"
-          showSearch={true}
-          defaultValue={content.service}
-          value={content.service}
-          ml="16px"
-          width="100%"
-          onChange={(value) => handleValueChange(value, "service")}
-          options={FirebaseServiceType}
-        />
+      <div css={actionItemContainer}>
+        <div css={actionItemStyle}>
+          <span css={actionItemLabelStyle}>
+            {t("editor.action.panel.firebase.service_type")}
+          </span>
+          <Select
+            colorScheme="techPurple"
+            showSearch={true}
+            defaultValue={content.service}
+            value={content.service}
+            ml="16px"
+            width="100%"
+            onChange={(value) => handleValueChange(value, "service")}
+            options={FirebaseServiceType}
+          />
+        </div>
+        <div css={actionItemStyle}>
+          <span css={actionItemLabelStyle}>
+            {t("editor.action.panel.firebase.action_type")}
+          </span>
+          <Select
+            colorScheme="techPurple"
+            showSearch={true}
+            defaultValue={content.operation}
+            value={content.operation}
+            ml="16px"
+            width="100%"
+            placeholder={t(
+              "editor.action.panel.firebase.placeholder.select_an_action",
+            )}
+            onChange={(value) => handleValueChange(value, "operation")}
+            options={ActionTypeList[content.service]}
+          />
+        </div>
+        {renderInputBody}
+        <TransformerComponent />
       </div>
-      <div css={actionItemStyle}>
-        <span css={actionItemLabelStyle}>
-          {t("editor.action.panel.firebase.action_type")}
-        </span>
-        <Select
-          colorScheme="techPurple"
-          showSearch={true}
-          defaultValue={content.operation}
-          value={content.operation}
-          ml="16px"
-          width="100%"
-          placeholder={t(
-            "editor.action.panel.firebase.placeholder.select_an_action",
-          )}
-          onChange={(value) => handleValueChange(value, "operation")}
-          options={ActionTypeList[content.service]}
-        />
-      </div>
-      {renderInputBody}
-      <TransformerComponent />
+
       <ActionEventHandler />
     </div>
   )

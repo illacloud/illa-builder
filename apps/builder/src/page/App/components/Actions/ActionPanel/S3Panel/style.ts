@@ -45,3 +45,7 @@ export const codeEditorLabelStyle = css`
   align-items: center;
   align-self: start;
 `
+
+export const actionItemContainer = css`
+  padding: 8px 0;
+`

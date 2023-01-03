@@ -3,10 +3,14 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { RadioGroup } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
+import { esItemLabelStyle } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel/style"
+import { TransformComponentProps } from "@/page/App/components/Actions/ActionPanel/TransformerComponent/interface"
 import {
+  codeMirrorContainer,
   codeMirrorStyle,
   transformRadioStyle,
   transformSpaceStyle,
+  transformTitle,
   transformTitleStyle,
 } from "@/page/App/components/Actions/ActionPanel/TransformerComponent/style"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
@@ -20,13 +24,13 @@ import {
   TransformerInitial,
   TransformerInitialTrue,
 } from "@/redux/currentApp/action/actionState"
-import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const TransformerComponent: FC = () => {
+export const TransformerComponent: FC<TransformComponentProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
+  const { mysqlLike } = props
   const cachedAction = useSelector(getCachedAction)
   const selectedAction = useSelector(getSelectedAction)
 
@@ -34,7 +38,15 @@ export const TransformerComponent: FC = () => {
     <>
       {cachedAction && (
         <div css={transformTitleStyle}>
-          <PanelLabel labelName={t("editor.action.panel.label.transformer")} />
+          {mysqlLike ? (
+            <PanelLabel
+              labelName={t("editor.action.panel.label.transformer")}
+            />
+          ) : (
+            <span css={transformTitle}>
+              {t("editor.action.panel.label.transformer")}
+            </span>
+          )}
           <div css={transformSpaceStyle} />
           <RadioGroup
             css={transformRadioStyle}
@@ -72,25 +84,28 @@ export const TransformerComponent: FC = () => {
         </div>
       )}
       {cachedAction && cachedAction.transformer.enable && (
-        <CodeEditor
-          value={cachedAction.transformer.rawData}
-          css={codeMirrorStyle}
-          lineNumbers
-          height="88px"
-          expectedType={VALIDATION_TYPES.STRING}
-          mode="JAVASCRIPT"
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                transformer: {
-                  ...cachedAction.transformer,
-                  rawData: value,
-                },
-              }),
-            )
-          }}
-        />
+        <div css={codeMirrorContainer}>
+          {mysqlLike ? null : <span css={transformTitle}></span>}
+          <CodeEditor
+            value={cachedAction.transformer.rawData}
+            css={codeMirrorStyle}
+            lineNumbers
+            height="88px"
+            expectedType={VALIDATION_TYPES.STRING}
+            mode="JAVASCRIPT"
+            onChange={(value) => {
+              dispatch(
+                configActions.updateCachedAction({
+                  ...cachedAction,
+                  transformer: {
+                    ...cachedAction.transformer,
+                    rawData: value,
+                  },
+                }),
+              )
+            }}
+          />
+        </div>
       )}
     </>
   )

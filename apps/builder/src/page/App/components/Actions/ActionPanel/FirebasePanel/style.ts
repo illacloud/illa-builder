@@ -3,7 +3,7 @@ import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const actionContainerStyle = css`
   display: flex;
-  flex-direction: column;
+  flex-direction: column;017
 `
 export const actionItemStyle = css`
   display: flex;
@@ -11,10 +11,6 @@ export const actionItemStyle = css`
   align-items: center;
   min-height: 48px;
   padding: 0 16px;
-`
-
-export const topDivider = css`
-  min-height: 8px;
 `
 
 export const actionItemLabelStyle = css`
@@ -25,6 +21,10 @@ export const actionItemLabelStyle = css`
   font-weight: 500;
   text-align: right;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
+
+export const actionItemContainer = css`
+  padding: 8px 0;
 `
 
 export const actionBodyTypeStyle = css`

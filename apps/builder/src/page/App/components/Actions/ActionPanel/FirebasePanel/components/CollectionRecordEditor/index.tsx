@@ -61,7 +61,7 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                   mode="TEXT_JS"
                   placeholder="field"
                   value={record.field}
-                  borderRadius="0"
+                  borderRadius="8px 0 0 8px"
                   onChange={(val) => {
                     handleChange(
                       index,

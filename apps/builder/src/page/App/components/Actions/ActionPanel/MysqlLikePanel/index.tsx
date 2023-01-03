@@ -1,16 +1,17 @@
 import { FC, useEffect, useMemo, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { isObject } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
+  actionItemTitle,
   mysqlContainerStyle,
   sqlInputStyle,
 } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { actionItemStyle } from "@/page/App/components/InputEditor/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
@@ -92,7 +93,7 @@ export const MysqlLikePanel: FC = (props) => {
           )
         }}
       />
-      <TransformerComponent />
+      <TransformerComponent mysqlLike />
       <ActionEventHandler />
     </div>
   )
