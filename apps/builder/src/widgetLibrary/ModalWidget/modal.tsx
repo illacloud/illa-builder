@@ -66,14 +66,14 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
   }, [])
 
   useEffect(() => {
-    if (isVisible && prevVisible.current !== isVisible && !isMount.current) {
+    if (isVisible && prevVisible.current !== isVisible && isMount.current) {
       handleOnOpenModal && handleOnOpenModal()
       prevVisible.current = true
     }
 
     return () => {
-      if (isVisible && prevVisible.current !== isVisible && !isMount.current) {
-        handleOnOpenModal && handleOnOpenModal()
+      if (isVisible && !isMount.current) {
+        handleOnCloseModal && handleOnCloseModal()
       }
     }
   }, [handleOnCloseModal, handleOnOpenModal, isVisible])
