@@ -1171,6 +1171,9 @@
       "horizontal": "横向",
       "name": "时间线",
       "vertical": "纵向"
+    },
+    "modal": {
+      "name": "对话框"
     }
   },
   "page": {
