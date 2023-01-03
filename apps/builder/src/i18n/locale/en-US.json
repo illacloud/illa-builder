@@ -1171,6 +1171,9 @@
       "horizontal": "Horizontal",
       "name": "Timeline",
       "vertical": "vertical"
+    },
+    "modal": {
+      "name": "Modal"
     }
   },
   "page": {
