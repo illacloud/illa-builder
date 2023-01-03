@@ -81,7 +81,7 @@ export const MODAL_WIDGET_CONFIG: WidgetConfig = {
     },
   ],
   defaults: {
-    clickMaskClose: true,
+    clickMaskClose: false,
     showHeader: true,
     showFooter: true,
     borderColor: "#ffffffff",

@@ -4,7 +4,6 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 export const formContainerStyle = css`
   width: 100%;
   height: 100%;
-  background-color: white;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -15,7 +14,6 @@ export const formHeaderStyle = css`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: white;
 `
 export const formBodyStyle = css`
   width: 100%;

@@ -48,22 +48,32 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
     footerHeight,
     unitH,
     isVisible,
+    blockColumns,
     handleUpdateOriginalDSLMultiAttr,
     handleOnOpenModal,
     handleOnCloseModal,
   } = props
 
-  const prevVisible = useRef(isVisible)
+  const prevVisible = useRef<boolean>()
+  const isMount = useRef(false)
 
   useEffect(() => {
-    if (isVisible && !prevVisible.current) {
-      handleOnOpenModal && handleOnOpenModal()
-      prevVisible.current = isVisible
-    }
+    isMount.current = true
+
     return () => {
-      if (!isVisible && prevVisible.current) {
-        handleOnCloseModal && handleOnCloseModal()
-        prevVisible.current = isVisible
+      isMount.current = false
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isVisible && prevVisible.current !== isVisible && !isMount.current) {
+      handleOnOpenModal && handleOnOpenModal()
+      prevVisible.current = true
+    }
+
+    return () => {
+      if (isVisible && prevVisible.current !== isVisible && !isMount.current) {
+        handleOnOpenModal && handleOnOpenModal()
       }
     }
   }, [handleOnCloseModal, handleOnOpenModal, isVisible])
@@ -117,9 +127,10 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
         minHeight={headerBounds.height - 16}
         padding={8}
         addedRowNumber={0}
+        blockColumns={blockColumns}
       />
     )
-  }, [childrenNode, headerBounds.height])
+  }, [blockColumns, childrenNode, headerBounds.height])
 
   const renderBody = useMemo(() => {
     const bodyComponentNode = childrenNode[1]
@@ -130,9 +141,10 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
         padding={8}
         safeRowNumber={1}
         addedRowNumber={20}
+        blockColumns={blockColumns}
       />
     )
-  }, [bodyBounds.height, childrenNode])
+  }, [blockColumns, bodyBounds.height, childrenNode])
 
   const renderFooter = useMemo(() => {
     const footerComponentNode = childrenNode[2]
@@ -143,9 +155,10 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
         minHeight={footerBounds.height - 2 * 8}
         padding={8}
         addedRowNumber={0}
+        blockColumns={blockColumns}
       />
     )
-  }, [childrenNode, footerBounds.height])
+  }, [blockColumns, childrenNode, footerBounds.height])
 
   const resizeTopHandler = useMemo(() => {
     return {

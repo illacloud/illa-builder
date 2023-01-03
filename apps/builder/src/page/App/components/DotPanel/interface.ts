@@ -58,7 +58,7 @@ export interface RenderBasicSectionProps {
 
 export interface RenderModalSectionProps {
   sectionNode: ModalSectionNode
-
+  columns?: number
   mode: IllaMode
 }
 

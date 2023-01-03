@@ -461,7 +461,11 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
         )}
       </div>
       {modalSection && (
-        <RenderModalSection sectionNode={modalSection} mode={mode} />
+        <RenderModalSection
+          sectionNode={modalSection}
+          mode={mode}
+          columns={bodyColumns}
+        />
       )}
     </div>
   )
