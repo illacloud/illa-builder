@@ -1171,6 +1171,9 @@
       "horizontal": "수평의",
       "name": "타임라인",
       "vertical": "초상화"
+    },
+    "modal": {
+      "name": "Modal"
     }
   },
   "page": {
