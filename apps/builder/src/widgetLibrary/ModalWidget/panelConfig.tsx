@@ -19,7 +19,7 @@ export const MODAL_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-closeOnMaskClick`,
-        label: i18n.t("editor.inspect.setter.click_mask_close"),
+        labelName: i18n.t("editor.inspect.setter.click_mask_close"),
         attrName: "clickMaskClose",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,

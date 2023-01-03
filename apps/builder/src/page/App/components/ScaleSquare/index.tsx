@@ -456,10 +456,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         x: x,
         y: y,
       }}
-      style={{
-        position: "static",
-        transform: "none",
-      }}
       enableResizing={
         illaMode === "edit" && isSelected ? enableResizing : false
       }

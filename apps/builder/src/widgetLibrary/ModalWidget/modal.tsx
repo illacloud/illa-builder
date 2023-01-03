@@ -102,45 +102,39 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
   const renderHeader = useMemo(() => {
     const headerComponentNode = childrenNode[0]
     return (
-      headerComponentNode && (
-        <BasicContainer
-          componentNode={headerComponentNode}
-          canResizeY={false}
-          minHeight={headerBounds.height - 16}
-          padding={8}
-          addedRowNumber={0}
-        />
-      )
+      <BasicContainer
+        componentNode={headerComponentNode}
+        canResizeY={false}
+        minHeight={headerBounds.height - 16}
+        padding={8}
+        addedRowNumber={0}
+      />
     )
   }, [childrenNode, headerBounds.height])
 
   const renderBody = useMemo(() => {
     const bodyComponentNode = childrenNode[1]
     return (
-      bodyComponentNode && (
-        <BasicContainer
-          componentNode={bodyComponentNode}
-          minHeight={bodyBounds.height - 2 * 8}
-          padding={8}
-          safeRowNumber={1}
-          addedRowNumber={20}
-        />
-      )
+      <BasicContainer
+        componentNode={bodyComponentNode}
+        minHeight={bodyBounds.height - 2 * 8}
+        padding={8}
+        safeRowNumber={1}
+        addedRowNumber={20}
+      />
     )
   }, [bodyBounds.height, childrenNode])
 
   const renderFooter = useMemo(() => {
     const footerComponentNode = childrenNode[2]
     return (
-      footerComponentNode && (
-        <BasicContainer
-          componentNode={footerComponentNode}
-          canResizeY={false}
-          minHeight={footerBounds.height - 2 * 8}
-          padding={8}
-          addedRowNumber={0}
-        />
-      )
+      <BasicContainer
+        componentNode={footerComponentNode}
+        canResizeY={false}
+        minHeight={footerBounds.height - 2 * 8}
+        padding={8}
+        addedRowNumber={0}
+      />
     )
   }, [childrenNode, footerBounds.height])
 

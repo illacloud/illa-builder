@@ -9,8 +9,8 @@ import { WidgetConfig } from "@/widgetLibrary/interface"
 export const MODAL_WIDGET_CONFIG: WidgetConfig = {
   type: "MODAL_WIDGET",
   displayName: "modal",
-  widgetName: i18n.t("widget.form.name"),
-  keywords: ["form", "表单"],
+  widgetName: i18n.t("widget.modal.name"),
+  keywords: ["modal", "对话框"],
   icon: <FormWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 32,
@@ -44,14 +44,35 @@ export const MODAL_WIDGET_CONFIG: WidgetConfig = {
           y: 0,
           defaults: {
             ...BUTTON_WIDGET_CONFIG.defaults,
-            text: "Submit",
+            text: "Confirm",
             events: [
               {
                 actionType: "widget",
                 id: v4(),
                 eventType: "click",
-                widgetID: "form",
-                widgetMethod: "submit",
+                widgetID: "modal",
+                widgetMethod: "closeModal",
+              },
+            ],
+          },
+        },
+        {
+          ...BUTTON_WIDGET_CONFIG,
+          w: 16,
+          h: 5,
+          x: 32,
+          y: 0,
+          defaults: {
+            ...BUTTON_WIDGET_CONFIG.defaults,
+            text: "Cancel",
+            variant: "outline",
+            events: [
+              {
+                actionType: "widget",
+                id: v4(),
+                eventType: "click",
+                widgetID: "modal",
+                widgetMethod: "closeModal",
               },
             ],
           },
