@@ -193,7 +193,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     [componentNode.displayName, dispatch, illaMode, selectedComponents],
   )
 
-  const handleOnResizeStop = useCallback(
+  const handleOnResizeStop: RndResizeCallback = useCallback(
     (e, dir, ref, delta, position) => {
       const { width, height } = delta
       const finalWidth = Math.round((w + width) / unitW)
