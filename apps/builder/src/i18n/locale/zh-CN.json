@@ -811,7 +811,10 @@
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
-      "unselected_tip2": "请点击组件以选中。"
+      "unselected_tip2": "请点击组件以选中。",
+      "setter": {
+        "click_mask_close": "点击遮罩关闭modal"
+      }
     },
     "page": {
       "label_name": {
