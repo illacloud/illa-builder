@@ -421,7 +421,6 @@
             "base_url": "请使用绝对 URL (e.g https://example.com)",
             "database": "i.e.\"Users DB(readonly)\"",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "key",
             "param_value": "value",
             "password": "密码",
