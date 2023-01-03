@@ -79,3 +79,29 @@ export const updateExecutionByMultiDisplayNameReducer: CaseReducer<
     }
   })
 }
+
+export const updateModalDisplayReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<{
+    displayName: string
+    display: boolean
+  }>
+> = (state, action) => {
+  const result = state.result
+  const currentNode = result[action.payload.displayName]
+  if (!currentNode) return state
+  const parentNodeDisplayName = currentNode.$parentNode
+  if (!parentNodeDisplayName) return state
+  const parentNode = result[parentNodeDisplayName]
+  if (!parentNode) return state
+  const sortedKey = parentNode.sortedKey
+  let currentIndex = -1
+  if (action.payload.display) {
+    if (Array.isArray(sortedKey)) {
+      currentIndex = sortedKey.findIndex((key) => {
+        return key === action.payload.displayName
+      })
+    }
+  }
+  parentNode.currentIndex = currentIndex
+}

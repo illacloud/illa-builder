@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 import {
+  FC,
   MutableRefObject,
   forwardRef,
   useCallback,
@@ -12,9 +13,16 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import useMeasure from "react-use-measure"
 import { NextIcon, PreIcon } from "@illa-design/react"
+import { ScaleSquareOnlyHasResize } from "@/page/App/components/ScaleSquare"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  ComponentNode,
+  ModalSectionNodeProps,
+  SECTION_POSITION,
+} from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import store from "@/store"
 import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
@@ -29,6 +37,7 @@ import {
   RenderFooterSectionProps,
   RenderHeaderSectionProps,
   RenderLeftSectionProps,
+  RenderModalSectionProps,
   RenderRightSectionProps,
   RenderSectionProps,
 } from "./interface"
@@ -39,6 +48,7 @@ import {
   applyHeaderSectionWrapperStyle,
   applyLeftAnimationWrapperStyle,
   applyLeftSectionWrapperStyle,
+  applyModalWrapperStyle,
   applyNoBottomPaddingStyle,
   applyRightAnimationWrapperStyle,
   applyRightSectionWrapperStyle,
@@ -48,6 +58,7 @@ import {
   headerHeightTipsStyle,
   leftOpenFoldPositionStyle,
   leftWidthTipsStyle,
+  maskStyle,
   openFoldWrapperStyle,
   resizeHorizontalBarStyle,
   resizeHorizontalBarWrapperStyle,
@@ -1327,3 +1338,85 @@ export const RenderRightSection = forwardRef<
   )
 })
 RenderRightSection.displayName = "RenderRightSection"
+
+export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
+  const { sectionNode, mode } = props
+  const executionResult = useSelector(getExecutionResult)
+  const dispatch = useDispatch()
+  const sectionNodeProps = (executionResult[sectionNode.displayName] ||
+    {}) as ModalSectionNodeProps
+  const [containerBoundRef, containerBound] = useMeasure()
+  const containerRef = useRef<HTMLDivElement>(
+    null,
+  ) as MutableRefObject<HTMLDivElement | null>
+
+  const handleOnClickMask = useCallback(
+    (displayName: string) => {
+      dispatch(
+        executionActions.updateModalDisplayReducer({
+          display: false,
+          displayName,
+        }),
+      )
+    },
+    [dispatch],
+  )
+
+  if (!sectionNodeProps) return null
+
+  const { sortedKey = [], currentIndex = -1 } = sectionNodeProps
+
+  if (!Array.isArray(sectionNode.childrenNode) || currentIndex === -1)
+    return null
+
+  const currentDisplayName = sortedKey[currentIndex]
+  let currentComponentNode: ComponentNode | undefined
+  if (currentDisplayName) {
+    currentComponentNode = sectionNode.childrenNode.find((node) => {
+      return node.displayName === currentDisplayName
+    })
+  }
+  if (!currentComponentNode) return null
+  const displayName = currentComponentNode.displayName
+
+  const currentComponentNodeProps = executionResult[displayName] || {}
+
+  return (
+    <div
+      css={maskStyle}
+      onClick={() => {
+        if (currentComponentNodeProps?.clickMaskClose) {
+          handleOnClickMask(displayName)
+        }
+      }}
+    >
+      <div
+        css={applyModalWrapperStyle(mode)}
+        ref={(ele) => {
+          containerBoundRef(ele)
+          containerRef.current = ele
+        }}
+      >
+        {currentComponentNode && (
+          <ScaleSquareOnlyHasResize
+            key={currentComponentNode.displayName}
+            componentNode={currentComponentNode}
+            h={currentComponentNode.h * currentComponentNode.unitH}
+            w={currentComponentNode.w * currentComponentNode.unitW}
+            x={currentComponentNode.x}
+            y={currentComponentNode.y}
+            unitW={currentComponentNode.unitW}
+            unitH={UNIT_HEIGHT}
+            containerHeight={containerBound.height}
+            containerPadding={8}
+            childrenNode={currentComponentNode.childrenNode}
+            collisionEffect={new Map()}
+            columnsNumber={6}
+          />
+        )}
+      </div>
+    </div>
+  )
+}
+
+RenderModalSection.displayName = "RenderModalSection"

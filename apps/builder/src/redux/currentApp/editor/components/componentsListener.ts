@@ -128,7 +128,7 @@ async function handleChangeCurrentSectionWhenDelete(
   }
 }
 
-const modifyComponentNodeX = (
+export const modifyComponentNodeX = (
   componentNode: ComponentNode,
   oldColumns: number,
   currentColumns: number,
@@ -175,7 +175,7 @@ const modifyComponentNodeX = (
   return resultComponentNode
 }
 
-const modifyComponentNodeY = (
+export const modifyComponentNodeY = (
   componentNodes: ComponentNode[],
   rootNode: ComponentNode,
 ) => {

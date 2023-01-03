@@ -811,7 +811,10 @@
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
-      "unselected_tip2": "Click on a component to select it."
+      "unselected_tip2": "Click on a component to select it.",
+      "setter": {
+        "click_mask_close": "Click mask to close modal"
+      }
     },
     "page": {
       "label_name": {
@@ -1171,6 +1174,9 @@
       "horizontal": "Horizontal",
       "name": "Timeline",
       "vertical": "vertical"
+    },
+    "modal": {
+      "name": "Modal"
     }
   },
   "page": {

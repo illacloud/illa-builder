@@ -18,6 +18,7 @@
     "unit": "npx jest"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.238.0",
     "@emotion/react": "^11.10.0",
     "@fontsource/fira-code": "^4.5.10",
     "@illa-design/react": "workspace:*",

@@ -4,16 +4,17 @@ import { PlusIcon, UpIcon } from "@illa-design/react"
 import { PanelBarProps } from "./interface"
 import {
   addIconHotpotStyle,
+  applyPanelBarHeaderStyle,
   applyPanelBarOpenedIconStyle,
-  panelBarHeaderStyle,
+  applyPanelBarTitleStyle,
   panelBarItemAnimation,
   panelBarItemContentStyle,
-  panelBarTitleStyle,
 } from "./style"
 
 export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
   const {
     title,
+    size = "default",
     children,
     isOpened = true,
     saveToggleState,
@@ -35,15 +36,15 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
 
   return (
     <>
-      <div css={panelBarHeaderStyle} onClick={handleToggle}>
-        <span css={panelBarTitleStyle}>{title}</span>
+      <div css={applyPanelBarHeaderStyle(size)} onClick={handleToggle}>
+        <span css={applyPanelBarTitleStyle(size)}>{title}</span>
         <span>
           {isAddIcon ? (
             <div css={addIconHotpotStyle} onClick={handleClickAddIcon}>
               <PlusIcon />
             </div>
           ) : (
-            <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState)} />
+            <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState, size)} />
           )}
         </span>
       </div>

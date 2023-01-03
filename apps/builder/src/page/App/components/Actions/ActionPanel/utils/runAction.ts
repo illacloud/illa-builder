@@ -18,7 +18,11 @@ import {
   BodyContent,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
-import { S3ActionRequestType } from "@/redux/currentApp/action/s3Action"
+import {
+  S3Action,
+  S3ActionRequestType,
+  S3ActionTypeContent,
+} from "@/redux/currentApp/action/s3Action"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
@@ -29,6 +33,12 @@ import {
 } from "@/utils/evaluateDynamicString/utils"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { isObject } from "@/utils/typeHelper"
+import {
+  ClientS3,
+  downloadActionResult,
+  encodeToBase64,
+  s3ClientInitialMap,
+} from "./clientS3"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
@@ -92,20 +102,6 @@ function runTransformer(transformer: Transformer, rawData: any) {
   return calcResult
 }
 
-const downloadActionResult = (
-  contentType: string,
-  fileName: string,
-  data: string,
-) => {
-  const a = document.createElement("a")
-  a.download = fileName
-  a.style.display = "none"
-  a.href = `data:${contentType};base64,${data}`
-  document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
-}
-
 const transformRawData = (rawData: unknown, actionType: ActionType) => {
   switch (actionType) {
     case "graphql":
@@ -117,6 +113,118 @@ const transformRawData = (rawData: unknown, actionType: ActionType) => {
     }
     default:
       return rawData
+  }
+}
+
+const calculateFetchResultDisplayName = (
+  actionType: ActionType,
+  displayName: string,
+  isTrigger: boolean,
+  rawData: any,
+  transformer: Transformer,
+  resultCallback?: (data: unknown, error: boolean) => void,
+  actionCommand?: string,
+) => {
+  const transRawData = transformRawData(rawData, actionType)
+  let calcResult = runTransformer(transformer, transRawData)
+  let data = calcResult
+  if (actionCommand && actionCommand === S3ActionRequestType.READ_ONE) {
+    const { Body = {}, ...otherData } = calcResult
+    data = { ...otherData, Body: {} }
+  }
+  resultCallback?.(data, false)
+  actionDisplayNameMapFetchResult[displayName] = calcResult
+  if (!isTrigger) {
+    store.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: displayName,
+        value: {
+          data: calcResult,
+        },
+      }),
+    )
+  }
+}
+
+const runAllEventHandler = (events: any[] = []) => {
+  events.forEach((scriptObj) => {
+    runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+  })
+}
+
+const fetchS3ClientResult = async (
+  resourceId: string,
+  actionType: ActionType,
+  displayName: string,
+  actionContent: Record<string, any>,
+  successEvent: any[] = [],
+  failedEvent: any[] = [],
+  transformer: Transformer,
+  isTrigger: boolean,
+  resultCallback?: (data: unknown, error: boolean) => void,
+) => {
+  try {
+    let result
+    const { getObject, putObject } = s3ClientInitialMap.get(resourceId)
+    const { commands } = actionContent
+    switch (commands) {
+      case S3ActionRequestType.READ_ONE:
+        let commandArgs = actionContent.commandArgs
+        const res = await getObject(commandArgs.objectKey)
+        result = {
+          ...res,
+          Body: encodeToBase64(
+            (await res?.Body?.transformToByteArray()) || new Uint8Array(),
+          ),
+        }
+        break
+      case S3ActionRequestType.DOWNLOAD_ONE:
+        let downloadCommandArgs = actionContent.commandArgs
+        const downloadRes = await getObject(downloadCommandArgs.objectKey)
+        const value = encodeToBase64(
+          (await downloadRes?.Body?.transformToByteArray()) || new Uint8Array(),
+        )
+        downloadActionResult(
+          downloadRes.ContentType || "",
+          downloadCommandArgs.objectKey,
+          value || "",
+        )
+        break
+      case S3ActionRequestType.UPLOAD:
+        let uploadCommandArgs = actionContent.commandArgs
+        const uploadRes = await putObject(
+          uploadCommandArgs.objectKey,
+          uploadCommandArgs.objectData,
+          uploadCommandArgs.contentType,
+        )
+        result = uploadRes
+        break
+      case S3ActionRequestType.UPLOAD_MULTIPLE:
+        const multipleCommandArgs = actionContent.commandArgs
+        const { contentType, objectKeyList, objectDataList } =
+          multipleCommandArgs
+        let requests = []
+        for (let i = 0, len = objectDataList.length; i < len; i++) {
+          requests.push(
+            putObject(objectKeyList[i], objectDataList[i], contentType),
+          )
+        }
+        result = await Promise.all(requests)
+        break
+    }
+    calculateFetchResultDisplayName(
+      actionType,
+      displayName,
+      isTrigger,
+      result,
+      transformer,
+      resultCallback,
+      commands,
+    )
+    runAllEventHandler(successEvent)
+  } catch (e) {
+    resultCallback?.(e, true)
+    runAllEventHandler(failedEvent)
   }
 }
 
@@ -148,40 +256,23 @@ const fetchActionResult = (
       // @ts-ignore
       //TODO: @aruseito not use any
       const rawData = data.data.Rows
-      const extraData = data.data?.Extra
-      if (extraData && extraData.Download) {
-        const { ContentType, ObjectKey } = extraData
-        downloadActionResult(ContentType, ObjectKey, rawData[0].objectData)
-      }
-      const transRawData = transformRawData(rawData, actionType)
-      let calcResult = runTransformer(transformer, transRawData)
-      resultCallback?.(calcResult, false)
-      actionDisplayNameMapFetchResult[displayName] = calcResult
-      if (!isTrigger) {
-        store.dispatch(
-          executionActions.updateExecutionByDisplayNameReducer({
-            displayName: displayName,
-            value: {
-              data: calcResult,
-            },
-          }),
-        )
-      }
-      successEvent.forEach((scriptObj) => {
-        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
-      })
+      calculateFetchResultDisplayName(
+        actionType,
+        displayName,
+        isTrigger,
+        rawData,
+        transformer,
+        resultCallback,
+      )
+      runAllEventHandler(successEvent)
     },
     (res) => {
       resultCallback?.(res.data, true)
-      failedEvent.forEach((scriptObj) => {
-        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
-      })
+      runAllEventHandler(failedEvent)
     },
     (res) => {
       resultCallback?.(res, true)
-      failedEvent.forEach((scriptObj) => {
-        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
-      })
+      runAllEventHandler(failedEvent)
       message.error({
         content: "not online",
       })
@@ -204,41 +295,6 @@ const transformDataFormat = (
   content: Record<string, any>,
 ) => {
   switch (actionType) {
-    case "s3": {
-      const { commands, commandArgs } = content
-      if (commands === S3ActionRequestType.UPLOAD) {
-        const { objectData } = commandArgs
-        return {
-          ...content,
-          commandArgs: {
-            ...content.commandArgs,
-            objectData: btoa(encodeURIComponent(objectData)),
-          },
-        }
-      }
-      if (commands === S3ActionRequestType.UPLOAD_MULTIPLE) {
-        const { objectDataList = [] } = commandArgs
-        if (Array.isArray(objectDataList)) {
-          return {
-            ...content,
-            commandArgs: {
-              ...content.commandArgs,
-              objectDataList: objectDataList.map((value: string) =>
-                btoa(encodeURIComponent(value)),
-              ),
-            },
-          }
-        }
-        return {
-          ...content,
-          commandArgs: {
-            ...content.commandArgs,
-            objectDataList: [btoa(encodeURIComponent(objectDataList) || "")],
-          },
-        }
-      }
-      return content
-    }
     case "smtp": {
       const { attachment } = content
       if (Array.isArray(attachment)) {
@@ -315,40 +371,81 @@ export const runAction = (
   resultCallback?: (data: unknown, error: boolean) => void,
   isTrigger: boolean = false,
 ) => {
-  const { content, actionId, resourceId, displayName, actionType } = action
+  const {
+    content,
+    actionId,
+    resourceId,
+    displayName,
+    actionType,
+    transformer,
+  } = action as ActionItem<MysqlLikeAction | RestApiAction<BodyContent>>
   if (!content) return
   const rootState = store.getState()
   const appId = getAppId(rootState)
-  if (actionType !== "transformer") {
-    const { content, transformer } = action as ActionItem<
-      MysqlLikeAction | RestApiAction<BodyContent>
-    >
-    const { successEvent, failedEvent, ...restContent } = content
-    const realContent: Record<string, any> = isTrigger
-      ? restContent
-      : calcRealContent(restContent)
-    const realSuccessEvent: any[] = isTrigger
-      ? successEvent || []
-      : getRealEventHandler(successEvent)
-    const realFailedEvent: any[] = isTrigger
-      ? failedEvent || []
-      : getRealEventHandler(failedEvent)
-    const actionContent = transformDataFormat(
-      actionType,
-      realContent,
-    ) as ActionContent
-    fetchActionResult(
-      resourceId || "",
-      actionType,
-      displayName,
-      appId,
-      actionId,
-      actionContent,
-      realSuccessEvent,
-      realFailedEvent,
-      transformer,
-      isTrigger,
-      resultCallback,
-    )
+  if (actionType === "transformer") {
+    return
+  }
+  const { successEvent, failedEvent, ...restContent } = content
+  const realContent: Record<string, any> = isTrigger
+    ? restContent
+    : calcRealContent(restContent)
+  const realSuccessEvent: any[] = isTrigger
+    ? successEvent || []
+    : getRealEventHandler(successEvent)
+  const realFailedEvent: any[] = isTrigger
+    ? failedEvent || []
+    : getRealEventHandler(failedEvent)
+  const actionContent = transformDataFormat(
+    actionType,
+    realContent,
+  ) as ActionContent
+
+  switch (actionType) {
+    case "s3":
+      const isClientS3 = ClientS3.includes(
+        (action.content as S3Action<S3ActionTypeContent>).commands,
+      )
+      if (isClientS3) {
+        fetchS3ClientResult(
+          resourceId || "",
+          actionType,
+          displayName,
+          actionContent,
+          realSuccessEvent,
+          realFailedEvent,
+          transformer,
+          isTrigger,
+          resultCallback,
+        )
+      } else {
+        fetchActionResult(
+          resourceId || "",
+          actionType,
+          displayName,
+          appId,
+          actionId,
+          actionContent,
+          realSuccessEvent,
+          realFailedEvent,
+          transformer,
+          isTrigger,
+          resultCallback,
+        )
+      }
+      break
+    default:
+      fetchActionResult(
+        resourceId || "",
+        actionType,
+        displayName,
+        appId,
+        actionId,
+        actionContent,
+        realSuccessEvent,
+        realFailedEvent,
+        transformer,
+        isTrigger,
+        resultCallback,
+      )
   }
 }

@@ -39,11 +39,13 @@ export const getExecutionDebuggerData = createSelector(
   [getExecution],
   (execution) => execution.debuggerData ?? {},
 )
-const IGNORE_WIDGET_TYPES = new Set<string>([
+export const IGNORE_WIDGET_TYPES = new Set<string>([
   "PAGE_NODE",
   "SECTION_NODE",
   "CANVAS",
   "DOT_PANEL",
+  "MODAL_WIDGET",
+  "MODAL_SECTION_NODE",
 ])
 
 export const getWidgetExecutionResult = createSelector(
@@ -60,12 +62,27 @@ export const getWidgetExecutionResult = createSelector(
   },
 )
 
-export const getWidgetExecutionResultArray = createSelector(
+export const getGeneralWidgetExecutionResultArray = createSelector(
   [getWidgetExecutionResult],
   (widgetExecutionResult) => {
     const widgetExecutionResultArray: Record<string, any>[] = []
     Object.keys(widgetExecutionResult).forEach((key) => {
       if (!IGNORE_WIDGET_TYPES.has(widgetExecutionResult[key].$widgetType)) {
+        widgetExecutionResultArray.push({
+          ...widgetExecutionResult[key],
+          displayName: key,
+        })
+      }
+    })
+    return widgetExecutionResultArray
+  },
+)
+export const getModalWidgetExecutionResultArray = createSelector(
+  [getWidgetExecutionResult],
+  (widgetExecutionResult) => {
+    const widgetExecutionResultArray: Record<string, any>[] = []
+    Object.keys(widgetExecutionResult).forEach((key) => {
+      if (widgetExecutionResult[key].$widgetType === "MODAL_WIDGET") {
         widgetExecutionResultArray.push({
           ...widgetExecutionResult[key],
           displayName: key,
