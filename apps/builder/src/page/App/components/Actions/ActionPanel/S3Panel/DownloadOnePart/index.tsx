@@ -25,7 +25,6 @@ export const DownloadOnePart: FC<S3ActionPartProps> = (props) => {
     S3Action<S3ActionTypeContent>
   >
   const commandArgs = props.commandArgs as DownloadOneContent
-
   const handleValueChange = (value: string, name: string) => {
     dispatch(
       configActions.updateCachedAction({

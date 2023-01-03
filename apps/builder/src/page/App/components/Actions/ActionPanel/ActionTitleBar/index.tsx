@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -35,13 +35,6 @@ import {
   IDEditorType,
   QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
-import {
-  S3Action,
-  S3ActionRequestType,
-  S3ActionTypeContent,
-  UploadContent,
-  UploadMultipleContent,
-} from "@/redux/currentApp/action/s3Action"
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { ActionTitleBarProps } from "./interface"
@@ -63,24 +56,6 @@ const getCanRunAction = (cachedAction: ActionItem<ActionContent> | null) => {
     return [true, ""]
   }
   switch (cachedAction.actionType) {
-    case "s3":
-      const content = cachedAction.content as S3Action<S3ActionTypeContent>
-      let commandArgs
-      switch (content.commands) {
-        case S3ActionRequestType.UPLOAD:
-          commandArgs = content.commandArgs as UploadContent
-          return [
-            !isFileOversize(commandArgs.objectData),
-            i18n.t("editor.action.panel.error.max_file"),
-          ]
-        case S3ActionRequestType.UPLOAD_MULTIPLE:
-          commandArgs = content.commandArgs as UploadMultipleContent
-          return [
-            !isFileOversize(commandArgs.objectDataList),
-            i18n.t("editor.action.panel.error.max_file"),
-          ]
-      }
-      break
     case "smtp":
       const smtpContent = cachedAction.content as SMPTAction
       return [
