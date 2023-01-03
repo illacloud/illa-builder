@@ -100,7 +100,6 @@ async function handleStartExecutionOnCanvas(
   const rootState = listenerApi.getState()
   const oldExecutionTree = getExecutionResult(rootState)
   if (executionTree) {
-    console.log("executionTree", cloneDeep(executionTree))
     const executionResult =
       executionTree.updateTreeFromExecution(oldExecutionTree)
     const evaluatedTree = executionResult.evaluatedTree

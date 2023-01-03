@@ -13,4 +13,5 @@ export interface ModalWidgetProps extends BaseWidgetProps {
   isVisible: boolean
   handleOnOpenModal: () => void
   handleOnCloseModal: () => void
+  blockColumns: number
 }

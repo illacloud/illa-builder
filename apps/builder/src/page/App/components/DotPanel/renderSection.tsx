@@ -1338,7 +1338,7 @@ export const RenderRightSection = forwardRef<
 RenderRightSection.displayName = "RenderRightSection"
 
 export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
-  const { sectionNode, mode } = props
+  const { sectionNode, mode, columns } = props
   const executionResult = useSelector(getExecutionResult)
   const dispatch = useDispatch()
   const [containerBoundRef, containerBound] = useMeasure()
@@ -1367,7 +1367,7 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
   let currentComponentNode: ComponentNode | undefined =
     sectionNode.childrenNode.find((node) => {
       const realProps = executionResult[node.displayName]
-      return realProps.isVisible
+      return realProps?.isVisible ?? false
     })
 
   if (!currentComponentNode) return null
@@ -1405,7 +1405,7 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
             containerPadding={8}
             childrenNode={currentComponentNode.childrenNode}
             collisionEffect={new Map()}
-            blockColumns={6}
+            blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
           />
         )}
       </div>
