@@ -8,7 +8,6 @@ import {
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { updateExecutionByDisplayNameReducer } from "@/redux/currentApp/executionTree/executionReducer"
 import {
   getExecutionResult,
   getRawTree,
@@ -101,6 +100,7 @@ async function handleStartExecutionOnCanvas(
   const rootState = listenerApi.getState()
   const oldExecutionTree = getExecutionResult(rootState)
   if (executionTree) {
+    console.log("executionTree", cloneDeep(executionTree))
     const executionResult =
       executionTree.updateTreeFromExecution(oldExecutionTree)
     const evaluatedTree = executionResult.evaluatedTree
@@ -131,22 +131,28 @@ function handleUpdateModalEffect(
   const rootNode = getCanvas(rootState)
   if (!rootNode) return
   const parentNode = searchDsl(rootNode, parentNodeDisplayName)
-  if (!parentNode || !parentNode.props) return
-  const sortedKey = parentNode.props.sortedKey
-  let currentIndex = -1
-  if (Array.isArray(sortedKey)) {
-    currentIndex = sortedKey.findIndex((key) => {
-      return key === modalComponentNode.displayName
-    })
-  }
-
-  listenerApi.dispatch(
-    executionActions.updateExecutionByDisplayNameReducer({
-      displayName: parentNodeDisplayName,
+  if (!parentNode || !Array.isArray(parentNode.childrenNode)) return
+  const otherNode = parentNode.childrenNode.filter((node) => {
+    return node.displayName !== modalComponentNode.displayName
+  })
+  const updateSlice = [
+    {
+      displayName: modalComponentNode.displayName,
       value: {
-        currentIndex,
+        isVisible: true,
       },
-    }),
+    },
+  ]
+  otherNode.forEach((node) => {
+    updateSlice.push({
+      displayName: node.displayName,
+      value: {
+        isVisible: false,
+      },
+    })
+  })
+  listenerApi.dispatch(
+    executionActions.updateExecutionByMultiDisplayNameReducer(updateSlice),
   )
 }
 
@@ -185,6 +191,7 @@ export function setupExecutionListeners(
       matcher: isAnyOf(
         executionActions.updateExecutionByDisplayNameReducer,
         executionActions.updateExecutionByMultiDisplayNameReducer,
+        executionActions.updateModalDisplayReducer,
       ),
       effect: handleStartExecutionOnCanvas,
     }),

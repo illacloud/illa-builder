@@ -85,10 +85,7 @@ export const BASIC_MODAL_SECTION_CONFIG: ModalSectionNode = {
   x: -1,
   y: -1,
   z: 0,
-  props: {
-    currentIndex: -1,
-    sortedKey: [],
-  },
+  props: {},
   childrenNode: [],
 }
 

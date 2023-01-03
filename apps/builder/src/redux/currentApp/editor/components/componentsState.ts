@@ -114,8 +114,8 @@ export interface SectionNode extends ComponentNode {
 }
 
 export interface ModalSectionNodeProps {
-  sortedKey: string[]
-  currentIndex: number
+  sortedKey?: string[]
+  currentIndex?: number
 }
 
 export interface ModalSectionNode extends ComponentNode {
