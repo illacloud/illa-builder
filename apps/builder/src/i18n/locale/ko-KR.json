@@ -811,7 +811,10 @@
       },
       "tab_title": "속성",
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
-      "unselected_tip2": "구성 요소를 클릭하여 선택하십시오."
+      "unselected_tip2": "구성 요소를 클릭하여 선택하십시오.",
+      "setter": {
+        "click_mask_close": "Click mask to close modal"
+      }
     },
     "page": {
       "label_name": {
@@ -1171,6 +1174,9 @@
       "horizontal": "수평의",
       "name": "타임라인",
       "vertical": "초상화"
+    },
+    "modal": {
+      "name": "Modal"
     }
   },
   "page": {

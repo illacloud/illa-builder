@@ -465,7 +465,17 @@ export const pageContainerWrapperStyle = css`
   height: 100%;
 `
 
-export const applyCanvasContainerWrapperStyle = (width: string) => {
+export const applyCanvasContainerWrapperStyle = (
+  width: string,
+  mode: IllaMode,
+) => {
+  const borderStyle =
+    mode === "edit" && width !== "100%"
+      ? css`
+          border-left: 1px solid ${getColor("grayBlue", "09")};
+          border-right: 1px solid ${getColor("grayBlue", "09")};
+        `
+      : null
   return css`
     width: ${width};
     height: 100%;
@@ -473,6 +483,7 @@ export const applyCanvasContainerWrapperStyle = (width: string) => {
     background-color: ${getColor("white", "01")};
     flex: none;
     margin: 0 auto;
+    ${borderStyle};
   `
 }
 
@@ -502,6 +513,25 @@ export const applyViewportContainerWrapperStyle = (
     overflow: auto;
     margin: 0 auto;
     ${borderStyle}
+  `
+}
+
+export const previewColumnsWrapperStyle = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+`
+
+export const applyPreviewColumnsStyle = (index: number, unitWidth: number) => {
+  return css`
+    width: ${unitWidth}px;
+    height: 100%;
+    background-color: ${index % 2 === 0
+      ? "rgba(101, 74, 236, 0.08)"
+      : "transparent"};
   `
 }
 

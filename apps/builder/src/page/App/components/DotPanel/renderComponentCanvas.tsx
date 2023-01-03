@@ -1,4 +1,5 @@
-import { throttle } from "lodash"
+import { AnimatePresence } from "framer-motion"
+import { cloneDeep, throttle } from "lodash"
 import {
   FC,
   MutableRefObject,
@@ -25,6 +26,7 @@ import {
   DropCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
+import { PreviewColumnsChange } from "@/page/App/components/DotPanel/previewColumnsChange"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
 import {
   applyComponentCanvasStyle,
@@ -37,15 +39,97 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import {
+  modifyComponentNodeX,
+  modifyComponentNodeY,
+} from "@/redux/currentApp/editor/components/componentsListener"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { IGNORE_WIDGET_TYPES } from "@/redux/currentApp/executionTree/executionSelector"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
+import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 export const UNIT_HEIGHT = 8
-export const BASIC_BLOCK_COLUMNS = 64
+
+function buildDisplayNameMapComponentNode(
+  componentNode: ComponentNode,
+  displayNameMap: Record<string, ComponentNode>,
+) {
+  if (componentNode.displayName) {
+    displayNameMap[componentNode.displayName] = componentNode
+  }
+  if (Array.isArray(componentNode.childrenNode)) {
+    componentNode.childrenNode.forEach((childNode) => {
+      buildDisplayNameMapComponentNode(childNode, displayNameMap)
+    })
+  }
+}
+
+function applyEffectMapToComponentNode(
+  componentNode: ComponentNode,
+  effectMap: Map<string, ComponentNode>,
+) {
+  let newComponentNode = cloneDeep(componentNode)
+  if (effectMap.has(newComponentNode.displayName)) {
+    newComponentNode = effectMap.get(
+      newComponentNode.displayName,
+    ) as ComponentNode
+  }
+  if (Array.isArray(newComponentNode.childrenNode)) {
+    newComponentNode.childrenNode = newComponentNode.childrenNode.map(
+      (childNode) => {
+        return applyEffectMapToComponentNode(childNode, effectMap)
+      },
+    )
+  }
+  return newComponentNode
+}
+
+function modifyChildrenNodeXWhenDrop(
+  componentNode: ComponentNode,
+  currentColumns: number,
+  oldColumns: number,
+  modifyXResult: Record<string, ComponentNode[]>,
+) {
+  let newComponentNode = cloneDeep(componentNode)
+  if (!IGNORE_WIDGET_TYPES.has(componentNode.type)) {
+    newComponentNode = modifyComponentNodeX(
+      newComponentNode,
+      oldColumns,
+      currentColumns,
+    )
+    if (
+      newComponentNode.parentNode &&
+      !modifyXResult[newComponentNode.parentNode]
+    ) {
+      modifyXResult[newComponentNode.parentNode] = []
+    }
+    if (newComponentNode.parentNode) {
+      modifyXResult[newComponentNode.parentNode].push(newComponentNode)
+    }
+  }
+
+  if (
+    Array.isArray(newComponentNode.childrenNode) &&
+    newComponentNode.childrenNode.length > 0
+  ) {
+    newComponentNode.childrenNode = newComponentNode.childrenNode.map(
+      (childNode) => {
+        return modifyChildrenNodeXWhenDrop(
+          childNode,
+          oldColumns,
+          currentColumns,
+          modifyXResult,
+        )
+      },
+    )
+  }
+  return newComponentNode
+}
 
 export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
@@ -57,6 +141,7 @@ export const RenderComponentCanvas: FC<{
   blockColumns?: number
   addedRowNumber: number
   canAutoScroll?: boolean
+  sectionName?: string
 }> = (props) => {
   const {
     componentNode,
@@ -68,6 +153,7 @@ export const RenderComponentCanvas: FC<{
     blockColumns = BASIC_BLOCK_COLUMNS,
     addedRowNumber,
     canAutoScroll = false,
+    sectionName,
   } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
@@ -87,8 +173,74 @@ export const RenderComponentCanvas: FC<{
     new Map<string, ComponentNode>(),
   )
 
+  const [ShowColumnsChange, setShowColumnsChange] = useState(false)
+  const canShowColumnsTimeoutChange = useRef<number | null>(null)
+
+  const showColumnsPreview = useCallback(() => {
+    dispatch(configActions.updateShowDot(true))
+    setShowColumnsChange(true)
+  }, [dispatch])
+  const hideColumnsPreview = useCallback(() => {
+    dispatch(configActions.updateShowDot(false))
+    setShowColumnsChange(false)
+  }, [dispatch])
+
+  const showColumnsChangePreview = useCallback(() => {
+    if (canShowColumnsTimeoutChange.current) {
+      clearTimeout(canShowColumnsTimeoutChange.current)
+    }
+    canShowColumnsTimeoutChange.current = setTimeout(() => {
+      setShowColumnsChange(false)
+      dispatch(configActions.updateShowDot(false))
+      if (canShowColumnsTimeoutChange.current) {
+        clearTimeout(canShowColumnsTimeoutChange.current)
+      }
+    }, 2000)
+  }, [dispatch])
+
+  useEffect(() => {
+    if (sectionName) {
+      ILLAEventbus.on(
+        `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_${sectionName}`,
+        showColumnsPreview,
+      )
+      ILLAEventbus.on(
+        `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_${sectionName}`,
+        hideColumnsPreview,
+      )
+      ILLAEventbus.on(
+        `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_${sectionName}`,
+        showColumnsChangePreview,
+      )
+    }
+
+    return () => {
+      if (sectionName) {
+        ILLAEventbus.off(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_${sectionName}`,
+          showColumnsPreview,
+        )
+        ILLAEventbus.off(
+          `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_${sectionName}`,
+          hideColumnsPreview,
+        )
+        ILLAEventbus.off(
+          `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_${sectionName}`,
+          showColumnsChangePreview,
+        )
+      }
+    }
+  }, [
+    blockColumns,
+    dispatch,
+    hideColumnsPreview,
+    sectionName,
+    showColumnsChangePreview,
+    showColumnsPreview,
+  ])
+
   const [canvasRef, bounds] = useMeasure()
-  const currentCanvasRef = useRef<HTMLDivElement>(
+  const currentCanvasRef = useRef<HTMLDivElement | null>(
     null,
   ) as MutableRefObject<HTMLDivElement | null>
   const autoScrollTimeoutID = useRef<number>()
@@ -97,9 +249,9 @@ export const RenderComponentCanvas: FC<{
     return bounds.width / blockColumns
   }, [blockColumns, bounds.width])
 
-  const componentTree = useMemo<ReactNode>(() => {
+  const componentTree = useMemo(() => {
     const childrenNode = componentNode.childrenNode
-    return childrenNode?.map<ReactNode>((item) => {
+    return childrenNode?.map((item) => {
       const h = item.h * UNIT_HEIGHT
       const w = item.w * unitWidth
       const x = item.x * unitWidth
@@ -119,6 +271,7 @@ export const RenderComponentCanvas: FC<{
               minHeight={minHeight}
               safeRowNumber={safeRowNumber}
               addedRowNumber={addedRowNumber}
+              blockColumns={blockColumns}
             />
           )
         case "EDITOR_SCALE_SQUARE":
@@ -138,7 +291,7 @@ export const RenderComponentCanvas: FC<{
               containerPadding={containerPadding}
               childrenNode={componentNode.childrenNode}
               collisionEffect={collisionEffect}
-              columnsNumber={blockColumns}
+              blockColumns={blockColumns}
             />
           )
         default:
@@ -190,9 +343,12 @@ export const RenderComponentCanvas: FC<{
           const { item, currentColumnNumber } = dragInfo
           const scale = blockColumns / currentColumnNumber
 
-          const scaleItem: ComponentNode = {
+          let scaleItem: ComponentNode = {
             ...item,
-            w: item.w * scale,
+            w:
+              Math.ceil(item.w * scale) < item.minW
+                ? item.minW
+                : Math.ceil(item.w * scale),
           }
           let dragResult
           if (
@@ -328,14 +484,21 @@ export const RenderComponentCanvas: FC<{
       drop: (dragInfo, monitor) => {
         const isDrop = monitor.didDrop()
         const { item, currentColumnNumber } = dragInfo
-        if (isDrop || item.displayName === componentNode.displayName) return
+        if (isDrop || item.displayName === componentNode.displayName)
+          return {
+            isDropOnCanvas: false,
+          }
         if (monitor.getClientOffset()) {
           const scale = blockColumns / currentColumnNumber
 
-          const scaleItem: ComponentNode = {
+          let scaleItem: ComponentNode = {
             ...item,
-            w: item.w * scale,
+            w:
+              Math.ceil(item.w * scale) < item.minW
+                ? item.minW
+                : Math.ceil(item.w * scale),
           }
+
           let dragResult
           if (
             isAddAction(
@@ -345,6 +508,34 @@ export const RenderComponentCanvas: FC<{
               componentNode.displayName,
             )
           ) {
+            const displayNameMapComponent: Record<string, ComponentNode> = {}
+            buildDisplayNameMapComponentNode(scaleItem, displayNameMapComponent)
+            if (
+              Array.isArray(scaleItem.childrenNode) &&
+              scaleItem.childrenNode.length > 0
+            ) {
+              const modifyXChildrenNode: Record<string, ComponentNode[]> = {}
+              scaleItem.childrenNode = scaleItem.childrenNode.map((child) => {
+                return modifyChildrenNodeXWhenDrop(
+                  child,
+                  currentColumnNumber,
+                  blockColumns,
+                  modifyXChildrenNode,
+                )
+              })
+
+              Object.keys(modifyXChildrenNode).forEach((key) => {
+                const componentNodes = modifyXChildrenNode[key]
+                const parentNode = displayNameMapComponent[key]
+                if (parentNode) {
+                  const map = modifyComponentNodeY(componentNodes, parentNode)
+                  map.forEach((value, key) => {
+                    displayNameMapComponent[key] = value
+                  })
+                  scaleItem = applyEffectMapToComponentNode(scaleItem, map)
+                }
+              })
+            }
             dragResult = getDragResult(
               monitor,
               containerRef,
@@ -446,7 +637,13 @@ export const RenderComponentCanvas: FC<{
         const { item, currentColumnNumber } = dragInfo
         let nodeWidth = item?.w ?? 0
         let nodeHeight = item?.h ?? 0
-        nodeWidth = nodeWidth * (blockColumns / currentColumnNumber)
+
+        nodeWidth =
+          Math.ceil(nodeWidth * (blockColumns / currentColumnNumber)) <
+          (item?.minW ?? 2)
+            ? item?.minW ?? 2
+            : Math.ceil(nodeWidth * (blockColumns / currentColumnNumber))
+
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
           nodeWidth: nodeWidth,
@@ -476,9 +673,9 @@ export const RenderComponentCanvas: FC<{
   const finalRowNumber = useMemo(() => {
     return Math.max(
       maxY,
-      Math.floor((minHeight || document.body.clientHeight) / UNIT_HEIGHT),
+      Math.floor((minHeight || bounds.height) / UNIT_HEIGHT),
     )
-  }, [maxY, minHeight])
+  }, [bounds.height, maxY, minHeight])
 
   useEffect(() => {
     if (!isActive && canResizeY) {
@@ -579,6 +776,11 @@ export const RenderComponentCanvas: FC<{
         unitW={unitWidth}
         unitH={UNIT_HEIGHT}
       />
+      <AnimatePresence>
+        {componentNode.type === "CONTAINER_NODE" && ShowColumnsChange && (
+          <PreviewColumnsChange unitWidth={unitWidth} columns={blockColumns} />
+        )}
+      </AnimatePresence>
     </div>
   )
 }

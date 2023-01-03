@@ -3,7 +3,10 @@ import {
   CONTAINER_TYPE,
   ComponentNode,
   ModalSectionNode,
+  PageNode,
+  PageNodeProps,
   SECTION_POSITION,
+  SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { DisplayNameGenerator } from "./generateDisplayName"
 
@@ -15,11 +18,15 @@ export type SectionNodeType =
   | "footerSection"
   | "modalSection"
 
+export const BASIC_BLOCK_COLUMNS = 64
+
+export const LEFT_OR_RIGHT_DEFAULT_COLUMNS = 16
+
 export const generateSectionContainerConfig = (
   parentNode: string,
   showName: string,
   childrenNode: ComponentNode[] = [],
-) => {
+): ComponentNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "CONTAINER_NODE",
     `${parentNode}-${showName}`,
@@ -50,7 +57,7 @@ export const generateSectionContainerConfig = (
 export const generateSectionConfig = (
   parentNode: string,
   showName: SectionNodeType,
-) => {
+): SectionNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "SECTION_NODE",
     showName,
@@ -129,7 +136,7 @@ export const generateModalSectionConfig = (
   }
 }
 
-export const defaultPageProps = {
+export const defaultPageProps: PageNodeProps = {
   canvasSize: "auto",
   canvasWidth: 100,
   layout: "default",
@@ -149,9 +156,14 @@ export const defaultPageProps = {
   isFooterFixed: true,
   showLeftFoldIcon: false,
   showRightFoldIcon: false,
+  leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+  rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+  headerColumns: BASIC_BLOCK_COLUMNS,
+  footerColumns: BASIC_BLOCK_COLUMNS,
+  bodyColumns: BASIC_BLOCK_COLUMNS,
 }
 
-export const generatePageConfig = () => {
+export const generatePageConfig = (): PageNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "PAGE_NODE",
     "page",
@@ -180,7 +192,9 @@ export const generatePageConfig = () => {
   }
 }
 
-export const generateDefaultLayoutConfig = (currentDisplayName: string) => {
+export const generateDefaultLayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const childrenNode = generateSectionConfig(currentDisplayName, "bodySection")
   const modalSectionNode = generateModalSectionConfig(
     currentDisplayName,
@@ -224,12 +238,19 @@ export const generateDefaultLayoutConfig = (currentDisplayName: string) => {
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
     childrenNode: [childrenNode, modalSectionNode],
   }
 }
 
-export const generatePresetALayoutConfig = (currentDisplayName: string) => {
+export const generatePresetALayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const leftSectionNode = generateSectionConfig(
     currentDisplayName,
     "leftSection",
@@ -281,12 +302,19 @@ export const generatePresetALayoutConfig = (currentDisplayName: string) => {
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
     childrenNode: [leftSectionNode, bodySectionNode, modalSectionNode],
   }
 }
 
-export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
+export const generatePresetBLayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const headerSectionNode = generateSectionConfig(
     currentDisplayName,
     "headerSection",
@@ -326,8 +354,8 @@ export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
       canvasSize: "auto",
       canvasWidth: 100,
       layout: "presetB",
-      leftPosition: "NONE",
-      rightPosition: "NONE",
+      leftPosition: SECTION_POSITION.NONE,
+      rightPosition: SECTION_POSITION.NONE,
       hasFooter: true,
       hasHeader: true,
       hasLeft: false,
@@ -340,6 +368,13 @@ export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
       isRightFixed: true,
       isHeaderFixed: true,
       isFooterFixed: true,
+      showLeftFoldIcon: false,
+      showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
     childrenNode: [
       headerSectionNode,
@@ -350,7 +385,9 @@ export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
   }
 }
 
-export const generatePresetCLayoutConfig = (currentDisplayName: string) => {
+export const generatePresetCLayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const headerSectionNode = generateSectionConfig(
     currentDisplayName,
     "headerSection",
@@ -421,7 +458,9 @@ export const generatePresetCLayoutConfig = (currentDisplayName: string) => {
   }
 }
 
-export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
+export const generatePresetDLayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const headerSectionNode = generateSectionConfig(
     currentDisplayName,
     "headerSection",
@@ -485,6 +524,11 @@ export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
     childrenNode: [
       headerSectionNode,
@@ -497,7 +541,9 @@ export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
   }
 }
 
-export const generatePresetELayoutConfig = (currentDisplayName: string) => {
+export const generatePresetELayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const headerSectionNode = generateSectionConfig(
     currentDisplayName,
     "headerSection",
@@ -557,6 +603,11 @@ export const generatePresetELayoutConfig = (currentDisplayName: string) => {
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
     childrenNode: [
       headerSectionNode,

@@ -4,11 +4,12 @@ import { FC, MouseEvent, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { WarningCircleIcon } from "@illa-design/react"
+import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { Connection } from "@/api/ws"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { ActionEditor } from "@/page/App/components/Actions"
+import { initS3Client } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { AppLoading } from "@/page/App/components/AppLoading"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import { ComponentsManager } from "@/page/App/components/ComponentManager"
@@ -96,6 +97,7 @@ export const Editor: FC = () => {
       },
       (response) => {
         dispatch(resourceActions.updateResourceListReducer(response.data))
+        initS3Client(response.data)
       },
     )
     return () => {
@@ -134,7 +136,9 @@ export const Editor: FC = () => {
           <div css={contentStyle}>
             {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
             <div css={middlePanelStyle}>
-              <CanvasPanel css={centerPanelStyle} />
+              <TriggerProvider renderInBody zIndex={8}>
+                <CanvasPanel css={centerPanelStyle} />
+              </TriggerProvider>
               {showBottomPanel && !showDebugger ? (
                 <ActionEditor css={bottomPanelStyle} />
               ) : null}

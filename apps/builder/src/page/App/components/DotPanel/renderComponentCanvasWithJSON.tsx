@@ -63,6 +63,7 @@ export const RenderComponentCanvasWithJson: FC<{
               minHeight={minHeight}
               safeRowNumber={safeRowNumber}
               addedRowNumber={addedRowNumber}
+              blockColumns={blockColumns}
             />
           )
         case "EDITOR_SCALE_SQUARE":
@@ -78,6 +79,7 @@ export const RenderComponentCanvasWithJson: FC<{
               y={y}
               unitW={unitWidth}
               unitH={UNIT_HEIGHT}
+              blockColumns={blockColumns}
             />
           )
         default:

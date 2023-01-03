@@ -16,11 +16,13 @@ export interface ListWidgetProps extends BaseWidgetProps {
   selectedIndex: number
   itemBackGroundColor: string
   disabled: boolean
+  blockColumns: number
 }
 
 export interface RenderTemplateContainerProps {
   templateComponentNodes: ComponentNode
   templateContainerHeight: number
+  blockColumns: number
 }
 
 export interface ListWidgetPropsWithChildrenNodes extends ListWidgetProps {
