@@ -1171,6 +1171,9 @@
       "horizontal": "水平",
       "name": "タイムライン",
       "vertical": "肖像画"
+    },
+    "modal": {
+      "name": "Modal"
     }
   },
   "page": {
