@@ -5,13 +5,13 @@ export const MODAL_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
   events: [
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.open_modal",
+        "editor.inspect.setter_content.widget_action_type_name.onOpenModal",
       ),
       value: "onOpenModal",
     },
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.close_modal",
+        "editor.inspect.setter_content.widget_action_type_name.onCloseModal",
       ),
       value: "onCloseModal",
     },
