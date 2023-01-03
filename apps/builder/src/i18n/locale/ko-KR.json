@@ -581,7 +581,9 @@
           "row_select": "행 선택",
           "sortingChange": "변경된 순으로 정렬",
           "submit": "제출하다",
-          "success": "성공 후"
+          "success": "성공 후",
+          "open_modal": "Open modal",
+          "close_modal": "Close modal"
         }
       },
       "setter_default_value": {

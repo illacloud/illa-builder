@@ -581,7 +581,9 @@
           "row_select": "Row select",
           "sortingChange": "Sort change",
           "submit": "Submit",
-          "success": "Success"
+          "success": "Success",
+          "open_modal": "Open modal",
+          "close_modal": "Close modal"
         }
       },
       "setter_default_value": {

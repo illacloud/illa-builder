@@ -581,7 +581,9 @@
           "row_select": "行を選択",
           "sortingChange": "変化で並べ替え",
           "submit": "確認する",
-          "success": "成功後"
+          "success": "成功後",
+          "open_modal": "Open modal",
+          "close_modal": "Close modal"
         }
       },
       "setter_default_value": {

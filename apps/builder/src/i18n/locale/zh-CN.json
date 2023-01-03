@@ -581,7 +581,9 @@
           "row_select": "选择行",
           "sortingChange": "排序方式改变",
           "submit": "提交",
-          "success": "成功后"
+          "success": "成功后",
+          "open_modal": "打开对话框",
+          "close_modal": "关闭对话框"
         }
       },
       "setter_default_value": {
