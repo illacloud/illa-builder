@@ -811,7 +811,10 @@
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
-      "unselected_tip2": "コンポーネントをクリックして選択してください。"
+      "unselected_tip2": "コンポーネントをクリックして選択してください。",
+      "setter": {
+        "click_mask_close": "Click mask to close modal"
+      }
     },
     "page": {
       "label_name": {
