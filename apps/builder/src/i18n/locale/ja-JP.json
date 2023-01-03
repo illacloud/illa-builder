@@ -581,8 +581,8 @@
           "sortingChange": "変化で並べ替え",
           "submit": "確認する",
           "success": "成功後",
-          "open_modal": "Open modal",
-          "close_modal": "Close modal"
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Close modal"
         }
       },
       "setter_default_value": {
