@@ -53,6 +53,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       trigger="click"
       showArrow={false}
       position="left"
+      zIndex={10}
       clickOutsideToClose
       onVisibleChange={(visible) => {
         setModalVisible(visible)
