@@ -288,7 +288,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             if (!parentNode) break
             const WSPayload = transformComponentReduxPayloadToWsPayload([
               parentNode,
-              ...findOldNode.childrenNode,
+              ...(findOldNode.childrenNode || []),
             ])
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
