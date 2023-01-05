@@ -136,7 +136,7 @@ export const Editor: FC = () => {
           <div css={contentStyle}>
             {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
             <div css={middlePanelStyle}>
-              <TriggerProvider renderInBody zIndex={8}>
+              <TriggerProvider renderInBody zIndex={10}>
                 <CanvasPanel css={centerPanelStyle} />
               </TriggerProvider>
               {showBottomPanel && !showDebugger ? (
@@ -144,7 +144,11 @@ export const Editor: FC = () => {
               ) : null}
               {showDebugger && <Debugger css={bottomPanelStyle} />}
             </div>
-            {showRightPanel && <ComponentsManager css={rightPanelStyle} />}
+            {showRightPanel && (
+              <TriggerProvider renderInBody zIndex={10}>
+                <ComponentsManager css={rightPanelStyle} />
+              </TriggerProvider>
+            )}
           </div>
           {!isOnline && (
             <div css={modalStyle} onMouseDown={handleMouseDownOnModal}>

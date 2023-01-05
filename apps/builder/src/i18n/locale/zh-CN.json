@@ -356,7 +356,7 @@
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
             "name": "为这个在ILLA中的资源命名",
-            "private_key": "点此查看如何生成密钥",
+            "private_key": "<0>点此</0>查看如何生成密钥",
             "ssl_options": "可用时使用 SSL",
             "username_password": "凭证将被加密并安全存储在我们的服务器上",
             "introspection": "如果你的GraphQL端点不支持introspection查询，就开启该开关。请注意，禁用introspection会降低GraphQL的可用性，因为该资源的自动完成和提示将不再工作。"
@@ -421,7 +421,6 @@
             "base_url": "请使用绝对 URL (e.g https://example.com)",
             "database": "i.e.\"Users DB(readonly)\"",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "key",
             "param_value": "value",
             "password": "密码",
@@ -581,7 +580,9 @@
           "row_select": "选择行",
           "sortingChange": "排序方式改变",
           "submit": "提交",
-          "success": "成功后"
+          "success": "成功后",
+          "onOpenModal": "打开对话框",
+          "onCloseModal": "关闭对话框"
         }
       },
       "setter_default_value": {
@@ -811,7 +812,10 @@
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
-      "unselected_tip2": "请点击组件以选中。"
+      "unselected_tip2": "请点击组件以选中。",
+      "setter": {
+        "click_mask_close": "点击遮罩关闭modal"
+      }
     },
     "page": {
       "label_name": {
@@ -1171,6 +1175,9 @@
       "horizontal": "横向",
       "name": "时间线",
       "vertical": "纵向"
+    },
+    "modal": {
+      "name": "对话框"
     }
   },
   "page": {

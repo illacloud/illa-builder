@@ -356,7 +356,7 @@
           "tip": {
             "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
             "name": "このリソースにILLAで名前を付ける",
-            "private_key": "Click here to see how to obtain this key",
+            "private_key": "<0>Click here</0> to see how to obtain this key",
             "ssl_options": "可能な場合は SSL を使用する",
             "username_password": "資格情報は暗号化され、サーバーに安全に保存されます",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
@@ -421,7 +421,6 @@
             "base_url": "絶対 URL を使用してください (例: https://example.com)",
             "database": "つまり、「ユーザーDB（読み取り専用）」",
             "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
-            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "鍵",
             "param_value": "価値",
             "password": "パスワード",
@@ -581,7 +580,9 @@
           "row_select": "行を選択",
           "sortingChange": "変化で並べ替え",
           "submit": "確認する",
-          "success": "成功後"
+          "success": "成功後",
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Close modal"
         }
       },
       "setter_default_value": {
@@ -811,7 +812,10 @@
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
-      "unselected_tip2": "コンポーネントをクリックして選択してください。"
+      "unselected_tip2": "コンポーネントをクリックして選択してください。",
+      "setter": {
+        "click_mask_close": "Click mask to close modal"
+      }
     },
     "page": {
       "label_name": {
@@ -1171,6 +1175,9 @@
       "horizontal": "水平",
       "name": "タイムライン",
       "vertical": "肖像画"
+    },
+    "modal": {
+      "name": "Modal"
     }
   },
   "page": {

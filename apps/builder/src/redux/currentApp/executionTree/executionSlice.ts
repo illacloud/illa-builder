@@ -7,6 +7,7 @@ import {
   startExecutionReducer,
   updateExecutionByDisplayNameReducer,
   updateExecutionByMultiDisplayNameReducer,
+  updateModalDisplayReducer,
 } from "@/redux/currentApp/executionTree/executionReducer"
 import { executionInitialState } from "@/redux/currentApp/executionTree/executionState"
 
@@ -21,6 +22,7 @@ const executionSlice = createSlice({
     startExecutionReducer,
     updateExecutionByDisplayNameReducer,
     updateExecutionByMultiDisplayNameReducer,
+    updateModalDisplayReducer,
   },
 })
 

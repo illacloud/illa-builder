@@ -22,7 +22,7 @@ import {
 import { ConfigInitialState } from "@/redux/config/configState"
 
 const configSlice = createSlice({
-  name: "builderInfo",
+  name: "config",
   initialState: ConfigInitialState,
   reducers: {
     resetConfig,

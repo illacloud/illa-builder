@@ -356,7 +356,7 @@
           "tip": {
             "connect_type": "클라우드 서버: ILLA 서버가 데이터베이스에 안전하게 연결됩니다.",
             "name": "ILLA에서 이 자원의 이름을 지정하십시오.",
-            "private_key": "Click here to see how to obtain this key",
+            "private_key": "<0>Click here</0> to see how to obtain this key",
             "ssl_options": "가능한 경우 SSL 사용",
             "username_password": "자격 증명은 암호화되어 서버에 안전하게 저장됩니다.",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
@@ -421,7 +421,6 @@
             "base_url": "절대 URL을 사용하세요(예: https://example.com).",
             "database": "즉 \"사용자 DB(읽기전용)\"",
             "name": "ie \"Users DB(읽기전용)\" 또는 \"Internal Admin API\"",
-            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "열쇠",
             "param_value": "값",
             "password": "비밀번호",
@@ -581,7 +580,9 @@
           "row_select": "행 선택",
           "sortingChange": "변경된 순으로 정렬",
           "submit": "제출하다",
-          "success": "성공 후"
+          "success": "성공 후",
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Close modal"
         }
       },
       "setter_default_value": {
@@ -811,7 +812,10 @@
       },
       "tab_title": "속성",
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
-      "unselected_tip2": "구성 요소를 클릭하여 선택하십시오."
+      "unselected_tip2": "구성 요소를 클릭하여 선택하십시오.",
+      "setter": {
+        "click_mask_close": "Click mask to close modal"
+      }
     },
     "page": {
       "label_name": {
@@ -1171,6 +1175,9 @@
       "horizontal": "수평의",
       "name": "타임라인",
       "vertical": "초상화"
+    },
+    "modal": {
+      "name": "Modal"
     }
   },
   "page": {

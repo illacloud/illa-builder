@@ -1,18 +1,12 @@
-import { cloneDeep } from "lodash"
-import { FC, HTMLAttributes, MouseEvent, useCallback } from "react"
+import { FC, HTMLAttributes, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { ComponentSpaceTree } from "@/page/App/components/DataWorkspace/components/ComponentSpaceTree"
 import { WorkSpaceTree } from "@/page/App/components/DataWorkspace/components/WorkSpaceTree"
-import {
-  getSelectedAction,
-  getSelectedComponents,
-} from "@/redux/config/configSelector"
+import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import {
-  getActionExecutionResultArray,
-  getWidgetExecutionResultArray,
-} from "@/redux/currentApp/executionTree/executionSelector"
+import { getActionExecutionResultArray } from "@/redux/currentApp/executionTree/executionSelector"
 import { getGlobalInfoExecutionResult } from "@/redux/currentUser/currentUserSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { PageSpaceTree } from "./components/PageSpaceTree"
@@ -24,66 +18,9 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const actionList = useSelector(getActionList)
-  const widgetExecutionArray = useSelector(getWidgetExecutionResultArray)
   const actionExecutionArray = useSelector(getActionExecutionResultArray)
   const globalInfoList = useSelector(getGlobalInfoExecutionResult)
-  const selectedComponents = useSelector(getSelectedComponents)
   const selectedAction = useSelector(getSelectedAction)
-
-  const handleComponentSelect = useCallback(
-    (selectedKeys: string[], e: MouseEvent<HTMLDivElement>) => {
-      if (e.metaKey) {
-        const currentSelectedDisplayName = cloneDeep(selectedComponents)
-        const index = currentSelectedDisplayName.findIndex(
-          (displayName) => displayName === selectedKeys[0],
-        )
-        if (index !== -1) {
-          currentSelectedDisplayName.splice(index, 1)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
-        } else {
-          currentSelectedDisplayName.push(...selectedKeys)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
-        }
-        return
-      }
-      if (e.shiftKey) {
-        const currentSelectedDisplayName = cloneDeep(selectedComponents)
-        if (currentSelectedDisplayName.length === 0) return
-        const lastCurrentSelectDisplayName =
-          currentSelectedDisplayName[currentSelectedDisplayName.length - 1]
-        const selectedDisplayName = selectedKeys[0]
-        const currentIndex = widgetExecutionArray.findIndex(
-          (node) => node.displayName === lastCurrentSelectDisplayName,
-        )
-        const selectedIndex = widgetExecutionArray.findIndex(
-          (node) => node.displayName === selectedDisplayName,
-        )
-        let left = currentIndex
-        let right = selectedIndex
-        if (currentIndex > selectedIndex) {
-          right = currentIndex
-          left = selectedIndex
-        } else if (currentIndex < selectedIndex) {
-          right = selectedIndex
-          left = currentIndex
-        }
-        if (left !== -1 && right !== -1) {
-          const result: string[] = []
-          for (let i = left; i <= right; i++) {
-            result.push(widgetExecutionArray[i].displayName)
-          }
-          dispatch(configActions.updateSelectedComponent(result))
-        }
-        return
-      }
-      dispatch(configActions.updateSelectedComponent(selectedKeys))
-    },
-    [dispatch, selectedComponents, widgetExecutionArray],
-  )
 
   const handleActionSelect = useCallback(
     (selectedKeys: string[]) => {
@@ -98,17 +35,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   return (
     <div className={className}>
       <PageSpaceTree />
-      <WorkSpaceTree
-        title={`${t("editor.data_work_space.components_title")}(${
-          widgetExecutionArray.length
-        })`}
-        dataList={widgetExecutionArray}
-        selectedKeys={selectedComponents}
-        handleSelect={handleComponentSelect}
-        onIllaFocus={() => {
-          FocusManager.switchFocus("dataWorkspace_component")
-        }}
-      />
+      <ComponentSpaceTree />
       <WorkSpaceTree
         title={`${t("editor.data_work_space.actions_title")}(${
           actionExecutionArray.length

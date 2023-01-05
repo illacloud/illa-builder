@@ -356,7 +356,7 @@
           "tip": {
             "connect_type": "Cloud: ILLA servers will securely connect to your database.",
             "name": "The name for resource when creating actions in the ILLA.",
-            "private_key": "Click here to see how to obtain this key",
+            "private_key": "<0>Click here</0> to see how to obtain this key",
             "ssl_options": "SSL is used when available",
             "username_password": "Credentials will be encrypted & stored securely on our servers.",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
@@ -421,7 +421,6 @@
             "base_url": "Use the absolute URL (e.g https://example.com)",
             "database": "i.e.\"Users DB(readonly)\"",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "key",
             "param_value": "value",
             "password": "password",
@@ -581,7 +580,9 @@
           "row_select": "Row select",
           "sortingChange": "Sort change",
           "submit": "Submit",
-          "success": "Success"
+          "success": "Success",
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Close modal"
         }
       },
       "setter_default_value": {
@@ -811,7 +812,10 @@
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
-      "unselected_tip2": "Click on a component to select it."
+      "unselected_tip2": "Click on a component to select it.",
+      "setter": {
+        "click_mask_close": "Click mask to close modal"
+      }
     },
     "page": {
       "label_name": {
@@ -1171,6 +1175,9 @@
       "horizontal": "Horizontal",
       "name": "Timeline",
       "vertical": "vertical"
+    },
+    "modal": {
+      "name": "Modal"
     }
   },
   "page": {

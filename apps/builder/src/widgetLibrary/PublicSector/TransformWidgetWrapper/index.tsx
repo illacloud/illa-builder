@@ -214,6 +214,37 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       return []
     }, [realProps])
 
+    const getOnOpenModalEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "onOpenModal")
+      }
+      return []
+    }, [realProps])
+
+    const handleOnOpenModal = useCallback(() => {
+      getOnOpenModalEventScripts().forEach((scriptObj) => {
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+      })
+    }, [getOnOpenModalEventScripts])
+
+    const getOnCloseModalEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "onCloseModal")
+      }
+      return []
+    }, [realProps])
+
+    const handleOnCloseModal = useCallback(
+      (path: string) => {
+        getOnCloseModalEventScripts().forEach((scriptObj) => {
+          runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+        })
+      },
+      [getOnCloseModalEventScripts],
+    )
+
     const getOnBlurEventScripts = useCallback(() => {
       const events = get(realProps, "events")
       if (events) {
@@ -421,6 +452,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleOnBlur={handleOnBlur}
           handleOnRowSelect={handleOnRowSelect}
           disabled={listContainerDisabled}
+          handleOnOpenModal={handleOnOpenModal}
+          handleOnCloseModal={handleOnCloseModal}
         />
       </div>
     )

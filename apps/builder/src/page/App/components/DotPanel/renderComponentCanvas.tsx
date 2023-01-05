@@ -46,6 +46,7 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { IGNORE_WIDGET_TYPES } from "@/redux/currentApp/executionTree/executionSelector"
+import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
@@ -160,6 +161,10 @@ export const RenderComponentCanvas: FC<{
   const isFreezeCanvas = useSelector(getFreezeState)
   const dispatch = useDispatch()
 
+  const rootNodeProps = useSelector(getRootNodeExecutionResult)
+  const { currentPageIndex, pageSortedKey } = rootNodeProps
+  const currentPageDisplayName = pageSortedKey[currentPageIndex]
+
   const [xy, setXY] = useState([0, 0])
   const [lunchXY, setLunchXY] = useState([0, 0])
   const [canDrop, setCanDrop] = useState(true)
@@ -235,7 +240,7 @@ export const RenderComponentCanvas: FC<{
   ])
 
   const [canvasRef, bounds] = useMeasure()
-  const currentCanvasRef = useRef<HTMLDivElement>(
+  const currentCanvasRef = useRef<HTMLDivElement | null>(
     null,
   ) as MutableRefObject<HTMLDivElement | null>
   const autoScrollTimeoutID = useRef<number>()
@@ -244,9 +249,9 @@ export const RenderComponentCanvas: FC<{
     return bounds.width / blockColumns
   }, [blockColumns, bounds.width])
 
-  const componentTree = useMemo<ReactNode>(() => {
+  const componentTree = useMemo(() => {
     const childrenNode = componentNode.childrenNode
-    return childrenNode?.map<ReactNode>((item) => {
+    return childrenNode?.map((item) => {
       const h = item.h * UNIT_HEIGHT
       const w = item.w * unitWidth
       const x = item.x * unitWidth
@@ -413,30 +418,33 @@ export const RenderComponentCanvas: FC<{
             unitH: UNIT_HEIGHT,
           }
 
-          /**
-           * only when add component nodes
-           */
-          if (indexOfChildrenNodes === -1) {
-            const allChildrenNodes = [...childrenNodes, newItem]
-            const { finalState, effectResultMap } = getReflowResult(
-              newItem,
-              allChildrenNodes,
-            )
-            finalChildrenNodes = finalState
-            finalEffectResultMap = effectResultMap
-          } else {
-            const indexOfChildren = childrenNodes.findIndex(
-              (node) => node.displayName === newItem.displayName,
-            )
-            const allChildrenNodes = [...childrenNodes]
-            allChildrenNodes.splice(indexOfChildren, 1, newItem)
-            const { finalState, effectResultMap } = getReflowResult(
-              newItem,
-              allChildrenNodes,
-            )
-            finalChildrenNodes = finalState
-            finalEffectResultMap = effectResultMap
+          if (item.type !== "MODAL_WIDGET") {
+            /**
+             * only when add component nodes
+             */
+            if (indexOfChildrenNodes === -1) {
+              const allChildrenNodes = [...childrenNodes, newItem]
+              const { finalState, effectResultMap } = getReflowResult(
+                newItem,
+                allChildrenNodes,
+              )
+              finalChildrenNodes = finalState
+              finalEffectResultMap = effectResultMap
+            } else {
+              const indexOfChildren = childrenNodes.findIndex(
+                (node) => node.displayName === newItem.displayName,
+              )
+              const allChildrenNodes = [...childrenNodes]
+              allChildrenNodes.splice(indexOfChildren, 1, newItem)
+              const { finalState, effectResultMap } = getReflowResult(
+                newItem,
+                allChildrenNodes,
+              )
+              finalChildrenNodes = finalState
+              finalEffectResultMap = effectResultMap
+            }
           }
+
           if (!isFreezeCanvas) {
             const updateSlice = [
               {
@@ -476,7 +484,10 @@ export const RenderComponentCanvas: FC<{
       drop: (dragInfo, monitor) => {
         const isDrop = monitor.didDrop()
         const { item, currentColumnNumber } = dragInfo
-        if (isDrop || item.displayName === componentNode.displayName) return
+        if (isDrop || item.displayName === componentNode.displayName)
+          return {
+            isDropOnCanvas: false,
+          }
         if (monitor.getClientOffset()) {
           const scale = blockColumns / currentColumnNumber
 
@@ -570,7 +581,16 @@ export const RenderComponentCanvas: FC<{
            * add new nodes
            */
           if (item.x === -1 && item.y === -1) {
-            dispatch(componentsActions.addComponentReducer([newItem]))
+            if (item.type === "MODAL_WIDGET") {
+              dispatch(
+                componentsActions.addModalComponentReducer({
+                  currentPageDisplayName,
+                  modalComponentNode: newItem,
+                }),
+              )
+            } else {
+              dispatch(componentsActions.addComponentReducer([newItem]))
+            }
           } else {
             /**
              * update node when change container
@@ -631,7 +651,15 @@ export const RenderComponentCanvas: FC<{
         }
       },
     }),
-    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezeCanvas, componentNode],
+    [
+      bounds,
+      unitWidth,
+      UNIT_HEIGHT,
+      canDrop,
+      isFreezeCanvas,
+      componentNode,
+      currentPageDisplayName,
+    ],
   )
 
   const maxY = useMemo(() => {
