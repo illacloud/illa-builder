@@ -5,7 +5,7 @@ import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/component
 import { WorkSpaceTreeProps } from "./interface"
 import { applyTreeContainerStyle } from "./style"
 
-const hiddenFields = ["displayName", "userId"]
+export const hiddenFields = ["displayName", "userId"]
 
 export const WorkSpaceTree: FC<WorkSpaceTreeProps> = (props) => {
   const {

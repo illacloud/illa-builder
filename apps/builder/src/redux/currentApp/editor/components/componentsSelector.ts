@@ -129,10 +129,15 @@ export const getAllComponentDisplayNameMapProps = createSelector(
     if (!components) return
     const res: Record<string, any> = {}
     Object.keys(components).forEach((key) => {
+      const childrenNode = Array.isArray(components[key].childrenNode)
+        ? components[key].childrenNode.map((node) => node.displayName)
+        : []
       res[key] = {
         ...components[key].props,
+        $parentNode: components[key].parentNode,
         $type: "WIDGET",
         $widgetType: components[key].type,
+        $childrenNode: childrenNode,
       }
     })
     return res

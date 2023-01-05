@@ -421,7 +421,6 @@
             "base_url": "절대 URL을 사용하세요(예: https://example.com).",
             "database": "즉 \"사용자 DB(읽기전용)\"",
             "name": "ie \"Users DB(읽기전용)\" 또는 \"Internal Admin API\"",
-            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "열쇠",
             "param_value": "값",
             "password": "비밀번호",
@@ -581,7 +580,9 @@
           "row_select": "행 선택",
           "sortingChange": "변경된 순으로 정렬",
           "submit": "제출하다",
-          "success": "성공 후"
+          "success": "성공 후",
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Close modal"
         }
       },
       "setter_default_value": {

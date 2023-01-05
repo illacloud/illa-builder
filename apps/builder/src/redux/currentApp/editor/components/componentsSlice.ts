@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
   addComponentReducer,
+  addModalComponentReducer,
   addPageNodeWithSortOrderReducer,
   addSectionViewReducer,
   addTargetPageSectionReducer,
@@ -55,6 +56,7 @@ const componentsSlice = createSlice({
     deleteSectionViewReducer,
     updateSectionViewPropsReducer,
     updateViewportSizeReducer,
+    addModalComponentReducer,
   },
 })
 

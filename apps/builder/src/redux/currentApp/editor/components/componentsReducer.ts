@@ -6,6 +6,7 @@ import {
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
+  AddModalComponentPayload,
   AddSectionViewPayload,
   AddTargetPageSectionPayload,
   ComponentNode,
@@ -15,6 +16,7 @@ import {
   DeletePageNodePayload,
   DeleteSectionViewPayload,
   DeleteTargetPageSectionPayload,
+  ModalSectionNode,
   PageNodeProps,
   RootComponentNode,
   RootComponentNodeProps,
@@ -30,8 +32,8 @@ import {
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import {
+  generateModalSectionConfig,
   generateSectionConfig,
-  generateSectionContainerConfig,
   layoutValueMapGenerateConfig,
 } from "@/utils/generators/generatePageOrSectionConfig"
 import { isObject } from "@/utils/typeHelper"
@@ -69,6 +71,37 @@ export const addComponentReducer: CaseReducer<
       }
     }
   })
+}
+
+export const addModalComponentReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<AddModalComponentPayload>
+> = (state, action) => {
+  const { currentPageDisplayName, modalComponentNode } = action.payload
+  if (!currentPageDisplayName || !modalComponentNode) {
+    return state
+  }
+  const currentPageNode = searchDsl(state, currentPageDisplayName)
+  if (currentPageNode == null || !Array.isArray(currentPageNode.childrenNode))
+    return state
+  const modalSectionNode = currentPageNode.childrenNode.find((child) => {
+    return child.type === "MODAL_SECTION_NODE"
+  }) as ModalSectionNode | undefined
+  if (!modalSectionNode) {
+    const newModalSectionNode = generateModalSectionConfig(
+      currentPageDisplayName,
+      "modalSection",
+    )
+    modalComponentNode.parentNode = newModalSectionNode.displayName
+    newModalSectionNode.childrenNode = [modalComponentNode]
+    currentPageNode.childrenNode.push(newModalSectionNode)
+  } else {
+    modalComponentNode.parentNode = modalSectionNode.displayName
+    if (!Array.isArray(modalSectionNode.childrenNode)) {
+      modalSectionNode.childrenNode = []
+    }
+    modalSectionNode.childrenNode.push(modalComponentNode)
+  }
 }
 
 export const copyComponentReducer: CaseReducer<

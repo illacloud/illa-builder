@@ -421,7 +421,6 @@
             "base_url": "絶対 URL を使用してください (例: https://example.com)",
             "database": "つまり、「ユーザーDB（読み取り専用）」",
             "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
-            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "鍵",
             "param_value": "価値",
             "password": "パスワード",
@@ -581,7 +580,9 @@
           "row_select": "行を選択",
           "sortingChange": "変化で並べ替え",
           "submit": "確認する",
-          "success": "成功後"
+          "success": "成功後",
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Close modal"
         }
       },
       "setter_default_value": {
