@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { ReactComponent as FormWidgetIcon } from "@/assets/widgetCover/form.svg"
+import { ReactComponent as ModalWidgetIcon } from "@/assets/widgetCover/modal.svg"
 import i18n from "@/i18n/config"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"
@@ -11,7 +11,7 @@ export const MODAL_WIDGET_CONFIG: WidgetConfig = {
   displayName: "modal",
   widgetName: i18n.t("widget.modal.name"),
   keywords: ["modal", "对话框"],
-  icon: <FormWidgetIcon />,
+  icon: <ModalWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 32,
   h: 40,
