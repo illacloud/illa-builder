@@ -1,10 +1,14 @@
 import { FC } from "react"
 import { Checkbox } from "@illa-design/react"
-import { checkboxItemStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { CheckboxInputProps } from "@/page/App/components/CheckboxInput/interface"
 import { InputEditor } from "@/page/App/components/InputEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { actionItemStyle, codeEditorLabelStyle } from "./style"
+import {
+  checkboxItemStyle,
+  checkoutContentStyle,
+  checkoutItemStyle,
+  codeEditorLabelStyle,
+} from "./style"
 
 export const CheckboxInput: FC<CheckboxInputProps> = (props) => {
   const {
@@ -20,15 +24,17 @@ export const CheckboxInput: FC<CheckboxInputProps> = (props) => {
   } = props
   return (
     <>
-      <div css={actionItemStyle}>
+      <div css={checkoutItemStyle}>
         <span css={codeEditorLabelStyle}></span>
-        <Checkbox
-          colorScheme="techPurple"
-          checked={checkboxValue}
-          ml="16px"
-          onChange={onCheckboxChange}
-        />
-        <span css={checkboxItemStyle}>{checkboxTitle}</span>
+        <div css={checkoutContentStyle}>
+          <Checkbox
+            colorScheme="techPurple"
+            checked={checkboxValue}
+            ml="16px"
+            onChange={onCheckboxChange}
+          />
+          <span css={checkboxItemStyle}>{checkboxTitle}</span>
+        </div>
       </div>
       {checkboxValue && (
         <InputEditor

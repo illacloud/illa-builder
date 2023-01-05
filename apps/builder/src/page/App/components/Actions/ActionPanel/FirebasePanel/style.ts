@@ -70,10 +70,6 @@ export const codeEditorLabelStyle = css`
   align-self: start;
 `
 
-export const actionItemTip = `
- font-size: 14px;
-  margin-left: 192px;
-  white-space: pre-line;
-  padding-bottom: 6px;
-  color: ${getColor("grayBlue", "04")};
+export const checkboxContainer = css`
+  padding: 8px 0 16px 0;
 `

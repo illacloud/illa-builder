@@ -17,6 +17,8 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   actionItemContainer,
   checkboxItemStyle,
+  checkoutContentStyle,
+  checkoutItemStyle,
   smtpBodyTypeStyle,
   smtpContainerStyle,
   smtpItemCodeEditorStyle,
@@ -76,17 +78,19 @@ export const SMTPPanel: FC = () => {
             expectedType={VALIDATION_TYPES.STRING}
           />
         </div>
-        <div css={smtpItemStyle}>
+        <div css={checkoutItemStyle}>
           <span css={smtpItemLabelStyle}></span>
-          <Checkbox
-            colorScheme="techPurple"
-            checked={content.setReplyTo}
-            ml="16px"
-            onChange={handleShowReplyToEmail}
-          />
-          <span css={checkboxItemStyle}>
-            {t("editor.action.panel.smtp.set_replay_email")}
-          </span>
+          <div css={checkoutContentStyle}>
+            <Checkbox
+              colorScheme="techPurple"
+              checked={content.setReplyTo}
+              ml="16px"
+              onChange={handleShowReplyToEmail}
+            />
+            <span css={checkboxItemStyle}>
+              {t("editor.action.panel.smtp.set_replay_email")}
+            </span>
+          </div>
         </div>
         {content.setReplyTo && (
           <div css={smtpItemStyle}>

@@ -3,11 +3,10 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { RadioGroup } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
-import { esItemLabelStyle } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel/style"
 import { TransformComponentProps } from "@/page/App/components/Actions/ActionPanel/TransformerComponent/interface"
 import {
-  codeMirrorContainer,
   codeMirrorStyle,
+  getCodeMirrorContainerStyle,
   transformRadioStyle,
   transformSpaceStyle,
   transformTitle,
@@ -84,7 +83,7 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
         </div>
       )}
       {cachedAction && cachedAction.transformer.enable && (
-        <div css={codeMirrorContainer}>
+        <div css={getCodeMirrorContainerStyle(!!mysqlLike)}>
           {mysqlLike ? null : <span css={transformTitle}></span>}
           <CodeEditor
             value={cachedAction.transformer.rawData}

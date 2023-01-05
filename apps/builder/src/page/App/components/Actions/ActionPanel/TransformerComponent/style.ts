@@ -38,3 +38,23 @@ export const codeMirrorContainer = css`
   align-items: center;
   min-height: 48px;
 `
+
+export const codeMirrorPaddingContainer = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 16px;
+`
+
+export const getCodeMirrorContainerStyle = (mysqlLike: boolean) => {
+  if (mysqlLike) {
+    return css`
+      ${codeMirrorContainer}
+    `
+  } else {
+    return css`
+      ${codeMirrorPaddingContainer}
+    `
+  }
+}

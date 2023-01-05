@@ -13,10 +13,6 @@ export const smtpItemStyle = css`
   padding: 0 16px;
 `
 
-export const topDivider = css`
-  min-height: 8px;
-`
-
 export const smtpItemLabelStyle = css`
   min-width: 160px;
   font-size: 14px;
@@ -65,4 +61,19 @@ export const codeEditorLabelStyle = css`
 
 export const actionItemContainer = css`
   padding: 8px 0;
+`
+
+export const checkoutItemStyle = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 16px;
+`
+
+export const checkoutContentStyle = css`
+  min-height: 22px;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
 `
