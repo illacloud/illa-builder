@@ -356,7 +356,7 @@
           "tip": {
             "connect_type": "Cloud: ILLA servers will securely connect to your database.",
             "name": "The name for resource when creating actions in the ILLA.",
-            "private_key": "Click here to see how to obtain this key",
+            "private_key": "<0>Click here</0> to see how to obtain this key",
             "ssl_options": "SSL is used when available",
             "username_password": "Credentials will be encrypted & stored securely on our servers.",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
