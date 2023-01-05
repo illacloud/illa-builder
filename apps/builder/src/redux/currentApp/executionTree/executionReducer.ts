@@ -1,5 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { applyChange } from "deep-diff"
+import { cloneDeep } from "lodash"
 import {
   DependenciesState,
   ErrorShape,
@@ -78,4 +79,37 @@ export const updateExecutionByMultiDisplayNameReducer: CaseReducer<
       ...value,
     }
   })
+}
+
+export const updateModalDisplayReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<{
+    displayName: string
+    display: boolean
+  }>
+> = (state, action) => {
+  const result = state.result
+  const currentNode = result[action.payload.displayName]
+  if (!currentNode) return state
+  const parentNodeDisplayName = currentNode.$parentNode
+  if (!parentNodeDisplayName) return state
+  const parentNode = result[parentNodeDisplayName]
+  if (
+    !parentNode ||
+    !Array.isArray(parentNode.$childrenNode) ||
+    parentNode.$childrenNode.length === 0
+  )
+    return state
+  const otherNodeDisplayNames = parentNode.$childrenNode.filter(
+    (key: string) => key !== action.payload.displayName,
+  )
+  currentNode.isVisible = action.payload.display
+  if (action.payload.display) {
+    otherNodeDisplayNames.forEach((key: string) => {
+      const node = result[key]
+      if (node) {
+        node.isVisible = false
+      }
+    })
+  }
 }

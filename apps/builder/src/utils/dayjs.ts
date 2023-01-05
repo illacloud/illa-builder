@@ -35,12 +35,12 @@ async function initDayjs() {
   switch (language) {
     case "zh-CN":
       await import("dayjs/locale/zh-cn")
-      dayjs.locale("zh-CN")
+      dayjs.locale("zh-cn")
       break
     case "en-US":
     default:
       await import("dayjs/locale/en")
-      dayjs.locale("en-US")
+      dayjs.locale("en-us")
       break
   }
 }
