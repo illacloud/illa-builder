@@ -1190,5 +1190,7 @@
   },
   "frame_size": {
     "invalid_tips": "Please enter a value not less than {{ size }}."
-  }
+  },
+  "failed_to_copy": "Failed to copy",
+  "copied": "Copied!"
 }
