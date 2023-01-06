@@ -1190,5 +1190,7 @@
   },
   "frame_size": {
     "invalid_tips": "请输入不小于 {{ size }} 的值。"
-  }
+  },
+  "failed_to_copy": "复制失败",
+  "copied": "复制成功！"
 }
