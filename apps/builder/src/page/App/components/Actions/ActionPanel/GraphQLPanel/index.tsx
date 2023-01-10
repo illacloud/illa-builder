@@ -1,6 +1,7 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
@@ -111,7 +112,7 @@ export const GraphQLPanel: FC = () => {
           placeholder={t("editor.action.panel.graphql.placeholder.query")}
           value={content.query}
           onChange={(value) => handleValueChange(value, "query")}
-          mode="GRAPHQL"
+          mode={CODE_LANG.SQL}
           style={{ height: "88px" }}
           expectedType={VALIDATION_TYPES.STRING}
         />

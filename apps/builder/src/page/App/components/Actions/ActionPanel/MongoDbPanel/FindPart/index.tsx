@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
 import {
   codeEditorLabelStyle,
@@ -27,10 +28,10 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.query")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.query}
           onChange={(value) => {
             dispatch(
@@ -46,7 +47,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -54,10 +55,10 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.projection")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.projection}
           onChange={(value) => {
             dispatch(
@@ -73,7 +74,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -81,10 +82,10 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.sort_by")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.sortBy}
           onChange={(value) => {
             dispatch(
@@ -100,7 +101,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -108,10 +109,10 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.limit")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.limit}
           onChange={(value) => {
             dispatch(
@@ -127,7 +128,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -135,10 +136,10 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.skip")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.skip}
           onChange={(value) => {
             dispatch(
@@ -154,7 +155,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>

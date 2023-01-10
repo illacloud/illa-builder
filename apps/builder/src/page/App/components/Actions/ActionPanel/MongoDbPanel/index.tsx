@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { AggregatePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/AggregatePart"
 import { BulkWritePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/BulkWritePart"
@@ -201,8 +202,8 @@ export const MongoDbPanel: FC = () => {
               {t("editor.action.panel.mongodb.collection")}
             </span>
             <CodeEditor
-              css={mongoItemCodeEditorStyle}
-              mode="TEXT_JS"
+              wrapperCss={mongoItemCodeEditorStyle}
+              lang={CODE_LANG.JAVASCRIPT}
               value={content.collection}
               onChange={(value) => {
                 dispatch(
@@ -215,7 +216,7 @@ export const MongoDbPanel: FC = () => {
                   }),
                 )
               }}
-              expectedType={VALIDATION_TYPES.STRING}
+              expectValueType={VALIDATION_TYPES.STRING}
             />
           </div>
         )}

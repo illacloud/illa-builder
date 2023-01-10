@@ -1,350 +1,192 @@
-import { Global } from "@emotion/react"
-import CodeMirror, { Editor } from "codemirror"
-import "codemirror/addon/display/autorefresh"
-import "codemirror/addon/display/placeholder"
-import "codemirror/addon/edit/closebrackets"
-import "codemirror/addon/edit/matchbrackets"
-import "codemirror/lib/codemirror"
-import "codemirror/lib/codemirror.css"
-import "codemirror/theme/duotone-light.css"
-import { debounce, get } from "lodash"
-import { forwardRef, useCallback, useEffect, useRef, useState } from "react"
+import { debounce } from "lodash"
+import { FC, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
-import { Trigger } from "@illa-design/react"
-import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
-import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
-import {
-  getExecutionError,
-  getExecutionResult,
-} from "@/redux/currentApp/executionTree/executionSelector"
+import { ILLACodeMirrorCore } from "@/components/CodeEditor/CodeMirror/core"
+import { IExpressionShape } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { CodeEditorProps } from "@/components/CodeEditor/interface"
+import { getExecutionResultToCodeMirror } from "@/redux/currentApp/executionTree/executionSelector"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { getStringSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { CodePreview } from "./CodePreview"
-import { BaseTern, TernServer } from "./TernSever"
-import "./hinter"
-import { CodeEditorProps, EditorModes, ResultPreview } from "./interface"
-import "./modes"
-import { applyCodeEditorStyle, codemirrorStyle } from "./style"
-import { getValueType, isCloseKey, isExpectType } from "./utils"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
-  (props, ref) => {
-    const {
-      className,
-      mode = "TEXT_JS",
-      placeholder,
-      border,
-      expectedType,
-      borderRadius = "8px",
-      path,
-      tables = {},
-      extendedData = {},
-      lineNumbers,
-      noTab,
-      value,
-      height = "auto",
-      readOnly,
-      onBlur,
-      maxHeight = "auto",
-      onChange,
-      ...otherProps
-    } = props
-    const languageValue = useSelector(getLanguageValue)
-    const executionError = useSelector(getExecutionError)
-    const executionResult = useSelector(getExecutionResult)
-    const executionResultRef = useRef<Record<string, any>>(executionResult)
-    const codeTargetRef = useRef<HTMLDivElement>(null)
-    const sever = useRef<CodeMirror.TernServer>()
-    const ILLAEditor = useRef<Editor | null>(null)
-    const [preview, setPreview] = useState<ResultPreview>({
-      state: "default",
-      type: expectedType,
-    })
-    const [previewVisible, setPreviewVisible] = useState<boolean>()
-    const [focus, setFocus] = useState<boolean>()
-    const [error, setError] = useState<boolean>(false)
-    // Solve the closure problem
-    const latestProps = useRef(props)
-    latestProps.current = props
+const getResultType = (result: unknown) => {
+  if (Array.isArray(result)) {
+    return VALIDATION_TYPES.ARRAY
+  } else if (typeof result === "string") {
+    return VALIDATION_TYPES.STRING
+  } else if (typeof result === "number") {
+    return VALIDATION_TYPES.NUMBER
+  } else if (typeof result === "boolean") {
+    return VALIDATION_TYPES.BOOLEAN
+  } else {
+    return VALIDATION_TYPES.OBJECT
+  }
+}
 
-    const handleFocus = () => {
-      setFocus(true)
-    }
+const getShowResultType = (results: unknown[]) => {
+  if (results.length === 0) {
+    return VALIDATION_TYPES.STRING
+  }
+  if (results.length === 1) {
+    return getResultType(results[0])
+  } else {
+    return VALIDATION_TYPES.STRING
+  }
+}
 
-    const handleBlur = () => {
-      latestProps.current?.onBlur?.()
-      setFocus(false)
-      setPreviewVisible(false)
-    }
-
-    const valueChanged = useCallback(
-      (currentValue: string) => {
-        let calcResult: any = null
-        let previewType: string = expectedType
-        setError(false)
-        try {
-          const isDynamic = isDynamicString(currentValue)
-          if (isDynamic) {
-            calcResult = evaluateDynamicString(
-              "",
-              currentValue,
-              executionResultRef.current || {},
-            )
-          } else {
-            calcResult = currentValue
-          }
-          previewType = getValueType(calcResult)
-
-          // [TODO]: v1 evaluate
-          // if (!currentValue?.includes("{{")) {
-          //   calcResult = getEvalValue(previewType, calcResult)
-          // }
-          calcResult && isExpectType(previewType, calcResult)
-
-          setPreview({
-            state: "default",
-            type: previewType,
-            content: calcResult,
-          })
-        } catch (e) {
-          setError(true)
-          if (e instanceof Error) {
-            setPreview({
-              state: "error",
-              content: e.toString(),
-            })
-          }
-        } finally {
-          latestProps.current.onChange?.(currentValue, calcResult)
-        }
-      },
-      [expectedType],
-    )
-
-    useEffect(() => {
-      if (path) {
-        const error = get(executionError, path)
-        const result = get(executionResult, path)
-        if (error) {
-          const evalError = error?.find((item) => {
-            return item.errorType !== "LINT"
-          })
-          const lintError = error?.find((item) => {
-            return item.errorType === "LINT"
-          })
-          if (evalError) {
-            setError(true)
-            setPreview({
-              state: "error",
-              content: evalError.errorMessage,
-            })
-          }
-          if (lintError?.errorLine && ILLAEditor.current) {
-            lineMarker(ILLAEditor.current, lintError.errorLine - 1)
-          }
-        } else {
-          const type = props.expectedType ?? getValueType(result)
-          setError(false)
-          setPreview({
-            state: "default",
-            type: type,
-            content: result?.toString() ?? "",
-          })
-        }
-      }
-    }, [executionError, executionResult, expectedType, path])
-
-    useEffect(() => {
-      if (!path && previewVisible) {
-        valueChanged(value || "")
-      }
-    }, [valueChanged, value, path, previewVisible])
-
-    const handleChange = (editor: Editor) => {
-      const currentValue = editor?.getValue()
-      clearMarks(editor)
-      if (path) {
-        latestProps.current.onChange?.(currentValue)
+const getShowResult = (results: unknown[]) => {
+  let calcResult: string = ""
+  if (results.length === 0) {
+    return ""
+  } else {
+    results.forEach((result) => {
+      if (
+        typeof result === "string" ||
+        typeof result === "number" ||
+        typeof result === "boolean"
+      ) {
+        calcResult += result
+      } else if (result == undefined) {
+        calcResult += result
       } else {
-        valueChanged(currentValue)
+        calcResult += JSON.stringify(result)
       }
+    })
+  }
+  return calcResult
+}
+
+export const CodeEditor: FC<CodeEditorProps> = (props) => {
+  const {
+    value = "",
+    onChange = () => {},
+    showLineNumbers,
+    placeholder,
+    lang,
+    sqlScheme,
+    width,
+    maxWidth,
+    height,
+    maxHeight,
+    editable,
+    readOnly,
+    extensions,
+    expectValueType,
+    codeType,
+    minWidth,
+    minHeight,
+    canShowCompleteInfo,
+    wrapperCss,
+    wrappedCodeFunc,
+  } = props
+  const [result, setResult] = useState<string>("")
+  const [error, setError] = useState<boolean>(false)
+  const [resultType, setResultType] = useState(VALIDATION_TYPES.STRING)
+
+  const executionResult = useSelector(getExecutionResultToCodeMirror)
+
+  const segenment = useMemo(() => {
+    const realInput = wrappedCodeFunc ? wrappedCodeFunc(value) : value
+    const dynamicStrings = getStringSnippets(realInput)
+    const result: IExpressionShape[] = []
+    const errors: string[] = []
+    const calcResultArray: unknown[] = []
+    const calcResultMap: Map<string, number[]> = new Map()
+    dynamicStrings.forEach((dynamicString, index) => {
+      if (isDynamicString(dynamicString)) {
+        try {
+          const calcRes = evaluateDynamicString(
+            "",
+            dynamicString,
+            executionResult,
+          )
+          calcResultArray.push(calcRes)
+          const res = { value: dynamicString, hasError: false }
+          result.push(res)
+          if (calcResultMap.has(dynamicString)) {
+            calcResultMap.get(dynamicString)?.push(index)
+          } else {
+            calcResultMap.set(dynamicString, [index])
+          }
+        } catch (e) {
+          errors.push((e as Error).message)
+          const res = { value: dynamicString, hasError: true }
+          result.push(res)
+          if (calcResultMap.has(dynamicString)) {
+            calcResultMap.get(dynamicString)?.push(index)
+          } else {
+            calcResultMap.set(dynamicString, [index])
+          }
+        }
+      } else {
+        calcResultArray.push(dynamicString)
+      }
+    })
+    if (errors.length > 0) {
+      setError(true)
+      setResult(errors[0])
+      return result
     }
+    const showResult = getShowResult(calcResultArray)
+    const showResultType = getShowResultType(calcResultArray)
+    setError(false)
+    if (expectValueType) {
+      setResultType(expectValueType)
+      if (showResultType !== expectValueType && value) {
+        dynamicStrings.forEach((dynamicString) => {
+          if (
+            isDynamicString(dynamicString) &&
+            calcResultMap.has(dynamicString)
+          ) {
+            const indexs = calcResultMap.get(dynamicString)
+            indexs?.forEach((index) => {
+              if (result[index]) {
+                result[index].hasError = true
+              }
+            })
+          }
+        })
 
-    const debounceHandleChange = debounce(handleChange, 300)
-
-    const handleKeyUp = useCallback(
-      (editor: Editor, event: KeyboardEvent) => {
-        const key = event.key
-        const code = `${event.ctrlKey ? "Ctrl+" : ""}${event.code}`
-        if (isCloseKey(code) || isCloseKey(key)) {
-          editor.closeHint()
-          return
-        }
-        const cursor = editor.getCursor()
-        const line = editor.getLine(cursor.line)
-        let showAutocomplete = false
-        if (mode === "XML_JS" || mode === "HTML_JS") {
-          showAutocomplete = true
-        }
-        if (key === "/") {
-          showAutocomplete = true
-        } else if (event.code === "Backspace") {
-          const prevChar = line[cursor.ch - 1]
-          showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
-        } else if (key === "{") {
-          const prevChar = line[cursor.ch - 2]
-          showAutocomplete = prevChar === "{"
-        } else if (key.length == 1) {
-          showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
-        }
-        showAutocomplete && handleAutocomplete(editor, line)
-      },
-      [mode],
-    )
-
-    useEffect(() => {
-      const currentValue = ILLAEditor.current?.getValue()
-      if (value !== currentValue) {
-        ILLAEditor.current?.setValue(value ?? "")
+        setResult(`Expect ${expectValueType}, but got ${showResultType}`)
+        setError(true)
+      } else {
+        setResult(showResult)
       }
-    }, [value])
-
-    const handleAutocomplete = (cm: CodeMirror.Editor, line: string) => {
-      const modeName = cm.getModeAt(cm.getCursor()).name
-      // @ts-ignore: type define error
-      const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
-      if (modeName == "sql") {
-        CodeMirror.showHint(cm, CodeMirror.hint.sql, {
-          tables: latestProps.current?.tables,
-          completeSingle: false,
-        })
-      } else if (modeHelperType == "xml") {
-        CodeMirror.showHint(cm, CodeMirror.hint.xml, {
-          completeSingle: false,
-        })
-      } else if (modeHelperType == "html") {
-        CodeMirror.showHint(cm, CodeMirror.hint.html, {
-          completeSingle: false,
-        })
-      } else if (modeHelperType == "json") {
-        sever.current?.complete(cm)
-      } else if (modeName == "javascript") {
-        BaseTern?.complete(cm)
-      }
+    } else {
+      setResultType(showResultType)
+      setResult(showResult)
     }
+    return result
+  }, [wrappedCodeFunc, value, expectValueType, executionResult])
 
-    useEffect(() => {
-      executionResultRef.current = executionResult
-    }, [executionResult])
+  const debounceHandleChange = debounce(onChange, 160)
 
-    useEffect(() => {
-      sever.current = TernServer(languageValue, {
-        ...executionResult,
-        ...extendedData,
-      })
-    }, [executionResult, languageValue, extendedData])
-
-    useEffect(() => {
-      ILLAEditor.current?.setOption("mode", EditorModes[mode])
-    }, [mode])
-
-    useEffect(() => {
-      if (!ILLAEditor.current) {
-        ILLAEditor.current = CodeMirror(codeTargetRef.current!, {
-          mode: EditorModes[mode],
-          placeholder,
-          lineNumbers,
-          autocapitalize: false,
-          autofocus: false,
-          matchBrackets: true,
-          autoCloseBrackets: true,
-          lineWrapping: true,
-          scrollbarStyle: "null",
-          tabSize: 2,
-          value: value ?? "",
-          readOnly: readOnly && "nocursor",
-          hintOptions: {
-            completeSingle: false,
-          },
-        })
-        if (noTab) {
-          ILLAEditor.current?.setOption("extraKeys", { Tab: false })
-        }
-        if (lineNumbers) {
-          ILLAEditor.current?.setOption("gutters", ["CodeMirror-lint-markers"])
-        }
-        ILLAEditor.current.on("change", debounceHandleChange)
-        ILLAEditor.current.on("keyup", handleKeyUp)
-        ILLAEditor.current.on("focus", handleFocus)
-        ILLAEditor.current.on("blur", handleBlur)
-      }
-    }, [
-      debounceHandleChange,
-      handleKeyUp,
-      lineNumbers,
-      mode,
-      noTab,
-      placeholder,
-      readOnly,
-      value,
-    ])
-
-    useEffect(() => {
-      return () => {
-        ILLAEditor.current?.off("change", debounceHandleChange)
-        ILLAEditor.current?.off("keyup", handleKeyUp)
-        ILLAEditor.current?.off("focus", handleFocus)
-        ILLAEditor.current?.off("blur", handleBlur)
-        ILLAEditor.current = null
-      }
-    }, [])
-
-    const inputState = {
-      focus,
-      error,
-      height,
-      border,
-      borderRadius,
-      maxHeight,
-    }
-
-    return (
-      <>
-        <Global styles={codemirrorStyle} />
-        <Trigger
-          withoutOffset
-          trigger="focus"
-          position="bottom-start"
-          autoAlignPopupWidth
-          withoutPadding
-          withoutShadow
-          openDelay={10}
-          closeDelay={10}
-          maxW="none"
-          popupVisible={previewVisible}
-          content={<CodePreview preview={preview} />}
-          showArrow={false}
-          colorScheme="white"
-          onVisibleChange={(visible) => {
-            if (visible !== previewVisible && focus) {
-              setPreviewVisible(true)
-            }
-          }}
-        >
-          <div className={className} ref={ref}>
-            <div
-              ref={codeTargetRef}
-              css={applyCodeEditorStyle(inputState)}
-              className={error ? "cm-error" : "cm-default"}
-              {...otherProps}
-            >
-              <div id="hintBody" />
-            </div>
-          </div>
-        </Trigger>
-      </>
-    )
-  },
-)
-
-CodeEditor.displayName = "CodeEditor"
+  return (
+    <ILLACodeMirrorCore
+      showLineNumbers={showLineNumbers}
+      placeholder={placeholder}
+      value={value}
+      onChange={debounceHandleChange}
+      lang={lang}
+      executionResult={executionResult}
+      expressions={segenment}
+      result={result}
+      hasError={error}
+      resultType={resultType}
+      width={width}
+      maxWidth={maxWidth}
+      height={height}
+      maxHeight={maxHeight}
+      editable={editable}
+      readOnly={readOnly}
+      codeType={codeType}
+      extensions={extensions}
+      minWidth={minWidth}
+      minHeight={minHeight}
+      canShowCompleteInfo={canShowCompleteInfo}
+      wrapperCss={wrapperCss}
+      sqlScheme={sqlScheme}
+    />
+  )
+}

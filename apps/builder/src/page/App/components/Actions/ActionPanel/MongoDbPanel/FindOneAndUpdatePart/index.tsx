@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
 import {
   codeEditorLabelStyle,
@@ -27,10 +28,10 @@ export const FindOneAndUpdatePart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.filter")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.filter}
           onChange={(value) => {
             dispatch(
@@ -46,7 +47,7 @@ export const FindOneAndUpdatePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -54,10 +55,10 @@ export const FindOneAndUpdatePart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.update")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.update}
           onChange={(value) => {
             dispatch(
@@ -73,7 +74,7 @@ export const FindOneAndUpdatePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -81,10 +82,10 @@ export const FindOneAndUpdatePart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.options")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.options}
           onChange={(value) => {
             dispatch(
@@ -100,7 +101,7 @@ export const FindOneAndUpdatePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>

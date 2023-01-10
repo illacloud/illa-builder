@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const resultContainerStyle = css`
   width: 100%;
@@ -67,4 +67,10 @@ export const resCloseIconStyle = css`
 `
 export const codeStyle = css`
   overflow: scroll;
+`
+
+export const customerCodeStyle = css`
+  border: none;
+  border-radius: 0;
+  background-color: ${getColor("white", "01")};
 `

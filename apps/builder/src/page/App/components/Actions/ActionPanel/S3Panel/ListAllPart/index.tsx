@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Popover, Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
 import {
   codeEditorLabelStyle,
@@ -61,11 +62,11 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.bucket_name")}
         </span>
         <CodeEditor
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
           onChange={(value) => handleValueChange(value, "bucketName")}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={s3ItemStyle}>
@@ -73,11 +74,11 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.prefix_to_filter_reseults")}
         </span>
         <CodeEditor
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.prefix}
           onChange={(value) => handleValueChange(value, "prefix")}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={s3ItemStyle}>
@@ -93,11 +94,11 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           </span>
         </Popover>
         <CodeEditor
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.delimiter}
           onChange={(value) => handleValueChange(value, "delimiter")}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={s3ItemStyle}>
@@ -120,11 +121,11 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
             {t("editor.action.panel.s3.expiry_duration_of_signed_url")}
           </span>
           <CodeEditor
-            css={s3ItemCodeEditorStyle}
-            mode="TEXT_JS"
+            wrapperCss={s3ItemCodeEditorStyle}
+            lang={CODE_LANG.JAVASCRIPT}
             value={String(commandArgs.expiry)}
             onChange={(value) => handleValueChange(value, "expiry")}
-            expectedType={VALIDATION_TYPES.NUMBER}
+            expectValueType={VALIDATION_TYPES.NUMBER}
           />
         </div>
       )}
@@ -141,11 +142,11 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           </span>
         </Popover>
         <CodeEditor
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.maxKeys}
           onChange={(value) => handleValueChange(value, "maxKeys")}
-          expectedType={VALIDATION_TYPES.NUMBER}
+          expectValueType={VALIDATION_TYPES.NUMBER}
         />
       </div>
     </>

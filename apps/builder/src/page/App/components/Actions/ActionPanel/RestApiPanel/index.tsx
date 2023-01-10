@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
@@ -117,11 +118,10 @@ export const RestApiPanel: FC = () => {
             readOnly
           />
           <CodeEditor
-            borderRadius="0 8px 8px 0"
-            css={restapiItemInputStyle}
-            expectedType={VALIDATION_TYPES.STRING}
+            wrapperCss={restapiItemInputStyle}
+            expectValueType={VALIDATION_TYPES.STRING}
             value={content.url}
-            mode="TEXT_JS"
+            lang={CODE_LANG.JAVASCRIPT}
             onChange={(value) => {
               dispatch(
                 configActions.updateCachedAction({

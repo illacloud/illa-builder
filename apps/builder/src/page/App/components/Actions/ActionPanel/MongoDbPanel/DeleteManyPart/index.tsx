@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
 import {
   codeEditorLabelStyle,
@@ -28,10 +29,10 @@ export const DeleteManyPart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.filter")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.filter}
           onChange={(value) => {
             dispatch(
@@ -47,7 +48,7 @@ export const DeleteManyPart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>

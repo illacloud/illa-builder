@@ -1,8 +1,8 @@
 import { FC } from "react"
-import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
 import {
   codeEditorLabelStyle,
@@ -11,10 +11,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  AggregateContent,
-  BulkWriteContent,
-} from "@/redux/currentApp/action/mongoDbAction"
+import { BulkWriteContent } from "@/redux/currentApp/action/mongoDbAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
@@ -30,11 +27,12 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
         <span css={codeEditorLabelStyle}>
           {t("editor.action.panel.mongodb.operations")}
         </span>
+
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.operations}
           onChange={(value) => {
             dispatch(
@@ -50,7 +48,7 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -58,9 +56,9 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.options")}
         </span>
         <CodeEditor
-          lineNumbers
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          showLineNumbers
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.options}
           onChange={(value) => {
             dispatch(
@@ -76,7 +74,7 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>

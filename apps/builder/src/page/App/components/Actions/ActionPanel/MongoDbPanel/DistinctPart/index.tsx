@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
 import {
   codeEditorLabelStyle,
@@ -28,10 +29,10 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.query")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.query}
           onChange={(value) => {
             dispatch(
@@ -47,7 +48,7 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -55,9 +56,9 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.field")}
         </span>
         <CodeEditor
-          lineNumbers
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          showLineNumbers
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.field}
           onChange={(value) => {
             dispatch(
@@ -73,7 +74,7 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -81,9 +82,9 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.options")}
         </span>
         <CodeEditor
-          lineNumbers
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          showLineNumbers
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.options}
           onChange={(value) => {
             dispatch(
@@ -99,7 +100,7 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>
