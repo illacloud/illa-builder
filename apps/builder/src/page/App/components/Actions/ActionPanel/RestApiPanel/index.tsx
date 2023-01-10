@@ -44,6 +44,7 @@ export const RestApiPanel: FC = () => {
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
     RestApiAction<BodyContent>
   >
+  const isHuggingFace = cachedAction.actionType === "huggingface"
 
   const content = cachedAction.content as RestApiAction<BodyContent>
   const dispatch = useDispatch()
@@ -66,7 +67,10 @@ export const RestApiPanel: FC = () => {
           value={content.method}
           width="160px"
           maxW="160px"
-          options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
+          disabled={isHuggingFace}
+          options={
+            isHuggingFace ? ["POST"] : ["GET", "POST", "PUT", "PATCH", "DELETE"]
+          }
           onChange={(value) => {
             let newBodyType: BodyType = "none"
             let newBody = null

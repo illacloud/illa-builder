@@ -38,7 +38,7 @@ export interface RawBody<T extends RawBodyContent> {
   content: T
 }
 
-export const RawBodyInitial: RawBody<TextRawBody> = {
+export const HugginFaceRawBodyInitial: RawBody<TextRawBody> = {
   type: "text",
   content: "",
 }
@@ -50,32 +50,31 @@ export type RawBodyContent =
   | HTMLRawBody
   | XMLRawBody
 
-export type BodyContent =
+export type HuggingFaceBodyContent =
   | NoneBody
   | FormDataBody
   | XWWWFormURLEncodedBody
   | BinaryBody
   | RawBody<RawBodyContent>
 
-export type ApiMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
-
-export interface HuggingFaceAction<T extends BodyContent> extends Events {
+export interface HuggingFaceAction<T extends HuggingFaceBodyContent>
+  extends Events {
   url: string
   urlParams: Params[]
   headers: Params[]
   cookies: Params[]
-
-  method: ApiMethod
+  method: "POST"
   bodyType: BodyType
   body: T
 }
 
-export const HuggingFaceActionInitial: HuggingFaceAction<BodyContent> = {
-  url: "",
-  method: "GET",
-  urlParams: [{ key: "", value: "" } as Params],
-  headers: [{ key: "", value: "" } as Params],
-  cookies: [{ key: "", value: "" } as Params],
-  bodyType: "none",
-  body: null,
-}
+export const HuggingFaceActionInitial: HuggingFaceAction<HuggingFaceBodyContent> =
+  {
+    url: "",
+    method: "POST",
+    urlParams: [{ key: "", value: "" } as Params],
+    headers: [{ key: "", value: "" } as Params],
+    cookies: [{ key: "", value: "" } as Params],
+    bodyType: "raw",
+    body: null,
+  }

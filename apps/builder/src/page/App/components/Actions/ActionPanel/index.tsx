@@ -74,6 +74,7 @@ export const ActionPanel = forwardRef<
       case "postgresql":
         return <MysqlLikePanel />
       case "restapi":
+      case "huggingface":
         return <RestApiPanel />
       case "redis":
         return <RedisPanel />

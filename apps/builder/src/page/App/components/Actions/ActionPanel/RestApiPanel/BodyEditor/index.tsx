@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
@@ -8,10 +8,19 @@ import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEd
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
+  BodyType,
+  HugginFaceRawBodyInitial,
+  HuggingFaceAction,
+  HuggingFaceBodyContent,
+} from "@/redux/currentApp/action/huggingFaceAction"
+import {
+  BodyContent,
   RawBody,
   RawBodyContent,
   RawBodyInitial,
+  RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -24,13 +33,15 @@ import {
 
 export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const { t } = useTranslation()
-  const selectedAction = useSelector(getSelectedAction)
 
   const actionItem = props.actionItem
-
+  const isHuggingFace = props.actionItem.actionType === "huggingface"
   const bodyType = actionItem.content.bodyType
-
   const body = actionItem.content.body
+
+  const selectedAction = useSelector(getSelectedAction) as ActionItem<
+    HuggingFaceAction<HuggingFaceBodyContent> | RestApiAction<BodyContent>
+  >
 
   const dispatch = useDispatch()
 
@@ -55,6 +66,47 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
     }
   }
 
+  const handleActionTypeChange = useCallback(
+    (value: string) => {
+      let newBody = null
+      if (
+        selectedAction.resourceId === actionItem.resourceId &&
+        selectedAction.content.method !== "GET" &&
+        selectedAction.content.bodyType !== "none" &&
+        selectedAction.content.bodyType === value
+      ) {
+        newBody = selectedAction.content.body
+      } else {
+        switch (value) {
+          case "none":
+            newBody = null
+            break
+          case "x-www-form-urlencoded":
+          case "form-data":
+            newBody = [{ key: "", value: "" }] as Params[]
+            break
+          case "raw":
+            newBody = isHuggingFace ? HugginFaceRawBodyInitial : RawBodyInitial
+            break
+          case "binary":
+            newBody = ""
+            break
+        }
+      }
+      dispatch(
+        configActions.updateCachedAction({
+          ...actionItem,
+          content: {
+            ...actionItem.content,
+            bodyType: value as BodyType,
+            body: newBody,
+          },
+        }),
+      )
+    },
+    [actionItem, dispatch, selectedAction.content, selectedAction.resourceId],
+  )
+
   return (
     <div css={bodyEditorContainerStyle}>
       <span css={bodyLabelStyle}>
@@ -73,45 +125,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               "binary",
             ]}
             bdRadius={bodyType === "raw" ? " 8px 0 0 8px" : "8px"}
-            onChange={(value) => {
-              let newBody = null
-
-              if (
-                selectedAction.resourceId === actionItem.resourceId &&
-                selectedAction.content.method !== "GET" &&
-                selectedAction.content.bodyType !== "none" &&
-                selectedAction.content.bodyType === value
-              ) {
-                newBody = selectedAction.content.body
-              } else {
-                switch (value) {
-                  case "none":
-                    newBody = null
-                    break
-                  case "x-www-form-urlencoded":
-                  case "form-data":
-                    newBody = [{ key: "", value: "" }] as Params[]
-                    break
-                  case "raw":
-                    newBody = RawBodyInitial
-                    break
-                  case "binary":
-                    newBody = ""
-                    break
-                }
-              }
-
-              dispatch(
-                configActions.updateCachedAction({
-                  ...actionItem,
-                  content: {
-                    ...actionItem.content,
-                    bodyType: value,
-                    body: newBody,
-                  },
-                }),
-              )
-            }}
+            onChange={handleActionTypeChange}
           />
           {bodyType === "raw" && (
             <Select

@@ -1,13 +1,12 @@
 import { FC, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
   Divider,
   Input,
-  Link,
   PaginationPreIcon,
   Popover,
   TextArea,
@@ -19,6 +18,7 @@ import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import { TextLink } from "@/page/User/components/TextLink"
 import {
   FirebaseResource,
   FirebaseResourceInitial,
@@ -259,12 +259,21 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
           />
         </div>
         <div css={configItemTip}>
-          <Link
-            href="https://firebase.google.com/docs/admin/setup"
-            target="_blank"
-          >
-            {t("editor.action.resource.db.tip.private_key")}
-          </Link>
+          <Trans
+            i18nKey="editor.action.resource.db.tip.private_key"
+            t={t}
+            components={[
+              <TextLink
+                key="go-to-setup"
+                onClick={() => {
+                  window.open(
+                    "https://firebase.google.com/docs/admin/setup",
+                    "_blank",
+                  )
+                }}
+              />,
+            ]}
+          />
         </div>
         {isCloudVersion && (
           <>
