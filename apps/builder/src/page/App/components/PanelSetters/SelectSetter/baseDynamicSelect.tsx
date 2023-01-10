@@ -1,7 +1,11 @@
 import { css } from "@emotion/react"
 import { FC } from "react"
 import { Select } from "@illa-design/react"
-import { CodeEditor } from "@/components/CodeEditor"
+import { CodeEditor } from "@/components/NewCodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/NewCodeEditor/CodeMirror/extensions/interface"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { DynamicIcon } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon"
 import { BaseDynamicSelectSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
@@ -40,15 +44,15 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
         {isDynamic ? (
           <CodeEditor
             value={value ?? ""}
-            placeholder={inputPlaceholder}
             onChange={onChangeInput}
-            mode="TEXT_JS"
-            expectedType={expectedType}
-            path={path}
+            showLineNumbers={false}
+            placeholder={inputPlaceholder}
+            expectValueType={expectedType}
+            lang={CODE_LANG.JAVASCRIPT}
             maxHeight="208px"
-            css={css`
-              width: 100%;
-            `}
+            minHeight="30px"
+            maxWidth="100%"
+            codeType={CODE_TYPE.EXPRESSION}
           />
         ) : (
           <Select
