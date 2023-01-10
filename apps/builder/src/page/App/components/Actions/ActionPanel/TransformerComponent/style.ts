@@ -44,7 +44,7 @@ export const codeMirrorPaddingContainer = css`
   flex-direction: row;
   align-items: center;
   min-height: 48px;
-  padding: 0 16px;
+  padding: 0 0 0 16px;
 `
 
 export const getCodeMirrorContainerStyle = (mysqlLike: boolean) => {

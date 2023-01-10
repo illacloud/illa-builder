@@ -207,7 +207,6 @@ export const FirebasePanel: FC = () => {
         {renderInputBody}
         <TransformerComponent />
       </div>
-
       <ActionEventHandler />
     </div>
   )

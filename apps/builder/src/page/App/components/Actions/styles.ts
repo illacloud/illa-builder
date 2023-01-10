@@ -53,6 +53,7 @@ export const configItemTip = css`
   font-weight: 400;
   margin-left: 192px;
   padding-bottom: 8px;
+  line-height: 22px;
   padding-left: 24px;
   color: ${getColor("grayBlue", "04")};
 `
