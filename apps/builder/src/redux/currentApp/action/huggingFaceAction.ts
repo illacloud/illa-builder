@@ -38,8 +38,8 @@ export interface RawBody<T extends RawBodyContent> {
   content: T
 }
 
-export const HugginFaceRawBodyInitial: RawBody<TextRawBody> = {
-  type: "text",
+export const HuggingFaceRawBodyInitial: RawBody<TextRawBody> = {
+  type: "json",
   content: "",
 }
 
@@ -76,5 +76,5 @@ export const HuggingFaceActionInitial: HuggingFaceAction<HuggingFaceBodyContent>
     headers: [{ key: "", value: "" } as Params],
     cookies: [{ key: "", value: "" } as Params],
     bodyType: "raw",
-    body: null,
+    body: HuggingFaceRawBodyInitial,
   }

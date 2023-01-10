@@ -11,7 +11,6 @@ import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
   BodyType,
-  HugginFaceRawBodyInitial,
   HuggingFaceAction,
   HuggingFaceBodyContent,
 } from "@/redux/currentApp/action/huggingFaceAction"
@@ -86,7 +85,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             newBody = [{ key: "", value: "" }] as Params[]
             break
           case "raw":
-            newBody = isHuggingFace ? HugginFaceRawBodyInitial : RawBodyInitial
+            newBody = RawBodyInitial
             break
           case "binary":
             newBody = ""
