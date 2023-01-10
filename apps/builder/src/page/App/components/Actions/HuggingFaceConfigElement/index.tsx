@@ -141,18 +141,34 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
             },
           ]}
           placeholders={[
-            t("editor.action.resource.restapi.placeholder.base_url"),
+            t("editor.action.resource.db.placeholder.hugging_face_url"),
           ]}
           name="baseUrl"
           tips={
             <>
-              {formState.errors.baseUrl && (
+              {formState.errors.baseUrl ? (
                 <div css={errorMsgStyle}>
                   <>
                     <WarningCircleIcon css={errorIconStyle} />
                     {formState.errors.baseUrl.message}
                   </>
                 </div>
+              ) : (
+                <Trans
+                  i18nKey="editor.action.resource.db.tip.hugging_face_url"
+                  t={t}
+                  components={[
+                    <TextLink
+                      key="go-to-huggingface"
+                      onClick={() => {
+                        window.open(
+                          "https://huggingface.co/docs/api-inference/index",
+                          "_blank",
+                        )
+                      }}
+                    />,
+                  ]}
+                />
               )}
             </>
           }
@@ -279,8 +295,8 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
         <ControlledElement
           title={t("editor.action.resource.db.label.bear_token")}
           defaultValue={resource?.content.token ?? ""}
-          name={"token"}
-          controlledType={"password"}
+          name="token"
+          controlledType="password"
           control={control}
           isRequired
           tips={
@@ -289,9 +305,12 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
               t={t}
               components={[
                 <TextLink
-                  key="go-to-login"
+                  key="go-to-huggingface"
                   onClick={() => {
-                    navigate("https://huggingface.co/settings/tokens")
+                    window.open(
+                      "https://huggingface.co/settings/tokens",
+                      "_blank",
+                    )
                   }}
                 />,
               ]}
