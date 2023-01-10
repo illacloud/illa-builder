@@ -66,6 +66,10 @@ export const Apis: ResourceDataItem[] = [
     resourceType: "smtp",
     isDraft: false,
   },
+  {
+    resourceType: "huggingface",
+    isDraft: false,
+  },
 ]
 
 export const ResourceTypeList = [

@@ -4,6 +4,7 @@ import { DataDogIcon } from "@/page/App/components/Icons/datadog"
 import { ElasticIcon } from "@/page/App/components/Icons/elastic"
 import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
 import { GraphQLIcon } from "@/page/App/components/Icons/graphql"
+import { HuggingFaceIcon } from "@/page/App/components/Icons/huggingface"
 import { MariaDbIcon } from "@/page/App/components/Icons/mariadb"
 import { MongoDbIcon } from "@/page/App/components/Icons/mongodb"
 import { MySqlIcon } from "@/page/App/components/Icons/mysql"
@@ -33,6 +34,8 @@ export function getIconFromResourceType(
       return <ElasticIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
+    case "huggingface":
+      return <HuggingFaceIcon size={size} />
     case "mariadb":
       return <MariaDbIcon size={size} />
     case "tidb":
@@ -70,6 +73,8 @@ export function getIconFromActionType(
       return <SupabaseIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
+    case "huggingface":
+      return <HuggingFaceIcon size={size} />
     case "transformer":
       return <TransformerIcon size={size} />
     case "mariadb":
