@@ -1,17 +1,13 @@
 import { FC, useCallback, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
   Divider,
-  Input,
   PaginationPreIcon,
-  Select,
   WarningCircleIcon,
-  getColor,
   useMessage,
 } from "@illa-design/react"
 import {
@@ -20,17 +16,12 @@ import {
 } from "@/page/App/components/Actions/ClickhouseConfigElement/style"
 import { HuggingFaceConfigElementProps } from "@/page/App/components/Actions/HuggingFaceConfigElement/interface"
 import {
-  applyConfigItemLabelText,
-  configItem,
-  configItemTip,
   container,
   divider,
   footerStyle,
-  labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/HuggingFaceConfigElement/style"
 import {
-  generateGraphQLAuthContent,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -47,9 +38,6 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
 ) => {
   const { onBack, onFinished, resourceId } = props
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const message = useMessage()
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -79,12 +67,29 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
         urlParams: data.urlParams,
         headers: data.headers,
         cookies: data.cookies,
-        token: data.token,
+        authentication: "bearer",
+        authContent: {
+          token: data.token,
+        },
       },
       "huggingface",
       setTestLoading,
     )
   }, [setTestLoading, getValues])
+
+  const handleURLClick = (link: string) => window.open(link, "_blank")
+
+  const getTransComponent = (key: string, link: string) => {
+    const handleLinKClick = () => handleURLClick(link)
+
+    return (
+      <Trans
+        i18nKey={key}
+        t={t}
+        components={[<TextLink key={key} onClick={handleLinKClick} />]}
+      />
+    )
+  }
 
   return (
     <form
@@ -154,21 +159,12 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
                   </>
                 </div>
               ) : (
-                <Trans
-                  i18nKey="editor.action.resource.db.tip.hugging_face_url"
-                  t={t}
-                  components={[
-                    <TextLink
-                      key="go-to-huggingface"
-                      onClick={() => {
-                        window.open(
-                          "https://huggingface.co/docs/api-inference/index",
-                          "_blank",
-                        )
-                      }}
-                    />,
-                  ]}
-                />
+                <>
+                  {getTransComponent(
+                    "editor.action.resource.db.tip.hugging_face_url",
+                    "https://huggingface.co/docs/api-inference/index",
+                  )}
+                </>
               )}
             </>
           }
@@ -300,21 +296,12 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
           control={control}
           isRequired
           tips={
-            <Trans
-              i18nKey="editor.action.resource.db.tip.bear_token"
-              t={t}
-              components={[
-                <TextLink
-                  key="go-to-huggingface"
-                  onClick={() => {
-                    window.open(
-                      "https://huggingface.co/settings/tokens",
-                      "_blank",
-                    )
-                  }}
-                />,
-              ]}
-            />
+            <>
+              {getTransComponent(
+                "editor.action.resource.db.tip.bear_token",
+                "https://huggingface.co/settings/tokens",
+              )}
+            </>
           }
         />
       </div>

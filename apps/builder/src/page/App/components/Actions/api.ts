@@ -181,7 +181,10 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         urlParams: data.urlParams,
         headers: data.headers,
         cookies: data.cookies,
-        token: data.token,
+        authentication: "bearer",
+        authContent: {
+          token: data.token,
+        },
       }
   }
 }
