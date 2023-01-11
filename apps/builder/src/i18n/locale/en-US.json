@@ -338,7 +338,8 @@
             "add_to": "Add to",
             "header_prefix": "Header prefix",
             "key": "Key",
-            "introspection": "Introspection"
+            "introspection": "Introspection",
+            "bear_token": "Bear Token"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -351,7 +352,8 @@
             "password": "Password",
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "Username",
-            "default": "default"
+            "default": "default",
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). "
           },
           "tip": {
             "connect_type": "Cloud: ILLA servers will securely connect to your database.",
@@ -359,7 +361,9 @@
             "private_key": "<0>Click here</0> to see how to obtain this key",
             "ssl_options": "SSL is used when available",
             "username_password": "Credentials will be encrypted & stored securely on our servers.",
-            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
+            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
+            "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>"
           },
           "title": {
             "advanced_option": "Advanced Options",
@@ -940,7 +944,8 @@
     "500": {
       "des": "Oops, something went wrong. Please try again later."
     },
-    "back": "Back to homepage"
+    "back": "Back to homepage",
+    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
   },
   "title": "Welcome to illa",
   "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
@@ -1190,5 +1195,7 @@
   },
   "frame_size": {
     "invalid_tips": "Please enter a value not less than {{ size }}."
-  }
+  },
+  "failed_to_copy": "Failed to copy",
+  "copied": "Copied!"
 }
