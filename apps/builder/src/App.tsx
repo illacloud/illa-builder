@@ -1,4 +1,4 @@
-import { Global, css } from "@emotion/react"
+import { Global } from "@emotion/react"
 import { useEffect } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
@@ -37,7 +37,7 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <GlobalDataProvider>
         <ConfigProvider locale={configLanguage}>
-          <Global styles={css(globalStyle)} />
+          <Global styles={globalStyle} />
           <MessageGroup pt={mode !== "production" ? "46px" : "0"} />
           <NotificationGroup pt={mode !== "production" ? "46px" : "0"} />
           <ModalGroup />

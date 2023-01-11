@@ -2,8 +2,8 @@ import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const wrapperStyle = css`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
