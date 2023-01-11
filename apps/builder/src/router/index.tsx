@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import { CheckIsLogin } from "@/auth"
+import { LayoutAutoChange } from "@/components/LayoutAutoChange"
 import { RoutesObjectPro } from "@/router/interface"
 import { routerConfig } from "@/router/routerConfig"
 
@@ -10,9 +11,13 @@ const wrappedRouter = (routesConfig: RoutesObjectPro[]) => {
       ...otherRouteProps,
     }
     if (needLogin) {
-      newRouteItem.element = <CheckIsLogin>{element}</CheckIsLogin>
+      newRouteItem.element = (
+        <LayoutAutoChange
+          desktopPage={<CheckIsLogin>{element}</CheckIsLogin>}
+        />
+      )
     } else {
-      newRouteItem.element = element
+      newRouteItem.element = <LayoutAutoChange desktopPage={element} />
     }
     if (Array.isArray(children) && children.length) {
       newRouteItem.children = wrappedRouter(children)
