@@ -34,6 +34,7 @@ import {
   LEFT_MIN_WIDTH,
   RIGHT_MIN_WIDTH,
 } from "@/page/App/components/DotPanel/renderSection"
+import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
 import {
   PageNavBarProps,
   PreviewPopContentProps,
@@ -381,6 +382,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         )}
         <PreviewButtonGroup />
       </div>
+      <CollaboratorsList />
       {mode === "edit" && (
         <div>
           <ButtonGroup spacing={"8px"}>

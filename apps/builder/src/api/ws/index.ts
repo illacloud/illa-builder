@@ -100,7 +100,17 @@ export class Connection {
     let ws = this.roomMap.get(type + roomId)
     if (ws != undefined) {
       ws.send(
-        getPayload(Signal.SIGNAL_LEAVE, Target.TARGET_NOTHING, false, null, []),
+        getPayload(
+          Signal.SIGNAL_LEAVE,
+          Target.TARGET_NOTHING,
+          false,
+          {
+            // 需要增加广播信息, 注意, 一定要设置, 否则不广播
+            type: "leave",
+            payload: [],
+          },
+          [],
+        ),
       )
       ws.close()
     }

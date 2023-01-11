@@ -54,6 +54,12 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         replace: true,
       })
     }
+    if (newType === "enter/remote") {
+      action.type = "collaborators/setInRoomUsers"
+    }
+    if (newType === "attachComponent/remote") {
+      action.type = "collaborators/setComponentAttachedUsers"
+    }
     return next(action)
   }
   const resp = next(action)
@@ -253,7 +259,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               )
             }
             break
-
           case "updateMultiComponentPropsReducer":
             const updateMultiPayload: UpdateComponentPropsPayload[] = payload
             const finalNodes = updateMultiPayload
@@ -278,7 +283,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               )
             }
             break
-
           case "deleteComponentNodeReducer":
             const deletePayload: DeleteComponentNodePayload = payload
             Connection.getRoom("app", currentAppID)?.send(
@@ -883,6 +887,37 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           }
         }
         break
+      case "collaborators":
+        switch (reduxAction) {
+          case "setComponentAttachedUsers":
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_COOPERATE_ATTACH,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type: "attachComponent/remote",
+                  payload: [],
+                },
+                payload,
+              ),
+            )
+            break
+          case "updateComponentAttachedUsers":
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_COOPERATE_DISATTACH,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type: "attachComponent/remote",
+                  payload: [],
+                },
+                payload,
+              ),
+            )
+            break
+        }
       default:
         break
     }
