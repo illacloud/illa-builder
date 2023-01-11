@@ -338,7 +338,8 @@
             "add_to": "Add to",
             "header_prefix": "Header prefix",
             "key": "Key",
-            "introspection": "Introspection"
+            "introspection": "Introspection",
+            "bear_token": "Bear Token"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -351,15 +352,18 @@
             "password": "비밀번호",
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "사용자 이름",
-            "default": "default"
+            "default": "default",
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). "
           },
           "tip": {
             "connect_type": "클라우드 서버: ILLA 서버가 데이터베이스에 안전하게 연결됩니다.",
             "name": "ILLA에서 이 자원의 이름을 지정하십시오.",
-            "private_key": "Click here to see how to obtain this key",
+            "private_key": "<0>Click here</0> to see how to obtain this key",
             "ssl_options": "가능한 경우 SSL 사용",
             "username_password": "자격 증명은 암호화되어 서버에 안전하게 저장됩니다.",
-            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work."
+            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
+            "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>"
           },
           "title": {
             "advanced_option": "고급 구성",
@@ -940,7 +944,8 @@
     "500": {
       "des": "요청에 실패했습니다. 나중에 다시 시도하십시오."
     },
-    "back": "홈페이지로 돌아 가기"
+    "back": "홈페이지로 돌아 가기",
+    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
   },
   "title": "엘라 클라우드에 오신 것을 환영합니다",
   "unfreeze_tips": "캔버스를 고정한 후 구성 요소를 컨테이너 안팎으로 드래그할 수 있습니다. (디 또는 케이)",
@@ -1190,5 +1195,7 @@
   },
   "frame_size": {
     "invalid_tips": "Please enter a value not less than {{ size }}."
-  }
+  },
+  "failed_to_copy": "복사 실패",
+  "copied": "복사됨!"
 }
