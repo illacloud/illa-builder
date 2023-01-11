@@ -944,7 +944,8 @@
     "500": {
       "des": "リクエストに失敗しました。しばらくしてからもう一度お試しください。"
     },
-    "back": "ホームページに戻ります"
+    "back": "ホームページに戻ります",
+    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
   },
   "title": "エラ クラウドへようこそ",
   "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
