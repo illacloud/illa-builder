@@ -10,12 +10,12 @@ import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
-  BodyType,
   HuggingFaceAction,
   HuggingFaceBodyContent,
 } from "@/redux/currentApp/action/huggingFaceAction"
 import {
   BodyContent,
+  BodyType,
   RawBody,
   RawBodyContent,
   RawBodyInitial,
@@ -34,7 +34,6 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const { t } = useTranslation()
 
   const actionItem = props.actionItem
-  const isHuggingFace = props.actionItem.actionType === "huggingface"
   const bodyType = actionItem.content.bodyType
   const body = actionItem.content.body
 
