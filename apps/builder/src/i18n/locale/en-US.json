@@ -944,7 +944,8 @@
     "500": {
       "des": "Oops, something went wrong. Please try again later."
     },
-    "back": "Back to homepage"
+    "back": "Back to homepage",
+    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
   },
   "title": "Welcome to illa",
   "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
