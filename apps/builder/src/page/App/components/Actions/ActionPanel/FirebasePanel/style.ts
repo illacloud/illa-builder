@@ -3,7 +3,7 @@ import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const actionContainerStyle = css`
   display: flex;
-  flex-direction: column;017
+  flex-direction: column;
 `
 export const actionItemStyle = css`
   display: flex;
