@@ -45,3 +45,11 @@ export const recordEditorLabelStyle = css`
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
+
+export const deleteIconStyle = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    animation: color 200ms ease-in-out;
+  }
+`

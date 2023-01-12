@@ -12,6 +12,7 @@ import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/Rec
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   applyRecordEditorContainerStyle,
+  deleteIconStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
   recordKeyStyle,
@@ -49,11 +50,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   onClick={() => {
                     onDelete(index, record, name)
                   }}
-                  leftIcon={
-                    <DeleteIcon
-                      color={globalColor(`--${illaPrefix}-grayBlue-08`)}
-                    />
-                  }
+                  leftIcon={<DeleteIcon css={deleteIconStyle} />}
                 />
               </div>
             )
@@ -92,11 +89,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 onClick={() => {
                   onDelete(index, record, name)
                 }}
-                leftIcon={
-                  <DeleteIcon
-                    color={globalColor(`--${illaPrefix}-grayBlue-08`)}
-                  />
-                }
+                leftIcon={<DeleteIcon css={deleteIconStyle} />}
               />
             </div>
           )

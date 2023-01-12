@@ -19,6 +19,7 @@ import {
   BodyType,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
+import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
 import { Resource } from "@/redux/resource/resourceState"
 import {
   Params,
@@ -67,7 +68,6 @@ export const RestApiPanel: FC = () => {
             value={content.method}
             width="160px"
             maxW="160px"
-            disabled={isHuggingFace}
             options={
               isHuggingFace
                 ? ["POST"]
@@ -86,7 +86,7 @@ export const RestApiPanel: FC = () => {
                   newBody = selectedAction.content.body
                 }
               }
-
+              console.log({ newBody, newBodyType })
               dispatch(
                 configActions.updateCachedAction({
                   ...cachedAction,
@@ -107,8 +107,11 @@ export const RestApiPanel: FC = () => {
             bdRadius="8px 0 0 8px"
             value={
               currentResource?.content
-                ? (currentResource as Resource<RestApiResource<RestApiAuth>>)
-                    .content.baseUrl
+                ? isHuggingFace
+                  ? (currentResource as Resource<HuggingFaceResource>).content
+                      .baseURL
+                  : (currentResource as Resource<RestApiResource<RestApiAuth>>)
+                      .content.baseUrl
                 : ""
             }
             ml="8px"
