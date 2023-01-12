@@ -69,6 +69,7 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
 
   return (
     <form
+      autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,

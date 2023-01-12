@@ -33,7 +33,6 @@ import {
   restapiItemLabelStyle,
   restapiItemStyle,
   restapiPanelContainerStyle,
-  topDivider,
 } from "./style"
 
 export const RestApiPanel: FC = () => {
