@@ -6,5 +6,9 @@ export const mysqlContainerStyle = css`
 `
 
 export const sqlInputStyle = css`
-  margin: 16px 16px 8px 16px;
+  margin: 8px 16px;
+`
+
+export const actionItemContainer = css`
+  padding: 8px 0;
 `

@@ -32,6 +32,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "TiDB"
       case "smtp":
         return "SMTP"
+      case "huggingface":
+        return "Hugging Face"
       case "firebase":
         return "Firebase"
       case "clickhouse":
@@ -75,6 +77,8 @@ export function getResourceNameFromResourceType(
         return "TiDB"
       case "smtp":
         return "SMTP"
+      case "huggingface":
+        return "Hugging Face"
       case "s3":
         return "Amazon S3"
       case "firebase":

@@ -21,7 +21,6 @@ import {
   container,
   divider,
   footerStyle,
-  optionLabelStyle,
 } from "@/page/App/components/Actions/GraphQLConfigElement/style"
 import {
   generateGraphQLAuthContent,
@@ -29,6 +28,7 @@ import {
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
+import { optionLabelStyle } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import {
@@ -175,16 +175,14 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
             t("editor.action.resource.restapi.placeholder.base_url"),
           ]}
           tips={
-            <>
-              {formState.errors.baseUrl && (
-                <div css={errorMsgStyle}>
-                  <>
-                    <WarningCircleIcon css={errorIconStyle} />
-                    {formState.errors.baseUrl.message}
-                  </>
-                </div>
-              )}
-            </>
+            formState.errors.baseUrl ? (
+              <div css={errorMsgStyle}>
+                <>
+                  <WarningCircleIcon css={errorIconStyle} />
+                  {formState.errors.baseUrl.message}
+                </>
+              </div>
+            ) : null
           }
         />
         {InputRecord.map(({ name, title, defaultValue }) => (

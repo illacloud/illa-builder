@@ -6,7 +6,10 @@ import { Api } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { sqlInputStyle } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
-import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
+import {
+  actionItemContainer,
+  redisContainerStyle,
+} from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { getCachedAction } from "@/redux/config/configSelector"
@@ -64,27 +67,30 @@ export const RedisPanel: FC = () => {
   return (
     <div css={redisContainerStyle}>
       <ResourceChoose />
-      <CodeEditor
-        placeholder="SET runoobkey redis"
-        lineNumbers={true}
-        css={sqlInputStyle}
-        value={currentContent.query}
-        mode="TEXT_JS"
-        expectedType={VALIDATION_TYPES.STRING}
-        tables={sqlTable}
-        onChange={(value) => {
-          dispatch(
-            configActions.updateCachedAction({
-              ...action,
-              content: {
-                ...currentContent,
-                query: value,
-              },
-            }),
-          )
-        }}
-      />
-      <TransformerComponent />
+      <div css={actionItemContainer}>
+        <CodeEditor
+          placeholder="SET runoobkey redis"
+          lineNumbers={true}
+          css={sqlInputStyle}
+          value={currentContent.query}
+          mode="TEXT_JS"
+          expectedType={VALIDATION_TYPES.STRING}
+          tables={sqlTable}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...action,
+                content: {
+                  ...currentContent,
+                  query: value,
+                },
+              }),
+            )
+          }}
+        />
+        <TransformerComponent mysqlLike={true} />
+      </div>
+
       <ActionEventHandler />
     </div>
   )

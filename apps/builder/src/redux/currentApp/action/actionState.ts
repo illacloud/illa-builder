@@ -3,6 +3,10 @@ import {
   FirebaseContentType,
 } from "@/redux/currentApp/action/firebaseAction"
 import { GraphQLAction } from "@/redux/currentApp/action/graphqlAction"
+import {
+  HuggingFaceAction,
+  HuggingFaceBodyContent,
+} from "@/redux/currentApp/action/huggingFaceAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { MysqlLikeAction } from "./mysqlLikeAction"
@@ -44,6 +48,7 @@ export interface Events {
 }
 
 export type ActionType =
+  | "huggingface"
   | "firebase"
   | "supabasedb"
   | "clickhouse"
@@ -78,6 +83,7 @@ export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
 }
 
 export type ActionContent =
+  | HuggingFaceAction<HuggingFaceBodyContent>
   | FirebaseAction<FirebaseContentType>
   | SMPTAction
   | S3Action<S3ActionTypeContent>
