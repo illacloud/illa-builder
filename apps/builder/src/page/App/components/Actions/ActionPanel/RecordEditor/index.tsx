@@ -12,6 +12,7 @@ import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/Rec
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   applyRecordEditorContainerStyle,
+  deleteButtonStyle,
   deleteIconStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
@@ -43,6 +44,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
               <div css={recordStyle} key={index}>
                 {customRender(record, index)}
                 <Button
+                  css={deleteButtonStyle}
                   ml="-1px"
                   variant="outline"
                   bdRadius="0 8px 8px 0"
@@ -82,6 +84,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 }}
               />
               <Button
+                css={deleteButtonStyle}
                 ml="-1px"
                 variant="outline"
                 bdRadius="0 8px 8px 0"

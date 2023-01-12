@@ -11,6 +11,7 @@ import {
 import { InputRecordEditorProps } from "./interface"
 import {
   applyRecordEditorContainerStyle,
+  deleteButtonStyle,
   deleteIconStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
@@ -47,6 +48,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
                   onClick={() => {
                     onDelete(index, record)
                   }}
+                  css={deleteButtonStyle}
                   leftIcon={<DeleteIcon css={deleteIconStyle} />}
                 />
               </div>
@@ -85,6 +87,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
                 onClick={() => {
                   onDelete(index, record)
                 }}
+                css={deleteButtonStyle}
                 leftIcon={<DeleteIcon css={deleteIconStyle} />}
               />
             </div>

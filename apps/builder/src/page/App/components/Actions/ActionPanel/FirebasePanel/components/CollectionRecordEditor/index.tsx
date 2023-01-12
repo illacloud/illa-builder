@@ -79,6 +79,8 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                   defaultValue={record.condition}
                   value={record.condition}
                   width="100%"
+                  ml="-0.5px"
+                  mr="-0.5px"
                   bdRadius="0"
                   onChange={(val: string) =>
                     handleChange(
