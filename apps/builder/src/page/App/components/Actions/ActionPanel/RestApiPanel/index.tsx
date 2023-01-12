@@ -86,7 +86,6 @@ export const RestApiPanel: FC = () => {
                   newBody = selectedAction.content.body
                 }
               }
-              console.log({ newBody, newBodyType })
               dispatch(
                 configActions.updateCachedAction({
                   ...cachedAction,
