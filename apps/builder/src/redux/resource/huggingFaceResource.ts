@@ -4,8 +4,11 @@ export interface Params {
 }
 
 export interface HuggingFaceResource {
-  baseUrl: string
-  token: string
+  baseURL: string
+  authContent: {
+    token: string
+  }
+  authentication: string
   urlParams: Params[]
   headers: Params[]
   cookies: Params[]

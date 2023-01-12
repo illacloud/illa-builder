@@ -177,7 +177,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "huggingface":
       return {
-        baseUrl: data.baseUrl,
+        baseURL: data.baseURL,
         urlParams: data.urlParams,
         headers: data.headers,
         cookies: data.cookies,

@@ -57,12 +57,3 @@ export const configItemTip = css`
   margin-left: 192px;
   color: ${getColor("grayBlue", "04")};
 `
-
-export const optionLabelStyle = css`
-  height: 38px;
-  display: flex;
-  font-size: 14px;
-  color: ${getColor("grayBlue", "04")};
-  align-items: center;
-  padding-left: 24px;
-`

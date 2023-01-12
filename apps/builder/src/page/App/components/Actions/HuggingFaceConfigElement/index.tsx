@@ -8,7 +8,6 @@ import {
   Divider,
   PaginationPreIcon,
   WarningCircleIcon,
-  useMessage,
 } from "@illa-design/react"
 import {
   errorIconStyle,
@@ -19,12 +18,9 @@ import {
   container,
   divider,
   footerStyle,
-  optionLabelStyle,
 } from "@/page/App/components/Actions/HuggingFaceConfigElement/style"
-import {
-  onActionConfigElementSubmit,
-  onActionConfigElementTest,
-} from "@/page/App/components/Actions/api"
+import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
+import { optionLabelStyle } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { TextLink } from "@/page/User/components/TextLink"
@@ -39,7 +35,7 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
   const { onBack, onFinished, resourceId } = props
   const { t } = useTranslation()
 
-  const { control, handleSubmit, getValues, formState } = useForm({
+  const { control, handleSubmit, formState } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
@@ -50,32 +46,12 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
   })
 
   const [saving, setSaving] = useState(false)
-  const [testLoading, setTestLoading] = useState(false)
 
   const handleURLValidate = useCallback(
     (value: string) =>
       isURL(value) ? true : t("editor.action.resource.error.invalid_url"),
     [t],
   )
-
-  const handleConnectionTest = useCallback(() => {
-    const data = getValues()
-    onActionConfigElementTest(
-      data,
-      {
-        baseUrl: data.baseUrl,
-        urlParams: data.urlParams,
-        headers: data.headers,
-        cookies: data.cookies,
-        authentication: "bearer",
-        authContent: {
-          token: data.token,
-        },
-      },
-      "huggingface",
-      setTestLoading,
-    )
-  }, [setTestLoading, getValues])
 
   const handleURLClick = (link: string) => window.open(link, "_blank")
 
@@ -136,7 +112,7 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
           title={t("editor.action.resource.restapi.label.base_url")}
           control={control}
           defaultValue={
-            resource?.content.baseUrl ??
+            resource?.content.baseURL ??
             "https://api-inference.huggingface.co/models/"
           }
           rules={[
@@ -148,14 +124,14 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
           placeholders={[
             t("editor.action.resource.db.placeholder.hugging_face_url"),
           ]}
-          name="baseUrl"
+          name="baseURL"
           tips={
             <>
-              {formState.errors.baseUrl ? (
+              {formState.errors.baseURL ? (
                 <div css={errorMsgStyle}>
                   <>
                     <WarningCircleIcon css={errorIconStyle} />
-                    {formState.errors.baseUrl.message}
+                    {formState.errors.baseURL.message}
                   </>
                 </div>
               ) : (
@@ -290,7 +266,7 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
 
         <ControlledElement
           title={t("editor.action.resource.db.label.bear_token")}
-          defaultValue={resource?.content.token ?? ""}
+          defaultValue={resource?.content.authContent.token ?? ""}
           name="token"
           controlledType="password"
           control={control}
@@ -316,15 +292,6 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
           {t("back")}
         </Button>
         <ButtonGroup spacing="8px">
-          <Button
-            colorScheme="gray"
-            loading={testLoading}
-            disabled={!formState.isValid}
-            type="button"
-            onClick={handleConnectionTest}
-          >
-            {t("editor.action.form.btn.test_connection")}
-          </Button>
           <Button
             colorScheme="techPurple"
             value="creating"
