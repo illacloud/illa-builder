@@ -66,10 +66,10 @@ export const Apis: ActionDataItem[] = [
     actionType: "smtp",
     isDraft: false,
   },
-  {
-    actionType: "huggingface",
-    isDraft: false,
-  },
+  // {
+  //   actionType: "huggingface",
+  //   isDraft: false,
+  // },
 ]
 
 export const JsTransformer: ActionDataItem[] = [
