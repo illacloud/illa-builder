@@ -6,6 +6,7 @@ export function applyRecordEditorContainerStyle(label: string) {
     display: flex;
     padding-right: ${label !== "" ? "24px" : "0"};
     flex-direction: row;
+    padding-left: 24px;
   `
 }
 export const recordEditorStyle = css`
@@ -33,4 +34,16 @@ export const recordEditorLabelStyle = css`
   font-size: 14px;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
+
+export const deleteButtonStyle = css`
+  flex-shrink: 0;
+`
+
+export const deleteIconStyle = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    transition: color 200ms ease-in-out;
+  }
 `

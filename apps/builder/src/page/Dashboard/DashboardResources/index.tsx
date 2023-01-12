@@ -48,6 +48,7 @@ export const DashboardResources: FC = () => {
         case "restapi":
         case "elasticsearch":
         case "s3":
+        case "huggingface":
           break
         case "clickhouse":
         case "supabasedb":

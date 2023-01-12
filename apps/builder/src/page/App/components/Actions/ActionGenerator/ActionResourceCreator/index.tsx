@@ -4,6 +4,7 @@ import { ClickhouseConfigElement } from "@/page/App/components/Actions/Clickhous
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
 import { GraphQLConfigElement } from "@/page/App/components/Actions/GraphQLConfigElement"
+import { HuggingFaceConfigElement } from "@/page/App/components/Actions/HuggingFaceConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
@@ -78,6 +79,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         )
       case "smtp":
         return <SMTPConfigElement onBack={handleBack} onFinished={onFinished} />
+      case "huggingface":
+        return <HuggingFaceConfigElement {...generalProps} />
       default:
         return null
     }

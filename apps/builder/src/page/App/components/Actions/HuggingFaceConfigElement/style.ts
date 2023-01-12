@@ -29,23 +29,8 @@ export const configItem = css`
   flex-direction: row;
 `
 
-export const sslItem = css`
-  display: flex;
-  width: 100%;
-  padding-left: 24px;
-  flex-direction: row;
-`
-
 export const divider = css`
   height: 16px;
-`
-
-export const hostInputContainer = css`
-  display: flex;
-  margin-left: 16px;
-  margin-right: 24px;
-  flex-direction: row;
-  width: 100%;
 `
 
 export function applyConfigItemLabelText(
@@ -68,28 +53,7 @@ export function applyConfigItemLabelText(
 
 export const configItemTip = css`
   font-size: 14px;
+  padding-bottom: 6px;
   margin-left: 192px;
-  margin-bottom: 6px;
   color: ${getColor("grayBlue", "04")};
-`
-
-export const connectTypeStyle = css`
-  font-size: 14px;
-  color: ${getColor("grayBlue", "02")};
-  margin-left: 16px;
-`
-
-export const sslStyle = css`
-  font-size: 14px;
-  color: ${getColor("grayBlue", "02")};
-  margin-left: 8px;
-`
-
-export const optionLabelStyle = css`
-  height: 38px;
-  display: flex;
-  font-size: 14px;
-  color: ${getColor("grayBlue", "04")};
-  align-items: center;
-  padding-left: 24px;
 `

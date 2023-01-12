@@ -12,21 +12,23 @@ import {
 } from "@illa-design/react"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
-  connectTypeStyle,
   container,
   divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
-  labelContainer,
-  optionLabelStyle,
 } from "@/page/App/components/Actions/ClickhouseConfigElement/style"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import {
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
@@ -163,16 +165,14 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             },
           ]}
           tips={
-            <>
-              {formState.errors.host && (
-                <div css={errorMsgStyle}>
-                  <>
-                    <WarningCircleIcon css={errorIconStyle} />
-                    {formState.errors.host.message}
-                  </>
-                </div>
-              )}
-            </>
+            formState.errors.host ? (
+              <div css={errorMsgStyle}>
+                <>
+                  <WarningCircleIcon css={errorIconStyle} />
+                  {formState.errors.host.message}
+                </>
+              </div>
+            ) : null
           }
         />
         <ControlledElement
@@ -216,7 +216,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             <div css={configItemTip}>
               {t("editor.action.resource.db.tip.username_password")}
             </div>
-            <div css={configItem}>
+            <div css={connectType}>
               <div css={labelContainer}>
                 <span
                   css={applyConfigItemLabelText(getColor("grayBlue", "02"))}

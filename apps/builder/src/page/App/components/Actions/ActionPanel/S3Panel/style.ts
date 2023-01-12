@@ -34,6 +34,7 @@ export const s3ItemCodeEditorStyle = css`
 
 export const codeEditorLabelStyle = css`
   min-width: 160px;
+  width: 160px;
   font-size: 14px;
   font-weight: 500;
   text-align: right;
@@ -44,4 +45,8 @@ export const codeEditorLabelStyle = css`
   justify-content: end;
   align-items: center;
   align-self: start;
+`
+
+export const actionItemContainer = css`
+  padding: 8px 0;
 `
