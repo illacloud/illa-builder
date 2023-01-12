@@ -28,6 +28,7 @@ import {
   bodyEditorContainerStyle,
   bodyLabelStyle,
   bodySelectorStyle,
+  codeEditorStyle,
 } from "./style"
 
 export const BodyEditor: FC<BodyEditorProps> = (props) => {
@@ -151,27 +152,29 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
           )}
         </div>
         {bodyType === "raw" && (
-          <CodeEditor
-            lineNumbers
-            mode={mode}
-            value={(body as RawBody<RawBodyContent>).content}
-            expectedType={VALIDATION_TYPES.STRING}
-            height="88px"
-            onChange={(value) => {
-              dispatch(
-                configActions.updateCachedAction({
-                  ...actionItem,
-                  content: {
-                    ...actionItem.content,
-                    body: {
-                      ...(body as RawBody<RawBodyContent>),
-                      content: value,
+          <div css={codeEditorStyle}>
+            <CodeEditor
+              lineNumbers
+              mode={mode}
+              value={(body as RawBody<RawBodyContent>).content}
+              expectedType={VALIDATION_TYPES.STRING}
+              height="88px"
+              onChange={(value) => {
+                dispatch(
+                  configActions.updateCachedAction({
+                    ...actionItem,
+                    content: {
+                      ...actionItem.content,
+                      body: {
+                        ...(body as RawBody<RawBodyContent>),
+                        content: value,
+                      },
                     },
-                  },
-                }),
-              )
-            }}
-          />
+                  }),
+                )
+              }}
+            />
+          </div>
         )}
         {(bodyType === "form-data" || bodyType === "x-www-form-urlencoded") && (
           <RecordEditor
@@ -234,24 +237,26 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
           />
         )}
         {bodyType === "binary" && (
-          <CodeEditor
-            mode="TEXT_JS"
-            lineNumbers
-            value={(body as string) ?? ""}
-            expectedType={VALIDATION_TYPES.STRING}
-            height="88px"
-            onChange={(value) => {
-              dispatch(
-                configActions.updateCachedAction({
-                  ...actionItem,
-                  content: {
-                    ...actionItem.content,
-                    body: value,
-                  },
-                }),
-              )
-            }}
-          />
+          <div css={codeEditorStyle}>
+            <CodeEditor
+              mode="TEXT_JS"
+              lineNumbers
+              value={(body as string) ?? ""}
+              expectedType={VALIDATION_TYPES.STRING}
+              height="88px"
+              onChange={(value) => {
+                dispatch(
+                  configActions.updateCachedAction({
+                    ...actionItem,
+                    content: {
+                      ...actionItem.content,
+                      body: value,
+                    },
+                  }),
+                )
+              }}
+            />
+          </div>
         )}
       </div>
     </div>
