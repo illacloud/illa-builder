@@ -2,11 +2,11 @@ import { FC } from "react"
 import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Input, Password, getColor } from "@illa-design/react"
+import { applyConfigItemLabelText } from "@/page/App/components/Actions/RestApiConfigElement/style"
 import {
-  applyConfigItemLabelText,
   configItem,
   labelContainer,
-} from "@/page/App/components/Actions/RestApiConfigElement/style"
+} from "@/page/App/components/Actions/styles"
 import { BasicAuthPanelProps } from "./interface"
 
 export const BasicAuthPanel: FC<BasicAuthPanelProps> = (props) => {

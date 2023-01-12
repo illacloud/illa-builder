@@ -18,3 +18,7 @@ export const actionContentStyle = css`
   display: flex;
   flex-direction: column;
 `
+
+export const actionItemDivider = css`
+  height: 8px;
+`

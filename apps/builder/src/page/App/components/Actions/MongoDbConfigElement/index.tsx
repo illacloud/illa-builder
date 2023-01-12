@@ -18,6 +18,12 @@ import { Api } from "@/api/base"
 import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
 import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
 import {
+  configItem,
+  configItemTip,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
+import {
   MongoDbConfig,
   MongoDbResource,
   MongoDbResourceInitial,
@@ -30,13 +36,9 @@ import { sslStyle } from "../MysqlLikeConfigElement/style"
 import { MongoDbConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
   container,
   divider,
   footerStyle,
-  labelContainer,
-  optionLabelStyle,
   sslItem,
 } from "./style"
 

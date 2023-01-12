@@ -6,6 +6,7 @@ export function applyRecordEditorContainerStyle(label: string) {
     display: flex;
     padding-right: ${label !== "" ? "24px" : "0"};
     flex-direction: row;
+    padding-left: 24px;
   `
 }
 export const recordEditorStyle = css`

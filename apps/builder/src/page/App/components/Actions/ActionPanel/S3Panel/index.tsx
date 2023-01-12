@@ -31,7 +31,12 @@ import { ListAllPart } from "./ListAllPart"
 import { ReadOnePart } from "./ReadOnePart"
 import { UploadMultiplePart } from "./UploadMultiplePart"
 import { UploadPart } from "./UploadPart"
-import { s3ContainerStyle, s3ItemLabelStyle, s3ItemStyle } from "./style"
+import {
+  actionItemContainer,
+  s3ContainerStyle,
+  s3ItemLabelStyle,
+  s3ItemStyle,
+} from "./style"
 
 export const S3Panel: FC = () => {
   const { t } = useTranslation()
@@ -113,23 +118,25 @@ export const S3Panel: FC = () => {
   return (
     <div css={s3ContainerStyle}>
       <ResourceChoose />
-      <div css={s3ItemStyle}>
-        <span css={s3ItemLabelStyle}>
-          {t("editor.action.panel.s3.action_type")}
-        </span>
-        <Select
-          colorScheme="techPurple"
-          showSearch={true}
-          defaultValue={content.commands}
-          value={content.commands}
-          ml="16px"
-          width="100%"
-          onChange={handleActionChange}
-          options={S3ActionList}
-        />
+      <div css={actionItemContainer}>
+        <div css={s3ItemStyle}>
+          <span css={s3ItemLabelStyle}>
+            {t("editor.action.panel.s3.action_type")}
+          </span>
+          <Select
+            colorScheme="techPurple"
+            showSearch={true}
+            defaultValue={content.commands}
+            value={content.commands}
+            ml="16px"
+            width="100%"
+            onChange={handleActionChange}
+            options={S3ActionList}
+          />
+        </div>
+        {renderInputBody}
+        <TransformerComponent />
       </div>
-      {renderInputBody}
-      <TransformerComponent />
       <ActionEventHandler />
     </div>
   )

@@ -20,6 +20,15 @@ import {
 } from "@/page/App/components/Actions/api"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
+  configItem,
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
+import { TextLink } from "@/page/User/components/TextLink"
+import {
   FirebaseResource,
   FirebaseResourceInitial,
 } from "@/redux/resource/firebaseResource"
@@ -29,16 +38,11 @@ import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { FirebaseConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
-  connectTypeStyle,
   container,
   divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
-  labelContainer,
-  optionLabelStyle,
   privateKeyItem,
 } from "./style"
 
@@ -178,16 +182,16 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
             name="databaseUrl"
           />
         </div>
-        <div css={configItemTip}>
-          {formState.errors.databaseUrl && (
+        {formState.errors.databaseUrl && (
+          <div css={configItemTip}>
             <div css={errorMsgStyle}>
               <>
                 <WarningCircleIcon css={errorIconStyle} />
                 {formState.errors.databaseUrl.message}
               </>
             </div>
-          )}
-        </div>
+          </div>
+        )}
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
@@ -244,8 +248,16 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
             }
             render={({ field: { value, onChange, onBlur } }) => (
               <TextArea
+                style={{
+                  overflow: "scroll",
+                  minHeight: "240px",
+                }}
+                borderColor="techPurple"
+                overflow="scroll"
+                w="100%"
                 ml="16px"
                 mr="24px"
+                mb="8px"
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
@@ -276,20 +288,16 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
           />
         </div>
         {isCloudVersion && (
-          <>
-            <div css={configItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
-                >
-                  {t("editor.action.resource.db.label.connect_type")}
-                </span>
-              </div>
-              <span css={connectTypeStyle}>
-                {t("editor.action.resource.db.tip.connect_type")}
+          <div css={connectType}>
+            <div css={labelContainer}>
+              <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
+                {t("editor.action.resource.db.label.connect_type")}
               </span>
             </div>
-          </>
+            <span css={connectTypeStyle}>
+              {t("editor.action.resource.db.tip.connect_type")}
+            </span>
+          </div>
         )}
       </div>
       <div css={footerStyle}>
