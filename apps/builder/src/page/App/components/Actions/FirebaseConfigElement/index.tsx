@@ -18,7 +18,6 @@ import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
-import { TextLink } from "@/page/User/components/TextLink"
 import {
   configItem,
   configItemTip,
