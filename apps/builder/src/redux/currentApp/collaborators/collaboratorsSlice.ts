@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
-  setComponentAttachedUsers,
+  clearComponentAttachedUsers,
   setInRoomUsers,
   updateComponentAttachedUsers,
 } from "@/redux/currentApp/collaborators/collaboratorsReducer"
@@ -11,7 +11,7 @@ const collaboratorsSlice = createSlice({
   initialState: CollaboratorsInitialState,
   reducers: {
     setInRoomUsers,
-    setComponentAttachedUsers,
+    clearComponentAttachedUsers,
     updateComponentAttachedUsers,
   },
 })

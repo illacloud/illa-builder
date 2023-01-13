@@ -1,5 +1,6 @@
 import { FC, useState } from "react"
 import { useSelector } from "react-redux"
+import { Trigger } from "@illa-design/react"
 import { UserListItem } from "@/page/App/components/PageNavBar/CollaboratorsList/ListItem"
 import {
   avatarContainerStyle,
@@ -18,16 +19,8 @@ export const CollaboratorsList: FC = () => {
     ...currentCollaborator,
     ...currentCollaborator,
     ...currentCollaborator,
-    ...currentCollaborator,
-    ...currentCollaborator,
-    ...currentCollaborator,
-    ...currentCollaborator,
   ]
   const usersLength = currentCollaborators.length
-
-  const handleUserInfoListShow = () => {
-    setMouseOver((show) => !show)
-  }
 
   const getRenderDOM = (dataList: CollaboratorsInfo[], type?: string) => (
     <>
@@ -54,14 +47,24 @@ export const CollaboratorsList: FC = () => {
   return (
     <div css={avatarContainerStyle}>
       {getRenderDOM(currentCollaborators.slice(0, 3))}
-      <div css={moreIconStyle} onClick={handleUserInfoListShow}>
-        <span>{usersLength - 3 <= 99 ? `+${usersLength - 3}` : "99+"}</span>
-      </div>
-      {mouseOver && (
-        <div css={userInfoListContainerStyle}>
-          {getRenderDOM(currentCollaborators, "list")}
+      <Trigger
+        trigger="hover"
+        popupVisible={mouseOver}
+        onVisibleChange={setMouseOver}
+        content={
+          <div css={userInfoListContainerStyle}>
+            {getRenderDOM(currentCollaborators, "list")}
+          </div>
+        }
+        position="bottom-end"
+        showArrow={false}
+        withoutPadding
+        colorScheme="white"
+      >
+        <div css={moreIconStyle}>
+          <span>{usersLength - 3 <= 99 ? `+${usersLength - 3}` : "99+"}</span>
         </div>
-      )}
+      </Trigger>
     </div>
   )
 }

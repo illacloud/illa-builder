@@ -3,6 +3,11 @@ import { cloneDeep } from "lodash"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  clearComponentAttachedUsersHandler,
+  getDisattachedComponents,
+  updateSelectedComponentUsersHandler,
+} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import {
   getCanvas,
   getCurrentPageBodySectionComponentsSelector,
   getCurrentPageFooterSectionComponentsSelector,
@@ -71,6 +76,7 @@ function handleUpdateComponentDisplayNameEffect(
   const { newDisplayName } = action.payload
   const rootState = listenApi.getState()
   const rootNode = getCanvas(rootState)
+  const componentsAttachedUsers = rootState.currentApp.collaborators.components
   const newComponent = searchDsl(rootNode, newDisplayName)
   if (
     newComponent &&
@@ -79,6 +85,15 @@ function handleUpdateComponentDisplayNameEffect(
     listenApi.dispatch(
       configActions.updateSelectedComponent([newComponent.displayName]),
     )
+
+    updateSelectedComponentUsersHandler([newComponent.displayName])
+    const disattachedComponents = getDisattachedComponents(
+      componentsAttachedUsers,
+      [newComponent.displayName],
+    )
+    if (!!disattachedComponents.length) {
+      clearComponentAttachedUsersHandler(disattachedComponents)
+    }
   }
 }
 

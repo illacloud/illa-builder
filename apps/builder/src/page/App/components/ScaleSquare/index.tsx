@@ -40,6 +40,13 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import {
+  clearComponentAttachedUsersHandler,
+  getDisattachedComponents,
+  updateSelectedComponentUsersHandler,
+} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
+import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -99,6 +106,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const dispatch = useDispatch()
 
   const isShowCanvasDot = useSelector(isShowDot)
+  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
   const illaMode = useSelector(getIllaMode)
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
@@ -175,16 +183,49 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         )
         if (index !== -1) {
           currentSelectedDisplayName.splice(index, 1)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
         } else {
           currentSelectedDisplayName.push(componentNode.displayName)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
+        }
+        dispatch(
+          configActions.updateSelectedComponent(currentSelectedDisplayName),
+        )
+        // dispatch(
+        //   collaboratorsActions.updateComponentAttachedUsers(
+        //     currentSelectedDisplayName,
+        //   ),
+        // )
+        updateSelectedComponentUsersHandler(currentSelectedDisplayName)
+        const disattachedComponents = getDisattachedComponents(
+          componentsAttachedUsers,
+          currentSelectedDisplayName,
+        )
+        if (!!disattachedComponents.length) {
+          // dispatch(
+          //   collaboratorsActions.clearComponentAttachedUsers(
+          //     disattachedComponents,
+          //   ),
+          // )
+          clearComponentAttachedUsersHandler(disattachedComponents)
         }
         return
+      }
+      // dispatch(
+      //   collaboratorsActions.updateComponentAttachedUsers([
+      //     componentNode.displayName,
+      //   ]),
+      // )
+      updateSelectedComponentUsersHandler([componentNode.displayName])
+      const disattachedComponents = getDisattachedComponents(
+        componentsAttachedUsers,
+        [componentNode.displayName],
+      )
+      if (!!disattachedComponents.length) {
+        // dispatch(
+        //   collaboratorsActions.clearComponentAttachedUsers(
+        //     disattachedComponents,
+        //   ),
+        // )
+        clearComponentAttachedUsersHandler(disattachedComponents)
       }
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
@@ -440,6 +481,24 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
+      // dispatch(
+      //   collaboratorsActions.updateComponentAttachedUsers([
+      //     componentNode.displayName,
+      //   ]),
+      // )
+      updateSelectedComponentUsersHandler([componentNode.displayName])
+      const disattachedComponents = getDisattachedComponents(
+        componentsAttachedUsers,
+        [componentNode.displayName],
+      )
+      if (!!disattachedComponents.length) {
+        // dispatch(
+        //   collaboratorsActions.clearComponentAttachedUsers(
+        //     disattachedComponents,
+        //   ),
+        // )
+        clearComponentAttachedUsersHandler(disattachedComponents)
+      }
     },
     [componentNode.displayName, dispatch],
   )
@@ -622,6 +681,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   const illaMode = useSelector(getIllaMode)
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
+  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
 
   const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
 
@@ -662,20 +722,53 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         )
         if (index !== -1) {
           currentSelectedDisplayName.splice(index, 1)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
         } else {
           currentSelectedDisplayName.push(componentNode.displayName)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
+        }
+        dispatch(
+          configActions.updateSelectedComponent(currentSelectedDisplayName),
+        )
+        // dispatch(
+        //   collaboratorsActions.updateComponentAttachedUsers(
+        //     currentSelectedDisplayName,
+        //   ),
+        // )
+        updateSelectedComponentUsersHandler(currentSelectedDisplayName)
+        const disattachedComponents = getDisattachedComponents(
+          componentsAttachedUsers,
+          currentSelectedDisplayName,
+        )
+        if (!!disattachedComponents.length) {
+          // dispatch(
+          //   collaboratorsActions.clearComponentAttachedUsers(
+          //     disattachedComponents,
+          //   ),
+          // )
+          clearComponentAttachedUsersHandler(disattachedComponents)
         }
         return
       }
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
+      // dispatch(
+      //   collaboratorsActions.updateComponentAttachedUsers([
+      //     componentNode.displayName,
+      //   ]),
+      // )
+      updateSelectedComponentUsersHandler([componentNode.displayName])
+      const disattachedComponents = getDisattachedComponents(
+        componentsAttachedUsers,
+        [componentNode.displayName],
+      )
+      if (!!disattachedComponents.length) {
+        // dispatch(
+        //   collaboratorsActions.clearComponentAttachedUsers(
+        //     disattachedComponents,
+        //   ),
+        // )
+        clearComponentAttachedUsersHandler(disattachedComponents)
+      }
     },
     [componentNode.displayName, dispatch, illaMode, selectedComponents],
   )
@@ -833,9 +926,30 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
+      // dispatch(
+      //   collaboratorsActions.updateComponentAttachedUsers([
+      //     componentNode.displayName,
+      //   ]),
+      // )
+      updateSelectedComponentUsersHandler([componentNode.displayName])
+      const disattachedComponents = getDisattachedComponents(
+        componentsAttachedUsers,
+        [componentNode.displayName],
+      )
+      if (!!disattachedComponents.length) {
+        // dispatch(
+        //   collaboratorsActions.clearComponentAttachedUsers(
+        //     disattachedComponents,
+        //   ),
+        // )
+        clearComponentAttachedUsersHandler(disattachedComponents)
+      }
     },
     [componentNode.displayName, dispatch],
   )
+
+  console.log({ isSelected })
+
   return (
     <Resizable
       bounds="parent"

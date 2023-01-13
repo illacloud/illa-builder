@@ -36,9 +36,11 @@ import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import {
   getFreezeState,
   getIllaMode,
+  getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { clearComponentAttachedUsersHandler } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   modifyComponentNodeX,
   modifyComponentNodeY,
@@ -162,6 +164,7 @@ export const RenderComponentCanvas: FC<{
   const dispatch = useDispatch()
 
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
+  const selectedComponents = useSelector(getSelectedComponents)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
 
@@ -755,6 +758,12 @@ export const RenderComponentCanvas: FC<{
           illaMode !== "production"
         ) {
           dispatch(configActions.updateSelectedComponent([]))
+          // dispatch(
+          //   collaboratorsActions.clearComponentAttachedUsers(
+          //     selectedComponents || [],
+          //   ),
+          // )
+          clearComponentAttachedUsersHandler(selectedComponents || [])
         }
       }}
     >

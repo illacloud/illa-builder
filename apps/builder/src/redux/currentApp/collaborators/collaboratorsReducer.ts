@@ -5,19 +5,19 @@ import {
 } from "@/redux/currentApp/collaborators/collaboratorsState"
 
 // update component attach user
-export const setComponentAttachedUsers: CaseReducer<
+export const clearComponentAttachedUsers: CaseReducer<
   CollaboratorsState,
-  PayloadAction<{ componentAttachedUsers: Record<string, CollaboratorsInfo[]> }>
+  PayloadAction<Record<string, CollaboratorsInfo[]>>
 > = (state, action) => {
-  state.components = action.payload.componentAttachedUsers
+  state.components = action.payload
 }
 
 // update component attach user
 export const updateComponentAttachedUsers: CaseReducer<
   CollaboratorsState,
-  PayloadAction<{ componentAttachedUsers: Record<string, CollaboratorsInfo[]> }>
+  PayloadAction<Record<string, CollaboratorsInfo[]>>
 > = (state, action) => {
-  state.components = action.payload.componentAttachedUsers
+  state.components = action.payload
 }
 
 // enter room

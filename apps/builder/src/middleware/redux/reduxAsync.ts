@@ -58,7 +58,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
       action.type = "collaborators/setInRoomUsers"
     }
     if (newType === "attachComponent/remote") {
-      action.type = "collaborators/setComponentAttachedUsers"
+      action.type = "collaborators/updateComponentAttachedUsers"
+      action.payload = payload.componentAttachedUsers
     }
     return next(action)
   }
@@ -832,7 +833,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   true,
                   {
                     type,
-                    payload,
+                    payoload,
                   },
                   [payload],
                 ),
@@ -887,37 +888,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           }
         }
         break
-      case "collaborators":
-        switch (reduxAction) {
-          case "setComponentAttachedUsers":
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_COOPERATE_ATTACH,
-                Target.TARGET_COMPONENTS,
-                true,
-                {
-                  type: "attachComponent/remote",
-                  payload: [],
-                },
-                payload,
-              ),
-            )
-            break
-          case "updateComponentAttachedUsers":
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_COOPERATE_DISATTACH,
-                Target.TARGET_COMPONENTS,
-                true,
-                {
-                  type: "attachComponent/remote",
-                  payload: [],
-                },
-                payload,
-              ),
-            )
-            break
-        }
       default:
         break
     }

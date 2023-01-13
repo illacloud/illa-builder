@@ -315,8 +315,8 @@ export const applyMoveBarWrapperStyle = (
     font-size: 12px;
     color: #fff;
     max-width: ${maxWidth}px;
-    min-width: 12px;
-    overflow: hidden;
+    //min-width: 12px;
+    //overflow: hidden;
     visibility: ${isEditor && selected ? "visible" : "hidden"};
     z-index: 100;
     cursor: move;

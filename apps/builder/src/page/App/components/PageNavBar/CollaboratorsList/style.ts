@@ -30,10 +30,11 @@ export const moreIconStyle = css`
 
 export const userInfoListContainerStyle = css`
   position: absolute;
-  top: 40px;
+  top: 3px;
   right: 0;
   width: 172px;
-  z-index: 1001;
+  max-height: 240px;
+  overflow: auto;
   background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   border-radius: 8px;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};

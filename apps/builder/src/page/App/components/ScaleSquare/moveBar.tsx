@@ -10,6 +10,7 @@ import {
 } from "@illa-design/react"
 import { Trigger } from "@illa-design/react"
 import { ReactComponent as DocIcon } from "@/assets/doc.svg"
+import { CollaboratorsList } from "@/page/App/components/ScaleSquare/CollaboratorsList"
 import {
   MoveBarPositionShape,
   MoveBarProps,
@@ -26,6 +27,7 @@ import {
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getFreezeState } from "@/redux/config/configSelector"
+import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 
 interface WidgetDocProps {
   widgetType: string
@@ -97,6 +99,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
       position: 0,
     }
   }, [containerHeight, containerPadding, widgetHeight, widgetTop])
+
   return (
     <div
       css={applyMoveBarWrapperStyle(
@@ -118,6 +121,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
         <>
           <DragIcon css={dragPointIconWrapperStyle} />
           <span css={moveBarDisplayNameStyle}>{displayName}</span>
+          {selected && <CollaboratorsList displayName={displayName} />}
         </>
       )}
       {isError && (
