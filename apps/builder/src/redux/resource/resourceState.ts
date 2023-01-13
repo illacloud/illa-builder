@@ -1,6 +1,7 @@
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import { FirebaseResource } from "@/redux/resource/firebaseResource"
 import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
+import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
 import { SMTPResource } from "@/redux/resource/smtpResource"
 import { ElasticSearchResource } from "./elasticSearchResource"
 import { MongoDbConfig, MongoDbResource } from "./mongodbResource"
@@ -10,6 +11,7 @@ import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { S3Resource } from "./s3Resource"
 
 export type ResourceType =
+  | "huggingface"
   | "firebase"
   | "supabasedb"
   | "mysql"
@@ -26,6 +28,7 @@ export type ResourceType =
   | "clickhouse"
 
 export type ResourceContent =
+  | HuggingFaceResource
   | ClickhouseResource
   | FirebaseResource
   | SMTPResource

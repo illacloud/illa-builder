@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Input, getColor } from "@illa-design/react"
 import { MongoDbConfigModeProps } from "@/page/App/components/Actions/MongoDbConfigElement/interface"
+import { applyConfigItemLabelText } from "@/page/App/components/Actions/MongoDbConfigElement/style"
 import {
-  applyConfigItemLabelText,
   configItem,
   labelContainer,
-} from "@/page/App/components/Actions/MongoDbConfigElement/style"
+} from "@/page/App/components/Actions/styles"
 import {
   MongoDbResource,
   MongoDbUriConfigContent,

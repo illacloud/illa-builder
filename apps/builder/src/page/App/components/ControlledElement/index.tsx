@@ -176,6 +176,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
               rules={rules}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
+                  autoComplete="new-password"
                   borderColor="techPurple"
                   w="100%"
                   onBlur={onBlur}

@@ -10,6 +10,10 @@ export const topDivider = css`
   min-height: 8px;
 `
 
+export const actionItemContainer = css`
+  padding: 8px 0;
+`
+
 export const restapiItemStyle = css`
   display: flex;
   flex-direction: row;

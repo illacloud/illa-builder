@@ -1,10 +1,12 @@
 import { createSelector } from "@reduxjs/toolkit"
+import { cloneDeep } from "lodash"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
+import { isObject } from "@/utils/typeHelper"
 
 export const getRawTree = createSelector(
   [
@@ -179,5 +181,28 @@ export const getCurrentPageDisplayName = createSelector(
     const { pageSortedKey, currentPageIndex } = rootNode
     if (currentPageIndex > pageSortedKey.lengths) return pageSortedKey[0]
     return pageSortedKey[currentPageIndex]
+  },
+)
+
+export const getExecutionResultToCodeMirror = createSelector(
+  [getWidgetExecutionResult],
+  (executionResult) => {
+    const result: Record<string, unknown> = {}
+    Object.keys(executionResult).forEach((key) => {
+      if (!IGNORE_WIDGET_TYPES.has(executionResult[key].$widgetType)) {
+        result[key] = cloneDeep(executionResult[key])
+        const componentOrAction = result[key]
+        if (isObject(componentOrAction)) {
+          Object.keys(componentOrAction as Record<string, unknown>).forEach(
+            (key) => {
+              if (key.startsWith("$")) {
+                delete (componentOrAction as Record<string, unknown>)[key]
+              }
+            },
+          )
+        }
+      }
+    })
+    return result
   },
 )

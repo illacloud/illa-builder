@@ -18,6 +18,13 @@ import {
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
 import {
+  configItem,
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+} from "@/page/App/components/Actions/styles"
+import {
   ElasticSearchResource,
   ElasticSearchResourceInitial,
 } from "@/redux/resource/elasticSearchResource"
@@ -27,16 +34,12 @@ import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { RedisConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
-  connectTypeStyle,
   container,
   divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
   hostInputContainer,
-  labelContainer,
 } from "./style"
 
 export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
@@ -157,14 +160,16 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
             />
           </div>
         </div>
-        <div css={configItemTip}>
-          {formState.errors.host && (
+        {formState.errors.host && (
+          <div css={configItemTip}>
             <div css={errorMsgStyle}>
-              <WarningCircleIcon css={errorIconStyle} />
-              {formState.errors.host.message}
+              <>
+                <WarningCircleIcon css={errorIconStyle} />
+                {formState.errors.host.message}
+              </>
             </div>
-          )}
-        </div>
+          </div>
+        )}
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
@@ -247,7 +252,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
             <div css={configItemTip}>
               {t("editor.action.resource.db.tip.username_password")}
             </div>
-            <div css={configItem}>
+            <div css={connectType}>
               <div css={labelContainer}>
                 <span
                   css={applyConfigItemLabelText(getColor("grayBlue", "02"))}

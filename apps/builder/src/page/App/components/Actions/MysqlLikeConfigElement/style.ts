@@ -32,6 +32,7 @@ export const configItem = css`
 export const sslItem = css`
   display: flex;
   width: 100%;
+  padding-left: 24px;
   flex-direction: row;
 `
 

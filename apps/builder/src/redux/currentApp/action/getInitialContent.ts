@@ -1,14 +1,18 @@
+import {
+  ActionContent,
+  ActionType,
+} from "@/redux/currentApp/action/actionState"
 import { ElasticSearchActionInitial } from "@/redux/currentApp/action/elasticSearchAction"
 import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
 import { GraphQLActionInitial } from "@/redux/currentApp/action/graphqlAction"
+import { HuggingFaceActionInitial } from "@/redux/currentApp/action/huggingFaceAction"
 import { MongoDbActionInitial } from "@/redux/currentApp/action/mongoDbAction"
+import { MysqlLikeActionInitial } from "@/redux/currentApp/action/mysqlLikeAction"
 import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
+import { RestApiActionInitial } from "@/redux/currentApp/action/restapiAction"
 import { S3ActionInitial } from "@/redux/currentApp/action/s3Action"
 import { SMTPActionInitial } from "@/redux/currentApp/action/smtpAction"
-import { ActionContent, ActionType } from "./actionState"
-import { MysqlLikeActionInitial } from "./mysqlLikeAction"
-import { RestApiActionInitial } from "./restapiAction"
-import { TransformerActionInitial } from "./transformerAction"
+import { TransformerActionInitial } from "@/redux/currentApp/action/transformerAction"
 
 export function getInitialContent(actionType: ActionType): ActionContent {
   switch (actionType) {
@@ -37,6 +41,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return FirebaseActionInitial
     case "graphql":
       return GraphQLActionInitial
+    case "huggingface":
+      return HuggingFaceActionInitial
     default:
       return {} as ActionContent
   }

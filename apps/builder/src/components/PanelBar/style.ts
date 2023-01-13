@@ -119,7 +119,6 @@ export const panelBarItemContentStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   position: relative;
-  overflow: hidden;
 `
 
 export const panelBarItemAnimation: Variants = {
