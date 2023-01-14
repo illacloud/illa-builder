@@ -20,6 +20,7 @@ export const CheckboxInput: FC<CheckboxInputProps> = (props) => {
     inputValue,
     inputPlaceholder,
     inputTips,
+    showInputEditor = true,
     expectedType = VALIDATION_TYPES.STRING,
   } = props
   return (
@@ -36,7 +37,7 @@ export const CheckboxInput: FC<CheckboxInputProps> = (props) => {
           <span css={checkboxItemStyle}>{checkboxTitle}</span>
         </div>
       </div>
-      {checkboxValue && (
+      {checkboxValue && showInputEditor && (
         <InputEditor
           title={inputTitle}
           value={inputValue}

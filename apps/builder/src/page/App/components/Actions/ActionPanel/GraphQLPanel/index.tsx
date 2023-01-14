@@ -59,7 +59,6 @@ export const GraphQLPanel: FC = () => {
 
   const handleOnDeleteKeyValue = useCallback(
     (index: number, record: Params, name?: string) => {
-      console.log("name", name)
       if (name && content.hasOwnProperty(name)) {
         const oldList = content[name as keyof typeof content] as Params[]
         let newList = [...oldList]
