@@ -1,4 +1,4 @@
-import { createMessage } from "@illa-design/react"
+import { createMessage, isString } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
@@ -13,6 +13,10 @@ import {
   FirestoreActionTypeValue,
   ServiceTypeValue,
 } from "@/redux/currentApp/action/firebaseAction"
+import {
+  BooleanTypes,
+  BooleanValueMap,
+} from "@/redux/currentApp/action/huggingFaceAction"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import {
   BodyContent,
@@ -292,14 +296,14 @@ function getRealEventHandler(eventHandler?: any[]) {
 
 const transformDataFormat = (
   actionType: string,
-  content: Record<string, any>,
+  contents: Record<string, any>,
 ) => {
   switch (actionType) {
     case "smtp": {
-      const { attachment } = content
+      const { attachment } = contents
       if (Array.isArray(attachment)) {
         return {
-          ...content,
+          ...contents,
           attachment: attachment.map((value) => ({
             ...value,
             data: btoa(encodeURIComponent(value.data || "")),
@@ -307,33 +311,33 @@ const transformDataFormat = (
         }
       } else if (attachment) {
         return {
-          ...content,
+          ...contents,
           attachment: [btoa(encodeURIComponent(attachment || ""))],
         }
       }
-      return content
+      return contents
     }
     case "restapi": {
-      if (content.bodyType === "raw" && content.body?.content) {
+      if (contents.bodyType === "raw" && contents.body?.content) {
         return {
-          ...content,
+          ...contents,
           body: {
-            ...content.body,
-            content: JSON.stringify(content.body.content),
+            ...contents.body,
+            content: JSON.stringify(contents.body.content),
           },
         }
       }
-      return content
+      return contents
     }
     case "firebase":
-      const { service, operation } = content
+      const { service, operation } = contents
       if (
         service === ServiceTypeValue.AUTH &&
         operation === AuthActionTypeValue.LIST_USERS
       ) {
-        const { number = "", ...others } = content.options
+        const { number = "", ...others } = contents.options
         return {
-          ...content,
+          ...contents,
           options: {
             ...others,
             ...(number !== "" && { number }),
@@ -345,24 +349,61 @@ const transformDataFormat = (
         (operation === FirestoreActionTypeValue.QUERY_FIREBASE ||
           operation === FirestoreActionTypeValue.QUERY_COLLECTION_GROUP)
       ) {
-        const { limit = "", ...others } = content.options
+        const { limit = "", ...others } = contents.options
         return {
-          ...content,
+          ...contents,
           options: {
             ...others,
             ...(limit !== "" && { limit }),
           },
         }
       }
-      return content
+      return contents
     case "graphql": {
       return {
-        ...content,
-        query: content.query.replace(/\n/g, ""),
+        ...contents,
+        query: contents.query.replace(/\n/g, ""),
       }
     }
+    case "huggingface":
+      const { modelID, detailParams, ...otherParams } = contents
+      const { type, content } = otherParams.inputs || {}
+      let newInputs = { type, content }
+      if (type === "json") {
+        if (isString(content)) {
+          try {
+            newInputs = {
+              type,
+              content: JSON.parse(content),
+            }
+          } catch (e) {
+            console.log(e)
+          }
+        }
+      }
+      const keys = Object.keys(detailParams)
+
+      const realDetailParams = keys.map((key: string) => {
+        const currentValue = detailParams[key]
+        return {
+          key,
+          value: currentValue
+            ? BooleanTypes.includes(key)
+              ? BooleanValueMap[currentValue as keyof typeof BooleanValueMap] ??
+                currentValue
+              : parseFloat(currentValue)
+            : "",
+        }
+      })
+      return {
+        modelID,
+        params: {
+          inputs: newInputs,
+          detailParams: realDetailParams,
+        },
+      }
     default:
-      return content
+      return contents
   }
 }
 

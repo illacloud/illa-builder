@@ -56,9 +56,15 @@ export const HuggingFaceRawBodyInitial: RawBody<TextRawBody> = {
   content: "",
 }
 
+export const BooleanTypes = ["useCache", "waitForModel"]
+export const BooleanValueMap = {
+  false: false,
+  true: true,
+}
+
 export interface HuggingFaceAction<T extends HuggingFaceBodyContent>
   extends Events {
-  modeID: string
+  modelID: string
   inputs: RawBody<T>
   withDetailParams: boolean
   detailParams: {
@@ -76,7 +82,7 @@ export interface HuggingFaceAction<T extends HuggingFaceBodyContent>
 
 export const HuggingFaceActionInitial: HuggingFaceAction<HuggingFaceBodyContent> =
   {
-    modeID: "",
+    modelID: "",
     inputs: HuggingFaceRawBodyInitial,
     withDetailParams: false,
     detailParams: {
