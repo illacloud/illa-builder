@@ -391,7 +391,7 @@
           "tip": {
             "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
             "name": "このリソースにILLAで名前を付ける",
-            "private_key": "Click here to see how to obtain this key",
+            "private_key": "<0>Click here</0> to see how to obtain this key",
             "ssl_options": "可能な場合は SSL を使用する",
             "username_password": "資格情報は暗号化され、サーバーに安全に保存されます",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
