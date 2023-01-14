@@ -1,3 +1,4 @@
+import { SerializedStyles } from "@emotion/react"
 import { ReactNode } from "react"
 import { Control, RegisterOptions } from "react-hook-form"
 
@@ -23,6 +24,8 @@ export interface ContrilledElementProps {
   styles?: Record<string, string>[]
   tips?: string | ReactNode
   error?: boolean
+  labelStyle?: SerializedStyles
+  tipsStyle?: SerializedStyles
   controlledType: ControlledType | ControlledType[]
   options?: (
     | string

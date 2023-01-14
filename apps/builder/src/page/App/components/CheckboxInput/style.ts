@@ -18,6 +18,7 @@ export const codeEditorLabelStyle = css`
 export const checkboxItemStyle = css`
   min-width: 160px;
   font-size: 14px;
+  line-height: 22px;
   font-weight: 500;
   margin-left: 10px;
   text-align: left;
