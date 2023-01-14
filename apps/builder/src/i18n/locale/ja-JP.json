@@ -307,11 +307,11 @@
             "binary": "'@cats.jpg' \\",
             "use_cache": "Boolean, leave blank for true",
             "min_length": "Integer to define the minimum length in tokens of the output summary",
-            "top_k": "Integer to define the top tokens considered within the sample operation to create new text.",
-            "top_p": "Float to define the tokens that are within the sample operation of text generation.",
+            "top_k": "Integer to define the top tokens",
+            "top_p": "Float to define the tokens",
             "temperature": "Float(0.0-100.0)，leave blank for 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) to define the amount of time in seconds that the query should take maximum"
+            "max_time": "Float (0.0-120.0) to define the amount of time in seconds"
           },
           "tips": {
             "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
