@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { MoreIcon, Trigger } from "@illa-design/react"
 import {
@@ -10,7 +10,6 @@ import {
   listItemStyle,
   moreIconStyle,
 } from "@/page/App/components/ScaleSquare/CollaboratorsList/style"
-import { getSelectedComponents } from "@/redux/config/configSelector"
 import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { ListItem } from "./listItem"
@@ -26,13 +25,23 @@ export const CollaboratorsList: FC<{
     ...usersList,
     ...usersList,
     ...usersList,
-    ...usersList,
-    ...usersList,
-    ...usersList,
+    // ...usersList,
+    // ...usersList,
+    // ...usersList,
   ]
   const length = result.length
 
   const [listShow, setListShow] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  if (containerRef.current) {
+    const styles = window.getComputedStyle(containerRef.current)
+    console.log(
+      styles.width,
+      containerRef.current?.offsetWidth,
+      containerRef.current?.clientWidth,
+    )
+  }
 
   if (!length) {
     return null
@@ -98,7 +107,7 @@ export const CollaboratorsList: FC<{
     )
 
   return (
-    <div css={getComponentUsersListContainerStyle(length)}>
+    <div css={getComponentUsersListContainerStyle(length)} ref={containerRef}>
       {renderListItem}
     </div>
   )

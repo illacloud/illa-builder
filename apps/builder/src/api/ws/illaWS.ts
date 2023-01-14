@@ -146,7 +146,6 @@ export class ILLAWebsocket {
           let broadcast = callback.broadcast
           let type = broadcast.type
           let payload = broadcast.payload
-          console.log({ data })
           switch (type) {
             case `${ADD_DISPLAY_NAME}/remote`: {
               ;(payload as string[]).forEach((name) => {
@@ -167,7 +166,6 @@ export class ILLAWebsocket {
             }
             default: {
               try {
-                console.log(666, { type, payload })
                 store.dispatch({
                   type,
                   payload,

@@ -315,13 +315,18 @@ export const applyMoveBarWrapperStyle = (
     font-size: 12px;
     color: #fff;
     max-width: ${maxWidth}px;
-    //min-width: 12px;
+    min-width: 30px;
     //overflow: hidden;
     visibility: ${isEditor && selected ? "visible" : "hidden"};
     z-index: 100;
     cursor: move;
   `
 }
+
+export const displayNameContainerStyle = css`
+  display: flex;
+  min-width: 12px;
+`
 
 export const dragPointIconWrapperStyle = css`
   width: 12px;

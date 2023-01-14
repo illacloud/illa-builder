@@ -30,6 +30,7 @@ export function applyUserAvatarStyle(
 }
 
 export const getComponentUsersListContainerStyle = (length: number) => {
+  const minWidth = length >= 3 ? 32 : 14 * length + 4 * (length - 1)
   return css`
     display: flex;
     margin-left: 8px;
@@ -38,8 +39,8 @@ export const getComponentUsersListContainerStyle = (length: number) => {
     max-width: 50px;
     justify-content: space-between;
     align-self: center;
-    //overflow: hidden;
-    min-width: ${length === 1 ? "14px" : "32px"};
+    overflow: hidden;
+    min-width: ${minWidth}px;
   `
 }
 

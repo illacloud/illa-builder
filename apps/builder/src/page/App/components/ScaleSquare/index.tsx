@@ -948,8 +948,6 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
     [componentNode.displayName, dispatch],
   )
 
-  console.log({ isSelected })
-
   return (
     <Resizable
       bounds="parent"

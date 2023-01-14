@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, useEffect, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
@@ -18,6 +18,7 @@ import {
 import {
   MOVE_BAR_HEIGHT,
   applyMoveBarWrapperStyle,
+  displayNameContainerStyle,
   docIconStyle,
   docTipsWrapperStyle,
   dragPointIconWrapperStyle,
@@ -27,7 +28,6 @@ import {
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getFreezeState } from "@/redux/config/configSelector"
-import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 
 interface WidgetDocProps {
   widgetType: string
@@ -75,6 +75,17 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
   } = props
 
   const { t } = useTranslation()
+  const moveBarRef = useRef<HTMLDivElement>(null)
+
+  const handleResize = () => {
+    console.log(
+      "moveBar: ",
+      moveBarRef.current,
+      moveBarRef.current
+        ? window.getComputedStyle(moveBarRef.current).width
+        : "",
+    )
+  }
 
   const isFreezeCanvas = useSelector(getFreezeState)
 
@@ -119,8 +130,12 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
         </>
       ) : (
         <>
-          <DragIcon css={dragPointIconWrapperStyle} />
-          <span css={moveBarDisplayNameStyle}>{displayName}</span>
+          <div css={displayNameContainerStyle}>
+            <DragIcon css={dragPointIconWrapperStyle} />
+            <span css={moveBarDisplayNameStyle} ref={moveBarRef}>
+              {displayName}
+            </span>
+          </div>
           {selected && <CollaboratorsList displayName={displayName} />}
         </>
       )}
