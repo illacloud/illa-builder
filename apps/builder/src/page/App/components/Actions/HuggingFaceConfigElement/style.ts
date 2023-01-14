@@ -19,7 +19,7 @@ export const labelContainer = css`
   display: flex;
   flex-direction: row;
   justify-content: end;
-  min-width: 176px;
+  min-width: 80px;
 `
 
 export const docsItemContainerStyle = css`
@@ -33,25 +33,50 @@ export const docContainerStyle = css`
   box-sizing: border-box;
   font-size: 12px;
   display: flex;
-  gap: 4px;
+  flex-direction: row;
+  justify-content: end;
   margin-left: 16px;
   margin-right: 24px;
+  color: ${getColor("grayBlue", "03")};
 `
 
 export const docItemStyle = css`
   height: 22px;
-  padding: 2px 4px;
+  padding: 2px 0 2px 6px;
   display: flex;
   box-sizing: border-box;
   align-items: center;
-  gap: 6px;
   justify-content: space-between;
+  gap: 6px;
+  color: ${getColor("grayBlue", "03")};
   &:not(:first-child) {
     cursor: pointer;
     color: ${getColor("techPurple", "01")};
+  }
+  &:last-child {
+    margin-left: 4px;
   }
   & > svg {
     width: 12px;
     height: 12px;
   }
+`
+
+export const labelStyle = css`
+  min-width: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+`
+
+export const tipsStyle = css`
+  font-size: 14px;
+  white-space: pre-line;
+  color: ${getColor("grayBlue", "04")};
+  font-weight: 400;
+  margin-left: 96px;
+  padding-bottom: 8px;
+  padding-left: 24px;
+  line-height: 22px;
+  height: 30px;
 `

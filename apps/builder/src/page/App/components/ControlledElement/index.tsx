@@ -35,6 +35,8 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
     error,
     options = [],
     rules = [],
+    tipsStyle,
+    labelStyle,
     onValueChange,
   } = props
 
@@ -217,7 +219,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
     <>
       {!!filteredType.length && (
         <div css={applyConfigItemContainer(hasTextArea)}>
-          <div css={labelContainer}>
+          <div css={labelStyle ? labelStyle : labelContainer}>
             {isRequired && (
               <span css={applyConfigItemLabelText(getColor("red", "02"))}>
                 *
@@ -243,7 +245,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
           </div>
         </div>
       )}
-      {tips && <div css={configItemTip}>{tips}</div>}
+      {tips && <div css={tipsStyle ? tipsStyle : configItemTip}>{tips}</div>}
     </>
   )
 }
