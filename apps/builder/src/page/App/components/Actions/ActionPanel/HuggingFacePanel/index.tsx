@@ -29,6 +29,7 @@ import {
   InputInitial,
   PairsBodyInitital,
   ParametersTypeMap,
+  TextRawBody,
 } from "@/redux/currentApp/action/huggingFaceAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -55,8 +56,20 @@ export const HuggingFacePanel: FC = () => {
 
   const content =
     cachedAction.content as HuggingFaceAction<HuggingFaceBodyContent>
-  const currentParameterType = content?.inputs?.type || "text"
+  const currentParameterType = content.inputs.type || "text"
   const dispatch = useDispatch()
+
+  const handleURLClick = (link: string) => window.open(link, "_blank")
+  const getTransComponent = (key: string, link: string) => {
+    const handleLinKClick = () => handleURLClick(link)
+    return (
+      <Trans
+        i18nKey={key}
+        t={t}
+        components={[<TextLink key={key} onClick={handleLinKClick} />]}
+      />
+    )
+  }
 
   const handleValueChange = useCallback(
     (value: string | boolean, key: string) => {
@@ -66,6 +79,24 @@ export const HuggingFacePanel: FC = () => {
           content: {
             ...content,
             [key]: value,
+          },
+        }),
+      )
+    },
+    [cachedAction, content, dispatch],
+  )
+
+  const handleInputsValueChange = useCallback(
+    (value: HuggingFaceBodyContent) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...content,
+            inputs: {
+              type: content.inputs.type,
+              content: value,
+            },
           },
         }),
       )
@@ -95,13 +126,7 @@ export const HuggingFacePanel: FC = () => {
         }),
       )
     },
-    [
-      cachedAction,
-      content,
-      dispatch,
-      selectedAction.content.inputs,
-      selectedAction.resourceId,
-    ],
+    [cachedAction, content, dispatch, selectedAction],
   )
 
   const handleOnAddKeys = useCallback(() => {
@@ -109,19 +134,8 @@ export const HuggingFacePanel: FC = () => {
       ...((content.inputs.content as Params[]) ?? [{ key: "", value: "" }]),
       { key: "", value: "" } as Params,
     ]
-    dispatch(
-      configActions.updateCachedAction({
-        ...cachedAction,
-        content: {
-          ...content,
-          inputs: {
-            type: content.inputs.type,
-            content: newList,
-          },
-        },
-      }),
-    )
-  }, [cachedAction, content, dispatch])
+    handleInputsValueChange(newList)
+  }, [cachedAction, content, handleInputsValueChange])
 
   const handleOnChangeKey = useCallback(
     (index: number, key: string, value: string) => {
@@ -129,20 +143,9 @@ export const HuggingFacePanel: FC = () => {
         ...((content.inputs.content as Params[]) ?? [{ key: "", value: "" }]),
       ]
       newList[index] = { key, value: value } as Params
-      dispatch(
-        configActions.updateCachedAction({
-          ...cachedAction,
-          content: {
-            ...content,
-            inputs: {
-              type: content.inputs.type,
-              content: newList,
-            },
-          },
-        }),
-      )
+      handleInputsValueChange(newList)
     },
-    [cachedAction, content, dispatch],
+    [cachedAction, content, handleInputsValueChange],
   )
 
   const handleOnChangeValue = useCallback(
@@ -151,20 +154,9 @@ export const HuggingFacePanel: FC = () => {
         ...((content.inputs.content as Params[]) ?? [{ key: "", value: "" }]),
       ]
       newList[index] = { key, value: value } as Params
-      dispatch(
-        configActions.updateCachedAction({
-          ...cachedAction,
-          content: {
-            ...content,
-            inputs: {
-              type: content.inputs.type,
-              content: newList,
-            },
-          },
-        }),
-      )
+      handleInputsValueChange(newList)
     },
-    [cachedAction, content, dispatch],
+    [cachedAction, content, handleInputsValueChange],
   )
 
   const handleOnDeleteKey = useCallback(
@@ -173,20 +165,9 @@ export const HuggingFacePanel: FC = () => {
         ...((content.inputs.content as Params[]) ?? [{ key: "", value: "" }]),
       ]
       newList.splice(index, 1)
-      dispatch(
-        configActions.updateCachedAction({
-          ...cachedAction,
-          content: {
-            ...content,
-            inputs: {
-              type: content.inputs.type,
-              content: newList,
-            },
-          },
-        }),
-      )
+      handleInputsValueChange(newList)
     },
-    [cachedAction, content, dispatch],
+    [cachedAction, content, handleInputsValueChange],
   )
 
   const handleParametersValueChange = useCallback(
@@ -207,24 +188,6 @@ export const HuggingFacePanel: FC = () => {
     [cachedAction, content, dispatch],
   )
 
-  const handleInputsValueChange = useCallback(
-    (value: string) => {
-      dispatch(
-        configActions.updateCachedAction({
-          ...cachedAction,
-          content: {
-            ...content,
-            inputs: {
-              type: content.inputs.type,
-              content: value,
-            },
-          },
-        }),
-      )
-    },
-    [cachedAction, content, dispatch],
-  )
-
   return (
     <div css={restapiPanelContainerStyle}>
       <ResourceChoose />
@@ -234,23 +197,10 @@ export const HuggingFacePanel: FC = () => {
           value={content.modelID ?? ""}
           onChange={(value) => handleValueChange(value, "modelID")}
           expectedType={VALIDATION_TYPES.STRING}
-          tips={
-            <Trans
-              t={t}
-              i18nKey="editor.action.panel.hugging_face.tips.mode_id"
-              components={[
-                <TextLink
-                  key="go-to-model"
-                  onClick={() =>
-                    window.open(
-                      "https://huggingface.co/docs/api-inference/detailed_parameters",
-                      "_blank",
-                    )
-                  }
-                />,
-              ]}
-            />
-          }
+          tips={getTransComponent(
+            "editor.action.panel.hugging_face.tips.mode_id",
+            "https://huggingface.co/docs/api-inference/detailed_parameters",
+          )}
         />
         <div css={bodyEditorContainerStyle}>
           <span css={bodyLabelStyle}>
@@ -307,14 +257,12 @@ export const HuggingFacePanel: FC = () => {
               <CodeEditor
                 css={textCodeEditorStyle}
                 mode={"TEXT_JS"}
-                value={content?.inputs.content ?? ""}
+                value={(content?.inputs.content ?? "") as TextRawBody}
                 onChange={handleInputsValueChange}
                 expectedType={VALIDATION_TYPES.STRING}
-                placeholder={
-                  t(
-                    "editor.action.panel.hugging_face.placeholder.text",
-                  ) as string
-                }
+                placeholder={t(
+                  "editor.action.panel.hugging_face.placeholder.text",
+                )}
               />
             )}
           </div>
@@ -341,21 +289,10 @@ export const HuggingFacePanel: FC = () => {
                   </span>
                 </div>
                 <div css={checkboxTipsStyle}>
-                  <Trans
-                    t={t}
-                    i18nKey="editor.action.panel.hugging_face.tips.use_detail_parameters"
-                    components={[
-                      <TextLink
-                        key="go-to-parameters"
-                        onClick={() =>
-                          window.open(
-                            "https://huggingface.co/docs/api-inference/detailed_parameters",
-                            "_blank",
-                          )
-                        }
-                      />,
-                    ]}
-                  />
+                  {getTransComponent(
+                    "editor.action.panel.hugging_face.tips.use_detail_parameters",
+                    "https://huggingface.co/docs/api-inference/detailed_parameters",
+                  )}
                 </div>
               </div>
             </div>
@@ -366,7 +303,7 @@ export const HuggingFacePanel: FC = () => {
             {
               title: t("editor.action.panel.hugging_face.use_cache"),
               name: "useCache",
-              value: content?.detailParams?.useCache,
+              value: content.detailParams?.useCache,
               placeholder: t(
                 "editor.action.panel.hugging_face.placeholder.use_cache",
               ),
@@ -374,7 +311,7 @@ export const HuggingFacePanel: FC = () => {
             {
               title: t("editor.action.panel.hugging_face.wait_for_model"),
               name: "waitForModel",
-              value: content?.detailParams?.waitForModel,
+              value: content.detailParams?.waitForModel,
               placeholder: t(
                 "editor.action.panel.hugging_face.placeholder.use_cache",
               ),
@@ -382,7 +319,7 @@ export const HuggingFacePanel: FC = () => {
             {
               title: t("editor.action.panel.hugging_face.min_length"),
               name: "minLength",
-              value: content?.detailParams?.minLength,
+              value: content.detailParams?.minLength,
               placeholder: t(
                 "editor.action.panel.hugging_face.placeholder.min_length",
               ),
@@ -390,7 +327,7 @@ export const HuggingFacePanel: FC = () => {
             {
               title: t("editor.action.panel.hugging_face.max_length"),
               name: "maxLength",
-              value: content?.detailParams?.maxLength,
+              value: content.detailParams?.maxLength,
               placeholder: t(
                 "editor.action.panel.hugging_face.placeholder.min_length",
               ),
@@ -399,7 +336,7 @@ export const HuggingFacePanel: FC = () => {
             {
               title: t("editor.action.panel.hugging_face.top_k"),
               name: "topK",
-              value: content?.detailParams?.topK,
+              value: content.detailParams?.topK,
               placeholder: t(
                 "editor.action.panel.hugging_face.placeholder.top_k",
               ),
@@ -407,7 +344,7 @@ export const HuggingFacePanel: FC = () => {
             {
               title: t("editor.action.panel.hugging_face.top_p"),
               name: "topP",
-              value: content?.detailParams?.topP,
+              value: content.detailParams?.topP,
               placeholder: t(
                 "editor.action.panel.hugging_face.placeholder.top_p",
               ),
@@ -416,7 +353,7 @@ export const HuggingFacePanel: FC = () => {
             {
               title: t("editor.action.panel.hugging_face.temperature"),
               name: "temperature",
-              value: content?.detailParams?.temperature,
+              value: content.detailParams?.temperature,
               placeholder: t(
                 "editor.action.panel.hugging_face.placeholder.temperature",
               ),
@@ -425,7 +362,7 @@ export const HuggingFacePanel: FC = () => {
             {
               title: t("editor.action.panel.hugging_face.repetition_penalty"),
               name: "repetitionPenalty",
-              value: content?.detailParams?.repetitionPenalty,
+              value: content.detailParams?.repetitionPenalty,
               placeholder: t(
                 "editor.action.panel.hugging_face.placeholder.repetition_penalty",
               ),
@@ -436,7 +373,7 @@ export const HuggingFacePanel: FC = () => {
             {
               title: t("editor.action.panel.hugging_face.max_time"),
               name: "maxTime",
-              value: content?.detailParams?.maxTime,
+              value: content.detailParams?.maxTime,
               placeholder: t(
                 "editor.action.panel.hugging_face.placeholder.max_time",
               ),

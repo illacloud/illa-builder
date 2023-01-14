@@ -39,7 +39,6 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
       (r) => r.resourceId === resourceId,
     ) as Resource<HuggingFaceResource>
   })
-
   const [saving, setSaving] = useState(false)
 
   const handleURLClick = (link: string) => window.open(link, "_blank")
@@ -115,14 +114,10 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
           controlledType="password"
           control={control}
           isRequired
-          tips={
-            <>
-              {getTransComponent(
-                "editor.action.resource.db.tip.bear_token",
-                "https://huggingface.co/settings/tokens",
-              )}
-            </>
-          }
+          tips={getTransComponent(
+            "editor.action.resource.db.tip.bear_token",
+            "https://huggingface.co/settings/tokens",
+          )}
         />
       </div>
       <div css={footerStyle}>
