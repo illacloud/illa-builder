@@ -34,6 +34,7 @@ export const configItemTip = css`
   margin-left: 192px;
   padding-bottom: 8px;
   padding-left: 24px;
+  line-height: 22px;
   height: 30px;
 `
 

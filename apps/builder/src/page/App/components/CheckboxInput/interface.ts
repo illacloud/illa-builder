@@ -7,6 +7,7 @@ export interface CheckboxInputProps {
   checkboxValue: boolean
   inputTitle: string
   inputValue: string
+  showInputEditor?: boolean
   inputPlaceholder?: string
   inputTips?: string
   expectedType?: VALIDATION_TYPES

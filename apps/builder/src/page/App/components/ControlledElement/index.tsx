@@ -215,16 +215,18 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
 
   return (
     <>
-      <div css={applyConfigItemContainer(hasTextArea)}>
-        <div css={labelContainer}>
-          {isRequired && (
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-          )}
-          <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-            {title}
-          </span>
-        </div>
-        {!!filteredType.length && (
+      {!!filteredType.length && (
+        <div css={applyConfigItemContainer(hasTextArea)}>
+          <div css={labelContainer}>
+            {isRequired && (
+              <span css={applyConfigItemLabelText(getColor("red", "02"))}>
+                *
+              </span>
+            )}
+            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
+              {title}
+            </span>
+          </div>
           <div css={hostInputContainer}>
             {filteredType.map((type, index) => (
               <Fragment key={index}>
@@ -239,8 +241,8 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
               </Fragment>
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
       {tips && <div css={configItemTip}>{tips}</div>}
     </>
   )

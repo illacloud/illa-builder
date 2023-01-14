@@ -1,4 +1,4 @@
-import { SerializedStyles, css } from "@emotion/react"
+import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const container = css`
@@ -22,38 +22,36 @@ export const labelContainer = css`
   min-width: 176px;
 `
 
-export const configItem = css`
+export const docsItemContainerStyle = css`
   display: flex;
-  height: 48px;
+  padding-left: 24px;
+`
+
+export const docContainerStyle = css`
+  height: 24px;
+  padding: 2px 0;
+  box-sizing: border-box;
+  font-size: 12px;
+  display: flex;
+  gap: 4px;
+  margin-left: 16px;
+  margin-right: 24px;
+`
+
+export const docItemStyle = css`
+  height: 22px;
+  padding: 2px 4px;
+  display: flex;
+  box-sizing: border-box;
   align-items: center;
-  flex-direction: row;
-`
-
-export const divider = css`
-  height: 16px;
-`
-
-export function applyConfigItemLabelText(
-  color: string,
-  margin?: boolean,
-): SerializedStyles {
-  let marginLeft = css``
-  if (margin) {
-    marginLeft = css`
-      margin-left: 4px;
-    `
+  gap: 6px;
+  justify-content: space-between;
+  &:not(:first-child) {
+    cursor: pointer;
+    color: ${getColor("techPurple", "01")};
   }
-  return css`
-    font-size: 14px;
-    color: ${color};
-    font-weight: 500;
-    ${marginLeft};
-  `
-}
-
-export const configItemTip = css`
-  font-size: 14px;
-  padding-bottom: 6px;
-  margin-left: 192px;
-  color: ${getColor("grayBlue", "04")};
+  & > svg {
+    width: 12px;
+    height: 12px;
+  }
 `

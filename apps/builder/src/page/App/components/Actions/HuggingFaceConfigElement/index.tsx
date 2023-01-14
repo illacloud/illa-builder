@@ -1,33 +1,28 @@
-import { FC, useCallback, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
+import { FC, useState } from "react"
+import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
-  Divider,
+  FileDefaultIcon,
   PaginationPreIcon,
-  WarningCircleIcon,
 } from "@illa-design/react"
-import {
-  errorIconStyle,
-  errorMsgStyle,
-} from "@/page/App/components/Actions/ClickhouseConfigElement/style"
 import { HuggingFaceConfigElementProps } from "@/page/App/components/Actions/HuggingFaceConfigElement/interface"
 import {
   container,
-  divider,
+  docContainerStyle,
+  docItemStyle,
+  docsItemContainerStyle,
   footerStyle,
+  labelContainer,
 } from "@/page/App/components/Actions/HuggingFaceConfigElement/style"
 import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
-import { optionLabelStyle } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { TextLink } from "@/page/User/components/TextLink"
 import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { isURL } from "@/utils/typeHelper"
 
 export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
   props,
@@ -47,17 +42,9 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
 
   const [saving, setSaving] = useState(false)
 
-  const handleURLValidate = useCallback(
-    (value: string) =>
-      isURL(value) ? true : t("editor.action.resource.error.invalid_url"),
-    [t],
-  )
-
   const handleURLClick = (link: string) => window.open(link, "_blank")
-
   const getTransComponent = (key: string, link: string) => {
     const handleLinKClick = () => handleURLClick(link)
-
     return (
       <Trans
         i18nKey={key}
@@ -69,7 +56,6 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
 
   return (
     <form
-      autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
@@ -79,7 +65,33 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
       )}
     >
       <div css={container}>
-        <div css={divider} />
+        <div css={docsItemContainerStyle}>
+          <div css={labelContainer} />
+          <div css={docContainerStyle}>
+            <span css={docItemStyle}>Learn more about Hugging Face: </span>
+            <span
+              css={docItemStyle}
+              onClick={() =>
+                handleURLClick("https://huggingface.co/inference-api")
+              }
+            >
+              <FileDefaultIcon />
+              <span>Inference API</span>
+            </span>
+            <span
+              css={docItemStyle}
+              onClick={() =>
+                handleURLClick(
+                  "https://huggingface.co/docs/api-inference/quicktour",
+                )
+              }
+            >
+              <FileDefaultIcon />
+              <span>API Doc</span>
+            </span>
+          </div>
+        </div>
+
         <ControlledElement
           controlledType="input"
           isRequired
@@ -95,179 +107,10 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
           name="resourceName"
           tips={t("editor.action.resource.restapi.tip.name")}
         />
-        <Divider
-          direction="horizontal"
-          ml="24px"
-          mr="24px"
-          mt="16px"
-          mb="8px"
-          w="unset"
-        />
-        <div css={optionLabelStyle}>
-          {t("editor.action.resource.restapi.title.advanced_option")}
-        </div>
-
-        <ControlledElement
-          controlledType="input"
-          isRequired
-          title={t("editor.action.resource.restapi.label.base_url")}
-          control={control}
-          defaultValue={
-            resource?.content.baseURL ??
-            "https://api-inference.huggingface.co/models/"
-          }
-          rules={[
-            {
-              required: t("editor.action.resource.error.invalid_url"),
-              validate: handleURLValidate,
-            },
-          ]}
-          placeholders={[
-            t("editor.action.resource.db.placeholder.hugging_face_url"),
-          ]}
-          name="baseURL"
-          tips={
-            <>
-              {formState.errors.baseURL ? (
-                <div css={errorMsgStyle}>
-                  <>
-                    <WarningCircleIcon css={errorIconStyle} />
-                    {formState.errors.baseURL.message}
-                  </>
-                </div>
-              ) : (
-                <>
-                  {getTransComponent(
-                    "editor.action.resource.db.tip.hugging_face_url",
-                    "https://huggingface.co/docs/api-inference/index",
-                  )}
-                </>
-              )}
-            </>
-          }
-        />
-
-        <Controller
-          control={control}
-          defaultValue={
-            resource?.content.urlParams ?? [
-              {
-                key: "",
-                value: "",
-              },
-            ]
-          }
-          render={({ field: { value, onChange, onBlur } }) => (
-            <InputRecordEditor
-              label={t("editor.action.resource.restapi.label.url_parameters")}
-              records={value}
-              onAdd={() => {
-                onChange([...value, { key: "", value: "" }])
-              }}
-              onDelete={(index, record) => {
-                let newRecords = [...value]
-                newRecords.splice(index, 1)
-                if (newRecords.length === 0) {
-                  newRecords = [{ key: "", value: "" }]
-                }
-                onChange(newRecords)
-              }}
-              onChangeKey={(index, key, v) => {
-                let newRecords = [...value]
-                newRecords[index] = { key, value: v }
-                onChange(newRecords)
-              }}
-              onChangeValue={(index, key, v) => {
-                let newRecords = [...value]
-                newRecords[index].value = v
-                onChange(newRecords)
-              }}
-            />
-          )}
-          name="urlParams"
-        />
-        <Controller
-          control={control}
-          defaultValue={
-            resource?.content.headers ?? [
-              {
-                key: "",
-                value: "",
-              },
-            ]
-          }
-          render={({ field: { value, onChange } }) => (
-            <InputRecordEditor
-              label={t("editor.action.resource.restapi.label.headers")}
-              records={value}
-              onAdd={() => {
-                onChange([...value, { key: "", value: "" }])
-              }}
-              onDelete={(index, record) => {
-                let newRecords = [...value]
-                newRecords.splice(index, 1)
-                if (newRecords.length === 0) {
-                  newRecords = [{ key: "", value: "" }]
-                }
-                onChange(newRecords)
-              }}
-              onChangeKey={(index, key, v) => {
-                let newRecords = [...value]
-                newRecords[index] = { key, value: v }
-                onChange(newRecords)
-              }}
-              onChangeValue={(index, key, v) => {
-                let newRecords = [...value]
-                newRecords[index].value = v
-                onChange(newRecords)
-              }}
-            />
-          )}
-          name="headers"
-        />
-        <Controller
-          control={control}
-          defaultValue={
-            resource?.content.cookies ?? [
-              {
-                key: "",
-                value: "",
-              },
-            ]
-          }
-          render={({ field: { value, onChange } }) => (
-            <InputRecordEditor
-              label={t("editor.action.resource.restapi.label.cookies")}
-              records={value}
-              onAdd={() => {
-                onChange([...value, { key: "", value: "" }])
-              }}
-              onDelete={(index, record) => {
-                let newRecords = [...value]
-                newRecords.splice(index, 1)
-                if (newRecords.length === 0) {
-                  newRecords = [{ key: "", value: "" }]
-                }
-                onChange(newRecords)
-              }}
-              onChangeKey={(index, key, v) => {
-                let newRecords = [...value]
-                newRecords[index] = { key, value: v }
-                onChange(newRecords)
-              }}
-              onChangeValue={(index, key, v) => {
-                let newRecords = [...value]
-                newRecords[index].value = v
-                onChange(newRecords)
-              }}
-            />
-          )}
-          name="cookies"
-        />
 
         <ControlledElement
           title={t("editor.action.resource.db.label.bear_token")}
-          defaultValue={resource?.content.authContent.token ?? ""}
+          defaultValue={resource?.content.token ?? ""}
           name="token"
           controlledType="password"
           control={control}
