@@ -398,6 +398,7 @@ const transformDataFormat = (
       return {
         modelID,
         params: {
+          withDetailParams: otherParams.withDetailParams,
           inputs: newInputs,
           detailParams: realDetailParams,
         },

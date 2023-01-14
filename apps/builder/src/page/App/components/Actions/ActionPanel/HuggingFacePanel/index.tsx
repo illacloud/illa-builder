@@ -1,3 +1,4 @@
+import { Namespace, TFunction } from "i18next"
 import { FC, useCallback } from "react"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -43,6 +44,122 @@ import {
   restapiPanelContainerStyle,
   textCodeEditorStyle,
 } from "./style"
+
+const getDetailedParameters = ({
+  t,
+  content,
+  handleParametersValueChange,
+}: {
+  t: TFunction<Namespace, undefined>
+  content: HuggingFaceAction<HuggingFaceBodyContent>
+  handleParametersValueChange: (value: string, key: string) => void
+}) => {
+  return (
+    <>
+      {[
+        {
+          title: t("editor.action.panel.hugging_face.use_cache"),
+          name: "useCache",
+          value: content.detailParams?.useCache,
+          placeholder: t(
+            "editor.action.panel.hugging_face.placeholder.use_cache",
+          ),
+        },
+        {
+          title: t("editor.action.panel.hugging_face.wait_for_model"),
+          name: "waitForModel",
+          value: content.detailParams?.waitForModel,
+          placeholder: t(
+            "editor.action.panel.hugging_face.placeholder.use_cache",
+          ),
+        },
+        {
+          title: t("editor.action.panel.hugging_face.min_length"),
+          name: "minLength",
+          value: content.detailParams?.minLength,
+          placeholder: t(
+            "editor.action.panel.hugging_face.placeholder.min_length",
+          ),
+        },
+        {
+          title: t("editor.action.panel.hugging_face.max_length"),
+          name: "maxLength",
+          value: content.detailParams?.maxLength,
+          placeholder: t(
+            "editor.action.panel.hugging_face.placeholder.min_length",
+          ),
+        },
+
+        {
+          title: t("editor.action.panel.hugging_face.top_k"),
+          name: "topK",
+          value: content.detailParams?.topK,
+          placeholder: t("editor.action.panel.hugging_face.placeholder.top_k"),
+        },
+        {
+          title: t("editor.action.panel.hugging_face.top_p"),
+          name: "topP",
+          value: content.detailParams?.topP,
+          placeholder: t("editor.action.panel.hugging_face.placeholder.top_p"),
+        },
+
+        {
+          title: t("editor.action.panel.hugging_face.temperature"),
+          name: "temperature",
+          value: content.detailParams?.temperature,
+          placeholder: t(
+            "editor.action.panel.hugging_face.placeholder.temperature",
+          ),
+          tips: t("editor.action.panel.hugging_face.tips.temperature"),
+        },
+        {
+          title: t("editor.action.panel.hugging_face.repetition_penalty"),
+          name: "repetitionPenalty",
+          value: content.detailParams?.repetitionPenalty,
+          placeholder: t(
+            "editor.action.panel.hugging_face.placeholder.repetition_penalty",
+          ),
+          tips: t("editor.action.panel.hugging_face.tips.repetition_penalty"),
+        },
+        {
+          title: t("editor.action.panel.hugging_face.max_time"),
+          name: "maxTime",
+          value: content.detailParams?.maxTime,
+          placeholder: t(
+            "editor.action.panel.hugging_face.placeholder.max_time",
+          ),
+        },
+      ].map(
+        (
+          {
+            title,
+            name,
+            value,
+            placeholder,
+            tips,
+          }: {
+            title: string
+            name: string
+            value: string
+            placeholder?: string
+            tips?: string
+          },
+          index: number,
+        ) => (
+          <InputEditor
+            key={index}
+            title={title}
+            value={value ?? ""}
+            onChange={(value) => handleParametersValueChange(value, name)}
+            expectedType={VALIDATION_TYPES.STRING}
+            placeholder={placeholder ?? ""}
+            tips={tips ?? ""}
+          />
+        ),
+      )}
+    </>
+  )
+}
 
 export const HuggingFacePanel: FC = () => {
   const { t } = useTranslation()
@@ -299,114 +416,11 @@ export const HuggingFacePanel: FC = () => {
             </div>
           </>
         )}
-        {content.withDetailParams &&
-          [
-            {
-              title: t("editor.action.panel.hugging_face.use_cache"),
-              name: "useCache",
-              value: content.detailParams?.useCache,
-              placeholder: t(
-                "editor.action.panel.hugging_face.placeholder.use_cache",
-              ),
-            },
-            {
-              title: t("editor.action.panel.hugging_face.wait_for_model"),
-              name: "waitForModel",
-              value: content.detailParams?.waitForModel,
-              placeholder: t(
-                "editor.action.panel.hugging_face.placeholder.use_cache",
-              ),
-            },
-            {
-              title: t("editor.action.panel.hugging_face.min_length"),
-              name: "minLength",
-              value: content.detailParams?.minLength,
-              placeholder: t(
-                "editor.action.panel.hugging_face.placeholder.min_length",
-              ),
-            },
-            {
-              title: t("editor.action.panel.hugging_face.max_length"),
-              name: "maxLength",
-              value: content.detailParams?.maxLength,
-              placeholder: t(
-                "editor.action.panel.hugging_face.placeholder.min_length",
-              ),
-            },
-
-            {
-              title: t("editor.action.panel.hugging_face.top_k"),
-              name: "topK",
-              value: content.detailParams?.topK,
-              placeholder: t(
-                "editor.action.panel.hugging_face.placeholder.top_k",
-              ),
-            },
-            {
-              title: t("editor.action.panel.hugging_face.top_p"),
-              name: "topP",
-              value: content.detailParams?.topP,
-              placeholder: t(
-                "editor.action.panel.hugging_face.placeholder.top_p",
-              ),
-            },
-
-            {
-              title: t("editor.action.panel.hugging_face.temperature"),
-              name: "temperature",
-              value: content.detailParams?.temperature,
-              placeholder: t(
-                "editor.action.panel.hugging_face.placeholder.temperature",
-              ),
-              tips: t("editor.action.panel.hugging_face.tips.temperature"),
-            },
-            {
-              title: t("editor.action.panel.hugging_face.repetition_penalty"),
-              name: "repetitionPenalty",
-              value: content.detailParams?.repetitionPenalty,
-              placeholder: t(
-                "editor.action.panel.hugging_face.placeholder.repetition_penalty",
-              ),
-              tips: t(
-                "editor.action.panel.hugging_face.tips.repetition_penalty",
-              ),
-            },
-            {
-              title: t("editor.action.panel.hugging_face.max_time"),
-              name: "maxTime",
-              value: content.detailParams?.maxTime,
-              placeholder: t(
-                "editor.action.panel.hugging_face.placeholder.max_time",
-              ),
-            },
-          ].map(
-            (
-              {
-                title,
-                name,
-                value,
-                placeholder,
-                tips,
-              }: {
-                title: string
-                name: string
-                value: string
-                placeholder?: string
-                tips?: string
-              },
-              index: number,
-            ) => (
-              <InputEditor
-                key={index}
-                title={title}
-                value={value ?? ""}
-                onChange={(value) => handleParametersValueChange(value, name)}
-                expectedType={VALIDATION_TYPES.STRING}
-                placeholder={placeholder ?? ""}
-                tips={tips ?? ""}
-              />
-            ),
-          )}
+        {content.withDetailParams && (
+          <>
+            {getDetailedParameters({ t, content, handleParametersValueChange })}
+          </>
+        )}
         <TransformerComponent />
       </div>
       <ActionEventHandler />
