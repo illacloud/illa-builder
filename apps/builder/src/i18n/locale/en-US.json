@@ -297,6 +297,12 @@
           "placeholder": {
             "query": "# Use $ to add a variable into your query (e.g. $category ) \r\nquery ($owner: String!, $name: String!){\r\n  repository(owner: $owner, name: $name) \r\n}"
           }
+        },
+        "hugging_face": {
+          "mode_id": "Model ID",
+          "placeholder": {
+            "mode_id": "bert-base-uncased"
+          }
         }
       },
       "resource": {
