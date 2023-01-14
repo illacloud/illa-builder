@@ -239,6 +239,7 @@ export const HuggingFacePanel: FC = () => {
               currentParameterType === "json") && (
               <div css={codeEditorStyle}>
                 <CodeEditor
+                  key={currentParameterType}
                   mode="TEXT_JS"
                   lineNumbers
                   value={(content.inputs.content as string) ?? ""}
