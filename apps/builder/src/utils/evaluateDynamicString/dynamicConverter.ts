@@ -3,7 +3,7 @@ import { EVALUATION_TYPE } from "./interface"
 import { isDynamicString } from "./utils"
 import { substituteDynamicBindingWithValues } from "./valueConverter"
 
-const getStringSnippets = (dynamicString: string): string[] => {
+export const getStringSnippets = (dynamicString: string): string[] => {
   let stringSnippets: string[] = []
   const indexOfDoubleParenStart = dynamicString.indexOf("{{")
   if (indexOfDoubleParenStart === -1) {
@@ -48,9 +48,7 @@ export const getSnippets = (
   }
   const sanitisedString = dynamicString.trim()
   let stringSnippets, jsSnippets: any
-  // Get the {{binding}} bound values
   stringSnippets = getStringSnippets(sanitisedString)
-  // Get the "binding" path values
   jsSnippets = stringSnippets.map((segment) => {
     const length = segment.length
     const matches = isDynamicString(segment)

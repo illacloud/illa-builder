@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ControlledInputProps } from "@/page/App/components/InputEditor/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
@@ -18,21 +19,21 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
     tips,
     placeholder,
     style = {},
-    mode = "TEXT_JS",
+    mode = CODE_LANG.JAVASCRIPT,
     lineNumbers = false,
   } = props
   return (
     <>
       <div css={actionItemStyle}>
-        <span css={codeEditorLabelStyle}>{title}</span>
+        {title && <span css={codeEditorLabelStyle}>{title}</span>}
         <CodeEditor
           {...style}
-          lineNumbers={lineNumbers}
-          css={actionItemCodeEditorStyle}
-          mode={mode}
+          showLineNumbers={lineNumbers}
+          wrapperCss={actionItemCodeEditorStyle}
+          lang={mode}
           value={value}
           onChange={onChange}
-          expectedType={expectedType}
+          expectValueType={expectedType}
           placeholder={placeholder}
         />
       </div>

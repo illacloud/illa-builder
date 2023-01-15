@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
 import {
   codeEditorLabelStyle,
@@ -48,11 +49,11 @@ export const DeleteOnePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.bucket_name")}
         </span>
         <CodeEditor
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
           onChange={(value) => handleValueChange(value, "bucketName")}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={s3ItemStyle}>
@@ -60,11 +61,11 @@ export const DeleteOnePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.object_key")}
         </span>
         <CodeEditor
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.objectKey}
           onChange={(value) => handleValueChange(value, "objectKey")}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>

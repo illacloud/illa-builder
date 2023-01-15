@@ -1,8 +1,11 @@
 import { FC } from "react"
-import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
@@ -25,11 +28,12 @@ export const TransformerPanel: FC = (props) => {
     <div css={transformerPanelContainerStyle}>
       <CodeEditor
         value={content.transformerString}
-        css={transformerEditorStyle}
-        lineNumbers
+        wrapperCss={transformerEditorStyle}
+        showLineNumbers
         height="88px"
-        expectedType={VALIDATION_TYPES.STRING}
-        mode="JAVASCRIPT"
+        expectValueType={VALIDATION_TYPES.STRING}
+        lang={CODE_LANG.JAVASCRIPT}
+        codeType={CODE_TYPE.FUNCTION}
         onChange={(value) => {
           dispatch(
             configActions.updateCachedAction({

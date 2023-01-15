@@ -3,6 +3,10 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { RadioGroup } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { TransformComponentProps } from "@/page/App/components/Actions/ActionPanel/TransformerComponent/interface"
 import {
   codeMirrorStyle,
@@ -87,11 +91,12 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
           {mysqlLike ? null : <span css={transformTitle}></span>}
           <CodeEditor
             value={cachedAction.transformer.rawData}
-            css={codeMirrorStyle}
-            lineNumbers
+            wrapperCss={codeMirrorStyle}
+            showLineNumbers
             height="88px"
-            expectedType={VALIDATION_TYPES.STRING}
-            mode="JAVASCRIPT"
+            expectValueType={VALIDATION_TYPES.STRING}
+            lang={CODE_LANG.JAVASCRIPT}
+            codeType={CODE_TYPE.FUNCTION}
             onChange={(value) => {
               dispatch(
                 configActions.updateCachedAction({

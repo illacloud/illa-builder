@@ -1,8 +1,9 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Checkbox } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
@@ -71,11 +72,11 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.from_email")}
           </span>
           <CodeEditor
-            css={smtpItemCodeEditorStyle}
-            mode="TEXT_JS"
+            wrapperCss={smtpItemCodeEditorStyle}
+            lang={CODE_LANG.JAVASCRIPT}
             value={content.from}
             onChange={(value) => handleValueChange(value, "from")}
-            expectedType={VALIDATION_TYPES.STRING}
+            expectValueType={VALIDATION_TYPES.STRING}
           />
         </div>
         <div css={checkoutItemStyle}>
@@ -98,11 +99,11 @@ export const SMTPPanel: FC = () => {
               {t("editor.action.panel.smtp.replay_email")}
             </span>
             <CodeEditor
-              css={smtpItemCodeEditorStyle}
-              mode="TEXT_JS"
+              wrapperCss={smtpItemCodeEditorStyle}
+              lang={CODE_LANG.JAVASCRIPT}
               value={content.replyTo}
               onChange={(value) => handleValueChange(value, "replyTo")}
-              expectedType={VALIDATION_TYPES.STRING}
+              expectValueType={VALIDATION_TYPES.STRING}
             />
           </div>
         )}
@@ -111,12 +112,12 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.to_email")}
           </span>
           <CodeEditor
-            css={smtpItemCodeEditorStyle}
-            mode="TEXT_JS"
+            wrapperCss={smtpItemCodeEditorStyle}
+            lang={CODE_LANG.JAVASCRIPT}
             value={content.to}
             placeholder={t("editor.action.panel.smtp.placeholder.emails")}
             onChange={(value) => handleValueChange(value, "to")}
-            expectedType={VALIDATION_TYPES.ARRAY}
+            expectValueType={VALIDATION_TYPES.ARRAY}
           />
         </div>
         <div css={smtpItemStyle}>
@@ -124,12 +125,12 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.bcc_email")}
           </span>
           <CodeEditor
-            css={smtpItemCodeEditorStyle}
-            mode="TEXT_JS"
+            wrapperCss={smtpItemCodeEditorStyle}
+            lang={CODE_LANG.JAVASCRIPT}
             placeholder={t("editor.action.panel.smtp.placeholder.emails")}
             value={content.bcc}
             onChange={(value) => handleValueChange(value, "bcc")}
-            expectedType={VALIDATION_TYPES.ARRAY}
+            expectValueType={VALIDATION_TYPES.ARRAY}
           />
         </div>
 
@@ -138,12 +139,12 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.cc_email")}
           </span>
           <CodeEditor
-            css={smtpItemCodeEditorStyle}
-            mode="TEXT_JS"
+            wrapperCss={smtpItemCodeEditorStyle}
+            lang={CODE_LANG.JAVASCRIPT}
             value={content.cc}
             placeholder={t("editor.action.panel.smtp.placeholder.emails")}
             onChange={(value) => handleValueChange(value, "cc")}
-            expectedType={VALIDATION_TYPES.ARRAY}
+            expectValueType={VALIDATION_TYPES.ARRAY}
           />
         </div>
 
@@ -152,11 +153,11 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.subject")}
           </span>
           <CodeEditor
-            css={smtpItemCodeEditorStyle}
-            mode="TEXT_JS"
+            wrapperCss={smtpItemCodeEditorStyle}
+            lang={CODE_LANG.JAVASCRIPT}
             value={content.subject}
             onChange={(value) => handleValueChange(value, "subject")}
-            expectedType={VALIDATION_TYPES.STRING}
+            expectValueType={VALIDATION_TYPES.STRING}
           />
         </div>
         <div css={smtpItemStyle}>
@@ -169,13 +170,13 @@ export const SMTPPanel: FC = () => {
             </span>
           </span>
           <CodeEditor
-            lineNumbers
+            showLineNumbers
             height="88px"
-            css={smtpItemCodeEditorStyle}
-            mode="TEXT_JS"
+            wrapperCss={smtpItemCodeEditorStyle}
+            lang={CODE_LANG.JAVASCRIPT}
             value={content.body}
             onChange={(value) => handleValueChange(value, "body")}
-            expectedType={VALIDATION_TYPES.STRING}
+            expectValueType={VALIDATION_TYPES.STRING}
           />
         </div>
         <div css={smtpItemStyle}>
@@ -183,12 +184,12 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.attachment")}
           </span>
           <CodeEditor
-            css={smtpItemCodeEditorStyle}
-            mode="TEXT_JS"
+            wrapperCss={smtpItemCodeEditorStyle}
+            lang={CODE_LANG.JAVASCRIPT}
             value={content.attachment}
             placeholder={t("editor.action.panel.smtp.placeholder.attachment")}
             onChange={(value) => handleValueChange(value, "attachment")}
-            expectedType={VALIDATION_TYPES.ARRAY}
+            expectValueType={VALIDATION_TYPES.ARRAY}
           />
         </div>
         <TransformerComponent />

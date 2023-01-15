@@ -2,6 +2,10 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
 import {
   codeEditorLabelStyle,
@@ -27,10 +31,6 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.aggregation")}
         </span>
         <CodeEditor
-          lineNumbers
-          height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
           value={typeContent.aggregation}
           onChange={(value) => {
             dispatch(
@@ -46,7 +46,13 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          height="88px"
+          wrapperCss={mongoItemCodeEditorStyle}
+          expectValueType={VALIDATION_TYPES.STRING}
+          lang={CODE_LANG.JAVASCRIPT}
+          codeType={CODE_TYPE.EXPRESSION}
+          canShowCompleteInfo
+          showLineNumbers
         />
       </div>
       <div css={mongoItemStyle}>
@@ -54,9 +60,9 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.options")}
         </span>
         <CodeEditor
-          lineNumbers
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          showLineNumbers
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.options}
           onChange={(value) => {
             dispatch(
@@ -72,7 +78,7 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>

@@ -106,8 +106,6 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
     ],
   )
 
-  const debounceHandleChangeInput = debounce(handleChangeInput, 300)
-
   const handleChangeSelect = useCallback(
     (value: any) => {
       handleUpdateMultiAttrDSL?.({
@@ -124,7 +122,7 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
         onClickFxButton={handleClickFxButton}
         selectPlaceholder="Select a query or transformer"
         inputPlaceholder="{{}}"
-        onChangeInput={debounceHandleChangeInput}
+        onChangeInput={handleChangeInput}
         path={`${widgetDisplayName}.dataSourceJS`}
         options={selectedOptions}
         expectedType={VALIDATION_TYPES.ARRAY}
