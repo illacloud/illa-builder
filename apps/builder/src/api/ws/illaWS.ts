@@ -101,9 +101,9 @@ export class ILLAWebsocket {
 
   private heartStart() {
     if (this.forbidReconnect) return
-    this.pingTimeoutId = setTimeout(() => {
+    this.pingTimeoutId = window.setTimeout(() => {
       this.ws?.send(pingMessage)
-      this.pongTimeoutId = setTimeout(() => {
+      this.pongTimeoutId = window.setTimeout(() => {
         if (this.isOnline) {
           store.dispatch(configActions.updateDevicesOnlineStatusReducer(false))
           this.isOnline = false

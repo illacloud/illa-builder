@@ -252,7 +252,6 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
                   minHeight: "240px",
                 }}
                 borderColor="techPurple"
-                overflow="scroll"
                 w="100%"
                 ml="16px"
                 mr="24px"

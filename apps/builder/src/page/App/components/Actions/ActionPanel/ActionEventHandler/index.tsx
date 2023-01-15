@@ -24,7 +24,7 @@ export const ActionEventHandler: FC = () => {
       if (action != undefined) {
         const newActionContent = cloneDeep(action.content || {})
 
-        const updateSlice = { [attrPath]: value }
+        const updateSlice: Record<string, unknown> = { [attrPath]: value }
 
         const result = getNewWidgetPropsByUpdateSlice(
           action?.displayName ?? "",
@@ -44,7 +44,7 @@ export const ActionEventHandler: FC = () => {
 
   // keep empty
   const handleUpdateMultiAttrDSL = useCallback(
-    (updateSlice: Record<string, any>) => {
+    (updateSlice: Record<string, unknown>) => {
       return
     },
     [],
@@ -52,7 +52,7 @@ export const ActionEventHandler: FC = () => {
 
   // keep empty
   const handleUpdateOtherMultiAttrDSL = useCallback(
-    (displayName: string, updateSlice: Record<string, any>) => {
+    (displayName: string, updateSlice: Record<string, unknown>) => {
       return
     },
     [],

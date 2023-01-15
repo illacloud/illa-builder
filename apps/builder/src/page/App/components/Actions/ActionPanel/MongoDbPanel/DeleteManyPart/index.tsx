@@ -11,14 +11,21 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { DeleteManyContent } from "@/redux/currentApp/action/mongoDbAction"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  DeleteManyContent,
+  MongoDbAction,
+  MongoDbActionTypeContent,
+} from "@/redux/currentApp/action/mongoDbAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DeleteManyPart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
   const dispatch = useDispatch()
-  const cachedAction = useSelector(getCachedAction)
+  const cachedAction = useSelector(getCachedAction) as ActionItem<
+    MongoDbAction<MongoDbActionTypeContent>
+  >
 
   const typeContent = props.typeContent as DeleteManyContent
 

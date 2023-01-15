@@ -44,16 +44,16 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
   const [saving, setSaving] = useState(false)
 
   const handleURLClick = (link: string) => window.open(link, "_blank")
-  const getTransComponent = (key: string, link: string) => {
-    const handleLinKClick = () => handleURLClick(link)
-    return (
-      <Trans
-        i18nKey={key}
-        t={t}
-        components={[<TextLink key={key} onClick={handleLinKClick} />]}
-      />
-    )
-  }
+  // const getTransComponent = (key: string, link: string) => {
+  //   const handleLinKClick = () => handleURLClick(link)
+  //   return (
+  //     <Trans
+  //       i18nKey={key}
+  //       t={t}
+  //       components={[<TextLink key={key} onClick={handleLinKClick} />]}
+  //     />
+  //   )
+  // }
 
   return (
     <form
@@ -118,10 +118,20 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
           controlledType="password"
           control={control}
           isRequired
-          tips={getTransComponent(
-            "editor.action.resource.db.tip.bear_token",
-            "https://huggingface.co/settings/tokens",
-          )}
+          tips={
+            <Trans
+              i18nKey="editor.action.resource.db.tip.bear_token"
+              t={t}
+              components={[
+                <TextLink
+                  key={"editor.action.resource.db.tip.bear_token"}
+                  onClick={() => {
+                    handleURLClick("https://huggingface.co/settings/tokens")
+                  }}
+                />,
+              ]}
+            />
+          }
           labelStyle={labelStyle}
           tipsStyle={tipsStyle}
         />

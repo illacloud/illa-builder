@@ -68,13 +68,14 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const handleActionTypeChange = useCallback(
     (value: string) => {
       let newBody = null
+      const content = selectedAction?.content as RestApiAction<BodyContent>
       if (
         selectedAction.resourceId === actionItem.resourceId &&
-        selectedAction.content.method !== "GET" &&
-        selectedAction.content.bodyType !== "none" &&
-        selectedAction.content.bodyType === value
+        content.method !== "GET" &&
+        content.bodyType !== "none" &&
+        content.bodyType === value
       ) {
-        newBody = selectedAction.content.body
+        newBody = content.body
       } else {
         switch (value) {
           case "none":
