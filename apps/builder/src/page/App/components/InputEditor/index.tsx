@@ -25,7 +25,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
   return (
     <>
       <div css={actionItemStyle}>
-        <span css={codeEditorLabelStyle}>{title}</span>
+        {title && <span css={codeEditorLabelStyle}>{title}</span>}
         <CodeEditor
           {...style}
           showLineNumbers={lineNumbers}
