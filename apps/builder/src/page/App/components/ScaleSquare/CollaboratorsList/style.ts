@@ -29,15 +29,26 @@ export function applyUserAvatarStyle(
   `
 }
 
-export const getComponentUsersListContainerStyle = (length: number) => {
+export const getComponentUsersListContainerStyle = (
+  length: number,
+  disableMargin: boolean,
+) => {
   const minWidth = length >= 3 ? 32 : 14 * length + 4 * (length - 1)
+  let marginStyle = css`
+    margin-left: 8px;
+  `
+  if (disableMargin) {
+    marginStyle = css``
+  }
   return css`
     display: flex;
-    margin-left: 8px;
+    ${marginStyle};
     gap: 4px;
     height: 14px;
     max-width: 50px;
-    justify-content: space-between;
+    flex-shrink: 1;
+    flex-grow: 1;
+    justify-content: flex-start;
     align-self: center;
     overflow: hidden;
     min-width: ${minWidth}px;
@@ -54,6 +65,7 @@ export const moreIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-white-01`)};
   display: flex;
   flex-grow: 0;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   cursor: pointer;

@@ -1,20 +1,13 @@
-import { isArray } from "@illa-design/react"
-import {
-  Connection,
-  getPayload,
-  transformComponentReduxPayloadToWsPayload,
-} from "@/api/ws"
+import { Connection, getPayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/interface"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import store from "@/store"
 
 export const getDisattachedComponents = (
-  currentAttached: Record<string, CollaboratorsInfo[]> | string[],
+  currentAttached: Record<string, CollaboratorsInfo[]>,
   currentSelected: string[],
 ) => {
-  const preciousAttached = isArray(currentAttached)
-    ? [...currentAttached]
-    : Object.keys(currentAttached) || []
+  const preciousAttached = Object.keys(currentAttached) || []
   return preciousAttached.filter(
     (displayName) => !currentSelected.includes(displayName),
   )
