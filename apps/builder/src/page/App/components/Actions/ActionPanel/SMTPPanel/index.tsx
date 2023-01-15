@@ -173,7 +173,7 @@ export const SMTPPanel: FC = () => {
             showLineNumbers
             height="88px"
             wrapperCss={smtpItemCodeEditorStyle}
-            lang={CODE_LANG.JAVASCRIPT}
+            lang={isHTML ? CODE_LANG.HTML : CODE_LANG.JAVASCRIPT}
             value={content.body}
             onChange={(value) => handleValueChange(value, "body")}
             expectValueType={VALIDATION_TYPES.STRING}

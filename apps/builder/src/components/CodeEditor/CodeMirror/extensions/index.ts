@@ -59,9 +59,6 @@ export const basicExtension: Extension = [
   closeBrackets(),
   keymap.of([...closeBracketsKeymap, ...defaultKeymap, ...historyKeymap]),
 ]
-
-export const getLineNumberExtension = () => lineNumbers()
-
 const getHighlightExtDecorations = (value: {
   decoration: DecorationSet
   update: (update: ViewUpdate) => void
@@ -229,7 +226,7 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
   )
 
   const showLinNUmberExtension = useMemo(
-    () => (showLineNumbers ? [] : getLineNumberExtension()),
+    () => (showLineNumbers ? [lineNumbers()] : []),
     [showLineNumbers],
   )
 
