@@ -56,28 +56,29 @@ export const MysqlLikePanel: FC = (props) => {
     <div css={mysqlContainerStyle}>
       <ResourceChoose />
       <div css={actionItemContainer}>
-        <CodeEditor
-          placeholder="select * from users;"
-          showLineNumbers
-          height="88px"
-          wrapperCss={sqlInputStyle}
-          value={value}
-          lang={mode}
-          canShowCompleteInfo
-          expectValueType={VALIDATION_TYPES.STRING}
-          sqlScheme={sqlTable}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...currentAction,
-                content: {
-                  ...mysqlContent,
-                  query: value,
-                },
-              }),
-            )
-          }}
-        />
+        <div css={sqlInputStyle}>
+          <CodeEditor
+            placeholder="select * from users;"
+            showLineNumbers
+            height="88px"
+            value={value}
+            lang={mode}
+            canShowCompleteInfo
+            expectValueType={VALIDATION_TYPES.STRING}
+            sqlScheme={sqlTable}
+            onChange={(value) => {
+              dispatch(
+                configActions.updateCachedAction({
+                  ...currentAction,
+                  content: {
+                    ...mysqlContent,
+                    query: value,
+                  },
+                }),
+              )
+            }}
+          />
+        </div>
         <TransformerComponent mysqlLike />
       </div>
       <ActionEventHandler />

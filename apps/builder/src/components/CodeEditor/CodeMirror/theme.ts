@@ -32,6 +32,7 @@ export const ILLACodeMirrorTheme = {
   },
   "&.cm-editor .cm-placeholder": {
     color: getColor("grayBlue", "04"),
+    height: "18px",
   },
   "&.cm-editor .cm-tooltip-autocomplete": {
     border: "none",

@@ -4,6 +4,7 @@ import { Trans, useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Checkbox, Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
@@ -357,10 +358,10 @@ export const HuggingFacePanel: FC = () => {
               <div css={codeEditorStyle}>
                 <CodeEditor
                   key={currentParameterType}
-                  mode="TEXT_JS"
-                  lineNumbers
+                  lang={CODE_LANG.JAVASCRIPT}
+                  showLineNumbers
                   value={(content.inputs.content as string) ?? ""}
-                  expectedType={VALIDATION_TYPES.STRING}
+                  expectValueType={VALIDATION_TYPES.STRING}
                   height="88px"
                   placeholder={
                     currentParameterType === "binary"
@@ -374,10 +375,10 @@ export const HuggingFacePanel: FC = () => {
             {currentParameterType === "text" && (
               <CodeEditor
                 css={textCodeEditorStyle}
-                mode={"TEXT_JS"}
+                lang={CODE_LANG.JAVASCRIPT}
                 value={(content?.inputs.content ?? "") as TextRawBody}
                 onChange={handleInputsValueChange}
-                expectedType={VALIDATION_TYPES.STRING}
+                expectValueType={VALIDATION_TYPES.STRING}
                 placeholder={t(
                   "editor.action.panel.hugging_face.placeholder.text",
                 )}
