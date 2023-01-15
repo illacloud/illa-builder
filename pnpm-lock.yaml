@@ -97,7 +97,7 @@ importers:
       events: ^3.3.0
       framer-motion: ^7.6.12
       hotkeys-js: ^3.10.1
-      i18next: ^22.4.6
+      i18next: ^22.4.9
       i18next-browser-languagedetector: ^7.0.1
       jshint: ^2.13.6
       lodash: ^4.17.21
@@ -111,7 +111,7 @@ importers:
       react-dom: ^18.2.0
       react-hook-form: ^7.30.0
       react-hotkeys-hook: ^3.4.6
-      react-i18next: ^12.1.1
+      react-i18next: ^12.1.4
       react-json-view: ^1.21.3
       react-markdown: ^8.0.3
       react-redux: ^8.0.1
@@ -165,7 +165,7 @@ importers:
       events: 3.3.0
       framer-motion: 7.6.17_biqbaboplfbrettd7655fr4n2y
       hotkeys-js: 3.10.1
-      i18next: 22.4.6
+      i18next: registry.npmjs.org/i18next/22.4.9
       i18next-browser-languagedetector: 7.0.1
       jshint: 2.13.6
       lodash: 4.17.21
@@ -179,7 +179,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.40.0_react@18.2.0
       react-hotkeys-hook: 3.4.7_biqbaboplfbrettd7655fr4n2y
-      react-i18next: 12.1.1_6vygckh2jgtx4nucc3no6lnm3y
+      react-i18next: registry.npmjs.org/react-i18next/12.1.4_iakk3dtjhjpukdoa4oua5khgci
       react-json-view: 1.21.3_2zx2umvpluuhvlq44va5bta2da
       react-markdown: 8.0.4_fan5qbzahqtxlm5dzefqlqx5ia
       react-redux: 8.0.5_moha6x5fbqoiok2ot63p7hwafm
@@ -5924,12 +5924,6 @@ packages:
       '@babel/runtime': 7.20.6
     dev: false
 
-  /i18next/22.4.6:
-    resolution: {integrity: sha512-9Tm1ezxWyzV+306CIDMBbYBitC1jedQyYuuLtIv7oxjp2ohh8eyxP9xytIf+2bbQfhH784IQKPSYp+Zq9+YSbw==}
-    dependencies:
-      '@babel/runtime': 7.20.6
-    dev: false
-
   /iconv-lite/0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -7576,26 +7570,6 @@ packages:
       react-dom: '>=16.8.1'
     dependencies:
       hotkeys-js: 3.9.4
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
-
-  /react-i18next/12.1.1_6vygckh2jgtx4nucc3no6lnm3y:
-    resolution: {integrity: sha512-mFdieOI0LDy84q3JuZU6Aou1DoWW2fhapcTGeBS8+vWSJuViuoCLQAMYSb0QoHhXS8B0WKUOPpx4cffAP7r/aA==}
-    peerDependencies:
-      i18next: '>= 19.0.0'
-      react: '>= 16.8.0'
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.20.6
-      html-parse-stringify: 3.0.1
-      i18next: 22.4.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -11723,6 +11697,14 @@ packages:
     version: 1.0.4
     dev: false
 
+  registry.npmjs.org/i18next/22.4.9:
+    resolution: {integrity: sha512-8gWMmUz460KJDQp/ob3MNUX84cVuDRY9PLFPnV8d+Qezz/6dkjxwOaH70xjrCNDO+JrUL25iXfAIN9wUkInNZw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/i18next/-/i18next-22.4.9.tgz}
+    name: i18next
+    version: 22.4.9
+    dependencies:
+      '@babel/runtime': 7.20.6
+    dev: false
+
   registry.npmjs.org/ieee754/1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz}
     name: ieee754
@@ -12855,6 +12837,29 @@ packages:
       react-dom: '>=16.8.1'
     dependencies:
       hotkeys-js: registry.npmjs.org/hotkeys-js/3.9.4
+    dev: false
+
+  registry.npmjs.org/react-i18next/12.1.4_iakk3dtjhjpukdoa4oua5khgci:
+    resolution: {integrity: sha512-XQND7jYtgM7ht5PH3yIZljCRpAMTlH/zmngM9ZjToqa+0BR6xuu8c7QF0WIIOEjcMTB2S3iOfpN/xG/ZrAnO6g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/react-i18next/-/react-i18next-12.1.4.tgz}
+    id: registry.npmjs.org/react-i18next/12.1.4
+    name: react-i18next
+    version: 12.1.4
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.20.6
+      html-parse-stringify: 3.0.1
+      i18next: registry.npmjs.org/i18next/22.4.9
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   registry.npmjs.org/react-is/16.13.1:

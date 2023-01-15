@@ -178,16 +178,6 @@ export const HuggingFacePanel: FC = () => {
   const dispatch = useDispatch()
 
   const handleURLClick = (link: string) => window.open(link, "_blank")
-  const getTransComponent = (key: string, link: string) => {
-    const handleLinKClick = () => handleURLClick(link)
-    return (
-      <Trans
-        i18nKey={key}
-        t={t}
-        components={[<TextLink key={key} onClick={handleLinKClick} />]}
-      />
-    )
-  }
 
   const handleValueChange = useCallback(
     (value: string | boolean, key: string) => {
@@ -315,10 +305,22 @@ export const HuggingFacePanel: FC = () => {
           value={content.modelID ?? ""}
           onChange={(value) => handleValueChange(value, "modelID")}
           expectedType={VALIDATION_TYPES.STRING}
-          tips={getTransComponent(
-            "editor.action.panel.hugging_face.tips.mode_id",
-            "https://huggingface.co/docs/api-inference/detailed_parameters",
-          )}
+          tips={
+            <Trans
+              i18nKey="editor.action.panel.hugging_face.tips.mode_id"
+              t={t}
+              components={[
+                <TextLink
+                  key="editor.action.panel.hugging_face.tips.mode_id"
+                  onClick={() => {
+                    handleURLClick(
+                      "https://huggingface.co/docs/api-inference/detailed_parameters",
+                    )
+                  }}
+                />,
+              ]}
+            />
+          }
         />
         <div css={bodyEditorContainerStyle}>
           <span css={bodyLabelStyle}>
@@ -374,7 +376,7 @@ export const HuggingFacePanel: FC = () => {
             )}
             {currentParameterType === "text" && (
               <CodeEditor
-                css={textCodeEditorStyle}
+                wrapperCss={textCodeEditorStyle}
                 lang={CODE_LANG.JAVASCRIPT}
                 value={(content?.inputs.content ?? "") as TextRawBody}
                 onChange={handleInputsValueChange}
@@ -408,10 +410,20 @@ export const HuggingFacePanel: FC = () => {
                   </span>
                 </div>
                 <div css={checkboxTipsStyle}>
-                  {getTransComponent(
-                    "editor.action.panel.hugging_face.tips.use_detail_parameters",
-                    "https://huggingface.co/docs/api-inference/detailed_parameters",
-                  )}
+                  <Trans
+                    i18nKey="editor.action.panel.hugging_face.tips.use_detail_parameters"
+                    t={t}
+                    components={[
+                      <TextLink
+                        key="editor.action.panel.hugging_face.tips.use_detail_parameters"
+                        onClick={() => {
+                          handleURLClick(
+                            "https://huggingface.co/docs/api-inference/detailed_parameters",
+                          )
+                        }}
+                      />,
+                    ]}
+                  />
                 </div>
               </div>
             </div>

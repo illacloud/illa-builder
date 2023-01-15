@@ -28,10 +28,7 @@
     "types": [
       "vite/client",
       "vite-plugin-svgr/client",
-      "jest",
-      "@testing-library/jest-dom",
-      "node",
-      "@testing-library/react"
+      "./src/i18n/react-i18next.d.ts"
     ]
   },
   "include": [
