@@ -1,5 +1,5 @@
 import { Control } from "react-hook-form"
-import { BearerAuth, RestApiResource } from "@/redux/resource/resourceState"
+import { BearerAuth } from "@/redux/resource/restapiResource"
 
 export interface BearerAuthPanelProps {
   auth?: BearerAuth

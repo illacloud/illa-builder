@@ -85,7 +85,3 @@ jobs:
       - name: Publish docker image
         run: echo "Publishing docker image..."
 
-      - name: Build Static Page
-        run: |
-          pnpm build-cloud
-

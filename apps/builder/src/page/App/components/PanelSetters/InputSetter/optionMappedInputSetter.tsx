@@ -1,5 +1,9 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { CodeEditor } from "@/components/CodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import {
   getNeedComputedValue,
   realInputValue,
@@ -26,21 +30,35 @@ export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
     widgetDisplayName,
   } = props
 
-  const handleValueChange = (value: string) => {
-    const output = getNeedComputedValue(value, widgetDisplayName)
+  const handleValueChange = useCallback(
+    (value: string) => {
+      const output = getNeedComputedValue(value, widgetDisplayName)
 
-    handleUpdateDsl(attrName, output)
-  }
+      handleUpdateDsl(attrName, output)
+    },
+    [attrName, handleUpdateDsl, widgetDisplayName],
+  )
+
+  const wrappedCodeFunc = useCallback(
+    (value: string) => {
+      return getNeedComputedValue(value, widgetDisplayName)
+    },
+    [widgetDisplayName],
+  )
 
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
       <CodeEditor
         value={realInputValue(value, widgetDisplayName)}
-        placeholder={placeholder}
         onChange={handleValueChange}
-        mode="TEXT_JS"
-        expectedType={expectedType}
-        path={getPath(attrName, widgetDisplayName)}
+        showLineNumbers={false}
+        placeholder={placeholder}
+        expectValueType={expectedType}
+        lang={CODE_LANG.JAVASCRIPT}
+        maxHeight="208px"
+        maxWidth="100%"
+        codeType={CODE_TYPE.EXPRESSION}
+        wrappedCodeFunc={wrappedCodeFunc}
       />
     </div>
   )

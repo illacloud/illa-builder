@@ -1,17 +1,6 @@
 import i18n from "@/i18n/config"
 import { ValidateCheckProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
-export const invalidMessage = new Map<string, string>([
-  ["maxLength", "editor.validate_message.max_length"],
-  ["minLength", "editor.validate_message.min_length"],
-  ["maxValue", "editor.validate_message.max_value"],
-  ["minValue", "editor.validate_message.min_value"],
-  ["regex", "editor.validate_message.regex"],
-  ["url", "editor.validate_message.url"],
-  ["email", "editor.validate_message.email"],
-  ["required", "editor.validate_message.required"],
-])
-
 const validateEmail = (email: string) => {
   const str =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -64,7 +53,7 @@ export const handleCheckPattern = (
         (typeof value === "string" && !validateEmail(value)) ||
         typeof value === "undefined"
       ) {
-        return i18n.t(invalidMessage.get("email")!)
+        return i18n.t("editor.validate_message.email")
       }
       break
     }
@@ -73,7 +62,7 @@ export const handleCheckPattern = (
         (typeof value === "string" && !isValidURL(value)) ||
         typeof value === "undefined"
       ) {
-        return i18n.t(invalidMessage.get("url")!)
+        return i18n.t("editor.validate_message.url")
       }
       break
     }
@@ -83,7 +72,7 @@ export const handleCheckPattern = (
         const stringValue = JSON.stringify(value)
         const matchPattern = new RegExp(reg)
         if (!matchPattern.test(stringValue)) {
-          return i18n.t(invalidMessage.get("regex")!)
+          return i18n.t("editor.validate_message.regex")
         }
       } catch (e) {
         console.error("regex error", e)
@@ -104,17 +93,17 @@ export const handleValidateCheck = (
   }
 
   if (handleCheckIsRequired(options.value, options.required)) {
-    return i18n.t(invalidMessage.get("required")!)
+    return i18n.t("editor.validate_message.required")
   }
 
   if (handleCheckMaxLength(options.value, options.maxLength)) {
-    return i18n.t(invalidMessage.get("maxLength")!, {
+    return i18n.t("editor.validate_message.max_length", {
       number: options.maxLength,
     })
   }
 
   if (handleCheckMinLength(options.value, options.minLength)) {
-    return i18n.t(invalidMessage.get("minLength")!, {
+    return i18n.t("editor.validate_message.min_value", {
       number: options.minLength,
     })
   }

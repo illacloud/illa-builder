@@ -20,6 +20,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     labelDesc,
     panelConfig,
     handleUpdateDsl,
+    handleUpdateMultiAttrDSL,
     value,
     widgetDisplayName,
     expectedType,
@@ -27,17 +28,21 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     openDynamic,
   } = props
 
-  const dynamicAttrPath = get(panelConfig, "$dynamicAttrPaths", [])
-
-  const customSelected = dynamicAttrPath.includes(attrName)
+  const customSelected = get(panelConfig, `${attrName}Dynamic`, false)
 
   const handleClickDynamicIcon = useCallback(() => {
     if (customSelected) {
-      handleUpdateDsl(attrName, false)
+      handleUpdateMultiAttrDSL?.({
+        [attrName]: undefined,
+        [`${attrName}Dynamic`]: false,
+      })
     } else {
-      handleUpdateDsl(attrName, `{{false}}`)
+      handleUpdateMultiAttrDSL?.({
+        [attrName]: undefined,
+        [`${attrName}Dynamic`]: true,
+      })
     }
-  }, [attrName, customSelected, handleUpdateDsl])
+  }, [attrName, customSelected, handleUpdateMultiAttrDSL])
 
   return (
     <div css={applyLabelWrapperStyle(customSelected)}>
