@@ -28,6 +28,7 @@ export function applyUserAvatarStyle(
       width: 14px;
       height: 14px;
       line-height: 14px;
+      font-weight: 500;
     `
   }
 
