@@ -29,7 +29,11 @@ export const getListItemContainerStyle = (type: string = "") => {
 }
 
 export const nicknameStyle = css`
-  line-height: 32px;
+  line-height: 22px;
+  height: 22px;
+  align-self: center;
+  font-family: "Inter";
+  font-size: 14px;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;

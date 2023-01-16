@@ -16,6 +16,7 @@ export const moreIconStyle = css`
   border-radius: 50%;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   color: ${globalColor(`--${illaPrefix}-white-01`)};
+  border: 1px solid ${globalColor(`--${illaPrefix}-white-01`)};
   display: flex;
   align-items: center;
   justify-content: center;

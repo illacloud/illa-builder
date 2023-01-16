@@ -128,7 +128,6 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
           12 || 12
 
   const disableMargin = bounds.width <= (attachedUserList.length >= 2 ? 48 : 34)
-
   return (
     <div
       css={applyMoveBarWrapperStyle(

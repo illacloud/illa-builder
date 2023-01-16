@@ -45,7 +45,7 @@ export const CollaboratorsList: FC<{
       }
       return
     }
-    if ((currentState === "left" && bounds.width < 50) || disableMargin) {
+    if ((currentState === "left" && bounds.width <= 50) || disableMargin) {
       setDisplayDataList(users.slice(0, 1))
       setShowMoreIcon(true)
       return

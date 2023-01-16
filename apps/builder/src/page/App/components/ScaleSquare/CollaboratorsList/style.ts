@@ -111,13 +111,18 @@ export const listItemContentStyle = css`
   margin-bottom: 12px;
   padding: 0;
   font-weight: 500;
-  font-size: 12px;
+  font-family: "PingFang SC";
+  font-style: normal;
+  font-size: 14px;
   width: 100%;
 `
 
 export const listItemNicknameStyle = css`
   height: 20px;
   line-height: 20px;
+  font-size: 12px;
+  font-family: "Inter";
+  font-style: normal;
   flex-grow: 0;
   overflow: hidden;
   text-overflow: ellipsis;
