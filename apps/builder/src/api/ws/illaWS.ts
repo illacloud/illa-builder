@@ -66,7 +66,6 @@ export class ILLAWebsocket {
             Target.TARGET_NOTHING,
             false,
             {
-              // 需要增加广播信息, 注意, 一定要设置, 否则不广播
               type: "enter",
               payload: [],
             },
