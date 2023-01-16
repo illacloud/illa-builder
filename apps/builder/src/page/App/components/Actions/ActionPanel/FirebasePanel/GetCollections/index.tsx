@@ -1,9 +1,9 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
-import { GetCollections } from "@/redux/currentApp/action/firebaseAction"
 import { InputEditor } from "@/page/App/components/InputEditor"
+import { GetCollections } from "@/redux/currentApp/action/firebaseAction"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const GetCollectionsPart: FC<FirebaseActionPartProps> = (props) => {
   const { t } = useTranslation()

@@ -8,14 +8,22 @@ import {
   Divider,
   Input,
   InputNumber,
-  PreviousIcon,
   Password,
+  PreviousIcon,
   Switch,
   TextArea,
   getColor,
   useMessage,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
+import {
+  configItem,
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
@@ -24,15 +32,10 @@ import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
-  connectTypeStyle,
   container,
   divider,
   footerStyle,
   hostInputContainer,
-  labelContainer,
-  optionLabelStyle,
   sslItem,
   sslStyle,
 } from "./style"
@@ -356,7 +359,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             <div css={configItemTip}>
               {t("editor.action.resource.db.tip.username_password")}
             </div>
-            <div css={configItem}>
+            <div css={connectType}>
               <div css={labelContainer}>
                 <span
                   css={applyConfigItemLabelText(getColor("grayBlue", "02"))}

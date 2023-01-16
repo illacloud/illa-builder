@@ -1,3 +1,5 @@
+import { AnimatePresence, Reorder } from "framer-motion"
+import { isEqual, omit } from "lodash"
 import {
   FC,
   useCallback,
@@ -6,15 +8,13 @@ import {
   useMemo,
   useState,
 } from "react"
+import { useDispatch } from "react-redux"
 import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
-import { ListItem } from "./listItem"
-import { isEqual, omit } from "lodash"
+import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
-import { AnimatePresence, Reorder } from "framer-motion"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
-import { useDispatch } from "react-redux"
+import { ListItem } from "./listItem"
 
 interface ItemsProps extends ViewItemShape {
   childrenNode?: ComponentNode
@@ -29,12 +29,14 @@ export const ListBody: FC = () => {
     attrPath,
     handleUpdateMultiAttrDSL,
   } = useContext(ViewListSetterContext)
-
-  const [items, setItems] = useState<ItemsProps[]>(
-    viewsList.map((view, index) => {
+  const originItems: ItemsProps[] = viewsList.map((view, index) => {
+    if (Array.isArray(componentNode.childrenNode)) {
       return { ...view, childrenNode: componentNode.childrenNode[index] }
-    }),
-  )
+    }
+    return { ...view, childrenNode: {} as ComponentNode }
+  })
+
+  const [items, setItems] = useState<ItemsProps[]>(originItems)
   const currentSelected = useMemo(
     () => viewsList[currentViewIndex],
     [viewsList, currentViewIndex],
@@ -75,7 +77,10 @@ export const ListBody: FC = () => {
     if (!isEqual(viewsList, items)) {
       setItems(
         viewsList.map((view, index) => {
-          return { ...view, childrenNode: componentNode.childrenNode[index] }
+          if (Array.isArray(componentNode.childrenNode)) {
+            return { ...view, childrenNode: componentNode.childrenNode[index] }
+          }
+          return { ...view, childrenNode: {} as ComponentNode }
         }),
       )
     }

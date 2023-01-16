@@ -186,11 +186,15 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     handleValidate,
     dataSources,
   ])
-  const wrapperRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
+      updateComponentHeight?.(wrapperRef.current?.clientHeight)
+    }
+
+    return () => {
+      wrapperRef.current = null
     }
   }, [validateMessage, labelPosition, updateComponentHeight])
 

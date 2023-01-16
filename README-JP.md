@@ -9,7 +9,7 @@
 <p align="center">ILLA は、開発者が内部ツールを構築するための堅牢なオープン ソースのローコード プラットフォームです。 コンポーネントとアクションのILLAのライブラリを使用することで、開発者はツールの構築にかかる時間を大幅に節約できます。 </p>
 
 <div align="center">
-<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">Chinese</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">Korean</a> | Japanese
+<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | 日本語
 </div>
 <br>
 <p align="center">

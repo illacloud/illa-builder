@@ -2,7 +2,11 @@ import { v4 } from "uuid"
 import {
   CONTAINER_TYPE,
   ComponentNode,
+  ModalSectionNode,
+  PageNode,
+  PageNodeProps,
   SECTION_POSITION,
+  SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { DisplayNameGenerator } from "./generateDisplayName"
 
@@ -12,12 +16,17 @@ export type SectionNodeType =
   | "rightSection"
   | "headerSection"
   | "footerSection"
+  | "modalSection"
+
+export const BASIC_BLOCK_COLUMNS = 64
+
+export const LEFT_OR_RIGHT_DEFAULT_COLUMNS = 16
 
 export const generateSectionContainerConfig = (
   parentNode: string,
   showName: string,
   childrenNode: ComponentNode[] = [],
-) => {
+): ComponentNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "CONTAINER_NODE",
     `${parentNode}-${showName}`,
@@ -48,7 +57,7 @@ export const generateSectionContainerConfig = (
 export const generateSectionConfig = (
   parentNode: string,
   showName: SectionNodeType,
-) => {
+): SectionNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "SECTION_NODE",
     showName,
@@ -92,9 +101,41 @@ export const generateSectionConfig = (
   }
 }
 
-export const defaultPageProps = {
-  canvasSize: "responsive",
-  canvasWidth: "auto",
+export const generateModalSectionConfig = (
+  parentNode: string,
+  showName: SectionNodeType,
+): ModalSectionNode => {
+  const displayName = DisplayNameGenerator.generateDisplayName(
+    "MODAL_SECTION_NODE",
+    showName,
+  )
+
+  return {
+    displayName: displayName,
+    parentNode: parentNode,
+    showName: showName,
+    isDragging: false,
+    isResizing: false,
+    type: "MODAL_SECTION_NODE",
+    containerType: CONTAINER_TYPE.EDITOR_LAYOUT_SQUARE,
+    verticalResize: true,
+    h: 0,
+    w: 0,
+    minH: 0,
+    minW: 0,
+    unitW: 0,
+    unitH: 0,
+    x: -1,
+    y: -1,
+    z: 0,
+    props: {},
+    childrenNode: [],
+  }
+}
+
+export const defaultPageProps: PageNodeProps = {
+  canvasSize: "auto",
+  canvasWidth: 100,
   layout: "default",
   leftPosition: SECTION_POSITION.NONE,
   rightPosition: SECTION_POSITION.NONE,
@@ -112,9 +153,14 @@ export const defaultPageProps = {
   isFooterFixed: true,
   showLeftFoldIcon: false,
   showRightFoldIcon: false,
+  leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+  rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+  headerColumns: BASIC_BLOCK_COLUMNS,
+  footerColumns: BASIC_BLOCK_COLUMNS,
+  bodyColumns: BASIC_BLOCK_COLUMNS,
 }
 
-export const generatePageConfig = () => {
+export const generatePageConfig = (): PageNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "PAGE_NODE",
     "page",
@@ -143,8 +189,14 @@ export const generatePageConfig = () => {
   }
 }
 
-export const generateDefaultLayoutConfig = (currentDisplayName: string) => {
+export const generateDefaultLayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const childrenNode = generateSectionConfig(currentDisplayName, "bodySection")
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -164,8 +216,8 @@ export const generateDefaultLayoutConfig = (currentDisplayName: string) => {
     y: -1,
     z: 0,
     props: {
-      canvasSize: "responsive",
-      canvasWidth: "auto",
+      canvasSize: "auto",
+      canvasWidth: 100,
       layout: "default",
       leftPosition: SECTION_POSITION.NONE,
       rightPosition: SECTION_POSITION.NONE,
@@ -183,12 +235,19 @@ export const generateDefaultLayoutConfig = (currentDisplayName: string) => {
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
-    childrenNode: [childrenNode],
+    childrenNode: [childrenNode, modalSectionNode],
   }
 }
 
-export const generatePresetALayoutConfig = (currentDisplayName: string) => {
+export const generatePresetALayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const leftSectionNode = generateSectionConfig(
     currentDisplayName,
     "leftSection",
@@ -197,6 +256,11 @@ export const generatePresetALayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "bodySection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -216,8 +280,8 @@ export const generatePresetALayoutConfig = (currentDisplayName: string) => {
     y: -1,
     z: 0,
     props: {
-      canvasSize: "responsive",
-      canvasWidth: "auto",
+      canvasSize: "auto",
+      canvasWidth: 100,
       layout: "presetA",
       leftPosition: SECTION_POSITION.FULL,
       rightPosition: SECTION_POSITION.NONE,
@@ -235,12 +299,19 @@ export const generatePresetALayoutConfig = (currentDisplayName: string) => {
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
-    childrenNode: [leftSectionNode, bodySectionNode],
+    childrenNode: [leftSectionNode, bodySectionNode, modalSectionNode],
   }
 }
 
-export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
+export const generatePresetBLayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const headerSectionNode = generateSectionConfig(
     currentDisplayName,
     "headerSection",
@@ -253,6 +324,11 @@ export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "footerSection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -272,11 +348,11 @@ export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
     y: -1,
     z: 0,
     props: {
-      canvasSize: "responsive",
-      canvasWidth: "auto",
+      canvasSize: "auto",
+      canvasWidth: 100,
       layout: "presetB",
-      leftPosition: "NONE",
-      rightPosition: "NONE",
+      leftPosition: SECTION_POSITION.NONE,
+      rightPosition: SECTION_POSITION.NONE,
       hasFooter: true,
       hasHeader: true,
       hasLeft: false,
@@ -289,12 +365,26 @@ export const generatePresetBLayoutConfig = (currentDisplayName: string) => {
       isRightFixed: true,
       isHeaderFixed: true,
       isFooterFixed: true,
+      showLeftFoldIcon: false,
+      showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
-    childrenNode: [headerSectionNode, bodySectionNode, footerSectionNode],
+    childrenNode: [
+      headerSectionNode,
+      bodySectionNode,
+      footerSectionNode,
+      modalSectionNode,
+    ],
   }
 }
 
-export const generatePresetCLayoutConfig = (currentDisplayName: string) => {
+export const generatePresetCLayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const headerSectionNode = generateSectionConfig(
     currentDisplayName,
     "headerSection",
@@ -311,6 +401,11 @@ export const generatePresetCLayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "footerSection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -330,8 +425,8 @@ export const generatePresetCLayoutConfig = (currentDisplayName: string) => {
     y: -1,
     z: 0,
     props: {
-      canvasSize: "responsive",
-      canvasWidth: "auto",
+      canvasSize: "auto",
+      canvasWidth: 100,
       layout: "presetC",
       leftPosition: SECTION_POSITION.BOTTOM,
       rightPosition: SECTION_POSITION.NONE,
@@ -355,11 +450,14 @@ export const generatePresetCLayoutConfig = (currentDisplayName: string) => {
       leftSectionNode,
       bodySectionNode,
       footerSectionNode,
+      modalSectionNode,
     ],
   }
 }
 
-export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
+export const generatePresetDLayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const headerSectionNode = generateSectionConfig(
     currentDisplayName,
     "headerSection",
@@ -380,6 +478,11 @@ export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "footerSection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -399,8 +502,8 @@ export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
     y: -1,
     z: 0,
     props: {
-      canvasSize: "responsive",
-      canvasWidth: "auto",
+      canvasSize: "auto",
+      canvasWidth: 100,
       layout: "presetD",
       leftPosition: SECTION_POSITION.BOTTOM,
       rightPosition: SECTION_POSITION.BOTTOM,
@@ -418,6 +521,11 @@ export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
     childrenNode: [
       headerSectionNode,
@@ -425,11 +533,14 @@ export const generatePresetDLayoutConfig = (currentDisplayName: string) => {
       leftSectionNode,
       bodySectionNode,
       footerSectionNode,
+      modalSectionNode,
     ],
   }
 }
 
-export const generatePresetELayoutConfig = (currentDisplayName: string) => {
+export const generatePresetELayoutConfig = (
+  currentDisplayName: string,
+): PageNode => {
   const headerSectionNode = generateSectionConfig(
     currentDisplayName,
     "headerSection",
@@ -446,6 +557,11 @@ export const generatePresetELayoutConfig = (currentDisplayName: string) => {
     currentDisplayName,
     "footerSection",
   )
+  const modalSectionNode = generateModalSectionConfig(
+    currentDisplayName,
+    "modalSection",
+  )
+
   return {
     displayName: currentDisplayName,
     parentNode: "root",
@@ -465,8 +581,8 @@ export const generatePresetELayoutConfig = (currentDisplayName: string) => {
     y: -1,
     z: 0,
     props: {
-      canvasSize: "responsive",
-      canvasWidth: "auto",
+      canvasSize: "auto",
+      canvasWidth: 100,
       layout: "presetE",
       leftPosition: SECTION_POSITION.FULL,
       rightPosition: SECTION_POSITION.NONE,
@@ -484,12 +600,18 @@ export const generatePresetELayoutConfig = (currentDisplayName: string) => {
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
     childrenNode: [
       headerSectionNode,
       leftSectionNode,
       bodySectionNode,
       footerSectionNode,
+      modalSectionNode,
     ],
   }
 }

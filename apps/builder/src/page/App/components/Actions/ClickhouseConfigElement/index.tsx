@@ -1,4 +1,4 @@
-import { FC, useState, useCallback } from "react"
+import { FC, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -7,32 +7,34 @@ import {
   ButtonGroup,
   Divider,
   PreviousIcon,
-  getColor,
   WarningCircleIcon,
+  getColor,
 } from "@illa-design/react"
-import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
-import { RootState } from "@/store"
-import { isCloudVersion, isURL } from "@/utils/typeHelper"
-import { ClickhouseConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
-  connectTypeStyle,
   container,
   divider,
-  footerStyle,
-  labelContainer,
-  optionLabelStyle,
   errorIconStyle,
   errorMsgStyle,
+  footerStyle,
 } from "@/page/App/components/Actions/ClickhouseConfigElement/style"
-import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import {
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
+import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
+import { RootState } from "@/store"
+import { isCloudVersion, isURL } from "@/utils/typeHelper"
+import { ClickhouseConfigElementProps } from "./interface"
 
 export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   props,
@@ -163,16 +165,14 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             },
           ]}
           tips={
-            <>
-              {formState.errors.host && (
-                <div css={errorMsgStyle}>
-                  <>
-                    <WarningCircleIcon css={errorIconStyle} />
-                    {formState.errors.host.message}
-                  </>
-                </div>
-              )}
-            </>
+            formState.errors.host ? (
+              <div css={errorMsgStyle}>
+                <>
+                  <WarningCircleIcon css={errorIconStyle} />
+                  {formState.errors.host.message}
+                </>
+              </div>
+            ) : null
           }
         />
         <ControlledElement
@@ -216,7 +216,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             <div css={configItemTip}>
               {t("editor.action.resource.db.tip.username_password")}
             </div>
-            <div css={configItem}>
+            <div css={connectType}>
               <div css={labelContainer}>
                 <span
                   css={applyConfigItemLabelText(getColor("grayBlue", "02"))}

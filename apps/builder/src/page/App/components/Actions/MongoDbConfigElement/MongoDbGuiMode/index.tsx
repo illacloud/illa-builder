@@ -12,12 +12,14 @@ import {
 import { MongoDbConfigModeProps } from "@/page/App/components/Actions/MongoDbConfigElement/interface"
 import {
   applyConfigItemLabelText,
+  hostInputContainer,
+} from "@/page/App/components/Actions/MongoDbConfigElement/style"
+import {
   configItem,
   configItemTip,
   connectTypeStyle,
-  hostInputContainer,
   labelContainer,
-} from "@/page/App/components/Actions/MongoDbConfigElement/style"
+} from "@/page/App/components/Actions/styles"
 import {
   MongoDbConnectionFormat,
   MongoDbGuiConfigContent,

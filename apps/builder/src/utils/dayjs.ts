@@ -19,11 +19,11 @@ const PER_HOUR = PER_MINUTE * 60
 const PER_DAY = PER_HOUR * 24
 
 const FORMAT_RULE = {
-  "zh-CN": {
+  "zh-cn": {
     inYear: "MMMD日 HH:MM",
     otherYear: "YYYY年MMMDD日HH:MM",
   },
-  "en-US": {
+  "en-us": {
     inYear: "HH:MM MMM DD",
     otherYear: "HH:MM MMM DD, YYYY",
   },
@@ -35,12 +35,12 @@ async function initDayjs() {
   switch (language) {
     case "zh-CN":
       await import("dayjs/locale/zh-cn")
-      dayjs.locale("zh-CN")
+      dayjs.locale("zh-cn")
       break
     case "en-US":
     default:
       await import("dayjs/locale/en")
-      dayjs.locale("en-US")
+      dayjs.locale("en-us")
       break
   }
 }
@@ -51,20 +51,20 @@ export const fromNow = (date: string) => {
   if (!date) return ""
   const now = dayjs()
   const diff = now.diff(date)
-  const local = dayjs.locale() as "zh-CN" | "en-US"
+  const local = dayjs.locale() as "zh-cn" | "en-us"
   if (diff / PER_MINUTE <= 1) {
     return i18n.t("dayjs.just_now")
   }
 
   if (diff / PER_DAY >= 7 && dayjs(date).isSame(now, "year")) {
     return dayjs(date).format(
-      FORMAT_RULE[local]?.inYear || FORMAT_RULE["en-US"].inYear,
+      FORMAT_RULE[local]?.inYear || FORMAT_RULE["en-us"].inYear,
     )
   }
 
   if (diff / PER_DAY >= 7 && !dayjs(date).isSame(now, "year")) {
     return dayjs(date).format(
-      FORMAT_RULE[local].otherYear || FORMAT_RULE["en-US"].otherYear,
+      FORMAT_RULE[local]?.otherYear || FORMAT_RULE["en-us"].otherYear,
     )
   }
   return dayjs(date).fromNow()

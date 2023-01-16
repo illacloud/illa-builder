@@ -1,10 +1,10 @@
+import { AnimatePresence, Reorder } from "framer-motion"
+import { isEqual } from "lodash"
 import { FC, useContext, useEffect, useState } from "react"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { EmptyBody } from "@/page/App/components/PanelSetters/OptionListSetter/empty"
-import { ListItem } from "./listItem"
-import { isEqual } from "lodash"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
-import { AnimatePresence, Reorder } from "framer-motion"
+import { ListItem } from "./listItem"
 
 export const ListBody: FC = () => {
   const { optionItems, handleUpdateDsl, attrPath } = useContext(

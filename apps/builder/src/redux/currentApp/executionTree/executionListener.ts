@@ -1,7 +1,12 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { diff } from "deep-diff"
+import { cloneDeep } from "lodash"
 import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import {
+  getCanvas,
+  searchDsl,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getExecutionResult,
@@ -113,6 +118,43 @@ async function handleStartExecutionOnCanvas(
   }
 }
 
+function handleUpdateModalEffect(
+  action: ReturnType<typeof componentsActions.addModalComponentReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const { payload } = action
+  const { modalComponentNode } = payload
+  const parentNodeDisplayName = modalComponentNode.parentNode
+  if (!parentNodeDisplayName) return
+  const rootState = listenerApi.getState()
+  const rootNode = getCanvas(rootState)
+  if (!rootNode) return
+  const parentNode = searchDsl(rootNode, parentNodeDisplayName)
+  if (!parentNode || !Array.isArray(parentNode.childrenNode)) return
+  const otherNode = parentNode.childrenNode.filter((node) => {
+    return node.displayName !== modalComponentNode.displayName
+  })
+  const updateSlice = [
+    {
+      displayName: modalComponentNode.displayName,
+      value: {
+        isVisible: true,
+      },
+    },
+  ]
+  otherNode.forEach((node) => {
+    updateSlice.push({
+      displayName: node.displayName,
+      value: {
+        isVisible: false,
+      },
+    })
+  })
+  listenerApi.dispatch(
+    executionActions.updateExecutionByMultiDisplayNameReducer(updateSlice),
+  )
+}
+
 export function setupExecutionListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -136,6 +178,7 @@ export function setupExecutionListeners(
         componentsActions.addSectionViewReducer,
         componentsActions.deleteSectionViewReducer,
         componentsActions.updateSectionViewPropsReducer,
+        componentsActions.addModalComponentReducer,
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
@@ -147,8 +190,13 @@ export function setupExecutionListeners(
       matcher: isAnyOf(
         executionActions.updateExecutionByDisplayNameReducer,
         executionActions.updateExecutionByMultiDisplayNameReducer,
+        executionActions.updateModalDisplayReducer,
       ),
       effect: handleStartExecutionOnCanvas,
+    }),
+    startListening({
+      actionCreator: componentsActions.addModalComponentReducer,
+      effect: handleUpdateModalEffect,
     }),
   ]
 

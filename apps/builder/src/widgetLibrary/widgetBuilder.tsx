@@ -100,6 +100,12 @@ import {
   MenuWidget,
 } from "@/widgetLibrary/MenuWidget"
 import {
+  MODAL_EVENT_HANDLER_CONFIG,
+  MODAL_PANEL_CONFIG,
+  MODAL_WIDGET_CONFIG,
+  ModalWidget,
+} from "@/widgetLibrary/ModalWidget"
+import {
   INPUT_NUMBER_EVENT_HANDLER_CONFIG,
   NUMBER_INPUT_PANEL_CONFIG,
   NUMBER_INPUT_WIDGET_CONFIG,
@@ -322,6 +328,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: CASCADER_WIDGET_CONFIG,
     panelConfig: CASCADER_PANEL_CONFIG,
     eventHandlerConfig: CASCADER_EVENT_HANDLER_CONFIG,
+  },
+  MODAL_WIDGET: {
+    widget: ModalWidget,
+    config: MODAL_WIDGET_CONFIG,
+    panelConfig: MODAL_PANEL_CONFIG,
+    eventHandlerConfig: MODAL_EVENT_HANDLER_CONFIG,
   },
 }
 

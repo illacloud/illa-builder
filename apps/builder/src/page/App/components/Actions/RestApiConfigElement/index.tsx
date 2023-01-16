@@ -15,6 +15,12 @@ import {
 import { Api } from "@/api/base"
 import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
 import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
+import {
+  configItem,
+  configItemTip,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource } from "@/redux/resource/resourceState"
@@ -29,13 +35,9 @@ import { RootState } from "@/store"
 import { RestApiConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
   container,
   divider,
   footerStyle,
-  labelContainer,
-  optionLabelStyle,
 } from "./style"
 
 function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {

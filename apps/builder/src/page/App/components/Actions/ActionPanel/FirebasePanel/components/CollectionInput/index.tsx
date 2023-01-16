@@ -1,23 +1,23 @@
-import { useTranslation } from "react-i18next"
 import { FC, useCallback, useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
+import { Api } from "@/api/base"
+import { CodeEditor } from "@/components/CodeEditor"
+import { CollectionInputProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionInput/interface"
 import {
   actionBodyTypeStyle,
   actionItemCodeEditorStyle,
   actionItemLabelStyle,
   actionItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
+import { getCachedAction } from "@/redux/config/configSelector"
 import {
   CollectionType,
   FirebaseServiceType,
 } from "@/redux/currentApp/action/firebaseAction"
-import { CodeEditor } from "@/components/CodeEditor"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { CollectionInputProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionInput/interface"
-import { Api } from "@/api/base"
 import { ResourcesData } from "@/redux/resource/resourceState"
-import { useSelector } from "react-redux"
-import { getCachedAction } from "@/redux/config/configSelector"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const CollectionInput: FC<CollectionInputProps> = (props) => {
   const { t } = useTranslation()

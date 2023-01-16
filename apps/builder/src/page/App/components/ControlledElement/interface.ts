@@ -1,26 +1,35 @@
-import { Control, RegisterOptions } from "react-hook-form"
+import { SerializedStyles } from "@emotion/react"
 import { ReactNode } from "react"
+import { Control, RegisterOptions } from "react-hook-form"
+import { SelectOptionObject } from "@illa-design/react"
 
 export type ControlledType =
+  | "checkbox"
   | "input"
   | "number"
   | "switch"
   | "password"
   | "textarea"
+  | "select"
   | "none"
+
+type ValueType = string | boolean
 
 export interface ContrilledElementProps {
   title: string
   isRequired?: boolean
-  defaultValue: (string | boolean)[] | string | boolean
+  defaultValue: ValueType[] | string | boolean
   placeholders?: string[]
   contentLabel?: string
   name: string | string[]
   styles?: Record<string, string>[]
   tips?: string | ReactNode
   error?: boolean
+  labelStyle?: SerializedStyles
+  tipsStyle?: SerializedStyles
   controlledType: ControlledType | ControlledType[]
+  options?: (string | number | SelectOptionObject)[]
   control: Control
   rules?: RegisterOptions[]
-  onValueChange?: (value: string | boolean) => void
+  onValueChange?: (value: ValueType) => void
 }

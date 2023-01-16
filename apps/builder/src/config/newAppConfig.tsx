@@ -1,10 +1,15 @@
 import { v4 } from "uuid"
 import {
   CONTAINER_TYPE,
+  ModalSectionNode,
   PageNode,
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  BASIC_BLOCK_COLUMNS,
+  LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+} from "@/utils/generators/generatePageOrSectionConfig"
 
 export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   displayName: "bodySection1",
@@ -62,6 +67,28 @@ export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   ],
 }
 
+export const BASIC_MODAL_SECTION_CONFIG: ModalSectionNode = {
+  displayName: "modalSection1",
+  parentNode: "page1",
+  showName: "modalSection",
+  isDragging: false,
+  isResizing: false,
+  type: "MODAL_SECTION_NODE",
+  containerType: CONTAINER_TYPE.EDITOR_LAYOUT_SQUARE,
+  verticalResize: true,
+  h: 0,
+  w: 0,
+  minH: 0,
+  minW: 0,
+  unitW: 0,
+  unitH: 0,
+  x: -1,
+  y: -1,
+  z: 0,
+  props: {},
+  childrenNode: [],
+}
+
 export const BASIC_APP_CONFIG: PageNode[] = [
   {
     displayName: "page1",
@@ -82,8 +109,8 @@ export const BASIC_APP_CONFIG: PageNode[] = [
     y: -1,
     z: 0,
     props: {
-      canvasSize: "responsive",
-      canvasWidth: "auto",
+      canvasSize: "auto",
+      canvasWidth: 100,
       layout: "default",
       leftPosition: SECTION_POSITION.NONE,
       rightPosition: SECTION_POSITION.NONE,
@@ -101,7 +128,12 @@ export const BASIC_APP_CONFIG: PageNode[] = [
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
+      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+      headerColumns: BASIC_BLOCK_COLUMNS,
+      footerColumns: BASIC_BLOCK_COLUMNS,
+      bodyColumns: BASIC_BLOCK_COLUMNS,
     },
-    childrenNode: [BASIC_BODY_SECTION_CONFIG],
+    childrenNode: [BASIC_BODY_SECTION_CONFIG, BASIC_MODAL_SECTION_CONFIG],
   },
 ]

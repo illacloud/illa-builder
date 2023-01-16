@@ -1,17 +1,21 @@
 import {
   forwardRef,
   useCallback,
+  useImperativeHandle,
   useMemo,
   useRef,
   useState,
-  useImperativeHandle,
 } from "react"
 import { useSelector } from "react-redux"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
+import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
+import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
+import { HuggingFacePanel } from "@/page/App/components/Actions/ActionPanel/HuggingFacePanel"
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
+import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
 import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
 import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
@@ -27,8 +31,6 @@ import {
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
-import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
-import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
 
 export const ActionPanel = forwardRef<
   ActionPanelFunctionProps,
@@ -74,6 +76,8 @@ export const ActionPanel = forwardRef<
         return <MysqlLikePanel />
       case "restapi":
         return <RestApiPanel />
+      case "huggingface":
+        return <HuggingFacePanel />
       case "redis":
         return <RedisPanel />
       case "mongodb":
@@ -88,6 +92,8 @@ export const ActionPanel = forwardRef<
         return <SMTPPanel />
       case "firebase":
         return <FirebasePanel />
+      case "graphql":
+        return <GraphQLPanel />
       default:
         return <></>
     }

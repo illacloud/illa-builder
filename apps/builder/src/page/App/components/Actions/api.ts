@@ -9,13 +9,19 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
+import {
+  APIKeyAddToValue,
+  GraphQLAuth,
+  GraphQLAuthValue,
+} from "@/redux/resource/graphqlResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
-  generateSSLConfig,
   Resource,
   ResourceContent,
   ResourceType,
+  generateSSLConfig,
 } from "@/redux/resource/resourceState"
+import { RestApiAuth } from "@/redux/resource/restapiResource"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
@@ -89,6 +95,36 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
   )
 }
 
+export function generateGraphQLAuthContent(data: {
+  [p: string]: any
+}): GraphQLAuth | null {
+  let authContent: GraphQLAuth | null = null
+  switch (data.authentication) {
+    case GraphQLAuthValue.BASIC:
+      authContent = {
+        username: data.username,
+        password: data.password,
+      }
+      break
+    case GraphQLAuthValue.BEARER:
+      authContent = {
+        bearerToken: data.bearerToken,
+      }
+      break
+    case GraphQLAuthValue.APIKEY:
+      authContent = {
+        key: data.key,
+        value: data.value,
+        addTo: data.addTo,
+        headerPrefix: data.headerPrefix,
+      }
+      break
+    default:
+      break
+  }
+  return authContent
+}
+
 function getActionContentByType(data: FieldValues, type: ResourceType) {
   switch (type) {
     case "firebase":
@@ -128,6 +164,20 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         password: data.password,
         databaseName: data.databaseName,
         ssl: generateSSLConfig(!!data.ssl, data, "clickhouse"),
+      }
+    case "graphql":
+      return {
+        baseUrl: data.baseUrl,
+        urlParams: data.urlParams,
+        headers: data.headers,
+        cookies: data.cookies,
+        authentication: data.authentication,
+        disableIntrospection: data.disableIntrospection,
+        authContent: generateGraphQLAuthContent(data),
+      }
+    case "huggingface":
+      return {
+        token: data.token,
       }
   }
 }

@@ -14,6 +14,7 @@ import {
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
+  AddModalComponentPayload,
   AddSectionViewPayload,
   AddTargetPageSectionPayload,
   ComponentNode,
@@ -75,6 +76,38 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               ),
             )
             break
+          case "addModalComponentReducer": {
+            const payload = action.payload as AddModalComponentPayload
+
+            const parentNode = searchDsl(
+              getCanvas(store.getState()),
+              payload.modalComponentNode.parentNode,
+            )
+            if (!parentNode) return
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_OR_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                [parentNode],
+              ),
+            )
+            const allChildrenNodes = parentNode.childrenNode
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_OR_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                allChildrenNodes,
+              ),
+            )
+            break
+          }
           case "copyComponentReducer":
             const copyComponentPayload = (
               payload as CopyComponentPayload[]
@@ -116,6 +149,25 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           case "updateComponentReflowReducer":
             const updateComponentReflowPayload: UpdateComponentReflowPayload =
               payload
+            if (Array.isArray(updateComponentReflowPayload)) {
+              updateComponentReflowPayload.forEach((payload) => {
+                const updateComponentReflowWSPayload =
+                  transformComponentReduxPayloadToWsPayload(payload.childNodes)
+                Connection.getRoom("app", currentAppID)?.send(
+                  getPayload(
+                    Signal.SIGNAL_UPDATE_STATE,
+                    Target.TARGET_COMPONENTS,
+                    true,
+                    {
+                      type,
+                      payload,
+                    },
+                    updateComponentReflowWSPayload,
+                  ),
+                )
+              })
+              return
+            }
             const updateComponentReflowWSPayload =
               transformComponentReduxPayloadToWsPayload(
                 updateComponentReflowPayload.childNodes,
@@ -269,7 +321,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             if (!parentNode) break
             const WSPayload = transformComponentReduxPayloadToWsPayload([
               parentNode,
-              ...findOldNode.childrenNode,
+              ...(findOldNode.childrenNode || []),
             ])
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
@@ -412,6 +464,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           }
+          case "updateViewportSizeReducer":
           case "updateRootNodePropsReducer": {
             const rootNode = getCanvas(store.getState())
             if (!rootNode) break

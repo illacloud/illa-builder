@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export function applyConfigItemContainer(hasTextarea: boolean) {
@@ -7,6 +7,7 @@ export function applyConfigItemContainer(hasTextarea: boolean) {
       display: flex;
       width: 100%;
       flex-direction: row;
+      padding-left: 24px;
     `
   } else {
     return css`
@@ -14,6 +15,7 @@ export function applyConfigItemContainer(hasTextarea: boolean) {
       height: 48px;
       align-items: center;
       flex-direction: row;
+      padding-left: 24px;
     `
   }
 }
@@ -26,10 +28,14 @@ export const sslStyle = css`
 
 export const configItemTip = css`
   font-size: 14px;
-  margin-left: 192px;
-  margin-bottom: 6px;
   white-space: pre-line;
   color: ${getColor("grayBlue", "04")};
+  font-weight: 400;
+  margin-left: 192px;
+  padding-bottom: 8px;
+  padding-left: 24px;
+  line-height: 22px;
+  height: 30px;
 `
 
 export const labelContainer = css`

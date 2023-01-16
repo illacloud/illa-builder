@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
 
 export const applyValidateMessageWrapperStyle = (
   labelWidth: number,
@@ -74,14 +74,14 @@ export const applyWrapperStylesStyle = (
     borderStyle = `${borderWidth} solid ${borderColor}`
   }
   const shadowStyle = getShadowStyle(shadow)
-
   return css`
     width: 100%;
     height: 100%;
     border: ${borderStyle};
     border-radius: ${radius};
     background-color: ${widgetType === "CONTAINER_WIDGET" ||
-    widgetType === "LIST_WIDGET"
+    widgetType === "LIST_WIDGET" ||
+    widgetType === "MODAL_WIDGET"
       ? backgroundColor || "white"
       : "transparent"};
     box-shadow: ${shadowStyle};

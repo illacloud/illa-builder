@@ -1,26 +1,28 @@
-import {
-  applyConfigItemLabelText,
-  labelContainer,
-  hostInputContainer,
-  sslStyle,
-  configItemTip,
-  applyConfigItemContainer,
-} from "./style"
-import { FC, useCallback } from "react"
-import {
-  Input,
-  Password,
-  Switch,
-  getColor,
-  InputNumber,
-  TextArea,
-} from "@illa-design/react"
+import { FC, Fragment, useCallback } from "react"
 import { Controller, RegisterOptions } from "react-hook-form"
+import {
+  Checkbox,
+  Input,
+  InputNumber,
+  Password,
+  Select,
+  Switch,
+  TextArea,
+  getColor,
+} from "@illa-design/react"
 import { ContrilledElementProps } from "./interface"
+import {
+  applyConfigItemContainer,
+  applyConfigItemLabelText,
+  configItemTip,
+  hostInputContainer,
+  labelContainer,
+  sslStyle,
+} from "./style"
 
 export const ControlledElement: FC<ContrilledElementProps> = (props) => {
   const {
-    title,
+    title = "",
     contentLabel,
     isRequired = false,
     defaultValue,
@@ -31,7 +33,10 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
     controlledType,
     control,
     error,
+    options = [],
     rules = [],
+    tipsStyle,
+    labelStyle,
     onValueChange,
   } = props
 
@@ -70,6 +75,52 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
                   error={error}
                   colorScheme="techPurple"
                   placeholder={placeholder}
+                />
+              )}
+              name={name}
+            />
+          )
+        case "checkbox":
+          return (
+            <>
+              <Controller
+                control={control}
+                defaultValue={defaultValue}
+                rules={rules}
+                render={({ field: { value, onChange, onBlur } }) => (
+                  <Checkbox
+                    {...style}
+                    onBlur={onBlur}
+                    onChange={(value) => {
+                      onChange(value)
+                      onValueChange?.(value)
+                    }}
+                    checked={value}
+                    colorScheme="techPurple"
+                    placeholder={placeholder}
+                  />
+                )}
+                name={name}
+              />
+              <span css={sslStyle}>{contentLabel}</span>
+            </>
+          )
+        case "select":
+          return (
+            <Controller
+              control={control}
+              defaultValue={defaultValue}
+              rules={rules}
+              render={({ field: { value, onChange, onBlur } }) => (
+                <Select
+                  value={value}
+                  onBlur={onBlur}
+                  onChange={(value) => {
+                    onValueChange?.(value as string)
+                    onChange(value)
+                  }}
+                  colorScheme="techPurple"
+                  options={options}
                 />
               )}
               name={name}
@@ -127,6 +178,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
               rules={rules}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
+                  autoComplete="new-password"
                   colorScheme="techPurple"
                   w="100%"
                   onBlur={onBlur}
@@ -165,31 +217,35 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
 
   return (
     <>
-      <div css={applyConfigItemContainer(hasTextArea)}>
-        <div css={labelContainer}>
-          {isRequired && (
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-          )}
-          <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-            {title}
-          </span>
-        </div>
-        {!!filteredType.length && (
-          <div css={hostInputContainer}>
-            {filteredType.map((type, index) =>
-              getElementByControlledType(
-                type,
-                names[index],
-                defaultValues[index],
-                placeholders[index],
-                rules[index],
-                styles[index],
-              ),
+      {!!filteredType.length && (
+        <div css={applyConfigItemContainer(hasTextArea)}>
+          <div css={labelStyle ? labelStyle : labelContainer}>
+            {isRequired && (
+              <span css={applyConfigItemLabelText(getColor("red", "02"))}>
+                *
+              </span>
             )}
+            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
+              {title}
+            </span>
           </div>
-        )}
-      </div>
-      {tips && <div css={configItemTip}>{tips}</div>}
+          <div css={hostInputContainer}>
+            {filteredType.map((type, index) => (
+              <Fragment key={index}>
+                {getElementByControlledType(
+                  type,
+                  names[index],
+                  defaultValues[index],
+                  placeholders[index],
+                  rules[index],
+                  styles[index],
+                )}
+              </Fragment>
+            ))}
+          </div>
+        </div>
+      )}
+      {tips && <div css={tipsStyle ? tipsStyle : configItemTip}>{tips}</div>}
     </>
   )
 }

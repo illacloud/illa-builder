@@ -45,6 +45,9 @@ export interface RootComponentNodeProps {
   currentPageIndex: number
   pageSortedKey: string[]
   homepageDisplayName?: string
+
+  viewportWidth?: number
+  viewportHeight?: number
 }
 
 export interface RootComponentNode extends ComponentNode {
@@ -53,8 +56,8 @@ export interface RootComponentNode extends ComponentNode {
 }
 
 export interface PageNodeProps {
-  canvasSize: "responsive" | "fixed"
-  canvasWidth: string
+  canvasSize: "auto" | "fixed"
+  canvasWidth: number
   layout: string
   leftPosition: SECTION_POSITION
   rightPosition: SECTION_POSITION
@@ -72,6 +75,11 @@ export interface PageNodeProps {
   bottomHeight: number
   showLeftFoldIcon: boolean
   showRightFoldIcon: boolean
+  leftColumns?: number
+  rightColumns?: number
+  bodyColumns?: number
+  headerColumns?: number
+  footerColumns?: number
 }
 export interface PageNode extends ComponentNode {
   type: "PAGE_NODE"
@@ -85,28 +93,34 @@ export interface SectionViewShape {
   path: string
 }
 
-export interface LeftOrRightSectionNodeProps {
-  showFoldIcon: boolean
+export interface BaseSectionNodeProps {
   currentViewIndex: number
   viewSortedKey: string[]
   sectionViewConfigs: SectionViewShape[]
   defaultViewKey: string
 }
 
-export interface HeaderOrBottomSectionNodeProps {
-  currentViewIndex: number
-  viewSortedKey: string[]
-  sectionViewConfigs: SectionViewShape[]
-  defaultViewKey: string
+export interface LeftOrRightSectionNodeProps extends BaseSectionNodeProps {
+  showFoldIcon: boolean
 }
 
 export type SectionNodeProps =
   | LeftOrRightSectionNodeProps
-  | HeaderOrBottomSectionNodeProps
+  | BaseSectionNodeProps
 
 export interface SectionNode extends ComponentNode {
   type: "SECTION_NODE"
   props: SectionNodeProps
+}
+
+export interface ModalSectionNodeProps {
+  sortedKey?: string[]
+  currentIndex?: number
+}
+
+export interface ModalSectionNode extends ComponentNode {
+  type: "MODAL_SECTION_NODE"
+  props: ModalSectionNodeProps
 }
 
 export type ComponentsState = ComponentNode | null
@@ -153,6 +167,7 @@ export interface UpdateTargetPageLayoutPayload {
 export interface UpdateTargetPagePropsPayload {
   pageName: string
   newProps: Partial<PageNodeProps>
+  options?: Record<string, unknown>
 }
 
 export interface UpdateRootNodePropsPayload {}
@@ -192,4 +207,9 @@ export interface DeleteSectionViewPayload {
 export interface UpdateSectionViewPropsPayload {
   parentNodeName: string
   newProps: Record<string, any>
+}
+
+export interface AddModalComponentPayload {
+  currentPageDisplayName: string
+  modalComponentNode: ComponentNode
 }

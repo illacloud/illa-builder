@@ -7,8 +7,8 @@ import {
   ButtonGroup,
   Divider,
   Input,
-  PreviousIcon,
   Password,
+  PreviousIcon,
   Switch,
   WarningCircleIcon,
   getColor,
@@ -17,6 +17,14 @@ import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import {
+  configItem,
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
 import { Resource } from "@/redux/resource/resourceState"
 import { S3Resource, S3ResourceInitial } from "@/redux/resource/s3Resource"
 import { RootState } from "@/store"
@@ -24,16 +32,11 @@ import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { S3ConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
-  connectTypeStyle,
   container,
   divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
-  labelContainer,
-  optionLabelStyle,
   sslStyle,
 } from "./style"
 
@@ -338,7 +341,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
             <div css={configItemTip}>
               {t("editor.action.resource.db.tip.username_password")}
             </div>
-            <div css={configItem}>
+            <div css={connectType}>
               <div css={labelContainer}>
                 <span
                   css={applyConfigItemLabelText(getColor("grayBlue", "02"))}

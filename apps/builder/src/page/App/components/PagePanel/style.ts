@@ -23,3 +23,12 @@ export const headerWrapperStyle = css`
   align-items: center;
   padding: 0 16px;
 `
+
+export const optionListWrapperStyle = css`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+`

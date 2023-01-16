@@ -8,14 +8,22 @@ import {
   Divider,
   Input,
   InputNumber,
-  PreviousIcon,
   Password,
+  PreviousIcon,
   getColor,
 } from "@illa-design/react"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import {
+  configItem,
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
 import { Resource } from "@/redux/resource/resourceState"
 import {
   SMTPResource,
@@ -26,15 +34,10 @@ import { isCloudVersion } from "@/utils/typeHelper"
 import { SMTPConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
-  connectTypeStyle,
   container,
   divider,
   footerStyle,
   hostInputContainer,
-  labelContainer,
-  optionLabelStyle,
 } from "./style"
 
 export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
@@ -232,7 +235,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
             <div css={configItemTip}>
               {t("editor.action.resource.db.tip.username_password")}
             </div>
-            <div css={configItem}>
+            <div css={connectType}>
               <div css={labelContainer}>
                 <span
                   css={applyConfigItemLabelText(getColor("grayBlue", "02"))}

@@ -1,15 +1,16 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
-import {
-  QueryFirebase,
-  CollectionType,
-} from "@/redux/currentApp/action/firebaseAction"
-import { CollectionRecordEditor } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor"
 import { CollectionInput } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionInput"
-import { InputEditor } from "@/page/App/components/InputEditor"
+import { CollectionRecordEditor } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor"
+import { FirebaseActionPartProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/intreface"
+import { checkboxContainer } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { CheckboxInput } from "@/page/App/components/CheckboxInput"
+import { InputEditor } from "@/page/App/components/InputEditor"
+import {
+  CollectionType,
+  QueryFirebase,
+} from "@/redux/currentApp/action/firebaseAction"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const QueryFirebasePart: FC<FirebaseActionPartProps> = (props) => {
   const { t } = useTranslation()
@@ -48,54 +49,56 @@ export const QueryFirebasePart: FC<FirebaseActionPartProps> = (props) => {
         expectedType={VALIDATION_TYPES.STRING}
         placeholder={t("editor.action.panel.firebase.placeholder.asc")}
       />
-      <CheckboxInput
-        checkboxTitle={t("editor.action.panel.firebase.use_start_at")}
-        checkboxValue={options.startAt.trigger}
-        onCheckboxChange={(value) =>
-          handleValueChange(
-            {
-              value: options.startAt.value,
-              trigger: value,
-            },
-            "startAt",
-          )
-        }
-        inputTitle={t("editor.action.panel.firebase.start_at")}
-        inputValue={options.startAt.value}
-        onValueChange={(value) =>
-          handleValueChange(
-            {
-              trigger: options.startAt.trigger,
-              value,
-            },
-            "startAt",
-          )
-        }
-      />
-      <CheckboxInput
-        checkboxTitle={t("editor.action.panel.firebase.use_end_at")}
-        checkboxValue={options.endAt.trigger}
-        onCheckboxChange={(value) =>
-          handleValueChange(
-            {
-              value: options.endAt.value,
-              trigger: value,
-            },
-            "endAt",
-          )
-        }
-        inputTitle={t("editor.action.panel.firebase.end_at")}
-        inputValue={options.endAt.value}
-        onValueChange={(value) =>
-          handleValueChange(
-            {
-              trigger: options.endAt.trigger,
-              value,
-            },
-            "endAt",
-          )
-        }
-      />
+      <div css={checkboxContainer}>
+        <CheckboxInput
+          checkboxTitle={t("editor.action.panel.firebase.use_start_at")}
+          checkboxValue={options.startAt.trigger}
+          onCheckboxChange={(value) =>
+            handleValueChange(
+              {
+                value: options.startAt.value,
+                trigger: value,
+              },
+              "startAt",
+            )
+          }
+          inputTitle={t("editor.action.panel.firebase.start_at")}
+          inputValue={options.startAt.value}
+          onValueChange={(value) =>
+            handleValueChange(
+              {
+                trigger: options.startAt.trigger,
+                value,
+              },
+              "startAt",
+            )
+          }
+        />
+        <CheckboxInput
+          checkboxTitle={t("editor.action.panel.firebase.use_end_at")}
+          checkboxValue={options.endAt.trigger}
+          onCheckboxChange={(value) =>
+            handleValueChange(
+              {
+                value: options.endAt.value,
+                trigger: value,
+              },
+              "endAt",
+            )
+          }
+          inputTitle={t("editor.action.panel.firebase.end_at")}
+          inputValue={options.endAt.value}
+          onValueChange={(value) =>
+            handleValueChange(
+              {
+                trigger: options.endAt.trigger,
+                value,
+              },
+              "endAt",
+            )
+          }
+        />
+      </div>
     </>
   )
 }

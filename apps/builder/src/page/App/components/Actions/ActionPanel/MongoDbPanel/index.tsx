@@ -20,6 +20,7 @@ import { UpdateManyPart } from "@/page/App/components/Actions/ActionPanel/MongoD
 import { UpdateOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/UpdateOnePart"
 import { ListCollectionsPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/listCollectionsPart"
 import {
+  actionItemContainer,
   mongoContainerStyle,
   mongoItemCodeEditorStyle,
   mongoItemLabelStyle,
@@ -49,6 +50,7 @@ import {
   ListCollectionsContentInitial,
   MongoDbAction,
   MongoDbActionList,
+  MongoDbActionType,
   MongoDbActionTypeContent,
   UpdateManyContentInitial,
   UpdateOneContentInitial,
@@ -107,118 +109,121 @@ export const MongoDbPanel: FC = () => {
   return (
     <div css={mongoContainerStyle}>
       <ResourceChoose />
-      <div css={mongoItemStyle}>
-        <span css={mongoItemLabelStyle}>
-          {t("editor.action.panel.mongodb.action_type")}
-        </span>
-        <Select
-          colorScheme="techPurple"
-          showSearch={true}
-          defaultValue={content.actionType}
-          value={content.actionType}
-          ml="16px"
-          w="100%"
-          onChange={(value) => {
-            let newTypeContent: MongoDbActionTypeContent =
-              AggregateContentInitial
-            if (
-              cachedAction.resourceId === selectedAction.resourceId &&
-              (
-                selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
-              ).actionType === value
-            ) {
-              newTypeContent = (
-                selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
-              ).typeContent
-            } else {
-              switch (value) {
-                case "aggregate":
-                  newTypeContent = AggregateContentInitial
-                  break
-                case "bulkWrite":
-                  newTypeContent = BulkWriteContentInitial
-                  break
-                case "count":
-                  newTypeContent = CountContentInitial
-                  break
-                case "deleteMany":
-                  newTypeContent = DeleteManyContentInitial
-                  break
-                case "deleteOne":
-                  newTypeContent = DeleteOneContentInitial
-                  break
-                case "distinct":
-                  newTypeContent = DistinctContentInitial
-                  break
-                case "find":
-                  newTypeContent = FindContentInitial
-                  break
-                case "findOne":
-                  newTypeContent = FindOneContentInitial
-                  break
-                case "findOneAndUpdate":
-                  newTypeContent = FindOneAndUpdateContentInitial
-                  break
-                case "insertOne":
-                  newTypeContent = InsertOneContentInitial
-                  break
-                case "insertMany":
-                  newTypeContent = InsertManyContentInitial
-                  break
-                case "listCollections":
-                  newTypeContent = ListCollectionsContentInitial
-                  break
-                case "updateMany":
-                  newTypeContent = UpdateManyContentInitial
-                  break
-                case "updateOne":
-                  newTypeContent = UpdateOneContentInitial
-                  break
-                case "command":
-                  newTypeContent = CommandContentInitial
-                  break
-              }
-            }
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  actionType: value,
-                  typeContent: newTypeContent,
-                },
-              }),
-            )
-          }}
-          options={MongoDbActionList}
-        />
-      </div>
-      {cachedAction.content.actionType !== "command" && (
+      <div css={actionItemContainer}>
         <div css={mongoItemStyle}>
           <span css={mongoItemLabelStyle}>
-            {t("editor.action.panel.mongodb.collection")}
+            {t("editor.action.panel.mongodb.action_type")}
           </span>
-          <CodeEditor
-            css={mongoItemCodeEditorStyle}
-            mode="TEXT_JS"
-            value={content.collection}
+          <Select
+            colorScheme="techPurple"
+            showSearch={true}
+            defaultValue={content.actionType}
+            value={content.actionType}
+            ml="16px"
+            w="100%"
             onChange={(value) => {
+              let newTypeContent: MongoDbActionTypeContent =
+                AggregateContentInitial
+              if (
+                selectedAction &&
+                cachedAction.resourceId === selectedAction.resourceId &&
+                (
+                  selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
+                ).actionType === value
+              ) {
+                newTypeContent = (
+                  selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
+                ).typeContent
+              } else {
+                switch (value) {
+                  case "aggregate":
+                    newTypeContent = AggregateContentInitial
+                    break
+                  case "bulkWrite":
+                    newTypeContent = BulkWriteContentInitial
+                    break
+                  case "count":
+                    newTypeContent = CountContentInitial
+                    break
+                  case "deleteMany":
+                    newTypeContent = DeleteManyContentInitial
+                    break
+                  case "deleteOne":
+                    newTypeContent = DeleteOneContentInitial
+                    break
+                  case "distinct":
+                    newTypeContent = DistinctContentInitial
+                    break
+                  case "find":
+                    newTypeContent = FindContentInitial
+                    break
+                  case "findOne":
+                    newTypeContent = FindOneContentInitial
+                    break
+                  case "findOneAndUpdate":
+                    newTypeContent = FindOneAndUpdateContentInitial
+                    break
+                  case "insertOne":
+                    newTypeContent = InsertOneContentInitial
+                    break
+                  case "insertMany":
+                    newTypeContent = InsertManyContentInitial
+                    break
+                  case "listCollections":
+                    newTypeContent = ListCollectionsContentInitial
+                    break
+                  case "updateMany":
+                    newTypeContent = UpdateManyContentInitial
+                    break
+                  case "updateOne":
+                    newTypeContent = UpdateOneContentInitial
+                    break
+                  case "command":
+                    newTypeContent = CommandContentInitial
+                    break
+                }
+              }
               dispatch(
                 configActions.updateCachedAction({
                   ...cachedAction,
                   content: {
                     ...cachedAction.content,
-                    collection: value,
+                    actionType: value as MongoDbActionType,
+                    typeContent: newTypeContent,
                   },
                 }),
               )
             }}
-            expectedType={VALIDATION_TYPES.STRING}
+            options={MongoDbActionList}
           />
         </div>
-      )}
-      {renderInputBody}
-      <TransformerComponent />
+        {cachedAction.content.actionType !== "command" && (
+          <div css={mongoItemStyle}>
+            <span css={mongoItemLabelStyle}>
+              {t("editor.action.panel.mongodb.collection")}
+            </span>
+            <CodeEditor
+              css={mongoItemCodeEditorStyle}
+              mode="TEXT_JS"
+              value={content.collection}
+              onChange={(value) => {
+                dispatch(
+                  configActions.updateCachedAction({
+                    ...cachedAction,
+                    content: {
+                      ...cachedAction.content,
+                      collection: value,
+                    },
+                  }),
+                )
+              }}
+              expectedType={VALIDATION_TYPES.STRING}
+            />
+          </div>
+        )}
+        {renderInputBody}
+        <TransformerComponent />
+      </div>
       <ActionEventHandler />
     </div>
   )

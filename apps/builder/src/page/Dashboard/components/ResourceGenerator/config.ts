@@ -59,12 +59,16 @@ export const Apis: ResourceDataItem[] = [
     isDraft: false,
   },
   {
+    resourceType: "graphql",
+    isDraft: false,
+  },
+  {
     resourceType: "smtp",
     isDraft: false,
   },
   {
-    resourceType: "graphql",
-    isDraft: true,
+    resourceType: "huggingface",
+    isDraft: false,
   },
 ]
 

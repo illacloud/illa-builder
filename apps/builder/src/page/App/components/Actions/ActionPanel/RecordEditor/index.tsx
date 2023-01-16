@@ -12,6 +12,8 @@ import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/Rec
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   applyRecordEditorContainerStyle,
+  deleteButtonStyle,
+  deleteIconStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
   recordKeyStyle,
@@ -21,6 +23,7 @@ import {
 
 export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const {
+    name,
     records,
     customRender,
     label,
@@ -41,18 +44,15 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
               <div css={recordStyle} key={index}>
                 {customRender(record, index)}
                 <Button
+                  css={deleteButtonStyle}
                   ml="-1px"
                   variant="outline"
                   bdRadius="0 8px 8px 0"
                   colorScheme="grayBlue"
                   onClick={() => {
-                    onDelete(index, record)
+                    onDelete(index, record, name)
                   }}
-                  leftIcon={
-                    <DeleteIcon
-                      color={globalColor(`--${illaPrefix}-grayBlue-08`)}
-                    />
-                  }
+                  leftIcon={<DeleteIcon css={deleteIconStyle} />}
                 />
               </div>
             )
@@ -68,7 +68,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 borderRadius="8px 0 0 8px"
                 expectedType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
-                  onChangeKey(index, value, record.value)
+                  onChangeKey(index, value, record.value, name)
                 }}
               />
               <CodeEditor
@@ -80,29 +80,26 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 borderRadius="0 0 0 0"
                 expectedType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
-                  onChangeValue(index, record.key, value)
+                  onChangeValue(index, record.key, value, name)
                 }}
               />
               <Button
+                css={deleteButtonStyle}
                 ml="-1px"
                 variant="outline"
                 bdRadius="0 8px 8px 0"
                 colorScheme="grayBlue"
                 onClick={() => {
-                  onDelete(index, record)
+                  onDelete(index, record, name)
                 }}
-                leftIcon={
-                  <DeleteIcon
-                    color={globalColor(`--${illaPrefix}-grayBlue-08`)}
-                  />
-                }
+                leftIcon={<DeleteIcon css={deleteIconStyle} />}
               />
             </div>
           )
         })}
       </>
     )
-  }, [customRender, onChangeKey, onChangeValue, onDelete, records])
+  }, [customRender, name, onChangeKey, onChangeValue, onDelete, records])
 
   return (
     <div css={applyRecordEditorContainerStyle(label)}>
@@ -117,7 +114,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
             size="medium"
             variant="text"
             onClick={() => {
-              onAdd()
+              onAdd(name)
             }}
             leftIcon={
               <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />

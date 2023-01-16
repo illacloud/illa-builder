@@ -289,6 +289,47 @@
         },
         "tips": {
           "transformer": "Transformer でクエリ結果をさまざまな形式に変換できるようにする"
+        },
+        "graphql": {
+          "query": "クエリ",
+          "variables": "変数",
+          "headers": "ヘッダー",
+          "placeholder": {
+            "query": "# Use $ to add a variable into your query (e.g. $category ) \nquery ($owner: String!, $name: String!){\n  repository(owner: $owner, name: $name) \n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "Model ID",
+          "placeholder": {
+            "mode_id": "bert-base-uncased",
+            "text": "The answer to the universe is [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Which movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Can you explain why ?\" \r\n}",
+            "binary": "'@cats.jpg' \\",
+            "use_cache": "Boolean, leave blank for true",
+            "min_length": "Integer to define the minimum length in tokens of the output summary",
+            "top_k": "Integer to define the top tokens",
+            "top_p": "Float to define the tokens",
+            "temperature": "Float(0.0-100.0)，leave blank for 1.0",
+            "repetition_penalty": "Float (0.0-100.0)",
+            "max_time": "Float (0.0-120.0) to define the amount of time in seconds"
+          },
+          "tips": {
+            "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
+            "use_detail_parameters": "<0>Click here</0> to learn more about the detail parameters",
+            "temperature": "1 means regular sampling, 0 means always taking the highest score, 100.0 is getting closer to uniform probability.",
+            "repetition_penalty": "The more a token is used within generation the more it is penalized to not be picked in successive generation passes."
+          },
+          "parameter": "Parameter",
+          "use_detail_parameters": "Use detail parameters",
+          "use_cache": "Use cache",
+          "wait_for_model": "Wait for model",
+          "min_length": "Min length",
+          "max_length": "Max length",
+          "top_k": "Top k",
+          "top_p": "Top p",
+          "temperature": "Temperature",
+          "repetition_penalty": "Repetition penalty",
+          "max_time": "Max time"
         }
       },
       "resource": {
@@ -324,7 +365,14 @@
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL オプション",
             "username_password": "ユーザー名パスワード",
-            "self_signed_certificate": "自己署名証明書を使用"
+            "self_signed_certificate": "自己署名証明書を使用",
+            "disable_introspection": "Disable Introspection",
+            "value": "Value",
+            "add_to": "Add to",
+            "header_prefix": "Header prefix",
+            "key": "Key",
+            "introspection": "Introspection",
+            "bear_token": "Token"
           },
           "placeholder": {
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
@@ -337,18 +385,23 @@
             "password": "パスワード",
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "ユーザー名",
-            "default": "default"
+            "default": "default",
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). "
           },
           "tip": {
             "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
             "name": "このリソースにILLAで名前を付ける",
-            "private_key": "Click here to see how to obtain this key",
+            "private_key": "<0>Click here</0> to see how to obtain this key",
             "ssl_options": "可能な場合は SSL を使用する",
-            "username_password": "資格情報は暗号化され、サーバーに安全に保存されます"
+            "username_password": "資格情報は暗号化され、サーバーに安全に保存されます",
+            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
+            "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>"
           },
           "title": {
             "advanced_option": "詳細設定",
-            "general_option": "ユニバーサル"
+            "general_option": "ユニバーサル",
+            "graphql_introspection": "GRAPHQL INTROSPECTION"
           }
         },
         "error": {
@@ -405,7 +458,6 @@
             "base_url": "絶対 URL を使用してください (例: https://example.com)",
             "database": "つまり、「ユーザーDB（読み取り専用）」",
             "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
-            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "param_key": "鍵",
             "param_value": "価値",
             "password": "パスワード",
@@ -565,7 +617,9 @@
           "row_select": "行を選択",
           "sortingChange": "変化で並べ替え",
           "submit": "確認する",
-          "success": "成功後"
+          "success": "成功後",
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Close modal"
         }
       },
       "setter_default_value": {
@@ -795,7 +849,10 @@
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
-      "unselected_tip2": "コンポーネントをクリックして選択してください。"
+      "unselected_tip2": "コンポーネントをクリックして選択してください。",
+      "setter": {
+        "click_mask_close": "Click mask to close modal"
+      }
     },
     "page": {
       "label_name": {
@@ -813,7 +870,9 @@
         "show_fold_icon": "折りたたみボタンを表示",
         "view_path": "ビューパス",
         "views": "見る",
-        "width": "幅"
+        "width": "幅",
+        "height": "高い",
+        "columns": "Columns"
       },
       "model_tips": {
         "cancel_button": "キャンセル",
@@ -828,7 +887,8 @@
       "tab_title": "ページ",
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
-        "view_path": "このビューにアクセスするための文字列スペル example.com/app/page/"
+        "view_path": "このビューにアクセスするための文字列スペル example.com/app/page/",
+        "auto_canvas_width": "The width of page as a percentage of the browser width."
       }
     },
     "validate_message": {
@@ -864,7 +924,14 @@
   "link_copied": "リンクをコピーしました",
   "network_error": "ネットワーク異常",
   "not_online_tips": "ネットワークが切断されています。このデバイスのネットワークを確認してください",
-  "preview": "プレビュー",
+  "preview": {
+    "viewport": {
+      "size": "Size",
+      "reset": "リセット",
+      "save": "保存"
+    },
+    "button_text": "プレビュー"
+  },
   "remove_fail": "削除できませんでした",
   "rename": "名前を変更",
   "resources": "資源",
@@ -910,7 +977,8 @@
     "500": {
       "des": "リクエストに失敗しました。しばらくしてからもう一度お試しください。"
     },
-    "back": "ホームページに戻ります"
+    "back": "ホームページに戻ります",
+    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
   },
   "title": "エラ クラウドへようこそ",
   "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
@@ -1030,9 +1098,7 @@
       "placeholder": {
         "email": "メールアドレスを入力してください",
         "username": "ユーザー名を入力してください",
-        "verification_code": "確認コードを入力してください",
-        "enter_verification_code": "Enter verification code",
-        "enter_password": "Enter your password"
+        "verification_code": "確認コードを入力してください"
       },
       "tips": {
         "fail": "登録に失敗しました",
@@ -1040,13 +1106,7 @@
         "success": "登録完了",
         "verification_code": "確認コードが送信されました"
       },
-      "title": "登録",
-      "agreement": {
-        "using_illa": "By using ILLA you are agreeing to our",
-        "privacy_policy": "privacy policy",
-        "terms_of_service": "terms of service",
-        "and": "and"
-      }
+      "title": "登録"
     }
   },
   "widget": {
@@ -1153,149 +1213,22 @@
       "horizontal": "水平",
       "name": "タイムライン",
       "vertical": "肖像画"
-    }
-  },
-  "mob": {
-    "user": {
-      "sign_up": {
-        "fields": {
-          "password": "Password(at least 6 characters)"
-        }
-      }
-    }
-  },
-  "user_management": {
-    "role": {
-      "owner": "Owner",
-      "admin": "Administer",
-      "editor": "Editor",
-      "viewer": "Viewer"
-    }
-  },
-  "invite_members": "Invite members",
-  "invite_link": "Invite link",
-  "invite_link_copy": "Copy",
-  "turn_off_invite_links": "Turn off invite links",
-  "update_invite_links": "Update invite links",
-  "share_secret_link": "Share a secret link people can use to join your team.",
-  "turn_on_invite_links": "Turn on invite links.",
-  "invite_by_email": "Invite by email",
-  "invite": "Invite",
-  "invited_suc": "Invited successfully",
-  "failed_to_invite": "Failed to invite",
-  "updated_suc": "Updated successfully",
-  "failed_to_update": "Failed to update",
-  "Member": "Member",
-  "Permission": "Permission",
-  "member": "Member",
-  "permission": "Permission",
-  "operation": "Operation",
-  "transfer_ownership": "Transfer ownership",
-  "remove": "Remove",
-  "Are you sure you want to transfer ownership": "Are you sure you want to transfer ownership?",
-  "After transferring, your permission will change to administrator": {
-    "": "After transferring, your permission will change to administrator."
-  },
-  "Transfer": "Transfer",
-  "Cancel": "Cancel",
-  "Successfully transferred": "Successfully transferred",
-  "Failed to transfer": "Failed to transfer",
-  "Are you sure you want to remove [username]?": "Are you sure you want to remove [username]?",
-  "After removal, the user will not be able to access the team": {
-    "": "After removal, the user will not be able to access the team."
-  },
-  "Remove": "Remove",
-  "Successfully removed": "Successfully removed",
-  "Failed to remove": "Failed to remove",
-  "Pending": "Pending",
-  "Updated successfully": "Updated successfully",
-  "Failed to update": "Failed to update",
-  "Allow editors and viewers to invite members": {
-    " ": "Allow editors and viewers to invite members. "
-  },
-  "Create team": "Create team",
-  "Team name": "Team name",
-  "Team domain": "Team domain",
-  "": {
-    "illacloud": {
-      "com": ".illacloud.com"
-    }
-  },
-  "Save": "Save",
-  "already existed": {
-    "": "already existed."
-  },
-  "is available": {
-    "": "is available."
-  },
-  "Invitation code": "Invitation code",
-  "ILLA Cloud is in beta test": {
-    " Please input your invitation code": {
-      "": "ILLA Cloud is in beta test. Please input your invitation code."
-    }
-  },
-  "Need an invitation code?": "Need an invitation code?",
-  "Contact ILLA": "Contact ILLA",
-  "Create a new team": "Create a new team",
-  "You have no teams": "You have no teams",
-  "Workspace": "Workspace",
-  "Team settings": "Team settings",
-  "ILLA Builder": "ILLA Builder",
-  "Apps": "Apps",
-  "App": "App",
-  "Resources": "Resources",
-  "Resource": "Resource",
-  "Edited at a minute ago": "Edited at a minute ago",
-  "Edited at [n] minutes ago": "Edited at [n] minutes ago",
-  "Edited at an hour ago": "Edited at an hour ago",
-  "Edited at [n] hours ago": "Edited at [n] hours ago",
-  "Edited at a day ago": "Edited at a day ago",
-  "Edited at [n] days ago": "Edited at [n] days ago",
-  "Edited at just now": "Edited at just now",
-  "Leave team": "Leave team",
-  "Delete team": "Delete team",
-  "Are you sure you want to leave this team?": "Are you sure you want to leave this team?",
-  "You will not be able to access any team resources after leaving": {
-    "": "You will not be able to access any team resources after leaving."
-  },
-  "Leave": "Leave",
-  "Are you sure you want to delete this team?": "Are you sure you want to delete this team?",
-  "The team domain will be unavailable after deletion, and all members will be removed from this team": {
-    "": "The team domain will be unavailable after deletion, and all members will be removed from this team."
-  },
-  "Delete": "Delete",
-  "Team info": "Team info",
-  "Edit": "Edit",
-  "Save Changes": "Save Changes",
-  "Adjust the avater": "Adjust the avater",
-  "Crop": "Crop",
-  "For the better editing experience, please visit this page on desktop": "For the better editing experience, please visit this page on desktop",
-  "Continue to visit": "Continue to visit",
-  "Create successfully": {
-    " It will take about 1 to 3 minutes to build the domain": {
-      " Visit the new team via www": {
-        "illacloud": {
-          "com/[domain] before the build succeeds": {
-            " ": "Create successfully. It will take about 1 to 3 minutes to build the domain. Visit the new team via www.illacloud.com/[domain] before the build succeeds. "
-          }
-        }
-      }
-    }
-  },
-  "It will take about 1 to 3 minutes to build the new domain": {
-    " Visit the new team via www": {
-      "illacloud": {
-        "com/[domain] before the build succeeds": {
-          " ": "It will take about 1 to 3 minutes to build the new domain. Visit the new team via www.illacloud.com/[domain] before the build succeeds. "
-        }
-      }
     },
-    " Visit the team via www": {
-      "illacloud": {
-        "com/[domain] before the build succeeds": {
-          " ": "It will take about 1 to 3 minutes to build the new domain. Visit the team via www.illacloud.com/[domain] before the build succeeds. "
-        }
+    "modal": {
+      "name": "Modal"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "固定幅",
+        "auto": "てきおう"
       }
     }
-  }
+  },
+  "frame_size": {
+    "invalid_tips": "Please enter a value not less than {{ size }}."
+  },
+  "failed_to_copy": "コピーに失敗しました",
+  "copied": "コピーしました！"
 }

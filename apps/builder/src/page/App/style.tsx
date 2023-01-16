@@ -45,8 +45,7 @@ export const leftPanelStyle = css`
 `
 
 export const centerPanelStyle = css`
-  flex-grow: 1;
-  height: 0;
+  height: 100%;
   width: 100%;
 `
 

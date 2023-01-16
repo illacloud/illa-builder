@@ -32,3 +32,7 @@ export const bodySelectorStyle = css`
   align-items: center;
   flex-direction: row;
 `
+
+export const codeEditorStyle = css`
+  margin: 8px 0;
+`

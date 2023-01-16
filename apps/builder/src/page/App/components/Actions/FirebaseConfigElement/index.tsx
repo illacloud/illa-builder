@@ -1,46 +1,49 @@
 import { FC, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
   Divider,
   Input,
-  PreviousIcon,
-  getColor,
-  TextArea,
   Popover,
-  useMessage,
-  Link,
+  PreviousIcon,
+  TextArea,
   WarningCircleIcon,
+  getColor,
+  useMessage,
 } from "@illa-design/react"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import {
+  configItem,
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
+import { TextLink } from "@/page/User/components/TextLink"
+import {
+  FirebaseResource,
+  FirebaseResourceInitial,
+} from "@/redux/resource/firebaseResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { FirebaseConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
-  connectTypeStyle,
   container,
   divider,
   errorIconStyle,
   errorMsgStyle,
   footerStyle,
-  labelContainer,
-  optionLabelStyle,
   privateKeyItem,
 } from "./style"
-import {
-  FirebaseResource,
-  FirebaseResourceInitial,
-} from "@/redux/resource/firebaseResource"
 
 export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
   props,
@@ -178,16 +181,16 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
             name="databaseUrl"
           />
         </div>
-        <div css={configItemTip}>
-          {formState.errors.databaseUrl && (
+        {formState.errors.databaseUrl && (
+          <div css={configItemTip}>
             <div css={errorMsgStyle}>
               <>
                 <WarningCircleIcon css={errorIconStyle} />
                 {formState.errors.databaseUrl.message}
               </>
             </div>
-          )}
-        </div>
+          </div>
+        )}
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
@@ -244,8 +247,15 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
             }
             render={({ field: { value, onChange, onBlur } }) => (
               <TextArea
+                style={{
+                  overflow: "scroll",
+                  minHeight: "240px",
+                }}
+                bgColor="techPurple"
+                w="100%"
                 ml="16px"
                 mr="24px"
+                mb="8px"
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
@@ -259,28 +269,33 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
           />
         </div>
         <div css={configItemTip}>
-          <Link
-            href="https://firebase.google.com/docs/admin/setup"
-            target="_blank"
-          >
-            {t("editor.action.resource.db.tip.private_key")}
-          </Link>
+          <Trans
+            i18nKey="editor.action.resource.db.tip.private_key"
+            t={t}
+            components={[
+              <TextLink
+                key="go-to-setup"
+                onClick={() => {
+                  window.open(
+                    "https://firebase.google.com/docs/admin/setup",
+                    "_blank",
+                  )
+                }}
+              />,
+            ]}
+          />
         </div>
         {isCloudVersion && (
-          <>
-            <div css={configItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
-                >
-                  {t("editor.action.resource.db.label.connect_type")}
-                </span>
-              </div>
-              <span css={connectTypeStyle}>
-                {t("editor.action.resource.db.tip.connect_type")}
+          <div css={connectType}>
+            <div css={labelContainer}>
+              <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
+                {t("editor.action.resource.db.label.connect_type")}
               </span>
             </div>
-          </>
+            <span css={connectTypeStyle}>
+              {t("editor.action.resource.db.tip.connect_type")}
+            </span>
+          </div>
         )}
       </div>
       <div css={footerStyle}>

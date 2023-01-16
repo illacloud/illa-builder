@@ -3,6 +3,24 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { AppendDataToListPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/AppendDataToList"
+import { CreateOneUserPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/CreateOneUser"
+import { DeleteOneDocumentPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/DeleteOneDocument"
+import { DeleteOneUserPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/DeleteOneUser"
+import { GetCollectionsPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetCollections"
+import { GetDocumentByIDPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetDocumentByID"
+import { GetUserByEmailPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByEmail"
+import { GetUserByIDPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByID"
+import { GetUserByPhonePart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByPhone"
+import { InsertDocumentPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/InsertDocument"
+import { ListUsersPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/ListUsers"
+import { QueryCollectionGroupPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/QueryCollectionGroup"
+import { QueryDatabasePart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/QueryDatabase"
+import { QueryFirebasePart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/QueryFirebase"
+import { SetDataPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/SetData"
+import { UpdateDataPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateData"
+import { UpdateDocumentPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateDocument"
+import { UpdateOneUserPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateOneUser"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
@@ -12,44 +30,26 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
-  actionContainerStyle,
-  actionItemLabelStyle,
-  actionItemStyle,
-} from "./style"
-import {
-  Params,
   ActionTypeList,
   ActionTypeValue,
-  ServiceTypeValue,
   AuthActionTypeValue,
+  CheckboxParams,
   FirebaseAction,
   FirebaseContentType,
   FirebaseServiceType,
   FirestoreActionTypeValue,
   InitialValue,
+  Params,
   RealtimeActionTypeValue,
-  FirebaseActionInitial,
   ServiceTypeInitialValue,
-  CheckboxParams,
+  ServiceTypeValue,
 } from "@/redux/currentApp/action/firebaseAction"
-import { GetUserByIDPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByID"
-import { GetUserByEmailPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByEmail"
-import { GetUserByPhonePart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetUserByPhone"
-import { CreateOneUserPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/CreateOneUser"
-import { UpdateOneUserPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateOneUser"
-import { DeleteOneUserPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/DeleteOneUser"
-import { ListUsersPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/ListUsers"
-import { QueryFirebasePart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/QueryFirebase"
-import { InsertDocumentPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/InsertDocument"
-import { UpdateDocumentPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateDocument"
-import { GetDocumentByIDPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetDocumentByID"
-import { DeleteOneDocumentPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/DeleteOneDocument"
-import { GetCollectionsPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/GetCollections"
-import { QueryCollectionGroupPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/QueryCollectionGroup"
-import { QueryDatabasePart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/QueryDatabase"
-import { UpdateDataPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/UpdateData"
-import { SetDataPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/SetData"
-import { AppendDataToListPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/AppendDataToList"
+import {
+  actionContainerStyle,
+  actionItemContainer,
+  actionItemLabelStyle,
+  actionItemStyle,
+} from "./style"
 
 export const FirebasePanel: FC = () => {
   const { t } = useTranslation()
@@ -169,41 +169,45 @@ export const FirebasePanel: FC = () => {
   return (
     <div css={actionContainerStyle}>
       <ResourceChoose />
-      <div css={actionItemStyle}>
-        <span css={actionItemLabelStyle}>
-          {t("editor.action.panel.firebase.service_type")}
-        </span>
-        <Select
-          colorScheme="techPurple"
-          showSearch={true}
-          defaultValue={content.service}
-          value={content.service}
-          ml="16px"
-          w="100%"
-          onChange={(value) => handleValueChange(value as string, "service")}
-          options={FirebaseServiceType}
-        />
+      <div css={actionItemContainer}>
+        <div css={actionItemStyle}>
+          <span css={actionItemLabelStyle}>
+            {t("editor.action.panel.firebase.service_type")}
+          </span>
+          <Select
+            colorScheme="techPurple"
+            showSearch={true}
+            defaultValue={content.service}
+            value={content.service}
+            ml="16px"
+            w="100%"
+            onChange={(value) => handleValueChange(value as string, "service")}
+            options={FirebaseServiceType}
+          />
+        </div>
+        <div css={actionItemStyle}>
+          <span css={actionItemLabelStyle}>
+            {t("editor.action.panel.firebase.action_type")}
+          </span>
+          <Select
+            colorScheme="techPurple"
+            showSearch={true}
+            defaultValue={content.operation}
+            value={content.operation}
+            ml="16px"
+            w="100%"
+            placeholder={t(
+              "editor.action.panel.firebase.placeholder.select_an_action",
+            )}
+            onChange={(value) =>
+              handleValueChange(value as string, "operation")
+            }
+            options={ActionTypeList[content.service]}
+          />
+        </div>
+        {renderInputBody}
+        <TransformerComponent />
       </div>
-      <div css={actionItemStyle}>
-        <span css={actionItemLabelStyle}>
-          {t("editor.action.panel.firebase.action_type")}
-        </span>
-        <Select
-          colorScheme="techPurple"
-          showSearch={true}
-          defaultValue={content.operation}
-          value={content.operation}
-          ml="16px"
-          w="100%"
-          placeholder={t(
-            "editor.action.panel.firebase.placeholder.select_an_action",
-          )}
-          onChange={(value) => handleValueChange(value as string, "operation")}
-          options={ActionTypeList[content.service]}
-        />
-      </div>
-      {renderInputBody}
-      <TransformerComponent />
       <ActionEventHandler />
     </div>
   )

@@ -10,6 +10,7 @@ import {
   Password,
   PreviousIcon,
   WarningCircleIcon,
+  getColor,
   useMessage,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
@@ -182,12 +183,16 @@ export const ResetPassword: FC = () => {
                   suffix={{
                     render: showCountDown ? (
                       <Countdown
-                        mode="builder"
                         value={Date.now() + 1000 * 60}
                         now={Date.now()}
                         format="ss"
                         onFinish={() => {
                           setShowCountDown(false)
+                        }}
+                        valueStyle={{
+                          fontSize: "14px",
+                          lineHeight: "22px",
+                          color: getColor("techPurple", "01"),
                         }}
                       />
                     ) : (

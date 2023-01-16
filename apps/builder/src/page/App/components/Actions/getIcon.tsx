@@ -1,7 +1,10 @@
 import { ReactElement } from "react"
+import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
 import { DataDogIcon } from "@/page/App/components/Icons/datadog"
 import { ElasticIcon } from "@/page/App/components/Icons/elastic"
+import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
 import { GraphQLIcon } from "@/page/App/components/Icons/graphql"
+import { HuggingFaceIcon } from "@/page/App/components/Icons/huggingface"
 import { MariaDbIcon } from "@/page/App/components/Icons/mariadb"
 import { MongoDbIcon } from "@/page/App/components/Icons/mongodb"
 import { MySqlIcon } from "@/page/App/components/Icons/mysql"
@@ -10,15 +13,13 @@ import { RedisIcon } from "@/page/App/components/Icons/redis"
 import { RestApiIcon } from "@/page/App/components/Icons/restapi"
 import { S3Icon } from "@/page/App/components/Icons/s3"
 import { SmtpIcon } from "@/page/App/components/Icons/smtp"
-import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
 import { SnowflakeIcon } from "@/page/App/components/Icons/snowflake"
+import { SupabaseIcon } from "@/page/App/components/Icons/supabase"
 import { TidbIcon } from "@/page/App/components/Icons/tidb"
 import { TransformerIcon } from "@/page/App/components/Icons/transformer"
 import { ZapierIcon } from "@/page/App/components/Icons/zapier"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
-import { SupabaseIcon } from "@/page/App/components/Icons/supabase"
-import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
 
 export function getIconFromResourceType(
   type: ResourceType,
@@ -33,6 +34,8 @@ export function getIconFromResourceType(
       return <ElasticIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
+    case "huggingface":
+      return <HuggingFaceIcon size={size} />
     case "mariadb":
       return <MariaDbIcon size={size} />
     case "tidb":
@@ -70,6 +73,8 @@ export function getIconFromActionType(
       return <SupabaseIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
+    case "huggingface":
+      return <HuggingFaceIcon size={size} />
     case "transformer":
       return <TransformerIcon size={size} />
     case "mariadb":

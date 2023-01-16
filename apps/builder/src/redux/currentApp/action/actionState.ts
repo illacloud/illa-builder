@@ -1,3 +1,12 @@
+import {
+  FirebaseAction,
+  FirebaseContentType,
+} from "@/redux/currentApp/action/firebaseAction"
+import { GraphQLAction } from "@/redux/currentApp/action/graphqlAction"
+import {
+  HuggingFaceAction,
+  HuggingFaceBodyContent,
+} from "@/redux/currentApp/action/huggingFaceAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { MysqlLikeAction } from "./mysqlLikeAction"
@@ -6,10 +15,6 @@ import { BodyContent, RestApiAction } from "./restapiAction"
 import { S3Action, S3ActionTypeContent } from "./s3Action"
 import { SMPTAction } from "./smtpAction"
 import { TransformerAction } from "./transformerAction"
-import {
-  FirebaseAction,
-  FirebaseContentType,
-} from "@/redux/currentApp/action/firebaseAction"
 
 export interface Transformer {
   rawData: string
@@ -43,6 +48,7 @@ export interface Events {
 }
 
 export type ActionType =
+  | "huggingface"
   | "firebase"
   | "supabasedb"
   | "clickhouse"
@@ -77,6 +83,7 @@ export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
 }
 
 export type ActionContent =
+  | HuggingFaceAction<HuggingFaceBodyContent>
   | FirebaseAction<FirebaseContentType>
   | SMPTAction
   | S3Action<S3ActionTypeContent>
@@ -85,6 +92,7 @@ export type ActionContent =
   | RestApiAction<BodyContent>
   | TransformerAction
   | RedisAction
+  | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

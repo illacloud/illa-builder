@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 import {
+  FC,
   MutableRefObject,
   forwardRef,
   useCallback,
@@ -12,9 +13,18 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import useMeasure from "react-use-measure"
 import { NextIcon, PreviousIcon } from "@illa-design/react"
+import { ScaleSquareOnlyHasResize } from "@/page/App/components/ScaleSquare"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  ComponentNode,
+  SECTION_POSITION,
+} from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import {
+  BASIC_BLOCK_COLUMNS,
+  LEFT_OR_RIGHT_DEFAULT_COLUMNS,
+} from "@/utils/generators/generatePageOrSectionConfig"
 import {
   ChangeLayoutBottomBar,
   ChangeLayoutLeftBar,
@@ -25,16 +35,18 @@ import {
   RenderFooterSectionProps,
   RenderHeaderSectionProps,
   RenderLeftSectionProps,
+  RenderModalSectionProps,
   RenderRightSectionProps,
   RenderSectionProps,
 } from "./interface"
-import { RenderComponentCanvas } from "./renderComponentCanvas"
+import { RenderComponentCanvas, UNIT_HEIGHT } from "./renderComponentCanvas"
 import {
   applyContainerWrapperStyle,
   applyFooterSectionWrapperStyle,
   applyHeaderSectionWrapperStyle,
   applyLeftAnimationWrapperStyle,
   applyLeftSectionWrapperStyle,
+  applyModalWrapperStyle,
   applyNoBottomPaddingStyle,
   applyRightAnimationWrapperStyle,
   applyRightSectionWrapperStyle,
@@ -44,6 +56,7 @@ import {
   headerHeightTipsStyle,
   leftOpenFoldPositionStyle,
   leftWidthTipsStyle,
+  maskStyle,
   openFoldWrapperStyle,
   resizeHorizontalBarStyle,
   resizeHorizontalBarWrapperStyle,
@@ -54,16 +67,28 @@ import {
   sideBarIconStyle,
 } from "./style"
 
-export const HEADER_MIN_HEIGHT = 96
-export const FOOTER_MIN_HEIGHT = 96
-export const LEFT_MIN_WIDTH = 240
-export const RIGHT_MIN_WIDTH = 240
-export const BODY_MIN_WIDTH = 384
-export const BODY_MIN_HEIGHT = 320
+export const HEADER_MIN_HEIGHT = 40
+export const FOOTER_MIN_HEIGHT = 40
+export const BODY_MIN_HEIGHT = 40
+export const LEFT_MIN_WIDTH = 80
+export const RIGHT_MIN_WIDTH = 80
+export const BODY_MIN_WIDTH = 80
+
+export const DEFAULT_PERCENT_WIDTH = {
+  LEFT: 20,
+  RIGHT: 20,
+  CANVAS: 100,
+}
+
+export const DEFAULT_PX_WIDTH = {
+  LEFT: 240,
+  RIGHT: 240,
+  CANVAS: 1440,
+}
 
 export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
   (props, ref) => {
-    const { sectionNode, mode } = props
+    const { sectionNode, mode, columns } = props
     const executionResult = useSelector(getExecutionResult)
     const sectionNodeProps = executionResult[sectionNode.displayName] || {}
     const [containerBoundRef, containerBound] = useMeasure()
@@ -123,6 +148,8 @@ export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
               safeRowNumber={0}
               addedRowNumber={40}
               canAutoScroll
+              blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+              sectionName="BODY_SECTION"
             />
           )}
         </div>
@@ -147,6 +174,7 @@ export const RenderHeaderSection = forwardRef<
     currentPageDisplayName,
     leftPosition,
     rightPosition,
+    columns,
   } = props
   const [isResizeActive, setIsResizeActive] = useState(false)
   const [heightPX, setHeightPX] = useState(topHeight)
@@ -199,8 +227,9 @@ export const RenderHeaderSection = forwardRef<
         const { clientY } = e
         let currentPointPositionY = clientY - offsetTop
         let otherPanelHeightPX = footerHeight
-        if (currentPointPositionY % 8 !== 0) {
-          currentPointPositionY = Math.round(currentPointPositionY / 8) * 8
+        if (currentPointPositionY % UNIT_HEIGHT !== 0) {
+          currentPointPositionY =
+            Math.round(currentPointPositionY / UNIT_HEIGHT) * UNIT_HEIGHT
         }
         if (currentPointPositionY < HEADER_MIN_HEIGHT) {
           currentPointPositionY = HEADER_MIN_HEIGHT
@@ -372,6 +401,8 @@ export const RenderHeaderSection = forwardRef<
             minHeight={containerBound.height - 16}
             safeRowNumber={0}
             addedRowNumber={5}
+            blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+            sectionName="HEADER_SECTION"
           />
         )}
       </div>
@@ -406,6 +437,7 @@ export const RenderFooterSection = forwardRef<
     currentPageDisplayName,
     leftPosition,
     rightPosition,
+    columns,
   } = props
   const executionResult = useSelector(getExecutionResult)
   const [isResizeActive, setIsResizeActive] = useState(false)
@@ -463,8 +495,9 @@ export const RenderFooterSection = forwardRef<
         const { clientY } = e
         let currentPointPositionY = containerHeight - (clientY - offsetTop)
         let otherPanelHeightPX = headerHeight
-        if (currentPointPositionY % 8 !== 0) {
-          currentPointPositionY = Math.round(currentPointPositionY / 8) * 8
+        if (currentPointPositionY % UNIT_HEIGHT !== 0) {
+          currentPointPositionY =
+            Math.round(currentPointPositionY / UNIT_HEIGHT) * UNIT_HEIGHT
         }
         if (currentPointPositionY < FOOTER_MIN_HEIGHT) {
           currentPointPositionY = FOOTER_MIN_HEIGHT
@@ -637,6 +670,8 @@ export const RenderFooterSection = forwardRef<
             minHeight={containerBound.height - 16}
             safeRowNumber={0}
             addedRowNumber={5}
+            blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+            sectionName="FOOTER_SECTION"
           />
         )}
       </div>
@@ -673,6 +708,8 @@ export const RenderLeftSection = forwardRef<
     isFold,
     leftWidth,
     setIsLeftFold,
+    canvasSize,
+    columns,
   } = props
 
   const executionResult = useSelector(getExecutionResult)
@@ -723,8 +760,12 @@ export const RenderLeftSection = forwardRef<
   const dispatch = useDispatch()
 
   const handleClickMoveBar = () => {
-    const presetWidth = (leftWidth / containerWidth) * 100
-    setPresetWidth(presetWidth)
+    if (canvasSize === "fixed") {
+      setPresetWidth(leftWidth)
+    } else {
+      const presetWidth = (leftWidth / containerWidth) * 100
+      setPresetWidth(presetWidth)
+    }
     setIsResizeActive(true)
   }
 
@@ -752,18 +793,31 @@ export const RenderLeftSection = forwardRef<
           currentPointPositionX =
             containerWidth - BODY_MIN_WIDTH - otherPanelWidthPX
         }
-        const presetWidth = (currentPointPositionX / containerWidth) * 100
-        const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
-        setPresetWidth(presetWidth)
-        dispatch(
-          componentsActions.updateTargetPagePropsReducer({
-            pageName: currentPageDisplayName,
-            newProps: {
-              leftWidth: presetWidth,
-              rightWidth: otherPanelWidth,
-            },
-          }),
-        )
+        if (canvasSize === "fixed") {
+          setPresetWidth(currentPointPositionX)
+          dispatch(
+            componentsActions.updateTargetPagePropsReducer({
+              pageName: currentPageDisplayName,
+              newProps: {
+                leftWidth: currentPointPositionX,
+                rightWidth: otherPanelWidthPX,
+              },
+            }),
+          )
+        } else {
+          const presetWidth = (currentPointPositionX / containerWidth) * 100
+          const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
+          setPresetWidth(presetWidth)
+          dispatch(
+            componentsActions.updateTargetPagePropsReducer({
+              pageName: currentPageDisplayName,
+              newProps: {
+                leftWidth: presetWidth,
+                rightWidth: otherPanelWidth,
+              },
+            }),
+          )
+        }
       }
     }
 
@@ -892,9 +946,10 @@ export const RenderLeftSection = forwardRef<
                   : containerBound.height - 16
               }
               safeRowNumber={0}
-              blockColumns={16}
+              blockColumns={columns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS}
               addedRowNumber={40}
               canAutoScroll
+              sectionName="LEFT_SECTION"
             />
           )}
           {showFoldIcon && (
@@ -916,7 +971,10 @@ export const RenderLeftSection = forwardRef<
           </div>
         )}
         {isResizeActive && (
-          <div css={leftWidthTipsStyle}>{presetWidth.toFixed(0)}%</div>
+          <div css={leftWidthTipsStyle}>
+            {presetWidth.toFixed(0)}
+            {canvasSize === "fixed" ? "px" : "%"}
+          </div>
         )}
       </div>
 
@@ -974,6 +1032,8 @@ export const RenderRightSection = forwardRef<
     isFold,
     rightWidth,
     setIsRightFold,
+    canvasSize,
+    columns,
   } = props
 
   const executionResult = useSelector(getExecutionResult)
@@ -1018,15 +1078,19 @@ export const RenderRightSection = forwardRef<
   ) as MutableRefObject<HTMLDivElement | null>
 
   const [isResizeActive, setIsResizeActive] = useState(false)
-  const [presetWidth, setPresetWidth] = useState(0)
+  const [panelWidth, setPanelWidth] = useState(0)
   const [isInSection, setIsInSection] = useState(false)
   const [animationComplete, setAnimationComplete] = useState(true)
 
   const dispatch = useDispatch()
 
   const handleClickMoveBar = () => {
-    const presetWidth = (rightWidth / containerWidth) * 100
-    setPresetWidth(presetWidth)
+    if (canvasSize === "fixed") {
+      setPanelWidth(rightWidth)
+    } else {
+      const presetWidth = (rightWidth / containerWidth) * 100
+      setPanelWidth(presetWidth)
+    }
     setIsResizeActive(true)
   }
 
@@ -1054,19 +1118,32 @@ export const RenderRightSection = forwardRef<
           currentPointPositionX =
             containerWidth - BODY_MIN_WIDTH - otherPanelWidthPX
         }
-        const presetWidth = (currentPointPositionX / containerWidth) * 100
-        const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
-        setPresetWidth(presetWidth)
+        if (canvasSize === "fixed") {
+          setPanelWidth(currentPointPositionX)
+          dispatch(
+            componentsActions.updateTargetPagePropsReducer({
+              pageName: currentPageDisplayName,
+              newProps: {
+                rightWidth: currentPointPositionX,
+                leftWidth: otherPanelWidthPX,
+              },
+            }),
+          )
+        } else {
+          const presetWidth = (currentPointPositionX / containerWidth) * 100
+          const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
+          setPanelWidth(presetWidth)
 
-        dispatch(
-          componentsActions.updateTargetPagePropsReducer({
-            pageName: currentPageDisplayName,
-            newProps: {
-              rightWidth: presetWidth,
-              leftWidth: otherPanelWidth,
-            },
-          }),
-        )
+          dispatch(
+            componentsActions.updateTargetPagePropsReducer({
+              pageName: currentPageDisplayName,
+              newProps: {
+                rightWidth: presetWidth,
+                leftWidth: otherPanelWidth,
+              },
+            }),
+          )
+        }
       }
     }
 
@@ -1194,9 +1271,10 @@ export const RenderRightSection = forwardRef<
                   : containerBound.height - 16
               }
               safeRowNumber={0}
-              blockColumns={16}
+              blockColumns={columns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS}
               addedRowNumber={40}
               canAutoScroll
+              sectionName="RIGHT_SECTION"
             />
           )}
           {showFoldIcon && (
@@ -1217,7 +1295,10 @@ export const RenderRightSection = forwardRef<
           </div>
         )}
         {isResizeActive && (
-          <div css={rightWidthTipsStyle}>{presetWidth.toFixed(0)}%</div>
+          <div css={rightWidthTipsStyle}>
+            {panelWidth.toFixed(0)}
+            {canvasSize === "fixed" ? "px" : "%"}
+          </div>
         )}
       </div>
 
@@ -1258,3 +1339,81 @@ export const RenderRightSection = forwardRef<
   )
 })
 RenderRightSection.displayName = "RenderRightSection"
+
+export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
+  const { sectionNode, mode, columns } = props
+  const executionResult = useSelector(getExecutionResult)
+  const dispatch = useDispatch()
+  const [containerBoundRef, containerBound] = useMeasure()
+  const containerRef = useRef<HTMLDivElement>(
+    null,
+  ) as MutableRefObject<HTMLDivElement | null>
+
+  const handleOnClickMask = useCallback(
+    (displayName: string) => {
+      dispatch(
+        executionActions.updateModalDisplayReducer({
+          display: false,
+          displayName,
+        }),
+      )
+    },
+    [dispatch],
+  )
+
+  if (
+    !Array.isArray(sectionNode.childrenNode) ||
+    sectionNode.childrenNode.length === 0
+  )
+    return null
+
+  let currentComponentNode: ComponentNode | undefined =
+    sectionNode.childrenNode.find((node) => {
+      const realProps = executionResult[node.displayName]
+      return realProps?.isVisible ?? false
+    })
+
+  if (!currentComponentNode) return null
+  const displayName = currentComponentNode.displayName
+
+  const currentComponentNodeProps = executionResult[displayName] || {}
+
+  return (
+    <div
+      css={maskStyle}
+      onClick={() => {
+        if (currentComponentNodeProps?.clickMaskClose) {
+          handleOnClickMask(displayName)
+        }
+      }}
+    >
+      <div
+        css={applyModalWrapperStyle(mode)}
+        ref={(ele) => {
+          containerBoundRef(ele)
+          containerRef.current = ele
+        }}
+      >
+        {currentComponentNode && (
+          <ScaleSquareOnlyHasResize
+            key={currentComponentNode.displayName}
+            componentNode={currentComponentNode}
+            h={currentComponentNode.h * currentComponentNode.unitH}
+            w={currentComponentNode.w * currentComponentNode.unitW}
+            x={currentComponentNode.x}
+            y={currentComponentNode.y}
+            unitW={currentComponentNode.unitW}
+            unitH={UNIT_HEIGHT}
+            containerHeight={containerBound.height}
+            containerPadding={8}
+            childrenNode={currentComponentNode.childrenNode}
+            collisionEffect={new Map()}
+            blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+          />
+        )}
+      </div>
+    </div>
+  )
+}
+
+RenderModalSection.displayName = "RenderModalSection"
