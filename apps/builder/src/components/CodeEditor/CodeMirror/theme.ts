@@ -80,6 +80,9 @@ export const ILLACodeMirrorTheme = {
   "&.cm-editor .cm-completionIcon-table::after": {
     content: `url(${TableIcon})`,
   },
+  "&.cm-editor .cm-gutters .cm-gutter .cm-gutterElement": {
+    padding: "0 8px 0 23px",
+  },
   "&.cm-editor .cm-tooltip-autocomplete>ul .cm-completionLabel": {
     fontSize: "12px",
     lineHeight: "22px",
