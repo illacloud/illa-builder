@@ -41,4 +41,5 @@ export const userInfoListContainerStyle = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
   padding: 16px;
+  z-index: 10;
 `

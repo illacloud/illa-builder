@@ -7,6 +7,7 @@ import {
   moreIconStyle,
   userInfoListContainerStyle,
 } from "@/page/App/components/PageNavBar/CollaboratorsList/style"
+import { triggerStyle } from "@/page/App/components/PageNavBar/style"
 import { getCurrentAppAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 
@@ -53,6 +54,7 @@ export const CollaboratorsList: FC = () => {
         showArrow={false}
         withoutPadding
         colorScheme="white"
+        _css={triggerStyle}
       >
         <div css={moreIconStyle}>
           <span>{usersLength - 3 <= 99 ? `+${usersLength - 3}` : "99+"}</span>

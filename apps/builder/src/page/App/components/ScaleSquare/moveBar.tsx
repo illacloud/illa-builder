@@ -5,11 +5,11 @@ import useMeasure from "react-use-measure"
 import {
   DragIcon,
   LockIcon,
+  Trigger,
   WarningCircleIcon,
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { Trigger } from "@illa-design/react"
 import { ReactComponent as DocIcon } from "@/assets/doc.svg"
 import { CollaboratorsList } from "@/page/App/components/ScaleSquare/CollaboratorsList"
 import {
@@ -29,6 +29,13 @@ import {
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getFreezeState } from "@/redux/config/configSelector"
+import {
+  AVATAR_GAP,
+  AVATAR_WIDTH,
+  MIN_DISABLE_MARGIN_WIDTH,
+  MIN_MOVE_BAR_WIDTH,
+  MOVE_BAR_SVG_WIDTH,
+} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 
 interface WidgetDocProps {
   widgetType: string
@@ -116,10 +123,14 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
 
   const minWidth =
     userList.length >= 3
-      ? 48
-      : userList.length * 14 + (userList.length || 1 - 1) * 4 + 12 || 12
+      ? MIN_MOVE_BAR_WIDTH
+      : userList.length * AVATAR_WIDTH +
+          (userList.length || 1 - 1) * AVATAR_GAP +
+          MOVE_BAR_SVG_WIDTH || MOVE_BAR_SVG_WIDTH
 
-  const disableMargin = bounds.width <= (userList.length >= 2 ? 48 : 34)
+  const disableMargin =
+    bounds.width <=
+    (userList.length >= 2 ? MIN_MOVE_BAR_WIDTH : MIN_DISABLE_MARGIN_WIDTH)
   return (
     <div
       css={applyMoveBarWrapperStyle(
@@ -145,14 +156,12 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
             <DragIcon css={dragPointIconWrapperStyle} />
             <span css={moveBarDisplayNameStyle}>{displayName}</span>
           </div>
-          {selected && (
-            <CollaboratorsList
-              users={userList}
-              disableMargin={disableMargin}
-              currentState={currentState}
-              containerWidth={bounds.width}
-            />
-          )}
+          <CollaboratorsList
+            users={userList}
+            disableMargin={disableMargin}
+            currentState={currentState}
+            containerWidth={bounds.width}
+          />
         </>
       )}
       {isError && (

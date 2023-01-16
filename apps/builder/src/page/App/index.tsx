@@ -59,6 +59,11 @@ export const Editor: FC = () => {
   const controls = useAnimation()
 
   const currentUser = useSelector(getCurrentUser)
+
+  const handleLeaveRoom = () => {
+    Connection.leaveRoom("app", appId ?? "")
+  }
+
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {
       Connection.enterRoom(
@@ -67,9 +72,11 @@ export const Editor: FC = () => {
         (loading) => {},
         (errorState) => {},
       )
+      window.addEventListener("beforeunload", handleLeaveRoom)
     }
     return () => {
-      Connection.leaveRoom("app", appId ?? "")
+      handleLeaveRoom()
+      window.removeEventListener("beforeunload", handleLeaveRoom)
     }
   }, [currentUser, appId])
 

@@ -58,3 +58,17 @@ export const updateCurrentAllComponentsAttachedUsers = (
     clearComponentAttachedUsersHandler(disattachedComponents)
   }
 }
+
+export const AVATAR_WIDTH = 14
+export const AVATAR_GAP = 4
+export const MOVE_BAR_SVG_WIDTH = 12
+export const AVATAR_LIST_MARGIN = 8
+
+// two avatar + one gap + one svg
+export const MIN_MOVE_BAR_WIDTH = 48
+
+export const MIN_DISABLE_MARGIN_WIDTH = 34
+
+export const MIN_THREE_AVATAR_WIDTH = 50
+
+export const MIN_THREE_AVATAR_MOVE_BAR_WIDTH = 70

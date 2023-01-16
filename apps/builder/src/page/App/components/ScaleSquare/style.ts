@@ -355,12 +355,18 @@ export const freezeTipsStyle = css`
 `
 
 export const applyRNDWrapperStyle = (
+  hasEditors: boolean,
   isSelected: boolean,
   hasError: boolean,
   isShowCanvasDot: boolean,
   isDragging: boolean,
   isEditor: boolean,
 ) => css`
+  > .wrapperPending {
+    > #moveBar {
+      visibility: ${hasEditors ? "visible" : "hidden"};
+    }
+  }
   :hover {
     > .wrapperPending {
       border-color: ${isEditor
@@ -380,6 +386,7 @@ export const applyRNDWrapperStyle = (
 `
 
 export const applyWrapperPendingStyle = (
+  hasEditors: boolean,
   isSelected: boolean,
   hasError: boolean,
   isDragging: boolean,
@@ -389,9 +396,12 @@ export const applyWrapperPendingStyle = (
   height: 100%;
   padding: 3px;
   border: 1px solid
-    ${isEditor && isSelected
+    ${(isEditor && isSelected) || hasEditors
       ? globalColor(`--${illaPrefix}-techPurple-01`)
       : "transparent"};
+  border-style: ${hasEditors && !isSelected && !isDragging
+    ? "dashed"
+    : "solid"};
   background-color: ${isEditor && hasError && !isSelected
     ? globalColor(`--${illaPrefix}-red-07`)
     : "transparent"};
@@ -399,7 +409,6 @@ export const applyWrapperPendingStyle = (
 `
 
 export const applyDashedLineStyle = (
-  hasEditor: boolean,
   isSelected: boolean,
   isShowCanvasDot: boolean,
   isDragging: boolean,
@@ -412,7 +421,7 @@ export const applyDashedLineStyle = (
   left: 0;
   max-height: ${maxHeight ? `${maxHeight}px` : "unset"};
   pointer-events: none;
-  border: ${isShowCanvasDot && !isSelected && !isDragging && hasEditor
+  border: ${isShowCanvasDot && !isSelected && !isDragging
     ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
     : "none"};
 `

@@ -11,6 +11,10 @@ import {
   listItemStyle,
   moreIconStyle,
 } from "@/page/App/components/ScaleSquare/CollaboratorsList/style"
+import {
+  MIN_THREE_AVATAR_MOVE_BAR_WIDTH,
+  MIN_THREE_AVATAR_WIDTH,
+} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 
 export const CollaboratorsList: FC<{
@@ -37,7 +41,7 @@ export const CollaboratorsList: FC<{
       return
     }
     if (currentState === "right") {
-      if (containerWidth > 70) {
+      if (containerWidth > MIN_THREE_AVATAR_MOVE_BAR_WIDTH) {
         setDisplayDataList(listLength === 3 ? users : users.slice(0, 2))
         setShowMoreIcon(listLength === 3 ? false : true)
       } else {
@@ -46,7 +50,10 @@ export const CollaboratorsList: FC<{
       }
       return
     }
-    if ((currentState === "left" && bounds.width <= 50) || disableMargin) {
+    if (
+      (currentState === "left" && bounds.width <= MIN_THREE_AVATAR_WIDTH) ||
+      disableMargin
+    ) {
       setDisplayDataList(users.slice(0, 1))
       setShowMoreIcon(true)
       return

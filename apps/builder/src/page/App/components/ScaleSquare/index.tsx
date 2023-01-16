@@ -469,6 +469,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     [componentNode.displayName, dispatch],
   )
 
+  const hasEditors = !!filteredComponentAttachedUserList.length
+
   //  1px is left border width
   return isDragging ? null : (
     <Rnd
@@ -485,6 +487,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         illaMode === "edit" && isSelected ? enableResizing : false
       }
       css={applyRNDWrapperStyle(
+        hasEditors,
         isSelected,
         hasError,
         isShowCanvasDot,
@@ -527,6 +530,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         <div
           className="wrapperPending"
           css={applyWrapperPendingStyle(
+            hasEditors,
             isSelected,
             hasError,
             isDragging,
@@ -557,7 +561,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           {canRenderDashedLine && (
             <div
               css={applyDashedLineStyle(
-                !!filteredComponentAttachedUserList.length,
                 isSelected,
                 isShowCanvasDot,
                 isDragging,
@@ -594,7 +597,7 @@ export const ScaleSquareWithJSON = memo<ScaleSquarePropsWithJSON>(
       >
         <div
           className="wrapperPending"
-          css={applyWrapperPendingStyle(false, false, false, false)}
+          css={applyWrapperPendingStyle(false, false, false, false, false)}
         >
           <TransformWidgetWrapperWithJson
             componentNode={componentNode}
@@ -883,6 +886,8 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
     [componentNode.displayName, dispatch],
   )
 
+  const hasEditors = !!filteredComponentAttachedUserList.length
+
   return (
     <Resizable
       bounds="parent"
@@ -924,6 +929,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         <div
           className="wrapperPending"
           css={applyWrapperPendingStyle(
+            hasEditors,
             isSelected,
             hasError,
             false,
@@ -952,12 +958,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
           />
           {canRenderDashedLine && (
             <div
-              css={applyDashedLineStyle(
-                !!filteredComponentAttachedUserList.length,
-                isSelected,
-                isShowCanvasDot,
-                false,
-              )}
+              css={applyDashedLineStyle(isSelected, isShowCanvasDot, false)}
             />
           )}
         </div>
