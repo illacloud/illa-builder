@@ -82,5 +82,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-builder-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Test build docker image
-        run: echo "building docker image..."
+      - name: Check ts types
+        run: pnpm run ts-check
