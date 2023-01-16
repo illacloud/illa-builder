@@ -247,8 +247,8 @@ export const Register: FC = () => {
                       !!errors.verificationCode || !!errorMsg.verificationCode
                     }
                     variant="fill"
-                    suffix={{
-                      render: showCountDown ? (
+                    suffix={
+                      showCountDown ? (
                         <Countdown
                           value={Date.now() + 1000 * 60}
                           now={Date.now()}
@@ -306,8 +306,8 @@ export const Register: FC = () => {
                         >
                           {t("user.sign_up.actions.send")}
                         </Link>
-                      ),
-                    }}
+                      )
+                    }
                     placeholder={t(
                       "user.sign_up.placeholder.verification_code",
                     )}

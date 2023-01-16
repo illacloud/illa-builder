@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   Button,
   DropList,
+  DropListItem,
   Dropdown,
   Modal,
   MoreIcon,
@@ -12,7 +13,6 @@ import {
   illaPrefix,
   useMessage,
   useModal,
-  DropListItem,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
@@ -61,7 +61,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           trigger="click"
           triggerProps={{ closeDelay: 0, openDelay: 0 }}
           dropList={
-            <DropList width={"184px"}>
+            <DropList w="184px">
               <Item
                 value="edit"
                 key="edit"

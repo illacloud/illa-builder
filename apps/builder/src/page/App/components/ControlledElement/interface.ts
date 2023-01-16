@@ -28,7 +28,7 @@ export interface ContrilledElementProps {
   labelStyle?: SerializedStyles
   tipsStyle?: SerializedStyles
   controlledType: ControlledType | ControlledType[]
-  options?: (string | number | SelectOptionObject)[]
+  options?: string[] | number[] | SelectOptionObject[]
   control: Control
   rules?: RegisterOptions[]
   onValueChange?: (value: ValueType) => void

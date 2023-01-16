@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
   DropList,
+  DropListItem,
   Dropdown,
   Input,
   LoadingIcon,
@@ -11,7 +12,6 @@ import {
   globalColor,
   illaPrefix,
   useMessage,
-  DropListItem,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
@@ -127,7 +127,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
         trigger="contextmenu"
         position="right-start"
         dropList={
-          <DropList width={"184px"}>
+          <DropList w="184px">
             <Item
               key={"rename"}
               value={"rename"}

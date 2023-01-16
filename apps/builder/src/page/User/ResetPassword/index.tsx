@@ -180,8 +180,8 @@ export const ResetPassword: FC = () => {
                     !!errors.verificationCode || !!errorMsg.verificationCode
                   }
                   variant="fill"
-                  suffix={{
-                    render: showCountDown ? (
+                  suffix={
+                    showCountDown ? (
                       <Countdown
                         value={Date.now() + 1000 * 60}
                         now={Date.now()}
@@ -241,8 +241,8 @@ export const ResetPassword: FC = () => {
                       >
                         {t("user.forgot_password.actions.send")}
                       </Link>
-                    ),
-                  }}
+                    )
+                  }
                   placeholder={t(
                     "user.forgot_password.placeholder.verification_code",
                   )}

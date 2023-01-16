@@ -6,8 +6,7 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  Input,
-  PaginationPreIcon,
+  PreviousIcon,
   WarningCircleIcon,
 } from "@illa-design/react"
 import {
@@ -40,7 +39,7 @@ import {
   GraphQLAuthValue,
   GraphQLResource,
 } from "@/redux/resource/graphqlResource"
-import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
+import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isURL } from "@/utils/typeHelper"
 
@@ -282,7 +281,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
 
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

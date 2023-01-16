@@ -299,7 +299,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         position="bottom-end"
         trigger="click"
         dropList={
-          <DropList width={"184px"}>
+          <DropList w="184px">
             <Item
               value="duplicate"
               key="duplicate"

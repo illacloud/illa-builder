@@ -13,7 +13,6 @@ export const EditableInputSetter: FC<EditableInputSetterProps> = (props) => {
       {icon ? <div css={editableInputIconStyle}>{icon}</div> : null}
       <div style={{ width: "130px" }}>
         <Input
-          withoutNormalBorder
           colorScheme="techPurple"
           value={value}
           onChange={(value) => {

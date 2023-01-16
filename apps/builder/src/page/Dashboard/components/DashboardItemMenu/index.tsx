@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import {
   Button,
   DropList,
+  DropListItem,
   Dropdown,
   MoreIcon,
   Space,
@@ -12,7 +13,6 @@ import {
   illaPrefix,
   useMessage,
   useModal,
-  DropListItem,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
@@ -67,7 +67,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           trigger="click"
           triggerProps={{ closeDelay: 0, openDelay: 0 }}
           dropList={
-            <DropList width={"184px"}>
+            <DropList w="184px">
               <Item
                 value="rename"
                 key="rename"

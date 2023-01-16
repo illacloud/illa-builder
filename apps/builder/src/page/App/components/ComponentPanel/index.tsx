@@ -29,8 +29,8 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
           borderColor="purple"
           variant="fill"
           placeholder={t("editor.widget_picker.search_placeholder")}
-          onChange={(e) => {
-            const res = getMatchComponent(e.target.value, componentList)
+          onChange={(value) => {
+            const res = getMatchComponent(value, componentList)
             setSearchRes(res)
           }}
           onSearch={(value) => {

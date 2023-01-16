@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { DownIcon, ExpandIcon, Trigger, useModal } from "@illa-design/react"
+import { DownIcon, Trigger, useModal } from "@illa-design/react"
 import { ReactComponent as DefaultIcon } from "@/assets/rightPagePanel/layout/default.svg"
 import { ReactComponent as PresetAIcon } from "@/assets/rightPagePanel/layout/preset-a.svg"
 import { ReactComponent as PresetBIcon } from "@/assets/rightPagePanel/layout/preset-b.svg"

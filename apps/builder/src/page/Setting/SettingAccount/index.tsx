@@ -70,7 +70,7 @@ export const SettingAccount: FC = () => {
           size="large"
           value={nickNameValue}
           onChange={handleChangeUserName}
-          borderColor={errorMessage ? "red" : "techPurple"}
+          colorScheme={errorMessage ? "red" : "techPurple"}
           variant="fill"
         />
       </LabelAndSetter>

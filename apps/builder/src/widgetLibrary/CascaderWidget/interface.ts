@@ -5,16 +5,16 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedCascaderWidgetProps
   extends Pick<
-    CascaderProps<any>,
+    CascaderProps,
     | "options"
     | "value"
     | "placeholder"
-    | "expandTrigger"
     | "allowClear"
     | "disabled"
     | "aria-readonly"
   > {
   displayName: string
+  expandTrigger: CascaderProps["trigger"]
   handleUpdateMultiExecutionResult: (
     updateSlice: {
       displayName: string
@@ -32,7 +32,7 @@ export interface CascaderWidgetProps
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps {
-  dataSource?: CascaderProps<any>["options"]
-  dataSourceJS?: CascaderProps<any>["options"]
+  dataSource?: CascaderProps["options"]
+  dataSourceJS?: CascaderProps["options"]
   dataSourceMode?: "dynamic" | "select"
 }

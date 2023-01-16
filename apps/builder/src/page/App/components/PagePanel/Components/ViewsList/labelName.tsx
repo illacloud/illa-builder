@@ -1,12 +1,11 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import {
-  DragIcon,
+  DragPointIcon,
   Trigger,
   WarningCircleIcon,
   globalColor,
   illaPrefix,
-  DragPointIcon,
 } from "@illa-design/react"
 import { LabelNameAndDragIconProps } from "./interface"
 import {
