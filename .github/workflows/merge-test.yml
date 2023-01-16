@@ -65,6 +65,10 @@ jobs:
           fetch-depth: 0
           submodules: true
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
