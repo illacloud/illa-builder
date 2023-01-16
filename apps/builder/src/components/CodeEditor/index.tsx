@@ -86,7 +86,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const executionResult = useSelector(getExecutionResultToCodeMirror)
 
-  const segenment = useMemo(() => {
+  const stringSnippets = useMemo(() => {
     const realInput = wrappedCodeFunc ? wrappedCodeFunc(value) : value
     const dynamicStrings = getStringSnippets(realInput)
     const result: IExpressionShape[] = []
@@ -170,7 +170,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       onChange={debounceHandleChange}
       lang={lang}
       executionResult={executionResult}
-      expressions={segenment}
+      expressions={stringSnippets}
       result={result}
       hasError={error}
       resultType={resultType}

@@ -7,6 +7,7 @@ import NullIcon from "@/components/CodeEditor/CodeMirror/assets/null.svg"
 import NumberIcon from "@/components/CodeEditor/CodeMirror/assets/number.svg"
 import ObjectIcon from "@/components/CodeEditor/CodeMirror/assets/object.svg"
 import StringIcon from "@/components/CodeEditor/CodeMirror/assets/string.svg"
+import TableIcon from "@/components/CodeEditor/CodeMirror/assets/table.svg"
 import TypeIcon from "@/components/CodeEditor/CodeMirror/assets/type.svg"
 import UnknownIcon from "@/components/CodeEditor/CodeMirror/assets/undefine.svg"
 import {
@@ -75,6 +76,9 @@ export const ILLACodeMirrorTheme = {
   },
   "&.cm-editor .cm-completionIcon-keyword::after": {
     content: `url(${KeywordIcon})`,
+  },
+  "&.cm-editor .cm-completionIcon-table::after": {
+    content: `url(${TableIcon})`,
   },
   "&.cm-editor .cm-tooltip-autocomplete>ul .cm-completionLabel": {
     fontSize: "12px",
