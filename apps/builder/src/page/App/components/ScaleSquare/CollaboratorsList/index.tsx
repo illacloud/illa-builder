@@ -33,6 +33,7 @@ export const CollaboratorsList: FC<{
     const listLength = users.length
     if (listLength < 3) {
       setDisplayDataList(users)
+      setShowMoreIcon(false)
       return
     }
     if (currentState === "right") {

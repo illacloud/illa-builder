@@ -399,6 +399,7 @@ export const applyWrapperPendingStyle = (
 `
 
 export const applyDashedLineStyle = (
+  hasEditor: boolean,
   isSelected: boolean,
   isShowCanvasDot: boolean,
   isDragging: boolean,
@@ -411,7 +412,7 @@ export const applyDashedLineStyle = (
   left: 0;
   max-height: ${maxHeight ? `${maxHeight}px` : "unset"};
   pointer-events: none;
-  border: ${isShowCanvasDot && !isSelected && !isDragging
+  border: ${isShowCanvasDot && !isSelected && !isDragging && hasEditor
     ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
     : "none"};
 `

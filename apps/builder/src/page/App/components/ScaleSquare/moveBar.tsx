@@ -29,8 +29,6 @@ import {
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getFreezeState } from "@/redux/config/configSelector"
-import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
-import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 
 interface WidgetDocProps {
   widgetType: string
@@ -75,12 +73,8 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     containerHeight,
     containerPadding,
     widgetType,
+    userList,
   } = props
-
-  const componentsAttachedUsers = useSelector(
-    getComponentAttachUsers,
-  ) as Record<string, CollaboratorsInfo[]>
-  const attachedUserList = componentsAttachedUsers[displayName] || []
 
   const { t } = useTranslation()
   const isFreezeCanvas = useSelector(getFreezeState)
@@ -121,13 +115,11 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
   }, [containerHeight, containerPadding, widgetHeight, widgetTop])
 
   const minWidth =
-    attachedUserList.length >= 3
+    userList.length >= 3
       ? 48
-      : attachedUserList.length * 14 +
-          (attachedUserList.length || 1 - 1) * 4 +
-          12 || 12
+      : userList.length * 14 + (userList.length || 1 - 1) * 4 + 12 || 12
 
-  const disableMargin = bounds.width <= (attachedUserList.length >= 2 ? 48 : 34)
+  const disableMargin = bounds.width <= (userList.length >= 2 ? 48 : 34)
   return (
     <div
       css={applyMoveBarWrapperStyle(
@@ -155,7 +147,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
           </div>
           {selected && (
             <CollaboratorsList
-              users={attachedUserList}
+              users={userList}
               disableMargin={disableMargin}
               currentState={currentState}
               containerWidth={bounds.width}

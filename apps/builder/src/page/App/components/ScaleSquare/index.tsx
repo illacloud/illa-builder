@@ -42,6 +42,7 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
+import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -49,6 +50,7 @@ import {
   getExecutionError,
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import store, { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { endDrag, startDrag } from "@/utils/drag/drag"
@@ -101,7 +103,16 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const dispatch = useDispatch()
 
   const isShowCanvasDot = useSelector(isShowDot)
-  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
+
+  const componentsAttachedUsers = useSelector(
+    getComponentAttachUsers,
+  ) as Record<string, CollaboratorsInfo[]>
+  const currentUsesInfo = useSelector(getCurrentUser)
+  const attachedUserList = componentsAttachedUsers[displayNameInMoveBar] || []
+  const filteredComponentAttachedUserList = attachedUserList.filter(
+    (user) => `${user.id}` !== `${currentUsesInfo.userId}`,
+  )
+
   const illaMode = useSelector(getIllaMode)
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
@@ -536,6 +547,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             containerPadding={containerPadding || 0}
             containerHeight={containerHeight}
             widgetType={componentNode.type}
+            userList={filteredComponentAttachedUserList}
           />
 
           <TransformWidgetWrapper
@@ -545,6 +557,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           {canRenderDashedLine && (
             <div
               css={applyDashedLineStyle(
+                !!filteredComponentAttachedUserList.length,
                 isSelected,
                 isShowCanvasDot,
                 isDragging,
@@ -636,7 +649,15 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   const illaMode = useSelector(getIllaMode)
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
-  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
+
+  const componentsAttachedUsers = useSelector(
+    getComponentAttachUsers,
+  ) as Record<string, CollaboratorsInfo[]>
+  const currentUsesInfo = useSelector(getCurrentUser)
+  const attachedUserList = componentsAttachedUsers[displayNameInMoveBar] || []
+  const filteredComponentAttachedUserList = attachedUserList.filter(
+    (user) => `${user.id}` !== `${currentUsesInfo.userId}`,
+  )
 
   const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
 
@@ -922,6 +943,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             containerPadding={containerPadding || 0}
             containerHeight={containerHeight}
             widgetType={componentNode.type}
+            userList={filteredComponentAttachedUserList}
           />
 
           <TransformWidgetWrapper
@@ -930,7 +952,12 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
           />
           {canRenderDashedLine && (
             <div
-              css={applyDashedLineStyle(isSelected, isShowCanvasDot, false)}
+              css={applyDashedLineStyle(
+                !!filteredComponentAttachedUserList.length,
+                isSelected,
+                isShowCanvasDot,
+                false,
+              )}
             />
           )}
         </div>
