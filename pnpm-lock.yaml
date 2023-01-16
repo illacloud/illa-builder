@@ -285,6 +285,26 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
 
+  illa-design/packages/calendar:
+    specifiers:
+      '@illa-design/button': workspace:*
+      '@illa-design/config-provider': workspace:*
+      '@illa-design/icon': workspace:*
+      '@illa-design/radio': workspace:*
+      '@illa-design/select': workspace:*
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+      dayjs: ^1.11.7
+    dependencies:
+      '@illa-design/button': link:../button
+      '@illa-design/config-provider': link:../config-provider
+      '@illa-design/icon': link:../icon
+      '@illa-design/radio': link:../radio
+      '@illa-design/select': link:../select
+      '@illa-design/system': link:../system
+      '@illa-design/theme': link:../theme
+      dayjs: 1.11.7
+
   illa-design/packages/card:
     specifiers:
       '@illa-design/icon': workspace:*
@@ -711,6 +731,7 @@ importers:
       '@illa-design/back-top': workspace:*
       '@illa-design/badge': workspace:*
       '@illa-design/button': workspace:*
+      '@illa-design/calendar': workspace:*
       '@illa-design/card': workspace:*
       '@illa-design/cascader': workspace:*
       '@illa-design/checkbox': workspace:*
@@ -765,6 +786,7 @@ importers:
       '@illa-design/back-top': link:../back-top
       '@illa-design/badge': link:../badge
       '@illa-design/button': link:../button
+      '@illa-design/calendar': link:../calendar
       '@illa-design/card': link:../card
       '@illa-design/cascader': link:../cascader
       '@illa-design/checkbox': link:../checkbox
@@ -4169,6 +4191,10 @@ packages:
 
   /dayjs/1.11.6:
     resolution: {integrity: sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==}
+
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
 
   /debounce/1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}

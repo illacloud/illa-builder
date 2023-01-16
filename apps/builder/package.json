@@ -36,7 +36,7 @@
     "chroma-js": "^2.1.2",
     "codemirror": "^5.65.5",
     "copy-to-clipboard": "^3.3.2",
-    "dayjs": "^1.11.5",
+    "dayjs": "^1.11.7",
     "deep-diff": "^1.0.2",
     "events": "^3.3.0",
     "framer-motion": "^7.6.12",
