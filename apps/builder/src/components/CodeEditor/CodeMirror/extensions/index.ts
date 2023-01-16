@@ -36,6 +36,7 @@ import { dropCursor, keymap, lineNumbers } from "@codemirror/view"
 import { useMemo } from "react"
 import { ternSeverCompletionSource } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/TernServer"
 import { buildIllaContextCompletionSource } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/illaContext"
+import { getHighlightExpressionExtension } from "@/components/CodeEditor/CodeMirror/extensions/heighLightJSExpression"
 import {
   CODE_LANG,
   CODE_TYPE,
@@ -192,6 +193,7 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
     executionResult = {},
     canShowCompleteInfo = false,
     sqlScheme = {},
+    expressions = [],
   } = options
 
   const autocompletionExtension = useMemo(
@@ -248,14 +250,25 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
     return plugins
   }, [lang])
 
+  const highlightJSExpressionExtension = useMemo(() => {
+    const isFunction = codeType === CODE_TYPE.FUNCTION
+    return isFunction ? [] : getHighlightExpressionExtension(expressions)
+  }, [codeType, expressions])
+
   const extensions = useMemo(
     () => [
       basicExtension,
       showLinNUmberExtension,
       langExtension,
       autocompletionExtension,
+      highlightJSExpressionExtension,
     ],
-    [autocompletionExtension, langExtension, showLinNUmberExtension],
+    [
+      autocompletionExtension,
+      langExtension,
+      showLinNUmberExtension,
+      highlightJSExpressionExtension,
+    ],
   )
 
   return extensions

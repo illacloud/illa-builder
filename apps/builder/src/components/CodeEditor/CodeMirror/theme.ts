@@ -11,6 +11,10 @@ import StringIcon from "@/components/CodeEditor/CodeMirror/assets/string.svg"
 import TableIcon from "@/components/CodeEditor/CodeMirror/assets/table.svg"
 import TypeIcon from "@/components/CodeEditor/CodeMirror/assets/type.svg"
 import UnknownIcon from "@/components/CodeEditor/CodeMirror/assets/undefine.svg"
+import {
+  defaultHighlightClassName,
+  errorHighlightClassName,
+} from "@/components/CodeEditor/CodeMirror/extensions/heighLightJSExpression"
 
 export const ILLACodeMirrorTheme = {
   "&.cm-editor": {
@@ -18,8 +22,8 @@ export const ILLACodeMirrorTheme = {
   },
   "&.cm-editor .cm-scroller": {
     fontFamily: "Fira Code",
-    fontSize: "14px",
-    lineHeight: "18px",
+    fontSize: "12px",
+    lineHeight: "15px",
   },
   "&.cm-editor .cm-content": {
     padding: "6px 8px",
@@ -29,7 +33,6 @@ export const ILLACodeMirrorTheme = {
   },
   "&.cm-editor.cm-focused .cm-matchingBracket": {
     color: getColor("green", "03"),
-    backgroundColor: "rgba(0, 170, 91, 0.08);",
   },
   "&.cm-editor .cm-placeholder": {
     color: getColor("grayBlue", "04"),
@@ -205,6 +208,14 @@ export const ILLACodeMirrorTheme = {
     whiteSpace: "pre",
     overflowY: "auto",
     cursor: "auto",
+  },
+  [`.${defaultHighlightClassName}`]: {
+    color: getColor("green", "03"),
+    backgroundColor: "rgba(0, 170, 91, 0.08);",
+  },
+  [`.${errorHighlightClassName}`]: {
+    color: getColor("red", "03"),
+    backgroundColor: "rgba(255, 71, 71, 0.08);",
   },
 }
 
