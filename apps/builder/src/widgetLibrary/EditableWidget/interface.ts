@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 import { InputProps } from "@illa-design/react"
 import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
@@ -11,10 +12,10 @@ export interface WrappedEditableTextProps
   showCharacterCount?: InputProps["showCount"]
   value?: string
   className?: string
-  prefixIcon?: InputProps["prefix"]
-  prefixText?: InputProps["addonBefore"]
-  suffixIcon?: InputProps["suffix"]
-  suffixText?: InputProps["addonAfter"]
+  prefixIcon?: ReactNode
+  prefixText?: string
+  suffixIcon?: ReactNode
+  suffixText?: string
   tooltipText?: string
   handleUpdateDsl: (value: any) => void
   colorScheme?: InputProps["borderColor"]

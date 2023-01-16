@@ -5,7 +5,7 @@
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -13,7 +13,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "baseUrl": "./src",
@@ -28,18 +28,10 @@
     "types": [
       "vite/client",
       "vite-plugin-svgr/client",
-      "jest",
-      "@testing-library/jest-dom",
-      "node",
-      "@testing-library/react"
     ]
   },
   "include": [
     "./src/**/*.tsx",
     "./src/**/*.ts"
-  ],
-  "exclude": [
-    "**/tests/*.e2e.tsx",
-    "**/tests/*.test.tsx"
   ]
 }

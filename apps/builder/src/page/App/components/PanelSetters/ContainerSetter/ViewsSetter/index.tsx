@@ -65,7 +65,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
     }, [allViews])
 
     const updateMultiAttrDSL = useCallback(
-      (updateSlice) => {
+      (updateSlice: Record<string, unknown>) => {
         handleUpdateMultiAttrDSL?.(updateSlice)
         if (linkWidgetDisplayName) {
           handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, updateSlice)

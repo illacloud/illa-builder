@@ -11,7 +11,7 @@ export interface BaseSetter {
   handleUpdateMultiAttrDSL?: (updateSlice: Record<string, any>) => void
   handleUpdateOtherMultiAttrDSL?: (
     displayName: string,
-    updateSlice: Record<string, any>,
+    updateSlice: Record<string, unknown>,
   ) => void
   expectedType: VALIDATION_TYPES
   isInList?: boolean

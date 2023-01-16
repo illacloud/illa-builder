@@ -69,8 +69,11 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
             ]}
             onChange={(value) => {
               let transformer: Transformer = TransformerInitial
-              if (selectedAction.transformer.enable === value) {
-                transformer = selectedAction.transformer
+              if (
+                selectedAction &&
+                selectedAction.transformer.enable === value
+              ) {
+                transformer = selectedAction.transformer || ""
               } else {
                 if (value) {
                   transformer = TransformerInitialTrue

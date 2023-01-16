@@ -265,7 +265,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
               {formState.errors.baseURL && (
                 <div css={errorMsgStyle}>
                   <WarningCircleIcon css={errorIconStyle} />
-                  {formState.errors.baseURL.message}
+                  {(formState.errors as Record<string, any>).baseURL.message}
                 </div>
               )}
             </div>

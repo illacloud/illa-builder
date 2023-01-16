@@ -1,4 +1,3 @@
-import { Identifier } from "dnd-core"
 import { FC, useCallback, useContext, useRef, useState } from "react"
 import { XYCoord, useDrag, useDrop } from "react-dnd"
 import { useTranslation } from "react-i18next"
@@ -39,7 +38,11 @@ export const ListItem: FC<ListItemProps> = (props) => {
     setModalVisible(false)
   }, [])
 
-  const [, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
+  const [, drop] = useDrop<
+    DragItem,
+    void,
+    { handlerId: string | symbol | null }
+  >({
     accept: "VIEW_ITEM",
     collect(monitor) {
       return {

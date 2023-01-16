@@ -12,7 +12,6 @@ export interface WrappedButtonProps
     | "loading"
     | "borderColor"
     | "backgroundColor"
-    | "textColor"
   > {
   text?: string
   handleOnClick: () => void

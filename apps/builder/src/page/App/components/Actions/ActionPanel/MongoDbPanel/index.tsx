@@ -125,14 +125,14 @@ export const MongoDbPanel: FC = () => {
               let newTypeContent: MongoDbActionTypeContent =
                 AggregateContentInitial
               if (
-                cachedAction.resourceId === selectedAction.resourceId &&
+                cachedAction.resourceId === selectedAction?.resourceId &&
                 (
-                  selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
+                  selectedAction?.content as MongoDbAction<MongoDbActionTypeContent>
                 ).actionType === value
               ) {
                 newTypeContent = (
-                  selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
-                ).typeContent
+                  selectedAction?.content as MongoDbAction<MongoDbActionTypeContent>
+                )?.typeContent
               } else {
                 switch (value) {
                   case "aggregate":

@@ -1,4 +1,4 @@
-import dayjs from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { DateRangePicker } from "@illa-design/react"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
@@ -57,7 +57,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   }, [startValue, endValue])
 
   const checkRange = useCallback(
-    (current) => {
+    (current?: Dayjs) => {
       const beforeMinDate = minDate
         ? !!current?.isBefore(dayjs(minDate))
         : false
