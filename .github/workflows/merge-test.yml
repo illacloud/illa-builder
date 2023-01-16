@@ -36,11 +36,11 @@ jobs:
           cache-name: cache-builder-node-modules
         with:
           path: |
-            node_modules
+            **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-builder-${{ hashFiles('pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-builder-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-builder-${{ hashFiles('pnpm-lock.yaml') }}
+            ${{ runner.os }}-builder-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Check builder Install/Build Cache
         run: ls -lah node_modules | head -5
@@ -49,42 +49,8 @@ jobs:
         if: steps.cache-builder-node-modules.outputs.cache-hit != 'true'
         run: pnpm install
 
-  test:
-    needs:
-      - install
-
-    runs-on: macos-latest
-
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          submodules: true
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Cache node modules & Turbo building
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-builder-node-modules
-        with:
-          path: |
-            node_modules
-            ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-builder-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-builder-${{ hashFiles('pnpm-lock.yaml') }}
-
       - name: Check ts types
         run: pnpm run ts-check
+
+
+
