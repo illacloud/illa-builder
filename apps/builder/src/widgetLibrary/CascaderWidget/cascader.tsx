@@ -26,7 +26,7 @@ export const WrappedCascaderWidget: FC<WrappedCascaderWidgetProps> = (
     readOnly,
   } = props
   const handleChangeValue = useCallback(
-    (value) => {
+    (value: null | (string | string[])[]) => {
       if (!disabled && !readOnly)
         new Promise((resolve) => {
           handleUpdateMultiExecutionResult([
@@ -67,14 +67,13 @@ export const WrappedCascaderWidget: FC<WrappedCascaderWidgetProps> = (
     <Cascader
       options={options}
       value={value}
-      expandTrigger={expandTrigger}
+      trigger={expandTrigger}
       placeholder={placeholder}
       allowClear={allowClear}
       onChange={handleChangeValue}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      disabled={disabled}
-      readonly={readOnly}
+      disabled={disabled || readOnly}
       showSearch
     />
   )

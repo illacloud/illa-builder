@@ -3,6 +3,10 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
@@ -110,26 +114,28 @@ export const ElasticSearchPanel: FC = () => {
             <span css={codeEditorLabelStyle}>
               {t("editor.action.panel.elastic.body")}
             </span>
-            <CodeEditor
-              lineNumbers
-              css={esItemCodeEditorStyle}
-              mode="TEXT_JS"
-              height="88px"
-              key={cachedAction.content.operation}
-              value={content.body}
-              onChange={(value) => {
-                dispatch(
-                  configActions.updateCachedAction({
-                    ...cachedAction,
-                    content: {
-                      ...cachedAction.content,
-                      body: value,
-                    },
-                  }),
-                )
-              }}
-              expectedType={VALIDATION_TYPES.STRING}
-            />
+            <div css={esItemCodeEditorStyle}>
+              <CodeEditor
+                value={content.body}
+                onChange={(value) => {
+                  dispatch(
+                    configActions.updateCachedAction({
+                      ...cachedAction,
+                      content: {
+                        ...cachedAction.content,
+                        body: value,
+                      },
+                    }),
+                  )
+                }}
+                showLineNumbers
+                expectValueType={VALIDATION_TYPES.STRING}
+                lang={CODE_LANG.JAVASCRIPT}
+                height="88px"
+                codeType={CODE_TYPE.EXPRESSION}
+                canShowCompleteInfo
+              />
+            </div>
           </div>
         )}
         {isQueryContent && (
@@ -137,72 +143,80 @@ export const ElasticSearchPanel: FC = () => {
             <span css={codeEditorLabelStyle}>
               {t("editor.action.panel.elastic.query")}
             </span>
-            <CodeEditor
-              lineNumbers
-              css={esItemCodeEditorStyle}
-              mode="TEXT_JS"
-              key={cachedAction.content.operation}
-              height="88px"
-              value={content.query}
-              onChange={(value) => {
-                dispatch(
-                  configActions.updateCachedAction({
-                    ...cachedAction,
-                    content: {
-                      ...cachedAction.content,
-                      query: value,
-                    },
-                  }),
-                )
-              }}
-              expectedType={VALIDATION_TYPES.STRING}
-            />
+            <div css={esItemCodeEditorStyle}>
+              <CodeEditor
+                key={cachedAction.content.operation}
+                value={content.query}
+                onChange={(value) => {
+                  dispatch(
+                    configActions.updateCachedAction({
+                      ...cachedAction,
+                      content: {
+                        ...cachedAction.content,
+                        query: value,
+                      },
+                    }),
+                  )
+                }}
+                showLineNumbers
+                expectValueType={VALIDATION_TYPES.STRING}
+                lang={CODE_LANG.JAVASCRIPT}
+                height="88px"
+                codeType={CODE_TYPE.EXPRESSION}
+                canShowCompleteInfo
+              />
+            </div>
           </div>
         )}
         <div css={esItemStyle}>
           <span css={esItemLabelStyle}>
             {t("editor.action.panel.elastic.index")}
           </span>
-          <CodeEditor
-            css={esItemCodeEditorStyle}
-            mode="TEXT_JS"
-            value={content.index}
-            onChange={(value) => {
-              dispatch(
-                configActions.updateCachedAction({
-                  ...cachedAction,
-                  content: {
-                    ...cachedAction.content,
-                    index: value,
-                  },
-                }),
-              )
-            }}
-            expectedType={VALIDATION_TYPES.STRING}
-          />
-        </div>
-        {isShowID && (
-          <div css={esItemStyle}>
-            <span css={esItemLabelStyle}>
-              {t("editor.action.panel.elastic.id")}
-            </span>
+          <div css={esItemCodeEditorStyle}>
             <CodeEditor
-              css={esItemCodeEditorStyle}
-              mode="TEXT_JS"
-              value={content.id}
+              value={content.index}
               onChange={(value) => {
                 dispatch(
                   configActions.updateCachedAction({
                     ...cachedAction,
                     content: {
                       ...cachedAction.content,
-                      id: value,
+                      index: value,
                     },
                   }),
                 )
               }}
-              expectedType={VALIDATION_TYPES.STRING}
+              expectValueType={VALIDATION_TYPES.STRING}
+              lang={CODE_LANG.JAVASCRIPT}
+              codeType={CODE_TYPE.EXPRESSION}
             />
+          </div>
+        </div>
+        {isShowID && (
+          <div css={esItemStyle}>
+            <span css={esItemLabelStyle}>
+              {t("editor.action.panel.elastic.id")}
+            </span>
+            <div css={esItemCodeEditorStyle}>
+              <CodeEditor
+                value={content.id}
+                onChange={(value) => {
+                  dispatch(
+                    configActions.updateCachedAction({
+                      ...cachedAction,
+                      content: {
+                        ...cachedAction.content,
+                        id: value,
+                      },
+                    }),
+                  )
+                }}
+                expectValueType={VALIDATION_TYPES.STRING}
+                lang={CODE_LANG.JAVASCRIPT}
+                codeType={CODE_TYPE.EXPRESSION}
+                canShowCompleteInfo
+              />
+            </div>
           </div>
         )}
         <TransformerComponent />

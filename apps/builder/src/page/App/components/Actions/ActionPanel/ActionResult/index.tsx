@@ -1,7 +1,6 @@
 import {
   RefObject,
   forwardRef,
-  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -14,12 +13,14 @@ import {
 } from "@illa-design/react"
 import { ApiError } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ActionResultType } from "./interface"
 import {
   applyMaxHeightStyle,
   codeStyle,
+  customerCodeStyle,
   errorIconStyle,
   errorResultWrapperStyle,
   resCloseIconStyle,
@@ -71,7 +72,7 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
               </div>
               <CloseIcon css={resCloseIconStyle} onClick={onClose} />
             </div>
-            <CodeEditor
+            <div
               css={codeStyle}
               ref={(ele) => {
                 if (ele?.scrollHeight) {
@@ -83,14 +84,17 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
                   }px`
                 }
               }}
-              mode={"JSON"}
-              expectedType={VALIDATION_TYPES.STRING}
-              value={JSON.stringify(res, null, 2)}
-              border={"unset"}
-              borderRadius={"0"}
-              readOnly
-              lineNumbers
-            />
+            >
+              <CodeEditor
+                lang={CODE_LANG.SQL}
+                expectValueType={VALIDATION_TYPES.STRING}
+                value={JSON.stringify(res, null, 2)}
+                wrapperCss={customerCodeStyle}
+                readOnly
+                showLineNumbers
+                editable={false}
+              />
+            </div>
           </>
         )}
       </div>

@@ -1,10 +1,13 @@
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 import {
   layoutStyle,
   layoutWrapperStyle,
 } from "@/page/Setting/Components/Layout/style"
 
-export const SettingLayout: FC = (props) => {
+interface ISettingLayoutProps {
+  children: ReactNode
+}
+export const SettingLayout: FC<ISettingLayoutProps> = (props) => {
   const { children } = props
   return (
     <div css={layoutWrapperStyle}>

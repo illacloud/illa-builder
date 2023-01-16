@@ -4,6 +4,10 @@ import { useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { CollectionInputProps } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionInput/interface"
 import {
   actionBodyTypeStyle,
@@ -12,10 +16,7 @@ import {
   actionItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
-import {
-  CollectionType,
-  FirebaseServiceType,
-} from "@/redux/currentApp/action/firebaseAction"
+import { CollectionType } from "@/redux/currentApp/action/firebaseAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -82,16 +83,19 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
           options={collectionSelect}
         />
       ) : (
-        <CodeEditor
-          css={actionItemCodeEditorStyle}
-          mode="TEXT_JS"
-          value={value}
-          onChange={handleChange}
-          placeholder={t(
-            "editor.action.panel.firebase.placeholder.input_collection",
-          )}
-          expectedType={VALIDATION_TYPES.STRING}
-        />
+        <div css={actionItemCodeEditorStyle}>
+          <CodeEditor
+            value={value}
+            onChange={handleChange}
+            expectValueType={VALIDATION_TYPES.STRING}
+            lang={CODE_LANG.JAVASCRIPT}
+            codeType={CODE_TYPE.EXPRESSION}
+            canShowCompleteInfo
+            placeholder={t(
+              "editor.action.panel.firebase.placeholder.input_collection",
+            )}
+          />
+        </div>
       )}
     </div>
   )

@@ -523,7 +523,8 @@
       "cancel": "Cancel",
       "delete": "Delete",
       "delete_content": "Delete it maybe make some bugs，please confirm.",
-      "delete_title": "Are you sure you want to delete {{ displayName}}?"
+      "delete_title": "Are you sure you want to delete {{ displayName}}?",
+      "editor_list": "Current editors"
     },
     "context_menu": {
       "delete": "Delete",

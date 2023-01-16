@@ -1,4 +1,0 @@
-{
-    "*.{ts,tsx}": ["prettier --write"],
-    "!(*test).{ts,tsx}": ["eslint --config .eslintrc.js"]
-}

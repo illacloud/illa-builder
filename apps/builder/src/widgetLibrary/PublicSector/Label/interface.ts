@@ -3,7 +3,8 @@ import { HTMLAttributes } from "react"
 export type LabelPositionType = "left" | "top" | "right"
 export type LabelAlignType = "left" | "right"
 
-export default interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
+export default interface LabelProps
+  extends Omit<HTMLAttributes<HTMLLabelElement>, "prefix" | "placeholder"> {
   label?: string
   required?: boolean
   hideLabel?: boolean

@@ -2,6 +2,10 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
 import {
   codeEditorLabelStyle,
@@ -10,13 +14,20 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { AggregateContent } from "@/redux/currentApp/action/mongoDbAction"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  AggregateContent,
+  MongoDbAction,
+  MongoDbActionTypeContent,
+} from "@/redux/currentApp/action/mongoDbAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const cachedAction = useSelector(getCachedAction)
+  const cachedAction = useSelector(getCachedAction) as ActionItem<
+    MongoDbAction<MongoDbActionTypeContent>
+  >
 
   const typeContent = props.typeContent as AggregateContent
 
@@ -27,10 +38,6 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.aggregation")}
         </span>
         <CodeEditor
-          lineNumbers
-          height="88px"
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
           value={typeContent.aggregation}
           onChange={(value) => {
             dispatch(
@@ -46,7 +53,13 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          height="88px"
+          wrapperCss={mongoItemCodeEditorStyle}
+          expectValueType={VALIDATION_TYPES.STRING}
+          lang={CODE_LANG.JAVASCRIPT}
+          codeType={CODE_TYPE.EXPRESSION}
+          canShowCompleteInfo
+          showLineNumbers
         />
       </div>
       <div css={mongoItemStyle}>
@@ -54,9 +67,9 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
           {t("editor.action.panel.mongodb.options")}
         </span>
         <CodeEditor
-          lineNumbers
-          css={mongoItemCodeEditorStyle}
-          mode="TEXT_JS"
+          showLineNumbers
+          wrapperCss={mongoItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.options}
           onChange={(value) => {
             dispatch(
@@ -72,7 +85,7 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>

@@ -94,7 +94,7 @@ const getNewAttrUpdatesAndDynamicAttrPaths = (
 
 export const getNewWidgetPropsByUpdateSlice = (
   displayName: string,
-  updateSlice: Record<string, any>,
+  updateSlice: Record<string, unknown>,
   widgetProps: Record<string, any>,
 ) => {
   let newWidgetProps = cloneDeep(widgetProps)

@@ -29,7 +29,7 @@ export const SingleSelectedPanel: FC = () => {
   const widgetProps = singleSelectedComponentNode?.props || {}
 
   const handleUpdateDsl = useCallback(
-    (attrPath: string, value: any) => {
+    (attrPath: string, value: unknown) => {
       const updateSlice = { [attrPath]: value }
       dispatch(
         componentsActions.updateComponentPropsReducer({
@@ -42,7 +42,7 @@ export const SingleSelectedPanel: FC = () => {
   )
 
   const handleUpdateMultiAttrDSL = useCallback(
-    (updateSlice: Record<string, any>) => {
+    (updateSlice: Record<string, unknown>) => {
       if (!isObject(updateSlice)) return
       dispatch(
         componentsActions.updateComponentPropsReducer({

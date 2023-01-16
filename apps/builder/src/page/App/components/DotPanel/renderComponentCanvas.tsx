@@ -3,7 +3,6 @@ import { cloneDeep, throttle } from "lodash"
 import {
   FC,
   MutableRefObject,
-  ReactNode,
   RefObject,
   useCallback,
   useEffect,
@@ -189,7 +188,7 @@ export const RenderComponentCanvas: FC<{
     if (canShowColumnsTimeoutChange.current) {
       clearTimeout(canShowColumnsTimeoutChange.current)
     }
-    canShowColumnsTimeoutChange.current = setTimeout(() => {
+    canShowColumnsTimeoutChange.current = window.setTimeout(() => {
       setShowColumnsChange(false)
       dispatch(configActions.updateShowDot(false))
       if (canShowColumnsTimeoutChange.current) {
@@ -691,7 +690,7 @@ export const RenderComponentCanvas: FC<{
             finalRowNumber + addedRowNumber !== rowNumber
           ) {
             clearTimeout(autoScrollTimeoutID.current)
-            autoScrollTimeoutID.current = setTimeout(() => {
+            autoScrollTimeoutID.current = window.setTimeout(() => {
               containerRef.current?.scrollBy({
                 top: (addedRowNumber * UNIT_HEIGHT) / 4,
                 behavior: "smooth",

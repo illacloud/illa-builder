@@ -9,11 +9,7 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
-import {
-  APIKeyAddToValue,
-  GraphQLAuth,
-  GraphQLAuthValue,
-} from "@/redux/resource/graphqlResource"
+import { GraphQLAuth, GraphQLAuthValue } from "@/redux/resource/graphqlResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   Resource,
@@ -21,7 +17,6 @@ import {
   ResourceType,
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
-import { RestApiAuth } from "@/redux/resource/restapiResource"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
@@ -87,7 +82,7 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
     },
     () => {
       message.error({
-        content: i18n.t("editor.action.action_list.message.failed_to_delete"),
+        content: i18n.t("editor.action.action_list.message.failed"),
       })
     },
     () => {},
