@@ -108,10 +108,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     getComponentAttachUsers,
   ) as Record<string, CollaboratorsInfo[]>
   const currentUsesInfo = useSelector(getCurrentUser)
-  const userListKey = displayNameInMoveBar.includes("container")
-    ? displayNameInMoveBar.split("/")[0].trim()
-    : displayNameInMoveBar
-  const attachedUserList = componentsAttachedUsers[userListKey] || []
+  const attachedUserList =
+    componentsAttachedUsers[componentNode.displayName] || []
   const filteredComponentAttachedUserList = attachedUserList.filter(
     (user) => `${user.id}` !== `${currentUsesInfo.userId}`,
   )
@@ -660,10 +658,8 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
     getComponentAttachUsers,
   ) as Record<string, CollaboratorsInfo[]>
   const currentUsesInfo = useSelector(getCurrentUser)
-  const userListKey = displayNameInMoveBar.includes("container")
-    ? displayNameInMoveBar.split("/")[0].trim()
-    : displayNameInMoveBar
-  const attachedUserList = componentsAttachedUsers[userListKey] || []
+  const attachedUserList =
+    componentsAttachedUsers[componentNode.displayName] || []
   const filteredComponentAttachedUserList = attachedUserList.filter(
     (user) => `${user.id}` !== `${currentUsesInfo.userId}`,
   )
@@ -893,8 +889,6 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   )
 
   const hasEditors = !!filteredComponentAttachedUserList.length
-
-  console.log({ filteredComponentAttachedUserList, displayNameInMoveBar })
 
   return (
     <Resizable
