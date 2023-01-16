@@ -1,17 +1,16 @@
 import { FC, useLayoutEffect, useMemo, useState } from "react"
 import useMeasure from "react-use-measure"
 import { MoreIcon, Trigger } from "@illa-design/react"
+import { Avatar } from "@/page/App/components/Avatar"
 import {
   getComponentUsersListContainerStyle,
   listContainerStyle,
-  listItemAvatarStyle,
   listItemContentStyle,
   listItemNicknameStyle,
   listItemStyle,
   moreIconStyle,
 } from "@/page/App/components/ScaleSquare/CollaboratorsList/style"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { ListItem } from "./listItem"
 
 export const CollaboratorsList: FC<{
   users: CollaboratorsInfo[]
@@ -51,10 +50,11 @@ export const CollaboratorsList: FC<{
     () => (
       <>
         {displayDataList.map(({ avatar, id, nickname }, index) => (
-          <ListItem
-            avatar={avatar}
-            nickname={nickname}
+          <Avatar
             userId={id}
+            nickname={nickname}
+            avatar={avatar}
+            showType="components"
             key={index}
           />
         ))}
@@ -66,17 +66,14 @@ export const CollaboratorsList: FC<{
                 <div css={listItemContentStyle}>Current editors</div>
                 {users.map(({ avatar, id, nickname }, index) => (
                   <div key={index} css={listItemStyle}>
-                    {avatar ? (
-                      <img src={avatar} css={listItemAvatarStyle} />
-                    ) : (
-                      <ListItem
-                        type="list"
-                        avatar={avatar}
-                        nickname={nickname}
-                        userId={id}
-                        key={index}
-                      />
-                    )}
+                    <Avatar
+                      userId={id}
+                      nickname={nickname}
+                      avatar={avatar}
+                      showType="components"
+                      type="list"
+                      key={index}
+                    />
                     <span css={listItemNicknameStyle}>{nickname || ""}</span>
                   </div>
                 ))}

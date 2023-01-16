@@ -96,10 +96,11 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
   const containerWidthRef = useRef(0)
 
   useEffect(() => {
-    if (bounds.width >= containerWidthRef.current) {
-      currentState !== "right" && setCurrentState("right")
-    } else {
-      currentState !== "left" && setCurrentState("left")
+    if (bounds.width > containerWidthRef.current) {
+      setCurrentState("right")
+    }
+    if (bounds.width < containerWidthRef.current) {
+      setCurrentState("left")
     }
     containerWidthRef.current = bounds.width
   }, [bounds.width, currentState])

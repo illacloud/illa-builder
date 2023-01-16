@@ -123,10 +123,3 @@ export const listItemNicknameStyle = css`
   text-overflow: ellipsis;
   white-space: nowrap;
 `
-
-export const listItemAvatarStyle = css`
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-`

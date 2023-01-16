@@ -5,7 +5,7 @@ export interface CollaboratorsInfo {
 }
 
 export interface CollaboratorsState {
-  components: Record<string, CollaboratorsInfo[]> | string[]
+  components: Record<string, CollaboratorsInfo[]>
   inRoomUsers: CollaboratorsInfo[]
 }
 
