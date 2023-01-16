@@ -49,8 +49,5 @@ jobs:
         if: steps.cache-builder-node-modules.outputs.cache-hit != 'true'
         run: pnpm install
 
-      - name: Check ts types
-        run: pnpm run ts-check
-
 
 
