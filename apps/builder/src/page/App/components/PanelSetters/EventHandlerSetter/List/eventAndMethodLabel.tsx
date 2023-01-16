@@ -52,6 +52,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)
   }, [])
+  // @ts-ignore
   return (
     <Trigger
       withoutPadding
@@ -77,9 +78,10 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       <div css={eventAndMethodWrapperStyle}>
         <div css={eventNameStyle}>
           {eventType
-            ? i18n.t(
+            ? (t(
+                // @ts-ignore
                 `editor.inspect.setter_content.widget_action_type_name.${eventType}`,
-              )
+              ) as string)
             : t(
                 "editor.inspect.setter_content.event_handler_list.incomplete_selection",
               )}

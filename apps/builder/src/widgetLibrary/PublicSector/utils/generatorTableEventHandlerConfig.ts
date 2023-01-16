@@ -106,7 +106,7 @@ export const generatorTableEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-endValue`,
-        labelName: i18n.t("editor.inspect.setter_label.end_date"),
+        labelName: i18n.t("editor.inspect.setter_label.end_data"),
         setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],

@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { EditorMode } from "@/components/CodeEditor/interface"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface ControlledInputProps {
@@ -10,6 +10,6 @@ export interface ControlledInputProps {
   placeholder?: string
   tips?: string | ReactNode
   lineNumbers?: boolean
-  mode?: EditorMode
+  mode?: CODE_LANG
   style?: Record<string, string>
 }

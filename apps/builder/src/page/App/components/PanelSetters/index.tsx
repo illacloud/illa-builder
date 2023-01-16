@@ -8,7 +8,6 @@ import { ViewsSetter } from "@/page/App/components/PanelSetters/ContainerSetter/
 import { ContainerDefaultViewKeySetter } from "@/page/App/components/PanelSetters/ContainerSetter/defaultViewKeySetter"
 import { EventHandlerSetter } from "@/page/App/components/PanelSetters/EventHandlerSetter"
 import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
-import { CalcSelfInput } from "@/page/App/components/PanelSetters/InputSetter/calcSelfInput"
 import { EditableInputSetter } from "@/page/App/components/PanelSetters/InputSetter/editableInputSetter"
 import { OptionMappedInputSetter } from "@/page/App/components/PanelSetters/InputSetter/optionMappedInputSetter"
 import { ListSetter } from "@/page/App/components/PanelSetters/ListSetter"
@@ -44,7 +43,6 @@ const SetterTypeMapSetter = {
   SWITCH_SETTER: BaseSwitchSetter,
   SEARCH_SELECT_SETTER: SearchSelectSetter,
   LIST_SETTER: ListSetter,
-  CALC_SELF_INPUT_SETTER: CalcSelfInput,
   DYNAMIC_SWITCH_SETTER: DynamicSwitchSetter,
   BASE_SELECT_SETTER: BaseSelectSetter,
   COLOR_PICKER_SETTER: ColorPickerSetter,

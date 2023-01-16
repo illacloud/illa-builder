@@ -124,7 +124,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
   }, [validateMessage, labelPosition, updateComponentHeight])
 
   const getValidateMessage = useCallback(
-    (value) => {
+    (value?: string) => {
       if (!hideValidationMessage) {
         const message = handleValidateCheck({
           value,

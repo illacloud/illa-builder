@@ -17,10 +17,6 @@ export const actionItemContainer = css`
   padding: 8px 0;
 `
 
-export const topDivider = css`
-  min-height: 8px;
-`
-
 export const esItemLabelStyle = css`
   min-width: 160px;
   font-size: 14px;

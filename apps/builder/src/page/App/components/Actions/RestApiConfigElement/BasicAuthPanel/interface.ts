@@ -1,5 +1,5 @@
 import { Control } from "react-hook-form"
-import { BasicAuth, RestApiResource } from "@/redux/resource/resourceState"
+import { BasicAuth } from "@/redux/resource/restapiResource"
 
 export interface BasicAuthPanelProps {
   auth?: BasicAuth
