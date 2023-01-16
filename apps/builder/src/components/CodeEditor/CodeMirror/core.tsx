@@ -22,9 +22,6 @@ import { HintToolTip } from "@/components/CodeEditor/HintToolTip"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 // thk ReactCodeMirror:https://github.com/uiwjs/react-codemirror
-
-const compartments: Compartment[] = []
-
 export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
   const {
     extensions = [],
@@ -57,6 +54,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
   const editorViewRef = useRef<EditorView>()
   const editorStateRef = useRef<EditorState>()
   const editorWrapperRef = useRef<HTMLDivElement | null>(null)
+  const compartmentsRef = useRef<Compartment[]>([])
 
   const extensionOptions = useMemo(() => {
     return {
@@ -158,11 +156,17 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
   ])
 
   const extensionsWithCompartment = useMemo(() => {
-    for (let i = compartments.length; i < allExtensions.length; ++i) {
+    for (
+      let i = compartmentsRef.current.length;
+      i < allExtensions.length;
+      i++
+    ) {
       const compartment = new Compartment()
-      compartments.push(compartment)
+      compartmentsRef.current.push(compartment)
     }
-    return allExtensions.map((ext, index) => compartments[index].of(ext))
+    return allExtensions.map((ext, index) =>
+      compartmentsRef.current[index].of(ext),
+    )
   }, [allExtensions])
 
   useEffect(() => {
@@ -191,8 +195,8 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       if (view) {
         const effects: StateEffect<unknown>[] = []
         allExtensions.forEach((e, i) => {
-          if (compartments[i].get(view.state) !== e) {
-            effects.push(compartments[i].reconfigure(e))
+          if (compartmentsRef.current[i].get(view.state) !== e) {
+            effects.push(compartmentsRef.current[i].reconfigure(e))
           }
         })
         if (effects.length > 0) {

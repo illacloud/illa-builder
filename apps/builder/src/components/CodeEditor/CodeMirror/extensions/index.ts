@@ -1,4 +1,6 @@
 import {
+  CompletionContext,
+  CompletionResult,
   acceptCompletion,
   autocompletion,
   closeBrackets,
@@ -92,9 +94,22 @@ const buildSqlSchemeSources = (sqlScheme: Record<string, unknown>) => {
       )
     }
   })
-  return schemaCompletionSource({
+  const completionSourceFunc = schemaCompletionSource({
     schema: requiredScheme,
   })
+  return (context: CompletionContext) => {
+    const completionSource = completionSourceFunc(context) as CompletionResult
+    if (Array.isArray(completionSource?.options)) {
+      completionSource.options = completionSource.options.map((option) => {
+        return {
+          ...option,
+          type: "table",
+        }
+      })
+    }
+
+    return completionSource
+  }
 }
 
 const buildSqlKeywordSources = (lang: CODE_LANG) => {
