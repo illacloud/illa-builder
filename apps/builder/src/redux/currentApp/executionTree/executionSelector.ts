@@ -185,22 +185,24 @@ export const getCurrentPageDisplayName = createSelector(
 )
 
 export const getExecutionResultToCodeMirror = createSelector(
-  [getWidgetExecutionResult],
+  [getExecutionResult],
   (executionResult) => {
     const result: Record<string, unknown> = {}
     Object.keys(executionResult).forEach((key) => {
       if (!IGNORE_WIDGET_TYPES.has(executionResult[key].$widgetType)) {
         result[key] = cloneDeep(executionResult[key])
-        const componentOrAction = result[key]
-        if (isObject(componentOrAction)) {
-          Object.keys(componentOrAction as Record<string, unknown>).forEach(
-            (key) => {
-              if (key.startsWith("$")) {
-                delete (componentOrAction as Record<string, unknown>)[key]
-              }
-            },
-          )
-        }
+      }
+    })
+    Object.keys(result).forEach((key) => {
+      const componentOrAction = result[key]
+      if (isObject(componentOrAction)) {
+        Object.keys(componentOrAction as Record<string, unknown>).forEach(
+          (key) => {
+            if (key.startsWith("$")) {
+              delete (componentOrAction as Record<string, unknown>)[key]
+            }
+          },
+        )
       }
     })
     return result
