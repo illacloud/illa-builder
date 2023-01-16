@@ -523,7 +523,8 @@
       "cancel": "取消",
       "delete": "删除",
       "delete_content": "删除它后无法恢复，可能会导致程序出错，请确认引用后删除",
-      "delete_title": "你想要删除 {{ displayName }} 吗？"
+      "delete_title": "你想要删除 {{ displayName }} 吗？",
+      "editor_list": "正在编辑的用户"
     },
     "context_menu": {
       "delete": "删除",
