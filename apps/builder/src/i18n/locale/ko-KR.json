@@ -523,7 +523,8 @@
       "cancel": "취소",
       "delete": "삭제",
       "delete_content": "삭제 후 복구가 불가능하여 프로그램 오류가 발생할 수 있으니 참조 확인 후 삭제 부탁드립니다.",
-      "delete_title": "{{ displayName }}을(를) 삭제하시겠습니까?"
+      "delete_title": "{{ displayName }}을(를) 삭제하시겠습니까?",
+      "editor_list": "Current editors"
     },
     "context_menu": {
       "delete": "삭제",
