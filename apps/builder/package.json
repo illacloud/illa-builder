@@ -40,6 +40,7 @@
     "@sentry/tracing": "^7.17.3",
     "@tanstack/react-table": "^8.5.11",
     "@tanstack/table-core": "^8.7.0",
+    "@uiw/codemirror-theme-github": "^4.19.6",
     "@uiw/react-color": "^1.1.0",
     "@uiw/react-color-sketch": "^1.1.0",
     "@uiw/react-color-swatch": "^1.1.0",

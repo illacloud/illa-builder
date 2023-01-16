@@ -1,3 +1,4 @@
+import { githubLightInit } from "@uiw/codemirror-theme-github/src"
 import { getColor } from "@illa-design/react"
 import ArrayIcon from "@/components/CodeEditor/CodeMirror/assets/array.svg"
 import BooleanIcon from "@/components/CodeEditor/CodeMirror/assets/boolean.svg"
@@ -10,12 +11,11 @@ import StringIcon from "@/components/CodeEditor/CodeMirror/assets/string.svg"
 import TableIcon from "@/components/CodeEditor/CodeMirror/assets/table.svg"
 import TypeIcon from "@/components/CodeEditor/CodeMirror/assets/type.svg"
 import UnknownIcon from "@/components/CodeEditor/CodeMirror/assets/undefine.svg"
-import {
-  defaultHighlightClassName,
-  errorHighlightClassName,
-} from "@/components/CodeEditor/CodeMirror/extensions/heighlightJSExpression"
 
 export const ILLACodeMirrorTheme = {
+  "&.cm-editor": {
+    borderRadius: "8px",
+  },
   "&.cm-editor .cm-scroller": {
     fontFamily: "Fira Code",
     fontSize: "14px",
@@ -79,6 +79,10 @@ export const ILLACodeMirrorTheme = {
   },
   "&.cm-editor .cm-completionIcon-table::after": {
     content: `url(${TableIcon})`,
+  },
+  "&.cm-editor .cm-gutters": {
+    borderRadius: "8px 0 0 8px",
+    borderRight: "none",
   },
   "&.cm-editor .cm-gutters .cm-gutter .cm-gutterElement": {
     padding: "0 8px 0 23px",
@@ -202,12 +206,12 @@ export const ILLACodeMirrorTheme = {
     overflowY: "auto",
     cursor: "auto",
   },
-  [`.${defaultHighlightClassName}`]: {
-    color: getColor("green", "03"),
-    backgroundColor: "rgba(0, 170, 91, 0.08);",
-  },
-  [`.${errorHighlightClassName}`]: {
-    color: getColor("red", "03"),
-    backgroundColor: "rgba(255, 71, 71, 0.08);",
-  },
 }
+
+export const githubLightScheme = githubLightInit({
+  settings: {
+    background: "#fff",
+    foreground: "#24292e",
+    gutterBackground: getColor("grayBlue", "09"),
+  },
+})

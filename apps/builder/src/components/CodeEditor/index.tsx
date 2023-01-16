@@ -3,6 +3,7 @@ import { FC, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { ILLACodeMirrorCore } from "@/components/CodeEditor/CodeMirror/core"
 import { IExpressionShape } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { githubLightScheme } from "@/components/CodeEditor/CodeMirror/theme"
 import { CodeEditorProps } from "@/components/CodeEditor/interface"
 import { getExecutionResultToCodeMirror } from "@/redux/currentApp/executionTree/executionSelector"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -162,6 +163,11 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const debounceHandleChange = debounce(onChange, 160)
 
+  const customExtensions = useMemo(
+    () => (extensions ? [extensions, githubLightScheme] : [githubLightScheme]),
+    [extensions],
+  )
+
   return (
     <ILLACodeMirrorCore
       showLineNumbers={showLineNumbers}
@@ -181,7 +187,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       editable={editable}
       readOnly={readOnly}
       codeType={codeType}
-      extensions={extensions}
+      extensions={customExtensions}
       minWidth={minWidth}
       minHeight={minHeight}
       canShowCompleteInfo={canShowCompleteInfo}

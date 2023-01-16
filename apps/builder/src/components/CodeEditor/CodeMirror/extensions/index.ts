@@ -32,24 +32,14 @@ import {
   syntaxHighlighting,
 } from "@codemirror/language"
 import { Extension, Prec } from "@codemirror/state"
-import {
-  DecorationSet,
-  EditorView,
-  ViewPlugin,
-  ViewUpdate,
-  dropCursor,
-  keymap,
-  lineNumbers,
-} from "@codemirror/view"
+import { dropCursor, keymap, lineNumbers } from "@codemirror/view"
 import { useMemo } from "react"
 import { ternSeverCompletionSource } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/TernServer"
 import { buildIllaContextCompletionSource } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/illaContext"
-import { getDecoration } from "@/components/CodeEditor/CodeMirror/extensions/heighlightJSExpression"
 import {
   CODE_LANG,
   CODE_TYPE,
   ICodeMirrorOptions,
-  IExpressionShape,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { isObject } from "@/utils/typeHelper"
 
@@ -61,29 +51,6 @@ export const basicExtension: Extension = [
   closeBrackets(),
   keymap.of([...closeBracketsKeymap, ...defaultKeymap, ...historyKeymap]),
 ]
-const getHighlightExtDecorations = (value: {
-  decoration: DecorationSet
-  update: (update: ViewUpdate) => void
-}) => value.decoration
-
-const getCls = (expressions?: IExpressionShape[]) => {
-  return class {
-    decoration: DecorationSet
-    constructor(view: EditorView) {
-      this.decoration = getDecoration(view, expressions)
-    }
-    update(update: ViewUpdate) {
-      this.decoration = getDecoration(update.view, expressions)
-    }
-  }
-}
-export const getHighlightExpressionExtension = (
-  expressions?: IExpressionShape[],
-) => {
-  return ViewPlugin.fromClass(getCls(expressions), {
-    decorations: getHighlightExtDecorations,
-  })
-}
 
 const buildSqlSchemeSources = (sqlScheme: Record<string, unknown>) => {
   const requiredScheme: { [table: string]: string[] } = {}
@@ -223,7 +190,6 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
     lang = CODE_LANG.JAVASCRIPT,
     codeType = CODE_TYPE.EXPRESSION,
     executionResult = {},
-    expressions = [],
     canShowCompleteInfo = false,
     sqlScheme = {},
   } = options
@@ -282,25 +248,14 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
     return plugins
   }, [lang])
 
-  const highlightJSExpressionExtension = useMemo(() => {
-    const isFunction = codeType === CODE_TYPE.FUNCTION
-    return isFunction ? [] : getHighlightExpressionExtension(expressions)
-  }, [codeType, expressions])
-
   const extensions = useMemo(
     () => [
       basicExtension,
       showLinNUmberExtension,
       langExtension,
-      highlightJSExpressionExtension,
       autocompletionExtension,
     ],
-    [
-      autocompletionExtension,
-      highlightJSExpressionExtension,
-      langExtension,
-      showLinNUmberExtension,
-    ],
+    [autocompletionExtension, langExtension, showLinNUmberExtension],
   )
 
   return extensions
