@@ -44,3 +44,17 @@ export const clearComponentAttachedUsersHandler = (payload: string[]) => {
     ),
   )
 }
+
+export const updateCurrentAllComponentsAttachedUsers = (
+  displayName: string[],
+  currentComponentsAttachedUsers: Record<string, CollaboratorsInfo[]>,
+) => {
+  updateSelectedComponentUsersHandler(displayName)
+  const disattachedComponents = getDisattachedComponents(
+    currentComponentsAttachedUsers,
+    displayName,
+  )
+  if (!!disattachedComponents.length) {
+    clearComponentAttachedUsersHandler(disattachedComponents)
+  }
+}

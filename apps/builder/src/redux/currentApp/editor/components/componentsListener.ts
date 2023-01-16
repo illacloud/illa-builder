@@ -2,11 +2,7 @@ import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { cloneDeep } from "lodash"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  clearComponentAttachedUsersHandler,
-  getDisattachedComponents,
-  updateSelectedComponentUsersHandler,
-} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   getCanvas,
   getCurrentPageBodySectionComponentsSelector,
@@ -85,15 +81,10 @@ function handleUpdateComponentDisplayNameEffect(
     listenApi.dispatch(
       configActions.updateSelectedComponent([newComponent.displayName]),
     )
-
-    updateSelectedComponentUsersHandler([newComponent.displayName])
-    const disattachedComponents = getDisattachedComponents(
-      componentsAttachedUsers,
+    updateCurrentAllComponentsAttachedUsers(
       [newComponent.displayName],
+      componentsAttachedUsers,
     )
-    if (!!disattachedComponents.length) {
-      clearComponentAttachedUsersHandler(disattachedComponents)
-    }
   }
 }
 

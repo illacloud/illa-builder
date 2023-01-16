@@ -13,10 +13,8 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import {
   clearComponentAttachedUsersHandler,
-  getDisattachedComponents,
   updateSelectedComponentUsersHandler,
 } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
-import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import {
   flattenAllComponentNodeToMap,
   getCanvas,

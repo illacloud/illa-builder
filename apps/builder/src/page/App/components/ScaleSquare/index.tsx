@@ -40,13 +40,8 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  clearComponentAttachedUsersHandler,
-  getDisattachedComponents,
-  updateSelectedComponentUsersHandler,
-} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
-import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -189,44 +184,18 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         dispatch(
           configActions.updateSelectedComponent(currentSelectedDisplayName),
         )
-        // dispatch(
-        //   collaboratorsActions.updateComponentAttachedUsers(
-        //     currentSelectedDisplayName,
-        //   ),
-        // )
-        updateSelectedComponentUsersHandler(currentSelectedDisplayName)
-        const disattachedComponents = getDisattachedComponents(
-          componentsAttachedUsers,
+        updateCurrentAllComponentsAttachedUsers(
           currentSelectedDisplayName,
+          componentsAttachedUsers,
         )
-        if (!!disattachedComponents.length) {
-          // dispatch(
-          //   collaboratorsActions.clearComponentAttachedUsers(
-          //     disattachedComponents,
-          //   ),
-          // )
-          clearComponentAttachedUsersHandler(disattachedComponents)
-        }
+
         return
       }
-      // dispatch(
-      //   collaboratorsActions.updateComponentAttachedUsers([
-      //     componentNode.displayName,
-      //   ]),
-      // )
-      updateSelectedComponentUsersHandler([componentNode.displayName])
-      const disattachedComponents = getDisattachedComponents(
-        componentsAttachedUsers,
+      updateCurrentAllComponentsAttachedUsers(
         [componentNode.displayName],
+        componentsAttachedUsers,
       )
-      if (!!disattachedComponents.length) {
-        // dispatch(
-        //   collaboratorsActions.clearComponentAttachedUsers(
-        //     disattachedComponents,
-        //   ),
-        // )
-        clearComponentAttachedUsersHandler(disattachedComponents)
-      }
+
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
@@ -481,24 +450,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
-      // dispatch(
-      //   collaboratorsActions.updateComponentAttachedUsers([
-      //     componentNode.displayName,
-      //   ]),
-      // )
-      updateSelectedComponentUsersHandler([componentNode.displayName])
-      const disattachedComponents = getDisattachedComponents(
-        componentsAttachedUsers,
+      updateCurrentAllComponentsAttachedUsers(
         [componentNode.displayName],
+        componentsAttachedUsers,
       )
-      if (!!disattachedComponents.length) {
-        // dispatch(
-        //   collaboratorsActions.clearComponentAttachedUsers(
-        //     disattachedComponents,
-        //   ),
-        // )
-        clearComponentAttachedUsersHandler(disattachedComponents)
-      }
     },
     [componentNode.displayName, dispatch],
   )
@@ -728,47 +683,20 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         dispatch(
           configActions.updateSelectedComponent(currentSelectedDisplayName),
         )
-        // dispatch(
-        //   collaboratorsActions.updateComponentAttachedUsers(
-        //     currentSelectedDisplayName,
-        //   ),
-        // )
-        updateSelectedComponentUsersHandler(currentSelectedDisplayName)
-        const disattachedComponents = getDisattachedComponents(
-          componentsAttachedUsers,
+
+        updateCurrentAllComponentsAttachedUsers(
           currentSelectedDisplayName,
+          componentsAttachedUsers,
         )
-        if (!!disattachedComponents.length) {
-          // dispatch(
-          //   collaboratorsActions.clearComponentAttachedUsers(
-          //     disattachedComponents,
-          //   ),
-          // )
-          clearComponentAttachedUsersHandler(disattachedComponents)
-        }
         return
       }
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
-      // dispatch(
-      //   collaboratorsActions.updateComponentAttachedUsers([
-      //     componentNode.displayName,
-      //   ]),
-      // )
-      updateSelectedComponentUsersHandler([componentNode.displayName])
-      const disattachedComponents = getDisattachedComponents(
-        componentsAttachedUsers,
+      updateCurrentAllComponentsAttachedUsers(
         [componentNode.displayName],
+        componentsAttachedUsers,
       )
-      if (!!disattachedComponents.length) {
-        // dispatch(
-        //   collaboratorsActions.clearComponentAttachedUsers(
-        //     disattachedComponents,
-        //   ),
-        // )
-        clearComponentAttachedUsersHandler(disattachedComponents)
-      }
     },
     [componentNode.displayName, dispatch, illaMode, selectedComponents],
   )
@@ -926,24 +854,10 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
-      // dispatch(
-      //   collaboratorsActions.updateComponentAttachedUsers([
-      //     componentNode.displayName,
-      //   ]),
-      // )
-      updateSelectedComponentUsersHandler([componentNode.displayName])
-      const disattachedComponents = getDisattachedComponents(
-        componentsAttachedUsers,
+      updateCurrentAllComponentsAttachedUsers(
         [componentNode.displayName],
+        componentsAttachedUsers,
       )
-      if (!!disattachedComponents.length) {
-        // dispatch(
-        //   collaboratorsActions.clearComponentAttachedUsers(
-        //     disattachedComponents,
-        //   ),
-        // )
-        clearComponentAttachedUsersHandler(disattachedComponents)
-      }
     },
     [componentNode.displayName, dispatch],
   )

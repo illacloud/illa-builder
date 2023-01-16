@@ -1,10 +1,5 @@
 import { configActions } from "@/redux/config/configSlice"
-import {
-  clearComponentAttachedUsersHandler,
-  getDisattachedComponents,
-  updateSelectedComponentUsersHandler,
-} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
-import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
+import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import store from "@/store"
@@ -33,20 +28,10 @@ export function endDrag(dragNode: ComponentNode, isDropOnCanvas: boolean) {
     store.dispatch(
       configActions.updateSelectedComponent([dragNode.displayName]),
     )
-    // store.dispatch(
-    //   collaboratorsActions.updateComponentAttachedUsers([dragNode.displayName]),
-    // )
-    updateSelectedComponentUsersHandler([dragNode.displayName])
-    const disattachedComponents = getDisattachedComponents(
-      store.getState().currentApp.collaborators.components,
+    updateCurrentAllComponentsAttachedUsers(
       [dragNode.displayName],
+      store.getState().currentApp.collaborators.components,
     )
-    if (!!disattachedComponents.length) {
-      // store.dispatch(
-      //   collaboratorsActions.clearComponentAttachedUsers(disattachedComponents),
-      // )
-      clearComponentAttachedUsersHandler(disattachedComponents)
-    }
   } else {
     DisplayNameGenerator.removeDisplayName(dragNode.displayName)
   }

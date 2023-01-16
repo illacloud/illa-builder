@@ -9,11 +9,7 @@ import { WorkSpaceTreeGroup } from "@/page/App/components/DataWorkspace/componen
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  clearComponentAttachedUsersHandler,
-  getDisattachedComponents,
-  updateSelectedComponentUsersHandler,
-} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import {
   getGeneralWidgetExecutionResultArray,
@@ -49,14 +45,10 @@ export const ComponentSpaceTree: FC = () => {
       dispatch(
         configActions.updateSelectedComponent(currentSelectedDisplayName),
       )
-      updateSelectedComponentUsersHandler(currentSelectedDisplayName)
-      const disattachedComponents = getDisattachedComponents(
-        componentsAttachedUsers,
+      updateCurrentAllComponentsAttachedUsers(
         currentSelectedDisplayName,
+        componentsAttachedUsers,
       )
-      if (!!disattachedComponents.length) {
-        clearComponentAttachedUsersHandler(disattachedComponents)
-      }
     },
     [dispatch, selectedComponents],
   )
@@ -89,14 +81,7 @@ export const ComponentSpaceTree: FC = () => {
           result.push(referenceComponent[i].displayName)
         }
         dispatch(configActions.updateSelectedComponent(result))
-        updateSelectedComponentUsersHandler(result)
-        const disattachedComponents = getDisattachedComponents(
-          componentsAttachedUsers,
-          result,
-        )
-        if (!!disattachedComponents.length) {
-          clearComponentAttachedUsersHandler(disattachedComponents)
-        }
+        updateCurrentAllComponentsAttachedUsers(result, componentsAttachedUsers)
       }
     },
     [dispatch, selectedComponents],
@@ -116,14 +101,10 @@ export const ComponentSpaceTree: FC = () => {
         return
       }
       dispatch(configActions.updateSelectedComponent(selectedKeys))
-      updateSelectedComponentUsersHandler(selectedKeys)
-      const disattachedComponents = getDisattachedComponents(
-        componentsAttachedUsers,
+      updateCurrentAllComponentsAttachedUsers(
         selectedKeys,
+        componentsAttachedUsers,
       )
-      if (!!disattachedComponents.length) {
-        clearComponentAttachedUsersHandler(disattachedComponents)
-      }
     },
     [
       dispatch,
@@ -153,14 +134,10 @@ export const ComponentSpaceTree: FC = () => {
         }),
       )
       dispatch(configActions.updateSelectedComponent(selectedKeys))
-      updateSelectedComponentUsersHandler(selectedKeys)
-      const disattachedComponents = getDisattachedComponents(
-        componentsAttachedUsers,
+      updateCurrentAllComponentsAttachedUsers(
         selectedKeys,
+        componentsAttachedUsers,
       )
-      if (!!disattachedComponents.length) {
-        clearComponentAttachedUsersHandler(disattachedComponents)
-      }
     },
     [
       dispatch,
