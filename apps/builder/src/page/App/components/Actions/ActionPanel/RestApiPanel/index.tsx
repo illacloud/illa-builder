@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, Select } from "@illa-design/react"
@@ -14,8 +14,9 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import { ActionItem, ActionType } from "@/redux/currentApp/action/actionState"
 import {
+  ApiMethod,
   BodyContent,
   BodyType,
   RestApiAction,
@@ -37,6 +38,25 @@ import {
   restapiPanelContainerStyle,
 } from "./style"
 
+const huggingFaceMethodSelectOptions: ApiMethod[] = ["POST"]
+const resetAPIMethodSelectOptions: ApiMethod[] = [
+  "GET",
+  "POST",
+  "PUT",
+  "PATCH",
+  "DELETE",
+]
+
+const getMethod = (actionType: ActionType) => {
+  switch (actionType) {
+    case "huggingface":
+      return huggingFaceMethodSelectOptions
+    case "restapi":
+    default:
+      return resetAPIMethodSelectOptions
+  }
+}
+
 export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
 
@@ -55,6 +75,43 @@ export const RestApiPanel: FC = () => {
     return state.resource.find((r) => r.resourceId === cachedAction?.resourceId)
   })
 
+  const handleChangeMethod = useCallback(
+    (value: ApiMethod) => {
+      let newBodyType: BodyType = "none"
+      let newBody = null
+
+      if (value !== "GET") {
+        if (
+          selectedAction.resourceId === cachedAction.resourceId &&
+          selectedAction.content.method === value
+        ) {
+          newBodyType = selectedAction.content.bodyType
+          newBody = selectedAction.content.body
+        }
+      }
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...content,
+            method: value,
+            bodyType: newBodyType,
+            body: newBody,
+          },
+        }),
+      )
+    },
+    [
+      cachedAction,
+      content,
+      dispatch,
+      selectedAction.content.body,
+      selectedAction.content.bodyType,
+      selectedAction.content.method,
+      selectedAction.resourceId,
+    ],
+  )
+
   return (
     <div css={restapiPanelContainerStyle}>
       <ResourceChoose />
@@ -69,36 +126,8 @@ export const RestApiPanel: FC = () => {
             value={content.method}
             width="160px"
             maxW="160px"
-            options={
-              isHuggingFace
-                ? ["POST"]
-                : ["GET", "POST", "PUT", "PATCH", "DELETE"]
-            }
-            onChange={(value) => {
-              let newBodyType: BodyType = "none"
-              let newBody = null
-
-              if (value !== "GET") {
-                if (
-                  selectedAction.resourceId === cachedAction.resourceId &&
-                  selectedAction.content.method === value
-                ) {
-                  newBodyType = selectedAction.content.bodyType
-                  newBody = selectedAction.content.body
-                }
-              }
-              dispatch(
-                configActions.updateCachedAction({
-                  ...cachedAction,
-                  content: {
-                    ...content,
-                    method: value,
-                    bodyType: newBodyType,
-                    body: newBody,
-                  },
-                }),
-              )
-            }}
+            options={getMethod(cachedAction.actionType)}
+            onChange={handleChangeMethod}
           />
           <Input
             minW="230px"
