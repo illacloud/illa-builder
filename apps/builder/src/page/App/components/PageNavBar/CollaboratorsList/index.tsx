@@ -13,14 +13,7 @@ import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaborator
 export const CollaboratorsList: FC = () => {
   const [mouseOver, setMouseOver] = useState(false)
   const currentCollaborator = useSelector(getCurrentAppAttachUsers) || []
-  const currentCollaborators = [
-    ...currentCollaborator,
-    ...currentCollaborator,
-    ...currentCollaborator,
-    ...currentCollaborator,
-    ...currentCollaborator,
-  ]
-  const usersLength = currentCollaborators.length
+  const usersLength = currentCollaborator.length
 
   const getRenderDOM = (dataList: CollaboratorsInfo[], type?: string) => (
     <>
@@ -40,20 +33,20 @@ export const CollaboratorsList: FC = () => {
   )
   if (usersLength <= 4) {
     return (
-      <div css={avatarContainerStyle}>{getRenderDOM(currentCollaborators)}</div>
+      <div css={avatarContainerStyle}>{getRenderDOM(currentCollaborator)}</div>
     )
   }
 
   return (
     <div css={avatarContainerStyle}>
-      {getRenderDOM(currentCollaborators.slice(0, 3))}
+      {getRenderDOM(currentCollaborator.slice(0, 3))}
       <Trigger
         trigger="hover"
         popupVisible={mouseOver}
         onVisibleChange={setMouseOver}
         content={
           <div css={userInfoListContainerStyle}>
-            {getRenderDOM(currentCollaborators, "list")}
+            {getRenderDOM(currentCollaborator, "list")}
           </div>
         }
         position="bottom-end"

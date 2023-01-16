@@ -46,7 +46,7 @@ export const getComponentUsersListContainerStyle = (
     gap: 4px;
     height: 14px;
     max-width: 50px;
-    flex-shrink: 1;
+    flex-shrink: 0;
     flex-grow: 1;
     justify-content: flex-start;
     align-self: center;
@@ -79,7 +79,7 @@ export const listContainerStyle = css`
   width: 154px;
   padding: 16px;
   left: 14px;
-  top: 0;
+  top: -1px;
   max-height: 234px;
   overflow: scroll;
   position: absolute;

@@ -81,13 +81,6 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     getComponentAttachUsers,
   ) as Record<string, CollaboratorsInfo[]>
   const attachedUserList = componentsAttachedUsers[displayName] || []
-  const testLists = [
-    ...attachedUserList,
-    ...attachedUserList,
-    ...attachedUserList,
-    ...attachedUserList,
-    ...attachedUserList,
-  ]
 
   const { t } = useTranslation()
   const isFreezeCanvas = useSelector(getFreezeState)
@@ -97,10 +90,10 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
 
   useEffect(() => {
     if (bounds.width > containerWidthRef.current) {
-      setCurrentState("right")
+      currentState !== "right" && setCurrentState("right")
     }
     if (bounds.width < containerWidthRef.current) {
-      setCurrentState("left")
+      currentState !== "left" && setCurrentState("left")
     }
     containerWidthRef.current = bounds.width
   }, [bounds.width, currentState])
@@ -128,9 +121,11 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
   }, [containerHeight, containerPadding, widgetHeight, widgetTop])
 
   const minWidth =
-    testLists.length >= 3
+    attachedUserList.length >= 3
       ? 48
-      : testLists.length * 14 + (testLists.length || 1 - 1) * 4 + 12 || 12
+      : attachedUserList.length * 14 +
+          (attachedUserList.length || 1 - 1) * 4 +
+          16 || 16
 
   return (
     <div
@@ -159,8 +154,10 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
           </div>
           {selected && (
             <CollaboratorsList
-              users={testLists}
-              disableMargin={bounds.width <= (testLists.length >= 2 ? 52 : 26)}
+              users={attachedUserList}
+              disableMargin={
+                bounds.width <= (attachedUserList.length >= 2 ? 48 : 30)
+              }
               currentState={currentState}
               containerWidth={bounds.width}
             />

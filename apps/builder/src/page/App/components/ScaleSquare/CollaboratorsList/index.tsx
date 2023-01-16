@@ -1,4 +1,5 @@
 import { FC, useLayoutEffect, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
 import useMeasure from "react-use-measure"
 import { MoreIcon, Trigger } from "@illa-design/react"
 import { Avatar } from "@/page/App/components/Avatar"
@@ -17,9 +18,11 @@ export const CollaboratorsList: FC<{
   disableMargin: boolean
   currentState: string
   containerWidth: number
-}> = ({ users, disableMargin, currentState, containerWidth }) => {
+  nameChanging?: boolean
+}> = ({ users, disableMargin, currentState, containerWidth, nameChanging }) => {
   const [listShow, setListShow] = useState(false)
   const [listContainerRef, bounds] = useMeasure()
+  const { t } = useTranslation()
   const [displayDataList, setDisplayDataList] =
     useState<CollaboratorsInfo[]>(users)
   const [showMoreIcon, setShowMoreIcon] = useState(false)
@@ -30,13 +33,20 @@ export const CollaboratorsList: FC<{
     if (listLength < 3) {
       return
     }
-    if (currentState === "right" && containerWidth > 74) {
-      setDisplayDataList(listLength === 3 ? users : users.slice(0, 2))
-      setShowMoreIcon(listLength === 3 ? false : true)
+    if (currentState === "right") {
+      if (containerWidth > 74) {
+        setDisplayDataList(listLength === 3 ? users : users.slice(0, 2))
+        setShowMoreIcon(listLength === 3 ? false : true)
+      } else {
+        setDisplayDataList(users.slice(0, 1))
+        setShowMoreIcon(true)
+      }
+      return
     }
     if ((currentState === "left" && bounds.width < 50) || disableMargin) {
       setDisplayDataList(users.slice(0, 1))
       setShowMoreIcon(true)
+      return
     }
   }, [
     JSON.stringify(users),
@@ -63,7 +73,9 @@ export const CollaboratorsList: FC<{
             trigger="hover"
             content={
               <div css={listContainerStyle}>
-                <div css={listItemContentStyle}>Current editors</div>
+                <div css={listItemContentStyle}>
+                  {t("editor.component.editor_list")}
+                </div>
                 {users.map(({ avatar, id, nickname }, index) => (
                   <div key={index} css={listItemStyle}>
                     <Avatar
