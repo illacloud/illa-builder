@@ -833,7 +833,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   true,
                   {
                     type,
-                    payoload,
+                    payload,
                   },
                   [payload],
                 ),

@@ -757,11 +757,6 @@ export const RenderComponentCanvas: FC<{
           illaMode !== "production"
         ) {
           dispatch(configActions.updateSelectedComponent([]))
-          // dispatch(
-          //   collaboratorsActions.clearComponentAttachedUsers(
-          //     selectedComponents || [],
-          //   ),
-          // )
           clearComponentAttachedUsersHandler(selectedComponents || [])
         }
       }}
