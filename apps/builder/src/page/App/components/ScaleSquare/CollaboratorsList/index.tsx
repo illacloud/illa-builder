@@ -23,18 +23,20 @@ export const CollaboratorsList: FC<{
   const [listShow, setListShow] = useState(false)
   const [listContainerRef, bounds] = useMeasure()
   const { t } = useTranslation()
-  const [displayDataList, setDisplayDataList] =
-    useState<CollaboratorsInfo[]>(users)
+  const [displayDataList, setDisplayDataList] = useState<CollaboratorsInfo[]>(
+    [],
+  )
   const [showMoreIcon, setShowMoreIcon] = useState(false)
   const length = users.length
 
   useLayoutEffect(() => {
     const listLength = users.length
     if (listLength < 3) {
+      setDisplayDataList(users)
       return
     }
     if (currentState === "right") {
-      if (containerWidth > 74) {
+      if (containerWidth > 70) {
         setDisplayDataList(listLength === 3 ? users : users.slice(0, 2))
         setShowMoreIcon(listLength === 3 ? false : true)
       } else {

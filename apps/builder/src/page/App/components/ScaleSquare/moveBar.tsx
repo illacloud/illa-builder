@@ -125,7 +125,9 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
       ? 48
       : attachedUserList.length * 14 +
           (attachedUserList.length || 1 - 1) * 4 +
-          16 || 16
+          12 || 12
+
+  const disableMargin = bounds.width <= (attachedUserList.length >= 2 ? 48 : 34)
 
   return (
     <div
@@ -155,9 +157,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
           {selected && (
             <CollaboratorsList
               users={attachedUserList}
-              disableMargin={
-                bounds.width <= (attachedUserList.length >= 2 ? 48 : 30)
-              }
+              disableMargin={disableMargin}
               currentState={currentState}
               containerWidth={bounds.width}
             />
