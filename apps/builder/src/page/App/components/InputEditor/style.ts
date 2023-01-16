@@ -34,6 +34,9 @@ export const actionItemTip = css`
   font-size: 14px;
   margin-left: 192px;
   white-space: pre-line;
-  padding-bottom: 6px;
+  min-height: 30px;
+  padding-bottom: 8px;
+  display: flex;
+  align-items: stretch;
   color: ${getColor("grayBlue", "04")};
 `

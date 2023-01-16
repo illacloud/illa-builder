@@ -175,6 +175,10 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         disableIntrospection: data.disableIntrospection,
         authContent: generateGraphQLAuthContent(data),
       }
+    case "huggingface":
+      return {
+        token: data.token,
+      }
   }
 }
 
@@ -190,7 +194,6 @@ export function onActionConfigElementSubmit(
     resourceId != undefined ? `/resources/${resourceId}` : `/resources`
 
   return handleSubmit((data: FieldValues) => {
-    console.log({ data })
     let content
     try {
       content = getActionContentByType(data, resourceType)

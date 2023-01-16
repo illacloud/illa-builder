@@ -297,6 +297,39 @@
           "placeholder": {
             "query": "# Use $ to add a variable into your query (e.g. $category ) \nquery ($owner: String!, $name: String!){\n  repository(owner: $owner, name: $name) \n}"
           }
+        },
+        "hugging_face": {
+          "mode_id": "Model ID",
+          "placeholder": {
+            "mode_id": "bert-base-uncased",
+            "text": "The answer to the universe is [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Which movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Can you explain why ?\" \r\n}",
+            "binary": "'@cats.jpg' \\",
+            "use_cache": "Boolean，为空时默认true",
+            "min_length": "整数，用于定义输出摘要的最小标记长度",
+            "top_k": "整数，用于定义在创建新文本的示例操作中的顶级标记。",
+            "top_p": "浮点数，用于定义在文本生成示例操作中的标记。",
+            "temperature": "Float(0.0-100.0)，为空时默认1.0",
+            "repetition_penalty": "Float (0.0-100.0)",
+            "max_time": "Float (0.0-120.0) ，定义查询应该花费的最大时间量（以秒为单位）"
+          },
+          "tips": {
+            "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
+            "use_detail_parameters": "<0>Click here</0> to learn more about the detail parameters",
+            "temperature": "1表示定期抽样，0表示总是取最高分，100.0越来越接近均匀概率。",
+            "repetition_penalty": "The more a token is used within generation the more it is penalized to not be picked in successive generation passes."
+          },
+          "parameter": "Parameter",
+          "use_detail_parameters": "Use detail parameters",
+          "use_cache": "Use cache",
+          "wait_for_model": "Wait for model",
+          "min_length": "Min length",
+          "max_length": "Max length",
+          "top_k": "Top k",
+          "top_p": "Top p",
+          "temperature": "Temperature",
+          "repetition_penalty": "Repetition penalty",
+          "max_time": "Max time"
         }
       },
       "resource": {
@@ -339,7 +372,7 @@
             "header_prefix": "Header prefix",
             "key": "Key",
             "introspection": "Introspection",
-            "bear_token": "Bear Token"
+            "bear_token": "Token"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -490,7 +523,8 @@
       "cancel": "取消",
       "delete": "删除",
       "delete_content": "删除它后无法恢复，可能会导致程序出错，请确认引用后删除",
-      "delete_title": "你想要删除 {{ displayName }} 吗？"
+      "delete_title": "你想要删除 {{ displayName }} 吗？",
+      "editor_list": "正在编辑的用户"
     },
     "context_menu": {
       "delete": "删除",
@@ -944,7 +978,8 @@
     "500": {
       "des": "请求失败，请稍后再试。"
     },
-    "back": "回到主页"
+    "back": "回到主页",
+    "mobile_forbidden": "为获得更好的编辑体验，请通过电脑端访问"
   },
   "title": "欢迎来到艾拉云",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",

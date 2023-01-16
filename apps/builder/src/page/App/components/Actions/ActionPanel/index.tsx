@@ -13,6 +13,7 @@ import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/Action
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
 import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
 import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
+import { HuggingFacePanel } from "@/page/App/components/Actions/ActionPanel/HuggingFacePanel"
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
 import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
@@ -75,6 +76,8 @@ export const ActionPanel = forwardRef<
         return <MysqlLikePanel />
       case "restapi":
         return <RestApiPanel />
+      case "huggingface":
+        return <HuggingFacePanel />
       case "redis":
         return <RedisPanel />
       case "mongodb":

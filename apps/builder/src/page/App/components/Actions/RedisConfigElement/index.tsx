@@ -16,6 +16,14 @@ import {
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import {
+  configItem,
+  configItemTip,
+  connectType,
+  connectTypeStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
+import {
   RedisResource,
   RedisResourceInitial,
 } from "@/redux/resource/redisResource"
@@ -26,15 +34,10 @@ import { isCloudVersion } from "@/utils/typeHelper"
 import { RedisConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
-  configItem,
-  configItemTip,
-  connectTypeStyle,
   container,
   divider,
   footerStyle,
   hostInputContainer,
-  labelContainer,
-  optionLabelStyle,
   sslStyle,
 } from "./style"
 
@@ -327,7 +330,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             <div css={configItemTip}>
               {t("editor.action.resource.db.tip.username_password")}
             </div>
-            <div css={configItem}>
+            <div css={connectType}>
               <div css={labelContainer}>
                 <span
                   css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
