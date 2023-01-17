@@ -381,7 +381,7 @@ export const applyRNDWrapperStyle = (
     }
     z-index: 6;
   }
-  z-index: ${hasEditors || isSelected ? 6 : 1};
+  z-index: ${hasEditors || isSelected ? 5 : 1};
   opacity: ${isDragging ? 0 : 100};
 `
 

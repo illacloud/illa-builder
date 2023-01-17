@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { Popover } from "@illa-design/react"
 import { AvatarProps } from "@/page/App/components/Avatar/interface"
 import {
   applyUserAvatarStyle,
@@ -16,14 +17,25 @@ const AvatarColors = [
 ]
 
 export const Avatar: FC<AvatarProps> = (props) => {
-  const { userId, nickname, avatar, showType, type } = props
+  const { userId, nickname, avatar, showType, type, showTooltips } = props
   const avatarBgColor = AvatarColors[(parseInt(`${userId}`) || 0) % 7]
   const avatarText = nickname?.substring?.(0, 1).toUpperCase() || "U"
-  return avatar ? (
+  const node = avatar ? (
     <img src={avatar} css={getAvatarStyle(showType, type)} />
   ) : (
     <span css={applyUserAvatarStyle(avatarBgColor, showType, type)}>
       {avatarText}
     </span>
+  )
+  return (
+    <Popover
+      trigger="hover"
+      content={userId}
+      disabled={!showTooltips}
+      hasCloseIcon={false}
+      position="top"
+    >
+      {node}
+    </Popover>
   )
 }

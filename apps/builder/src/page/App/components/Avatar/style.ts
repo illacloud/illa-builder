@@ -11,6 +11,7 @@ export function applyUserAvatarStyle(
     background: #${background};
     text-align: center;
     border-radius: 50%;
+    cursor: pointer;
     flex-shrink: 0;
     color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
@@ -45,6 +46,7 @@ export const getAvatarStyle = (showType?: string, type?: string) => {
     text-align: center;
     border-radius: 50%;
     display: inline-block;
+    cursor: pointer;
     flex-shrink: 0;
   `
   if (showType === "components") {
