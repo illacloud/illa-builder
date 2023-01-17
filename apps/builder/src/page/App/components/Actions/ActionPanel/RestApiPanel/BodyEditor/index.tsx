@@ -19,6 +19,7 @@ import {
   RawBody,
   RawBodyContent,
   RawBodyInitial,
+  RawBodyType,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
 import { Params } from "@/redux/resource/restapiResource"
@@ -145,7 +146,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                       ...actionItem.content,
                       body: {
                         ...(body as RawBody<RawBodyContent>),
-                        type: value,
+                        type: value as RawBodyType,
                       },
                     },
                   }),

@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Search } from "@illa-design/react"
 import { buildComponentList } from "@/widgetLibrary/componentListBuilder"
@@ -17,26 +17,36 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
 
   const defaultList: ComponentSessionProps[] = buildComponentList()
   const { className, componentList = defaultList } = props
+  const [searchInput, setSearchInput] = useState("")
 
   const [searchRes, setSearchRes] = useState<
     ComponentSessionProps[] | undefined
   >(componentList)
 
+  const handleOnChange = useCallback(
+    (value: string) => {
+      setSearchInput(value)
+      const res = getMatchComponent(value, componentList)
+      setSearchRes(res)
+    },
+    [componentList],
+  )
+
+  const handleOnSearch = useCallback(() => {
+    const res = getMatchComponent(searchInput, componentList)
+    setSearchRes(res)
+  }, [])
+
   return (
     <div className={className} css={componentContainerStyle}>
       <div css={searchWrapperStyle}>
         <Search
-          borderColor="purple"
+          value={searchInput}
+          colorScheme="purple"
           variant="fill"
           placeholder={t("editor.widget_picker.search_placeholder")}
-          onChange={(value) => {
-            const res = getMatchComponent(value, componentList)
-            setSearchRes(res)
-          }}
-          onSearch={(value) => {
-            const res = getMatchComponent(value, componentList)
-            setSearchRes(res)
-          }}
+          onChange={handleOnChange}
+          onSearch={handleOnSearch}
         />
       </div>
       <div css={sessionListContainerStyle}>

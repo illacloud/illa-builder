@@ -20,6 +20,7 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { ActionTriggerMode } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
@@ -136,7 +137,7 @@ export const ResourceChoose: FC = () => {
               dispatch(
                 configActions.updateCachedAction({
                   ...action,
-                  triggerMode: value as string,
+                  triggerMode: value as ActionTriggerMode,
                 }),
               )
             }}

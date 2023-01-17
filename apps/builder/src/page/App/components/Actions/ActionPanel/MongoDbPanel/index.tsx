@@ -51,6 +51,7 @@ import {
   ListCollectionsContentInitial,
   MongoDbAction,
   MongoDbActionList,
+  MongoDbActionType,
   MongoDbActionTypeContent,
   UpdateManyContentInitial,
   UpdateOneContentInitial,
@@ -188,7 +189,7 @@ export const MongoDbPanel: FC = () => {
                   ...cachedAction,
                   content: {
                     ...cachedAction.content,
-                    actionType: value,
+                    actionType: value as MongoDbActionType,
                     typeContent: newTypeContent,
                   },
                 }),

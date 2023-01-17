@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Input, Select } from "@illa-design/react"
+import { Input, Select, SelectOptionObject } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -76,7 +76,16 @@ export const RestApiPanel: FC = () => {
   })
 
   const handleChangeMethod = useCallback(
-    (value: ApiMethod) => {
+    (
+      value:
+        | null
+        | SelectOptionObject
+        | string
+        | SelectOptionObject[]
+        | string[]
+        | number
+        | number[],
+    ) => {
       let newBodyType: BodyType = "none"
       let newBody = null
 
@@ -94,7 +103,7 @@ export const RestApiPanel: FC = () => {
           ...cachedAction,
           content: {
             ...content,
-            method: value,
+            method: value as ApiMethod,
             bodyType: newBodyType,
             body: newBody,
           },
