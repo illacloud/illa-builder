@@ -24,14 +24,16 @@ export const recordStyle = css`
 
 export const recordKeyStyle = css`
   min-width: 160px;
-  border-radius: 8px 0 0 8px;
+  .cm-editor {
+    border-radius: 8px 0 0 8px;
+  }
 `
 
 export const recordValueStyle = css`
-  width: 0;
-  flex-grow: 1;
   margin-left: -1px;
-  border-radius: 0;
+  .cm-editor {
+    border-radius: 0;
+  }
 `
 
 export const recordEditorLabelStyle = css`

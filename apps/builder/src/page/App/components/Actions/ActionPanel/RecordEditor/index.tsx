@@ -72,8 +72,8 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 }}
               />
               <CodeEditor
-                wrapperCss={recordValueStyle}
                 height="32px"
+                wrapperCss={recordValueStyle}
                 lang={CODE_LANG.JAVASCRIPT}
                 placeholder="value"
                 value={record.value}
