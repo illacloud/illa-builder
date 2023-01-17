@@ -50,8 +50,6 @@ export const getComponentUsersListContainerStyle = (
     flex-grow: 1;
     justify-content: flex-start;
     align-self: center;
-    position: relative;
-    z-index: 10;
     overflow: hidden;
     min-width: ${minWidth}px;
   `
