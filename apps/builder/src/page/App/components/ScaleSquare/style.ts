@@ -364,7 +364,7 @@ export const applyRNDWrapperStyle = (
 ) => css`
   > .wrapperPending {
     > #moveBar {
-      visibility: ${hasEditors ? "visible" : "hidden"};
+      visibility: ${hasEditors || isSelected ? "visible" : "hidden"};
     }
   }
   :hover {
@@ -374,14 +374,14 @@ export const applyRNDWrapperStyle = (
           ? globalColor(`--${illaPrefix}-red-03`)
           : globalColor(`--${illaPrefix}-techPurple-01`)
         : "transparent"};
+      border-style: solid;
       > #moveBar {
         visibility: ${isEditor ? "visible" : "hidden"};
       }
     }
-
     z-index: 6;
   }
-  z-index: ${isSelected ? 5 : 1};
+  z-index: ${hasEditors || isSelected ? 6 : 1};
   opacity: ${isDragging ? 0 : 100};
 `
 

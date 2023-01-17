@@ -9,7 +9,7 @@ const AvatarColors = [
   "165DFF",
   "0FC6C2",
   "06DA38",
-  "B5F923",
+  "A7D100",
   "F1BE0A",
   "F9773F",
   "FF4ACC",
