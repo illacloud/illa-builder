@@ -19,24 +19,26 @@ import {
 export const ILLACodeMirrorTheme = {
   "&.cm-editor": {
     borderRadius: "8px",
+    border: `1px solid ${getColor("grayBlue", "03")}`,
+    overflow: "hidden",
+    fontFamily: "Fira Code",
   },
   "&.cm-editor .cm-scroller": {
-    fontFamily: "Fira Code",
+    lineHeight: "22px",
     fontSize: "12px",
-    lineHeight: "15px",
   },
   "&.cm-editor .cm-content": {
-    padding: "6px 8px",
+    padding: "4px 0",
   },
   "&.cm-editor .cm-line": {
-    padding: 0,
+    padding: "0 16px",
   },
   "&.cm-editor.cm-focused .cm-matchingBracket": {
     color: getColor("green", "03"),
   },
   "&.cm-editor .cm-placeholder": {
     color: getColor("grayBlue", "04"),
-    height: "18px",
+    height: 0,
   },
   "&.cm-editor .cm-tooltip-autocomplete": {
     border: "none",
