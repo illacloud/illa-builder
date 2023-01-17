@@ -50,7 +50,7 @@ export const ILLACodeMirrorTheme = {
     opacity: 1,
     paddingRight: "8px",
     position: "absolute",
-    top: "5px",
+    top: "2.5px",
   },
   "&.cm-editor .cm-completionIcon-Function::after": {
     content: `url(${FunctionIcon})`,
@@ -126,6 +126,7 @@ export const ILLACodeMirrorTheme = {
     lineHeight: "24px",
     position: "relative",
     fontFamily: "Fira Code",
+    overflow: "hidden",
   },
   "&.cm-editor .cm-tooltip-autocomplete>ul li[aria-selected]": {
     backgroundColor: getColor("techPurple", "07"),
