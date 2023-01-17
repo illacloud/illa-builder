@@ -12,6 +12,10 @@ import {
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  clearComponentAttachedUsersHandler,
+  updateSelectedComponentUsersHandler,
+} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import {
   flattenAllComponentNodeToMap,
   getCanvas,
   searchDSLByDisplayName,
@@ -110,6 +114,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
             }),
           )
           dispatch(configActions.clearSelectedComponent())
+          clearComponentAttachedUsersHandler(displayName)
         },
       })
     }
@@ -194,6 +199,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
             dispatch(
               configActions.updateSelectedComponent(childNodeDisplayNames),
             )
+            updateSelectedComponentUsersHandler(childNodeDisplayNames)
           }
         }
       }

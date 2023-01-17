@@ -23,6 +23,12 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
+import {
+  getComponentAttachUsers,
+  getCurrentAppAttachUsers,
+} from "@/redux/currentApp/collaborators/collaboratorsSelector"
+import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
+import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
@@ -54,6 +60,10 @@ export const Editor: FC = () => {
 
   const currentUser = useSelector(getCurrentUser)
 
+  const handleLeaveRoom = () => {
+    Connection.leaveRoom("app", appId ?? "")
+  }
+
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {
       Connection.enterRoom(
@@ -62,9 +72,11 @@ export const Editor: FC = () => {
         (loading) => {},
         (errorState) => {},
       )
+      window.addEventListener("beforeunload", handleLeaveRoom)
     }
     return () => {
-      Connection.leaveRoom("app", appId ?? "")
+      handleLeaveRoom()
+      window.removeEventListener("beforeunload", handleLeaveRoom)
     }
   }, [currentUser, appId])
 

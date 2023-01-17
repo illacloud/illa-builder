@@ -272,6 +272,7 @@ export function applyBarHandlerStyle(
 
 export const applyMoveBarWrapperStyle = (
   maxWidth: number,
+  minWidth: number,
   isError: boolean,
   selected: boolean,
   isEditor: boolean,
@@ -315,13 +316,19 @@ export const applyMoveBarWrapperStyle = (
     font-size: 12px;
     color: #fff;
     max-width: ${maxWidth}px;
-    min-width: 12px;
-    overflow: hidden;
+    min-width: ${minWidth}px;
+    //overflow: hidden;
     visibility: ${isEditor && selected ? "visible" : "hidden"};
     z-index: 100;
     cursor: move;
   `
 }
+
+export const displayNameContainerStyle = css`
+  display: flex;
+  min-width: 12px;
+  flex-grow: 1;
+`
 
 export const dragPointIconWrapperStyle = css`
   width: 12px;
@@ -348,12 +355,18 @@ export const freezeTipsStyle = css`
 `
 
 export const applyRNDWrapperStyle = (
+  hasEditors: boolean,
   isSelected: boolean,
   hasError: boolean,
   isShowCanvasDot: boolean,
   isDragging: boolean,
   isEditor: boolean,
 ) => css`
+  > .wrapperPending {
+    > #moveBar {
+      visibility: ${hasEditors ? "visible" : "hidden"};
+    }
+  }
   :hover {
     > .wrapperPending {
       border-color: ${isEditor
@@ -373,6 +386,7 @@ export const applyRNDWrapperStyle = (
 `
 
 export const applyWrapperPendingStyle = (
+  hasEditors: boolean,
   isSelected: boolean,
   hasError: boolean,
   isDragging: boolean,
@@ -382,9 +396,12 @@ export const applyWrapperPendingStyle = (
   height: 100%;
   padding: 3px;
   border: 1px solid
-    ${isEditor && isSelected
+    ${(isEditor && isSelected) || hasEditors
       ? globalColor(`--${illaPrefix}-techPurple-01`)
       : "transparent"};
+  border-style: ${hasEditors && !isSelected && !isDragging
+    ? "dashed"
+    : "solid"};
   background-color: ${isEditor && hasError && !isSelected
     ? globalColor(`--${illaPrefix}-red-07`)
     : "transparent"};

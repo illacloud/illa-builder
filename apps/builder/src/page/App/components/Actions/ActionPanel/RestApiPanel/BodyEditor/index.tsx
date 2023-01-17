@@ -10,10 +10,6 @@ import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
-  HuggingFaceAction,
-  HuggingFaceBodyContent,
-} from "@/redux/currentApp/action/huggingFaceAction"
-import {
   BodyContent,
   BodyType,
   RawBody,
@@ -39,9 +35,8 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const body = actionItem.content.body
 
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
-    HuggingFaceAction<HuggingFaceBodyContent> | RestApiAction<BodyContent>
+    RestApiAction<BodyContent>
   >
-
   const dispatch = useDispatch()
 
   let mode: CODE_LANG = CODE_LANG.JAVASCRIPT

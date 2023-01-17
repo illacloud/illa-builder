@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon, ErrorIcon } from "@illa-design/react"
 import { JsonView } from "@/page/App/components/Debugger/components/JsonView"
 import { configActions } from "@/redux/config/configSlice"
+import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import {
   getCanvas,
   searchDsl,
@@ -28,6 +30,7 @@ export const ErrorItem: FC<ErrorItemProps> = (props) => {
   const { item, pathName } = props
   const dispatch = useDispatch()
   const root = useSelector(getCanvas)
+  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
   const [isExpanded, setIsExpanded] = useState(false)
 
   const { displayName, attrPath } = useMemo(() => {
@@ -44,10 +47,15 @@ export const ErrorItem: FC<ErrorItemProps> = (props) => {
 
   const handleComponentSelect = useCallback(() => {
     const selectedComponent = searchDsl(root, displayName)
-    selectedComponent &&
+    if (selectedComponent) {
       dispatch(
         configActions.updateSelectedComponent([selectedComponent.displayName]),
       )
+      updateCurrentAllComponentsAttachedUsers(
+        [selectedComponent.displayName],
+        componentsAttachedUsers,
+      )
+    }
   }, [dispatch, root, displayName])
 
   return (

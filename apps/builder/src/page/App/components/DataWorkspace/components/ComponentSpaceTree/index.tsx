@@ -9,7 +9,8 @@ import { WorkSpaceTreeGroup } from "@/page/App/components/DataWorkspace/componen
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { updateModalDisplayReducer } from "@/redux/currentApp/executionTree/executionReducer"
+import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import {
   getGeneralWidgetExecutionResultArray,
   getModalWidgetExecutionResultArray,
@@ -21,6 +22,7 @@ export const ComponentSpaceTree: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
+  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
   const generalWidgetExecutionArray = useSelector(
     getGeneralWidgetExecutionResultArray,
   )
@@ -37,15 +39,16 @@ export const ComponentSpaceTree: FC = () => {
       )
       if (index !== -1) {
         currentSelectedDisplayName.splice(index, 1)
-        dispatch(
-          configActions.updateSelectedComponent(currentSelectedDisplayName),
-        )
       } else {
         currentSelectedDisplayName.push(...selectedKeys)
-        dispatch(
-          configActions.updateSelectedComponent(currentSelectedDisplayName),
-        )
       }
+      dispatch(
+        configActions.updateSelectedComponent(currentSelectedDisplayName),
+      )
+      updateCurrentAllComponentsAttachedUsers(
+        currentSelectedDisplayName,
+        componentsAttachedUsers,
+      )
     },
     [dispatch, selectedComponents],
   )
@@ -78,6 +81,7 @@ export const ComponentSpaceTree: FC = () => {
           result.push(referenceComponent[i].displayName)
         }
         dispatch(configActions.updateSelectedComponent(result))
+        updateCurrentAllComponentsAttachedUsers(result, componentsAttachedUsers)
       }
     },
     [dispatch, selectedComponents],
@@ -97,6 +101,10 @@ export const ComponentSpaceTree: FC = () => {
         return
       }
       dispatch(configActions.updateSelectedComponent(selectedKeys))
+      updateCurrentAllComponentsAttachedUsers(
+        selectedKeys,
+        componentsAttachedUsers,
+      )
     },
     [
       dispatch,
@@ -126,6 +134,10 @@ export const ComponentSpaceTree: FC = () => {
         }),
       )
       dispatch(configActions.updateSelectedComponent(selectedKeys))
+      updateCurrentAllComponentsAttachedUsers(
+        selectedKeys,
+        componentsAttachedUsers,
+      )
     },
     [
       dispatch,
