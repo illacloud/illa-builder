@@ -118,6 +118,9 @@ export const ActionList: FC<ActionListProps> = (props) => {
                           onOk: () => {
                             changeSelectedAction(action)
                           },
+                          okButtonProps: {
+                            colorScheme: "red",
+                          },
                         })
                       }
                     }

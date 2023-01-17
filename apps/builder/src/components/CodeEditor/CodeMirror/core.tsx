@@ -220,12 +220,24 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     const currentValue = editorViewRef.current
       ? editorViewRef.current.state.doc.toString()
       : ""
-    if (editorViewRef.current && value !== currentValue && !isFocus) {
-      editorViewRef.current.dispatch({
-        changes: { from: 0, to: currentValue.length, insert: value || "" },
+    // ! 2b code,will fix later
+    if (
+      editorWrapperRef.current &&
+      editorViewRef.current &&
+      value !== currentValue &&
+      !isFocus
+    ) {
+      const config = {
+        doc: value,
+        extensions: extensionsWithCompartment,
+      }
+      const startState = EditorState.create(config)
+      editorViewRef.current = new EditorView({
+        state: startState,
+        parent: editorWrapperRef.current,
       })
     }
-  }, [isFocus, value])
+  }, [extensionsWithCompartment, isFocus, value])
 
   return (
     <HintToolTip
