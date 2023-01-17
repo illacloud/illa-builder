@@ -55,6 +55,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
   const editorStateRef = useRef<EditorState>()
   const editorWrapperRef = useRef<HTMLDivElement | null>(null)
   const compartmentsRef = useRef<Compartment[]>([])
+  const isTypingRef = useRef<number>(0)
 
   const extensionOptions = useMemo(() => {
     return {
@@ -111,6 +112,10 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     return EditorView.updateListener.of((viewUpdate) => {
       const currentString = viewUpdate.state.doc.toString()
       if (viewUpdate.docChanged) {
+        window.clearTimeout(isTypingRef.current)
+        isTypingRef.current = window.setTimeout(() => {
+          isTypingRef.current = 0
+        }, 100)
         onChange?.(currentString)
       }
     })
@@ -170,25 +175,28 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
   }, [allExtensions])
 
   useEffect(() => {
-    if (editorWrapperRef.current && !editorStateRef.current) {
-      const config = {
+    if (
+      !editorViewRef.current ||
+      (!isTypingRef.current &&
+        !isFocus &&
+        value !== editorViewRef.current.state.doc.toString())
+    ) {
+      const state = EditorState.create({
         doc: value,
         extensions: extensionsWithCompartment,
-      }
-      const startState = EditorState.create(config)
-      editorStateRef.current = startState
-      if (!editorViewRef.current) {
-        editorViewRef.current = new EditorView({
-          state: startState,
-          parent: editorWrapperRef.current,
-        })
+      })
+      if (editorViewRef.current) {
+        editorViewRef.current.setState(state)
+      } else {
+        if (editorWrapperRef.current) {
+          editorViewRef.current = new EditorView({
+            state,
+            parent: editorWrapperRef.current,
+          })
+        }
       }
     }
-    return () => {
-      editorWrapperRef.current = null
-      editorStateRef.current = undefined
-    }
-  }, [extensionsWithCompartment, value])
+  }, [value, extensionsWithCompartment, isFocus])
 
   const reconfigure = useCallback(
     (view?: EditorView) => {
@@ -212,32 +220,6 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       reconfigure(editorViewRef.current)
     }
   }, [reconfigure])
-
-  useEffect(() => {
-    if (value === undefined) {
-      return
-    }
-    const currentValue = editorViewRef.current
-      ? editorViewRef.current.state.doc.toString()
-      : ""
-    // ! 2b code,will fix later
-    if (
-      editorWrapperRef.current &&
-      editorViewRef.current &&
-      value !== currentValue &&
-      !isFocus
-    ) {
-      const config = {
-        doc: value,
-        extensions: extensionsWithCompartment,
-      }
-      const startState = EditorState.create(config)
-      editorViewRef.current = new EditorView({
-        state: startState,
-        parent: editorWrapperRef.current,
-      })
-    }
-  }, [extensionsWithCompartment, isFocus, value])
 
   return (
     <HintToolTip
