@@ -76,6 +76,7 @@ export const CollaboratorsList: FC<{
             avatar={avatar}
             showType="components"
             key={index}
+            showTooltips={true}
           />
         ))}
         {showMoreIcon && (
