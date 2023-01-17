@@ -30,10 +30,11 @@ export const Avatar: FC<AvatarProps> = (props) => {
   return (
     <Popover
       trigger="hover"
-      content={userId}
+      content={nickname}
       disabled={!showTooltips}
       hasCloseIcon={false}
       position="top"
+      colorScheme="grayBlue"
     >
       {node}
     </Popover>
