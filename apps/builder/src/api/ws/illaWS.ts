@@ -61,11 +61,20 @@ export class ILLAWebsocket {
         console.log(`[WS OPENED](${this.url}) connection succeeded`)
         store.dispatch(configActions.updateDevicesOnlineStatusReducer(true))
         this.send(
-          getPayload(Signal.SIGNAL_ENTER, Target.TARGET_NOTHING, false, null, [
+          getPayload(
+            Signal.SIGNAL_ENTER,
+            Target.TARGET_NOTHING,
+            false,
             {
-              authToken: getLocalStorage("token"),
+              type: "enter",
+              payload: [],
             },
-          ]),
+            [
+              {
+                authToken: getLocalStorage("token"),
+              },
+            ],
+          ),
         )
         this.isOnline = true
         this.repeat = 0
@@ -101,9 +110,9 @@ export class ILLAWebsocket {
 
   private heartStart() {
     if (this.forbidReconnect) return
-    this.pingTimeoutId = setTimeout(() => {
+    this.pingTimeoutId = window.setTimeout(() => {
       this.ws?.send(pingMessage)
-      this.pongTimeoutId = setTimeout(() => {
+      this.pongTimeoutId = window.setTimeout(() => {
         if (this.isOnline) {
           store.dispatch(configActions.updateDevicesOnlineStatusReducer(false))
           this.isOnline = false

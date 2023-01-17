@@ -8,6 +8,7 @@ import {
   illaPrefix,
 } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/RecordEditor/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
@@ -60,25 +61,23 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
           return (
             <div css={recordStyle} key={index}>
               <CodeEditor
-                css={recordKeyStyle}
+                wrapperCss={recordKeyStyle}
                 height="32px"
                 value={record.key}
-                mode="TEXT_JS"
+                lang={CODE_LANG.JAVASCRIPT}
                 placeholder="key"
-                borderRadius="8px 0 0 8px"
-                expectedType={VALIDATION_TYPES.STRING}
+                expectValueType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
                   onChangeKey(index, value, record.value, name)
                 }}
               />
               <CodeEditor
-                css={recordValueStyle}
                 height="32px"
-                mode="TEXT_JS"
+                wrapperCss={recordValueStyle}
+                lang={CODE_LANG.JAVASCRIPT}
                 placeholder="value"
                 value={record.value}
-                borderRadius="0 0 0 0"
-                expectedType={VALIDATION_TYPES.STRING}
+                expectValueType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
                   onChangeValue(index, record.key, value, name)
                 }}

@@ -3,16 +3,12 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
-import { EditorMode } from "@/components/CodeEditor/interface"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
-import {
-  HuggingFaceAction,
-  HuggingFaceBodyContent,
-} from "@/redux/currentApp/action/huggingFaceAction"
 import {
   BodyContent,
   BodyType,
@@ -39,28 +35,27 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const body = actionItem.content.body
 
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
-    HuggingFaceAction<HuggingFaceBodyContent> | RestApiAction<BodyContent>
+    RestApiAction<BodyContent>
   >
-
   const dispatch = useDispatch()
 
-  let mode: EditorMode = "TEXT_JS"
+  let mode: CODE_LANG = CODE_LANG.JAVASCRIPT
   if (bodyType === "raw") {
     switch ((body as RawBody<RawBodyContent>).type) {
       case "text":
-        mode = "TEXT_JS"
+        mode = CODE_LANG.JAVASCRIPT
         break
       case "json":
-        mode = "JSON"
+        mode = CODE_LANG.JSON
         break
       case "xml":
-        mode = "XML_JS"
+        mode = CODE_LANG.XML
         break
       case "javascript":
-        mode = "JAVASCRIPT"
+        mode = CODE_LANG.JAVASCRIPT
         break
       case "html":
-        mode = "HTML_JS"
+        mode = CODE_LANG.HTML
         break
     }
   }
@@ -68,13 +63,14 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const handleActionTypeChange = useCallback(
     (value: string) => {
       let newBody = null
+      const content = selectedAction?.content as RestApiAction<BodyContent>
       if (
         selectedAction.resourceId === actionItem.resourceId &&
-        selectedAction.content.method !== "GET" &&
-        selectedAction.content.bodyType !== "none" &&
-        selectedAction.content.bodyType === value
+        content.method !== "GET" &&
+        content.bodyType !== "none" &&
+        content.bodyType === value
       ) {
-        newBody = selectedAction.content.body
+        newBody = content.body
       } else {
         switch (value) {
           case "none":
@@ -154,10 +150,10 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
         {bodyType === "raw" && (
           <div css={codeEditorStyle}>
             <CodeEditor
-              lineNumbers
-              mode={mode}
+              showLineNumbers
+              lang={mode}
               value={(body as RawBody<RawBodyContent>).content}
-              expectedType={VALIDATION_TYPES.STRING}
+              expectValueType={VALIDATION_TYPES.STRING}
               height="88px"
               onChange={(value) => {
                 dispatch(
@@ -239,10 +235,10 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
         {bodyType === "binary" && (
           <div css={codeEditorStyle}>
             <CodeEditor
-              mode="TEXT_JS"
-              lineNumbers
+              lang={CODE_LANG.JAVASCRIPT}
+              showLineNumbers
               value={(body as string) ?? ""}
-              expectedType={VALIDATION_TYPES.STRING}
+              expectValueType={VALIDATION_TYPES.STRING}
               height="88px"
               onChange={(value) => {
                 dispatch(

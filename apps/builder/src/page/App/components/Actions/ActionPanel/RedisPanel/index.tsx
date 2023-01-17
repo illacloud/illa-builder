@@ -1,49 +1,27 @@
 import { FC, useEffect, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import { isObject } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { sqlInputStyle } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import {
   actionItemContainer,
+  redisCodeEditorStyle,
   redisContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  RedisAction,
-  RedisActionInitial,
-} from "@/redux/currentApp/action/redisAction"
+import { RedisAction } from "@/redux/currentApp/action/redisAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-
-const convertResourcesToTables = (data: Record<string, unknown>) => {
-  let res: Record<string, string[]> = {}
-  if (isObject(data)) {
-    for (const dataKey in data) {
-      if (isObject(data[dataKey])) {
-        const resKeys = []
-        const key = data[dataKey]
-        if (isObject(key)) {
-          for (const keys in key) {
-            resKeys.push(keys)
-          }
-          res[dataKey] = resKeys
-        }
-      }
-    }
-  }
-  return res
-}
 
 export const RedisPanel: FC = () => {
   const action = useSelector(getCachedAction)!!
 
-  const [sqlTable, setSqlTable] = useState<Record<string, string[]>>()
+  const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
 
   useEffect(() => {
     Api.request(
@@ -52,8 +30,7 @@ export const RedisPanel: FC = () => {
         method: "GET",
       },
       ({ data }: { data: ResourcesData }) => {
-        const tables = convertResourcesToTables(data?.schema)
-        setSqlTable(tables)
+        setSqlTable(data?.schema ?? {})
       },
       () => {},
       () => {},
@@ -69,13 +46,13 @@ export const RedisPanel: FC = () => {
       <ResourceChoose />
       <div css={actionItemContainer}>
         <CodeEditor
+          wrapperCss={redisCodeEditorStyle}
           placeholder="SET runoobkey redis"
-          lineNumbers={true}
-          css={sqlInputStyle}
+          showLineNumbers
           value={currentContent.query}
-          mode="TEXT_JS"
-          expectedType={VALIDATION_TYPES.STRING}
-          tables={sqlTable}
+          lang={CODE_LANG.JAVASCRIPT}
+          expectValueType={VALIDATION_TYPES.STRING}
+          sqlScheme={sqlTable}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

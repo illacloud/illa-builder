@@ -3,7 +3,6 @@ import { cloneDeep, throttle } from "lodash"
 import {
   FC,
   MutableRefObject,
-  ReactNode,
   RefObject,
   useCallback,
   useEffect,
@@ -36,9 +35,11 @@ import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import {
   getFreezeState,
   getIllaMode,
+  getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { clearComponentAttachedUsersHandler } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   modifyComponentNodeX,
   modifyComponentNodeY,
@@ -162,6 +163,7 @@ export const RenderComponentCanvas: FC<{
   const dispatch = useDispatch()
 
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
+  const selectedComponents = useSelector(getSelectedComponents)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
 
@@ -189,7 +191,7 @@ export const RenderComponentCanvas: FC<{
     if (canShowColumnsTimeoutChange.current) {
       clearTimeout(canShowColumnsTimeoutChange.current)
     }
-    canShowColumnsTimeoutChange.current = setTimeout(() => {
+    canShowColumnsTimeoutChange.current = window.setTimeout(() => {
       setShowColumnsChange(false)
       dispatch(configActions.updateShowDot(false))
       if (canShowColumnsTimeoutChange.current) {
@@ -691,7 +693,7 @@ export const RenderComponentCanvas: FC<{
             finalRowNumber + addedRowNumber !== rowNumber
           ) {
             clearTimeout(autoScrollTimeoutID.current)
-            autoScrollTimeoutID.current = setTimeout(() => {
+            autoScrollTimeoutID.current = window.setTimeout(() => {
               containerRef.current?.scrollBy({
                 top: (addedRowNumber * UNIT_HEIGHT) / 4,
                 behavior: "smooth",
@@ -755,6 +757,7 @@ export const RenderComponentCanvas: FC<{
           illaMode !== "production"
         ) {
           dispatch(configActions.updateSelectedComponent([]))
+          clearComponentAttachedUsersHandler(selectedComponents || [])
         }
       }}
     >

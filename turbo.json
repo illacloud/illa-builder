@@ -6,6 +6,11 @@
         "^build"
       ]
     },
+    "ts-check": {
+      "dependsOn": [
+        "^ts-check"
+      ]
+    },
     "preview": {
       "dependsOn": [
         "build"

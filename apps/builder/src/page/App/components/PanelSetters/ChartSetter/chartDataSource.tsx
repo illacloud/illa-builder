@@ -1,4 +1,4 @@
-import { debounce, get } from "lodash"
+import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
@@ -72,8 +72,6 @@ export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = (
     [handleUpdateDsl],
   )
 
-  const debounceHandleChangeInput = debounce(handleChangeInput, 300)
-
   const handleChangeSelect = useCallback(
     (value: any) => {
       handleUpdateDsl("dataSource", value)
@@ -88,7 +86,7 @@ export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = (
         onClickFxButton={handleClickFxButton}
         selectPlaceholder="Select a query or transformer"
         inputPlaceholder="{{}}"
-        onChangeInput={debounceHandleChangeInput}
+        onChangeInput={handleChangeInput}
         path={`${widgetDisplayName}.dataSourceJS`}
         options={selectedOptions}
         expectedType={VALIDATION_TYPES.OBJECT}

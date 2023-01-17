@@ -2,6 +2,10 @@ import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
 import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import {
   getNeedComputedValueWithList,
   realInputValueWithList,
 } from "@/page/App/components/PanelSetters/InputSetter/util"
@@ -65,12 +69,14 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
       <CodeEditor
         value={finalValue}
-        placeholder={placeholder}
         onChange={onChange}
-        mode="TEXT_JS"
-        expectedType={expectedType}
-        path={getPath(attrName, widgetDisplayName)}
+        showLineNumbers={false}
+        placeholder={placeholder}
+        expectValueType={expectedType}
+        lang={CODE_LANG.JAVASCRIPT}
         maxHeight="208px"
+        maxWidth="100%"
+        codeType={CODE_TYPE.EXPRESSION}
       />
     </div>
   )

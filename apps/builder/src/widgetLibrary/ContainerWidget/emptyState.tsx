@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 import { Trans } from "react-i18next"
 import {
   emptyStateStyle,
@@ -6,7 +6,10 @@ import {
   keyPressComponentStyle,
 } from "@/widgetLibrary/ContainerWidget/style"
 
-export const KeyPressComponent: FC = (props) => {
+interface IKeyPressComponentProps {
+  children?: ReactNode
+}
+export const KeyPressComponent: FC<IKeyPressComponentProps> = (props) => {
   return <span css={keyPressComponentStyle}>{props.children}</span>
 }
 

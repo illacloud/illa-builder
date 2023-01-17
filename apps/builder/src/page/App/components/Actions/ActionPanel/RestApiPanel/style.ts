@@ -34,4 +34,7 @@ export const restapiItemInputStyle = css`
   flex-grow: 1;
   width: 0;
   margin-left: -1px;
+  .cm-editor {
+    border-radius: 0 8px 8px 0;
+  }
 `

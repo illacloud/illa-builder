@@ -54,6 +54,13 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         replace: true,
       })
     }
+    if (newType === "enter/remote") {
+      action.type = "collaborators/setInRoomUsers"
+    }
+    if (newType === "attachComponent/remote") {
+      action.type = "collaborators/updateComponentAttachedUsers"
+      action.payload = payload.componentAttachedUsers
+    }
     return next(action)
   }
   const resp = next(action)
@@ -253,7 +260,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               )
             }
             break
-
           case "updateMultiComponentPropsReducer":
             const updateMultiPayload: UpdateComponentPropsPayload[] = payload
             const finalNodes = updateMultiPayload
@@ -278,7 +284,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               )
             }
             break
-
           case "deleteComponentNodeReducer":
             const deletePayload: DeleteComponentNodePayload = payload
             Connection.getRoom("app", currentAppID)?.send(

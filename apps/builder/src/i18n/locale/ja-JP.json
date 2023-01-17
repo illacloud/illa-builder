@@ -523,7 +523,8 @@
       "cancel": "キャンセル",
       "delete": "消去",
       "delete_content": "削除すると元に戻すことができず、プログラム エラーの原因となる場合があります。参照を確認して削除してください。",
-      "delete_title": "{{ displayName }} を削除しますか?"
+      "delete_title": "{{ displayName }} を削除しますか?",
+      "editor_list": "Current editors"
     },
     "context_menu": {
       "delete": "消去",

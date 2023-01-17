@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
 import {
   codeEditorLabelStyle,
@@ -47,11 +48,11 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.bucket_name")}
         </span>
         <CodeEditor
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
           onChange={(value) => handleValueChange(value, "bucketName")}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={s3ItemStyle}>
@@ -59,11 +60,11 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.content_type")}
         </span>
         <CodeEditor
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.contentType}
           onChange={(value) => handleValueChange(value, "contentType")}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectValueType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={s3ItemStyle}>
@@ -71,14 +72,14 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.upload_object_name_list")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           placeholder={t("editor.action.panel.s3.placeholder.object_name_list")}
           value={commandArgs.objectKeyList}
           onChange={(value) => handleValueChange(value, "objectKeyList")}
-          expectedType={VALIDATION_TYPES.ARRAY}
+          expectValueType={VALIDATION_TYPES.ARRAY}
         />
       </div>
       <div css={s3ItemStyle}>
@@ -86,14 +87,14 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.upload_data_list")}
         </span>
         <CodeEditor
-          lineNumbers
+          showLineNumbers
           height="88px"
-          css={s3ItemCodeEditorStyle}
-          mode="TEXT_JS"
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
           placeholder={t("editor.action.panel.s3.placeholder.data_list")}
           value={commandArgs.objectDataList}
           onChange={(value) => handleValueChange(value, "objectDataList")}
-          expectedType={VALIDATION_TYPES.ARRAY}
+          expectValueType={VALIDATION_TYPES.ARRAY}
         />
       </div>
     </>

@@ -142,7 +142,7 @@ export interface sortComponentNodeChildrenPayload {
 
 export interface UpdateComponentPropsPayload {
   displayName: string
-  updateSlice: Record<string, any>
+  updateSlice: Record<string, unknown>
 }
 export interface UpdateComponentDisplayNamePayload {
   displayName: string

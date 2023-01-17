@@ -1,7 +1,11 @@
 import { get } from "lodash"
-import { FC, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { BaseInputSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
 import { applyInputSetterWrapperStyle } from "@/page/App/components/PanelSetters/InputSetter/style"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -74,29 +78,48 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
     return "dataSource"
   }, [isDynamic])
 
-  const handleValueChange = (value: string) => {
-    const fromCurrentRow = value.includes("currentRow")
-    const output = fromCurrentRow
-      ? getNeedComputedValue(value, dataPath, widgetDisplayName)
-      : value
-    const name = attrName.substring(
-      parentAttrName ? parentAttrName?.length + 1 : 0,
-    )
-    handleUpdateDsl(attrName, output)
-    handleUpdateDsl(`${parentAttrName}.fromCurrentRow`, {
-      [name]: fromCurrentRow,
-    })
-  }
+  const handleValueChange = useCallback(
+    (value: string) => {
+      const fromCurrentRow = value.includes("currentRow")
+      const output = fromCurrentRow
+        ? getNeedComputedValue(value, dataPath, widgetDisplayName)
+        : value
+      const name = attrName.substring(
+        parentAttrName ? parentAttrName?.length + 1 : 0,
+      )
+      handleUpdateDsl(attrName, output)
+      handleUpdateDsl(`${parentAttrName}.fromCurrentRow`, {
+        [name]: fromCurrentRow,
+      })
+    },
+    [attrName, dataPath, handleUpdateDsl, parentAttrName, widgetDisplayName],
+  )
+
+  const wrappedCodeFunc = useCallback(
+    (code: string) => {
+      const fromCurrentRow = code.includes("currentRow")
+      const output = fromCurrentRow
+        ? getNeedComputedValue(code, dataPath, widgetDisplayName)
+        : code
+      return output
+    },
+    [dataPath, widgetDisplayName],
+  )
 
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
       <CodeEditor
         value={realInputValue(value, dataPath, widgetDisplayName)}
-        placeholder={placeholder}
         onChange={handleValueChange}
-        mode="TEXT_JS"
-        expectedType={expectedType}
-        path={getPath(attrName, widgetDisplayName)}
+        showLineNumbers={false}
+        placeholder={placeholder}
+        expectValueType={expectedType}
+        lang={CODE_LANG.JAVASCRIPT}
+        maxHeight="208px"
+        minHeight="30px"
+        maxWidth="100%"
+        codeType={CODE_TYPE.EXPRESSION}
+        wrappedCodeFunc={wrappedCodeFunc}
       />
     </div>
   )
