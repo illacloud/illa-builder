@@ -1,11 +1,10 @@
 // eslint-disable-next-line import/no-named-as-default
 import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
 import {
-  addRequestPendingPool,
-  removeRequestPendingPool,
-} from "@/api/helpers/axiosPendingPool"
-import { ILLARoute } from "@/router"
-import { clearLocalStorage, getLocalStorage } from "@/utils/storage"
+  authInterceptor,
+  axiosErrorInterceptor,
+  fullFillInterceptor,
+} from "@/api/interceptors"
 
 export interface Success {
   status: string // always ok
@@ -15,6 +14,7 @@ export interface ApiError {
   errorCode: string | number
   errorMessage: string
 }
+
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
   baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}`,
@@ -25,57 +25,11 @@ const axios = Axios.create({
   },
 })
 
-axios.interceptors.request.use(
-  (config) => {
-    addRequestPendingPool(config)
-    const token = getLocalStorage("token")
-    if (token) {
-      config.headers = {
-        ...(config.headers ?? {}),
-        Authorization: token,
-      }
-    }
-    return config
-  },
-  (err) => {
-    return Promise.reject(err)
-  },
-)
+axios.interceptors.request.use(authInterceptor, (err) => {
+  return Promise.reject(err)
+})
 
-axios.interceptors.response.use(
-  (response) => {
-    const { config } = response
-    removeRequestPendingPool(config)
-    return response
-  },
-  (error: AxiosError) => {
-    const { response } = error
-    if (response) {
-      const { status } = response
-
-      // TODO: @aruseito maybe need custom error status,because of we'll have plugin to request other's api
-      if (status === 401) {
-        clearLocalStorage()
-        const { pathname } = location
-        ILLARoute.navigate("/user/login", {
-          replace: true,
-          state: {
-            form: pathname || "/",
-          },
-        })
-      } else if (status === 403) {
-        ILLARoute.navigate("/403", {
-          replace: true,
-        })
-      } else if (status >= 500) {
-        ILLARoute.navigate("/500", {
-          replace: true,
-        })
-      }
-    }
-    return Promise.reject(error)
-  },
-)
+axios.interceptors.response.use(fullFillInterceptor, axiosErrorInterceptor)
 
 export class Api {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(

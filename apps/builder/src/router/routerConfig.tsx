@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom"
+import { Navigate, redirect } from "react-router-dom"
 import { Editor } from "@/page/App"
 import { IllaApp } from "@/page/Dashboard"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
@@ -16,15 +16,22 @@ import { Page403 } from "@/page/status/403"
 import { Page404 } from "@/page/status/404"
 import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 // TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
 export const routerConfig: RoutesObjectPro[] = [
   {
     index: true,
-    element: <Navigate to="/dashboard" replace />,
+    loader: async () => {
+      if (isCloudVersion) {
+        // navigate to illa cloud
+        return redirect("https://127.0.0.1:5173/")
+      }
+      return redirect("/0/dashboard")
+    },
   },
   {
-    path: "/dashboard",
+    path: "/:teamIdentifier/dashboard",
     element: <IllaApp />,
     needLogin: true,
     children: [
@@ -34,84 +41,35 @@ export const routerConfig: RoutesObjectPro[] = [
         needLogin: true,
       },
       {
-        path: "/dashboard/apps",
+        path: "/:teamIdentifier/dashboard/apps",
         element: <DashboardApps />,
         needLogin: true,
       },
       {
-        path: "/dashboard/resources",
+        path: "/:teamIdentifier/dashboard/resources",
         element: <DashboardResources />,
         needLogin: true,
       },
     ],
   },
   {
-    path: "/user",
-    element: <UserLogin />,
-    children: [
-      {
-        index: true,
-        element: <Navigate to="./login" replace />,
-      },
-      {
-        path: "/user/login",
-        element: <Login />,
-      },
-      {
-        path: "/user/register",
-        element: <Register />,
-      },
-      {
-        path: "/user/forgotPassword",
-        element: <ResetPassword />,
-      },
-    ],
-  },
-  {
-    path: "/app/:appId",
+    path: "/:teamIdentifier/app/:appId",
     element: <Editor />,
     needLogin: true,
     errorElement: <Page403 />,
   },
   {
-    path: "/setting",
-    element: <Setting />,
-    needLogin: true,
-    children: [
-      {
-        index: true,
-        element: <Navigate to="./account" replace />,
-        needLogin: true,
-      },
-      {
-        path: "/setting/account",
-        element: <SettingAccount />,
-        needLogin: true,
-      },
-      {
-        path: "/setting/password",
-        element: <SettingPassword />,
-        needLogin: true,
-      },
-      {
-        path: "/setting/others",
-        element: <SettingOthers />,
-        needLogin: true,
-      },
-    ],
-  },
-  {
-    path: "/deploy/app/:appId/version/:versionId",
+    path: "/:teamIdentifier/deploy/app/:appId/version/:versionId",
     element: <Deploy />,
     needLogin: true,
   },
   {
-    path: "/deploy/app/:appId/version/:versionId/:pageName",
+    path: "/:teamIdentifier/deploy/app/:appId/version/:versionId/:pageName",
     element: <Deploy />,
     needLogin: true,
   },
   {
-    path: "/deploy/app/:appId/version/:versionId/:pageName/:viewPath",
+    path: "/:teamIdentifier/deploy/app/:appId/version/:versionId/:pageName/:viewPath",
     element: <Deploy />,
     needLogin: true,
   },
@@ -127,4 +85,57 @@ export const routerConfig: RoutesObjectPro[] = [
     path: "/*",
     element: <Page404 />,
   },
+  ...(!isCloudVersion
+    ? [
+        {
+          path: "/user",
+          element: <UserLogin />,
+          children: [
+            {
+              index: true,
+              element: <Navigate to="./login" replace />,
+            },
+            {
+              path: "/user/login",
+              element: <Login />,
+            },
+            {
+              path: "/user/register",
+              element: <Register />,
+            },
+            {
+              path: "/user/forgotPassword",
+              element: <ResetPassword />,
+            },
+          ],
+        },
+        {
+          path: "/setting",
+          element: <Setting />,
+          needLogin: true,
+          children: [
+            {
+              index: true,
+              element: <Navigate to="./account" replace />,
+              needLogin: true,
+            },
+            {
+              path: "/setting/account",
+              element: <SettingAccount />,
+              needLogin: true,
+            },
+            {
+              path: "/setting/password",
+              element: <SettingPassword />,
+              needLogin: true,
+            },
+            {
+              path: "/setting/others",
+              element: <SettingOthers />,
+              needLogin: true,
+            },
+          ],
+        },
+      ]
+    : []),
 ]
