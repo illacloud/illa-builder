@@ -985,7 +985,8 @@
       "des": "リクエストに失敗しました。しばらくしてからもう一度お試しください。"
     },
     "back": "ホームページに戻ります",
-    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
+    "mobile_forbidden": "For the better editing experience, please visit this page on desktop",
+    "back_to_cloud": "ILLA Cloudに戻る"
   },
   "title": "エラ クラウドへようこそ",
   "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
