@@ -58,11 +58,10 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
       action.type = "collaborators/setInRoomUsers"
     }
     if (newType === "attachComponent/remote") {
-      if (currentAppID === "") {
-        return
+      if (currentAppID !== "") {
+        action.type = "collaborators/updateComponentAttachedUsers"
+        action.payload = payload.componentAttachedUsers
       }
-      action.type = "collaborators/updateComponentAttachedUsers"
-      action.payload = payload.componentAttachedUsers
     }
     return next(action)
   }
