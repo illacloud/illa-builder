@@ -4,15 +4,7 @@ import {
   removeRequestPendingPool,
 } from "@/api/helpers/axiosPendingPool"
 import { ILLARoute } from "@/router"
-import { getLocalStorage, removeLocalStorage } from "@/utils/storage"
-
-export const getAuthToken = () => {
-  return getLocalStorage("token")
-}
-
-export const removeAuthToken = () => {
-  return removeLocalStorage("token")
-}
+import { getAuthToken, removeAuthToken } from "@/utils/auth"
 
 export const authInterceptor = (config: AxiosRequestConfig) => {
   addRequestPendingPool(config)

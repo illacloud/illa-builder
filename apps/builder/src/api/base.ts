@@ -17,7 +17,7 @@ export interface ApiError {
 
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
-  baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}`,
+  baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}/api/v1`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",

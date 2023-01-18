@@ -18,6 +18,8 @@ import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
 import { isCloudVersion } from "@/utils/typeHelper"
 
+export const ILLA_CLOUD_PATH = "https://127.0.0.1:5173/"
+
 // TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
 export const routerConfig: RoutesObjectPro[] = [
   {
@@ -25,7 +27,7 @@ export const routerConfig: RoutesObjectPro[] = [
     loader: async () => {
       if (isCloudVersion) {
         // navigate to illa cloud
-        return redirect("https://127.0.0.1:5173/")
+        return redirect(ILLA_CLOUD_PATH)
       }
       return redirect("/0/dashboard")
     },
