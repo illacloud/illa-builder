@@ -636,6 +636,10 @@
           "email": " 邮箱",
           "regex": "正则表达式",
           "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixed",
+          "auto": "Auto"
         }
       },
       "setter_group": {
@@ -813,7 +817,9 @@
         "x_axis_type": "X轴类型",
         "x_axis_value": "X 轴",
         "y_axis_name": "纵坐标名称",
-        "y_axis_title": "Y轴标题"
+        "y_axis_title": "Y轴标题",
+        "height": "高度",
+        "min_height": "最小高度（像素）"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1217,6 +1223,9 @@
     },
     "modal": {
       "name": "对话框"
+    },
+    "textarea": {
+      "name": "textarea"
     }
   },
   "page": {
