@@ -636,6 +636,10 @@
           "email": "Email",
           "regex": "Regex",
           "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixed",
+          "auto": "Auto"
         }
       },
       "setter_group": {
@@ -813,7 +817,9 @@
         "x_axis_type": "X-axis type",
         "x_axis_value": "X-axis value",
         "y_axis_name": "Y-axis name",
-        "y_axis_title": "Y-axis title"
+        "y_axis_title": "Y-axis title",
+        "height": "Height",
+        "min_height": "Min height (px)"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1217,6 +1223,9 @@
     },
     "modal": {
       "name": "Modal"
+    },
+    "textarea": {
+      "name": "textarea"
     }
   },
   "page": {
