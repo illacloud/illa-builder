@@ -44,8 +44,10 @@ import {
 } from "@/redux/currentApp/editor/components/componentsListener"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { IGNORE_WIDGET_TYPES } from "@/redux/currentApp/executionTree/executionSelector"
-import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  IGNORE_WIDGET_TYPES,
+  getRootNodeExecutionResult,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"

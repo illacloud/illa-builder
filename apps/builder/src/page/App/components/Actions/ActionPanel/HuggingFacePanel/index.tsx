@@ -2,12 +2,7 @@ import { Namespace, TFunction } from "i18next"
 import { FC, useCallback } from "react"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  Checkbox,
-  Select,
-  SelectOptionObject,
-  SelectProps,
-} from "@illa-design/react"
+import { Checkbox, Select, SelectValue } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -218,16 +213,7 @@ export const HuggingFacePanel: FC = () => {
   )
 
   const handleParameterChange = useCallback(
-    (
-      value:
-        | null
-        | SelectOptionObject
-        | string
-        | SelectOptionObject[]
-        | string[]
-        | number
-        | number[],
-    ) => {
+    (value?: SelectValue) => {
       let newBody = value === "pairs" ? PairsBodyInitital : InputInitial
       if (
         selectedAction.resourceId === cachedAction.resourceId &&
