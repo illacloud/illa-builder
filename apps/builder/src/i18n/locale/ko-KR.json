@@ -636,6 +636,10 @@
           "email": "우편",
           "regex": "정규식",
           "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixed",
+          "auto": "Auto"
         }
       },
       "setter_group": {
@@ -813,7 +817,9 @@
         "x_axis_type": "X축 유형",
         "x_axis_value": "X축",
         "y_axis_name": "좌표 이름",
-        "y_axis_title": "Y축 제목"
+        "y_axis_title": "Y축 제목",
+        "height": "Height",
+        "min_height": "Min height (px)"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1217,6 +1223,9 @@
     },
     "modal": {
       "name": "Modal"
+    },
+    "textarea": {
+      "name": "textarea"
     }
   },
   "page": {
