@@ -12,6 +12,7 @@ import {
   NotificationGroup,
 } from "@illa-design/react"
 import "@/api/base"
+import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { getIllaMode } from "@/redux/config/configSelector"
 import {
@@ -19,7 +20,7 @@ import {
   getCurrentTranslateLanguage,
 } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
-import { globalStyle } from "./style"
+import { ILLACodeMirrorTooltipsWrapper, globalStyle } from "./style"
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)
@@ -42,6 +43,10 @@ function App() {
           <NotificationGroup pt={mode !== "production" ? "46px" : "0"} />
           <ModalGroup />
           <RouterProvider router={ILLARoute} />
+          <div
+            className="illaCodeMirrorWrapper"
+            css={illaCodeMirrorTooltipStyle}
+          />
         </ConfigProvider>
       </GlobalDataProvider>
     </DndProvider>

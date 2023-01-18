@@ -35,3 +35,5 @@ export const LEFT_PANEL_WIDTH = 280
 export const RIGHT_PANEL_WIDTH = 320
 export const MIDDLE_PANEL_WIDTH = 300
 export const NAVBAR_HEIGHT = 48
+
+export const ILLACodeMirrorTooltipsWrapper = css``

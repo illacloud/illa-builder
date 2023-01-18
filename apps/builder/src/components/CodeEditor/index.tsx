@@ -58,6 +58,8 @@ const getShowResult = (results: unknown[]) => {
   return calcResult
 }
 
+const MAX_LEN_WITH_SNIPPETS = 1024
+
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     value = "",
@@ -95,7 +97,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const calcResultArray: unknown[] = []
     const calcResultMap: Map<string, number[]> = new Map()
     dynamicStrings.forEach((dynamicString, index) => {
-      if (dynamicString.length <= 1024 && isDynamicString(dynamicString)) {
+      if (
+        dynamicString.length <= MAX_LEN_WITH_SNIPPETS &&
+        isDynamicString(dynamicString)
+      ) {
         try {
           const calcRes = evaluateDynamicString(
             "",
@@ -137,7 +142,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       if (showResultType !== expectValueType && value) {
         dynamicStrings.forEach((dynamicString) => {
           if (
-            dynamicString.length <= 1024 &&
+            dynamicString.length <= MAX_LEN_WITH_SNIPPETS &&
             isDynamicString(dynamicString) &&
             calcResultMap.has(dynamicString)
           ) {
@@ -154,16 +159,16 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         setError(true)
       } else {
         setResult(
-          showResult.length > 1024
-            ? showResult.slice(0, 1024) + "..."
+          showResult.length > MAX_LEN_WITH_SNIPPETS
+            ? showResult.slice(0, MAX_LEN_WITH_SNIPPETS) + "..."
             : showResult,
         )
       }
     } else {
       setResultType(showResultType)
       setResult(
-        showResult.length > 1024
-          ? showResult.slice(0, 1024) + "..."
+        showResult.length > MAX_LEN_WITH_SNIPPETS
+          ? showResult.slice(0, MAX_LEN_WITH_SNIPPETS) + "..."
           : showResult,
       )
     }
