@@ -1,5 +1,5 @@
 import basicSsl from "@vitejs/plugin-basic-ssl"
-import react from "@vitejs/plugin-react"
+import react from "@vitejs/plugin-react-swc"
 import { resolve } from "path"
 import { defineConfig, loadEnv } from "vite"
 import checker from "vite-plugin-checker"
@@ -12,19 +12,6 @@ export default defineConfig((props) => {
     plugins: [
       react({
         jsxImportSource: "@emotion/react",
-        jsxRuntime: "automatic",
-        babel: {
-          plugins: ["@emotion/babel-plugin"],
-          compact: false,
-        },
-        // Exclude storybook stories
-        exclude: [
-          /\.stories\.([tj])sx?$/,
-          /\.e2e\.([tj])sx?$/,
-          /\.test\.([tj])sx?$/,
-        ],
-        // Only .tsx files
-        include: ["**/*.tsx", "**/*.ts"],
       }),
       svgr(),
       basicSsl(),

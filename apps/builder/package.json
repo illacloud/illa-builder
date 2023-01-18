@@ -102,7 +102,7 @@
     "@types/uuid": "^8.3.4",
     "@types/ws": "^8.5.3",
     "@vitejs/plugin-basic-ssl": "^0.1.2",
-    "@vitejs/plugin-react": "^2.2.0",
+    "@vitejs/plugin-react-swc": "^3.0.1",
     "e2e": "workspace:*",
     "typescript": "^4.9.3",
     "vite": "^4.0.4",
