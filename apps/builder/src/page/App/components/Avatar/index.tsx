@@ -4,6 +4,7 @@ import { AvatarProps } from "@/page/App/components/Avatar/interface"
 import {
   applyUserAvatarStyle,
   getAvatarStyle,
+  triggerStyle,
 } from "@/page/App/components/Avatar/style"
 
 const AvatarColors = [
@@ -35,6 +36,7 @@ export const Avatar: FC<AvatarProps> = (props) => {
       hasCloseIcon={false}
       position="top"
       colorScheme="grayBlue"
+      _css={triggerStyle}
     >
       {node}
     </Popover>
