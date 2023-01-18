@@ -5,6 +5,8 @@ import {
   axiosErrorInterceptor,
   fullFillInterceptor,
 } from "@/api/interceptors"
+import { getCurrentId } from "@/redux/team/teamSelector"
+import store from "@/store"
 
 export interface Success {
   status: string // always ok
@@ -15,9 +17,11 @@ export interface ApiError {
   errorMessage: string
 }
 
+const CLOUD = "/supervisior/api/v1"
+
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
-  baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}/api/v1`,
+  baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
@@ -32,6 +36,41 @@ axios.interceptors.request.use(authInterceptor, (err) => {
 axios.interceptors.response.use(fullFillInterceptor, axiosErrorInterceptor)
 
 export class Api {
+  static request<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
+    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
+    crash?: (e: AxiosError) => void,
+    loading?: (loading: boolean) => void,
+    errorState?: (errorState: boolean) => void,
+  ) {
+    loading?.(true)
+    errorState?.(false)
+    const teamId = getCurrentId(store.getState())
+    axios
+      .request<RespData, AxiosResponse<RespData>, RequestBody>({
+        ...config,
+        baseURL: `${config.baseURL}/teams/${teamId}`,
+      })
+      .then((response) => {
+        loading?.(false)
+        errorState?.(false)
+        success?.(response)
+      })
+      .catch((error: AxiosError<ErrorResp, RequestBody>) => {
+        loading?.(false)
+        errorState?.(true)
+        if (error.response) {
+          failure?.(error.response)
+        }
+        if (error.response == undefined && error.request != undefined) {
+          crash?.(error)
+        }
+      })
+  }
+}
+
+export class AuthApi {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
     success?: (response: AxiosResponse<RespData, RequestBody>) => void,
