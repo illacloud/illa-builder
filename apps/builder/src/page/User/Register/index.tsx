@@ -16,7 +16,7 @@ import {
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { EMAIL_FORMAT } from "@/constants/regExp"
-import { formatLanguage, languageKeys } from "@/i18n/config"
+import { formatLanguage } from "@/i18n/config"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
   checkboxTextStyle,
@@ -376,7 +376,11 @@ export const Register: FC = () => {
             control={control}
             render={({ field }) => (
               <Checkbox
-                {...field}
+                ref={field.ref}
+                onChange={(value, event) => {
+                  field.onChange(event)
+                }}
+                onBlur={field.onBlur}
                 checked={field.value}
                 colorScheme="techPurple"
               >

@@ -42,9 +42,9 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
         disabled={disabled}
         readOnly={readOnly}
         prefix={prefixIcon}
-        addonBefore={{ render: prefixText, custom: false }}
+        addBefore={prefixText}
         suffix={suffixIcon}
-        addonAfter={{ render: suffixText, custom: false }}
+        addAfter={suffixText}
         onChange={(value) => {
           new Promise((resolve) => {
             const message = getValidateMessage(value)
@@ -62,8 +62,8 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
             handleOnChange?.()
           })
         }}
-        showCount={showCharacterCount}
-        borderColor={colorScheme}
+        showWordLimit={showCharacterCount}
+        colorScheme={colorScheme}
         allowClear={allowClear}
         onClear={() => {
           handleUpdateDsl({ value: "" })
