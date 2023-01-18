@@ -20,7 +20,7 @@ import {
   getCurrentTranslateLanguage,
 } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
-import { ILLACodeMirrorTooltipsWrapper, globalStyle } from "./style"
+import { globalStyle } from "./style"
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)

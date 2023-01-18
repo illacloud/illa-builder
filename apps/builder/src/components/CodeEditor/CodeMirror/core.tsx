@@ -98,9 +98,9 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       if (viewUpdate.focusChanged) {
         setIsFocus(viewUpdate.view.hasFocus)
         if (!viewUpdate.view.hasFocus) {
-          // setTimeout(() => {
-          //   closeCompletion(viewUpdate.view)
-          // }, 500)
+          setTimeout(() => {
+            closeCompletion(viewUpdate.view)
+          }, 500)
         }
       }
     })
@@ -214,21 +214,19 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
   }, [reconfigure])
 
   return (
-    <>
-      <HintToolTip
-        isEditorFocused={isFocus}
-        result={!result ? '""' : result}
-        hasError={hasError}
-        resultType={resultType}
-      >
-        <div
-          ref={editorWrapperRef}
-          css={[
-            applyEditorWrapperStyle(hasError, isFocus, editable, readOnly),
-            wrapperCss,
-          ]}
-        />
-      </HintToolTip>
-    </>
+    <HintToolTip
+      isEditorFocused={isFocus}
+      result={!result ? '""' : result}
+      hasError={hasError}
+      resultType={resultType}
+    >
+      <div
+        ref={editorWrapperRef}
+        css={[
+          applyEditorWrapperStyle(hasError, isFocus, editable, readOnly),
+          wrapperCss,
+        ]}
+      />
+    </HintToolTip>
   )
 }
