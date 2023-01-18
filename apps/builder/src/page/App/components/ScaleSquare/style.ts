@@ -305,7 +305,7 @@ export const applyMoveBarWrapperStyle = (
     : globalColor(`--${illaPrefix}-techPurple-01`)
   return css`
     height: ${MOVE_BAR_HEIGHT}px;
-    padding: 2px 4px 2px 0;
+    padding: 1px 4px 1px 0;
     background-color: ${backgroundColorStyle};
     ${borderRadiusStyle};
     display: flex;
@@ -328,6 +328,7 @@ export const displayNameContainerStyle = css`
   display: flex;
   min-width: 12px;
   flex-grow: 1;
+  align-items: center;
 `
 
 export const dragPointIconWrapperStyle = css`
@@ -346,6 +347,7 @@ export const freezeIconStyle = css`
 export const moveBarDisplayNameStyle = css`
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 16px;
 `
 
 export const freezeTipsStyle = css`

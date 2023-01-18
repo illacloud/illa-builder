@@ -44,13 +44,14 @@ export const getComponentUsersListContainerStyle = (
     display: flex;
     ${marginStyle};
     gap: 4px;
-    height: 14px;
+    height: 16px;
     max-width: 50px;
     flex-shrink: 0;
     flex-grow: 1;
     justify-content: flex-start;
     align-self: center;
     overflow: hidden;
+    align-items: center;
     min-width: ${minWidth}px;
   `
 }
