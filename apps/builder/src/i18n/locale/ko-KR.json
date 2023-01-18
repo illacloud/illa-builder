@@ -985,7 +985,8 @@
       "des": "요청에 실패했습니다. 나중에 다시 시도하십시오."
     },
     "back": "홈페이지로 돌아 가기",
-    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
+    "mobile_forbidden": "For the better editing experience, please visit this page on desktop",
+    "back_to_cloud": "ILLA 클라우드 페이지로 돌아가기"
   },
   "title": "엘라 클라우드에 오신 것을 환영합니다",
   "unfreeze_tips": "캔버스를 고정한 후 구성 요소를 컨테이너 안팎으로 드래그할 수 있습니다. (디 또는 케이)",
