@@ -636,6 +636,10 @@
           "email": "郵便",
           "regex": "正規表現",
           "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixed",
+          "auto": "Auto"
         }
       },
       "setter_group": {
@@ -813,7 +817,9 @@
         "x_axis_type": "X軸タイプ",
         "x_axis_value": "X軸",
         "y_axis_name": "通称",
-        "y_axis_title": "Y 軸のタイトル"
+        "y_axis_title": "Y 軸のタイトル",
+        "height": "Height",
+        "min_height": "Min height (px)"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1217,6 +1223,9 @@
     },
     "modal": {
       "name": "Modal"
+    },
+    "textarea": {
+      "name": "textarea"
     }
   },
   "page": {
