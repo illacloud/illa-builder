@@ -1313,5 +1313,52 @@
       "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします"
     }
   },
-  "copy_failed": "コピーに失敗しました"
+  "copy_failed": "コピーに失敗しました",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "チーム設定",
+      "member": "メンバー",
+      "leave": "チームを離れる",
+      "delete": "チームを削除します"
+    },
+    "leave_modal": {
+      "title": "このチームを離れてもよろしいですか？",
+      "description": "このチームを離れると、チームのリソースにアクセスできなくなります。",
+      "leave": "離れる",
+      "cancel": "キャンセル"
+    },
+    "delete_modal": {
+      "title": "このチームを削除してもよろしいですか?",
+      "delete": "삭제",
+      "cancel": "キャンセル",
+      "desctiption": "削除後、チーム ID は使用できなくなり、すべてのメンバーがこのチームから削除されます。"
+    },
+    "team_info": {
+      "title": "チームプロフィール",
+      "team_name": "チームの名",
+      "domain": ".illacloud.com",
+      "existed": "すでに存在していた",
+      "available": "利用可能",
+      "edit": "編集",
+      "save": "保存",
+      "adjust_avater": "アバターを調整する",
+      "avater_crop": "切り取り",
+      "team_name_empty": "チームの名を入力して下さい",
+      "team_id_empty": "チームのIDを入力してください",
+      "team_name_placeholder": "チームの名を入力して下さい",
+      "team_id_placeholder": "チームIDを入力してください",
+      "leave_title": "チームを離れる",
+      "leave_button": "チームを離れる",
+      "delete_title": "删除团队",
+      "delete_button": "チームを削除します",
+      "team_domain": "チームID"
+    },
+    "message": {
+      "save_suc": "保存しました",
+      "save_fail": "保存に失敗しました"
+    },
+    "mes": {
+      "domain_suc": "作成されました。"
+    }
+  }
 }
