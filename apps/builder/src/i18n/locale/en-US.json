@@ -1358,7 +1358,11 @@
       "save_fail": "Failed to save"
     },
     "mes": {
-      "domain_suc": "Create successfully."
+      "domain_suc": "Create successfully.",
+      "delete_suc": "Deleted successfully",
+      "delete_fail": "Failed to delete",
+      "leave_suc": "Leave successfully",
+      "leave_fail": "Failed to leave"
     }
   }
 }
