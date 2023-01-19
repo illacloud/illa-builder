@@ -2,6 +2,8 @@ import { AxiosRequestConfig } from "axios"
 import { Api } from "@/api/base"
 import { ILLAWebsocket } from "@/api/ws/illaWS"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getCurrentId } from "@/redux/team/teamSelector"
+import store from "@/store"
 import {
   Broadcast,
   ILLAWebSocketComponentPayload,
@@ -60,18 +62,19 @@ export class Connection {
     loading: (loading: boolean) => void,
     errorState: (errorState: boolean) => void,
   ) {
+    const teamId = getCurrentId(store.getState())
     let instanceId = import.meta.env.VITE_INSTANCE_ID
     let config: AxiosRequestConfig
     switch (type) {
       case "dashboard":
         config = {
-          url: `/room/${instanceId}/dashboard`,
+          url: `/room/websocketConnection/dashboard`,
           method: "GET",
         }
         break
       case "app":
         config = {
-          url: `/room/${instanceId}/app/${roomId}`,
+          url: `/room/websocketConnection/app/${roomId}`,
           method: "GET",
         }
         break
@@ -82,6 +85,7 @@ export class Connection {
     Api.request<Room>(
       config,
       (response) => {
+        console.log(response.data.wsURL, "response.data.wsURL")
         let ws = generateNewWs(response.data.wsURL)
         this.roomMap.set(type + roomId, ws)
       },
