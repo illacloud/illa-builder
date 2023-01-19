@@ -1358,7 +1358,11 @@
       "save_fail": "저장 실패"
     },
     "mes": {
-      "domain_suc": "성공적으로 생성합니다."
+      "domain_suc": "성공적으로 생성합니다.",
+      "delete_suc": "성공적으로 삭제",
+      "delete_fail": "삭제 실패",
+      "leave_suc": "팀 성공을 떠나",
+      "leave_fail": "팀 탈퇴 실패"
     }
   }
 }
