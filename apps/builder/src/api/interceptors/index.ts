@@ -4,7 +4,9 @@ import {
   removeRequestPendingPool,
 } from "@/api/helpers/axiosPendingPool"
 import { ILLARoute } from "@/router"
+import { ILLA_CLOUD_PATH } from "@/router/routerConfig"
 import { getAuthToken, removeAuthToken } from "@/utils/auth"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const authInterceptor = (config: AxiosRequestConfig) => {
   addRequestPendingPool(config)
@@ -32,13 +34,18 @@ export const axiosErrorInterceptor = (error: AxiosError) => {
     // TODO: @aruseito maybe need custom error status, because of we'll have plugin to request other's api
     case 401: {
       removeAuthToken()
-      const { pathname } = location
-      ILLARoute.navigate("/login", {
-        replace: true,
-        state: {
-          form: pathname || "/",
-        },
-      })
+      if (isCloudVersion) {
+        // navigate to illa cloud
+        ILLARoute.navigate(ILLA_CLOUD_PATH)
+      } else {
+        const { pathname } = location
+        ILLARoute.navigate("/login", {
+          replace: true,
+          state: {
+            form: pathname || "/",
+          },
+        })
+      }
       break
     }
     case 403: {
