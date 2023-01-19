@@ -1358,7 +1358,11 @@
       "save_fail": "保存に失敗しました"
     },
     "mes": {
-      "domain_suc": "作成されました。"
+      "domain_suc": "作成されました。",
+      "delete_suc": "正常に削除されました",
+      "delete_fail": "削除できませんでした",
+      "leave_suc": "離れました",
+      "leave_fail": "離れませんでした"
     }
   }
 }
