@@ -1,7 +1,8 @@
 import { redirect } from "react-router-dom"
 import { Api } from "@/api/base"
-import { AuthApi } from "@/api/cloudApi"
+import { CloudBaseApi, cloudAxios } from "@/api/cloudApi"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
+import { getTeamsInfo } from "@/api/team"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
@@ -10,39 +11,11 @@ import { TeamInfo } from "@/redux/team/teamState"
 import { ILLA_CLOUD_PATH } from "@/router/routerConfig"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
-
-export const getTeamsInfo = (teamIdentifier?: string) => {
-  return new Promise<TeamInfo>((resolve, reject) => {
-    Api.request<TeamInfo[]>(
-      {
-        url: "/teams/my",
-        method: "GET",
-      },
-      (response) => {
-        const data = response.data ?? []
-        const currentTeamInfo = data.find(
-          (item) => item.identifier === teamIdentifier,
-        )
-        if (currentTeamInfo) {
-          store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
-          store.dispatch(teamActions.updateTeamItemsReducer(data))
-          resolve(currentTeamInfo)
-        }
-        reject("have no team match")
-      },
-      (e) => {
-        reject(e)
-      },
-      (e) => {
-        reject(e)
-      },
-    )
-  })
-}
+import { setLocalStorage } from "@/utils/storage"
 
 const getUserInfo = (token: string) => {
   return new Promise<CurrentUser>((resolve, reject) => {
-    AuthApi.request<CurrentUser>(
+    CloudBaseApi.request<CurrentUser>(
       {
         url: "/users",
         method: "GET",
@@ -64,6 +37,7 @@ const getUserInfo = (token: string) => {
         reject(e)
       },
       (e) => {
+        console.error("getUserInfo error", e)
         reject(e)
       },
     )
@@ -75,8 +49,11 @@ export const requireAuth = async (
   teamIdentifier?: string,
 ) => {
   const userInfo = getCurrentUser(store.getState())
+  const token = getAuthToken() || pathToken
+  if (pathToken) {
+    setLocalStorage("token", pathToken, -1)
+  }
   if (!userInfo?.userId) {
-    const token = getAuthToken() || pathToken
     if (!token) {
       clearRequestPendingPool()
       return redirect(ILLA_CLOUD_PATH)
@@ -88,8 +65,9 @@ export const requireAuth = async (
     }
   }
   try {
-    await getTeamsInfo(teamIdentifier)
+    await getTeamsInfo(teamIdentifier, token)
   } catch (e) {
     console.error(e)
   }
+  return null
 }

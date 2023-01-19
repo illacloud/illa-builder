@@ -91,6 +91,7 @@ export const IllaApp: FC = () => {
 
   const dispatch = useDispatch()
   useEffect(() => {
+    console.log("useEffect")
     const controller = new AbortController()
     requestData(
       dispatch,

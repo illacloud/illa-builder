@@ -14,7 +14,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { AuthApi } from "@/api/cloudApi"
+import { CloudBaseApi } from "@/api/cloudApi"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { formatLanguage, languageKeys } from "@/i18n/config"
 import { TextLink } from "@/page/User/components/TextLink"
@@ -63,7 +63,7 @@ export const Register: FC = () => {
     },
   })
   const onSubmit: SubmitHandler<RegisterFields> = (data) => {
-    AuthApi.request<RegisterResult>(
+    CloudBaseApi.request<RegisterResult>(
       {
         method: "POST",
         url: "/auth/signup",
@@ -270,7 +270,9 @@ export const Register: FC = () => {
                             const res = await trigger("email")
                             if (res) {
                               setShowCountDown(true)
-                              AuthApi.request<{ verificationToken: string }>(
+                              CloudBaseApi.request<{
+                                verificationToken: string
+                              }>(
                                 {
                                   method: "POST",
                                   url: "/auth/verification",

@@ -13,7 +13,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { AuthApi } from "@/api/cloudApi"
+import { CloudBaseApi } from "@/api/cloudApi"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import {
   errorIconStyle,
@@ -48,7 +48,7 @@ export const ResetPassword: FC = () => {
     mode: "onSubmit",
   })
   const onSubmit: SubmitHandler<ResetPwdFields> = (data) => {
-    AuthApi.request(
+    CloudBaseApi.request(
       {
         method: "POST",
         url: "/auth/forgetPassword",
@@ -203,7 +203,7 @@ export const ResetPassword: FC = () => {
                           const res = await trigger("email")
                           if (res) {
                             setShowCountDown(true)
-                            AuthApi.request<{ verificationToken: string }>(
+                            CloudBaseApi.request<{ verificationToken: string }>(
                               {
                                 method: "POST",
                                 url: "/auth/verification",

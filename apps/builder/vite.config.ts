@@ -49,7 +49,12 @@ export default defineConfig((props) => {
       port: 3000,
       https: true,
       proxy: {
-        "/api": {
+        "/supervisior/api/v1": {
+          target: env.VITE_PROXY_API_BASE_URL,
+          changeOrigin: true,
+          secure: false,
+        },
+        "/builder/api/v1": {
           target: env.VITE_PROXY_API_BASE_URL,
           changeOrigin: true,
           secure: false,

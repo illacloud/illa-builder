@@ -21,9 +21,7 @@ const BUILDER = "/builder/api/v1"
 
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
-  baseURL: `${location.protocol}//${
-    import.meta.env.VITE_API_BASE_URL
-  }${BUILDER}`,
+  baseURL: `${BUILDER}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
@@ -52,7 +50,7 @@ export class Api {
     axios
       .request<RespData, AxiosResponse<RespData>, RequestBody>({
         ...config,
-        baseURL: `${config.baseURL}/teams/${teamId}`,
+        url: `/teams/${teamId}` + config.url,
       })
       .then((response) => {
         loading?.(false)

@@ -7,21 +7,27 @@ import { requireAuth } from "@/router/loader"
 import { routerConfig } from "@/router/routerConfig"
 import { isCloudVersion } from "@/utils/typeHelper"
 
-const wrappedRouter = (routesConfig: RoutesObjectPro[]) => {
+const wrappedRouter = (
+  routesConfig: RoutesObjectPro[],
+  isChildren?: boolean,
+) => {
   return routesConfig.map((routeItem: RoutesObjectPro) => {
     const { element, children, needLogin, ...otherRouteProps } = routeItem
     const newRouteItem: RoutesObjectPro = {
       ...otherRouteProps,
     }
-    if (needLogin) {
+    if (needLogin && !isChildren) {
+      console.log({ isCloudVersion })
       if (isCloudVersion) {
         newRouteItem.errorElement = <Page404 />
         newRouteItem.loader = async ({ params, request }) => {
+          console.log(params, "params")
           const url = new URL(request.url)
           const token = url?.searchParams?.get("token")
           const teamIdentifier = params.teamIdentifier
           return await requireAuth(token, teamIdentifier)
         }
+        newRouteItem.element = <LayoutAutoChange desktopPage={element} />
       } else {
         newRouteItem.element = (
           <LayoutAutoChange
@@ -33,7 +39,7 @@ const wrappedRouter = (routesConfig: RoutesObjectPro[]) => {
       newRouteItem.element = <LayoutAutoChange desktopPage={element} />
     }
     if (Array.isArray(children) && children.length) {
-      newRouteItem.children = wrappedRouter(children)
+      newRouteItem.children = wrappedRouter(children, true)
     }
 
     return newRouteItem
