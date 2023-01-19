@@ -17,11 +17,13 @@ export interface ApiError {
   errorMessage: string
 }
 
-const CLOUD = "/supervisior/api/v1"
+const BUILDER = "/builder/api/v1"
 
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
-  baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`,
+  baseURL: `${location.protocol}//${
+    import.meta.env.VITE_API_BASE_URL
+  }${BUILDER}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
@@ -52,37 +54,6 @@ export class Api {
         ...config,
         baseURL: `${config.baseURL}/teams/${teamId}`,
       })
-      .then((response) => {
-        loading?.(false)
-        errorState?.(false)
-        success?.(response)
-      })
-      .catch((error: AxiosError<ErrorResp, RequestBody>) => {
-        loading?.(false)
-        errorState?.(true)
-        if (error.response) {
-          failure?.(error.response)
-        }
-        if (error.response == undefined && error.request != undefined) {
-          crash?.(error)
-        }
-      })
-  }
-}
-
-export class AuthApi {
-  static request<RespData, RequestBody = any, ErrorResp = ApiError>(
-    config: AxiosRequestConfig<RequestBody>,
-    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
-    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
-    crash?: (e: AxiosError) => void,
-    loading?: (loading: boolean) => void,
-    errorState?: (errorState: boolean) => void,
-  ) {
-    loading?.(true)
-    errorState?.(false)
-    axios
-      .request<RespData, AxiosResponse<RespData>, RequestBody>(config)
       .then((response) => {
         loading?.(false)
         errorState?.(false)

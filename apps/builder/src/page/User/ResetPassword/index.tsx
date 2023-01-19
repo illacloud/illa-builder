@@ -13,7 +13,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { AuthApi } from "@/api/base"
+import { AuthApi } from "@/api/cloudApi"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import {
   errorIconStyle,

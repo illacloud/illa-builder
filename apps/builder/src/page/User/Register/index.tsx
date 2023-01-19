@@ -14,7 +14,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { AuthApi } from "@/api/base"
+import { AuthApi } from "@/api/cloudApi"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { formatLanguage, languageKeys } from "@/i18n/config"
 import { TextLink } from "@/page/User/components/TextLink"

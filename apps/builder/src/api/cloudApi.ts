@@ -8,12 +8,10 @@ import {
 import { getCurrentId } from "@/redux/team/teamSelector"
 import store from "@/store"
 
-const BUILDER = "/builder/api/v1"
+const CLOUD = "/supervisior/api/v1"
 
 const builderAxios = Axios.create({
-  baseURL: `${location.protocol}//${
-    import.meta.env.VITE_API_BASE_URL
-  }${BUILDER}`,
+  baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
@@ -30,7 +28,7 @@ builderAxios.interceptors.response.use(
   axiosErrorInterceptor,
 )
 
-export class BuilderApi {
+export class CloudApi {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
     success?: (response: AxiosResponse<RespData, RequestBody>) => void,
@@ -47,6 +45,37 @@ export class BuilderApi {
         ...config,
         baseURL: `${config.baseURL}/teams/${teamId}`,
       })
+      .then((response) => {
+        loading?.(false)
+        errorState?.(false)
+        success?.(response)
+      })
+      .catch((error: AxiosError<ErrorResp, RequestBody>) => {
+        loading?.(false)
+        errorState?.(true)
+        if (error.response) {
+          failure?.(error.response)
+        }
+        if (error.response == undefined && error.request != undefined) {
+          crash?.(error)
+        }
+      })
+  }
+}
+
+export class AuthApi {
+  static request<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
+    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
+    crash?: (e: AxiosError) => void,
+    loading?: (loading: boolean) => void,
+    errorState?: (errorState: boolean) => void,
+  ) {
+    loading?.(true)
+    errorState?.(false)
+    builderAxios
+      .request<RespData, AxiosResponse<RespData>, RequestBody>(config)
       .then((response) => {
         loading?.(false)
         errorState?.(false)
