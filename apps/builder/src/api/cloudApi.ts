@@ -19,7 +19,7 @@ import {
 const CLOUD = "/supervisior/api/v1"
 
 export const cloudAxios = Axios.create({
-  baseURL: `${CLOUD}`,
+  baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",

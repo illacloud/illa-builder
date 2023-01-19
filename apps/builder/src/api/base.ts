@@ -21,7 +21,9 @@ const BUILDER = "/builder/api/v1"
 
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
-  baseURL: `${BUILDER}`,
+  baseURL: `${location.protocol}//${
+    import.meta.env.VITE_API_BASE_URL
+  }${BUILDER}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
