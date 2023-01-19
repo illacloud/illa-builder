@@ -1312,5 +1312,6 @@
     "settings": {
       "allow_editors_invite": "允许编辑者和浏览者管理成员"
     }
-  }
+  },
+  "copy_failed": "复制失败"
 }
