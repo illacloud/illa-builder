@@ -1,7 +1,7 @@
 import { FC, ReactNode, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { Api } from "@/api/base"
+import { AuthApi } from "@/api/cloudApi"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
@@ -26,7 +26,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
       return
     }
     if (currentUserId === "" || currentUserId == undefined) {
-      Api.request<CurrentUser>(
+      AuthApi.request<CurrentUser>(
         {
           url: "/users",
           method: "GET",

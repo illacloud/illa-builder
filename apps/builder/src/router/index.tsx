@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import { CheckIsLogin } from "@/auth"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
+import { Page404 } from "@/page/status/404"
 import { RoutesObjectPro } from "@/router/interface"
 import { requireAuth } from "@/router/loader"
 import { routerConfig } from "@/router/routerConfig"
@@ -14,6 +15,7 @@ const wrappedRouter = (routesConfig: RoutesObjectPro[]) => {
     }
     if (needLogin) {
       if (isCloudVersion) {
+        newRouteItem.errorElement = <Page404 />
         newRouteItem.loader = async ({ params, request }) => {
           const url = new URL(request.url)
           const token = url?.searchParams?.get("token")
