@@ -1241,5 +1241,34 @@
     "invalid_tips": "Please enter a value not less than {{ size }}."
   },
   "failed_to_copy": "복사 실패",
-  "copied": "복사됨!"
+  "copied": "복사됨!",
+  "user_management": {
+    "role": {
+      "owner": "Owner",
+      "admin": "Administer",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Invite members"
+      },
+      "link": {
+        "invite_title": "Invite link",
+        "copy": "Copy",
+        "turn_off": "Turn off invite links",
+        "update": "Update invite links",
+        "description": "Share a secret link people can use to join your team.",
+        "turn_on": "Turn on invite links"
+      },
+      "email": {
+        "invite_title": "Invite by email",
+        "invite": "Invite"
+      }
+    },
+    "mes": {
+      "invite_suc": "Invited successfully",
+      "invite_fail": "Failed to invite"
+    }
+  }
 }
