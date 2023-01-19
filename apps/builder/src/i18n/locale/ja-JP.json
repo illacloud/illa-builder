@@ -1312,5 +1312,6 @@
     "settings": {
       "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします"
     }
-  }
+  },
+  "copy_failed": "コピーに失敗しました"
 }
