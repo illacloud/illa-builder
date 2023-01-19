@@ -42,6 +42,8 @@ export function getPayload<T>(
   target: Target,
   broadcast: boolean,
   reduxBroadcast: Broadcast | null,
+  teamID: string,
+  uid: string,
   payload: T[],
 ): string {
   return JSON.stringify({
