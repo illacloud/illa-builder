@@ -1313,5 +1313,52 @@
       "allow_editors_invite": "Allow editors and viewers to manage members"
     }
   },
-  "copy_failed": "Failed to copy"
+  "copy_failed": "Failed to copy",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Team settings",
+      "member": "Member",
+      "leave": "Leave team",
+      "delete": "Delete team"
+    },
+    "leave_modal": {
+      "title": "Are you sure you want to leave this team?",
+      "description": "You will not be able to access any team resources after leaving.",
+      "leave": "Leave",
+      "cancel": "Cancel"
+    },
+    "delete_modal": {
+      "title": "Are you sure you want to delete this team?",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "desctiption": "The team identifier will be unavailable after deletion, and all members will be removed from this team."
+    },
+    "team_info": {
+      "title": "Team info",
+      "team_name": "Team name",
+      "domain": ".illacloud.com",
+      "existed": "Already existed",
+      "available": "Available",
+      "edit": "Edit",
+      "save": "Save Changes",
+      "adjust_avater": "Adjust the avater",
+      "avater_crop": "Crop",
+      "team_name_empty": "Please enter the team name",
+      "team_id_empty": "Please enter the team identifier",
+      "team_name_placeholder": "Enter the team name",
+      "team_id_placeholder": "Enter the team identifier",
+      "leave_title": "Leave team",
+      "leave_button": "Leave team",
+      "delete_title": "Delete team",
+      "delete_button": "Delete team",
+      "team_domain": "Team Identifier"
+    },
+    "message": {
+      "save_suc": "Successfully saved",
+      "save_fail": "Failed to save"
+    },
+    "mes": {
+      "domain_suc": "Create successfully."
+    }
+  }
 }
