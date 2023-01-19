@@ -1312,5 +1312,6 @@
     "settings": {
       "allow_editors_invite": "Allow editors and viewers to manage members"
     }
-  }
+  },
+  "copy_failed": "Failed to copy"
 }
