@@ -1259,16 +1259,58 @@
         "turn_off": "Turn off invite links",
         "update": "Update invite links",
         "description": "Share a secret link people can use to join your team.",
-        "turn_on": "Turn on invite links"
+        "turn_on": "Turn on invite links",
+        "fail": "Failed to obtain the link, please try again later",
+        "copied_suc": "Copied!",
+        "failed_to_copy": "Failed to copy",
+        "turn_off_fail": "Failed to turn off",
+        "turn_on_fail": "Failed to turn on"
       },
       "email": {
         "invite_title": "Invite by email",
-        "invite": "Invite"
+        "invite": "Invite",
+        "placeholder": "Enter email address",
+        "invited": "Have invited",
+        "in_list": "This user is already in your team."
       }
     },
     "mes": {
       "invite_suc": "Invited successfully",
-      "invite_fail": "Failed to invite"
+      "invite_fail": "Failed to invite",
+      "update_suc": "Updated successfully",
+      "update_fail": "Failed to update",
+      "transfer_suc": "Successfully transferred",
+      "transfer_fail": "Failed to transfer",
+      "remove_suc": "Successfully removed",
+      "remove_fail": "Failed to remove",
+      "change_role_fail": "Failed to update",
+      "change_role_suc": "Updated successfully"
+    },
+    "page": {
+      "member": "Member",
+      "invite": "Invite",
+      "permission": "Permission",
+      "operation": "Operation",
+      "transfer": "Transfer ownership",
+      "remove": "Remove"
+    },
+    "transfer_modal": {
+      "title": "Are you sure you want to transfer ownership?",
+      "description": "After transferring, your permission will change to administrator.",
+      "transfer": "Transfer",
+      "cancel": "Cancel"
+    },
+    "remove_modal": {
+      "title": "Are you sure you want to remove {{ username }} ?",
+      "description": "After removal, the user will not be able to access the team.",
+      "remove": "Remove",
+      "cancel": "Cancel"
+    },
+    "status": {
+      "pending": "Pending"
+    },
+    "settings": {
+      "allow_editors_invite": "Allow editors and viewers to manage members"
     }
   }
 }
