@@ -1312,5 +1312,6 @@
     "settings": {
       "allow_editors_invite": "편집자와 뷰어가 회원을 관리하도록 허용합니다"
     }
-  }
+  },
+  "copy_failed": "복사 실패"
 }
