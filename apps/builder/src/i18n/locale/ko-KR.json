@@ -1244,31 +1244,73 @@
   "copied": "복사됨!",
   "user_management": {
     "role": {
-      "owner": "Owner",
-      "admin": "Administer",
-      "editor": "Editor",
-      "viewer": "Viewer"
+      "owner": "소유자",
+      "admin": "관리하다",
+      "editor": "편집자",
+      "viewer": "보기만"
     },
     "modal": {
       "title": {
-        "invite_members": "Invite members"
+        "invite_members": "멤버 초대"
       },
       "link": {
-        "invite_title": "Invite link",
-        "copy": "Copy",
-        "turn_off": "Turn off invite links",
-        "update": "Update invite links",
-        "description": "Share a secret link people can use to join your team.",
-        "turn_on": "Turn on invite links"
+        "invite_title": "초대 링크",
+        "copy": "복사",
+        "turn_off": "초대 링크 끄기",
+        "update": "초대 링크 업데이트",
+        "description": "사용자가 비공개 링크로 팀에 참여할 수 있도록 허용",
+        "turn_on": "초대 링크 켜기",
+        "fail": "링크를 가져오지 못했습니다. 나중에 다시 시도해 주세요.",
+        "copied_suc": "복사됨!",
+        "failed_to_copy": "복사 실패",
+        "turn_off_fail": "사용 중지하지 못했습니다",
+        "turn_on_fail": "사용 설정 실패"
       },
       "email": {
-        "invite_title": "Invite by email",
-        "invite": "Invite"
+        "invite_title": "이메일로 초대",
+        "invite": "초대",
+        "placeholder": "이메일 주소를 입력하세요",
+        "invited": "초대했다",
+        "in_list": "이 사용자는 이미 팀에 있습니다."
       }
     },
     "mes": {
-      "invite_suc": "Invited successfully",
-      "invite_fail": "Failed to invite"
+      "invite_suc": "초대 성공",
+      "invite_fail": "초대 실패",
+      "update_suc": "업데이트 성공",
+      "update_fail": "업데이트하지 못했습니다",
+      "transfer_suc": "양도했습니다",
+      "transfer_fail": "전송 실패",
+      "remove_suc": "삭제 성공",
+      "remove_fail": "삭제하지 못했습니다",
+      "change_role_fail": "업데이트하지 못했습니다",
+      "change_role_suc": "업데이트 성공"
+    },
+    "page": {
+      "member": "당원",
+      "invite": "초대",
+      "permission": "권한",
+      "operation": "운영",
+      "transfer": "소유권 이전",
+      "remove": "제거"
+    },
+    "transfer_modal": {
+      "title": "소유권을 이전하시겠습니까?",
+      "description": "전송 후 권한이 관리자로 변경됩니다.",
+      "transfer": "전송",
+      "cancel": "取消"
+    },
+    "remove_modal": {
+      "title": "{{ username }}을(를) 삭제하시겠습니까 ?",
+      "description": "제거 후 사용자는 팀에 액세스할 수 없습니다.",
+      "remove": "제거",
+      "cancel": "취소"
+    },
+    "status": {
+      "pending": "보류 중"
+    },
+    "settings": {
+      "allow_editors_invite": "편집자와 뷰어가 회원을 관리하도록 허용합니다"
     }
   }
 }
