@@ -1244,31 +1244,73 @@
   "copied": "复制成功！",
   "user_management": {
     "role": {
-      "owner": "Owner",
-      "admin": "Administer",
-      "editor": "Editor",
-      "viewer": "Viewer"
+      "owner": "所有者",
+      "admin": "管理员",
+      "editor": "编辑者",
+      "viewer": "浏览者"
     },
     "modal": {
       "title": {
-        "invite_members": "Invite members"
+        "invite_members": "邀请成员"
       },
       "link": {
-        "invite_title": "Invite link",
-        "copy": "Copy",
-        "turn_off": "Turn off invite links",
-        "update": "Update invite links",
-        "description": "Share a secret link people can use to join your team.",
-        "turn_on": "Turn on invite links"
+        "invite_title": "邀请链接",
+        "copy": "复制",
+        "turn_off": "关闭邀请链接",
+        "update": "更新邀请链接",
+        "description": "允许用户通过您分享的私密链接加入团队",
+        "turn_on": "打开邀请链接",
+        "fail": "链接获取失败，请稍后重试",
+        "copied_suc": "复制成功！",
+        "failed_to_copy": "复制失败",
+        "turn_off_fail": "关闭失败",
+        "turn_on_fail": "开启失败"
       },
       "email": {
-        "invite_title": "Invite by email",
-        "invite": "Invite"
+        "invite_title": "通过电子邮件邀请",
+        "invite": "邀请",
+        "placeholder": "输入电子邮件地址",
+        "invited": "已邀请",
+        "in_list": "该用户已加入您的团队"
       }
     },
     "mes": {
-      "invite_suc": "Invited successfully",
-      "invite_fail": "Failed to invite"
+      "invite_suc": "邀请成功",
+      "invite_fail": "邀请失败",
+      "update_suc": "更新成功",
+      "update_fail": "更新失败",
+      "transfer_suc": "转移成功",
+      "transfer_fail": "转移失败",
+      "remove_suc": "移除成功",
+      "remove_fail": "移除失败",
+      "change_role_fail": "更新失败",
+      "change_role_suc": "更新成功"
+    },
+    "page": {
+      "member": "成员",
+      "invite": "邀请",
+      "permission": "权限",
+      "operation": "操作",
+      "transfer": "转移所有权",
+      "remove": "移除"
+    },
+    "transfer_modal": {
+      "title": "您确定要转移所有权吗？",
+      "description": "转移后，您的权限将更改为管理员。",
+      "transfer": "转移",
+      "cancel": "取消"
+    },
+    "remove_modal": {
+      "title": "你想要删除 {{ username }} 吗？",
+      "description": "删除后，用户将无法访问该团队。",
+      "remove": "移除",
+      "cancel": "取消"
+    },
+    "status": {
+      "pending": "等待处理"
+    },
+    "settings": {
+      "allow_editors_invite": "允许编辑者和浏览者管理成员"
     }
   }
 }
