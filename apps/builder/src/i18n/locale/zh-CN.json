@@ -1358,7 +1358,11 @@
       "save_fail": "保存失败"
     },
     "mes": {
-      "domain_suc": "创建成功"
+      "domain_suc": "创建成功",
+      "delete_suc": "删除成功",
+      "delete_fail": "删除失败",
+      "leave_suc": "退出成功",
+      "leave_fail": "退出失败"
     }
   }
 }
