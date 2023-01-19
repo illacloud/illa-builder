@@ -2,7 +2,7 @@ import copy from "copy-to-clipboard"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import {
   Button,
   Divider,
@@ -27,6 +27,7 @@ import {
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
   let navigate = useNavigate()
+  const { teamIdentifier } = useParams()
   const message = useMessage()
 
   const appsList: DashboardApp[] = useSelector(getDashboardApps)
@@ -72,7 +73,7 @@ export const DashboardApps: FC = () => {
                 >
                   <ListItemMeta
                     onClick={() => {
-                      navigate(`/app/${item.appId}`)
+                      navigate(`/${teamIdentifier}/app/${item.appId}`)
                     }}
                     title={item.appName}
                     description={t("dashboard.app.edited_time", {

@@ -1,6 +1,7 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 import {
   Badge,
   BugIcon,
@@ -275,6 +276,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const message = useMessage()
+  const { teamIdentifier } = useParams()
 
   const appInfo = useSelector(getAppInfo)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
@@ -317,7 +319,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           window.location.protocol +
             "//" +
             window.location.host +
-            `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
+            `${teamIdentifier}/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
           "_blank",
         )
       },
@@ -335,7 +337,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         setDeployLoading(loading)
       },
     )
-  }, [appInfo.appId, t])
+  }, [appInfo.appId, t, teamIdentifier])
 
   return (
     <div className={className} css={navBarStyle}>

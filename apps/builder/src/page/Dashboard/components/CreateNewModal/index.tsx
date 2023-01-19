@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Input, Modal, useMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
@@ -15,6 +15,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { teamIdentifier } = useParams()
 
   const [loading, setLoading] = useState(false)
   const message = useMessage()
@@ -58,7 +59,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
                 app: response.data,
               }),
             )
-            navigate(`/app/${response.data.appId}`)
+            navigate(`/${teamIdentifier}/app/${response.data.appId}`)
           },
           (failure) => {},
           (error) => {},

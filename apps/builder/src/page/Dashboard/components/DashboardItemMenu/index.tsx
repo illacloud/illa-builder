@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import {
   Button,
   DropList,
@@ -30,6 +30,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { teamIdentifier } = useParams()
 
   const app = useSelector((state: RootState) => {
     return state.dashboard.dashboardApps.list.find(
@@ -56,7 +57,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           className="dashboardAppEditButton"
           colorScheme="techPurple"
           onClick={() => {
-            navigate(`/app/${app.appId}`)
+            navigate(`/${teamIdentifier}/app/${app.appId}`)
           }}
         >
           {t("edit")}

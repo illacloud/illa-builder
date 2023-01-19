@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import {
   navBarLogoStyle,
@@ -11,6 +11,7 @@ import {
 export const SettingNavBar: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const { teamIdentifier } = useParams()
 
   return (
     <div css={navBarStyle}>
@@ -20,12 +21,15 @@ export const SettingNavBar: FC = () => {
           navigate("/")
         }}
       />
-      <span css={navBarTabStyle} onClick={() => navigate("/dashboard/apps")}>
+      <span
+        css={navBarTabStyle}
+        onClick={() => navigate(`/${teamIdentifier}/dashboard/apps`)}
+      >
         {t("apps")}
       </span>
       <span
         css={navBarTabStyle}
-        onClick={() => navigate("/dashboard/resources")}
+        onClick={() => navigate(`/${teamIdentifier}/dashboard/resources`)}
       >
         {t("resources")}
       </span>
