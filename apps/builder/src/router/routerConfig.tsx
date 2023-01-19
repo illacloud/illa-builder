@@ -19,7 +19,7 @@ import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
 import { isCloudVersion } from "@/utils/typeHelper"
 
-export const ILLA_CLOUD_PATH = "https://127.0.0.1:5173/"
+export const ILLA_CLOUD_PATH = import.meta.env.VITE_CLOUD_URL
 
 // TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
 export const routerConfig: RoutesObjectPro[] = [
