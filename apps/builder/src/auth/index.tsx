@@ -5,7 +5,10 @@ import { CloudBaseApi } from "@/api/cloudApi"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import {
+  CurrentUser,
+  UserInfoResponse,
+} from "@/redux/currentUser/currentUserState"
 import { getLocalStorage } from "@/utils/storage"
 
 interface CheckIsLoginWrapperProps {
@@ -26,7 +29,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
       return
     }
     if (currentUserId === "" || currentUserId == undefined) {
-      CloudBaseApi.request<CurrentUser>(
+      CloudBaseApi.request<UserInfoResponse>(
         {
           url: "/users",
           method: "GET",
@@ -36,7 +39,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
           dispatch(
             currentUserActions.updateCurrentUserReducer({
               ...response.data,
-              nickname: response.data.nickname,
+              userId: response.data.id,
             }),
           )
         },

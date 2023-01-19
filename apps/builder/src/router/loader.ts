@@ -1,21 +1,18 @@
 import { redirect } from "react-router-dom"
-import { Api } from "@/api/base"
 import { CloudBaseApi, cloudAxios } from "@/api/cloudApi"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { getTeamsInfo } from "@/api/team"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
-import { teamActions } from "@/redux/team/teamSlice"
-import { TeamInfo } from "@/redux/team/teamState"
+import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
 import { ILLA_CLOUD_PATH } from "@/router/routerConfig"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { setLocalStorage } from "@/utils/storage"
 
 const getUserInfo = (token: string) => {
-  return new Promise<CurrentUser>((resolve, reject) => {
-    CloudBaseApi.request<CurrentUser>(
+  return new Promise<UserInfoResponse>((resolve, reject) => {
+    CloudBaseApi.request<UserInfoResponse>(
       {
         url: "/users",
         method: "GET",
@@ -28,7 +25,7 @@ const getUserInfo = (token: string) => {
         store.dispatch(
           currentUserActions.updateCurrentUserReducer({
             ...response.data,
-            nickname: response.data.nickname,
+            userId: response.data.id,
           }),
         )
         resolve(response.data)

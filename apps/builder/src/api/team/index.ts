@@ -22,14 +22,23 @@ export const getMembersFormTeamId = async (teamId: string) => {
 }
 
 export const getMembers = async () => {
-  try {
-    const { data } = await cloudAxios.get<MemberInfo[]>(`/members`)
-    if (!data) return
-    store.dispatch(teamActions.updateCurrentMemberListReducer(data))
-    return data
-  } catch (e) {
-    return
-  }
+  return new Promise<MemberInfo[]>(async (resolve, reject) => {
+    CloudTeamApi.request<MemberInfo[]>(
+      {
+        method: "GET",
+        url: "/members",
+      },
+      ({ data }) => {
+        if (!data) return
+        store.dispatch(teamActions.updateCurrentMemberListReducer(data))
+        resolve(data)
+      },
+      (e) => {
+        console.error(e)
+        reject(e)
+      },
+    )
+  })
 }
 
 export const getTeamsInfo = (teamIdentifier?: string, token?: string) => {

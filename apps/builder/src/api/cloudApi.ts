@@ -100,7 +100,7 @@ export class CloudTeamApi {
     cloudAxios
       .request<RespData, AxiosResponse<RespData>, RequestBody>({
         ...config,
-        baseURL: `${config.baseURL}/teams/${teamId}`,
+        url: `/teams/${teamId}` + config.url,
       })
       .then((response) => {
         loading?.(false)

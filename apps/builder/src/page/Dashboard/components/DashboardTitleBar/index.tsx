@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import {
   Divider,
   DownIcon,
@@ -68,6 +68,7 @@ const SettingTrigger: FC = () => {
 export const DashboardTitleBar: FC = () => {
   const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
+  const { teamIdentifier } = useParams()
   let navigate = useNavigate()
   let location = useLocation()
   let pathList = location.pathname.split("/")
@@ -83,17 +84,17 @@ export const DashboardTitleBar: FC = () => {
       key: "resources",
       title: t("resources"),
     },
+    {
+      key: "members",
+      title: t("members"),
+    },
   ]
 
   return (
     <Tabs
       prefix={
         <div css={navBarLogoContainerStyle} key="prefix">
-          <Logo
-            onClick={() => {
-              navigate("/")
-            }}
-          />
+          <Logo onClick={() => navigate(`/${teamIdentifier}/dashboard/apps`)} />
         </div>
       }
       suffix={
@@ -127,6 +128,9 @@ export const DashboardTitleBar: FC = () => {
             break
           case "resources":
             navigate("./resources")
+            break
+          case "members":
+            navigate(`/${teamIdentifier}/members`)
             break
         }
       }}

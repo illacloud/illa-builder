@@ -4,6 +4,7 @@ import { IllaApp } from "@/page/Dashboard"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { Deploy } from "@/page/Deploy"
+import { Member } from "@/page/Member"
 import { Setting } from "@/page/Setting"
 import { SettingAccount } from "@/page/Setting/SettingAccount"
 import { SettingOthers } from "@/page/Setting/SettingOthers"
@@ -52,6 +53,11 @@ export const routerConfig: RoutesObjectPro[] = [
         element: <DashboardResources />,
         needLogin: true,
       },
+      {
+        path: "/:teamIdentifier/dashboard/members",
+        element: <Member />,
+        needLogin: true,
+      },
     ],
   },
   {
@@ -60,6 +66,12 @@ export const routerConfig: RoutesObjectPro[] = [
     needLogin: true,
     errorElement: <Page403 />,
   },
+  // {
+  //   path: "/:teamIdentifier/members",
+  //   element: <Member />,
+  //   needLogin: true,
+  //   errorElement: <Page403 />,
+  // },
   {
     path: "/:teamIdentifier/deploy/app/:appId/version/:versionId",
     element: <Deploy />,

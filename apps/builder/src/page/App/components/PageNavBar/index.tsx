@@ -1,7 +1,7 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import {
   Badge,
   BugIcon,
@@ -276,6 +276,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const message = useMessage()
+  const navigate = useNavigate()
   const { teamIdentifier } = useParams()
 
   const appInfo = useSelector(getAppInfo)
@@ -344,9 +345,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div css={rowCenter}>
         <Logo
           width="34px"
-          onClick={() => {
-            window.location.href = "/"
-          }}
+          onClick={() => navigate(`/${teamIdentifier}/dashboard/apps`)}
           css={logoCursorStyle}
         />
         <div css={informationStyle}>

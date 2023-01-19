@@ -82,7 +82,7 @@ export const Register: FC = () => {
         setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
-            userId: res.data.userId,
+            userId: res.data.id,
             nickname: res.data.nickname,
             language: res.data.language,
             email: res.data.email,

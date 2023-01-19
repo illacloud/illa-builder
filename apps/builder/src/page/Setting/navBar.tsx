@@ -15,12 +15,7 @@ export const SettingNavBar: FC = () => {
 
   return (
     <div css={navBarStyle}>
-      <Logo
-        css={navBarLogoStyle}
-        onClick={() => {
-          navigate("/")
-        }}
-      />
+      <Logo css={navBarLogoStyle} onClick={() => navigate(`./`)} />
       <span
         css={navBarTabStyle}
         onClick={() => navigate(`/${teamIdentifier}/dashboard/apps`)}
@@ -32,6 +27,12 @@ export const SettingNavBar: FC = () => {
         onClick={() => navigate(`/${teamIdentifier}/dashboard/resources`)}
       >
         {t("resources")}
+      </span>
+      <span
+        css={navBarTabStyle}
+        onClick={() => navigate(`/${teamIdentifier}/dashboard/members`)}
+      >
+        {t("members")}
       </span>
     </div>
   )
