@@ -1,6 +1,7 @@
 import { Connection, getPayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/interface"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
 
 export const getDisattachedComponents = (
@@ -15,6 +16,8 @@ export const getDisattachedComponents = (
 
 export const updateSelectedComponentUsersHandler = (payload: string[]) => {
   const currentAppID = store.getState().currentApp.appInfo.appId ?? ""
+  const { id: teamID = "", uid = "" } =
+    getCurrentTeamInfo(store.getState()) ?? {}
   Connection.getRoom("app", currentAppID)?.send(
     getPayload(
       Signal.SIGNAL_COOPERATE_ATTACH,
@@ -24,6 +27,8 @@ export const updateSelectedComponentUsersHandler = (payload: string[]) => {
         type: "attachComponent",
         payload: [],
       },
+      teamID,
+      uid,
       payload,
     ),
   )
@@ -31,6 +36,8 @@ export const updateSelectedComponentUsersHandler = (payload: string[]) => {
 
 export const clearComponentAttachedUsersHandler = (payload: string[]) => {
   const currentAppID = store.getState().currentApp.appInfo.appId ?? ""
+  const { id: teamID = "", uid = "" } =
+    getCurrentTeamInfo(store.getState()) ?? {}
   Connection.getRoom("app", currentAppID)?.send(
     getPayload(
       Signal.SIGNAL_COOPERATE_DISATTACH,
@@ -40,6 +47,8 @@ export const clearComponentAttachedUsersHandler = (payload: string[]) => {
         type: "attachComponent",
         payload: [],
       },
+      teamID,
+      uid,
       payload,
     ),
   )

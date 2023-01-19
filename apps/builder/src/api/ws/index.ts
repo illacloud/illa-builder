@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios"
 import { Api } from "@/api/base"
 import { ILLAWebsocket } from "@/api/ws/illaWS"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getCurrentId } from "@/redux/team/teamSelector"
+import { getCurrentId, getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
 import {
   Broadcast,
@@ -103,6 +103,8 @@ export class Connection {
   }
 
   static leaveRoom(type: RoomType, roomId: string) {
+    const { id: teamID = "", uid = "" } =
+      getCurrentTeamInfo(store.getState()) ?? {}
     let ws = this.roomMap.get(type + roomId)
     if (ws != undefined) {
       ws.send(
@@ -114,6 +116,8 @@ export class Connection {
             type: "leave",
             payload: [],
           },
+          teamID,
+          uid,
           [],
         ),
       )
