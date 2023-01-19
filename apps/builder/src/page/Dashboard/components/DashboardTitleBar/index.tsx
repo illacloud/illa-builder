@@ -130,7 +130,7 @@ export const DashboardTitleBar: FC = () => {
             navigate("./resources")
             break
           case "members":
-            navigate(`/${teamIdentifier}/members`)
+            navigate(`./members`)
             break
         }
       }}
