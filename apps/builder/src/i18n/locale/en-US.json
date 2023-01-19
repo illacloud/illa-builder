@@ -636,6 +636,10 @@
           "email": "Email",
           "regex": "Regex",
           "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixed",
+          "auto": "Auto"
         }
       },
       "setter_group": {
@@ -813,7 +817,9 @@
         "x_axis_type": "X-axis type",
         "x_axis_value": "X-axis value",
         "y_axis_name": "Y-axis name",
-        "y_axis_title": "Y-axis title"
+        "y_axis_title": "Y-axis title",
+        "height": "Height",
+        "min_height": "Min height (px)"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -979,7 +985,8 @@
       "des": "Oops, something went wrong. Please try again later."
     },
     "back": "Back to homepage",
-    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
+    "mobile_forbidden": "For the better editing experience, please visit this page on desktop",
+    "back_to_cloud": "Back to ILLA Cloud"
   },
   "title": "Welcome to illa",
   "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
@@ -1217,6 +1224,9 @@
     },
     "modal": {
       "name": "Modal"
+    },
+    "textarea": {
+      "name": "Textarea"
     }
   },
   "page": {
@@ -1231,5 +1241,76 @@
     "invalid_tips": "Please enter a value not less than {{ size }}."
   },
   "failed_to_copy": "Failed to copy",
-  "copied": "Copied!"
+  "copied": "Copied!",
+  "user_management": {
+    "role": {
+      "owner": "Owner",
+      "admin": "Administer",
+      "editor": "Editor",
+      "viewer": "Viewer"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Invite members"
+      },
+      "link": {
+        "invite_title": "Invite link",
+        "copy": "Copy",
+        "turn_off": "Turn off invite links",
+        "update": "Update invite links",
+        "description": "Share a secret link people can use to join your team.",
+        "turn_on": "Turn on invite links",
+        "fail": "Failed to obtain the link, please try again later",
+        "copied_suc": "Copied!",
+        "failed_to_copy": "Failed to copy",
+        "turn_off_fail": "Failed to turn off",
+        "turn_on_fail": "Failed to turn on"
+      },
+      "email": {
+        "invite_title": "Invite by email",
+        "invite": "Invite",
+        "placeholder": "Enter email address",
+        "invited": "Have invited",
+        "in_list": "This user is already in your team."
+      }
+    },
+    "mes": {
+      "invite_suc": "Invited successfully",
+      "invite_fail": "Failed to invite",
+      "update_suc": "Updated successfully",
+      "update_fail": "Failed to update",
+      "transfer_suc": "Successfully transferred",
+      "transfer_fail": "Failed to transfer",
+      "remove_suc": "Successfully removed",
+      "remove_fail": "Failed to remove",
+      "change_role_fail": "Failed to update",
+      "change_role_suc": "Updated successfully"
+    },
+    "page": {
+      "member": "Member",
+      "invite": "Invite",
+      "permission": "Permission",
+      "operation": "Operation",
+      "transfer": "Transfer ownership",
+      "remove": "Remove"
+    },
+    "transfer_modal": {
+      "title": "Are you sure you want to transfer ownership?",
+      "description": "After transferring, your permission will change to administrator.",
+      "transfer": "Transfer",
+      "cancel": "Cancel"
+    },
+    "remove_modal": {
+      "title": "Are you sure you want to remove {{ username }} ?",
+      "description": "After removal, the user will not be able to access the team.",
+      "remove": "Remove",
+      "cancel": "Cancel"
+    },
+    "status": {
+      "pending": "Pending"
+    },
+    "settings": {
+      "allow_editors_invite": "Allow editors and viewers to manage members"
+    }
+  }
 }
