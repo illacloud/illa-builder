@@ -4,5 +4,5 @@ export const headerWrapperStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
+  height: 48px;
 `

@@ -41,6 +41,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   const { t } = useTranslation()
 
   const appInfo = useSelector(getAppInfo)
+  console.log({ appInfo })
 
   const resourceList = useSelector(getAllResources)
     .filter((r) => r.resourceType == getResourceTypeFromActionType(actionType))
