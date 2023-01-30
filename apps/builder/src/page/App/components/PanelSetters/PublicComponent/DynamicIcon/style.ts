@@ -7,7 +7,7 @@ export const applyCustomIconStyle = (
 ): SerializedStyles => {
   return css`
     color: ${isDynamic
-      ? globalColor(`--${illaPrefix}-purple-01`)
+      ? globalColor(`--${illaPrefix}-techPurple-01`)
       : globalColor(`--${illaPrefix}-grayBlue-06`)};
     width: 16px;
     height: 16px;
@@ -18,7 +18,7 @@ export const applyCustomIconStyle = (
     margin-right: ${hasRightContent ? "10px" : 0};
     :hover {
       cursor: pointer;
-      color: ${globalColor(`--${illaPrefix}-purple-01`)};
+      color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
     }
   `
 }
