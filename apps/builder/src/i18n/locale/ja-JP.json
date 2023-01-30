@@ -1268,7 +1268,7 @@
       },
       "email": {
         "invite_title": "メールで招待する",
-        "invite": "招待する",
+        "invite": "招待",
         "placeholder": "メールアドレスを入力",
         "invited": "招待しました",
         "in_list": "このユーザーは既にチーム内にいます"
@@ -1366,5 +1366,5 @@
     }
   },
   "members": "Members",
-  "invite_new_member": "Invite"
+  "invite_new_member": "メンバーを招待"
 }
