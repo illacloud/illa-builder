@@ -66,12 +66,6 @@ export const routerConfig: RoutesObjectPro[] = [
     needLogin: true,
     errorElement: <Page403 />,
   },
-  // {
-  //   path: "/:teamIdentifier/members",
-  //   element: <Member />,
-  //   needLogin: true,
-  //   errorElement: <Page403 />,
-  // },
   {
     path: "/:teamIdentifier/deploy/app/:appId/version/:versionId",
     element: <Deploy />,

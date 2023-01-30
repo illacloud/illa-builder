@@ -320,7 +320,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           window.location.protocol +
             "//" +
             window.location.host +
-            `${teamIdentifier}/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
+            `/${teamIdentifier}/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
           "_blank",
         )
       },
