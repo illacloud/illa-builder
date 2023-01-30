@@ -1364,5 +1364,7 @@
       "leave_suc": "退出成功",
       "leave_fail": "退出失败"
     }
-  }
+  },
+  "members": "Members",
+  "invite_new_member": "Invite"
 }
