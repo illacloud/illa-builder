@@ -1364,5 +1364,7 @@
       "leave_suc": "팀 성공을 떠나",
       "leave_fail": "팀 탈퇴 실패"
     }
-  }
+  },
+  "members": "Members",
+  "invite_new_member": "Invite"
 }
