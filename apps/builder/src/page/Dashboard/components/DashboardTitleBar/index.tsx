@@ -86,7 +86,7 @@ export const DashboardTitleBar: FC = () => {
     },
     {
       key: "members",
-      title: t("members"),
+      title: t("user_management.page.member"),
     },
   ]
 
