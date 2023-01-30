@@ -1364,5 +1364,7 @@
       "leave_suc": "離れました",
       "leave_fail": "離れませんでした"
     }
-  }
+  },
+  "members": "Members",
+  "invite_new_member": "Invite"
 }
