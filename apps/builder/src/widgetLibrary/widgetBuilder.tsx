@@ -153,6 +153,10 @@ import {
   TABS_WIDGET_CONFIG,
   TabsWidget,
 } from "@/widgetLibrary/TabsWidget"
+import { TEXTAREA_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/TextAreaWidget/eventHandlerConfig"
+import { TEXTAREA_PANEL_CONFIG } from "@/widgetLibrary/TextAreaWidget/panelConfig"
+import { TextareaWidget } from "@/widgetLibrary/TextAreaWidget/textArea"
+import { TEXTAREA_WIDGET_CONFIG } from "@/widgetLibrary/TextAreaWidget/widgetConfig"
 import {
   TEXT_EVENT_HANDLER_CONFIG,
   TEXT_PANEL_CONFIG,
@@ -281,6 +285,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: EDITABLE_TEXT_WIDGET_CONFIG,
     panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
     eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
+  },
+  TEXTAREA_WIDGET: {
+    widget: TextareaWidget,
+    config: TEXTAREA_WIDGET_CONFIG,
+    panelConfig: TEXTAREA_PANEL_CONFIG,
+    eventHandlerConfig: TEXTAREA_EVENT_HANDLER_CONFIG,
   },
   CHART: {
     widget: ChartWidget,
