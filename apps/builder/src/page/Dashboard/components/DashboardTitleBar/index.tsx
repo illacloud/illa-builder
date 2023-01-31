@@ -12,12 +12,19 @@ import {
   illaPrefix,
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import { canAccess } from "@/illa-public-component/UserRoleUtils"
+import {
+  ACTION_ACCESS,
+  ATTRIBUTE_GROUP,
+  USER_ROLE,
+} from "@/illa-public-component/UserRoleUtils/interface"
 import { Avatar } from "@/page/App/components/Avatar"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { ILLARoute } from "@/router"
 import { clearLocalStorage } from "@/utils/storage"
+import { isCloudVersion } from "@/utils/typeHelper"
 import {
-  applyUserAvatarStyle,
   containerStyle,
   expandStyle,
   navBarAvatarContainerStyle,
@@ -68,13 +75,16 @@ const SettingTrigger: FC = () => {
 export const DashboardTitleBar: FC = () => {
   const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
+  const teamInfo = useSelector(getCurrentTeamInfo)
   const { teamIdentifier } = useParams()
   let navigate = useNavigate()
   let location = useLocation()
   let pathList = location.pathname.split("/")
+
   const tabs: {
     key: string
     title: string
+    hidden?: boolean
   }[] = [
     {
       key: "apps",
@@ -87,6 +97,11 @@ export const DashboardTitleBar: FC = () => {
     {
       key: "members",
       title: t("user_management.page.member"),
+      hidden: !canAccess(
+        teamInfo?.myRole ?? USER_ROLE.VIEWER,
+        ATTRIBUTE_GROUP.RESOURCE,
+        ACTION_ACCESS.VIEW,
+      ),
     },
   ]
 
@@ -98,23 +113,28 @@ export const DashboardTitleBar: FC = () => {
         </div>
       }
       suffix={
-        <div css={navBarAvatarContainerStyle} key="suffix">
-          <Dropdown
-            position="bottom-end"
-            trigger="click"
-            triggerProps={{ closeDelay: 0, openDelay: 0 }}
-            dropList={<SettingTrigger />}
-          >
-            <div>
-              <Avatar userId={userInfo?.userId} nickname={userInfo?.nickname} />
-              <DownIcon
-                _css={expandStyle}
-                size="12px"
-                color={globalColor(`--${illaPrefix}-grayBlue-05`)}
-              />
-            </div>
-          </Dropdown>
-        </div>
+        isCloudVersion ? (
+          <div css={navBarAvatarContainerStyle} key="suffix">
+            <Dropdown
+              position="bottom-end"
+              trigger="click"
+              triggerProps={{ closeDelay: 0, openDelay: 0 }}
+              dropList={<SettingTrigger />}
+            >
+              <div>
+                <Avatar
+                  userId={userInfo?.userId}
+                  nickname={userInfo?.nickname}
+                />
+                <DownIcon
+                  _css={expandStyle}
+                  size="12px"
+                  color={globalColor(`--${illaPrefix}-grayBlue-05`)}
+                />
+              </div>
+            </Dropdown>
+          </div>
+        ) : null
       }
       activeKey={pathList[pathList.length - 1]}
       css={containerStyle}
@@ -136,6 +156,7 @@ export const DashboardTitleBar: FC = () => {
       }}
     >
       {tabs.map((item) => {
+        if (item.hidden) return null
         return <TabPane title={item.title} key={item.key} />
       })}
     </Tabs>
