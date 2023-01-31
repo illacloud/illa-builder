@@ -23,15 +23,12 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
-import {
-  getComponentAttachUsers,
-  getCurrentAppAttachUsers,
-} from "@/redux/currentApp/collaborators/collaboratorsSelector"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
-import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { startAppListening } from "@/store"
@@ -76,6 +73,12 @@ export const Editor: FC = () => {
     }
     return () => {
       handleLeaveRoom()
+      dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
+      dispatch(
+        collaboratorsActions.setInRoomUsers({
+          inRoomUsers: [],
+        }),
+      )
       window.removeEventListener("beforeunload", handleLeaveRoom)
     }
   }, [currentUser, appId])

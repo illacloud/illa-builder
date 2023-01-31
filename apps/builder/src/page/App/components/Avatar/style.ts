@@ -73,3 +73,7 @@ export const getAvatarStyle = (showType?: string, type?: string) => {
     line-height: 32px;
   `
 }
+
+export const triggerStyle = css`
+  z-index: 10;
+`

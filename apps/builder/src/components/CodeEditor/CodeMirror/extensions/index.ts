@@ -32,7 +32,7 @@ import {
   syntaxHighlighting,
 } from "@codemirror/language"
 import { Extension, Prec } from "@codemirror/state"
-import { dropCursor, keymap, lineNumbers } from "@codemirror/view"
+import { dropCursor, keymap, lineNumbers, tooltips } from "@codemirror/view"
 import { useMemo } from "react"
 import { ternSeverCompletionSource } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/TernServer"
 import { buildIllaContextCompletionSource } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/illaContext"
@@ -255,6 +255,15 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
     return isFunction ? [] : getHighlightExpressionExtension(expressions)
   }, [codeType, expressions])
 
+  const tooltipExtension = useMemo(() => {
+    return tooltips({
+      position: "absolute",
+      parent:
+        document.querySelector<HTMLElement>(".illaCodeMirrorWrapper") ||
+        document.body,
+    })
+  }, [])
+
   const extensions = useMemo(
     () => [
       basicExtension,
@@ -262,12 +271,14 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
       langExtension,
       autocompletionExtension,
       highlightJSExpressionExtension,
+      tooltipExtension,
     ],
     [
-      autocompletionExtension,
-      langExtension,
       showLinNUmberExtension,
+      langExtension,
+      autocompletionExtension,
       highlightJSExpressionExtension,
+      tooltipExtension,
     ],
   )
 
