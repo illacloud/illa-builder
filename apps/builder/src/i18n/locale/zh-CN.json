@@ -1366,5 +1366,6 @@
     }
   },
   "members": "Members",
-  "invite_new_member": "邀请成员"
+  "invite_new_member": "邀请成员",
+  "launch": " 运行"
 }
