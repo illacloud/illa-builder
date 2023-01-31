@@ -5,8 +5,7 @@ import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 export const TEXTAREA_WIDGET_CONFIG: WidgetConfig = {
   type: "TEXTAREA_WIDGET",
   displayName: "textarea",
-  // widgetName: i18n.t("widget.input.name"),
-  widgetName: "Textarea",
+  widgetName: i18n.t("widget.textarea.name"),
   icon: <TextAreaWidgetIcon />,
   keywords: ["Textarea", "长文本输入框"],
   sessionType: "INPUTS",
