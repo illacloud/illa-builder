@@ -1366,5 +1366,6 @@
     }
   },
   "members": "Members",
-  "invite_new_member": "メンバーを招待"
+  "invite_new_member": "メンバーを招待",
+  "launch": "実行"
 }
