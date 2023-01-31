@@ -13,6 +13,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const useInitBuilderApp = (model: IllaMode) => {
@@ -20,12 +21,14 @@ export const useInitBuilderApp = (model: IllaMode) => {
   let { appId, versionId = 0 } = useParams()
   const dispatch = useDispatch()
   const isOnline = useSelector(getIsOnline)
+  const teamInfo = useSelector(getCurrentTeamInfo)
 
   const [loadingState, setLoadingState] = useState(true)
 
   useEffect(() => {
     const controller = new AbortController()
     if (isOnline) {
+      const { id: teamID = "", uid = "" } = teamInfo ?? {}
       new Promise<CurrentAppResp>((resolve, reject) => {
         Api.request<CurrentAppResp>(
           {
@@ -58,7 +61,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
                 response.data.dottedLineSquareState,
               ),
             )
-            DisplayNameGenerator.initApp(appId ?? "")
+            DisplayNameGenerator.initApp(appId ?? "", teamID, uid)
             DisplayNameGenerator.updateDisplayNameList(
               response.data.components,
               response.data.actions,

@@ -19,19 +19,21 @@ export class DisplayNameGenerator {
   static displayNameList = new Set<string>(PLACEHOLDER_DISPLAYNAME)
 
   static appId: string = ""
+  static teamID: string = ""
+  static uid: string = ""
 
   static isAlreadyGenerate(displayName: string): boolean {
     return this.displayNameList.has(displayName)
   }
 
-  static initApp(appId: string) {
+  static initApp(appId: string, teamID: string, uid: string) {
     this.appId = appId
+    this.teamID = teamID
+    this.uid = uid
   }
 
   // use when create success
   static generateDisplayName(type: string, showName?: string): string {
-    const { id: teamID = "", uid = "" } =
-      getCurrentTeamInfo(store.getState()) ?? {}
     let index = 1
     let name = `${showName || type}${index}`
     // check cache map
@@ -46,8 +48,8 @@ export class DisplayNameGenerator {
         Target.TARGET_DISPLAY_NAME,
         true,
         { type: ADD_DISPLAY_NAME, payload: [name] },
-        teamID,
-        uid,
+        this.teamID,
+        this.uid,
         [],
       ),
     )
@@ -82,8 +84,6 @@ export class DisplayNameGenerator {
     if (oldDisplayName !== undefined) {
       this.removeDisplayName(oldDisplayName)
     }
-    const { id: teamID = "", uid = "" } =
-      getCurrentTeamInfo(store.getState()) ?? {}
     this.displayNameList.add(displayName)
     Connection.getRoom("app", this.appId)?.send(
       getPayload(
@@ -91,16 +91,14 @@ export class DisplayNameGenerator {
         Target.TARGET_DISPLAY_NAME,
         true,
         { type: UPDATE_DISPLAY_NAME, payload: [oldDisplayName, displayName] },
-        teamID,
-        uid,
+        this.teamID,
+        this.uid,
         [],
       ),
     )
   }
 
   static removeDisplayName(displayName: string) {
-    const { id: teamID = "", uid = "" } =
-      getCurrentTeamInfo(store.getState()) ?? {}
     this.displayNameList.delete(displayName)
     Connection.getRoom("app", this.appId)?.send(
       getPayload(
@@ -108,16 +106,14 @@ export class DisplayNameGenerator {
         Target.TARGET_DISPLAY_NAME,
         true,
         { type: REMOVE_DISPLAY_NAME, payload: [displayName] },
-        teamID,
-        uid,
+        this.teamID,
+        this.uid,
         [],
       ),
     )
   }
 
   static removeDisplayNameMulti(displayNames: string[]) {
-    const { id: teamID = "", uid = "" } =
-      getCurrentTeamInfo(store.getState()) ?? {}
     displayNames.forEach((displayName) => {
       this.displayNameList.delete(displayName)
     })
@@ -127,8 +123,8 @@ export class DisplayNameGenerator {
         Target.TARGET_DISPLAY_NAME,
         true,
         { type: REMOVE_DISPLAY_NAME, payload: displayNames },
-        teamID,
-        uid,
+        this.teamID,
+        this.uid,
         [],
       ),
     )
