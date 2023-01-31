@@ -12,6 +12,7 @@ import {
   illaPrefix,
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import { Avatar } from "@/page/App/components/Avatar"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
 import { clearLocalStorage } from "@/utils/storage"
@@ -28,18 +29,14 @@ import {
   usernameStyle,
 } from "./style"
 
-const SettingTrigger: FC<{
-  avatarBgColor: string
-  avatarText: string
-}> = (props) => {
-  const { avatarBgColor, avatarText } = props
+const SettingTrigger: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const userInfo = useSelector(getCurrentUser)
   return (
     <div css={settingBodyStyle}>
       <div css={settingUserStyle}>
-        <span css={applyUserAvatarStyle(avatarBgColor)}>{avatarText}</span>
+        <Avatar userId={userInfo.userId} nickname={userInfo.nickname} />
         <span css={usernameStyle}>{userInfo?.nickname}</span>
       </div>
       <Divider />
@@ -71,9 +68,6 @@ const SettingTrigger: FC<{
 export const DashboardTitleBar: FC = () => {
   const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
-  const avatarBgColor =
-    `${userInfo?.userId}`.padEnd(6, "0").substring(0, 6) || "654aec"
-  const avatarText = userInfo?.nickname?.substring?.(0, 1).toUpperCase() || "U"
   let navigate = useNavigate()
   let location = useLocation()
   let pathList = location.pathname.split("/")
@@ -108,17 +102,10 @@ export const DashboardTitleBar: FC = () => {
             position="bottom-end"
             trigger="click"
             triggerProps={{ closeDelay: 0, openDelay: 0 }}
-            dropList={
-              <SettingTrigger
-                avatarBgColor={avatarBgColor}
-                avatarText={avatarText}
-              />
-            }
+            dropList={<SettingTrigger />}
           >
             <div>
-              <span css={applyUserAvatarStyle(avatarBgColor)}>
-                {avatarText}
-              </span>
+              <Avatar userId={userInfo?.userId} nickname={userInfo?.nickname} />
               <DownIcon
                 _css={expandStyle}
                 size="12px"

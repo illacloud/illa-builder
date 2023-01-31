@@ -29,6 +29,14 @@ export const viewControlStyle = css`
   }
 `
 
+export const rightContentStyle = css`
+  display: flex;
+  align-self: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  gap: 29px;
+`
+
 export const informationStyle = css`
   margin-left: 24px;
   display: flex;

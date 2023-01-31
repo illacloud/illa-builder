@@ -34,6 +34,7 @@ import {
   LEFT_MIN_WIDTH,
   RIGHT_MIN_WIDTH,
 } from "@/page/App/components/DotPanel/renderSection"
+import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
 import {
   PageNavBarProps,
   PreviewPopContentProps,
@@ -72,6 +73,7 @@ import {
   resetButtonContentStyle,
   resetIconStyle,
   resetLabelStyle,
+  rightContentStyle,
   rowCenter,
   saveButtonWrapperStyle,
   saveFailedTipStyle,
@@ -381,62 +383,64 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         )}
         <PreviewButtonGroup />
       </div>
-      {mode === "edit" && (
-        <div>
-          <ButtonGroup spacing={"8px"}>
-            <Badge count={debuggerData && Object.keys(debuggerData).length}>
-              <Button
-                colorScheme="gray"
-                size="medium"
-                leftIcon={
-                  <BugIcon
-                    color={globalColor(`--${illaPrefix}-grayBlue-03`)}
-                    size="14px"
-                  />
-                }
-                onClick={handleClickDebuggerIcon}
-              />
-            </Badge>
-            <Trigger
-              content={isFreezeCanvas ? t("freeze_tips") : t("unfreeze_tips")}
-              colorScheme="grayBlue"
-              position="bottom"
-              showArrow={false}
-              autoFitPosition={false}
-              trigger="hover"
-            >
-              <Button
-                colorScheme="gray"
-                size="medium"
-                leftIcon={
-                  isFreezeCanvas ? (
-                    <LockIcon
-                      size="14px"
-                      color={globalColor(`--${illaPrefix}-techPurple-01`)}
-                    />
-                  ) : (
-                    <UnlockIcon
-                      size="14px"
+      <div css={rightContentStyle}>
+        <CollaboratorsList />
+        {mode === "edit" && (
+          <div>
+            <ButtonGroup spacing={"8px"}>
+              <Badge count={debuggerData && Object.keys(debuggerData).length}>
+                <Button
+                  colorScheme="gray"
+                  size="medium"
+                  leftIcon={
+                    <BugIcon
                       color={globalColor(`--${illaPrefix}-grayBlue-03`)}
+                      size="14px"
                     />
-                  )
-                }
-                onClick={handleClickFreezeIcon}
-              />
-            </Trigger>
-
-            <Button
-              loading={deployLoading}
-              colorScheme="techPurple"
-              size="medium"
-              leftIcon={<CaretRightIcon />}
-              onClick={handleClickDeploy}
-            >
-              {t("deploy")}
-            </Button>
-          </ButtonGroup>
-        </div>
-      )}
+                  }
+                  onClick={handleClickDebuggerIcon}
+                />
+              </Badge>
+              <Trigger
+                content={isFreezeCanvas ? t("freeze_tips") : t("unfreeze_tips")}
+                colorScheme="grayBlue"
+                position="bottom"
+                showArrow={false}
+                autoFitPosition={false}
+                trigger="hover"
+              >
+                <Button
+                  colorScheme="gray"
+                  size="medium"
+                  leftIcon={
+                    isFreezeCanvas ? (
+                      <LockIcon
+                        size="14px"
+                        color={globalColor(`--${illaPrefix}-techPurple-01`)}
+                      />
+                    ) : (
+                      <UnlockIcon
+                        size="14px"
+                        color={globalColor(`--${illaPrefix}-grayBlue-03`)}
+                      />
+                    )
+                  }
+                  onClick={handleClickFreezeIcon}
+                />
+              </Trigger>
+              <Button
+                loading={deployLoading}
+                colorScheme="techPurple"
+                size="medium"
+                leftIcon={<CaretRightIcon />}
+                onClick={handleClickDeploy}
+              >
+                {t("deploy")}
+              </Button>
+            </ButtonGroup>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

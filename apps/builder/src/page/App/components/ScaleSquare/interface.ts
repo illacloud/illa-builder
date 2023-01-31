@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react"
+import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export type ScaleSquareType = "error" | "normal" | "production"
@@ -40,6 +41,7 @@ export interface MoveBarProps {
   containerHeight: number
   containerPadding: number
   widgetType: string
+  userList: CollaboratorsInfo[]
 }
 
 export interface MoveBarPositionShape {
