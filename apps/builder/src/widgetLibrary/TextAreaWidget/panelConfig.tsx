@@ -172,39 +172,11 @@ export const TEXTAREA_PANEL_CONFIG: PanelConfig[] = [
         attrName: "required",
       },
       {
-        id: `${baseWidgetName}-validation-pattern`,
-        labelName: i18n.t("editor.inspect.setter_label.pattern"),
-        setterType: "SEARCH_SELECT_SETTER",
-        attrName: "pattern",
-        options: [
-          {
-            label: i18n.t(
-              "editor.inspect.setter_default_value.validation_pattern.email",
-            ),
-            value: "Email",
-          },
-          {
-            label: i18n.t(
-              "editor.inspect.setter_default_value.validation_pattern.url",
-            ),
-            value: "URL",
-          },
-          {
-            label: i18n.t(
-              "editor.inspect.setter_default_value.validation_pattern.regex",
-            ),
-            value: "Regex",
-          },
-        ],
-      },
-      {
         id: `${baseWidgetName}-validation-regex`,
         labelName: i18n.t("editor.inspect.setter_label.regex"),
         setterType: "INPUT_SETTER",
         attrName: "regex",
-        bindAttrName: ["pattern"],
         expectedType: VALIDATION_TYPES.STRING,
-        shown: (value) => value === "Regex",
       },
       {
         id: `${baseWidgetName}-validation-max`,
