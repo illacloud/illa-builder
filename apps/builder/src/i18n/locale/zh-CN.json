@@ -1312,5 +1312,60 @@
     "settings": {
       "allow_editors_invite": "允许编辑者和浏览者管理成员"
     }
-  }
+  },
+  "copy_failed": "复制失败",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "团队设置",
+      "member": "成员",
+      "leave": "离开团队",
+      "delete": "删除团队"
+    },
+    "leave_modal": {
+      "title": "确认离开当前团队吗？",
+      "description": "离开该团队后，您将无法访问任何团队资源。",
+      "leave": "离开",
+      "cancel": "取消"
+    },
+    "delete_modal": {
+      "title": "确认删除团队吗？",
+      "delete": "删除",
+      "cancel": "取消",
+      "desctiption": "删除后，团队标识符将被同步删除，所有成员将从此团队中移除。"
+    },
+    "team_info": {
+      "title": "团队信息",
+      "team_name": "团队名称",
+      "domain": ".illacloud.com",
+      "existed": "已存在",
+      "available": "可用",
+      "edit": "编辑",
+      "save": "保存变更",
+      "adjust_avater": "编辑头像",
+      "avater_crop": "裁剪",
+      "team_name_empty": "请输入团队名称",
+      "team_id_empty": "请输入团队标识符",
+      "team_name_placeholder": "请输入团队名称",
+      "team_id_placeholder": "请输入团队标识符",
+      "leave_title": "离开团队",
+      "leave_button": "离开团队",
+      "delete_title": "删除团队",
+      "delete_button": "删除团队",
+      "team_domain": "团队标识符"
+    },
+    "message": {
+      "save_suc": "保存成功",
+      "save_fail": "保存失败"
+    },
+    "mes": {
+      "domain_suc": "创建成功",
+      "delete_suc": "删除成功",
+      "delete_fail": "删除失败",
+      "leave_suc": "退出成功",
+      "leave_fail": "退出失败"
+    }
+  },
+  "members": "成员",
+  "invite_new_member": "邀请成员",
+  "launch": " 运行"
 }
