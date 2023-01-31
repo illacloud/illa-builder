@@ -301,7 +301,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     }, [getOnClickEventScripts])
 
     const handleOnFocus = useCallback(() => {
-      console.log(666, getOnFocusEventScripts())
       getOnFocusEventScripts().forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })

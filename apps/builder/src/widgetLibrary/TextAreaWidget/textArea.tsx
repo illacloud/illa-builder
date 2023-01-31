@@ -36,6 +36,8 @@ export const WrappedTextarea = forwardRef<
     colorScheme,
     handleUpdateDsl,
     handleOnChange,
+    handleOnFocus,
+    handleOnBlur,
     allowClear,
     maxLength,
     minLength,
@@ -60,6 +62,8 @@ export const WrappedTextarea = forwardRef<
       showCount={showCharacterCount}
       borderColor={colorScheme}
       allowClear={allowClear}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
       onChange={(event) => {
         const value = event.currentTarget.value
         new Promise((resolve) => {
