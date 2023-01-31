@@ -1226,7 +1226,7 @@
       "name": "对话框"
     },
     "textarea": {
-      "name": "Textarea"
+      "name": "长文本输入"
     }
   },
   "page": {
