@@ -1366,5 +1366,6 @@
     }
   },
   "members": "Members",
-  "invite_new_member": "멤버 초대"
+  "invite_new_member": "멤버 초대",
+  "launch": "시작"
 }
