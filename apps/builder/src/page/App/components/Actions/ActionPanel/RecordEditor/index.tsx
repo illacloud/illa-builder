@@ -44,6 +44,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 {customRender(record, index)}
                 <Button
                   ml="-1px"
+                  minW="32px"
                   variant="outline"
                   bdRadius="0 8px 8px 0"
                   colorScheme="grayBlue"
@@ -81,6 +82,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
               />
               <Button
                 ml="-1px"
+                minW="32px"
                 variant="outline"
                 bdRadius="0 8px 8px 0"
                 colorScheme="grayBlue"
