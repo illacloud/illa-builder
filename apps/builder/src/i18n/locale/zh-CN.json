@@ -523,7 +523,8 @@
       "cancel": "取消",
       "delete": "删除",
       "delete_content": "删除它后无法恢复，可能会导致程序出错，请确认引用后删除",
-      "delete_title": "你想要删除 {{ displayName }} 吗？"
+      "delete_title": "你想要删除 {{ displayName }} 吗？",
+      "editor_list": "正在编辑的用户"
     },
     "context_menu": {
       "delete": "删除",
@@ -635,6 +636,10 @@
           "email": " 邮箱",
           "regex": "正则表达式",
           "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixed",
+          "auto": "Auto"
         }
       },
       "setter_group": {
@@ -812,7 +817,9 @@
         "x_axis_type": "X轴类型",
         "x_axis_value": "X 轴",
         "y_axis_name": "纵坐标名称",
-        "y_axis_title": "Y轴标题"
+        "y_axis_title": "Y轴标题",
+        "height": "高度",
+        "min_height": "最小高度（像素）"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -978,7 +985,8 @@
       "des": "请求失败，请稍后再试。"
     },
     "back": "回到主页",
-    "mobile_forbidden": "为获得更好的编辑体验，请通过电脑端访问"
+    "mobile_forbidden": "为获得更好的编辑体验，请通过电脑端访问",
+    "back_to_cloud": "返回ILLA Cloud"
   },
   "title": "欢迎来到艾拉云",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
@@ -1216,6 +1224,9 @@
     },
     "modal": {
       "name": "对话框"
+    },
+    "textarea": {
+      "name": "长文本输入"
     }
   },
   "page": {
@@ -1230,5 +1241,131 @@
     "invalid_tips": "请输入不小于 {{ size }} 的值。"
   },
   "failed_to_copy": "复制失败",
-  "copied": "复制成功！"
+  "copied": "复制成功！",
+  "user_management": {
+    "role": {
+      "owner": "所有者",
+      "admin": "管理员",
+      "editor": "编辑者",
+      "viewer": "浏览者"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "邀请成员"
+      },
+      "link": {
+        "invite_title": "邀请链接",
+        "copy": "复制",
+        "turn_off": "关闭邀请链接",
+        "update": "更新邀请链接",
+        "description": "允许用户通过您分享的私密链接加入团队",
+        "turn_on": "打开邀请链接",
+        "fail": "链接获取失败，请稍后重试",
+        "copied_suc": "复制成功！",
+        "failed_to_copy": "复制失败",
+        "turn_off_fail": "关闭失败",
+        "turn_on_fail": "开启失败"
+      },
+      "email": {
+        "invite_title": "通过电子邮件邀请",
+        "invite": "邀请",
+        "placeholder": "输入电子邮件地址",
+        "invited": "已邀请",
+        "in_list": "该用户已加入您的团队"
+      }
+    },
+    "mes": {
+      "invite_suc": "邀请成功",
+      "invite_fail": "邀请失败",
+      "update_suc": "更新成功",
+      "update_fail": "更新失败",
+      "transfer_suc": "转移成功",
+      "transfer_fail": "转移失败",
+      "remove_suc": "移除成功",
+      "remove_fail": "移除失败",
+      "change_role_fail": "更新失败",
+      "change_role_suc": "更新成功"
+    },
+    "page": {
+      "member": "成员",
+      "invite": "邀请",
+      "permission": "权限",
+      "operation": "操作",
+      "transfer": "转移所有权",
+      "remove": "移除"
+    },
+    "transfer_modal": {
+      "title": "您确定要转移所有权吗？",
+      "description": "转移后，您的权限将更改为管理员。",
+      "transfer": "转移",
+      "cancel": "取消"
+    },
+    "remove_modal": {
+      "title": "你想要删除 {{ username }} 吗？",
+      "description": "删除后，用户将无法访问该团队。",
+      "remove": "移除",
+      "cancel": "取消"
+    },
+    "status": {
+      "pending": "等待处理"
+    },
+    "settings": {
+      "allow_editors_invite": "允许编辑者和浏览者管理成员"
+    }
+  },
+  "copy_failed": "复制失败",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "团队设置",
+      "member": "成员",
+      "leave": "离开团队",
+      "delete": "删除团队"
+    },
+    "leave_modal": {
+      "title": "确认离开当前团队吗？",
+      "description": "离开该团队后，您将无法访问任何团队资源。",
+      "leave": "离开",
+      "cancel": "取消"
+    },
+    "delete_modal": {
+      "title": "确认删除团队吗？",
+      "delete": "删除",
+      "cancel": "取消",
+      "desctiption": "删除后，团队标识符将被同步删除，所有成员将从此团队中移除。"
+    },
+    "team_info": {
+      "title": "团队信息",
+      "team_name": "团队名称",
+      "domain": ".illacloud.com",
+      "existed": "已存在",
+      "available": "可用",
+      "edit": "编辑",
+      "save": "保存变更",
+      "adjust_avater": "编辑头像",
+      "avater_crop": "裁剪",
+      "team_name_empty": "请输入团队名称",
+      "team_id_empty": "请输入团队标识符",
+      "team_name_placeholder": "请输入团队名称",
+      "team_id_placeholder": "请输入团队标识符",
+      "leave_title": "离开团队",
+      "leave_button": "离开团队",
+      "delete_title": "删除团队",
+      "delete_button": "删除团队",
+      "team_domain": "团队标识符"
+    },
+    "message": {
+      "save_suc": "保存成功",
+      "save_fail": "保存失败"
+    },
+    "mes": {
+      "domain_suc": "创建成功",
+      "delete_suc": "删除成功",
+      "delete_fail": "删除失败",
+      "leave_suc": "退出成功",
+      "leave_fail": "退出失败"
+    }
+  },
+  "members": "成员",
+  "invite_new_member": "邀请成员",
+  "launch": " 运行"
 }

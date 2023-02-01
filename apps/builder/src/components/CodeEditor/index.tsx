@@ -3,6 +3,7 @@ import { FC, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { ILLACodeMirrorCore } from "@/components/CodeEditor/CodeMirror/core"
 import { IExpressionShape } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { githubLightScheme } from "@/components/CodeEditor/CodeMirror/theme"
 import { CodeEditorProps } from "@/components/CodeEditor/interface"
 import { getExecutionResultToCodeMirror } from "@/redux/currentApp/executionTree/executionSelector"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -57,6 +58,8 @@ const getShowResult = (results: unknown[]) => {
   return calcResult
 }
 
+const MAX_LEN_WITH_SNIPPETS = 1024
+
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     value = "",
@@ -94,7 +97,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const calcResultArray: unknown[] = []
     const calcResultMap: Map<string, number[]> = new Map()
     dynamicStrings.forEach((dynamicString, index) => {
-      if (isDynamicString(dynamicString)) {
+      if (
+        dynamicString.length <= MAX_LEN_WITH_SNIPPETS &&
+        isDynamicString(dynamicString)
+      ) {
         try {
           const calcRes = evaluateDynamicString(
             "",
@@ -136,6 +142,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       if (showResultType !== expectValueType && value) {
         dynamicStrings.forEach((dynamicString) => {
           if (
+            dynamicString.length <= MAX_LEN_WITH_SNIPPETS &&
             isDynamicString(dynamicString) &&
             calcResultMap.has(dynamicString)
           ) {
@@ -151,16 +158,29 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         setResult(`Expect ${expectValueType}, but got ${showResultType}`)
         setError(true)
       } else {
-        setResult(showResult)
+        setResult(
+          showResult.length > MAX_LEN_WITH_SNIPPETS
+            ? showResult.slice(0, MAX_LEN_WITH_SNIPPETS) + "..."
+            : showResult,
+        )
       }
     } else {
       setResultType(showResultType)
-      setResult(showResult)
+      setResult(
+        showResult.length > MAX_LEN_WITH_SNIPPETS
+          ? showResult.slice(0, MAX_LEN_WITH_SNIPPETS) + "..."
+          : showResult,
+      )
     }
     return result
   }, [wrappedCodeFunc, value, expectValueType, executionResult])
 
   const debounceHandleChange = debounce(onChange, 160)
+
+  const customExtensions = useMemo(
+    () => (extensions ? [extensions, githubLightScheme] : [githubLightScheme]),
+    [extensions],
+  )
 
   return (
     <ILLACodeMirrorCore
@@ -181,7 +201,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       editable={editable}
       readOnly={readOnly}
       codeType={codeType}
-      extensions={extensions}
+      extensions={customExtensions}
       minWidth={minWidth}
       minHeight={minHeight}
       canShowCompleteInfo={canShowCompleteInfo}

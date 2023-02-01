@@ -11,6 +11,7 @@ import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
 import configReducer from "@/redux/config/configSlice"
 import actionReducer from "@/redux/currentApp/action/actionSlice"
 import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
+import collaboratorsReducer from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
@@ -32,6 +33,7 @@ const appReducer = combineReducers({
   editor: editorReducer,
   action: actionReducer,
   appInfo: appInfoReducer,
+  collaborators: collaboratorsReducer,
   execution: executionReducer,
 })
 

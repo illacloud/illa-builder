@@ -52,7 +52,6 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
   const [isFocus, setIsFocus] = useState(false)
 
   const editorViewRef = useRef<EditorView>()
-  const editorStateRef = useRef<EditorState>()
   const editorWrapperRef = useRef<HTMLDivElement | null>(null)
   const compartmentsRef = useRef<Compartment[]>([])
 
@@ -170,25 +169,26 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
   }, [allExtensions])
 
   useEffect(() => {
-    if (editorWrapperRef.current && !editorStateRef.current) {
-      const config = {
+    if (
+      !editorViewRef.current ||
+      (!isFocus && value !== editorViewRef.current.state.doc.toString())
+    ) {
+      const state = EditorState.create({
         doc: value,
         extensions: extensionsWithCompartment,
-      }
-      const startState = EditorState.create(config)
-      editorStateRef.current = startState
-      if (!editorViewRef.current) {
-        editorViewRef.current = new EditorView({
-          state: startState,
-          parent: editorWrapperRef.current,
-        })
+      })
+      if (editorViewRef.current) {
+        editorViewRef.current.setState(state)
+      } else {
+        if (editorWrapperRef.current) {
+          editorViewRef.current = new EditorView({
+            state,
+            parent: editorWrapperRef.current,
+          })
+        }
       }
     }
-    return () => {
-      editorWrapperRef.current = null
-      editorStateRef.current = undefined
-    }
-  }, [extensionsWithCompartment, value])
+  }, [value, extensionsWithCompartment, isFocus])
 
   const reconfigure = useCallback(
     (view?: EditorView) => {
@@ -212,20 +212,6 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       reconfigure(editorViewRef.current)
     }
   }, [reconfigure])
-
-  useEffect(() => {
-    if (value === undefined) {
-      return
-    }
-    const currentValue = editorViewRef.current
-      ? editorViewRef.current.state.doc.toString()
-      : ""
-    if (editorViewRef.current && value !== currentValue) {
-      editorViewRef.current.dispatch({
-        changes: { from: 0, to: currentValue.length, insert: value || "" },
-      })
-    }
-  }, [value])
 
   return (
     <HintToolTip
