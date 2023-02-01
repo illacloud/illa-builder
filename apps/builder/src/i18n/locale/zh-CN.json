@@ -819,7 +819,8 @@
         "y_axis_name": "纵坐标名称",
         "y_axis_title": "Y轴标题",
         "height": "高度",
-        "min_height": "最小高度（像素）"
+        "min_height": "最小高度（像素）",
+        "show_underline": "展示下划线"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
