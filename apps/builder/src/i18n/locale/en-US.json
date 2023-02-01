@@ -819,7 +819,8 @@
         "y_axis_name": "Y-axis name",
         "y_axis_title": "Y-axis title",
         "height": "Height",
-        "min_height": "Min height (px)"
+        "min_height": "Min height (px)",
+        "show_underline": "Show underline"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
