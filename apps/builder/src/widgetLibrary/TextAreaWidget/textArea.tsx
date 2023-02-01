@@ -1,6 +1,6 @@
 import {
+  ChangeEvent,
   FC,
-  SyntheticEvent,
   forwardRef,
   useCallback,
   useEffect,
@@ -45,12 +45,41 @@ export const WrappedTextarea = forwardRef<
     getValidateMessage,
   } = props
 
+  const hasMinHeight = heightType === "Auto"
+
   const handleClear = () => handleUpdateDsl({ value: "" })
+
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLTextAreaElement>) => {
+      const value = event.currentTarget.value
+      new Promise((resolve) => {
+        const message = getValidateMessage(value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              value: value || "",
+              validateMessage: message,
+            },
+          },
+        ])
+        resolve(true)
+      }).then(() => {
+        handleOnChange?.()
+      })
+    },
+    [
+      displayName,
+      getValidateMessage,
+      handleOnChange,
+      handleUpdateMultiExecutionResult,
+    ],
+  )
 
   return (
     <TextArea
-      autoSize={heightType === "Auto"}
-      minH={`${minHeight}px`}
+      autoSize={hasMinHeight}
+      minH={hasMinHeight ? `${minHeight}px` : undefined}
       w="100%"
       textAreaRef={ref}
       value={value}
@@ -64,24 +93,7 @@ export const WrappedTextarea = forwardRef<
       allowClear={allowClear}
       onFocus={handleOnFocus}
       onBlur={handleOnBlur}
-      onChange={(event) => {
-        const value = event.currentTarget.value
-        new Promise((resolve) => {
-          const message = getValidateMessage(value)
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                value: value || "",
-                validateMessage: message,
-              },
-            },
-          ])
-          resolve(true)
-        }).then(() => {
-          handleOnChange?.()
-        })
-      }}
+      onChange={handleChange}
       onClear={handleClear}
     />
   )
