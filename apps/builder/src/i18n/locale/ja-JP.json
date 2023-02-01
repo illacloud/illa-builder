@@ -819,7 +819,8 @@
         "y_axis_name": "通称",
         "y_axis_title": "Y 軸のタイトル",
         "height": "Height",
-        "min_height": "Min height (px)"
+        "min_height": "Min height (px)",
+        "show_underline": "下線を表示"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
