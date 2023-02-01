@@ -61,6 +61,7 @@ export const ILLACodeMirrorTheme = {
 export const illaCodeMirrorTooltipStyle = css`
   > div {
     height: unset;
+    min-height: unset;
   }
   .cm-tooltip {
     &.cm-tooltip-autocomplete {
