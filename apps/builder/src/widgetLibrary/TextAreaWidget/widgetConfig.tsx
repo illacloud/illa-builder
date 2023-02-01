@@ -20,8 +20,8 @@ export const TEXTAREA_WIDGET_CONFIG: WidgetConfig = {
     labelWidth: "{{33}}",
     colorScheme: "blue",
     hidden: false,
-    formDataKey: "input",
-    placeholder: "input sth",
+    formDataKey: "textarea",
+    placeholder: "enter sth",
     heightType: "Fixed",
   },
 }

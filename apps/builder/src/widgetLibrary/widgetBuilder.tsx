@@ -153,10 +153,12 @@ import {
   TABS_WIDGET_CONFIG,
   TabsWidget,
 } from "@/widgetLibrary/TabsWidget"
-import { TEXTAREA_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/TextAreaWidget/eventHandlerConfig"
-import { TEXTAREA_PANEL_CONFIG } from "@/widgetLibrary/TextAreaWidget/panelConfig"
-import { TextareaWidget } from "@/widgetLibrary/TextAreaWidget/textArea"
-import { TEXTAREA_WIDGET_CONFIG } from "@/widgetLibrary/TextAreaWidget/widgetConfig"
+import {
+  TEXTAREA_EVENT_HANDLER_CONFIG,
+  TEXTAREA_PANEL_CONFIG,
+  TEXTAREA_WIDGET_CONFIG,
+  TextareaWidget,
+} from "@/widgetLibrary/TextAreaWidget"
 import {
   TEXT_EVENT_HANDLER_CONFIG,
   TEXT_PANEL_CONFIG,
