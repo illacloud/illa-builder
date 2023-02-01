@@ -44,8 +44,11 @@ export const fontButtonStyle = css`
 `
 
 export const listItemWrapperStyle = css`
-  height: 40px;
+  height: 32px;
   width: 100%;
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
 `
 
 export const groupWrapperStyle = css`
@@ -98,7 +101,10 @@ export const methodNameStyle = css`
 `
 
 export const emptyBodyStyle = css`
+  min-height: 32px;
   width: 100%;
+  display: flex;
+  align-items: center;
   padding: 8px 16px;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};

@@ -10,6 +10,7 @@ import {
 import {
   codeMirrorWrapperLabelStyle,
   codeMirrorWrapperValueStyle,
+  selectContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor/style"
 import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
@@ -84,26 +85,25 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                     placeholder="field"
                   />
                 </div>
-                <Select
-                  colorScheme="techPurple"
-                  showSearch={true}
-                  defaultValue={record.condition}
-                  value={record.condition}
-                  width="100%"
-                  ml="-0.5px"
-                  mr="-0.5px"
-                  bdRadius="0"
-                  onChange={(val: string) =>
-                    handleChange(
-                      index,
-                      record.field,
-                      record.value,
-                      val,
-                      onChange,
-                    )
-                  }
-                  options={OperationSelectList}
-                />
+                <div css={selectContainerStyle}>
+                  <Select
+                    colorScheme="techPurple"
+                    defaultValue={record.condition}
+                    value={record.condition}
+                    width="100%"
+                    bdRadius="0"
+                    onChange={(val: string) =>
+                      handleChange(
+                        index,
+                        record.field,
+                        record.value,
+                        val,
+                        onChange,
+                      )
+                    }
+                    options={OperationSelectList}
+                  />
+                </div>
                 <div css={actionItemRecordEditorStyle}>
                   <CodeEditor
                     value={record.value}
