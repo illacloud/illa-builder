@@ -105,7 +105,7 @@ export const emptyBodyStyle = css`
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 5px 16px;
+  padding: 8px 16px;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   margin-bottom: 8px;

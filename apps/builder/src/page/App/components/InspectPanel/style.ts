@@ -2,7 +2,7 @@ import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const publicPaddingStyle = css`
-  padding: 0 16px 8px 16px;
+  padding: 0 16px;
   box-sizing: border-box;
 `
 
