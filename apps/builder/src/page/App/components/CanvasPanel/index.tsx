@@ -30,7 +30,6 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
       <DotPanel />
       {mode === "edit" && (
         <>
-          {/*TODO: replace this to illa-design/Message,when Message is ok*/}
           {isFreeze ? (
             <div css={messageWrapperStyle}>
               <span css={messageStyle}>
