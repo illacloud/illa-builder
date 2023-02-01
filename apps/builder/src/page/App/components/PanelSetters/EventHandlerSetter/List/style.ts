@@ -101,7 +101,7 @@ export const methodNameStyle = css`
 `
 
 export const emptyBodyStyle = css`
-  height: 32px;
+  min-height: 32px;
   width: 100%;
   display: flex;
   align-items: center;
