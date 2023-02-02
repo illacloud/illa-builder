@@ -78,8 +78,8 @@ export const WrappedTextarea = forwardRef<
 
   return (
     <TextArea
-      autoSize={hasMinHeight}
-      minH={hasMinHeight ? `${minHeight}px` : undefined}
+      // autoSize={hasMinHeight}
+      // minH={hasMinHeight ? `${minHeight}px` : undefined}
       w="100%"
       textAreaRef={ref}
       value={value}

@@ -288,7 +288,7 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
     eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
   },
-  TEXTAREA_WIDGET: {
+  TEXTAREA_INPUT_WIDGET: {
     widget: TextareaWidget,
     config: TEXTAREA_WIDGET_CONFIG,
     panelConfig: TEXTAREA_PANEL_CONFIG,
