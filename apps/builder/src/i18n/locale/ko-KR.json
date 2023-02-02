@@ -638,8 +638,8 @@
           "url": "URL"
         },
         "height": {
-          "fixed": "Fixed",
-          "auto": "Auto"
+          "fixed": "고정식",
+          "auto": "방문 허용"
         }
       },
       "setter_group": {
@@ -821,10 +821,10 @@
         "height": "Height",
         "min_height": "Min height (px)",
         "show_underline": "밑줄 표시",
-        "auto_play": "Auto play",
-        "interval": "Interval(ms)",
-        "show_button": "Show buttons on both sides",
-        "show_dot": "Show dots at the bottom",
+        "auto_play": "자동 재생",
+        "interval": "간격(ms)",
+        "show_button": "양쪽에 버튼 표시",
+        "show_dot": "하단에 점 표시",
         "hidden_images": "Hidden images"
       },
       "setter_tooltip": {
