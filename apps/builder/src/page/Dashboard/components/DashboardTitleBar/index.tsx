@@ -93,15 +93,15 @@ export const DashboardTitleBar: FC = () => {
     {
       key: "resources",
       title: t("resources"),
-    },
-    {
-      key: "members",
-      title: t("user_management.page.member"),
       hidden: !canAccess(
         teamInfo?.myRole ?? USER_ROLE.VIEWER,
         ATTRIBUTE_GROUP.RESOURCE,
         ACTION_ACCESS.VIEW,
       ),
+    },
+    {
+      key: "members",
+      title: t("user_management.page.member"),
     },
   ]
 
