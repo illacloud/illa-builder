@@ -1281,7 +1281,8 @@
         "placeholder": "输入电子邮件地址",
         "invited": "已邀请",
         "in_list": "该用户已加入您的团队"
-      }
+      },
+      "invalid_email": "请输入有效的电子邮件"
     },
     "mes": {
       "invite_suc": "邀请成功",
