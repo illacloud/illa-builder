@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { Api } from "@/api/base"
@@ -17,11 +17,17 @@ import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const useInitBuilderApp = (model: IllaMode) => {
-  // editor default version id == 0
-  let { appId, versionId = 0 } = useParams()
+  const { appId } = useParams()
   const dispatch = useDispatch()
   const isOnline = useSelector(getIsOnline)
   const teamInfo = useSelector(getCurrentTeamInfo)
+
+  // versionId = -1 represents the latest edited version of the app.
+  // versionId = -2 represents the latest released version of the user.
+  const versionId = useMemo(
+    () => (model === "production" ? "-2" : "-1"),
+    [model],
+  )
 
   const [loadingState, setLoadingState] = useState(true)
 

@@ -67,17 +67,17 @@ export const routerConfig: RoutesObjectPro[] = [
     errorElement: <Page403 />,
   },
   {
-    path: "/:teamIdentifier/deploy/app/:appId/version/:versionId",
+    path: "/:teamIdentifier/deploy/app/:appId",
     element: <Deploy />,
     needLogin: true,
   },
   {
-    path: "/:teamIdentifier/deploy/app/:appId/version/:versionId/:pageName",
+    path: "/:teamIdentifier/deploy/app/:appId/:pageName",
     element: <Deploy />,
     needLogin: true,
   },
   {
-    path: "/:teamIdentifier/deploy/app/:appId/version/:versionId/:pageName/:viewPath",
+    path: "/:teamIdentifier/deploy/app/:appId/:pageName/:viewPath",
     element: <Deploy />,
     needLogin: true,
   },
