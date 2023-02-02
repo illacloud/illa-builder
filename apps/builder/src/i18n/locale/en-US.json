@@ -1281,7 +1281,8 @@
         "placeholder": "Enter email address",
         "invited": "Have invited",
         "in_list": "This user is already in your team."
-      }
+      },
+      "invalid_email": "Please enter a valid email"
     },
     "mes": {
       "invite_suc": "Invited successfully",
