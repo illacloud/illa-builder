@@ -40,7 +40,7 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
   useEffect(() => {
     Api.request(
       {
-        url: `resources/${action.resourceId}/meta`,
+        url: `/resources/${action.resourceId}/meta`,
         method: "GET",
       },
       ({ data }: { data: ResourcesData }) => {

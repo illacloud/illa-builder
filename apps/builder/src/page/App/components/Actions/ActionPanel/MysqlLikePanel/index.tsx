@@ -26,7 +26,7 @@ export const MysqlLikePanel: FC = (props) => {
   useEffect(() => {
     Api.request(
       {
-        url: `resources/${currentAction.resourceId}/meta`,
+        url: `/resources/${currentAction.resourceId}/meta`,
         method: "GET",
       },
       ({ data }: { data: ResourcesData }) => {

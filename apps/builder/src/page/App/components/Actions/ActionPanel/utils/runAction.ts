@@ -248,7 +248,7 @@ const fetchActionResult = (
   Api.request(
     {
       method: "POST",
-      url: `apps/${appId}/actions/${actionId}/run`,
+      url: `/apps/${appId}/actions/${actionId}/run`,
       data: {
         resourceId,
         actionType,
