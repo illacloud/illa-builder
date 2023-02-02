@@ -12,6 +12,8 @@ export interface DashboardApp {
   appId: string
   appName: string
   currentVersionId: string
+  mainline_version: number
+  release_version: number
   updatedAt: string
   updatedBy: string
   appActivity: DashboardAppActivity
@@ -23,6 +25,8 @@ export const DashboardAppInitialState: DashboardApp = {
   appId: "",
   appName: "",
   currentVersionId: "",
+  mainline_version: 0,
+  release_version: 0,
   appActivity: {
     modifier: "",
     modifiedAt: "",

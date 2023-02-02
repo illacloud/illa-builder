@@ -25,7 +25,7 @@ import { RootState } from "@/store"
 const Item = DropList.Item
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
-  const { appId } = props
+  const { appId, canEditApp, isDeploy } = props
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -52,98 +52,114 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         size="4px"
         alignItems="center"
       >
-        <Button
-          css={buttonVisibleStyle}
-          className="dashboardAppEditButton"
-          colorScheme="techPurple"
-          onClick={() => {
-            navigate(`/${teamIdentifier}/app/${app.appId}`)
-          }}
-        >
-          {t("edit")}
-        </Button>
-        <Dropdown
-          position="bottom-end"
-          trigger="click"
-          triggerProps={{ closeDelay: 0, openDelay: 0 }}
-          dropList={
-            <DropList width={"184px"}>
-              <Item
-                key={"rename"}
-                title={t("rename")}
-                onClick={() => {
-                  setRenameVisible(true)
-                }}
-              />
-              <Item
-                key={"duplicate"}
-                title={t("duplicate")}
-                onClick={() => {
-                  setDuplicateVisible(true)
-                }}
-              />
-              <Item
-                key={"delete"}
-                title={t("dashboard.common.delete")}
-                fontColor={globalColor(`--${illaPrefix}-red-03`)}
-                onClick={() => {
-                  const modalId = modal.show({
-                    w: "496px",
-                    blockOkHide: true,
-                    title: t("dashboard.common.delete_title"),
-                    children: t("dashboard.common.delete_content"),
-                    cancelText: t("dashboard.common.delete_cancel_text"),
-                    okText: t("dashboard.common.delete_ok_text"),
-                    okButtonProps: {
-                      colorScheme: "red",
-                    },
-                    closable: false,
-                    onOk: () => {
-                      Api.request<DashboardApp>(
-                        {
-                          url: `/apps/${appId}`,
-                          method: "DELETE",
-                        },
-                        (response) => {
-                          dispatch(
-                            dashboardAppActions.removeDashboardAppReducer(
-                              response.data.appId,
-                            ),
-                          )
-                          message.success({
-                            content: t("dashboard.app.trash_success"),
-                          })
-                          modal.close(modalId)
-                        },
-                        (failure) => {
-                          message.success({
-                            content: t("dashboard.app.trash_failure"),
-                          })
-                        },
-                        (crash) => {
-                          message.error({
-                            content: t("network_error"),
-                          })
-                        },
-                        (loading) => {
-                          modal.update(modalId, {
-                            okLoading: loading,
-                          })
-                        },
-                      )
-                    },
-                  })
-                }}
-              />
-            </DropList>
-          }
-        >
+        {isDeploy ? (
           <Button
-            ml="4px"
-            colorScheme="grayBlue"
-            leftIcon={<MoreIcon size="14px" />}
-          />
-        </Dropdown>
+            css={buttonVisibleStyle}
+            className="dashboardAppLaunchButton"
+            colorScheme="techPurple"
+            onClick={() => {
+              navigate(`/${teamIdentifier}/deploy/app/${app.appId}`)
+            }}
+          >
+            {t("launch")}
+          </Button>
+        ) : null}
+        {canEditApp ? (
+          <>
+            <Button
+              css={buttonVisibleStyle}
+              className="dashboardAppEditButton"
+              colorScheme="techPurple"
+              onClick={() => {
+                navigate(`/${teamIdentifier}/app/${app.appId}`)
+              }}
+            >
+              {t("edit")}
+            </Button>
+            <Dropdown
+              position="bottom-end"
+              trigger="click"
+              triggerProps={{ closeDelay: 0, openDelay: 0 }}
+              dropList={
+                <DropList width={"184px"}>
+                  <Item
+                    key={"rename"}
+                    title={t("rename")}
+                    onClick={() => {
+                      setRenameVisible(true)
+                    }}
+                  />
+                  <Item
+                    key={"duplicate"}
+                    title={t("duplicate")}
+                    onClick={() => {
+                      setDuplicateVisible(true)
+                    }}
+                  />
+                  <Item
+                    key={"delete"}
+                    title={t("dashboard.common.delete")}
+                    fontColor={globalColor(`--${illaPrefix}-red-03`)}
+                    onClick={() => {
+                      const modalId = modal.show({
+                        w: "496px",
+                        blockOkHide: true,
+                        title: t("dashboard.common.delete_title"),
+                        children: t("dashboard.common.delete_content"),
+                        cancelText: t("dashboard.common.delete_cancel_text"),
+                        okText: t("dashboard.common.delete_ok_text"),
+                        okButtonProps: {
+                          colorScheme: "red",
+                        },
+                        closable: false,
+                        onOk: () => {
+                          Api.request<DashboardApp>(
+                            {
+                              url: `/apps/${appId}`,
+                              method: "DELETE",
+                            },
+                            (response) => {
+                              dispatch(
+                                dashboardAppActions.removeDashboardAppReducer(
+                                  response.data.appId,
+                                ),
+                              )
+                              message.success({
+                                content: t("dashboard.app.trash_success"),
+                              })
+                              modal.close(modalId)
+                            },
+                            (failure) => {
+                              message.success({
+                                content: t("dashboard.app.trash_failure"),
+                              })
+                            },
+                            (crash) => {
+                              message.error({
+                                content: t("network_error"),
+                              })
+                            },
+                            (loading) => {
+                              modal.update(modalId, {
+                                okLoading: loading,
+                              })
+                            },
+                          )
+                        },
+                      })
+                    }}
+                  />
+                </DropList>
+              }
+            >
+              <Button
+                ml="4px"
+                colorScheme="grayBlue"
+                leftIcon={<MoreIcon size="14px" />}
+              />
+            </Dropdown>
+          </>
+        ) : null}
       </Space>
       <RenameModal
         appId={app.appId}

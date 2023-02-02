@@ -53,6 +53,13 @@ export const DashboardApps: FC = () => {
     [currentUserRole],
   )
 
+  const finalAppsList = useMemo(() => {
+    if (canEditApp) return appsList
+    return appsList.filter((item) => {
+      return item.mainline_version !== 0
+    })
+  }, [canEditApp])
+
   return (
     <>
       <div css={appsContainerStyle}>
@@ -80,23 +87,31 @@ export const DashboardApps: FC = () => {
           </Button>
         </div>
         <Divider direction="horizontal" />
-        {appsList.length !== 0 && (
+        {finalAppsList.length !== 0 && (
           <List
             h={"100%"}
             ov={"auto"}
-            data={appsList}
+            data={finalAppsList}
             bordered={false}
             hoverable={true}
             render={(item) => {
               return (
                 <ListItem
                   css={hoverStyle}
-                  extra={<DashboardItemMenu appId={item.appId} />}
+                  extra={
+                    <DashboardItemMenu
+                      appId={item.appId}
+                      canEditApp={canEditApp}
+                      isDeploy={item.mainline_version !== 0}
+                    />
+                  }
                 >
                   <ListItemMeta
                     onClick={() => {
                       if (canEditApp) {
                         navigate(`/${teamIdentifier}/app/${item.appId}`)
+                      } else if (item.mainline_version !== 0) {
+                        navigate(`/${teamIdentifier}/deploy/app/${item.appId}`)
                       }
                     }}
                     title={item.appName}
@@ -113,7 +128,7 @@ export const DashboardApps: FC = () => {
             }}
           />
         )}
-        {appsList.length == 0 && <Empty paddingVertical="120px" />}
+        {finalAppsList.length == 0 && <Empty paddingVertical="120px" />}
       </div>
       <CreateNewModal
         onCreateSuccess={() => {
