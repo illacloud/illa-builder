@@ -13,6 +13,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const useInitBuilderApp = (model: IllaMode) => {
@@ -93,6 +94,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
 
     return () => {
       controller.abort()
+      dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
     }
   }, [appId, dispatch, model, versionId, isOnline])
 

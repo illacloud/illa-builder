@@ -8,6 +8,7 @@ export const resultContainerStyle = css`
   flex-direction: column;
   position: absolute;
   bottom: 0;
+  z-index: 2;
 `
 
 export function applyMaxHeightStyle(h?: number) {
