@@ -325,7 +325,7 @@ export class ExecutionTreeFactory {
         walkedPath.add(path)
         const { displayName, attrPath } = getDisplayNameAndAttrPath(path)
         const actionOrWidget = get(executionTree, displayName)
-        if (!isAction(actionOrWidget) || attrPath !== "data") {
+        if (!isAction(actionOrWidget) || !attrPath.startsWith("data")) {
           const rootPath = path.split(".").slice(0, 2).join(".")
           const value = get(this.oldRawTree, rootPath, undefined)
           set(currentExecutionTree, rootPath, value)
@@ -354,7 +354,7 @@ export class ExecutionTreeFactory {
     const orderPath = this.calcSubTreeSortOrder(differences, currentRawTree)
     currentRawTree = this.updateRawTreeByUpdatePaths(
       orderPath,
-      currentExecutionTree,
+      currentRawTree,
       walkedPath,
     ) as RawTreeShape
     const { evaluatedTree } = this.executeTree(currentRawTree, orderPath)
