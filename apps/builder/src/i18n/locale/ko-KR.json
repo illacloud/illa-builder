@@ -1281,7 +1281,8 @@
         "placeholder": "이메일 주소를 입력하세요",
         "invited": "초대했다",
         "in_list": "이 사용자는 이미 팀에 있습니다."
-      }
+      },
+      "invalid_email": "유효한 이메일 주소를 입력하세요"
     },
     "mes": {
       "invite_suc": "초대 성공",
