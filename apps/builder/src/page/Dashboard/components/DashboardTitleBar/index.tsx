@@ -102,6 +102,7 @@ export const DashboardTitleBar: FC = () => {
     {
       key: "members",
       title: t("user_management.page.member"),
+      hidden: isCloudVersion,
     },
   ]
 
@@ -113,7 +114,7 @@ export const DashboardTitleBar: FC = () => {
         </div>
       }
       suffix={
-        isCloudVersion ? (
+        isCloudVersion ? null : (
           <div css={navBarAvatarContainerStyle} key="suffix">
             <Dropdown
               position="bottom-end"
@@ -134,7 +135,7 @@ export const DashboardTitleBar: FC = () => {
               </div>
             </Dropdown>
           </div>
-        ) : null
+        )
       }
       activeKey={pathList[pathList.length - 1]}
       css={containerStyle}

@@ -20,7 +20,6 @@ const wrappedRouter = (
       if (isCloudVersion) {
         newRouteItem.errorElement = <Page404 />
         newRouteItem.loader = async ({ params, request }) => {
-          console.log(params, "params")
           const url = new URL(request.url)
           const token = url?.searchParams?.get("token")
           const teamIdentifier = params.teamIdentifier

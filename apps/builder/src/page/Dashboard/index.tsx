@@ -88,10 +88,9 @@ export const IllaApp: FC = () => {
   const { t } = useTranslation()
 
   const [pageState, setPageState] = useState<string>("loading")
-  console.log({ pageState }, <Outlet />)
+
   const dispatch = useDispatch()
   useEffect(() => {
-    console.log("useEffect")
     const controller = new AbortController()
     requestData(
       dispatch,

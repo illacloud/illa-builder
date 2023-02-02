@@ -22,44 +22,7 @@ import { isCloudVersion } from "@/utils/typeHelper"
 export const ILLA_CLOUD_PATH = import.meta.env.VITE_CLOUD_URL
 
 // TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
-export const routerConfig: RoutesObjectPro[] = [
-  {
-    index: true,
-    loader: async () => {
-      if (isCloudVersion) {
-        // navigate to illa cloud
-        return redirect(ILLA_CLOUD_PATH)
-      }
-      return redirect("/0/dashboard")
-    },
-  },
-  {
-    path: "/:teamIdentifier/dashboard",
-    element: <IllaApp />,
-    needLogin: true,
-    children: [
-      {
-        index: true,
-        element: <Navigate to="./apps" replace />,
-        needLogin: true,
-      },
-      {
-        path: "/:teamIdentifier/dashboard/apps",
-        element: <DashboardApps />,
-        needLogin: true,
-      },
-      {
-        path: "/:teamIdentifier/dashboard/resources",
-        element: <DashboardResources />,
-        needLogin: true,
-      },
-      {
-        path: "/:teamIdentifier/dashboard/members",
-        element: <Member />,
-        needLogin: true,
-      },
-    ],
-  },
+export const commonRouter: RoutesObjectPro[] = [
   {
     path: "/:teamIdentifier/app/:appId",
     element: <Editor />,
@@ -93,57 +56,115 @@ export const routerConfig: RoutesObjectPro[] = [
     path: "/*",
     element: <Page404 />,
   },
-  ...(!isCloudVersion
-    ? [
-        {
-          path: "/user",
-          element: <UserLogin />,
-          children: [
-            {
-              index: true,
-              element: <Navigate to="./login" replace />,
-            },
-            {
-              path: "/user/login",
-              element: <Login />,
-            },
-            {
-              path: "/user/register",
-              element: <Register />,
-            },
-            {
-              path: "/user/forgotPassword",
-              element: <ResetPassword />,
-            },
-          ],
-        },
-        {
-          path: "/setting",
-          element: <Setting />,
-          needLogin: true,
-          children: [
-            {
-              index: true,
-              element: <Navigate to="./account" replace />,
-              needLogin: true,
-            },
-            {
-              path: "/setting/account",
-              element: <SettingAccount />,
-              needLogin: true,
-            },
-            {
-              path: "/setting/password",
-              element: <SettingPassword />,
-              needLogin: true,
-            },
-            {
-              path: "/setting/others",
-              element: <SettingOthers />,
-              needLogin: true,
-            },
-          ],
-        },
-      ]
-    : []),
 ]
+
+export const cloudRouter: RoutesObjectPro[] = [
+  {
+    index: true,
+    loader: async () => {
+      return redirect(ILLA_CLOUD_PATH)
+    },
+  },
+  ...commonRouter,
+  {
+    path: "/:teamIdentifier/dashboard",
+    element: <IllaApp />,
+    needLogin: true,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="./apps" replace />,
+      },
+      {
+        path: "/:teamIdentifier/dashboard/apps",
+        element: <DashboardApps />,
+      },
+      {
+        path: "/:teamIdentifier/dashboard/resources",
+        element: <DashboardResources />,
+      },
+    ],
+  },
+]
+
+export const selfRouter: RoutesObjectPro[] = [
+  {
+    index: true,
+    loader: async () => {
+      return redirect("/0/dashboard")
+    },
+  },
+  ...commonRouter,
+  {
+    path: "/:teamIdentifier/dashboard",
+    element: <IllaApp />,
+    needLogin: true,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="./apps" replace />,
+      },
+      {
+        path: "/:teamIdentifier/dashboard/apps",
+        element: <DashboardApps />,
+      },
+      {
+        path: "/:teamIdentifier/dashboard/resources",
+        element: <DashboardResources />,
+      },
+      {
+        path: "/:teamIdentifier/dashboard/members",
+        element: <Member />,
+      },
+    ],
+  },
+  {
+    path: "/user",
+    element: <UserLogin />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="./login" replace />,
+      },
+      {
+        path: "/user/login",
+        element: <Login />,
+      },
+      {
+        path: "/user/register",
+        element: <Register />,
+      },
+      {
+        path: "/user/forgotPassword",
+        element: <ResetPassword />,
+      },
+    ],
+  },
+  {
+    path: "/setting",
+    element: <Setting />,
+    needLogin: true,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="./account" replace />,
+      },
+      {
+        path: "/setting/account",
+        element: <SettingAccount />,
+      },
+      {
+        path: "/setting/password",
+        element: <SettingPassword />,
+      },
+      {
+        path: "/setting/others",
+        element: <SettingOthers />,
+      },
+    ],
+  },
+]
+
+export const routerConfig: RoutesObjectPro[] = isCloudVersion
+  ? cloudRouter
+  : selfRouter
