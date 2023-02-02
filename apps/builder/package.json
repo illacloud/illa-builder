@@ -32,7 +32,7 @@
     "@codemirror/search": "^6.2.3",
     "@codemirror/state": "^6.2.0",
     "@codemirror/view": "^6.7.2",
-    "@emotion/react": "^11.10.0",
+    "@emotion/react": "^11.10.5",
     "@fontsource/fira-code": "^4.5.10",
     "@illa-design/react": "workspace:*",
     "@reduxjs/toolkit": "^1.8.1",

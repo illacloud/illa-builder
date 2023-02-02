@@ -575,6 +575,7 @@ export const PageFrame: FC = () => {
           options={canvasSizeOptions}
           value={finalCanvasSize}
           w="100%"
+          forceEqualWidth={true}
           colorScheme="grayBlue"
           onChange={handleUpdateFrameSize}
         />

@@ -2,7 +2,6 @@ import {
   HorizontalCenterIcon,
   HorizontalEndIcon,
   HorizontalStartIcon,
-  VerticalStartIcon,
 } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
@@ -10,7 +9,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { MENU_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/MenuWidget/eventHandlerConfig"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
-const baseWidgetName = "table"
+const baseWidgetName = "menu"
 
 export const MENU_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -28,13 +27,6 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-menu-title`,
             labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "title",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
-          },
-          {
-            id: `${baseWidgetName}-menu-icon`,
-            labelName: i18n.t("editor.inspect.setter_label.icon"),
-            attrName: "icon",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },

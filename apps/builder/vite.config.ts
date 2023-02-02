@@ -14,10 +14,10 @@ export default defineConfig((props) => {
         jsxImportSource: "@emotion/react",
       }),
       svgr(),
-      basicSsl(),
       checker({
         typescript: true,
       }),
+      basicSsl(),
     ],
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },
@@ -29,7 +29,7 @@ export default defineConfig((props) => {
       },
     },
     build: {
-      sourcemap: true,
+      sourcemap: "inline",
       reportCompressedSize: false,
     },
     server: {
