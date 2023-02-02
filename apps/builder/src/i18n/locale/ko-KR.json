@@ -820,7 +820,12 @@
         "y_axis_title": "Y축 제목",
         "height": "Height",
         "min_height": "Min height (px)",
-        "show_underline": "밑줄 표시"
+        "show_underline": "밑줄 표시",
+        "auto_play": "Auto play",
+        "interval": "Interval(ms)",
+        "show_button": "Show buttons on both sides",
+        "show_dot": "Show dots at the bottom",
+        "hidden_images": "Hidden images"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -860,6 +865,9 @@
       "unselected_tip2": "구성 요소를 클릭하여 선택하십시오.",
       "setter": {
         "click_mask_close": "Click mask to close modal"
+      },
+      "setter_tips": {
+        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
       }
     },
     "page": {
