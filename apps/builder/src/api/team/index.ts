@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CloudBaseApi, CloudTeamApi, cloudAxios } from "@/api/cloudApi"
+import { CloudBaseApi, CloudTeamApi } from "@/api/cloudApi"
 import {
   fetchInviteLinkResponse,
   inviteByEmailResponse,

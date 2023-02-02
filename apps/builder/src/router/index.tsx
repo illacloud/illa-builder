@@ -17,7 +17,6 @@ const wrappedRouter = (
       ...otherRouteProps,
     }
     if (needLogin && !isChildren) {
-      console.log({ isCloudVersion })
       if (isCloudVersion) {
         newRouteItem.errorElement = <Page404 />
         newRouteItem.loader = async ({ params, request }) => {

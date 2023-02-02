@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom"
-import { CloudBaseApi, cloudAxios } from "@/api/cloudApi"
+import { CloudBaseApi } from "@/api/cloudApi"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { getTeamsInfo } from "@/api/team"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"

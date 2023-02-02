@@ -10,15 +10,10 @@ import { ILLA_CLOUD_PATH } from "@/router/routerConfig"
 import store from "@/store"
 import { getAuthToken, removeAuthToken } from "@/utils/auth"
 import { isCloudVersion } from "@/utils/typeHelper"
-import {
-  authInterceptor,
-  axiosErrorInterceptor,
-  fullFillInterceptor,
-} from "./interceptors"
 
 const CLOUD = "/supervisior/api/v1"
 
-export const cloudAxios = Axios.create({
+const cloudAxios = Axios.create({
   baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`,
   timeout: 10000,
   headers: {
@@ -27,8 +22,7 @@ export const cloudAxios = Axios.create({
   },
 })
 
-cloudAxios.interceptors.request.use((config: AxiosRequestConfig) => {
-  console.log(config, "config")
+const authInterceptor = (config: AxiosRequestConfig) => {
   addRequestPendingPool(config)
   const token = getAuthToken()
   if (typeof token === "string") {
@@ -38,52 +32,57 @@ cloudAxios.interceptors.request.use((config: AxiosRequestConfig) => {
     }
   }
   return config
+}
+
+const fullFillInterceptor = (response: AxiosResponse) => {
+  const { config } = response
+  removeRequestPendingPool(config)
+  return response
+}
+
+const axiosErrorInterceptor = (error: AxiosError) => {
+  const { response } = error
+  if (!response) return Promise.reject(error)
+  const { status } = response
+  switch (status) {
+    // TODO: @aruseito maybe need custom error status, because of we'll have plugin to request other's api
+    case 401: {
+      removeAuthToken()
+      if (isCloudVersion) {
+        // navigate to illa cloud
+        ILLARoute.navigate(ILLA_CLOUD_PATH)
+      } else {
+        const { pathname } = location
+        ILLARoute.navigate("/login", {
+          replace: true,
+          state: {
+            form: pathname || "/",
+          },
+        })
+      }
+      break
+    }
+    case 403: {
+      ILLARoute.navigate("/403", {
+        replace: true,
+      })
+      break
+    }
+    case 500: {
+      ILLARoute.navigate("/500", {
+        replace: true,
+      })
+      break
+    }
+  }
+  return Promise.reject(error)
+}
+
+cloudAxios.interceptors.request.use(authInterceptor, (err) => {
+  return Promise.reject(err)
 })
 
-cloudAxios.interceptors.response.use(
-  (response: AxiosResponse) => {
-    const { config } = response
-    removeRequestPendingPool(config)
-    return response
-  },
-  (error: AxiosError) => {
-    const { response } = error
-    if (!response) return Promise.reject(error)
-    const { status } = response
-    switch (status) {
-      // TODO: @aruseito maybe need custom error status, because of we'll have plugin to request other's api
-      case 401: {
-        removeAuthToken()
-        if (isCloudVersion) {
-          // navigate to illa cloud
-          ILLARoute.navigate(ILLA_CLOUD_PATH)
-        } else {
-          const { pathname } = location
-          ILLARoute.navigate("/login", {
-            replace: true,
-            state: {
-              form: pathname || "/",
-            },
-          })
-        }
-        break
-      }
-      case 403: {
-        ILLARoute.navigate("/403", {
-          replace: true,
-        })
-        break
-      }
-      case 500: {
-        ILLARoute.navigate("/500", {
-          replace: true,
-        })
-        break
-      }
-    }
-    return Promise.reject(error)
-  },
-)
+cloudAxios.interceptors.response.use(fullFillInterceptor, axiosErrorInterceptor)
 
 export class CloudTeamApi {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
