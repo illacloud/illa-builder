@@ -69,9 +69,7 @@ export const ResourceChoose: FC = () => {
                 : t("editor.action.resource_choose.deleted")
             }
             onChange={(value) => {
-              const resource = resourceList.find(
-                (r) => r.resourceId === (value as string),
-              )
+              const resource = resourceList.find((r) => r.resourceId === value)
               if (resource != undefined) {
                 dispatch(
                   configActions.updateCachedAction({
