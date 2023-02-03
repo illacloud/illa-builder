@@ -1,6 +1,6 @@
 import { RowSelectionState, Updater } from "@tanstack/table-core"
 import { cloneDeep } from "lodash"
-import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
+import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
 import { useSelector } from "react-redux"
 import { Table, isNumber, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
@@ -9,12 +9,7 @@ import {
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import {
-  concatCustomAndNewColumns,
-  getCellForType,
-  tansTableDataToColumns,
-  transTableColumnEvent,
-} from "./utils"
+import { getCellForType, tansDataFromOld, transTableColumnEvent } from "./utils"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -145,6 +140,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleDeleteGlobalData,
     handleOnClickMenuItem,
     handleUpdateOriginalDSLMultiAttr,
+    // handleUpdateMultiExecutionResult,
     ...otherProps
   } = props
 
@@ -234,18 +230,21 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   }, [rowEvents])
 
   useEffect(() => {
-    const customColumns = columnsDef?.filter((item: any) => item.custom) ?? []
-    const customOrders = customColumns
-      .map((item) => item.columnIndex)
-      .filter((v) => v) as number[]
-    const newColumns = tansTableDataToColumns(realDataSourceArray, customOrders)
+    if (dataSourceMode !== "dynamic") return
+    const oldKeyOrder: string[] = []
+    const oldKeyMap: Record<string, ColumnItemShape> = {}
+    columns?.forEach((item) => {
+      oldKeyMap[item.accessorKey] = item
+      oldKeyOrder.push(item.accessorKey)
+    })
+    const newColumns = tansDataFromOld(
+      realDataSourceArray,
+      oldKeyMap,
+      oldKeyOrder,
+    )
     if (newColumns?.length) {
-      const reorderColumns = concatCustomAndNewColumns(
-        customColumns,
-        newColumns,
-      )
       handleUpdateOriginalDSLMultiAttr?.({
-        columns: reorderColumns,
+        columns: newColumns,
       })
     }
   }, [realDataSourceArray])
