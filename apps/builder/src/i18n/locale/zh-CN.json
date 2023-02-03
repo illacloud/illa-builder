@@ -1377,5 +1377,10 @@
   },
   "members": "成员",
   "invite_new_member": "邀请成员",
-  "launch": " 运行"
+  "launch": " 运行",
+  "homepage": {
+    "message": {
+      "join_failed": "未成功加入团队：您登录的邮箱不是被邀请的邮箱"
+    }
+  }
 }
