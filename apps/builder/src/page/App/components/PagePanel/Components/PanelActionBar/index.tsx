@@ -19,12 +19,12 @@ export const PanelActionBar: FC<PanelActionBarProps> = (props) => {
         )
       ) : null} */}
       {hasPanel ? (
-        <div css={clickHotpotWrapperStyle}>
-          <MinusIcon css={baseIconStyle} onClick={deletePanelAction} />
+        <div css={clickHotpotWrapperStyle} onClick={deletePanelAction}>
+          <MinusIcon css={baseIconStyle} />
         </div>
       ) : (
-        <div css={clickHotpotWrapperStyle}>
-          <PlusIcon css={baseIconStyle} onClick={addPanelAction} />
+        <div css={clickHotpotWrapperStyle} onClick={addPanelAction}>
+          <PlusIcon css={baseIconStyle} />
         </div>
       )}
     </div>
