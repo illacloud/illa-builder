@@ -1377,5 +1377,10 @@
   },
   "members": "メンバー",
   "invite_new_member": "メンバーを招待",
-  "launch": "実行"
+  "launch": "実行",
+  "homepage": {
+    "message": {
+      "join_failed": "チームに参加できませんでした: あなたのメールは招待メールではありません。"
+    }
+  }
 }
