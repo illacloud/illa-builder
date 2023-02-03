@@ -358,7 +358,6 @@ export class ExecutionTreeFactory {
       differences,
       currentExecutionTree as RawTreeShape,
     )
-    console.log("orderPath", orderPath)
     let currentRawTree = this.updateRawTreeByUpdatePaths(
       orderPath,
       currentExecutionTree,
