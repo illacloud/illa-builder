@@ -68,7 +68,7 @@ export const transformEvents = (
           (path: string) => path === pagePath,
         )
         if (index === -1) return
-        if (mode === "production" && originPathArray.length >= 6) {
+        if (mode === "production" && originPathArray.length >= 5) {
           if (mode === "production") {
             ILLARoute.navigate(
               originPathArray.slice(0, 6).join("/") + finalPath,
