@@ -485,11 +485,17 @@ export const RenderComponentCanvas: FC<{
       },
       drop: (dragInfo, monitor) => {
         const isDrop = monitor.didDrop()
+        const dropResult = monitor.getDropResult()
         const { item, currentColumnNumber } = dragInfo
-        if (isDrop || item.displayName === componentNode.displayName)
+        if (
+          (isDrop || item.displayName === componentNode.displayName) &&
+          dropResult
+        ) {
           return {
-            isDropOnCanvas: false,
+            isDropOnCanvas: dropResult.isDropOnCanvas,
           }
+        }
+
         if (monitor.getClientOffset()) {
           const scale = blockColumns / currentColumnNumber
 
