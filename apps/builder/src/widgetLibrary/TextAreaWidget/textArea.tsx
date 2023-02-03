@@ -136,7 +136,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   const textareaWrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    console.log("update: ", textareaWrapperRef.current?.clientHeight)
     if (textareaWrapperRef.current) {
       updateComponentHeight(textareaWrapperRef.current?.clientHeight)
     }
