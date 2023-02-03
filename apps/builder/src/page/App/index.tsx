@@ -73,7 +73,6 @@ export const Editor: FC = () => {
     }
     return () => {
       handleLeaveRoom()
-      dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
       dispatch(
         collaboratorsActions.setInRoomUsers({
           inRoomUsers: [],

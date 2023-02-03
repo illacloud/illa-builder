@@ -180,7 +180,11 @@ export const ComponentSpaceTree: FC = () => {
         />
       )
     })
-  }, [modalWidgetExecutionArray, selectedComponents])
+  }, [
+    handleModalComponentSelect,
+    modalWidgetExecutionArray,
+    selectedComponents,
+  ])
 
   return (
     <PanelBar

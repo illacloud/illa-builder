@@ -621,28 +621,26 @@ export const PageFrame: FC = () => {
             labelName={t("editor.page.label_name.left_panel")}
             size="big"
           />
-          <SetterPadding>
-            <PanelActionBar
-              isFixed={isLeftFixed}
-              hasPanel={hasLeft}
-              deletePanelAction={() => {
-                handleDeleteSection("leftSection", {
-                  hasLeft: false,
-                  leftWidth: 0,
-                  leftPosition: "NONE",
-                  layout: "Custom",
-                })
-              }}
-              addPanelAction={() => {
-                handleAddSection("leftSection", {
-                  hasLeft: true,
-                  leftWidth: 20,
-                  leftPosition: "FULL",
-                  layout: "Custom",
-                })
-              }}
-            />
-          </SetterPadding>
+          <PanelActionBar
+            isFixed={isLeftFixed}
+            hasPanel={hasLeft}
+            deletePanelAction={() => {
+              handleDeleteSection("leftSection", {
+                hasLeft: false,
+                leftWidth: 0,
+                leftPosition: "NONE",
+                layout: "Custom",
+              })
+            }}
+            addPanelAction={() => {
+              handleAddSection("leftSection", {
+                hasLeft: true,
+                leftWidth: 20,
+                leftPosition: "FULL",
+                layout: "Custom",
+              })
+            }}
+          />
         </LeftAndRightLayout>
         {hasLeft && (
           <>
@@ -690,28 +688,26 @@ export const PageFrame: FC = () => {
             labelName={t("editor.page.label_name.right_panel")}
             size="big"
           />
-          <SetterPadding>
-            <PanelActionBar
-              isFixed={isRightFixed}
-              hasPanel={hasRight}
-              deletePanelAction={() => {
-                handleDeleteSection("rightSection", {
-                  hasRight: false,
-                  rightWidth: 0,
-                  rightPosition: "NONE",
-                  layout: "Custom",
-                })
-              }}
-              addPanelAction={() => {
-                handleAddSection("rightSection", {
-                  hasRight: true,
-                  rightWidth: 20,
-                  rightPosition: "FULL",
-                  layout: "Custom",
-                })
-              }}
-            />
-          </SetterPadding>
+          <PanelActionBar
+            isFixed={isRightFixed}
+            hasPanel={hasRight}
+            deletePanelAction={() => {
+              handleDeleteSection("rightSection", {
+                hasRight: false,
+                rightWidth: 0,
+                rightPosition: "NONE",
+                layout: "Custom",
+              })
+            }}
+            addPanelAction={() => {
+              handleAddSection("rightSection", {
+                hasRight: true,
+                rightWidth: 20,
+                rightPosition: "FULL",
+                layout: "Custom",
+              })
+            }}
+          />
         </LeftAndRightLayout>
         {hasRight && (
           <>
@@ -785,26 +781,24 @@ export const PageFrame: FC = () => {
             labelName={t("editor.page.label_name.header")}
             size="big"
           />
-          <SetterPadding>
-            <PanelActionBar
-              isFixed={isHeaderFixed}
-              hasPanel={hasHeader}
-              deletePanelAction={() => {
-                handleDeleteSection("headerSection", {
-                  hasHeader: false,
-                  topHeight: 0,
-                  layout: "Custom",
-                })
-              }}
-              addPanelAction={() => {
-                handleAddSection("headerSection", {
-                  hasHeader: true,
-                  topHeight: 96,
-                  layout: "Custom",
-                })
-              }}
-            />
-          </SetterPadding>
+          <PanelActionBar
+            isFixed={isHeaderFixed}
+            hasPanel={hasHeader}
+            deletePanelAction={() => {
+              handleDeleteSection("headerSection", {
+                hasHeader: false,
+                topHeight: 0,
+                layout: "Custom",
+              })
+            }}
+            addPanelAction={() => {
+              handleAddSection("headerSection", {
+                hasHeader: true,
+                topHeight: 96,
+                layout: "Custom",
+              })
+            }}
+          />
         </LeftAndRightLayout>
         {hasHeader && (
           <>
@@ -839,26 +833,24 @@ export const PageFrame: FC = () => {
             labelName={t("editor.page.label_name.footer")}
             size="big"
           />
-          <SetterPadding>
-            <PanelActionBar
-              isFixed={isFooterFixed}
-              hasPanel={hasFooter}
-              deletePanelAction={() => {
-                handleDeleteSection("footerSection", {
-                  hasFooter: false,
-                  bottomHeight: 0,
-                  layout: "Custom",
-                })
-              }}
-              addPanelAction={() => {
-                handleAddSection("footerSection", {
-                  hasFooter: true,
-                  bottomHeight: 96,
-                  layout: "Custom",
-                })
-              }}
-            />
-          </SetterPadding>
+          <PanelActionBar
+            isFixed={isFooterFixed}
+            hasPanel={hasFooter}
+            deletePanelAction={() => {
+              handleDeleteSection("footerSection", {
+                hasFooter: false,
+                bottomHeight: 0,
+                layout: "Custom",
+              })
+            }}
+            addPanelAction={() => {
+              handleAddSection("footerSection", {
+                hasFooter: true,
+                bottomHeight: 96,
+                layout: "Custom",
+              })
+            }}
+          />
         </LeftAndRightLayout>
         {hasFooter && (
           <>

@@ -636,6 +636,10 @@
           "email": "우편",
           "regex": "정규식",
           "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixed",
+          "auto": "Auto"
         }
       },
       "setter_group": {
@@ -813,7 +817,9 @@
         "x_axis_type": "X축 유형",
         "x_axis_value": "X축",
         "y_axis_name": "좌표 이름",
-        "y_axis_title": "Y축 제목"
+        "y_axis_title": "Y축 제목",
+        "height": "Height",
+        "min_height": "Min height (px)"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -979,7 +985,8 @@
       "des": "요청에 실패했습니다. 나중에 다시 시도하십시오."
     },
     "back": "홈페이지로 돌아 가기",
-    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
+    "mobile_forbidden": "더 나은 편집 환경을 위해 데스크톱에서 이 페이지를 방문하세요.",
+    "back_to_cloud": "ILLA 클라우드 페이지로 돌아가기"
   },
   "title": "엘라 클라우드에 오신 것을 환영합니다",
   "unfreeze_tips": "캔버스를 고정한 후 구성 요소를 컨테이너 안팎으로 드래그할 수 있습니다. (디 또는 케이)",
@@ -1217,6 +1224,9 @@
     },
     "modal": {
       "name": "Modal"
+    },
+    "textarea": {
+      "name": "Textarea Input"
     }
   },
   "page": {
@@ -1231,5 +1241,131 @@
     "invalid_tips": "Please enter a value not less than {{ size }}."
   },
   "failed_to_copy": "복사 실패",
-  "copied": "복사됨!"
+  "copied": "복사됨!",
+  "user_management": {
+    "role": {
+      "owner": "소유자",
+      "admin": "관리하다",
+      "editor": "편집자",
+      "viewer": "보기만"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "멤버 초대"
+      },
+      "link": {
+        "invite_title": "초대 링크",
+        "copy": "복사",
+        "turn_off": "초대 링크 끄기",
+        "update": "초대 링크 업데이트",
+        "description": "사용자가 비공개 링크로 팀에 참여할 수 있도록 허용",
+        "turn_on": "초대 링크 켜기",
+        "fail": "링크를 가져오지 못했습니다. 나중에 다시 시도해 주세요.",
+        "copied_suc": "복사됨!",
+        "failed_to_copy": "복사 실패",
+        "turn_off_fail": "사용 중지하지 못했습니다",
+        "turn_on_fail": "사용 설정 실패"
+      },
+      "email": {
+        "invite_title": "이메일로 초대",
+        "invite": "초대",
+        "placeholder": "이메일 주소를 입력하세요",
+        "invited": "초대했다",
+        "in_list": "이 사용자는 이미 팀에 있습니다."
+      }
+    },
+    "mes": {
+      "invite_suc": "초대 성공",
+      "invite_fail": "초대 실패",
+      "update_suc": "업데이트 성공",
+      "update_fail": "업데이트하지 못했습니다",
+      "transfer_suc": "양도했습니다",
+      "transfer_fail": "전송 실패",
+      "remove_suc": "삭제 성공",
+      "remove_fail": "삭제하지 못했습니다",
+      "change_role_fail": "업데이트하지 못했습니다",
+      "change_role_suc": "업데이트 성공"
+    },
+    "page": {
+      "member": "당원",
+      "invite": "초대",
+      "permission": "권한",
+      "operation": "운영",
+      "transfer": "소유권 이전",
+      "remove": "제거"
+    },
+    "transfer_modal": {
+      "title": "소유권을 이전하시겠습니까?",
+      "description": "전송 후 권한이 관리자로 변경됩니다.",
+      "transfer": "전송",
+      "cancel": "取消"
+    },
+    "remove_modal": {
+      "title": "{{ username }}을(를) 삭제하시겠습니까 ?",
+      "description": "제거 후 사용자는 팀에 액세스할 수 없습니다.",
+      "remove": "제거",
+      "cancel": "취소"
+    },
+    "status": {
+      "pending": "보류 중"
+    },
+    "settings": {
+      "allow_editors_invite": "편집자와 뷰어가 회원을 관리하도록 허용합니다"
+    }
+  },
+  "copy_failed": "복사 실패",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "팀 설정",
+      "member": "회원",
+      "leave": "팀 탈퇴",
+      "delete": "팀 삭제"
+    },
+    "leave_modal": {
+      "title": "이 팀을 떠나시겠습니까?",
+      "description": "이 팀을 떠난 후에는 팀 리소스에 액세스할 수 없습니다.",
+      "leave": "떠나다",
+      "cancel": "취소"
+    },
+    "delete_modal": {
+      "title": "이 팀을 삭제하시겠습니까?",
+      "delete": "삭제",
+      "cancel": "취소",
+      "desctiption": "삭제 후에는 팀 식별자를 사용할 수 없으며 모든 구성원이 이 팀에서 제거됩니다."
+    },
+    "team_info": {
+      "title": "팀 정보",
+      "team_name": "이름",
+      "domain": ".illacloud.com",
+      "existed": "이름이 이미 존재합니다",
+      "available": "가능함",
+      "edit": "편집하다",
+      "save": "변경 사항을 저장하다",
+      "adjust_avater": "아바타 조정",
+      "avater_crop": "자르기",
+      "team_name_empty": "팀 이름을 입력하세요.",
+      "team_id_empty": "팀 ID를 입력하세요.",
+      "team_name_placeholder": "팀 이름을 입력하세요.",
+      "team_id_placeholder": "팀 아이디를 입력해주세요",
+      "leave_title": "팀 탈퇴",
+      "leave_button": "팀 탈퇴",
+      "delete_title": "팀 삭제",
+      "delete_button": "팀 삭제",
+      "team_domain": "팀 ID"
+    },
+    "message": {
+      "save_suc": "팀 아이디를 입력해주세요",
+      "save_fail": "저장 실패"
+    },
+    "mes": {
+      "domain_suc": "성공적으로 생성합니다.",
+      "delete_suc": "성공적으로 삭제",
+      "delete_fail": "삭제 실패",
+      "leave_suc": "팀 성공을 떠나",
+      "leave_fail": "팀 탈퇴 실패"
+    }
+  },
+  "members": "멤버",
+  "invite_new_member": "멤버 초대",
+  "launch": "시작"
 }

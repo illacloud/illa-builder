@@ -1,16 +1,27 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
-import { Modal } from "@illa-design/react"
+import { useDispatch, useSelector } from "react-redux"
+import { Modal, useMessage } from "@illa-design/react"
+import { Api } from "@/api/base"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
-import { ActionType } from "@/redux/currentApp/action/actionState"
+import { configActions } from "@/redux/config/configSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import {
+  ActionContent,
+  ActionItem,
+  ActionType,
+  actionItemInitial,
+} from "@/redux/currentApp/action/actionState"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
   getResourceNameFromResourceType,
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 
@@ -23,6 +34,9 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   )
 
   const { t } = useTranslation()
+  const message = useMessage()
+  const dispatch = useDispatch()
+  const appInfo = useSelector(getAppInfo)
 
   const allResource = useSelector(getAllResources)
 
@@ -64,6 +78,102 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
     }
   }, [currentStep, currentActionType, allResource])
 
+  const handleDirectCreateAction = useCallback(
+    (
+      resourceId: string,
+      successCallback?: () => void,
+      loadingCallback?: (loading: boolean) => void,
+    ) => {
+      if (currentActionType === null) {
+        return
+      }
+      const displayName =
+        DisplayNameGenerator.generateDisplayName(currentActionType)
+      const initialContent = getInitialContent(currentActionType)
+      const data: Partial<ActionItem<ActionContent>> = {
+        actionType: currentActionType,
+        displayName,
+        resourceId,
+        content: initialContent,
+        ...actionItemInitial,
+      }
+      Api.request(
+        {
+          url: `/apps/${appInfo.appId}/actions`,
+          method: "POST",
+          data,
+        },
+        ({ data }: { data: ActionItem<ActionContent> }) => {
+          message.success({
+            content: t("editor.action.action_list.message.success_created"),
+          })
+          dispatch(actionActions.addActionItemReducer(data))
+          dispatch(configActions.changeSelectedAction(data))
+          successCallback?.()
+        },
+        () => {
+          message.error({
+            content: t("editor.action.action_list.message.failed"),
+          })
+          DisplayNameGenerator.removeDisplayName(displayName)
+        },
+        () => {
+          DisplayNameGenerator.removeDisplayName(displayName)
+        },
+        (loading) => {
+          loadingCallback?.(loading)
+        },
+      )
+    },
+    [appInfo.appId, currentActionType, dispatch, message, t],
+  )
+
+  const handleBack = useCallback((page: ActionCreatorPage) => {
+    setCurrentStep(page)
+  }, [])
+
+  const handleCancelModal = useCallback(() => {
+    onClose()
+    setCurrentStep("select")
+    setCurrentActionType(null)
+  }, [onClose])
+
+  const handleActionTypeSelect = useCallback(
+    (actionType: ActionType) => {
+      if (actionType == "transformer") {
+        onClose()
+      } else {
+        setCurrentStep("createAction")
+        setCurrentActionType(actionType)
+      }
+    },
+    [onClose],
+  )
+
+  const handleCreateResource = useCallback((actionType: ActionType) => {
+    setCurrentActionType(actionType)
+    setCurrentStep("createResource")
+  }, [])
+
+  const handleCreateAction = useCallback(
+    (actionType: ActionType, resourceId?: string) => {
+      setCurrentStep("select")
+      onCreateAction()
+      onClose()
+    },
+    [onClose, onCreateAction],
+  )
+
+  const handleFinishCreateNewResource = useCallback(
+    (resourceId: string) => {
+      handleDirectCreateAction(resourceId, () => {
+        setCurrentStep("select")
+        onClose()
+      })
+    },
+    [handleDirectCreateAction, onClose],
+  )
+
   return (
     <Modal
       w="696px"
@@ -73,53 +183,26 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       withoutLine
       withoutPadding
       title={title}
-      onCancel={() => {
-        onClose()
-        setCurrentStep("select")
-        setCurrentActionType(null)
-      }}
+      onCancel={handleCancelModal}
     >
       <div css={modalContentStyle}>
         {currentStep === "select" && (
-          <ActionTypeSelector
-            onSelect={(actionType) => {
-              if (actionType == "transformer") {
-                onClose()
-              } else {
-                setCurrentStep("createAction")
-                setCurrentActionType(actionType)
-              }
-            }}
+          <ActionTypeSelector onSelect={handleActionTypeSelect} />
+        )}
+        {currentStep === "createAction" && currentActionType && (
+          <ActionResourceSelector
+            actionType={currentActionType}
+            onBack={handleBack}
+            handleCreateAction={handleDirectCreateAction}
+            onCreateResource={handleCreateResource}
+            onCreateAction={handleCreateAction}
           />
         )}
-        {(currentStep === "createAction" ||
-          currentStep === "directCreateAction") &&
-          currentActionType && (
-            <ActionResourceSelector
-              actionType={currentActionType}
-              onBack={(page) => {
-                setCurrentStep(page)
-              }}
-              onCreateResource={(actionType) => {
-                setCurrentActionType(actionType)
-                setCurrentStep("createResource")
-              }}
-              onCreateAction={(actionType, resourceId) => {
-                setCurrentStep("select")
-                onCreateAction()
-                onClose()
-              }}
-            />
-          )}
         {currentStep === "createResource" && transformResource && (
           <ActionResourceCreator
             resourceType={transformResource}
-            onBack={(page) => {
-              setCurrentStep(page)
-            }}
-            onFinished={(resourceId) => {
-              setCurrentStep("directCreateAction")
-            }}
+            onBack={handleBack}
+            onFinished={handleFinishCreateNewResource}
           />
         )}
       </div>

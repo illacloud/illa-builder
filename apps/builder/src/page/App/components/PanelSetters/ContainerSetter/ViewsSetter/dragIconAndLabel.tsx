@@ -40,7 +40,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const executionResult = useSelector(getExecutionResult)
 
   const currentViews = useMemo(() => {
-    return get(executionResult, `${widgetDisplayName}.${attrPath}.${index}`)
+    return get(executionResult, `${widgetDisplayName}.${attrPath}.${index}`, {})
   }, [attrPath, executionResult, index, widgetDisplayName])
 
   const otherViewKeys = useMemo(() => {
