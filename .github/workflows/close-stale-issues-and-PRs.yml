@@ -16,5 +16,5 @@ jobs:
           days-before-pr-stale: 5
           days-before-issue-close: 2
           days-before-pr-close: 2
-          exempt-issue-labels: 'bug,work-in-progress'
+          exempt-issue-labels: 'bug,feature,help wanted,invalid'
           exempt-all-assignees: true
