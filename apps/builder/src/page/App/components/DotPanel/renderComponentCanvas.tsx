@@ -35,9 +35,11 @@ import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import {
   getFreezeState,
   getIllaMode,
+  getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { clearComponentAttachedUsersHandler } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   modifyComponentNodeX,
   modifyComponentNodeY,
@@ -163,6 +165,7 @@ export const RenderComponentCanvas: FC<{
   const dispatch = useDispatch()
 
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
+  const selectedComponents = useSelector(getSelectedComponents)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
 
@@ -484,11 +487,17 @@ export const RenderComponentCanvas: FC<{
       },
       drop: (dragInfo, monitor) => {
         const isDrop = monitor.didDrop()
+        const dropResult = monitor.getDropResult()
         const { item, currentColumnNumber } = dragInfo
-        if (isDrop || item.displayName === componentNode.displayName)
+        if (
+          (isDrop || item.displayName === componentNode.displayName) &&
+          dropResult
+        ) {
           return {
-            isDropOnCanvas: false,
+            isDropOnCanvas: dropResult.isDropOnCanvas,
           }
+        }
+
         if (monitor.getClientOffset()) {
           const scale = blockColumns / currentColumnNumber
 
@@ -756,6 +765,7 @@ export const RenderComponentCanvas: FC<{
           illaMode !== "production"
         ) {
           dispatch(configActions.updateSelectedComponent([]))
+          clearComponentAttachedUsersHandler(selectedComponents || [])
         }
       }}
     >

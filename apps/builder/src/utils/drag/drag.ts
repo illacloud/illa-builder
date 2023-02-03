@@ -1,4 +1,5 @@
 import { configActions } from "@/redux/config/configSlice"
+import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import store from "@/store"
@@ -26,6 +27,10 @@ export function endDrag(dragNode: ComponentNode, isDropOnCanvas: boolean) {
   if (isDropOnCanvas) {
     store.dispatch(
       configActions.updateSelectedComponent([dragNode.displayName]),
+    )
+    updateCurrentAllComponentsAttachedUsers(
+      [dragNode.displayName],
+      store.getState().currentApp.collaborators.components,
     )
   } else {
     DisplayNameGenerator.removeDisplayName(dragNode.displayName)

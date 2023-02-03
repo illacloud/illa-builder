@@ -242,12 +242,16 @@ export class ExecutionTreeFactory {
     paths: string[],
     executionTree: RawTreeShape,
     rawTree: RawTreeShape,
+    walkedPath: Set<string>,
   ) {
     const currentExecutionTree = cloneDeep(executionTree)
     paths.forEach((path) => {
-      const rootPath = path.split(".").slice(0, 2).join(".")
-      const value = get(rawTree, rootPath, undefined)
-      set(currentExecutionTree, rootPath, value)
+      if (!walkedPath.has(path)) {
+        walkedPath.add(path)
+        const rootPath = path.split(".").slice(0, 2).join(".")
+        const value = get(rawTree, rootPath, undefined)
+        set(currentExecutionTree, rootPath, value)
+      }
     })
     return currentExecutionTree
   }
@@ -267,13 +271,21 @@ export class ExecutionTreeFactory {
       }
     }
     const updatePaths = this.getUpdatePathFromDifferences(differences)
+    const walkedPath = new Set<string>()
     let currentExecution = this.updateExecutionTreeByUpdatePaths(
       updatePaths,
       this.executedTree,
       currentRawTree,
+      walkedPath,
     )
 
     const path = this.calcSubTreeSortOrder(differences, currentExecution)
+    currentExecution = this.updateExecutionTreeByUpdatePaths(
+      path,
+      currentExecution,
+      currentRawTree,
+      walkedPath,
+    )
     const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       currentExecution,
       path,
@@ -305,14 +317,22 @@ export class ExecutionTreeFactory {
   updateRawTreeByUpdatePaths(
     paths: string[],
     executionTree: Record<string, any>,
+    walkedPath: Set<string>,
   ) {
-    const currentRawTree = cloneDeep(this.oldRawTree)
+    const currentExecutionTree = cloneDeep(executionTree)
     paths.forEach((path) => {
-      const rootPath = path.split(".").slice(0, 2).join(".")
-      const value = get(executionTree, rootPath, undefined)
-      set(currentRawTree, rootPath, value)
+      if (!walkedPath.has(path)) {
+        walkedPath.add(path)
+        const { displayName, attrPath } = getDisplayNameAndAttrPath(path)
+        const actionOrWidget = get(currentExecutionTree, displayName)
+        if (!isAction(actionOrWidget) || !attrPath.startsWith("data")) {
+          const rootPath = path.split(".").slice(0, 2).join(".")
+          const value = get(this.oldRawTree, rootPath, undefined)
+          set(currentExecutionTree, rootPath, value)
+        }
+      }
     })
-    return currentRawTree
+    return currentExecutionTree
   }
 
   updateTreeFromExecution(executionTree: Record<string, any>) {
@@ -324,18 +344,27 @@ export class ExecutionTreeFactory {
         evaluatedTree: this.executedTree,
       }
     }
+    const walkedPath = new Set<string>()
     const updatePaths = this.getUpdatePathFromDifferences(differences)
-    const currentRawTree = this.updateRawTreeByUpdatePaths(
-      updatePaths,
-      currentExecutionTree,
+    updatePaths.forEach((path) => {
+      walkedPath.add(path)
+    })
+
+    const orderPath = this.calcSubTreeSortOrder(
+      differences,
+      currentExecutionTree as RawTreeShape,
     )
-    const orderPath = this.calcSubTreeSortOrder(differences, currentRawTree)
+    let currentRawTree = this.updateRawTreeByUpdatePaths(
+      orderPath,
+      currentExecutionTree,
+      walkedPath,
+    ) as RawTreeShape
     const { evaluatedTree } = this.executeTree(currentRawTree, orderPath)
     const differencesRawTree: Diff<Record<string, any>, Record<string, any>>[] =
       diff(this.oldRawTree, evaluatedTree) || []
     this.applyDifferencesToEvalTree(differencesRawTree)
     this.applyDifferencesToEvalTree(differences)
-    this.executedTree = this.validateTree(this.executedTree)
+    this.executedTree = this.validateTree(evaluatedTree)
     return {
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,

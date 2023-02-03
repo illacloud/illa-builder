@@ -87,7 +87,7 @@ export const DataSourceSetter: FC<ChartDataSourceSetterProps> = (props) => {
         onChangeInput={handleChangeInput}
         path={`${widgetDisplayName}.dataSourceJS`}
         options={selectedOptions}
-        expectedType={VALIDATION_TYPES.OBJECT}
+        expectedType={VALIDATION_TYPES.ARRAY}
         onChangeSelect={handleChangeSelect}
         value={finalValue}
         labelName={labelName}

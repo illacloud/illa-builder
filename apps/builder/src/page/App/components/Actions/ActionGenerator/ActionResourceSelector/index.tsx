@@ -1,29 +1,17 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import {
   AddIcon,
   Button,
   ButtonGroup,
   List,
   PreviousIcon,
-  useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
-import { configActions } from "@/redux/config/configSlice"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import {
-  ActionContent,
-  ActionItem,
-  actionItemInitial,
-} from "@/redux/currentApp/action/actionState"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ActionResourceSelectorProps } from "./interface"
 import {
   applyResourceItemStyle,
@@ -36,11 +24,15 @@ import {
 export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   props,
 ) => {
-  const { actionType, onBack, onCreateAction, onCreateResource } = props
+  const {
+    actionType,
+    onBack,
+    onCreateAction,
+    onCreateResource,
+    handleCreateAction,
+  } = props
 
   const { t } = useTranslation()
-
-  const appInfo = useSelector(getAppInfo)
 
   const resourceList = useSelector(getAllResources)
     .filter((r) => r.resourceType == getResourceTypeFromActionType(actionType))
@@ -55,9 +47,13 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
 
   const [loading, setLoading] = useState(false)
 
-  const message = useMessage()
-
-  const dispatch = useDispatch()
+  const handleClickCreateAction = useCallback(() => {
+    handleCreateAction(
+      selectedResourceId,
+      () => onCreateAction?.(actionType, selectedResourceId),
+      setLoading,
+    )
+  }, [actionType, handleCreateAction, onCreateAction, selectedResourceId])
 
   return (
     <div css={containerStyle}>
@@ -109,47 +105,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
           </Button>
           <Button
             colorScheme="techPurple"
-            onClick={() => {
-              const displayName =
-                DisplayNameGenerator.generateDisplayName(actionType)
-              const initialContent = getInitialContent(actionType)
-              const data: Partial<ActionItem<ActionContent>> = {
-                actionType,
-                displayName,
-                resourceId: selectedResourceId,
-                content: initialContent,
-                ...actionItemInitial,
-              }
-              Api.request(
-                {
-                  url: `/apps/${appInfo.appId}/actions`,
-                  method: "POST",
-                  data,
-                },
-                ({ data }: { data: ActionItem<ActionContent> }) => {
-                  message.success({
-                    content: t(
-                      "editor.action.action_list.message.success_created",
-                    ),
-                  })
-                  dispatch(actionActions.addActionItemReducer(data))
-                  dispatch(configActions.changeSelectedAction(data))
-                  onCreateAction?.(actionType, selectedResourceId)
-                },
-                () => {
-                  message.error({
-                    content: t("editor.action.action_list.message.failed"),
-                  })
-                  DisplayNameGenerator.removeDisplayName(displayName)
-                },
-                () => {
-                  DisplayNameGenerator.removeDisplayName(displayName)
-                },
-                (loading) => {
-                  setLoading(loading)
-                },
-              )
-            }}
+            onClick={handleClickCreateAction}
             loading={loading}
             disabled={resourceList.length <= 0}
           >
