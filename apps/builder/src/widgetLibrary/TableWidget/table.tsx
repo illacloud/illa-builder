@@ -145,7 +145,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   } = props
 
   const defaultSort = useMemo(() => {
-    if (!defaultSortKey) return undefined
+    if (!defaultSortKey || defaultSortKey === "default") return []
     return [
       {
         id: defaultSortKey,
@@ -230,7 +230,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   }, [rowEvents])
 
   useEffect(() => {
-    if (dataSourceMode !== "dynamic") return
     const oldKeyOrder: string[] = []
     const oldKeyMap: Record<string, ColumnItemShape> = {}
     columns?.forEach((item) => {
