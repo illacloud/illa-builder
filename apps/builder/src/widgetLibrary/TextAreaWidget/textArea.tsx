@@ -27,7 +27,6 @@ export const WrappedTextarea = forwardRef<
   const {
     displayName,
     value,
-    minHeight,
     heightType,
     placeholder,
     disabled,
@@ -44,8 +43,6 @@ export const WrappedTextarea = forwardRef<
     handleUpdateMultiExecutionResult,
     getValidateMessage,
   } = props
-
-  const hasMinHeight = heightType === "Auto"
 
   const handleClear = () => handleUpdateDsl({ value: "" })
 
@@ -78,8 +75,7 @@ export const WrappedTextarea = forwardRef<
 
   return (
     <TextArea
-      // autoSize={hasMinHeight}
-      // minH={hasMinHeight ? `${minHeight}px` : undefined}
+      h="100%"
       w="100%"
       textAreaRef={ref}
       value={value}
@@ -140,6 +136,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   const textareaWrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    console.log("update: ", textareaWrapperRef.current?.clientHeight)
     if (textareaWrapperRef.current) {
       updateComponentHeight(textareaWrapperRef.current?.clientHeight)
     }
