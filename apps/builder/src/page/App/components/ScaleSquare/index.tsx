@@ -46,6 +46,9 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
+import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -53,6 +56,7 @@ import {
   getExecutionError,
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import store, { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { endDrag, startDrag } from "@/utils/drag/drag"
@@ -103,6 +107,17 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const dispatch = useDispatch()
 
   const isShowCanvasDot = useSelector(isShowDot)
+
+  const componentsAttachedUsers = useSelector(
+    getComponentAttachUsers,
+  ) as Record<string, CollaboratorsInfo[]>
+  const currentUsesInfo = useSelector(getCurrentUser)
+  const attachedUserList =
+    componentsAttachedUsers[componentNode.displayName] || []
+  const filteredComponentAttachedUserList = attachedUserList.filter(
+    (user) => `${user.id}` !== `${currentUsesInfo.userId}`,
+  )
+
   const illaMode = useSelector(getIllaMode)
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
@@ -179,17 +194,24 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         )
         if (index !== -1) {
           currentSelectedDisplayName.splice(index, 1)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
         } else {
           currentSelectedDisplayName.push(componentNode.displayName)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
         }
+        dispatch(
+          configActions.updateSelectedComponent(currentSelectedDisplayName),
+        )
+        updateCurrentAllComponentsAttachedUsers(
+          currentSelectedDisplayName,
+          componentsAttachedUsers,
+        )
+
         return
       }
+      updateCurrentAllComponentsAttachedUsers(
+        [componentNode.displayName],
+        componentsAttachedUsers,
+      )
+
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
@@ -444,9 +466,15 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
+      updateCurrentAllComponentsAttachedUsers(
+        [componentNode.displayName],
+        componentsAttachedUsers,
+      )
     },
     [componentNode.displayName, dispatch],
   )
+
+  const hasEditors = !!filteredComponentAttachedUserList.length
 
   //  1px is left border width
   return isDragging ? null : (
@@ -464,6 +492,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         illaMode === "edit" && isSelected ? enableResizing : false
       }
       css={applyRNDWrapperStyle(
+        hasEditors,
         isSelected,
         hasError,
         isShowCanvasDot,
@@ -506,6 +535,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         <div
           className="wrapperPending"
           css={applyWrapperPendingStyle(
+            hasEditors,
             isSelected,
             hasError,
             isDragging,
@@ -526,6 +556,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             containerPadding={containerPadding || 0}
             containerHeight={containerHeight}
             widgetType={componentNode.type}
+            userList={filteredComponentAttachedUserList}
           />
 
           <TransformWidgetWrapper
@@ -571,7 +602,7 @@ export const ScaleSquareWithJSON = memo<ScaleSquarePropsWithJSON>(
       >
         <div
           className="wrapperPending"
-          css={applyWrapperPendingStyle(false, false, false, false)}
+          css={applyWrapperPendingStyle(false, false, false, false, false)}
         >
           <TransformWidgetWrapperWithJson
             componentNode={componentNode}
@@ -627,6 +658,16 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
 
+  const componentsAttachedUsers = useSelector(
+    getComponentAttachUsers,
+  ) as Record<string, CollaboratorsInfo[]>
+  const currentUsesInfo = useSelector(getCurrentUser)
+  const attachedUserList =
+    componentsAttachedUsers[componentNode.displayName] || []
+  const filteredComponentAttachedUserList = attachedUserList.filter(
+    (user) => `${user.id}` !== `${currentUsesInfo.userId}`,
+  )
+
   const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
 
   const resizeDirection = useMemo(() => {
@@ -666,19 +707,25 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         )
         if (index !== -1) {
           currentSelectedDisplayName.splice(index, 1)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
         } else {
           currentSelectedDisplayName.push(componentNode.displayName)
-          dispatch(
-            configActions.updateSelectedComponent(currentSelectedDisplayName),
-          )
         }
+        dispatch(
+          configActions.updateSelectedComponent(currentSelectedDisplayName),
+        )
+
+        updateCurrentAllComponentsAttachedUsers(
+          currentSelectedDisplayName,
+          componentsAttachedUsers,
+        )
         return
       }
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
+      )
+      updateCurrentAllComponentsAttachedUsers(
+        [componentNode.displayName],
+        componentsAttachedUsers,
       )
     },
     [componentNode.displayName, dispatch, illaMode, selectedComponents],
@@ -837,9 +884,16 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
+      updateCurrentAllComponentsAttachedUsers(
+        [componentNode.displayName],
+        componentsAttachedUsers,
+      )
     },
     [componentNode.displayName, dispatch],
   )
+
+  const hasEditors = !!filteredComponentAttachedUserList.length
+
   return (
     <Resizable
       bounds="parent"
@@ -881,6 +935,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         <div
           className="wrapperPending"
           css={applyWrapperPendingStyle(
+            hasEditors,
             isSelected,
             hasError,
             false,
@@ -900,6 +955,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             containerPadding={containerPadding || 0}
             containerHeight={containerHeight}
             widgetType={componentNode.type}
+            userList={filteredComponentAttachedUserList}
           />
 
           <TransformWidgetWrapper

@@ -7,6 +7,7 @@ import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/Ac
 import { sqlInputStyle } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import {
   actionItemContainer,
+  redisCodeEditorStyle,
   redisContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
@@ -45,9 +46,9 @@ export const RedisPanel: FC = () => {
       <ResourceChoose />
       <div css={actionItemContainer}>
         <CodeEditor
+          wrapperCss={redisCodeEditorStyle}
           placeholder="SET runoobkey redis"
           showLineNumbers
-          wrapperCss={sqlInputStyle}
           value={currentContent.query}
           lang={CODE_LANG.JAVASCRIPT}
           expectValueType={VALIDATION_TYPES.STRING}

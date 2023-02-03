@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { FC, memo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon, isArray, isObject } from "@illa-design/react"
@@ -10,7 +10,6 @@ import {
   applyJsonContentStyle,
   itemNameDescStyle,
   itemNameStyle,
-  jsonContentAnimation,
   jsonItemStyle,
   jsonNameStyle,
   jsonValueStyle,
@@ -60,24 +59,28 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo(
               {keyArr.length > 1 ? "keys" : "key"}
             </label>
           </div>
-          <motion.div
-            css={applyJsonContentStyle(false)}
-            variants={jsonContentAnimation}
-            role="region"
-            animate={isExpanded ? "enter" : "exit"}
-            initial={false}
-            transition={{ duration: 0.2 }}
-          >
-            {keyArr.map((name) => (
-              <WorkSpaceTreeNode
-                key={name}
-                name={name}
-                value={value[name]}
-                itemKey={itemKey + name}
-                level={level + 1}
-              />
-            ))}
-          </motion.div>
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                css={applyJsonContentStyle(false)}
+                role="region"
+                animate={{ height: "auto", opacity: 1 }}
+                initial={{ height: 0, opacity: 0 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {keyArr.map((name) => (
+                  <WorkSpaceTreeNode
+                    key={name}
+                    name={name}
+                    value={value[name]}
+                    itemKey={itemKey + name}
+                    level={level + 1}
+                  />
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )
     } else {

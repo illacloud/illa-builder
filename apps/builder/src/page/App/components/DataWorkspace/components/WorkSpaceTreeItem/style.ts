@@ -127,8 +127,3 @@ export function applyJsonValueColorStyle(type: any): SerializedStyles {
       `
   }
 }
-
-export const jsonContentAnimation: Variants = {
-  enter: { height: "auto", opacity: 1 },
-  exit: { height: 0, opacity: 0 },
-}
