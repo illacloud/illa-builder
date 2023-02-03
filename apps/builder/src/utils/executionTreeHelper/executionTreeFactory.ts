@@ -95,7 +95,7 @@ export class ExecutionTreeFactory {
           )
           set(current, fullPath, safeValue)
           if (!isValid) {
-            let error = get(this.errorTree, fullPath)
+            let error = cloneDeep(get(this.errorTree, fullPath))
             if (!Array.isArray(error)) {
               error = []
             }
@@ -104,10 +104,12 @@ export class ExecutionTreeFactory {
               errorMessage: errorMessage as string,
               errorName: "Validation",
             })
-            set(this.errorTree, fullPath, error)
+            const newErrorTree = cloneDeep(this.errorTree)
+            set(newErrorTree, fullPath, error)
+            this.errorTree = newErrorTree
             this.debuggerData[fullPath] = error
           } else {
-            let error = get(this.errorTree, fullPath)
+            let error = cloneDeep(get(this.errorTree, fullPath))
             if (Array.isArray(error)) {
               const validationIndex = error.findIndex((v) => {
                 return v.errorType === ExecutionErrorType.VALIDATION
@@ -115,7 +117,9 @@ export class ExecutionTreeFactory {
               if (validationIndex !== -1) {
                 error.splice(validationIndex, 1)
                 if (error.length === 0) {
-                  unset(this.errorTree, fullPath)
+                  const newErrorTree = cloneDeep(this.errorTree)
+                  unset(newErrorTree, fullPath)
+                  this.errorTree = newErrorTree
                   delete this.debuggerData[fullPath]
                 }
               }
@@ -354,6 +358,7 @@ export class ExecutionTreeFactory {
       differences,
       currentExecutionTree as RawTreeShape,
     )
+    console.log("orderPath", orderPath)
     let currentRawTree = this.updateRawTreeByUpdatePaths(
       orderPath,
       currentExecutionTree,
