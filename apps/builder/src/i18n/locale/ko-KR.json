@@ -1377,5 +1377,10 @@
   },
   "members": "멤버",
   "invite_new_member": "멤버 초대",
-  "launch": "시작"
+  "launch": "시작",
+  "homepage": {
+    "message": {
+      "join_failed": "팀 가입 실패: 귀하의 이메일이 초대 이메일이 아닙니다."
+    }
+  }
 }
