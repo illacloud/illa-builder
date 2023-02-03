@@ -1377,5 +1377,10 @@
   },
   "members": "Members",
   "invite_new_member": "Invite",
-  "launch": "Launch"
+  "launch": "Launch",
+  "homepage": {
+    "message": {
+      "join_failed": "Failed to join the team: your email is not the invited email."
+    }
+  }
 }
