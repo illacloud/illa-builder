@@ -81,6 +81,7 @@ export const FORM_BODY_MARGIN = 7
 
 export const FORM_CAN_BIND_WIDGET_TYPE = new Map([
   ["INPUT_WIDGET", true],
+  ["TEXTAREA_INPUT_WIDGET", true],
   ["NUMBER_INPUT_WIDGET", true],
   ["SELECT_WIDGET", true],
   ["RADIO_BUTTON_WIDGET", true],

@@ -38,6 +38,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
     <div css={containerStyle} className={className}>
       {focus ? (
         <Input
+          w="100%"
           autoFocus
           onChange={(value) => {
             handleUpdateDsl({ value })
@@ -110,8 +111,17 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
     validateMessage,
   } = props
+
+  const editableInputWrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (editableInputWrapperRef.current) {
+      updateComponentHeight(editableInputWrapperRef.current?.clientHeight)
+    }
+  }, [validateMessage, labelPosition, editableInputWrapperRef])
 
   const handleValidate = useCallback(
     (value?: any) => {
@@ -197,7 +207,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     handleValidate,
   ])
   return (
-    <>
+    <div ref={editableInputWrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -224,7 +234,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </>
+    </div>
   )
 }
 EditableTextWidget.displayName = "EditableTextWidget"
