@@ -7,7 +7,6 @@ export const textareaContainerStyle = css`
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
 `
 
 export const getTextareaContentContainerStyle = (
