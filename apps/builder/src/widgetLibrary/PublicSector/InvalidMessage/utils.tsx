@@ -80,6 +80,78 @@ export const handleCheckPattern = (
   }
 }
 
+export const calculateFileSize = (data: unknown) => {
+  const blobArr = Array.isArray(data) ? data : [data]
+  const byteSize = new Blob(blobArr).size
+  return byteSize
+}
+
+const handleCheckFileSize = (
+  value: unknown,
+  maxSize?: number,
+  minSize?: number,
+  maxSizeType?: string,
+  minSizeType?: string,
+) => {
+  // default to MB
+  const getFileSizeNumber = (type?: string) =>
+    type !== "mb" ? 1024 : 1024 * 1024
+
+  const maxSizeNumber = maxSize ? maxSize * getFileSizeNumber(maxSizeType) : 0
+  const minSizeNumber = minSize ? minSize * getFileSizeNumber(minSizeType) : 0
+
+  for (let i = 0; i < (value as []).length; i++) {
+    const size =
+      (value as any)[i].originFile?.size ||
+      calculateFileSize((value as any)[i].originFile)
+
+    if (!!maxSizeNumber && size > maxSizeNumber) {
+      return {
+        hasError: true,
+        errorMessage: `The file size can't exceed ${maxSize} ${(
+          maxSizeType || "MB"
+        ).toUpperCase()}.`,
+      }
+    }
+    if (!!minSizeNumber && size < minSizeNumber) {
+      return {
+        hasError: true,
+        errorMessage: `The file size can't be less than ${minSize} ${(
+          minSizeType || "MB"
+        ).toUpperCase()}.`,
+      }
+    }
+  }
+  return {
+    hasError: false,
+    errorMessage: "",
+  }
+}
+
+const handleCheckFilesCount = (
+  value: unknown,
+  maxFiles?: number,
+  minFiles?: number,
+) => {
+  const length = (value as []).length
+  if (maxFiles && length > maxFiles) {
+    return {
+      fileCountInvalid: true,
+      countErrorMessage: `Support up to ${maxFiles} files.`,
+    }
+  }
+  if (minFiles && length < minFiles) {
+    return {
+      fileCountInvalid: true,
+      countErrorMessage: `At least ${minFiles} files are required.`,
+    }
+  }
+  return {
+    fileCountInvalid: false,
+    countErrorMessage: "",
+  }
+}
+
 export const handleValidateCheck = (
   options?: ValidateCheckProps,
 ): string | undefined => {
@@ -90,6 +162,26 @@ export const handleValidateCheck = (
     } catch (e) {
       console.error("custom rule is error")
     }
+  }
+
+  const { hasError, errorMessage } = handleCheckFileSize(
+    options.value,
+    options.maxSize,
+    options.minSize,
+    options.maxSizeType,
+    options.minSizeType,
+  )
+  if (hasError) {
+    return errorMessage
+  }
+
+  const { fileCountInvalid, countErrorMessage } = handleCheckFilesCount(
+    options.value,
+    options.maxFiles,
+    options.minFiles,
+  )
+  if (fileCountInvalid) {
+    return countErrorMessage
   }
 
   if (handleCheckIsRequired(options.value, options.required)) {

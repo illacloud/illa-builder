@@ -29,6 +29,8 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
       allowClear,
       maxLength,
       minLength,
+      handleOnFocus,
+      handleOnBlur,
       handleUpdateMultiExecutionResult,
       getValidateMessage,
     } = props
@@ -62,6 +64,8 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
             handleOnChange?.()
           })
         }}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         showCount={showCharacterCount}
         borderColor={colorScheme}
         allowClear={allowClear}

@@ -19,6 +19,8 @@ export interface WrappedInputProps
   colorScheme?: InputProps["borderColor"]
   allowClear?: InputProps["allowClear"]
   handleOnChange?: () => void
+  handleOnFocus?: () => void
+  handleOnBlur?: () => void
   handleUpdateMultiExecutionResult: (
     updateSlice: {
       displayName: string
