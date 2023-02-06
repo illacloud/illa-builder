@@ -239,31 +239,6 @@ export const TEXTAREA_PANEL_CONFIG: PanelConfig[] = [
         openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
-      {
-        id: `${baseWidgetName}-layout-height`,
-        labelName: i18n.t("editor.inspect.setter_label.height"),
-        setterType: "SEARCH_SELECT_SETTER",
-        attrName: "heightType",
-        options: [
-          {
-            label: i18n.t("editor.inspect.setter_default_value.height.fixed"),
-            value: "Fixed",
-          },
-          {
-            label: i18n.t("editor.inspect.setter_default_value.height.auto"),
-            value: "Auto",
-          },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-layout-min-height`,
-        labelName: i18n.t("editor.inspect.setter_label.min_height"),
-        setterType: "INPUT_SETTER",
-        attrName: "minHeight",
-        bindAttrName: ["heightType"],
-        expectedType: VALIDATION_TYPES.NUMBER,
-        shown: (value) => value === "Auto",
-      },
     ],
   },
   {

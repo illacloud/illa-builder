@@ -21,6 +21,5 @@ export const TEXTAREA_WIDGET_CONFIG: WidgetConfig = {
     hidden: false,
     formDataKey: "textarea",
     placeholder: "enter sth",
-    heightType: "Fixed",
   },
 }

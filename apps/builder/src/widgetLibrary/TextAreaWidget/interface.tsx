@@ -16,8 +16,6 @@ export interface WrappedTextareaProps
   handleOnChange?: () => void
   handleOnFocus?: () => void
   handleOnBlur?: () => void
-  heightType?: string
-  minHeight?: string
   maxLength?: number
   handleUpdateMultiExecutionResult: (
     updateSlice: {

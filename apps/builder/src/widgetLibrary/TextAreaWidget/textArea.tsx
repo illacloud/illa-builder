@@ -24,7 +24,6 @@ export const WrappedTextarea = forwardRef<
   const {
     displayName,
     value,
-    // heightType,
     placeholder,
     disabled,
     readOnly,
@@ -36,7 +35,6 @@ export const WrappedTextarea = forwardRef<
     handleOnBlur,
     allowClear,
     maxLength,
-    // minLength,
     handleUpdateMultiExecutionResult,
     getValidateMessage,
   } = props
@@ -73,13 +71,12 @@ export const WrappedTextarea = forwardRef<
     <TextArea
       h="100%"
       w="100%"
-      // textAreaRef={ref}
+      textAreaRef={ref}
       value={value}
       placeholder={placeholder}
       disabled={disabled}
       readOnly={readOnly}
       maxLength={maxLength}
-      // minLength={minLength}
       showWordLimit={showCharacterCount}
       colorScheme={colorScheme}
       allowClear={allowClear}
@@ -106,8 +103,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     allowClear,
-    heightType,
-    minHeight,
     minLength,
     maxLength,
     labelPosition,
@@ -185,8 +180,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
       showCharacterCount,
       colorScheme,
       allowClear,
-      heightType,
-      minHeight,
       minLength,
       maxLength,
       focus: () => {
@@ -218,8 +211,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     showCharacterCount,
     colorScheme,
     displayName,
-    heightType,
-    minHeight,
     allowClear,
     minLength,
     maxLength,
