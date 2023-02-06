@@ -14,7 +14,8 @@
     "format": "prettier --write \"apps/**/*.{ts,tsx}\"",
     "lint": "eslint \"apps/**/src/**\" --ext \".ts,.tsx\" --config \".eslintrc.js\"",
     "test": "turbo run test",
-    "ts-check": "turbo run ts-check"
+    "ts-check": "turbo run ts-check",
+    "preinstall":"cd illa-design && pnpm install && cd .."
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
