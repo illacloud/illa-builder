@@ -8,7 +8,7 @@
   "version": "1.3.2",
   "scripts": {
     "dev": "vite",
-    "build-cloud": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=10240 pnpm run ts-check && vite build --mode cloud",
+    "build-cloud": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=12288 pnpm run ts-check && vite build --mode cloud",
     "build-self": "cross-env NODE_ENV=production pnpm run ts-check && vite build --mode self",
     "preview": "vite preview",
     "test": "npx patch-package && npx jest && npx cypress run-ct -b chrome",
