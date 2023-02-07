@@ -44,35 +44,27 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
     }, [data])
 
     const onRowSelectionChange = useCallback(
-      (value?: RowSelectionState | number) => {
-        let selectedRow = []
-        if (multiRowSelection) {
-          if (isObject(value)) {
-            Object.keys(value)?.map((key) => {
-              const index = Number(key)
-              if (formatData[index]) {
-                selectedRow.push(formatData[index])
-              }
-            })
-          }
-        } else {
-          if (isNumber(value) && formatData[value]) {
-            selectedRow.push(formatData[value])
-          }
+      (value?: RowSelectionState) => {
+        let selectedRow: unknown[] = []
+        if (isObject(value)) {
+          Object.keys(value)?.map((key) => {
+            const index = Number(key)
+            if (formatData[index]) {
+              selectedRow.push(formatData[index])
+            }
+          })
+        }
+        const updateValue = {
+          selectedRow: selectedRow,
+          rowSelection: value,
         }
         if (mode === "edit") {
-          handleUpdateOriginalDSLMultiAttr({
-            selectedRow: selectedRow,
-            rowSelection: value,
-          })
+          handleUpdateOriginalDSLMultiAttr(updateValue)
         } else {
           handleUpdateMultiExecutionResult([
             {
               displayName,
-              value: {
-                selectedRow: selectedRow,
-                rowSelection: value,
-              },
+              value: updateValue,
             },
           ])
         }
