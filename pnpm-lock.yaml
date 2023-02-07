@@ -241,6 +241,8 @@ importers:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
       react-use: ^17.4.0
       react-use-measure: ^2.1.1
@@ -250,18 +252,26 @@ importers:
       framer-motion: 7.6.17
       react-use: 17.4.0
       react-use-measure: 2.1.1
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/alert:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       framer-motion: 7.6.17
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/avatar:
     specifiers:
@@ -269,11 +279,16 @@ importers:
       '@illa-design/image': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/image': link:../image
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/back-top:
     specifiers:
@@ -281,21 +296,31 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/button': link:../button
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/badge:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/breadcrumb:
     specifiers:
@@ -303,21 +328,31 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/dropdown': link:../dropdown
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/button:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/calendar:
     specifiers:
@@ -328,6 +363,8 @@ importers:
       '@illa-design/select': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       dayjs: ^1.11.7
     dependencies:
       '@illa-design/button': link:../button
@@ -338,6 +375,9 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       dayjs: 1.11.7
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/card:
     specifiers:
@@ -346,12 +386,17 @@ importers:
       '@illa-design/spin': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/space': link:../space
       '@illa-design/spin': link:../spin
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/cascader:
     specifiers:
@@ -363,6 +408,8 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/checkbox': link:../checkbox
       '@illa-design/empty': link:../empty
@@ -372,23 +419,33 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/checkbox:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/collapse:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
       '@types/react-transition-group': ^4.4.5
+      '@vitejs/plugin-react-swc': ^3.0.1
       react-transition-group: ^4.4.5
     dependencies:
       '@illa-design/icon': link:../icon
@@ -396,51 +453,78 @@ importers:
       '@illa-design/theme': link:../theme
       react-transition-group: 4.4.5
     devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
       '@types/react-transition-group': 4.4.5
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/comment:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/config-provider:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/date-picker:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/description:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       react-use: ^17.4.0
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       react-use: 17.4.0
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/divider:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/drawer:
     specifiers:
@@ -449,6 +533,8 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
       react-focus-lock: ^2.8.1
       react-remove-scroll: ^2.5.4
@@ -461,16 +547,24 @@ importers:
       framer-motion: 7.6.17
       react-focus-lock: 2.9.2
       react-remove-scroll: 2.5.5
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/dropdown:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/empty:
     specifiers:
@@ -479,48 +573,75 @@ importers:
       '@illa-design/image': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/icon': link:../icon
       '@illa-design/image': link:../image
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/grid:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/icon:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/image:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/input:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
+      framer-motion: ^7.6.12
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+      framer-motion: 7.6.17
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/input-number:
     specifiers:
@@ -529,12 +650,17 @@ importers:
       '@illa-design/space': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/input': link:../input
       '@illa-design/space': link:../space
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/input-tag:
     specifiers:
@@ -544,6 +670,8 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/tag': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       react-use-measure: ^2.1.1
     dependencies:
       '@illa-design/icon': link:../icon
@@ -553,16 +681,24 @@ importers:
       '@illa-design/tag': link:../tag
       '@illa-design/theme': link:../theme
       react-use-measure: 2.1.1
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/link:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/list:
     specifiers:
@@ -571,6 +707,8 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/typography': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       rc-virtual-list: ^3.4.2
     dependencies:
       '@illa-design/avatar': link:../avatar
@@ -579,16 +717,24 @@ importers:
       '@illa-design/theme': link:../theme
       '@illa-design/typography': link:../typography
       rc-virtual-list: 3.4.13
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/loading:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/menu:
     specifiers:
@@ -596,6 +742,8 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
       react-use-measure: ^2.1.1
     dependencies:
@@ -605,12 +753,18 @@ importers:
       '@illa-design/theme': link:../theme
       framer-motion: 7.6.17
       react-use-measure: 2.1.1
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/message:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@types/uuid': ^8.3.4
+      '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
       uuid: ^8.3.2
     dependencies:
@@ -619,6 +773,10 @@ importers:
       '@illa-design/theme': link:../theme
       framer-motion: 7.6.17
       uuid: 8.3.2
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@types/uuid': 8.3.4
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/modal:
     specifiers:
@@ -628,6 +786,9 @@ importers:
       '@illa-design/system': 1.0.12
       '@illa-design/theme': 1.0.12
       '@illa-design/trigger': 1.0.12
+      '@rollup/plugin-typescript': ^10.0.1
+      '@types/uuid': ^8.3.4
+      '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
       react-focus-lock: ^2.8.1
       react-hotkeys-hook: ^3.4.6
@@ -643,12 +804,19 @@ importers:
       react-focus-lock: 2.9.2
       react-hotkeys-hook: 3.4.7
       uuid: 8.3.2
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@types/uuid': 8.3.4
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/notification:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@types/uuid': ^8.3.4
+      '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
       uuid: ^8.3.2
     dependencies:
@@ -657,6 +825,10 @@ importers:
       '@illa-design/theme': link:../theme
       framer-motion: 7.6.17
       uuid: 8.3.2
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@types/uuid': 8.3.4
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/page-header:
     specifiers:
@@ -665,12 +837,17 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/breadcrumb': link:../breadcrumb
       '@illa-design/divider': link:../divider
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/pagination:
     specifiers:
@@ -679,7 +856,9 @@ importers:
       '@illa-design/select': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
       '@tanstack/react-table': ^8.5.11
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/icon': link:../icon
@@ -687,7 +866,9 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
     devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
       '@tanstack/react-table': 8.7.0
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/popconfirm:
     specifiers:
@@ -699,6 +880,8 @@ importers:
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
       '@illa-design/typography': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/button': link:../button
       '@illa-design/config-provider': link:../config-provider
@@ -708,6 +891,9 @@ importers:
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
       '@illa-design/typography': link:../typography
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/popover:
     specifiers:
@@ -717,6 +903,8 @@ importers:
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
       '@illa-design/typography': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/link': link:../link
@@ -724,6 +912,9 @@ importers:
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
       '@illa-design/typography': link:../typography
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/progress:
     specifiers:
@@ -732,22 +923,32 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/space': link:../space
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/radio:
     specifiers:
       '@illa-design/space': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/space': link:../space
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/rate:
     specifiers:
@@ -755,6 +956,8 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       number-precision: ^1.6.0
     dependencies:
       '@illa-design/icon': link:../icon
@@ -762,6 +965,9 @@ importers:
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
       number-precision: 1.6.0
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/react:
     specifiers:
@@ -820,6 +1026,8 @@ importers:
       '@illa-design/timeline': workspace:*
       '@illa-design/trigger': workspace:*
       '@illa-design/typography': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/affix': link:../affix
       '@illa-design/alert': link:../alert
@@ -876,6 +1084,9 @@ importers:
       '@illa-design/timeline': link:../timeline
       '@illa-design/trigger': link:../trigger
       '@illa-design/typography': link:../typography
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/result:
     specifiers:
@@ -883,11 +1094,16 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/button': link:../button
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/select:
     specifiers:
@@ -900,6 +1116,8 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/checkbox': link:../checkbox
       '@illa-design/dropdown': link:../dropdown
@@ -910,34 +1128,52 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/skeleton:
     specifiers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/space:
     specifiers:
       '@illa-design/divider': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/divider': link:../divider
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/spin:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/statistic:
     specifiers:
@@ -945,39 +1181,61 @@ importers:
       '@illa-design/skeleton': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       dayjs: ^1.11.7
+      framer-motion: ^7.6.12
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/skeleton': link:../skeleton
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       dayjs: 1.11.7
+      framer-motion: 7.6.17
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/steps:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/switch:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/system:
     specifiers:
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       dayjs: ^1.11.7
     dependencies:
       dayjs: 1.11.7
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/table:
     specifiers:
@@ -992,8 +1250,11 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
       '@tanstack/match-sorter-utils': ^8.1.1
       '@tanstack/react-table': ^8.5.11
+      '@types/chroma-js': ^2.1.4
+      '@vitejs/plugin-react-swc': ^3.0.1
       chroma-js: ^2.1.2
       react-fast-compare: ^3.2.0
     dependencies:
@@ -1012,12 +1273,18 @@ importers:
       '@tanstack/react-table': 8.7.0
       chroma-js: 2.4.2
       react-fast-compare: 3.2.0
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@types/chroma-js': 2.1.4
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/tabs:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       react-use: ^17.4.0
       react-use-measure: ^2.1.1
     dependencies:
@@ -1026,21 +1293,32 @@ importers:
       '@illa-design/theme': link:../theme
       react-use: 17.4.0
       react-use-measure: 2.1.1
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/tag:
     specifiers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/theme:
     specifiers:
       '@illa-design/system': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@types/chroma-js': ^2.1.4
       '@types/color': ^3.0.3
+      '@vitejs/plugin-react-swc': ^3.0.1
       chroma-js: ^2.4.2
       color: ^4.2.3
     dependencies:
@@ -1048,7 +1326,10 @@ importers:
       chroma-js: 2.4.2
       color: 4.2.3
     devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@types/chroma-js': 2.1.4
       '@types/color': 3.0.3
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/timeline:
     specifiers:
@@ -1056,11 +1337,16 @@ importers:
       '@illa-design/spin': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
       '@illa-design/icon': link:../icon
       '@illa-design/spin': link:../spin
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/trigger:
     specifiers:
@@ -1069,6 +1355,8 @@ importers:
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
     dependencies:
       '@floating-ui/react': 0.18.0
@@ -1077,6 +1365,9 @@ importers:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
       framer-motion: 7.6.17
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
   illa-design/packages/typography:
     specifiers:
@@ -1085,6 +1376,8 @@ importers:
       '@illa-design/system': workspace:*
       '@illa-design/theme': workspace:*
       '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
       react-use-measure: ^2.1.1
     dependencies:
       '@illa-design/config-provider': link:../config-provider
@@ -1093,6 +1386,9 @@ importers:
       '@illa-design/theme': link:../theme
       '@illa-design/trigger': link:../trigger
       react-use-measure: 2.1.1
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.0.1
 
 packages:
 
@@ -3613,6 +3909,23 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
+  /@rollup/plugin-typescript/10.0.1:
+    resolution: {integrity: sha512-wBykxRLlX7EzL8BmUqMqk5zpx2onnmRMSw/l9M1sVfkJvdwfxogZQVNUM9gVMJbjRLDR5H6U0OMOrlDGmIV45A==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^2.14.0||^3.0.0
+      tslib: '*'
+      typescript: '>=3.7.0'
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+      tslib:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2
+      resolve: 1.22.1
+    dev: true
+
   /@rollup/pluginutils/5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
@@ -4654,6 +4967,14 @@ packages:
       vite: ^3.0.0-beta.0
     dependencies:
       vite: 4.0.4
+    dev: true
+
+  /@vitejs/plugin-react-swc/3.0.1:
+    resolution: {integrity: sha512-3GQ2oruZO9j8dSHcI0MUeOZQBhjYyDQsF/pKY4Px+CJxn0M16OhgFeEzUjeuwci4zhhjoNIDE9aFNaV5GMQ09g==}
+    peerDependencies:
+      vite: ^4
+    dependencies:
+      '@swc/core': 1.3.27
     dev: true
 
   /@vitejs/plugin-react-swc/3.0.1_vite@4.0.4:
