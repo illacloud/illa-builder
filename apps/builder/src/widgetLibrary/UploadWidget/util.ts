@@ -3,11 +3,16 @@ import { UploadItem } from "@illa-design/react"
 
 export const getFileString = (file: UploadItem) =>
   new Promise((resolve, reject) => {
+    const parsedFileType = ["txt", "json", "xls", "xlsx", "csv", "tsv"]
     const reader = new FileReader()
+
     if (file.originFile) {
       const type = (
         (file.originFile.name || "").split(".")[1] || ""
       ).toLowerCase()
+      if (!parsedFileType.includes(type)) {
+        resolve(undefined)
+      }
       if (["txt"].includes(type)) {
         reader.onload = () => {
           resolve(reader.result)
@@ -33,6 +38,8 @@ export const getFileString = (file: UploadItem) =>
         }
       }
       reader.onerror = (error) => reject(error)
+    } else {
+      resolve(undefined)
     }
   })
 
@@ -43,5 +50,7 @@ export const toBase64 = (file: UploadItem) =>
       reader.readAsDataURL(file.originFile)
       reader.onload = () => resolve(reader.result)
       reader.onerror = (error) => reject(error)
+    } else {
+      resolve(undefined)
     }
   })

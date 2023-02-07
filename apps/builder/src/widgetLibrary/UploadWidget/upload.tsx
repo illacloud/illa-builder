@@ -4,7 +4,10 @@ import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyValidateMessageWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { uploadLayoutStyle } from "@/widgetLibrary/UploadWidget/style"
+import {
+  uploadContainerStyle,
+  uploadLayoutStyle,
+} from "@/widgetLibrary/UploadWidget/style"
 import { UploadWidgetProps, WrappedUploadProps } from "./interface"
 import { getFileString, toBase64 } from "./util"
 
@@ -29,6 +32,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   } = props
 
   const isDrag = type === "dropzone"
+  const inputAcceptType = fileType.join(",")
 
   return (
     <Upload
@@ -41,13 +45,12 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
       multiple={!!(selectionType === "multiple")}
       directory={selectionType === "directory"}
       drag={isDrag}
-      {...(!!fileType.length && { accept: fileType.join(",") })}
+      {...(!!inputAcceptType && { accept: inputAcceptType })}
       {...(fileList && {
         fileList,
       })}
       onRemove={onRemove}
       onChange={(files, file) => {
-        onChange?.(files, file)
         new Promise((resolve) => {
           ;(async () => {
             const values = await Promise.allSettled(
@@ -64,30 +67,44 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
               parsedValues,
             })
           })()
-        }).then((value) => {
-          const { values, parsedValues } = value as {
-            values: any[]
-            parsedValues: any[]
-          }
-          const message = getValidateMessage(files)
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                files:
-                  files.map((file) => ({
-                    lastModified: file.originFile?.lastModified,
-                    name: file.originFile?.name,
-                    size: file.originFile?.size,
-                    type: file.originFile?.type,
-                  })) || {},
-                value: values.map((data) => data.value),
-                parsedValue: parsedValues.map((data) => data.value),
-                validateMessage: message,
-              },
-            },
-          ])
         })
+          .then((value) => {
+            const { values, parsedValues } = value as {
+              values: any[]
+              parsedValues: any[]
+            }
+            const message = getValidateMessage(files)
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  files:
+                    files.map((file) => ({
+                      lastModified: file.originFile?.lastModified,
+                      name: file.originFile?.name,
+                      size: file.originFile?.size,
+                      type: file.originFile?.type,
+                    })) || {},
+                  value: values
+                    .filter(
+                      (data) =>
+                        data.value !== undefined || data.status !== "rejected",
+                    )
+                    .map((data) => data.value),
+                  parsedValue: parsedValues
+                    .filter(
+                      (data) =>
+                        data.value !== undefined || data.status !== "rejected",
+                    )
+                    .map((data) => data.value),
+                  validateMessage: message,
+                },
+              },
+            ])
+          })
+          .then(() => {
+            onChange?.(files, file)
+          })
       }}
       showUploadList={showFileList}
     />
@@ -174,6 +191,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
           required,
           customRule,
         })
+        console.log({ message })
         const showMessage = message && message.length > 0
         return showMessage ? message : ""
       }
@@ -274,7 +292,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   ])
 
   return (
-    <>
+    <div css={uploadContainerStyle}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={uploadLayoutStyle}>
           <WrappedUpload
@@ -289,7 +307,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       <div css={applyValidateMessageWrapperStyle(0, "left", true)}>
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </>
+    </div>
   )
 }
 UploadWidget.displayName = "UploadWidget"
