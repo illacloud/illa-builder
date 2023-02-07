@@ -1,87 +1,12 @@
-import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
+import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { Upload, UploadItem } from "@illa-design/react"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
-import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import {
-  applyLabelAndComponentWrapperStyle,
-  applyValidateMessageWrapperStyle,
-} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { applyValidateMessageWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { uploadLayoutStyle } from "@/widgetLibrary/UploadWidget/style"
 import { UploadWidgetProps, WrappedUploadProps } from "./interface"
-
-const csvOrTsxStringToArray = (fileString: string, splitChar: string) => {
-  const csvHeader = fileString.slice(0, fileString.indexOf("\n")).split(",")
-  const csvRows = fileString.slice(fileString.indexOf("\n") + 1).split("\n")
-  return csvRows.map((i) => {
-    const values = i.split(",")
-    const obj = csvHeader.reduce(
-      (object: any, header: string, index: number) => {
-        if (header === "") return object
-        object[header] = values[index]
-        return object
-      },
-      {},
-    )
-    return obj
-  })
-}
-
-const getFileString = (file: UploadItem) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    if (file.originFile) {
-      const type = (
-        (file.originFile.name || "").split(".")[1] || ""
-      ).toLowerCase()
-      if (["txt"].includes(type)) {
-        reader.onload = () => {
-          resolve(reader.result)
-        }
-        reader.readAsText(file.originFile)
-      }
-      if (["json", "jsonld"].includes(type)) {
-        reader.onload = () => {
-          const result = reader.result
-          if (typeof result === "string") {
-            resolve(JSON.parse(result))
-          }
-        }
-        reader.readAsText(file.originFile)
-      }
-      if (["tsv", "csv"].includes(type)) {
-        reader.onload = () => {
-          const result = reader.result
-          if (typeof result === "string") {
-            resolve(csvOrTsxStringToArray(result, type === "tsv" ? "\t" : ","))
-          }
-        }
-        reader.readAsText(file.originFile)
-      }
-      // sheetjs
-      if (["xls"].includes(type)) {
-        reader.readAsText(file.originFile)
-        reader.onload = () => {
-          const result = reader.result
-          if (typeof result === "string") {
-            resolve(result)
-          }
-        }
-      }
-      reader.onerror = (error) => reject(error)
-    }
-  })
-
-const toBase64 = (file: UploadItem) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    if (file.originFile) {
-      reader.readAsDataURL(file.originFile)
-      reader.onload = () => resolve(reader.result)
-      reader.onerror = (error) => reject(error)
-    }
-  })
+import { getFileString, toBase64 } from "./util"
 
 export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   const {
