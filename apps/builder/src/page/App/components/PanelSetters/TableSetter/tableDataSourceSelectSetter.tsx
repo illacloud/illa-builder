@@ -1,4 +1,4 @@
-import { debounce, get } from "lodash"
+import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
@@ -13,12 +13,14 @@ import {
 import { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
 
 export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
   props,
 ) => {
   const {
+    value,
     widgetDisplayName,
     labelName,
     labelDesc,
@@ -40,8 +42,12 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
   )
 
   const customColumns = useMemo(() => {
-    const columns = get(targetComponentProps, "columns", [])
-    return columns.filter((item: any) => item.custom)
+    const columns = get(
+      targetComponentProps,
+      "columns",
+      [],
+    ) as ColumnItemShape[]
+    return columns.filter((item) => item.custom)
   }, [targetComponentProps])
 
   const isDynamic = useMemo(() => {
@@ -51,9 +57,9 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
 
   const finalValue = useMemo(() => {
     if (isDynamic) {
-      return get(targetComponentProps, "dataSourceJS")
+      return get(targetComponentProps, "dataSourceJS", [])
     } else {
-      return get(targetComponentProps, "dataSource")
+      return get(targetComponentProps, "dataSource", [])
     }
   }, [isDynamic, targetComponentProps])
 
@@ -89,7 +95,11 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
       if (Array.isArray(data)) {
         let newColumns = tansTableDataToColumns(data)
         if (newColumns?.length) {
-          return newColumns.concat(customColumns)
+          return newColumns.concat(
+            customColumns.map((item: ColumnItemShape, index) => {
+              return { ...item, columnIndex: newColumns.length + index }
+            }),
+          )
         }
       }
     },
