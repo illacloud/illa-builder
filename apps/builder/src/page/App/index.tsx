@@ -23,9 +23,12 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { startAppListening } from "@/store"
@@ -54,6 +57,10 @@ export const Editor: FC = () => {
 
   const currentUser = useSelector(getCurrentUser)
 
+  const handleLeaveRoom = () => {
+    Connection.leaveRoom("app", appId ?? "")
+  }
+
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {
       Connection.enterRoom(
@@ -62,9 +69,16 @@ export const Editor: FC = () => {
         (loading) => {},
         (errorState) => {},
       )
+      window.addEventListener("beforeunload", handleLeaveRoom)
     }
     return () => {
-      Connection.leaveRoom("app", appId ?? "")
+      handleLeaveRoom()
+      dispatch(
+        collaboratorsActions.setInRoomUsers({
+          inRoomUsers: [],
+        }),
+      )
+      window.removeEventListener("beforeunload", handleLeaveRoom)
     }
   }, [currentUser, appId])
 

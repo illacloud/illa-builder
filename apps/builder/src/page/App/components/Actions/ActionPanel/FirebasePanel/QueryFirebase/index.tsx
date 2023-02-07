@@ -25,7 +25,7 @@ export const QueryFirebasePart: FC<FirebaseActionPartProps> = (props) => {
         collectionType={options.collectionType as CollectionType}
       />
       <CollectionRecordEditor
-        name={"where"}
+        name="where"
         handleValueChange={handleValueChange}
         defaultValue={options.where}
       />

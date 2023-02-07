@@ -636,6 +636,10 @@
           "email": "郵便",
           "regex": "正規表現",
           "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixed",
+          "auto": "Auto"
         }
       },
       "setter_group": {
@@ -813,7 +817,9 @@
         "x_axis_type": "X軸タイプ",
         "x_axis_value": "X軸",
         "y_axis_name": "通称",
-        "y_axis_title": "Y 軸のタイトル"
+        "y_axis_title": "Y 軸のタイトル",
+        "height": "Height",
+        "min_height": "Min height (px)"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -979,7 +985,8 @@
       "des": "リクエストに失敗しました。しばらくしてからもう一度お試しください。"
     },
     "back": "ホームページに戻ります",
-    "mobile_forbidden": "For the better editing experience, please visit this page on desktop"
+    "mobile_forbidden": "より良い編集体験を得るには、デスクトップでこのページにアクセスしてください",
+    "back_to_cloud": "ILLA Cloudに戻る"
   },
   "title": "エラ クラウドへようこそ",
   "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
@@ -1217,6 +1224,9 @@
     },
     "modal": {
       "name": "Modal"
+    },
+    "textarea": {
+      "name": "Textarea Input"
     }
   },
   "page": {
@@ -1231,5 +1241,131 @@
     "invalid_tips": "Please enter a value not less than {{ size }}."
   },
   "failed_to_copy": "コピーに失敗しました",
-  "copied": "コピーしました！"
+  "copied": "コピーしました！",
+  "user_management": {
+    "role": {
+      "owner": "オーナー",
+      "admin": " 管理者",
+      "editor": "編集者",
+      "viewer": "見るだけ"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "メンバーを招待"
+      },
+      "link": {
+        "invite_title": "招待リンク",
+        "copy": "コピー",
+        "turn_off": "招待リンクをオフにする",
+        "update": "招待リンクを更新する",
+        "description": "ユーザーがプライベート リンクでチームに参加できるようにする",
+        "turn_on": "招待リンクをオンにする",
+        "fail": "リンクを取得できませんでした。しばらくしてからもう一度お試しください",
+        "copied_suc": "コピーしました！",
+        "failed_to_copy": "コピーに失敗しました",
+        "turn_off_fail": "オフにできませんでした",
+        "turn_on_fail": "オンにできませんでした"
+      },
+      "email": {
+        "invite_title": "メールで招待する",
+        "invite": "招待",
+        "placeholder": "メールアドレスを入力",
+        "invited": "招待しました",
+        "in_list": "このユーザーは既にチーム内にいます"
+      }
+    },
+    "mes": {
+      "invite_suc": "招待しました",
+      "invite_fail": "招待に失敗しました",
+      "update_suc": "更新成功",
+      "update_fail": "更新に失敗しました",
+      "transfer_suc": "譲渡しました",
+      "transfer_fail": "譲渡に失敗しました",
+      "remove_suc": "削除完了",
+      "remove_fail": "削除に失敗しました",
+      "change_role_fail": "更新に失敗しました",
+      "change_role_suc": "更新に成功しました"
+    },
+    "page": {
+      "member": "メンバー",
+      "invite": "招待する",
+      "permission": "権限",
+      "operation": "オペレーション",
+      "transfer": "所有権の譲渡",
+      "remove": "削除"
+    },
+    "transfer_modal": {
+      "title": "所有権を譲渡してもよろしいですか？",
+      "description": "譲渡後、管理者に変更されます。",
+      "transfer": "譲渡",
+      "cancel": "キャンセル"
+    },
+    "remove_modal": {
+      "title": "{{ username }} を削除しますか ?",
+      "description": "削除後、ユーザーはチームにアクセスできなくなります。",
+      "remove": "削除",
+      "cancel": "キャンセル"
+    },
+    "status": {
+      "pending": "処理待ち"
+    },
+    "settings": {
+      "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします"
+    }
+  },
+  "copy_failed": "コピーに失敗しました",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "チーム設定",
+      "member": "メンバー",
+      "leave": "チームを離れる",
+      "delete": "チームを削除します"
+    },
+    "leave_modal": {
+      "title": "このチームを離れてもよろしいですか？",
+      "description": "このチームを離れると、チームのリソースにアクセスできなくなります。",
+      "leave": "離れる",
+      "cancel": "キャンセル"
+    },
+    "delete_modal": {
+      "title": "このチームを削除してもよろしいですか?",
+      "delete": "삭제",
+      "cancel": "キャンセル",
+      "desctiption": "削除後、チーム ID は使用できなくなり、すべてのメンバーがこのチームから削除されます。"
+    },
+    "team_info": {
+      "title": "チームプロフィール",
+      "team_name": "チームの名",
+      "domain": ".illacloud.com",
+      "existed": "すでに存在していた",
+      "available": "利用可能",
+      "edit": "編集",
+      "save": "保存",
+      "adjust_avater": "アバターを調整する",
+      "avater_crop": "切り取り",
+      "team_name_empty": "チームの名を入力して下さい",
+      "team_id_empty": "チームのIDを入力してください",
+      "team_name_placeholder": "チームの名を入力して下さい",
+      "team_id_placeholder": "チームIDを入力してください",
+      "leave_title": "チームを離れる",
+      "leave_button": "チームを離れる",
+      "delete_title": "删除团队",
+      "delete_button": "チームを削除します",
+      "team_domain": "チームID"
+    },
+    "message": {
+      "save_suc": "保存しました",
+      "save_fail": "保存に失敗しました"
+    },
+    "mes": {
+      "domain_suc": "作成されました。",
+      "delete_suc": "正常に削除されました",
+      "delete_fail": "削除できませんでした",
+      "leave_suc": "離れました",
+      "leave_fail": "離れませんでした"
+    }
+  },
+  "members": "メンバー",
+  "invite_new_member": "メンバーを招待",
+  "launch": "実行"
 }

@@ -10,6 +10,7 @@ import {
 import {
   codeMirrorWrapperLabelStyle,
   codeMirrorWrapperValueStyle,
+  selectContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor/style"
 import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"

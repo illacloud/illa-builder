@@ -7,7 +7,7 @@ export const transformerPanelContainerStyle = css`
 `
 
 export const transformerEditorStyle = css`
-  margin: 8px 16px;
+  padding: 8px 16px;
 `
 
 export const transformerTipStyle = css`

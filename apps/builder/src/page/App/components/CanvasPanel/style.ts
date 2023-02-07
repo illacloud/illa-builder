@@ -10,12 +10,14 @@ export const applyScaleContainerStyle = (mode: IllaMode) => {
     background: ${mode === "edit" ? "#f7f8fa" : "#fff"};
     overflow: auto;
     flex: 1;
+    position: relative;
   `
 }
 
 export const messageWrapperStyle = css`
-  top: 16px;
   position: absolute;
+  top: 16px;
+  left: 0;
   width: 100%;
   height: 40px;
   display: flex;
@@ -36,4 +38,5 @@ export const messageStyle = css`
   line-height: 22px;
   display: flex;
   align-items: center;
+  gap: 8px;
 `
