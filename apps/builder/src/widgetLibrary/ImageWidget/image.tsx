@@ -66,7 +66,9 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   const finalSrc = useMemo(() => {
     let finalURL = imageSrc
     if (finalURL && !isValidUrlScheme(finalURL)) {
-      finalURL = `https://${finalURL}`
+      if (!finalURL.startsWith("data:")) {
+        finalURL = `https://${finalURL}`
+      }
     }
     return finalURL
   }, [imageSrc])
@@ -79,6 +81,8 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
     }
     return radius
   }, [radius])
+
+  console.log(finalSrc)
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
