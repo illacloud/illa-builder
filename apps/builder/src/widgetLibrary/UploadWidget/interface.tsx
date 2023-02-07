@@ -5,7 +5,7 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedUploadProps
-  extends Pick<UploadProps, "disabled" | "onChange">,
+  extends Pick<UploadProps, "disabled" | "onChange" | "onRemove">,
     BaseWidgetProps {
   type: "button" | "dropzone"
   buttonText?: string
@@ -23,7 +23,7 @@ export interface WrappedUploadProps
   minSize?: number
   minSizeType?: string
   maxSizeType?: string
-  fileList?: UploadItem[]
+  fileList?: UploadItem[] | null
   getValidateMessage: (value: UploadItem[]) => string
   handleUpdateMultiExecutionResult: (
     updateSlice: {

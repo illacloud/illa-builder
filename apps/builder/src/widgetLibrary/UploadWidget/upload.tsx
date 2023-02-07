@@ -11,15 +11,67 @@ import {
 import { uploadLayoutStyle } from "@/widgetLibrary/UploadWidget/style"
 import { UploadWidgetProps, WrappedUploadProps } from "./interface"
 
-// const getFileString = (file: UploadItem) => {
-//   const reader = new FileReader()
-//   if (file.originFile) {
-//     reader.readAsText(file.originFile)
-//     reader.onload = (e) => {
-//       if (e.target?.readyState != 2) return
-//     }
-//   }
-// }
+const csvOrTsxStringToArray = (fileString: string, splitChar: string) => {
+  const csvHeader = fileString.slice(0, fileString.indexOf("\n")).split(",")
+  const csvRows = fileString.slice(fileString.indexOf("\n") + 1).split("\n")
+  return csvRows.map((i) => {
+    const values = i.split(",")
+    const obj = csvHeader.reduce(
+      (object: any, header: string, index: number) => {
+        if (header === "") return object
+        object[header] = values[index]
+        return object
+      },
+      {},
+    )
+    return obj
+  })
+}
+
+const getFileString = (file: UploadItem) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    if (file.originFile) {
+      const type = (
+        (file.originFile.name || "").split(".")[1] || ""
+      ).toLowerCase()
+      if (["txt"].includes(type)) {
+        reader.onload = () => {
+          resolve(reader.result)
+        }
+        reader.readAsText(file.originFile)
+      }
+      if (["json", "jsonld"].includes(type)) {
+        reader.onload = () => {
+          const result = reader.result
+          if (typeof result === "string") {
+            resolve(JSON.parse(result))
+          }
+        }
+        reader.readAsText(file.originFile)
+      }
+      if (["tsv", "csv"].includes(type)) {
+        reader.onload = () => {
+          const result = reader.result
+          if (typeof result === "string") {
+            resolve(csvOrTsxStringToArray(result, type === "tsv" ? "\t" : ","))
+          }
+        }
+        reader.readAsText(file.originFile)
+      }
+      // sheetjs
+      if (["xls"].includes(type)) {
+        reader.readAsText(file.originFile)
+        reader.onload = () => {
+          const result = reader.result
+          if (typeof result === "string") {
+            resolve(result)
+          }
+        }
+      }
+      reader.onerror = (error) => reject(error)
+    }
+  })
 
 const toBase64 = (file: UploadItem) =>
   new Promise((resolve, reject) => {
@@ -41,6 +93,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     fileType,
     appendFiles,
     fileList,
+    onRemove,
     onChange,
     getValidateMessage,
     handleUpdateMultiExecutionResult,
@@ -48,46 +101,58 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
 
   return (
     <Upload
-      action="/"
+      action={"https://www.mocky.io/v2/5cc8019d300000980a055e76"}
       disabled={disabled}
       multiple={!!(selectionType === "multiple")}
       directory={selectionType === "directory"}
       drag={type === "dropzone"}
       {...(fileType && { accept: fileType })}
-      // fileList={(fileList && fileList.length) > 0 ? fileList : undefined}
       {...(fileList && {
         fileList,
       })}
-      // fileList={fileList}
+      onRemove={onRemove}
       onChange={(files, file) => {
+        onChange?.(files, file)
         new Promise((resolve) => {
-          Promise.all(files.map((file) => toBase64(file))).then((value) =>
-            resolve(value),
-          )
-        })
-          .then((value) => {
-            const message = getValidateMessage(files)
-            console.log({ message })
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  files:
-                    files.map((file) => ({
-                      lastModified: file.originFile?.lastModified,
-                      name: file.originFile?.name,
-                      size: file.originFile?.size,
-                      type: file.originFile?.type,
-                    })) || "",
-                  value,
-                  validateMessage: message,
-                },
+          ;(async () => {
+            const values = await Promise.allSettled(
+              files.map(async (file) => await toBase64(file)),
+            )
+            const parsedValues = await Promise.allSettled(
+              files.map(async (file) => {
+                const res = await getFileString(file)
+                return res
+              }),
+            )
+            resolve({
+              values,
+              parsedValues,
+            })
+          })()
+        }).then((value) => {
+          const { values, parsedValues } = value as {
+            values: any[]
+            parsedValues: any[]
+          }
+          const message = getValidateMessage(files)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                files:
+                  files.map((file) => ({
+                    lastModified: file.originFile?.lastModified,
+                    name: file.originFile?.name,
+                    size: file.originFile?.size,
+                    type: file.originFile?.type,
+                  })) || {},
+                value: values.map((data) => data.value),
+                parsedValue: parsedValues.map((data) => data.value),
+                validateMessage: message,
               },
-            ])
-          })
-          .then(() => {
-            onChange?.(files, file)
-          })
+            },
+          ])
+        })
       }}
       showUploadList={showFileList}
     />
@@ -122,76 +187,43 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     handleDeleteGlobalData,
   } = props
 
-  const [fileList, setFileList] = useState<UploadItem[]>([])
+  const [currentFileList, setFileList] = useState<UploadItem[] | null>(null)
   const fileListRef = useRef<UploadItem[]>([])
+  let isDelete = false
 
-  const handleChange = useCallback(
-    (newFileList: UploadItem[], newFile: UploadItem) => {
-      console.log({ newFileList, newFile }, fileListRef.current)
-      // if (newFileList.length === 0) {
-      //   setFileList([])
-      //   fileListRef.current = []
-      //   return
-      // }
-      if (selectionType === "single") {
-        setFileList([newFile])
-        fileListRef.current = [newFile]
-        return
-      }
-      setFileList([])
-      // fileListRef.current = [...fileListRef.current, newFile]
-      // setFileList([...fileListRef.current])
-      const allCompleted = newFileList.every(
-        (file) => file.status === "error" || file.status === "done",
-        // file.status !== "init",
-        // file.status === "error" || file.status === "done",
-      )
-      if (allCompleted) {
-        const filteredKey = fileListRef.current.map(
-          (file) => file.uid || file.name,
-        )
-        const newKeys = newFileList.map((file) => file.uid || file.name)
+  const handleOnRemove = (file: UploadItem, fileList: UploadItem[]) => {
+    console.log("remove: ", file, fileList, fileListRef.current)
+    const files = [...fileListRef.current].filter(
+      (curFile) => curFile.uid !== file.uid && curFile.name !== file.name,
+    )
+    fileListRef.current = files
+    setFileList(files)
+    console.log("remove2: ", files)
+    isDelete = true
+    return true
+  }
 
-        console.log(66666)
-        if (appendFiles) {
-          // const filteredFile =
-          //   fileListRef.current.filter(
-          //     (file) => !newKeys.includes(file.uid || file.name),
-          //   ) || []
-          // setFileList([...newFileList])
-          setFileList([...newFileList])
-          fileListRef.current = [...newFileList]
-        } else {
-          const isSame = newFileList.every((file) =>
-            filteredKey.includes(file.uid || file.name),
-          )
-          if (fileListRef.current.length === newFileList.length && isSame) {
-            console.log(666)
-            return
-          }
+  const onChanges = (fileList: UploadItem[], file: UploadItem) => {
+    console.log("chNaage 1: ", fileList, file, isDelete, currentFileList)
+    if (selectionType === "single") {
+      setFileList([file])
+      fileListRef.current = [file]
+      return
+    }
+    const allCompelet = fileList.every(
+      (file) => file.status === "error" || file.status === "done",
+    )
+    if ((allCompelet && !isDelete) || fileList.length === 0) {
+      console.log("Done: ", fileList)
+      const newFileList = appendFiles
+        ? [...fileListRef.current, ...fileList]
+        : fileList
 
-          const appendedFiles = newFileList.filter(
-            (file) => !filteredKey.includes(file.uid || file.name),
-          )
-
-          console.log(1, appendedFiles)
-          // handle delete
-          if (
-            newFileList.length < fileListRef.current.length &&
-            appendedFiles.length === 0
-          ) {
-            setFileList([...newFileList])
-            fileListRef.current = [...newFileList]
-          } else {
-            setFileList([...appendedFiles])
-            fileListRef.current = [...appendedFiles]
-          }
-        }
-        return
-      }
-    },
-    [fileList, appendFiles, selectionType],
-  )
+      fileListRef.current = newFileList
+      setFileList(newFileList)
+    }
+    isDelete = false
+  }
 
   const getValidateMessage = useCallback(
     (value?: UploadItem[]) => {
@@ -226,7 +258,10 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   )
 
   const handleValidate = useCallback(
-    (value: UploadItem[]) => {
+    (value: UploadItem[] | null) => {
+      if (!value) {
+        return ""
+      }
       const message = getValidateMessage(value)
       handleUpdateDsl({
         validateMessage: message,
@@ -258,7 +293,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
         handleUpdateDsl({ value: undefined })
       },
       validate: () => {
-        return handleValidate(fileList)
+        return handleValidate(currentFileList)
       },
       setDisable: (value: boolean) => {
         handleUpdateDsl({
@@ -297,7 +332,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     maxSize,
     minSize,
     hideValidationMessage,
-    fileList,
+    currentFileList,
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -309,16 +344,9 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
         <div css={uploadLayoutStyle}>
           <WrappedUpload
             {...props}
-            // fileList={fileListRef.current ? fileList : []}
-            // fileList={fileListRef.current}
-            // fileList={fileList}
-            //{...(fileList.length > 0 && {
-            //  fileList,
-            //})}
-            {...(fileList.length > 0 && {
-              fileList,
-            })}
-            onChange={handleChange}
+            fileList={currentFileList}
+            onChange={onChanges}
+            onRemove={handleOnRemove}
             getValidateMessage={getValidateMessage}
           />
         </div>

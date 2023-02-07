@@ -23,6 +23,7 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
     variant: "fill",
     colorScheme: "blue",
     formDataKey: "upload",
+    showFileList: false,
     minSizeType: "mb",
     maxSizeType: "mb",
   },
