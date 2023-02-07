@@ -83,36 +83,51 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
     }
   }, [handleUpdateDsl, isDynamic, selectedOptions, finalValue])
 
-  const handleChangeInput = useCallback(
+  const getNewColumn = useCallback(
     (value: string) => {
       const data = evaluateDynamicString("", value, actionExecutionResult)
       if (Array.isArray(data)) {
         let newColumns = tansTableDataToColumns(data)
         if (newColumns?.length) {
-          handleUpdateMultiAttrDSL?.({
-            columns: newColumns.concat(customColumns),
-            dataSourceJS: value,
-          })
-          return
+          return newColumns.concat(customColumns)
         }
       }
-      handleUpdateDsl("dataSourceJS", value)
     },
-    [
-      actionExecutionResult,
-      customColumns,
-      handleUpdateDsl,
-      handleUpdateMultiAttrDSL,
-    ],
+    [actionExecutionResult, customColumns],
+  )
+
+  const handleChangeInput = useCallback(
+    (value: string) => {
+      const newColumns = getNewColumn(value)
+      if (newColumns) {
+        handleUpdateMultiAttrDSL?.({
+          columns: newColumns,
+          dataSourceJS: value,
+        })
+        return
+      }
+      handleUpdateMultiAttrDSL?.({
+        dataSourceJS: value,
+      })
+    },
+    [actionExecutionResult, customColumns, handleUpdateMultiAttrDSL],
   )
 
   const handleChangeSelect = useCallback(
     (value: any) => {
+      const newColumns = getNewColumn(value)
+      if (newColumns) {
+        handleUpdateMultiAttrDSL?.({
+          columns: newColumns,
+          dataSource: value,
+        })
+        return
+      }
       handleUpdateMultiAttrDSL?.({
         dataSource: value,
       })
     },
-    [handleUpdateMultiAttrDSL],
+    [actionExecutionResult, customColumns, handleUpdateMultiAttrDSL],
   )
 
   return (
