@@ -17,6 +17,11 @@
     "ts-check": "turbo run ts-check",
     "preinstall":"cd illa-design && pnpm install && cd .."
   },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
@@ -34,6 +39,9 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "turbo": "^1.7.2"
+    "turbo": "^1.7.2",
+    "vite": "^4.0.4",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9"
   }
 }
