@@ -29,7 +29,7 @@ export default defineConfig((props) => {
       },
     },
     build: {
-      sourcemap: "inline",
+      sourcemap: true,
       reportCompressedSize: false,
     },
     server: {
