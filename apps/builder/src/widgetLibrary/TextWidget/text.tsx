@@ -1,4 +1,5 @@
-import { FC, useEffect } from "react"
+import { debounce } from "lodash"
+import { FC, useEffect, useRef } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import {
@@ -66,6 +67,8 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    updateComponentHeight,
+    disableMarkdown,
     tooltipText,
   } = props
 
@@ -94,9 +97,20 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     handleUpdateDsl,
     handleDeleteGlobalData,
   ])
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  const updateHeight = debounce(() => {
+    updateComponentHeight(ref.current?.clientHeight ?? 0)
+  }, 200)
+
+  useEffect(() => {
+    updateHeight()
+  }, [value, disableMarkdown])
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={fullWidthAndFullHeightStyle}>
+      <div ref={ref} css={fullWidthAndFullHeightStyle}>
         <Text {...props} />
       </div>
     </TooltipWrapper>
