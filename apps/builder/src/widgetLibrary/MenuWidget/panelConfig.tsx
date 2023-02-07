@@ -17,18 +17,34 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.menu"),
     children: [
       {
-        id: `${baseWidgetName}-menuList`,
+        id: `${baseWidgetName}-items`,
         useCustomLayout: true,
-        attrName: "menuList",
+        attrName: "items",
         setterType: "MENU_OPTION_SETTER",
         openDynamic: true,
         childrenSetter: [
           {
-            id: `${baseWidgetName}-menu-title`,
+            id: `${baseWidgetName}-menu-label`,
             labelName: i18n.t("editor.inspect.setter_label.label"),
-            attrName: "title",
+            attrName: "label",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-menu-value`,
+            labelName: i18n.t("editor.inspect.setter_label.value"),
+            attrName: "value",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-menu-disabled`,
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
+            attrName: "disabled",
+            setterType: "DYNAMIC_SWITCH_SETTER",
+            expectedType: VALIDATION_TYPES.BOOLEAN,
+            openDynamic: true,
+            useCustomLayout: true,
           },
           {
             id: `${baseWidgetName}-menu-hidden`,
@@ -38,15 +54,6 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.BOOLEAN,
             openDynamic: true,
             useCustomLayout: true,
-          },
-          {
-            id: `${baseWidgetName}-menu-format`,
-            labelName: i18n.t("editor.inspect.setter_label.format"),
-            attrName: "format",
-            bindAttrName: ["type"],
-            shown: (value) => value === "date",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
           },
           {
             ...generatorEventHandlerConfig(
