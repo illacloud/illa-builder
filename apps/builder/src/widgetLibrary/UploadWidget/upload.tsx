@@ -11,6 +11,18 @@ import {
 import { UploadWidgetProps, WrappedUploadProps } from "./interface"
 import { getFileString, toBase64 } from "./util"
 
+type ValueType = Array<{ status: string; value: any }>
+
+const getFilteredValue = (values: ValueType = []) => {
+  const filteredValue = values.filter(
+    (data) => data.value !== undefined && data.status !== "rejected",
+  )
+  if (filteredValue && filteredValue.length > 0) {
+    return filteredValue.map((data) => data.value)
+  }
+  return []
+}
+
 export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   const {
     selectionType,
@@ -34,6 +46,62 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   const isDrag = type === "dropzone"
   const inputAcceptType = fileType.join(",")
 
+  const handleFileChange = useCallback(
+    (files: UploadItem[], file: UploadItem) => {
+      new Promise((resolve) => {
+        ;(async () => {
+          const values = await Promise.allSettled(
+            files.map(async (file) => await toBase64(file)),
+          )
+          const parsedValues = await Promise.allSettled(
+            files.map(async (file) => {
+              const res = await getFileString(file)
+              return res
+            }),
+          )
+          resolve({
+            values,
+            parsedValues,
+          })
+        })()
+      })
+        .then((value) => {
+          const { values, parsedValues } = value as {
+            values: any[]
+            parsedValues: any[]
+          }
+          const message = getValidateMessage(files)
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                files:
+                  files.map((file) => ({
+                    lastModified: file.originFile?.lastModified,
+                    name: file.originFile?.name,
+                    size: file.originFile?.size,
+                    type: file.originFile?.type,
+                  })) || {},
+                value: getFilteredValue(values),
+                parsedValue: getFilteredValue(parsedValues),
+                validateMessage: message,
+              },
+            },
+          ])
+        })
+        .then(() => {
+          onChange?.(files, file)
+        })
+    },
+    [
+      displayName,
+      getValidateMessage,
+      getFilteredValue,
+      handleUpdateMultiExecutionResult,
+      onChange,
+    ],
+  )
+
   return (
     <Upload
       action={"https://www.mocky.io/v2/5cc8019d300000980a055e76"}
@@ -50,62 +118,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
         fileList,
       })}
       onRemove={onRemove}
-      onChange={(files, file) => {
-        new Promise((resolve) => {
-          ;(async () => {
-            const values = await Promise.allSettled(
-              files.map(async (file) => await toBase64(file)),
-            )
-            const parsedValues = await Promise.allSettled(
-              files.map(async (file) => {
-                const res = await getFileString(file)
-                return res
-              }),
-            )
-            resolve({
-              values,
-              parsedValues,
-            })
-          })()
-        })
-          .then((value) => {
-            const { values, parsedValues } = value as {
-              values: any[]
-              parsedValues: any[]
-            }
-            const message = getValidateMessage(files)
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  files:
-                    files.map((file) => ({
-                      lastModified: file.originFile?.lastModified,
-                      name: file.originFile?.name,
-                      size: file.originFile?.size,
-                      type: file.originFile?.type,
-                    })) || {},
-                  value: values
-                    .filter(
-                      (data) =>
-                        data.value !== undefined || data.status !== "rejected",
-                    )
-                    .map((data) => data.value),
-                  parsedValue: parsedValues
-                    .filter(
-                      (data) =>
-                        data.value !== undefined || data.status !== "rejected",
-                    )
-                    .map((data) => data.value),
-                  validateMessage: message,
-                },
-              },
-            ])
-          })
-          .then(() => {
-            onChange?.(files, file)
-          })
-      }}
+      onChange={handleFileChange}
       showUploadList={showFileList}
     />
   )
@@ -191,7 +204,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
           required,
           customRule,
         })
-        console.log({ message })
         const showMessage = message && message.length > 0
         return showMessage ? message : ""
       }
