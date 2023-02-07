@@ -43,10 +43,10 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         labelName: "File types",
         labelDesc:
           "A list of file extensions allowed to upload. No value will permit all file types.",
-        placeholder: "png,jpg",
+        placeholder: '{{[".png",".jpg"]}}',
         attrName: "fileType",
         setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        expectedType: VALIDATION_TYPES.ARRAY,
       },
       {
         id: `${baseWidgetName}-basic-selectionType`,
@@ -63,9 +63,7 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-appendNewFiles`,
         labelName: "Append newly selected files",
         attrName: "appendFiles",
-        useCustomLayout: true,
-        openDynamic: true,
-        setterType: "DYNAMIC_SWITCH_SETTER",
+        setterType: "SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: ["selectionType"],
         shown: (value) => value !== "single",
@@ -175,15 +173,10 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-validation-maxSize`,
         labelName: "Max size",
-        setterType: "INPUT_SETTER",
+        setterType: "INPUT_WITH_SELECT_SETTER",
         attrName: "maxSize",
+        attrNames: ["maxSize", "maxSizeType"],
         expectedType: VALIDATION_TYPES.NUMBER,
-      },
-      {
-        id: `${baseWidgetName}-validation-maxSizeType`,
-        labelName: "Max size type",
-        attrName: "maxSizeType",
-        setterType: "BASE_SELECT_SETTER",
         options: [
           { label: "KB", value: "kb" },
           { label: "MB", value: "mb" },
@@ -192,15 +185,10 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-validation-minSize`,
         labelName: "Min size",
-        setterType: "INPUT_SETTER",
+        setterType: "INPUT_WITH_SELECT_SETTER",
         attrName: "minSize",
+        attrNames: ["minSize", "minSizeType"],
         expectedType: VALIDATION_TYPES.NUMBER,
-      },
-      {
-        id: `${baseWidgetName}-validation-minSizeType`,
-        labelName: "Min size type",
-        attrName: "minSizeType",
-        setterType: "BASE_SELECT_SETTER",
         options: [
           { label: "KB", value: "kb" },
           { label: "MB", value: "mb" },

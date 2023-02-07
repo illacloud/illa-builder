@@ -19,6 +19,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     shown,
     bindAttrName,
     attrName,
+    attrNames,
     parentAttrName,
     expectedType,
     defaultValue,
@@ -68,6 +69,15 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     return attrName
   }, [parentAttrName, attrName])
 
+  const _finalAttrNames = useMemo(() => {
+    return attrNames?.map((name) => {
+      if (parentAttrName) {
+        return `${parentAttrName}.${name}`
+      }
+      return name
+    })
+  }, [parentAttrName, attrNames])
+
   const isSetterSingleRowWrapper = useMemo(() => {
     return isSetterSingleRow || !labelName
   }, [isSetterSingleRow, labelName])
@@ -76,6 +86,13 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     () => get(widgetProps, _finalAttrName),
     [widgetProps, _finalAttrName],
   )
+
+  const finalValues = useMemo(() => {
+    if (!_finalAttrNames) {
+      return []
+    }
+    return _finalAttrNames.map((name) => get(widgetProps, name))
+  }, [widgetProps, _finalAttrNames])
 
   const renderSetter = useMemo(() => {
     return Comp ? (
@@ -91,6 +108,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           attrName={_finalAttrName}
           isSetterSingleRow={isSetterSingleRowWrapper}
           value={finalValue}
+          values={finalValues}
           panelConfig={widgetProps}
           handleUpdateDsl={handleUpdateDsl}
           handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
@@ -114,6 +132,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     props,
     _finalAttrName,
     finalValue,
+    finalValues,
     widgetProps,
     handleUpdateDsl,
     handleUpdateMultiAttrDSL,

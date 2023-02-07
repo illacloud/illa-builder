@@ -9,6 +9,7 @@ import { ContainerDefaultViewKeySetter } from "@/page/App/components/PanelSetter
 import { EventHandlerSetter } from "@/page/App/components/PanelSetters/EventHandlerSetter"
 import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
 import { EditableInputSetter } from "@/page/App/components/PanelSetters/InputSetter/editableInputSetter"
+import { InputWithSelectSetter } from "@/page/App/components/PanelSetters/InputSetter/inputWithSelect"
 import { OptionMappedInputSetter } from "@/page/App/components/PanelSetters/InputSetter/optionMappedInputSetter"
 import { ListSetter } from "@/page/App/components/PanelSetters/ListSetter"
 import { MappedOptionSetter } from "@/page/App/components/PanelSetters/MappedOptionSetter"
@@ -42,6 +43,7 @@ const SetterTypeMapSetter = {
   RADIO_GROUP_SETTER: BaseRadioGroupSetter,
   SWITCH_SETTER: BaseSwitchSetter,
   SEARCH_SELECT_SETTER: SearchSelectSetter,
+  INPUT_WITH_SELECT_SETTER: InputWithSelectSetter,
   LIST_SETTER: ListSetter,
   DYNAMIC_SWITCH_SETTER: DynamicSwitchSetter,
   BASE_SELECT_SETTER: BaseSelectSetter,

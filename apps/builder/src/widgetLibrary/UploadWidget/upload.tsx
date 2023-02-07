@@ -90,8 +90,12 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     displayName,
     showFileList,
     disabled,
-    fileType,
-    appendFiles,
+    fileType = [],
+    loading,
+    buttonText,
+    dropText,
+    colorScheme,
+    variant,
     fileList,
     onRemove,
     onChange,
@@ -99,14 +103,20 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     handleUpdateMultiExecutionResult,
   } = props
 
+  const isDrag = type === "dropzone"
+
   return (
     <Upload
       action={"https://www.mocky.io/v2/5cc8019d300000980a055e76"}
       disabled={disabled}
+      text={isDrag ? dropText : buttonText}
+      colorScheme={colorScheme}
+      variant={variant}
+      loading={loading}
       multiple={!!(selectionType === "multiple")}
       directory={selectionType === "directory"}
-      drag={type === "dropzone"}
-      {...(fileType && { accept: fileType })}
+      drag={isDrag}
+      {...(!!fileType.length && { accept: fileType.join(",") })}
       {...(fileList && {
         fileList,
       })}

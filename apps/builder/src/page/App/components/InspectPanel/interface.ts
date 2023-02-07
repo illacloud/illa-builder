@@ -23,6 +23,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   setterType: SetterType
   expectedType?: VALIDATION_TYPES
   attrName: string
+  attrNames?: string[]
   childrenSetter?: PanelFieldConfig[]
   useCustomLayout?: boolean
   options?: any

@@ -5,18 +5,25 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedUploadProps
-  extends Pick<UploadProps, "disabled" | "onChange" | "onRemove">,
+  extends Pick<
+      UploadProps,
+      | "disabled"
+      | "onChange"
+      | "onRemove"
+      | "variant"
+      | "loading"
+      | "text"
+      | "colorScheme"
+    >,
     BaseWidgetProps {
   type: "button" | "dropzone"
   buttonText?: string
   dropText?: string
-  fileType?: string
+  fileType?: string[]
   selectionType?: "single" | "multiple" | "directory"
   appendFiles?: boolean
   showFileList?: boolean
   parseValue?: boolean
-  colorScheme?: string
-  variant?: string
   minFiles?: number
   maxFiles?: number
   maxSize?: number

@@ -8,3 +8,16 @@ export interface BaseInputSetterProps extends BaseSetter {
 export interface EditableInputSetterProps extends BaseInputSetterProps {
   icon?: ReactNode
 }
+
+export interface InputWithSelectSetterProps extends BaseInputSetterProps {
+  options?: (
+    | string
+    | number
+    | {
+        label: ReactNode | string
+        value: string | number
+        disabled?: boolean
+        extra?: any
+      }
+  )[]
+}
