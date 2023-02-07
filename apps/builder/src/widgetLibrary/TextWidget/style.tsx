@@ -22,6 +22,8 @@ export const fullWidthAndFullHeightStyle = css`
   height: 100%;
 `
 
-export const textStyle = css`
-  white-space: pre;
+export const markdownStyle = css`
+  width: 100%;
+  height: 100%;
+  overflow-wrap: break-word;
 `

@@ -1,13 +1,18 @@
 import { FC, useEffect } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
+import {
+  Text as ILLAText,
+  Link,
+  Paragraph,
+  Typography,
+} from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TextProps, TextWidgetProps } from "./interface"
 import {
   applyAlignStyle,
   fullWidthAndFullHeightStyle,
-  textStyle,
+  markdownStyle,
 } from "./style"
 
 export const Text: FC<TextProps> = (props) => {
@@ -23,12 +28,12 @@ export const Text: FC<TextProps> = (props) => {
   return (
     <div css={applyAlignStyle(horizontalAlign, verticalAlign)}>
       {disableMarkdown ? (
-        <ILLAText css={textStyle} colorScheme={colorScheme} fs={fs}>
+        <ILLAText css={markdownStyle} colorScheme={colorScheme} fs={fs}>
           {value}
         </ILLAText>
       ) : (
         <ReactMarkdown
-          css={textStyle}
+          css={markdownStyle}
           remarkPlugins={[remarkGfm]}
           components={{
             a: ({ node, ...props }) => (
