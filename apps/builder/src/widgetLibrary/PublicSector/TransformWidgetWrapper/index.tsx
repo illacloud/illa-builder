@@ -92,7 +92,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
 
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
-        const newH = Math.ceil((newHeight + 6) / componentNode.unitH)
+        // padding 2px so this is +4
+        const newH = Math.ceil((newHeight + 4) / componentNode.unitH)
         if (newH === componentNode.h) return
         const newItem = {
           ...componentNode,
