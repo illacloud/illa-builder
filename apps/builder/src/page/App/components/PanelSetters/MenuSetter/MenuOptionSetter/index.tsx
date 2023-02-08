@@ -1,5 +1,5 @@
 import { Reorder } from "framer-motion"
-import { get } from "lodash"
+import { get, isEqual } from "lodash"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -64,6 +64,7 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
         }}
         values={values}
         onReorder={(newOrder) => {
+          if (isEqual(values, newOrder)) return
           handleUpdateMultiAttrDSL?.({
             [attrName]: [...newOrder],
           })
@@ -118,6 +119,7 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
                 axis="y"
                 values={"subItems" in item ? item.subItems ?? [] : []}
                 onReorder={(newItems) => {
+                  if (isEqual(item, newItems)) return
                   const newValues = [...values]
                   newValues[index] = {
                     ...newValues[index],
