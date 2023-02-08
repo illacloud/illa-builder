@@ -1,10 +1,10 @@
-import { ReactComponent as UploadWidgetIcon } from "@/assets/widgetCover/chart.svg"
+import { ReactComponent as UploadWidgetIcon } from "@/assets/widgetCover/upload.svg"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
   displayName: "upload",
-  widgetName: "Upload",
+  widgetName: i18n.t("widget.upload.name"),
   h: 5,
   w: 12,
   type: "UPLOAD_WIDGET",
@@ -13,9 +13,9 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "INPUTS",
   defaults: {
     type: "button",
-    buttonText: "Upload",
+    buttonText: i18n.t("widget.upload.default_button_text"),
     selectionType: "single",
-    dropText: "Select or drop a file here",
+    dropText: i18n.t("widget.upload.default_dropzone_text"),
     verticalAlign: "center",
     hidden: false,
     appendFiles: false,

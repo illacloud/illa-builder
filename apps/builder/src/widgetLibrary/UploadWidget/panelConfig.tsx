@@ -12,12 +12,22 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-basic-type`,
-        labelName: "Type",
+        labelName: i18n.t("editor.inspect.setter_label.type"),
         attrName: "type",
         setterType: "BASE_SELECT_SETTER",
         options: [
-          { label: "Button", value: "button" },
-          { label: "Dropzone", value: "dropzone" },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.upload_type.button",
+            ),
+            value: "button",
+          },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.upload_type.dropzone",
+            ),
+            value: "dropzone",
+          },
         ],
       },
       {
@@ -31,7 +41,7 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-dropText`,
-        labelName: "Text",
+        labelName: i18n.t("editor.inspect.setter_label.text"),
         attrName: "dropText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -40,9 +50,8 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-fileTypes`,
-        labelName: "File types",
-        labelDesc:
-          "A list of file extensions allowed to upload. No value will permit all file types.",
+        labelName: i18n.t("editor.inspect.setter_label.file_type"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.file_types"),
         placeholder: '{{[".png",".jpg"]}}',
         attrName: "fileType",
         setterType: "INPUT_SETTER",
@@ -50,18 +59,33 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-selectionType`,
-        labelName: "Selection types",
+        labelName: i18n.t("editor.inspect.setter_label.selection_types"),
         attrName: "selectionType",
         setterType: "BASE_SELECT_SETTER",
         options: [
-          { label: "Single file", value: "single" },
-          { label: "Multiple files", value: "multiple" },
-          { label: "Directory", value: "directory" },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.selection_types.single_file",
+            ),
+            value: "single",
+          },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.selection_types.multiple_files",
+            ),
+            value: "multiple",
+          },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.selection_types.directory",
+            ),
+            value: "directory",
+          },
         ],
       },
       {
         id: `${baseWidgetName}-basic-appendNewFiles`,
-        labelName: "Append newly selected files",
+        labelName: i18n.t("editor.inspect.setter_label.append_newly_files"),
         attrName: "appendFiles",
         setterType: "SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -70,9 +94,8 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-fileList`,
-        labelName: "File list",
-        labelDesc:
-          "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
+        labelName: i18n.t("editor.inspect.setter_label.file_list"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.file_list"),
         attrName: "showFileList",
         useCustomLayout: true,
         openDynamic: true,
@@ -81,11 +104,8 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-parseValue`,
-        labelName: "Parse Value",
-        labelDesc:
-          "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\n" +
-          "Parsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\n" +
-          "All files are available as base64 encoded strings on the value array, regardless of this option.",
+        labelName: i18n.t("editor.inspect.setter_label.parse_value"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.parse_value"),
         attrName: "parseValue",
         useCustomLayout: true,
         openDynamic: true,
@@ -154,7 +174,7 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-validation-maxFiles`,
-        labelName: "Max files",
+        labelName: i18n.t("editor.inspect.setter_label.max_files"),
         setterType: "INPUT_SETTER",
         attrName: "maxFiles",
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -163,7 +183,7 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-validation-minFiles`,
-        labelName: "Min files",
+        labelName: i18n.t("editor.inspect.setter_label.min_files"),
         setterType: "INPUT_SETTER",
         attrName: "minFiles",
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -172,7 +192,7 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-validation-maxSize`,
-        labelName: "Max size",
+        labelName: i18n.t("editor.inspect.setter_label.max_size"),
         setterType: "INPUT_WITH_SELECT_SETTER",
         attrName: "maxSize",
         attrNames: ["maxSize", "maxSizeType"],
@@ -184,14 +204,20 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-validation-minSize`,
-        labelName: "Min size",
+        labelName: i18n.t("editor.inspect.setter_label.min_size"),
         setterType: "INPUT_WITH_SELECT_SETTER",
         attrName: "minSize",
         attrNames: ["minSize", "minSizeType"],
         expectedType: VALIDATION_TYPES.NUMBER,
         options: [
-          { label: "KB", value: "kb" },
-          { label: "MB", value: "mb" },
+          {
+            label: i18n.t("editor.inspect.setter_default_value.size_type.kb"),
+            value: "kb",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_default_value.size_type.mb"),
+            value: "mb",
+          },
         ],
       },
       {
