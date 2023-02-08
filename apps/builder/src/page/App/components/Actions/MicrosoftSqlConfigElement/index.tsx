@@ -1,7 +1,7 @@
 import { FC, useCallback, useState } from "react"
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
@@ -9,14 +9,11 @@ import {
   PaginationPreIcon,
   WarningCircleIcon,
   getColor,
+  useMessage,
 } from "@illa-design/react"
 import {
-  applyConfigItemLabelText,
-  container,
-  divider,
   errorIconStyle,
   errorMsgStyle,
-  footerStyle,
 } from "@/page/App/components/Actions/ClickhouseConfigElement/style"
 import {
   onActionConfigElementSubmit,
@@ -30,18 +27,26 @@ import {
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
+import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
+import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
-import { ClickhouseConfigElementProps } from "./interface"
+import { MicrosoftSqlConfigElementProps } from "./interface"
+import {
+  applyConfigItemLabelText,
+  container,
+  divider,
+  footerStyle,
+} from "./style"
 
-export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
+export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
   props,
 ) => {
   const { onBack, resourceId, onFinished } = props
-
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
     shouldUnregister: true,
@@ -50,33 +55,13 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
       (r) => r.resourceId === resourceId,
-    ) as Resource<ClickhouseResource>
+    ) as Resource<MicrosoftSqlResource>
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
-  const [selfSigned, setSelfSigned] = useState(
-    resource?.content.ssl.selfSigned ?? false,
-  )
-
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-
-  const handleConnectionTest = useCallback(() => {
-    const data = getValues()
-    onActionConfigElementTest(
-      data,
-      {
-        host: data.host,
-        port: data.port,
-        username: data.username,
-        password: data.password,
-        databaseName: data.databaseName,
-        ssl: generateSSLConfig(sslOpen, data, "clickhouse"),
-      } as ClickhouseResource,
-      "clickhouse",
-      setTestLoading,
-    )
-  }, [setTestLoading, getValues, sslOpen])
+  const message = useMessage()
 
   const handleURLValidate = useCallback(
     (value: string) => {
@@ -87,21 +72,32 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
 
   const handleSwitchValueChange = useCallback((open: boolean | string) => {
     setSSLOpen(!!open)
-    if (!open) {
-      setSelfSigned(!!open)
-    }
   }, [])
 
-  const handleSelfSignedValueChange = useCallback((open: boolean | string) => {
-    setSelfSigned(!!open)
-  }, [])
+  const handleConnectionTest = useCallback(() => {
+    const data = getValues()
+    onActionConfigElementTest(
+      data,
+      {
+        host: data.host,
+        port: data.port.toString(),
+        databaseName: data.databaseName,
+        username: data.username,
+        password: data.password,
+        connectionOpts: data.connectionOpts,
+        ssl: generateSSLConfig(sslOpen, data, "mssql"),
+      } as MicrosoftSqlResource,
+      "mssql",
+      setTestLoading,
+    )
+  }, [setTestLoading, getValues, sslOpen])
 
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
-        "clickhouse",
+        "mssql",
         onFinished,
         setSaving,
       )}
@@ -154,7 +150,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           ]}
           placeholders={[
             t("editor.action.resource.db.placeholder.hostname"),
-            "9440",
+            "1433",
           ]}
           name={["host", "port"]}
           styles={[
@@ -175,6 +171,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             ) : null
           }
         />
+
         <ControlledElement
           controlledType={["input"]}
           isRequired
@@ -186,7 +183,9 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
               required: true,
             },
           ]}
-          placeholders={[t("editor.action.resource.db.placeholder.default")]}
+          // placeholders={[
+          //   t("editor.action.resource.db.placeholder.database_name"),
+          // ]}
           name="databaseName"
         />
 
@@ -242,6 +241,47 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           {t("editor.action.resource.db.title.advanced_option")}
         </div>
 
+        <Controller
+          key="connectionOpts"
+          control={control}
+          defaultValue={
+            resource?.content.connectionOpts ?? [
+              {
+                key: "",
+                value: "",
+              },
+            ]
+          }
+          render={({ field: { value, onChange, onBlur } }) => (
+            <InputRecordEditor
+              label="Connect options"
+              records={value}
+              onAdd={() => {
+                onChange([...value, { key: "", value: "" }])
+              }}
+              onDelete={(index, record) => {
+                let newRecords = [...value]
+                newRecords.splice(index, 1)
+                if (newRecords.length === 0) {
+                  newRecords = [{ key: "", value: "" }]
+                }
+                onChange(newRecords)
+              }}
+              onChangeKey={(index, key, v) => {
+                let newRecords = [...value]
+                newRecords[index] = { key, value: v }
+                onChange(newRecords)
+              }}
+              onChangeValue={(index, key, v) => {
+                let newRecords = [...value]
+                newRecords[index].value = v
+                onChange(newRecords)
+              }}
+            />
+          )}
+          name="connectionOpts"
+        />
+
         <ControlledElement
           controlledType={["switch"]}
           title={t("editor.action.resource.db.label.ssl_options")}
@@ -253,29 +293,10 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
         />
 
         {sslOpen && (
-          <ControlledElement
-            controlledType={["switch"]}
-            title={""}
-            control={control}
-            defaultValue={resource?.content.ssl.selfSigned}
-            name="selfSigned"
-            onValueChange={handleSelfSignedValueChange}
-            contentLabel={t(
-              "editor.action.resource.db.label.self_signed_certificate",
-            )}
-          />
-        )}
-        {selfSigned && (
           <>
             <ControlledElement
               controlledType={["textarea"]}
               title={t("editor.action.resource.db.label.ca_certificate")}
-              isRequired
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
               control={control}
               defaultValue={resource?.content.ssl.caCert}
               name="caCert"
@@ -340,4 +361,4 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   )
 }
 
-ClickhouseConfigElement.displayName = "ClickhouseConfigElement"
+MicrosoftSqlConfigElement.displayName = "MicrosoftSqlConfigElement"

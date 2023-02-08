@@ -16,6 +16,10 @@ export const Databases: ActionDataItem[] = [
     isDraft: false,
   },
   {
+    actionType: "mssql",
+    isDraft: false,
+  },
+  {
     actionType: "mariadb",
     isDraft: false,
   },
