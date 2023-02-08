@@ -1,19 +1,17 @@
-import { FC, forwardRef, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { Divider } from "@illa-design/react"
 import { DividerWidgetProps, WrappedDividerProps } from "./interface"
 import { dividerContainerStyle } from "./style"
 
-export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
-  (props, ref) => {
-    const { text, fs, textAlign } = props
+export const WrappedDivider: FC<WrappedDividerProps> = (props) => {
+  const { text, fs, textAlign } = props
 
-    const _textSize = useMemo(() => {
-      return !isNaN(Number(fs)) ? fs + "px" : fs?.toString()
-    }, [fs])
+  const _textSize = useMemo(() => {
+    return !isNaN(Number(fs)) ? fs + "px" : fs?.toString()
+  }, [fs])
 
-    return <Divider w="100%" textAlign={textAlign} text={text} fs={_textSize} />
-  },
-)
+  return <Divider w="100%" textAlign={textAlign} text={text} fs={_textSize} />
+}
 
 WrappedDivider.displayName = "WrappedDivider"
 

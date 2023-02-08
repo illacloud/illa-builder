@@ -17,7 +17,7 @@ export const ListBody: FC = () => {
     if (!isEqual(optionItems, items)) {
       setItems(optionItems)
     }
-  }, [optionItems])
+  }, [items, optionItems])
 
   if (!optionItems || !Array.isArray(optionItems) || optionItems.length === 0)
     return <EmptyBody />

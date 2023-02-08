@@ -7,7 +7,7 @@ import {
   ButtonGroup,
   Divider,
   Input,
-  PaginationPreIcon,
+  PreviousIcon,
   RadioGroup,
   Switch,
   TextArea,
@@ -297,7 +297,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t("editor.action.resource.db.placeholder.name")}
               />
             )}
@@ -455,7 +455,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

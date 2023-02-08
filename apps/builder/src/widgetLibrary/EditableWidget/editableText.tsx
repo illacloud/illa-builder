@@ -42,21 +42,21 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
           onChange={(value) => {
             handleUpdateDsl({ value })
           }}
-          showCount={showCharacterCount}
+          showWordLimit={showCharacterCount}
           onBlur={() => {
             setFocus(false)
           }}
           value={value}
-          addonAfter={{ render: suffixText }}
-          addonBefore={{ render: prefixText }}
-          suffix={{ render: suffixIcon }}
-          prefix={{ render: prefixIcon }}
+          addAfter={suffixText}
+          addBefore={prefixText}
+          suffix={suffixIcon}
+          prefix={prefixIcon}
           ref={inputRef}
           readOnly={readOnly}
           allowClear={allowClear}
           placeholder={placeholder}
           disabled={disabled}
-          borderColor={colorScheme}
+          colorScheme={colorScheme}
           maxLength={maxLength}
           minLength={minLength}
           onClear={() => handleUpdateDsl({ value: "" })}

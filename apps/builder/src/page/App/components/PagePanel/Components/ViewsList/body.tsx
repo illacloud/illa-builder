@@ -22,7 +22,7 @@ export const ListBody: FC<BodyProps> = (props) => {
     if (!isEqual(sectionViewConfigs, items)) {
       setItems(sectionViewConfigs)
     }
-  }, [sectionViewConfigs])
+  }, [items, sectionViewConfigs])
 
   const handleChangSectionView = useCallback(
     (index: number) => {

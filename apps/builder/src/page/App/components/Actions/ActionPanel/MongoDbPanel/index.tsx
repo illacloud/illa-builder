@@ -51,6 +51,7 @@ import {
   ListCollectionsContentInitial,
   MongoDbAction,
   MongoDbActionList,
+  MongoDbActionType,
   MongoDbActionTypeContent,
   UpdateManyContentInitial,
   UpdateOneContentInitial,
@@ -120,18 +121,19 @@ export const MongoDbPanel: FC = () => {
             defaultValue={content.actionType}
             value={content.actionType}
             ml="16px"
-            width="100%"
+            w="100%"
             onChange={(value) => {
               let newTypeContent: MongoDbActionTypeContent =
                 AggregateContentInitial
               if (
-                cachedAction.resourceId === selectedAction?.resourceId &&
+                selectedAction &&
+                cachedAction.resourceId === selectedAction.resourceId &&
                 (
-                  selectedAction?.content as MongoDbAction<MongoDbActionTypeContent>
+                  selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
                 ).actionType === value
               ) {
                 newTypeContent = (
-                  selectedAction?.content as MongoDbAction<MongoDbActionTypeContent>
+                  selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
                 )?.typeContent
               } else {
                 switch (value) {
@@ -187,7 +189,7 @@ export const MongoDbPanel: FC = () => {
                   ...cachedAction,
                   content: {
                     ...cachedAction.content,
-                    actionType: value,
+                    actionType: value as MongoDbActionType,
                     typeContent: newTypeContent,
                   },
                 }),

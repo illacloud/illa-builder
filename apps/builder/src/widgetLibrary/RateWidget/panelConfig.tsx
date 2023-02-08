@@ -1,8 +1,8 @@
 import {
-  HeartIcon,
   HorizontalEndIcon,
   HorizontalStartIcon,
-  StarIcon,
+  LikeFillIcon,
+  StarFillIcon,
 } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
@@ -33,11 +33,11 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
-            label: <HeartIcon />,
+            label: <LikeFillIcon />,
             value: "heart",
           },
           {
-            label: <StarIcon />,
+            label: <StarFillIcon />,
             value: "star",
           },
         ],

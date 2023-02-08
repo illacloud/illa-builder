@@ -15,6 +15,7 @@ export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}
+        forceEqualWidth={true}
         value={value}
         options={options}
         type="button"

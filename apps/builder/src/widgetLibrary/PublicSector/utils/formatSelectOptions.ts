@@ -5,7 +5,6 @@ export const formatSelectOptions = (
     label: string
     value: string | number
     disabled?: boolean
-    extra?: any
   }[] = [],
   mappedOption: {
     labels: string[]
@@ -26,12 +25,11 @@ export const formatSelectOptions = (
       label: string
       value: string | number
       disabled?: boolean
-      extra?: any
     }[] = []
     for (let i = 0; i < maxLength; i++) {
       let labelItem = label[i] || value[i] || i
       const valueItem = value[i] || label[i] || i
-      const disabledItem = !!disabled[i]
+      const disabledItem = disabled[i]
       if (typeof labelItem === "object") {
         labelItem = i
       }
@@ -50,7 +48,6 @@ export const formatSelectOptions = (
       label: string | number
       value: string | number
       disabled?: boolean
-      extra?: any
     }[] = []
     manualOptions.forEach((option, index) => {
       let labelItem = option.label || option.value || index

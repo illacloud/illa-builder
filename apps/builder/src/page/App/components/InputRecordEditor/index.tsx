@@ -11,8 +11,6 @@ import {
 import { InputRecordEditorProps } from "./interface"
 import {
   applyRecordEditorContainerStyle,
-  deleteButtonStyle,
-  deleteIconStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
   recordStyle,
@@ -48,8 +46,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
                   onClick={() => {
                     onDelete(index, record)
                   }}
-                  css={deleteButtonStyle}
-                  leftIcon={<DeleteIcon css={deleteIconStyle} />}
+                  leftIcon={<DeleteIcon />}
                 />
               </div>
             )
@@ -58,7 +55,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
             <div css={recordStyle} key={index}>
               <Input
                 w="100%"
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 value={record.key}
                 placeholder="key"
                 bdRadius="8px 0 0 8px"
@@ -68,7 +65,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
               />
               <Input
                 w="100%"
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder="value"
                 value={record.value}
                 ml="-1px"
@@ -87,15 +84,14 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
                 onClick={() => {
                   onDelete(index, record)
                 }}
-                css={deleteButtonStyle}
-                leftIcon={<DeleteIcon css={deleteIconStyle} />}
+                leftIcon={<DeleteIcon />}
               />
             </div>
           )
         })}
       </>
     )
-  }, [onChangeKey, onChangeValue, onDelete, records])
+  }, [customRender, onChangeKey, onChangeValue, onDelete, records])
 
   return (
     <div css={applyRecordEditorContainerStyle(label)}>

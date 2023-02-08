@@ -51,10 +51,8 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         transition={{ duration: 0.2 }}
       >
         <Input
-          borderColor="techPurple"
-          prefix={{
-            render: <SearchIcon size={"12px"} css={searchInputIconStyle} />,
-          }}
+          colorScheme="techPurple"
+          prefix={<SearchIcon size={"12px"} css={searchInputIconStyle} />}
           placeholder={t("editor.action.action_list.placeholder.search")}
           onChange={onSearch}
           onClear={() => onSearch("")}

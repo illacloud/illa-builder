@@ -30,8 +30,7 @@ export const EditableInputWithMeasureSetter: FC<EditableInputSetterProps> = (
       {icon ? <div css={editableInputIconStyle}>{icon}</div> : null}
       <div style={{ width: "130px" }}>
         <Input
-          withoutNormalBorder
-          borderColor="techPurple"
+          colorScheme="techPurple"
           value={value}
           onChange={(value) => {
             handleUpdateDsl(attrName, value)

@@ -5,6 +5,7 @@ import {
   Button,
   CaretRightIcon,
   DropList,
+  DropListItem,
   Dropdown,
   MoreIcon,
   globalColor,
@@ -44,7 +45,7 @@ import {
   editableTitleBarWrapperStyle,
 } from "./style"
 
-const Item = DropList.Item
+const Item = DropListItem
 export type RunMode = "save" | "run" | "save_and_run"
 const FILE_SIZE_LIMIT_TYPE = ["s3", "smtp"]
 
@@ -240,18 +241,19 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     runMode,
     canRunAction,
     currentApp.appId,
-    selectedAction?.actionId,
-    t,
+    selectedAction.actionId,
+    message,
+    canNotRunMessage,
     onActionRun,
     dispatch,
-    message,
+    t,
   ])
 
   const renderButton = useMemo(() => {
     return runMode === "run" ? cachedAction?.actionType !== "transformer" : true
   }, [cachedAction?.actionType, runMode])
 
-  if (selectedAction == undefined || cachedAction === undefined) {
+  if (cachedAction === undefined) {
     return <></>
   }
 
@@ -297,16 +299,18 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         position="bottom-end"
         trigger="click"
         dropList={
-          <DropList width={"184px"}>
+          <DropList w="184px">
             <Item
-              key={"duplicate"}
+              value="duplicate"
+              key="duplicate"
               title={t("editor.action.action_list.contextMenu.duplicate")}
               onClick={() => {
                 onCopyActionItem(selectedAction)
               }}
             />
             <Item
-              key={"delete"}
+              key="delete"
+              value="delete"
               title={t("editor.action.action_list.contextMenu.delete")}
               fontColor={globalColor(`--${illaPrefix}-red-03`)}
               onClick={() => {

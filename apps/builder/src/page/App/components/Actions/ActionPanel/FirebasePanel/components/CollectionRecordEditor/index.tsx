@@ -10,6 +10,7 @@ import {
 import {
   codeMirrorWrapperLabelStyle,
   codeMirrorWrapperValueStyle,
+  selectContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor/style"
 import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
@@ -89,16 +90,16 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                   showSearch={true}
                   defaultValue={record.condition}
                   value={record.condition}
-                  width="100%"
+                  w="100%"
                   ml="-0.5px"
                   mr="-0.5px"
                   bdRadius="0"
-                  onChange={(val: string) =>
+                  onChange={(val) =>
                     handleChange(
                       index,
                       record.field,
                       record.value,
-                      val,
+                      val as string,
                       onChange,
                     )
                   }

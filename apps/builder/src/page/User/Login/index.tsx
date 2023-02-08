@@ -143,7 +143,7 @@ export const Login: FC = () => {
                   error={!!errors.email || !!errorMsg.email}
                   variant="fill"
                   placeholder={t("user.sign_in.placeholder.email")}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                 />
               )}
               rules={{
@@ -199,7 +199,7 @@ export const Login: FC = () => {
                   error={!!errors.password || !!errorMsg.password}
                   variant="fill"
                   placeholder={t("user.password.placeholder")}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                 />
               )}
               rules={{

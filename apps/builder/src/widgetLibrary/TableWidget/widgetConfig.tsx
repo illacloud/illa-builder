@@ -43,6 +43,8 @@ export function initTableWidgetDefaultProps() {
     dataSourceMode: "dynamic",
     dataSourceJS: `{{${JSON.stringify(originData, null, "  ")}}}`,
     columns: tansTableDataToColumns(originData),
+    defaultSortKey: "default",
+    defaultSortOrder: "ascend",
     emptyState: "No rows found",
     overFlow: "pagination",
     download: false,

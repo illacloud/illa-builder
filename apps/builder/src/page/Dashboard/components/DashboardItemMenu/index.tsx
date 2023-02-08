@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import {
   Button,
   DropList,
+  DropListItem,
   Dropdown,
   MoreIcon,
   Space,
@@ -21,8 +22,6 @@ import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { RootState } from "@/store"
-
-const Item = DropList.Item
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { appId, canEditApp, isDeploy } = props
@@ -81,23 +80,26 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
               trigger="click"
               triggerProps={{ closeDelay: 0, openDelay: 0 }}
               dropList={
-                <DropList width={"184px"}>
-                  <Item
-                    key={"rename"}
+                <DropList w={"184px"}>
+                  <DropListItem
+                    key="rename"
+                    value="rename"
                     title={t("rename")}
                     onClick={() => {
                       setRenameVisible(true)
                     }}
                   />
-                  <Item
-                    key={"duplicate"}
+                  <DropListItem
+                    key="duplicate"
+                    value="duplicate"
                     title={t("duplicate")}
                     onClick={() => {
                       setDuplicateVisible(true)
                     }}
                   />
-                  <Item
-                    key={"delete"}
+                  <DropListItem
+                    key="delete"
+                    value="delete"
                     title={t("dashboard.common.delete")}
                     fontColor={globalColor(`--${illaPrefix}-red-03`)}
                     onClick={() => {

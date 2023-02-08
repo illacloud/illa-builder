@@ -84,7 +84,7 @@ export const ListBody: FC = () => {
         }),
       )
     }
-  }, [viewsList])
+  }, [componentNode.childrenNode, items, viewsList])
 
   if (!Array.isArray(viewsList)) return null
 

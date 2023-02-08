@@ -39,7 +39,7 @@ export const BasicAuthPanel: FC<BasicAuthPanelProps> = (props) => {
               onBlur={onBlur}
               onChange={onChange}
               value={value}
-              borderColor="techPurple"
+              colorScheme="techPurple"
             />
           )}
           name="username"
@@ -68,7 +68,7 @@ export const BasicAuthPanel: FC<BasicAuthPanelProps> = (props) => {
               onBlur={onBlur}
               onChange={onChange}
               value={value}
-              borderColor="techPurple"
+              colorScheme="techPurple"
             />
           )}
           name="password"

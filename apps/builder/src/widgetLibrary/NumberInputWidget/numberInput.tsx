@@ -72,7 +72,7 @@ export const WrappedInputNumber = forwardRef<
 
   return (
     <InputNumber
-      inputRef={ref}
+      ref={ref}
       max={max}
       min={min}
       formatter={formatDisplayValue}
@@ -85,7 +85,7 @@ export const WrappedInputNumber = forwardRef<
       suffix={finalSuffix}
       mode="button"
       onChange={changeValue}
-      borderColor={colorScheme}
+      colorScheme={colorScheme}
     />
   )
 })

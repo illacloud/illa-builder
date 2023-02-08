@@ -1,80 +1,22 @@
-import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
-import { Menu } from "@illa-design/react"
-import { MenuItemLabel } from "@/widgetLibrary/MenuWidget/MenuItemLabel"
+import { debounce } from "lodash"
+import { FC, forwardRef, useEffect, useRef } from "react"
+import { Menu, SubMenuProps } from "@illa-design/react"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 
 export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
   (props, ref) => {
-    const {
-      menuList,
-      mode,
-      horizontalAlign,
-      selectedKeys,
-      onClickSubMenu,
-      handleOnClickMenuItem,
-      handleUpdateOriginalDSLMultiAttr,
-    } = props
-    const { Item, SubMenu } = Menu
+    const { mode, horizontalAlign, items, onClickSubMenu, onClickMenuItem } =
+      props
 
     return (
       <Menu
+        w="100%"
         mode={mode}
-        ref={ref}
-        selectedKeys={selectedKeys}
-        horizontalAlign={horizontalAlign}
         onClickSubMenu={onClickSubMenu}
-        onClickMenuItem={(key) => {
-          let path = ""
-          menuList?.forEach((item, index) => {
-            if (item.id === key) {
-              path = `menuList.${index}.events`
-              return
-            }
-            item?.subMenu?.forEach((subItem, subIndex) => {
-              if (subItem.id === key) {
-                path = `menuList.${index}.subMenu.${subIndex}.events`
-                return
-              }
-            })
-          })
-          new Promise((resolve) => {
-            handleUpdateOriginalDSLMultiAttr({
-              selectedKeys: [key],
-            })
-            resolve(true)
-          }).then(() => {
-            handleOnClickMenuItem?.(path)
-          })
-        }}
-      >
-        {menuList?.map((item) => {
-          if (item.hidden) return null
-          if (item.subMenu?.length) {
-            return (
-              <SubMenu
-                key={item.id}
-                title={<MenuItemLabel title={item.title} icon={item.icon} />}
-              >
-                {item.subMenu.map((subItem) => {
-                  if (subItem.hidden) return null
-                  return (
-                    <Item
-                      key={subItem.id}
-                      title={
-                        <MenuItemLabel
-                          title={subItem.title}
-                          icon={subItem.icon}
-                        />
-                      }
-                    />
-                  )
-                })}
-              </SubMenu>
-            )
-          }
-          return <Item key={item.id} title={item.title} />
-        })}
-      </Menu>
+        horizontalAlign={horizontalAlign}
+        onClickMenuItem={onClickMenuItem}
+        items={items}
+      />
     )
   },
 )
@@ -82,17 +24,14 @@ export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
 export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   const {
     mode,
-    menuList,
-    emptyState,
-    selectedKeys,
-    pageSize,
-    displayName,
     horizontalAlign,
+    items,
+    displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     updateComponentHeight,
-    ...rest
+    handleOnClickMenuItem,
   } = props
 
   useEffect(() => {
@@ -106,35 +45,48 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     handleUpdateDsl,
     handleDeleteGlobalData,
   ])
-  const timeoutId = useRef<number>()
-  const wrapperRef = useRef<HTMLDivElement>(null)
 
-  const updateHeight = useCallback(() => {
-    timeoutId.current = window.setTimeout(() => {
-      if (wrapperRef.current) {
-        updateComponentHeight(wrapperRef.current?.clientHeight)
-      }
-    }, 180)
-  }, [updateComponentHeight])
+  const ref = useRef<HTMLDivElement>(null)
+
+  const updateHeight = debounce(() => {
+    updateComponentHeight(ref.current?.clientHeight ?? 0)
+  }, 200)
 
   useEffect(() => {
     updateHeight()
-    return () => {
-      clearTimeout(timeoutId.current)
-    }
-  }, [mode, menuList])
+  }, [mode, updateHeight])
 
   return (
-    <div ref={wrapperRef}>
+    <div ref={ref}>
       <WrappedMenu
-        {...rest}
         mode={mode}
-        selectedKeys={selectedKeys}
         horizontalAlign={horizontalAlign}
-        menuList={menuList}
-        emptyState={emptyState}
-        pageSize={pageSize}
-        onClickSubMenu={updateHeight}
+        onClickMenuItem={(value, valuePath) => {
+          if (valuePath.length === 1) {
+            handleOnClickMenuItem?.(
+              `items.${items?.findIndex((i) => i.value === value)}.events`,
+            )
+          } else if (valuePath.length === 2) {
+            const sub = items?.findIndex((i) => i.value === valuePath[0])
+            if (sub && items && "subItems" in items[sub]) {
+              const subIndex = (items[sub] as SubMenuProps).subItems?.findIndex(
+                (i) => i.value === valuePath[1],
+              )
+              handleOnClickMenuItem?.(
+                `items.${sub}.subItems.${subIndex}.events`,
+              )
+            }
+          }
+        }}
+        onClickSubMenu={(value) => {
+          if (mode === "vertical") {
+            updateHeight()
+          }
+          handleOnClickMenuItem?.(
+            `items.${items?.findIndex((i) => i.value === value)}.events`,
+          )
+        }}
+        items={items}
       />
     </div>
   )

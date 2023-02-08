@@ -8,8 +8,8 @@ import {
   Divider,
   Input,
   InputNumber,
-  PaginationPreIcon,
   Password,
+  PreviousIcon,
   getColor,
 } from "@illa-design/react"
 import {
@@ -111,7 +111,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t("editor.action.resource.db.placeholder.name")}
               />
             )}
@@ -154,7 +154,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   placeholder={t(
                     "editor.action.resource.db.placeholder.hostname",
                   )}
@@ -173,7 +173,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="142px"
                   ml="8px"
                   placeholder="25"
@@ -202,7 +202,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   placeholder={t(
                     "editor.action.resource.db.placeholder.username",
                   )}
@@ -215,7 +215,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
               defaultValue={content.password}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="100%"
                   onBlur={onBlur}
                   onChange={onChange}
@@ -252,7 +252,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

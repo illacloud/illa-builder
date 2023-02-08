@@ -2,7 +2,7 @@ import { Namespace, TFunction } from "i18next"
 import { FC, useCallback } from "react"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Checkbox, Select } from "@illa-design/react"
+import { Checkbox, Select, SelectValue } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -213,7 +213,7 @@ export const HuggingFacePanel: FC = () => {
   )
 
   const handleParameterChange = useCallback(
-    (value: HuggingFaceParametesType) => {
+    (value?: SelectValue) => {
       let newBody = value === "pairs" ? PairsBodyInitital : InputInitial
       if (
         selectedAction.resourceId === cachedAction.resourceId &&
@@ -227,7 +227,7 @@ export const HuggingFacePanel: FC = () => {
           content: {
             ...content,
             inputs: {
-              type: value,
+              type: value as HuggingFaceParametesType,
               content: newBody,
             },
           },
@@ -333,7 +333,7 @@ export const HuggingFacePanel: FC = () => {
                 showSearch={true}
                 defaultValue={content?.inputs?.type || "text"}
                 value={content?.inputs?.type || "text"}
-                width="100%"
+                w="100%"
                 placeholder={t(
                   "editor.action.panel.firebase.placeholder.select_an_action",
                 )}

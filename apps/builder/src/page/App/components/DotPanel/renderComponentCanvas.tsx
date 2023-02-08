@@ -46,8 +46,10 @@ import {
 } from "@/redux/currentApp/editor/components/componentsListener"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { IGNORE_WIDGET_TYPES } from "@/redux/currentApp/executionTree/executionSelector"
-import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  IGNORE_WIDGET_TYPES,
+  getRootNodeExecutionResult,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
@@ -485,11 +487,17 @@ export const RenderComponentCanvas: FC<{
       },
       drop: (dragInfo, monitor) => {
         const isDrop = monitor.didDrop()
+        const dropResult = monitor.getDropResult()
         const { item, currentColumnNumber } = dragInfo
-        if (isDrop || item.displayName === componentNode.displayName)
+        if (
+          (isDrop || item.displayName === componentNode.displayName) &&
+          dropResult
+        ) {
           return {
-            isDropOnCanvas: false,
+            isDropOnCanvas: dropResult.isDropOnCanvas,
           }
+        }
+
         if (monitor.getClientOffset()) {
           const scale = blockColumns / currentColumnNumber
 

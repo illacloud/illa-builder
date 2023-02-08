@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   Button,
   DropList,
+  DropListItem,
   Dropdown,
   Modal,
   MoreIcon,
@@ -23,7 +24,7 @@ import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 
-const Item = DropList.Item
+const Item = DropListItem
 
 export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
   props,
@@ -60,15 +61,17 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           trigger="click"
           triggerProps={{ closeDelay: 0, openDelay: 0 }}
           dropList={
-            <DropList width={"184px"}>
+            <DropList w="184px">
               <Item
-                key={"edit"}
+                value="edit"
+                key="edit"
                 title={t("edit")}
                 onClick={() => {
                   setResourceEditorVisible(true)
                 }}
               />
               <Item
+                value="delete"
                 key={"delete"}
                 title={t("dashboard.common.delete")}
                 fontColor={globalColor(`--${illaPrefix}-red-03`)}

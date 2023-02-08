@@ -37,6 +37,9 @@ export function applyLabelTipsStyle(
       `
     : css``
   return css`
+    display: block;
+    height: 22px;
+    line-height: 22px;
     ${labelStyle};
     ${borderBottomStyle};
   `

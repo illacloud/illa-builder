@@ -43,14 +43,13 @@ export const EditableText: FC<EditableTextProps> = (props) => {
     }
     DisplayNameGenerator.updateDisplayName(inputValue, displayName)
     updateDisplayNameByBlur(inputValue)
-  }, [displayName, inputValue, t, updateDisplayNameByBlur])
+  }, [displayName, inputValue, message, t, updateDisplayNameByBlur])
   return (
     <div css={EditableTextWrapperStyle}>
       {isFocusInput ? (
         <Input
           autoFocus
-          withoutNormalBorder
-          borderColor="techPurple"
+          colorScheme="techPurple"
           value={inputValue}
           onChange={handleChangeInputValue}
           onBlur={handleBlurInput}

@@ -1,37 +1,45 @@
+import { v4 } from "uuid"
 import { ReactComponent as MenuWidgetIcon } from "@/assets/widgetCover/menu.svg"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
-const menuList = [
+const items = [
   {
-    id: "1",
-    title: "Menu 1",
+    id: v4(),
+    value: "subMenu0",
+    label: "SubMenu 0",
   },
   {
-    id: "2",
-    title: "Menu 2",
-    subMenu: [
+    id: v4(),
+    value: "subMenu1",
+    label: "SubMenu 1",
+    subItems: [
       {
-        id: "2-1",
-        title: "SubMenu 1",
+        id: v4(),
+        value: "subMenu1:menu0",
+        label: "Menu 0",
       },
       {
-        id: "2-2",
-        title: "SubMenu 2",
+        id: v4(),
+        value: "subMenu1:menu1",
+        label: "Menu 1",
       },
     ],
   },
   {
-    id: "3",
-    title: "Menu 3",
-    subMenu: [
+    id: v4(),
+    value: "subMenu2",
+    label: "Sub Menu 2",
+    subItems: [
       {
-        id: "3-1",
-        title: "SubMenu 1",
+        id: v4(),
+        value: "subMenu2:menu0",
+        label: "Menu 0",
       },
       {
-        id: "3-2",
-        title: "SubMenu 2",
+        id: v4(),
+        value: "subMenu2:menu1",
+        label: "Menu 1",
       },
     ],
   },
@@ -48,8 +56,8 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
-    menuList,
-    selectedKeys: ["1"],
+    items,
+    selectedValues: ["subMenu1"],
     mode: "horizontal",
     horizontalAlign: "flex-start",
   },

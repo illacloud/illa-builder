@@ -20,8 +20,8 @@ export const resourceTitleStyle = css`
 `
 
 export const resourceEndStyle = css`
-  flex-grow: 0;
-  flex-basis: 0;
+  justify-content: flex-end;
+  flex-grow: 1;
   margin-left: 16px;
   display: flex;
   flex-shrink: 1;
