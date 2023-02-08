@@ -30,7 +30,7 @@ export interface WrappedUploadProps
   minSize?: number
   minSizeType?: string
   maxSizeType?: string
-  fileList?: UploadItem[] | null
+  fileList?: UploadItem[]
   getValidateMessage: (value: UploadItem[]) => string
   handleUpdateMultiExecutionResult: (
     updateSlice: {

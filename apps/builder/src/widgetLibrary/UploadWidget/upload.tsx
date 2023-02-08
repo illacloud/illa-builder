@@ -13,12 +13,15 @@ import { getFileString, toBase64 } from "./util"
 
 type ValueType = Array<{ status: string; value: any }>
 
-const getFilteredValue = (values: ValueType = []) => {
+const getFilteredValue = (values: ValueType = [], type?: string) => {
   const filteredValue = values.filter(
     (data) => data.value !== undefined && data.status !== "rejected",
   )
   if (filteredValue && filteredValue.length > 0) {
-    return filteredValue.map((data) => data.value)
+    const isBase64 = type === "base64"
+    return filteredValue.map((data) =>
+      isBase64 ? data.value.split(",")[1] : data.value,
+    )
   }
   return []
 }
@@ -46,61 +49,56 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   const isDrag = type === "dropzone"
   const inputAcceptType = fileType.join(",")
 
-  const handleFileChange = useCallback(
-    (files: UploadItem[], file: UploadItem) => {
-      new Promise((resolve) => {
-        ;(async () => {
-          const values = await Promise.allSettled(
-            files.map(async (file) => await toBase64(file)),
-          )
-          const parsedValues = await Promise.allSettled(
-            files.map(async (file) => {
-              const res = await getFileString(file)
-              return res
-            }),
-          )
-          resolve({
-            values,
-            parsedValues,
-          })
-        })()
-      })
-        .then((value) => {
-          const { values, parsedValues } = value as {
-            values: any[]
-            parsedValues: any[]
-          }
-          const message = getValidateMessage(files)
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                files:
-                  files.map((file) => ({
-                    lastModified: file.originFile?.lastModified,
-                    name: file.originFile?.name,
-                    size: file.originFile?.size,
-                    type: file.originFile?.type,
-                  })) || {},
-                value: getFilteredValue(values),
-                parsedValue: getFilteredValue(parsedValues),
-                validateMessage: message,
-              },
-            },
-          ])
+  useEffect(() => {
+    if (!fileList) {
+      return
+    }
+    new Promise((resolve) => {
+      ;(async () => {
+        const values = await Promise.allSettled(
+          fileList.map(async (file) => await toBase64(file)),
+        )
+        const parsedValues = await Promise.allSettled(
+          fileList.map(async (file) => {
+            const res = await getFileString(file)
+            return res
+          }),
+        )
+        resolve({
+          values,
+          parsedValues,
         })
-        .then(() => {
-          onChange?.(files, file)
-        })
-    },
-    [
-      displayName,
-      getValidateMessage,
-      getFilteredValue,
-      handleUpdateMultiExecutionResult,
-      onChange,
-    ],
-  )
+      })()
+    }).then((value) => {
+      const { values, parsedValues } = value as {
+        values: any[]
+        parsedValues: any[]
+      }
+      const message = getValidateMessage(fileList)
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            files:
+              fileList.map((file) => ({
+                lastModified: file.originFile?.lastModified,
+                name: file.originFile?.name,
+                size: file.originFile?.size,
+                type: file.originFile?.type,
+              })) || {},
+            value: getFilteredValue(values, "base64"),
+            parsedValue: getFilteredValue(parsedValues),
+            validateMessage: message,
+          },
+        },
+      ])
+    })
+  }, [
+    displayName,
+    fileList,
+    getValidateMessage,
+    handleUpdateMultiExecutionResult,
+  ])
 
   return (
     <Upload
@@ -118,7 +116,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
         fileList,
       })}
       onRemove={onRemove}
-      onChange={handleFileChange}
+      onChange={onChange}
       showUploadList={showFileList}
     />
   )
@@ -209,7 +207,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
           ? files
           : files.slice(fileListRef.current.length)
         setFileList(newList)
-        console.log({ newList })
         fileListRef.current = newList
         previousValueRef.current = newList
         fileCountRef.current = 0
@@ -284,12 +281,13 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       maxSize,
       minSize,
       clearValue: () => {
-        handleUpdateDsl({ value: undefined })
+        handleUpdateDsl({ value: [] })
+        setFileList([])
       },
       validate: () => {
         return handleValidate(currentFileList)
       },
-      setDisable: (value: boolean) => {
+      setDisabled: (value: boolean) => {
         handleUpdateDsl({
           disabled: value,
         })
@@ -330,6 +328,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleValidate,
   ])
 
   return (
