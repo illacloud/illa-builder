@@ -58,7 +58,7 @@ export const DashboardApps: FC = () => {
     return appsList.filter((item) => {
       return item.mainline_version !== 0
     })
-  }, [canEditApp])
+  }, [canEditApp, appsList])
 
   return (
     <>

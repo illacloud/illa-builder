@@ -164,14 +164,14 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         ) : null}
       </Space>
       <RenameModal
-        appId={app?.appId}
+        appId={app.appId}
         visible={renameVisible}
         onVisibleChange={(visible) => {
           setRenameVisible(visible)
         }}
       />
       <DuplicateModal
-        appId={app?.appId}
+        appId={app.appId}
         visible={duplicateVisible}
         onVisibleChange={(visible) => {
           setDuplicateVisible(visible)
