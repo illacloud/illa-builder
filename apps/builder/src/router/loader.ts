@@ -5,7 +5,7 @@ import { getTeamsInfo } from "@/api/team"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
-import { ILLA_CLOUD_PATH } from "@/router/routerConfig"
+import { cloudUrl } from "@/router/routerConfig"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { setLocalStorage } from "@/utils/storage"
@@ -53,11 +53,11 @@ export const requireAuth = async (
   if (!userInfo?.userId) {
     if (!token) {
       clearRequestPendingPool()
-      return redirect(ILLA_CLOUD_PATH)
+      return redirect(cloudUrl)
     } else {
       const userInfo = await getUserInfo(token)
       if (!userInfo) {
-        return redirect(ILLA_CLOUD_PATH)
+        return redirect(cloudUrl)
       }
     }
   }

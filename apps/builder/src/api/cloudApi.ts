@@ -6,7 +6,7 @@ import {
 } from "@/api/helpers/axiosPendingPool"
 import { getCurrentId } from "@/redux/team/teamSelector"
 import { ILLARoute } from "@/router"
-import { ILLA_CLOUD_PATH } from "@/router/routerConfig"
+import { cloudUrl } from "@/router/routerConfig"
 import store from "@/store"
 import { getAuthToken, removeAuthToken } from "@/utils/auth"
 import { isCloudVersion } from "@/utils/typeHelper"
@@ -50,7 +50,7 @@ const axiosErrorInterceptor = (error: AxiosError) => {
       removeAuthToken()
       if (isCloudVersion) {
         // navigate to illa cloud
-        ILLARoute.navigate(ILLA_CLOUD_PATH)
+        ILLARoute.navigate(cloudUrl)
       } else {
         const { pathname } = location
         ILLARoute.navigate("/login", {

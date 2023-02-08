@@ -19,7 +19,7 @@ import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
 import { isCloudVersion } from "@/utils/typeHelper"
 
-export const ILLA_CLOUD_PATH = `${location.protocol}//${
+export const cloudUrl = `${location.protocol}//${
   import.meta.env.VITE_CLOUD_URL
 }`
 
@@ -64,7 +64,7 @@ export const cloudRouter: RoutesObjectPro[] = [
   {
     index: true,
     loader: async () => {
-      return redirect(ILLA_CLOUD_PATH)
+      return redirect(cloudUrl)
     },
   },
   ...commonRouter,
