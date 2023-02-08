@@ -23,13 +23,31 @@ import {
   MicrosoftSqlActionType,
 } from "@/redux/currentApp/action/microsoftSqlAction"
 
+const ConfigTypeOptions = [
+  {
+    value: "sql",
+    label: "SQL",
+  },
+  {
+    value: "gui",
+    label: "Bulk insert",
+  },
+]
+
+type MSSQLActionType = MicrosoftSqlAction<MicrosoftSqlActionType>
+
 export const MicrosoftSqlPanel: FC = () => {
   const { t } = useTranslation()
-  const cachedAction = useSelector(getCachedAction) as ActionItem<
-    MicrosoftSqlAction<MicrosoftSqlActionType>
-  >
+  const cachedAction = useSelector(
+    getCachedAction,
+  ) as ActionItem<MSSQLActionType>
   const content = cachedAction.content
   const dispatch = useDispatch()
+
+  const sqlModeInitial =
+    content.mode === "sql" ? content.query : MicrosoftSqlActionSqlModeInitial
+  const guiModeInitial =
+    content.mode === "gui" ? content.query : MicrosoftSqlActionGUIModeInitial
 
   const handleValueChange = useCallback(
     (value: string) => {
@@ -39,7 +57,7 @@ export const MicrosoftSqlPanel: FC = () => {
           content: {
             ...content,
             mode: value,
-          } as MicrosoftSqlAction<MicrosoftSqlActionType>,
+          } as MSSQLActionType,
         }),
       )
     },
@@ -56,7 +74,7 @@ export const MicrosoftSqlPanel: FC = () => {
               ...content.query,
               [name]: value,
             },
-          } as MicrosoftSqlAction<MicrosoftSqlActionType>,
+          } as MSSQLActionType,
         }),
       )
     },
@@ -73,39 +91,22 @@ export const MicrosoftSqlPanel: FC = () => {
             w="100%"
             colorScheme="gray"
             ml="16px"
-            mr="24px"
             type="button"
             onChange={handleValueChange}
             value={content.mode}
-            options={[
-              {
-                value: "sql",
-                label: "SQL",
-              },
-              {
-                value: "gui",
-                label: "Bulk insert",
-              },
-            ]}
+            options={ConfigTypeOptions}
           />
         </div>
         {content.mode === "sql" ? (
           <MSSQLSqlMode
-            modeContent={
-              content.mode === "sql"
-                ? content.query
-                : MicrosoftSqlActionSqlModeInitial
-            }
+            modeContent={sqlModeInitial}
             onChange={handleQueryChange}
           />
         ) : (
           <MSSQLGUIMode
-            modeContent={
-              content.mode === "gui"
-                ? content.query
-                : MicrosoftSqlActionGUIModeInitial
-            }
+            modeContent={guiModeInitial}
             onChange={handleQueryChange}
+            resourceId={cachedAction.resourceId}
           />
         )}
         <TransformerComponent />

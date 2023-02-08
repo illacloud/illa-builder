@@ -1,5 +1,6 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import { Select } from "@illa-design/react"
+import { Api } from "@/api/base"
 import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/interface"
 import { InputEditor } from "@/page/App/components/InputEditor"
 import {
@@ -7,10 +8,34 @@ import {
   codeEditorLabelStyle,
 } from "@/page/App/components/InputEditor/style"
 import { MicrosoftSqlActionGUIMode } from "@/redux/currentApp/action/microsoftSqlAction"
+import { ResourcesData } from "@/redux/resource/resourceState"
 
 export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
-  const { modeContent, onChange } = props
+  const { modeContent, onChange, resourceId } = props
   const newModeContent = modeContent as MicrosoftSqlActionGUIMode
+
+  const [collectionSelect, setCollectionSelect] = useState<string[]>([])
+
+  useEffect(() => {
+    if (!resourceId) {
+      return
+    }
+    Api.request(
+      {
+        url: `resources/${resourceId}/meta`,
+        method: "GET",
+      },
+      ({ data }: { data: ResourcesData }) => {
+        const tables = data.schema
+          ? ((data.schema?.collections || []) as string[])
+          : []
+        setCollectionSelect(tables)
+      },
+      () => {},
+      () => {},
+      () => {},
+    )
+  }, [resourceId])
 
   return (
     <>
@@ -22,16 +47,10 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
           defaultValue={newModeContent.table}
           value={newModeContent.table}
           ml="16px"
-          mr="0"
           width="100%"
           placeholder={"Select a table"}
           onChange={(value: string) => onChange(value, "table")}
-          options={[
-            {
-              label: "Test",
-              value: "text",
-            },
-          ]}
+          options={collectionSelect}
         />
       </div>
       <InputEditor
