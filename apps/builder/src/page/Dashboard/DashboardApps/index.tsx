@@ -53,6 +53,12 @@ export const DashboardApps: FC = () => {
     [currentUserRole],
   )
 
+  const canCreateApp = useMemo(
+    () =>
+      canManage(currentUserRole, ATTRIBUTE_GROUP.APP, ACTION_MANAGE.CREATE_APP),
+    [currentUserRole],
+  )
+
   const finalAppsList = useMemo(() => {
     if (canEditApp) return appsList
     return appsList.filter((item) => {
@@ -76,15 +82,17 @@ export const DashboardApps: FC = () => {
               {t("share")}
             </Button>
           )}
-          <Button
-            ml="4px"
-            colorScheme="techPurple"
-            onClick={() => {
-              setCreateNewModalVisible(true)
-            }}
-          >
-            {t("create_new_app")}
-          </Button>
+          {canCreateApp ? (
+            <Button
+              ml="4px"
+              colorScheme="techPurple"
+              onClick={() => {
+                setCreateNewModalVisible(true)
+              }}
+            >
+              {t("create_new_app")}
+            </Button>
+          ) : null}
         </div>
         <Divider direction="horizontal" />
         {finalAppsList.length !== 0 && (
