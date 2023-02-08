@@ -148,7 +148,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               key={"delete"}
               value={"delete"}
               title={t("editor.action.action_list.contextMenu.delete")}
-              fontColor={globalColor(`--${illaPrefix}-red-03`)}
+              deleted
               onClick={() => {
                 onDeleteItem(action)
               }}

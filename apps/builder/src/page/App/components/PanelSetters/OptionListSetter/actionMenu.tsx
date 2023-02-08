@@ -33,7 +33,7 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
         title={t(
           "editor.inspect.setter_content.option_list.action_menu.delete",
         )}
-        fontColor={globalColor(`--${illaPrefix}-red-03`)}
+        deleted
         onClick={() => {
           handleDeleteOptionItem(index)
           handleCloseMode()

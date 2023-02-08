@@ -55,7 +55,7 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         key="delete"
         value="delete"
         title={t("editor.inspect.header.action_menu.delete")}
-        fontColor={globalColor(`--${illaPrefix}-red-03`)}
+        deleted
         onClick={() => {
           shortcut.showDeleteDialog([widgetDisplayName])
         }}
