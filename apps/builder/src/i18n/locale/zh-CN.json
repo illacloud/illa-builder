@@ -640,6 +640,19 @@
         "height": {
           "fixed": "固定",
           "auto": "自适应"
+        },
+        "upload_type": {
+          "button": "Button",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Single file",
+          "multiple_files": "Multiple files",
+          "directory": "Directory"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
         }
       },
       "setter_group": {
@@ -825,7 +838,16 @@
         "interval": "间隔时间（毫秒）",
         "show_button": "显示两侧按钮",
         "show_dot": "显示底部指示点",
-        "hidden_images": "Hidden images"
+        "hidden_images": "Hidden images",
+        "file_type": "File types",
+        "selection_types": "Selection types",
+        "append_newly_files": "Append newly selected files",
+        "file_list": "File list",
+        "parse_value": "Parse Value",
+        "max_files": "Max files",
+        "min_files": "Min files",
+        "max_size": "Max size",
+        "min_size": "Min size"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -858,7 +880,10 @@
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
         "timeline_direction": "切换时间轴的方向。",
         "timeline_pending": "是否显示一个待处理状态的节点。",
-        "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。"
+        "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
+        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
+        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
+        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -1236,6 +1261,11 @@
     },
     "textarea": {
       "name": "Textarea"
+    },
+    "upload": {
+      "name": "Upload",
+      "default_button_text": "Upload",
+      "default_dropzone_text": "Select or drop a file here"
     }
   },
   "page": {
