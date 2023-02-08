@@ -1,7 +1,7 @@
 import { FC, useCallback, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
@@ -9,7 +9,6 @@ import {
   PaginationPreIcon,
   WarningCircleIcon,
   getColor,
-  useMessage,
 } from "@illa-design/react"
 import {
   errorIconStyle,
@@ -45,7 +44,6 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
 ) => {
   const { onBack, resourceId, onFinished } = props
   const { t } = useTranslation()
-  const dispatch = useDispatch()
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -61,7 +59,6 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-  const message = useMessage()
 
   const handleURLValidate = useCallback(
     (value: string) => {

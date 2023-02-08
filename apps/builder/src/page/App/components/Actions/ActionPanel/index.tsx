@@ -14,6 +14,7 @@ import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/El
 import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
 import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
 import { HuggingFacePanel } from "@/page/App/components/Actions/ActionPanel/HuggingFacePanel"
+import { MicrosoftSqlPanel } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel"
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
 import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
@@ -73,7 +74,9 @@ export const ActionPanel = forwardRef<
       case "tidb":
       case "mariadb":
       case "postgresql":
-        return <MysqlLikePanel />
+      // return <MysqlLikePanel />
+      case "mssql":
+        return <MicrosoftSqlPanel />
       case "restapi":
         return <RestApiPanel />
       case "huggingface":

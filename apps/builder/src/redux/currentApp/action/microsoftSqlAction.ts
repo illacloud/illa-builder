@@ -28,7 +28,7 @@ export const MicrosoftSqlActionSqlModeInitial: MicrosoftSqlActionSqlMode = {
 
 export const MicrosoftSqlActionGUIModeInitial: MicrosoftSqlActionGUIMode = {
   table: "",
-  type: "",
+  type: "bulk_insert",
   records: "",
 }
 
