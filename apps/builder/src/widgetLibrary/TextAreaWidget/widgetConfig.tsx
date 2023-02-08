@@ -9,8 +9,8 @@ export const TEXTAREA_WIDGET_CONFIG: WidgetConfig = {
   icon: <TextAreaWidgetIcon />,
   keywords: ["Textarea Input", "长文本输入框"],
   sessionType: "INPUTS",
-  w: 12,
-  h: 5,
+  w: 15,
+  h: 8,
   defaults: {
     value: "",
     label: "Label",

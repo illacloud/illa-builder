@@ -189,7 +189,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
         handleUpdateDsl({ value })
       },
       clearValue: () => {
-        handleUpdateDsl({ value: undefined })
+        handleUpdateDsl({ value: "" })
       },
       validate: () => {
         return handleValidate(value)
