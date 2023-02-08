@@ -16,7 +16,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
     return state.dashboard.dashboardApps.list.find(
       (item) => item.appId === appId,
     )
-  })!!
+  })
 
   const appList = useSelector(getDashboardApps)
 
@@ -26,6 +26,8 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
   const [loading, setLoading] = useState(false)
   const [name, setName] = useState("")
   const message = useMessage()
+
+  if (!app) return null
 
   return (
     <Modal
