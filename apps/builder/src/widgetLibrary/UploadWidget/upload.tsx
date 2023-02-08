@@ -152,42 +152,71 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     handleDeleteGlobalData,
   } = props
 
-  const [currentFileList, setFileList] = useState<UploadItem[] | null>(null)
   const fileListRef = useRef<UploadItem[]>([])
-  let isDelete = false
+  const [currentFileList, setFileList] = useState<UploadItem[]>(
+    fileListRef.current,
+  )
+
+  const fileCountRef = useRef<number>(0)
+  const previousValueRef = useRef<UploadItem[]>([])
 
   const handleOnRemove = (file: UploadItem, fileList: UploadItem[]) => {
-    console.log("remove: ", file, fileList, fileListRef.current)
-    const files = [...fileListRef.current].filter(
-      (curFile) => curFile.uid !== file.uid && curFile.name !== file.name,
+    let files = [...previousValueRef.current]
+    const currentFilesKeys = previousValueRef.current.map(
+      (f) => f.uid || f.name,
     )
-    fileListRef.current = files
-    setFileList(files)
-    console.log("remove2: ", files)
-    isDelete = true
+    const index = currentFilesKeys.indexOf(file.uid || file.name)
+    files.splice(index, 1)
+    setFileList([...files])
+    previousValueRef.current = [...files]
+    fileListRef.current = [...files]
     return true
   }
 
   const onChanges = (fileList: UploadItem[], file: UploadItem) => {
-    console.log("chNaage 1: ", fileList, file, isDelete, currentFileList)
     if (selectionType === "single") {
       setFileList([file])
       fileListRef.current = [file]
+      previousValueRef.current = [file]
       return
     }
-    const allCompelet = fileList.every(
-      (file) => file.status === "error" || file.status === "done",
-    )
-    if ((allCompelet && !isDelete) || fileList.length === 0) {
-      console.log("Done: ", fileList)
-      const newFileList = appendFiles
-        ? [...fileListRef.current, ...fileList]
-        : fileList
 
-      fileListRef.current = newFileList
-      setFileList(newFileList)
+    let files = [...previousValueRef.current]
+    if (file.status === "init") {
+      files.push(file)
+      previousValueRef.current = [...files]
+      setFileList(files)
+      fileCountRef.current += 1
+      return
     }
-    isDelete = false
+    const currentFilesKeys = previousValueRef.current.map(
+      (f) => f.uid || f.name,
+    )
+    const index = currentFilesKeys.indexOf(file.uid || file.name)
+    if (index < 0) {
+      return
+    }
+    files.splice(index, 1, file)
+    setFileList([...files])
+    previousValueRef.current = [...files]
+
+    if (files.length === fileCountRef.current + fileListRef.current.length) {
+      const allSettled = files.every(
+        (f) => f.status === "error" || f.status === "done",
+      )
+      if (allSettled) {
+        const newList = appendFiles
+          ? files
+          : files.slice(fileListRef.current.length)
+        setFileList(newList)
+        console.log({ newList })
+        fileListRef.current = newList
+        previousValueRef.current = newList
+        fileCountRef.current = 0
+      }
+    }
+
+    return
   }
 
   const getValidateMessage = useCallback(
