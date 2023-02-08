@@ -16,6 +16,7 @@ import {
 } from "@/page/Dashboard/DashboardResources/style"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
+import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
 import {
   MongoDbConfig,
   MongoDbGuiConfigContent,
@@ -64,6 +65,9 @@ export const DashboardResources: FC = () => {
             resource as Resource<RedisResource>
           ).content.databaseIndex.toString()
           break
+        case "mssql":
+          dbName = (resource as Resource<MicrosoftSqlResource>).content
+            .databaseName
         case "mongodb":
           const mongoRes = resource as Resource<MongoDbResource<MongoDbConfig>>
           if (mongoRes.content.configType == "gui") {
