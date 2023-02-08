@@ -640,6 +640,19 @@
         "height": {
           "fixed": "Fixed",
           "auto": "Auto"
+        },
+        "upload_type": {
+          "button": "Button",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Single file",
+          "multiple_files": "Multiple files",
+          "directory": "Directory"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
         }
       },
       "setter_group": {
@@ -825,7 +838,16 @@
         "interval": "Interval(ms)",
         "show_button": "Show buttons on both sides",
         "show_dot": "Show dots at the bottom",
-        "hidden_images": "Hidden images"
+        "hidden_images": "Hidden images",
+        "file_type": "File types",
+        "selection_types": "Selection types",
+        "append_newly_files": "Append newly selected files",
+        "file_list": "File list",
+        "parse_value": "Parse Value",
+        "max_files": "Max files",
+        "min_files": "Min files",
+        "max_size": "Max size",
+        "min_size": "Min size"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -858,7 +880,10 @@
         "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
         "timeline_direction": "Change the direction of the timeline.",
         "timeline_pending": "Whether to show a node with a pending status.",
-        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported."
+        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
+        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
+        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
+        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
@@ -1236,6 +1261,11 @@
     },
     "textarea": {
       "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Upload",
+      "default_button_text": "Upload",
+      "default_dropzone_text": "Select or drop a file here"
     }
   },
   "page": {
