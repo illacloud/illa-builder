@@ -1,11 +1,6 @@
 import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
-import {
-  DropList,
-  DropListItem,
-  globalColor,
-  illaPrefix,
-} from "@illa-design/react"
+import { DropList, DropListItem } from "@illa-design/react"
 import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
 import { ActionMenuProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 
@@ -35,7 +30,7 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
         title={t(
           "editor.inspect.setter_content.option_list.action_menu.delete",
         )}
-        fontColor={globalColor(`--${illaPrefix}-red-03`)}
+        deleted
         onClick={() => {
           handleDeleteEventItem(index)
           handleCloseMode()

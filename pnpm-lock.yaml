@@ -1332,6 +1332,33 @@ importers:
       '@types/color': 3.0.3
       '@vitejs/plugin-react-swc': 3.0.1
 
+  illa-design/packages/time-picker:
+    specifiers:
+      '@illa-design/button': workspace:*
+      '@illa-design/config-provider': workspace:*
+      '@illa-design/icon': workspace:*
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+      '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@types/lodash.debounce': ^4.0.7
+      '@vitejs/plugin-react-swc': ^3.0.1
+      dayjs: ^1.11.7
+      lodash.debounce: ^4.0.8
+    dependencies:
+      '@illa-design/button': link:../button
+      '@illa-design/config-provider': link:../config-provider
+      '@illa-design/icon': link:../icon
+      '@illa-design/system': link:../system
+      '@illa-design/theme': link:../theme
+      '@illa-design/trigger': link:../trigger
+      dayjs: 1.11.7
+      lodash.debounce: 4.0.8
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@types/lodash.debounce': 4.0.7
+      '@vitejs/plugin-react-swc': 3.0.1
+
   illa-design/packages/timeline:
     specifiers:
       '@illa-design/icon': workspace:*
@@ -4383,6 +4410,12 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/lodash.debounce/4.0.7:
+    resolution: {integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==}
+    dependencies:
+      '@types/lodash': 4.14.191
     dev: true
 
   /@types/lodash/4.14.191:
@@ -8041,7 +8074,6 @@ packages:
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
-    dev: true
 
   /lodash.flattendeep/4.4.0:
     resolution: {integrity: sha512-uHaJFihxmJcEX3kT4I23ABqKKalJ/zDrDg0lsFtc1h+3uw49SIJ5beyhx5ExVRti3AvKoOJngIj7xz3oylPdWQ==}

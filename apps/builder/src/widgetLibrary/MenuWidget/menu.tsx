@@ -5,13 +5,20 @@ import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 
 export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
   (props, ref) => {
-    const { mode, horizontalAlign, items, onClickSubMenu, onClickMenuItem } =
-      props
+    const {
+      mode,
+      horizontalAlign,
+      selectedValues,
+      items,
+      onClickSubMenu,
+      onClickMenuItem,
+    } = props
 
     return (
       <Menu
         w="100%"
         mode={mode}
+        selectedValues={selectedValues}
         onClickSubMenu={onClickSubMenu}
         horizontalAlign={horizontalAlign}
         onClickMenuItem={onClickMenuItem}
@@ -24,10 +31,11 @@ export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
 export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   const {
     mode,
+    selectedValues,
     horizontalAlign,
     items,
     displayName,
-    handleUpdateDsl,
+    handleUpdateMultiExecutionResult,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     updateComponentHeight,
@@ -39,12 +47,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [
-    displayName,
-    handleUpdateGlobalData,
-    handleUpdateDsl,
-    handleDeleteGlobalData,
-  ])
+  }, [displayName, handleUpdateGlobalData, handleDeleteGlobalData])
 
   const ref = useRef<HTMLDivElement>(null)
 
@@ -59,9 +62,18 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   return (
     <div ref={ref}>
       <WrappedMenu
+        selectedValues={selectedValues}
         mode={mode}
         horizontalAlign={horizontalAlign}
         onClickMenuItem={(value, valuePath) => {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedValues: [value],
+              },
+            },
+          ])
           if (valuePath.length === 1) {
             handleOnClickMenuItem?.(
               `items.${items?.findIndex((i) => i.value === value)}.events`,

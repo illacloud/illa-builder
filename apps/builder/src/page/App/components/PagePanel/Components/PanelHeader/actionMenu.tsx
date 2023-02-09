@@ -45,7 +45,7 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         <DropListItem
           value="delete"
           title={t("editor.inspect.header.action_menu.delete")}
-          fontColor={globalColor(`--${illaPrefix}-red-03`)}
+          deleted
           onClick={() => {
             if (pageKeys.length === 1) {
               return

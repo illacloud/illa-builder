@@ -8,6 +8,7 @@ export const menuOptionSetterContainerStyle = css`
   min-height: 264px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};
+  overflow: hidden;
 `
 
 export const optionListHeaderStyle = css`

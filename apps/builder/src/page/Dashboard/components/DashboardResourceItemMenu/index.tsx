@@ -74,7 +74,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                 value="delete"
                 key={"delete"}
                 title={t("dashboard.common.delete")}
-                fontColor={globalColor(`--${illaPrefix}-red-03`)}
+                deleted
                 onClick={() => {
                   const modalId = modal.show({
                     blockOkHide: true,

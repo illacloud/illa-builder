@@ -1,8 +1,8 @@
-import { RowSelectionState, Updater } from "@tanstack/table-core"
-import { cloneDeep } from "lodash"
+import { RowSelectionState } from "@tanstack/table-core"
+import { cloneDeep, isEqual } from "lodash"
 import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
 import { useSelector } from "react-redux"
-import { Table, isNumber, isObject } from "@illa-design/react"
+import { Table, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
 import {
   ColumnItemShape,
@@ -132,7 +132,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleDeleteGlobalData,
     handleOnClickMenuItem,
     handleUpdateOriginalDSLMultiAttr,
-    // handleUpdateMultiExecutionResult,
+    handleUpdateMultiExecutionResult,
     ...otherProps
   } = props
 
@@ -233,12 +233,12 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       oldKeyMap,
       oldKeyOrder,
     )
-    if (newColumns?.length) {
-      handleUpdateOriginalDSLMultiAttr?.({
-        columns: newColumns,
-      })
+    if (newColumns?.length && !isEqual(newColumns, columns)) {
+      handleUpdateMultiExecutionResult?.([
+        { displayName, value: { columns: newColumns } },
+      ])
     }
-  }, [columnsDef, handleUpdateOriginalDSLMultiAttr, realDataSourceArray])
+  }, [columnsDef, realDataSourceArray])
 
   return (
     <WrappedTable
@@ -259,6 +259,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       handleUpdateGlobalData={handleUpdateGlobalData}
       handleDeleteGlobalData={handleDeleteGlobalData}
       handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+      handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
       handleUpdateDsl={handleUpdateDsl}
     />
   )
