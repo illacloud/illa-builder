@@ -15,8 +15,9 @@ type ValueType = Array<{ status: string; value: any }>
 
 const getFilteredValue = (values: ValueType = [], type?: string) => {
   const filteredValue = values.filter(
-    (data) => data.value !== undefined && data.status !== "rejected",
+    (data) => data.value !== undefined && data.status === "fulfilled",
   )
+  // data.value !== undefined && data.status !== "rejected",
   if (filteredValue && filteredValue.length > 0) {
     const isBase64 = type === "base64"
     return filteredValue.map((data) =>
@@ -67,28 +68,49 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
         resolve({
           values,
           parsedValues,
+          fileList,
         })
       })()
     }).then((value) => {
-      const { values, parsedValues } = value as {
+      const {
+        values,
+        parsedValues,
+        fileList = [],
+      } = value as {
         values: any[]
         parsedValues: any[]
+        fileList: UploadItem[]
       }
       const message = getValidateMessage(fileList)
+      const files =
+        fileList.map((file) => ({
+          lastModified: file.originFile?.lastModified,
+          name: file.originFile?.name,
+          size: file.originFile?.size,
+          type: file.originFile?.type,
+        })) || []
+      const base64value = getFilteredValue(values, "base64")
+      const parsed = getFilteredValue(parsedValues)
+      const list =
+        fileList.map((file) => ({
+          ...file,
+          response: "",
+          originFile: {
+            lastModified: file.originFile?.lastModified,
+            name: file.originFile?.name,
+            size: file.originFile?.size,
+            type: file.originFile?.type,
+          },
+        })) || []
       handleUpdateMultiExecutionResult([
         {
           displayName,
           value: {
-            files:
-              fileList.map((file) => ({
-                lastModified: file.originFile?.lastModified,
-                name: file.originFile?.name,
-                size: file.originFile?.size,
-                type: file.originFile?.type,
-              })) || {},
-            value: getFilteredValue(values, "base64"),
-            parsedValue: getFilteredValue(parsedValues),
+            files,
+            value: base64value,
+            parsedValue: parsed,
             validateMessage: message,
+            fileList: list,
           },
         },
       ])
@@ -142,6 +164,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     minSizeType,
     maxSizeType,
     maxSize,
+    fileList,
     minSize,
     validateMessage,
     hideValidationMessage,
@@ -151,12 +174,34 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   } = props
 
   const fileListRef = useRef<UploadItem[]>([])
-  const [currentFileList, setFileList] = useState<UploadItem[]>(
-    fileListRef.current,
+  const [currentFileList, setFileList] = useState<UploadItem[] | undefined>(
+    undefined,
   )
-
+  // fileListRef.current,
   const fileCountRef = useRef<number>(0)
   const previousValueRef = useRef<UploadItem[]>([])
+
+  useEffect(() => {
+    if (
+      fileList &&
+      fileList.length > 0 &&
+      previousValueRef.current.length === 0
+    ) {
+      const shownList = fileList.map(
+        (file) =>
+          ({
+            ...file,
+            originFile: new File(
+              [JSON.stringify(file.originFile)],
+              file.name || "",
+            ),
+          } as UploadItem),
+      )
+      setFileList(shownList)
+      fileListRef.current = shownList
+      previousValueRef.current = shownList
+    }
+  }, [fileList])
 
   const handleOnRemove = (file: UploadItem, fileList: UploadItem[]) => {
     let files = [...previousValueRef.current]
@@ -249,7 +294,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   )
 
   const handleValidate = useCallback(
-    (value: UploadItem[] | null) => {
+    (value?: UploadItem[]) => {
       if (!value) {
         return ""
       }

@@ -47,10 +47,10 @@ export const toBase64 = (file: UploadItem) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader()
     if (file.originFile) {
-      reader.readAsDataURL(file.originFile)
       reader.onload = () => resolve(reader.result)
       reader.onerror = (error) => reject(error)
+      reader.readAsDataURL(file.originFile)
     } else {
-      resolve(undefined)
+      resolve("")
     }
   })
