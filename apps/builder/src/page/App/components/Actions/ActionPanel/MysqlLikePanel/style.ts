@@ -12,3 +12,10 @@ export const sqlInputStyle = css`
 export const actionItemContainer = css`
   padding: 8px 0;
 `
+
+export const sqlTransStyle = css`
+  padding: 8px 16px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+`
