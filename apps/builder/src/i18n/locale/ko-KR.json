@@ -330,6 +330,25 @@
           "temperature": "Temperature",
           "repetition_penalty": "Repetition penalty",
           "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "어떤 SQL 문을 생성하시겠습니까?"
+          },
+          "button": {
+            "text": "SQL 생성"
+          }
+        },
+        "mssql": {
+          "config_type": "Config Type",
+          "query": "Query",
+          "placeholder": {
+            "query": "select * from users;",
+            "table": "Select a table",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Table",
+          "insert_record": "Array of records to insert"
         }
       },
       "resource": {
@@ -372,7 +391,8 @@
             "header_prefix": "Header prefix",
             "key": "Key",
             "introspection": "Introspection",
-            "bear_token": "Token"
+            "bear_token": "Token",
+            "connection_options": "Connection options"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -386,7 +406,8 @@
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "사용자 이름",
             "default": "default",
-            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). "
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
+            "database_name": "Database name"
           },
           "tip": {
             "connect_type": "클라우드 서버: ILLA 서버가 데이터베이스에 안전하게 연결됩니다.",
@@ -396,7 +417,8 @@
             "username_password": "자격 증명은 암호화되어 서버에 안전하게 저장됩니다.",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
             "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
-            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>"
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "connection_options": "Add connection options for your connection. When the SSL option is enabled, we will add encrypt and trustServerCertificate by default. "
           },
           "title": {
             "advanced_option": "고급 구성",
