@@ -1258,6 +1258,7 @@ importers:
       '@vitejs/plugin-react-swc': ^3.0.1
       chroma-js: ^2.1.2
       react-fast-compare: ^3.2.0
+      react-use: ^17.4.0
     dependencies:
       '@illa-design/button': link:../button
       '@illa-design/checkbox': link:../checkbox
@@ -1274,6 +1275,7 @@ importers:
       '@tanstack/react-table': 8.7.0
       chroma-js: 2.4.2
       react-fast-compare: 3.2.0
+      react-use: 17.4.0
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
       '@types/chroma-js': 2.1.4
