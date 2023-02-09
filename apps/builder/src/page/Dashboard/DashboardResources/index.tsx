@@ -155,6 +155,7 @@ export const DashboardResources: FC = () => {
             pinedHeader
             striped
             hoverable
+            clickOutsideToResetRowSelect
             size="large"
             data={resourceData}
             columns={columns}
