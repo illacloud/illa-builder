@@ -10,11 +10,5 @@ export const DATE_TIME_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "change",
     },
   ],
-  methods: [
-    "setValue",
-    "clearValue",
-    "validate",
-    "clearValidation",
-    "setDisabled",
-  ],
+  methods: ["setValue", "clearValue", "validate", "clearValidation"],
 }

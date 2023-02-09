@@ -39,23 +39,24 @@ import {
   CONTAINER_WIDGET_CONFIG,
   ContainerWidget,
 } from "@/widgetLibrary/ContainerWidget"
-// import {
-//   DATE_RANGE_EVENT_HANDLER_CONFIG,
-//   DATE_RANGE_PANEL_CONFIG,
-//   DATE_RANGE_WIDGET_CONFIG,
-//   DateRangeWidget,
-// } from "@/widgetLibrary/DateRangeWidget"
-// import {
-//   DATE_TIME_EVENT_HANDLER_CONFIG,
-//   DATE_TIME_PANEL_CONFIG,
-//   DATE_TIME_WIDGET_CONFIG,
-//   DateTimeWidget,
-// } from "@/widgetLibrary/DateTimeWidget"
-// import {
-//   DATE_EVENT_HANDLER_CONFIG,
-//   DATE_PANEL_CONFIG,
-//   DATE_WIDGET_CONFIG, // DateWidget,
-// } from "@/widgetLibrary/DateWidget"
+import {
+  DATE_RANGE_EVENT_HANDLER_CONFIG,
+  DATE_RANGE_PANEL_CONFIG,
+  DATE_RANGE_WIDGET_CONFIG,
+  DateRangeWidget,
+} from "@/widgetLibrary/DateRangeWidget"
+import {
+  DATE_TIME_EVENT_HANDLER_CONFIG,
+  DATE_TIME_PANEL_CONFIG,
+  DATE_TIME_WIDGET_CONFIG,
+  DateTimeWidget,
+} from "@/widgetLibrary/DateTimeWidget"
+import {
+  DATE_EVENT_HANDLER_CONFIG,
+  DATE_PANEL_CONFIG,
+  DATE_WIDGET_CONFIG,
+  DateWidget,
+} from "@/widgetLibrary/DateWidget"
 import {
   DIVIDER_EVENT_HANDLER_CONFIG,
   DIVIDER_PANEL_CONFIG,
@@ -209,24 +210,24 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: INPUT_PANEL_CONFIG,
     eventHandlerConfig: INPUT_EVENT_HANDLER_CONFIG,
   },
-  // DATE_WIDGET: {
-  //   // widget: DateWidget,
-  //   config: DATE_WIDGET_CONFIG,
-  //   panelConfig: DATE_PANEL_CONFIG,
-  //   eventHandlerConfig: DATE_EVENT_HANDLER_CONFIG,
-  // },
-  // DATE_RANGE_WIDGET: {
-  //   widget: DateRangeWidget,
-  //   config: DATE_RANGE_WIDGET_CONFIG,
-  //   panelConfig: DATE_RANGE_PANEL_CONFIG,
-  //   eventHandlerConfig: DATE_RANGE_EVENT_HANDLER_CONFIG,
-  // },
-  // DATE_TIME_WIDGET: {
-  //   widget: DateTimeWidget,
-  //   config: DATE_TIME_WIDGET_CONFIG,
-  //   panelConfig: DATE_TIME_PANEL_CONFIG,
-  //   eventHandlerConfig: DATE_TIME_EVENT_HANDLER_CONFIG,
-  // },
+  DATE_WIDGET: {
+    widget: DateWidget,
+    config: DATE_WIDGET_CONFIG,
+    panelConfig: DATE_PANEL_CONFIG,
+    eventHandlerConfig: DATE_EVENT_HANDLER_CONFIG,
+  },
+  DATE_RANGE_WIDGET: {
+    widget: DateRangeWidget,
+    config: DATE_RANGE_WIDGET_CONFIG,
+    panelConfig: DATE_RANGE_PANEL_CONFIG,
+    eventHandlerConfig: DATE_RANGE_EVENT_HANDLER_CONFIG,
+  },
+  DATE_TIME_WIDGET: {
+    widget: DateTimeWidget,
+    config: DATE_TIME_WIDGET_CONFIG,
+    panelConfig: DATE_TIME_PANEL_CONFIG,
+    eventHandlerConfig: DATE_TIME_EVENT_HANDLER_CONFIG,
+  },
   RATE_WIDGET: {
     widget: RateWidget,
     config: RATE_WIDGET_CONFIG,
