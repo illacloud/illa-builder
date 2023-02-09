@@ -95,7 +95,7 @@ export class CloudTeamApi {
   ) {
     loading?.(true)
     errorState?.(false)
-    const teamId = getCurrentId(store.getState())
+    const teamId = isCloudVersion ? getCurrentId(store.getState()) : 0
     cloudAxios
       .request<RespData, AxiosResponse<RespData>, RequestBody>({
         ...config,
