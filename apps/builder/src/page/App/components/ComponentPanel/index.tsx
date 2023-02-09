@@ -35,7 +35,7 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
   const handleOnSearch = useCallback(() => {
     const res = getMatchComponent(searchInput, componentList)
     setSearchRes(res)
-  }, [])
+  }, [componentList, searchInput])
 
   return (
     <div className={className} css={componentContainerStyle}>

@@ -69,7 +69,7 @@ export const WrappedTextarea = forwardRef<
 
   return (
     <TextArea
-      h="100%"
+      // h="100%"
       w="100%"
       textAreaRef={ref}
       value={value}
@@ -221,7 +221,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   ])
 
   return (
-    <div ref={textareaWrapperRef} css={textareaContainerStyle}>
+    <div ref={textareaWrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div
           css={[

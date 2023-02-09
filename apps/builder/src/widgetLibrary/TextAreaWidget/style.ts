@@ -14,5 +14,8 @@ export const getTextareaContentContainerStyle = (
     display: flex;
     flex: 1;
     flex-direction: ${labelPosition === "top" ? "column" : "row"};
+    & textarea {
+      resize: none;
+    }
   `
 }
