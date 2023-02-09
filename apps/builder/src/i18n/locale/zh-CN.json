@@ -330,6 +330,14 @@
           "temperature": "Temperature",
           "repetition_penalty": "Repetition penalty",
           "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "您想生成什么SQL语句"
+          },
+          "button": {
+            "text": "生成SQL"
+          }
         }
       },
       "resource": {
