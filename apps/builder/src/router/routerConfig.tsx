@@ -84,6 +84,7 @@ export const cloudRouter: RoutesObjectPro[] = [
       {
         path: "/:teamIdentifier/dashboard/resources",
         element: <DashboardResources />,
+        errorElement: <Page404 />,
       },
     ],
   },
