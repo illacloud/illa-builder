@@ -11,7 +11,6 @@ import {
   MicrosoftSqlAction,
   MicrosoftSqlActionType,
 } from "@/redux/currentApp/action/microsoftSqlAction"
-import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
 import { ElasticSearchAction } from "./elasticSearchAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { MysqlLikeAction } from "./mysqlLikeAction"
@@ -96,7 +95,6 @@ export type ActionContent =
   | ElasticSearchAction
   | MysqlLikeAction
   | MicrosoftSqlAction<MicrosoftSqlActionType>
-  | MicrosoftSqlResource
   | RestApiAction<BodyContent>
   | TransformerAction
   | RedisAction
