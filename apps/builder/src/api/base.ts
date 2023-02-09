@@ -7,6 +7,7 @@ import {
 } from "@/api/interceptors"
 import { getCurrentId } from "@/redux/team/teamSelector"
 import store from "@/store"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface Success {
   status: string // always ok
@@ -48,7 +49,7 @@ export class Api {
   ) {
     loading?.(true)
     errorState?.(false)
-    const teamId = getCurrentId(store.getState())
+    const teamId = isCloudVersion ? getCurrentId(store.getState()) : 0
     axios
       .request<RespData, AxiosResponse<RespData>, RequestBody>({
         ...config,
