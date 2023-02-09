@@ -3,6 +3,7 @@ import { isEqual } from "lodash"
 import { FC, useContext, useEffect, useState } from "react"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { EmptyBody } from "@/page/App/components/PanelSetters/OptionListSetter/empty"
+import { OptionItemShape } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
 import { ListItem } from "./listItem"
 
@@ -17,7 +18,12 @@ export const ListBody: FC = () => {
     if (!isEqual(optionItems, items)) {
       setItems(optionItems)
     }
-  }, [items, optionItems])
+  }, [optionItems])
+
+  const updateItem = (values: OptionItemShape[]) => {
+    if (isEqual(values, items)) return
+    setItems(values)
+  }
 
   if (!optionItems || !Array.isArray(optionItems) || optionItems.length === 0)
     return <EmptyBody />
@@ -28,7 +34,7 @@ export const ListBody: FC = () => {
         axis="y"
         initial={false}
         values={items}
-        onReorder={setItems}
+        onReorder={updateItem}
         css={removeNativeStyle}
       >
         {items.map((item, index) => {
