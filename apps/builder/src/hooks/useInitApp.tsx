@@ -26,7 +26,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
   // versionId = -1 represents the latest edited version of the app.
   // versionId = -2 represents the latest released version of the user.
   const versionId = useMemo(
-    () => (model === "production" ? "-2" : "-1"),
+    () => (model === "production" ? "-2" : "0"),
     [model],
   )
 

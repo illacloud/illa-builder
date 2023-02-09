@@ -74,10 +74,12 @@ export const MysqlLikePanel: FC = (props) => {
       <div css={actionItemContainer}>
         <div css={sqlTransStyle}>
           <Select
+            mr="-1px"
             autoAlignPopupWidth={true}
             w="120px"
             flexGrow="0"
             flexShrink="0"
+            bdRadius="8px 0 0 8px"
             value={currentSqlAction}
             options={[
               {
@@ -102,12 +104,11 @@ export const MysqlLikePanel: FC = (props) => {
             }}
             size="large"
             colorScheme="techPurple"
-            mr="16px"
           />
           <Input
             size="large"
             colorScheme="techPurple"
-            bdRadius="8px 0 0 8px"
+            bdRadius="0"
             flexGrow="1"
             flexShrink="1"
             placeholder={t("editor.action.panel.sqlgc.placeholder.text")}
@@ -126,7 +127,7 @@ export const MysqlLikePanel: FC = (props) => {
               setGenerateLoading(true)
               Api.request<{ payload: string }>(
                 {
-                  url: `/app/${appInfo.appId}/internalActions/generateSQL`,
+                  url: `/apps/${appInfo.appId}/internalActions/generateSQL`,
                   method: "POST",
                   data: {
                     description: inputRef.current?.value,
@@ -154,8 +155,8 @@ export const MysqlLikePanel: FC = (props) => {
                 () => {
                   setGenerateLoading(false)
                 },
-                () => {
-                  setGenerateLoading(false)
+                (loading) => {
+                  setGenerateLoading(loading)
                 },
               )
             }}
