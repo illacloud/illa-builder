@@ -330,6 +330,14 @@
           "temperature": "Temperature",
           "repetition_penalty": "Repetition penalty",
           "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "어떤 SQL 문을 생성하시겠습니까?"
+          },
+          "button": {
+            "text": "SQL 생성"
+          }
         }
       },
       "resource": {
@@ -638,8 +646,21 @@
           "url": "URL"
         },
         "height": {
-          "fixed": "Fixed",
-          "auto": "Auto"
+          "fixed": "고정식",
+          "auto": "방문 허용"
+        },
+        "upload_type": {
+          "button": "Button",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Single file",
+          "multiple_files": "Multiple files",
+          "directory": "Directory"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
         }
       },
       "setter_group": {
@@ -819,7 +840,22 @@
         "y_axis_name": "좌표 이름",
         "y_axis_title": "Y축 제목",
         "height": "Height",
-        "min_height": "Min height (px)"
+        "min_height": "Min height (px)",
+        "show_underline": "밑줄 표시",
+        "auto_play": "자동 재생",
+        "interval": "간격(ms)",
+        "show_button": "양쪽에 버튼 표시",
+        "show_dot": "하단에 점 표시",
+        "hidden_images": "Hidden images",
+        "file_type": "File types",
+        "selection_types": "Selection types",
+        "append_newly_files": "Append newly selected files",
+        "file_list": "File list",
+        "parse_value": "Parse Value",
+        "max_files": "Max files",
+        "min_files": "Min files",
+        "max_size": "Max size",
+        "min_size": "Min size"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -852,13 +888,19 @@
         "text_value": "Markdown 모드 또는 일반 텍스트 모드에서 값을 입력하도록 선택할 수 있습니다. 링크는 Markdown 모드에서만 입력할 수 있습니다.",
         "timeline_direction": "시간 축의 방향을 전환합니다.",
         "timeline_pending": "보류 중인 노드를 표시할지 여부입니다.",
-        "tooltip": "사용자는 입력란에 프롬프트 내용을 입력할 수 있으며 마우스를 컴포넌트 위에 올려 놓으면 프롬프트 정보가 표시되며 Markdown 형식을 지원합니다."
+        "tooltip": "사용자는 입력란에 프롬프트 내용을 입력할 수 있으며 마우스를 컴포넌트 위에 올려 놓으면 프롬프트 정보가 표시되며 Markdown 형식을 지원합니다.",
+        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
+        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
+        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
       },
       "tab_title": "속성",
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
       "unselected_tip2": "구성 요소를 클릭하여 선택하십시오.",
       "setter": {
         "click_mask_close": "Click mask to close modal"
+      },
+      "setter_tips": {
+        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
       }
     },
     "page": {
@@ -1226,7 +1268,12 @@
       "name": "Modal"
     },
     "textarea": {
-      "name": "Textarea Input"
+      "name": "Textarea"
+    },
+    "upload": {
+      "name": "업로드",
+      "default_button_text": "Upload",
+      "default_dropzone_text": "Select or drop a file here"
     }
   },
   "page": {
@@ -1272,7 +1319,8 @@
         "placeholder": "이메일 주소를 입력하세요",
         "invited": "초대했다",
         "in_list": "이 사용자는 이미 팀에 있습니다."
-      }
+      },
+      "invalid_email": "유효한 이메일 주소를 입력하세요"
     },
     "mes": {
       "invite_suc": "초대 성공",
@@ -1367,5 +1415,10 @@
   },
   "members": "멤버",
   "invite_new_member": "멤버 초대",
-  "launch": "시작"
+  "launch": "시작",
+  "homepage": {
+    "message": {
+      "join_failed": "팀 가입 실패: 귀하의 이메일이 초대 이메일이 아닙니다."
+    }
+  }
 }
