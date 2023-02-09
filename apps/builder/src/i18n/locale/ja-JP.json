@@ -330,6 +330,14 @@
           "temperature": "Temperature",
           "repetition_penalty": "Repetition penalty",
           "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "生成する SQL ステートメント"
+          },
+          "button": {
+            "text": "SQL生成"
+          }
         }
       },
       "resource": {
