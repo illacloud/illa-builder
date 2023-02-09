@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Input, useMessage } from "@illa-design/react"
+import { Button, Input, Select, useMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { ReactComponent as OpenAIIcon } from "@/assets/openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -65,6 +65,7 @@ export const MysqlLikePanel: FC = (props) => {
 
   const inputRef = useRef<HTMLInputElement>(null)
   const [generateLoading, setGenerateLoading] = useState(false)
+  const [currentSqlAction, setCurrentSqlAction] = useState(1)
   const message = useMessage()
 
   return (
@@ -72,6 +73,37 @@ export const MysqlLikePanel: FC = (props) => {
       <ResourceChoose />
       <div css={actionItemContainer}>
         <div css={sqlTransStyle}>
+          <Select
+            autoAlignPopupWidth={true}
+            w="120px"
+            flexGrow="0"
+            flexShrink="0"
+            value={currentSqlAction}
+            options={[
+              {
+                label: "SELECT",
+                value: 1,
+              },
+              {
+                label: "INSERT",
+                value: 2,
+              },
+              {
+                label: "UPDATE",
+                value: 3,
+              },
+              {
+                label: "DELETE",
+                value: 4,
+              },
+            ]}
+            onChange={(v) => {
+              setCurrentSqlAction(v as number)
+            }}
+            size="large"
+            colorScheme="techPurple"
+            mr="16px"
+          />
           <Input
             size="large"
             colorScheme="techPurple"
@@ -84,6 +116,8 @@ export const MysqlLikePanel: FC = (props) => {
           <Button
             loading={generateLoading}
             size="large"
+            flexGrow="0"
+            flexShrink="0"
             bdRadius="0 8px 8px 0"
             pd="9px 24px"
             bg="linear-gradient(90deg, #FF53D9 0%, #AE47FF 100%);"
@@ -97,6 +131,7 @@ export const MysqlLikePanel: FC = (props) => {
                   data: {
                     description: inputRef.current?.value,
                     resourceID: currentAction.resourceId,
+                    action: currentSqlAction,
                   },
                 },
                 ({ data }) => {
