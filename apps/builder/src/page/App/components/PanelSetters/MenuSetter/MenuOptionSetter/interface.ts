@@ -1,5 +1,5 @@
-import { HTMLAttributes, ReactNode } from "react"
-import { MenuItemType } from "@illa-design/react"
+import { HTMLAttributes } from "react"
+import { ButtonProps } from "@illa-design/react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 
@@ -16,7 +16,7 @@ export interface SetterSubMenuProps extends HTMLAttributes<HTMLDivElement> {
   onClickAdd: (value: string) => void
 }
 
-export interface NewButtonProps extends HTMLAttributes<HTMLDivElement> {
+export interface NewButtonProps extends ButtonProps {
   title: string
 }
 

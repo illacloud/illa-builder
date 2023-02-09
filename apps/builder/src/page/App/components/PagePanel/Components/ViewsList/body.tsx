@@ -22,7 +22,12 @@ export const ListBody: FC<BodyProps> = (props) => {
     if (!isEqual(sectionViewConfigs, items)) {
       setItems(sectionViewConfigs)
     }
-  }, [items, sectionViewConfigs])
+  }, [sectionViewConfigs])
+
+  const updateItem = (values: unknown) => {
+    if (isEqual(values, items)) return
+    setItems(values)
+  }
 
   const handleChangSectionView = useCallback(
     (index: number) => {
@@ -104,7 +109,7 @@ export const ListBody: FC<BodyProps> = (props) => {
         axis="y"
         initial={false}
         values={items}
-        onReorder={setItems}
+        onReorder={updateItem}
         css={removeNativeStyle}
       >
         {items.map((config: SectionViewShape, index: number) => {
