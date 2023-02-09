@@ -87,6 +87,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         pinedHeader
         w="100%"
         h="100%"
+        colorScheme={"techPurple"}
         rowSelection={rowSelection}
         data={formatData}
         columns={columns}
@@ -224,26 +225,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       rowEvents,
     })
   }, [handleUpdateOriginalDSLMultiAttr, rowEvents])
-
-  useEffect(() => {
-    const oldKeyOrder: string[] = []
-    const oldKeyMap: Record<string, ColumnItemShape> = {}
-    columns?.forEach((item) => {
-      oldKeyMap[item.accessorKey] = item
-      oldKeyOrder.push(item.accessorKey)
-    })
-    if (!Array.isArray(realDataSourceArray)) return
-    const newColumns = tansDataFromOld(
-      realDataSourceArray,
-      oldKeyMap,
-      oldKeyOrder,
-    )
-    if (newColumns?.length && !isEqual(newColumns, columns)) {
-      handleUpdateMultiExecutionResult?.([
-        { displayName, value: { columns: newColumns } },
-      ])
-    }
-  }, [columnsDef, realDataSourceArray])
 
   return (
     <WrappedTable
