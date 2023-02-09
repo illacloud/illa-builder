@@ -36,10 +36,10 @@ export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
         label: "—",
       },
     ]
-    columns.map((item: ColumnItemShape) => {
+    columns.forEach((item: ColumnItemShape) => {
       opt.push({
-        value: item.accessorKey,
-        label: item.header,
+        value: item.accessorKey ?? "",
+        label: item.header ?? "",
       })
     })
     return opt
