@@ -6,40 +6,40 @@ import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 const items = [
   {
     id: v4(),
-    value: "subMenu0",
-    label: "SubMenu 0",
+    value: "menu0",
+    label: "Menu 0",
   },
   {
     id: v4(),
-    value: "subMenu1",
-    label: "SubMenu 1",
+    value: "menu1",
+    label: "Menu 1",
     subItems: [
       {
         id: v4(),
-        value: "subMenu1:menu0",
-        label: "Menu 0",
+        value: "menu1:subMenu0",
+        label: "Sub Menu 0",
       },
       {
         id: v4(),
-        value: "subMenu1:menu1",
-        label: "Menu 1",
+        value: "menu1:subMenu1",
+        label: "Sub Menu 1",
       },
     ],
   },
   {
     id: v4(),
-    value: "subMenu2",
-    label: "Sub Menu 2",
+    value: "menu2",
+    label: "Menu 2",
     subItems: [
       {
         id: v4(),
-        value: "subMenu2:menu0",
-        label: "Menu 0",
+        value: "menu2:subMenu0",
+        label: "Sub Menu 0",
       },
       {
         id: v4(),
-        value: "subMenu2:menu1",
-        label: "Menu 1",
+        value: "menu2:subMenu1",
+        label: "Sub Menu 1",
       },
     ],
   },
