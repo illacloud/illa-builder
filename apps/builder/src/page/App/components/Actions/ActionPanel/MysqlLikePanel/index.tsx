@@ -20,6 +20,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const MysqlLikePanel: FC = (props) => {
@@ -28,6 +29,8 @@ export const MysqlLikePanel: FC = (props) => {
   const dispatch = useDispatch()
 
   const appInfo = useSelector(getAppInfo)
+
+  const teamInfo = useSelector(getCurrentTeamInfo)
 
   const { t } = useTranslation()
 
@@ -89,7 +92,7 @@ export const MysqlLikePanel: FC = (props) => {
               setGenerateLoading(true)
               Api.request<{ payload: string }>(
                 {
-                  url: `/teams/:teamID/apps/${appInfo.appId}/internalActions/generateSQL`,
+                  url: `/app/${appInfo.appId}/internalActions/generateSQL`,
                   method: "POST",
                   data: {
                     description: inputRef.current?.value,
