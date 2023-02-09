@@ -14,6 +14,7 @@ import {
   applyTableTextStyle,
   dataBaseTextStyle,
   hoverStyle,
+  resourceNameStyle,
 } from "@/page/Dashboard/DashboardResources/style"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
@@ -92,9 +93,11 @@ export const DashboardResources: FC = () => {
         cell: (props: CellContext<ResourceTableData, string>) => {
           const type = props.row.original.resourceType
           return (
-            <Space size="8px" maxW="360px" alignItems="center" direction="horizontal">
+            <Space size="8px" alignItems="center" direction="horizontal">
               {getIconFromResourceType(type, "24px")}
-              <span css={applyTableTextStyle(true)}>{props.getValue()}</span>
+              <span css={[applyTableTextStyle(true), resourceNameStyle]}>
+                {props.getValue()}
+              </span>
             </Space>
           )
         },
@@ -110,7 +113,12 @@ export const DashboardResources: FC = () => {
         header: t("dashboard.resource.dbname"),
         accessorKey: "databaseName",
         cell: (props: CellContext<ResourceTableData, string>) => (
-          <span css={[applyTableTextStyle(props.getValue() !== "Null"), dataBaseTextStyle]}>
+          <span
+            css={[
+              applyTableTextStyle(props.getValue() !== "Null"),
+              dataBaseTextStyle,
+            ]}
+          >
             {props.getValue()}
           </span>
         ),
