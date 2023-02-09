@@ -1380,7 +1380,7 @@ importers:
 
   illa-design/packages/trigger:
     specifiers:
-      '@floating-ui/react': ^0.18.0
+      '@floating-ui/react': ^0.19.1
       '@illa-design/config-provider': workspace:*
       '@illa-design/icon': workspace:*
       '@illa-design/system': workspace:*
@@ -1389,7 +1389,7 @@ importers:
       '@vitejs/plugin-react-swc': ^3.0.1
       framer-motion: ^7.6.12
     dependencies:
-      '@floating-ui/react': 0.18.0
+      '@floating-ui/react': 0.19.1
       '@illa-design/config-provider': link:../config-provider
       '@illa-design/icon': link:../icon
       '@illa-design/system': link:../system
@@ -3634,32 +3634,32 @@ packages:
       - supports-color
     dev: true
 
-  /@floating-ui/core/1.1.0:
-    resolution: {integrity: sha512-zbsLwtnHo84w1Kc8rScAo5GMk1GdecSlrflIbfnEBJwvTSj1SL6kkOYV+nHraMCPEy+RNZZUaZyL8JosDGCtGQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@floating-ui/core/-/core-1.1.0.tgz}
+  /@floating-ui/core/1.2.0:
+    resolution: {integrity: sha512-GHUXPEhMEmTpnpIfesFA2KAoMJPb1SPQw964tToQwt+BbGXdhqTCWT1rOb0VURGylsxsYxiGMnseJ3IlclVpVA==}
     dev: false
 
-  /@floating-ui/dom/1.1.0:
-    resolution: {integrity: sha512-TSogMPVxbRe77QCj1dt8NmRiJasPvuc+eT5jnJ6YpLqgOD2zXc5UA3S1qwybN+GVCDNdKfpKy1oj8RpzLJvh6A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.1.0.tgz}
+  /@floating-ui/dom/1.2.0:
+    resolution: {integrity: sha512-QXzg57o1cjLz3cGETzKXjI3kx1xyS49DW9l7kV2jw2c8Yftd434t2hllX0sVGn2Q8MtcW/4pNm8bfE1/4n6mng==}
     dependencies:
-      '@floating-ui/core': 1.1.0
+      '@floating-ui/core': 1.2.0
     dev: false
 
-  /@floating-ui/react-dom/1.2.1:
-    resolution: {integrity: sha512-YCLlqibZtgUhxUpxkSp1oekvYgH/jI4KdZEJv85E62twlZHN43xdlQNe6JcF4ROD3/Zu6juNHN+aOygN+6yZjg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-1.2.1.tgz}
+  /@floating-ui/react-dom/1.2.2:
+    resolution: {integrity: sha512-DbmFBLwFrZhtXgCI2ra7wXYT8L2BN4/4AMQKyu05qzsVji51tXOfF36VE2gpMB6nhJGHa85PdEg75FB4+vnLFQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/dom': 1.1.0
+      '@floating-ui/dom': 1.2.0
     dev: false
 
-  /@floating-ui/react/0.18.0:
-    resolution: {integrity: sha512-zxgwWigxaph1TIBdezCDdc3eo+4FUDKY2MiBR3gywZtx5Eeb0KBRRZ9PyzznTXuYO5Y9BFHAC0Yikqp7rr+oKQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@floating-ui/react/-/react-0.18.0.tgz}
+  /@floating-ui/react/0.19.1:
+    resolution: {integrity: sha512-h7hr53rLp+VVvWvbu0dOBvGsLeeZwn1DTLIllIaLYjGWw20YhAgEqegHU+nc7BJ30ttxq4Sq6hqARm0ne6chXQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/react-dom': 1.2.1
+      '@floating-ui/react-dom': 1.2.2
       aria-hidden: 1.2.2
       tabbable: 6.0.1
     transitivePeerDependencies:
@@ -5114,7 +5114,7 @@ packages:
     dev: true
 
   /aria-hidden/1.2.2:
-    resolution: {integrity: sha512-6y/ogyDTk/7YAe91T3E2PR1ALVKyM2QbTio5HwM+N1Q6CMlCKhvClyIjkckBswa0f2xJhjsfzIGa1yVSe1UMVA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/aria-hidden/-/aria-hidden-1.2.2.tgz}
+    resolution: {integrity: sha512-6y/ogyDTk/7YAe91T3E2PR1ALVKyM2QbTio5HwM+N1Q6CMlCKhvClyIjkckBswa0f2xJhjsfzIGa1yVSe1UMVA==}
     engines: {node: '>=10'}
     peerDependencies:
       '@types/react': ^16.9.0 || ^17.0.0 || ^18.0.0
@@ -10397,7 +10397,7 @@ packages:
     dev: true
 
   /tabbable/6.0.1:
-    resolution: {integrity: sha512-SYJSIgeyXW7EuX1ytdneO5e8jip42oHWg9xl/o3oTYhmXusZVgiA+VlPvjIN+kHii9v90AmzTZEBcsEvuAY+TA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/tabbable/-/tabbable-6.0.1.tgz}
+    resolution: {integrity: sha512-SYJSIgeyXW7EuX1ytdneO5e8jip42oHWg9xl/o3oTYhmXusZVgiA+VlPvjIN+kHii9v90AmzTZEBcsEvuAY+TA==}
     dev: false
 
   /tapable/0.2.9:
