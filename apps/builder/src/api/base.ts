@@ -54,6 +54,7 @@ export class Api {
       .request<RespData, AxiosResponse<RespData>, RequestBody>({
         ...config,
         url: `/teams/${teamId}` + config.url,
+        timeout: 30000,
       })
       .then((response) => {
         loading?.(false)
