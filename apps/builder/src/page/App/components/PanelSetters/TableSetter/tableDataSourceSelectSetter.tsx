@@ -1,5 +1,5 @@
-import { get } from "lodash"
-import { FC, useCallback, useMemo } from "react"
+import { get, isEqual } from "lodash"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
@@ -14,7 +14,10 @@ import { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
-import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
+import {
+  tansDataFromOld,
+  tansTableDataToColumns,
+} from "@/widgetLibrary/TableWidget/utils"
 
 export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
   props,
@@ -41,14 +44,13 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
     },
   )
 
-  const customColumns = useMemo(() => {
-    const columns = get(
-      targetComponentProps,
-      "columns",
-      [],
-    ) as ColumnItemShape[]
-    return columns.filter((item) => item.custom)
+  const columns = useMemo(() => {
+    return get(targetComponentProps, "columns", []) as ColumnItemShape[]
   }, [targetComponentProps])
+
+  const customColumns = useMemo(() => {
+    return columns.filter((item) => item.custom)
+  }, [columns])
 
   const isDynamic = useMemo(() => {
     const dataSourceMode = get(targetComponentProps, "dataSourceMode", "select")
@@ -62,6 +64,21 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
       return get(targetComponentProps, "dataSource", [])
     }
   }, [isDynamic, targetComponentProps])
+
+  useEffect(() => {
+    const oldKeyOrder: string[] = []
+    const oldKeyMap: Record<string, ColumnItemShape> = {}
+    columns?.forEach((item) => {
+      console.log({ item }, "useEffect")
+      oldKeyMap[item.accessorKey] = item
+      oldKeyOrder.push(item.accessorKey)
+    })
+    if (!Array.isArray(finalValue)) return
+    const newColumns = tansDataFromOld(finalValue, oldKeyMap, oldKeyOrder)
+    if (newColumns?.length && !isEqual(newColumns, columns)) {
+      handleUpdateMultiAttrDSL?.({ columns: newColumns })
+    }
+  }, [finalValue])
 
   const selectedOptions = useMemo(() => {
     return actions.map((action) => ({

@@ -13,6 +13,7 @@ export const ContainerDefaultViewKeySetter: FC<
   const {
     attrName,
     handleUpdateMultiAttrDSL,
+    handleUpdateOtherMultiAttrDSL,
     expectedType,
     widgetDisplayName,
     widgetType,
@@ -31,6 +32,10 @@ export const ContainerDefaultViewKeySetter: FC<
     return get(targetComponentProps, "viewList", []) as ViewItemShape[]
   }, [targetComponentProps])
 
+  const linkWidgetDisplayName = useMemo(() => {
+    return get(targetComponentProps, "linkWidgetDisplayName")
+  }, [targetComponentProps])
+
   const handleUpdateDefaultView = useCallback(
     (attrPath: string, value: string) => {
       const defaultViewIndex = realViews.findIndex((view) => view.key === value)
@@ -45,8 +50,19 @@ export const ContainerDefaultViewKeySetter: FC<
         currentIndex,
         currentKey,
       })
+      if (linkWidgetDisplayName) {
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+          currentIndex,
+          currentKey,
+        })
+      }
     },
-    [handleUpdateMultiAttrDSL, realViews],
+    [
+      realViews,
+      linkWidgetDisplayName,
+      handleUpdateMultiAttrDSL,
+      handleUpdateOtherMultiAttrDSL,
+    ],
   )
 
   return (
