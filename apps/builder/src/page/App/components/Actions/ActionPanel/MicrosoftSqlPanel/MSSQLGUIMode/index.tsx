@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/interface"
@@ -14,7 +15,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
   const { modeContent, onChange, resourceId } = props
   const newModeContent = modeContent as MicrosoftSqlActionGUIMode
-
+  const { t } = useTranslation()
   const [collectionSelect, setCollectionSelect] = useState<string[]>([])
 
   useEffect(() => {
@@ -39,7 +40,9 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
   return (
     <>
       <div css={actionItemStyle}>
-        <span css={codeEditorLabelStyle}>Table</span>
+        <span css={codeEditorLabelStyle}>
+          {t("editor.action.panel.mssql.table")}
+        </span>
         <Select
           colorScheme="techPurple"
           showSearch={true}
@@ -47,15 +50,15 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
           value={newModeContent.table}
           ml="16px"
           width="100%"
-          placeholder={"Select a table"}
+          placeholder={t("editor.action.panel.mssql.placeholder.table")}
           onChange={(value: string) => onChange(value, "table")}
           options={collectionSelect}
         />
       </div>
       <InputEditor
         style={{ height: "88px" }}
-        title={"Array of records to insert"}
-        placeholder={"{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"}
+        title={t("editor.action.panel.mssql.insert_record")}
+        placeholder={t("editor.action.panel.mssql.placeholder.insert_record")}
         lineNumbers={true}
         expectedType={VALIDATION_TYPES.ARRAY}
         value={newModeContent.records}

@@ -1,4 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
+import { getColor } from "@illa-design/react"
 
 export const container = css`
   width: 100%;
@@ -35,3 +36,14 @@ export function applyConfigItemLabelText(
     ${marginLeft};
   `
 }
+
+export const configItemTip = css`
+  font-size: 14px;
+  white-space: pre-line;
+  color: ${getColor("grayBlue", "04")};
+  font-weight: 400;
+  margin-left: 192px;
+  padding-bottom: 8px;
+  padding-left: 24px;
+  line-height: 22px;
+`

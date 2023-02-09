@@ -102,7 +102,9 @@ export const MicrosoftSqlPanel: FC = () => {
       <ResourceChoose />
       <div css={actionItemContainer}>
         <div css={actionItemStyle}>
-          <span css={actionItemLabelStyle}>Config Type</span>
+          <span css={actionItemLabelStyle}>
+            {t("editor.action.panel.mssql.config_type")}
+          </span>
           <RadioGroup
             w="100%"
             colorScheme="gray"

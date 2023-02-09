@@ -19,7 +19,6 @@ import {
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
 import {
-  configItemTip,
   connectType,
   connectTypeStyle,
   labelContainer,
@@ -34,6 +33,7 @@ import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { MicrosoftSqlConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
+  configItemTip,
   container,
   divider,
   footerStyle,
@@ -180,9 +180,9 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
               required: true,
             },
           ]}
-          // placeholders={[
-          //   t("editor.action.resource.db.placeholder.database_name"),
-          // ]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.database_name"),
+          ]}
           name="databaseName"
         />
 
@@ -251,7 +251,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
           }
           render={({ field: { value, onChange, onBlur } }) => (
             <InputRecordEditor
-              label="Connect options"
+              label={t("editor.action.resource.db.label.connection_options")}
               records={value}
               onAdd={() => {
                 onChange([...value, { key: "", value: "" }])
@@ -278,6 +278,9 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
           )}
           name="connectionOpts"
         />
+        <div css={configItemTip}>
+          {t("editor.action.resource.db.tip.connection_options")}
+        </div>
 
         <ControlledElement
           controlledType={["switch"]}
