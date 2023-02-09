@@ -228,6 +228,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       oldKeyMap[item.accessorKey] = item
       oldKeyOrder.push(item.accessorKey)
     })
+    if (!Array.isArray(realDataSourceArray)) return
     const newColumns = tansDataFromOld(
       realDataSourceArray,
       oldKeyMap,
