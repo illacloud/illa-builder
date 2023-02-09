@@ -27,9 +27,7 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
         method: "GET",
       },
       ({ data }: { data: ResourcesData }) => {
-        const tables = data.schema
-          ? ((data.schema?.collections || []) as string[])
-          : []
+        const tables = Object.keys(data.schema ?? {}).map((key) => key)
         setCollectionSelect(tables)
       },
       () => {},
