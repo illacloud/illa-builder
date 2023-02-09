@@ -118,7 +118,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
 }
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const { onActionRun } = props
+  const { onActionRun, onClickActionRun } = props
 
   const message = useMessage()
   const selectedAction = useSelector(getSelectedAction)!
@@ -158,6 +158,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           })
           return
         }
+        onClickActionRun()
         setLoading(true)
         if (cachedActionValue) {
           runAction(cachedActionValue, (result: unknown, error?: boolean) => {
