@@ -138,13 +138,17 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const defaultSort = useMemo(() => {
     if (!defaultSortKey || defaultSortKey === "default") return []
+    const columnsKeys = columns.map((item: ColumnItemShape) => {
+      return item.accessorKey
+    })
+    if (!columnsKeys.includes(defaultSortKey)) return []
     return [
       {
         id: defaultSortKey,
         desc: defaultSortOrder === "descend",
       },
     ]
-  }, [defaultSortOrder, defaultSortKey])
+  }, [defaultSortOrder, defaultSortKey, columns])
 
   const columnVisibility = useMemo(() => {
     const res: Record<string, boolean> = {}
@@ -228,6 +232,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       oldKeyMap[item.accessorKey] = item
       oldKeyOrder.push(item.accessorKey)
     })
+    if (!Array.isArray(realDataSourceArray)) return
     const newColumns = tansDataFromOld(
       realDataSourceArray,
       oldKeyMap,
