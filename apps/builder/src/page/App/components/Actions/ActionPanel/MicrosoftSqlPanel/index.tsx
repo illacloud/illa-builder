@@ -13,7 +13,10 @@ import { MSSQLSqlMode } from "@/page/App/components/Actions/ActionPanel/Microsof
 import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import { getCachedAction } from "@/redux/config/configSelector"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
@@ -41,7 +44,11 @@ export const MicrosoftSqlPanel: FC = () => {
   const cachedAction = useSelector(
     getCachedAction,
   ) as ActionItem<MSSQLActionType>
+  const selectedAction = useSelector(
+    getSelectedAction,
+  ) as ActionItem<MSSQLActionType>
   const content = cachedAction.content
+  const selectedContent = selectedAction.content
   const dispatch = useDispatch()
 
   const sqlModeInitial =
@@ -51,17 +58,26 @@ export const MicrosoftSqlPanel: FC = () => {
 
   const handleValueChange = useCallback(
     (value: string) => {
+      const isSameModeWithCached = value === selectedContent.mode
+      const { query } = selectedContent
+      const initialMode =
+        value === "sql"
+          ? MicrosoftSqlActionSqlModeInitial
+          : MicrosoftSqlActionGUIModeInitial
+
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
           content: {
-            ...content,
             mode: value,
+            query: {
+              ...(isSameModeWithCached ? query : initialMode),
+            },
           } as MSSQLActionType,
         }),
       )
     },
-    [cachedAction, content, dispatch],
+    [cachedAction, selectedContent, content, dispatch],
   )
   const handleQueryChange = useCallback(
     (value: string, name: string) => {

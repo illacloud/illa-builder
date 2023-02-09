@@ -174,7 +174,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
     [handleDirectCreateAction, onClose],
   )
 
-  console.log({ currentStep, currentActionType })
   return (
     <Modal
       w="696px"
