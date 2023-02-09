@@ -11,6 +11,10 @@ export function applyTableTextStyle(highlight: boolean): SerializedStyles {
   `
 }
 
+export const dataBaseTextStyle = css`
+  max-width: 488px;
+`
+
 export const hoverStyle = css`
   overflow: auto;
   &::-webkit-scrollbar {
