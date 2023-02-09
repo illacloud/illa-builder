@@ -82,8 +82,6 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
     return radius
   }, [radius])
 
-  console.log(finalSrc)
-
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={ImageWrapperStyle}>

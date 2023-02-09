@@ -312,7 +312,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               key="delete"
               value="delete"
               title={t("editor.action.action_list.contextMenu.delete")}
-              fontColor={globalColor(`--${illaPrefix}-red-03`)}
+              deleted
               onClick={() => {
                 onDeleteActionItem(selectedAction)
               }}

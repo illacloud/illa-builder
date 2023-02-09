@@ -522,7 +522,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
               }}
             />
             <DropListItem
-              fontColor={globalColor(`--${illaPrefix}-red-03`)}
+              deleted
               value="delete"
               title={t("editor.context_menu.delete")}
               onClick={() => {
@@ -922,7 +922,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
               }}
             />
             <DropListItem
-              fontColor={globalColor(`--${illaPrefix}-red-03`)}
+              deleted
               value="delete"
               title={t("editor.context_menu.delete")}
               onClick={() => {
