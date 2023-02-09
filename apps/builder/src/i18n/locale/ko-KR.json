@@ -333,10 +333,10 @@
         },
         "sqlgc": {
           "placeholder": {
-            "text": "What SQL statement do you want to generate"
+            "text": "어떤 SQL 문을 생성하시겠습니까?"
           },
           "button": {
-            "text": "SQL Generate"
+            "text": "SQL 생성"
           }
         }
       },
