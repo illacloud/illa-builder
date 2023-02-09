@@ -225,26 +225,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     })
   }, [handleUpdateOriginalDSLMultiAttr, rowEvents])
 
-  useEffect(() => {
-    const oldKeyOrder: string[] = []
-    const oldKeyMap: Record<string, ColumnItemShape> = {}
-    columns?.forEach((item) => {
-      oldKeyMap[item.accessorKey] = item
-      oldKeyOrder.push(item.accessorKey)
-    })
-    if (!Array.isArray(realDataSourceArray)) return
-    const newColumns = tansDataFromOld(
-      realDataSourceArray,
-      oldKeyMap,
-      oldKeyOrder,
-    )
-    if (newColumns?.length && !isEqual(newColumns, columns)) {
-      handleUpdateMultiExecutionResult?.([
-        { displayName, value: { columns: newColumns } },
-      ])
-    }
-  }, [columnsDef, realDataSourceArray])
-
   return (
     <WrappedTable
       {...otherProps}
