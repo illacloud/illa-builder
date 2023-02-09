@@ -64,6 +64,9 @@ export const requireAuth = async (
   try {
     await getTeamsInfo(teamIdentifier, token)
   } catch (e) {
+    if (e === "have no team match") {
+      throw new Error(e)
+    }
     console.error(e)
   }
   return null
