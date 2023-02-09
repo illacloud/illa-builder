@@ -74,7 +74,7 @@ export const ActionPanel = forwardRef<
       case "tidb":
       case "mariadb":
       case "postgresql":
-      // return <MysqlLikePanel />
+        return <MysqlLikePanel />
       case "mssql":
         return <MicrosoftSqlPanel />
       case "restapi":
