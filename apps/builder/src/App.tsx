@@ -34,8 +34,6 @@ function App() {
     }
   }, [currentUserLanguage, i18n])
 
-  console.log("configLanguage", configLanguage)
-
   return (
     <DndProvider backend={HTML5Backend}>
       <GlobalDataProvider>

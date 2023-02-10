@@ -14,6 +14,7 @@ export interface SetterSubMenuProps extends HTMLAttributes<HTMLDivElement> {
   childrenSetter: PanelFieldConfig[]
   label: string
   onClickAdd: (value: string) => void
+  onDelete: () => void
 }
 
 export interface NewButtonProps extends ButtonProps {
@@ -27,4 +28,5 @@ export interface SetterMenuItemProps extends HTMLAttributes<HTMLDivElement> {
   value: string
   label: string
   onClickItem: (value: string) => void
+  onDelete: () => void
 }

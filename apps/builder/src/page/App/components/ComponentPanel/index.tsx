@@ -32,11 +32,6 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
     [componentList],
   )
 
-  const handleOnSearch = useCallback(() => {
-    const res = getMatchComponent(searchInput, componentList)
-    setSearchRes(res)
-  }, [componentList, searchInput])
-
   return (
     <div className={className} css={componentContainerStyle}>
       <div css={searchWrapperStyle}>
@@ -46,7 +41,6 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
           variant="fill"
           placeholder={t("editor.widget_picker.search_placeholder")}
           onChange={handleOnChange}
-          onSearch={handleOnSearch}
         />
       </div>
       <div css={sessionListContainerStyle}>
