@@ -1340,7 +1340,9 @@
         "invite": "Invite",
         "placeholder": "Enter email address",
         "invited": "Have invited",
-        "in_list": "This user is already in your team."
+        "in_list": "This user is already in your team.",
+        "notmail": "${email} is not an email",
+        "duplicate": "${email} is duplicated"
       },
       "invalid_email": "Please enter a valid email"
     },
