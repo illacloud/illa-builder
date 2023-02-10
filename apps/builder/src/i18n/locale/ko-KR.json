@@ -889,7 +889,7 @@
         "loading": "구성 요소가 로드되는지 여부를 제어합니다.",
         "map_data_option": "숫자 값 또는 키-값 개체를 사용하여 옵션을 매핑합니다. 데이터 소스의 모든 항목은 모든 옵션에 매핑됩니다.",
         "mapped_value": "{{ currentRow }}를 사용하여 현재 행의 데이터에 액세스합니다. 예를 들어 '비용' 및 '클릭수' 열에서 계산된 '클릭당 비용'은 다음과 같습니다.\n {{ currentRow.cost / currentRow.clickTimes }}",
-        "multi_row_selection": "{{table.selectedRow.data}} 를 사용하여 데이터에 액세스할 수 있습니다. 다중 행 선택이 활성화된 경우 다음과 같이 사용할 수 있는 배열을 반환합니다. {{ table1.selectedRow.data[0].email }}}. 다중 행 선택을 활성화하지 않은 경우 {{ table1.selectedRow.data.email }}과 같이 사용할 수 있는 객체를 반환합니다.",
+        "multi_row_selection": "{{table.selectedRow[n].columnName}} 를 사용하여 데이터에 액세스합니다.",
         "only_run_when": "이 이벤트가 실행되기 전에 충족되어야 하는 조건을 여기에 입력하십시오.",
         "placeholder": "입력에 값이 없을 때 표시할 메시지입니다.",
         "progress_percentage": "진행률 표시줄의 값 범위는 0-100입니다.",
@@ -1360,10 +1360,10 @@
       "title": "소유권을 이전하시겠습니까?",
       "description": "전송 후 권한이 관리자로 변경됩니다.",
       "transfer": "전송",
-      "cancel": "取消"
+      "cancel": "취소"
     },
     "remove_modal": {
-      "title": "{{ username }}을(를) 삭제하시겠습니까 ?",
+      "title": "{{ username }} 를 제거하시겠습니까?",
       "description": "제거 후 사용자는 팀에 액세스할 수 없습니다.",
       "remove": "제거",
       "cancel": "취소"
