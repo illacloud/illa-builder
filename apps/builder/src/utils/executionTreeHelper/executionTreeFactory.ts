@@ -12,7 +12,6 @@ import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { getSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import {
-  getAllPaths,
   getDisplayNameAndAttrPath,
   getWidgetOrActionDynamicAttrPaths,
   isDynamicString,
@@ -39,13 +38,13 @@ export class ExecutionTreeFactory {
   errorTree: Record<string, any> = {}
   debuggerData: Record<string, any> = {}
   allKeys: Record<string, true> = {}
+  runningActionsMap: Map<string, number> = new Map()
 
   constructor() {}
 
   initTree(rawTree: RawTreeShape) {
     const currentRawTree = cloneDeep(rawTree)
     this.oldRawTree = cloneDeep(currentRawTree)
-
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
     this.inDependencyTree = this.generateInDependenciesMap()
@@ -132,15 +131,6 @@ export class ExecutionTreeFactory {
     }, tree)
   }
 
-  applyDifferencesToEvalTree(differences: Diff<any, any>[]) {
-    const resultExecutedTree = cloneDeep(this.executedTree)
-    for (const d of differences) {
-      if (!Array.isArray(d.path) || d.path.length === 0) continue
-      applyChange(resultExecutedTree, undefined, d)
-    }
-    this.executedTree = resultExecutedTree
-  }
-
   calcSubTreeSortOrder(differences: Diff<any, any>[], rawTree: RawTreeShape) {
     const changePaths: Set<string> = new Set()
     for (const diff of differences) {
@@ -218,9 +208,16 @@ export class ExecutionTreeFactory {
     return finalSortOrderArray
   }
 
-  mergeErrorTree(newErrorTree: Record<string, any>, paths: string[]) {
+  mergeErrorTree(
+    newErrorTree: Record<string, any>,
+    paths: string[],
+    isDeletedAction?: boolean,
+  ) {
     const oldErrorTree = cloneDeep(this.errorTree)
     paths.forEach((path) => {
+      if (isDeletedAction) {
+        unset(oldErrorTree, path)
+      }
       const newErrorTreeValue = get(newErrorTree, path)
       if (newErrorTreeValue) {
         set(oldErrorTree, path, newErrorTreeValue)
@@ -231,15 +228,28 @@ export class ExecutionTreeFactory {
     this.errorTree = oldErrorTree
   }
 
-  mergeDebugDataTree(newDebugDataTree: Record<string, any>, paths: string[]) {
+  mergeDebugDataTree(
+    newDebugDataTree: Record<string, any>,
+    paths: string[],
+    isDeletedAction?: boolean,
+  ) {
+    const oldDebugDataTree = cloneDeep(this.debuggerData)
+    const allOldDebugDataPaths = Object.keys(oldDebugDataTree || {})
     paths.forEach((path) => {
+      if (isDeletedAction) {
+        allOldDebugDataPaths.forEach((dp) => {
+          dp.includes(path) && delete oldDebugDataTree[dp]
+        })
+        return
+      }
       const newDebugData = newDebugDataTree[path]
       if (newDebugData) {
-        this.debuggerData[path] = newDebugData
+        oldDebugDataTree[path] = newDebugData
       } else {
-        delete this.debuggerData[path]
+        delete oldDebugDataTree[path]
       }
     })
+    this.debuggerData = oldDebugDataTree
   }
 
   updateExecutionTreeByUpdatePaths(
@@ -260,7 +270,7 @@ export class ExecutionTreeFactory {
     return currentExecutionTree
   }
 
-  updateTree(rawTree: RawTreeShape) {
+  updateTree(rawTree: RawTreeShape, isDeleteAction?: boolean) {
     const currentRawTree = cloneDeep(rawTree)
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
@@ -295,8 +305,12 @@ export class ExecutionTreeFactory {
       path,
     )
     this.oldRawTree = cloneDeep(currentRawTree)
-    this.mergeErrorTree(errorTree, path)
-    this.mergeDebugDataTree(debuggerData, path)
+    this.mergeErrorTree(errorTree, [...updatePaths, ...path], isDeleteAction)
+    this.mergeDebugDataTree(
+      debuggerData,
+      [...updatePaths, ...path],
+      isDeleteAction,
+    )
 
     this.executedTree = this.validateTree(evaluatedTree)
     return {
@@ -315,7 +329,12 @@ export class ExecutionTreeFactory {
       if (!Array.isArray(d.path) || d.path.length === 0) continue
       updatePaths.push(d.path.join("."))
     }
-    return updatePaths
+    const hasPath = new Set<string>()
+    return updatePaths.filter((path) => {
+      if (hasPath.has(path)) return false
+      hasPath.add(path)
+      return true
+    })
   }
 
   updateRawTreeByUpdatePaths(
@@ -353,6 +372,7 @@ export class ExecutionTreeFactory {
       }
     }
     const walkedPath = new Set<string>()
+
     const updatePaths = this.getUpdatePathFromDifferences(differences)
     updatePaths.forEach((path) => {
       walkedPath.add(path)
@@ -362,6 +382,7 @@ export class ExecutionTreeFactory {
       differences,
       currentExecutionTree as RawTreeShape,
     )
+
     let currentRawTree = this.updateRawTreeByUpdatePaths(
       orderPath,
       currentExecutionTree,
@@ -397,7 +418,6 @@ export class ExecutionTreeFactory {
 
   generateDependenciesMap(rawTree: RawTreeShape) {
     let dependenciesMap: DependenciesState = {}
-    const allKeys = getAllPaths(rawTree)
     Object.keys(rawTree).forEach((displayName) => {
       const widgetProps = rawTree[displayName]
       const widgetOrActionDependencies = this.listEntityDependencies(
@@ -410,7 +430,7 @@ export class ExecutionTreeFactory {
       dependenciesMap[key] = flatten(
         dependenciesMap[key].map((script) => {
           try {
-            return extractReferencesFromScript(script, allKeys)
+            return extractReferencesFromScript(script)
           } catch (e) {
             return []
           }
@@ -478,9 +498,8 @@ export class ExecutionTreeFactory {
     const oldLocalRawTree = cloneDeep(oldRawTree)
     const errorTree: ExecutionState["error"] = {}
     const debuggerData: ExecutionState["error"] = {}
-    const errorPath: string[] = []
     try {
-      let evaluatedTree = sortedEvalOrder.reduce(
+      const evaluatedTree = sortedEvalOrder.reduce(
         (current: RawTreeShape, fullPath: string, currentIndex: number) => {
           const { displayName, attrPath } = getDisplayNameAndAttrPath(fullPath)
           const widgetOrAction = current[displayName]
@@ -499,7 +518,18 @@ export class ExecutionTreeFactory {
               )
               set(current, fullPath, evaluateValue)
             } catch (e) {
-              errorPath.push(fullPath)
+              let oldError = get(errorTree, fullPath) ?? []
+              if (Array.isArray(oldError)) {
+                oldError.push({
+                  errorType: ExecutionErrorType.EVALUATED,
+                  errorMessage: (e as Error).message,
+                  errorName: (e as Error).name,
+                })
+              }
+
+              set(errorTree, fullPath, oldError)
+              set(current, fullPath, undefined)
+              debuggerData[fullPath] = oldError
             }
           }
           if (isAction(widgetOrAction)) {
@@ -544,104 +574,24 @@ export class ExecutionTreeFactory {
                 transformer,
                 triggerMode,
               }
-              runAction(action, () => {}, true)
+              const runningActionID = this.runningActionsMap.get(
+                action.actionId,
+              )
+              if (runningActionID) {
+                window.clearTimeout(runningActionID)
+              }
+
+              const deleteID = window.setTimeout(() => {
+                runAction(action, () => {}, true)
+                window.clearTimeout(deleteID)
+              }, 300)
+              this.runningActionsMap.set(action.actionId, deleteID)
             }
           }
           return current
         },
         oldLocalRawTree,
       )
-      try {
-        evaluatedTree = errorPath.reduce(
-          (current: RawTreeShape, fullPath: string, currentIndex: number) => {
-            const { displayName, attrPath } =
-              getDisplayNameAndAttrPath(fullPath)
-            const widgetOrAction = current[displayName]
-            let widgetOrActionAttribute = get(current, fullPath)
-            let evaluateValue
-            if (point === currentIndex) {
-              widgetOrActionAttribute = "defaultValue"
-            }
-            const requiredEval = isDynamicString(widgetOrActionAttribute)
-            if (requiredEval) {
-              try {
-                evaluateValue = evaluateDynamicString(
-                  attrPath,
-                  widgetOrActionAttribute,
-                  current,
-                )
-                set(current, fullPath, evaluateValue)
-              } catch (e) {
-                let oldError = get(errorTree, fullPath) ?? []
-                if (Array.isArray(oldError)) {
-                  oldError.push({
-                    errorType: ExecutionErrorType.EVALUATED,
-                    errorMessage: (e as Error).message,
-                    errorName: (e as Error).name,
-                  })
-                }
-
-                set(errorTree, fullPath, oldError)
-                set(current, fullPath, undefined)
-                debuggerData[fullPath] = oldError
-              }
-            }
-            if (isAction(widgetOrAction)) {
-              for (let i = currentIndex + 1; i < sortedEvalOrder.length; i++) {
-                const currentDynamicString = sortedEvalOrder[i]
-                if (currentDynamicString.includes(widgetOrAction.displayName)) {
-                  return current
-                }
-              }
-              if (widgetOrAction.actionType === "transformer") {
-                const evaluateTransform = wrapFunctionCode(
-                  widgetOrAction.content.transformerString,
-                )
-                const canEvalString = `{{${evaluateTransform}()}}`
-                let calcResult = ""
-                try {
-                  calcResult = evaluateDynamicString("", canEvalString, current)
-                  set(
-                    current,
-                    `${widgetOrAction.displayName}.value`,
-                    calcResult,
-                  )
-                } catch (e) {
-                  console.log(e)
-                }
-              }
-              if (
-                widgetOrAction.actionType !== "transformer" &&
-                widgetOrAction.triggerMode === "automate"
-              ) {
-                const {
-                  $actionId,
-                  $resourceId,
-                  actionType,
-                  content,
-                  displayName,
-                  transformer,
-                  triggerMode,
-                } = widgetOrAction
-                const action = {
-                  actionId: $actionId,
-                  resourceId: $resourceId,
-                  actionType,
-                  content,
-                  displayName,
-                  transformer,
-                  triggerMode,
-                }
-                runAction(action, () => {}, true)
-              }
-            }
-            return current
-          },
-          evaluatedTree,
-        )
-      } catch (e) {
-        return { evaluatedTree: oldLocalRawTree, errorTree, debuggerData }
-      }
       return { evaluatedTree, errorTree, debuggerData }
     } catch (e) {
       return { evaluatedTree: oldLocalRawTree, errorTree, debuggerData }

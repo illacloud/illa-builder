@@ -138,16 +138,14 @@ const calculateFetchResultDisplayName = (
   }
   resultCallback?.(data, false)
   actionDisplayNameMapFetchResult[displayName] = calcResult
-  if (!isTrigger) {
-    store.dispatch(
-      executionActions.updateExecutionByDisplayNameReducer({
-        displayName: displayName,
-        value: {
-          data: calcResult,
-        },
-      }),
-    )
-  }
+  store.dispatch(
+    executionActions.updateExecutionByDisplayNameReducer({
+      displayName: displayName,
+      value: {
+        data: calcResult,
+      },
+    }),
+  )
 }
 
 const runAllEventHandler = (events: any[] = []) => {
