@@ -39,7 +39,7 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
     const { t } = useTranslation()
     const [dragMaxHeight, setDragMaxHeight] = useState<number>()
 
-    useImperativeHandle(ref, () => panelRef.current as HTMLDivElement, [])
+    useImperativeHandle(ref, () => panelRef.current as HTMLDivElement, [result])
 
     return res ? (
       <div
