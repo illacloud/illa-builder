@@ -69,7 +69,6 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
     const oldKeyOrder: string[] = []
     const oldKeyMap: Record<string, ColumnItemShape> = {}
     columns?.forEach((item) => {
-      console.log({ item }, "useEffect")
       oldKeyMap[item.accessorKey] = item
       oldKeyOrder.push(item.accessorKey)
     })
