@@ -1,6 +1,5 @@
 import {
   forwardRef,
-  useCallback,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -110,10 +109,7 @@ export const ActionPanel = forwardRef<
           onChangeSelectedResource: clearActionResult,
         }}
       >
-        <ActionTitleBar
-          onActionRun={run}
-          onClickActionRun={clearActionResult}
-        />
+        <ActionTitleBar onActionRun={run} />
         <div ref={contentRef} css={actionContentStyle}>
           {panel}
         </div>
