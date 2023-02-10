@@ -199,10 +199,15 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
               rules={rules}
               render={({ field: { value, onChange, onBlur } }) => (
                 <TextArea
+                  w="100%"
+                  h="100%"
+                  pb="16px"
+                  minH="240px"
+                  colorScheme="techPurple"
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  autoSize
+                  autoSize={false}
                   placeholder={placeholder}
                   {...style}
                 />
