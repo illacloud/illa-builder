@@ -1286,8 +1286,8 @@
     },
     "upload": {
       "name": "アップロード",
-      "default_button_text": "Upload",
-      "default_dropzone_text": "Select or drop a file here"
+      "default_button_text": "アップロード",
+      "default_dropzone_text": "選択もしくはファイルのドロップ"
     }
   },
   "page": {
