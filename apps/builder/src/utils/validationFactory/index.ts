@@ -22,7 +22,7 @@ export type ValidateFunctionType = (
 // TODO: @weichen errorMessage i18n
 export const validationFactory: Record<string, ValidateFunctionType> = {
   [VALIDATION_TYPES.STRING]: (value, currentListName) => {
-    if (value == undefined || value === "") {
+    if (value == undefined) {
       return {
         isValid: true,
         safeValue: undefined,

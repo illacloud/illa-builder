@@ -364,11 +364,6 @@ export class ExecutionTreeFactory {
       walkedPath,
     ) as RawTreeShape
     const { evaluatedTree } = this.executeTree(currentRawTree, orderPath)
-    // const differencesRawTree: Diff<Record<string, any>, Record<string, any>>[] =
-    //   diff(this.oldRawTree, evaluatedTree) || []
-    // this.applyDifferencesToEvalTree(differencesRawTree)
-    // this.applyDifferencesToEvalTree(differences)
-    updatePaths.forEach((path) => {})
     this.executedTree = this.validateTree(evaluatedTree)
     return {
       evaluatedTree: this.executedTree,
