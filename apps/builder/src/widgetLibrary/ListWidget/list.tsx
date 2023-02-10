@@ -373,6 +373,8 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   const rawTree = useSelector(getRawTree)
   const illaMode = useSelector(getIllaMode)
 
+  const prevDataSourcesRef = useRef(dataSources)
+
   useEffect(() => {
     if (!isEqual(propsRef.current, props)) {
       propsRef.current = props
@@ -515,6 +517,20 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
       handleUpdateMultiExecutionResult,
     ],
   )
+
+  useEffect(() => {
+    if (!isEqual(prevDataSourcesRef.current, dataSources)) {
+      handleUpdateMultiExecutionResult?.([
+        {
+          displayName,
+          value: {
+            selectedIndex: undefined,
+            selectedItem: undefined,
+          },
+        },
+      ])
+    }
+  }, [dataSources, displayName, handleUpdateMultiExecutionResult])
 
   return overflowMethod === OVERFLOW_TYPE.PAGINATION ? (
     <ListWidgetWithPagination

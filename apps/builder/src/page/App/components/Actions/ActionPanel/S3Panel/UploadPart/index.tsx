@@ -60,6 +60,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.content_type")}
         </span>
         <CodeEditor
+          singleLine
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.contentType}
@@ -72,6 +73,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.upload_object_name")}
         </span>
         <CodeEditor
+          singleLine
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           placeholder={t("editor.action.panel.s3.placeholder.object_name")}

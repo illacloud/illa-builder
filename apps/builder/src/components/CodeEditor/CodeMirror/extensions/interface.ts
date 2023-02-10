@@ -31,4 +31,5 @@ export interface ICodeMirrorOptions {
   executionResult?: Record<string, unknown>
   canShowCompleteInfo?: boolean
   sqlScheme?: Record<string, unknown>
+  singleLine?: boolean
 }

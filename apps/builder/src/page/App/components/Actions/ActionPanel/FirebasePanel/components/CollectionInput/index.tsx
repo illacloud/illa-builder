@@ -86,6 +86,7 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
         <div css={actionItemCodeEditorStyle}>
           <CodeEditor
             value={value}
+            singleLine
             onChange={handleChange}
             expectValueType={VALIDATION_TYPES.STRING}
             lang={CODE_LANG.JAVASCRIPT}
