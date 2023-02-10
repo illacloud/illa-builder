@@ -110,7 +110,10 @@ export const ActionPanel = forwardRef<
           onChangeSelectedResource: clearActionResult,
         }}
       >
-        <ActionTitleBar onActionRun={run} />
+        <ActionTitleBar
+          onActionRun={run}
+          onClickActionRun={clearActionResult}
+        />
         <div ref={contentRef} css={actionContentStyle}>
           {panel}
         </div>
