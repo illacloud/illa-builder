@@ -77,12 +77,25 @@ import {
   rowCenter,
   saveButtonWrapperStyle,
   saveFailedTipStyle,
-  triggerStyle,
   viewControlStyle,
   viewportFontStyle,
   windowIconBodyStyle,
   windowIconStyle,
 } from "./style"
+
+const validateHeight = (currentHeight: number | undefined) => {
+  return !(
+    currentHeight != undefined &&
+    currentHeight < BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT
+  )
+}
+
+const validateWidth = (currentWidth: number | undefined) => {
+  return !(
+    currentWidth != undefined &&
+    currentWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH
+  )
+}
 
 const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
   const { viewportHeight, viewportWidth, closePopContent } = props
@@ -99,37 +112,37 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
     setInputWidth(value)
   }, [])
   const handleOnBlurInputHeight = useCallback(() => {
-    if (
-      inputHeight != undefined &&
-      inputHeight < BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT
-    ) {
+    const isValidate = validateHeight(inputHeight)
+    if (!isValidate) {
       message.error({
         content: t("frame_size.invalid_tips", {
           size: BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT,
         }),
       })
-      setInputHeight(BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT)
       return
     }
   }, [inputHeight, message, t])
   const handleOnBlurInputWidth = useCallback(() => {
-    if (
-      inputWidth != undefined &&
-      inputWidth < BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH
-    ) {
+    const isValidate = validateWidth(inputWidth)
+    if (!isValidate) {
       message.error({
         content: t("frame_size.invalid_tips", {
           size: BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH,
         }),
       })
-      setInputWidth(BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH)
       return
     }
   }, [inputWidth, message, t])
   const handleUpdateInputHeight = useCallback((value?: number) => {
     setInputHeight(value)
   }, [])
+
   const onClickSaveButton = useCallback(() => {
+    const isValidateWidth = validateWidth(inputWidth)
+    const isValidateHeight = validateHeight(inputHeight)
+    if (!isValidateWidth || !isValidateHeight) {
+      return
+    }
     closePopContent()
     dispatch(
       componentsActions.updateViewportSizeReducer({
@@ -176,20 +189,22 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
         <div css={inputAreaLabelWrapperStyle}>
           <InputNumber
             w="80px"
-            borderColor="techPurple"
+            colorScheme="techPurple"
             value={inputWidth}
             placeholder="--"
             onChange={handleUpdateInputWidth}
             onBlur={handleOnBlurInputWidth}
+            min={BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH}
           />
           <CloseIcon css={closeIconStyle} />
           <InputNumber
             w="80px"
-            borderColor="techPurple"
+            colorScheme="techPurple"
             value={inputHeight}
             placeholder="--"
             onChange={handleUpdateInputHeight}
             onBlur={handleOnBlurInputHeight}
+            min={BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT}
           />
         </div>
       </div>
@@ -229,7 +244,6 @@ const PreviewButtonGroup: FC = () => {
         showArrow={false}
         withoutPadding
         colorScheme="white"
-        _css={triggerStyle}
       >
         <Button
           colorScheme="grayBlue"
@@ -335,7 +349,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         setDeployLoading(loading)
       },
     )
-  }, [appInfo.appId, t])
+  }, [appInfo.appId, message, t])
 
   return (
     <div className={className} css={navBarStyle}>

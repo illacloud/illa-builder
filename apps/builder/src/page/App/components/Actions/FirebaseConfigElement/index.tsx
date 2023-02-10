@@ -7,8 +7,8 @@ import {
   ButtonGroup,
   Divider,
   Input,
-  PaginationPreIcon,
   Popover,
+  PreviousIcon,
   TextArea,
   WarningCircleIcon,
   getColor,
@@ -126,7 +126,7 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t("editor.action.resource.db.placeholder.name")}
               />
             )}
@@ -175,7 +175,7 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
               />
             )}
             name="databaseUrl"
@@ -214,7 +214,7 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
               />
             )}
             name="projectID"
@@ -251,7 +251,7 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
                   overflow: "scroll",
                   minHeight: "240px",
                 }}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 w="100%"
                 ml="16px"
                 mr="24px"
@@ -300,7 +300,7 @@ export const FirebaseConfigElement: FC<FirebaseConfigElementProps> = (
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

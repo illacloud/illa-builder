@@ -1,10 +1,8 @@
 import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
-import { DropList, globalColor, illaPrefix } from "@illa-design/react"
+import { DropList, DropListItem } from "@illa-design/react"
 import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
 import { ActionMenuProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
-
-const { Item } = DropList
 
 export const ActionMenu: FC<ActionMenuProps> = (props) => {
   const { index, handleCloseMode } = props
@@ -14,9 +12,10 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
   const { t } = useTranslation()
 
   return (
-    <DropList width="184px">
-      <Item
+    <DropList w="184px">
+      <DropListItem
         key="duplicate"
+        value="duplicate"
         title={t(
           "editor.inspect.setter_content.option_list.action_menu.duplicate",
         )}
@@ -25,12 +24,13 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
           handleCloseMode()
         }}
       />
-      <Item
+      <DropListItem
         key="delete"
+        value="delete"
         title={t(
           "editor.inspect.setter_content.option_list.action_menu.delete",
         )}
-        fontColor={globalColor(`--${illaPrefix}-red-03`)}
+        deleted
         onClick={() => {
           handleDeleteEventItem(index)
           handleCloseMode()

@@ -1,6 +1,7 @@
 import { SerializedStyles } from "@emotion/react"
 import { ReactNode } from "react"
 import { Control, RegisterOptions } from "react-hook-form"
+import { SelectOptionObject } from "@illa-design/react"
 
 export type ControlledType =
   | "checkbox"
@@ -27,16 +28,7 @@ export interface ContrilledElementProps {
   labelStyle?: SerializedStyles
   tipsStyle?: SerializedStyles
   controlledType: ControlledType | ControlledType[]
-  options?: (
-    | string
-    | number
-    | {
-        label: ReactNode | string
-        value: string | number
-        disabled?: boolean
-        extra?: any
-      }
-  )[]
+  options?: string[] | number[] | SelectOptionObject[]
   control: Control
   rules?: RegisterOptions[]
   onValueChange?: (value: ValueType) => void

@@ -73,17 +73,20 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
           defaultValue={value}
           value={value}
           ml="16px"
-          width="100%"
+          w="100%"
           placeholder={t(
             "editor.action.panel.firebase.placeholder.select_collection",
           )}
-          onChange={handleChange}
+          onChange={(v) => {
+            handleChange(v as string)
+          }}
           options={collectionSelect}
         />
       ) : (
         <div css={actionItemCodeEditorStyle}>
           <CodeEditor
             value={value}
+            singleLine
             onChange={handleChange}
             expectValueType={VALIDATION_TYPES.STRING}
             lang={CODE_LANG.JAVASCRIPT}

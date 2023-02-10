@@ -18,3 +18,8 @@ export const actionContentStyle = css`
   display: flex;
   flex-direction: column;
 `
+
+export const publicCodeMirrorStyleInActionPanel = css`
+  flex-grow: 1;
+  width: 0;
+`

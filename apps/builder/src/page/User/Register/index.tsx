@@ -16,7 +16,7 @@ import {
 } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { EMAIL_FORMAT } from "@/constants/regExp"
-import { formatLanguage, languageKeys } from "@/i18n/config"
+import { formatLanguage } from "@/i18n/config"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
   checkboxTextStyle,
@@ -155,7 +155,7 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.nickname}
                   variant="fill"
@@ -197,7 +197,7 @@ export const Register: FC = () => {
                       setErrorMsg({ ...errorMsg, email: "" })
                     }
                   }}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.email || !!errorMsg.email}
                   variant="fill"
@@ -234,7 +234,7 @@ export const Register: FC = () => {
                 render={({ field }) => (
                   <Input
                     {...field}
-                    borderColor="techPurple"
+                    colorScheme="techPurple"
                     maxLength={6}
                     onChange={(value, event) => {
                       field.onChange(event)
@@ -247,8 +247,8 @@ export const Register: FC = () => {
                       !!errors.verificationCode || !!errorMsg.verificationCode
                     }
                     variant="fill"
-                    suffix={{
-                      render: showCountDown ? (
+                    suffix={
+                      showCountDown ? (
                         <Countdown
                           value={Date.now() + 1000 * 60}
                           now={Date.now()}
@@ -306,8 +306,8 @@ export const Register: FC = () => {
                         >
                           {t("user.sign_up.actions.send")}
                         </Link>
-                      ),
-                    }}
+                      )
+                    }
                     placeholder={t(
                       "user.sign_up.placeholder.verification_code",
                     )}
@@ -340,7 +340,7 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.password}
                   variant="fill"
@@ -376,7 +376,11 @@ export const Register: FC = () => {
             control={control}
             render={({ field }) => (
               <Checkbox
-                {...field}
+                ref={field.ref}
+                onChange={(value, event) => {
+                  field.onChange(event)
+                }}
+                onBlur={field.onBlur}
                 checked={field.value}
                 colorScheme="techPurple"
               >

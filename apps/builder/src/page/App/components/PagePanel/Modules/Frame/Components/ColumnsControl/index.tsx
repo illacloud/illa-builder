@@ -215,7 +215,7 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
         <InputNumber
           w="96px"
           value={inputValue}
-          borderColor="techPurple"
+          colorScheme="techPurple"
           onChange={setInputValue}
           onBlur={handleBlur}
           step={1}

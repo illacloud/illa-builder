@@ -20,6 +20,8 @@ const getResultType = (result: unknown) => {
     return VALIDATION_TYPES.NUMBER
   } else if (typeof result === "boolean") {
     return VALIDATION_TYPES.BOOLEAN
+  } else if (typeof result === "undefined") {
+    return VALIDATION_TYPES.UNDEFINED
   } else {
     return VALIDATION_TYPES.OBJECT
   }
@@ -81,6 +83,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     minHeight,
     canShowCompleteInfo,
     wrapperCss,
+    singleLine,
     wrappedCodeFunc,
   } = props
   const [result, setResult] = useState<string>("")
@@ -207,6 +210,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       canShowCompleteInfo={canShowCompleteInfo}
       wrapperCss={wrapperCss}
       sqlScheme={sqlScheme}
+      singleLine={singleLine}
     />
   )
 }

@@ -369,6 +369,7 @@ export const applyRNDWrapperStyle = (
       visibility: ${hasEditors || isSelected ? "visible" : "hidden"};
     }
   }
+
   :hover {
     > .wrapperPending {
       border-color: ${isEditor
@@ -377,12 +378,15 @@ export const applyRNDWrapperStyle = (
           : globalColor(`--${illaPrefix}-techPurple-01`)
         : "transparent"};
       border-style: solid;
+
       > #moveBar {
         visibility: ${isEditor ? "visible" : "hidden"};
       }
     }
+
     z-index: 6;
   }
+
   z-index: ${hasEditors || isSelected ? 5 : 1};
   opacity: ${isDragging ? 0 : 100};
 `
@@ -396,7 +400,7 @@ export const applyWrapperPendingStyle = (
 ) => css`
   width: 100%;
   height: 100%;
-  padding: 3px;
+  padding: 2px;
   border: 1px solid
     ${(isEditor && isSelected) || hasEditors
       ? globalColor(`--${illaPrefix}-techPurple-01`)

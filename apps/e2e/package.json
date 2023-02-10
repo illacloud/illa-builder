@@ -2,7 +2,7 @@
   "name": "e2e",
   "repository": "git@github.com:illacloud",
   "private": true,
-  "author": "illa Cloud",
+  "author": "ILLA Cloud <opensource@illasoft.com>",
   "license": "Apache-2.0",
   "version": "0.0.0",
   "scripts": {

@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import useMeasure from "react-use-measure"
-import { NextIcon, PreIcon } from "@illa-design/react"
+import { NextIcon, PreviousIcon } from "@illa-design/react"
 import { ScaleSquareOnlyHasResize } from "@/page/App/components/ScaleSquare"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
@@ -954,7 +954,10 @@ export const RenderLeftSection = forwardRef<
           )}
           {showFoldIcon && (
             <div css={applySideBarWrapperStyle("left")}>
-              <PreIcon css={sideBarIconStyle} onClick={handleOnClickFoldIcon} />
+              <PreviousIcon
+                css={sideBarIconStyle}
+                onClick={handleOnClickFoldIcon}
+              />
             </div>
           )}
         </div>

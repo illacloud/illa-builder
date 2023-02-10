@@ -1,34 +1,28 @@
-import { FC, useContext, useState } from "react"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  AddIcon,
-  ButtonProps,
+  Input,
   Modal,
   Option,
   PenIcon,
   Select,
-  Space,
+  TriggerProvider,
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
-import {
-  getCachedAction,
-  getSelectedAction,
-} from "@/redux/config/configSelector"
+import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { ActionTriggerMode } from "@/redux/currentApp/action/actionState"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
   getResourceNameFromResourceType,
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
 import {
-  createNewStyle,
   itemContainer,
   itemLogo,
   itemText,
@@ -46,9 +40,6 @@ export const ResourceChoose: FC = () => {
 
   const resourceList = useSelector(getAllResources)
   const action = useSelector(getCachedAction)!!
-  const selectedAction = useSelector(getSelectedAction)!!
-
-  const { onChangeSelectedResource } = useContext(ActionPanelContext)
 
   //maybe empty
   const currentSelectResource = resourceList.find(
@@ -56,91 +47,50 @@ export const ResourceChoose: FC = () => {
   )
 
   return (
-    <>
+    <TriggerProvider renderInBody zIndex={10}>
       <div css={resourceChooseContainerStyle}>
         <span css={resourceTitleStyle}>{t("resources")}</span>
         <div css={resourceEndStyle}>
-          <Select
-            flexShrink="1"
-            flexGrow="0"
-            minW="240px"
+          <Input
+            w="360px"
             colorScheme="techPurple"
+            readOnly
             value={
-              currentSelectResource
-                ? action.resourceId
-                : t("editor.action.resource_choose.deleted")
-            }
-            onChange={(value) => {
-              const resource = resourceList.find((r) => r.resourceId === value)
-              if (resource != undefined) {
-                dispatch(
-                  configActions.updateCachedAction({
-                    ...action,
-                    // selected resource is same as action type
-                    actionType: resource.resourceType,
-                    resourceId: value,
-                    content:
-                      selectedAction.actionType === value
-                        ? selectedAction.content
-                        : getInitialContent(resource.resourceType),
-                  }),
-                )
-                onChangeSelectedResource?.()
-              }
-            }}
-            addonAfter={{
-              buttonProps: {
-                variant: "outline",
-                colorScheme: "grayBlue",
-                leftIcon: (
-                  <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-04`)} />
-                ),
-                onClick: () => {
-                  setEditorVisible(true)
-                },
-              } as ButtonProps,
-            }}
-          >
-            <Option
-              key="create"
-              isSelectOption={false}
-              onClick={() => {
-                setGeneratorVisible(true)
-              }}
-            >
-              <Space
-                size="8px"
-                direction="horizontal"
-                alignItems="center"
-                css={createNewStyle}
-              >
-                <AddIcon size="14px" />
-                {t("editor.action.panel.option.resource.new")}
-              </Space>
-            </Option>
-            {resourceList.map((item) => {
-              return (
-                <Option value={item.resourceId} key={item.resourceId}>
-                  <div css={itemContainer}>
-                    <span css={itemLogo}>
-                      {getIconFromResourceType(item.resourceType, "14px")}
-                    </span>
-                    <span css={itemText}>{item.resourceName}</span>
-                  </div>
-                </Option>
+              currentSelectResource ? (
+                <div css={itemContainer}>
+                  <span css={itemLogo}>
+                    {getIconFromResourceType(
+                      currentSelectResource.resourceType,
+                      "14px",
+                    )}
+                  </span>
+                  <span css={itemText}>
+                    {currentSelectResource.resourceName}
+                  </span>
+                </div>
+              ) : (
+                t("editor.action.resource_choose.deleted")
               )
-            })}
-          </Select>
+            }
+            addAfter={
+              <PenIcon
+                color={globalColor(`--${illaPrefix}-grayBlue-04`)}
+                onClick={() => {
+                  setEditorVisible(true)
+                }}
+              />
+            }
+          ></Input>
           <Select
             ml="8px"
-            w="auto"
+            w="360px"
             colorScheme="techPurple"
             value={action.triggerMode}
             onChange={(value) => {
               dispatch(
                 configActions.updateCachedAction({
                   ...action,
-                  triggerMode: value,
+                  triggerMode: value as ActionTriggerMode,
                 }),
               )
             }}
@@ -186,6 +136,6 @@ export const ResourceChoose: FC = () => {
           setGeneratorVisible(false)
         }}
       />
-    </>
+    </TriggerProvider>
   )
 }

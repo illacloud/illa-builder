@@ -1,4 +1,4 @@
-import { DatePickerProps } from "@illa-design/react"
+import { SingleDatePickerProps } from "@illa-design/react"
 import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
@@ -6,15 +6,16 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedDateTimeProps
   extends Pick<
-    DatePickerProps,
-    "placeholder" | "disabled" | "readOnly" | "colorScheme"
+    SingleDatePickerProps,
+    "placeholder" | "disabled" | "colorScheme"
   > {
+  readOnly?: SingleDatePickerProps["editable"]
   value?: string
   format?: string
   minuteStep?: number
   tooltipText?: string
   loading?: boolean
-  showClear?: DatePickerProps["allowClear"]
+  showClear?: SingleDatePickerProps["allowClear"]
   minDate?: string
   maxDate?: string
   displayName: string

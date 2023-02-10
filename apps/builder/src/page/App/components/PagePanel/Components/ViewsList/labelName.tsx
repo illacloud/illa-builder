@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import {
-  DragIcon,
+  DragPointIcon,
   Trigger,
   WarningCircleIcon,
   globalColor,
@@ -22,7 +22,7 @@ export const LabelNameAndDragIcon: FC<LabelNameAndDragIconProps> = (props) => {
   const { t } = useTranslation()
   return (
     <div css={labelNameAndDragIconWrapperStyle}>
-      <DragIcon css={moveIconStyle} className="dragIcon" />
+      <DragPointIcon css={moveIconStyle} className="dragIcon" />
       <div css={selectedIconAndLabelNameWrapperStyle}>
         <div
           css={selectedIconStyle(isSelected)}

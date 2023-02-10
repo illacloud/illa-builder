@@ -1,6 +1,6 @@
 import { ReactComponent as TextWidgetIcon } from "@/assets/widgetCover/text.svg"
 import i18n from "@/i18n/config"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   displayName: "text",
@@ -11,6 +11,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   icon: <TextWidgetIcon />,
   keywords: ["Text", "文本"],
   sessionType: "PRESENTATION",
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     value: i18n.t("widget.text.default_value"),
     horizontalAlign: "start",

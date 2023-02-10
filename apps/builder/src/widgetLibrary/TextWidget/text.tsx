@@ -1,13 +1,19 @@
-import { FC, useEffect } from "react"
+import { debounce } from "lodash"
+import { FC, useEffect, useRef } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
+import {
+  Text as ILLAText,
+  Link,
+  Paragraph,
+  Typography,
+} from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TextProps, TextWidgetProps } from "./interface"
 import {
   applyAlignStyle,
   fullWidthAndFullHeightStyle,
-  textStyle,
+  markdownStyle,
 } from "./style"
 
 export const Text: FC<TextProps> = (props) => {
@@ -23,12 +29,12 @@ export const Text: FC<TextProps> = (props) => {
   return (
     <div css={applyAlignStyle(horizontalAlign, verticalAlign)}>
       {disableMarkdown ? (
-        <ILLAText css={textStyle} colorScheme={colorScheme} fs={fs}>
+        <ILLAText css={markdownStyle} colorScheme={colorScheme} fs={fs}>
           {value}
         </ILLAText>
       ) : (
         <ReactMarkdown
-          css={textStyle}
+          css={markdownStyle}
           remarkPlugins={[remarkGfm]}
           components={{
             a: ({ node, ...props }) => (
@@ -61,6 +67,8 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    updateComponentHeight,
+    disableMarkdown,
     tooltipText,
   } = props
 
@@ -89,9 +97,20 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     handleUpdateDsl,
     handleDeleteGlobalData,
   ])
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  const updateHeight = debounce(() => {
+    updateComponentHeight?.(ref.current?.clientHeight ?? 0)
+  }, 200)
+
+  useEffect(() => {
+    updateHeight()
+  }, [value, disableMarkdown])
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={fullWidthAndFullHeightStyle}>
+      <div ref={ref} css={fullWidthAndFullHeightStyle}>
         <Text {...props} />
       </div>
     </TooltipWrapper>

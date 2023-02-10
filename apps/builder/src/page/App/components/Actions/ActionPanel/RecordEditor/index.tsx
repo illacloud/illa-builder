@@ -68,6 +68,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 onChange={(value) => {
                   onChangeKey(index, value, record.value, name)
                 }}
+                singleLine
               />
               <CodeEditor
                 height="32px"
@@ -76,6 +77,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 placeholder="value"
                 value={record.value}
                 expectValueType={VALIDATION_TYPES.STRING}
+                singleLine
                 onChange={(value) => {
                   onChangeValue(index, record.key, value, name)
                 }}

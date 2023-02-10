@@ -170,6 +170,16 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         disableIntrospection: data.disableIntrospection,
         authContent: generateGraphQLAuthContent(data),
       }
+    case "mssql":
+      return {
+        host: data.host,
+        port: data.port.toString(),
+        databaseName: data.databaseName,
+        username: data.username,
+        password: data.password,
+        connectionOpts: data.connectionOpts,
+        ssl: generateSSLConfig(!!data.ssl, data, "mssql"),
+      }
     case "huggingface":
       return {
         token: data.token,

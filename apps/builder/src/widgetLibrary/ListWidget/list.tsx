@@ -231,7 +231,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       <div css={paginationWrapperStyle}>
         <Pagination
           total={dataSources?.length}
-          currentPage={currentPage}
+          current={currentPage}
           pageSize={itemNumber}
           size="medium"
           sizeCanChange={false}
@@ -372,6 +372,8 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   const executionResult = useSelector(getExecutionResult)
   const rawTree = useSelector(getRawTree)
   const illaMode = useSelector(getIllaMode)
+
+  const prevDataSourcesRef = useRef(dataSources)
 
   useEffect(() => {
     if (!isEqual(propsRef.current, props)) {
@@ -515,6 +517,20 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
       handleUpdateMultiExecutionResult,
     ],
   )
+
+  useEffect(() => {
+    if (!isEqual(prevDataSourcesRef.current, dataSources)) {
+      handleUpdateMultiExecutionResult?.([
+        {
+          displayName,
+          value: {
+            selectedIndex: undefined,
+            selectedItem: undefined,
+          },
+        },
+      ])
+    }
+  }, [dataSources, displayName, handleUpdateMultiExecutionResult])
 
   return overflowMethod === OVERFLOW_TYPE.PAGINATION ? (
     <ListWidgetWithPagination
