@@ -38,8 +38,8 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "turbo": "^1.7.2",
-    "vite": "^4.0.4",
+    "turbo": "^1.7.4",
+    "vite": "^4.1.1",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9"
   }
