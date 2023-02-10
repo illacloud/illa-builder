@@ -83,6 +83,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     minHeight,
     canShowCompleteInfo,
     wrapperCss,
+    singleLine,
     wrappedCodeFunc,
   } = props
   const [result, setResult] = useState<string>("")
@@ -209,6 +210,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       canShowCompleteInfo={canShowCompleteInfo}
       wrapperCss={wrapperCss}
       sqlScheme={sqlScheme}
+      singleLine={singleLine}
     />
   )
 }
