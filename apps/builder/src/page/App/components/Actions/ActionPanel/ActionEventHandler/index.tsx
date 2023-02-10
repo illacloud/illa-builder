@@ -2,6 +2,7 @@ import { cloneDeep } from "lodash"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { TriggerProvider } from "@illa-design/react"
 import {
   actionEventHandlerStyle,
   actionEventHandlerWrapperStyle,
@@ -59,62 +60,64 @@ export const ActionEventHandler: FC = () => {
   )
 
   return (
-    <div css={actionEventHandlerWrapperStyle}>
-      <div css={actionEventHandlerStyle}>
-        {t("editor.action.panel.label.event_handler")}
+    <TriggerProvider renderInBody zIndex={10}>
+      <div css={actionEventHandlerWrapperStyle}>
+        <div css={actionEventHandlerStyle}>
+          {t("editor.action.panel.label.event_handler")}
+        </div>
+        {action && (
+          <SelectedProvider
+            widgetType={action.actionType}
+            widgetDisplayName={action.displayName}
+            widgetParentDisplayName=""
+            widgetProps={action.content || {}}
+            handleUpdateDsl={handleUpdateDsl}
+            handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+            handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
+            widgetOrAction="ACTION"
+          >
+            {renderFieldAndLabel(
+              generatorEventHandlerConfig(
+                "success-event",
+                [
+                  {
+                    label: t(
+                      "editor.inspect.setter_content.widget_action_type_name.success",
+                    ),
+                    value: "success",
+                  },
+                ],
+                t("editor.inspect.setter_label.success"),
+                "successEvent",
+                "success",
+              ),
+              action.displayName,
+              false,
+              "",
+            )}
+            {renderFieldAndLabel(
+              generatorEventHandlerConfig(
+                "failed-event",
+                [
+                  {
+                    label: t(
+                      "editor.inspect.setter_content.widget_action_type_name.fail",
+                    ),
+                    value: "fail",
+                  },
+                ],
+                t("editor.inspect.setter_label.failure"),
+                "failedEvent",
+                "fail",
+              ),
+              action.displayName,
+              false,
+              "",
+            )}
+          </SelectedProvider>
+        )}
       </div>
-      {action && (
-        <SelectedProvider
-          widgetType={action.actionType}
-          widgetDisplayName={action.displayName}
-          widgetParentDisplayName=""
-          widgetProps={action.content || {}}
-          handleUpdateDsl={handleUpdateDsl}
-          handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
-          handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
-          widgetOrAction="ACTION"
-        >
-          {renderFieldAndLabel(
-            generatorEventHandlerConfig(
-              "success-event",
-              [
-                {
-                  label: t(
-                    "editor.inspect.setter_content.widget_action_type_name.success",
-                  ),
-                  value: "success",
-                },
-              ],
-              t("editor.inspect.setter_label.success"),
-              "successEvent",
-              "success",
-            ),
-            action.displayName,
-            false,
-            "",
-          )}
-          {renderFieldAndLabel(
-            generatorEventHandlerConfig(
-              "failed-event",
-              [
-                {
-                  label: t(
-                    "editor.inspect.setter_content.widget_action_type_name.fail",
-                  ),
-                  value: "fail",
-                },
-              ],
-              t("editor.inspect.setter_label.failure"),
-              "failedEvent",
-              "fail",
-            ),
-            action.displayName,
-            false,
-            "",
-          )}
-        </SelectedProvider>
-      )}
-    </div>
+    </TriggerProvider>
   )
 }
 
