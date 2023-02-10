@@ -15,6 +15,8 @@ export interface WrappedCircleProgressProps
     BaseComponentNodeProps {
   value?: number
   alignment?: "start" | "center" | "end"
+  finalHeight: number
+  finalWidth: number
 }
 
 export interface CircleProgressWidgetProps
