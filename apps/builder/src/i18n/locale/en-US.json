@@ -542,6 +542,11 @@
         "api": "API",
         "database": "Database",
         "js_transformer": "JavaScript Transformer"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Failed to show tables. Please try again later."
+        }
       }
     },
     "component": {
