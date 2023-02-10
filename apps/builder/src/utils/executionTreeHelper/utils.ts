@@ -42,25 +42,16 @@ export const convertPathToString = (attrPath: string[] | number[]) => {
   return string
 }
 
-export const extractReferencesFromScript = (
-  script: string,
-  allPaths: Record<string, true>,
-): string[] => {
+export const extractReferencesFromScript = (script: string): string[] => {
   const references: Set<string> = new Set<string>()
   const identifiers = extractIdentifiersFromCode(script)
   identifiers.forEach((identifier: string) => {
-    if (allPaths.hasOwnProperty(identifier)) {
-      references.add(identifier)
-      return
-    }
+    references.add(identifier)
     const subPaths = toPath(identifier)
     let current = ""
-    while (subPaths.length > 1) {
+    while (subPaths.length > 0) {
       current = convertPathToString(subPaths)
-      if (allPaths.hasOwnProperty(current)) {
-        references.add(current)
-        return
-      }
+      references.add(current)
       subPaths.pop()
     }
   })

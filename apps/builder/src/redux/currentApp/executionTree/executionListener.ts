@@ -64,7 +64,10 @@ async function handleStartExecution(
       }),
     )
   } else {
-    const executionResult = executionTree.updateTree(rawTree)
+    const isDeleteAction =
+      action.type === "components/deleteComponentNodeReducer" ||
+      action.type === "action/removeActionItemReducer"
+    const executionResult = executionTree.updateTree(rawTree, isDeleteAction)
     const errorTree = executionResult.errorTree
     const evaluatedTree = executionResult.evaluatedTree
     const dependencyMap = executionResult.dependencyTree
