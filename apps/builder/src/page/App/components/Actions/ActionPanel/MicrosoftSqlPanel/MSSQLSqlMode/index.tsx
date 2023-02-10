@@ -9,16 +9,14 @@ export const MSSQLSqlMode: FC<MSSQLModeProps> = (props) => {
   const { t } = useTranslation()
 
   return (
-    <>
-      <InputEditor
-        title={t("editor.action.panel.mssql.query")}
-        style={{ height: "88px" }}
-        placeholder={t("editor.action.panel.mssql.placeholder.query")}
-        lineNumbers={true}
-        value={(modeContent as MicrosoftSqlActionSqlMode).sql}
-        onChange={(value) => onChange(value, "sql")}
-      />
-    </>
+    <InputEditor
+      title={t("editor.action.panel.mssql.query")}
+      style={{ height: "88px" }}
+      placeholder={t("editor.action.panel.mssql.placeholder.query")}
+      lineNumbers={true}
+      value={(modeContent as MicrosoftSqlActionSqlMode).sql}
+      onChange={(value) => onChange(value, "sql")}
+    />
   )
 }
 MSSQLSqlMode.displayName = "MSSQLSqlMode"
