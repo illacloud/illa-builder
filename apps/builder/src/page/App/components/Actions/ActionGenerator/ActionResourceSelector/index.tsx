@@ -6,7 +6,7 @@ import {
   Button,
   ButtonGroup,
   List,
-  PaginationPreIcon,
+  PreviousIcon,
 } from "@illa-design/react"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { getAllResources } from "@/redux/resource/resourceSelector"
@@ -84,7 +84,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
       />
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           onClick={() => {

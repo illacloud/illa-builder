@@ -1,6 +1,6 @@
 import dayjs, { Dayjs } from "dayjs"
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
-import { DateRangePicker } from "@illa-design/react"
+import { RangeDatePicker } from "@illa-design/react"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -22,12 +22,12 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
     minDate,
     disabled,
     maxDate,
-    readOnly,
     colorScheme,
     handleOnChange,
     getValidateMessage,
     handleUpdateMultiExecutionResult,
     displayName,
+    readOnly,
   } = props
 
   const changeValue = (value?: string[]) => {
@@ -68,12 +68,12 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   )
 
   return (
-    <DateRangePicker
+    <RangeDatePicker
       w="100%"
+      editable={!readOnly}
       colorScheme={colorScheme}
       format={dateFormat}
       value={dateRangeValue}
-      readOnly={readOnly}
       disabled={disabled}
       placeholder={_placeholder}
       allowClear={showClear}
@@ -99,7 +99,6 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     minDate,
     disabled,
     maxDate,
-    readOnly,
     colorScheme,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -119,6 +118,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     validateMessage,
     customRule,
     hideValidationMessage,
+    readOnly,
   } = props
 
   const getValidateMessage = useCallback(
@@ -159,8 +159,8 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
       minDate,
       disabled,
       maxDate,
-      readOnly,
       colorScheme,
+      readOnly,
       setStartValue: (startValue: string) => {
         handleUpdateDsl({ startValue })
       },
@@ -195,8 +195,8 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     minDate,
     disabled,
     maxDate,
-    readOnly,
     colorScheme,
+    readOnly,
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,

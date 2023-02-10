@@ -1,17 +1,29 @@
 /* eslint-disable import/no-named-as-default-member */
 import dayjs from "dayjs"
+import advancedFormat from "dayjs/plugin/advancedFormat"
+import customParseFormat from "dayjs/plugin/customParseFormat"
+import isBetween from "dayjs/plugin/isBetween"
 import localeData from "dayjs/plugin/localeData"
 import LocalizedFormat from "dayjs/plugin/localizedFormat"
+import QuarterOfYear from "dayjs/plugin/quarterOfYear"
 import relativeTime from "dayjs/plugin/relativeTime"
 import updateLocale from "dayjs/plugin/updateLocale"
 import utc from "dayjs/plugin/utc"
+import weekOfYear from "dayjs/plugin/weekOfYear"
+import weekYear from "dayjs/plugin/weekYear"
 import i18n, { formatLanguage } from "@/i18n/config"
 
+dayjs.extend(isBetween)
 dayjs.extend(LocalizedFormat)
 dayjs.extend(relativeTime)
 dayjs.extend(utc)
 dayjs.extend(localeData)
 dayjs.extend(updateLocale)
+dayjs.extend(weekOfYear)
+dayjs.extend(advancedFormat)
+dayjs.extend(weekYear)
+dayjs.extend(QuarterOfYear)
+dayjs.extend(customParseFormat)
 
 const PER_SECOND = 1000
 const PER_MINUTE = PER_SECOND * 60

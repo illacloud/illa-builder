@@ -90,7 +90,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
       cancelText={t("dashboard.common.cancel")}
     >
       <Input
-        borderColor="techPurple"
+        colorScheme="techPurple"
         onChange={(res) => {
           setName(res)
         }}

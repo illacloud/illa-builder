@@ -38,25 +38,26 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
     <div css={containerStyle} className={className}>
       {focus ? (
         <Input
+          w="100%"
           autoFocus
           onChange={(value) => {
             handleUpdateDsl({ value })
           }}
-          showCount={showCharacterCount}
+          showWordLimit={showCharacterCount}
           onBlur={() => {
             setFocus(false)
           }}
           value={value}
-          addonAfter={{ render: suffixText }}
-          addonBefore={{ render: prefixText }}
-          suffix={{ render: suffixIcon }}
-          prefix={{ render: prefixIcon }}
+          addAfter={suffixText}
+          addBefore={prefixText}
+          suffix={suffixIcon}
+          prefix={prefixIcon}
           ref={inputRef}
           readOnly={readOnly}
           allowClear={allowClear}
           placeholder={placeholder}
           disabled={disabled}
-          borderColor={colorScheme}
+          colorScheme={colorScheme}
           maxLength={maxLength}
           minLength={minLength}
           onClear={() => handleUpdateDsl({ value: "" })}
@@ -110,8 +111,17 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
     validateMessage,
   } = props
+
+  const editableInputWrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (editableInputWrapperRef.current) {
+      updateComponentHeight(editableInputWrapperRef.current?.clientHeight)
+    }
+  }, [validateMessage, labelPosition, editableInputWrapperRef])
 
   const handleValidate = useCallback(
     (value?: any) => {
@@ -197,7 +207,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     handleValidate,
   ])
   return (
-    <>
+    <div ref={editableInputWrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -224,7 +234,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </>
+    </div>
   )
 }
 EditableTextWidget.displayName = "EditableTextWidget"

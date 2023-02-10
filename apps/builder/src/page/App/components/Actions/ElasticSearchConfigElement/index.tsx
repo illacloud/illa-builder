@@ -8,8 +8,8 @@ import {
   Divider,
   Input,
   InputNumber,
-  PaginationPreIcon,
   Password,
+  PreviousIcon,
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
@@ -104,7 +104,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t("editor.action.resource.db.placeholder.name")}
               />
             )}
@@ -150,7 +150,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                   onChange={onChange}
                   value={value}
                   error={!!formState.errors.host}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   placeholder={t(
                     "editor.action.resource.db.placeholder.hosturl",
                   )}
@@ -191,7 +191,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="100%"
                   placeholder="9200"
                 />
@@ -219,7 +219,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   placeholder={t(
                     "editor.action.resource.db.placeholder.username",
                   )}
@@ -232,7 +232,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
               defaultValue={content.password}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="100%"
                   onBlur={onBlur}
                   onChange={onChange}
@@ -269,7 +269,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import {
   Button,
   DropList,
+  DropListItem,
   Dropdown,
   MoreIcon,
   Space,
@@ -22,7 +23,7 @@ import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { RootState } from "@/store"
 
-const Item = DropList.Item
+const Item = DropListItem
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { appId } = props
@@ -66,25 +67,28 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           trigger="click"
           triggerProps={{ closeDelay: 0, openDelay: 0 }}
           dropList={
-            <DropList width={"184px"}>
+            <DropList w="184px">
               <Item
-                key={"rename"}
+                value="rename"
+                key="rename"
                 title={t("rename")}
                 onClick={() => {
                   setRenameVisible(true)
                 }}
               />
               <Item
-                key={"duplicate"}
+                key="duplicate"
+                value="duplicate"
                 title={t("duplicate")}
                 onClick={() => {
                   setDuplicateVisible(true)
                 }}
               />
               <Item
-                key={"delete"}
+                key="delete"
+                value="delete"
                 title={t("dashboard.common.delete")}
-                fontColor={globalColor(`--${illaPrefix}-red-03`)}
+                deleted
                 onClick={() => {
                   const modalId = modal.show({
                     w: "496px",

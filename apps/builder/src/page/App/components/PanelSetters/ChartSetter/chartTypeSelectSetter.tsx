@@ -2,12 +2,12 @@ import { ChartType } from "chart.js"
 import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
-import {
-  BarChartIcon,
-  LineChartIcon,
-  PieChartIcon,
-  ScatterPlotIcon,
-} from "@illa-design/react"
+
+import { ReactComponent as LineChartIcon } from "@/assets/chart/line-chart.svg"
+import { ReactComponent as PieChartIcon } from "@/assets/chart/pie-chart.svg"
+import { ReactComponent as ScatterPlotIcon } from "@/assets/chart/scatter-plot.svg"
+import { ReactComponent as BarChartIcon } from "@/assets/chart/bar-chart.svg"
+
 import i18n from "@/i18n/config"
 import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 import { CHART_PRESET_COLOR } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"

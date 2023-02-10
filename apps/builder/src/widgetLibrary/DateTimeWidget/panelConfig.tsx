@@ -138,14 +138,14 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
           DATE_TIME_EVENT_HANDLER_CONFIG.events,
         ),
       },
-      {
-        id: `${baseWidgetName}-interaction-loading`,
-        labelName: i18n.t("editor.inspect.setter_label.loading"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
-        attrName: "loading",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
+      // {
+      //   id: `${baseWidgetName}-interaction-loading`,
+      //   labelName: i18n.t("editor.inspect.setter_label.loading"),
+      //   labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
+      //   attrName: "loading",
+      //   setterType: "INPUT_SETTER",
+      //   expectedType: VALIDATION_TYPES.BOOLEAN,
+      // },
       {
         id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),

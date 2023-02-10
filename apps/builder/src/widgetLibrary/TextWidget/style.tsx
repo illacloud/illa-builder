@@ -10,7 +10,6 @@ export function applyAlignStyle(
 ): SerializedStyles {
   return css`
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: ${horizontalAlign};
     align-items: ${verticalAlign};
@@ -19,9 +18,9 @@ export function applyAlignStyle(
 
 export const fullWidthAndFullHeightStyle = css`
   width: 100%;
-  height: 100%;
 `
 
-export const textStyle = css`
-  white-space: pre;
+export const markdownStyle = css`
+  width: 100%;
+  overflow-wrap: break-word;
 `

@@ -12,7 +12,13 @@ import { useDrag } from "react-dnd"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
-import { DropList, Dropdown, globalColor, illaPrefix } from "@illa-design/react"
+import {
+  DropList,
+  DropListItem,
+  Dropdown,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
 import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import {
@@ -59,8 +65,6 @@ import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWi
 import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/renderWithJSON"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-
-const { Item } = DropList
 
 export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const {
@@ -508,18 +512,18 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         position="right-start"
         trigger="contextmenu"
         dropList={
-          <DropList width="184px">
-            <Item
-              key="duplicate"
+          <DropList w="184px">
+            <DropListItem
+              value="duplicate"
               title={t("editor.context_menu.duplicate")}
               onClick={() => {
                 CopyManager.copyComponentNode([componentNode])
                 CopyManager.paste()
               }}
             />
-            <Item
-              fontColor={globalColor(`--${illaPrefix}-red-03`)}
-              key="delete"
+            <DropListItem
+              deleted
+              value="delete"
               title={t("editor.context_menu.delete")}
               onClick={() => {
                 shortcut.showDeleteDialog([componentNode.displayName])
@@ -908,18 +912,18 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         position="right-start"
         trigger="contextmenu"
         dropList={
-          <DropList width="184px">
-            <Item
-              key="duplicate"
+          <DropList w="184px">
+            <DropListItem
+              value="duplicate"
               title={t("editor.context_menu.duplicate")}
               onClick={() => {
                 CopyManager.copyComponentNode([componentNode])
                 CopyManager.paste()
               }}
             />
-            <Item
-              fontColor={globalColor(`--${illaPrefix}-red-03`)}
-              key="delete"
+            <DropListItem
+              deleted
+              value="delete"
               title={t("editor.context_menu.delete")}
               onClick={() => {
                 shortcut.showDeleteDialog([componentNode.displayName])

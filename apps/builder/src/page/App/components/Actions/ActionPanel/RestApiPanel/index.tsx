@@ -1,7 +1,12 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Input, Select } from "@illa-design/react"
+import {
+  Input,
+  Select,
+  SelectOptionObject,
+  SelectValue,
+} from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -76,7 +81,7 @@ export const RestApiPanel: FC = () => {
   })
 
   const handleChangeMethod = useCallback(
-    (value: ApiMethod) => {
+    (value?: SelectValue) => {
       let newBodyType: BodyType = "none"
       let newBody = null
 
@@ -94,7 +99,7 @@ export const RestApiPanel: FC = () => {
           ...cachedAction,
           content: {
             ...content,
-            method: value,
+            method: value as ApiMethod,
             bodyType: newBodyType,
             body: newBody,
           },
@@ -124,7 +129,7 @@ export const RestApiPanel: FC = () => {
             colorScheme="techPurple"
             ml="16px"
             value={content.method}
-            width="160px"
+            w="160px"
             maxW="160px"
             options={getMethod(cachedAction.actionType)}
             onChange={handleChangeMethod}
@@ -132,7 +137,7 @@ export const RestApiPanel: FC = () => {
           <Input
             minW="230px"
             maxW="500px"
-            borderColor="techPurple"
+            colorScheme="techPurple"
             bdRadius="8px 0 0 8px"
             value={
               currentResource?.content

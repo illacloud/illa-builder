@@ -10,15 +10,17 @@ export interface WrappedInputProps
       "placeholder" | "disabled" | "readOnly" | "maxLength" | "minLength"
     >,
     BaseWidgetProps {
-  showCharacterCount?: InputProps["showCount"]
+  showCharacterCount?: InputProps["showWordLimit"]
   value?: string
   prefixIcon?: InputProps["prefix"]
   prefixText?: string
   suffixIcon?: InputProps["suffix"]
   suffixText?: string
-  colorScheme?: InputProps["borderColor"]
+  colorScheme?: InputProps["colorScheme"]
   allowClear?: InputProps["allowClear"]
   handleOnChange?: () => void
+  handleOnFocus?: () => void
+  handleOnBlur?: () => void
   handleUpdateMultiExecutionResult: (
     updateSlice: {
       displayName: string
@@ -29,7 +31,7 @@ export interface WrappedInputProps
 }
 
 export interface InputWidgetProps
-  extends WrappedInputProps,
+  extends Omit<WrappedInputProps, "maxLength">,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,

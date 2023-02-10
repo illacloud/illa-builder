@@ -92,7 +92,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
       }}
     >
       <Input
-        borderColor="techPurple"
+        colorScheme="techPurple"
         placeholder={app?.appName}
         autoFocus
         defaultValue={app?.appName}

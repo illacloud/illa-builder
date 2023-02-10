@@ -1,6 +1,7 @@
-import { FC, useEffect, useMemo, useState } from "react"
+import { FC, useEffect, useMemo, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { isObject } from "@illa-design/react"
+import { useMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
@@ -15,6 +16,7 @@ import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -22,6 +24,10 @@ export const MysqlLikePanel: FC = (props) => {
   const currentAction = useSelector(getCachedAction)!!
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
   const dispatch = useDispatch()
+
+  const appInfo = useSelector(getAppInfo)
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     Api.request(

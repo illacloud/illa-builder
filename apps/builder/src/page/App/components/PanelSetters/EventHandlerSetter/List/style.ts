@@ -56,6 +56,9 @@ export const groupWrapperStyle = css`
   height: 32px;
   display: flex;
 `
+export const triggerStyle = css`
+  z-index: 1;
+`
 
 export const moreIconWrapperStyle = css`
   width: 32px;
