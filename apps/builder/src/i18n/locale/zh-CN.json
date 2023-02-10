@@ -340,15 +340,15 @@
           }
         },
         "mssql": {
-          "config_type": "Config Type",
-          "query": "Query",
+          "config_type": "配置类型",
+          "query": "查询",
           "placeholder": {
             "query": "select * from users;",
-            "table": "Select a table",
+            "table": "选择一张表",
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
-          "table": "Table",
-          "insert_record": "Array of records to insert",
+          "table": "表",
+          "insert_record": "待插入的记录数组",
           "dropdown": {
             "retry": "点击重试"
           }
