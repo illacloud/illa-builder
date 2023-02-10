@@ -44,16 +44,6 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
   const [saving, setSaving] = useState(false)
 
   const handleURLClick = (link: string) => window.open(link, "_blank")
-  // const getTransComponent = (key: string, link: string) => {
-  //   const handleLinKClick = () => handleURLClick(link)
-  //   return (
-  //     <Trans
-  //       i18nKey={key}
-  //       t={t}
-  //       components={[<TextLink key={key} onClick={handleLinKClick} />]}
-  //     />
-  //   )
-  // }
 
   return (
     <form

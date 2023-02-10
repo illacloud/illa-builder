@@ -81,6 +81,9 @@ export const MicrosoftSqlPanel: FC = () => {
   )
   const handleQueryChange = useCallback(
     (value: string, name: string) => {
+      if (!value) {
+        return
+      }
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
@@ -110,6 +113,7 @@ export const MicrosoftSqlPanel: FC = () => {
             colorScheme="gray"
             ml="16px"
             type="button"
+            forceEqualWidth={true}
             onChange={handleValueChange}
             value={content.mode}
             options={ConfigTypeOptions}

@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -24,6 +24,7 @@ import {
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
@@ -86,6 +87,10 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const message = useMessage()
+
+  const handleSwitchValueChange = useCallback((open: boolean | string) => {
+    setSSLOpen(!!open)
+  }, [])
 
   return (
     <form
@@ -384,131 +389,57 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.advanced_option")}
         </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.db.label.ssl_options")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={resource?.content.ssl.ssl}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Switch
-                checked={value}
-                ml="16px"
-                colorScheme="techPurple"
-                onChange={(open) => {
-                  onChange(open)
-                  setSSLOpen(open)
-                }}
-                onBlur={onBlur}
-              />
-            )}
-            name="ssl"
-          />
-          <span css={sslStyle}>
-            {t("editor.action.resource.db.tip.ssl_options")}
-          </span>
-        </div>
+
+        <ControlledElement
+          controlledType={["switch"]}
+          title={t("editor.action.resource.db.label.ssl_options")}
+          control={control}
+          defaultValue={resource?.content.ssl.ssl}
+          name="ssl"
+          onValueChange={handleSwitchValueChange}
+          contentLabel={t("editor.action.resource.db.tip.ssl_options")}
+        />
+
         {sslOpen && (
           <>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                  *
-                </span>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.ca_certificate")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={resource?.content.ssl.serverCert}
-                rules={{
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.resource.db.label.ca_certificate")}
+              isRequired
+              rules={[
+                {
                   required: true,
-                }}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    onBlur={onBlur}
-                    onChange={onChange}
-                    value={value}
-                    autoSize
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="serverCert"
-              />
-            </div>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.client_key")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={resource?.content.ssl.clientKey}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    autoSize
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="clientKey"
-              />
-            </div>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.client_certificate")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={resource?.content.ssl.clientCert}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    autoSize
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="clientCert"
-              />
-            </div>
+                },
+              ]}
+              control={control}
+              defaultValue={resource?.content.ssl.serverCert}
+              name="serverCert"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
+
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.resource.db.label.client_key")}
+              control={control}
+              defaultValue={resource?.content.ssl.clientKey}
+              name="clientKey"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
+
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.resource.db.label.client_certificate")}
+              control={control}
+              defaultValue={resource?.content.ssl.clientCert}
+              name="clientCert"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
           </>
         )}
       </div>

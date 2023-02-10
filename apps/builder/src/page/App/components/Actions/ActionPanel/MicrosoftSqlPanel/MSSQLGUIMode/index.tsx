@@ -17,6 +17,8 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
   const newModeContent = modeContent as MicrosoftSqlActionGUIMode
   const { t } = useTranslation()
   const [collectionSelect, setCollectionSelect] = useState<string[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
 
   useEffect(() => {
     if (!resourceId) {
@@ -30,10 +32,20 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
       ({ data }: { data: ResourcesData }) => {
         const tables = Object.keys(data.schema ?? {}).map((key) => key)
         setCollectionSelect(tables)
+        setLoading(false)
+        setError(false)
       },
-      () => {},
-      () => {},
-      () => {},
+      () => {
+        setError(true)
+        setLoading(false)
+      },
+      () => {
+        setError(true)
+        setLoading(false)
+      },
+      () => {
+        setLoading(true)
+      },
     )
   }, [resourceId])
 
@@ -49,9 +61,11 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
           defaultValue={newModeContent.table}
           value={newModeContent.table}
           ml="16px"
-          width="100%"
+          w="100%"
+          loading={loading}
+          error={error}
           placeholder={t("editor.action.panel.mssql.placeholder.table")}
-          onChange={(value: string) => onChange(value, "table")}
+          onChange={(value) => onChange((value || "") as string, "table")}
           options={collectionSelect}
         />
       </div>

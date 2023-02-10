@@ -6,7 +6,7 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  PaginationPreIcon,
+  PreviousIcon,
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
@@ -134,7 +134,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
           control={control}
           defaultValue={[
             resource?.content.host,
-            String(resource?.content.port || ""),
+            String(resource?.content.port || "1433"),
           ]}
           rules={[
             {
@@ -329,7 +329,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"
