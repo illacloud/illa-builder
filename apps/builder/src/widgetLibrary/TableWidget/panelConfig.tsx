@@ -133,6 +133,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.default_sort_order"),
         attrName: "defaultSortOrder",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: ["defaultSortKey"],
+        shown: (value) => value !== "default",
         options: [
           { label: i18n.t("widget.table.ascend"), value: "ascend" },
           { label: i18n.t("widget.table.descend"), value: "descend" },

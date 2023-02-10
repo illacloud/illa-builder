@@ -330,6 +330,25 @@
           "temperature": "Temperature",
           "repetition_penalty": "Repetition penalty",
           "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "生成する SQL ステートメント"
+          },
+          "button": {
+            "text": "SQL生成"
+          }
+        },
+        "mssql": {
+          "config_type": "Config Type",
+          "query": "Query",
+          "placeholder": {
+            "query": "select * from users;",
+            "table": "Select a table",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Table",
+          "insert_record": "Array of records to insert"
         }
       },
       "resource": {
@@ -372,7 +391,8 @@
             "header_prefix": "Header prefix",
             "key": "Key",
             "introspection": "Introspection",
-            "bear_token": "Token"
+            "bear_token": "Token",
+            "connection_options": "Connection options"
           },
           "placeholder": {
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
@@ -386,7 +406,8 @@
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "ユーザー名",
             "default": "default",
-            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). "
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
+            "database_name": "Database name"
           },
           "tip": {
             "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
@@ -396,7 +417,8 @@
             "username_password": "資格情報は暗号化され、サーバーに安全に保存されます",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
             "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
-            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>"
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "connection_options": "Add connection options for your connection. When the SSL option is enabled, we will add encrypt and trustServerCertificate by default. "
           },
           "title": {
             "advanced_option": "詳細設定",
@@ -638,8 +660,21 @@
           "url": "URL"
         },
         "height": {
-          "fixed": "Fixed",
-          "auto": "Auto"
+          "fixed": "固定",
+          "auto": "アダプティブ"
+        },
+        "upload_type": {
+          "button": "Button",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Single file",
+          "multiple_files": "Multiple files",
+          "directory": "Directory"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
         }
       },
       "setter_group": {
@@ -819,7 +854,22 @@
         "y_axis_name": "通称",
         "y_axis_title": "Y 軸のタイトル",
         "height": "Height",
-        "min_height": "Min height (px)"
+        "min_height": "Min height (px)",
+        "show_underline": "下線を表示",
+        "auto_play": "自動プレイ",
+        "interval": "間隔(ミリ秒)",
+        "show_button": "両側にボタンを表示",
+        "show_dot": "下部にドットを表示",
+        "hidden_images": "Hidden images",
+        "file_type": "File types",
+        "selection_types": "Selection types",
+        "append_newly_files": "Append newly selected files",
+        "file_list": "File list",
+        "parse_value": "Parse Value",
+        "max_files": "Max files",
+        "min_files": "Min files",
+        "max_size": "Max size",
+        "min_size": "Min size"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -852,13 +902,19 @@
         "text_value": "マークダウン モードまたはプレーン テキスト モードで値を入力することを選択できます。リンクは Markdown モードでのみ入力できます。",
         "timeline_direction": "時間軸の方向を切り替えます。",
         "timeline_pending": "保留中のノードを表示するかどうか。",
-        "tooltip": "ユーザーは入力ボックスにプロンプトの内容を入力でき、マウスをコンポーネントに置くとプロンプト情報が表示され、Markdown 形式がサポートされます。"
+        "tooltip": "ユーザーは入力ボックスにプロンプトの内容を入力でき、マウスをコンポーネントに置くとプロンプト情報が表示され、Markdown 形式がサポートされます。",
+        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
+        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
+        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
       "unselected_tip2": "コンポーネントをクリックして選択してください。",
       "setter": {
         "click_mask_close": "Click mask to close modal"
+      },
+      "setter_tips": {
+        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
       }
     },
     "page": {
@@ -1226,7 +1282,12 @@
       "name": "Modal"
     },
     "textarea": {
-      "name": "Textarea Input"
+      "name": "Textarea"
+    },
+    "upload": {
+      "name": "Upload",
+      "default_button_text": "Upload",
+      "default_dropzone_text": "Select or drop a file here"
     }
   },
   "page": {
@@ -1272,7 +1333,8 @@
         "placeholder": "メールアドレスを入力",
         "invited": "招待しました",
         "in_list": "このユーザーは既にチーム内にいます"
-      }
+      },
+      "invalid_email": "有効なメールアドレスを入力して下さい。"
     },
     "mes": {
       "invite_suc": "招待しました",
@@ -1367,5 +1429,10 @@
   },
   "members": "メンバー",
   "invite_new_member": "メンバーを招待",
-  "launch": "実行"
+  "launch": "実行",
+  "homepage": {
+    "message": {
+      "join_failed": "チームに参加できませんでした: あなたのメールは招待メールではありません。"
+    }
+  }
 }

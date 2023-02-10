@@ -176,7 +176,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
         <div css={inputAreaLabelWrapperStyle}>
           <InputNumber
             w="80px"
-            borderColor="techPurple"
+            colorScheme="techPurple"
             value={inputWidth}
             placeholder="--"
             onChange={handleUpdateInputWidth}
@@ -185,7 +185,7 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
           <CloseIcon css={closeIconStyle} />
           <InputNumber
             w="80px"
-            borderColor="techPurple"
+            colorScheme="techPurple"
             value={inputHeight}
             placeholder="--"
             onChange={handleUpdateInputHeight}

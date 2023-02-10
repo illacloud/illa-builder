@@ -575,6 +575,7 @@ export const PageFrame: FC = () => {
           options={canvasSizeOptions}
           value={finalCanvasSize}
           w="100%"
+          forceEqualWidth={true}
           colorScheme="grayBlue"
           onChange={handleUpdateFrameSize}
         />
@@ -592,8 +593,8 @@ export const PageFrame: FC = () => {
         <SetterPadding>
           <InputNumber
             w="96px"
-            value={finalCanvasWidth.toFixed(0)}
-            borderColor="techPurple"
+            value={Number(finalCanvasWidth.toFixed(0))}
+            colorScheme="techPurple"
             onChange={handleChangeCanvasWidth}
             onBlur={handleBlurCanvasWidth}
           />
@@ -649,8 +650,8 @@ export const PageFrame: FC = () => {
               <SetterPadding>
                 <InputNumber
                   w="96px"
-                  value={leftWidth.toFixed(0)}
-                  borderColor="techPurple"
+                  value={Number(leftWidth.toFixed(0))}
+                  colorScheme="techPurple"
                   onChange={handleUpdateLeftPanelWidth}
                   step={1}
                 />
@@ -716,8 +717,8 @@ export const PageFrame: FC = () => {
               <SetterPadding>
                 <InputNumber
                   w="96px"
-                  value={rightWidth.toFixed(0)}
-                  borderColor="techPurple"
+                  value={Number(rightWidth.toFixed(0))}
+                  colorScheme="techPurple"
                   onChange={handleUpdateRightPanelWidth}
                   step={1}
                 />
@@ -759,8 +760,8 @@ export const PageFrame: FC = () => {
           <SetterPadding>
             <InputNumber
               w="96px"
-              borderColor="techPurple"
-              value={bodyWidth.toFixed(0)}
+              colorScheme="techPurple"
+              value={Number(bodyWidth.toFixed(0))}
               onChange={handleUpdateBodyPanelWidth}
               step={1}
               disabled={!hasLeft && !hasRight}
@@ -811,7 +812,7 @@ export const PageFrame: FC = () => {
                 <InputNumber
                   w="96px"
                   value={topHeight}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   onChange={handleUpdateHeaderPanelWidth}
                   step={1}
                 />
@@ -863,7 +864,7 @@ export const PageFrame: FC = () => {
                 <InputNumber
                   w="96px"
                   value={bottomHeight}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   onChange={handleUpdateFooterPanelWidth}
                   step={1}
                 />

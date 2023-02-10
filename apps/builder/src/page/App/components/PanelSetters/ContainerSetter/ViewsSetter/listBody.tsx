@@ -84,7 +84,12 @@ export const ListBody: FC = () => {
         }),
       )
     }
-  }, [viewsList])
+  }, [componentNode.childrenNode, viewsList])
+
+  const updateItem = (values: ItemsProps[]) => {
+    if (isEqual(values, items)) return
+    setItems(values)
+  }
 
   if (!Array.isArray(viewsList)) return null
 
@@ -94,7 +99,7 @@ export const ListBody: FC = () => {
         axis="y"
         initial={false}
         values={items}
-        onReorder={setItems}
+        onReorder={updateItem}
         css={removeNativeStyle}
       >
         {items.map((item, index) => {

@@ -20,6 +20,8 @@ const getResultType = (result: unknown) => {
     return VALIDATION_TYPES.NUMBER
   } else if (typeof result === "boolean") {
     return VALIDATION_TYPES.BOOLEAN
+  } else if (typeof result === "undefined") {
+    return VALIDATION_TYPES.UNDEFINED
   } else {
     return VALIDATION_TYPES.OBJECT
   }

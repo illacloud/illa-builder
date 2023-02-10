@@ -1,17 +1,18 @@
 import { ReactNode } from "react"
-import { CommonRangeProps } from "@illa-design/react"
+import { RangeDatePickerProps } from "@illa-design/react"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedDateRangeProps
-  extends Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme"> {
+  extends Pick<RangeDatePickerProps, "disabled" | "colorScheme"> {
+  readOnly?: RangeDatePickerProps["editable"]
   startValue: string
   endValue: string
   startPlaceholder?: string
   endPlaceholder?: string
   dateFormat?: string
-  showClear?: CommonRangeProps["allowClear"]
+  showClear?: RangeDatePickerProps["allowClear"]
   beforeIcon?: ReactNode // TODO: not support yet
   afterIcon?: ReactNode // TODO: not support yet
   beforeText?: string // TODO: not support yet

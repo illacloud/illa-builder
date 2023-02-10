@@ -330,6 +330,25 @@
           "temperature": "Temperature",
           "repetition_penalty": "Repetition penalty",
           "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "어떤 SQL 문을 생성하시겠습니까?"
+          },
+          "button": {
+            "text": "SQL 생성"
+          }
+        },
+        "mssql": {
+          "config_type": "Config Type",
+          "query": "Query",
+          "placeholder": {
+            "query": "select * from users;",
+            "table": "Select a table",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Table",
+          "insert_record": "Array of records to insert"
         }
       },
       "resource": {
@@ -372,7 +391,8 @@
             "header_prefix": "Header prefix",
             "key": "Key",
             "introspection": "Introspection",
-            "bear_token": "Token"
+            "bear_token": "Token",
+            "connection_options": "Connection options"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -386,7 +406,8 @@
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "사용자 이름",
             "default": "default",
-            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). "
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
+            "database_name": "Database name"
           },
           "tip": {
             "connect_type": "클라우드 서버: ILLA 서버가 데이터베이스에 안전하게 연결됩니다.",
@@ -396,7 +417,8 @@
             "username_password": "자격 증명은 암호화되어 서버에 안전하게 저장됩니다.",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
             "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
-            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>"
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "connection_options": "Add connection options for your connection. When the SSL option is enabled, we will add encrypt and trustServerCertificate by default. "
           },
           "title": {
             "advanced_option": "고급 구성",
@@ -638,8 +660,21 @@
           "url": "URL"
         },
         "height": {
-          "fixed": "Fixed",
-          "auto": "Auto"
+          "fixed": "고정식",
+          "auto": "방문 허용"
+        },
+        "upload_type": {
+          "button": "Button",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Single file",
+          "multiple_files": "Multiple files",
+          "directory": "Directory"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
         }
       },
       "setter_group": {
@@ -819,7 +854,22 @@
         "y_axis_name": "좌표 이름",
         "y_axis_title": "Y축 제목",
         "height": "Height",
-        "min_height": "Min height (px)"
+        "min_height": "Min height (px)",
+        "show_underline": "밑줄 표시",
+        "auto_play": "자동 재생",
+        "interval": "간격(ms)",
+        "show_button": "양쪽에 버튼 표시",
+        "show_dot": "하단에 점 표시",
+        "hidden_images": "Hidden images",
+        "file_type": "File types",
+        "selection_types": "Selection types",
+        "append_newly_files": "Append newly selected files",
+        "file_list": "File list",
+        "parse_value": "Parse Value",
+        "max_files": "Max files",
+        "min_files": "Min files",
+        "max_size": "Max size",
+        "min_size": "Min size"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -839,7 +889,7 @@
         "loading": "구성 요소가 로드되는지 여부를 제어합니다.",
         "map_data_option": "숫자 값 또는 키-값 개체를 사용하여 옵션을 매핑합니다. 데이터 소스의 모든 항목은 모든 옵션에 매핑됩니다.",
         "mapped_value": "{{ currentRow }}를 사용하여 현재 행의 데이터에 액세스합니다. 예를 들어 '비용' 및 '클릭수' 열에서 계산된 '클릭당 비용'은 다음과 같습니다.\n {{ currentRow.cost / currentRow.clickTimes }}",
-        "multi_row_selection": "{{table.selectedRow.data}} 를 사용하여 데이터에 액세스할 수 있습니다. 다중 행 선택이 활성화된 경우 다음과 같이 사용할 수 있는 배열을 반환합니다. {{ table1.selectedRow.data[0].email }}}. 다중 행 선택을 활성화하지 않은 경우 {{ table1.selectedRow.data.email }}과 같이 사용할 수 있는 객체를 반환합니다.",
+        "multi_row_selection": "{{table.selectedRow[n].columnName}} 를 사용하여 데이터에 액세스합니다.",
         "only_run_when": "이 이벤트가 실행되기 전에 충족되어야 하는 조건을 여기에 입력하십시오.",
         "placeholder": "입력에 값이 없을 때 표시할 메시지입니다.",
         "progress_percentage": "진행률 표시줄의 값 범위는 0-100입니다.",
@@ -852,13 +902,19 @@
         "text_value": "Markdown 모드 또는 일반 텍스트 모드에서 값을 입력하도록 선택할 수 있습니다. 링크는 Markdown 모드에서만 입력할 수 있습니다.",
         "timeline_direction": "시간 축의 방향을 전환합니다.",
         "timeline_pending": "보류 중인 노드를 표시할지 여부입니다.",
-        "tooltip": "사용자는 입력란에 프롬프트 내용을 입력할 수 있으며 마우스를 컴포넌트 위에 올려 놓으면 프롬프트 정보가 표시되며 Markdown 형식을 지원합니다."
+        "tooltip": "사용자는 입력란에 프롬프트 내용을 입력할 수 있으며 마우스를 컴포넌트 위에 올려 놓으면 프롬프트 정보가 표시되며 Markdown 형식을 지원합니다.",
+        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
+        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
+        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
       },
       "tab_title": "속성",
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
       "unselected_tip2": "구성 요소를 클릭하여 선택하십시오.",
       "setter": {
         "click_mask_close": "Click mask to close modal"
+      },
+      "setter_tips": {
+        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
       }
     },
     "page": {
@@ -1226,7 +1282,12 @@
       "name": "Modal"
     },
     "textarea": {
-      "name": "Textarea Input"
+      "name": "Textarea"
+    },
+    "upload": {
+      "name": "업로드",
+      "default_button_text": "Upload",
+      "default_dropzone_text": "Select or drop a file here"
     }
   },
   "page": {
@@ -1272,7 +1333,8 @@
         "placeholder": "이메일 주소를 입력하세요",
         "invited": "초대했다",
         "in_list": "이 사용자는 이미 팀에 있습니다."
-      }
+      },
+      "invalid_email": "유효한 이메일 주소를 입력하세요"
     },
     "mes": {
       "invite_suc": "초대 성공",
@@ -1298,10 +1360,10 @@
       "title": "소유권을 이전하시겠습니까?",
       "description": "전송 후 권한이 관리자로 변경됩니다.",
       "transfer": "전송",
-      "cancel": "取消"
+      "cancel": "취소"
     },
     "remove_modal": {
-      "title": "{{ username }}을(를) 삭제하시겠습니까 ?",
+      "title": "{{ username }} 를 제거하시겠습니까?",
       "description": "제거 후 사용자는 팀에 액세스할 수 없습니다.",
       "remove": "제거",
       "cancel": "취소"
@@ -1367,5 +1429,10 @@
   },
   "members": "멤버",
   "invite_new_member": "멤버 초대",
-  "launch": "시작"
+  "launch": "시작",
+  "homepage": {
+    "message": {
+      "join_failed": "팀 가입 실패: 귀하의 이메일이 초대 이메일이 아닙니다."
+    }
+  }
 }

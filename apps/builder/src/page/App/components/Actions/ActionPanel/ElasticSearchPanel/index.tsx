@@ -74,7 +74,7 @@ export const ElasticSearchPanel: FC = () => {
             defaultValue={content.operation}
             value={content.operation}
             ml="16px"
-            width="100%"
+            w="100%"
             onChange={(value) => {
               const content = {
                 operation: value,

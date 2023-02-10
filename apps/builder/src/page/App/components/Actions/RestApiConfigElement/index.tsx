@@ -7,7 +7,7 @@ import {
   ButtonGroup,
   Divider,
   Input,
-  PaginationPreIcon,
+  PreviousIcon,
   Select,
   getColor,
   useMessage,
@@ -28,6 +28,7 @@ import {
   BasicAuth,
   BearerAuth,
   RestApiAuth,
+  RestApiAuthType,
   RestApiResource,
 } from "@/redux/resource/restapiResource"
 import { RootState } from "@/store"
@@ -193,7 +194,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t(
                   "editor.action.resource.restapi.placeholder.name",
                 )}
@@ -239,7 +240,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t(
                   "editor.action.resource.restapi.placeholder.base_url",
                 )}
@@ -384,7 +385,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                 value={value}
                 onBlur={onBlur}
                 onChange={(value) => {
-                  setAuthType(value)
+                  setAuthType(value as RestApiAuthType)
                   onChange(value)
                 }}
                 ml="16px"
@@ -411,7 +412,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

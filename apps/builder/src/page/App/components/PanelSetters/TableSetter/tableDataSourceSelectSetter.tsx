@@ -1,5 +1,5 @@
-import { debounce, get } from "lodash"
-import { FC, useCallback, useMemo } from "react"
+import { get, isEqual } from "lodash"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
@@ -13,12 +13,17 @@ import {
 import { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
+import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import {
+  tansDataFromOld,
+  tansTableDataToColumns,
+} from "@/widgetLibrary/TableWidget/utils"
 
 export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
   props,
 ) => {
   const {
+    value,
     widgetDisplayName,
     labelName,
     labelDesc,
@@ -39,10 +44,13 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
     },
   )
 
-  const customColumns = useMemo(() => {
-    const columns = get(targetComponentProps, "columns", [])
-    return columns.filter((item: any) => item.custom)
+  const columns = useMemo(() => {
+    return get(targetComponentProps, "columns", []) as ColumnItemShape[]
   }, [targetComponentProps])
+
+  const customColumns = useMemo(() => {
+    return columns.filter((item) => item.custom)
+  }, [columns])
 
   const isDynamic = useMemo(() => {
     const dataSourceMode = get(targetComponentProps, "dataSourceMode", "select")
@@ -51,11 +59,26 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
 
   const finalValue = useMemo(() => {
     if (isDynamic) {
-      return get(targetComponentProps, "dataSourceJS")
+      return get(targetComponentProps, "dataSourceJS", [])
     } else {
-      return get(targetComponentProps, "dataSource")
+      return get(targetComponentProps, "dataSource", [])
     }
   }, [isDynamic, targetComponentProps])
+
+  useEffect(() => {
+    const oldKeyOrder: string[] = []
+    const oldKeyMap: Record<string, ColumnItemShape> = {}
+    columns?.forEach((item) => {
+      console.log({ item }, "useEffect")
+      oldKeyMap[item.accessorKey] = item
+      oldKeyOrder.push(item.accessorKey)
+    })
+    if (!Array.isArray(finalValue)) return
+    const newColumns = tansDataFromOld(finalValue, oldKeyMap, oldKeyOrder)
+    if (newColumns?.length && !isEqual(newColumns, columns)) {
+      handleUpdateMultiAttrDSL?.({ columns: newColumns })
+    }
+  }, [finalValue])
 
   const selectedOptions = useMemo(() => {
     return actions.map((action) => ({
@@ -83,36 +106,55 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
     }
   }, [handleUpdateDsl, isDynamic, selectedOptions, finalValue])
 
-  const handleChangeInput = useCallback(
+  const getNewColumn = useCallback(
     (value: string) => {
       const data = evaluateDynamicString("", value, actionExecutionResult)
       if (Array.isArray(data)) {
         let newColumns = tansTableDataToColumns(data)
         if (newColumns?.length) {
-          handleUpdateMultiAttrDSL?.({
-            columns: newColumns.concat(customColumns),
-            dataSourceJS: value,
-          })
-          return
+          return newColumns.concat(
+            customColumns.map((item: ColumnItemShape, index) => {
+              return { ...item, columnIndex: newColumns.length + index }
+            }),
+          )
         }
       }
-      handleUpdateDsl("dataSourceJS", value)
     },
-    [
-      actionExecutionResult,
-      customColumns,
-      handleUpdateDsl,
-      handleUpdateMultiAttrDSL,
-    ],
+    [actionExecutionResult, customColumns],
+  )
+
+  const handleChangeInput = useCallback(
+    (value: string) => {
+      const newColumns = getNewColumn(value)
+      if (newColumns) {
+        handleUpdateMultiAttrDSL?.({
+          columns: newColumns,
+          dataSourceJS: value,
+        })
+        return
+      }
+      handleUpdateMultiAttrDSL?.({
+        dataSourceJS: value,
+      })
+    },
+    [actionExecutionResult, customColumns, handleUpdateMultiAttrDSL],
   )
 
   const handleChangeSelect = useCallback(
     (value: any) => {
+      const newColumns = getNewColumn(value)
+      if (newColumns) {
+        handleUpdateMultiAttrDSL?.({
+          columns: newColumns,
+          dataSource: value,
+        })
+        return
+      }
       handleUpdateMultiAttrDSL?.({
         dataSource: value,
       })
     },
-    [handleUpdateMultiAttrDSL],
+    [actionExecutionResult, customColumns, handleUpdateMultiAttrDSL],
   )
 
   return (

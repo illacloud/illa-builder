@@ -19,7 +19,7 @@ export interface WrappedNumberInputProps
   > {
   openThousandSeparator?: boolean
   loading?: boolean
-  colorScheme?: InputNumberProps["borderColor"]
+  colorScheme?: InputNumberProps["colorScheme"]
   displayName: string
   handleUpdateDsl: (value: any) => void
   getValidateMessage: (value?: unknown) => string

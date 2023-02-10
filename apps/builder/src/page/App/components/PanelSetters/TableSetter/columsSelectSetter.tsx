@@ -30,11 +30,16 @@ export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
 
   const options = useMemo(() => {
     const columns = get(targetComponentProps, "columns", [])
-    const opt: SelectOptions = []
-    columns.map((item: ColumnItemShape) => {
+    const opt: SelectOptions = [
+      {
+        value: "default",
+        label: "—",
+      },
+    ]
+    columns.forEach((item: ColumnItemShape) => {
       opt.push({
-        value: item.accessorKey,
-        label: item.header,
+        value: item.accessorKey ?? "",
+        label: item.header ?? "",
       })
     })
     return opt

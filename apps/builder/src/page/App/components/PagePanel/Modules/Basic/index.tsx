@@ -123,7 +123,7 @@ export const PageBasic: FC = () => {
             onChange={(value) => {
               handleChangeDefaultView(value, "bodySection")
             }}
-            borderColor="techPurple"
+            colorScheme="techPurple"
           />
         </SetterPadding>
       </LeftAndRightLayout>
@@ -152,7 +152,7 @@ export const PageBasic: FC = () => {
                 onChange={(value) => {
                   handleChangeDefaultView(value, "leftSection")
                 }}
-                borderColor="techPurple"
+                colorScheme="techPurple"
               />
             </SetterPadding>
           </LeftAndRightLayout>
@@ -183,7 +183,7 @@ export const PageBasic: FC = () => {
                 onChange={(value) => {
                   handleChangeDefaultView(value, "rightSection")
                 }}
-                borderColor="techPurple"
+                colorScheme="techPurple"
               />
             </SetterPadding>
           </LeftAndRightLayout>
@@ -214,7 +214,7 @@ export const PageBasic: FC = () => {
                 onChange={(value) => {
                   handleChangeDefaultView(value, "headerSection")
                 }}
-                borderColor="techPurple"
+                colorScheme="techPurple"
               />
             </SetterPadding>
           </LeftAndRightLayout>
@@ -245,7 +245,7 @@ export const PageBasic: FC = () => {
                 onChange={(value) => {
                   handleChangeDefaultView(value, "footerSection")
                 }}
-                borderColor="techPurple"
+                colorScheme="techPurple"
               />
             </SetterPadding>
           </LeftAndRightLayout>

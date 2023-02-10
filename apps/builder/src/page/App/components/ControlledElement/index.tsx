@@ -73,7 +73,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
                   onChange={onChange}
                   value={value}
                   error={error}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   placeholder={placeholder}
                 />
               )}
@@ -116,7 +116,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
                   value={value}
                   onBlur={onBlur}
                   onChange={(value) => {
-                    onValueChange?.(value)
+                    onValueChange?.(value as string)
                     onChange(value)
                   }}
                   colorScheme="techPurple"
@@ -161,7 +161,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="100%"
                   placeholder={placeholder}
                   {...style}
@@ -179,7 +179,7 @@ export const ControlledElement: FC<ContrilledElementProps> = (props) => {
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
                   autoComplete="new-password"
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   w="100%"
                   onBlur={onBlur}
                   onChange={onChange}
