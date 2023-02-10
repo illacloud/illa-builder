@@ -77,7 +77,6 @@ import {
   rowCenter,
   saveButtonWrapperStyle,
   saveFailedTipStyle,
-  triggerStyle,
   viewControlStyle,
   viewportFontStyle,
   windowIconBodyStyle,
@@ -245,7 +244,6 @@ const PreviewButtonGroup: FC = () => {
         showArrow={false}
         withoutPadding
         colorScheme="white"
-        _css={triggerStyle}
       >
         <Button
           colorScheme="grayBlue"
