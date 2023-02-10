@@ -1282,10 +1282,10 @@
       "name": "Modal"
     },
     "textarea": {
-      "name": "Textarea"
+      "name": "長いテキスト入力"
     },
     "upload": {
-      "name": "Upload",
+      "name": "アップロード",
       "default_button_text": "Upload",
       "default_dropzone_text": "Select or drop a file here"
     }
