@@ -10,6 +10,7 @@ import {
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { publicCodeMirrorStyleInActionPanel } from "@/page/App/components/Actions/ActionPanel/style"
 import {
   getCachedAction,
   getSelectedAction,
@@ -174,6 +175,7 @@ export const ElasticSearchPanel: FC = () => {
           </span>
           <div css={esItemCodeEditorStyle}>
             <CodeEditor
+              singleLine
               value={content.index}
               onChange={(value) => {
                 dispatch(
@@ -199,6 +201,7 @@ export const ElasticSearchPanel: FC = () => {
             </span>
             <div css={esItemCodeEditorStyle}>
               <CodeEditor
+                singleLine
                 value={content.id}
                 onChange={(value) => {
                   dispatch(

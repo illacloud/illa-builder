@@ -204,6 +204,7 @@ export const MongoDbPanel: FC = () => {
               {t("editor.action.panel.mongodb.collection")}
             </span>
             <CodeEditor
+              singleLine
               wrapperCss={mongoItemCodeEditorStyle}
               lang={CODE_LANG.JAVASCRIPT}
               value={content.collection}
