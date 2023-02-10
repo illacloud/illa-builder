@@ -45,9 +45,7 @@ export class ExecutionTreeFactory {
   initTree(rawTree: RawTreeShape) {
     const currentRawTree = cloneDeep(rawTree)
     this.oldRawTree = cloneDeep(currentRawTree)
-
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
-    console.log("this.dependenciesState", this.dependenciesState)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
     this.inDependencyTree = this.generateInDependenciesMap()
     const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
