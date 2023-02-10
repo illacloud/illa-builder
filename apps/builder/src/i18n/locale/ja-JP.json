@@ -1282,7 +1282,7 @@
       "name": "Modal"
     },
     "textarea": {
-      "name": "Textarea"
+      "name": "長いテキスト入力"
     },
     "upload": {
       "name": "Upload",
