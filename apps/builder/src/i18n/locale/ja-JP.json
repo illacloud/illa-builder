@@ -340,15 +340,15 @@
           }
         },
         "mssql": {
-          "config_type": "Config Type",
-          "query": "Query",
+          "config_type": "構成タイプ",
+          "query": "クエリ",
           "placeholder": {
             "query": "select * from users;",
-            "table": "Select a table",
+            "table": "テーブルを選択",
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
-          "table": "Table",
-          "insert_record": "Array of records to insert",
+          "table": "テーブル",
+          "insert_record": "挿入するレコードの配列",
           "dropdown": {
             "retry": "クリックして再試行"
           }
