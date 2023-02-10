@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Input, PenIcon, useMessage } from "@illa-design/react"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
@@ -12,8 +12,17 @@ export const EditableText: FC<EditableTextProps> = (props) => {
   const [isFocusInput, setIsFocusInput] = useState(false)
   const { t } = useTranslation()
 
+  const inputRef = useRef<HTMLInputElement>(null)
+
   const handleChangeInputValue = (value: string) => {
     setInputValue(value)
+  }
+
+  const handleClickOnSpan = () => {
+    setIsFocusInput(true)
+    setTimeout(() => {
+      inputRef.current?.focus()
+    }, 100)
   }
 
   const message = useMessage()
@@ -48,20 +57,15 @@ export const EditableText: FC<EditableTextProps> = (props) => {
     <div css={EditableTextWrapperStyle}>
       {isFocusInput ? (
         <Input
-          autoFocus
           colorScheme="techPurple"
           value={inputValue}
           onChange={handleChangeInputValue}
           onBlur={handleBlurInput}
           onPressEnter={handleBlurInput}
+          inputRef={inputRef}
         />
       ) : (
-        <span
-          css={textStyle}
-          onClick={() => {
-            setIsFocusInput(true)
-          }}
-        >
+        <span css={textStyle} onClick={handleClickOnSpan}>
           {inputValue}
           <PenIcon />
         </span>

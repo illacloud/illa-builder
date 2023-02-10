@@ -34,6 +34,13 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [focus, setFocus] = useState(false)
 
+  const handleClickOnSpan = () => {
+    setFocus(true)
+    setTimeout(() => {
+      inputRef.current?.focus()
+    }, 100)
+  }
+
   return (
     <div css={containerStyle} className={className}>
       {focus ? (
@@ -52,7 +59,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
           addBefore={prefixText}
           suffix={suffixIcon}
           prefix={prefixIcon}
-          ref={inputRef}
+          inputRef={inputRef}
           readOnly={readOnly}
           allowClear={allowClear}
           placeholder={placeholder}
@@ -65,9 +72,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
       ) : (
         <span
           css={applyTextCss(!!(value && value?.length > 0))}
-          onClick={() => {
-            setFocus(true)
-          }}
+          onClick={handleClickOnSpan}
         >
           {value && value?.length > 0 ? value : placeholder}
           <PenIcon />
