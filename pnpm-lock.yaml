@@ -1036,6 +1036,7 @@ importers:
       '@illa-design/tabs': workspace:*
       '@illa-design/tag': workspace:*
       '@illa-design/theme': workspace:*
+      '@illa-design/time-picker': workspace:*
       '@illa-design/timeline': workspace:*
       '@illa-design/trigger': workspace:*
       '@illa-design/typography': workspace:*
@@ -1094,6 +1095,7 @@ importers:
       '@illa-design/tabs': link:../tabs
       '@illa-design/tag': link:../tag
       '@illa-design/theme': link:../theme
+      '@illa-design/time-picker': link:../time-picker
       '@illa-design/timeline': link:../timeline
       '@illa-design/trigger': link:../trigger
       '@illa-design/typography': link:../typography
@@ -5905,7 +5907,7 @@ packages:
     dev: true
 
   /dayjs/1.11.7:
-    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.7.tgz}
     dev: false
 
   /debounce/1.2.1:
