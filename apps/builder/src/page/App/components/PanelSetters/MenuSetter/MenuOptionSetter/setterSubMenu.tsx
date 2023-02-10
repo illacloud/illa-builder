@@ -1,9 +1,10 @@
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { DragPointIcon, Trigger, getColor } from "@illa-design/react"
+import { Button, DragPointIcon, Trigger, getColor } from "@illa-design/react"
 import { SetterSubMenuProps } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/interface"
 import { NewButton } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/newButton"
 import {
+  deleteButtonContainer,
   setterDivStyle,
   setterSubMenuContainerStyle,
   setterSubMenuLabelStyle,
@@ -14,6 +15,7 @@ export const SetterSubMenu: FC<SetterSubMenuProps> = (props) => {
   const {
     label,
     value,
+    onDelete,
     onClickAdd,
     children,
     attrPath,
@@ -29,7 +31,11 @@ export const SetterSubMenu: FC<SetterSubMenuProps> = (props) => {
   return (
     <>
       <div css={setterSubMenuContainerStyle} onClick={onClick}>
-        <DragPointIcon fs="16px" c={getColor("grayBlue", "04")} />
+        <DragPointIcon
+          className="dragIcon"
+          fs="16px"
+          c={getColor("grayBlue", "04")}
+        />
         <Trigger
           withoutPadding
           colorScheme="white"
@@ -47,6 +53,20 @@ export const SetterSubMenu: FC<SetterSubMenuProps> = (props) => {
               handleCloseModal={() => {
                 setTriggerVisible(false)
               }}
+              extraElement={
+                <div css={deleteButtonContainer}>
+                  <Button
+                    w="100%"
+                    variant="light"
+                    colorScheme="red"
+                    onClick={() => {
+                      onDelete()
+                    }}
+                  >
+                    {t("editor.inspect.setter_content.menu_setter.delete")}
+                  </Button>
+                </div>
+              }
             />
           }
           showArrow={false}

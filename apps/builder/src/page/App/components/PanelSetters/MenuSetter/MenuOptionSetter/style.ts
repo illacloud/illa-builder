@@ -38,15 +38,25 @@ export const optionSubItemStyle = css`
 export const setterSubMenuContainerStyle = css`
   height: 40px;
   width: 100%;
+  cursor: pointer;
   display: flex;
   padding-right: 8px;
   flex-direction: row;
   box-sizing: border-box;
   align-items: center;
+  .dragIcon {
+    visibility: hidden;
+  }
+  &:hover {
+    .dragIcon {
+      visibility: visible;
+    }
+  }
 `
 
 export const setterMenuItemContainerStyle = css`
   height: 40px;
+  cursor: pointer;
   width: 100%;
   padding-left: 16px;
   padding-right: 8px;
@@ -54,6 +64,14 @@ export const setterMenuItemContainerStyle = css`
   flex-direction: row;
   box-sizing: border-box;
   align-items: center;
+  .dragIcon {
+    visibility: hidden;
+  }
+  &:hover {
+    .dragIcon {
+      visibility: visible;
+    }
+  }
 `
 
 export const setterSubMenuLabelStyle = css`
@@ -70,4 +88,8 @@ export const removeNativeStyle = css`
   list-style: none;
   padding: 0;
   margin: 0;
+`
+
+export const deleteButtonContainer = css`
+  padding: 0 16px 16px 16px;
 `

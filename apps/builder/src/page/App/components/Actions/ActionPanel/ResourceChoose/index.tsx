@@ -8,6 +8,7 @@ import {
   PenIcon,
   Select,
   Space,
+  TriggerProvider,
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
@@ -56,7 +57,7 @@ export const ResourceChoose: FC = () => {
   )
 
   return (
-    <>
+    <TriggerProvider renderInBody zIndex={10}>
       <div css={resourceChooseContainerStyle}>
         <span css={resourceTitleStyle}>{t("resources")}</span>
         <div css={resourceEndStyle}>
@@ -181,6 +182,6 @@ export const ResourceChoose: FC = () => {
           setGeneratorVisible(false)
         }}
       />
-    </>
+    </TriggerProvider>
   )
 }
