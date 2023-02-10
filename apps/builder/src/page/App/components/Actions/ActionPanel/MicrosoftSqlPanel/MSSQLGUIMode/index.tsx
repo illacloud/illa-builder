@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Select } from "@illa-design/react"
+import { Select, createMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/interface"
 import { InputEditor } from "@/page/App/components/InputEditor"
@@ -14,6 +14,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
   const { modeContent, onChange, resourceId } = props
+  const message = createMessage()
   const newModeContent = modeContent as MicrosoftSqlActionGUIMode
   const { t } = useTranslation()
   const [collectionSelect, setCollectionSelect] = useState<string[]>([])
@@ -38,11 +39,12 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
       () => {
         setError(true)
         setLoading(false)
+        message.error({
+          type: "error",
+          content: t("editor.action.message.mssql.table_error"),
+        })
       },
-      () => {
-        setError(true)
-        setLoading(false)
-      },
+      () => {},
       () => {
         setLoading(true)
       },
