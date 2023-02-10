@@ -26,7 +26,7 @@ export const getCurrentConfigLanguage = (state: RootState) => {
     default:
       selectedLocale = enUS
   }
-  return enUS
+  return selectedLocale
 }
 
 export const getCurrentTranslateLanguage = (state: RootState) => {

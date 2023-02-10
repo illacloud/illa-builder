@@ -152,6 +152,7 @@ export const RestApiPanel: FC = () => {
             readOnly
           />
           <CodeEditor
+            singleLine
             wrapperCss={restapiItemInputStyle}
             expectValueType={VALIDATION_TYPES.STRING}
             value={content.url}

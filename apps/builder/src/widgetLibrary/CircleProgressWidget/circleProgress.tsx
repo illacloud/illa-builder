@@ -1,4 +1,5 @@
 import { FC, forwardRef, useEffect, useMemo } from "react"
+import useMeasure from "react-use-measure"
 import { Progress } from "@illa-design/react"
 import { applyContainerCss } from "@/widgetLibrary/CircleProgressWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -17,10 +18,8 @@ export const WrappedCircleProgress = forwardRef<
     color,
     trailColor,
     strokeWidth,
-    h,
-    w,
-    unitW,
-    unitH,
+    finalWidth,
+    finalHeight,
   } = props
 
   const _strokeWidth = useMemo(() => {
@@ -28,7 +27,7 @@ export const WrappedCircleProgress = forwardRef<
   }, [strokeWidth])
 
   // delete scale square padding
-  const progressWidth = Math.min(w * unitW, h * unitH) - 8 + "px"
+  const progressWidth = Math.min(finalWidth, finalHeight) - 8 + "px"
 
   return (
     <Progress
@@ -90,10 +89,16 @@ export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
+  const [wrapperRef, bounds] = useMeasure()
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={applyContainerCss(alignment)}>
-        <WrappedCircleProgress {...props} />
+      <div css={applyContainerCss(alignment)} ref={wrapperRef}>
+        <WrappedCircleProgress
+          {...props}
+          finalHeight={bounds.height}
+          finalWidth={bounds.width}
+        />
       </div>
     </TooltipWrapper>
   )

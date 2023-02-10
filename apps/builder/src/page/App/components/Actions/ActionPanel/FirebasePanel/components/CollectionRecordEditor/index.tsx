@@ -68,6 +68,7 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                 <div css={actionItemRecordEditorStyle}>
                   <CodeEditor
                     value={record.field}
+                    singleLine
                     onChange={(val) => {
                       handleChange(
                         index,
@@ -90,10 +91,11 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                   showSearch={true}
                   defaultValue={record.condition}
                   value={record.condition}
-                  w="100%"
+                  w="0"
                   ml="-0.5px"
                   mr="-0.5px"
                   bdRadius="0"
+                  flexGrow="1"
                   onChange={(val) =>
                     handleChange(
                       index,
@@ -107,6 +109,7 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                 />
                 <div css={actionItemRecordEditorStyle}>
                   <CodeEditor
+                    singleLine
                     value={record.value}
                     onChange={(val) => {
                       handleChange(

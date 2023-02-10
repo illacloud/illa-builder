@@ -94,12 +94,8 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
     itemBackGroundColor: "white",
     backgroundColor: "white",
     itemHeight: 146,
-    selectedIndex: 0,
-    selectedItem: {
-      name: "user1",
-      email: "user1@illasoft.com",
-      img: "https://cdn.dribbble.com/users/693674/screenshots/20021608/media/d12b3f2b117d71626f17ee2dfd48681f.png",
-    },
+    selectedIndex: undefined,
+    selectedItem: undefined,
     dataSources: `{{[
   {
     "name": "user1",

@@ -325,7 +325,11 @@ export class ExecutionTreeFactory {
         walkedPath.add(path)
         const { displayName, attrPath } = getDisplayNameAndAttrPath(path)
         const actionOrWidget = get(currentExecutionTree, displayName)
-        if (!isAction(actionOrWidget) || !attrPath.startsWith("data")) {
+        const fullPathValue = get(this.oldRawTree, path)
+        if (
+          (!isAction(actionOrWidget) || !attrPath.startsWith("data")) &&
+          isDynamicString(fullPathValue)
+        ) {
           const rootPath = path.split(".").slice(0, 2).join(".")
           const value = get(this.oldRawTree, rootPath, undefined)
           set(currentExecutionTree, rootPath, value)
@@ -360,10 +364,6 @@ export class ExecutionTreeFactory {
       walkedPath,
     ) as RawTreeShape
     const { evaluatedTree } = this.executeTree(currentRawTree, orderPath)
-    const differencesRawTree: Diff<Record<string, any>, Record<string, any>>[] =
-      diff(this.oldRawTree, evaluatedTree) || []
-    this.applyDifferencesToEvalTree(differencesRawTree)
-    this.applyDifferencesToEvalTree(differences)
     this.executedTree = this.validateTree(evaluatedTree)
     return {
       evaluatedTree: this.executedTree,

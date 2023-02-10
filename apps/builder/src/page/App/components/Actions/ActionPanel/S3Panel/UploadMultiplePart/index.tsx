@@ -48,6 +48,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.bucket_name")}
         </span>
         <CodeEditor
+          singleLine
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
@@ -60,6 +61,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.content_type")}
         </span>
         <CodeEditor
+          singleLine
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.contentType}

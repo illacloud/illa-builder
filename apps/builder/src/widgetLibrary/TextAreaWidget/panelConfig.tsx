@@ -2,63 +2,30 @@ import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { DATE_TIME_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DateTimeWidget/eventHandlerConfig"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { TEXTAREA_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/TextAreaWidget/eventHandlerConfig"
 
-const baseWidgetName = "date-time"
-export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
+const baseWidgetName = "text-area"
+export const TEXTAREA_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-basic`,
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: `${baseWidgetName}-basic-DefaultValue`,
+        id: `${baseWidgetName}-basic-defaultValue`,
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
-        labelDesc: i18n.t(
-          "editor.inspect.setter_tooltip.component_default_value",
-        ),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.input_default_value"),
         attrName: "value",
-        setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
-      },
-      {
-        id: `${baseWidgetName}-basic-date-format`,
-        labelName: i18n.t("editor.inspect.setter_label.format"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.date_format"),
-        attrName: "format",
         setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: `${baseWidgetName}-basic-placeholder`,
         labelName: i18n.t("editor.inspect.setter_label.placeholder"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.placeholder"),
         attrName: "placeholder",
-        setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
-      },
-      {
-        id: `${baseWidgetName}-basic-max-date`,
-        labelName: i18n.t("editor.inspect.setter_label.max_date"),
-        attrName: "maxDate",
         setterType: "INPUT_SETTER",
-        placeholder: "2032-01-01",
-        expectedType: VALIDATION_TYPES.STRING,
-      },
-      {
-        id: `${baseWidgetName}-basic-min-date`,
-        labelName: i18n.t("editor.inspect.setter_label.min_date"),
-        attrName: "minDate",
-        setterType: "INPUT_SETTER",
-        placeholder: "2022-01-01",
-        expectedType: VALIDATION_TYPES.STRING,
-      },
-      {
-        id: `${baseWidgetName}-basic-minute-step`,
-        labelName: i18n.t("editor.inspect.setter_label.step_size"),
-        attrName: "minuteStep",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -77,8 +44,8 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-label-caption`,
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
-        setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
+        setterType: "INPUT_SETTER",
       },
       {
         id: `${baseWidgetName}-label-hidden`,
@@ -135,17 +102,9 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          DATE_TIME_EVENT_HANDLER_CONFIG.events,
+          TEXTAREA_EVENT_HANDLER_CONFIG.events,
         ),
       },
-      // {
-      //   id: `${baseWidgetName}-interaction-loading`,
-      //   labelName: i18n.t("editor.inspect.setter_label.loading"),
-      //   labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
-      //   attrName: "loading",
-      //   setterType: "INPUT_SETTER",
-      //   expectedType: VALIDATION_TYPES.BOOLEAN,
-      // },
       {
         id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
@@ -153,25 +112,36 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
+        placeholder: "{{false}}",
       },
       {
         id: `${baseWidgetName}-interaction-readonly`,
         labelName: i18n.t("editor.inspect.setter_label.read_only"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.read_only"),
-        attrName: "readonly",
+        attrName: "readOnly",
         setterType: "INPUT_SETTER",
+        placeholder: "{{false}}",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
   {
-    id: `${baseWidgetName}-adornments`,
+    id: `${baseWidgetName}-Adornments`,
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: `${baseWidgetName}-adornments-showClear`,
         labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
-        attrName: "showClear",
+        attrName: "allowClear",
+        useCustomLayout: true,
+        openDynamic: true,
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+      {
+        id: `${baseWidgetName}-adornments-showChartCount`,
+        labelName: i18n.t("editor.inspect.setter_label.show_character_count"),
+        attrName: "showCharacterCount",
         useCustomLayout: true,
         openDynamic: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
@@ -200,6 +170,27 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         openDynamic: true,
         attrName: "required",
+      },
+      {
+        id: `${baseWidgetName}-validation-regex`,
+        labelName: i18n.t("editor.inspect.setter_label.regex"),
+        setterType: "INPUT_SETTER",
+        attrName: "regex",
+        expectedType: VALIDATION_TYPES.STRING,
+      },
+      {
+        id: `${baseWidgetName}-validation-max`,
+        labelName: i18n.t("editor.inspect.setter_label.max_length"),
+        setterType: "INPUT_SETTER",
+        attrName: "maxLength",
+        expectedType: VALIDATION_TYPES.NUMBER,
+      },
+      {
+        id: `${baseWidgetName}-validation-min`,
+        labelName: i18n.t("editor.inspect.setter_label.min_length"),
+        setterType: "INPUT_SETTER",
+        attrName: "minLength",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
         id: `${baseWidgetName}-validation-custom`,
@@ -239,10 +230,11 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-layout-hidden`,
-        setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
+        setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
+        placeholder: "false",
         useCustomLayout: true,
         openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -254,18 +246,17 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: `${baseWidgetName}-style-list`,
+        id: `${baseWidgetName}-colors`,
         setterType: "LIST_SETTER",
-        isSetterSingleRow: true,
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: `${baseWidgetName}-style-bg`,
+            id: `${baseWidgetName}-colors-color`,
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
-            setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
+            setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",
           },
         ],
