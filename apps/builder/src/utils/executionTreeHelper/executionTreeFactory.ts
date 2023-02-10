@@ -45,7 +45,6 @@ export class ExecutionTreeFactory {
   initTree(rawTree: RawTreeShape) {
     const currentRawTree = cloneDeep(rawTree)
     this.oldRawTree = cloneDeep(currentRawTree)
-
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
     this.inDependencyTree = this.generateInDependenciesMap()
@@ -173,8 +172,18 @@ export class ExecutionTreeFactory {
     let sortOrders: string[] = []
     let parents = cloneDeep(changes)
     let subSortOrderArray: string[]
+    const modifyDependencyTree = cloneDeep(inDependencyTree)
+    Object.keys(modifyDependencyTree).forEach((key) => {
+      modifyDependencyTree[key] = modifyDependencyTree[key].filter((value) => {
+        return !changes.includes(value)
+      })
+    })
+
     while (true) {
-      subSortOrderArray = this.getEvaluationSortOrder(parents, inDependencyTree)
+      subSortOrderArray = this.getEvaluationSortOrder(
+        parents,
+        modifyDependencyTree,
+      )
       sortOrders = [...sortOrders, ...subSortOrderArray]
       parents = getImmediateParentsOfPropertyPaths(subSortOrderArray)
       if (parents.length <= 0) {

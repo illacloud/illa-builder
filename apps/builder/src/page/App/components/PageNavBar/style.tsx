@@ -108,10 +108,6 @@ export const lineStyle = css`
   background-color: ${getColor("grayBlue", "08")};
 `
 
-export const triggerStyle = css`
-  z-index: 10;
-`
-
 export const closeIconStyle = css`
   width: 8px;
   height: 8px;
