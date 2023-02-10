@@ -542,6 +542,11 @@
         "api": "아피스",
         "database": "데이터 베이스",
         "js_transformer": "자바스크립트 변환기"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "테이블을 표시하지 못했습니다. 나중에 다시 시도 해주십시오."
+        }
       }
     },
     "component": {
