@@ -1,26 +1,22 @@
-import { InputProps } from "@illa-design/react"
+import { TextAreaProps } from "@illa-design/react"
 import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
-export interface WrappedInputProps
+export interface WrappedTextareaProps
   extends Pick<
-      InputProps,
-      "placeholder" | "disabled" | "readOnly" | "maxLength" | "minLength"
+      TextAreaProps,
+      "placeholder" | "disabled" | "readOnly" | "maxLength" | "colorScheme"
     >,
     BaseWidgetProps {
-  showCharacterCount?: InputProps["showWordLimit"]
+  showCharacterCount?: TextAreaProps["showWordLimit"]
   value?: string
-  prefixIcon?: InputProps["prefix"]
-  prefixText?: string
-  suffixIcon?: InputProps["suffix"]
-  suffixText?: string
-  colorScheme?: InputProps["colorScheme"]
-  allowClear?: InputProps["allowClear"]
+  allowClear?: TextAreaProps["allowClear"]
   handleOnChange?: () => void
   handleOnFocus?: () => void
   handleOnBlur?: () => void
+  maxLength?: number
   handleUpdateMultiExecutionResult: (
     updateSlice: {
       displayName: string
@@ -30,11 +26,11 @@ export interface WrappedInputProps
   getValidateMessage: (value: string) => string
 }
 
-export interface InputWidgetProps
-  extends Omit<WrappedInputProps, "maxLength">,
+export interface TextareaWidgetProps
+  extends WrappedTextareaProps,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,
-    Omit<ValidateMessageOldProps, "value"> {
+    ValidateMessageOldProps {
   validateMessage: string
 }

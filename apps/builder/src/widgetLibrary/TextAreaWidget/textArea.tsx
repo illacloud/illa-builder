@@ -1,5 +1,5 @@
-import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
-import { Input } from "@illa-design/react"
+import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
+import { TextArea } from "@illa-design/react"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -8,88 +8,94 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { InputWidgetProps, WrappedInputProps } from "./interface"
+import {
+  TextareaWidgetProps,
+  WrappedTextareaProps,
+} from "@/widgetLibrary/TextAreaWidget/interface"
+import {
+  getTextareaContentContainerStyle,
+  textareaContainerStyle,
+} from "@/widgetLibrary/TextAreaWidget/style"
 
-export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
-  (props, ref) => {
-    const {
+export const WrappedTextarea = forwardRef<
+  HTMLTextAreaElement,
+  WrappedTextareaProps
+>((props, ref) => {
+  const {
+    displayName,
+    value,
+    placeholder,
+    disabled,
+    readOnly,
+    showCharacterCount,
+    colorScheme,
+    handleUpdateDsl,
+    handleOnChange,
+    handleOnFocus,
+    handleOnBlur,
+    allowClear,
+    maxLength,
+    handleUpdateMultiExecutionResult,
+    getValidateMessage,
+  } = props
+
+  const handleClear = () => handleUpdateDsl({ value: "" })
+
+  const handleChange = useCallback(
+    (value: string, e: any) => {
+      new Promise((resolve) => {
+        const message = getValidateMessage(value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              value: value || "",
+              validateMessage: message,
+            },
+          },
+        ])
+        resolve(true)
+      }).then(() => {
+        handleOnChange?.()
+      })
+    },
+    [
       displayName,
-      value,
-      placeholder,
-      disabled,
-      readOnly,
-      prefixIcon,
-      prefixText,
-      suffixIcon,
-      suffixText,
-      showCharacterCount,
-      colorScheme,
-      handleUpdateDsl,
-      handleOnChange,
-      handleOnFocus,
-      handleOnBlur,
-      allowClear,
-      maxLength,
-      minLength,
-      handleUpdateMultiExecutionResult,
       getValidateMessage,
-    } = props
+      handleOnChange,
+      handleUpdateMultiExecutionResult,
+    ],
+  )
 
-    return (
-      <Input
-        w="100%"
-        inputRef={ref}
-        value={value}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        prefix={prefixIcon}
-        addBefore={prefixText}
-        suffix={suffixIcon}
-        addAfter={suffixText}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        onChange={(value) => {
-          new Promise((resolve) => {
-            const message = getValidateMessage(value)
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  value: value || "",
-                  validateMessage: message,
-                },
-              },
-            ])
-            resolve(true)
-          }).then(() => {
-            handleOnChange?.()
-          })
-        }}
-        showWordLimit={showCharacterCount}
-        colorScheme={colorScheme}
-        allowClear={allowClear}
-        onClear={() => {
-          handleUpdateDsl({ value: "" })
-        }}
-        maxLength={maxLength}
-        minLength={minLength}
-      />
-    )
-  },
-)
-WrappedInput.displayName = "WrappedInput"
+  return (
+    <TextArea
+      // h="100%"
+      w="100%"
+      textAreaRef={ref}
+      value={value}
+      placeholder={placeholder}
+      disabled={disabled}
+      readOnly={readOnly}
+      maxLength={maxLength}
+      showWordLimit={showCharacterCount}
+      colorScheme={colorScheme}
+      allowClear={allowClear}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      onChange={handleChange}
+      onClear={handleClear}
+    />
+  )
+})
 
-export const InputWidget: FC<InputWidgetProps> = (props) => {
+WrappedTextarea.displayName = "WrappedTextarea"
+
+export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   const {
     value,
     placeholder,
     disabled,
     readOnly,
-    prefixIcon,
-    prefixText,
-    suffixIcon,
-    suffixText,
     showCharacterCount,
     colorScheme,
     displayName,
@@ -117,13 +123,12 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     validateMessage,
   } = props
 
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  const inputWrapperRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const textareaWrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (inputWrapperRef.current) {
-      updateComponentHeight(inputWrapperRef.current?.clientHeight)
+    if (textareaWrapperRef.current) {
+      updateComponentHeight(textareaWrapperRef.current?.clientHeight)
     }
   }, [validateMessage, labelPosition, updateComponentHeight])
 
@@ -165,29 +170,26 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     },
     [getValidateMessage, handleUpdateDsl],
   )
+
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       value,
       placeholder,
       disabled,
       readOnly,
-      prefixIcon,
-      prefixText,
-      suffixIcon,
-      suffixText,
       showCharacterCount,
       colorScheme,
       allowClear,
       minLength,
       maxLength,
       focus: () => {
-        inputRef.current?.focus()
+        textareaRef.current?.focus()
       },
       setValue: (value: boolean | string | number | void) => {
         handleUpdateDsl({ value })
       },
       clearValue: () => {
-        handleUpdateDsl({ value: undefined })
+        handleUpdateDsl({ value: "" })
       },
       validate: () => {
         return handleValidate(value)
@@ -206,10 +208,6 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     placeholder,
     disabled,
     readOnly,
-    prefixIcon,
-    prefixText,
-    suffixIcon,
-    suffixText,
     showCharacterCount,
     colorScheme,
     displayName,
@@ -221,10 +219,16 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     handleDeleteGlobalData,
     handleValidate,
   ])
+
   return (
-    <div ref={inputWrapperRef}>
+    <div ref={textareaWrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-        <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+        <div
+          css={[
+            applyLabelAndComponentWrapperStyle(labelPosition),
+            getTextareaContentContainerStyle(labelPosition),
+          ]}
+        >
           <Label
             labelFull={labelFull}
             label={label}
@@ -237,14 +241,13 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedInput
+          <WrappedTextarea
             {...props}
-            ref={inputRef}
+            ref={textareaRef}
             getValidateMessage={getValidateMessage}
           />
         </div>
       </TooltipWrapper>
-
       <div
         css={applyValidateMessageWrapperStyle(
           labelWidth,
@@ -258,4 +261,4 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
   )
 }
 
-InputWidget.displayName = "InputWidget"
+WrappedTextarea.displayName = "WrappedTextarea"
