@@ -348,7 +348,10 @@
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
           "table": "Table",
-          "insert_record": "Array of records to insert"
+          "insert_record": "Array of records to insert",
+          "dropdown": {
+            "retry": "点击重试"
+          }
         }
       },
       "resource": {
