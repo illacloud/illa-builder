@@ -4,7 +4,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
-import { MenuItemType, SubMenuProps } from "@illa-design/react"
+import { MenuItemProps, MenuItemType, SubMenuProps } from "@illa-design/react"
 import { NewButton } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/newButton"
 import { SetterMenuItem } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/setterMenuItem"
 import { SetterSubMenu } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/setterSubMenu"
@@ -15,6 +15,33 @@ import {
 } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/style"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { MenuOptionSetterProps } from "./interface"
+
+function getDifferentLabelFromValue(
+  values: MenuItemType[],
+  prefix: string,
+): string {
+  let label = `${prefix}${values.length}`
+  let plus = 0
+  while (values.find((item) => item.label === label)) {
+    plus++
+    label = `${prefix}${values.length + plus}`
+  }
+  return label
+}
+
+function getDifferentValueFromValue(
+  values: MenuItemType[],
+  prefix: string,
+  suffix: string,
+): string {
+  let value = `${prefix}${suffix}${values.length}`
+  let plus = 0
+  while (values.find((item) => item.value === value)) {
+    plus++
+    value = `${prefix}${suffix}${values.length + plus}`
+  }
+  return value
+}
 
 export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
   const {
@@ -47,8 +74,8 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
                 ...values,
                 {
                   id: v4(),
-                  label: `SubMenu ${values.length}`,
-                  value: `subMenu${values.length}`,
+                  label: getDifferentLabelFromValue(values, "Menu "),
+                  value: getDifferentValueFromValue(values, "", "menu"),
                 },
               ],
             })
@@ -74,6 +101,14 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
         {values.map((item, index) => (
           <Reorder.Item key={item.id} value={item}>
             <SetterSubMenu
+              onDelete={() => {
+                const newValues: MenuItemProps[] = values.filter(
+                  (_, i) => i !== index,
+                )
+                handleUpdateMultiAttrDSL?.({
+                  [attrName]: newValues,
+                })
+              }}
               value={item.value}
               label={item.label as string}
               onClickAdd={() => {
@@ -86,8 +121,15 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
                           ...(i.subItems ?? []),
                           {
                             id: v4(),
-                            label: `Menu ${i.subItems?.length}`,
-                            value: `${item.value}:menu${i.subItems?.length}`,
+                            label: getDifferentLabelFromValue(
+                              i.subItems!!,
+                              "Sub Menu ",
+                            ),
+                            value: getDifferentValueFromValue(
+                              i.subItems!!,
+                              `${item.value}:`,
+                              "subMenu",
+                            ),
                           },
                         ],
                       }
@@ -97,8 +139,8 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
                         subItems: [
                           {
                             id: v4(),
-                            label: "Menu 0",
-                            value: `${item.value}:menu0`,
+                            label: "Sub Menu 0",
+                            value: `${item.value}:subMenu0`,
                           },
                         ],
                       }
@@ -137,9 +179,30 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
                 }}
               >
                 {"subItems" in item &&
+                  ((item as SubMenuProps).subItems?.length ?? 0) > 0 &&
                   (item as SubMenuProps).subItems?.map((child, i) => (
                     <Reorder.Item key={child.id} value={child}>
                       <SetterMenuItem
+                        onDelete={() => {
+                          const newValues: MenuItemProps[] = [...values]
+                          const newSubItems =
+                            item.subItems?.filter(
+                              (subItem, subIndex) => subIndex !== i,
+                            ) ?? []
+                          if (newSubItems.length !== 0) {
+                            newValues[index] = {
+                              ...item,
+                              subItems: newSubItems,
+                            } as SubMenuProps
+                          } else {
+                            const newItem = { ...item }
+                            delete newItem.subItems
+                            newValues[index] = newItem
+                          }
+                          handleUpdateMultiAttrDSL?.({
+                            [attrName]: newValues,
+                          })
+                        }}
                         attrPath={`${attrName}.${index}.subItems.${i}`}
                         childrenSetter={childrenSetter}
                         widgetDisplayName={widgetDisplayName}
