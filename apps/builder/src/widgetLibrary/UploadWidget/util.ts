@@ -54,3 +54,18 @@ export const toBase64 = (file: UploadItem) =>
       resolve("")
     }
   })
+
+type ValueType = Array<{ status: string; value: any }>
+
+export const getFilteredValue = (values: ValueType = [], type?: string) => {
+  const filteredValue = values.filter(
+    (data) => data.value !== undefined && data.status === "fulfilled",
+  )
+  if (filteredValue && filteredValue.length > 0) {
+    const isBase64 = type === "base64"
+    return filteredValue.map((data) =>
+      isBase64 ? data.value.split(",")[1] : data.value,
+    )
+  }
+  return []
+}

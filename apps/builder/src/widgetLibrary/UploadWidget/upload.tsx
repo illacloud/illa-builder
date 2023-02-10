@@ -10,23 +10,7 @@ import {
   uploadLayoutStyle,
 } from "@/widgetLibrary/UploadWidget/style"
 import { UploadWidgetProps, WrappedUploadProps } from "./interface"
-import { getFileString, toBase64 } from "./util"
-
-type ValueType = Array<{ status: string; value: any }>
-
-const getFilteredValue = (values: ValueType = [], type?: string) => {
-  const filteredValue = values.filter(
-    (data) => data.value !== undefined && data.status === "fulfilled",
-  )
-  // data.value !== undefined && data.status !== "rejected",
-  if (filteredValue && filteredValue.length > 0) {
-    const isBase64 = type === "base64"
-    return filteredValue.map((data) =>
-      isBase64 ? data.value.split(",")[1] : data.value,
-    )
-  }
-  return []
-}
+import { getFileString, getFilteredValue, toBase64 } from "./util"
 
 export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   const {
@@ -93,14 +77,13 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
       const base64value = getFilteredValue(values, "base64")
       const parsed = getFilteredValue(parsedValues)
       const list =
-        fileList.map((file) => ({
-          ...file,
-          response: "",
+        fileList.map(({ originFile, response, ...restInfo }) => ({
+          ...restInfo,
           originFile: {
-            lastModified: file.originFile?.lastModified,
-            name: file.originFile?.name,
-            size: file.originFile?.size,
-            type: file.originFile?.type,
+            lastModified: originFile?.lastModified,
+            name: originFile?.name,
+            size: originFile?.size,
+            type: originFile?.type,
           },
         })) || []
       handleUpdateMultiExecutionResult([
@@ -125,7 +108,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
 
   return (
     <Upload
-      action={"https://www.mocky.io/v2/5cc8019d300000980a055e76"}
+      action="/"
       disabled={disabled}
       text={isDrag ? dropText : buttonText}
       colorScheme={colorScheme}
@@ -179,18 +162,13 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   const [currentFileList, setFileList] = useState<UploadItem[] | undefined>(
     undefined,
   )
-  // fileListRef.current,
   const fileCountRef = useRef<number>(0)
   const previousValueRef = useRef<UploadItem[]>([])
 
-  const uploadWrapperRef = useRef<HTMLDivElement>(null)
   const [containerRef, containerBounds] = useMeasure()
 
   useEffect(() => {
-    console.log("Update: ", containerBounds.height)
-    // if (uploadWrapperRef.current) {
     updateComponentHeight(containerBounds.height)
-    // }
   }, [updateComponentHeight, validateMessage, containerBounds.height])
 
   useEffect(() => {
@@ -235,7 +213,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       previousValueRef.current = [file]
       return
     }
-
     let files = [...previousValueRef.current]
     if (file.status === "init") {
       files.push(file)
@@ -255,7 +232,10 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     setFileList([...files])
     previousValueRef.current = [...files]
 
-    if (files.length === fileCountRef.current + fileListRef.current.length) {
+    if (
+      files.length === fileCountRef.current + fileListRef.current.length &&
+      !!fileCountRef.current
+    ) {
       const allSettled = files.every(
         (f) => f.status === "error" || f.status === "done",
       )
@@ -269,7 +249,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
         fileCountRef.current = 0
       }
     }
-
     return
   }
 
