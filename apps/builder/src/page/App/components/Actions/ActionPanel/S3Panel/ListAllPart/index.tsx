@@ -63,6 +63,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.bucket_name")}
         </span>
         <CodeEditor
+          singleLine
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
@@ -75,6 +76,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.prefix_to_filter_reseults")}
         </span>
         <CodeEditor
+          singleLine
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.prefix}
@@ -95,6 +97,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           </span>
         </Popover>
         <CodeEditor
+          singleLine
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.delimiter}
@@ -122,6 +125,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
             {t("editor.action.panel.s3.expiry_duration_of_signed_url")}
           </span>
           <CodeEditor
+            singleLine
             wrapperCss={s3ItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={String(commandArgs.expiry)}
@@ -143,6 +147,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           </span>
         </Popover>
         <CodeEditor
+          singleLine
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.maxKeys}
