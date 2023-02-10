@@ -49,7 +49,7 @@ export const extractReferencesFromScript = (script: string): string[] => {
     references.add(identifier)
     const subPaths = toPath(identifier)
     let current = ""
-    while (subPaths.length > 1) {
+    while (subPaths.length > 0) {
       current = convertPathToString(subPaths)
       references.add(current)
       subPaths.pop()

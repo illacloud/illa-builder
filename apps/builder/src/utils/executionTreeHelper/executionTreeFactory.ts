@@ -47,6 +47,7 @@ export class ExecutionTreeFactory {
     this.oldRawTree = cloneDeep(currentRawTree)
 
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
+    console.log("this.dependenciesState", this.dependenciesState)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
     this.inDependencyTree = this.generateInDependenciesMap()
     const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
@@ -205,9 +206,16 @@ export class ExecutionTreeFactory {
     return finalSortOrderArray
   }
 
-  mergeErrorTree(newErrorTree: Record<string, any>, paths: string[]) {
+  mergeErrorTree(
+    newErrorTree: Record<string, any>,
+    paths: string[],
+    isDeletedAction?: boolean,
+  ) {
     const oldErrorTree = cloneDeep(this.errorTree)
     paths.forEach((path) => {
+      if (isDeletedAction) {
+        unset(oldErrorTree, path)
+      }
       const newErrorTreeValue = get(newErrorTree, path)
       if (newErrorTreeValue) {
         set(oldErrorTree, path, newErrorTreeValue)
@@ -218,15 +226,28 @@ export class ExecutionTreeFactory {
     this.errorTree = oldErrorTree
   }
 
-  mergeDebugDataTree(newDebugDataTree: Record<string, any>, paths: string[]) {
+  mergeDebugDataTree(
+    newDebugDataTree: Record<string, any>,
+    paths: string[],
+    isDeletedAction?: boolean,
+  ) {
+    const oldDebugDataTree = cloneDeep(this.debuggerData)
+    const allOldDebugDataPaths = Object.keys(oldDebugDataTree || {})
     paths.forEach((path) => {
+      if (isDeletedAction) {
+        allOldDebugDataPaths.forEach((dp) => {
+          dp.includes(path) && delete oldDebugDataTree[dp]
+        })
+        return
+      }
       const newDebugData = newDebugDataTree[path]
       if (newDebugData) {
-        this.debuggerData[path] = newDebugData
+        oldDebugDataTree[path] = newDebugData
       } else {
-        delete this.debuggerData[path]
+        delete oldDebugDataTree[path]
       }
     })
+    this.debuggerData = oldDebugDataTree
   }
 
   updateExecutionTreeByUpdatePaths(
@@ -247,7 +268,7 @@ export class ExecutionTreeFactory {
     return currentExecutionTree
   }
 
-  updateTree(rawTree: RawTreeShape) {
+  updateTree(rawTree: RawTreeShape, isDeleteAction?: boolean) {
     const currentRawTree = cloneDeep(rawTree)
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
@@ -282,8 +303,12 @@ export class ExecutionTreeFactory {
       path,
     )
     this.oldRawTree = cloneDeep(currentRawTree)
-    this.mergeErrorTree(errorTree, path)
-    this.mergeDebugDataTree(debuggerData, path)
+    this.mergeErrorTree(errorTree, [...updatePaths, ...path], isDeleteAction)
+    this.mergeDebugDataTree(
+      debuggerData,
+      [...updatePaths, ...path],
+      isDeleteAction,
+    )
 
     this.executedTree = this.validateTree(evaluatedTree)
     return {
