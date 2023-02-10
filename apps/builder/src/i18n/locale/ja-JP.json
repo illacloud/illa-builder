@@ -1341,8 +1341,8 @@
         "placeholder": "メールアドレスを入力",
         "invited": "招待しました",
         "in_list": "このユーザーは既にチーム内にいます",
-        "notmail": "${email}はメールではありません",
-        "duplicate": "${email} は重複したメールアドレスです"
+        "notmail": "{{ email }}はメールではありません",
+        "duplicate": "{{ email }}は重複したメールアドレスです"
       },
       "invalid_email": "有効なメールアドレスを入力して下さい。"
     },
