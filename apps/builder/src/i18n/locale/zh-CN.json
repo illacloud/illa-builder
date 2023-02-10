@@ -542,6 +542,11 @@
         "api": "API",
         "database": "数据库",
         "js_transformer": "JavaScript Transformer"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "无法显示表。 请稍后再试。"
+        }
       }
     },
     "component": {
