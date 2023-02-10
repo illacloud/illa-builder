@@ -1,4 +1,5 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react"
+import useMeasure from "react-use-measure"
 import { Upload, UploadItem } from "@illa-design/react"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
@@ -168,6 +169,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     minSize,
     validateMessage,
     hideValidationMessage,
+    updateComponentHeight,
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -180,6 +182,16 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   // fileListRef.current,
   const fileCountRef = useRef<number>(0)
   const previousValueRef = useRef<UploadItem[]>([])
+
+  const uploadWrapperRef = useRef<HTMLDivElement>(null)
+  const [containerRef, containerBounds] = useMeasure()
+
+  useEffect(() => {
+    console.log("Update: ", containerBounds.height)
+    // if (uploadWrapperRef.current) {
+    updateComponentHeight(containerBounds.height)
+    // }
+  }, [updateComponentHeight, validateMessage, containerBounds.height])
 
   useEffect(() => {
     if (
@@ -377,7 +389,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   ])
 
   return (
-    <div css={uploadContainerStyle}>
+    <div css={uploadContainerStyle} ref={containerRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={uploadLayoutStyle}>
           <WrappedUpload
