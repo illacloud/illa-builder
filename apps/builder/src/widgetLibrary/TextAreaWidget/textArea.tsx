@@ -69,8 +69,8 @@ export const WrappedTextarea = forwardRef<
 
   return (
     <TextArea
-      // h="100%"
       w="100%"
+      flexGrow="1"
       textAreaRef={ref}
       value={value}
       placeholder={placeholder}
@@ -130,7 +130,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     if (textareaWrapperRef.current) {
       updateComponentHeight(textareaWrapperRef.current?.clientHeight)
     }
-  }, [validateMessage, labelPosition, updateComponentHeight])
+  }, [validateMessage, labelPosition])
 
   const getValidateMessage = useCallback(
     (value?: string) => {
@@ -221,7 +221,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   ])
 
   return (
-    <div ref={textareaWrapperRef}>
+    <div ref={textareaWrapperRef} css={textareaContainerStyle}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div
           css={[
