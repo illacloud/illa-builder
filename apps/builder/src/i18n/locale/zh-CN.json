@@ -1282,10 +1282,10 @@
       "name": "对话框"
     },
     "textarea": {
-      "name": "Textarea"
+      "name": "长文本输入"
     },
     "upload": {
-      "name": "Upload",
+      "name": "上传",
       "default_button_text": "Upload",
       "default_dropzone_text": "Select or drop a file here"
     }
