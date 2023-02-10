@@ -1340,7 +1340,9 @@
         "invite": "邀请",
         "placeholder": "输入电子邮件地址",
         "invited": "已邀请",
-        "in_list": "该用户已加入您的团队"
+        "in_list": "该用户已加入您的团队",
+        "notmail": "${email} 不是一个邮箱地址",
+        "duplicate": "${email} 是重复的电子邮件地址"
       },
       "invalid_email": "请输入有效的电子邮件"
     },
