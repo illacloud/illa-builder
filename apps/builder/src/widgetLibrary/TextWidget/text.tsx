@@ -101,7 +101,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
   const ref = useRef<HTMLDivElement>(null)
 
   const updateHeight = debounce(() => {
-    updateComponentHeight(ref.current?.clientHeight ?? 0)
+    updateComponentHeight?.(ref.current?.clientHeight ?? 0)
   }, 200)
 
   useEffect(() => {
