@@ -542,6 +542,11 @@
         "api": "API",
         "database": "データベース",
         "js_transformer": "JavaScript トランスフォーマー"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "テーブルを表示できませんでした。 後でもう一度やり直してください。"
+        }
       }
     },
     "component": {
