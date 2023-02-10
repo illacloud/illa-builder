@@ -36,7 +36,7 @@ export const BearerAuthPanel: FC<BearerAuthPanelProps> = (props) => {
             onBlur={onBlur}
             onChange={onChange}
             value={value}
-            borderColor="techPurple"
+            colorScheme="techPurple"
           />
         )}
         name="bearerToken"

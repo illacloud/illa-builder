@@ -231,7 +231,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       <div css={paginationWrapperStyle}>
         <Pagination
           total={dataSources?.length}
-          currentPage={currentPage}
+          current={currentPage}
           pageSize={itemNumber}
           size="medium"
           sizeCanChange={false}

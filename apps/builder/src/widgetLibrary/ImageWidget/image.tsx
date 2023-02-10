@@ -66,7 +66,9 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   const finalSrc = useMemo(() => {
     let finalURL = imageSrc
     if (finalURL && !isValidUrlScheme(finalURL)) {
-      finalURL = `https://${finalURL}`
+      if (!finalURL.startsWith("data:")) {
+        finalURL = `https://${finalURL}`
+      }
     }
     return finalURL
   }, [imageSrc])

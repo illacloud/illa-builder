@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
-import { CheckboxGroup } from "@illa-design/react"
+import { CheckboxGroup, CheckboxOption } from "@illa-design/react"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -185,7 +185,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
           />
           <WrappedCheckbox
             {...props}
-            options={finalOptions}
+            options={finalOptions as CheckboxOption[]}
             getValidateMessage={getValidateMessage}
           />
         </div>

@@ -75,6 +75,7 @@ export interface WrappedTableProps
 }
 
 export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {
+  columns: ColumnItemShape[]
   dataSource: any[]
   dataSourceJS: any[]
   dataSourceMode: "select" | "dynamic"

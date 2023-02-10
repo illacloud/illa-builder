@@ -75,7 +75,9 @@ export const SettingOthers: FC = () => {
           size="large"
           options={options}
           value={languageValue}
-          onChange={handleChangeLanguage}
+          onChange={(value) => {
+            handleChangeLanguage(value as string)
+          }}
         />
       </LabelAndSetter>
 

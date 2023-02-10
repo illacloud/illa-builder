@@ -53,6 +53,7 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
           <div css={transformSpaceStyle} />
           <RadioGroup
             css={transformRadioStyle}
+            forceEqualWidth={true}
             size="small"
             colorScheme="gray"
             value={cachedAction.transformer.enable}

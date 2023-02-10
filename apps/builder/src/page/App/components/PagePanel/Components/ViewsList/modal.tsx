@@ -30,7 +30,7 @@ export const Modal: FC<ModalProps> = (props) => {
           <Input
             w="200px"
             value={name}
-            borderColor="techPurple"
+            colorScheme="techPurple"
             onChange={(value) => {
               handleUpdateItem(`${attrPath}.key`, value)
             }}
@@ -47,7 +47,7 @@ export const Modal: FC<ModalProps> = (props) => {
           <Input
             w="200px"
             value={path}
-            borderColor="techPurple"
+            colorScheme="techPurple"
             onChange={(value) => {
               handleUpdateItem(`${attrPath}.path`, value)
             }}

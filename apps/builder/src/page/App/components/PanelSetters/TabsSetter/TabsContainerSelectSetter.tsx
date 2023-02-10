@@ -63,7 +63,13 @@ export const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (
         [attrName]: targetDisplayName,
       })
     },
-    [handleUpdateMultiAttrDSL, value],
+    [
+      containers,
+      handleUpdateMultiAttrDSL,
+      handleUpdateOtherMultiAttrDSL,
+      value,
+      widgetDisplayName,
+    ],
   )
 
   return (

@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
   AddIcon,
-  ButtonProps,
   Modal,
   Option,
   PenIcon,
@@ -21,6 +20,7 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { ActionTriggerMode } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
@@ -61,9 +61,7 @@ export const ResourceChoose: FC = () => {
         <span css={resourceTitleStyle}>{t("resources")}</span>
         <div css={resourceEndStyle}>
           <Select
-            flexShrink="1"
-            flexGrow="0"
-            minW="240px"
+            w="360px"
             colorScheme="techPurple"
             value={
               currentSelectResource
@@ -78,7 +76,7 @@ export const ResourceChoose: FC = () => {
                     ...action,
                     // selected resource is same as action type
                     actionType: resource.resourceType,
-                    resourceId: value,
+                    resourceId: value as string,
                     content:
                       selectedAction.actionType === value
                         ? selectedAction.content
@@ -88,21 +86,18 @@ export const ResourceChoose: FC = () => {
                 onChangeSelectedResource?.()
               }
             }}
-            addonAfter={{
-              buttonProps: {
-                variant: "outline",
-                colorScheme: "grayBlue",
-                leftIcon: (
-                  <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-04`)} />
-                ),
-                onClick: () => {
+            addAfter={
+              <PenIcon
+                color={globalColor(`--${illaPrefix}-grayBlue-04`)}
+                onClick={() => {
                   setEditorVisible(true)
-                },
-              } as ButtonProps,
-            }}
+                }}
+              />
+            }
           >
             <Option
               key="create"
+              value="create"
               isSelectOption={false}
               onClick={() => {
                 setGeneratorVisible(true)
@@ -133,14 +128,14 @@ export const ResourceChoose: FC = () => {
           </Select>
           <Select
             ml="8px"
-            w="auto"
+            w="360px"
             colorScheme="techPurple"
             value={action.triggerMode}
             onChange={(value) => {
               dispatch(
                 configActions.updateCachedAction({
                   ...action,
-                  triggerMode: value,
+                  triggerMode: value as ActionTriggerMode,
                 }),
               )
             }}

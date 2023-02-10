@@ -7,6 +7,46 @@ const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
 }
 
+export const tansDataFromOld = (
+  data: Record<any, any>[],
+  oldKeyMap: Record<string, ColumnItemShape>,
+  oldKeyOrder: string[],
+): ColumnItemShape[] => {
+  const reOrderColumns: ColumnItemShape[] = []
+  if (data?.length) {
+    const newKeys = Object.keys(data[0])
+    const filteredOldKeys = oldKeyOrder.filter((key) => {
+      return newKeys.includes(key) || oldKeyMap[key].custom
+    })
+    const finalKeys = filteredOldKeys.concat(
+      newKeys.filter((key) => {
+        return !filteredOldKeys.includes(key)
+      }),
+    )
+    finalKeys.forEach((key, index) => {
+      const oldItem = oldKeyMap[key]
+      if (oldItem) {
+        reOrderColumns.push({
+          ...oldItem,
+          columnIndex: index,
+        })
+      } else {
+        reOrderColumns.push({
+          id: key,
+          header: key,
+          accessorKey: key,
+          enableSorting: true,
+          type: "text",
+          visible: true,
+          format: "YYYY-MM-DD",
+          columnIndex: index,
+        })
+      }
+    })
+  }
+  return reOrderColumns
+}
+
 export const tansTableDataToColumns = (
   data: Record<any, any>[],
   oldOrders?: Array<number>,
@@ -33,18 +73,6 @@ export const tansTableDataToColumns = (
     })
   }
   return columns
-}
-
-export const concatCustomAndNewColumns = (
-  customColumns: ColumnItemShape[],
-  newColumns: ColumnItemShape[],
-) => {
-  return customColumns.concat(newColumns).sort((a, b) => {
-    if (isNumber(a.columnIndex) && isNumber(b.columnIndex)) {
-      return a.columnIndex - b.columnIndex
-    }
-    return 0
-  })
 }
 
 export const transTableColumnEvent = (events: any[], columnLength: number) => {

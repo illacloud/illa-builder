@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
-  DragIcon,
+  DragPointIcon,
   LockIcon,
   Trigger,
   WarningCircleIcon,
@@ -153,7 +153,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
       ) : (
         <>
           <div css={displayNameContainerStyle}>
-            <DragIcon css={dragPointIconWrapperStyle} />
+            <DragPointIcon css={dragPointIconWrapperStyle} />
             <span css={moveBarDisplayNameStyle}>{displayName}</span>
           </div>
           <CollaboratorsList

@@ -1,5 +1,5 @@
 import { FC, memo } from "react"
-import { Trigger, Text } from "@illa-design/react"
+import { Text, Trigger } from "@illa-design/react"
 import { PanelLabelProps } from "./interface"
 import { applyLabelTipsStyle } from "./style"
 

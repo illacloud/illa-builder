@@ -6,11 +6,7 @@ import {
   useState,
 } from "react"
 import { useTranslation } from "react-i18next"
-import {
-  CloseIcon,
-  SuccessCircleIcon,
-  WarningCircleIcon,
-} from "@illa-design/react"
+import { Alert, CloseIcon, SuccessCircleIcon } from "@illa-design/react"
 import { ApiError } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
@@ -21,8 +17,6 @@ import {
   applyMaxHeightStyle,
   codeStyle,
   customerCodeStyle,
-  errorIconStyle,
-  errorResultWrapperStyle,
   resCloseIconStyle,
   resultContainerStyle,
   resultSuccessLeftContainer,
@@ -45,7 +39,7 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
     const { t } = useTranslation()
     const [dragMaxHeight, setDragMaxHeight] = useState<number>()
 
-    useImperativeHandle(ref, () => panelRef.current as HTMLDivElement, [res])
+    useImperativeHandle(ref, () => panelRef.current as HTMLDivElement, [])
 
     return res ? (
       <div
@@ -53,10 +47,12 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
         ref={panelRef}
       >
         {result?.error ? (
-          <div css={errorResultWrapperStyle}>
-            <WarningCircleIcon css={errorIconStyle} fs="16px" />
-            <span>{(res as ApiError)?.errorMessage?.toString()}</span>
-          </div>
+          <Alert
+            bdRadius="0"
+            closable
+            type={"warning"}
+            title={(res as ApiError)?.errorMessage?.toString()}
+          />
         ) : (
           <>
             <DragBar

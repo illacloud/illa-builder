@@ -6,7 +6,7 @@ import {
   Button,
   ButtonGroup,
   FileDefaultIcon,
-  PaginationPreIcon,
+  PreviousIcon,
 } from "@illa-design/react"
 import { HuggingFaceConfigElementProps } from "@/page/App/components/Actions/HuggingFaceConfigElement/interface"
 import {
@@ -138,7 +138,7 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

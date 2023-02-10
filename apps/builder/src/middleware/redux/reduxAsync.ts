@@ -160,25 +160,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           case "updateComponentReflowReducer":
             const updateComponentReflowPayload: UpdateComponentReflowPayload =
               payload
-            if (Array.isArray(updateComponentReflowPayload)) {
-              updateComponentReflowPayload.forEach((payload) => {
-                const updateComponentReflowWSPayload =
-                  transformComponentReduxPayloadToWsPayload(payload.childNodes)
-                Connection.getRoom("app", currentAppID)?.send(
-                  getPayload(
-                    Signal.SIGNAL_UPDATE_STATE,
-                    Target.TARGET_COMPONENTS,
-                    true,
-                    {
-                      type,
-                      payload,
-                    },
-                    updateComponentReflowWSPayload,
-                  ),
-                )
-              })
-              return
-            }
+
             const updateComponentReflowWSPayload =
               transformComponentReduxPayloadToWsPayload(
                 updateComponentReflowPayload.childNodes,

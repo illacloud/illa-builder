@@ -10,6 +10,7 @@ import {
   eventAndMethodWrapperStyle,
   eventNameStyle,
   methodNameStyle,
+  triggerStyle,
 } from "./style"
 
 const getMethodName = (
@@ -74,6 +75,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       onVisibleChange={(visible) => {
         setModalVisible(visible)
       }}
+      _css={triggerStyle}
     >
       <div css={eventAndMethodWrapperStyle}>
         <div css={eventNameStyle}>

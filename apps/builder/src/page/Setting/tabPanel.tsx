@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
-import { PreIcon, TabPane, Tabs } from "@illa-design/react"
+import { PreviousIcon, TabPane, Tabs } from "@illa-design/react"
 import { SettingLayout } from "@/page/Setting/Components/Layout"
 import {
   backAreaStyle,
@@ -42,7 +42,7 @@ export const SettingTabNavBar: FC = () => {
           navigate("/dashboard")
         }}
       >
-        <PreIcon css={preIconStyle} />
+        <PreviousIcon css={preIconStyle} />
         <span css={tabPreTextStyle}>{t("back")}</span>
       </div>
     </div>
@@ -51,7 +51,7 @@ export const SettingTabNavBar: FC = () => {
   const suffixTabs = (
     <div css={css(tabPrefixStyle, tabSuffixStyle)} key="tab-suffix">
       <div css={backAreaStyle}>
-        <PreIcon css={preIconStyle} />
+        <PreviousIcon css={preIconStyle} />
         <span css={tabPreTextStyle}>{t("back")}</span>
       </div>
     </div>

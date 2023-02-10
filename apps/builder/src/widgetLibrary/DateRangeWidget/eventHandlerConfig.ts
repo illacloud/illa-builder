@@ -16,6 +16,5 @@ export const DATE_RANGE_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     "clearValue",
     "validate",
     "clearValidation",
-    "setDisabled",
   ],
 }

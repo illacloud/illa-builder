@@ -60,8 +60,7 @@ export const SettingPassword: FC = () => {
   ])
 
   const handleChangeNewPassword = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value
+    (value: string) => {
       setNewPassword(value)
       if (validatePasswordEmpty(value)) {
         setNewPasswordErrorMessage(t("setting.password.empty_password"))
@@ -85,8 +84,7 @@ export const SettingPassword: FC = () => {
   )
 
   const handleChangeConfirmPassword = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value
+    (value: string) => {
       setConfirmPassword(value)
       if (validatePasswordEmpty(value)) {
         setConfirmPasswordErrorMessage(t("setting.password.empty_password"))
@@ -120,8 +118,7 @@ export const SettingPassword: FC = () => {
   )
 
   const handleChangeCurrentPassword = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value
+    (value: string) => {
       setCurrentPassword(value)
       if (validatePasswordEmpty(value)) {
         setCurrentPasswordErrorMessage(t("setting.password.empty_password"))
@@ -149,7 +146,7 @@ export const SettingPassword: FC = () => {
           newPassword,
         },
       },
-      (response) => {
+      () => {
         setCurrentPassword("")
         setNewPassword("")
         setConfirmPassword("")
@@ -166,7 +163,7 @@ export const SettingPassword: FC = () => {
           })
         }
       },
-      (crash) => {
+      () => {
         message.error({
           content: t("network_error"),
         })
@@ -175,7 +172,7 @@ export const SettingPassword: FC = () => {
         setIsLoading(loading)
       },
     )
-  }, [currentPassword, newPassword, confirmPassword, t])
+  }, [currentPassword, newPassword, confirmPassword, message, t])
 
   return (
     <>
@@ -186,8 +183,10 @@ export const SettingPassword: FC = () => {
         <Password
           size="large"
           value={currentPassword}
-          onChange={handleChangeCurrentPassword}
-          borderColor="techPurple"
+          onChange={(v) => {
+            handleChangeCurrentPassword(v)
+          }}
+          colorScheme="techPurple"
           variant="fill"
         />
       </LabelAndSetter>
@@ -200,7 +199,7 @@ export const SettingPassword: FC = () => {
           size="large"
           value={newPassword}
           onChange={handleChangeNewPassword}
-          borderColor="techPurple"
+          colorScheme="techPurple"
           variant="fill"
         />
       </LabelAndSetter>
@@ -213,7 +212,7 @@ export const SettingPassword: FC = () => {
           size="large"
           value={confirmPassword}
           onChange={handleChangeConfirmPassword}
-          borderColor="techPurple"
+          colorScheme="techPurple"
           variant="fill"
         />
       </LabelAndSetter>

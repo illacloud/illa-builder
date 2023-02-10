@@ -55,7 +55,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
             <div css={recordStyle} key={index}>
               <Input
                 w="100%"
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 value={record.key}
                 placeholder="key"
                 bdRadius="8px 0 0 8px"
@@ -65,7 +65,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
               />
               <Input
                 w="100%"
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder="value"
                 value={record.value}
                 ml="-1px"
@@ -91,7 +91,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
         })}
       </>
     )
-  }, [onChangeKey, onChangeValue, onDelete, records])
+  }, [customRender, onChangeKey, onChangeValue, onDelete, records])
 
   return (
     <div css={applyRecordEditorContainerStyle(label)}>
