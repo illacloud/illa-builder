@@ -1036,6 +1036,7 @@ importers:
       '@illa-design/tabs': workspace:*
       '@illa-design/tag': workspace:*
       '@illa-design/theme': workspace:*
+      '@illa-design/time-picker': workspace:*
       '@illa-design/timeline': workspace:*
       '@illa-design/trigger': workspace:*
       '@illa-design/typography': workspace:*
@@ -1094,6 +1095,7 @@ importers:
       '@illa-design/tabs': link:../tabs
       '@illa-design/tag': link:../tag
       '@illa-design/theme': link:../theme
+      '@illa-design/time-picker': link:../time-picker
       '@illa-design/timeline': link:../timeline
       '@illa-design/trigger': link:../trigger
       '@illa-design/typography': link:../typography
