@@ -1,10 +1,4 @@
-import {
-  RefObject,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react"
+import { RefObject, forwardRef, useImperativeHandle, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { Alert, CloseIcon, SuccessCircleIcon } from "@illa-design/react"
 import { ApiError } from "@/api/base"
@@ -37,9 +31,15 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
     const res = result?.result
     const panelRef = useRef<HTMLDivElement>(null)
     const { t } = useTranslation()
-    const [dragMaxHeight, setDragMaxHeight] = useState<number>()
 
     useImperativeHandle(ref, () => panelRef.current as HTMLDivElement, [result])
+
+    const getMaxHeight = () => {
+      if (panelRef.current) {
+        const children = panelRef.current.children
+        return children[children.length - 1].scrollHeight + 40
+      }
+    }
 
     return res ? (
       <div
@@ -59,7 +59,7 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
               resizeRef={panelRef}
               placeholderRef={placeholderRef}
               minHeight={40}
-              maxHeight={dragMaxHeight}
+              getMaxHeight={getMaxHeight}
             />
             <div css={successResultWrapperStyle}>
               <div css={resultSuccessLeftContainer}>
@@ -68,19 +68,7 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
               </div>
               <CloseIcon css={resCloseIconStyle} onClick={onClose} />
             </div>
-            <div
-              css={codeStyle}
-              ref={(ele) => {
-                if (ele?.scrollHeight) {
-                  setDragMaxHeight(ele?.scrollHeight + 40)
-                }
-                if (placeholderRef?.current && ele?.clientHeight) {
-                  placeholderRef.current.style.paddingBottom = `${
-                    ele?.clientHeight + 48
-                  }px`
-                }
-              }}
-            >
+            <div css={codeStyle}>
               <CodeEditor
                 lang={CODE_LANG.SQL}
                 expectValueType={VALIDATION_TYPES.STRING}
