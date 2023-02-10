@@ -91,6 +91,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
 
   return (
     <form
+      autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
