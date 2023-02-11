@@ -97,7 +97,7 @@
     "@types/uuid": "^8.3.4",
     "@types/ws": "^8.5.3",
     "@vitejs/plugin-basic-ssl": "^0.1.2",
-    "@vitejs/plugin-react-swc": "^3.0.1",
+    "@vitejs/plugin-react-swc": "^3.1.0",
     "cross-env": "^7.0.3",
     "e2e": "workspace:*",
     "typescript": "^4.9.3",

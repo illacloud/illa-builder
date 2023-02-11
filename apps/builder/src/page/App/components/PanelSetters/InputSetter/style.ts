@@ -25,9 +25,6 @@ export const editableInputSetterStyle = css`
   align-items: center;
   border-radius: 8px;
   padding: 0 8px;
-  :hover {
-    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-  }
 `
 
 export const editableInputIconStyle = css`

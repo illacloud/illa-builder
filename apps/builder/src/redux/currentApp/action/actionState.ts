@@ -7,6 +7,10 @@ import {
   HuggingFaceAction,
   HuggingFaceBodyContent,
 } from "@/redux/currentApp/action/huggingFaceAction"
+import {
+  MicrosoftSqlAction,
+  MicrosoftSqlActionType,
+} from "@/redux/currentApp/action/microsoftSqlAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { MysqlLikeAction } from "./mysqlLikeAction"
@@ -53,6 +57,7 @@ export type ActionType =
   | "supabasedb"
   | "clickhouse"
   | "mysql"
+  | "mssql"
   | "restapi"
   | "graphql"
   | "mongodb"
@@ -89,6 +94,7 @@ export type ActionContent =
   | S3Action<S3ActionTypeContent>
   | ElasticSearchAction
   | MysqlLikeAction
+  | MicrosoftSqlAction<MicrosoftSqlActionType>
   | RestApiAction<BodyContent>
   | TransformerAction
   | RedisAction
