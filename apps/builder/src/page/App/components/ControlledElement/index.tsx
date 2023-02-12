@@ -10,7 +10,7 @@ import {
   TextArea,
   getColor,
 } from "@illa-design/react"
-import { ContrilledElementProps } from "./interface"
+import { ControlledElementProps } from "./interface"
 import {
   applyConfigItemContainer,
   applyConfigItemLabelText,
@@ -20,7 +20,7 @@ import {
   sslStyle,
 } from "./style"
 
-export const ControlledElement: FC<ContrilledElementProps> = (props) => {
+export const ControlledElement: FC<ControlledElementProps> = (props) => {
   const {
     title = "",
     contentLabel,

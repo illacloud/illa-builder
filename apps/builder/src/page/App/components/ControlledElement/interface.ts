@@ -15,7 +15,7 @@ export type ControlledType =
 
 type ValueType = string | boolean
 
-export interface ContrilledElementProps {
+export interface ControlledElementProps {
   title: string
   isRequired?: boolean
   defaultValue: ValueType[] | string | boolean

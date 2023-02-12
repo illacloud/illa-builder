@@ -33,6 +33,8 @@ export function getIconFromResourceType(
       return <GraphQLIcon size={size} />
     case "elasticsearch":
       return <ElasticIcon size={size} />
+    case "snowflake":
+      return <SnowflakeIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
     case "huggingface":
@@ -72,6 +74,8 @@ export function getIconFromActionType(
       return <GraphQLIcon size={size} />
     case "elasticsearch":
       return <ElasticIcon size={size} />
+    case "snowflake":
+      return <SnowflakeIcon size={size} />
     case "supabasedb":
       return <SupabaseIcon size={size} />
     case "smtp":
