@@ -400,7 +400,8 @@
             "warehouse": "Warehouse",
             "schema": "Schema",
             "snowflake_basic_auth": "Basic Auth",
-            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)"
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "役割"
           },
           "placeholder": {
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
