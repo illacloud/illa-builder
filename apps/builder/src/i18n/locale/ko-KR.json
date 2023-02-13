@@ -401,7 +401,7 @@
             "introspection": "Introspection",
             "bear_token": "Token",
             "connection_options": "연결 옵션",
-            "account_name": "계정 식별자",
+            "account_name": "계정 이름",
             "warehouse": "Warehouse",
             "schema": "Schema",
             "snowflake_basic_auth": "Basic Auth",
@@ -1481,6 +1481,24 @@
   "homepage": {
     "message": {
       "join_failed": "팀 가입 실패: 귀하의 이메일이 초대 이메일이 아닙니다."
+    }
+  },
+  "image_exceed": "이미지 크기는 500KB를 초과할 수 없습니다.",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "자르기",
+        "save": "저장",
+        "cancel": "취소"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "팀 아이디를 입력해주세요",
+        "save_fail": "저장 실패"
+      }
     }
   }
 }
