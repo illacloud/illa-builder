@@ -93,32 +93,34 @@ const handleCheckFileSize = (
   maxSizeType?: string,
   minSizeType?: string,
 ) => {
-  // default to MB
-  const getFileSizeNumber = (type?: string) =>
-    type !== "mb" ? 1024 : 1024 * 1024
+  if (value && (value as []).length) {
+    // default to MB
+    const getFileSizeNumber = (type?: string) =>
+      type !== "mb" ? 1024 : 1024 * 1024
 
-  const maxSizeNumber = maxSize ? maxSize * getFileSizeNumber(maxSizeType) : 0
-  const minSizeNumber = minSize ? minSize * getFileSizeNumber(minSizeType) : 0
+    const maxSizeNumber = maxSize ? maxSize * getFileSizeNumber(maxSizeType) : 0
+    const minSizeNumber = minSize ? minSize * getFileSizeNumber(minSizeType) : 0
 
-  for (let i = 0; i < (value as []).length; i++) {
-    const size =
-      (value as any)[i].originFile?.size ||
-      calculateFileSize((value as any)[i].originFile)
+    for (let i = 0; i < (value as []).length; i++) {
+      const size =
+        (value as any)[i].originFile?.size ||
+        calculateFileSize((value as any)[i].originFile)
 
-    if (!!maxSizeNumber && size > maxSizeNumber) {
-      return {
-        hasError: true,
-        errorMessage: `The file size can't exceed ${maxSize} ${(
-          maxSizeType || "MB"
-        ).toUpperCase()}.`,
+      if (!!maxSizeNumber && size > maxSizeNumber) {
+        return {
+          hasError: true,
+          errorMessage: `The file size can't exceed ${maxSize} ${(
+            maxSizeType || "MB"
+          ).toUpperCase()}.`,
+        }
       }
-    }
-    if (!!minSizeNumber && size < minSizeNumber) {
-      return {
-        hasError: true,
-        errorMessage: `The file size can't be less than ${minSize} ${(
-          minSizeType || "MB"
-        ).toUpperCase()}.`,
+      if (!!minSizeNumber && size < minSizeNumber) {
+        return {
+          hasError: true,
+          errorMessage: `The file size can't be less than ${minSize} ${(
+            minSizeType || "MB"
+          ).toUpperCase()}.`,
+        }
       }
     }
   }
@@ -133,17 +135,19 @@ const handleCheckFilesCount = (
   maxFiles?: number,
   minFiles?: number,
 ) => {
-  const length = (value as []).length
-  if (maxFiles && length > maxFiles) {
-    return {
-      fileCountInvalid: true,
-      countErrorMessage: `Support up to ${maxFiles} files.`,
+  if (value) {
+    const length = (value as []).length
+    if (maxFiles && length > maxFiles) {
+      return {
+        fileCountInvalid: true,
+        countErrorMessage: `Support up to ${maxFiles} files.`,
+      }
     }
-  }
-  if (minFiles && length < minFiles) {
-    return {
-      fileCountInvalid: true,
-      countErrorMessage: `At least ${minFiles} files are required.`,
+    if (minFiles && length < minFiles) {
+      return {
+        fileCountInvalid: true,
+        countErrorMessage: `At least ${minFiles} files are required.`,
+      }
     }
   }
   return {

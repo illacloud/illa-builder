@@ -268,7 +268,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     (value?: UploadItem[]) => {
       if (!hideValidationMessage) {
         const message = handleValidateCheck({
-          value: value || [],
+          value,
           minFiles,
           maxFiles,
           minSize,
@@ -298,9 +298,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
 
   const handleValidate = useCallback(
     (value?: UploadItem[]) => {
-      if (!value) {
-        return ""
-      }
       const message = getValidateMessage(value)
       handleUpdateDsl({
         validateMessage: message,
@@ -333,6 +330,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
         setFileList([])
       },
       validate: () => {
+        console.log(11111, currentFileList)
         return handleValidate(currentFileList)
       },
       setDisabled: (value: boolean) => {
