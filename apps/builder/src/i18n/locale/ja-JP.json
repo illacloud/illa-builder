@@ -1008,7 +1008,10 @@
       "min_value": "{{数値}}以上の値を入力してください",
       "regex": "必要なフォーマットに入力してください",
       "required": "必要",
-      "url": "有効なURLを入力してください"
+      "url": "有効なURLを入力してください",
+      "max_size": "ファイル サイズは {{maxSize }} {{ type }} を超えることはできません。",
+      "min_files": "少なくとも {{ minFiles }} ファイルが必要です。",
+      "max_files": "最大 {{ maxFiles }} ファイルがサポートされています。"
     },
     "widget_picker": {
       "empty_tip": "申し訳ありませんが、検索結果はありません",
@@ -1499,6 +1502,11 @@
         "save_suc": "保存しました",
         "save_fail": "保存に失敗しました"
       }
+    }
+  },
+  " editor": {
+    "validate_message": {
+      "min_size": "ファイル サイズは {{minSize }} {{ type }} より小さくすることはできません。"
     }
   }
 }
