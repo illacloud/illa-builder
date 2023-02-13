@@ -1482,5 +1482,23 @@
     "message": {
       "join_failed": "チームに参加できませんでした: あなたのメールは招待メールではありません。"
     }
+  },
+  "image_exceed": "写真のサイズは500MBを超えてはいけません。",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "切り取り",
+        "save": "保存",
+        "cancel": "キャンセル"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "保存しました",
+        "save_fail": "保存に失敗しました"
+      }
+    }
   }
 }
