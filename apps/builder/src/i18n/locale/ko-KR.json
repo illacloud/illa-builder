@@ -396,7 +396,7 @@
             "introspection": "Introspection",
             "bear_token": "Token",
             "connection_options": "연결 옵션",
-            "account_name": "Account Identifier",
+            "account_name": "계정 식별자",
             "warehouse": "Warehouse",
             "schema": "Schema",
             "snowflake_basic_auth": "Basic Auth",
