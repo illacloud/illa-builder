@@ -23,7 +23,7 @@ export const BasicAuthConfig: FC<
             required: true,
           },
         ]}
-        title={t("editor.action.resource.db.label.username_password")}
+        title={t("editor.action.resource.db.label.username")}
         name="username"
         defaultValue={username}
         placeholders={[

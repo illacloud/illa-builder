@@ -78,6 +78,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
 
   return (
     <form
+      autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
