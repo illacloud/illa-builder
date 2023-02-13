@@ -1482,5 +1482,23 @@
     "message": {
       "join_failed": "未成功加入团队：您登录的邮箱不是被邀请的邮箱"
     }
+  },
+  "image_exceed": "图片大小不能超过500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "裁剪",
+        "save": "保存",
+        "cancel": "取消"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "保存成功",
+        "save_fail": "保存失败"
+      }
+    }
   }
 }
