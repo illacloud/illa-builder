@@ -82,7 +82,7 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t(
                   "editor.action.resource.db.placeholder.hostname",
                 )}
@@ -114,6 +114,7 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
               ml="16px"
               mr="24px"
               type="button"
+              forceEqualWidth={true}
               onBlur={onBlur}
               onChange={(v, event) => {
                 setConnectionFormat(v)
@@ -162,7 +163,7 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   placeholder="3306"
                 />
               )}
@@ -194,7 +195,7 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
               onBlur={onBlur}
               onChange={onChange}
               value={value}
-              borderColor="techPurple"
+              colorScheme="techPurple"
               placeholder={t("editor.action.resource.db.placeholder.database")}
             />
           )}
@@ -223,7 +224,7 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 placeholder={t(
                   "editor.action.resource.db.placeholder.username",
                 )}
@@ -239,7 +240,7 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
             }}
             render={({ field: { value, onChange, onBlur } }) => (
               <Password
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 w="100%"
                 onBlur={onBlur}
                 onChange={onChange}

@@ -4,7 +4,7 @@ export interface DragBarProps extends HTMLAttributes<HTMLDivElement> {
   resizeRef: RefObject<HTMLDivElement>
   placeholderRef?: RefObject<HTMLDivElement>
   minHeight?: number
-  maxHeight?: number
+  getMaxHeight?: () => number | undefined
   setContainerDimensions?: (height: number) => void
   onChange?: () => void
 }

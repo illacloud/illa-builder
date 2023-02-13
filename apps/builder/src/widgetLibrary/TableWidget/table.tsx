@@ -1,20 +1,15 @@
-import { RowSelectionState, Updater } from "@tanstack/table-core"
-import { cloneDeep } from "lodash"
-import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
+import { RowSelectionState } from "@tanstack/table-core"
+import { cloneDeep, isEqual } from "lodash"
+import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
 import { useSelector } from "react-redux"
-import { Table, isNumber, isObject } from "@illa-design/react"
+import { Table, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
 import {
   ColumnItemShape,
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import {
-  concatCustomAndNewColumns,
-  getCellForType,
-  tansTableDataToColumns,
-  transTableColumnEvent,
-} from "./utils"
+import { getCellForType, tansDataFromOld, transTableColumnEvent } from "./utils"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -49,35 +44,27 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
     }, [data])
 
     const onRowSelectionChange = useCallback(
-      (value?: RowSelectionState | number) => {
-        let selectedRow = []
-        if (multiRowSelection) {
-          if (isObject(value)) {
-            Object.keys(value)?.map((key) => {
-              const index = Number(key)
-              if (formatData[index]) {
-                selectedRow.push(formatData[index])
-              }
-            })
-          }
-        } else {
-          if (isNumber(value) && formatData[value]) {
-            selectedRow.push(formatData[value])
-          }
+      (value?: RowSelectionState) => {
+        let selectedRow: unknown[] = []
+        if (isObject(value)) {
+          Object.keys(value)?.map((key) => {
+            const index = Number(key)
+            if (formatData[index]) {
+              selectedRow.push(formatData[index])
+            }
+          })
+        }
+        const updateValue = {
+          selectedRow: selectedRow,
+          rowSelection: value,
         }
         if (mode === "edit") {
-          handleUpdateOriginalDSLMultiAttr({
-            selectedRow: selectedRow,
-            rowSelection: value,
-          })
+          handleUpdateOriginalDSLMultiAttr(updateValue)
         } else {
           handleUpdateMultiExecutionResult([
             {
               displayName,
-              value: {
-                selectedRow: selectedRow,
-                rowSelection: value,
-              },
+              value: updateValue,
             },
           ])
         }
@@ -145,18 +132,23 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleDeleteGlobalData,
     handleOnClickMenuItem,
     handleUpdateOriginalDSLMultiAttr,
+    handleUpdateMultiExecutionResult,
     ...otherProps
   } = props
 
   const defaultSort = useMemo(() => {
-    if (!defaultSortKey) return undefined
+    if (!defaultSortKey || defaultSortKey === "default") return []
+    const columnsKeys = columns.map((item: ColumnItemShape) => {
+      return item.accessorKey
+    })
+    if (!columnsKeys.includes(defaultSortKey)) return []
     return [
       {
         id: defaultSortKey,
         desc: defaultSortOrder === "descend",
       },
     ]
-  }, [defaultSortOrder, defaultSortKey])
+  }, [defaultSortOrder, defaultSortKey, columns])
 
   const columnVisibility = useMemo(() => {
     const res: Record<string, boolean> = {}
@@ -231,24 +223,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateOriginalDSLMultiAttr({
       rowEvents,
     })
-  }, [rowEvents])
-
-  useEffect(() => {
-    const customColumns = columnsDef?.filter((item: any) => item.custom) ?? []
-    const customOrders = customColumns
-      .map((item) => item.columnIndex)
-      .filter((v) => v) as number[]
-    const newColumns = tansTableDataToColumns(realDataSourceArray, customOrders)
-    if (newColumns?.length) {
-      const reorderColumns = concatCustomAndNewColumns(
-        customColumns,
-        newColumns,
-      )
-      handleUpdateOriginalDSLMultiAttr?.({
-        columns: reorderColumns,
-      })
-    }
-  }, [realDataSourceArray])
+  }, [handleUpdateOriginalDSLMultiAttr, rowEvents])
 
   return (
     <WrappedTable
@@ -269,6 +244,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       handleUpdateGlobalData={handleUpdateGlobalData}
       handleDeleteGlobalData={handleDeleteGlobalData}
       handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+      handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
       handleUpdateDsl={handleUpdateDsl}
     />
   )

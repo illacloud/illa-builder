@@ -14,6 +14,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "Supabase DB"
       case "mysql":
         return "MySQL"
+      case "mssql":
+        return "Microsoft SQL"
       case "restapi":
         return "REST API"
       case "graphql":
@@ -33,7 +35,7 @@ export function getActionNameFromActionType(actionType: ActionType): string {
       case "smtp":
         return "SMTP"
       case "huggingface":
-        return "Hugging face Inference API"
+        return "Hugging Face Inference API"
       case "firebase":
         return "Firebase"
       case "clickhouse":
@@ -59,6 +61,8 @@ export function getResourceNameFromResourceType(
         return "Supabase DB"
       case "mysql":
         return "MySQL"
+      case "mssql":
+        return "Microsoft SQL"
       case "restapi":
         return "REST API"
       case "graphql":

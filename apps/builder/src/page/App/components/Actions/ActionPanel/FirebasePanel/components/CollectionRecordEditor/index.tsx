@@ -68,6 +68,7 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                 <div css={actionItemRecordEditorStyle}>
                   <CodeEditor
                     value={record.field}
+                    singleLine
                     onChange={(val) => {
                       handleChange(
                         index,
@@ -85,27 +86,30 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                     placeholder="field"
                   />
                 </div>
-                <div css={selectContainerStyle}>
-                  <Select
-                    colorScheme="techPurple"
-                    defaultValue={record.condition}
-                    value={record.condition}
-                    width="100%"
-                    bdRadius="0"
-                    onChange={(val: string) =>
-                      handleChange(
-                        index,
-                        record.field,
-                        record.value,
-                        val,
-                        onChange,
-                      )
-                    }
-                    options={OperationSelectList}
-                  />
-                </div>
+                <Select
+                  colorScheme="techPurple"
+                  showSearch={true}
+                  defaultValue={record.condition}
+                  value={record.condition}
+                  w="0"
+                  ml="-0.5px"
+                  mr="-0.5px"
+                  bdRadius="0"
+                  flexGrow="1"
+                  onChange={(val) =>
+                    handleChange(
+                      index,
+                      record.field,
+                      record.value,
+                      val as string,
+                      onChange,
+                    )
+                  }
+                  options={OperationSelectList}
+                />
                 <div css={actionItemRecordEditorStyle}>
                   <CodeEditor
+                    singleLine
                     value={record.value}
                     onChange={(val) => {
                       handleChange(

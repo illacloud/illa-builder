@@ -56,6 +56,7 @@ export class CopyManager {
     node: ComponentNode,
     offsetX?: number,
     offsetY?: number,
+    newParentNode?: ComponentNode,
   ): ComponentNode {
     const newNode = {
       ...node,
@@ -65,35 +66,13 @@ export class CopyManager {
       ),
       x: (offsetX ?? 0) + node.x,
       y: (offsetY ?? 0) + node.y,
+      parentNode: newParentNode?.displayName ?? node.parentNode,
     } as ComponentNode
-    this.changeComponentNodeChildrenDisplayName(newNode)
     if (Array.isArray(node.childrenNode)) {
-      newNode.childrenNode = node.childrenNode.map((node) =>
-        this.copyComponent(node),
+      newNode.childrenNode = node.childrenNode.map((n) =>
+        this.copyComponent(n, 0, 0, newNode),
       )
     }
     return newNode
-  }
-
-  private static changeComponentNodeChildrenDisplayName(
-    componentNode: ComponentNode,
-  ) {
-    if (
-      componentNode.childrenNode != null &&
-      componentNode.childrenNode.length > 0
-    ) {
-      componentNode.childrenNode.forEach((node) => {
-        node = {
-          ...node,
-          displayName: DisplayNameGenerator.generateDisplayName(
-            node.type,
-            node.showName,
-          ),
-        } as ComponentNode
-        if (node.childrenNode != null && node.childrenNode.length > 0) {
-          this.changeComponentNodeChildrenDisplayName(node)
-        }
-      })
-    }
   }
 }

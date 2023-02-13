@@ -34,29 +34,37 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [focus, setFocus] = useState(false)
 
+  const handleClickOnSpan = () => {
+    setFocus(true)
+    setTimeout(() => {
+      inputRef.current?.focus()
+    }, 100)
+  }
+
   return (
     <div css={containerStyle} className={className}>
       {focus ? (
         <Input
+          w="100%"
           autoFocus
           onChange={(value) => {
             handleUpdateDsl({ value })
           }}
-          showCount={showCharacterCount}
+          showWordLimit={showCharacterCount}
           onBlur={() => {
             setFocus(false)
           }}
           value={value}
-          addonAfter={{ render: suffixText }}
-          addonBefore={{ render: prefixText }}
-          suffix={{ render: suffixIcon }}
-          prefix={{ render: prefixIcon }}
-          ref={inputRef}
+          addAfter={suffixText}
+          addBefore={prefixText}
+          suffix={suffixIcon}
+          prefix={prefixIcon}
+          inputRef={inputRef}
           readOnly={readOnly}
           allowClear={allowClear}
           placeholder={placeholder}
           disabled={disabled}
-          borderColor={colorScheme}
+          colorScheme={colorScheme}
           maxLength={maxLength}
           minLength={minLength}
           onClear={() => handleUpdateDsl({ value: "" })}
@@ -64,9 +72,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
       ) : (
         <span
           css={applyTextCss(!!(value && value?.length > 0))}
-          onClick={() => {
-            setFocus(true)
-          }}
+          onClick={handleClickOnSpan}
         >
           {value && value?.length > 0 ? value : placeholder}
           <PenIcon />
@@ -110,8 +116,17 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
     validateMessage,
   } = props
+
+  const editableInputWrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (editableInputWrapperRef.current) {
+      updateComponentHeight(editableInputWrapperRef.current?.clientHeight)
+    }
+  }, [validateMessage, labelPosition, editableInputWrapperRef])
 
   const handleValidate = useCallback(
     (value?: any) => {
@@ -197,7 +212,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     handleValidate,
   ])
   return (
-    <>
+    <div ref={editableInputWrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -224,7 +239,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </>
+    </div>
   )
 }
 EditableTextWidget.displayName = "EditableTextWidget"

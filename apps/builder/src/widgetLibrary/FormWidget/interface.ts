@@ -1,7 +1,7 @@
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
-export interface FormWIdgetProps extends BaseWidgetProps {
+export interface FormWidgetProps extends BaseWidgetProps {
   childrenNode: ComponentNode[]
   showFooter: boolean
   showHeader: boolean
@@ -17,4 +17,5 @@ export interface FormWIdgetProps extends BaseWidgetProps {
   blockColumns: number
   handleOnFormInvalid: () => void
   handleOnFormSubmit: () => void
+  formData?: Record<string, any>
 }

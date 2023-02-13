@@ -135,10 +135,15 @@
           "api": "아피스",
           "configure": "구성 {{ name }}",
           "database": "데이터 베이스",
-          "select": "리소스 유형 선택"
+          "select": "리소스 유형 선택",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "{name} 을(를) 입력하세요"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -330,6 +335,28 @@
           "temperature": "Temperature",
           "repetition_penalty": "Repetition penalty",
           "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "어떤 SQL 문을 생성하시겠습니까?"
+          },
+          "button": {
+            "text": "SQL 생성"
+          }
+        },
+        "mssql": {
+          "config_type": "구성 유형",
+          "query": "질문",
+          "placeholder": {
+            "query": "select * from users;",
+            "table": "테이블 선택",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "시트",
+          "insert_record": "삽입할 레코드 배열",
+          "dropdown": {
+            "retry": "클릭하여 재시도하기"
+          }
         }
       },
       "resource": {
@@ -372,7 +399,16 @@
             "header_prefix": "Header prefix",
             "key": "Key",
             "introspection": "Introspection",
-            "bear_token": "Token"
+            "bear_token": "Token",
+            "connection_options": "연결 옵션",
+            "account_name": "계정 식별자",
+            "warehouse": "Warehouse",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "역할",
+            "username": "사용자 이름",
+            "password": "비밀번호"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -386,7 +422,16 @@
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "사용자 이름",
             "default": "default",
-            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). "
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
+            "database_name": "데이터베이스 이름",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "역할",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
           },
           "tip": {
             "connect_type": "클라우드 서버: ILLA 서버가 데이터베이스에 안전하게 연결됩니다.",
@@ -396,7 +441,8 @@
             "username_password": "자격 증명은 암호화되어 서버에 안전하게 저장됩니다.",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
             "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
-            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>"
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "connection_options": "Add connection options for your connection. When the SSL option is enabled, we will add encrypt and trustServerCertificate by default. "
           },
           "title": {
             "advanced_option": "고급 구성",
@@ -498,6 +544,23 @@
           "tip": {
             "external_reference": "정의된 변수에 대한 외부 참조를 생성할 수 있습니다. 예를 들어 {{ transformer2.value }}"
           }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
         }
       },
       "resource_choose": {
@@ -517,6 +580,11 @@
         "api": "아피스",
         "database": "데이터 베이스",
         "js_transformer": "자바스크립트 변환기"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "테이블을 표시하지 못했습니다. 나중에 다시 시도 해주십시오."
+        }
       }
     },
     "component": {
@@ -867,7 +935,7 @@
         "loading": "구성 요소가 로드되는지 여부를 제어합니다.",
         "map_data_option": "숫자 값 또는 키-값 개체를 사용하여 옵션을 매핑합니다. 데이터 소스의 모든 항목은 모든 옵션에 매핑됩니다.",
         "mapped_value": "{{ currentRow }}를 사용하여 현재 행의 데이터에 액세스합니다. 예를 들어 '비용' 및 '클릭수' 열에서 계산된 '클릭당 비용'은 다음과 같습니다.\n {{ currentRow.cost / currentRow.clickTimes }}",
-        "multi_row_selection": "{{table.selectedRow.data}} 를 사용하여 데이터에 액세스할 수 있습니다. 다중 행 선택이 활성화된 경우 다음과 같이 사용할 수 있는 배열을 반환합니다. {{ table1.selectedRow.data[0].email }}}. 다중 행 선택을 활성화하지 않은 경우 {{ table1.selectedRow.data.email }}과 같이 사용할 수 있는 객체를 반환합니다.",
+        "multi_row_selection": "{{table.selectedRow[n].columnName}} 를 사용하여 데이터에 액세스합니다.",
         "only_run_when": "이 이벤트가 실행되기 전에 충족되어야 하는 조건을 여기에 입력하십시오.",
         "placeholder": "입력에 값이 없을 때 표시할 메시지입니다.",
         "progress_percentage": "진행률 표시줄의 값 범위는 0-100입니다.",
@@ -1260,12 +1328,12 @@
       "name": "Modal"
     },
     "textarea": {
-      "name": "Textarea"
+      "name": "긴 텍스트 입력"
     },
     "upload": {
       "name": "업로드",
-      "default_button_text": "Upload",
-      "default_dropzone_text": "Select or drop a file here"
+      "default_button_text": "업로드",
+      "default_dropzone_text": "파일 선택 또는 드래그 앤 드롭"
     }
   },
   "page": {
@@ -1310,7 +1378,9 @@
         "invite": "초대",
         "placeholder": "이메일 주소를 입력하세요",
         "invited": "초대했다",
-        "in_list": "이 사용자는 이미 팀에 있습니다."
+        "in_list": "이 사용자는 이미 팀에 있습니다.",
+        "notmail": "{{ email }}는 이메일이 아닙니다.",
+        "duplicate": "{{ email }} 는 중복 이메일 주소입니다."
       },
       "invalid_email": "유효한 이메일 주소를 입력하세요"
     },
@@ -1338,10 +1408,10 @@
       "title": "소유권을 이전하시겠습니까?",
       "description": "전송 후 권한이 관리자로 변경됩니다.",
       "transfer": "전송",
-      "cancel": "取消"
+      "cancel": "취소"
     },
     "remove_modal": {
-      "title": "{{ username }}을(를) 삭제하시겠습니까 ?",
+      "title": "{{ username }} 를 제거하시겠습니까?",
       "description": "제거 후 사용자는 팀에 액세스할 수 없습니다.",
       "remove": "제거",
       "cancel": "취소"

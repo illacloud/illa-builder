@@ -9,7 +9,7 @@ export interface WrappedEditableTextProps
     InputProps,
     "placeholder" | "disabled" | "readOnly" | "maxLength" | "minLength"
   > {
-  showCharacterCount?: InputProps["showCount"]
+  showCharacterCount?: InputProps["showWordLimit"]
   value?: string
   className?: string
   prefixIcon?: ReactNode
@@ -18,12 +18,12 @@ export interface WrappedEditableTextProps
   suffixText?: string
   tooltipText?: string
   handleUpdateDsl: (value: any) => void
-  colorScheme?: InputProps["borderColor"]
+  colorScheme?: InputProps["colorScheme"]
   allowClear?: InputProps["allowClear"]
 }
 
 export interface EditableTextWidgetProps
-  extends WrappedEditableTextProps,
+  extends Omit<WrappedEditableTextProps, "maxLength">,
     BaseWidgetProps,
     LabelProps,
     Omit<ValidateMessageOldProps, "value"> {

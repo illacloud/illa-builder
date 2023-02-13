@@ -72,6 +72,7 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.from_email")}
           </span>
           <CodeEditor
+            singleLine
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.from}
@@ -99,6 +100,7 @@ export const SMTPPanel: FC = () => {
               {t("editor.action.panel.smtp.replay_email")}
             </span>
             <CodeEditor
+              singleLine
               wrapperCss={smtpItemCodeEditorStyle}
               lang={CODE_LANG.JAVASCRIPT}
               value={content.replyTo}
@@ -112,6 +114,7 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.to_email")}
           </span>
           <CodeEditor
+            singleLine
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.to}
@@ -125,6 +128,7 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.bcc_email")}
           </span>
           <CodeEditor
+            singleLine
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             placeholder={t("editor.action.panel.smtp.placeholder.emails")}
@@ -139,6 +143,7 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.cc_email")}
           </span>
           <CodeEditor
+            singleLine
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.cc}
@@ -153,6 +158,7 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.subject")}
           </span>
           <CodeEditor
+            singleLine
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.subject}
@@ -184,6 +190,7 @@ export const SMTPPanel: FC = () => {
             {t("editor.action.panel.smtp.attachment")}
           </span>
           <CodeEditor
+            singleLine
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.attachment}

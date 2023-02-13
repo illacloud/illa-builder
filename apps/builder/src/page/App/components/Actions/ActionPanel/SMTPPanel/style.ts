@@ -39,10 +39,11 @@ export const checkboxItemStyle = css`
 `
 
 export const smtpItemCodeEditorStyle = css`
-  width: 100%;
   margin-top: 8px;
   margin-bottom: 8px;
   margin-left: 16px;
+  flex-grow: 1;
+  width: 0;
 `
 
 export const codeEditorLabelStyle = css`

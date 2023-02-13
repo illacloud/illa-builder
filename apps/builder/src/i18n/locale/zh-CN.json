@@ -135,10 +135,15 @@
           "api": "API",
           "configure": "配置 {{ name }}",
           "database": "数据库",
-          "select": "选择资源类型"
+          "select": "选择资源类型",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "请输入{name}"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -330,6 +335,28 @@
           "temperature": "Temperature",
           "repetition_penalty": "Repetition penalty",
           "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "您想生成什么SQL语句"
+          },
+          "button": {
+            "text": "生成SQL"
+          }
+        },
+        "mssql": {
+          "config_type": "配置类型",
+          "query": "查询",
+          "placeholder": {
+            "query": "select * from users;",
+            "table": "选择一张表",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "表",
+          "insert_record": "待插入的记录数组",
+          "dropdown": {
+            "retry": "点击重试"
+          }
         }
       },
       "resource": {
@@ -372,7 +399,16 @@
             "header_prefix": "Header prefix",
             "key": "Key",
             "introspection": "Introspection",
-            "bear_token": "Token"
+            "bear_token": "Token",
+            "connection_options": "连接选项",
+            "account_name": "账户标识符",
+            "warehouse": "仓库",
+            "schema": "模式",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "用户角色",
+            "username": "用户名",
+            "password": "密码"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -386,7 +422,16 @@
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "用户名",
             "default": "default",
-            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). "
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
+            "database_name": "数据库名称",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "用户角色",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
           },
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
@@ -396,7 +441,8 @@
             "username_password": "凭证将被加密并安全存储在我们的服务器上",
             "introspection": "如果你的GraphQL端点不支持introspection查询，就开启该开关。请注意，禁用introspection会降低GraphQL的可用性，因为该资源的自动完成和提示将不再工作。",
             "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
-            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>"
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "connection_options": "为您的连接添加连接选项。当SSL选项开启时，我们会默认添加encrypt和trustServerCertificate。"
           },
           "title": {
             "advanced_option": "高级配置",
@@ -498,6 +544,23 @@
           "tip": {
             "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
           }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
         }
       },
       "resource_choose": {
@@ -517,6 +580,11 @@
         "api": "API",
         "database": "数据库",
         "js_transformer": "JavaScript Transformer"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "无法显示表。 请稍后再试。"
+        }
       }
     },
     "component": {
@@ -832,7 +900,7 @@
         "y_axis_name": "纵坐标名称",
         "y_axis_title": "Y轴标题",
         "height": "高度",
-        "min_height": "最小高度（像素）",
+        "min_height": "最小高度（px）",
         "show_underline": "展示下划线",
         "auto_play": "自动播放",
         "interval": "间隔时间（毫秒）",
@@ -1260,12 +1328,12 @@
       "name": "对话框"
     },
     "textarea": {
-      "name": "Textarea"
+      "name": "长文本输入"
     },
     "upload": {
-      "name": "Upload",
-      "default_button_text": "Upload",
-      "default_dropzone_text": "Select or drop a file here"
+      "name": "上传",
+      "default_button_text": "上传",
+      "default_dropzone_text": "选择或拖放一个文件"
     }
   },
   "page": {
@@ -1310,7 +1378,9 @@
         "invite": "邀请",
         "placeholder": "输入电子邮件地址",
         "invited": "已邀请",
-        "in_list": "该用户已加入您的团队"
+        "in_list": "该用户已加入您的团队",
+        "notmail": "{{ email }}不是一个邮箱地址",
+        "duplicate": "{{ email }}是重复的电子邮件地址"
       },
       "invalid_email": "请输入有效的电子邮件"
     },
@@ -1407,7 +1477,7 @@
   },
   "members": "成员",
   "invite_new_member": "邀请成员",
-  "launch": " 运行",
+  "launch": "运行",
   "homepage": {
     "message": {
       "join_failed": "未成功加入团队：您登录的邮箱不是被邀请的邮箱"

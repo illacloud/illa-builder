@@ -46,6 +46,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     canShowCompleteInfo = false,
     wrapperCss,
     sqlScheme = {},
+    singleLine,
     onChange,
   } = props
 
@@ -131,9 +132,16 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       : []
   }, [placeholder])
 
+  const singleLineExt: Extension = useMemo(() => {
+    return singleLine
+      ? EditorState.transactionFilter.of((tr) => {
+          return tr.newDoc.lines > 1 ? [] : [tr]
+        })
+      : EditorView.lineWrapping
+  }, [singleLine])
+
   const allExtensions = useMemo(() => {
     return [
-      EditorView.lineWrapping,
       basicExtensions,
       defaultThemeOption,
       focusUpdateListener,
@@ -141,6 +149,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       readOnlyStateChangeEffect,
       editableStateChangeEffect,
       placeholderExt,
+      singleLineExt,
       extensions,
     ]
   }, [
@@ -151,6 +160,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     readOnlyStateChangeEffect,
     editableStateChangeEffect,
     placeholderExt,
+    singleLineExt,
     extensions,
   ])
 

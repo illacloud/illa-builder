@@ -1,4 +1,4 @@
-import { get, set } from "lodash"
+import { get, isEqual, set } from "lodash"
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import {
   FC,
@@ -31,7 +31,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isObject } from "@/utils/typeHelper"
 import { BasicContainer } from "../BasicContainer/BasicContainer"
-import { FormWIdgetProps } from "./interface"
+import { FormWidgetProps } from "./interface"
 import {
   formBodyStyle,
   formContainerStyle,
@@ -95,7 +95,7 @@ interface DragCollection {
   isDraggingActive: boolean
 }
 
-export const FormWidget: FC<FormWIdgetProps> = (props) => {
+export const FormWidget: FC<FormWidgetProps> = (props) => {
   const {
     childrenNode,
     showFooter,
@@ -109,11 +109,13 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     resetAfterSuccessful,
     validateInputsOnSubmit,
     blockColumns,
+    formData: propsFormData,
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleOnFormInvalid,
     handleOnFormSubmit,
+    handleUpdateMultiExecutionResult,
   } = props
 
   const message = useMessage()
@@ -182,15 +184,23 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
   }, [allLikeInputChildrenNodeRealProps])
 
   useEffect(() => {
-    dispatch(
-      componentsActions.updateComponentPropsReducer({
-        displayName,
-        updateSlice: {
-          data: formData,
+    if (!isEqual(formData, propsFormData)) {
+      handleUpdateMultiExecutionResult?.([
+        {
+          displayName,
+          value: {
+            formData: formData,
+          },
         },
-      }),
-    )
-  }, [dispatch, displayName, formData])
+      ])
+    }
+  }, [
+    dispatch,
+    displayName,
+    formData,
+    handleUpdateMultiExecutionResult,
+    propsFormData,
+  ])
 
   useEffect(() => {
     if (prevDisabled.current !== disabled) {
@@ -258,14 +268,10 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         }
       })
       if (updateSlice.length > 0) {
-        dispatch(
-          executionActions.updateExecutionByMultiDisplayNameReducer(
-            updateSlice,
-          ),
-        )
+        handleUpdateMultiExecutionResult?.(updateSlice)
       }
     },
-    [dispatch, formDataKeyMapProps],
+    [formDataKeyMapProps, handleUpdateMultiExecutionResult],
   )
 
   const handleOnReset = useCallback(() => {
@@ -278,10 +284,8 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         },
       }
     })
-    dispatch(
-      executionActions.updateExecutionByMultiDisplayNameReducer(allUpdate),
-    )
-  }, [allLikeInputChildrenNode, dispatch])
+    handleUpdateMultiExecutionResult?.(allUpdate)
+  }, [allLikeInputChildrenNode, handleUpdateMultiExecutionResult])
 
   const handleOnSubmit = useCallback(() => {
     if (disabledSubmit || disabled) return

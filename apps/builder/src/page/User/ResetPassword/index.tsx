@@ -8,7 +8,7 @@ import {
   Input,
   Link,
   Password,
-  PreIcon,
+  PreviousIcon,
   WarningCircleIcon,
   getColor,
   useMessage,
@@ -109,7 +109,7 @@ export const ResetPassword: FC = () => {
           onClick={onClickBackToLogin}
         >
           <span css={hotspotWrapperStyle}>
-            <PreIcon css={prevIconStyle} />
+            <PreviousIcon css={prevIconStyle} />
             {t("user.forgot_password.subtitle")}
           </span>
         </div>
@@ -132,7 +132,7 @@ export const ResetPassword: FC = () => {
                       setErrorMsg({ ...errorMsg, email: "" })
                     }
                   }}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.email || !!errorMsg.email}
                   variant="fill"
@@ -168,7 +168,7 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   onChange={(value, event) => {
                     field.onChange(event)
                     if (errorMsg.verificationCode !== "") {
@@ -180,8 +180,8 @@ export const ResetPassword: FC = () => {
                     !!errors.verificationCode || !!errorMsg.verificationCode
                   }
                   variant="fill"
-                  suffix={{
-                    render: showCountDown ? (
+                  suffix={
+                    showCountDown ? (
                       <Countdown
                         value={Date.now() + 1000 * 60}
                         now={Date.now()}
@@ -241,8 +241,8 @@ export const ResetPassword: FC = () => {
                       >
                         {t("user.forgot_password.actions.send")}
                       </Link>
-                    ),
-                  }}
+                    )
+                  }
                   placeholder={t(
                     "user.forgot_password.placeholder.verification_code",
                   )}
@@ -273,7 +273,7 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
-                  borderColor="techPurple"
+                  colorScheme="techPurple"
                   size="large"
                   error={!!errors.newPassword}
                   variant="fill"

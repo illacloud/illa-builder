@@ -135,10 +135,15 @@
           "api": "API",
           "configure": "{{ name }} を設定",
           "database": "データベース",
-          "select": "リソースの種類を選択"
+          "select": "リソースの種類を選択",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "{name}入力してください"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -330,6 +335,28 @@
           "temperature": "Temperature",
           "repetition_penalty": "Repetition penalty",
           "max_time": "Max time"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "生成する SQL ステートメント"
+          },
+          "button": {
+            "text": "SQL生成"
+          }
+        },
+        "mssql": {
+          "config_type": "構成タイプ",
+          "query": "クエリ",
+          "placeholder": {
+            "query": "select * from users;",
+            "table": "テーブルを選択",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "テーブル",
+          "insert_record": "挿入するレコードの配列",
+          "dropdown": {
+            "retry": "クリックして再試行"
+          }
         }
       },
       "resource": {
@@ -372,7 +399,16 @@
             "header_prefix": "Header prefix",
             "key": "Key",
             "introspection": "Introspection",
-            "bear_token": "Token"
+            "bear_token": "Token",
+            "connection_options": "接続設定",
+            "account_name": "アカウント識別子",
+            "warehouse": "Warehouse",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "役割",
+            "username": "ユーザー名",
+            "password": "パスワード"
           },
           "placeholder": {
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
@@ -386,7 +422,16 @@
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "ユーザー名",
             "default": "default",
-            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). "
+            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
+            "database_name": "データベース名",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "役割",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
           },
           "tip": {
             "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
@@ -396,7 +441,8 @@
             "username_password": "資格情報は暗号化され、サーバーに安全に保存されます",
             "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
             "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
-            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>"
+            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "connection_options": "Add connection options for your connection. When the SSL option is enabled, we will add encrypt and trustServerCertificate by default. "
           },
           "title": {
             "advanced_option": "詳細設定",
@@ -498,6 +544,23 @@
           "tip": {
             "external_reference": "定義済み変数への外部参照を作成できます。たとえば、{{Transformer2.value}}"
           }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
         }
       },
       "resource_choose": {
@@ -517,6 +580,11 @@
         "api": "API",
         "database": "データベース",
         "js_transformer": "JavaScript トランスフォーマー"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "テーブルを表示できませんでした。 後でもう一度やり直してください。"
+        }
       }
     },
     "component": {
@@ -1260,12 +1328,12 @@
       "name": "Modal"
     },
     "textarea": {
-      "name": "Textarea"
+      "name": "長いテキスト入力"
     },
     "upload": {
-      "name": "Upload",
-      "default_button_text": "Upload",
-      "default_dropzone_text": "Select or drop a file here"
+      "name": "アップロード",
+      "default_button_text": "アップロード",
+      "default_dropzone_text": "選択もしくはファイルのドロップ"
     }
   },
   "page": {
@@ -1310,7 +1378,9 @@
         "invite": "招待",
         "placeholder": "メールアドレスを入力",
         "invited": "招待しました",
-        "in_list": "このユーザーは既にチーム内にいます"
+        "in_list": "このユーザーは既にチーム内にいます",
+        "notmail": "{{ email }}はメールではありません",
+        "duplicate": "{{ email }}は重複したメールアドレスです"
       },
       "invalid_email": "有効なメールアドレスを入力して下さい。"
     },

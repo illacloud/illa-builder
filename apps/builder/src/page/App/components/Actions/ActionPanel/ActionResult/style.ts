@@ -26,6 +26,7 @@ export const resultWrapperStyle = css`
 `
 
 export const errorResultWrapperStyle = css`
+  position: relative;
   ${resultWrapperStyle};
   background: ${globalColor(`--${illaPrefix}-orange-07`)};
 `

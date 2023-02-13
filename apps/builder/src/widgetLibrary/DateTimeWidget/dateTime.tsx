@@ -1,6 +1,6 @@
 import dayjs, { Dayjs } from "dayjs"
 import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
-import { DatePicker } from "@illa-design/react"
+import { SingleDatePicker } from "@illa-design/react"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -21,13 +21,13 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
       minDate,
       disabled,
       maxDate,
-      readOnly,
       minuteStep,
       colorScheme,
       handleOnChange,
       getValidateMessage,
       handleUpdateMultiExecutionResult,
       displayName,
+      readOnly,
     } = props
 
     const changeValue = (value?: unknown) => {
@@ -62,13 +62,12 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
     )
 
     return (
-      <DatePicker
+      <SingleDatePicker
         w="100%"
         showTime={{ step: { minute: minuteStep }, format }}
         colorScheme={colorScheme}
         format={format}
         value={value}
-        readOnly={readOnly}
         disabled={disabled}
         placeholder={placeholder}
         allowClear={showClear}
@@ -77,6 +76,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
           changeValue("")
         }}
         onChange={changeValue}
+        editable={!readOnly}
       />
     )
   },
@@ -93,10 +93,10 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     minDate,
     disabled,
     maxDate,
-    readOnly,
     minuteStep,
     colorScheme,
     displayName,
+    readOnly,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleUpdateDsl,
@@ -156,9 +156,9 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
       minDate,
       disabled,
       maxDate,
-      readOnly,
       minuteStep,
       colorScheme,
+      readOnly,
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -181,9 +181,9 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     minDate,
     disabled,
     maxDate,
-    readOnly,
     minuteStep,
     colorScheme,
+    readOnly,
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,

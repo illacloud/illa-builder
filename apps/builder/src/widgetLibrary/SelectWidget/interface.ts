@@ -15,7 +15,6 @@ export interface WrappedSelectProps
       | "loading"
       | "readOnly"
       | "showSearch"
-      | "inputValue"
       | "colorScheme"
     > {
   showClear?: SelectProps["allowClear"]
@@ -40,7 +39,7 @@ export interface SelectWidgetProps
   extends WrappedSelectProps,
     BaseWidgetProps,
     LabelProps,
-    TooltipWrapperProps {
+    Omit<TooltipWrapperProps, "children"> {
   optionConfigureMode?: "dynamic" | "static"
   manualOptions?: {
     label: string

@@ -154,6 +154,12 @@ import {
   TabsWidget,
 } from "@/widgetLibrary/TabsWidget"
 import {
+  TEXTAREA_EVENT_HANDLER_CONFIG,
+  TEXTAREA_PANEL_CONFIG,
+  TEXTAREA_WIDGET_CONFIG,
+  TextareaWidget,
+} from "@/widgetLibrary/TextAreaWidget"
+import {
   TEXT_EVENT_HANDLER_CONFIG,
   TEXT_PANEL_CONFIG,
   TEXT_WIDGET_CONFIG,
@@ -287,6 +293,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: EDITABLE_TEXT_WIDGET_CONFIG,
     panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
     eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
+  },
+  TEXTAREA_INPUT_WIDGET: {
+    widget: TextareaWidget,
+    config: TEXTAREA_WIDGET_CONFIG,
+    panelConfig: TEXTAREA_PANEL_CONFIG,
+    eventHandlerConfig: TEXTAREA_EVENT_HANDLER_CONFIG,
   },
   UPLOAD_WIDGET: {
     widget: UploadWidget,

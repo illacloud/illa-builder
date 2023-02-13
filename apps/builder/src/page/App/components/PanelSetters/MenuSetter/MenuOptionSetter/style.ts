@@ -1,6 +1,15 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
+
+export const menuOptionSetterContainerStyle = css`
+  box-sizing: border-box;
+  margin: 0 16px;
+  min-height: 264px;
+  border-radius: 8px;
+  border: 1px solid ${getColor("grayBlue", "08")};
+  overflow: hidden;
+`
 
 export const optionListHeaderStyle = css`
   width: 100%;
@@ -9,135 +18,78 @@ export const optionListHeaderStyle = css`
   justify-content: space-between;
   align-items: center;
   height: 40px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
   font-weight: 500;
   box-sizing: border-box;
-  ${publicPaddingStyle}
+  padding: 0 8px 0 16px;
 `
 
-export const modalStyle = css`
-  width: 320px;
-`
-
-export const headerActionButtonStyle = css`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+export const optionSubItemStyle = css`
   cursor: pointer;
-  font-weight: 400;
-  margin: 0 8px;
-`
-
-export const columnLabelStyle = css`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 16px 16px;
+  padding: 0 8px;
   font-size: 14px;
-  font-weight: 600;
-  line-height: 22px;
-`
-
-export const addIconStyle = css`
-  margin-right: 4px;
-  font-size: 12px;
-`
-
-export const ListStyle = css`
-  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  margin: 0 16px;
-  border-radius: 8px;
-  overflow: hidden;
-`
-
-export const optionListItemStyle = css`
-  //display: flex;
-  //justify-content: space-between;
-  padding-right: 16px;
-  //height: 40px;
+  height: 24px;
+  display: inline-flex;
+  color: ${getColor("techPurple", "01")};
   align-items: center;
-  cursor: pointer;
+  flex-direction: row;
+`
 
+export const setterSubMenuContainerStyle = css`
+  height: 40px;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  padding-right: 8px;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-items: center;
+  .dragIcon {
+    visibility: hidden;
+  }
   &:hover {
-    .movableIconWrapper {
-      opacity: 1;
+    .dragIcon {
+      visibility: visible;
     }
   }
 `
 
-export const dragItemStyle = css`
-  width: 100%;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-
-export const subMenuItemStyle = css`
-  padding-left: 16px;
-  height: 32px;
-`
-export const deleteButtonStyle = css`
-  width: calc(100% - 32px);
-  margin: 0 16px 16px;
-`
-
-export const labelNameAndIconStyle = css`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-`
-
-export const labelNameWrapperStyle = css`
-  font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-`
-
-export const movableIconWrapperStyle = css`
-  opacity: 0;
-  cursor: grab;
-  display: flex;
-  align-items: center;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-`
-
-export const emptyEmptyBodyStyle = css`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+export const setterMenuItemContainerStyle = css`
   height: 40px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-`
-
-export const iconAreaStyle = css`
+  cursor: pointer;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 8px;
   display: flex;
   flex-direction: row;
+  box-sizing: border-box;
   align-items: center;
-  justify-content: center;
-  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
-  cursor: pointer;
-  font-weight: 400;
-  white-space: pre;
-`
-
-export const baseIconStyle = css`
-  font-size: 16px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  cursor: pointer;
-  :hover {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  .dragIcon {
+    visibility: hidden;
+  }
+  &:hover {
+    .dragIcon {
+      visibility: visible;
+    }
   }
 `
 
-export const eyeIconStyle = css`
-  visibility: hidden;
-  ${baseIconStyle}
+export const setterSubMenuLabelStyle = css`
+  font-weight: 400;
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+`
+
+export const setterDivStyle = css`
+  flex-grow: 1;
 `
 
 export const removeNativeStyle = css`
   list-style: none;
   padding: 0;
   margin: 0;
+`
+
+export const deleteButtonContainer = css`
+  padding: 0 16px 16px 16px;
 `

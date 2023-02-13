@@ -6,7 +6,7 @@ import {
   Button,
   ButtonGroup,
   Divider,
-  PaginationPreIcon,
+  PreviousIcon,
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
@@ -67,12 +67,12 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
       data,
       {
         host: data.host,
-        port: +data.port,
+        port: data.port,
         username: data.username,
         password: data.password,
         databaseName: data.databaseName,
         ssl: generateSSLConfig(sslOpen, data, "clickhouse"),
-      },
+      } as ClickhouseResource,
       "clickhouse",
       setTestLoading,
     )
@@ -308,7 +308,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
       </div>
       <div css={footerStyle}>
         <Button
-          leftIcon={<PaginationPreIcon />}
+          leftIcon={<PreviousIcon />}
           variant="text"
           colorScheme="gray"
           type="button"

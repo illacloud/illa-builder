@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
   DropList,
+  DropListItem,
   Dropdown,
   Input,
   LoadingIcon,
@@ -33,7 +34,7 @@ import {
   warningCircleStyle,
 } from "./style"
 
-const Item = DropList.Item
+const Item = DropListItem
 
 export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
   (props, ref) => {
@@ -118,7 +119,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           },
         )
       },
-      [action, currentApp.appId, dispatch, t],
+      [action, currentApp.appId, dispatch, message, t],
     )
 
     return (
@@ -126,9 +127,10 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
         trigger="contextmenu"
         position="right-start"
         dropList={
-          <DropList width={"184px"}>
+          <DropList w="184px">
             <Item
               key={"rename"}
+              value={"rename"}
               title={t("editor.action.action_list.contextMenu.rename")}
               onClick={() => {
                 setEditName(true)
@@ -136,6 +138,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             />
             <Item
               key={"duplicate"}
+              value={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
               onClick={() => {
                 onCopyItem(action)
@@ -143,8 +146,9 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             />
             <Item
               key={"delete"}
+              value={"delete"}
               title={t("editor.action.action_list.contextMenu.delete")}
-              fontColor={globalColor(`--${illaPrefix}-red-03`)}
+              deleted
               onClick={() => {
                 onDeleteItem(action)
               }}
@@ -177,7 +181,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             ) : (
               <Input
                 ml="8px"
-                borderColor="techPurple"
+                colorScheme="techPurple"
                 size="small"
                 onPressEnter={(e) => {
                   changeDisplayName(e.currentTarget.value)
@@ -185,18 +189,11 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
                 defaultValue={action.displayName}
                 autoFocus
                 disabled={changing}
-                suffix={{
-                  render: (
-                    <>
-                      {changing && (
-                        <LoadingIcon
-                          c={getColor("grayBlue", "05")}
-                          spin={true}
-                        />
-                      )}
-                    </>
-                  ),
-                }}
+                suffix={
+                  changing && (
+                    <LoadingIcon c={getColor("grayBlue", "05")} spin={true} />
+                  )
+                }
                 onBlur={(event) => {
                   changeDisplayName(event.target.value)
                 }}

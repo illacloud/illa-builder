@@ -25,16 +25,18 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
         containerRef.current = node
       }}
     >
-      <RenderComponentCanvas
-        componentNode={componentNode}
-        containerPadding={4}
-        containerRef={containerRef}
-        canResizeY={canResizeY}
-        minHeight={minHeight}
-        safeRowNumber={safeRowNumber}
-        addedRowNumber={addedRowNumber}
-        blockColumns={blockColumns}
-      />
+      {componentNode && (
+        <RenderComponentCanvas
+          componentNode={componentNode}
+          containerPadding={4}
+          containerRef={containerRef}
+          canResizeY={canResizeY}
+          minHeight={minHeight}
+          safeRowNumber={safeRowNumber}
+          addedRowNumber={addedRowNumber}
+          blockColumns={blockColumns}
+        />
+      )}
     </div>
   )
 }
@@ -58,16 +60,18 @@ export const BasicContainerWithJSON: FC<BasicContainerProps> = (props) => {
         containerRef.current = node
       }}
     >
-      <RenderComponentCanvasWithJson
-        componentNode={componentNode}
-        containerPadding={4}
-        containerRef={containerRef}
-        canResizeY={canResizeY}
-        minHeight={minHeight}
-        safeRowNumber={safeRowNumber}
-        addedRowNumber={addedRowNumber}
-        blockColumns={blockColumns}
-      />
+      {componentNode && (
+        <RenderComponentCanvasWithJson
+          componentNode={componentNode}
+          containerPadding={4}
+          containerRef={containerRef}
+          canResizeY={canResizeY}
+          minHeight={minHeight}
+          safeRowNumber={safeRowNumber}
+          addedRowNumber={addedRowNumber}
+          blockColumns={blockColumns}
+        />
+      )}
     </div>
   )
 }

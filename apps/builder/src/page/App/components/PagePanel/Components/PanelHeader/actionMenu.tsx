@@ -1,15 +1,18 @@
 import { FC, useCallback, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { DropList, globalColor, illaPrefix } from "@illa-design/react"
+import {
+  DropList,
+  DropListItem,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { defaultPageProps } from "@/utils/generators/generatePageOrSectionConfig"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { PanelHeaderActionProps } from "./interface"
-
-const { Item } = DropList
 
 export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const { pageDisplayName, pageKeys } = props
@@ -32,17 +35,17 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   }, [dispatch, pageDisplayName])
 
   return (
-    <DropList width="184px">
-      <Item
-        key="reset"
+    <DropList w="184px">
+      <DropListItem
+        value="reset"
         title={t("editor.inspect.header.action_menu.reset_state")}
         onClick={handleClickDropListItem}
       />
       {pageKeys.length > 1 && (
-        <Item
-          key="delete"
+        <DropListItem
+          value="delete"
           title={t("editor.inspect.header.action_menu.delete")}
-          fontColor={globalColor(`--${illaPrefix}-red-03`)}
+          deleted
           onClick={() => {
             if (pageKeys.length === 1) {
               return

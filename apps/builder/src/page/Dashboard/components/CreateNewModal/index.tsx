@@ -76,7 +76,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
       okText={t("save")}
     >
       <Input
-        borderColor="techPurple"
+        colorScheme="techPurple"
         onChange={(res) => {
           setName(res)
         }}
