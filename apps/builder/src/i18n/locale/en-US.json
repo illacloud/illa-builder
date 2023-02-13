@@ -1482,5 +1482,23 @@
     "message": {
       "join_failed": "Failed to join the team: your email is not the invited email."
     }
+  },
+  "image_exceed": "Image size cannot exceed 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Crop",
+        "save": "Save",
+        "cancel": "Cancel"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Successfully saved",
+        "save_fail": "Failed to save"
+      }
+    }
   }
 }
