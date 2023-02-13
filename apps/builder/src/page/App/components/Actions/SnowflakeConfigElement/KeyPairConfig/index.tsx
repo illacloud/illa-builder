@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { Control } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { SnowflakeKeyAuthenticationType } from "@/redux/resource/snowflakeResource"
 
@@ -9,10 +10,12 @@ export const KeyPairConfig: FC<
   }
 > = (props) => {
   const { username, privateKey, control } = props
+  const { t } = useTranslation()
+
   return (
     <>
       <ControlledElement
-        controlledType={["input"]}
+        controlledType="input"
         control={control}
         isRequired
         rules={[
@@ -20,13 +23,15 @@ export const KeyPairConfig: FC<
             required: true,
           },
         ]}
-        title={"Username"}
-        name={"username"}
+        title={t("editor.action.resource.db.label.username")}
+        name="username"
         defaultValue={username}
-        placeholders={["illa"]}
+        placeholders={[
+          t("editor.action.resource.db.placeholder.snowflake_password"),
+        ]}
       />
       <ControlledElement
-        controlledType={["textarea"]}
+        controlledType="textarea"
         control={control}
         isRequired
         rules={[
@@ -34,11 +39,11 @@ export const KeyPairConfig: FC<
             required: true,
           },
         ]}
-        title={"Private Key"}
-        name={"privateKey"}
+        title={t("editor.action.resource.db.label.private_key")}
+        name="privateKey"
         defaultValue={privateKey}
         placeholders={[
-          "-----BEGIN ENCRYPTED PRIVATE KEY----- •••••••• -----END ENCRYPTED PRIVATE KEY-----",
+          t("editor.action.resource.db.placeholder.snowflake_private_key"),
         ]}
       />
     </>
