@@ -37,7 +37,7 @@ export function getActionNameFromActionType(actionType: ActionType): string {
       case "smtp":
         return "SMTP"
       case "huggingface":
-        return "Hugging face Inference API"
+        return "Hugging Face Inference API"
       case "firebase":
         return "Firebase"
       case "clickhouse":
