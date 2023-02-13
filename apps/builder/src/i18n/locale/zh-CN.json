@@ -401,7 +401,7 @@
             "introspection": "Introspection",
             "bear_token": "Token",
             "connection_options": "连接选项",
-            "account_name": "账户标识符",
+            "account_name": "账号名称",
             "warehouse": "仓库",
             "schema": "模式",
             "snowflake_basic_auth": "Basic Auth",
