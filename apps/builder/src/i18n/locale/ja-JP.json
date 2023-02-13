@@ -401,7 +401,7 @@
             "introspection": "Introspection",
             "bear_token": "Token",
             "connection_options": "接続設定",
-            "account_name": "アカウント識別子",
+            "account_name": "アカウント名",
             "warehouse": "Warehouse",
             "schema": "Schema",
             "snowflake_basic_auth": "Basic Auth",
@@ -1008,7 +1008,11 @@
       "min_value": "{{数値}}以上の値を入力してください",
       "regex": "必要なフォーマットに入力してください",
       "required": "必要",
-      "url": "有効なURLを入力してください"
+      "url": "有効なURLを入力してください",
+      "max_size": "ファイル サイズは {{maxSize }} {{ type }} を超えることはできません。",
+      "min_files": "少なくとも {{ minFiles }} ファイルが必要です。",
+      "max_files": "最大 {{ maxFiles }} ファイルがサポートされています。",
+      "min_size": "ファイル サイズは {{minSize }} {{ type }} より小さくすることはできません。"
     },
     "widget_picker": {
       "empty_tip": "申し訳ありませんが、検索結果はありません",
@@ -1481,6 +1485,24 @@
   "homepage": {
     "message": {
       "join_failed": "チームに参加できませんでした: あなたのメールは招待メールではありません。"
+    }
+  },
+  "image_exceed": "写真のサイズは500MBを超えてはいけません。",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "切り取り",
+        "save": "保存",
+        "cancel": "キャンセル"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "保存しました",
+        "save_fail": "保存に失敗しました"
+      }
     }
   }
 }

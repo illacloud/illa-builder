@@ -401,7 +401,7 @@
             "introspection": "Introspection",
             "bear_token": "Token",
             "connection_options": "Connection options",
-            "account_name": "Account Identifier",
+            "account_name": "Account name",
             "warehouse": "Warehouse",
             "schema": "Schema",
             "snowflake_basic_auth": "Basic Auth",
@@ -1008,7 +1008,11 @@
       "min_value": "Must be greater than {{ number }}",
       "regex": "Please match the requested format",
       "required": "This field is required",
-      "url": "Please enter a valid URL"
+      "url": "Please enter a valid URL",
+      "max_size": "The file size can't exceed {{maxSize }} {{ type }}.",
+      "min_files": "At least {{ minFiles }} files are required.",
+      "max_files": "Support up to {{ maxFiles }} files.",
+      "min_size": "The file size can't be less than {{minSize }} {{ type }}."
     },
     "widget_picker": {
       "empty_tip": "Sorry, no search results",
@@ -1481,6 +1485,24 @@
   "homepage": {
     "message": {
       "join_failed": "Failed to join the team: your email is not the invited email."
+    }
+  },
+  "image_exceed": "Image size cannot exceed 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Crop",
+        "save": "Save",
+        "cancel": "Cancel"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Successfully saved",
+        "save_fail": "Failed to save"
+      }
     }
   }
 }

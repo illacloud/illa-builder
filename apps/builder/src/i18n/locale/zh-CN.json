@@ -401,7 +401,7 @@
             "introspection": "Introspection",
             "bear_token": "Token",
             "connection_options": "连接选项",
-            "account_name": "账户标识符",
+            "account_name": "账号名称",
             "warehouse": "仓库",
             "schema": "模式",
             "snowflake_basic_auth": "Basic Auth",
@@ -1008,7 +1008,11 @@
       "min_value": "请输入不小于{{ number }} 的值",
       "regex": "请按照要求的格式填写",
       "required": "必填",
-      "url": "请输入有效的URL"
+      "url": "请输入有效的URL",
+      "max_size": "文件大小不能超过 {{maxSize }} {{ type }}。",
+      "min_files": "要求至少 {{ minFiles }} 个文件。",
+      "max_files": "支持最多 {{ maxFiles }} 个文件。",
+      "min_size": "文件大小不能小于{{minSize }} {{ type }}。"
     },
     "widget_picker": {
       "empty_tip": "抱歉，没有搜索结果",
@@ -1481,6 +1485,24 @@
   "homepage": {
     "message": {
       "join_failed": "未成功加入团队：您登录的邮箱不是被邀请的邮箱"
+    }
+  },
+  "image_exceed": "图片大小不能超过500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "裁剪",
+        "save": "保存",
+        "cancel": "取消"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "保存成功",
+        "save_fail": "保存失败"
+      }
     }
   }
 }
