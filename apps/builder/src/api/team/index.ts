@@ -75,6 +75,7 @@ export const getTeamsInfo = (teamIdentifier?: string, token?: string) => {
     )
   })
 }
+
 export const updateTeamsInfo = (teamIdentifier?: string) => {
   return new Promise<TeamInfo[]>((resolve, reject) => {
     CloudTeamApi.request<TeamInfo[]>(
@@ -130,6 +131,7 @@ export const removeTeam = () => {
     )
   })
 }
+
 export const setInviteLinkEnabled = (inviteLinkEnabled: boolean) => {
   const teamInfo = getCurrentTeamInfo(store.getState())
   const teamIdentifier = teamInfo?.identifier
@@ -155,6 +157,7 @@ export const setInviteLinkEnabled = (inviteLinkEnabled: boolean) => {
     )
   })
 }
+
 export const updateTeamPermissionConfig = (
   allowEditorManageTeamMember: boolean,
   allowViewerManageTeamMember: boolean,
@@ -184,6 +187,7 @@ export const updateTeamPermissionConfig = (
     )
   })
 }
+
 export const fetchInviteLink = (userRole: USER_ROLE) => {
   return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
     CloudTeamApi.request<fetchInviteLinkResponse>(
@@ -203,6 +207,7 @@ export const fetchInviteLink = (userRole: USER_ROLE) => {
     )
   })
 }
+
 export const renewInviteLink = (userRole: USER_ROLE) => {
   return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
     CloudTeamApi.request<fetchInviteLinkResponse>(
@@ -248,6 +253,7 @@ export const inviteByEmail = (email: string, userRole: USER_ROLE) => {
     )
   })
 }
+
 export const changeTeamMembersRole = (
   teamMemberID: string,
   userRole: USER_ROLE,
@@ -262,9 +268,6 @@ export const changeTeamMembersRole = (
         },
       },
       (res) => {
-        // if (userRole === USER_ROLE.OWNER) {
-        // }
-        // getMembers()
         resolve(true)
       },
       (res) => {
@@ -276,6 +279,7 @@ export const changeTeamMembersRole = (
     )
   })
 }
+
 export const removeTeamMembers = (teamMemberID: string) => {
   return new Promise<boolean>((resolve, reject) => {
     CloudTeamApi.request(
