@@ -1011,7 +1011,8 @@
       "url": "Please enter a valid URL",
       "max_size": "The file size can't exceed {{maxSize }} {{ type }}.",
       "min_files": "At least {{ minFiles }} files are required.",
-      "max_files": "Support up to {{ maxFiles }} files."
+      "max_files": "Support up to {{ maxFiles }} files.",
+      "min_size": "The file size can't be less than {{minSize }} {{ type }}."
     },
     "widget_picker": {
       "empty_tip": "Sorry, no search results",
@@ -1502,11 +1503,6 @@
         "save_suc": "Successfully saved",
         "save_fail": "Failed to save"
       }
-    }
-  },
-  " editor": {
-    "validate_message": {
-      "min_size": "The file size can't be less than {{minSize }} {{ type }}."
     }
   }
 }
