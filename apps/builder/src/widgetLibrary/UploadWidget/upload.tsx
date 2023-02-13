@@ -77,15 +77,13 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
       const base64value = getFilteredValue(values, "base64")
       const parsed = getFilteredValue(parsedValues)
       const list =
-        fileList.map(({ originFile, response, ...restInfo }) => ({
-          ...restInfo,
-          originFile: {
-            lastModified: originFile?.lastModified,
-            name: originFile?.name,
-            size: originFile?.size,
-            type: originFile?.type,
-          },
-        })) || []
+        fileList.map((file) => {
+          if (!file) {
+            return
+          }
+          const { originFile, ...others } = file
+          return others
+        }) || []
       handleUpdateMultiExecutionResult([
         {
           displayName,
@@ -94,7 +92,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
             value: base64value,
             parsedValue: parsed,
             validateMessage: message,
-            fileList: list,
+            currentList: list,
           },
         },
       ])
@@ -148,7 +146,9 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     minSizeType,
     maxSizeType,
     maxSize,
-    fileList,
+    currentList,
+    value,
+    files,
     minSize,
     validateMessage,
     hideValidationMessage,
@@ -173,25 +173,28 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
 
   useEffect(() => {
     if (
-      fileList &&
-      fileList.length > 0 &&
+      currentList &&
+      currentList.length > 0 &&
+      value &&
+      files &&
       previousValueRef.current.length === 0
     ) {
-      const shownList = fileList.map(
-        (file) =>
-          ({
-            ...file,
-            originFile: new File(
-              [JSON.stringify(file.originFile)],
-              file.name || "",
-            ),
-          } as UploadItem),
-      )
+      const shownList = currentList.map((file, index) => {
+        const base64 = value[index]
+        const info = files[index]
+        return {
+          ...file,
+          originFile: new File([base64], info.name, {
+            type: info.type,
+            lastModified: info.lastModified,
+          }),
+        } as UploadItem
+      })
       setFileList(shownList)
       fileListRef.current = shownList
       previousValueRef.current = shownList
     }
-  }, [fileList])
+  }, [currentList, value, files])
 
   const handleOnRemove = (file: UploadItem, fileList: UploadItem[]) => {
     let files = [...previousValueRef.current]

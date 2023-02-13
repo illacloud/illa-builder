@@ -45,7 +45,14 @@ export interface UploadWidgetProps
     BaseWidgetProps,
     TooltipWrapperProps,
     Omit<ValidateMessageOldProps, "value"> {
-  fileList?: UploadItem[]
+  currentList?: UploadItem[]
   displayName: string
   validateMessage: string
+  value?: string[]
+  files?: {
+    lastModified: number
+    name: string
+    size: number
+    type: string
+  }[]
 }
