@@ -398,9 +398,10 @@
             "connection_options": "连接选项",
             "account_name": "账户标识符",
             "warehouse": "仓库",
-            "schema": "Schema",
+            "schema": "模式",
             "snowflake_basic_auth": "Basic Auth",
-            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)"
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "用户角色"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
