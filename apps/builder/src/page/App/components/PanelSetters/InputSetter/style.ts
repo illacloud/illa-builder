@@ -35,3 +35,9 @@ export const editableInputIconStyle = css`
   align-items: center;
   justify-content: center;
 `
+
+export const inputWithSelectSetterStyle = css`
+  display: flex;
+  align-items: center;
+  width: 184px;
+`

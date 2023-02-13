@@ -59,6 +59,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           {!customSelected && (
             <Switch
               onChange={(value) => {
+                console.log({ attrName, value })
                 handleUpdateDsl(attrName, value)
               }}
               checked={value}

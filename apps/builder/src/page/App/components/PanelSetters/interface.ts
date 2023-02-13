@@ -4,6 +4,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 export interface BaseSetter {
   isSetterSingleRow?: boolean
   value?: any
+  values?: any
   attrName: string
   parentAttrName?: string
   panelConfig?: Record<string, any>
@@ -14,6 +15,7 @@ export interface BaseSetter {
     updateSlice: Record<string, unknown>,
   ) => void
   expectedType: VALIDATION_TYPES
+  attrNames?: string[]
   isInList?: boolean
   widgetDisplayName: string
   widgetType: string

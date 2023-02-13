@@ -124,9 +124,14 @@ export const transformEvents = (
   if (actionType === "widget") {
     const { widgetID, widgetMethod, enabled } = event
     if (
-      ["setValue", "setImageUrl", "setStartValue", "setEndValue"].includes(
-        widgetMethod,
-      )
+      [
+        "setValue",
+        "setImageUrl",
+        "setStartValue",
+        "setEndValue",
+        "setDisabled",
+        "setHidden",
+      ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
       return {
@@ -141,6 +146,7 @@ export const transformEvents = (
     }
     if (
       widgetMethod === "clearValue" ||
+      widgetMethod === "clearValidation" ||
       widgetMethod === "toggle" ||
       widgetMethod === "focus" ||
       widgetMethod === "reset" ||

@@ -171,6 +171,12 @@ import {
   TIMELINE_WIDGET_CONFIG,
   TimelineWidget,
 } from "@/widgetLibrary/TimelineWidget"
+import {
+  UPLOAD_EVENT_HANDLER_CONFIG,
+  UPLOAD_PANEL_CONFIG,
+  UPLOAD_WIDGET_CONFIG,
+  UploadWidget,
+} from "@/widgetLibrary/UploadWidget"
 import { WidgetConfigs } from "./interface"
 
 export const WidgetConfig: WidgetConfigs = {
@@ -293,6 +299,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: TEXTAREA_WIDGET_CONFIG,
     panelConfig: TEXTAREA_PANEL_CONFIG,
     eventHandlerConfig: TEXTAREA_EVENT_HANDLER_CONFIG,
+  },
+  UPLOAD_WIDGET: {
+    widget: UploadWidget,
+    config: UPLOAD_WIDGET_CONFIG,
+    panelConfig: UPLOAD_PANEL_CONFIG,
+    eventHandlerConfig: UPLOAD_EVENT_HANDLER_CONFIG,
   },
   CHART: {
     widget: ChartWidget,
