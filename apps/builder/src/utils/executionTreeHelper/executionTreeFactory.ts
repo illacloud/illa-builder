@@ -1,7 +1,8 @@
-import { Diff, applyChange, diff } from "deep-diff"
+import { Diff, diff } from "deep-diff"
 import { cloneDeep, flatten, get, set, unset } from "lodash"
 import toposort from "toposort"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DependenciesState,
@@ -15,7 +16,6 @@ import {
   getDisplayNameAndAttrPath,
   getWidgetOrActionDynamicAttrPaths,
   isDynamicString,
-  wrapFunctionCode,
 } from "@/utils/evaluateDynamicString/utils"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import {
@@ -176,8 +176,18 @@ export class ExecutionTreeFactory {
     let sortOrders: string[] = []
     let parents = cloneDeep(changes)
     let subSortOrderArray: string[]
+    const modifyDependencyTree = cloneDeep(inDependencyTree)
+    Object.keys(modifyDependencyTree).forEach((key) => {
+      modifyDependencyTree[key] = modifyDependencyTree[key].filter((value) => {
+        return !changes.includes(value)
+      })
+    })
+
     while (true) {
-      subSortOrderArray = this.getEvaluationSortOrder(parents, inDependencyTree)
+      subSortOrderArray = this.getEvaluationSortOrder(
+        parents,
+        modifyDependencyTree,
+      )
       sortOrders = [...sortOrders, ...subSortOrderArray]
       parents = getImmediateParentsOfPropertyPaths(subSortOrderArray)
       if (parents.length <= 0) {
@@ -270,7 +280,11 @@ export class ExecutionTreeFactory {
     return currentExecutionTree
   }
 
-  updateTree(rawTree: RawTreeShape, isDeleteAction?: boolean) {
+  updateTree(
+    rawTree: RawTreeShape,
+    isDeleteAction?: boolean,
+    isUpdateActionReduxAction?: boolean,
+  ) {
     const currentRawTree = cloneDeep(rawTree)
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
@@ -303,6 +317,11 @@ export class ExecutionTreeFactory {
     const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       currentExecution,
       path,
+      -1,
+      {
+        isUpdateActionReduxAction: !!isUpdateActionReduxAction,
+        isDeleteAction: !!isDeleteAction,
+      },
     )
     this.oldRawTree = cloneDeep(currentRawTree)
     this.mergeErrorTree(errorTree, [...updatePaths, ...path], isDeleteAction)
@@ -388,6 +407,7 @@ export class ExecutionTreeFactory {
       currentExecutionTree,
       walkedPath,
     ) as RawTreeShape
+
     const { evaluatedTree } = this.executeTree(currentRawTree, orderPath)
     this.executedTree = this.validateTree(evaluatedTree)
     return {
@@ -494,6 +514,7 @@ export class ExecutionTreeFactory {
     oldRawTree: RawTreeShape,
     sortedEvalOrder: string[],
     point: number = -1,
+    reduxActionType?: Record<string, boolean>,
   ) {
     const oldLocalRawTree = cloneDeep(oldRawTree)
     const errorTree: ExecutionState["error"] = {}
@@ -539,22 +560,21 @@ export class ExecutionTreeFactory {
                 return current
               }
             }
-            if (widgetOrAction.actionType === "transformer") {
-              const evaluateTransform = wrapFunctionCode(
-                widgetOrAction.content.transformerString,
+            if (
+              widgetOrAction.actionType === "transformer" &&
+              !reduxActionType?.isUpdateActionReduxAction
+            ) {
+              let calcResult = runActionTransformer(
+                widgetOrAction,
+                current,
+                false,
               )
-              const canEvalString = `{{${evaluateTransform}()}}`
-              let calcResult = ""
-              try {
-                calcResult = evaluateDynamicString("", canEvalString, current)
-                set(current, `${widgetOrAction.displayName}.value`, calcResult)
-              } catch (e) {
-                console.log(e)
-              }
+              set(current, `${widgetOrAction.displayName}.value`, calcResult)
             }
             if (
               widgetOrAction.actionType !== "transformer" &&
-              widgetOrAction.triggerMode === "automate"
+              widgetOrAction.triggerMode === "automate" &&
+              !reduxActionType?.isUpdateActionReduxAction
             ) {
               const {
                 $actionId,

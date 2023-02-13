@@ -1,4 +1,5 @@
 import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
+import useMeasure from "react-use-measure"
 import { TextArea } from "@illa-design/react"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
@@ -69,7 +70,7 @@ export const WrappedTextarea = forwardRef<
 
   return (
     <TextArea
-      // h="100%"
+      h="100%"
       w="100%"
       textAreaRef={ref}
       value={value}
@@ -125,10 +126,11 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const textareaWrapperRef = useRef<HTMLDivElement>(null)
+  const [messageWrapperRef, bounds] = useMeasure()
 
   useEffect(() => {
     if (textareaWrapperRef.current) {
-      updateComponentHeight(textareaWrapperRef.current?.clientHeight)
+      updateComponentHeight?.(textareaWrapperRef.current?.clientHeight)
     }
   }, [validateMessage, labelPosition, updateComponentHeight])
 
@@ -221,13 +223,16 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   ])
 
   return (
-    <div ref={textareaWrapperRef}>
+    <div style={{ height: "100%", width: "100%" }}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div
           css={[
             applyLabelAndComponentWrapperStyle(labelPosition),
             getTextareaContentContainerStyle(labelPosition),
           ]}
+          style={{
+            height: `calc(100% - ${bounds.height}px)`,
+          }}
         >
           <Label
             labelFull={labelFull}
@@ -241,11 +246,13 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedTextarea
-            {...props}
-            ref={textareaRef}
-            getValidateMessage={getValidateMessage}
-          />
+          <div style={{ height: "100%", width: "100%" }}>
+            <WrappedTextarea
+              {...props}
+              ref={textareaRef}
+              getValidateMessage={getValidateMessage}
+            />
+          </div>
         </div>
       </TooltipWrapper>
       <div
@@ -254,6 +261,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
           labelPosition,
           labelHidden || !label,
         )}
+        ref={messageWrapperRef}
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>

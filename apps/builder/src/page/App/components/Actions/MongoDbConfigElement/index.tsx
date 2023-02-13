@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -23,6 +23,7 @@ import {
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
   MongoDbConfig,
   MongoDbResource,
@@ -73,6 +74,10 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const [sslOpen, setSSLOpen] = useState(content.ssl.open ?? false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+
+  const handleSwitchValueChange = useCallback((open: boolean | string) => {
+    setSSLOpen(!!open)
+  }, [])
 
   return (
     <form
@@ -334,6 +339,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                 ml="16px"
                 mr="24px"
                 type="button"
+                forceEqualWidth={true}
                 onBlur={onBlur}
                 onChange={(v, event) => {
                   onChange(v, event)
@@ -361,95 +367,40 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
         {configType === "uri" && (
           <MongoDbUriMode control={control} resourceId={resourceId} />
         )}
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.db.label.ssl_options")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={content.ssl.open}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Switch
-                checked={value}
-                ml="16px"
-                colorScheme="techPurple"
-                onChange={(open) => {
-                  onChange(open)
-                  setSSLOpen(open)
-                }}
-                onBlur={onBlur}
-              />
-            )}
-            name="open"
-          />
-          <span css={sslStyle}>
-            {t("editor.action.resource.db.tip.ssl_options")}
-          </span>
-        </div>
+
+        <ControlledElement
+          controlledType={["switch"]}
+          title={t("editor.action.resource.db.label.ssl_options")}
+          control={control}
+          defaultValue={content.ssl.open}
+          name="open"
+          onValueChange={handleSwitchValueChange}
+          contentLabel={t("editor.action.resource.db.tip.ssl_options")}
+        />
+
         {sslOpen && (
           <>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.mongodb_ssl_client")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={content.ssl.client}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    onBlur={onBlur}
-                    onChange={onChange}
-                    value={value}
-                    autoSize
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.mongo_certificate",
-                    )}
-                  />
-                )}
-                name="client"
-              />
-            </div>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.mongodb_ssl_ca")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={content.ssl.ca}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    autoSize
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="ca"
-              />
-            </div>
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.resource.db.label.mongodb_ssl_client")}
+              control={control}
+              defaultValue={content.ssl.client}
+              name="client"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.mongo_certificate"),
+              ]}
+            />
+
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.resource.db.label.mongodb_ssl_ca")}
+              control={control}
+              defaultValue={content.ssl.ca}
+              name="ca"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
           </>
         )}
       </div>
