@@ -103,12 +103,10 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
     allowClear,
     disabled,
     readOnly,
-    handleOnChange,
-    handleOnFocus,
-    handleOnBlur,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleUpdateDsl,
+    triggerEventHandler,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -157,6 +155,18 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
   ])
+
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
+  const handleOnFocus = useCallback(() => {
+    triggerEventHandler("focus")
+  }, [triggerEventHandler])
+
+  const handleOnBlur = useCallback(() => {
+    triggerEventHandler("blur")
+  }, [triggerEventHandler])
 
   return (
     <div ref={wrapperRef}>

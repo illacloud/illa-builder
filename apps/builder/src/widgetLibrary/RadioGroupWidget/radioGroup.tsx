@@ -84,6 +84,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     validateMessage,
+    triggerEventHandler,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -174,6 +175,10 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     }
   }, [labelPosition, direction, finalOptions, validateMessage])
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -194,6 +199,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
             {...props}
             options={finalOptions}
             getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
           />
         </div>
       </TooltipWrapper>

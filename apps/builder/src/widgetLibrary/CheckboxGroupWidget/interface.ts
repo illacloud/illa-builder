@@ -22,7 +22,7 @@ export interface WrappedCheckboxGroupProps
 }
 
 export interface CheckboxGroupWidgetProps
-  extends WrappedCheckboxGroupProps,
+  extends Omit<WrappedCheckboxGroupProps, "handleOnChange">,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,

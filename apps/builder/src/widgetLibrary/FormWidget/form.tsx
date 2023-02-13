@@ -27,7 +27,6 @@ import { getIllaMode } from "@/redux/config/configSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isObject } from "@/utils/typeHelper"
 import { BasicContainer } from "../BasicContainer/BasicContainer"
@@ -113,9 +112,8 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    handleOnFormInvalid,
-    handleOnFormSubmit,
     handleUpdateMultiExecutionResult,
+    triggerEventHandler,
   } = props
 
   const message = useMessage()
@@ -226,8 +224,8 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   ])
 
   const handleOnInvalid = useCallback(() => {
-    handleOnFormInvalid()
-  }, [handleOnFormInvalid])
+    triggerEventHandler("invalid")
+  }, [triggerEventHandler])
 
   const handleOnValidate = useCallback(() => {
     allLikeInputChildrenNode.forEach((node) => {
@@ -312,7 +310,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
         return
       }
     }
-    handleOnFormSubmit()
+    triggerEventHandler("submit")
     if (resetAfterSuccessful) {
       handleOnReset()
     }
@@ -320,11 +318,11 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     allLikeInputChildrenNode,
     disabled,
     disabledSubmit,
-    handleOnFormSubmit,
     handleOnInvalid,
     handleOnReset,
     message,
     resetAfterSuccessful,
+    triggerEventHandler,
     validateInputsOnSubmit,
   ])
 
