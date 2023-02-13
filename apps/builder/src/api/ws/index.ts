@@ -87,7 +87,6 @@ export class Connection {
     Api.request<Room>(
       config,
       (response) => {
-        console.log(response.data.wsURL, "response.data.wsURL")
         let ws = generateNewWs(response.data.wsURL)
         this.roomMap.set(type + roomId, ws)
       },
