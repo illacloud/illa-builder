@@ -401,7 +401,7 @@
             "introspection": "Introspection",
             "bear_token": "Token",
             "connection_options": "接続設定",
-            "account_name": "アカウント識別子",
+            "account_name": "アカウント名",
             "warehouse": "Warehouse",
             "schema": "Schema",
             "snowflake_basic_auth": "Basic Auth",
