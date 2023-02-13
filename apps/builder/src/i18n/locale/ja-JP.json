@@ -135,10 +135,15 @@
           "api": "API",
           "configure": "{{ name }} を設定",
           "database": "データベース",
-          "select": "リソースの種類を選択"
+          "select": "リソースの種類を選択",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "{name}入力してください"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -401,7 +406,9 @@
             "schema": "Schema",
             "snowflake_basic_auth": "Basic Auth",
             "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
-            "role": "役割"
+            "role": "役割",
+            "username": "ユーザー名",
+            "password": "パスワード"
           },
           "placeholder": {
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
@@ -536,6 +543,23 @@
           },
           "tip": {
             "external_reference": "定義済み変数への外部参照を作成できます。たとえば、{{Transformer2.value}}"
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
         }
       },

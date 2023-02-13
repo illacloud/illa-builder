@@ -135,10 +135,15 @@
           "api": "아피스",
           "configure": "구성 {{ name }}",
           "database": "데이터 베이스",
-          "select": "리소스 유형 선택"
+          "select": "리소스 유형 선택",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "{name} 을(를) 입력하세요"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -401,7 +406,9 @@
             "schema": "Schema",
             "snowflake_basic_auth": "Basic Auth",
             "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
-            "role": "역할"
+            "role": "역할",
+            "username": "사용자 이름",
+            "password": "비밀번호"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -536,6 +543,23 @@
           },
           "tip": {
             "external_reference": "정의된 변수에 대한 외부 참조를 생성할 수 있습니다. 예를 들어 {{ transformer2.value }}"
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
         }
       },
