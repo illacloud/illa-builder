@@ -49,7 +49,7 @@ export const docItemStyle = css`
   justify-content: space-between;
   gap: 6px;
   color: ${getColor("grayBlue", "03")};
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     cursor: pointer;
     color: ${getColor("techPurple", "01")};
   }

@@ -348,7 +348,10 @@
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
           "table": "Table",
-          "insert_record": "Array of records to insert"
+          "insert_record": "Array of records to insert",
+          "dropdown": {
+            "retry": "클릭하여 재시도하기"
+          }
         }
       },
       "resource": {
@@ -392,7 +395,7 @@
             "key": "Key",
             "introspection": "Introspection",
             "bear_token": "Token",
-            "connection_options": "Connection options"
+            "connection_options": "연결 옵션"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -407,7 +410,7 @@
             "username": "사용자 이름",
             "default": "default",
             "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
-            "database_name": "Database name"
+            "database_name": "데이터베이스 이름"
           },
           "tip": {
             "connect_type": "클라우드 서버: ILLA 서버가 데이터베이스에 안전하게 연결됩니다.",
@@ -539,6 +542,11 @@
         "api": "아피스",
         "database": "데이터 베이스",
         "js_transformer": "자바스크립트 변환기"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "테이블을 표시하지 못했습니다. 나중에 다시 시도 해주십시오."
+        }
       }
     },
     "component": {
@@ -1282,12 +1290,12 @@
       "name": "Modal"
     },
     "textarea": {
-      "name": "Textarea"
+      "name": "긴 텍스트 입력"
     },
     "upload": {
       "name": "업로드",
-      "default_button_text": "Upload",
-      "default_dropzone_text": "Select or drop a file here"
+      "default_button_text": "업로드",
+      "default_dropzone_text": "파일 선택 또는 드래그 앤 드롭"
     }
   },
   "page": {

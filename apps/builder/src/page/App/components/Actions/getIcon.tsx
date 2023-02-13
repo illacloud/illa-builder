@@ -6,6 +6,7 @@ import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
 import { GraphQLIcon } from "@/page/App/components/Icons/graphql"
 import { HuggingFaceIcon } from "@/page/App/components/Icons/huggingface"
 import { MariaDbIcon } from "@/page/App/components/Icons/mariadb"
+import { MicrosoftSqlIcon } from "@/page/App/components/Icons/microsoftsql"
 import { MongoDbIcon } from "@/page/App/components/Icons/mongodb"
 import { MySqlIcon } from "@/page/App/components/Icons/mysql"
 import { PostgreSqlIcon } from "@/page/App/components/Icons/postgresql"
@@ -44,6 +45,8 @@ export function getIconFromResourceType(
       return <S3Icon size={size} />
     case "mysql":
       return <MySqlIcon size={size} />
+    case "mssql":
+      return <MicrosoftSqlIcon size={size} />
     case "restapi":
       return <RestApiIcon size={size} />
     case "mongodb":
@@ -85,6 +88,8 @@ export function getIconFromActionType(
       return <S3Icon size={size} />
     case "mysql":
       return <MySqlIcon size={size} />
+    case "mssql":
+      return <MicrosoftSqlIcon size={size} />
     case "restapi":
       return <RestApiIcon size={size} />
     case "mongodb":

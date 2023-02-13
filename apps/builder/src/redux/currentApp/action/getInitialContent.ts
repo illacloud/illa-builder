@@ -6,6 +6,7 @@ import { ElasticSearchActionInitial } from "@/redux/currentApp/action/elasticSea
 import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
 import { GraphQLActionInitial } from "@/redux/currentApp/action/graphqlAction"
 import { HuggingFaceActionInitial } from "@/redux/currentApp/action/huggingFaceAction"
+import { MicrosoftSqlActionInitial } from "@/redux/currentApp/action/microsoftSqlAction"
 import { MongoDbActionInitial } from "@/redux/currentApp/action/mongoDbAction"
 import { MysqlLikeActionInitial } from "@/redux/currentApp/action/mysqlLikeAction"
 import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
@@ -23,6 +24,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
     case "mysql":
     case "postgresql":
       return MysqlLikeActionInitial
+    case "mssql":
+      return MicrosoftSqlActionInitial
     case "restapi":
       return RestApiActionInitial
     case "transformer":

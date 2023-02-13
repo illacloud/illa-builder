@@ -26,6 +26,10 @@ export function applyLabelStyle(isInList?: boolean): SerializedStyles {
   return isInList ? ListLabelStyle : baseLabelStyle
 }
 
+export const labelDescStyle = css`
+  word-break: break-all;
+`
+
 export function applyLabelTipsStyle(
   isInList?: boolean,
   hasLabelDesc?: boolean,

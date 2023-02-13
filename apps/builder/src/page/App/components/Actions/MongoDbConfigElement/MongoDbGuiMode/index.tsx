@@ -114,6 +114,7 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
               ml="16px"
               mr="24px"
               type="button"
+              forceEqualWidth={true}
               onBlur={onBlur}
               onChange={(v, event) => {
                 setConnectionFormat(v)
