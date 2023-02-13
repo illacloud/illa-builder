@@ -109,17 +109,19 @@ const handleCheckFileSize = (
       if (!!maxSizeNumber && size > maxSizeNumber) {
         return {
           hasError: true,
-          errorMessage: `The file size can't exceed ${maxSize} ${(
-            maxSizeType || "MB"
-          ).toUpperCase()}.`,
+          errorMessage: i18n.t("editor.validate_message.max_size", {
+            maxSize,
+            type: (maxSizeType || "MB").toUpperCase(),
+          }),
         }
       }
       if (!!minSizeNumber && size < minSizeNumber) {
         return {
           hasError: true,
-          errorMessage: `The file size can't be less than ${minSize} ${(
-            minSizeType || "MB"
-          ).toUpperCase()}.`,
+          errorMessage: i18n.t("editor.validate_message.min_size", {
+            minSize,
+            type: (minSizeType || "MB").toUpperCase(),
+          }),
         }
       }
     }
@@ -140,13 +142,17 @@ const handleCheckFilesCount = (
     if (maxFiles && length > maxFiles) {
       return {
         fileCountInvalid: true,
-        countErrorMessage: `Support up to ${maxFiles} files.`,
+        countErrorMessage: i18n.t("editor.validate_message.max_files", {
+          maxFiles,
+        }),
       }
     }
     if (minFiles && length < minFiles) {
       return {
         fileCountInvalid: true,
-        countErrorMessage: `At least ${minFiles} files are required.`,
+        countErrorMessage: i18n.t("editor.validate_message.min_files", {
+          minFiles,
+        }),
       }
     }
   }
