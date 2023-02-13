@@ -1011,7 +1011,8 @@
       "url": "유효한 URL을 입력 해주세요",
       "max_size": "파일 크기는 {{maxSize }} {{ type }} 을(를) 초과할 수 없습니다.",
       "min_files": "{{ minFiles }} 개 이상의 파일이 필요합니다.",
-      "max_files": "최대 {{ maxFiles }} 파일이 지원됩니다."
+      "max_files": "최대 {{ maxFiles }} 파일이 지원됩니다.",
+      "min_size": "파일 크기는 {{minSize }} {{ type }} 보다 작을 수 없습니다."
     },
     "widget_picker": {
       "empty_tip": "죄송합니다, 검색 결과가 없습니다",
@@ -1502,11 +1503,6 @@
         "save_suc": "팀 아이디를 입력해주세요",
         "save_fail": "저장 실패"
       }
-    }
-  },
-  " editor": {
-    "validate_message": {
-      "min_size": "파일 크기는 {{minSize }} {{ type }} 보다 작을 수 없습니다."
     }
   }
 }
