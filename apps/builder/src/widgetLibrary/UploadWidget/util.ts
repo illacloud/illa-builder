@@ -57,7 +57,10 @@ export const toBase64 = (file: UploadItem) =>
 
 type ValueType = Array<{ status: string; value: any }>
 
-export const getFilteredValue = (values: ValueType = [], type?: string) => {
+export const getFilteredValue = (values?: ValueType, type?: string) => {
+  if (!values) {
+    return
+  }
   const filteredValue = values.filter(
     (data) => data.value !== undefined && data.status === "fulfilled",
   )

@@ -12,6 +12,23 @@ import {
 import { UploadWidgetProps, WrappedUploadProps } from "./interface"
 import { getFileString, getFilteredValue, toBase64 } from "./util"
 
+const getCurrentList = (fileList: UploadItem[]) =>
+  fileList.map((file) => {
+    if (!file) {
+      return
+    }
+    const { originFile, ...others } = file
+    return others
+  }) || []
+
+const getFiles = (fileList: UploadItem[]) =>
+  fileList.map((file) => ({
+    lastModified: file.originFile?.lastModified,
+    name: file.originFile?.name,
+    size: file.originFile?.size,
+    type: file.originFile?.type,
+  })) || []
+
 export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   const {
     selectionType,
@@ -25,6 +42,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     dropText,
     colorScheme,
     variant,
+    parseValue,
     fileList,
     onRemove,
     onChange,
@@ -44,12 +62,15 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
         const values = await Promise.allSettled(
           fileList.map(async (file) => await toBase64(file)),
         )
-        const parsedValues = await Promise.allSettled(
-          fileList.map(async (file) => {
-            const res = await getFileString(file)
-            return res
-          }),
-        )
+        let parsedValues
+        if (parseValue) {
+          parsedValues = await Promise.allSettled(
+            fileList.map(async (file) => {
+              const res = await getFileString(file)
+              return res
+            }),
+          )
+        }
         resolve({
           values,
           parsedValues,
@@ -66,24 +87,11 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
         parsedValues: any[]
         fileList: UploadItem[]
       }
-      const message = getValidateMessage(fileList)
-      const files =
-        fileList.map((file) => ({
-          lastModified: file.originFile?.lastModified,
-          name: file.originFile?.name,
-          size: file.originFile?.size,
-          type: file.originFile?.type,
-        })) || []
+      const validateMessage = getValidateMessage(fileList)
+      const files = getFiles(fileList)
       const base64value = getFilteredValue(values, "base64")
       const parsed = getFilteredValue(parsedValues)
-      const list =
-        fileList.map((file) => {
-          if (!file) {
-            return
-          }
-          const { originFile, ...others } = file
-          return others
-        }) || []
+      const currentList = getCurrentList(fileList)
       handleUpdateMultiExecutionResult([
         {
           displayName,
@@ -91,14 +99,15 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
             files,
             value: base64value,
             parsedValue: parsed,
-            validateMessage: message,
-            currentList: list,
+            validateMessage,
+            currentList,
           },
         },
       ])
     })
   }, [
     displayName,
+    parseValue,
     fileList,
     getValidateMessage,
     handleUpdateMultiExecutionResult,
