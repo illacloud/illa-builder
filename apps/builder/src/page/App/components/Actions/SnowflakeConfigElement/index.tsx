@@ -17,8 +17,6 @@ import {
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import { optionLabelStyle } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
-import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
-import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import {
   AuthenticationOptions,
   SnowflakeAuthenticationSelectType,
@@ -40,12 +38,11 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
     shouldUnregister: true,
   })
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(
-      (r) => r.resourceId === resourceId,
-    ) as Resource<SnowflakeType>
+    return state.resource.find((r) => r.resourceId === resourceId)
   })
 
-  const content = resource?.content ?? snowflakeResourceInitial
+  const content = (resource?.content ??
+    snowflakeResourceInitial) as SnowflakeType
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
