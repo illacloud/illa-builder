@@ -395,7 +395,12 @@
             "key": "Key",
             "introspection": "Introspection",
             "bear_token": "Token",
-            "connection_options": "连接选项"
+            "connection_options": "连接选项",
+            "account_name": "账户标识符",
+            "warehouse": "仓库",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -410,7 +415,15 @@
             "username": "用户名",
             "default": "default",
             "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
-            "database_name": "数据库名称"
+            "database_name": "数据库名称",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "用户角色",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
           },
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
