@@ -116,6 +116,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   return (
     <Upload
       action="/"
+      autoUpload={false}
       disabled={disabled}
       text={isDrag ? dropText : buttonText}
       colorScheme={colorScheme}

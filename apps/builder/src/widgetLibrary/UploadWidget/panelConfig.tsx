@@ -296,6 +296,8 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
+        bindAttrName: ["type"],
+        shown: (value) => value === "button",
         childrenSetter: [
           {
             id: `${baseWidgetName}-style-bg`,
