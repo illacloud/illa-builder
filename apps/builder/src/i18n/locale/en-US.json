@@ -1391,7 +1391,8 @@
       "invalid_email": "Please enter a valid email",
       "message": {
         "make_public_suc": "Set successfully",
-        "make_public_failed": "Failed to set"
+        "make_public_failed": "Failed to set",
+        "app_share_in_team": "{{ email }} is already in your team, please share the link with him. "
       }
     },
     "mes": {
