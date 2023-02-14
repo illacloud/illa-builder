@@ -27,7 +27,7 @@ export const KeyPairConfig: FC<
         name="username"
         defaultValue={username}
         placeholders={[
-          t("editor.action.resource.db.placeholder.snowflake_password"),
+          t("editor.action.resource.db.placeholder.snowflake_username"),
         ]}
       />
       <ControlledElement

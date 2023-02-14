@@ -31,6 +31,32 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
+        id: `${baseWidgetName}-basic-selectionType`,
+        labelName: i18n.t("editor.inspect.setter_label.selection_types"),
+        attrName: "selectionType",
+        setterType: "BASE_SELECT_SETTER",
+        options: [
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.selection_types.single_file",
+            ),
+            value: "single",
+          },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.selection_types.multiple_files",
+            ),
+            value: "multiple",
+          },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.selection_types.directory",
+            ),
+            value: "directory",
+          },
+        ],
+      },
+      {
         id: `${baseWidgetName}-basic-buttonText`,
         labelName: i18n.t("editor.inspect.setter_label.text"),
         attrName: "buttonText",
@@ -57,32 +83,7 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.ARRAY,
       },
-      {
-        id: `${baseWidgetName}-basic-selectionType`,
-        labelName: i18n.t("editor.inspect.setter_label.selection_types"),
-        attrName: "selectionType",
-        setterType: "BASE_SELECT_SETTER",
-        options: [
-          {
-            label: i18n.t(
-              "editor.inspect.setter_default_value.selection_types.single_file",
-            ),
-            value: "single",
-          },
-          {
-            label: i18n.t(
-              "editor.inspect.setter_default_value.selection_types.multiple_files",
-            ),
-            value: "multiple",
-          },
-          {
-            label: i18n.t(
-              "editor.inspect.setter_default_value.selection_types.directory",
-            ),
-            value: "directory",
-          },
-        ],
-      },
+
       {
         id: `${baseWidgetName}-basic-appendNewFiles`,
         labelName: i18n.t("editor.inspect.setter_label.append_newly_files"),

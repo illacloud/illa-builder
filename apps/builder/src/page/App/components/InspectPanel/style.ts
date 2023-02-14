@@ -42,6 +42,7 @@ export function applyLabelTipsStyle(
     : css``
   return css`
     display: block;
+    align-self: center;
     height: 22px;
     line-height: 22px;
     ${labelStyle};
@@ -145,6 +146,8 @@ export const applySetterPublicWrapperStyle = (
     : css`
         padding: 8px 0;
         min-height: 48px;
+        display: flex;
+        align-items: center;
         ${widthStyle}
       `
 }
