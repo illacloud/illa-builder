@@ -1375,7 +1375,9 @@
         "copied_suc": "コピーしました！",
         "failed_to_copy": "コピーに失敗しました",
         "turn_off_fail": "オフにできませんでした",
-        "turn_on_fail": "オンにできませんでした"
+        "turn_on_fail": "オンにできませんでした",
+        "make_public_title": "アプリを公開する",
+        "make_public_copy": "コピー"
       },
       "email": {
         "invite_title": "メールで招待する",
@@ -1386,7 +1388,11 @@
         "notmail": "{{ email }}はメールではありません",
         "duplicate": "{{ email }}は重複したメールアドレスです"
       },
-      "invalid_email": "有効なメールアドレスを入力して下さい。"
+      "invalid_email": "有効なメールアドレスを入力して下さい。",
+      "message": {
+        "make_public_suc": "設定が完了しました",
+        "make_public_failed": "設定に失敗しました"
+      }
     },
     "mes": {
       "invite_suc": "招待しました",
