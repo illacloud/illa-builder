@@ -1375,7 +1375,9 @@
         "copied_suc": "Copied!",
         "failed_to_copy": "Failed to copy",
         "turn_off_fail": "Failed to turn off",
-        "turn_on_fail": "Failed to turn on"
+        "turn_on_fail": "Failed to turn on",
+        "make_public_title": "Make the app public",
+        "make_public_copy": "Copy"
       },
       "email": {
         "invite_title": "Invite by email",
@@ -1386,7 +1388,11 @@
         "notmail": "{{ email }} is not an email",
         "duplicate": "{{ email }} is duplicated"
       },
-      "invalid_email": "Please enter a valid email"
+      "invalid_email": "Please enter a valid email",
+      "message": {
+        "make_public_suc": "Set successfully",
+        "make_public_failed": "Failed to set"
+      }
     },
     "mes": {
       "invite_suc": "Invited successfully",
