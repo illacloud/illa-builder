@@ -1393,6 +1393,10 @@
         "make_public_suc": "设置成功",
         "make_public_failed": "设置失败",
         "app_share_in_team": "{{ email }} 已经加入您的团队，可通过链接分享。"
+      },
+      "tab": {
+        "invite": "邀请",
+        "public": "公开"
       }
     },
     "mes": {

@@ -1393,6 +1393,10 @@
         "make_public_suc": "設定が完了しました",
         "make_public_failed": "設定に失敗しました",
         "app_share_in_team": "{{ email }} はすでにあなたのチームに所属しています。リンクを彼と共有してください。"
+      },
+      "tab": {
+        "invite": "招待",
+        "public": "公開"
       }
     },
     "mes": {
