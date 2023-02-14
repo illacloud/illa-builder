@@ -1375,7 +1375,9 @@
         "copied_suc": "复制成功！",
         "failed_to_copy": "复制失败",
         "turn_off_fail": "关闭失败",
-        "turn_on_fail": "开启失败"
+        "turn_on_fail": "开启失败",
+        "make_public_title": "设置为公开项目",
+        "make_public_copy": "复制"
       },
       "email": {
         "invite_title": "通过电子邮件邀请",
@@ -1386,7 +1388,11 @@
         "notmail": "{{ email }}不是一个邮箱地址",
         "duplicate": "{{ email }}是重复的电子邮件地址"
       },
-      "invalid_email": "请输入有效的电子邮件"
+      "invalid_email": "请输入有效的电子邮件",
+      "message": {
+        "make_public_suc": "设置成功",
+        "make_public_failed": "设置失败"
+      }
     },
     "mes": {
       "invite_suc": "邀请成功",
