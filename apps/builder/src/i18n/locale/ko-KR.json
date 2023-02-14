@@ -135,10 +135,15 @@
           "api": "아피스",
           "configure": "구성 {{ name }}",
           "database": "데이터 베이스",
-          "select": "리소스 유형 선택"
+          "select": "리소스 유형 선택",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "{name} 을(를) 입력하세요"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -340,15 +345,15 @@
           }
         },
         "mssql": {
-          "config_type": "Config Type",
-          "query": "Query",
+          "config_type": "구성 유형",
+          "query": "질문",
           "placeholder": {
             "query": "select * from users;",
-            "table": "Select a table",
+            "table": "테이블 선택",
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
-          "table": "Table",
-          "insert_record": "Array of records to insert",
+          "table": "시트",
+          "insert_record": "삽입할 레코드 배열",
           "dropdown": {
             "retry": "클릭하여 재시도하기"
           }
@@ -395,7 +400,15 @@
             "key": "Key",
             "introspection": "Introspection",
             "bear_token": "Token",
-            "connection_options": "연결 옵션"
+            "connection_options": "연결 옵션",
+            "account_name": "계정 이름",
+            "warehouse": "Warehouse",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "역할",
+            "username": "사용자 이름",
+            "password": "비밀번호"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -410,7 +423,15 @@
             "username": "사용자 이름",
             "default": "default",
             "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
-            "database_name": "데이터베이스 이름"
+            "database_name": "데이터베이스 이름",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "역할",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
           },
           "tip": {
             "connect_type": "클라우드 서버: ILLA 서버가 데이터베이스에 안전하게 연결됩니다.",
@@ -522,6 +543,23 @@
           },
           "tip": {
             "external_reference": "정의된 변수에 대한 외부 참조를 생성할 수 있습니다. 예를 들어 {{ transformer2.value }}"
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
         }
       },
@@ -970,7 +1008,11 @@
       "min_value": "{{ number }} 이상의 값을 입력하세요.",
       "regex": "필요한 형식을 입력하세요.",
       "required": "필수의",
-      "url": "유효한 URL을 입력 해주세요"
+      "url": "유효한 URL을 입력 해주세요",
+      "max_size": "파일 크기는 {{maxSize }} {{ type }} 을(를) 초과할 수 없습니다.",
+      "min_files": "{{ minFiles }} 개 이상의 파일이 필요합니다.",
+      "max_files": "최대 {{ maxFiles }} 파일이 지원됩니다.",
+      "min_size": "파일 크기는 {{minSize }} {{ type }} 보다 작을 수 없습니다."
     },
     "widget_picker": {
       "empty_tip": "죄송합니다, 검색 결과가 없습니다",
@@ -1333,16 +1375,25 @@
         "copied_suc": "복사됨!",
         "failed_to_copy": "복사 실패",
         "turn_off_fail": "사용 중지하지 못했습니다",
-        "turn_on_fail": "사용 설정 실패"
+        "turn_on_fail": "사용 설정 실패",
+        "make_public_title": "앱을 공개",
+        "make_public_copy": "복사"
       },
       "email": {
         "invite_title": "이메일로 초대",
         "invite": "초대",
         "placeholder": "이메일 주소를 입력하세요",
         "invited": "초대했다",
-        "in_list": "이 사용자는 이미 팀에 있습니다."
+        "in_list": "이 사용자는 이미 팀에 있습니다.",
+        "notmail": "{{ email }}는 이메일이 아닙니다.",
+        "duplicate": "{{ email }} 는 중복 이메일 주소입니다."
       },
-      "invalid_email": "유효한 이메일 주소를 입력하세요"
+      "invalid_email": "유효한 이메일 주소를 입력하세요",
+      "message": {
+        "make_public_suc": "성공적으로 설정",
+        "make_public_failed": "설정 실패",
+        "app_share_in_team": "{{ email }}는 이미 귀하의 팀에 속해 있습니다. 해당 링크를 그와 공유하십시오."
+      }
     },
     "mes": {
       "invite_suc": "초대 성공",
@@ -1441,6 +1492,24 @@
   "homepage": {
     "message": {
       "join_failed": "팀 가입 실패: 귀하의 이메일이 초대 이메일이 아닙니다."
+    }
+  },
+  "image_exceed": "이미지 크기는 500KB를 초과할 수 없습니다.",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "자르기",
+        "save": "저장",
+        "cancel": "취소"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "팀 아이디를 입력해주세요",
+        "save_fail": "저장 실패"
+      }
     }
   }
 }

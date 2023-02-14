@@ -135,10 +135,15 @@
           "api": "APIs",
           "configure": "Configure {{ name }}",
           "database": "DATABASES",
-          "select": "Select Resource Type"
+          "select": "Select Resource Type",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "{name} is required"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -395,7 +400,15 @@
             "key": "Key",
             "introspection": "Introspection",
             "bear_token": "Token",
-            "connection_options": "Connection options"
+            "connection_options": "Connection options",
+            "account_name": "Account name",
+            "warehouse": "Warehouse",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "Role",
+            "username": "Username",
+            "password": "Password"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -410,7 +423,15 @@
             "username": "Username",
             "default": "default",
             "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
-            "database_name": "Database name"
+            "database_name": "Database name",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "Role",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
           },
           "tip": {
             "connect_type": "Cloud: ILLA servers will securely connect to your database.",
@@ -522,6 +543,23 @@
           },
           "tip": {
             "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
         }
       },
@@ -970,7 +1008,11 @@
       "min_value": "Must be greater than {{ number }}",
       "regex": "Please match the requested format",
       "required": "This field is required",
-      "url": "Please enter a valid URL"
+      "url": "Please enter a valid URL",
+      "max_size": "The file size can't exceed {{maxSize }} {{ type }}.",
+      "min_files": "At least {{ minFiles }} files are required.",
+      "max_files": "Support up to {{ maxFiles }} files.",
+      "min_size": "The file size can't be less than {{minSize }} {{ type }}."
     },
     "widget_picker": {
       "empty_tip": "Sorry, no search results",
@@ -1333,16 +1375,25 @@
         "copied_suc": "Copied!",
         "failed_to_copy": "Failed to copy",
         "turn_off_fail": "Failed to turn off",
-        "turn_on_fail": "Failed to turn on"
+        "turn_on_fail": "Failed to turn on",
+        "make_public_title": "Make the app public",
+        "make_public_copy": "Copy"
       },
       "email": {
         "invite_title": "Invite by email",
         "invite": "Invite",
         "placeholder": "Enter email address",
         "invited": "Have invited",
-        "in_list": "This user is already in your team."
+        "in_list": "This user is already in your team.",
+        "notmail": "{{ email }} is not an email",
+        "duplicate": "{{ email }} is duplicated"
       },
-      "invalid_email": "Please enter a valid email"
+      "invalid_email": "Please enter a valid email",
+      "message": {
+        "make_public_suc": "Set successfully",
+        "make_public_failed": "Failed to set",
+        "app_share_in_team": "{{ email }} is already in your team, please share the link with him. "
+      }
     },
     "mes": {
       "invite_suc": "Invited successfully",
@@ -1441,6 +1492,24 @@
   "homepage": {
     "message": {
       "join_failed": "Failed to join the team: your email is not the invited email."
+    }
+  },
+  "image_exceed": "Image size cannot exceed 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Crop",
+        "save": "Save",
+        "cancel": "Cancel"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Successfully saved",
+        "save_fail": "Failed to save"
+      }
     }
   }
 }
