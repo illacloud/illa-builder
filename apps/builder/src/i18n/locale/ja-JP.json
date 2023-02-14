@@ -1391,7 +1391,8 @@
       "invalid_email": "有効なメールアドレスを入力して下さい。",
       "message": {
         "make_public_suc": "設定が完了しました",
-        "make_public_failed": "設定に失敗しました"
+        "make_public_failed": "設定に失敗しました",
+        "app_share_in_team": "{{ email }} はすでにあなたのチームに所属しています。リンクを彼と共有してください。"
       }
     },
     "mes": {
