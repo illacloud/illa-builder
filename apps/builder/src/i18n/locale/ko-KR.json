@@ -1375,7 +1375,9 @@
         "copied_suc": "복사됨!",
         "failed_to_copy": "복사 실패",
         "turn_off_fail": "사용 중지하지 못했습니다",
-        "turn_on_fail": "사용 설정 실패"
+        "turn_on_fail": "사용 설정 실패",
+        "make_public_title": "앱을 공개",
+        "make_public_copy": "복사"
       },
       "email": {
         "invite_title": "이메일로 초대",
@@ -1386,7 +1388,12 @@
         "notmail": "{{ email }}는 이메일이 아닙니다.",
         "duplicate": "{{ email }} 는 중복 이메일 주소입니다."
       },
-      "invalid_email": "유효한 이메일 주소를 입력하세요"
+      "invalid_email": "유효한 이메일 주소를 입력하세요",
+      "message": {
+        "make_public_suc": "성공적으로 설정",
+        "make_public_failed": "설정 실패",
+        "app_share_in_team": "{{ email }}는 이미 귀하의 팀에 속해 있습니다. 해당 링크를 그와 공유하십시오."
+      }
     },
     "mes": {
       "invite_suc": "초대 성공",
