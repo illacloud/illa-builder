@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect, useRef } from "react"
 import { Switch } from "@illa-design/react"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -45,6 +45,7 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
     labelHidden,
     tooltipText,
     updateComponentHeight,
+    triggerEventHandler,
   } = props
 
   useEffect(() => {
@@ -83,6 +84,10 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
     }
   }, [value, required, labelPosition])
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -99,7 +104,7 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedSwitch {...props} />
+          <WrappedSwitch {...props} handleOnChange={handleOnChange} />
         </div>
       </TooltipWrapper>
     </div>

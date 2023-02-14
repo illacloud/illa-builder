@@ -86,6 +86,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     hideValidationMessage,
     validateMessage,
     updateComponentHeight,
+    triggerEventHandler,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -167,6 +168,10 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     }
   }, [validateMessage, finalOptions, labelPosition, updateComponentHeight])
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -187,6 +192,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
             {...props}
             options={finalOptions as CheckboxOption[]}
             getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
           />
         </div>
       </TooltipWrapper>

@@ -55,7 +55,7 @@ export interface WrappedTableProps
       | "multiRowSelection"
       | "data"
     >,
-    BaseWidgetProps {
+    Omit<BaseWidgetProps, "triggerEventHandler"> {
   emptyState?: string
   pageSize?: number
   defaultSortKey?: string

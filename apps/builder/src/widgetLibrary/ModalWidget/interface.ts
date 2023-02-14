@@ -11,7 +11,5 @@ export interface ModalWidgetProps extends BaseWidgetProps {
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   unitH: number
   isVisible: boolean
-  handleOnOpenModal: () => void
-  handleOnCloseModal: () => void
   blockColumns: number
 }

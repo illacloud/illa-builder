@@ -31,7 +31,10 @@ export interface WrappedInputProps
 }
 
 export interface InputWidgetProps
-  extends Omit<WrappedInputProps, "maxLength">,
+  extends Omit<
+      WrappedInputProps,
+      "maxLength" | "handleOnChange" | "handleOnFocus" | "handleOnBlur"
+    >,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,

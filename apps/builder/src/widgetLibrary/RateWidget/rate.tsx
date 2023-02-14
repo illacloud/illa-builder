@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect, useRef } from "react"
 import { Rate } from "@illa-design/react"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -15,6 +15,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
     allowHalf,
     maxCount,
     handleUpdateDsl,
+    handleOnChange,
   } = props
 
   return (
@@ -28,6 +29,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
       value={value}
       onChange={(value) => {
         handleUpdateDsl({ value })
+        handleOnChange?.()
       }}
     />
   )
@@ -59,6 +61,7 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     labelHidden,
     tooltipText,
     updateComponentHeight,
+    triggerEventHandler,
   } = props
 
   useEffect(() => {
@@ -98,6 +101,10 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
 
   const wrapperRef = useRef<HTMLDivElement>(null)
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   useEffect(() => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
@@ -119,7 +126,7 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedRate {...props} />
+          <WrappedRate {...props} handleOnChange={handleOnChange} />
         </div>
       </TooltipWrapper>
     </div>
