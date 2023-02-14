@@ -181,13 +181,15 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   }, [updateComponentHeight, validateMessage, containerBounds.height])
 
   useEffect(() => {
-    if (
+    const canInitialDragValue =
       currentList &&
       currentList.length > 0 &&
       value &&
       files &&
+      fileListRef.current.length === 0 &&
       previousValueRef.current.length === 0
-    ) {
+
+    if (canInitialDragValue) {
       const shownList = currentList.map((file, index) => {
         const base64 = value[index]
         const info = files[index]
@@ -201,20 +203,22 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       })
       setFileList(shownList)
       fileListRef.current = shownList
-      previousValueRef.current = shownList
     }
   }, [currentList, value, files])
 
   const handleOnRemove = (file: UploadItem, fileList: UploadItem[]) => {
-    let files = [...previousValueRef.current]
-    const currentFilesKeys = previousValueRef.current.map(
-      (f) => f.uid || f.name,
-    )
-    const index = currentFilesKeys.indexOf(file.uid || file.name)
-    files.splice(index, 1)
-    setFileList([...files])
-    previousValueRef.current = [...files]
-    fileListRef.current = [...files]
+    const currentFiles =
+      previousValueRef.current.length > 0
+        ? [...previousValueRef.current]
+        : [...fileListRef.current]
+    const currentFilesKeys = currentFiles.map((f) => f.uid ?? f.name)
+    const index = currentFilesKeys.indexOf(file.uid ?? file.name)
+    currentFiles.splice(index, 1)
+    setFileList(currentFiles)
+    fileListRef.current = currentFiles
+    if (previousValueRef.current.length > 0) {
+      previousValueRef.current = currentFiles
+    }
     return true
   }
 
@@ -234,30 +238,24 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       return
     }
     const currentFilesKeys = previousValueRef.current.map(
-      (f) => f.uid || f.name,
+      (f) => f.uid ?? f.name,
     )
-    const index = currentFilesKeys.indexOf(file.uid || file.name)
+    const index = currentFilesKeys.indexOf(file.uid ?? file.name)
     if (index < 0) {
       return
     }
     files.splice(index, 1, file)
-    setFileList([...files])
-    previousValueRef.current = [...files]
-
-    if (
-      files.length === fileCountRef.current + fileListRef.current.length &&
-      !!fileCountRef.current
-    ) {
+    setFileList(files)
+    previousValueRef.current = files
+    if (files.length === fileCountRef.current && !!fileCountRef.current) {
       const allSettled = files.every(
         (f) => f.status === "error" || f.status === "done",
       )
       if (allSettled) {
-        const newList = appendFiles
-          ? files
-          : files.slice(fileListRef.current.length)
+        const newList = appendFiles ? [...fileListRef.current, ...files] : files
         setFileList(newList)
         fileListRef.current = newList
-        previousValueRef.current = newList
+        previousValueRef.current = []
         fileCountRef.current = 0
       }
     }
@@ -330,7 +328,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
         setFileList([])
       },
       validate: () => {
-        console.log(11111, currentFileList)
         return handleValidate(currentFileList)
       },
       setDisabled: (value: boolean) => {
