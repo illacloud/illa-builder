@@ -93,7 +93,10 @@ export const useInitBuilderApp = (model: IllaMode) => {
         )
       }).then((value) => {
         const autoRunAction = value.actions.filter((action) => {
-          return action.triggerMode === "automate"
+          return (
+            action.triggerMode === "automate" ||
+            action.actionType === "transformer"
+          )
         })
         autoRunAction.forEach((action) => {
           runAction(action)

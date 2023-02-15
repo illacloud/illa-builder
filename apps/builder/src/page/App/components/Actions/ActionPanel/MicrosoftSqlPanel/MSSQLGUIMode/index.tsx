@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Select, createMessage } from "@illa-design/react"
 import { Api } from "@/api/base"
@@ -21,6 +21,15 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
 
+  const handleRequestError = useCallback(() => {
+    setError(true)
+    setLoading(false)
+    message.error({
+      type: "error",
+      content: t("editor.action.message.mssql.table_error"),
+    })
+  }, [message, t])
+
   useEffect(() => {
     if (!resourceId) {
       return
@@ -37,19 +46,16 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
         setError(false)
       },
       () => {
-        setError(true)
-        setLoading(false)
-        message.error({
-          type: "error",
-          content: t("editor.action.message.mssql.table_error"),
-        })
+        handleRequestError()
       },
-      () => {},
+      () => {
+        handleRequestError()
+      },
       () => {
         setLoading(true)
       },
     )
-  }, [resourceId])
+  }, [handleRequestError, resourceId])
 
   return (
     <>

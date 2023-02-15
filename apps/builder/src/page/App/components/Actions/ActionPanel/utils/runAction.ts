@@ -1,5 +1,6 @@
 import { createMessage, isString } from "@illa-design/react"
 import { Api } from "@/api/base"
+import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
   ActionContent,
@@ -27,6 +28,7 @@ import {
   S3ActionRequestType,
   S3ActionTypeContent,
 } from "@/redux/currentApp/action/s3Action"
+import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
@@ -423,6 +425,7 @@ export const runAction = (
   const rootState = store.getState()
   const appId = getAppId(rootState)
   if (actionType === "transformer") {
+    runActionTransformer(action as ActionItem<TransformerAction>)
     return
   }
   const { successEvent, failedEvent, ...restContent } = content

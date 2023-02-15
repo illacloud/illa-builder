@@ -135,10 +135,15 @@
           "api": "API",
           "configure": "配置 {{ name }}",
           "database": "数据库",
-          "select": "选择资源类型"
+          "select": "选择资源类型",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "请输入{name}"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -340,15 +345,15 @@
           }
         },
         "mssql": {
-          "config_type": "Config Type",
-          "query": "Query",
+          "config_type": "配置类型",
+          "query": "查询",
           "placeholder": {
             "query": "select * from users;",
-            "table": "Select a table",
+            "table": "选择一张表",
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
-          "table": "Table",
-          "insert_record": "Array of records to insert",
+          "table": "表",
+          "insert_record": "待插入的记录数组",
           "dropdown": {
             "retry": "点击重试"
           }
@@ -395,7 +400,15 @@
             "key": "Key",
             "introspection": "Introspection",
             "bear_token": "Token",
-            "connection_options": "连接选项"
+            "connection_options": "连接选项",
+            "account_name": "账号名称",
+            "warehouse": "仓库",
+            "schema": "模式",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "用户角色",
+            "username": "用户名",
+            "password": "密码"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -410,7 +423,15 @@
             "username": "用户名",
             "default": "default",
             "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
-            "database_name": "数据库名称"
+            "database_name": "数据库名称",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "用户角色",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
           },
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
@@ -522,6 +543,23 @@
           },
           "tip": {
             "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
         }
       },
@@ -970,7 +1008,11 @@
       "min_value": "请输入不小于{{ number }} 的值",
       "regex": "请按照要求的格式填写",
       "required": "必填",
-      "url": "请输入有效的URL"
+      "url": "请输入有效的URL",
+      "max_size": "文件大小不能超过 {{maxSize }} {{ type }}。",
+      "min_files": "要求至少 {{ minFiles }} 个文件。",
+      "max_files": "支持最多 {{ maxFiles }} 个文件。",
+      "min_size": "文件大小不能小于{{minSize }} {{ type }}。"
     },
     "widget_picker": {
       "empty_tip": "抱歉，没有搜索结果",
@@ -1333,16 +1375,29 @@
         "copied_suc": "复制成功！",
         "failed_to_copy": "复制失败",
         "turn_off_fail": "关闭失败",
-        "turn_on_fail": "开启失败"
+        "turn_on_fail": "开启失败",
+        "make_public_title": "设置为公开项目",
+        "make_public_copy": "复制"
       },
       "email": {
         "invite_title": "通过电子邮件邀请",
         "invite": "邀请",
         "placeholder": "输入电子邮件地址",
         "invited": "已邀请",
-        "in_list": "该用户已加入您的团队"
+        "in_list": "该用户已加入您的团队",
+        "notmail": "{{ email }}不是一个邮箱地址",
+        "duplicate": "{{ email }}是重复的电子邮件地址"
       },
-      "invalid_email": "请输入有效的电子邮件"
+      "invalid_email": "请输入有效的电子邮件",
+      "message": {
+        "make_public_suc": "设置成功",
+        "make_public_failed": "设置失败",
+        "app_share_in_team": "{{ email }} 已经加入您的团队，可通过链接分享。"
+      },
+      "tab": {
+        "invite": "邀请",
+        "public": "公开"
+      }
     },
     "mes": {
       "invite_suc": "邀请成功",
@@ -1441,6 +1496,24 @@
   "homepage": {
     "message": {
       "join_failed": "未成功加入团队：您登录的邮箱不是被邀请的邮箱"
+    }
+  },
+  "image_exceed": "图片大小不能超过500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "裁剪",
+        "save": "保存",
+        "cancel": "取消"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "保存成功",
+        "save_fail": "保存失败"
+      }
     }
   }
 }
