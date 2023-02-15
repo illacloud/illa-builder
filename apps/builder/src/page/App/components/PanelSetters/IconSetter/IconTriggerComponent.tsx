@@ -41,7 +41,7 @@ export const IconTriggerComponent: FC<IconTriggerComponentProps> = (props) => {
   const { handleCurrentIconClick, handleCloseModal } = props
 
   const [iconType, setIconType] = useState<IconShowType>("All")
-  const [iconOrigin, setIconOrigin] = useState<string>("bs")
+  const [iconOrigin, setIconOrigin] = useState<string>("default")
   const [searchInput, setSearchInput] = useState<string>("")
 
   const RightBottomPanel = lazy(() => import("./IconPickerList"))

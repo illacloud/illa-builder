@@ -136,12 +136,14 @@ export const iconPickerLeftPanelStyle = css`
 
 export const leftPanelItemStyle = css`
   width: 100%;
-  height: 40px;
+  min-height: 40px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
   padding: 9px 16px;
   font-size: 14px;
   line-height: 22px;
@@ -202,6 +204,7 @@ export const rightTopItemStyle = css`
 export const rightBottomStyle = css`
   width: 100%;
   flex-grow: 1;
+  min-width: 400px;
   overflow: scroll;
   padding: 0px 8px 8px;
   display: flex;
@@ -230,6 +233,7 @@ export const fallbackContainerStyle = css`
   width: 100%;
   height: 100%;
   display: flex;
+  padding: 0px 8px 8px;
   justify-content: center;
   align-items: center;
 `
