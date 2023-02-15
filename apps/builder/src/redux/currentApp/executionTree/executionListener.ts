@@ -1,6 +1,5 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { diff } from "deep-diff"
-import { cloneDeep } from "lodash"
 import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
@@ -64,10 +63,17 @@ async function handleStartExecution(
       }),
     )
   } else {
+    // only transformer can run this;
     const isDeleteAction =
       action.type === "components/deleteComponentNodeReducer" ||
       action.type === "action/removeActionItemReducer"
-    const executionResult = executionTree.updateTree(rawTree, isDeleteAction)
+    const isUpdateActionReduxAction =
+      action.type === "action/updateActionItemReducer"
+    const executionResult = executionTree.updateTree(
+      rawTree,
+      isDeleteAction,
+      isUpdateActionReduxAction,
+    )
     const errorTree = executionResult.errorTree
     const evaluatedTree = executionResult.evaluatedTree
     const dependencyMap = executionResult.dependencyTree

@@ -795,12 +795,12 @@ importers:
 
   illa-design/packages/modal:
     specifiers:
-      '@illa-design/button': 1.0.14
-      '@illa-design/config-provider': 1.0.14
-      '@illa-design/icon': 1.0.14
-      '@illa-design/system': 1.0.14
-      '@illa-design/theme': 1.0.14
-      '@illa-design/trigger': 1.0.14
+      '@illa-design/button': workspace:*
+      '@illa-design/config-provider': workspace:*
+      '@illa-design/icon': workspace:*
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+      '@illa-design/trigger': workspace:*
       '@rollup/plugin-typescript': ^10.0.1
       '@types/uuid': ^8.3.4
       '@vitejs/plugin-react-swc': ^3.0.1
