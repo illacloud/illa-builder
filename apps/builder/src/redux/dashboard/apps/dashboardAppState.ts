@@ -8,6 +8,10 @@ export interface DashboardAppActivity {
   modifiedAt: string
 }
 
+export interface DashboardAppConfig {
+  public: boolean
+}
+
 export interface DashboardApp {
   appId: string
   appName: string
@@ -17,6 +21,7 @@ export interface DashboardApp {
   updatedAt: string
   updatedBy: string
   appActivity: DashboardAppActivity
+  config: DashboardAppConfig
 }
 
 export const DashboardAppInitialState: DashboardApp = {
@@ -27,6 +32,9 @@ export const DashboardAppInitialState: DashboardApp = {
   currentVersionId: "",
   mainline_version: 0,
   release_version: 0,
+  config: {
+    public: false,
+  },
   appActivity: {
     modifier: "",
     modifiedAt: "",

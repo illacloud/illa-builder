@@ -1,13 +1,18 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
-import { FC, MouseEvent, useCallback, useEffect } from "react"
+import { FC, MouseEvent, useCallback, useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { Connection } from "@/api/ws"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
+import { canManage } from "@/illa-public-component/UserRoleUtils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@/illa-public-component/UserRoleUtils/interface"
 import { ActionEditor } from "@/page/App/components/Actions"
 import { initS3Client } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { AppLoading } from "@/page/App/components/AppLoading"
@@ -23,14 +28,13 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
-import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
 import { DataWorkspace } from "./components/DataWorkspace"
@@ -56,10 +60,27 @@ export const Editor: FC = () => {
   const controls = useAnimation()
 
   const currentUser = useSelector(getCurrentUser)
+  const teamInfo = useSelector(getCurrentTeamInfo)
+
+  const currentUserRole = useMemo(() => teamInfo?.myRole, [teamInfo])
 
   const handleLeaveRoom = () => {
     Connection.leaveRoom("app", appId ?? "")
   }
+
+  useEffect(() => {
+    // check if user can manage the app
+    if (currentUserRole) {
+      const canEditApp = canManage(
+        currentUserRole,
+        ATTRIBUTE_GROUP.APP,
+        ACTION_MANAGE.EDIT_APP,
+      )
+      if (!canEditApp) {
+        throw new Error("You don't have permission to edit this app")
+      }
+    }
+  }, [currentUserRole])
 
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {

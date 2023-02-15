@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -9,24 +9,39 @@ import {
   Dropdown,
   MoreIcon,
   Space,
-  globalColor,
-  illaPrefix,
   useMessage,
   useModal,
 } from "@illa-design/react"
+import {
+  fetchShareAppLink,
+  renewShareAppLink,
+  updateAppPublicConfig,
+} from "@/api/apps"
 import { Api } from "@/api/base"
+import {
+  changeTeamMembersRole,
+  getMembers,
+  inviteByEmail,
+  setInviteLinkEnabled,
+} from "@/api/team"
+import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
+import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { MemberInfo } from "@/redux/team/teamState"
 import { RootState } from "@/store"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { appId, canEditApp, isDeploy } = props
 
   const { t } = useTranslation()
+  const message = useMessage()
+  const modal = useModal()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { teamIdentifier } = useParams()
@@ -36,11 +51,59 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
       (item) => item.appId === appId,
     )!!
   })
+  const teamInfo = useSelector(getCurrentTeamInfo)
 
+  const [shareVisible, setShareVisible] = useState(false)
   const [renameVisible, setRenameVisible] = useState(false)
   const [duplicateVisible, setDuplicateVisible] = useState(false)
-  const message = useMessage()
-  const modal = useModal()
+
+  const [members, setMembers] = useState<MemberInfo[]>([])
+  const { inviteLinkEnabled, currentUserRole } = useMemo(() => {
+    return {
+      teamId: teamInfo?.id,
+      currentUserRole: teamInfo?.myRole ?? USER_ROLE.VIEWER,
+      inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
+    }
+  }, [teamInfo])
+
+  const updateMemberList = async () => {
+    const members = await getMembers()
+    if (members) {
+      setMembers(members)
+    }
+  }
+
+  const handleInviteByEmail = (email: string, userRole: USER_ROLE) => {
+    return inviteByEmail(email, userRole).then((res) => {
+      updateMemberList()
+      return res
+    })
+  }
+
+  const handleChangeTeamMembersRole = (
+    teamMemberID: string,
+    userRole: USER_ROLE,
+  ) => {
+    return changeTeamMembersRole(teamMemberID, userRole).then((res) => {
+      updateMemberList()
+      return res
+    })
+  }
+
+  const closeInviteModal = () => {
+    setShareVisible(false)
+  }
+
+  const fetchShareLink = (userRole: USER_ROLE) => {
+    return fetchShareAppLink(userRole, appId)
+  }
+  const renewShareLink = (userRole: USER_ROLE) => {
+    return renewShareAppLink(userRole, appId)
+  }
+
+  const updateAppConfig = (isPublic: boolean) => {
+    return updateAppPublicConfig(isPublic, appId)
+  }
 
   return (
     <>
@@ -87,6 +150,14 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                     title={t("rename")}
                     onClick={() => {
                       setRenameVisible(true)
+                    }}
+                  />
+                  <DropListItem
+                    key="share"
+                    value="share"
+                    title={t("share")}
+                    onClick={() => {
+                      setShareVisible(true)
                     }}
                   />
                   <DropListItem
@@ -163,6 +234,22 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           </>
         ) : null}
       </Space>
+      <InviteModal
+        hasApp
+        appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
+        isAppPublic={app?.config?.public}
+        fetchInviteLink={fetchShareLink}
+        renewInviteLink={renewShareLink}
+        configInviteLink={setInviteLinkEnabled}
+        allowInviteByLink={inviteLinkEnabled}
+        userListData={members}
+        currentUserRole={currentUserRole}
+        inviteByEmail={handleInviteByEmail}
+        changeTeamMembersRole={handleChangeTeamMembersRole}
+        updateAppPublicConfig={updateAppConfig}
+        visible={shareVisible}
+        handleCloseModal={closeInviteModal}
+      />
       <RenameModal
         appId={app.appId}
         visible={renameVisible}
