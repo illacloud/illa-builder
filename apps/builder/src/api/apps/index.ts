@@ -64,7 +64,7 @@ export const fetchShareAppLink = (userRole: USER_ROLE, appID: string) => {
 
 export const renewShareAppLink = (userRole: USER_ROLE, appID: string) => {
   return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
-    CloudBaseApi.request<fetchInviteLinkResponse>(
+    CloudTeamApi.request<fetchInviteLinkResponse>(
       {
         method: "GET",
         url: `/newShareAppLink/userRole/${userRole}/apps/${appID}`,
