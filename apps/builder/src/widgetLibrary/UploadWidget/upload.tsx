@@ -10,7 +10,12 @@ import {
   uploadLayoutStyle,
 } from "@/widgetLibrary/UploadWidget/style"
 import { UploadWidgetProps, WrappedUploadProps } from "./interface"
-import { getFileString, getFilteredValue, toBase64 } from "./util"
+import {
+  dataURLtoFile,
+  getFileString,
+  getFilteredValue,
+  toBase64,
+} from "./util"
 
 const getCurrentList = (fileList: UploadItem[]) =>
   fileList.map((file) => {
@@ -195,10 +200,10 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
         const info = files[index]
         return {
           ...file,
-          originFile: new File([base64], info.name, {
-            type: info.type,
-            lastModified: info.lastModified,
-          }),
+          originFile: dataURLtoFile(
+            `data:${info.type};base64,${base64}`,
+            info.name,
+          ),
         } as UploadItem
       })
       setFileList(shownList)
