@@ -152,14 +152,16 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                       setRenameVisible(true)
                     }}
                   />
-                  <DropListItem
-                    key="share"
-                    value="share"
-                    title={t("share")}
-                    onClick={() => {
-                      setShareVisible(true)
-                    }}
-                  />
+                  {isDeploy && (
+                    <DropListItem
+                      key="share"
+                      value="share"
+                      title={t("share")}
+                      onClick={() => {
+                        setShareVisible(true)
+                      }}
+                    />
+                  )}
                   <DropListItem
                     key="duplicate"
                     value="duplicate"
