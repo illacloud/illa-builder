@@ -12,6 +12,7 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
     handleDeleteGlobalData,
     tooltipText,
     iconName,
+    colorScheme,
     displayName,
   } = props
 
@@ -21,6 +22,7 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
     handleUpdateGlobalData?.(displayName, {
       tooltipText,
       iconName,
+      colorScheme,
       displayName,
     })
     return () => {
@@ -32,6 +34,7 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
     handleDeleteGlobalData,
     tooltipText,
     iconName,
+    colorScheme,
     displayName,
   ])
 
@@ -43,6 +46,7 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
         ref={containerRef}
         css={getIconContainerStyle(
           containerBounds.width > containerBounds.height,
+          colorScheme,
         )}
       >
         {getIcon && getIcon({})}

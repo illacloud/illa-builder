@@ -14,4 +14,5 @@ export interface IconWidgetProps
   extends BaseWidgetProps,
     Pick<TooltipWrapperProps, "tooltipText"> {
   iconName?: string
+  colorScheme?: string
 }

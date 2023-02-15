@@ -42,7 +42,6 @@ export const BaseIconSetter: FC<BaseIconSetterProps> = (props) => {
           value={displayData?.name ?? ""}
           disabled
         />
-
         {!!displayData?.name && (
           <div css={clearIconStyle} onClick={handleClearClick}>
             <ErrorCircleIcon />

@@ -13,3 +13,15 @@ export interface BaseIconSetterProps extends BaseSetter {
 }
 
 export interface IconSelectorProps extends BaseSetter {}
+
+export interface IconPickerListProps {
+  iconType: IconShowType
+  iconOrigin: string
+  searchInput: string
+  handleCurrentIconClick: (info: IconDataType) => void
+}
+
+export interface IconTriggerComponentProps {
+  handleCurrentIconClick: (info: IconDataType) => void
+  handleCloseModal: (visible: boolean) => void
+}

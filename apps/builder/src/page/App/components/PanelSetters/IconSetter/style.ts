@@ -48,7 +48,6 @@ export const iconSelectorContainerStyle = css`
 
 export const iconContentStyle = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-
   font-size: 12px;
   line-height: 20px;
   text-overflow: ellipsis;
@@ -60,13 +59,11 @@ export const iconContentStyle = css`
   & > div {
     border: none;
     background: none;
-    & > input {
+    cursor: pointer;
+    & > input:disabled {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      cursor: pointer;
-    }
-    & > input:disabled {
       cursor: pointer;
       color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     }
@@ -227,4 +224,12 @@ export const rightBottomItemStyle = css`
 
 export const headerCloseIconStyle = css`
   cursor: pointer;
+`
+
+export const fallbackContainerStyle = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

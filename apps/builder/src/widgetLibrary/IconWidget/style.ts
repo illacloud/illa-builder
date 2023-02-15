@@ -1,6 +1,9 @@
 import { css } from "@emotion/react"
 
-export const getIconContainerStyle = (isWidthBigger: boolean) => {
+export const getIconContainerStyle = (
+  isWidthBigger: boolean,
+  colorScheme?: string,
+) => {
   const svgStyle = isWidthBigger
     ? css`
         height: 100%;
@@ -10,11 +13,17 @@ export const getIconContainerStyle = (isWidthBigger: boolean) => {
         width: 100%;
         height: auto;
       `
+  const svgColor = colorScheme
+    ? css`
+        color: ${colorScheme};
+      `
+    : css``
   return css`
     width: 100%;
     height: 100%;
     & svg {
       ${svgStyle};
+      ${svgColor};
       display: block;
     }
   `

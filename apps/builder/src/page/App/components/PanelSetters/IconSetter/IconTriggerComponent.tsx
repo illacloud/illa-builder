@@ -1,9 +1,13 @@
 import { t } from "i18next"
-import { FC, useMemo, useState } from "react"
+import { FC, Suspense, lazy, useMemo, useState } from "react"
 import { IconManifest } from "react-icons"
-import { CloseIcon, Search, isFunction } from "@illa-design/react"
-import { IconShowType } from "@/page/App/components/PanelSetters/IconSetter/interface"
+import { CloseIcon, Loading, Search } from "@illa-design/react"
 import {
+  IconShowType,
+  IconTriggerComponentProps,
+} from "@/page/App/components/PanelSetters/IconSetter/interface"
+import {
+  fallbackContainerStyle,
   getNameSelectedStyle,
   getSelectedStyle,
   headerCloseIconStyle,
@@ -14,17 +18,11 @@ import {
   iconPickerLeftPanelStyle,
   iconPickerSearchStyle,
   leftPanelItemStyle,
-  rightBottomItemStyle,
-  rightBottomStyle,
   rightPanelStyle,
   rightTopItemStyle,
   rightTopPanelStyle,
 } from "@/page/App/components/PanelSetters/IconSetter/style"
-import {
-  ALL_ICONS,
-  AllData,
-  AllIconData,
-} from "@/widgetLibrary/IconWidget/utils"
+import { ALL_ICONS } from "@/widgetLibrary/IconWidget/utils"
 
 const defaultItem: IconManifest = {
   id: "default",
@@ -37,32 +35,16 @@ const defaultItem: IconManifest = {
 const iconsList = ALL_ICONS.sort((a, b) => (a.name > b.name ? 1 : -1))
 const [firstItem, ...others] = iconsList
 const realIconsNameLists = [defaultItem, ...others, firstItem]
+const IconTypes = ["All", "Filled", "Outline"]
 
-export const IconTriggerComponent: FC<any> = (props) => {
+export const IconTriggerComponent: FC<IconTriggerComponentProps> = (props) => {
   const { handleCurrentIconClick, handleCloseModal } = props
 
   const [iconType, setIconType] = useState<IconShowType>("All")
   const [iconOrigin, setIconOrigin] = useState<string>("bs")
   const [searchInput, setSearchInput] = useState<string>("")
 
-  const iconSets = iconOrigin === "default" ? AllData : AllIconData[iconOrigin]
-  const iconsInfo = iconSets
-    ? Object.keys(iconSets).map((key) => ({
-        name: key,
-        getIcon: iconSets[key],
-      }))
-    : []
-
-  const originAndTypeFilter =
-    iconType === "All"
-      ? iconsInfo
-      : iconType === "Filled"
-      ? iconsInfo.filter((icon) => icon.name.toLowerCase().includes("filled"))
-      : iconsInfo.filter((icon) => icon.name.toLowerCase().includes("outline"))
-
-  const filteredIconsInfoSet = !searchInput
-    ? originAndTypeFilter
-    : originAndTypeFilter.filter((icon) => icon.name.includes(searchInput))
+  const RightBottomPanel = lazy(() => import("./IconPickerList"))
 
   const handleOnChange = (value: string) => {
     setSearchInput(value)
@@ -114,7 +96,7 @@ export const IconTriggerComponent: FC<any> = (props) => {
   const RightTopPanel = useMemo(() => {
     return (
       <div css={rightTopPanelStyle}>
-        {["All", "Filled", "Outline"].map((type) => (
+        {IconTypes.map((type) => (
           <div
             css={[rightTopItemStyle, getSelectedStyle(iconType === type)]}
             key={type}
@@ -127,34 +109,41 @@ export const IconTriggerComponent: FC<any> = (props) => {
     )
   }, [iconType])
 
-  const RightBottomPanel = useMemo(() => {
-    console.log("Bottom: ", filteredIconsInfoSet)
+  const Fallback = () => {
     return (
-      <div css={rightBottomStyle}>
-        {filteredIconsInfoSet.map((icons) => {
-          const { name, getIcon } = icons
-          return (
-            <span
-              css={rightBottomItemStyle}
-              key={name}
-              onClick={() => handleCurrentIconClick(icons)}
-            >
-              {isFunction(getIcon) && getIcon({})}
-            </span>
-          )
-        })}
+      <div css={fallbackContainerStyle}>
+        <Loading />
       </div>
     )
-  }, [filteredIconsInfoSet, handleCurrentIconClick])
+  }
+
+  const RightBottom = useMemo(() => {
+    return (
+      <Suspense fallback={<Fallback />}>
+        <RightBottomPanel
+          iconOrigin={iconOrigin}
+          iconType={iconType}
+          searchInput={searchInput}
+          handleCurrentIconClick={handleCurrentIconClick}
+        />
+      </Suspense>
+    )
+  }, [
+    RightBottomPanel,
+    handleCurrentIconClick,
+    iconOrigin,
+    iconType,
+    searchInput,
+  ])
 
   const RightPanel = useMemo(() => {
     return (
       <div css={rightPanelStyle}>
         {RightTopPanel}
-        {RightBottomPanel}
+        {RightBottom}
       </div>
     )
-  }, [RightBottomPanel, RightTopPanel])
+  }, [RightBottom, RightTopPanel])
 
   const IconPickerBody = useMemo(() => {
     return (
