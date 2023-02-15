@@ -192,6 +192,7 @@ export const rightBottomItemStyle = css`
   width: 48px;
   cursor: pointer;
   height: 48px;
+  display: inline-block;
   padding: 12px;
   & > svg {
     width: 24px;

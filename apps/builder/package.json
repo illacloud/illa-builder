@@ -103,7 +103,6 @@
     "e2e": "workspace:*",
     "typescript": "^4.9.3",
     "vite-plugin-checker": "^0.5.3",
-    "vite-plugin-dynamic-import": "^1.2.7",
     "vite-plugin-svgr": "^2.1.0"
   }
 }

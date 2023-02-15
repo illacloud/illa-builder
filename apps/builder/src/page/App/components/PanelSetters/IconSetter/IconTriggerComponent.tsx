@@ -128,6 +128,7 @@ export const IconTriggerComponent: FC<any> = (props) => {
   }, [iconType])
 
   const RightBottomPanel = useMemo(() => {
+    console.log("Bottom: ", filteredIconsInfoSet)
     return (
       <div css={rightBottomStyle}>
         {filteredIconsInfoSet.map((icons) => {

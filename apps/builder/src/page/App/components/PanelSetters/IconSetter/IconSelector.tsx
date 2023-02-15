@@ -16,10 +16,13 @@ export const IconSelector: FC<IconSelectorProps> = (props) => {
   })
   const [modalVisible, setModalVisible] = useState(false)
 
-  const handleCurrentIconClick = ({ getIcon, name }: IconDataType) => {
-    setRightPanelData({ getIcon, name })
-    setModalVisible(false)
-  }
+  const handleCurrentIconClick = useCallback(
+    ({ getIcon, name }: IconDataType) => {
+      setRightPanelData({ getIcon, name })
+      setModalVisible(false)
+    },
+    [],
+  )
 
   const handleCloseModal = useCallback((visible: boolean) => {
     setModalVisible(visible)

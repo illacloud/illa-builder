@@ -10,8 +10,8 @@ export const ICON_WIDGET_CONFIG: WidgetConfig = {
   icon: <IconsWidgetIcon />,
   keywords: ["Icon", "图标"],
   sessionType: "PRESENTATION",
-  w: 5,
-  h: 5,
+  w: 3,
+  h: 8,
   defaults: {
     iconName: "RiAddCircleLine",
     colorScheme: "blue",
