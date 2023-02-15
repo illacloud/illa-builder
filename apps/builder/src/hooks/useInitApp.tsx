@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { Api } from "@/api/base"
+import { Api, BuilderBaseApi } from "@/api/base"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
@@ -22,6 +22,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
   const dispatch = useDispatch()
   const isOnline = useSelector(getIsOnline)
   const teamInfo = useSelector(getCurrentTeamInfo)
+  const { teamIdentifier } = useParams()
 
   // versionId = -1 represents the latest edited version of the app.
   // versionId = -2 represents the latest released version of the user.
@@ -37,9 +38,9 @@ export const useInitBuilderApp = (model: IllaMode) => {
     if (isOnline) {
       const { id: teamID = "", uid = "" } = teamInfo ?? {}
       new Promise<CurrentAppResp>((resolve, reject) => {
-        Api.request<CurrentAppResp>(
+        BuilderBaseApi.request<CurrentAppResp>(
           {
-            url: `/publicApps/${appId}/versions/${versionId}`,
+            url: `/teams/${teamIdentifier}/publicApps/${appId}/versions/${versionId}`,
             method: "GET",
             signal: controller.signal,
           },

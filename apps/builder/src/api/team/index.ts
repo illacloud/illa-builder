@@ -78,7 +78,7 @@ export const getTeamsInfo = (teamIdentifier?: string, token?: string) => {
 
 export const updateTeamsInfo = (teamIdentifier?: string) => {
   return new Promise<TeamInfo[]>((resolve, reject) => {
-    CloudTeamApi.request<TeamInfo[]>(
+    CloudBaseApi.request<TeamInfo[]>(
       {
         url: "/teams/my",
         method: "GET",

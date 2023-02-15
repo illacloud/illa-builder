@@ -1,5 +1,5 @@
 import { Api } from "@/api/base"
-import { CloudTeamApi } from "@/api/cloudApi"
+import { CloudBaseApi, CloudTeamApi } from "@/api/cloudApi"
 import {
   fetchInviteLinkResponse,
   inviteByEmailResponse,
@@ -64,10 +64,10 @@ export const fetchShareAppLink = (userRole: USER_ROLE, appID: string) => {
 
 export const renewShareAppLink = (userRole: USER_ROLE, appID: string) => {
   return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
-    CloudTeamApi.request<fetchInviteLinkResponse>(
+    CloudBaseApi.request<fetchInviteLinkResponse>(
       {
         method: "GET",
-        url: `/newInviteLink/userRole/${userRole}`,
+        url: `/newShareAppLink/userRole/${userRole}/apps/${appID}`,
       },
       (res) => {
         resolve(res.data)

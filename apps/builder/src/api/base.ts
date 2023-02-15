@@ -73,3 +73,37 @@ export class Api {
       })
   }
 }
+
+export class BuilderBaseApi {
+  static request<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
+    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
+    crash?: (e: AxiosError) => void,
+    loading?: (loading: boolean) => void,
+    errorState?: (errorState: boolean) => void,
+  ) {
+    loading?.(true)
+    errorState?.(false)
+    axios
+      .request<RespData, AxiosResponse<RespData>, RequestBody>({
+        ...config,
+        timeout: 30000,
+      })
+      .then((response) => {
+        loading?.(false)
+        errorState?.(false)
+        success?.(response)
+      })
+      .catch((error: AxiosError<ErrorResp, RequestBody>) => {
+        loading?.(false)
+        errorState?.(true)
+        if (error.response) {
+          failure?.(error.response)
+        }
+        if (error.response == undefined && error.request != undefined) {
+          crash?.(error)
+        }
+      })
+  }
+}
