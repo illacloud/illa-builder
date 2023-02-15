@@ -130,7 +130,6 @@ export const transformEvents = (
         "setStartValue",
         "setEndValue",
         "setDisabled",
-        "setHidden",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event

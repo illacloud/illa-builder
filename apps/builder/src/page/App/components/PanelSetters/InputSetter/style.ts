@@ -41,3 +41,22 @@ export const inputWithSelectSetterStyle = css`
   align-items: center;
   width: 184px;
 `
+
+export const inputWithSelectSetterSelectStyle = css`
+  width: 50px;
+`
+
+export const sizeDropListStyle = css`
+  border-radius: 0px 5px 5px 0px;
+  width: 100px;
+`
+
+export const sizeDropListCodeEditorStyle = css`
+  width: 120px;
+`
+
+export const sizeContainerStyle = css`
+  display: flex;
+  width: 64px;
+  gap: 4px;
+`

@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react"
 import useMeasure from "react-use-measure"
-import { Upload, UploadItem } from "@illa-design/react"
+import { RequestOptions, Upload, UploadItem } from "@illa-design/react"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -48,6 +48,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     onChange,
     getValidateMessage,
     handleUpdateMultiExecutionResult,
+    customRequest,
   } = props
 
   const isDrag = type === "dropzone"
@@ -115,8 +116,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
 
   return (
     <Upload
-      action="/"
-      autoUpload={false}
+      customRequest={customRequest}
       disabled={disabled}
       text={isDrag ? dropText : buttonText}
       colorScheme={colorScheme}
@@ -176,7 +176,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   const previousValueRef = useRef<UploadItem[]>([])
 
   const [containerRef, containerBounds] = useMeasure()
-
   useEffect(() => {
     updateComponentHeight(containerBounds.height)
   }, [updateComponentHeight, validateMessage, containerBounds.height])
@@ -187,7 +186,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       currentList.length > 0 &&
       value &&
       files &&
-      fileListRef.current.length === 0 &&
+      fileListRef.current?.length === 0 &&
       previousValueRef.current.length === 0
 
     if (canInitialDragValue) {
@@ -211,9 +210,9 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     const currentFiles =
       previousValueRef.current.length > 0
         ? [...previousValueRef.current]
-        : [...fileListRef.current]
-    const currentFilesKeys = currentFiles.map((f) => f.uid ?? f.name)
-    const index = currentFilesKeys.indexOf(file.uid ?? file.name)
+        : [...(fileListRef.current || [])]
+    const currentFilesKeys = currentFiles.map((f) => f.uid || f.name)
+    const index = currentFilesKeys.indexOf(file.uid || file.name)
     currentFiles.splice(index, 1)
     setFileList(currentFiles)
     fileListRef.current = currentFiles
@@ -221,6 +220,10 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       previousValueRef.current = currentFiles
     }
     return true
+  }
+
+  const customRequest = (options: RequestOptions) => {
+    options.onSuccess()
   }
 
   const onChanges = (fileList: UploadItem[], file: UploadItem) => {
@@ -239,9 +242,9 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       return
     }
     const currentFilesKeys = previousValueRef.current.map(
-      (f) => f.uid ?? f.name,
+      (f) => f.uid || f.name,
     )
-    const index = currentFilesKeys.indexOf(file.uid ?? file.name)
+    const index = currentFilesKeys.indexOf(file.uid || file.name)
     if (index < 0) {
       return
     }
@@ -253,7 +256,9 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
         (f) => f.status === "error" || f.status === "done",
       )
       if (allSettled) {
-        const newList = appendFiles ? [...fileListRef.current, ...files] : files
+        const newList = appendFiles
+          ? [...(fileListRef.current || []), ...files]
+          : files
         setFileList(newList)
         fileListRef.current = newList
         previousValueRef.current = []
@@ -324,6 +329,9 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       maxFiles,
       maxSize,
       minSize,
+      currentList,
+      value,
+      files,
       clearValue: () => {
         handleUpdateDsl({ value: [] })
         setFileList([])
@@ -334,11 +342,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       setDisabled: (value: boolean) => {
         handleUpdateDsl({
           disabled: value,
-        })
-      },
-      setHidden: (value: boolean) => {
-        handleUpdateDsl({
-          hidden: value,
         })
       },
       clearValidation: () => {
@@ -367,6 +370,9 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     maxFiles,
     maxSize,
     minSize,
+    currentList,
+    value,
+    files,
     hideValidationMessage,
     currentFileList,
     handleUpdateDsl,
@@ -385,6 +391,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
             onChange={onChanges}
             onRemove={handleOnRemove}
             getValidateMessage={getValidateMessage}
+            customRequest={customRequest}
           />
         </div>
       </TooltipWrapper>

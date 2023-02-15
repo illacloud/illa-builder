@@ -14,6 +14,7 @@ export interface WrappedUploadProps
       | "loading"
       | "text"
       | "colorScheme"
+      | "customRequest"
     >,
     BaseWidgetProps {
   type: "button" | "dropzone"

@@ -10,5 +10,5 @@ export const UPLOAD_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "change",
     },
   ],
-  methods: ["clearValidation", "clearValue", "setHidden", "setDisabled"],
+  methods: ["clearValidation", "clearValue", "setDisabled"],
 }

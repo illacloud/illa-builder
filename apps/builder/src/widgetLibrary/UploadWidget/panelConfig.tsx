@@ -279,6 +279,8 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.variant"),
         attrName: "variant",
+        bindAttrName: ["type"],
+        shown: (value) => value === "button",
         options: [
           {
             label: i18n.t("editor.inspect.setter_default_value.fill"),
