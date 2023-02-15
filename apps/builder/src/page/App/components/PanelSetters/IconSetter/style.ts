@@ -1,5 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { fixedWidthStyle } from "@/page/App/components/PanelSetters/style"
 
 export const applyBaseIconWrapperStyle = (
@@ -13,9 +13,13 @@ export const applyBaseIconWrapperStyle = (
 }
 
 export const iconSelectorIconStyle = css`
-  width: 22px;
-  height: 22px;
-  padding: 3px;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  position: absolute;
+  left: 0;
+  top: 4px;
+  left: 8px;
   & > svg {
     width: 16px;
     height: 16px;
@@ -33,22 +37,40 @@ export const iconNameStyle = css`
 export const iconSelectorContainerStyle = css`
   width: 100%;
   height: 100%;
+  position: relative;
   cursor: pointer;
-  border-radius: 8px;
+  //border-radius: 8px;
   display: flex;
   overflow: hidden;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 12px 4px 8px;
-  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export const iconContentStyle = css`
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+
+  font-size: 12px;
+  line-height: 20px;
+  text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
+  padding-left: 24px;
+  padding-right: 28px;
+  border-radius: 8px;
+  & > div {
+    border: none;
+    background: none;
+    & > input {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    & > input:disabled {
+      cursor: pointer;
+      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    }
+  }
 `
 
 export const clearIconStyle = css`
@@ -56,6 +78,9 @@ export const clearIconStyle = css`
   height: 16px;
   display: flex;
   cursor: pointer;
+  position: absolute;
+  right: 12px;
+  top: 8px;
   justify-content: center;
   align-items: center;
   & > svg {
