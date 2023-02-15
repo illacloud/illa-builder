@@ -41,6 +41,14 @@ const getUserInfo = (token: string) => {
   })
 }
 
+const removeUrlParams = (url: string, params: string[]) => {
+  const urlObj = new URL(url)
+  params.forEach((param) => {
+    urlObj.searchParams.delete(param)
+  })
+  return urlObj
+}
+
 export const requireAuth = async (
   pathToken?: string | null,
   teamIdentifier?: string,
@@ -49,6 +57,13 @@ export const requireAuth = async (
   const token = getAuthToken() || pathToken
   if (pathToken) {
     setLocalStorage("token", pathToken, -1)
+    // remove url params form location
+    const url = removeUrlParams(window.location.href, ["token"])
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}${url.search}`,
+    )
   }
   if (!userInfo?.userId) {
     if (!token) {

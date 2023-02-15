@@ -39,7 +39,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
       new Promise<CurrentAppResp>((resolve, reject) => {
         Api.request<CurrentAppResp>(
           {
-            url: `/apps/${appId}/versions/${versionId}`,
+            url: `/publicApps/${appId}/versions/${versionId}`,
             method: "GET",
             signal: controller.signal,
           },
