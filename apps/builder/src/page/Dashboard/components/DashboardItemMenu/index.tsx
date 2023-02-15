@@ -15,6 +15,7 @@ import {
 import {
   fetchShareAppLink,
   renewShareAppLink,
+  shareAppByEmail,
   updateAppPublicConfig,
 } from "@/api/apps"
 import { Api } from "@/api/base"
@@ -74,7 +75,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   }
 
   const handleInviteByEmail = (email: string, userRole: USER_ROLE) => {
-    return inviteByEmail(email, userRole).then((res) => {
+    return shareAppByEmail(email, userRole, appId).then((res) => {
       updateMemberList()
       return res
     })
@@ -101,8 +102,15 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     return renewShareAppLink(userRole, appId)
   }
 
-  const updateAppConfig = (isPublic: boolean) => {
-    return updateAppPublicConfig(isPublic, appId)
+  const updateAppConfig = async (isPublic: boolean) => {
+    const res = await updateAppPublicConfig(isPublic, appId)
+    dispatch(
+      dashboardAppActions.modifyConfigDashboardAppReducer({
+        appId,
+        config: { public: isPublic },
+      }),
+    )
+    return res
   }
 
   return (

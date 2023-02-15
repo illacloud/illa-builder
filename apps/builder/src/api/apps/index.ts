@@ -1,6 +1,9 @@
 import { Api } from "@/api/base"
 import { CloudTeamApi } from "@/api/cloudApi"
-import { fetchInviteLinkResponse } from "@/illa-public-component/MemberList/interface"
+import {
+  fetchInviteLinkResponse,
+  inviteByEmailResponse,
+} from "@/illa-public-component/MemberList/interface"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 
 export interface fetchShareAppLinkResponse {
@@ -8,6 +11,35 @@ export interface fetchShareAppLinkResponse {
   teamID: number
   userRole: USER_ROLE
   shareAppLink: string
+}
+
+export const shareAppByEmail = (
+  email: string,
+  userRole: USER_ROLE,
+  appID: string,
+) => {
+  return new Promise<inviteByEmailResponse>((resolve, reject) => {
+    CloudTeamApi.request<inviteByEmailResponse>(
+      {
+        method: "POST",
+        url: `/shareAppByEmail`,
+        data: {
+          email,
+          userRole,
+          appID,
+        },
+      },
+      (res) => {
+        resolve(res.data)
+      },
+      (res) => {
+        reject(false)
+      },
+      () => {
+        reject(false)
+      },
+    )
+  })
 }
 
 export const fetchShareAppLink = (userRole: USER_ROLE, appID: string) => {

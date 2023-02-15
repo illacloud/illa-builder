@@ -858,6 +858,22 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               ),
             )
             break
+          case "modifyConfigDashboardAppReducer":
+            Connection.getRoom("dashboard", "")?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_APPS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                teamID,
+                uid,
+                [payload],
+              ),
+            )
+            break
           default:
             break
         }
