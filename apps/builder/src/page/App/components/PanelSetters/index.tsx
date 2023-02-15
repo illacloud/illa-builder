@@ -7,6 +7,7 @@ import { ColorPickerSetter } from "@/page/App/components/PanelSetters/ColorPicke
 import { ViewsSetter } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter"
 import { ContainerDefaultViewKeySetter } from "@/page/App/components/PanelSetters/ContainerSetter/defaultViewKeySetter"
 import { EventHandlerSetter } from "@/page/App/components/PanelSetters/EventHandlerSetter"
+import { IconSelector } from "@/page/App/components/PanelSetters/IconSetter/IconSelector"
 import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
 import { EditableInputSetter } from "@/page/App/components/PanelSetters/InputSetter/editableInputSetter"
 import { OptionMappedInputSetter } from "@/page/App/components/PanelSetters/InputSetter/optionMappedInputSetter"
@@ -39,6 +40,7 @@ import { EventTargetPageSelect } from "./SelectSetter/pageSelect"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
+  ICON_SETTER: IconSelector,
   RADIO_GROUP_SETTER: BaseRadioGroupSetter,
   SWITCH_SETTER: BaseSwitchSetter,
   SEARCH_SELECT_SETTER: SearchSelectSetter,
