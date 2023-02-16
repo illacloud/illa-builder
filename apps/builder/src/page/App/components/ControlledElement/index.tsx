@@ -217,7 +217,7 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
           )
       }
     },
-    [contentLabel, control, error, onValueChange],
+    [contentLabel, control, error, onValueChange, options],
   )
 
   return (

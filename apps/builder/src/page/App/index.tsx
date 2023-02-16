@@ -78,7 +78,7 @@ export const Editor: FC = () => {
       )
       window.removeEventListener("beforeunload", handleLeaveRoom)
     }
-  }, [currentUser, appId])
+  }, [currentUser, appId, handleLeaveRoom, dispatch])
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [

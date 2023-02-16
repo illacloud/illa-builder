@@ -56,7 +56,7 @@ export const ErrorItem: FC<ErrorItemProps> = (props) => {
         componentsAttachedUsers,
       )
     }
-  }, [dispatch, root, displayName])
+  }, [root, displayName, dispatch, componentsAttachedUsers])
 
   return (
     <div css={errorContainerStyle}>
