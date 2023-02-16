@@ -965,7 +965,10 @@
       "unselected_tip1": "コンポーネントが選択されていません。",
       "unselected_tip2": "コンポーネントをクリックして選択してください。",
       "setter": {
-        "click_mask_close": "Click mask to close modal"
+        "click_mask_close": "Click mask to close modal",
+        "modal": {
+          "blank": "アイコンなし"
+        }
       },
       "setter_tips": {
         "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。"

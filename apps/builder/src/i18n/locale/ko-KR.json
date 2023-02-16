@@ -965,7 +965,10 @@
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
       "unselected_tip2": "구성 요소를 클릭하여 선택하십시오.",
       "setter": {
-        "click_mask_close": "Click mask to close modal"
+        "click_mask_close": "Click mask to close modal",
+        "modal": {
+          "blank": "아이콘 없음"
+        }
       },
       "setter_tips": {
         "carousel_tips": "{{ currentItem }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어 데이터 원본에 두 개의 열이 있습니다. 이미지와 URL입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ currentItem.url }}을 이용하여 url을 설정하면 됩니다."

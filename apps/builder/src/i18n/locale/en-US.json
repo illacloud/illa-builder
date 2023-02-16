@@ -965,7 +965,10 @@
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it.",
       "setter": {
-        "click_mask_close": "Click mask to close modal"
+        "click_mask_close": "Click mask to close modal",
+        "modal": {
+          "blank": "No icons"
+        }
       },
       "setter_tips": {
         "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
