@@ -12,7 +12,7 @@ export const ICON_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-label-iconName`,
-        labelName: "Icon",
+        labelName: i18n.t("editor.inspect.setter_label.icon"),
         attrName: "iconName",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "ICON_SETTER",
