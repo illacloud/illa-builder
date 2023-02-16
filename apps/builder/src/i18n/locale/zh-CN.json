@@ -920,7 +920,8 @@
         "file_url": "文件URL",
         "show_tool_bar": "显示工具栏",
         "scale": "缩放页面",
-        "scroll": "快速滚动到每一页"
+        "scroll": "快速滚动到每一页",
+        "min_max_size": "最小～最大文件大小"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -982,6 +983,9 @@
         "text_clip": "裁切",
         "scale_height": "高度",
         "scale_width": "宽度"
+      },
+      "setter_placeholder": {
+        "min_max_size": "无限制"
       }
     },
     "page": {
@@ -1033,8 +1037,7 @@
       "max_size": "文件大小不能超过 {{maxSize }} {{ type }}。",
       "min_files": "要求至少 {{ minFiles }} 个文件。",
       "max_files": "支持最多 {{ maxFiles }} 个文件。",
-      "min_size": "文件大小不能小于{{minSize }} {{ type }}。",
-      "min_max_size": "最小～最大文件大小"
+      "min_size": "文件大小不能小于{{minSize }} {{ type }}。"
     },
     "widget_picker": {
       "empty_tip": "抱歉，没有搜索结果",
