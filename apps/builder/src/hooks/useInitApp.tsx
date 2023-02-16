@@ -1,7 +1,9 @@
+import { AxiosResponse } from "axios"
 import { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { Api, BuilderBaseApi } from "@/api/base"
+import { getTeamsInfo } from "@/api/team"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
@@ -18,11 +20,13 @@ import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const useInitBuilderApp = (model: IllaMode) => {
-  const { appId } = useParams()
+  const { appId = "" } = useParams()
   const dispatch = useDispatch()
   const isOnline = useSelector(getIsOnline)
   const teamInfo = useSelector(getCurrentTeamInfo)
   const { teamIdentifier } = useParams()
+
+  const [loadingState, setLoadingState] = useState(true)
 
   // versionId = -1 represents the latest edited version of the app.
   // versionId = -2 represents the latest released version of the user.
@@ -30,68 +34,113 @@ export const useInitBuilderApp = (model: IllaMode) => {
     () => (model === "production" ? "-2" : "0"),
     [model],
   )
+  const { uid, teamID } = useMemo(() => {
+    return {
+      uid: teamInfo?.uid ?? "",
+      teamID: teamInfo?.id ?? "",
+    }
+  }, [teamInfo])
 
-  const [loadingState, setLoadingState] = useState(true)
+  const handleCurrentApp = (response: AxiosResponse<CurrentAppResp>) => {
+    if (model === "edit") {
+      dispatch(configActions.resetConfig())
+    }
+    dispatch(configActions.updateIllaMode(model))
+    dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
+    dispatch(componentsActions.updateComponentReducer(response.data.components))
+    dispatch(actionActions.updateActionListReducer(response.data.actions))
+
+    dispatch(
+      dragShadowActions.updateDragShadowReducer(response.data.dragShadowState),
+    )
+    dispatch(
+      dottedLineSquareActions.updateDottedLineSquareReducer(
+        response.data.dottedLineSquareState,
+      ),
+    )
+    DisplayNameGenerator.initApp(appId, teamID, uid)
+    DisplayNameGenerator.updateDisplayNameList(
+      response.data.components,
+      response.data.actions,
+    )
+    dispatch(executionActions.startExecutionReducer())
+    if (model === "edit" && response.data.actions.length > 0) {
+      dispatch(configActions.changeSelectedAction(response.data.actions[0]))
+    }
+  }
+
+  const initApp = (
+    controller: AbortController,
+    resolve: (value: PromiseLike<CurrentAppResp> | CurrentAppResp) => void,
+    reject: (reason?: any) => void,
+  ) => {
+    Api.request<CurrentAppResp>(
+      {
+        url: `/apps/${appId}/versions/${versionId}`,
+        method: "GET",
+        signal: controller.signal,
+      },
+      (response) => {
+        handleCurrentApp(response)
+        resolve(response.data)
+      },
+      (e) => {
+        reject("failure")
+      },
+      (e) => {
+        reject("crash")
+      },
+      (loading) => {
+        setLoadingState(loading)
+      },
+    )
+  }
 
   useEffect(() => {
     const controller = new AbortController()
     if (isOnline) {
-      const { id: teamID = "", uid = "" } = teamInfo ?? {}
       new Promise<CurrentAppResp>((resolve, reject) => {
-        BuilderBaseApi.request<CurrentAppResp>(
-          {
-            url: `/teams/${teamIdentifier}/publicApps/${appId}/versions/${versionId}`,
-            method: "GET",
-            signal: controller.signal,
-          },
-          (response) => {
-            if (model === "edit") {
-              dispatch(configActions.resetConfig())
-            }
-            dispatch(configActions.updateIllaMode(model))
-            dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
-            dispatch(
-              componentsActions.updateComponentReducer(
-                response.data.components,
-              ),
-            )
-            dispatch(
-              actionActions.updateActionListReducer(response.data.actions),
-            )
-
-            dispatch(
-              dragShadowActions.updateDragShadowReducer(
-                response.data.dragShadowState,
-              ),
-            )
-            dispatch(
-              dottedLineSquareActions.updateDottedLineSquareReducer(
-                response.data.dottedLineSquareState,
-              ),
-            )
-            DisplayNameGenerator.initApp(appId ?? "", teamID, uid)
-            DisplayNameGenerator.updateDisplayNameList(
-              response.data.components,
-              response.data.actions,
-            )
-            dispatch(executionActions.startExecutionReducer())
-            if (model === "edit" && response.data.actions.length > 0) {
-              dispatch(
-                configActions.changeSelectedAction(response.data.actions[0]),
-              )
-            }
-            resolve(response.data)
-          },
-          (e) => {
-            reject("failure")
-          },
-          (e) => {
-            reject("crash")
-          },
-          (loading) => {
-            setLoadingState(loading)
-          },
-        )
+        if (model === "production") {
+          BuilderBaseApi.request<CurrentAppResp>(
+            {
+              url: `/teams/byIdentifier/${teamIdentifier}/publicApps/${appId}/versions/${versionId}`,
+              method: "GET",
+              signal: controller.signal,
+            },
+            (response) => {
+              handleCurrentApp(response)
+              resolve(response.data)
+            },
+            async () => {
+              // if failed to get the app, it means the app is not public
+              if (teamInfo && teamInfo.identifier !== teamIdentifier) {
+                reject("failure")
+                throw new Error("have no team match")
+              }
+              setLoadingState(true)
+              try {
+                if (!teamInfo) {
+                  await getTeamsInfo(teamIdentifier)
+                }
+                initApp(controller, resolve, reject)
+              } catch (e) {
+                reject("failure")
+                if (e === "have no team match") {
+                  throw new Error(e)
+                }
+              }
+              setLoadingState(false)
+            },
+            (e) => {
+              reject("crash")
+            },
+            (loading) => {
+              setLoadingState(loading)
+            },
+          )
+        } else {
+          initApp(controller, resolve, reject)
+        }
       }).then((value) => {
         const autoRunAction = value.actions.filter((action) => {
           return (
