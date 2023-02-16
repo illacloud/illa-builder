@@ -920,7 +920,8 @@
         "file_url": "File URL",
         "show_tool_bar": "Show tool bar",
         "scale": "Scale page to",
-        "scroll": "Snap scroll to each page"
+        "scroll": "Snap scroll to each page",
+        "min_max_size": "Min size ~ Max size"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -982,6 +983,9 @@
         "text_clip": "Clip",
         "scale_height": "Height",
         "scale_width": "Width"
+      },
+      "setter_placeholder": {
+        "min_max_size": "No limits"
       }
     },
     "page": {
@@ -1033,8 +1037,7 @@
       "max_size": "The file size can't exceed {{maxSize }} {{ type }}.",
       "min_files": "At least {{ minFiles }} files are required.",
       "max_files": "Support up to {{ maxFiles }} files.",
-      "min_size": "The file size can't be less than {{minSize }} {{ type }}.",
-      "min_max_size": "Min size ~ Max size"
+      "min_size": "The file size can't be less than {{minSize }} {{ type }}."
     },
     "widget_picker": {
       "empty_tip": "Sorry, no search results",
