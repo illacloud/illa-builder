@@ -965,7 +965,10 @@
       "unselected_tip1": "没有组件被选中。",
       "unselected_tip2": "请点击组件以选中。",
       "setter": {
-        "click_mask_close": "点击遮罩关闭modal"
+        "click_mask_close": "点击遮罩关闭modal",
+        "modal": {
+          "blank": "无图标"
+        }
       },
       "setter_tips": {
         "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。"
