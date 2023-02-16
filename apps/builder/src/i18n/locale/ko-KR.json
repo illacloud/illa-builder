@@ -900,23 +900,27 @@
         "y_axis_name": "좌표 이름",
         "y_axis_title": "Y축 제목",
         "height": "높은",
-        "min_height": "Min height (px)",
+        "min_height": "최소 높이(px)",
         "show_underline": "밑줄 표시",
         "auto_play": "자동 재생",
         "interval": "간격(ms)",
         "show_button": "양쪽에 버튼 표시",
         "show_dot": "하단에 점 표시",
-        "hidden_images": "Hidden images",
-        "file_type": "File types",
-        "selection_types": "Selection types",
-        "append_newly_files": "Append newly selected files",
-        "file_list": "File list",
-        "parse_value": "Parse Value",
-        "max_files": "Max files",
-        "min_files": "Min files",
-        "max_size": "Max size",
-        "min_size": "Min size",
-        "text_overflow": "텍스트 오버플로"
+        "hidden_images": "숨겨진 이미지",
+        "file_type": "파일 종류",
+        "selection_types": "선택 유형",
+        "append_newly_files": "새로 선택한 파일 추가",
+        "file_list": "파일 목록",
+        "parse_value": "파싱 파일",
+        "max_files": "최대 파일",
+        "min_files": "최소 파일",
+        "max_size": "최대 크기",
+        "min_size": "최소 크기",
+        "text_overflow": "텍스트 오버플로",
+        "file_url": "파일 URL",
+        "show_tool_bar": "도구 모음 표시",
+        "scale": "줌 페이지",
+        "scroll": "각 페이지에 스냅 스크롤"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -943,16 +947,19 @@
         "read_only": "구성 요소가 읽기 전용인지 여부를 제어합니다. 읽기 전용 구성 요소의 내용을 선택하고 초점을 맞출 수 있지만 수정할 수는 없습니다.",
         "required_field": "스위치를 켠 후 입력 상자에서 유효성 검사를 수행합니다.",
         "switch_default_value": "스위치의 초기 상태를 설정합니다. JavaScript를 통해 스위치의 초기 상태를 동적으로 변경할 수 있습니다.",
-        "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
-        "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
-        "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "table_only_run_when": "이벤트가 실행되기 전에 충족되어야 하는 조건입니다. {{ currentRow }}를 사용하여 현재 행의 데이터에 액세스합니다. 예를 들어 \"imgSize\"가 5120보다 작은 경우에만 실행합니다: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "currentRow를 사용하여 현재 행의 데이터에 액세스하십시오. 예를 들어 \"email\"을 기반으로 editableText 구성 요소의 값을 설정하려면 {{ currentRow.email }}. 또한 {{ table. selectedRow[n] }} 를 사용하여 구성 요소의 INSPECT에서 값을 설정할 수 있습니다:  {{ table1.selectedRow[n].email }} ",
+        "table_url": "{{ currentRow }}를 사용하여 현재 행의 데이터에 액세스합니다. 예를 들어 \"appid\" 매개변수가 있는 URL을 입력합니다. {{ \"www.example.com/#\" + currentRow.appid }}",
         "text_value": "Markdown 모드 또는 일반 텍스트 모드에서 값을 입력하도록 선택할 수 있습니다. 링크는 Markdown 모드에서만 입력할 수 있습니다.",
         "timeline_direction": "시간 축의 방향을 전환합니다.",
         "timeline_pending": "보류 중인 노드를 표시할지 여부입니다.",
         "tooltip": "사용자는 입력란에 프롬프트 내용을 입력할 수 있으며 마우스를 컴포넌트 위에 올려 놓으면 프롬프트 정보가 표시되며 Markdown 형식을 지원합니다.",
         "file_types": "업로드가 허용된 파일 확장자 목록입니다. 모든 파일 유형을 허용하는 값은 없습니다.",
         "file_list": "업로더 아래에 선택한 파일 목록을 표시합니다. 업로더의 높이는 파일 목록의 길이에 따라 동적으로 변경됩니다.",
-        "parse_value": "JSON, CSV, TSV, Excel 및 TXT 파일을 지원하여 선택한 파일의 구문 분석을 시도합니다. 구문 분석된 데이터는 {{uploader1.parsedValue}}를 통해 액세스할 수 있습니다. 구문 분석할 수 없는 파일은 배열에서 null이 됩니다. 모든 파일은 이 옵션에 관계없이 값 배열에서 base64로 인코딩된 문자열로 사용할 수 있습니다."
+        "parse_value": "JSON, CSV, TSV, Excel 및 TXT 파일을 지원하여 선택한 파일의 구문 분석을 시도합니다. 구문 분석된 데이터는 {{uploader1.parsedValue}}를 통해 액세스할 수 있습니다. 구문 분석할 수 없는 파일은 배열에서 null이 됩니다. 모든 파일은 이 옵션에 관계없이 값 배열에서 base64로 인코딩된 문자열로 사용할 수 있습니다.",
+        "file_url": "웹에서 PDF URL 또는 pdf 파일의 base64 인코딩 데이터를 지원합니다. 예: {{ data:application/pdf;base64, example-data }}",
+        "scale": "각 페이지의 크기를 조정하여 구성 요소의 너비 또는 높이를 채웁니다.",
+        "scroll": "스크롤 시 자동으로 각 페이지의 시작 부분으로 이동합니다."
       },
       "tab_title": "속성",
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
@@ -969,7 +976,9 @@
         "auto_height": "자동 높이",
         "text_ellipsis": "생략",
         "text_scroll": "스크롤",
-        "text_clip": "클립"
+        "text_clip": "클립",
+        "scale_height": "높은",
+        "scale_width": "너비"
       }
     },
     "page": {
@@ -1037,6 +1046,10 @@
         "selects": "클래스 구성 요소 선택"
       },
       "tab_title": "구성 요소"
+    },
+    "method": {
+      "set_hidden": "Set hidden",
+      "set_file_url": "Set file URL"
     }
   },
   "exit_preview": "미리보기 종료",
