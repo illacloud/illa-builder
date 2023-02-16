@@ -1033,7 +1033,8 @@
       "max_size": "The file size can't exceed {{maxSize }} {{ type }}.",
       "min_files": "At least {{ minFiles }} files are required.",
       "max_files": "Support up to {{ maxFiles }} files.",
-      "min_size": "The file size can't be less than {{minSize }} {{ type }}."
+      "min_size": "The file size can't be less than {{minSize }} {{ type }}.",
+      "min_max_size": "Min size ~ Max size"
     },
     "widget_picker": {
       "empty_tip": "Sorry, no search results",
