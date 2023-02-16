@@ -5,8 +5,7 @@ import { WidgetConfig } from "@/widgetLibrary/interface"
 export const ICON_WIDGET_CONFIG: WidgetConfig = {
   type: "ICON_WIDGET",
   displayName: "icon",
-  // widgetName: i18n.t("widget.input.name"),
-  widgetName: "Icons",
+  widgetName: i18n.t("widget.icon.name"),
   icon: <IconsWidgetIcon />,
   keywords: ["Icon", "图标"],
   sessionType: "PRESENTATION",
