@@ -1,5 +1,4 @@
-import { merge } from "chart.js/helpers"
-import { cloneDeep, get } from "lodash"
+import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isString } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
