@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { isFunction } from "@illa-design/react"
+import { EmptySearchResult } from "@/page/App/components/ComponentPanel/Empty"
 import { IconPickerListProps } from "@/page/App/components/PanelSetters/IconSetter/interface"
 import {
   rightBottomItemStyle,
@@ -33,18 +34,22 @@ const IconPickerList: FC<IconPickerListProps> = (props) => {
 
   return (
     <div css={rightBottomStyle}>
-      {filteredIconsInfoSet.map((icons) => {
-        const { name, getIcon } = icons
-        return (
-          <span
-            css={rightBottomItemStyle}
-            key={name}
-            onClick={() => handleCurrentIconClick(icons)}
-          >
-            {isFunction(getIcon) && getIcon({})}
-          </span>
-        )
-      })}
+      {filteredIconsInfoSet && filteredIconsInfoSet.length > 0 ? (
+        filteredIconsInfoSet.map((icons) => {
+          const { name, getIcon } = icons
+          return (
+            <span
+              css={rightBottomItemStyle}
+              key={name}
+              onClick={() => handleCurrentIconClick(icons)}
+            >
+              {isFunction(getIcon) && getIcon({})}
+            </span>
+          )
+        })
+      ) : (
+        <EmptySearchResult />
+      )}
     </div>
   )
 }

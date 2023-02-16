@@ -13,6 +13,7 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
     tooltipText,
     iconName,
     colorScheme,
+    handleOnClick,
     displayName,
   } = props
 
@@ -49,7 +50,7 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
           colorScheme,
         )}
       >
-        {getIcon && getIcon({})}
+        <div onClick={handleOnClick}>{getIcon && getIcon({})}</div>
       </div>
     </TooltipWrapper>
   )
