@@ -34,17 +34,17 @@ export const commonRouter: RoutesObjectPro[] = [
   {
     path: "/:teamIdentifier/deploy/app/:appId",
     element: <Deploy />,
-    needLogin: true,
+    errorElement: <Page403 />,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName",
     element: <Deploy />,
-    needLogin: true,
+    errorElement: <Page403 />,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName/:viewPath",
     element: <Deploy />,
-    needLogin: true,
+    errorElement: <Page403 />,
   },
   {
     path: "/403",
