@@ -10,7 +10,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: docker:17.05.0-ce-git
-    resource_class: 2xlarge
+    resource_class: xlarge
     steps:
       - checkout
       - setup_remote_docker:
