@@ -1,5 +1,5 @@
 import { debounce } from "lodash"
-import { FC, forwardRef, useEffect, useRef } from "react"
+import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { Menu, SubMenuProps } from "@illa-design/react"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 
@@ -39,8 +39,39 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     updateComponentHeight,
-    handleOnClickMenuItem,
+    triggerEventHandler,
   } = props
+
+  const handleOnClickMenuItem = useCallback(
+    (value: string, valuePath: string[]) => {
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            selectedValues: [value],
+          },
+        },
+      ])
+      if (valuePath.length === 1) {
+        triggerEventHandler(
+          "clickMenuItem",
+          `items.${items?.findIndex((i) => i.value === value)}.events`,
+        )
+      } else if (valuePath.length === 2) {
+        const sub = items?.findIndex((i) => i.value === valuePath[0])
+        if (sub && items && "subItems" in items[sub]) {
+          const subIndex = (items[sub] as SubMenuProps).subItems?.findIndex(
+            (i) => i.value === valuePath[1],
+          )
+          triggerEventHandler(
+            "clickMenuItem",
+            `items.${sub}.subItems.${subIndex}.events`,
+          )
+        }
+      }
+    },
+    [displayName, handleUpdateMultiExecutionResult, items, triggerEventHandler],
+  )
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {})
@@ -55,6 +86,19 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     updateComponentHeight(ref.current?.clientHeight ?? 0)
   }, 200)
 
+  const handleClickSubMenu = useCallback(
+    (value: string) => {
+      if (mode === "vertical") {
+        updateHeight()
+      }
+      triggerEventHandler(
+        "clickMenuItem",
+        `items.${items?.findIndex((i) => i.value === value)}.events`,
+      )
+    },
+    [items, mode, triggerEventHandler, updateHeight],
+  )
+
   useEffect(() => {
     updateHeight()
   }, [mode, updateHeight])
@@ -65,39 +109,8 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
         selectedValues={selectedValues}
         mode={mode}
         horizontalAlign={horizontalAlign}
-        onClickMenuItem={(value, valuePath) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                selectedValues: [value],
-              },
-            },
-          ])
-          if (valuePath.length === 1) {
-            handleOnClickMenuItem?.(
-              `items.${items?.findIndex((i) => i.value === value)}.events`,
-            )
-          } else if (valuePath.length === 2) {
-            const sub = items?.findIndex((i) => i.value === valuePath[0])
-            if (sub && items && "subItems" in items[sub]) {
-              const subIndex = (items[sub] as SubMenuProps).subItems?.findIndex(
-                (i) => i.value === valuePath[1],
-              )
-              handleOnClickMenuItem?.(
-                `items.${sub}.subItems.${subIndex}.events`,
-              )
-            }
-          }
-        }}
-        onClickSubMenu={(value) => {
-          if (mode === "vertical") {
-            updateHeight()
-          }
-          handleOnClickMenuItem?.(
-            `items.${items?.findIndex((i) => i.value === value)}.events`,
-          )
-        }}
+        onClickMenuItem={handleOnClickMenuItem}
+        onClickSubMenu={handleClickSubMenu}
         items={items}
       />
     </div>

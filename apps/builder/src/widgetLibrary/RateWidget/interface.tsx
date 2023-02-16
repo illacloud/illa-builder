@@ -11,6 +11,7 @@ export interface WrappedRateProps
   icon?: "star" | "heart"
   maxCount?: RateProps["count"]
   handleUpdateDsl: (value: any) => void
+  handleOnChange?: () => void
 }
 
 export interface RateWidgetProps

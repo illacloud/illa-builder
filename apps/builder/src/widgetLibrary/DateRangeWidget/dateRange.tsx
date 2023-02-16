@@ -119,6 +119,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     readOnly,
+    triggerEventHandler,
   } = props
 
   const getValidateMessage = useCallback(
@@ -168,7 +169,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
         handleUpdateDsl({ endValue })
       },
       clearValue: () => {
-        handleUpdateDsl({ startValue: "", endValue: "" })
+        handleUpdateDsl({ startValue: undefined, endValue: undefined })
       },
       validate: () => {
         const startValueChecked = handleValidate(startValue)
@@ -205,6 +206,10 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
 
   const wrapperRef = useRef<HTMLDivElement>(null)
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   useEffect(() => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
@@ -230,6 +235,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
           <WrappedDateRange
             {...props}
             getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
           />
         </div>
       </TooltipWrapper>

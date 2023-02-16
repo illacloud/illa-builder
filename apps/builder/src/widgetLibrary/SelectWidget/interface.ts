@@ -33,6 +33,8 @@ export interface WrappedSelectProps
     }[],
   ) => void
   handleOnChange?: () => void
+  handleOnBlur?: () => void
+  handleOnFocus?: () => void
 }
 
 export interface SelectWidgetProps

@@ -115,6 +115,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     hideValidationMessage,
     updateComponentHeight,
     validateMessage,
+    triggerEventHandler,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -221,6 +222,19 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     handleDeleteGlobalData,
     handleValidate,
   ])
+
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
+  const handleOnFocus = useCallback(() => {
+    triggerEventHandler("focus")
+  }, [triggerEventHandler])
+
+  const handleOnBlur = useCallback(() => {
+    triggerEventHandler("blur")
+  }, [triggerEventHandler])
+
   return (
     <div ref={inputWrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -241,6 +255,9 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
             {...props}
             ref={inputRef}
             getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
+            handleOnFocus={handleOnFocus}
+            handleOnBlur={handleOnBlur}
           />
         </div>
       </TooltipWrapper>

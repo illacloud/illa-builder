@@ -124,6 +124,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     hideValidationMessage,
     updateComponentHeight,
     validateMessage,
+    triggerEventHandler,
   } = props
   const numberInputRef = useRef<HTMLInputElement>(null)
 
@@ -220,6 +221,18 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     }
   }, [validateMessage, labelPosition, updateComponentHeight])
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
+  const handleOnBlur = useCallback(() => {
+    triggerEventHandler("blur")
+  }, [triggerEventHandler])
+
+  const handleOnFocus = useCallback(() => {
+    triggerEventHandler("focus")
+  }, [])
+
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -240,6 +253,9 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
             {...props}
             ref={numberInputRef}
             getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
+            handleOnBlur={handleOnBlur}
+            handleOnFocus={handleOnFocus}
           />
         </div>
       </TooltipWrapper>

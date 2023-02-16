@@ -122,6 +122,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     hideValidationMessage,
     updateComponentHeight,
     validateMessage,
+    triggerEventHandler,
   } = props
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -222,6 +223,18 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     handleValidate,
   ])
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
+  const handleOnFocus = useCallback(() => {
+    triggerEventHandler("focus")
+  }, [triggerEventHandler])
+
+  const handleOnBlur = useCallback(() => {
+    triggerEventHandler("blur")
+  }, [triggerEventHandler])
+
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -251,6 +264,9 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
               {...props}
               ref={textareaRef}
               getValidateMessage={getValidateMessage}
+              handleOnChange={handleOnChange}
+              handleOnFocus={handleOnFocus}
+              handleOnBlur={handleOnBlur}
             />
           </div>
         </div>

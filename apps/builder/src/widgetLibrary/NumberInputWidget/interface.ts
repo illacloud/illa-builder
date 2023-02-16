@@ -30,10 +30,15 @@ export interface WrappedNumberInputProps
     }[],
   ) => void
   handleOnChange?: () => void
+  handleOnBlur?: () => void
+  handleOnFocus?: () => void
 }
 
 export interface NumberInputWidgetProps
-  extends WrappedNumberInputProps,
+  extends Omit<
+      WrappedNumberInputProps,
+      "handleOnChange" | "handleOnFocus" | "handleOnBlur"
+    >,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,
