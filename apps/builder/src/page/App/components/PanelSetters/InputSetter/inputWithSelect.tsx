@@ -1,11 +1,7 @@
-import { t } from "i18next"
 import { FC, useCallback, useMemo, useState } from "react"
-import ReactMarkdown from "react-markdown"
 import { useSelector } from "react-redux"
 import {
   DownIcon,
-  Input,
-  Select,
   Trigger,
   UpIcon,
   isNumber,
@@ -16,14 +12,12 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
 import { InputWithSelectSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
 import {
   codeEditorWrapperStyle,
-  inputWithSelectSetterSelectStyle,
+  dropListItemStyle,
   inputWithSelectSetterStyle,
   sizeContainerStyle,
-  sizeDropListCodeEditorStyle,
   sizeDropListStyle,
   sizeSelectionStyle,
 } from "@/page/App/components/PanelSetters/InputSetter/style"
@@ -31,10 +25,7 @@ import {
   getNeedComputedValueWithList,
   realInputValueWithList,
 } from "@/page/App/components/PanelSetters/InputSetter/util"
-import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
-
-import className = ReactMarkdown.propTypes.className
 
 export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
   props,
@@ -42,15 +33,12 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
   const {
     attrName,
     attrNames,
-    panelConfig,
     handleUpdateDsl,
     value,
     values,
     options,
     widgetDisplayName,
-    widgetType,
     expectedType,
-    widgetOrAction,
   } = props
 
   const [popupVisible, setPopupVisible] = useState<boolean>(false)
@@ -96,60 +84,59 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
 
   return (
     <div css={inputWithSelectSetterStyle}>
-      <div css={sizeDropListCodeEditorStyle}>
-        <CodeEditor
-          wrapperCss={codeEditorWrapperStyle}
-          value={finalValue}
-          onChange={onChange}
-          showLineNumbers={false}
-          expectValueType={expectedType}
-          lang={CODE_LANG.JAVASCRIPT}
-          maxHeight="208px"
-          maxWidth="100%"
-          codeType={CODE_TYPE.EXPRESSION}
-        />
-        {options && (
-          <Trigger
-            trigger="click"
-            colorScheme="white"
-            position="bottom-start"
-            withoutPadding
-            showArrow={false}
-            popupVisible={popupVisible}
-            onVisibleChange={onVisibleChange}
-            content={
-              <div css={sizeDropListStyle}>
-                {options.map((option) => {
-                  let label
-                  let value: number | string
-                  if (isString(option) || isNumber(option)) {
-                    label = value = option
-                  } else {
-                    label = option.label
-                    value = option.value
-                  }
-                  return (
-                    <div
-                      key={value}
-                      onClick={() => {
-                        handleUpdateDsl(attrNames?.[1] || attrName, value)
-                        onVisibleChange(false)
-                      }}
-                    >
-                      {label}
-                    </div>
-                  )
-                })}
-              </div>
-            }
-          >
-            <div css={sizeContainerStyle}>
-              <div css={sizeSelectionStyle}>{values[1].toUpperCase()}</div>
-              {popupVisible ? <UpIcon /> : <DownIcon />}
+      <CodeEditor
+        wrapperCss={codeEditorWrapperStyle}
+        value={finalValue}
+        onChange={onChange}
+        showLineNumbers={false}
+        expectValueType={expectedType}
+        lang={CODE_LANG.JAVASCRIPT}
+        maxHeight="208px"
+        maxWidth="100%"
+        codeType={CODE_TYPE.EXPRESSION}
+      />
+      {options && (
+        <Trigger
+          trigger="click"
+          colorScheme="white"
+          position="bottom-start"
+          withoutPadding
+          showArrow={false}
+          popupVisible={popupVisible}
+          onVisibleChange={onVisibleChange}
+          content={
+            <div css={sizeDropListStyle}>
+              {options.map((option) => {
+                let label
+                let value: number | string
+                if (isString(option) || isNumber(option)) {
+                  label = value = option
+                } else {
+                  label = option.label
+                  value = option.value
+                }
+                return (
+                  <div
+                    css={dropListItemStyle}
+                    key={value}
+                    onClick={() => {
+                      handleUpdateDsl(attrNames?.[1] || attrName, value)
+                      onVisibleChange(false)
+                    }}
+                  >
+                    {label}
+                  </div>
+                )
+              })}
             </div>
-          </Trigger>
-        )}
-      </div>
+          }
+        >
+          <div css={sizeContainerStyle}>
+            <div css={sizeSelectionStyle}>{values[1].toUpperCase()}</div>
+            {popupVisible ? <UpIcon /> : <DownIcon />}
+          </div>
+        </Trigger>
+      )}
     </div>
   )
 }

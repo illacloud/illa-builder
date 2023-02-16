@@ -119,12 +119,12 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
-      // {
-      //   ...generatorEventHandlerConfig(
-      //     baseWidgetName,
-      //     UPLOAD_EVENT_HANDLER_CONFIG.events,
-      //   ),
-      // },
+      {
+        ...generatorEventHandlerConfig(
+          baseWidgetName,
+          UPLOAD_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
       {
         id: `${baseWidgetName}-interaction-loading`,
         labelName: i18n.t("editor.inspect.setter_label.loading"),

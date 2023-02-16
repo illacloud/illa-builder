@@ -47,6 +47,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     dropText,
     colorScheme,
     variant,
+    handleOnChange,
     parseValue,
     fileList,
     onRemove,
@@ -119,6 +120,16 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     handleUpdateMultiExecutionResult,
   ])
 
+  const handleChange = useCallback(
+    (fileList: UploadItem[], file: UploadItem) => {
+      onChange?.(fileList, file)
+      if (file.status === "done") {
+        handleOnChange()
+      }
+    },
+    [handleOnChange, onChange],
+  )
+
   return (
     <Upload
       customRequest={customRequest}
@@ -135,7 +146,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
         fileList,
       })}
       onRemove={onRemove}
-      onChange={onChange}
+      onChange={handleChange}
       showUploadList={showFileList}
     />
   )
@@ -211,67 +222,73 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     }
   }, [currentList, value, files])
 
-  const handleOnRemove = (file: UploadItem, fileList: UploadItem[]) => {
-    const currentFiles =
-      previousValueRef.current.length > 0
-        ? [...previousValueRef.current]
-        : [...(fileListRef.current || [])]
-    const currentFilesKeys = currentFiles.map((f) => f.uid || f.name)
-    const index = currentFilesKeys.indexOf(file.uid || file.name)
-    currentFiles.splice(index, 1)
-    setFileList(currentFiles)
-    fileListRef.current = currentFiles
-    if (previousValueRef.current.length > 0) {
-      previousValueRef.current = currentFiles
-    }
-    return true
-  }
+  const handleOnRemove = useCallback(
+    (file: UploadItem, fileList: UploadItem[]) => {
+      const currentFiles =
+        previousValueRef.current.length > 0
+          ? [...previousValueRef.current]
+          : [...(fileListRef.current || [])]
+      const currentFilesKeys = currentFiles.map((f) => f.uid || f.name)
+      const index = currentFilesKeys.indexOf(file.uid || file.name)
+      currentFiles.splice(index, 1)
+      setFileList(currentFiles)
+      fileListRef.current = currentFiles
+      if (previousValueRef.current.length > 0) {
+        previousValueRef.current = currentFiles
+      }
+      return true
+    },
+    [],
+  )
 
   const customRequest = (options: RequestOptions) => {
     options.onSuccess()
   }
 
-  const onChanges = (fileList: UploadItem[], file: UploadItem) => {
-    if (selectionType === "single") {
-      setFileList([file])
-      fileListRef.current = [file]
-      previousValueRef.current = [file]
-      return
-    }
-    let files = [...previousValueRef.current]
-    if (file.status === "init") {
-      files.push(file)
-      previousValueRef.current = [...files]
-      setFileList(files)
-      fileCountRef.current += 1
-      return
-    }
-    const currentFilesKeys = previousValueRef.current.map(
-      (f) => f.uid || f.name,
-    )
-    const index = currentFilesKeys.indexOf(file.uid || file.name)
-    if (index < 0) {
-      return
-    }
-    files.splice(index, 1, file)
-    setFileList(files)
-    previousValueRef.current = files
-    if (files.length === fileCountRef.current && !!fileCountRef.current) {
-      const allSettled = files.every(
-        (f) => f.status === "error" || f.status === "done",
-      )
-      if (allSettled) {
-        const newList = appendFiles
-          ? [...(fileListRef.current || []), ...files]
-          : files
-        setFileList(newList)
-        fileListRef.current = newList
-        previousValueRef.current = []
-        fileCountRef.current = 0
+  const onChanges = useCallback(
+    (fileList: UploadItem[], file: UploadItem) => {
+      if (selectionType === "single") {
+        setFileList([file])
+        fileListRef.current = [file]
+        previousValueRef.current = [file]
+        return
       }
-    }
-    return
-  }
+      let files = [...previousValueRef.current]
+      if (file.status === "init") {
+        files.push(file)
+        previousValueRef.current = [...files]
+        setFileList(files)
+        fileCountRef.current += 1
+        return
+      }
+      const currentFilesKeys = previousValueRef.current.map(
+        (f) => f.uid || f.name,
+      )
+      const index = currentFilesKeys.indexOf(file.uid || file.name)
+      if (index < 0) {
+        return
+      }
+      files.splice(index, 1, file)
+      setFileList(files)
+      previousValueRef.current = files
+      if (files.length === fileCountRef.current && !!fileCountRef.current) {
+        const allSettled = files.every(
+          (f) => f.status === "error" || f.status === "done",
+        )
+        if (allSettled) {
+          const newList = appendFiles
+            ? [...(fileListRef.current || []), ...files]
+            : files
+          setFileList(newList)
+          fileListRef.current = newList
+          previousValueRef.current = []
+          fileCountRef.current = 0
+        }
+      }
+      return
+    },
+    [appendFiles, selectionType],
+  )
 
   const getValidateMessage = useCallback(
     (value?: UploadItem[]) => {

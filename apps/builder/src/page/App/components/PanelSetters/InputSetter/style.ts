@@ -39,33 +39,38 @@ export const editableInputIconStyle = css`
 export const inputWithSelectSetterStyle = css`
   display: flex;
   align-items: center;
+  position: relative;
   width: 184px;
 `
 
-export const inputWithSelectSetterSelectStyle = css`
-  width: 50px;
-`
-
 export const sizeDropListStyle = css`
-  border-radius: 0px 5px 5px 0px;
   width: 100px;
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
-export const sizeDropListCodeEditorStyle = css`
-  width: 100%;
-  position: relative;
+export const dropListItemStyle = css`
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
 `
 
 export const sizeContainerStyle = css`
   display: flex;
+  width: 44px;
+  height: 100%;
   position: absolute;
   right: 0;
-  top: 0;
-  width: 44px;
   height: 100%;
   z-index: 1;
   gap: 4px;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-left: none;
   align-items: center;
   padding: 2px;
   border-radius: 0 8px 8px 0;
@@ -76,13 +81,12 @@ export const sizeContainerStyle = css`
 `
 
 export const codeEditorWrapperStyle = css`
-  width: 100%;
+  width: 140px;
   .cm-editor {
-    border-radius: 8px;
-    padding-right: 28px;
+    border-radius: 8px 0 0 8px;
   }
 `
 
 export const sizeSelectionStyle = css`
-  line-height: 30px;
+  line-height: 26px;
 `
