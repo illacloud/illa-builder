@@ -112,6 +112,12 @@ import {
   NumberInputWidget,
 } from "@/widgetLibrary/NumberInputWidget"
 import {
+  PDF_EVENT_HANDLER_CONFIG,
+  PDF_PANEL_CONFIG,
+  PDF_WIDGET_CONFIG,
+  PdfWidget,
+} from "@/widgetLibrary/PdfWidget"
+import {
   RADIO_BUTTON_EVENT_HANDLER_CONFIG,
   RADIO_BUTTON_PANEL_CONFIG,
   RADIO_BUTTON_WIDGET_CONFIG,
@@ -346,6 +352,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: MODAL_WIDGET_CONFIG,
     panelConfig: MODAL_PANEL_CONFIG,
     eventHandlerConfig: MODAL_EVENT_HANDLER_CONFIG,
+  },
+  PDF_WIDGET: {
+    widget: PdfWidget,
+    config: PDF_WIDGET_CONFIG,
+    panelConfig: PDF_PANEL_CONFIG,
+    eventHandlerConfig: PDF_EVENT_HANDLER_CONFIG,
   },
 }
 
