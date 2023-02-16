@@ -920,7 +920,8 @@
         "file_url": "파일 URL",
         "show_tool_bar": "도구 모음 표시",
         "scale": "줌 페이지",
-        "scroll": "각 페이지에 스냅 스크롤"
+        "scroll": "각 페이지에 스냅 스크롤",
+        "min_max_size": "가장 작은~최대 파일 크기"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -982,6 +983,9 @@
         "text_clip": "클립",
         "scale_height": "높은",
         "scale_width": "너비"
+      },
+      "setter_placeholder": {
+        "min_max_size": "제한 없음"
       }
     },
     "page": {
@@ -1033,8 +1037,7 @@
       "max_size": "파일 크기는 {{maxSize }} {{ type }} 을(를) 초과할 수 없습니다.",
       "min_files": "{{ minFiles }} 개 이상의 파일이 필요합니다.",
       "max_files": "최대 {{ maxFiles }} 파일이 지원됩니다.",
-      "min_size": "파일 크기는 {{minSize }} {{ type }} 보다 작을 수 없습니다.",
-      "min_max_size": "가장 작은~최대 파일 크기"
+      "min_size": "파일 크기는 {{minSize }} {{ type }} 보다 작을 수 없습니다."
     },
     "widget_picker": {
       "empty_tip": "죄송합니다, 검색 결과가 없습니다",
