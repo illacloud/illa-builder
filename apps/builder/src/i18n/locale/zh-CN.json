@@ -915,7 +915,8 @@
         "max_files": "Max files",
         "min_files": "Min files",
         "max_size": "Max size",
-        "min_size": "Min size"
+        "min_size": "Min size",
+        "text_overflow": "文本溢出"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -949,9 +950,9 @@
         "timeline_direction": "切换时间轴的方向。",
         "timeline_pending": "是否显示一个待处理状态的节点。",
         "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
-        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
-        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
-        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
+        "file_types": "允许上传的文件拓展名数组。为空时所有类型的文件均可以上传",
+        "file_list": "在上传组件下方显示所选文件的列表。 上传组件的高度会根据文件的数量动态变化。",
+        "parse_value": "尝试解析所选文件，支持 JSON、CSV、TSV、Excel 和 TXT 文件。 解析后的数据可以通过 {{uploader1.parsedValue}} 访问。 无法解析的文件在数组中将为空。 无论此选项如何，所有文件都可作为值数组中的 base64 编码字符串使用。"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -960,7 +961,15 @@
         "click_mask_close": "点击遮罩关闭modal"
       },
       "setter_tips": {
-        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。"
+      },
+      "setter_option": {
+        "fixed": "固定高度",
+        "auto_limited": "受限制的自动高度",
+        "auto_height": "自动高度",
+        "text_ellipsis": "省略",
+        "text_scroll": "滚动",
+        "text_clip": "裁切"
       }
     },
     "page": {
@@ -1338,6 +1347,9 @@
       "name": "上传",
       "default_button_text": "上传",
       "default_dropzone_text": "选择或拖放一个文件"
+    },
+    "icon": {
+      "name": "图标"
     }
   },
   "page": {
