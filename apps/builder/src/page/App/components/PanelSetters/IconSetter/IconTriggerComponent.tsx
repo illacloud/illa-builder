@@ -35,6 +35,12 @@ const defaultItem: IconManifest = {
 const iconsList = ALL_ICONS.sort((a, b) => (a.name > b.name ? 1 : -1))
 const [firstItem, ...others] = iconsList
 const realIconsNameLists = [defaultItem, ...others, firstItem]
+realIconsNameLists.forEach((nameInfo) => {
+  if (nameInfo.name.length > 16) {
+    const names = nameInfo.name.split(" ")
+    nameInfo.name = names.slice(0, names.length - 1).join(" ")
+  }
+})
 const IconTypes = ["All", "Filled", "Outline"]
 
 export const IconTriggerComponent: FC<IconTriggerComponentProps> = (props) => {

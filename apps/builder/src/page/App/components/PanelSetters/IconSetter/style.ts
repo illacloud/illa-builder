@@ -79,7 +79,7 @@ export const clearIconStyle = css`
 `
 
 export const iconPickerContainerStyle = css`
-  width: 545px;
+  min-width: 545px;
   height: 546px;
   display: flex;
   flex-direction: column;
@@ -114,7 +114,8 @@ export const iconPickerBodyStyle = css`
 `
 
 export const iconPickerLeftPanelStyle = css`
-  width: 144px;
+  //width: 144px;
+  flex: 1;
   max-height: 100%;
   height: 100%;
   overflow: scroll;
@@ -142,7 +143,7 @@ export const leftPanelItemStyle = css`
 `
 
 export const rightPanelStyle = css`
-  flex-grow: 1;
+  width: 440px;
   height: 100%;
   display: flex;
   flex-direction: column;

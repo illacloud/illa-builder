@@ -7,7 +7,6 @@ export const uploadLayoutStyle = css`
 
 export const uploadContainerStyle = css`
   width: 100%;
-  background-color: white;
   display: flex;
   flex-direction: column;
   position: relative;
