@@ -12,7 +12,6 @@ export interface ListWidgetProps extends BaseWidgetProps {
   pageSize?: number
   itemHeight: number
   currentPage: number
-  handleOnRowSelect: () => void
   selectedIndex: number
   itemBackGroundColor: string
   disabled: boolean

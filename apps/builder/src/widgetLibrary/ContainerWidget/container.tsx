@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import useMeasure from "react-use-measure"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
@@ -8,9 +8,7 @@ import { containerWrapperStyle } from "./style"
 
 export const ContainerWidget: FC<ContainerProps> = (props) => {
   const {
-    handleOnClick,
     currentIndex,
-    handleOnChange,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleUpdateOriginalDSLMultiAttr,
@@ -19,6 +17,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     tooltipText,
     childrenNode,
     blockColumns,
+    triggerEventHandler,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
   const [containerRef, containerBounds] = useMeasure()
@@ -27,10 +26,14 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       preCurrentViewIndex.current = currentIndex
     }
     if (preCurrentViewIndex.current !== currentIndex) {
-      handleOnChange()
+      triggerEventHandler("change")
       preCurrentViewIndex.current = currentIndex
     }
-  }, [currentIndex, handleOnChange, handleOnClick])
+  }, [currentIndex, triggerEventHandler])
+
+  const handleOnClick = useCallback(() => {
+    triggerEventHandler("click")
+  }, [triggerEventHandler])
 
   const renderComponent = useMemo(() => {
     if (Array.isArray(childrenNode) && currentIndex < childrenNode.length) {
@@ -152,7 +155,11 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={containerWrapperStyle} ref={containerRef}>
+      <div
+        css={containerWrapperStyle}
+        ref={containerRef}
+        onClick={handleOnClick}
+      >
         {renderComponent}
       </div>
     </TooltipWrapper>

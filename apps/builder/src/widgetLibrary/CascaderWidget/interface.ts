@@ -28,7 +28,10 @@ export interface WrappedCascaderWidgetProps
 }
 
 export interface CascaderWidgetProps
-  extends WrappedCascaderWidgetProps,
+  extends Omit<
+      WrappedCascaderWidgetProps,
+      "handleOnChange" | "handleOnFocus" | "handleOnBlur"
+    >,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps {

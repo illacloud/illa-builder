@@ -116,6 +116,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     hideValidationMessage,
     updateComponentHeight,
     validateMessage,
+    triggerEventHandler,
   } = props
 
   const getValidateMessage = useCallback(
@@ -198,6 +199,10 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     }
   }, [labelPosition, validateMessage, updateComponentHeight])
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -214,7 +219,11 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedDateTime {...props} getValidateMessage={getValidateMessage} />
+          <WrappedDateTime
+            {...props}
+            getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
+          />
         </div>
       </TooltipWrapper>
       <div

@@ -64,12 +64,11 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    handleUpdateOriginalDSLMultiAttr,
-    handleUpdateOriginalDSLOtherMultiAttr,
     handleUpdateMultiExecutionResult,
     tooltipText,
     colorScheme,
     tabPosition,
+    triggerEventHandler,
   } = props
 
   useEffect(() => {
@@ -123,6 +122,10 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     ],
   )
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={fullWidthAndFullHeightStyle}>
@@ -136,6 +139,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
           tabPosition={tabPosition}
           disabled={disabled}
           handleUpdateOriginalDSLMultiAttr={handleUpdateMultiAttrDSL}
+          handleOnChange={handleOnChange}
         />
       </div>
     </TooltipWrapper>
