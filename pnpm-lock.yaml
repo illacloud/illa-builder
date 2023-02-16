@@ -121,6 +121,7 @@ importers:
       react-hook-form: ^7.30.0
       react-hotkeys-hook: ^3.4.6
       react-i18next: ^12.1.4
+      react-icons: ^4.7.1
       react-json-view: ^1.21.3
       react-markdown: ^8.0.3
       react-redux: ^8.0.1
@@ -188,6 +189,7 @@ importers:
       react-hook-form: 7.43.1
       react-hotkeys-hook: 3.4.7
       react-i18next: 12.1.5_i18next@22.4.9
+      react-icons: 4.7.1
       react-json-view: 1.21.3
       react-markdown: 8.0.5
       react-redux: 8.0.5_redux@4.2.1
@@ -9536,6 +9538,12 @@ packages:
       '@babel/runtime': 7.20.13
       html-parse-stringify: 3.0.1
       i18next: 22.4.9
+    dev: false
+
+  /react-icons/4.7.1:
+    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
+    peerDependencies:
+      react: '*'
     dev: false
 
   /react-is/16.13.1:

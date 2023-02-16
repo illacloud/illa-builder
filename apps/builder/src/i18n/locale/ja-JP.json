@@ -899,7 +899,7 @@
         "x_axis_value": "X軸",
         "y_axis_name": "通称",
         "y_axis_title": "Y 軸のタイトル",
-        "height": "Height",
+        "height": "高さ",
         "min_height": "Min height (px)",
         "show_underline": "下線を表示",
         "auto_play": "自動プレイ",
@@ -915,7 +915,8 @@
         "max_files": "Max files",
         "min_files": "Min files",
         "max_size": "Max size",
-        "min_size": "Min size"
+        "min_size": "Min size",
+        "text_overflow": "オーバーフロー"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -949,9 +950,9 @@
         "timeline_direction": "時間軸の方向を切り替えます。",
         "timeline_pending": "保留中のノードを表示するかどうか。",
         "tooltip": "ユーザーは入力ボックスにプロンプトの内容を入力でき、マウスをコンポーネントに置くとプロンプト情報が表示され、Markdown 形式がサポートされます。",
-        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
-        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
-        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
+        "file_types": "アップロードが許可されているファイル拡張子のリスト。 すべてのファイル タイプを許可する値はありません。",
+        "file_list": "アップローダの下に選択したファイルのリストを表示します。 アップローダの高さは、ファイル リストの長さに基づいて動的に変化します。",
+        "parse_value": "JSON、CSV、TSV、Excel、および TXT ファイルをサポートして、選択したファイルの解析を試みます。 解析されたデータは {{uploader1.parsedValue}} 経由でアクセスできます。 解析できないファイルは、配列内で null になります。 このオプションに関係なく、すべてのファイルは、値の配列で base64 でエンコードされた文字列として使用できます。"
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
@@ -960,7 +961,15 @@
         "click_mask_close": "Click mask to close modal"
       },
       "setter_tips": {
-        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+        "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。"
+      },
+      "setter_option": {
+        "fixed": "固定高さ",
+        "auto_limited": "制限付きの自動高さ",
+        "auto_height": "自動高さ",
+        "text_ellipsis": "省略記号",
+        "text_scroll": "スクロール",
+        "text_clip": "クリップ"
       }
     },
     "page": {
@@ -1338,6 +1347,9 @@
       "name": "アップロード",
       "default_button_text": "アップロード",
       "default_dropzone_text": "選択もしくはファイルのドロップ"
+    },
+    "icon": {
+      "name": "アイコン"
     }
   },
   "page": {

@@ -68,6 +68,7 @@
     "react-hook-form": "^7.30.0",
     "react-hotkeys-hook": "^3.4.6",
     "react-i18next": "^12.1.4",
+    "react-icons": "^4.7.1",
     "react-json-view": "^1.21.3",
     "react-markdown": "^8.0.3",
     "react-redux": "^8.0.1",
