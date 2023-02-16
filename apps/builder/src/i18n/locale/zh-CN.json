@@ -710,13 +710,13 @@
           "auto": "自适应"
         },
         "upload_type": {
-          "button": "Button",
-          "dropzone": "Dropzone"
+          "button": "按钮",
+          "dropzone": "文件区域"
         },
         "selection_types": {
-          "single_file": "Single file",
-          "multiple_files": "Multiple files",
-          "directory": "Directory"
+          "single_file": "单一文件",
+          "multiple_files": "多个文件",
+          "directory": "文件夹"
         },
         "size_type": {
           "kb": "KB",
@@ -920,7 +920,8 @@
         "file_url": "文件URL",
         "show_tool_bar": "显示工具栏",
         "scale": "缩放页面",
-        "scroll": "快速滚动到每一页"
+        "scroll": "快速滚动到每一页",
+        "min_max_size": "最小～最大文件大小"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -982,6 +983,9 @@
         "text_clip": "裁切",
         "scale_height": "高度",
         "scale_width": "宽度"
+      },
+      "setter_placeholder": {
+        "min_max_size": "无限制"
       }
     },
     "page": {
