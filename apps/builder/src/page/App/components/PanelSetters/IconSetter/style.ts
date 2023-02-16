@@ -39,7 +39,6 @@ export const iconSelectorContainerStyle = css`
   height: 100%;
   position: relative;
   cursor: pointer;
-  //border-radius: 8px;
   display: flex;
   overflow: hidden;
   justify-content: space-between;
@@ -141,9 +140,6 @@ export const leftPanelItemStyle = css`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
   padding: 9px 16px;
   font-size: 14px;
   line-height: 22px;

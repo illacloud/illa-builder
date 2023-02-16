@@ -27,7 +27,9 @@ const IconPickerList: FC<IconPickerListProps> = (props) => {
 
   const filteredIconsInfoSet = !searchInput
     ? originAndTypeFilter
-    : originAndTypeFilter.filter((icon) => icon.name.includes(searchInput))
+    : originAndTypeFilter.filter((icon) =>
+        icon.name.toLowerCase().includes(searchInput.toLowerCase()),
+      )
 
   return (
     <div css={rightBottomStyle}>
