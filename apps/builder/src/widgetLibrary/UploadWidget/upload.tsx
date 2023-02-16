@@ -274,7 +274,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       }
       return
     },
-    [appendFiles, selectionType],
+    [appendFiles, getFileIndex, handleOnChange],
   )
 
   const getValidateMessage = useCallback(

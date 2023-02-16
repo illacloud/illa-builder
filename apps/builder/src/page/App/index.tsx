@@ -55,9 +55,9 @@ export const Editor: FC = () => {
 
   const currentUser = useSelector(getCurrentUser)
 
-  const handleLeaveRoom = () => {
+  const handleLeaveRoom = useCallback(() => {
     Connection.leaveRoom("app", appId ?? "")
-  }
+  }, [appId])
 
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {

@@ -1,5 +1,5 @@
 import { t } from "i18next"
-import { FC, Suspense, lazy, useMemo, useState } from "react"
+import { FC, Suspense, lazy, useCallback, useMemo, useState } from "react"
 import { IconManifest } from "react-icons"
 import { CloseIcon, Loading, Search } from "@illa-design/react"
 import {
@@ -58,7 +58,10 @@ export const IconTriggerComponent: FC<IconTriggerComponentProps> = (props) => {
     setIconType(type as IconShowType)
   }
 
-  const handleCloseIconClick = () => handleCloseModal(false)
+  const handleCloseIconClick = useCallback(
+    () => handleCloseModal(false),
+    [handleCloseModal],
+  )
 
   const Header = useMemo(
     () => (
