@@ -158,13 +158,15 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentReflowReducer":
-            const updateComponentReflowPayload: UpdateComponentReflowPayload =
+            const updateComponentReflowPayload: UpdateComponentReflowPayload[] =
               payload
 
+            const allEffectComponentNodes: ComponentNode[] =
+              updateComponentReflowPayload.flatMap((payload) => {
+                return payload.childNodes
+              })
             const updateComponentReflowWSPayload =
-              transformComponentReduxPayloadToWsPayload(
-                updateComponentReflowPayload.childNodes,
-              )
+              transformComponentReduxPayloadToWsPayload(allEffectComponentNodes)
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,

@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -24,10 +24,19 @@ export const TransformerPanel: FC = (props) => {
 
   const dispatch = useDispatch()
 
+  const realInputValue = useMemo(() => {
+    return content.transformerString?.includes("{{(function (){")
+      ? content.transformerString?.substring(
+          `{{(function (){`.length,
+          content.transformerString?.length - 6,
+        )
+      : content.transformerString
+  }, [content.transformerString])
+
   return (
     <div css={transformerPanelContainerStyle}>
       <CodeEditor
-        value={content.transformerString}
+        value={realInputValue}
         wrapperCss={transformerEditorStyle}
         showLineNumbers
         height="88px"
@@ -39,7 +48,7 @@ export const TransformerPanel: FC = (props) => {
             configActions.updateCachedAction({
               ...action,
               content: {
-                transformerString: value,
+                transformerString: `{{(function (){${value}})()}}`,
               },
             }),
           )

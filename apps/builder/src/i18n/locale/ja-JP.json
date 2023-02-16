@@ -135,10 +135,15 @@
           "api": "API",
           "configure": "{{ name }} を設定",
           "database": "データベース",
-          "select": "リソースの種類を選択"
+          "select": "リソースの種類を選択",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "{name}入力してください"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -340,15 +345,15 @@
           }
         },
         "mssql": {
-          "config_type": "Config Type",
-          "query": "Query",
+          "config_type": "構成タイプ",
+          "query": "クエリ",
           "placeholder": {
             "query": "select * from users;",
-            "table": "Select a table",
+            "table": "テーブルを選択",
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
-          "table": "Table",
-          "insert_record": "Array of records to insert",
+          "table": "テーブル",
+          "insert_record": "挿入するレコードの配列",
           "dropdown": {
             "retry": "クリックして再試行"
           }
@@ -395,7 +400,15 @@
             "key": "Key",
             "introspection": "Introspection",
             "bear_token": "Token",
-            "connection_options": "接続設定"
+            "connection_options": "接続設定",
+            "account_name": "アカウント名",
+            "warehouse": "Warehouse",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "役割",
+            "username": "ユーザー名",
+            "password": "パスワード"
           },
           "placeholder": {
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
@@ -410,7 +423,15 @@
             "username": "ユーザー名",
             "default": "default",
             "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
-            "database_name": "データベース名"
+            "database_name": "データベース名",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "役割",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
           },
           "tip": {
             "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
@@ -522,6 +543,23 @@
           },
           "tip": {
             "external_reference": "定義済み変数への外部参照を作成できます。たとえば、{{Transformer2.value}}"
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
         }
       },
@@ -861,7 +899,7 @@
         "x_axis_value": "X軸",
         "y_axis_name": "通称",
         "y_axis_title": "Y 軸のタイトル",
-        "height": "Height",
+        "height": "高さ",
         "min_height": "Min height (px)",
         "show_underline": "下線を表示",
         "auto_play": "自動プレイ",
@@ -877,7 +915,8 @@
         "max_files": "Max files",
         "min_files": "Min files",
         "max_size": "Max size",
-        "min_size": "Min size"
+        "min_size": "Min size",
+        "text_overflow": "オーバーフロー"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -911,9 +950,9 @@
         "timeline_direction": "時間軸の方向を切り替えます。",
         "timeline_pending": "保留中のノードを表示するかどうか。",
         "tooltip": "ユーザーは入力ボックスにプロンプトの内容を入力でき、マウスをコンポーネントに置くとプロンプト情報が表示され、Markdown 形式がサポートされます。",
-        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
-        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
-        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
+        "file_types": "アップロードが許可されているファイル拡張子のリスト。 すべてのファイル タイプを許可する値はありません。",
+        "file_list": "アップローダの下に選択したファイルのリストを表示します。 アップローダの高さは、ファイル リストの長さに基づいて動的に変化します。",
+        "parse_value": "JSON、CSV、TSV、Excel、および TXT ファイルをサポートして、選択したファイルの解析を試みます。 解析されたデータは {{uploader1.parsedValue}} 経由でアクセスできます。 解析できないファイルは、配列内で null になります。 このオプションに関係なく、すべてのファイルは、値の配列で base64 でエンコードされた文字列として使用できます。"
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
@@ -922,7 +961,15 @@
         "click_mask_close": "Click mask to close modal"
       },
       "setter_tips": {
-        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+        "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。"
+      },
+      "setter_option": {
+        "fixed": "固定高さ",
+        "auto_limited": "制限付きの自動高さ",
+        "auto_height": "自動高さ",
+        "text_ellipsis": "省略記号",
+        "text_scroll": "スクロール",
+        "text_clip": "クリップ"
       }
     },
     "page": {
@@ -970,7 +1017,11 @@
       "min_value": "{{数値}}以上の値を入力してください",
       "regex": "必要なフォーマットに入力してください",
       "required": "必要",
-      "url": "有効なURLを入力してください"
+      "url": "有効なURLを入力してください",
+      "max_size": "ファイル サイズは {{maxSize }} {{ type }} を超えることはできません。",
+      "min_files": "少なくとも {{ minFiles }} ファイルが必要です。",
+      "max_files": "最大 {{ maxFiles }} ファイルがサポートされています。",
+      "min_size": "ファイル サイズは {{minSize }} {{ type }} より小さくすることはできません。"
     },
     "widget_picker": {
       "empty_tip": "申し訳ありませんが、検索結果はありません",
@@ -1296,6 +1347,9 @@
       "name": "アップロード",
       "default_button_text": "アップロード",
       "default_dropzone_text": "選択もしくはファイルのドロップ"
+    },
+    "icon": {
+      "name": "アイコン"
     }
   },
   "page": {
@@ -1333,16 +1387,29 @@
         "copied_suc": "コピーしました！",
         "failed_to_copy": "コピーに失敗しました",
         "turn_off_fail": "オフにできませんでした",
-        "turn_on_fail": "オンにできませんでした"
+        "turn_on_fail": "オンにできませんでした",
+        "make_public_title": "アプリを公開する",
+        "make_public_copy": "コピー"
       },
       "email": {
         "invite_title": "メールで招待する",
         "invite": "招待",
         "placeholder": "メールアドレスを入力",
         "invited": "招待しました",
-        "in_list": "このユーザーは既にチーム内にいます"
+        "in_list": "このユーザーは既にチーム内にいます",
+        "notmail": "{{ email }}はメールではありません",
+        "duplicate": "{{ email }}は重複したメールアドレスです"
       },
-      "invalid_email": "有効なメールアドレスを入力して下さい。"
+      "invalid_email": "有効なメールアドレスを入力して下さい。",
+      "message": {
+        "make_public_suc": "設定が完了しました",
+        "make_public_failed": "設定に失敗しました",
+        "app_share_in_team": "{{ email }} はすでにあなたのチームに所属しています。リンクを彼と共有してください。"
+      },
+      "tab": {
+        "invite": "招待",
+        "public": "公開"
+      }
     },
     "mes": {
       "invite_suc": "招待しました",
@@ -1441,6 +1508,24 @@
   "homepage": {
     "message": {
       "join_failed": "チームに参加できませんでした: あなたのメールは招待メールではありません。"
+    }
+  },
+  "image_exceed": "写真のサイズは500MBを超えてはいけません。",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "切り取り",
+        "save": "保存",
+        "cancel": "キャンセル"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "保存しました",
+        "save_fail": "保存に失敗しました"
+      }
     }
   }
 }

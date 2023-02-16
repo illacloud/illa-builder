@@ -1,7 +1,8 @@
-import { Diff, applyChange, diff } from "deep-diff"
-import { cloneDeep, flatten, get, set, unset } from "lodash"
+import { Diff, diff } from "deep-diff"
+import { cloneDeep, flatten, get, set, toPath, unset } from "lodash"
 import toposort from "toposort"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DependenciesState,
@@ -15,7 +16,6 @@ import {
   getDisplayNameAndAttrPath,
   getWidgetOrActionDynamicAttrPaths,
   isDynamicString,
-  wrapFunctionCode,
 } from "@/utils/evaluateDynamicString/utils"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import {
@@ -276,7 +276,11 @@ export class ExecutionTreeFactory {
     return currentExecutionTree
   }
 
-  updateTree(rawTree: RawTreeShape, isDeleteAction?: boolean) {
+  updateTree(
+    rawTree: RawTreeShape,
+    isDeleteAction?: boolean,
+    isUpdateActionReduxAction?: boolean,
+  ) {
     const currentRawTree = cloneDeep(rawTree)
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
@@ -309,6 +313,11 @@ export class ExecutionTreeFactory {
     const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       currentExecution,
       path,
+      -1,
+      {
+        isUpdateActionReduxAction: !!isUpdateActionReduxAction,
+        isDeleteAction: !!isDeleteAction,
+      },
     )
     this.oldRawTree = cloneDeep(currentRawTree)
     this.mergeErrorTree(errorTree, [...updatePaths, ...path], isDeleteAction)
@@ -333,7 +342,13 @@ export class ExecutionTreeFactory {
     const updatePaths: string[] = []
     for (const d of differences) {
       if (!Array.isArray(d.path) || d.path.length === 0) continue
-      updatePaths.push(d.path.join("."))
+      const subPaths = cloneDeep(d.path)
+      let current = ""
+      while (subPaths.length > 1) {
+        current = convertPathToString(subPaths)
+        updatePaths.push(current)
+        subPaths.pop()
+      }
     }
     const hasPath = new Set<string>()
     return updatePaths.filter((path) => {
@@ -352,14 +367,10 @@ export class ExecutionTreeFactory {
     paths.forEach((path) => {
       if (!walkedPath.has(path)) {
         walkedPath.add(path)
-        const { displayName, attrPath } = getDisplayNameAndAttrPath(path)
-        const actionOrWidget = get(currentExecutionTree, displayName)
         const fullPathValue = get(this.oldRawTree, path)
-        if (
-          (!isAction(actionOrWidget) || !attrPath.startsWith("data")) &&
-          isDynamicString(fullPathValue)
-        ) {
-          const rootPath = path.split(".").slice(0, 2).join(".")
+        if (isDynamicString(fullPathValue)) {
+          const pathArray = toPath(path)
+          const rootPath = pathArray.slice(0, 2).join(".")
           const value = get(this.oldRawTree, rootPath, undefined)
           set(currentExecutionTree, rootPath, value)
         }
@@ -394,6 +405,7 @@ export class ExecutionTreeFactory {
       currentExecutionTree,
       walkedPath,
     ) as RawTreeShape
+
     const { evaluatedTree } = this.executeTree(currentRawTree, orderPath)
     this.executedTree = this.validateTree(evaluatedTree)
     return {
@@ -500,6 +512,7 @@ export class ExecutionTreeFactory {
     oldRawTree: RawTreeShape,
     sortedEvalOrder: string[],
     point: number = -1,
+    reduxActionType?: Record<string, boolean>,
   ) {
     const oldLocalRawTree = cloneDeep(oldRawTree)
     const errorTree: ExecutionState["error"] = {}
@@ -545,22 +558,21 @@ export class ExecutionTreeFactory {
                 return current
               }
             }
-            if (widgetOrAction.actionType === "transformer") {
-              const evaluateTransform = wrapFunctionCode(
-                widgetOrAction.content.transformerString,
+            if (
+              widgetOrAction.actionType === "transformer" &&
+              !reduxActionType?.isUpdateActionReduxAction
+            ) {
+              let calcResult = runActionTransformer(
+                widgetOrAction,
+                current,
+                false,
               )
-              const canEvalString = `{{${evaluateTransform}()}}`
-              let calcResult = ""
-              try {
-                calcResult = evaluateDynamicString("", canEvalString, current)
-                set(current, `${widgetOrAction.displayName}.value`, calcResult)
-              } catch (e) {
-                console.log(e)
-              }
+              set(current, `${widgetOrAction.displayName}.value`, calcResult)
             }
             if (
               widgetOrAction.actionType !== "transformer" &&
-              widgetOrAction.triggerMode === "automate"
+              widgetOrAction.triggerMode === "automate" &&
+              !reduxActionType?.isUpdateActionReduxAction
             ) {
               const {
                 $actionId,
