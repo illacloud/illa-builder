@@ -1033,7 +1033,8 @@
       "max_size": "ファイル サイズは {{maxSize }} {{ type }} を超えることはできません。",
       "min_files": "少なくとも {{ minFiles }} ファイルが必要です。",
       "max_files": "最大 {{ maxFiles }} ファイルがサポートされています。",
-      "min_size": "ファイル サイズは {{minSize }} {{ type }} より小さくすることはできません。"
+      "min_size": "ファイル サイズは {{minSize }} {{ type }} より小さくすることはできません。",
+      "min_max_size": "Min size ~ Max size"
     },
     "widget_picker": {
       "empty_tip": "申し訳ありませんが、検索結果はありません",
