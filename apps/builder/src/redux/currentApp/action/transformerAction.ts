@@ -3,7 +3,6 @@ export interface TransformerAction {
 }
 
 export const TransformerActionInitial: TransformerAction = {
-  transformerString:
-    "// Tip: assign your external references to variables instead of chaining off the curly brackets.\n" +
-    "return 5",
+  transformerString: `{{(function (){// Tip: assign your external references to variables instead of chaining off the curly brackets.
+return 5})()}}`,
 }
