@@ -915,7 +915,8 @@
         "max_files": "Max files",
         "min_files": "Min files",
         "max_size": "Max size",
-        "min_size": "Min size"
+        "min_size": "Min size",
+        "text_overflow": "Overflow"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -961,6 +962,14 @@
       },
       "setter_tips": {
         "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+      },
+      "setter_option": {
+        "fixed": "Fixed",
+        "auto_limited": "Auto height with limits",
+        "auto_height": "Auto height",
+        "text_ellipsis": "Ellipsis",
+        "text_scroll": "Scroll",
+        "text_clip": "Clip"
       }
     },
     "page": {
@@ -1338,6 +1347,9 @@
       "name": "Upload",
       "default_button_text": "Upload",
       "default_dropzone_text": "Select or drop a file here"
+    },
+    "icon": {
+      "name": "Icon"
     }
   },
   "page": {
