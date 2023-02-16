@@ -710,13 +710,13 @@
           "auto": "アダプティブ"
         },
         "upload_type": {
-          "button": "Button",
-          "dropzone": "Dropzone"
+          "button": "ボタン",
+          "dropzone": "ファイルエリア"
         },
         "selection_types": {
-          "single_file": "Single file",
-          "multiple_files": "Multiple files",
-          "directory": "Directory"
+          "single_file": "単一ファイル",
+          "multiple_files": "複数のファイル",
+          "directory": "ディレクトリ"
         },
         "size_type": {
           "kb": "KB",
@@ -920,7 +920,8 @@
         "file_url": "ファイル の URL",
         "show_tool_bar": "ツールバーを表示",
         "scale": "ズームページ",
-        "scroll": "各ページへのスナップスクロール"
+        "scroll": "各ページへのスナップスクロール",
+        "min_max_size": "最小～最大のサイズ"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -982,6 +983,9 @@
         "text_clip": "クリップ",
         "scale_height": "高さ",
         "scale_width": "幅"
+      },
+      "setter_placeholder": {
+        "min_max_size": "無制限"
       }
     },
     "page": {
