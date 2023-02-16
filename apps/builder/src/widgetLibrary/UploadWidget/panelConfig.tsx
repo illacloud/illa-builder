@@ -133,6 +133,8 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
         expectedType: VALIDATION_TYPES.BOOLEAN,
+        bindAttrName: ["type"],
+        shown: (value) => value === "button",
       },
       {
         id: `${baseWidgetName}-interaction-disabled`,
@@ -273,6 +275,8 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-style`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
+    bindAttrName: ["type"],
+    shown: (value) => value === "button",
     children: [
       {
         id: `${baseWidgetName}-style-variant`,

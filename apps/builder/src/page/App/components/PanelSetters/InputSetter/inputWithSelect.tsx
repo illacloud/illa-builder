@@ -19,11 +19,13 @@ import {
 import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
 import { InputWithSelectSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
 import {
+  codeEditorWrapperStyle,
   inputWithSelectSetterSelectStyle,
   inputWithSelectSetterStyle,
   sizeContainerStyle,
   sizeDropListCodeEditorStyle,
   sizeDropListStyle,
+  sizeSelectionStyle,
 } from "@/page/App/components/PanelSetters/InputSetter/style"
 import {
   getNeedComputedValueWithList,
@@ -96,6 +98,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
     <div css={inputWithSelectSetterStyle}>
       <div css={sizeDropListCodeEditorStyle}>
         <CodeEditor
+          wrapperCss={codeEditorWrapperStyle}
           value={finalValue}
           onChange={onChange}
           showLineNumbers={false}
@@ -105,48 +108,48 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
           maxWidth="100%"
           codeType={CODE_TYPE.EXPRESSION}
         />
-      </div>
-      {options && (
-        <Trigger
-          trigger="click"
-          colorScheme="white"
-          position="bottom-start"
-          withoutPadding
-          showArrow={false}
-          popupVisible={popupVisible}
-          onVisibleChange={onVisibleChange}
-          content={
-            <div css={sizeDropListStyle}>
-              {options.map((option) => {
-                let label
-                let value: number | string
-                if (isString(option) || isNumber(option)) {
-                  label = value = option
-                } else {
-                  label = option.label
-                  value = option.value
-                }
-                return (
-                  <div
-                    key={value}
-                    onClick={() => {
-                      handleUpdateDsl(attrNames?.[1] || attrName, value)
-                      onVisibleChange(false)
-                    }}
-                  >
-                    {label}
-                  </div>
-                )
-              })}
+        {options && (
+          <Trigger
+            trigger="click"
+            colorScheme="white"
+            position="bottom-start"
+            withoutPadding
+            showArrow={false}
+            popupVisible={popupVisible}
+            onVisibleChange={onVisibleChange}
+            content={
+              <div css={sizeDropListStyle}>
+                {options.map((option) => {
+                  let label
+                  let value: number | string
+                  if (isString(option) || isNumber(option)) {
+                    label = value = option
+                  } else {
+                    label = option.label
+                    value = option.value
+                  }
+                  return (
+                    <div
+                      key={value}
+                      onClick={() => {
+                        handleUpdateDsl(attrNames?.[1] || attrName, value)
+                        onVisibleChange(false)
+                      }}
+                    >
+                      {label}
+                    </div>
+                  )
+                })}
+              </div>
+            }
+          >
+            <div css={sizeContainerStyle}>
+              <div css={sizeSelectionStyle}>{values[1].toUpperCase()}</div>
+              {popupVisible ? <UpIcon /> : <DownIcon />}
             </div>
-          }
-        >
-          <div css={sizeContainerStyle}>
-            <div>{values[1].toUpperCase()}</div>
-            {popupVisible ? <UpIcon /> : <DownIcon />}
-          </div>
-        </Trigger>
-      )}
+          </Trigger>
+        )}
+      </div>
     </div>
   )
 }
