@@ -920,8 +920,7 @@
         "file_url": "ファイル の URL",
         "show_tool_bar": "ツールバーを表示",
         "scale": "ズームページ",
-        "scroll": "各ページへのスナップスクロール",
-        "min_max_size": "最小～最大のサイズ"
+        "scroll": "各ページへのスナップスクロール"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -983,9 +982,6 @@
         "text_clip": "クリップ",
         "scale_height": "高さ",
         "scale_width": "幅"
-      },
-      "setter_placeholder": {
-        "min_max_size": "無制限"
       }
     },
     "page": {
@@ -1037,7 +1033,8 @@
       "max_size": "ファイル サイズは {{maxSize }} {{ type }} を超えることはできません。",
       "min_files": "少なくとも {{ minFiles }} ファイルが必要です。",
       "max_files": "最大 {{ maxFiles }} ファイルがサポートされています。",
-      "min_size": "ファイル サイズは {{minSize }} {{ type }} より小さくすることはできません。"
+      "min_size": "ファイル サイズは {{minSize }} {{ type }} より小さくすることはできません。",
+      "min_max_size": "Min size ~ Max size"
     },
     "widget_picker": {
       "empty_tip": "申し訳ありませんが、検索結果はありません",
