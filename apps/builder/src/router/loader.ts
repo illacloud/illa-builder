@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom"
+import { LoaderFunctionArgs, redirect } from "react-router-dom"
 import { CloudBaseApi } from "@/api/cloudApi"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { getTeamsInfo } from "@/api/team"
@@ -84,5 +84,20 @@ export const requireAuth = async (
     }
     console.error(e)
   }
+  return null
+}
+
+export const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
+  const { request } = args
+  const url = new URL(request.url)
+  const token = url?.searchParams?.get("token")
+  if (!token) return null
+  setLocalStorage("token", token, -1)
+  const current = removeUrlParams(window.location.href, ["token"])
+  window.history.replaceState(
+    {},
+    "",
+    `${window.location.pathname}${current.search}`,
+  )
   return null
 }

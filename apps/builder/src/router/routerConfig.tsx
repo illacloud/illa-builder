@@ -17,6 +17,7 @@ import { Page403 } from "@/page/status/403"
 import { Page404 } from "@/page/status/404"
 import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
+import { handleRemoveUrlToken } from "@/router/loader"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const cloudUrl = `${location.protocol}//${
@@ -35,16 +36,19 @@ export const commonRouter: RoutesObjectPro[] = [
     path: "/:teamIdentifier/deploy/app/:appId",
     element: <Deploy />,
     errorElement: <Page403 />,
+    loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName",
     element: <Deploy />,
     errorElement: <Page403 />,
+    loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName/:viewPath",
     element: <Deploy />,
     errorElement: <Page403 />,
+    loader: handleRemoveUrlToken,
   },
   {
     path: "/403",
