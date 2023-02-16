@@ -916,7 +916,11 @@
         "min_files": "Min files",
         "max_size": "Max size",
         "min_size": "Min size",
-        "text_overflow": "Overflow"
+        "text_overflow": "Overflow",
+        "file_url": "File URL",
+        "show_tool_bar": "Show tool bar",
+        "scale": "Scale page to",
+        "scroll": "Snap scroll to each page"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -952,7 +956,10 @@
         "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
         "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
         "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
-        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
+        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option.",
+        "file_url": "Supports PDF URLs on the web, or base64 encoded data of pdf files. For example: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Scale each page to fill the width or height of the component.",
+        "scroll": "Automatically locate to the beginning of each page when scrolling."
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
@@ -969,7 +976,9 @@
         "auto_height": "Auto height",
         "text_ellipsis": "Ellipsis",
         "text_scroll": "Scroll",
-        "text_clip": "Clip"
+        "text_clip": "Clip",
+        "scale_height": "Height",
+        "scale_width": "Width"
       }
     },
     "page": {
@@ -1037,6 +1046,10 @@
         "selects": "Select inputs"
       },
       "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Set hidden",
+      "set_file_url": "Set file URL"
     }
   },
   "exit_preview": "Exit Preview",
