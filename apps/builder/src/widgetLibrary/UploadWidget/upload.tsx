@@ -169,14 +169,14 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     required,
     minFiles,
     maxFiles,
-    minSizeType,
-    maxSizeType,
+    sizeType,
     maxSize,
     currentList,
     value,
     files,
     minSize,
     validateMessage,
+    triggerEventHandler,
     hideValidationMessage,
     updateComponentHeight,
     handleUpdateDsl,
@@ -222,24 +222,21 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     }
   }, [currentList, value, files])
 
-  const handleOnRemove = useCallback(
-    (file: UploadItem, fileList: UploadItem[]) => {
-      const currentFiles =
-        previousValueRef.current.length > 0
-          ? [...previousValueRef.current]
-          : [...(fileListRef.current || [])]
-      const currentFilesKeys = currentFiles.map((f) => f.uid || f.name)
-      const index = currentFilesKeys.indexOf(file.uid || file.name)
-      currentFiles.splice(index, 1)
-      setFileList(currentFiles)
-      fileListRef.current = currentFiles
-      if (previousValueRef.current.length > 0) {
-        previousValueRef.current = currentFiles
-      }
-      return true
-    },
-    [],
-  )
+  const handleOnRemove = (file: UploadItem, fileList: UploadItem[]) => {
+    const currentFiles =
+      previousValueRef.current.length > 0
+        ? [...previousValueRef.current]
+        : [...(fileListRef.current || [])]
+    const currentFilesKeys = currentFiles.map((f) => f.uid || f.name)
+    const index = currentFilesKeys.indexOf(file.uid || file.name)
+    currentFiles.splice(index, 1)
+    setFileList(currentFiles)
+    fileListRef.current = currentFiles
+    if (previousValueRef.current.length > 0) {
+      previousValueRef.current = currentFiles
+    }
+    return true
+  }
 
   const customRequest = (options: RequestOptions) => {
     options.onSuccess()
@@ -298,9 +295,8 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
           minFiles,
           maxFiles,
           minSize,
-          minSizeType,
-          maxSizeType,
           maxSize,
+          sizeType,
           required,
           customRule,
         })
@@ -315,8 +311,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       minFiles,
       maxFiles,
       minSize,
-      minSizeType,
-      maxSizeType,
+      sizeType,
       maxSize,
       required,
     ],
@@ -403,6 +398,10 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     handleValidate,
   ])
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   return (
     <div css={uploadContainerStyle} ref={containerRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -414,6 +413,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
             onRemove={handleOnRemove}
             getValidateMessage={getValidateMessage}
             customRequest={customRequest}
+            handleOnChange={handleOnChange}
           />
         </div>
       </TooltipWrapper>

@@ -24,6 +24,5 @@ export interface ValidateCheckProps {
   minFiles?: number
   maxSize?: number
   minSize?: number
-  minSizeType?: string
-  maxSizeType?: string
+  sizeType?: string
 }

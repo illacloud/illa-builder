@@ -194,33 +194,21 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => value !== "single",
       },
       {
-        id: `${baseWidgetName}-validation-maxSize`,
-        labelName: i18n.t("editor.inspect.setter_label.max_size"),
+        id: `${baseWidgetName}-validation-fileSize`,
+        labelName: "Min size ~ Max siz",
         setterType: "INPUT_WITH_SELECT_SETTER",
-        attrName: "maxSize",
-        attrNames: ["maxSize", "maxSizeType"],
-        expectedType: VALIDATION_TYPES.NUMBER,
+        attrName: "sizeType",
+        useCustomLayout: true,
+        attrNames: ["minSize", "maxSize", "sizeType"],
+        expectedType: VALIDATION_TYPES.STRING,
+        expectedTypes: [
+          VALIDATION_TYPES.NUMBER,
+          VALIDATION_TYPES.NUMBER,
+          VALIDATION_TYPES.STRING,
+        ],
         options: [
           { label: "KB", value: "kb" },
           { label: "MB", value: "mb" },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-validation-minSize`,
-        labelName: i18n.t("editor.inspect.setter_label.min_size"),
-        setterType: "INPUT_WITH_SELECT_SETTER",
-        attrName: "minSize",
-        attrNames: ["minSize", "minSizeType"],
-        expectedType: VALIDATION_TYPES.NUMBER,
-        options: [
-          {
-            label: i18n.t("editor.inspect.setter_default_value.size_type.kb"),
-            value: "kb",
-          },
-          {
-            label: i18n.t("editor.inspect.setter_default_value.size_type.mb"),
-            value: "mb",
-          },
         ],
       },
       {

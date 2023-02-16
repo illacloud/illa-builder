@@ -26,14 +26,6 @@ export const iconSelectorIconStyle = css`
   }
 `
 
-export const iconNameStyle = css`
-  text-overflow: ellipsis;
-  font-size: 12px;
-  line-height: 20px;
-  overflow: hidden;
-  white-space: nowrap;
-`
-
 export const iconSelectorContainerStyle = css`
   width: 100%;
   height: 100%;
@@ -130,6 +122,7 @@ export const iconPickerLeftPanelStyle = css`
   flex-direction: column;
   align-items: flex-start;
   padding: 8px 0px;
+  border-bottom-left-radius: 8px;
   flex: none;
 `
 
@@ -146,7 +139,6 @@ export const leftPanelItemStyle = css`
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   background: ${globalColor(`--${illaPrefix}-white-01`)};
-  box-shadow: inset -2px 0px 0px ${globalColor(`--${illaPrefix}-white-01`)};
 `
 
 export const rightPanelStyle = css`
@@ -179,7 +171,7 @@ export const getSelectedStyle = (selected: boolean) => {
 export const getNameSelectedStyle = (selected: boolean) => {
   if (selected) {
     return css`
-      box-shadow: inset -2px 0px 0px ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+      background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     `
   } else {
     return css``

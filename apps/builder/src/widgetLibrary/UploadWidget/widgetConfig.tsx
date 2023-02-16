@@ -6,7 +6,7 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
   displayName: "upload",
   widgetName: i18n.t("widget.upload.name"),
   h: 5,
-  w: 20,
+  w: 12,
   type: "UPLOAD_WIDGET",
   icon: <UploadWidgetIcon />,
   keywords: ["Upload Input", "上传"],
@@ -25,7 +25,6 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
     colorScheme: "blue",
     formDataKey: "upload",
     showFileList: false,
-    minSizeType: "mb",
-    maxSizeType: "mb",
+    sizeType: "mb",
   },
 }

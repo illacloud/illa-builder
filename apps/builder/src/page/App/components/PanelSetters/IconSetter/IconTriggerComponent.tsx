@@ -26,7 +26,7 @@ import { ALL_ICONS } from "@/widgetLibrary/IconWidget/utils"
 
 const defaultItem: IconManifest = {
   id: "default",
-  name: "Default",
+  name: "All",
   projectUrl: "",
   license: "MIT",
   licenseUrl: "https://opensource.org/licenses/MIT",

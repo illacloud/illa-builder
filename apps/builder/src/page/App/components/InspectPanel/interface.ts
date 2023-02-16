@@ -22,6 +22,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   id: string
   setterType: SetterType
   expectedType?: VALIDATION_TYPES
+  expectedTypes?: VALIDATION_TYPES[]
   attrName: string
   attrNames?: string[]
   childrenSetter?: PanelFieldConfig[]

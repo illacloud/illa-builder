@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { useMeasure } from "react-use"
 import { IconWidgetProps } from "@/widgetLibrary/IconWidget/interface"
 import { getIconContainerStyle } from "@/widgetLibrary/IconWidget/style"
@@ -7,14 +7,13 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const IconWidget: FC<IconWidgetProps> = (props) => {
   const {
-    handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     tooltipText,
     iconName,
     colorScheme,
-    handleOnClick,
     displayName,
+    triggerEventHandler,
   } = props
 
   const [containerRef, containerBounds] = useMeasure<HTMLDivElement>()
@@ -30,7 +29,6 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
       handleDeleteGlobalData(displayName)
     }
   }, [
-    handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     tooltipText,
@@ -40,6 +38,10 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
   ])
 
   const getIcon = (iconName && AllData[iconName]) || null
+
+  const handleOnClick = useCallback(() => {
+    triggerEventHandler("click")
+  }, [triggerEventHandler])
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

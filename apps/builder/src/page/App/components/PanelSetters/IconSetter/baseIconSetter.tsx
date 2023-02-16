@@ -1,10 +1,9 @@
 import { FC, MouseEventHandler, useCallback, useEffect, useState } from "react"
-import { Button, ErrorCircleIcon, Input } from "@illa-design/react"
+import { ErrorCircleIcon, Input } from "@illa-design/react"
 import {
   applyBaseIconWrapperStyle,
   clearIconStyle,
   iconContentStyle,
-  iconNameStyle,
   iconSelectorContainerStyle,
   iconSelectorIconStyle,
 } from "@/page/App/components/PanelSetters/IconSetter/style"
@@ -16,6 +15,7 @@ export const BaseIconSetter: FC<BaseIconSetterProps> = (props) => {
   const [displayData, setDisplayData] = useState<IconDataType | undefined>(
     undefined,
   )
+  const [showClear, setShowClear] = useState<boolean>(false)
 
   useEffect(() => {
     handleUpdateDsl(attrName, showData?.name)
@@ -31,8 +31,20 @@ export const BaseIconSetter: FC<BaseIconSetterProps> = (props) => {
     [attrName, handleUpdateDsl],
   )
 
+  const handleMouseEnter = useCallback(() => {
+    setShowClear(true)
+  }, [])
+
+  const handleMouseLeave = useCallback(() => {
+    setShowClear(false)
+  }, [])
+
   return (
-    <div css={applyBaseIconWrapperStyle(isSetterSingleRow)}>
+    <div
+      css={applyBaseIconWrapperStyle(isSetterSingleRow)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div css={iconSelectorContainerStyle}>
         <div css={iconSelectorIconStyle}>
           {displayData?.getIcon && displayData?.getIcon({})}
@@ -42,7 +54,7 @@ export const BaseIconSetter: FC<BaseIconSetterProps> = (props) => {
           value={displayData?.name ?? ""}
           disabled
         />
-        {!!displayData?.name && (
+        {showClear && (
           <div css={clearIconStyle} onClick={handleClearClick}>
             <ErrorCircleIcon />
           </div>

@@ -15,6 +15,7 @@ export interface BaseSetter {
     updateSlice: Record<string, unknown>,
   ) => void
   expectedType: VALIDATION_TYPES
+  expectedTypes?: VALIDATION_TYPES[]
   attrNames?: string[]
   isInList?: boolean
   widgetDisplayName: string

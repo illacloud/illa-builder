@@ -12,11 +12,16 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { InputWithSelectSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
 import {
+  codeEditorContainerStyle,
   codeEditorWrapperStyle,
+  dashCharStyle,
   dropListItemStyle,
   inputWithSelectSetterStyle,
+  labelContainerStyle,
+  panelLabelContainerStyle,
   sizeContainerStyle,
   sizeDropListStyle,
   sizeSelectionStyle,
@@ -31,6 +36,8 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
   props,
 ) => {
   const {
+    labelName,
+    labelDesc,
     attrName,
     attrNames,
     handleUpdateDsl,
@@ -39,6 +46,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
     options,
     widgetDisplayName,
     expectedType,
+    expectedTypes,
   } = props
 
   const [popupVisible, setPopupVisible] = useState<boolean>(false)
@@ -57,15 +65,17 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
     return ""
   }, [listWidgets, widgetDisplayName])
 
-  const finalValue = useMemo(() => {
-    if (currentListDisplayName) {
-      return realInputValueWithList(value, currentListDisplayName)
-    }
-    return value || ""
-  }, [currentListDisplayName, value])
+  const finalValues = useMemo(() => {
+    return values.map((value: string) => {
+      if (currentListDisplayName) {
+        return realInputValueWithList(value, currentListDisplayName)
+      }
+      return value || ""
+    })
+  }, [currentListDisplayName, values])
 
   const onChange = useCallback(
-    (value: string) => {
+    (value: string, attrName: string) => {
       let output = value
       if (currentListDisplayName) {
         output = getNeedComputedValueWithList(value, currentListDisplayName)
@@ -73,7 +83,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
 
       handleUpdateDsl(attrName, output)
     },
-    [attrName, currentListDisplayName, handleUpdateDsl],
+    [currentListDisplayName, handleUpdateDsl],
   )
 
   const onVisibleChange = (visible: boolean) => {
@@ -82,61 +92,84 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
     }
   }
 
+  const handleOptionsItemClick = () => {
+    handleUpdateDsl(attrNames?.[2] || attrName, value)
+    onVisibleChange(false)
+  }
+
   return (
     <div css={inputWithSelectSetterStyle}>
-      <CodeEditor
-        wrapperCss={codeEditorWrapperStyle}
-        value={finalValue}
-        onChange={onChange}
-        showLineNumbers={false}
-        expectValueType={expectedType}
-        lang={CODE_LANG.JAVASCRIPT}
-        maxHeight="208px"
-        maxWidth="100%"
-        codeType={CODE_TYPE.EXPRESSION}
-      />
-      {options && (
-        <Trigger
-          trigger="click"
-          colorScheme="white"
-          position="bottom-start"
-          withoutPadding
-          showArrow={false}
-          popupVisible={popupVisible}
-          onVisibleChange={onVisibleChange}
-          content={
-            <div css={sizeDropListStyle}>
-              {options.map((option) => {
-                let label
-                let value: number | string
-                if (isString(option) || isNumber(option)) {
-                  label = value = option
-                } else {
-                  label = option.label
-                  value = option.value
-                }
-                return (
-                  <div
-                    css={dropListItemStyle}
-                    key={value}
-                    onClick={() => {
-                      handleUpdateDsl(attrNames?.[1] || attrName, value)
-                      onVisibleChange(false)
-                    }}
-                  >
-                    {label}
-                  </div>
-                )
-              })}
-            </div>
-          }
-        >
-          <div css={sizeContainerStyle}>
-            <div css={sizeSelectionStyle}>{values[1].toUpperCase()}</div>
-            {popupVisible ? <UpIcon /> : <DownIcon />}
-          </div>
-        </Trigger>
-      )}
+      <div css={labelContainerStyle}>
+        <div css={panelLabelContainerStyle}>
+          <PanelLabel labelName={labelName} labelDesc={labelDesc} />
+        </div>
+        <div>
+          {options && (
+            <Trigger
+              trigger="click"
+              colorScheme="white"
+              position="bottom-start"
+              withoutPadding
+              showArrow={false}
+              popupVisible={popupVisible}
+              onVisibleChange={onVisibleChange}
+              content={
+                <div css={sizeDropListStyle}>
+                  {options.map((option) => {
+                    let label
+                    let value: number | string
+                    if (isString(option) || isNumber(option)) {
+                      label = value = option
+                    } else {
+                      label = option.label
+                      value = option.value
+                    }
+                    return (
+                      <div
+                        css={dropListItemStyle}
+                        key={value}
+                        onClick={handleOptionsItemClick}
+                      >
+                        {label}
+                      </div>
+                    )
+                  })}
+                </div>
+              }
+            >
+              <div css={sizeContainerStyle}>
+                <div css={sizeSelectionStyle}>{values[2]?.toUpperCase()}</div>
+                {popupVisible ? <UpIcon /> : <DownIcon />}
+              </div>
+            </Trigger>
+          )}
+        </div>
+      </div>
+      <div css={codeEditorContainerStyle}>
+        <CodeEditor
+          wrapperCss={codeEditorWrapperStyle}
+          value={finalValues[0]}
+          onChange={(value) => onChange(value, attrNames?.[0] || attrName)}
+          showLineNumbers={false}
+          expectValueType={expectedTypes?.[0] ?? expectedType}
+          lang={CODE_LANG.JAVASCRIPT}
+          maxHeight="208px"
+          maxWidth="100%"
+          codeType={CODE_TYPE.EXPRESSION}
+        />
+        <div css={dashCharStyle}>~</div>
+        <CodeEditor
+          wrapperCss={codeEditorWrapperStyle}
+          value={finalValues[1]}
+          onChange={(value) => onChange(value, attrNames?.[1] || attrName)}
+          showLineNumbers={false}
+          expectValueType={expectedTypes?.[1] ?? expectedType}
+          lang={CODE_LANG.JAVASCRIPT}
+          maxHeight="208px"
+          maxWidth="100%"
+          codeType={CODE_TYPE.EXPRESSION}
+        />
+      </div>
     </div>
   )
 }

@@ -90,16 +90,15 @@ const handleCheckFileSize = (
   value: unknown,
   maxSize?: number,
   minSize?: number,
-  maxSizeType?: string,
-  minSizeType?: string,
+  sizeType?: string,
 ) => {
   if (value && (value as []).length) {
     // default to MB
     const getFileSizeNumber = (type?: string) =>
       type !== "mb" ? 1024 : 1024 * 1024
 
-    const maxSizeNumber = maxSize ? maxSize * getFileSizeNumber(maxSizeType) : 0
-    const minSizeNumber = minSize ? minSize * getFileSizeNumber(minSizeType) : 0
+    const maxSizeNumber = maxSize ? maxSize * getFileSizeNumber(sizeType) : 0
+    const minSizeNumber = minSize ? minSize * getFileSizeNumber(sizeType) : 0
 
     for (let i = 0; i < (value as []).length; i++) {
       const size =
@@ -111,7 +110,7 @@ const handleCheckFileSize = (
           hasError: true,
           errorMessage: i18n.t("editor.validate_message.max_size", {
             maxSize,
-            type: (maxSizeType || "MB").toUpperCase(),
+            type: (sizeType || "MB").toUpperCase(),
           }),
         }
       }
@@ -120,7 +119,7 @@ const handleCheckFileSize = (
           hasError: true,
           errorMessage: i18n.t("editor.validate_message.min_size", {
             minSize,
-            type: (minSizeType || "MB").toUpperCase(),
+            type: (sizeType || "MB").toUpperCase(),
           }),
         }
       }
@@ -178,8 +177,7 @@ export const handleValidateCheck = (
     options.value,
     options.maxSize,
     options.minSize,
-    options.maxSizeType,
-    options.minSizeType,
+    options.sizeType,
   )
   if (hasError) {
     return errorMessage
