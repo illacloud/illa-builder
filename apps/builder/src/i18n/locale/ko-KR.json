@@ -899,7 +899,7 @@
         "x_axis_value": "X축",
         "y_axis_name": "좌표 이름",
         "y_axis_title": "Y축 제목",
-        "height": "Height",
+        "height": "높은",
         "min_height": "Min height (px)",
         "show_underline": "밑줄 표시",
         "auto_play": "자동 재생",
@@ -915,7 +915,8 @@
         "max_files": "Max files",
         "min_files": "Min files",
         "max_size": "Max size",
-        "min_size": "Min size"
+        "min_size": "Min size",
+        "text_overflow": "텍스트 오버플로"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -949,9 +950,9 @@
         "timeline_direction": "시간 축의 방향을 전환합니다.",
         "timeline_pending": "보류 중인 노드를 표시할지 여부입니다.",
         "tooltip": "사용자는 입력란에 프롬프트 내용을 입력할 수 있으며 마우스를 컴포넌트 위에 올려 놓으면 프롬프트 정보가 표시되며 Markdown 형식을 지원합니다.",
-        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
-        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
-        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
+        "file_types": "업로드가 허용된 파일 확장자 목록입니다. 모든 파일 유형을 허용하는 값은 없습니다.",
+        "file_list": "업로더 아래에 선택한 파일 목록을 표시합니다. 업로더의 높이는 파일 목록의 길이에 따라 동적으로 변경됩니다.",
+        "parse_value": "JSON, CSV, TSV, Excel 및 TXT 파일을 지원하여 선택한 파일의 구문 분석을 시도합니다. 구문 분석된 데이터는 {{uploader1.parsedValue}}를 통해 액세스할 수 있습니다. 구문 분석할 수 없는 파일은 배열에서 null이 됩니다. 모든 파일은 이 옵션에 관계없이 값 배열에서 base64로 인코딩된 문자열로 사용할 수 있습니다."
       },
       "tab_title": "속성",
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
@@ -960,7 +961,15 @@
         "click_mask_close": "Click mask to close modal"
       },
       "setter_tips": {
-        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+        "carousel_tips": "{{ currentItem }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어 데이터 원본에 두 개의 열이 있습니다. 이미지와 URL입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ currentItem.url }}을 이용하여 url을 설정하면 됩니다."
+      },
+      "setter_option": {
+        "fixed": "고정 높이",
+        "auto_limited": "제한이 있는 자동 높이",
+        "auto_height": "자동 높이",
+        "text_ellipsis": "생략",
+        "text_scroll": "스크롤",
+        "text_clip": "클립"
       }
     },
     "page": {
@@ -1338,6 +1347,9 @@
       "name": "업로드",
       "default_button_text": "업로드",
       "default_dropzone_text": "파일 선택 또는 드래그 앤 드롭"
+    },
+    "icon": {
+      "name": "상"
     }
   },
   "page": {
