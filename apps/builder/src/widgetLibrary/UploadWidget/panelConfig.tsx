@@ -196,7 +196,8 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-validation-fileSize`,
-        labelName: "Min size ~ Max siz",
+        labelName: i18n.t("editor.inspect.setter_label.min_max_size"),
+        placeholder: i18n.t("editor.inspect.setter_placeholder.min_max_size"),
         setterType: "INPUT_WITH_SELECT_SETTER",
         attrName: "sizeType",
         useCustomLayout: true,

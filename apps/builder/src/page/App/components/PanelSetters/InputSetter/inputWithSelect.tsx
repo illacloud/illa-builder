@@ -46,6 +46,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
     options,
     widgetDisplayName,
     expectedType,
+    placeholder,
     expectedTypes,
   } = props
 
@@ -92,7 +93,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
     }
   }
 
-  const handleOptionsItemClick = () => {
+  const handleOptionsItemClick = (value: string | number) => {
     handleUpdateDsl(attrNames?.[2] || attrName, value)
     onVisibleChange(false)
   }
@@ -128,7 +129,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
                       <div
                         css={dropListItemStyle}
                         key={value}
-                        onClick={handleOptionsItemClick}
+                        onClick={() => handleOptionsItemClick(value)}
                       >
                         {label}
                       </div>
@@ -154,6 +155,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
           expectValueType={expectedTypes?.[0] ?? expectedType}
           lang={CODE_LANG.JAVASCRIPT}
           maxHeight="208px"
+          placeholder={placeholder}
           maxWidth="100%"
           codeType={CODE_TYPE.EXPRESSION}
         />
@@ -165,6 +167,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
           showLineNumbers={false}
           expectValueType={expectedTypes?.[1] ?? expectedType}
           lang={CODE_LANG.JAVASCRIPT}
+          placeholder={placeholder}
           maxHeight="208px"
           maxWidth="100%"
           codeType={CODE_TYPE.EXPRESSION}

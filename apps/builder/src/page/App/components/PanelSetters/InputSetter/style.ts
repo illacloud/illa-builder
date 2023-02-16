@@ -69,6 +69,7 @@ export const sizeContainerStyle = css`
   height: 100%;
   z-index: 1;
   gap: 4px;
+  cursor: pointer;
   border-left: none;
   align-items: center;
   padding: 2px;
