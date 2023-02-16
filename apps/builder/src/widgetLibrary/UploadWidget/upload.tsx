@@ -47,7 +47,6 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     dropText,
     colorScheme,
     variant,
-    handleOnChange,
     parseValue,
     fileList,
     onRemove,
@@ -120,16 +119,6 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     handleUpdateMultiExecutionResult,
   ])
 
-  const handleChange = useCallback(
-    (fileList: UploadItem[], file: UploadItem) => {
-      onChange?.(fileList, file)
-      if (file.status === "done") {
-        handleOnChange()
-      }
-    },
-    [handleOnChange, onChange],
-  )
-
   return (
     <Upload
       customRequest={customRequest}
@@ -146,7 +135,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
         fileList,
       })}
       onRemove={onRemove}
-      onChange={handleChange}
+      onChange={onChange}
       showUploadList={showFileList}
     />
   )
@@ -222,19 +211,24 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     }
   }, [currentList, value, files])
 
+  const getFileIndex = useCallback((files: UploadItem[], file: UploadItem) => {
+    const currentFilesKeys = files.map((f) => f.uid || f.name)
+    return currentFilesKeys.indexOf(file.uid || file.name)
+  }, [])
+
   const handleOnRemove = (file: UploadItem, fileList: UploadItem[]) => {
     const currentFiles =
       previousValueRef.current.length > 0
         ? [...previousValueRef.current]
         : [...(fileListRef.current || [])]
-    const currentFilesKeys = currentFiles.map((f) => f.uid || f.name)
-    const index = currentFilesKeys.indexOf(file.uid || file.name)
+    const index = getFileIndex(currentFiles, file)
     currentFiles.splice(index, 1)
     setFileList(currentFiles)
     fileListRef.current = currentFiles
     if (previousValueRef.current.length > 0) {
       previousValueRef.current = currentFiles
     }
+    handleOnChange()
     return true
   }
 
@@ -242,14 +236,12 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     options.onSuccess()
   }
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   const onChanges = useCallback(
     (fileList: UploadItem[], file: UploadItem) => {
-      if (selectionType === "single") {
-        setFileList([file])
-        fileListRef.current = [file]
-        previousValueRef.current = [file]
-        return
-      }
       let files = [...previousValueRef.current]
       if (file.status === "init") {
         files.push(file)
@@ -258,10 +250,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
         fileCountRef.current += 1
         return
       }
-      const currentFilesKeys = previousValueRef.current.map(
-        (f) => f.uid || f.name,
-      )
-      const index = currentFilesKeys.indexOf(file.uid || file.name)
+      const index = getFileIndex(previousValueRef.current, file)
       if (index < 0) {
         return
       }
@@ -280,6 +269,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
           fileListRef.current = newList
           previousValueRef.current = []
           fileCountRef.current = 0
+          handleOnChange()
         }
       }
       return
@@ -398,14 +388,10 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     handleValidate,
   ])
 
-  const handleOnChange = useCallback(() => {
-    triggerEventHandler("change")
-  }, [triggerEventHandler])
-
   return (
-    <div css={uploadContainerStyle} ref={containerRef}>
+    <div css={uploadContainerStyle}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-        <div css={uploadLayoutStyle}>
+        <div css={uploadLayoutStyle} ref={containerRef}>
           <WrappedUpload
             {...props}
             fileList={currentFileList}
@@ -413,7 +399,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
             onRemove={handleOnRemove}
             getValidateMessage={getValidateMessage}
             customRequest={customRequest}
-            handleOnChange={handleOnChange}
           />
         </div>
       </TooltipWrapper>

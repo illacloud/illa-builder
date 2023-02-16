@@ -31,9 +31,28 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
+        id: `${baseWidgetName}-basic-buttonText`,
+        labelName: i18n.t("editor.inspect.setter_label.text"),
+        attrName: "buttonText",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        bindAttrName: ["type"],
+        shown: (value) => value === "button",
+      },
+      {
+        id: `${baseWidgetName}-basic-dropText`,
+        labelName: i18n.t("editor.inspect.setter_label.text"),
+        attrName: "dropText",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        bindAttrName: ["type"],
+        shown: (value) => value === "dropzone",
+      },
+      {
         id: `${baseWidgetName}-basic-selectionType`,
         labelName: i18n.t("editor.inspect.setter_label.selection_types"),
         attrName: "selectionType",
+        isSetterSingleRow: true,
         setterType: "BASE_SELECT_SETTER",
         options: [
           {
@@ -55,24 +74,6 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
             value: "directory",
           },
         ],
-      },
-      {
-        id: `${baseWidgetName}-basic-buttonText`,
-        labelName: i18n.t("editor.inspect.setter_label.text"),
-        attrName: "buttonText",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
-        bindAttrName: ["type"],
-        shown: (value) => value === "button",
-      },
-      {
-        id: `${baseWidgetName}-basic-dropText`,
-        labelName: i18n.t("editor.inspect.setter_label.text"),
-        attrName: "dropText",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
-        bindAttrName: ["type"],
-        shown: (value) => value === "dropzone",
       },
       {
         id: `${baseWidgetName}-basic-fileTypes`,
