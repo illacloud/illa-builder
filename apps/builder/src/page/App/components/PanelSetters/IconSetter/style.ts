@@ -35,6 +35,9 @@ export const iconSelectorContainerStyle = css`
   overflow: hidden;
   justify-content: space-between;
   align-items: center;
+  :hover > div:last-child {
+    display: block;
+  }
 `
 
 export const iconContentStyle = css`
@@ -67,6 +70,7 @@ export const clearIconStyle = css`
   display: flex;
   cursor: pointer;
   position: absolute;
+  display: none;
   right: 12px;
   top: 8px;
   justify-content: center;
@@ -114,7 +118,6 @@ export const iconPickerBodyStyle = css`
 `
 
 export const iconPickerLeftPanelStyle = css`
-  //width: 144px;
   flex: 1;
   max-height: 100%;
   height: 100%;

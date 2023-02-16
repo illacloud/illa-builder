@@ -15,7 +15,6 @@ export const BaseIconSetter: FC<BaseIconSetterProps> = (props) => {
   const [displayData, setDisplayData] = useState<IconDataType | undefined>(
     undefined,
   )
-  const [showClear, setShowClear] = useState<boolean>(false)
 
   useEffect(() => {
     handleUpdateDsl(attrName, showData?.name)
@@ -31,20 +30,8 @@ export const BaseIconSetter: FC<BaseIconSetterProps> = (props) => {
     [attrName, handleUpdateDsl],
   )
 
-  const handleMouseEnter = useCallback(() => {
-    setShowClear(true)
-  }, [])
-
-  const handleMouseLeave = useCallback(() => {
-    setShowClear(false)
-  }, [])
-
   return (
-    <div
-      css={applyBaseIconWrapperStyle(isSetterSingleRow)}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div css={applyBaseIconWrapperStyle(isSetterSingleRow)}>
       <div css={iconSelectorContainerStyle}>
         <div css={iconSelectorIconStyle}>
           {displayData?.getIcon && displayData?.getIcon({})}
@@ -54,11 +41,9 @@ export const BaseIconSetter: FC<BaseIconSetterProps> = (props) => {
           value={displayData?.name ?? ""}
           disabled
         />
-        {showClear && (
-          <div css={clearIconStyle} onClick={handleClearClick}>
-            <ErrorCircleIcon />
-          </div>
-        )}
+        <div css={clearIconStyle} onClick={handleClearClick}>
+          <ErrorCircleIcon />
+        </div>
       </div>
     </div>
   )
