@@ -1371,6 +1371,10 @@
     },
     "icon": {
       "name": "图标"
+    },
+    "pdf": {
+      "empty": "无PDF文件",
+      "failed": "无法加载PDF"
     }
   },
   "page": {
