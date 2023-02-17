@@ -10,7 +10,7 @@ import { getAuthToken, removeAuthToken } from "@/utils/auth"
 import { getTeamID } from "@/utils/team"
 import { isCloudVersion } from "@/utils/typeHelper"
 
-const CLOUD = "/supervisior/api/v1"
+const CLOUD = "/supervisor/api/v1"
 
 const cloudAxios = Axios.create({
   baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`,
