@@ -42,21 +42,18 @@ export const DashboardApps: FC = () => {
   const teamInfo = useSelector(getCurrentTeamInfo)
   const [createNewModalVisible, setCreateNewModalVisible] = useState(false)
 
-  const currentUserRole = useMemo(
-    () => teamInfo?.myRole ?? USER_ROLE.VIEWER,
-    [teamInfo],
+  const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
+
+  const canEditApp = canManage(
+    currentUserRole,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.EDIT_APP,
   )
 
-  const canEditApp = useMemo(
-    () =>
-      canManage(currentUserRole, ATTRIBUTE_GROUP.APP, ACTION_MANAGE.EDIT_APP),
-    [currentUserRole],
-  )
-
-  const canCreateApp = useMemo(
-    () =>
-      canManage(currentUserRole, ATTRIBUTE_GROUP.APP, ACTION_MANAGE.CREATE_APP),
-    [currentUserRole],
+  const canCreateApp = canManage(
+    currentUserRole,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.CREATE_APP,
   )
 
   const finalAppsList = useMemo(() => {

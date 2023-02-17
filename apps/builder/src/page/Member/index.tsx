@@ -1,7 +1,6 @@
 import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
 import { Api } from "@/api/base"
 import {
   changeTeamMembersRole,
@@ -24,8 +23,6 @@ import { isCloudVersion } from "@/utils/typeHelper"
 
 export const Member: FC<MemberProps> = (props) => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const { teamIdentifier } = useParams()
   const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
   const [members, setMembers] = useState<MemberInfo[]>([])
@@ -37,21 +34,15 @@ export const Member: FC<MemberProps> = (props) => {
     inviteLinkEnabled,
     allowEditorManageTeamMember,
     allowViewerManageTeamMember,
-  } = useMemo(() => {
-    return {
-      teamId: teamInfo?.id,
-      currentTeamMemberID: teamInfo?.teamMemberID,
-      inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
-      allowEditorManageTeamMember:
-        teamInfo?.permission.allowEditorManageTeamMember ?? false,
-      allowViewerManageTeamMember:
-        teamInfo?.permission.allowViewerManageTeamMember ?? false,
-    }
-  }, [teamInfo])
-
-  const userId = useMemo(() => {
-    return userInfo?.userId
-  }, [userInfo])
+  } = {
+    teamId: teamInfo?.id,
+    currentTeamMemberID: teamInfo?.teamMemberID,
+    inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
+    allowEditorManageTeamMember:
+      teamInfo?.permission.allowEditorManageTeamMember ?? false,
+    allowViewerManageTeamMember:
+      teamInfo?.permission.allowViewerManageTeamMember ?? false,
+  }
 
   const updateMemberList = async () => {
     if (!loading) {
@@ -121,7 +112,7 @@ export const Member: FC<MemberProps> = (props) => {
     }
   }, [teamId])
 
-  if (!userId || !teamInfo) {
+  if (!userInfo?.userId || !teamInfo) {
     return null
   }
 
@@ -130,7 +121,7 @@ export const Member: FC<MemberProps> = (props) => {
       isCloudVersion={isCloudVersion}
       loading={false}
       userListData={members}
-      currentUserID={userId}
+      currentUserID={userInfo?.userId}
       currentUserRole={teamInfo?.myRole}
       currentTeamMemberID={teamInfo?.teamMemberID}
       removeTeam={removeTeam}

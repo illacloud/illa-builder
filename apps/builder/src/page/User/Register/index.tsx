@@ -64,6 +64,7 @@ export const Register: FC = () => {
       isSubscribed: true,
     },
   })
+
   const onSubmit: SubmitHandler<RegisterFields> = (data) => {
     CloudBaseApi.request<RegisterResult>(
       {
@@ -127,6 +128,7 @@ export const Register: FC = () => {
       },
     )
   }
+
   return (
     <form css={gridFormStyle} onSubmit={handleSubmit(onSubmit)}>
       <header css={gridItemStyle}>
