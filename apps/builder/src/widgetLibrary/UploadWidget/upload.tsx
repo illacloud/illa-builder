@@ -389,9 +389,9 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   ])
 
   return (
-    <div css={uploadContainerStyle}>
+    <div css={uploadContainerStyle} ref={containerRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-        <div css={uploadLayoutStyle} ref={containerRef}>
+        <div css={uploadLayoutStyle}>
           <WrappedUpload
             {...props}
             fileList={currentFileList}

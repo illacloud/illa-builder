@@ -36,7 +36,7 @@ export const iconSelectorContainerStyle = css`
   justify-content: space-between;
   align-items: center;
   :hover > div:last-child {
-    display: block;
+    display: flex;
   }
 `
 
