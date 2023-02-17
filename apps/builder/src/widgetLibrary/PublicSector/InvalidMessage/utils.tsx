@@ -167,7 +167,9 @@ export const handleValidateCheck = (
   if (typeof options === "undefined") return
   if (handleCheckCustomRule(options.customRule)) {
     try {
-      return JSON.stringify(options.customRule)
+      return typeof options.customRule === "string"
+        ? options.customRule
+        : JSON.stringify(options.customRule)
     } catch (e) {
       console.error("custom rule is error")
     }
