@@ -231,7 +231,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
 
   const handleOnFocus = useCallback(() => {
     triggerEventHandler("focus")
-  }, [])
+  }, [triggerEventHandler])
 
   return (
     <div ref={wrapperRef}>

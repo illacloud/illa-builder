@@ -3,6 +3,10 @@ import { FirebaseResource } from "@/redux/resource/firebaseResource"
 import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
 import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
 import { SMTPResource } from "@/redux/resource/smtpResource"
+import {
+  SnowflakeAuthenticationType,
+  SnowflakeResource,
+} from "@/redux/resource/snowflakeResource"
 import { ElasticSearchResource } from "./elasticSearchResource"
 import { MongoDbConfig, MongoDbResource } from "./mongodbResource"
 import { MysqlLikeResource } from "./mysqlLikeResource"
@@ -21,6 +25,7 @@ export type ResourceType =
   | "mongodb"
   | "redis"
   | "elasticsearch"
+  | "snowflake"
   | "postgresql"
   | "mariadb"
   | "tidb"
@@ -40,6 +45,7 @@ export type ResourceContent =
   | RestApiResource<RestApiAuth>
   | RedisResource
   | MongoDbResource<MongoDbConfig>
+  | SnowflakeResource<SnowflakeAuthenticationType>
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string

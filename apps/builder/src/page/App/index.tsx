@@ -55,9 +55,9 @@ export const Editor: FC = () => {
 
   const currentUser = useSelector(getCurrentUser)
 
-  const handleLeaveRoom = () => {
+  const handleLeaveRoom = useCallback(() => {
     Connection.leaveRoom("app", appId ?? "")
-  }
+  }, [appId])
 
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {
@@ -78,7 +78,7 @@ export const Editor: FC = () => {
       )
       window.removeEventListener("beforeunload", handleLeaveRoom)
     }
-  }, [currentUser, appId])
+  }, [currentUser, appId, handleLeaveRoom, dispatch])
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [

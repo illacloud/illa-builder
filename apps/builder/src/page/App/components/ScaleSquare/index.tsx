@@ -216,7 +216,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
     },
-    [componentNode.displayName, dispatch, illaMode, selectedComponents],
+    [
+      componentNode.displayName,
+      componentsAttachedUsers,
+      dispatch,
+      illaMode,
+      selectedComponents,
+    ],
   )
 
   const handleOnResizeStop: RndResizeCallback = useCallback(
@@ -471,7 +477,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         componentsAttachedUsers,
       )
     },
-    [componentNode.displayName, dispatch],
+    [componentNode.displayName, componentsAttachedUsers, dispatch],
   )
 
   const hasEditors = !!filteredComponentAttachedUserList.length
@@ -728,7 +734,13 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         componentsAttachedUsers,
       )
     },
-    [componentNode.displayName, dispatch, illaMode, selectedComponents],
+    [
+      componentNode.displayName,
+      componentsAttachedUsers,
+      dispatch,
+      illaMode,
+      selectedComponents,
+    ],
   )
 
   const handleOnResizeStop: ResizeCallback = useCallback(
@@ -889,7 +901,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         componentsAttachedUsers,
       )
     },
-    [componentNode.displayName, dispatch],
+    [componentNode.displayName, componentsAttachedUsers, dispatch],
   )
 
   const hasEditors = !!filteredComponentAttachedUserList.length

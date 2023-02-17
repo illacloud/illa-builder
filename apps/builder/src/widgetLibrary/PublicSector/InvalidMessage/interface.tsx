@@ -20,4 +20,9 @@ export interface ValidateCheckProps {
   maxLength?: number
   required?: boolean
   customRule?: string
+  maxFiles?: number
+  minFiles?: number
+  maxSize?: number
+  minSize?: number
+  sizeType?: string
 }

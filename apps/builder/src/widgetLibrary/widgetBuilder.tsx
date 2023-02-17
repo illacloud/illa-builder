@@ -76,6 +76,12 @@ import {
   FormWidget,
 } from "@/widgetLibrary/FormWidget"
 import {
+  ICON_EVENT_HANDLER_CONFIG,
+  ICON_PANEL_CONFIG,
+  ICON_WIDGET_CONFIG,
+  IconWidget,
+} from "@/widgetLibrary/IconWidget"
+import {
   IMAGE_EVENT_HANDLER_CONFIG,
   IMAGE_PANEL_CONFIG,
   IMAGE_WIDGET_CONFIG,
@@ -171,6 +177,12 @@ import {
   TIMELINE_WIDGET_CONFIG,
   TimelineWidget,
 } from "@/widgetLibrary/TimelineWidget"
+import {
+  UPLOAD_EVENT_HANDLER_CONFIG,
+  UPLOAD_PANEL_CONFIG,
+  UPLOAD_WIDGET_CONFIG,
+  UploadWidget,
+} from "@/widgetLibrary/UploadWidget"
 import { WidgetConfigs } from "./interface"
 
 export const WidgetConfig: WidgetConfigs = {
@@ -215,6 +227,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: INPUT_WIDGET_CONFIG,
     panelConfig: INPUT_PANEL_CONFIG,
     eventHandlerConfig: INPUT_EVENT_HANDLER_CONFIG,
+  },
+  ICON_WIDGET: {
+    widget: IconWidget,
+    config: ICON_WIDGET_CONFIG,
+    panelConfig: ICON_PANEL_CONFIG,
+    eventHandlerConfig: ICON_EVENT_HANDLER_CONFIG,
   },
   DATE_WIDGET: {
     widget: DateWidget,
@@ -293,6 +311,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: TEXTAREA_WIDGET_CONFIG,
     panelConfig: TEXTAREA_PANEL_CONFIG,
     eventHandlerConfig: TEXTAREA_EVENT_HANDLER_CONFIG,
+  },
+  UPLOAD_WIDGET: {
+    widget: UploadWidget,
+    config: UPLOAD_WIDGET_CONFIG,
+    panelConfig: UPLOAD_PANEL_CONFIG,
+    eventHandlerConfig: UPLOAD_EVENT_HANDLER_CONFIG,
   },
   CHART: {
     widget: ChartWidget,

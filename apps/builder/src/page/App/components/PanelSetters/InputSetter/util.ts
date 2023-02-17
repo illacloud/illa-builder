@@ -1,7 +1,7 @@
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
 
 export const realInputValueWithList = (
-  attrValue: string,
+  attrValue: string | undefined,
   widgetDisplayName: string,
 ) => {
   if (attrValue === "" || attrValue == undefined) return ""
