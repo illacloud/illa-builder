@@ -22,7 +22,7 @@ export interface WrappedRadioGroupProps
 }
 
 export interface RadioGroupWidgetProps
-  extends WrappedRadioGroupProps,
+  extends Omit<WrappedRadioGroupProps, "handleOnChange">,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,

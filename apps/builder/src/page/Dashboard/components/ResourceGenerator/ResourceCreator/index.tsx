@@ -12,6 +12,7 @@ import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigEle
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
 import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
+import { SnowflakeConfigElement } from "@/page/App/components/Actions/SnowflakeConfigElement"
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
 import { RootState } from "@/store"
 
@@ -78,6 +79,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             onFinished={onFinished}
           />
         )
+      case "snowflake":
+        return <SnowflakeConfigElement {...configElementProps} />
       case "firebase":
         return (
           <FirebaseConfigElement

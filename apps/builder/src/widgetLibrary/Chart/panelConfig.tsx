@@ -1,6 +1,6 @@
+import { ReactComponent as BarChartIcon } from "@/assets/chart/bar-chart.svg"
 import { ReactComponent as LineChartIcon } from "@/assets/chart/line-chart.svg"
 import { ReactComponent as ScatterPlotIcon } from "@/assets/chart/scatter-plot.svg"
-import { ReactComponent as BarChartIcon } from "@/assets/chart/bar-chart.svg"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {

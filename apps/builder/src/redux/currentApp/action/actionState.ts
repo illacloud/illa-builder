@@ -63,6 +63,7 @@ export type ActionType =
   | "mongodb"
   | "redis"
   | "elasticsearch"
+  | "snowflake"
   | "postgresql"
   | "mariadb"
   | "tidb"

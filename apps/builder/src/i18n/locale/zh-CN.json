@@ -135,10 +135,15 @@
           "api": "API",
           "configure": "配置 {{ name }}",
           "database": "数据库",
-          "select": "选择资源类型"
+          "select": "选择资源类型",
+          "huggingface": "Hugging Face"
         },
         "validate": {
           "required": "请输入{name}"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Inference Endpoint"
         }
       },
       "panel": {
@@ -340,15 +345,15 @@
           }
         },
         "mssql": {
-          "config_type": "Config Type",
-          "query": "Query",
+          "config_type": "配置类型",
+          "query": "查询",
           "placeholder": {
             "query": "select * from users;",
-            "table": "Select a table",
+            "table": "选择一张表",
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
-          "table": "Table",
-          "insert_record": "Array of records to insert",
+          "table": "表",
+          "insert_record": "待插入的记录数组",
           "dropdown": {
             "retry": "点击重试"
           }
@@ -395,7 +400,15 @@
             "key": "Key",
             "introspection": "Introspection",
             "bear_token": "Token",
-            "connection_options": "连接选项"
+            "connection_options": "连接选项",
+            "account_name": "账号名称",
+            "warehouse": "仓库",
+            "schema": "模式",
+            "snowflake_basic_auth": "Basic Auth",
+            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "role": "用户角色",
+            "username": "用户名",
+            "password": "密码"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -410,7 +423,15 @@
             "username": "用户名",
             "default": "default",
             "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
-            "database_name": "数据库名称"
+            "database_name": "数据库名称",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "用户角色",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
           },
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
@@ -522,6 +543,23 @@
           },
           "tip": {
             "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Learn more about Hugging Face:",
+            "hf_endpoint": "Inference Endpoint"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
         }
       },
@@ -672,13 +710,13 @@
           "auto": "自适应"
         },
         "upload_type": {
-          "button": "Button",
-          "dropzone": "Dropzone"
+          "button": "按钮",
+          "dropzone": "文件区域"
         },
         "selection_types": {
-          "single_file": "Single file",
-          "multiple_files": "Multiple files",
-          "directory": "Directory"
+          "single_file": "单一文件",
+          "multiple_files": "多个文件",
+          "directory": "文件夹"
         },
         "size_type": {
           "kb": "KB",
@@ -868,16 +906,22 @@
         "interval": "间隔时间（毫秒）",
         "show_button": "显示两侧按钮",
         "show_dot": "显示底部指示点",
-        "hidden_images": "Hidden images",
-        "file_type": "File types",
-        "selection_types": "Selection types",
-        "append_newly_files": "Append newly selected files",
-        "file_list": "File list",
-        "parse_value": "Parse Value",
-        "max_files": "Max files",
-        "min_files": "Min files",
-        "max_size": "Max size",
-        "min_size": "Min size"
+        "hidden_images": "隐藏图片",
+        "file_type": "文件类型",
+        "selection_types": "选择类型",
+        "append_newly_files": "追加新选择的文件",
+        "file_list": "文件列表",
+        "parse_value": "解析文件",
+        "max_files": "最多文件个数",
+        "min_files": "最少文件个数",
+        "max_size": "最大文件大小",
+        "min_size": "最小文件大小",
+        "text_overflow": "文本溢出",
+        "file_url": "文件URL",
+        "show_tool_bar": "显示工具栏",
+        "scale": "缩放页面",
+        "scroll": "快速滚动到每一页",
+        "min_max_size": "最小～最大文件大小"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -911,18 +955,37 @@
         "timeline_direction": "切换时间轴的方向。",
         "timeline_pending": "是否显示一个待处理状态的节点。",
         "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
-        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
-        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
-        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
+        "file_types": "允许上传的文件拓展名数组。为空时所有类型的文件均可以上传",
+        "file_list": "在上传组件下方显示所选文件的列表。 上传组件的高度会根据文件的数量动态变化。",
+        "parse_value": "尝试解析所选文件，支持 JSON、CSV、TSV、Excel 和 TXT 文件。 解析后的数据可以通过 {{uploader1.parsedValue}} 访问。 无法解析的文件在数组中将为空。 无论此选项如何，所有文件都可作为值数组中的 base64 编码字符串使用。",
+        "file_url": "支持网络上的 PDF URL，或 pdf 文件的 base64 编码数据。 例如：{{ data:application/pdf;base64, example-data }}",
+        "scale": "缩放每个页面以填充组件的宽度或高度。",
+        "scroll": "滚动时自动定位到每页的开头。"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
       "unselected_tip2": "请点击组件以选中。",
       "setter": {
-        "click_mask_close": "点击遮罩关闭modal"
+        "click_mask_close": "点击遮罩关闭modal",
+        "modal": {
+          "blank": "无图标"
+        }
       },
       "setter_tips": {
-        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。"
+      },
+      "setter_option": {
+        "fixed": "固定高度",
+        "auto_limited": "受限制的自动高度",
+        "auto_height": "自动高度",
+        "text_ellipsis": "省略",
+        "text_scroll": "滚动",
+        "text_clip": "裁切",
+        "scale_height": "高度",
+        "scale_width": "宽度"
+      },
+      "setter_placeholder": {
+        "min_max_size": "无限制"
       }
     },
     "page": {
@@ -970,7 +1033,12 @@
       "min_value": "请输入不小于{{ number }} 的值",
       "regex": "请按照要求的格式填写",
       "required": "必填",
-      "url": "请输入有效的URL"
+      "url": "请输入有效的URL",
+      "max_size": "文件大小不能超过 {{maxSize }} {{ type }}。",
+      "min_files": "要求至少 {{ minFiles }} 个文件。",
+      "max_files": "支持最多 {{ maxFiles }} 个文件。",
+      "min_size": "文件大小不能小于{{minSize }} {{ type }}。",
+      "min_max_size": "Min size ~ Max size"
     },
     "widget_picker": {
       "empty_tip": "抱歉，没有搜索结果",
@@ -986,6 +1054,10 @@
         "selects": "选择类组件"
       },
       "tab_title": "组件"
+    },
+    "method": {
+      "set_hidden": "Set hidden",
+      "set_file_url": "Set file URL"
     }
   },
   "exit_preview": "退出预览",
@@ -1296,6 +1368,13 @@
       "name": "上传",
       "default_button_text": "上传",
       "default_dropzone_text": "选择或拖放一个文件"
+    },
+    "icon": {
+      "name": "图标"
+    },
+    "pdf": {
+      "empty": "无PDF文件",
+      "failed": "无法加载PDF"
     }
   },
   "page": {
@@ -1333,16 +1412,29 @@
         "copied_suc": "复制成功！",
         "failed_to_copy": "复制失败",
         "turn_off_fail": "关闭失败",
-        "turn_on_fail": "开启失败"
+        "turn_on_fail": "开启失败",
+        "make_public_title": "设置为公开项目",
+        "make_public_copy": "复制"
       },
       "email": {
         "invite_title": "通过电子邮件邀请",
         "invite": "邀请",
         "placeholder": "输入电子邮件地址",
         "invited": "已邀请",
-        "in_list": "该用户已加入您的团队"
+        "in_list": "该用户已加入您的团队",
+        "notmail": "{{ email }}不是一个邮箱地址",
+        "duplicate": "{{ email }}是重复的电子邮件地址"
       },
-      "invalid_email": "请输入有效的电子邮件"
+      "invalid_email": "请输入有效的电子邮件",
+      "message": {
+        "make_public_suc": "设置成功",
+        "make_public_failed": "设置失败",
+        "app_share_in_team": "{{ email }} 已经加入您的团队，可通过链接分享。"
+      },
+      "tab": {
+        "invite": "邀请",
+        "public": "公开"
+      }
     },
     "mes": {
       "invite_suc": "邀请成功",
@@ -1441,6 +1533,24 @@
   "homepage": {
     "message": {
       "join_failed": "未成功加入团队：您登录的邮箱不是被邀请的邮箱"
+    }
+  },
+  "image_exceed": "图片大小不能超过500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "裁剪",
+        "save": "保存",
+        "cancel": "取消"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "保存成功",
+        "save_fail": "保存失败"
+      }
     }
   }
 }

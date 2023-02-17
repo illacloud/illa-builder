@@ -184,6 +184,25 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       return {
         token: data.token,
       }
+    case "snowflake":
+      return {
+        accountName: data.accountName,
+        warehouse: data.warehouse,
+        database: data.database,
+        schema: data.schema,
+        role: data.role,
+        authentication: data.authentication,
+        authContent:
+          data.authentication === "basic"
+            ? {
+                username: data.username,
+                password: data.password,
+              }
+            : {
+                username: data.username,
+                privateKey: data.privateKey,
+              },
+      }
   }
 }
 

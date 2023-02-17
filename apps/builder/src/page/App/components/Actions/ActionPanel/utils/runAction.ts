@@ -1,5 +1,7 @@
+import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isString } from "@illa-design/react"
 import { Api } from "@/api/base"
+import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
   ActionContent,
@@ -27,7 +29,9 @@ import {
   S3ActionRequestType,
   S3ActionTypeContent,
 } from "@/redux/currentApp/action/s3Action"
+import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -50,11 +54,13 @@ const message = createMessage()
 
 export const calcRealContent = (content: Record<string, any>) => {
   let realContent: Record<string, any> = {}
+  const rootState = store.getState()
+  const executionResult = getExecutionResult(rootState)
   if (Array.isArray(content)) {
     realContent = content.map((item) => {
       if (isDynamicString(item)) {
         try {
-          return evaluateDynamicString("", item, BUILDER_CALC_CONTEXT)
+          return evaluateDynamicString("", item, executionResult)
         } catch (e) {
           message.error({
             content: `maybe run error`,
@@ -69,11 +75,7 @@ export const calcRealContent = (content: Record<string, any>) => {
       const value = content[key]
       if (isDynamicString(value)) {
         try {
-          realContent[key] = evaluateDynamicString(
-            "",
-            value,
-            BUILDER_CALC_CONTEXT,
-          )
+          realContent[key] = evaluateDynamicString("", value, executionResult)
         } catch (e) {
           message.error({
             content: `maybe run error`,
@@ -149,8 +151,11 @@ const calculateFetchResultDisplayName = (
 }
 
 const runAllEventHandler = (events: any[] = []) => {
+  const rootState = store.getState()
+  const executionResult = getExecutionResult(rootState)
+  const finalContext = merge(cloneDeep(BUILDER_CALC_CONTEXT), executionResult)
   events.forEach((scriptObj) => {
-    runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+    runEventHandler(scriptObj, finalContext)
   })
 }
 
@@ -223,10 +228,17 @@ const fetchS3ClientResult = async (
       resultCallback,
       commands,
     )
-    runAllEventHandler(successEvent)
+    const realSuccessEvent: any[] = isTrigger
+      ? successEvent || []
+      : getRealEventHandler(successEvent)
+
+    runAllEventHandler(realSuccessEvent)
   } catch (e) {
     resultCallback?.(e, true)
-    runAllEventHandler(failedEvent)
+    const realFailedEvent: any[] = isTrigger
+      ? failedEvent || []
+      : getRealEventHandler(failedEvent)
+    runAllEventHandler(realFailedEvent)
   }
 }
 
@@ -266,15 +278,25 @@ const fetchActionResult = (
         transformer,
         resultCallback,
       )
-      runAllEventHandler(successEvent)
+      const realSuccessEvent: any[] = isTrigger
+        ? successEvent || []
+        : getRealEventHandler(successEvent)
+
+      runAllEventHandler(realSuccessEvent)
     },
     (res) => {
       resultCallback?.(res.data, true)
-      runAllEventHandler(failedEvent)
+      const realSuccessEvent: any[] = isTrigger
+        ? failedEvent || []
+        : getRealEventHandler(failedEvent)
+      runAllEventHandler(realSuccessEvent)
     },
     (res) => {
       resultCallback?.(res, true)
-      runAllEventHandler(failedEvent)
+      const realSuccessEvent: any[] = isTrigger
+        ? failedEvent || []
+        : getRealEventHandler(failedEvent)
+      runAllEventHandler(realSuccessEvent)
       message.error({
         content: "not online",
       })
@@ -422,19 +444,15 @@ export const runAction = (
   if (!content) return
   const rootState = store.getState()
   const appId = getAppId(rootState)
+  const executionResult = getExecutionResult(rootState)
   if (actionType === "transformer") {
+    runActionTransformer(action as ActionItem<TransformerAction>)
     return
   }
   const { successEvent, failedEvent, ...restContent } = content
   const realContent: Record<string, any> = isTrigger
     ? restContent
-    : calcRealContent(restContent)
-  const realSuccessEvent: any[] = isTrigger
-    ? successEvent || []
-    : getRealEventHandler(successEvent)
-  const realFailedEvent: any[] = isTrigger
-    ? failedEvent || []
-    : getRealEventHandler(failedEvent)
+    : get(executionResult, `${displayName}.content`, restContent)
   const actionContent = transformDataFormat(
     actionType,
     realContent,
@@ -451,8 +469,8 @@ export const runAction = (
           actionType,
           displayName,
           actionContent,
-          realSuccessEvent,
-          realFailedEvent,
+          successEvent,
+          failedEvent,
           transformer,
           isTrigger,
           resultCallback,
@@ -465,8 +483,8 @@ export const runAction = (
           appId,
           actionId,
           actionContent,
-          realSuccessEvent,
-          realFailedEvent,
+          successEvent,
+          failedEvent,
           transformer,
           isTrigger,
           resultCallback,
@@ -481,8 +499,8 @@ export const runAction = (
         appId,
         actionId,
         actionContent,
-        realSuccessEvent,
-        realFailedEvent,
+        successEvent,
+        failedEvent,
         transformer,
         isTrigger,
         resultCallback,

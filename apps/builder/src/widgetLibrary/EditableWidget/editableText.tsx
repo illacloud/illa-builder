@@ -118,6 +118,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     hideValidationMessage,
     updateComponentHeight,
     validateMessage,
+    triggerEventHandler,
   } = props
 
   const editableInputWrapperRef = useRef<HTMLDivElement>(null)
@@ -211,6 +212,19 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     handleDeleteGlobalData,
     handleValidate,
   ])
+
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
+  const handleOnBlur = useCallback(() => {
+    triggerEventHandler("blur")
+  }, [triggerEventHandler])
+
+  const handleOnFocus = useCallback(() => {
+    triggerEventHandler("focus")
+  }, [triggerEventHandler])
+
   return (
     <div ref={editableInputWrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -227,7 +241,12 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedEditableText {...props} />
+          <WrappedEditableText
+            {...props}
+            handleOnChange={handleOnChange}
+            handleOnBlur={handleOnBlur}
+            handleOnFocus={handleOnFocus}
+          />
         </div>
       </TooltipWrapper>
       <div

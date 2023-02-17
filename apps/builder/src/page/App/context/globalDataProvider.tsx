@@ -1,5 +1,12 @@
 import { get, set, unset } from "lodash"
-import { FC, ReactNode, createContext, useCallback, useRef } from "react"
+import {
+  FC,
+  ReactNode,
+  createContext,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react"
 import { useSelector } from "react-redux"
 import { NotificationType, createNotification } from "@illa-design/react"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
@@ -93,6 +100,12 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
   }
 
   BUILDER_CALC_CONTEXT = globalDataRef.current
+
+  useEffect(() => {
+    return () => {
+      BUILDER_CALC_CONTEXT = {}
+    }
+  }, [])
 
   return (
     <GLOBAL_DATA_CONTEXT.Provider value={value}>

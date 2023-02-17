@@ -21,6 +21,4 @@ export interface WrappedButtonProps
 export interface ButtonWidgetProps
   extends WrappedButtonProps,
     BaseWidgetProps,
-    TooltipWrapperProps {
-  handleOnclick: () => void
-}
+    TooltipWrapperProps {}

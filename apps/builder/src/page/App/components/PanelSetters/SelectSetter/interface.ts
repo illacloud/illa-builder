@@ -7,6 +7,7 @@ export interface BaseSelectSetterProps extends BaseSetter {
   allowClear?: boolean
   onChange?: (value: any) => void
   placeholder?: string
+  value: string
 }
 
 export interface BaseDynamicSelectSetterProps extends PanelLabelProps {

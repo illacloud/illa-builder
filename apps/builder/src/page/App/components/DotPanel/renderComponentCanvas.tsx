@@ -373,6 +373,8 @@ export const RenderComponentCanvas: FC<{
               "ADD",
               bounds.height,
               canResizeY,
+              containerPadding,
+              containerPadding,
             )
           } else {
             dragResult = getDragResult(
@@ -385,6 +387,8 @@ export const RenderComponentCanvas: FC<{
               "UPDATE",
               bounds.height,
               canResizeY,
+              containerPadding,
+              containerPadding,
             )
           }
           const { ladingPosition, rectCenterPosition } = dragResult
@@ -556,6 +560,8 @@ export const RenderComponentCanvas: FC<{
               "ADD",
               bounds.height,
               canResizeY,
+              containerPadding,
+              containerPadding,
             )
           } else {
             dragResult = getDragResult(
@@ -568,6 +574,8 @@ export const RenderComponentCanvas: FC<{
               "UPDATE",
               bounds.height,
               canResizeY,
+              containerPadding,
+              containerPadding,
             )
           }
           const { ladingPosition } = dragResult

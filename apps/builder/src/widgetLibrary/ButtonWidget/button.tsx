@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { Button } from "@illa-design/react"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -48,6 +48,7 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
     handleDeleteGlobalData,
     displayName,
     tooltipText,
+    triggerEventHandler,
   } = props
 
   useEffect(() => {
@@ -75,10 +76,15 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
     displayName,
     handleDeleteGlobalData,
   ])
+
+  const handleOnClick = useCallback(() => {
+    triggerEventHandler("click")
+  }, [triggerEventHandler])
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={buttonLayoutStyle}>
-        <WrappedButton {...props} />
+        <WrappedButton {...props} handleOnClick={handleOnClick} />
       </div>
     </TooltipWrapper>
   )

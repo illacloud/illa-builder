@@ -18,7 +18,6 @@ export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {
     disabled,
     direction,
     colorScheme,
-    handleUpdateDsl,
     handleOnChange,
     getValidateMessage,
     handleUpdateMultiExecutionResult,
@@ -87,6 +86,7 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
     hideValidationMessage,
     validateMessage,
     updateComponentHeight,
+    triggerEventHandler,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -168,6 +168,10 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
     }
   }, [validateMessage, labelPosition, updateComponentHeight])
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -188,6 +192,7 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
             {...props}
             options={finalOptions}
             getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
           />
         </div>
       </TooltipWrapper>

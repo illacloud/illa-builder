@@ -66,6 +66,6 @@ export const generateRawAction = (
     content,
     $type: "ACTION",
     $dynamicAttrPaths,
-    data: undefined,
+    [actionType === "transformer" ? "value" : "data"]: undefined,
   }
 }

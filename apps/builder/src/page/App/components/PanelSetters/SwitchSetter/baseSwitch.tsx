@@ -13,7 +13,7 @@ export const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
           handleUpdateDsl(attrName, value)
         }}
         checked={value}
-        colorScheme="purple"
+        colorScheme="techPurple"
       />
     </div>
   )

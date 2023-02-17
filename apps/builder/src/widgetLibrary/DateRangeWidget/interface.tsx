@@ -32,7 +32,7 @@ export interface WrappedDateRangeProps
 }
 
 export interface DateWidgetProps
-  extends WrappedDateRangeProps,
+  extends Omit<WrappedDateRangeProps, "handleOnChange">,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps {
