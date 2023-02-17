@@ -1371,6 +1371,10 @@
     },
     "icon": {
       "name": "Icon"
+    },
+    "pdf": {
+      "empty": "No PDF files",
+      "failed": "PDF could not be loaded"
     }
   },
   "page": {
