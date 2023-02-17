@@ -42,12 +42,10 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
     attrNames,
     handleUpdateDsl,
     value,
-    values,
     options,
     widgetDisplayName,
     expectedType,
     placeholder,
-    expectedTypes,
   } = props
 
   const [popupVisible, setPopupVisible] = useState<boolean>(false)
@@ -67,13 +65,13 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
   }, [listWidgets, widgetDisplayName])
 
   const finalValues = useMemo(() => {
-    return values.map((value: string) => {
+    return value.map((value: string) => {
       if (currentListDisplayName) {
         return realInputValueWithList(value, currentListDisplayName)
       }
       return value || ""
     })
-  }, [currentListDisplayName, values])
+  }, [currentListDisplayName, value])
 
   const onChange = useCallback(
     (value: string, attrName: string) => {
@@ -139,7 +137,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
               }
             >
               <div css={sizeContainerStyle}>
-                <div css={sizeSelectionStyle}>{values[2]?.toUpperCase()}</div>
+                <div css={sizeSelectionStyle}>{value[2]?.toUpperCase()}</div>
                 {popupVisible ? <UpIcon /> : <DownIcon />}
               </div>
             </Trigger>
@@ -150,9 +148,9 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
         <CodeEditor
           wrapperCss={codeEditorWrapperStyle}
           value={finalValues[0]}
-          onChange={(value) => onChange(value, attrNames?.[0] || attrName)}
+          onChange={(value) => onChange(value, attrName?.[0] || attrName)}
           showLineNumbers={false}
-          expectValueType={expectedTypes?.[0] ?? expectedType}
+          expectValueType={expectedType?.[0] ?? expectedType}
           lang={CODE_LANG.JAVASCRIPT}
           maxHeight="208px"
           placeholder={placeholder}
@@ -163,9 +161,9 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
         <CodeEditor
           wrapperCss={codeEditorWrapperStyle}
           value={finalValues[1]}
-          onChange={(value) => onChange(value, attrNames?.[1] || attrName)}
+          onChange={(value) => onChange(value, attrName?.[1] || attrName)}
           showLineNumbers={false}
-          expectValueType={expectedTypes?.[1] ?? expectedType}
+          expectValueType={expectedType?.[1] ?? expectedType}
           lang={CODE_LANG.JAVASCRIPT}
           placeholder={placeholder}
           maxHeight="208px"

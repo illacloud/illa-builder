@@ -19,7 +19,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     shown,
     bindAttrName,
     attrName,
-    attrNames,
     parentAttrName,
     expectedType,
     defaultValue,
@@ -63,36 +62,34 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   }, [useCustomLayout, labelName, labelDesc, isInList])
 
   const _finalAttrName = useMemo(() => {
-    if (parentAttrName) {
-      return `${parentAttrName}.${attrName}`
-    }
-    return attrName
-  }, [parentAttrName, attrName])
-
-  const _finalAttrNames = useMemo(() => {
-    return attrNames?.map((name) => {
+    if (typeof attrName === "string") {
       if (parentAttrName) {
-        return `${parentAttrName}.${name}`
+        return `${parentAttrName}.${attrName}`
       }
-      return name
-    })
-  }, [parentAttrName, attrNames])
+      return attrName
+    }
+    if (Array.isArray(attrName)) {
+      return attrName?.map((name) => {
+        if (parentAttrName) {
+          return `${parentAttrName}.${name}`
+        }
+        return name
+      })
+    }
+  }, [parentAttrName, attrName])
 
   const isSetterSingleRowWrapper = useMemo(() => {
     return isSetterSingleRow || !labelName
   }, [isSetterSingleRow, labelName])
 
-  const finalValue = useMemo(
-    () => get(widgetProps, _finalAttrName),
-    [widgetProps, _finalAttrName],
-  )
-
-  const finalValues = useMemo(() => {
-    if (!_finalAttrNames) {
-      return []
+  const finalValue = useMemo(() => {
+    if (typeof _finalAttrName === "string") {
+      return get(widgetProps, _finalAttrName)
     }
-    return _finalAttrNames.map((name) => get(widgetProps, name))
-  }, [widgetProps, _finalAttrNames])
+    if (Array.isArray(_finalAttrName)) {
+      return _finalAttrName.map((name) => get(widgetProps, name))
+    }
+  }, [widgetProps, _finalAttrName])
 
   const renderSetter = useMemo(() => {
     return Comp ? (
@@ -108,7 +105,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           attrName={_finalAttrName}
           isSetterSingleRow={isSetterSingleRowWrapper}
           value={finalValue}
-          values={finalValues}
           panelConfig={widgetProps}
           handleUpdateDsl={handleUpdateDsl}
           handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
@@ -132,7 +128,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     props,
     _finalAttrName,
     finalValue,
-    finalValues,
     widgetProps,
     handleUpdateDsl,
     handleUpdateMultiAttrDSL,

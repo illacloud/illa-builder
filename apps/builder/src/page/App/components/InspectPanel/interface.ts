@@ -21,10 +21,8 @@ export interface EventHandlerPanelConfig extends PanelFieldConfig {
 export interface PanelFieldConfig extends PanelLabelProps {
   id: string
   setterType: SetterType
-  expectedType?: VALIDATION_TYPES
-  expectedTypes?: VALIDATION_TYPES[]
-  attrName: string
-  attrNames?: string[]
+  expectedType?: VALIDATION_TYPES | VALIDATION_TYPES[]
+  attrName: string | string[]
   childrenSetter?: PanelFieldConfig[]
   useCustomLayout?: boolean
   options?: any

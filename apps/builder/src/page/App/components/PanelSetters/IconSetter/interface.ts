@@ -12,7 +12,9 @@ export interface BaseIconSetterProps extends BaseSetter {
   showData?: IconDataType
 }
 
-export interface IconSelectorProps extends BaseSetter {}
+export interface IconSelectorProps extends BaseSetter {
+  value: string
+}
 
 export interface IconPickerListProps {
   iconType: IconShowType

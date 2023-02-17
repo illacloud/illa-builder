@@ -199,11 +199,9 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.min_max_size"),
         placeholder: i18n.t("editor.inspect.setter_placeholder.min_max_size"),
         setterType: "INPUT_WITH_SELECT_SETTER",
-        attrName: "sizeType",
+        attrName: ["minSize", "maxSize", "sizeType"],
         useCustomLayout: true,
-        attrNames: ["minSize", "maxSize", "sizeType"],
-        expectedType: VALIDATION_TYPES.STRING,
-        expectedTypes: [
+        expectedType: [
           VALIDATION_TYPES.NUMBER,
           VALIDATION_TYPES.NUMBER,
           VALIDATION_TYPES.STRING,

@@ -3,8 +3,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface BaseSetter {
   isSetterSingleRow?: boolean
-  value?: any
-  values?: any
+  value?: unknown
   attrName: string
   parentAttrName?: string
   panelConfig?: Record<string, any>
@@ -14,8 +13,7 @@ export interface BaseSetter {
     displayName: string,
     updateSlice: Record<string, unknown>,
   ) => void
-  expectedType: VALIDATION_TYPES
-  expectedTypes?: VALIDATION_TYPES[]
+  expectedType?: VALIDATION_TYPES | VALIDATION_TYPES[]
   attrNames?: string[]
   isInList?: boolean
   widgetDisplayName: string
