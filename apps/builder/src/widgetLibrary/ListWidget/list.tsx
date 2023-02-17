@@ -364,7 +364,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     dataSources,
     childrenNode,
     handleUpdateMultiExecutionResult,
-    handleOnRowSelect,
+    triggerEventHandler,
     disabled,
   } = props
 
@@ -505,16 +505,16 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
         ])
         resolve(value)
       }).then(() => {
-        handleOnRowSelect()
+        triggerEventHandler("rowSelect")
       })
     },
     [
       dataSources,
       disabled,
       displayName,
-      handleOnRowSelect,
       handleUpdateGlobalData,
       handleUpdateMultiExecutionResult,
+      triggerEventHandler,
     ],
   )
 

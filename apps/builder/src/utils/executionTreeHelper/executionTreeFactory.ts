@@ -1,5 +1,5 @@
 import { Diff, diff } from "deep-diff"
-import { cloneDeep, flatten, get, set, unset } from "lodash"
+import { cloneDeep, flatten, get, set, toPath, unset } from "lodash"
 import toposort from "toposort"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
@@ -294,6 +294,7 @@ export class ExecutionTreeFactory {
         errorTree: this.errorTree,
       }
     }
+    this.oldRawTree = cloneDeep(currentRawTree)
     const updatePaths = this.getUpdatePathFromDifferences(differences)
     const walkedPath = new Set<string>()
     let currentExecution = this.updateExecutionTreeByUpdatePaths(
@@ -319,7 +320,6 @@ export class ExecutionTreeFactory {
         isDeleteAction: !!isDeleteAction,
       },
     )
-    this.oldRawTree = cloneDeep(currentRawTree)
     this.mergeErrorTree(errorTree, [...updatePaths, ...path], isDeleteAction)
     this.mergeDebugDataTree(
       debuggerData,
@@ -342,7 +342,25 @@ export class ExecutionTreeFactory {
     const updatePaths: string[] = []
     for (const d of differences) {
       if (!Array.isArray(d.path) || d.path.length === 0) continue
-      updatePaths.push(d.path.join("."))
+      const subPaths = cloneDeep(d.path)
+      let current = ""
+      while (subPaths.length > 1) {
+        current = convertPathToString(subPaths)
+        updatePaths.push(current)
+        subPaths.pop()
+      }
+      if (subPaths.length === 1 && d.kind === "N") {
+        const rhs = d.rhs
+        if (rhs && typeof rhs === "object") {
+          const keys = Object.keys(rhs)
+          keys.forEach((key) => {
+            updatePaths.push(`${subPaths[0]}.${key}`)
+          })
+        }
+      }
+      if (subPaths.length === 1 && d.kind === "D") {
+        updatePaths.push(`${subPaths[0]}`)
+      }
     }
     const hasPath = new Set<string>()
     return updatePaths.filter((path) => {
@@ -361,14 +379,10 @@ export class ExecutionTreeFactory {
     paths.forEach((path) => {
       if (!walkedPath.has(path)) {
         walkedPath.add(path)
-        const { displayName, attrPath } = getDisplayNameAndAttrPath(path)
-        const actionOrWidget = get(currentExecutionTree, displayName)
         const fullPathValue = get(this.oldRawTree, path)
-        if (
-          (!isAction(actionOrWidget) || !attrPath.startsWith("data")) &&
-          isDynamicString(fullPathValue)
-        ) {
-          const rootPath = path.split(".").slice(0, 2).join(".")
+        if (isDynamicString(fullPathValue)) {
+          const pathArray = toPath(path)
+          const rootPath = pathArray.slice(0, 2).join(".")
           const value = get(this.oldRawTree, rootPath, undefined)
           set(currentExecutionTree, rootPath, value)
         }

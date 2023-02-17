@@ -6,6 +6,6 @@ export interface WrappedMenuProps
   extends HTMLAttributes<HTMLDivElement>,
     MenuProps {}
 
-export interface MenuWidgetProps extends WrappedMenuProps, BaseWidgetProps {
-  handleOnClickMenuItem?: (path: string) => void
-}
+export interface MenuWidgetProps
+  extends Omit<WrappedMenuProps, "handleOnClickMenuItem">,
+    BaseWidgetProps {}

@@ -104,6 +104,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     validateMessage,
     dataSources,
     updateComponentHeight,
+    triggerEventHandler,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -198,6 +199,18 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     }
   }, [validateMessage, labelPosition, updateComponentHeight])
 
+  const handleOnChange = useCallback(() => {
+    triggerEventHandler("change")
+  }, [triggerEventHandler])
+
+  const handleOnFocus = useCallback(() => {
+    triggerEventHandler("focus")
+  }, [triggerEventHandler])
+
+  const handleOnBlur = useCallback(() => {
+    triggerEventHandler("blur")
+  }, [triggerEventHandler])
+
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -218,6 +231,9 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
             {...props}
             options={finalOptions}
             getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
+            handleOnBlur={handleOnBlur}
+            handleOnFocus={handleOnFocus}
           />
         </div>
       </TooltipWrapper>

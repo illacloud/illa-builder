@@ -26,6 +26,8 @@ export interface ChartDatasetShape {
 
 export interface ChartDatasetsSetterProps extends BaseSetter, PanelLabelProps {
   childrenSetter?: PanelFieldConfig[]
+  // TODO: not use any
+  value?: any
 }
 
 export interface ListBodyProps {

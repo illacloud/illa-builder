@@ -50,8 +50,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
     isVisible,
     blockColumns,
     handleUpdateOriginalDSLMultiAttr,
-    handleOnOpenModal,
-    handleOnCloseModal,
+    triggerEventHandler,
   } = props
 
   const prevVisible = useRef<boolean>()
@@ -67,16 +66,16 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
 
   useEffect(() => {
     if (isVisible && prevVisible.current !== isVisible && isMount.current) {
-      handleOnOpenModal && handleOnOpenModal()
+      triggerEventHandler("onOpenModal")
       prevVisible.current = true
     }
 
     return () => {
       if (isVisible && !isMount.current) {
-        handleOnCloseModal && handleOnCloseModal()
+        triggerEventHandler("onCloseModal")
       }
     }
-  }, [handleOnCloseModal, handleOnOpenModal, isVisible])
+  }, [isVisible, triggerEventHandler])
 
   const [bodyRef, bodyBounds] = useMeasure()
   const [headerRef, headerBounds] = useMeasure()

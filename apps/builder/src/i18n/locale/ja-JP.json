@@ -710,13 +710,13 @@
           "auto": "アダプティブ"
         },
         "upload_type": {
-          "button": "Button",
-          "dropzone": "Dropzone"
+          "button": "ボタン",
+          "dropzone": "ファイルエリア"
         },
         "selection_types": {
-          "single_file": "Single file",
-          "multiple_files": "Multiple files",
-          "directory": "Directory"
+          "single_file": "単一ファイル",
+          "multiple_files": "複数のファイル",
+          "directory": "ディレクトリ"
         },
         "size_type": {
           "kb": "KB",
@@ -899,23 +899,29 @@
         "x_axis_value": "X軸",
         "y_axis_name": "通称",
         "y_axis_title": "Y 軸のタイトル",
-        "height": "Height",
-        "min_height": "Min height (px)",
+        "height": "高さ",
+        "min_height": "最小の高さ（px）",
         "show_underline": "下線を表示",
         "auto_play": "自動プレイ",
         "interval": "間隔(ミリ秒)",
         "show_button": "両側にボタンを表示",
         "show_dot": "下部にドットを表示",
-        "hidden_images": "Hidden images",
-        "file_type": "File types",
-        "selection_types": "Selection types",
-        "append_newly_files": "Append newly selected files",
-        "file_list": "File list",
-        "parse_value": "Parse Value",
-        "max_files": "Max files",
-        "min_files": "Min files",
-        "max_size": "Max size",
-        "min_size": "Min size"
+        "hidden_images": "隠し画像",
+        "file_type": "ファイルの種類",
+        "selection_types": "選択タイプ",
+        "append_newly_files": "新しく選択したファイルを追加",
+        "file_list": "ファイルリスト",
+        "parse_value": "解析ファイル",
+        "max_files": "最大ファイル数",
+        "min_files": "最小ファイル数",
+        "max_size": "最大サイズ",
+        "min_size": "最小サイズ",
+        "text_overflow": "オーバーフロー",
+        "file_url": "ファイル の URL",
+        "show_tool_bar": "ツールバーを表示",
+        "scale": "ズームページ",
+        "scroll": "各ページへのスナップスクロール",
+        "min_max_size": "最小～最大のサイズ"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -942,25 +948,44 @@
         "read_only": "コンポーネントが読み取り専用かどうかを制御します。読み取り専用コンポーネントのコンテンツを選択してフォーカスすることはできますが、変更することはできません。",
         "required_field": "スイッチがオンになった後、入力ボックスで検証を実行します。",
         "switch_default_value": "スイッチの初期状態を設定します。 JavaScript を使用して、スイッチの初期状態を動的に変更できます。",
-        "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
-        "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
-        "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "table_only_run_when": "イベントが実行される前に満たす必要がある条件。 {{ currentRow }} を使用して、現在の行のデータにアクセスします。 たとえば、「imgSize」が 5120 未満の場合にのみ実行します: {{ currentRow.imgSize <= 5120 }}。",
+        "table_set_value": "currentRow を使用して、現在の行のデータにアクセスします。 たとえば、「email」に基づいて editableText コンポーネントの値を設定するには: {{ currentRow.email }}。 また、{{ table. selectedRow[n] }}を使用して、コンポーネントの INSPECT に値を設定できます: {{ table1.selectedRow[n].email }} 。",
+        "table_url": "{{ currentRow }} を使用して、現在の行のデータにアクセスします。 たとえば、パラメーター「appid」を使用して URL を入力するには、次のようにします。 {{ \"www.example.com/#\" + currentRow.appid }}",
         "text_value": "マークダウン モードまたはプレーン テキスト モードで値を入力することを選択できます。リンクは Markdown モードでのみ入力できます。",
         "timeline_direction": "時間軸の方向を切り替えます。",
         "timeline_pending": "保留中のノードを表示するかどうか。",
         "tooltip": "ユーザーは入力ボックスにプロンプトの内容を入力でき、マウスをコンポーネントに置くとプロンプト情報が表示され、Markdown 形式がサポートされます。",
-        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
-        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
-        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
+        "file_types": "アップロードが許可されているファイル拡張子のリスト。 すべてのファイル タイプを許可する値はありません。",
+        "file_list": "アップローダの下に選択したファイルのリストを表示します。 アップローダの高さは、ファイル リストの長さに基づいて動的に変化します。",
+        "parse_value": "JSON、CSV、TSV、Excel、および TXT ファイルをサポートして、選択したファイルの解析を試みます。 解析されたデータは {{uploader1.parsedValue}} 経由でアクセスできます。 解析できないファイルは、配列内で null になります。 このオプションに関係なく、すべてのファイルは、値の配列で base64 でエンコードされた文字列として使用できます。",
+        "file_url": "Web 上の PDF URL、または PDF ファイルの base64 エンコード データをサポートします。 例: {{ data:application/pdf;base64, example-data }}",
+        "scale": "各ページをスケーリングして、コンポーネントの幅または高さを埋めます。",
+        "scroll": "スクロール時に各ページの先頭に自動的にロケートします。"
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
       "unselected_tip2": "コンポーネントをクリックして選択してください。",
       "setter": {
-        "click_mask_close": "Click mask to close modal"
+        "click_mask_close": "Click mask to close modal",
+        "modal": {
+          "blank": "アイコンなし"
+        }
       },
       "setter_tips": {
-        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+        "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。"
+      },
+      "setter_option": {
+        "fixed": "固定高さ",
+        "auto_limited": "制限付きの自動高さ",
+        "auto_height": "自動高さ",
+        "text_ellipsis": "省略記号",
+        "text_scroll": "スクロール",
+        "text_clip": "クリップ",
+        "scale_height": "高さ",
+        "scale_width": "幅"
+      },
+      "setter_placeholder": {
+        "min_max_size": "無制限"
       }
     },
     "page": {
@@ -1012,7 +1037,8 @@
       "max_size": "ファイル サイズは {{maxSize }} {{ type }} を超えることはできません。",
       "min_files": "少なくとも {{ minFiles }} ファイルが必要です。",
       "max_files": "最大 {{ maxFiles }} ファイルがサポートされています。",
-      "min_size": "ファイル サイズは {{minSize }} {{ type }} より小さくすることはできません。"
+      "min_size": "ファイル サイズは {{minSize }} {{ type }} より小さくすることはできません。",
+      "min_max_size": "Min size ~ Max size"
     },
     "widget_picker": {
       "empty_tip": "申し訳ありませんが、検索結果はありません",
@@ -1028,6 +1054,10 @@
         "selects": "クラスコンポーネントを選択"
       },
       "tab_title": "コンポーネント"
+    },
+    "method": {
+      "set_hidden": "Set hidden",
+      "set_file_url": "Set file URL"
     }
   },
   "exit_preview": "プレビューを終了",
@@ -1338,6 +1368,13 @@
       "name": "アップロード",
       "default_button_text": "アップロード",
       "default_dropzone_text": "選択もしくはファイルのドロップ"
+    },
+    "icon": {
+      "name": "アイコン"
+    },
+    "pdf": {
+      "empty": "PDFファイルはありません",
+      "failed": "PDFを読み込めませんでした"
     }
   },
   "page": {

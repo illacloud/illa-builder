@@ -64,9 +64,9 @@ export const Editor: FC = () => {
 
   const currentUserRole = useMemo(() => teamInfo?.myRole, [teamInfo])
 
-  const handleLeaveRoom = () => {
+  const handleLeaveRoom = useCallback(() => {
     Connection.leaveRoom("app", appId ?? "")
-  }
+  }, [appId])
 
   useEffect(() => {
     // check if user can manage the app
@@ -101,7 +101,7 @@ export const Editor: FC = () => {
       )
       window.removeEventListener("beforeunload", handleLeaveRoom)
     }
-  }, [currentUser, appId])
+  }, [currentUser, appId, handleLeaveRoom, dispatch])
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [

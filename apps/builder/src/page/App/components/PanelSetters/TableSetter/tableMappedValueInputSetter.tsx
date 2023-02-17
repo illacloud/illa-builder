@@ -21,7 +21,7 @@ function getPath(attrName?: string, widgetDisplayName?: string) {
 }
 
 const realInputValue = (
-  attrValue: string,
+  attrValue: string | undefined,
   dataPath: string,
   widgetDisplayName: string,
 ) => {

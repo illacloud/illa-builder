@@ -122,6 +122,7 @@ importers:
       react-hook-form: ^7.30.0
       react-hotkeys-hook: ^3.4.6
       react-i18next: ^12.1.4
+      react-icons: ^4.7.1
       react-json-view: ^1.21.3
       react-markdown: ^8.0.3
       react-pdf: ^6.2.2
@@ -139,6 +140,7 @@ importers:
       uuid: ^8.3.2
       vite-plugin-checker: ^0.5.3
       vite-plugin-svgr: ^2.1.0
+      xlsx: https://cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz
     dependencies:
       '@aws-sdk/client-s3': 3.267.0
       '@codemirror/autocomplete': 6.4.0_isohugnrbrhzg62i2ejp6vhyvy
@@ -189,6 +191,7 @@ importers:
       react-hook-form: 7.43.1
       react-hotkeys-hook: 3.4.7
       react-i18next: 12.1.5_i18next@22.4.9
+      react-icons: 4.7.1
       react-json-view: 1.21.3
       react-markdown: 8.0.5
       react-pdf: 6.2.2
@@ -203,6 +206,7 @@ importers:
       tern: 0.24.3
       toposort: 2.0.2
       uuid: 8.3.2
+      xlsx: '@cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz'
     devDependencies:
       '@changesets/changelog-github': 0.4.8
       '@changesets/cli': 2.26.0
@@ -1044,6 +1048,7 @@ importers:
       '@illa-design/timeline': workspace:*
       '@illa-design/trigger': workspace:*
       '@illa-design/typography': workspace:*
+      '@illa-design/upload': workspace:*
       '@rollup/plugin-typescript': ^10.0.1
       '@vitejs/plugin-react-swc': ^3.0.1
     dependencies:
@@ -1103,6 +1108,7 @@ importers:
       '@illa-design/timeline': link:../timeline
       '@illa-design/trigger': link:../trigger
       '@illa-design/typography': link:../typography
+      '@illa-design/upload': link:../upload
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
       '@vitejs/plugin-react-swc': 3.1.0
@@ -1436,6 +1442,33 @@ importers:
       react-use-measure: 2.1.1
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.1.0
+
+  illa-design/packages/upload:
+    specifiers:
+      '@illa-design/button': workspace:*
+      '@illa-design/config-provider': workspace:*
+      '@illa-design/icon': workspace:*
+      '@illa-design/progress': workspace:*
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@types/uuid': ^8.3.4
+      '@vitejs/plugin-react-swc': ^3.0.1
+      framer-motion: ^7.6.12
+      uuid: ^8.3.2
+    dependencies:
+      '@illa-design/button': link:../button
+      '@illa-design/config-provider': link:../config-provider
+      '@illa-design/icon': link:../icon
+      '@illa-design/progress': link:../progress
+      '@illa-design/system': link:../system
+      '@illa-design/theme': link:../theme
+      framer-motion: 7.10.3
+      uuid: 8.3.2
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@types/uuid': 8.3.4
       '@vitejs/plugin-react-swc': 3.1.0
 
 packages:
@@ -9548,6 +9581,12 @@ packages:
       i18next: 22.4.9
     dev: false
 
+  /react-icons/4.7.1:
+    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
+    peerDependencies:
+      react: '*'
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -11461,4 +11500,12 @@ packages:
 
   /zwitch/2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
+    dev: false
+
+  '@cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz':
+    resolution: {tarball: https://cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz}
+    name: xlsx
+    version: 0.19.2
+    engines: {node: '>=0.8'}
+    hasBin: true
     dev: false

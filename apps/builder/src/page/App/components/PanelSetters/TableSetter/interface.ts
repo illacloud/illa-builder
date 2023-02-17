@@ -13,6 +13,7 @@ export type SelectOptions = (
 
 export interface ColumnsSelectSetterProps extends BaseSetter, PanelLabelProps {
   allowClear?: boolean
+  value: string
 }
 export interface TableDataSourceSetterProps
   extends BaseSetter,

@@ -20,10 +20,16 @@ export interface WrappedEditableTextProps
   handleUpdateDsl: (value: any) => void
   colorScheme?: InputProps["colorScheme"]
   allowClear?: InputProps["allowClear"]
+  handleOnChange?: () => void
+  handleOnFocus?: () => void
+  handleOnBlur?: () => void
 }
 
 export interface EditableTextWidgetProps
-  extends Omit<WrappedEditableTextProps, "maxLength">,
+  extends Omit<
+      WrappedEditableTextProps,
+      "maxLength" | "handleOnChange" | "handleOnFocus" | "handleOnBlur"
+    >,
     BaseWidgetProps,
     LabelProps,
     Omit<ValidateMessageOldProps, "value"> {

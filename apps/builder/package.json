@@ -68,6 +68,7 @@
     "react-hook-form": "^7.30.0",
     "react-hotkeys-hook": "^3.4.6",
     "react-i18next": "^12.1.4",
+    "react-icons": "^4.7.1",
     "react-json-view": "^1.21.3",
     "react-markdown": "^8.0.3",
     "react-pdf": "^6.2.2",
@@ -81,7 +82,8 @@
     "remark-gfm": "^3.0.1",
     "tern": "^0.24.3",
     "toposort": "^2.0.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
