@@ -1,5 +1,4 @@
-import { Api } from "@/api/base"
-import { CloudBaseApi, CloudTeamApi } from "@/api/cloudApi"
+import { BuilderApi, CloudApi } from "@/api/base"
 import {
   fetchInviteLinkResponse,
   inviteByEmailResponse,
@@ -19,7 +18,7 @@ export const shareAppByEmail = (
   appID: string,
 ) => {
   return new Promise<inviteByEmailResponse>((resolve, reject) => {
-    CloudTeamApi.request<inviteByEmailResponse>(
+    CloudApi.teamRequest<inviteByEmailResponse>(
       {
         method: "POST",
         url: `/shareAppByEmail`,
@@ -44,7 +43,7 @@ export const shareAppByEmail = (
 
 export const fetchShareAppLink = (userRole: USER_ROLE, appID: string) => {
   return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
-    CloudTeamApi.request<fetchInviteLinkResponse>(
+    CloudApi.teamRequest<fetchInviteLinkResponse>(
       {
         method: "GET",
         url: `/shareAppLink/userRole/${userRole}/apps/${appID}`,
@@ -64,7 +63,7 @@ export const fetchShareAppLink = (userRole: USER_ROLE, appID: string) => {
 
 export const renewShareAppLink = (userRole: USER_ROLE, appID: string) => {
   return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
-    CloudTeamApi.request<fetchInviteLinkResponse>(
+    CloudApi.teamRequest<fetchInviteLinkResponse>(
       {
         method: "GET",
         url: `/newShareAppLink/userRole/${userRole}/apps/${appID}`,
@@ -84,7 +83,7 @@ export const renewShareAppLink = (userRole: USER_ROLE, appID: string) => {
 
 export const updateAppPublicConfig = (isPublic: boolean, appID: string) => {
   return new Promise<boolean>((resolve, reject) => {
-    Api.request<fetchInviteLinkResponse>(
+    BuilderApi.teamRequest<fetchInviteLinkResponse>(
       {
         method: "PATCH",
         url: `/apps/${appID}/config`,

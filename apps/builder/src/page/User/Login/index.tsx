@@ -10,7 +10,7 @@ import {
   WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
-import { CloudBaseApi } from "@/api/cloudApi"
+import { CloudApi } from "@/api/base"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
@@ -52,7 +52,7 @@ export const Login: FC = () => {
 
   const message = useMessage()
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
-    CloudBaseApi.request<UserInfoResponse>(
+    CloudApi.request<UserInfoResponse>(
       { method: "POST", url: "/auth/signin", data },
       (res) => {
         const token = res.headers["illa-token"]

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { Connection } from "@/api/ws"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -124,7 +124,7 @@ export const Editor: FC = () => {
   // init resource
   useEffect(() => {
     const controller = new AbortController()
-    Api.request<Resource<ResourceContent>[]>(
+    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
       {
         url: "/resources",
         method: "GET",

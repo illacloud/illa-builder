@@ -14,7 +14,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
 import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
 import {
@@ -84,7 +84,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
       onSubmit={handleSubmit((data, event) => {
         if (configType === "gui") {
           if (resourceId != undefined) {
-            Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+            BuilderApi.teamRequest<Resource<MongoDbResource<MongoDbConfig>>>(
               {
                 method: "PUT",
                 url: `/resources/${resourceId}`,
@@ -136,7 +136,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
               },
             )
           } else {
-            Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+            BuilderApi.teamRequest<Resource<MongoDbResource<MongoDbConfig>>>(
               {
                 method: "POST",
                 url: `/resources`,
@@ -188,7 +188,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
           }
         } else {
           if (resourceId != undefined) {
-            Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+            BuilderApi.teamRequest<Resource<MongoDbResource<MongoDbConfig>>>(
               {
                 method: "PUT",
                 url: `/resources/${resourceId}`,
@@ -232,7 +232,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
               },
             )
           } else {
-            Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+            BuilderApi.teamRequest<Resource<MongoDbResource<MongoDbConfig>>>(
               {
                 method: "POST",
                 url: `/resources`,
@@ -425,7 +425,9 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
             onClick={() => {
               const data = getValues()
               if (configType === "gui") {
-                Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+                BuilderApi.teamRequest<
+                  Resource<MongoDbResource<MongoDbConfig>>
+                >(
                   {
                     method: "POST",
                     url: `/resources/testConnection`,
@@ -474,7 +476,9 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                   },
                 )
               } else {
-                Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+                BuilderApi.teamRequest<
+                  Resource<MongoDbResource<MongoDbConfig>>
+                >(
                   {
                     method: "POST",
                     url: `/resources/testConnection`,

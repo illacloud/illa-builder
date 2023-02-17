@@ -1,6 +1,6 @@
 import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isString } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
@@ -255,7 +255,7 @@ const fetchActionResult = (
   isTrigger: boolean,
   resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
-  Api.request(
+  BuilderApi.teamRequest(
     {
       method: "POST",
       url: `/apps/${appId}/actions/${actionId}/run`,

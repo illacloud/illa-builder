@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from "axios"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ILLAWebsocket } from "@/api/ws/illaWS"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getCurrentId, getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -84,7 +84,7 @@ export class Connection {
         config = {}
         break
     }
-    Api.request<Room>(
+    BuilderApi.teamRequest<Room>(
       config,
       (response) => {
         let ws = generateNewWs(response.data.wsURL)

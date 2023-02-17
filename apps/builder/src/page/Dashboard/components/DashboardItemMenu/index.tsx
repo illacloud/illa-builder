@@ -18,7 +18,7 @@ import {
   shareAppByEmail,
   updateAppPublicConfig,
 } from "@/api/apps"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import {
   changeTeamMembersRole,
   getMembers,
@@ -194,7 +194,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                         },
                         closable: false,
                         onOk: () => {
-                          Api.request<DashboardApp>(
+                          BuilderApi.teamRequest<DashboardApp>(
                             {
                               url: `/apps/${appId}`,
                               method: "DELETE",

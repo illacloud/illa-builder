@@ -1,5 +1,4 @@
 import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { ApiError } from "@/api/base"
 import {
   addRequestPendingPool,
   removeRequestPendingPool,
@@ -7,7 +6,6 @@ import {
 import { ILLARoute } from "@/router"
 import { cloudUrl } from "@/router/routerConfig"
 import { getAuthToken, removeAuthToken } from "@/utils/auth"
-import { getTeamID } from "@/utils/team"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 const CLOUD = "/supervisor/api/v1"
@@ -82,69 +80,3 @@ cloudAxios.interceptors.request.use(authInterceptor, (err) => {
 })
 
 cloudAxios.interceptors.response.use(fullFillInterceptor, axiosErrorInterceptor)
-
-export class CloudTeamApi {
-  static request<RespData, RequestBody = any, ErrorResp = ApiError>(
-    config: AxiosRequestConfig<RequestBody>,
-    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
-    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
-    crash?: (e: AxiosError) => void,
-    loading?: (loading: boolean) => void,
-    errorState?: (errorState: boolean) => void,
-  ) {
-    loading?.(true)
-    errorState?.(false)
-    const teamId = getTeamID()
-    cloudAxios
-      .request<RespData, AxiosResponse<RespData>, RequestBody>({
-        ...config,
-        url: `/teams/${teamId}` + config.url,
-      })
-      .then((response) => {
-        loading?.(false)
-        errorState?.(false)
-        success?.(response)
-      })
-      .catch((error: AxiosError<ErrorResp, RequestBody>) => {
-        loading?.(false)
-        errorState?.(true)
-        if (error.response) {
-          failure?.(error.response)
-        }
-        if (error.response == undefined && error.request != undefined) {
-          crash?.(error)
-        }
-      })
-  }
-}
-
-export class CloudBaseApi {
-  static request<RespData, RequestBody = any, ErrorResp = ApiError>(
-    config: AxiosRequestConfig<RequestBody>,
-    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
-    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
-    crash?: (e: AxiosError) => void,
-    loading?: (loading: boolean) => void,
-    errorState?: (errorState: boolean) => void,
-  ) {
-    loading?.(true)
-    errorState?.(false)
-    cloudAxios
-      .request<RespData, AxiosResponse<RespData>, RequestBody>(config)
-      .then((response) => {
-        loading?.(false)
-        errorState?.(false)
-        success?.(response)
-      })
-      .catch((error: AxiosError<ErrorResp, RequestBody>) => {
-        loading?.(false)
-        errorState?.(true)
-        if (error.response) {
-          failure?.(error.response)
-        }
-        if (error.response == undefined && error.request != undefined) {
-          crash?.(error)
-        }
-      })
-  }
-}

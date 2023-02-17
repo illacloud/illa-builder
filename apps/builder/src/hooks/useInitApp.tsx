@@ -1,8 +1,8 @@
 import { AxiosResponse } from "axios"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { Api, BuilderBaseApi } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { getTeamsInfo } from "@/api/team"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
@@ -70,7 +70,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
     resolve: (value: PromiseLike<CurrentAppResp> | CurrentAppResp) => void,
     reject: (reason?: any) => void,
   ) => {
-    Api.request<CurrentAppResp>(
+    BuilderApi.request<CurrentAppResp>(
       {
         url: `/apps/${appId}/versions/${versionId}`,
         method: "GET",
@@ -97,7 +97,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
     if (isOnline) {
       new Promise<CurrentAppResp>((resolve, reject) => {
         if (model === "production") {
-          BuilderBaseApi.request<CurrentAppResp>(
+          BuilderApi.request<CurrentAppResp>(
             {
               url: `/teams/byIdentifier/${teamIdentifier}/publicApps/${appId}/versions/${versionId}`,
               method: "GET",

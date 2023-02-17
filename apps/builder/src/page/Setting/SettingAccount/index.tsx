@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
@@ -88,7 +88,7 @@ export const SettingAccount: FC = () => {
             if (!!errorMessage) {
               return
             }
-            Api.request<UserInfoResponse>(
+            BuilderApi.teamRequest<UserInfoResponse>(
               {
                 url: "/users/nickname",
                 method: "PATCH",

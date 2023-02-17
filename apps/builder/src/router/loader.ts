@@ -1,5 +1,6 @@
+import axios from "axios"
 import { LoaderFunctionArgs, redirect } from "react-router-dom"
-import { CloudBaseApi } from "@/api/cloudApi"
+import { CloudApi } from "@/api/base"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { getTeamsInfo } from "@/api/team"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
@@ -10,37 +11,30 @@ import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { setLocalStorage } from "@/utils/storage"
 
-export const getUserInfo = (token?: string) => {
-  return new Promise<UserInfoResponse>((resolve, reject) => {
-    CloudBaseApi.request<UserInfoResponse>(
-      {
-        url: "/users",
-        method: "GET",
-        headers: token
-          ? {
-              Authorization: token,
-            }
-          : {},
-      },
-      (response) => {
-        // TIPS: can check user role
-        store.dispatch(
-          currentUserActions.updateCurrentUserReducer({
-            ...response.data,
-            userId: response.data.id,
-          }),
-        )
-        resolve(response.data)
-      },
-      (e) => {
-        reject(e)
-      },
-      (e) => {
-        console.error("getUserInfo error", e)
-        reject(e)
-      },
+const CLOUD = "/supervisor/api/v1"
+
+export const getUserInfo = async (token?: string) => {
+  try {
+    const response = await axios.get<UserInfoResponse>("/users", {
+      baseURL: `${location.protocol}//${
+        import.meta.env.VITE_API_BASE_URL
+      }${CLOUD}`,
+      headers: token
+        ? {
+            Authorization: token,
+          }
+        : {},
+    })
+    store.dispatch(
+      currentUserActions.updateCurrentUserReducer({
+        ...response.data,
+        userId: response.data.id,
+      }),
     )
-  })
+    return response.data
+  } catch (e) {
+    console.error("getUserInfo error", e)
+  }
 }
 
 const removeUrlParams = (url: string, params: string[]) => {

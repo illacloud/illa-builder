@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CloudBaseApi, CloudTeamApi } from "@/api/cloudApi"
+import { CloudApi } from "@/api/base"
 import {
   fetchInviteLinkResponse,
   inviteByEmailResponse,
@@ -23,7 +23,7 @@ export const getMembersFormTeamId = async (teamId: string) => {
 
 export const getMembers = async () => {
   return new Promise<MemberInfo[]>(async (resolve, reject) => {
-    CloudTeamApi.request<MemberInfo[]>(
+    CloudApi.teamRequest<MemberInfo[]>(
       {
         method: "GET",
         url: "/members",
@@ -43,7 +43,7 @@ export const getMembers = async () => {
 
 export const getTeamsInfo = (teamIdentifier?: string, token?: string) => {
   return new Promise<TeamInfo>((resolve, reject) => {
-    CloudBaseApi.request<TeamInfo[]>(
+    CloudApi.request<TeamInfo[]>(
       {
         url: "/teams/my",
         method: "GET",
@@ -78,7 +78,7 @@ export const getTeamsInfo = (teamIdentifier?: string, token?: string) => {
 
 export const updateTeamsInfo = (teamIdentifier?: string) => {
   return new Promise<TeamInfo[]>((resolve, reject) => {
-    CloudBaseApi.request<TeamInfo[]>(
+    CloudApi.request<TeamInfo[]>(
       {
         url: "/teams/my",
         method: "GET",
@@ -114,7 +114,7 @@ export const updateTeamsInfo = (teamIdentifier?: string) => {
 
 export const removeTeam = () => {
   return new Promise<boolean>((resolve, reject) => {
-    CloudTeamApi.request(
+    CloudApi.teamRequest(
       {
         method: "DELETE",
       },
@@ -136,7 +136,7 @@ export const setInviteLinkEnabled = (inviteLinkEnabled: boolean) => {
   const teamInfo = getCurrentTeamInfo(store.getState())
   const teamIdentifier = teamInfo?.identifier
   return new Promise<boolean>((resolve, reject) => {
-    CloudTeamApi.request(
+    CloudApi.teamRequest(
       {
         method: "PATCH",
         url: `/configInviteLink`,
@@ -165,7 +165,7 @@ export const updateTeamPermissionConfig = (
   return new Promise<boolean>((resolve, reject) => {
     const teamInfo = getCurrentTeamInfo(store.getState())
     const teamIdentifier = teamInfo?.identifier
-    CloudTeamApi.request(
+    CloudApi.teamRequest(
       {
         method: "PATCH",
         url: `/permission`,
@@ -190,7 +190,7 @@ export const updateTeamPermissionConfig = (
 
 export const fetchInviteLink = (userRole: USER_ROLE) => {
   return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
-    CloudTeamApi.request<fetchInviteLinkResponse>(
+    CloudApi.teamRequest<fetchInviteLinkResponse>(
       {
         method: "GET",
         url: `/inviteLink/userRole/${userRole}`,
@@ -210,7 +210,7 @@ export const fetchInviteLink = (userRole: USER_ROLE) => {
 
 export const renewInviteLink = (userRole: USER_ROLE) => {
   return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
-    CloudTeamApi.request<fetchInviteLinkResponse>(
+    CloudApi.teamRequest<fetchInviteLinkResponse>(
       {
         method: "GET",
         url: `/newInviteLink/userRole/${userRole}`,
@@ -231,7 +231,7 @@ export const renewInviteLink = (userRole: USER_ROLE) => {
 // need to update member list
 export const inviteByEmail = (email: string, userRole: USER_ROLE) => {
   return new Promise<inviteByEmailResponse>((resolve, reject) => {
-    CloudTeamApi.request<inviteByEmailResponse>(
+    CloudApi.teamRequest<inviteByEmailResponse>(
       {
         method: "POST",
         url: `/inviteByEmail`,
@@ -259,7 +259,7 @@ export const changeTeamMembersRole = (
   userRole: USER_ROLE,
 ) => {
   return new Promise<boolean>((resolve, reject) => {
-    CloudTeamApi.request<inviteByEmailResponse>(
+    CloudApi.teamRequest<inviteByEmailResponse>(
       {
         method: "PATCH",
         url: `/teamMembers/${teamMemberID}/role`,
@@ -282,7 +282,7 @@ export const changeTeamMembersRole = (
 
 export const removeTeamMembers = (teamMemberID: string) => {
   return new Promise<boolean>((resolve, reject) => {
-    CloudTeamApi.request(
+    CloudApi.teamRequest(
       {
         method: "DELETE",
         url: `/teamMembers/${teamMemberID}`,

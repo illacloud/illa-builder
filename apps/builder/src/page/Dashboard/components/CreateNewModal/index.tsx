@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Input, Modal, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
@@ -43,7 +43,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
           })
           return
         }
-        Api.request<DashboardApp>(
+        BuilderApi.teamRequest<DashboardApp>(
           {
             url: "/apps",
             method: "POST",

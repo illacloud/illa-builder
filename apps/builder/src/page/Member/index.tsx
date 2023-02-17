@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import {
   changeTeamMembersRole,
   fetchInviteLink,
@@ -84,7 +84,7 @@ export const Member: FC<MemberProps> = (props) => {
 
   const getBuilderInfo = async (teamId: string) => {
     return new Promise<BuilderCardInfo>(async (resolve, reject) => {
-      Api.request<BuilderCardInfo>(
+      BuilderApi.teamRequest<BuilderCardInfo>(
         {
           method: "get",
           url: `/builder/desc`,

@@ -11,3 +11,11 @@ export const filterURLSearch = (
   const searchParams = newSearch.toString()
   return searchParams ? `?${searchParams}` : searchParams
 }
+
+export const removeUrlParams = (url: string, params: string[]) => {
+  const urlObj = new URL(url)
+  params.forEach((param) => {
+    urlObj.searchParams.delete(param)
+  })
+  return urlObj
+}

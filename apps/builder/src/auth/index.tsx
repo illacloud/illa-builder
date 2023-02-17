@@ -1,7 +1,7 @@
 import { FC, ReactNode, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { CloudBaseApi } from "@/api/cloudApi"
+import { CloudApi } from "@/api/base"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
@@ -29,7 +29,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
       return
     }
     if (currentUserId === "" || currentUserId == undefined) {
-      CloudBaseApi.request<UserInfoResponse>(
+      CloudApi.request<UserInfoResponse>(
         {
           url: "/users",
           method: "GET",
