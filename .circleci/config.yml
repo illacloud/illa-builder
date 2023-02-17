@@ -21,7 +21,7 @@ jobs:
           name: Build and push Docker image
           command: |
             cd ./deploy-illa-manually/docker
-            docker build ./ -f ./illa-builder.dockerfile -t illa-builder:develop --no-cache
+            docker build ./ -f ./illa-builder.dockerfile -t 021dzj/illa-builder:develop --no-cache
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
             docker push 021dzj/illa-builder:develop
 
