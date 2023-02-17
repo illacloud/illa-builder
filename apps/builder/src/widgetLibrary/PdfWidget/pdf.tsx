@@ -11,17 +11,27 @@ import {
 import { Document, Page, pdfjs } from "react-pdf"
 import "react-pdf/dist/esm/Page/AnnotationLayer.css"
 import "react-pdf/dist/esm/Page/TextLayer.css"
-import { Button, Loading } from "@illa-design/react"
 import {
+  DownloadIcon,
+  Loading,
+  NextIcon,
+  PreviousIcon,
+} from "@illa-design/react"
+import { ToolButton } from "@/widgetLibrary/PdfWidget/button"
+import {
+  applyHiddenStyle,
   documentInitStyle,
+  loadingStyle,
   pdfContainerStyle,
   pdfStyle,
+  pdfWrapperStyle,
   toolBarStyle,
 } from "@/widgetLibrary/PdfWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { PdfWidgetProps, WrappedPdfProps } from "./interface"
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker
+console.log(pdfjs.version, "pdfjs.version")
 
 export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const { displayName, width, height, scaleMode, url, showTollBar } = props
@@ -29,6 +39,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const documentRef = useRef<HTMLDivElement>(null)
   const [numPages, setNumPages] = useState<number>(0)
   const [pageNumber, setPageNumber] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(true)
 
   const { scaleWidth, scaleHeight } = useMemo(() => {
     if (scaleMode === "width") {
@@ -66,55 +77,72 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
 
   return (
     <div css={pdfContainerStyle} ref={ref}>
-      <div css={pdfStyle} ref={documentRef}>
-        <Document
-          css={documentInitStyle}
-          loading={<Loading />}
-          file={url}
-          onLoadProgress={({ loaded, total }) => {
-            console.log(loaded, total, "loaded, total, Document LoadProgress")
-          }}
-          onLoadSuccess={({ numPages: nextNumPages, getDownloadInfo }) => {
-            console.log(nextNumPages, "Document LoadSuccess")
-            setNumPages(nextNumPages)
-          }}
-        >
-          {Array.from(new Array(numPages), (el, index) => (
-            <Page
-              loading={<Loading />}
-              width={scaleWidth}
-              height={scaleHeight}
-              key={`page_${index + 1}`}
-              pageNumber={index + 1}
-              inputRef={(el) => {
-                if (!el) return
-                pageRef.current[index] = el
-              }}
-            />
-          ))}
-        </Document>
-      </div>
-      <div css={toolBarStyle} className="pdf-page-controls">
-        <Button
-          disabled={pageNumber <= 1}
-          onClick={() => updatePage(-1)}
-          type="button"
-          aria-label="Previous page"
-        >
-          ‹
-        </Button>
-        <span>
-          {pageNumber} of {numPages}
-        </span>
-        <Button
-          disabled={pageNumber >= numPages}
-          onClick={() => updatePage(1)}
-          type="button"
-          aria-label="Next page"
-        >
-          ›
-        </Button>
-        <Button onClick={downloadFile}>Download PDF</Button>
+      {loading ? (
+        <div css={loadingStyle}>
+          <Loading />
+        </div>
+      ) : null}
+      <div css={applyHiddenStyle(loading)}>
+        <div css={toolBarStyle}>
+          <ToolButton
+            disabled={pageNumber <= 1}
+            onClick={() => updatePage(-1)}
+            type="button"
+            shape="round"
+            aria-label="Previous page"
+            icon={<PreviousIcon />}
+          />
+          <ToolButton
+            disabled={pageNumber >= numPages}
+            onClick={() => updatePage(1)}
+            type="button"
+            shape="round"
+            aria-label="Next page"
+            icon={<NextIcon />}
+          />
+          <ToolButton
+            type="button"
+            shape="round"
+            onClick={downloadFile}
+            icon={<DownloadIcon />}
+          />
+        </div>
+        <div css={pdfStyle} ref={documentRef}>
+          <Document
+            css={documentInitStyle}
+            loading={<Loading />}
+            file={url}
+            onLoadProgress={({ loaded, total }) => {
+              console.log(loaded, total, "loaded, total, Document LoadProgress")
+            }}
+            onLoadSuccess={({ numPages: nextNumPages, getDownloadInfo }) => {
+              console.log(nextNumPages, "Document LoadSuccess")
+              setNumPages(nextNumPages)
+              // setLoading(false)
+            }}
+          >
+            {Array.from(new Array(numPages), (el, index) => (
+              <Page
+                width={scaleWidth}
+                height={scaleHeight}
+                key={`page_${index + 1}`}
+                pageNumber={index + 1}
+                inputRef={(el) => {
+                  if (!el) return
+                  pageRef.current[index] = el
+                }}
+                onLoadSuccess={() => {
+                  console.log(`page_${index + 1}`, "Document LoadSuccess")
+
+                  if (numPages === index + 1) {
+                    setLoading(false)
+                    console.log("success")
+                  }
+                }}
+              />
+            ))}
+          </Document>
+        </div>
       </div>
     </div>
   )
@@ -131,8 +159,12 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
     tooltipText,
     width,
     height,
+    scaleMode,
+    url,
+    showTollBar,
     w,
     h,
+    ...rest
   } = props
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -160,9 +192,22 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
   }, [w, h])
 
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <Pdf ref={wrapperRef} width={width} height={height} {...props} />
-    </TooltipWrapper>
+    <div css={pdfWrapperStyle} ref={wrapperRef}>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <Pdf
+          handleUpdateGlobalData={handleUpdateGlobalData}
+          handleDeleteGlobalData={handleDeleteGlobalData}
+          handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+          displayName={displayName}
+          width={width}
+          height={height}
+          scaleMode={scaleMode}
+          url={url}
+          showTollBar={showTollBar}
+          {...rest}
+        />
+      </TooltipWrapper>
+    </div>
   )
 }
 
