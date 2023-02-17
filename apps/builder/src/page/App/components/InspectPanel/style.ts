@@ -41,8 +41,6 @@ export function applyLabelTipsStyle(
       `
     : css``
   return css`
-    display: block;
-    align-self: center;
     height: 22px;
     line-height: 22px;
     ${labelStyle};
@@ -85,7 +83,7 @@ export function applySetterWrapperStyle(
     justify-content: space-between;
   `
   return css`
-    ${isInList ? "padding: 0 12px;" : "padding: 0 16px;"};
+    ${isInList ? "padding: 0 12px;" : "padding: 0px 16px;"};
     ${basicStyle};
   `
 }
@@ -146,8 +144,6 @@ export const applySetterPublicWrapperStyle = (
     : css`
         padding: 8px 0;
         min-height: 48px;
-        display: flex;
-        align-items: center;
         ${widthStyle}
       `
 }

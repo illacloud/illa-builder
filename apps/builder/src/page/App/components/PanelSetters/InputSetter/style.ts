@@ -106,6 +106,7 @@ export const codeEditorContainerStyle = css`
   width: 100%;
   display: flex;
   justify-content: center;
+  padding: 8px 0;
 `
 
 export const dashCharStyle = css`
