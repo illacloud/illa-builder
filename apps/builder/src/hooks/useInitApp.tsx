@@ -30,16 +30,12 @@ export const useInitBuilderApp = (model: IllaMode) => {
 
   // versionId = -1 represents the latest edited version of the app.
   // versionId = -2 represents the latest released version of the user.
-  const versionId = useMemo(
-    () => (model === "production" ? "-2" : "0"),
-    [model],
-  )
-  const { uid, teamID } = useMemo(() => {
-    return {
-      uid: teamInfo?.uid ?? "",
-      teamID: teamInfo?.id ?? "",
-    }
-  }, [teamInfo])
+  const versionId = model === "production" ? "-2" : "0"
+
+  const { uid, teamID } = {
+    uid: teamInfo?.uid ?? "",
+    teamID: teamInfo?.id ?? "",
+  }
 
   const handleCurrentApp = (response: AxiosResponse<CurrentAppResp>) => {
     if (model === "edit") {

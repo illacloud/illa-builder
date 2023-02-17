@@ -155,14 +155,10 @@ export const DashboardResources: FC = () => {
     ]
   }, [t])
 
-  const canAccessResourcesView = useMemo(
-    () =>
-      canAccess(
-        teamInfo?.myRole ?? USER_ROLE.VIEWER,
-        ATTRIBUTE_GROUP.RESOURCE,
-        ACTION_ACCESS.VIEW,
-      ),
-    [teamInfo],
+  const canAccessResourcesView = canAccess(
+    teamInfo?.myRole ?? USER_ROLE.VIEWER,
+    ATTRIBUTE_GROUP.RESOURCE,
+    ACTION_ACCESS.VIEW,
   )
 
   useEffect(() => {

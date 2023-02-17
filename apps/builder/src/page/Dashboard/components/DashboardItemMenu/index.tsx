@@ -60,13 +60,10 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const [duplicateVisible, setDuplicateVisible] = useState(false)
 
   const [members, setMembers] = useState<MemberInfo[]>([])
-  const { inviteLinkEnabled, currentUserRole } = useMemo(() => {
-    return {
-      teamId: teamInfo?.id,
-      currentUserRole: teamInfo?.myRole ?? USER_ROLE.VIEWER,
-      inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
-    }
-  }, [teamInfo])
+  const { inviteLinkEnabled, currentUserRole } = {
+    currentUserRole: teamInfo?.myRole ?? USER_ROLE.VIEWER,
+    inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
+  }
 
   const updateMemberList = async () => {
     const members = await getMembers()

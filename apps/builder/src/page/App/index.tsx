@@ -62,7 +62,7 @@ export const Editor: FC = () => {
   const currentUser = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
 
-  const currentUserRole = useMemo(() => teamInfo?.myRole, [teamInfo])
+  const currentUserRole = teamInfo?.myRole
 
   const handleLeaveRoom = useCallback(() => {
     Connection.leaveRoom("app", appId ?? "")
