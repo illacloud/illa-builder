@@ -77,6 +77,23 @@ export const PDF_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
+        id: `${baseWidgetName}-layout-scaleMode`,
+        labelName: i18n.t("editor.inspect.setter_label.scale"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.scale"),
+        setterType: "RADIO_GROUP_SETTER",
+        attrName: "scaleMode",
+        options: [
+          {
+            label: i18n.t("editor.inspect.setter_option.scale_width"),
+            value: "width",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.scale_height"),
+            value: "height",
+          },
+        ],
+      },
+      {
         id: `${baseWidgetName}-layout-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),

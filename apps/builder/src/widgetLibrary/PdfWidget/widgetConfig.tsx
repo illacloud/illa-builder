@@ -13,11 +13,7 @@ export const PDF_WIDGET_CONFIG: WidgetConfig = {
   h: 5,
   defaults: {
     value: "",
-    label: "Label",
-    labelAlign: "left",
-    labelPosition: "left",
-    labelWidth: "{{33}}",
-    colorScheme: "blue",
     hidden: false,
+    scaleMode: "width",
   },
 }

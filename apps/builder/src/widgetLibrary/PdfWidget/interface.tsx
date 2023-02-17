@@ -1,23 +1,16 @@
 import { InputProps } from "@illa-design/react"
-import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
-import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import {
+  BaseComponentNodeProps,
+  BaseWidgetProps,
+} from "@/widgetLibrary/interface"
 
-export interface WrappedInputProps
-  extends Pick<
-      InputProps,
-      "placeholder" | "disabled" | "readOnly" | "maxLength" | "minLength"
-    >,
-    BaseWidgetProps {
-  showCharacterCount?: InputProps["showWordLimit"]
+export interface WrappedPdfProps extends BaseWidgetProps {
+  width?: number
+  height?: number
+  scaleMode?: "width" | "height"
   value?: string
-  prefixIcon?: InputProps["prefix"]
-  prefixText?: string
-  suffixIcon?: InputProps["suffix"]
-  suffixText?: string
   colorScheme?: InputProps["colorScheme"]
-  allowClear?: InputProps["allowClear"]
   handleOnChange?: () => void
   handleOnFocus?: () => void
   handleOnBlur?: () => void
@@ -27,14 +20,12 @@ export interface WrappedInputProps
       value: Record<string, any>
     }[],
   ) => void
-  getValidateMessage: (value: string) => string
 }
 
-export interface InputWidgetProps
-  extends Omit<WrappedInputProps, "maxLength">,
+export interface PdfWidgetProps
+  extends Omit<WrappedPdfProps, "maxLength">,
     BaseWidgetProps,
-    LabelProps,
     TooltipWrapperProps,
-    Omit<ValidateMessageOldProps, "value"> {
+    BaseComponentNodeProps {
   validateMessage: string
 }
