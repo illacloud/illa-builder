@@ -15,7 +15,7 @@ export const pdfContainerStyle = css`
   height: 100%;
   border: 1px solid ${getColor("grayBlue", "08")};
 `
-export const loadingStyle = css`
+export const fullPageStyle = css`
   width: 100%;
   height: 100%;
   display: flex;
@@ -36,6 +36,10 @@ export const pdfStyle = css`
 
 export const documentInitStyle = css`
   margin: 0 auto;
+
+  .react-pdf__message {
+    height: 100%;
+  }
 `
 
 export const toolBarStyle = css`

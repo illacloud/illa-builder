@@ -1,3 +1,4 @@
+import { debounce } from "lodash"
 import pdfWorker from "pdfjs-dist/build/pdf.worker.js?url"
 import {
   FC,
@@ -8,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react"
+import { useTranslation } from "react-i18next"
 import { Document, Page, pdfjs } from "react-pdf"
 import "react-pdf/dist/esm/Page/AnnotationLayer.css"
 import "react-pdf/dist/esm/Page/TextLayer.css"
@@ -21,7 +23,7 @@ import { ToolButton } from "@/widgetLibrary/PdfWidget/button"
 import {
   applyHiddenStyle,
   documentInitStyle,
-  loadingStyle,
+  fullPageStyle,
   pdfContainerStyle,
   pdfStyle,
   pdfWrapperStyle,
@@ -31,15 +33,21 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { PdfWidgetProps, WrappedPdfProps } from "./interface"
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker
-console.log(pdfjs.version, "pdfjs.version")
+// or
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const { displayName, width, height, scaleMode, url, showTollBar } = props
+  const { t } = useTranslation()
   const pageRef = useRef<HTMLDivElement[]>([])
   const documentRef = useRef<HTMLDivElement>(null)
   const [numPages, setNumPages] = useState<number>(0)
   const [pageNumber, setPageNumber] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<boolean>(false)
+  const [hasButtonClicked, setButtonClick] = useState(false)
+  const hasScrollRef = useRef(false)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const { scaleWidth, scaleHeight } = useMemo(() => {
     if (scaleMode === "width") {
@@ -51,15 +59,28 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const updatePage = useCallback(
     (offset: number) => {
       const { offsetTop } = pageRef.current[pageNumber + offset - 1]
-      console.log(offsetTop, "offsetTop", pageNumber)
       if (documentRef.current) {
         documentRef.current.scrollTop = offsetTop
-        documentRef.current.scrollTo({ top: offsetTop })
+        setButtonClick(true)
       }
       setPageNumber((prevPageNumber) => (prevPageNumber || 1) + offset)
     },
     [pageNumber],
   )
+
+  const updateCurrentPage = debounce(() => {
+    if (hasScrollRef.current) {
+      hasScrollRef.current = false
+      // get current page
+      const { scrollTop } = documentRef.current || {}
+      if (!scrollTop) return
+      const currentPage = pageRef.current.findIndex(
+        (elem) => elem.offsetTop >= scrollTop,
+      )
+      if (currentPage === -1) return
+      setPageNumber(currentPage + 1)
+    }
+  }, 150)
 
   const downloadFile = async () => {
     if (!url) return
@@ -75,15 +96,36 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
     URL.revokeObjectURL(pdfURL)
   }
 
+  const handleScroll = () => {
+    if (hasButtonClicked) return setButtonClick(false)
+    if (!hasScrollRef.current) {
+      hasScrollRef.current = true
+      updateCurrentPage()
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
+      }
+    }
+  }, [])
+
+  if (!url) {
+    return <div css={fullPageStyle}>{t("widget.pdf.empty")}</div>
+  }
+
   return (
     <div css={pdfContainerStyle} ref={ref}>
       {loading ? (
-        <div css={loadingStyle}>
+        <div css={fullPageStyle}>
           <Loading />
         </div>
       ) : null}
-      <div css={applyHiddenStyle(loading)}>
-        <div css={toolBarStyle}>
+      {showTollBar && !error && !loading ? (
+        <div css={[toolBarStyle, applyHiddenStyle(loading)]}>
           <ToolButton
             disabled={pageNumber <= 1}
             onClick={() => updatePage(-1)}
@@ -107,42 +149,50 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
             icon={<DownloadIcon />}
           />
         </div>
-        <div css={pdfStyle} ref={documentRef}>
-          <Document
-            css={documentInitStyle}
-            loading={<Loading />}
-            file={url}
-            onLoadProgress={({ loaded, total }) => {
-              console.log(loaded, total, "loaded, total, Document LoadProgress")
-            }}
-            onLoadSuccess={({ numPages: nextNumPages, getDownloadInfo }) => {
-              console.log(nextNumPages, "Document LoadSuccess")
-              setNumPages(nextNumPages)
-              // setLoading(false)
-            }}
-          >
-            {Array.from(new Array(numPages), (el, index) => (
-              <Page
-                width={scaleWidth}
-                height={scaleHeight}
-                key={`page_${index + 1}`}
-                pageNumber={index + 1}
-                inputRef={(el) => {
-                  if (!el) return
-                  pageRef.current[index] = el
-                }}
-                onLoadSuccess={() => {
-                  console.log(`page_${index + 1}`, "Document LoadSuccess")
-
-                  if (numPages === index + 1) {
-                    setLoading(false)
-                    console.log("success")
-                  }
-                }}
-              />
-            ))}
-          </Document>
-        </div>
+      ) : null}
+      <div
+        css={[pdfStyle, applyHiddenStyle(loading)]}
+        ref={documentRef}
+        onScroll={handleScroll}
+      >
+        <Document
+          css={documentInitStyle}
+          loading={
+            <div css={fullPageStyle}>
+              <Loading />
+            </div>
+          }
+          error={<div css={fullPageStyle}>{t("widget.pdf.failed")}</div>}
+          file={url}
+          onLoadSuccess={({ numPages: nextNumPages }) => {
+            setNumPages(nextNumPages)
+            // [TODO] wait react-pdf fix
+            clearTimeout(timeoutRef.current as NodeJS.Timeout)
+            timeoutRef.current = setTimeout(() => {
+              setLoading(false)
+              setError(false)
+            }, 200)
+          }}
+          onLoadError={(error) => {
+            console.error(error)
+            setLoading(false)
+            setError(true)
+          }}
+        >
+          {Array.from(new Array(numPages), (el, index) => (
+            <Page
+              loading={""}
+              width={scaleWidth}
+              height={scaleHeight}
+              key={`page_${index + 1}`}
+              pageNumber={index + 1}
+              inputRef={(el) => {
+                if (!el) return
+                pageRef.current[index] = el
+              }}
+            />
+          ))}
+        </Document>
       </div>
     </div>
   )
