@@ -1371,6 +1371,10 @@
     },
     "icon": {
       "name": "상"
+    },
+    "pdf": {
+      "empty": "PDF 파일 없음",
+      "failed": "PDF를 로드할 수 없습니다."
     }
   },
   "page": {
