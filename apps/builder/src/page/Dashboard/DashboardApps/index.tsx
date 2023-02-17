@@ -59,7 +59,7 @@ export const DashboardApps: FC = () => {
   const finalAppsList = useMemo(() => {
     if (canEditApp) return appsList
     return appsList.filter((item) => {
-      return item.mainline_version !== 0
+      return item.mainlineVersion !== 0
     })
   }, [canEditApp, appsList])
 
@@ -107,7 +107,7 @@ export const DashboardApps: FC = () => {
                     <DashboardItemMenu
                       appId={item.appId}
                       canEditApp={canEditApp}
-                      isDeploy={item.mainline_version !== 0}
+                      isDeploy={item.mainlineVersion !== 0}
                     />
                   }
                 >
@@ -115,7 +115,7 @@ export const DashboardApps: FC = () => {
                     onClick={() => {
                       if (canEditApp) {
                         navigate(`/${teamIdentifier}/app/${item.appId}`)
-                      } else if (item.mainline_version !== 0) {
+                      } else if (item.mainlineVersion !== 0) {
                         navigate(`/${teamIdentifier}/deploy/app/${item.appId}`)
                       }
                     }}
