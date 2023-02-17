@@ -10,7 +10,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: docker:17.05.0-ce-git
-    resource_class: xlarge
+    resource_class: 2xlarge
     working_directory: /mnt/ramdisk
     steps:
       - checkout
