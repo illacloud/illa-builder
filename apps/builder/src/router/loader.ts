@@ -10,15 +10,17 @@ import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { setLocalStorage } from "@/utils/storage"
 
-const getUserInfo = (token: string) => {
+export const getUserInfo = (token?: string) => {
   return new Promise<UserInfoResponse>((resolve, reject) => {
     CloudBaseApi.request<UserInfoResponse>(
       {
         url: "/users",
         method: "GET",
-        headers: {
-          Authorization: token,
-        },
+        headers: token
+          ? {
+              Authorization: token,
+            }
+          : {},
       },
       (response) => {
         // TIPS: can check user role

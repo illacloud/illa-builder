@@ -4,11 +4,10 @@ import {
   addRequestPendingPool,
   removeRequestPendingPool,
 } from "@/api/helpers/axiosPendingPool"
-import { getCurrentId } from "@/redux/team/teamSelector"
 import { ILLARoute } from "@/router"
 import { cloudUrl } from "@/router/routerConfig"
-import store from "@/store"
 import { getAuthToken, removeAuthToken } from "@/utils/auth"
+import { getTeamID } from "@/utils/team"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 const CLOUD = "/supervisior/api/v1"
@@ -53,7 +52,7 @@ const axiosErrorInterceptor = (error: AxiosError) => {
         ILLARoute.navigate(cloudUrl)
       } else {
         const { pathname } = location
-        ILLARoute.navigate("/login", {
+        ILLARoute.navigate("/user/login", {
           replace: true,
           state: {
             form: pathname || "/",
@@ -95,7 +94,7 @@ export class CloudTeamApi {
   ) {
     loading?.(true)
     errorState?.(false)
-    const teamId = isCloudVersion ? getCurrentId(store.getState()) : 0
+    const teamId = getTeamID()
     cloudAxios
       .request<RespData, AxiosResponse<RespData>, RequestBody>({
         ...config,

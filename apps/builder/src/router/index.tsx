@@ -5,6 +5,7 @@ import { Page404 } from "@/page/status/404"
 import { RoutesObjectPro } from "@/router/interface"
 import { requireAuth } from "@/router/loader"
 import { routerConfig } from "@/router/routerConfig"
+import { requireSelfAuth } from "@/router/selfLoader"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 const wrappedRouter = (
@@ -27,6 +28,9 @@ const wrappedRouter = (
         }
         newRouteItem.element = <LayoutAutoChange desktopPage={element} />
       } else {
+        newRouteItem.loader = async () => {
+          return await requireSelfAuth()
+        }
         newRouteItem.element = (
           <LayoutAutoChange
             desktopPage={<CheckIsLogin>{element}</CheckIsLogin>}

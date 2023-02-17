@@ -39,7 +39,7 @@ export const axiosErrorInterceptor = (error: AxiosError) => {
         ILLARoute.navigate(cloudUrl)
       } else {
         const { pathname } = location
-        ILLARoute.navigate("/login", {
+        ILLARoute.navigate("/user/login", {
           replace: true,
           state: {
             form: pathname || "/",
