@@ -198,18 +198,12 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       const shownList = currentList.map((file, index) => {
         const base64 = value[index]
         const info = files[index]
-        if (!base64) {
-          return {
-            ...file,
-            originFile: new File([""], info.name, info),
-          }
-        }
+
         return {
           ...file,
-          originFile: dataURLtoFile(
-            `data:${info.type};base64,${base64}`,
-            info.name,
-          ),
+          originFile: !base64
+            ? new File([""], info.name, info)
+            : dataURLtoFile(`data:${info.type};base64,${base64}`, info.name),
         }
       }) as UploadItem[]
       setFileList(shownList)
