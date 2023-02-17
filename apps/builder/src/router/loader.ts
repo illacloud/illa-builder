@@ -1,6 +1,6 @@
 import axios from "axios"
 import { LoaderFunctionArgs, redirect } from "react-router-dom"
-import { CloudApi } from "@/api/base"
+import { CloudApi } from "@/api/cloudApi"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { getTeamsInfo } from "@/api/team"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"

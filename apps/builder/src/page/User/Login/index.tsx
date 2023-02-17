@@ -10,7 +10,7 @@ import {
   WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
-import { CloudApi } from "@/api/base"
+import { CloudApi } from "@/api/cloudApi"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { TextLink } from "@/page/User/components/TextLink"
 import {

@@ -1,4 +1,5 @@
-import { BuilderApi, CloudApi } from "@/api/base"
+import { BuilderApi } from "@/api/base"
+import { CloudApi } from "@/api/cloudApi"
 import {
   fetchInviteLinkResponse,
   inviteByEmailResponse,
