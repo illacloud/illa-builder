@@ -20,6 +20,7 @@ import { BuilderCardInfo, MemberProps } from "@/page/Member/interface"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { MemberInfo } from "@/redux/team/teamState"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const Member: FC<MemberProps> = (props) => {
   const { t } = useTranslation()
@@ -126,7 +127,7 @@ export const Member: FC<MemberProps> = (props) => {
 
   return (
     <MemberList
-      hasApp={hasAppOrResource}
+      isCloudVersion={isCloudVersion}
       loading={false}
       userListData={members}
       currentUserID={userId}

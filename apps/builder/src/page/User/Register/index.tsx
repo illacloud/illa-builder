@@ -2,7 +2,7 @@ import { FC, useRef, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import {
   Button,
   Checkbox,
@@ -49,6 +49,8 @@ export const Register: FC = () => {
   const dispatch = useDispatch()
   const message = useMessage()
   const [showCountDown, setShowCountDown] = useState(false)
+  const [searchParams] = useSearchParams()
+  const inviteToken = searchParams.get("inviteToken")
   const vt = useRef<string>("")
   const {
     control,
@@ -70,6 +72,7 @@ export const Register: FC = () => {
         data: {
           verificationToken: vt.current,
           language: getLocalLanguage(),
+          inviteToken,
           ...data,
         },
       },

@@ -36,6 +36,7 @@ import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { MemberInfo } from "@/redux/team/teamState"
 import { RootState } from "@/store"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { appId, canEditApp, isDeploy } = props
@@ -246,6 +247,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
       </Space>
       <InviteModal
         hasApp
+        isCloudVersion={isCloudVersion}
         appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
         isAppPublic={app?.config?.public}
         fetchInviteLink={fetchShareLink}
