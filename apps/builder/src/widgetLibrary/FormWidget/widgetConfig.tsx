@@ -92,4 +92,5 @@ export const FORM_CAN_BIND_WIDGET_TYPE = new Map([
   ["DATE_WIDGET", true],
   ["RATE_WIDGET", true],
   ["FORM_WIDGET", true],
+  ["UPLOAD_WIDGET", true],
 ])

@@ -22,7 +22,7 @@ export interface WrappedRadioButtonProps
 }
 
 export interface RadioButtonWidgetProps
-  extends WrappedRadioButtonProps,
+  extends Omit<WrappedRadioButtonProps, "handleOnChange">,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,

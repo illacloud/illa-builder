@@ -1,13 +1,14 @@
 import { PanelLabelProps } from "@/page/App/components/InspectPanel/interface"
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface BaseSwitchProps extends BaseSetter {
-  options?: any
+  value?: boolean
 }
 
-type SwitchProProps = BaseSwitchProps & PanelLabelProps
-
-export interface DynamicSwitchProps extends SwitchProProps {
+export interface DynamicSwitchProps extends BaseSetter, PanelLabelProps {
   panelConfig: Record<string, any>
   openDynamic?: boolean
+  value?: string | boolean
+  expectedType: VALIDATION_TYPES
 }

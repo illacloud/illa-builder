@@ -61,7 +61,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
               onChange={(value) => {
                 handleUpdateDsl(attrName, value)
               }}
-              checked={value}
+              checked={value as boolean}
               colorScheme="techPurple"
             />
           )}
@@ -71,7 +71,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
         <div css={dynamicSwitchInputStyle}>
           <BaseInput
             attrName={attrName}
-            value={value}
+            value={value as string}
             handleUpdateDsl={handleUpdateDsl}
             panelConfig={panelConfig}
             expectedType={expectedType}

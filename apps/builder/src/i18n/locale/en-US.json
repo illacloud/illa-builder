@@ -915,7 +915,13 @@
         "max_files": "Max files",
         "min_files": "Min files",
         "max_size": "Max size",
-        "min_size": "Min size"
+        "min_size": "Min size",
+        "text_overflow": "Overflow",
+        "file_url": "File URL",
+        "show_tool_bar": "Show tool bar",
+        "scale": "Scale page to",
+        "scroll": "Snap scroll to each page",
+        "min_max_size": "Min size ～ Max size"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -951,16 +957,35 @@
         "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
         "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
         "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
-        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
+        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option.",
+        "file_url": "Supports PDF URLs on the web, or base64 encoded data of pdf files. For example: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Scale each page to fill the width or height of the component.",
+        "scroll": "Automatically locate to the beginning of each page when scrolling."
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it.",
       "setter": {
-        "click_mask_close": "Click mask to close modal"
+        "click_mask_close": "Click mask to close modal",
+        "modal": {
+          "blank": "No icons"
+        }
       },
       "setter_tips": {
         "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+      },
+      "setter_option": {
+        "fixed": "Fixed",
+        "auto_limited": "Auto height with limits",
+        "auto_height": "Auto height",
+        "text_ellipsis": "Ellipsis",
+        "text_scroll": "Scroll",
+        "text_clip": "Clip",
+        "scale_height": "Height",
+        "scale_width": "Width"
+      },
+      "setter_placeholder": {
+        "min_max_size": "No limits"
       }
     },
     "page": {
@@ -1012,7 +1037,8 @@
       "max_size": "The file size can't exceed {{maxSize }} {{ type }}.",
       "min_files": "At least {{ minFiles }} files are required.",
       "max_files": "Support up to {{ maxFiles }} files.",
-      "min_size": "The file size can't be less than {{minSize }} {{ type }}."
+      "min_size": "The file size can't be less than {{minSize }} {{ type }}.",
+      "min_max_size": "Min size ~ Max size"
     },
     "widget_picker": {
       "empty_tip": "Sorry, no search results",
@@ -1028,6 +1054,10 @@
         "selects": "Select inputs"
       },
       "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Set hidden",
+      "set_file_url": "Set file URL"
     }
   },
   "exit_preview": "Exit Preview",
@@ -1338,6 +1368,9 @@
       "name": "Upload",
       "default_button_text": "Upload",
       "default_dropzone_text": "Select or drop a file here"
+    },
+    "icon": {
+      "name": "Icon"
     }
   },
   "page": {

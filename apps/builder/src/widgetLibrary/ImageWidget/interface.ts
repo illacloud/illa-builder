@@ -11,6 +11,6 @@ export interface WrappedImageProps
 }
 
 export interface ImageWidgetProps
-  extends WrappedImageProps,
+  extends Omit<WrappedImageProps, "handleOnClick">,
     BaseWidgetProps,
     TooltipWrapperProps {}

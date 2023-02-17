@@ -62,20 +62,34 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   }, [useCustomLayout, labelName, labelDesc, isInList])
 
   const _finalAttrName = useMemo(() => {
-    if (parentAttrName) {
-      return `${parentAttrName}.${attrName}`
+    if (typeof attrName === "string") {
+      if (parentAttrName) {
+        return `${parentAttrName}.${attrName}`
+      }
+      return attrName
     }
-    return attrName
+    if (Array.isArray(attrName)) {
+      return attrName?.map((name) => {
+        if (parentAttrName) {
+          return `${parentAttrName}.${name}`
+        }
+        return name
+      })
+    }
   }, [parentAttrName, attrName])
 
   const isSetterSingleRowWrapper = useMemo(() => {
     return isSetterSingleRow || !labelName
   }, [isSetterSingleRow, labelName])
 
-  const finalValue = useMemo(
-    () => get(widgetProps, _finalAttrName),
-    [widgetProps, _finalAttrName],
-  )
+  const finalValue = useMemo(() => {
+    if (typeof _finalAttrName === "string") {
+      return get(widgetProps, _finalAttrName)
+    }
+    if (Array.isArray(_finalAttrName)) {
+      return _finalAttrName.map((name) => get(widgetProps, name))
+    }
+  }, [widgetProps, _finalAttrName])
 
   const renderSetter = useMemo(() => {
     return Comp ? (

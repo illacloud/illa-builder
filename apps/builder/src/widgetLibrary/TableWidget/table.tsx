@@ -131,11 +131,30 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    handleOnClickMenuItem,
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
+    triggerEventHandler,
     ...otherProps
   } = props
+
+  const handleOnSortingChange = useCallback(() => {
+    triggerEventHandler("sortingChange")
+  }, [triggerEventHandler])
+
+  const handleOnPaginationChange = useCallback(() => {
+    triggerEventHandler("paginationChange")
+  }, [triggerEventHandler])
+
+  const handleOnColumnFiltersChange = useCallback(() => {
+    triggerEventHandler("columnFiltersChange")
+  }, [triggerEventHandler])
+
+  const handleOnClickMenuItem = useCallback(
+    (path: string) => {
+      triggerEventHandler(path)
+    },
+    [triggerEventHandler],
+  )
 
   const defaultSort = useMemo(() => {
     if (!defaultSortKey || defaultSortKey === "default") return []
@@ -247,6 +266,9 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
       handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
       handleUpdateDsl={handleUpdateDsl}
+      handleOnSortingChange={handleOnSortingChange}
+      handleOnPaginationChange={handleOnPaginationChange}
+      handleOnColumnFiltersChange={handleOnColumnFiltersChange}
     />
   )
 }

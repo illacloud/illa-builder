@@ -50,7 +50,7 @@ export const ComponentSpaceTree: FC = () => {
         componentsAttachedUsers,
       )
     },
-    [dispatch, selectedComponents],
+    [componentsAttachedUsers, dispatch, selectedComponents],
   )
   const handleSelectComponentWhenPressShiftKey = useCallback(
     (selectedKeys: string[], referenceComponent: Record<string, any>[]) => {
@@ -84,7 +84,7 @@ export const ComponentSpaceTree: FC = () => {
         updateCurrentAllComponentsAttachedUsers(result, componentsAttachedUsers)
       }
     },
-    [dispatch, selectedComponents],
+    [componentsAttachedUsers, dispatch, selectedComponents],
   )
 
   const handleGeneralComponentSelect = useCallback(
@@ -108,6 +108,7 @@ export const ComponentSpaceTree: FC = () => {
     },
     [
       dispatch,
+      componentsAttachedUsers,
       handleSelectComponentWhenPressMetaKey,
       handleSelectComponentWhenPressShiftKey,
       generalWidgetExecutionArray,
@@ -141,6 +142,7 @@ export const ComponentSpaceTree: FC = () => {
     },
     [
       dispatch,
+      componentsAttachedUsers,
       handleSelectComponentWhenPressMetaKey,
       handleSelectComponentWhenPressShiftKey,
       generalWidgetExecutionArray,

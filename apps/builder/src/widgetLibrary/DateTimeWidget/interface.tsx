@@ -30,7 +30,7 @@ export interface WrappedDateTimeProps
 }
 
 export interface DateTimeWidgetProps
-  extends WrappedDateTimeProps,
+  extends Omit<WrappedDateTimeProps, "handleOnChange">,
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,

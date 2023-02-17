@@ -23,6 +23,7 @@ export function getInitialContent(actionType: ActionType): ActionContent {
     case "tidb":
     case "mysql":
     case "postgresql":
+    case "snowflake":
       return MysqlLikeActionInitial
     case "mssql":
       return MicrosoftSqlActionInitial
