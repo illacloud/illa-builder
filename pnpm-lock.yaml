@@ -113,6 +113,7 @@ importers:
       i18next-browser-languagedetector: ^7.0.1
       jshint: ^2.13.6
       lodash: ^4.17.21
+      pdfjs-dist: 2.16.105
       qs: ^6.11.0
       re-resizable: ^6.9.9
       react-chartjs-2: ^4.3.1
@@ -182,6 +183,7 @@ importers:
       i18next-browser-languagedetector: 7.0.1
       jshint: 2.13.6
       lodash: 4.17.21
+      pdfjs-dist: 2.16.105
       qs: 6.11.0
       re-resizable: 6.9.9
       react-chartjs-2: 4.3.1_chart.js@3.9.1

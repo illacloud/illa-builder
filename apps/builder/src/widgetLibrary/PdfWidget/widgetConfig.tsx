@@ -9,11 +9,14 @@ export const PDF_WIDGET_CONFIG: WidgetConfig = {
   icon: <PdfWidgetIcon />,
   keywords: ["Pdf", "pdf"],
   sessionType: "PRESENTATION",
-  w: 12,
-  h: 5,
+  w: 20,
+  h: 9,
   defaults: {
-    value: "",
+    url: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Guideline_No._GD-Ed-2214_Marman_Clamp_Systems_Design_Guidelines.pdf",
     hidden: false,
+    showTollBar: true,
     scaleMode: "width",
+    width: undefined,
+    height: undefined,
   },
 }

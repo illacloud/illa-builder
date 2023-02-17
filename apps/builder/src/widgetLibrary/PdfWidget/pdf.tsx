@@ -1,3 +1,4 @@
+import pdfWorker from "pdfjs-dist/build/pdf.worker.js?url"
 import {
   FC,
   forwardRef,
@@ -8,7 +9,6 @@ import {
   useState,
 } from "react"
 import { Document, Page, pdfjs } from "react-pdf"
-// import { Document, Page } from "react-pdf"
 import "react-pdf/dist/esm/Page/AnnotationLayer.css"
 import "react-pdf/dist/esm/Page/TextLayer.css"
 import { Button, Loading } from "@illa-design/react"
@@ -21,27 +21,14 @@ import {
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { PdfWidgetProps, WrappedPdfProps } from "./interface"
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker
 
 export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
-  const {
-    displayName,
-    width,
-    height,
-    scaleMode,
-    value,
-    colorScheme,
-    handleUpdateDsl,
-    handleOnChange,
-    handleOnFocus,
-  } = props
-
-  const url =
-    "https://upload.wikimedia.org/wikipedia/commons/e/ee/Guideline_No._GD-Ed-2214_Marman_Clamp_Systems_Design_Guidelines.pdf"
-  const [numPages, setNumPages] = useState<number>(0)
-  const [pageNumber, setPageNumber] = useState<number>(0)
+  const { displayName, width, height, scaleMode, url, showTollBar } = props
   const pageRef = useRef<HTMLDivElement[]>([])
   const documentRef = useRef<HTMLDivElement>(null)
+  const [numPages, setNumPages] = useState<number>(0)
+  const [pageNumber, setPageNumber] = useState<number>(0)
 
   const { scaleWidth, scaleHeight } = useMemo(() => {
     if (scaleMode === "width") {
@@ -49,7 +36,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
     }
     return { scaleHeight: height }
   }, [width, height, scaleMode])
-  console.log(scaleWidth, scaleHeight, "scaleWidth, scaleHeight")
+
   const updatePage = useCallback(
     (offset: number) => {
       const { offsetTop } = pageRef.current[pageNumber + offset - 1]
@@ -64,6 +51,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   )
 
   const downloadFile = async () => {
+    if (!url) return
     const pdf = await fetch(url)
     const pdfBlob = await pdf.blob()
     const pdfURL = URL.createObjectURL(pdfBlob)
@@ -83,7 +71,11 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
           css={documentInitStyle}
           loading={<Loading />}
           file={url}
+          onLoadProgress={({ loaded, total }) => {
+            console.log(loaded, total, "loaded, total, Document LoadProgress")
+          }}
           onLoadSuccess={({ numPages: nextNumPages, getDownloadInfo }) => {
+            console.log(nextNumPages, "Document LoadSuccess")
             setNumPages(nextNumPages)
           }}
         >
@@ -102,7 +94,6 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
           ))}
         </Document>
       </div>
-
       <div css={toolBarStyle} className="pdf-page-controls">
         <Button
           disabled={pageNumber <= 1}
@@ -128,17 +119,18 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
     </div>
   )
 })
+
 Pdf.displayName = "Pdf"
 
 export const PdfWidget: FC<PdfWidgetProps> = (props) => {
   const {
-    value,
-    colorScheme,
     displayName,
-    handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleUpdateOriginalDSLMultiAttr,
     tooltipText,
+    width,
+    height,
     w,
     h,
   } = props
@@ -146,25 +138,24 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      value,
-      colorScheme,
-    })
+    handleUpdateGlobalData?.(displayName, {})
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [
-    colorScheme,
-    displayName,
-    handleUpdateGlobalData,
-    handleUpdateDsl,
-    handleDeleteGlobalData,
-  ])
+  }, [displayName, handleUpdateGlobalData, handleDeleteGlobalData])
 
-  const { width, height } = useMemo(() => {
-    return {
-      width: wrapperRef.current?.offsetWidth || 0,
-      height: wrapperRef.current?.offsetHeight || 0,
+  useEffect(() => {
+    const offsetWidth = wrapperRef.current?.offsetWidth
+    const offsetHeight = wrapperRef.current?.offsetHeight
+    if (
+      offsetWidth &&
+      offsetHeight &&
+      (offsetWidth !== width || offsetHeight !== height)
+    ) {
+      handleUpdateOriginalDSLMultiAttr?.({
+        width: wrapperRef.current.offsetWidth,
+        height: wrapperRef.current.offsetHeight,
+      })
     }
   }, [w, h])
 
