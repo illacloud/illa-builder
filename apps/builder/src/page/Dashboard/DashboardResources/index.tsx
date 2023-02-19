@@ -82,11 +82,9 @@ export const DashboardResources: FC = () => {
               .databaseName
           }
         case "snowflake":
-          {
-            const content =
-              resource.content as SnowflakeResource<SnowflakeAuthenticationType>
-            dbName = content.database
-          }
+          dbName = (
+            resource.content as SnowflakeResource<SnowflakeAuthenticationType>
+          ).database
           break
       }
       return {

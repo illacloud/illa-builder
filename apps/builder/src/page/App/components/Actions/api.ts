@@ -203,14 +203,13 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
                 privateKey: data.privateKey,
               },
       }
-    case "dynamodb": {
+    case "dynamodb":
       const { region, accessKeyID, secretAccessKey } = data
       return {
         region,
         accessKeyID,
         secretAccessKey,
       }
-    }
   }
 }
 
