@@ -3,6 +3,7 @@ import { Rate } from "@illa-design/react"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { RateWidgetProps, WrappedRateProps } from "./interface"
 
 export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
@@ -99,19 +100,12 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
 
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [value, required, maxCount, labelPosition])
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -129,7 +123,7 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
           <WrappedRate {...props} handleOnChange={handleOnChange} />
         </div>
       </TooltipWrapper>
-    </div>
+    </AutoHeightContainer>
   )
 }
 RateWidget.displayName = "RateWidget"

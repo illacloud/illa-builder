@@ -8,6 +8,7 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 import { SelectWidgetProps, WrappedSelectProps } from "./interface"
 
@@ -187,17 +188,6 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     handleValidate,
     dataSources,
   ])
-  const wrapperRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight?.(wrapperRef.current?.clientHeight)
-    }
-
-    return () => {
-      wrapperRef.current = null
-    }
-  }, [validateMessage, labelPosition, updateComponentHeight])
 
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
@@ -212,7 +202,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -246,7 +236,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 SelectWidget.displayName = "SelectWidget"

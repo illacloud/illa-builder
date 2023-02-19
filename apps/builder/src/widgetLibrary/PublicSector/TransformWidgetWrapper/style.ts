@@ -86,5 +86,7 @@ export const applyWrapperStylesStyle = (
       : "transparent"};
     box-shadow: ${shadowStyle};
     overflow-x: hidden;
+    display: flex;
+    align-items: center;
   `
 }

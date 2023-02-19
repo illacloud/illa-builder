@@ -8,6 +8,7 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"
@@ -121,14 +122,6 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     triggerEventHandler,
   } = props
 
-  const editableInputWrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (editableInputWrapperRef.current) {
-      updateComponentHeight(editableInputWrapperRef.current?.clientHeight)
-    }
-  }, [validateMessage, labelPosition, editableInputWrapperRef])
-
   const handleValidate = useCallback(
     (value?: any) => {
       const message = handleValidateCheck({
@@ -226,7 +219,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <div ref={editableInputWrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -258,7 +251,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 EditableTextWidget.displayName = "EditableTextWidget"
