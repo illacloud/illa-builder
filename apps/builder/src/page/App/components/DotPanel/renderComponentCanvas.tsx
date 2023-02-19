@@ -6,6 +6,7 @@ import {
   RefObject,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -687,7 +688,7 @@ export const RenderComponentCanvas: FC<{
     )
   }, [bounds.height, maxY, minHeight])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isActive && canResizeY) {
       if (illaMode === "edit") {
         if (

@@ -1,5 +1,6 @@
 import { FC, forwardRef, useEffect, useMemo } from "react"
 import { Timeline, TimelineItem } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import {
   TimelineWidgetProps,
   WrappedTimelineProps,
@@ -42,9 +43,11 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     direction,
     pending,
     displayName,
+    dynamicHeight,
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    updateComponentHeight,
   } = props
 
   useEffect(() => {
@@ -73,7 +76,14 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
-  return <WrappedTimeline {...props} />
+  return (
+    <AutoHeightContainer
+      updateComponentHeight={updateComponentHeight}
+      enable={dynamicHeight !== "fixed"}
+    >
+      <WrappedTimeline {...props} />
+    </AutoHeightContainer>
+  )
 }
 
 TimelineWidget.displayName = "TimelineWidget"

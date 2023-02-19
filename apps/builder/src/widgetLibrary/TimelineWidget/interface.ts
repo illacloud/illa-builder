@@ -8,4 +8,6 @@ export interface WrappedTimelineProps
 
 export interface TimelineWidgetProps
   extends WrappedTimelineProps,
-    BaseWidgetProps {}
+    BaseWidgetProps {
+  dynamicHeight: "auto" | "fixed" | "limited"
+}

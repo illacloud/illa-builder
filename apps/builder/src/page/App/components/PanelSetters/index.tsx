@@ -22,6 +22,7 @@ import { EventActionTypeSelect } from "@/page/App/components/PanelSetters/Select
 import { EventTargetActionSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventTargetActionSelect"
 import { EventTargetWidgetSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventTargetWidgetSelect"
 import { EventWidgetMethodSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventWidgetMethodSelect"
+import { HeightModeSelect } from "@/page/App/components/PanelSetters/SelectSetter/heightModeSelect"
 import { SearchSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/searchSelect"
 import { BaseSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/baseSwitch"
 import { DynamicSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/dynamicSwitch"
@@ -76,6 +77,7 @@ const SetterTypeMapSetter = {
   CONTAINER_DEFAULT_VIEW_SETTER: ContainerDefaultViewKeySetter,
   MENU_OPTION_SETTER: MenuOptionSetter,
   DATA_SOURCE_SELECT_SETTER: DataSourceSetter,
+  HEIGHT_MODE_SELECT: HeightModeSelect,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

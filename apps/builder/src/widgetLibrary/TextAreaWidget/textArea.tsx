@@ -9,14 +9,12 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import {
   TextareaWidgetProps,
   WrappedTextareaProps,
 } from "@/widgetLibrary/TextAreaWidget/interface"
-import {
-  getTextareaContentContainerStyle,
-  textareaContainerStyle,
-} from "@/widgetLibrary/TextAreaWidget/style"
+import { getTextareaContentContainerStyle } from "@/widgetLibrary/TextAreaWidget/style"
 
 export const WrappedTextarea = forwardRef<
   HTMLTextAreaElement,
@@ -123,6 +121,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     updateComponentHeight,
     validateMessage,
     triggerEventHandler,
+    dynamicHeight,
   } = props
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -236,7 +235,10 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <AutoHeightContainer
+      updateComponentHeight={updateComponentHeight}
+      enable={dynamicHeight !== "fixed"}
+    >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div
           css={[
@@ -281,7 +283,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 
