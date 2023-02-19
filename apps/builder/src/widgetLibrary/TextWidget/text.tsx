@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { TextProps, TextWidgetProps } from "./interface"
 import {
   applyAlignStyle,
@@ -98,19 +99,11 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
-  const ref = useRef<HTMLDivElement>(null)
-
-  const updateHeight = debounce(() => {
-    updateComponentHeight?.(ref.current?.clientHeight ?? 0)
-  }, 200)
-
-  useEffect(() => {
-    updateHeight()
-  }, [value, disableMarkdown])
+  const [containerRef] = useAutoUpdateHeight(updateComponentHeight)
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div ref={ref} css={fullWidthAndFullHeightStyle}>
+      <div ref={containerRef} css={fullWidthAndFullHeightStyle}>
         <Text {...props} />
       </div>
     </TooltipWrapper>

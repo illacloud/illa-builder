@@ -12,6 +12,7 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 
 const parserThousand = (value: number | string) =>
   `${value}`.replace(/\d+/, function (s) {
@@ -213,14 +214,6 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     handleValidate,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [validateMessage, labelPosition, updateComponentHeight])
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
@@ -234,7 +227,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   }, [])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -268,7 +261,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 NumberInputWidget.displayName = "NumberInputWidget"

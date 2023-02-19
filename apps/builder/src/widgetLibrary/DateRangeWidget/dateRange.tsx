@@ -8,6 +8,7 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { handleValidateCheck } from "../PublicSector/InvalidMessage/utils"
 import { DateWidgetProps, WrappedDateRangeProps } from "./interface"
 
@@ -204,20 +205,12 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     handleValidate,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
 
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [required, labelPosition, validateMessage, updateComponentHeight])
-
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -248,7 +241,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 DateRangeWidget.displayName = "DateRangeWidget"

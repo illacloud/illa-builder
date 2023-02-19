@@ -8,6 +8,7 @@ import {
   applyCenterLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 import {
   CheckboxGroupWidgetProps,
@@ -160,20 +161,12 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     handleValidate,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [validateMessage, finalOptions, labelPosition, updateComponentHeight])
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -205,7 +198,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 

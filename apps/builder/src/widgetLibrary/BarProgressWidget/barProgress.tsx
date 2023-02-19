@@ -3,6 +3,7 @@ import { Progress } from "@illa-design/react"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { BarProgressWidgetProps, WrappedBarProgressProps } from "./interface"
 
 export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
@@ -83,16 +84,8 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [value, required, labelPosition])
-
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -110,7 +103,7 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
           <WrappedBarProgress {...props} />
         </div>
       </TooltipWrapper>
-    </div>
+    </AutoHeightContainer>
   )
 }
 

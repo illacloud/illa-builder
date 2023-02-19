@@ -8,6 +8,7 @@ import {
   applyCenterLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 import { RadioGroupWidgetProps, WrappedRadioGroupProps } from "./interface"
 
@@ -158,29 +159,12 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     handleValidate,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const timeoutId = useRef<number>()
-  const updateHeight = useCallback(() => {
-    timeoutId.current = window.setTimeout(() => {
-      if (wrapperRef.current) {
-        updateComponentHeight(wrapperRef.current?.clientHeight)
-      }
-    }, 200)
-  }, [updateComponentHeight])
-
-  useEffect(() => {
-    updateHeight()
-    return () => {
-      clearTimeout(timeoutId.current)
-    }
-  }, [labelPosition, direction, finalOptions, validateMessage])
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -212,7 +196,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 RadioGroupWidget.displayName = "RadioGroupWidget"
