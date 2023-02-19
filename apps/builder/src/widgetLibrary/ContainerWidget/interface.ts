@@ -18,4 +18,5 @@ export interface ContainerProps extends BaseWidgetProps {
   h: number
   unitH: number
   blockColumns: number
+  dynamicHeight: "auto" | "fixed" | "limited"
 }

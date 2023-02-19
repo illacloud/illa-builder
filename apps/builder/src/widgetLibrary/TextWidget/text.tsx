@@ -1,13 +1,7 @@
-import { debounce } from "lodash"
-import { FC, useEffect, useRef } from "react"
+import { FC, useEffect } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import {
-  Text as ILLAText,
-  Link,
-  Paragraph,
-  Typography,
-} from "@illa-design/react"
+import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { TextProps, TextWidgetProps } from "./interface"
@@ -71,6 +65,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     updateComponentHeight,
     disableMarkdown,
     tooltipText,
+    dynamicHeight,
   } = props
 
   useEffect(() => {
@@ -99,7 +94,10 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
-  const [containerRef] = useAutoUpdateHeight(updateComponentHeight)
+  const [containerRef] = useAutoUpdateHeight(
+    updateComponentHeight,
+    dynamicHeight !== "fixed",
+  )
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

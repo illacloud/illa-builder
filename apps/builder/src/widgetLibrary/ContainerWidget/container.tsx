@@ -3,6 +3,7 @@ import useMeasure from "react-use-measure"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { ContainerEmptyState } from "./emptyState"
 import { containerWrapperStyle } from "./style"
 
@@ -17,7 +18,9 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     tooltipText,
     childrenNode,
     blockColumns,
+    dynamicHeight,
     triggerEventHandler,
+    updateComponentHeight,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
   const [containerRef, containerBounds] = useMeasure()
@@ -160,7 +163,12 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
         ref={containerRef}
         onClick={handleOnClick}
       >
-        {renderComponent}
+        <AutoHeightContainer
+          updateComponentHeight={updateComponentHeight}
+          enable={dynamicHeight !== "fixed"}
+        >
+          {renderComponent}
+        </AutoHeightContainer>
       </div>
     </TooltipWrapper>
   )
