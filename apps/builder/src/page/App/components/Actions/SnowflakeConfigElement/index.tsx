@@ -3,11 +3,6 @@ import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
-import {
-  container,
-  divider,
-  footerStyle,
-} from "@/page/App/components/Actions/MicrosoftSqlConfigElement/style"
 import { BasicAuthConfig } from "@/page/App/components/Actions/SnowflakeConfigElement/BasicAuthConfig"
 import { KeyPairConfig } from "@/page/App/components/Actions/SnowflakeConfigElement/KeyPairConfig"
 import {
@@ -15,7 +10,12 @@ import {
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
-import { optionLabelStyle } from "@/page/App/components/Actions/styles"
+import {
+  container,
+  divider,
+  footerStyle,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
   AuthenticationOptions,

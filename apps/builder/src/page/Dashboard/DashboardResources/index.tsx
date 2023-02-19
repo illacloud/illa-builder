@@ -32,6 +32,10 @@ import {
   ResourceContent,
   ResourceListState,
 } from "@/redux/resource/resourceState"
+import {
+  SnowflakeAuthenticationType,
+  SnowflakeResource,
+} from "@/redux/resource/snowflakeResource"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
 
@@ -50,6 +54,7 @@ export const DashboardResources: FC = () => {
         case "smtp":
         case "restapi":
         case "elasticsearch":
+        case "dynamodb":
         case "s3":
         case "huggingface":
           break
@@ -75,6 +80,12 @@ export const DashboardResources: FC = () => {
           if (mongoRes.content.configType == "gui") {
             dbName = (mongoRes.content.configContent as MongoDbGuiConfigContent)
               .databaseName
+          }
+        case "snowflake":
+          {
+            const content =
+              resource.content as SnowflakeResource<SnowflakeAuthenticationType>
+            dbName = content.database
           }
           break
       }

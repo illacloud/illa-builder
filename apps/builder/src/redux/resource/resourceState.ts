@@ -1,4 +1,5 @@
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
+import { DynamoDBResource } from "@/redux/resource/dynamoResource"
 import { FirebaseResource } from "@/redux/resource/firebaseResource"
 import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
 import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
@@ -25,6 +26,7 @@ export type ResourceType =
   | "mongodb"
   | "redis"
   | "elasticsearch"
+  | "dynamodb"
   | "snowflake"
   | "postgresql"
   | "mariadb"
@@ -40,6 +42,7 @@ export type ResourceContent =
   | SMTPResource
   | S3Resource
   | ElasticSearchResource
+  | DynamoDBResource
   | MysqlLikeResource
   | GraphQLResource<GraphQLAuth>
   | RestApiResource<RestApiAuth>

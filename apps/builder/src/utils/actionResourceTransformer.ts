@@ -26,6 +26,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "Redis"
       case "elasticsearch":
         return "Elastic Search"
+      case "dynamodb":
+        return "DynamoDB"
       case "snowflake":
         return "Snowflake"
       case "postgresql":
@@ -75,6 +77,8 @@ export function getResourceNameFromResourceType(
         return "Redis"
       case "elasticsearch":
         return "Elastic Search"
+      case "dynamodb":
+        return "DynamoDB"
       case "snowflake":
         return "Snowflake"
       case "postgresql":
