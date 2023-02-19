@@ -1,3 +1,4 @@
+import { DynamoDBAction } from "@/redux/currentApp/action/dynamoDBAction"
 import {
   FirebaseAction,
   FirebaseContentType,
@@ -95,6 +96,7 @@ export type ActionContent =
   | SMPTAction
   | S3Action<S3ActionTypeContent>
   | ElasticSearchAction
+  | DynamoDBAction
   | MysqlLikeAction
   | MicrosoftSqlAction<MicrosoftSqlActionType>
   | RestApiAction<BodyContent>

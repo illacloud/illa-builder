@@ -9,6 +9,7 @@ import { useSelector } from "react-redux"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
+import { DynamoDBPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
 import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
 import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
@@ -89,6 +90,8 @@ export const ActionPanel = forwardRef<
         return <TransformerPanel />
       case "elasticsearch":
         return <ElasticSearchPanel />
+      case "dynamodb":
+        return <DynamoDBPanel />
       case "s3":
         return <S3Panel />
       case "smtp":

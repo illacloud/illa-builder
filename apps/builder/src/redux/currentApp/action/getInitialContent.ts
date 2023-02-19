@@ -2,6 +2,7 @@ import {
   ActionContent,
   ActionType,
 } from "@/redux/currentApp/action/actionState"
+import { DynamoDBActionInitial } from "@/redux/currentApp/action/dynamoDBAction"
 import { ElasticSearchActionInitial } from "@/redux/currentApp/action/elasticSearchAction"
 import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
 import { GraphQLActionInitial } from "@/redux/currentApp/action/graphqlAction"
@@ -37,6 +38,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return MongoDbActionInitial
     case "elasticsearch":
       return ElasticSearchActionInitial
+    case "dynamodb":
+      return DynamoDBActionInitial
     case "s3":
       return S3ActionInitial
     case "smtp":
