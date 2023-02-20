@@ -1438,6 +1438,9 @@
     "pdf": {
       "empty": "无PDF文件",
       "failed": "无法加载PDF"
+    },
+    "video": {
+      "name": "视频"
     }
   },
   "page": {
