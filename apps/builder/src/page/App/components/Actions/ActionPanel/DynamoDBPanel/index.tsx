@@ -128,19 +128,19 @@ export const DynamoDBPanel: FC = () => {
       <ResourceChoose />
       <div css={actionItemContainer}>
         <SingleTypeComponent
-          title={t("editor.action.panel.mssql.config_type")}
+          title={t("editor.action.panel.dynamo.label.method")}
           componentType="select"
           onChange={(value) => handleValueChange(value as string, "method")}
           value={content.method}
           options={DynamoDBSelectOptions}
         />
         <InputEditor
-          title={"Table"}
+          title={t("editor.action.panel.dynamo.label.table")}
           lineNumbers={false}
           expectedType={VALIDATION_TYPES.STRING}
           sqlScheme={sqlTable}
           value={content.table}
-          onChange={(value) => handleValueChange(value, "table")}
+          onChange={(value) => handleValueChange(value as string, "table")}
         />
         <SingleTypeComponent
           title={""}
@@ -148,15 +148,16 @@ export const DynamoDBPanel: FC = () => {
           value={content.useJson}
           onChange={(value) => handleValueChange(value as boolean, "useJson")}
           options={DynamoDBSelectOptions}
-          checkoutTitle={"Use JSON parameter editor"}
+          checkoutTitle={t("editor.action.panel.dynamo.label.json_input")}
         />
         {content.useJson ? (
           <InputEditor
-            title={"Parameter"}
+            title={t("editor.action.panel.dynamo.label.parameters")}
             style={{ height: "88px" }}
             lineNumbers={true}
             expectedType={VALIDATION_TYPES.STRING}
             value={content.parameters}
+            placeholder={t("editor.action.panel.dynamo.placeholder.parameters")}
             onChange={(value) => handleValueChange(value, "parameters")}
           />
         ) : (

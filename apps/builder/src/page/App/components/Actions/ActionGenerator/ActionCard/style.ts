@@ -24,7 +24,7 @@ export function applyItemStyle(isDraft: boolean): SerializedStyles {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 24px 0;
+    padding: 16px 0;
     border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     position: relative;

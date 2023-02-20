@@ -115,7 +115,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
         <ControlledElement
           controlledType="input"
           isRequired
-          title={"AWS region"}
+          title={t("editor.action.resource.db.label.dynamo_region")}
           control={control}
           defaultValue={content.region}
           rules={[
@@ -123,14 +123,16 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
               required: true,
             },
           ]}
-          placeholders={["use-west-1"]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.dynamo_region"),
+          ]}
           name="region"
         />
 
         <ControlledElement
           controlledType="input"
           isRequired
-          title={"AWS Access Key ID"}
+          title={t("editor.action.resource.db.label.dynamo_access_key_id")}
           control={control}
           defaultValue={content.accessKeyID}
           rules={[
@@ -144,7 +146,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
         <ControlledElement
           controlledType="password"
           isRequired
-          title={"AWS Secret Key"}
+          title={t("editor.action.resource.db.label.dynamo_secret_key")}
           control={control}
           defaultValue={content.secretAccessKey}
           rules={[
