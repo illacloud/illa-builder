@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, Modal, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { RenameModalProps } from "@/page/Dashboard/components/RenameModal/interface"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -55,7 +55,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
           })
           return
         }
-        Api.request(
+        BuilderApi.teamRequest(
           {
             url: `/apps/${app.appId}`,
             method: "PUT",

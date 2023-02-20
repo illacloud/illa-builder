@@ -9,3 +9,10 @@ export interface RenameDashboardAppPayload {
   appId: string
   newName: string
 }
+
+export interface ModifyConfigDashboardAppPayload {
+  appId: string
+  config: {
+    public: boolean
+  }
+}

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { Outlet } from "react-router-dom"
 import { Button, CloseIcon, Loading } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { Connection } from "@/api/ws"
 import { DashboardTitleBar } from "@/page/Dashboard/components/DashboardTitleBar"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -30,7 +30,7 @@ function requestData(
 ) {
   onLoading(true)
   const appList = new Promise((resolve) => {
-    Api.request<DashboardApp[]>(
+    BuilderApi.teamRequest<DashboardApp[]>(
       {
         url: "/apps",
         method: "GET",
@@ -54,7 +54,7 @@ function requestData(
   })
 
   const resourceList = new Promise((resolve) => {
-    Api.request<Resource<ResourceContent>[]>(
+    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
       {
         url: "/resources",
         method: "GET",

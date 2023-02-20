@@ -2,6 +2,7 @@ import { getPayload } from "@/api/ws/index"
 import { Callback, Signal, Target } from "@/api/ws/interface"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
 import {
   ADD_DISPLAY_NAME,
@@ -59,6 +60,8 @@ export class ILLAWebsocket {
       }
       this.ws.onopen = () => {
         console.log(`[WS OPENED](${this.url}) connection succeeded`)
+        const { id: teamID = "", uid = "" } =
+          getCurrentTeamInfo(store.getState()) ?? {}
         store.dispatch(configActions.updateDevicesOnlineStatusReducer(true))
         this.send(
           getPayload(
@@ -69,6 +72,8 @@ export class ILLAWebsocket {
               type: "enter",
               payload: [],
             },
+            teamID,
+            uid,
             [
               {
                 authToken: getLocalStorage("token"),

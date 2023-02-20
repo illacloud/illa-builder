@@ -1,8 +1,14 @@
 import { CellContext, ColumnDef } from "@tanstack/react-table"
-import { FC, useMemo, useState } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, Empty, Space, Table } from "@illa-design/react"
+import { canAccess } from "@/illa-public-component/UserRoleUtils"
+import {
+  ACTION_ACCESS,
+  ATTRIBUTE_GROUP,
+  USER_ROLE,
+} from "@/illa-public-component/UserRoleUtils/interface"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import {
   appsContainerStyle,
@@ -32,12 +38,14 @@ import {
   ResourceContent,
   ResourceListState,
 } from "@/redux/resource/resourceState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
 
+  const teamInfo = useSelector(getCurrentTeamInfo)
   const resourcesList: ResourceListState = useSelector(getAllResources)
 
   const [newResourceVisible, setNewResourceVisible] = useState(false)
@@ -146,6 +154,16 @@ export const DashboardResources: FC = () => {
       },
     ]
   }, [t])
+
+  const canAccessResourcesView = canAccess(
+    teamInfo?.myRole ?? USER_ROLE.VIEWER,
+    ATTRIBUTE_GROUP.RESOURCE,
+    ACTION_ACCESS.VIEW,
+  )
+
+  if (teamInfo && !canAccessResourcesView) {
+    throw Error(`can not access resources view`)
+  }
 
   return (
     <>

@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Modal, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
@@ -97,7 +97,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         content: initialContent,
         ...actionItemInitial,
       }
-      Api.request(
+      BuilderApi.teamRequest(
         {
           url: `/apps/${appInfo.appId}/actions`,
           method: "POST",

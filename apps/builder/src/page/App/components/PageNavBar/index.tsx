@@ -1,6 +1,7 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate, useParams } from "react-router-dom"
 import {
   Badge,
   BugIcon,
@@ -23,7 +24,7 @@ import {
   illaPrefix,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
 import {
@@ -289,6 +290,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const message = useMessage()
+  const navigate = useNavigate()
+  const { teamIdentifier } = useParams()
 
   const appInfo = useSelector(getAppInfo)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
@@ -321,7 +324,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }, [dispatch, isFreezeCanvas])
 
   const handleClickDeploy = useCallback(() => {
-    Api.request<DeployResp>(
+    BuilderApi.teamRequest<DeployResp>(
       {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",
@@ -331,7 +334,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           window.location.protocol +
             "//" +
             window.location.host +
-            `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
+            `/${teamIdentifier}/deploy/app/${appInfo?.appId}`,
           "_blank",
         )
       },
@@ -349,16 +352,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         setDeployLoading(loading)
       },
     )
-  }, [appInfo.appId, message, t])
+  }, [appInfo.appId, t, teamIdentifier])
 
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
         <Logo
           width="34px"
-          onClick={() => {
-            window.location.href = "/"
-          }}
+          onClick={() => navigate(`/${teamIdentifier}/dashboard/apps`)}
           css={logoCursorStyle}
         />
         <div css={informationStyle}>
