@@ -34,19 +34,19 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
             $dynamicAttrPaths: ["value"],
           },
         },
-        {
-          ...TEXT_WIDGET_CONFIG,
-          w: 20,
-          h: 4,
-          x: 22,
-          y: 12,
-          defaults: {
-            ...TEXT_WIDGET_CONFIG.defaults,
-            value:
-              "{{templateDisplayName.dataSources.map((currentItem) => (currentItem.email))}}",
-            $dynamicAttrPaths: ["value"],
-          },
-        },
+        // {
+        //   ...TEXT_WIDGET_CONFIG,
+        //   w: 20,
+        //   h: 4,
+        //   x: 22,
+        //   y: 10,
+        //   defaults: {
+        //     ...TEXT_WIDGET_CONFIG.defaults,
+        //     value:
+        //       "{{templateDisplayName.dataSources.map((currentItem) => (currentItem.email))}}",
+        //     $dynamicAttrPaths: ["value"],
+        //   },
+        // },
         {
           ...IMAGE_WIDGET_CONFIG,
           w: 16,

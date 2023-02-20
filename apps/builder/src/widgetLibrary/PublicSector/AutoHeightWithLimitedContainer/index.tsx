@@ -105,6 +105,7 @@ export const AutoHeightWithLimitedContainer: FC<
           position: "absolute",
           top: "0",
           zIndex: -1,
+          pointerEvents: "none",
         }}
         minHeight={containerHeight + DEFAULT_MIN_GAP}
         handleComponent={resizeHandler}
@@ -113,6 +114,9 @@ export const AutoHeightWithLimitedContainer: FC<
         }}
         onResizeStart={resizeStartCallback}
         onResizeStop={resizeMaxHeightCallback}
+        handleWrapperStyle={{
+          pointerEvents: "all",
+        }}
       >
         <div css={containerStyle} />
       </Resizable>
@@ -124,7 +128,7 @@ export const AutoHeightWithLimitedContainer: FC<
         style={{
           position: "absolute",
           top: "0",
-          zIndex: 1,
+          pointerEvents: "none",
         }}
         minHeight={27}
         handleComponent={resizeHandler}
@@ -133,6 +137,9 @@ export const AutoHeightWithLimitedContainer: FC<
         }}
         onResizeStart={resizeStartCallback}
         onResizeStop={resizeMinHeightCallback}
+        handleWrapperStyle={{
+          pointerEvents: "all",
+        }}
       >
         <div css={bottomBarContainerStyle} />
       </Resizable>

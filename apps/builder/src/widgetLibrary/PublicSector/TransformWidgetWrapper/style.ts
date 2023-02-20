@@ -74,10 +74,6 @@ export const applyWrapperStylesStyle = (
     borderStyle = `${borderWidth} solid ${borderColor}`
   }
   const shadowStyle = getShadowStyle(shadow)
-  const flexStyle = css`
-    display: flex;
-    align-items: center;
-  `
   return css`
     width: 100%;
     height: 100%;
@@ -90,6 +86,5 @@ export const applyWrapperStylesStyle = (
       : "transparent"};
     box-shadow: ${shadowStyle};
     overflow-x: hidden;
-    ${widgetType !== "TEXT_WIDGET" ? flexStyle : ""};
   `
 }

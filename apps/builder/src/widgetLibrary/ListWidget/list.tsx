@@ -4,6 +4,7 @@ import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { Pagination } from "@illa-design/react"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import {
   applyBarHandlerStyle,
   applyBarPointerStyle,
@@ -48,11 +49,14 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
     updateComponentHeight,
     itemNumber = 1,
     h,
+    dynamicMinHeight,
+    dynamicMaxHeight,
   } = props
 
   const updateAllComponentHeight = useCallback(
     (height: number) => {
       if (height * itemNumber + 8 * (itemNumber - 1) === h) return
+
       handleUpdateOriginalDSLMultiAttr({
         itemHeight: height,
       })
@@ -62,6 +66,26 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
         }, 60)
     },
     [h, handleUpdateOriginalDSLMultiAttr, itemNumber, updateComponentHeight],
+  )
+
+  const enableAutoHeight = useMemo(() => {
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "limited":
+        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight, dynamicMinHeight, h])
+
+  const dynamicOptions = useMemo(
+    () => ({
+      dynamicMinHeight,
+      dynamicMaxHeight,
+    }),
+    [dynamicMaxHeight, dynamicMinHeight],
   )
 
   const basicContainerProps =
@@ -79,7 +103,8 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
   return (
     <AutoHeightContainer
       updateComponentHeight={updateAllComponentHeight}
-      enable={dynamicHeight !== "fixed"}
+      enable={enableAutoHeight}
+      dynamicOptions={dynamicOptions}
     >
       <BasicContainer
         {...basicContainerProps}
@@ -146,6 +171,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     illaMode,
     blockColumns,
     dynamicHeight = "fixed",
+    h,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
@@ -246,6 +272,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
               handleUpdateOriginalDSLMultiAttr={
                 handleUpdateOriginalDSLMultiAttr
               }
+              h={h}
             />
           </div>
           {canShowBorder && (
@@ -310,6 +337,8 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
     dynamicHeight,
     updateComponentHeight,
     h,
+    dynamicMinHeight,
+    dynamicMaxHeight,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
@@ -386,6 +415,8 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
             itemNumber={copyComponents?.length}
             updateComponentHeight={updateComponentHeight}
             h={h}
+            dynamicMinHeight={dynamicMinHeight}
+            dynamicMaxHeight={dynamicMaxHeight}
           />
         </div>
         {canShowBorder && (
