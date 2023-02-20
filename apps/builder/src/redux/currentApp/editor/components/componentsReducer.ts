@@ -122,7 +122,11 @@ export const copyComponentReducer: CaseReducer<
             newComponentNode.props ?? {},
           )
         }
-        parentNode.childrenNode.push(newComponentNode)
+        if (parentNode.childrenNode === null) {
+          parentNode.childrenNode = [newComponentNode]
+        } else {
+          parentNode.childrenNode.push(newComponentNode)
+        }
       }
     }
   })

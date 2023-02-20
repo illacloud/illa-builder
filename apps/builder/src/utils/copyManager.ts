@@ -3,14 +3,27 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
+import {
+  getCanvas,
+  searchCurrentPageContainerNode,
+  searchDsl,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  getRootNodeExecutionResult,
+  getWidgetExecutionResult,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import { FocusManager } from "@/utils/focusManager"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export class CopyManager {
   static currentCopyComponentNodes: ComponentNode[] | null = null
+
+  static currentPageIndex: number | null = null
+
+  static currentPageSortedKey: string[] | null = null
 
   static currentCopyAction: ActionItem<ActionContent> | null = null
 
@@ -19,6 +32,11 @@ export class CopyManager {
   }
 
   static copyComponentNode(node: ComponentNode[]) {
+    const { currentPageIndex, pageSortedKey } = getRootNodeExecutionResult(
+      store.getState(),
+    )
+    this.currentPageIndex = currentPageIndex
+    this.currentPageSortedKey = pageSortedKey
     this.currentCopyComponentNodes = node
   }
 
@@ -33,16 +51,40 @@ export class CopyManager {
       case "dataWorkspace_component":
       case "canvas":
         if (this.currentCopyComponentNodes != null) {
-          store.dispatch(
-            componentsActions.copyComponentReducer(
-              this.currentCopyComponentNodes.map((node) => {
-                return {
-                  oldComponentNode: node,
-                  newComponentNode: this.copyComponent(node),
-                }
-              }),
-            ),
-          )
+          const { currentPageIndex, pageSortedKey } =
+            getRootNodeExecutionResult(store.getState())
+          if (
+            this.currentPageIndex === currentPageIndex &&
+            this.currentPageSortedKey === pageSortedKey
+          ) {
+            store.dispatch(
+              componentsActions.copyComponentReducer(
+                this.currentCopyComponentNodes.map((node) => {
+                  return {
+                    oldComponentNode: node,
+                    newComponentNode: this.copyComponent(node),
+                  }
+                }),
+              ),
+            )
+          } else {
+            const containerNode = searchCurrentPageContainerNode(
+              pageSortedKey,
+              currentPageIndex,
+            )
+            if (containerNode) {
+              store.dispatch(
+                componentsActions.copyComponentReducer(
+                  this.currentCopyComponentNodes.map((node) => {
+                    return {
+                      oldComponentNode: node,
+                      newComponentNode: this.copyComponent(node, containerNode),
+                    }
+                  }),
+                ),
+              )
+            }
+          }
         }
         break
       case "none":
@@ -54,9 +96,9 @@ export class CopyManager {
 
   static copyComponent(
     node: ComponentNode,
+    newParentNode?: ComponentNode,
     offsetX?: number,
     offsetY?: number,
-    newParentNode?: ComponentNode,
   ): ComponentNode {
     const newNode = {
       ...node,
@@ -70,7 +112,7 @@ export class CopyManager {
     } as ComponentNode
     if (Array.isArray(node.childrenNode)) {
       newNode.childrenNode = node.childrenNode.map((n) =>
-        this.copyComponent(n, 0, 0, newNode),
+        this.copyComponent(n, newNode, 0, 0),
       )
     }
     return newNode
