@@ -17,6 +17,7 @@ export interface ListWidgetProps extends BaseWidgetProps {
   disabled: boolean
   blockColumns: number
   dynamicHeight: "auto" | "fixed" | "limited"
+  h: number
 }
 
 export interface RenderTemplateContainerProps {
@@ -25,7 +26,9 @@ export interface RenderTemplateContainerProps {
   blockColumns: number
   dynamicHeight: "auto" | "fixed" | "limited"
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
-  itemHeight: number
+  updateComponentHeight?: (newHeight: number) => void
+  itemNumber?: number
+  h?: number
 }
 
 export interface RenderCopyContainerProps {

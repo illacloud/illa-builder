@@ -21,34 +21,6 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: `${baseWidgetName}-pagination`,
-    groupName: i18n.t("editor.inspect.setter_group.pagination"),
-    children: [
-      {
-        id: `${baseWidgetName}-basic-overFlow`,
-        labelName: i18n.t("editor.inspect.setter_label.overFlow"),
-        attrName: "overflowMethod",
-        setterType: "RADIO_GROUP_SETTER",
-        options: [
-          {
-            label: i18n.t("widget.table.pagination"),
-            value: OVERFLOW_TYPE.PAGINATION,
-          },
-          { label: i18n.t("widget.table.scroll"), value: OVERFLOW_TYPE.SCROLL },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-basic-pageSize`,
-        labelName: i18n.t("editor.inspect.setter_label.pageSize"),
-        attrName: "pageSize",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
-        bindAttrName: ["overflowMethod"],
-        shown: (overflow: string) => overflow === OVERFLOW_TYPE.PAGINATION,
-      },
-    ],
-  },
-  {
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
@@ -91,6 +63,31 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
             value: "auto",
           },
         ],
+      },
+      {
+        id: `${baseWidgetName}-basic-overFlow`,
+        labelName: i18n.t("editor.inspect.setter_label.overFlow"),
+        attrName: "overflowMethod",
+        setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: ["dynamicHeight"],
+        shown: (dynamicHeight: string) => dynamicHeight !== "auto",
+        options: [
+          {
+            label: i18n.t("widget.table.pagination"),
+            value: OVERFLOW_TYPE.PAGINATION,
+          },
+          { label: i18n.t("widget.table.scroll"), value: OVERFLOW_TYPE.SCROLL },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-basic-pageSize`,
+        labelName: i18n.t("editor.inspect.setter_label.pageSize"),
+        attrName: "pageSize",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: ["overflowMethod", "dynamicHeight"],
+        shown: (overflow: string, dynamicHeight: string) =>
+          overflow === OVERFLOW_TYPE.PAGINATION && dynamicHeight !== "auto",
       },
       {
         id: `${baseWidgetName}-layout-hidden`,

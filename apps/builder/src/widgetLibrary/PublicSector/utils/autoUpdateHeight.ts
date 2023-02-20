@@ -6,12 +6,22 @@ export const useAutoUpdateHeight = (
 ) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
+  const isMounted = useRef(false)
+
   const observer = useRef(
     new ResizeObserver((entries) => {
+      if (!isMounted.current) return
       const height = entries[0].contentRect.height
-      handleUpdateHeight(height)
+      handleUpdateHeight?.(height)
     }),
   )
+
+  useEffect(() => {
+    isMounted.current = true
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
 
   useEffect(() => {
     if (containerRef.current && enable) {
