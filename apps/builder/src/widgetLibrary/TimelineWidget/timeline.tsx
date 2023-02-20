@@ -43,7 +43,7 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     direction,
     pending,
     displayName,
-    dynamicHeight,
+    dynamicHeight = "fixed",
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,

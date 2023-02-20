@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
-import useMeasure from "react-use-measure"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -18,12 +18,11 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     tooltipText,
     childrenNode,
     blockColumns,
-    dynamicHeight,
+    dynamicHeight = "fixed",
     triggerEventHandler,
     updateComponentHeight,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
-  const [containerRef, containerBounds] = useMeasure()
   useEffect(() => {
     if (typeof preCurrentViewIndex.current !== "number") {
       preCurrentViewIndex.current = currentIndex
@@ -44,7 +43,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       return (
         <BasicContainer
           componentNode={currentViewComponentNode}
-          minHeight={304}
+          minHeight={38 * UNIT_HEIGHT}
           padding={4}
           safeRowNumber={1}
           addedRowNumber={1}
@@ -53,7 +52,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       )
     }
     return <ContainerEmptyState />
-  }, [blockColumns, childrenNode, containerBounds.height, currentIndex])
+  }, [blockColumns, childrenNode, currentIndex])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
@@ -158,11 +157,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div
-        css={containerWrapperStyle}
-        ref={containerRef}
-        onClick={handleOnClick}
-      >
+      <div css={containerWrapperStyle} onClick={handleOnClick}>
         <AutoHeightContainer
           updateComponentHeight={updateComponentHeight}
           enable={dynamicHeight !== "fixed"}

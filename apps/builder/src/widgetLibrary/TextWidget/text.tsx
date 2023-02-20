@@ -65,7 +65,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     updateComponentHeight,
     disableMarkdown,
     tooltipText,
-    dynamicHeight,
+    dynamicHeight = "auto",
   } = props
 
   useEffect(() => {
