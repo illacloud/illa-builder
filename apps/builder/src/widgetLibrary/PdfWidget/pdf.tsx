@@ -82,7 +82,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
     }
   }, 150)
 
-  const downloadFile = async () => {
+  const downloadFile = useCallback(async () => {
     if (!url) return
     const pdf = await fetch(url)
     const pdfBlob = await pdf.blob()
@@ -94,7 +94,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
     anchor.click()
     document.body.removeChild(anchor)
     URL.revokeObjectURL(pdfURL)
-  }
+  }, [url, displayName])
 
   const handleScroll = () => {
     if (hasButtonClicked) return setButtonClick(false)
