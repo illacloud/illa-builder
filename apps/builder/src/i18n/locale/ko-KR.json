@@ -357,6 +357,37 @@
           "dropdown": {
             "retry": "클릭하여 재시도하기"
           }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Method",
+            "table": "Table",
+            "json_input": "Use JSON parameter editor",
+            "parameters": "Parameters",
+            "index": "Index name",
+            "key_condition": "Key condition expression",
+            "projection_expression": "Projection expression",
+            "filter_expression": "Filter expression",
+            "attribute_name": "Expression attribute names",
+            "attribute_value": "Expression attribute values",
+            "limit": "Limit",
+            "select": "Select",
+            "item": "Item",
+            "condition_expression": "Condition expression",
+            "key": "Key",
+            "update_expression": "Update expression"
+          },
+          "option": {
+            "query": "query",
+            "scan": "scan",
+            "put_item": "putItem",
+            "get_item": "getItem",
+            "update_item": "updateItem",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
+          }
         }
       },
       "resource": {
@@ -401,14 +432,17 @@
             "introspection": "Introspection",
             "bear_token": "Token",
             "connection_options": "연결 옵션",
-            "account_name": "계정 이름",
+            "account_name": "Account Identifier",
             "warehouse": "Warehouse",
             "schema": "Schema",
             "snowflake_basic_auth": "Basic Auth",
             "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
             "role": "역할",
             "username": "사용자 이름",
-            "password": "비밀번호"
+            "password": "비밀번호",
+            "dynamo_region": "AWS 지역",
+            "dynamo_access_key_id": "AWS 엑세스 키 ID",
+            "dynamo_secret_key": "AWS 비밀 키"
           },
           "placeholder": {
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
@@ -431,7 +465,8 @@
             "role": "역할",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
-            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
           },
           "tip": {
             "connect_type": "클라우드 서버: ILLA 서버가 데이터베이스에 안전하게 연결됩니다.",
@@ -561,6 +596,12 @@
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
+        },
+        "tip": {
+          "allowlist": "리소스에 공개적으로 액세스할 수 없는 경우 ILLA가 리소스에 연결할 수 있도록 네트워크 또는 방화벽 설정을 업데이트하여 ILLA의 IP 주소를 허용 목록에 추가하세요."
+        },
+        "button": {
+          "copy_ip": "IP 복사"
         }
       },
       "resource_choose": {
@@ -688,7 +729,11 @@
           "submit": "제출하다",
           "success": "성공 후",
           "onOpenModal": "Open modal",
-          "onCloseModal": "Close modal"
+          "onCloseModal": "Close modal",
+          "play": "재생",
+          "pause": "정지시키다",
+          "loaded": "짐을 실은",
+          "ended": "종료"
         }
       },
       "setter_default_value": {
@@ -921,7 +966,9 @@
         "show_tool_bar": "도구 모음 표시",
         "scale": "줌 페이지",
         "scroll": "각 페이지에 스냅 스크롤",
-        "min_max_size": "가장 작은~최대 파일 크기"
+        "min_max_size": "가장 작은~최대 파일 크기",
+        "video_url": "비디오 URL",
+        "autoplay": "Autoplay"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -960,7 +1007,8 @@
         "parse_value": "JSON, CSV, TSV, Excel 및 TXT 파일을 지원하여 선택한 파일의 구문 분석을 시도합니다. 구문 분석된 데이터는 {{uploader1.parsedValue}}를 통해 액세스할 수 있습니다. 구문 분석할 수 없는 파일은 배열에서 null이 됩니다. 모든 파일은 이 옵션에 관계없이 값 배열에서 base64로 인코딩된 문자열로 사용할 수 있습니다.",
         "file_url": "웹에서 PDF URL 또는 pdf 파일의 base64 인코딩 데이터를 지원합니다. 예: {{ data:application/pdf;base64, example-data }}",
         "scale": "각 페이지의 크기를 조정하여 구성 요소의 너비 또는 높이를 채웁니다.",
-        "scroll": "스크롤 시 자동으로 각 페이지의 시작 부분으로 이동합니다."
+        "scroll": "스크롤 시 자동으로 각 페이지의 시작 부분으로 이동합니다.",
+        "video_url": "대부분의 비디오 서비스 또는 일반적인 비디오 파일 유형에 대한 직접 링크를 지원합니다."
       },
       "tab_title": "속성",
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
@@ -1038,7 +1086,7 @@
       "min_files": "{{ minFiles }} 개 이상의 파일이 필요합니다.",
       "max_files": "최대 {{ maxFiles }} 파일이 지원됩니다.",
       "min_size": "파일 크기는 {{minSize }} {{ type }} 보다 작을 수 없습니다.",
-      "min_max_size": "Min size ~ Max size"
+      "min_max_size": "가장 작은~최대 파일 크기"
     },
     "widget_picker": {
       "empty_tip": "죄송합니다, 검색 결과가 없습니다",
@@ -1057,7 +1105,16 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL"
+      "set_file_url": "Set file URL",
+      "play": "Play",
+      "pause": "Pause",
+      "seek_to": {
+        "time": "시간",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "비디오 URL"
+      }
     }
   },
   "exit_preview": "미리보기 종료",
@@ -1071,7 +1128,13 @@
     "viewport": {
       "size": "Size",
       "reset": "초기화",
-      "save": "저장"
+      "save": "저장",
+      "tooltip": {
+        "fluid_width": "Fluid width",
+        "desktop": "Desktop（width = 1280px）",
+        "tablet": "Tablet（width = 1080px）",
+        "custom": "Custom"
+      }
     },
     "button_text": "시사"
   },
@@ -1375,6 +1438,9 @@
     "pdf": {
       "empty": "PDF 파일 없음",
       "failed": "PDF를 로드할 수 없습니다."
+    },
+    "video": {
+      "name": "동영상"
     }
   },
   "page": {
