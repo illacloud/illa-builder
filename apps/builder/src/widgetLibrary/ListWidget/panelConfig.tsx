@@ -5,7 +5,7 @@ import { LIST_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ListWidget/eventHandl
 import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
-const baseWidgetName = "form"
+const baseWidgetName = "list"
 export const LIST_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-data`,
@@ -54,10 +54,10 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
             label: i18n.t("editor.inspect.setter_option.fixed"),
             value: "fixed",
           },
-          {
-            label: i18n.t("editor.inspect.setter_option.auto_limited"),
-            value: "limited",
-          },
+          // {
+          //   label: i18n.t("editor.inspect.setter_option.auto_limited"),
+          //   value: "limited",
+          // },
           {
             label: i18n.t("editor.inspect.setter_option.auto_height"),
             value: "auto",

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useLayoutEffect, useRef } from "react"
 
 export const useAutoUpdateHeight = (
   handleUpdateHeight: (height: number) => void,
@@ -19,9 +19,9 @@ export const useAutoUpdateHeight = (
     }
   }, [])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const observer = new ResizeObserver((entries) => {
-      if (!isMounted.current) return
+      if (!isMounted.current || !handleUpdateHeight) return
       const height = entries[0].contentRect.height
       if (
         dynamicOptions &&
@@ -39,10 +39,10 @@ export const useAutoUpdateHeight = (
         handleUpdateHeight(dynamicOptions.dynamicMinHeight - 6)
         return
       }
-
       handleUpdateHeight?.(height)
     })
     if (containerRef.current && enable) {
+      observer.unobserve(containerRef.current)
       observer.observe(containerRef.current)
     }
 

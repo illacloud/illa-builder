@@ -21,6 +21,9 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     dynamicHeight = "fixed",
     triggerEventHandler,
     updateComponentHeight,
+    dynamicMaxHeight,
+    dynamicMinHeight,
+    h,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
   useEffect(() => {
@@ -155,12 +158,30 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     viewList,
   ])
 
+  const enableAutoHeight = useMemo(() => {
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "limited":
+        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight, dynamicMinHeight, h])
+
+  const dynamicOptions = {
+    dynamicMinHeight,
+    dynamicMaxHeight,
+  }
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={containerWrapperStyle} onClick={handleOnClick}>
         <AutoHeightContainer
           updateComponentHeight={updateComponentHeight}
-          enable={dynamicHeight !== "fixed"}
+          enable={enableAutoHeight}
+          dynamicOptions={dynamicOptions}
         >
           {renderComponent}
         </AutoHeightContainer>

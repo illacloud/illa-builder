@@ -18,6 +18,8 @@ export interface ListWidgetProps extends BaseWidgetProps {
   blockColumns: number
   dynamicHeight: "auto" | "fixed" | "limited"
   h: number
+  dynamicMinHeight?: number
+  dynamicMaxHeight?: number
 }
 
 export interface RenderTemplateContainerProps {
@@ -28,7 +30,9 @@ export interface RenderTemplateContainerProps {
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   updateComponentHeight?: (newHeight: number) => void
   itemNumber?: number
-  h?: number
+  h: number
+  dynamicMinHeight?: number
+  dynamicMaxHeight?: number
 }
 
 export interface RenderCopyContainerProps {

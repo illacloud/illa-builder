@@ -34,4 +34,6 @@ export interface TextareaWidgetProps
     ValidateMessageOldProps {
   validateMessage: string
   dynamicHeight: "auto" | "fixed" | "limited"
+  dynamicMinHeight?: number
+  dynamicMaxHeight?: number
 }
