@@ -596,6 +596,9 @@
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
+        },
+        "tip": {
+          "allowlist": "리소스에 공개적으로 액세스할 수 없는 경우 ILLA가 리소스에 연결할 수 있도록 네트워크 또는 방화벽 설정을 업데이트하여 ILLA의 IP 주소를 허용 목록에 추가하세요."
         }
       },
       "resource_choose": {
