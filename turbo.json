@@ -35,6 +35,11 @@
         "build"
       ]
     },
+    "build-self-cloud": {
+      "dependsOn": [
+        "build"
+      ]
+    },
     "test": {
       "dependsOn": [
         "dev"
