@@ -127,6 +127,7 @@ export const transformEvents = (
       [
         "setValue",
         "setImageUrl",
+        "setFileUrl",
         "setStartValue",
         "setEndValue",
         "setDisabled",
