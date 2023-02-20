@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import {
   Button,
   Input,
@@ -49,6 +49,9 @@ export const Login: FC = () => {
   } = useForm<LoginFields>({
     mode: "onSubmit",
   })
+  const [searchParams] = useSearchParams()
+  const appID = searchParams.get("appID")
+  const teamIdentifier = searchParams.get("teamIdentifier")
 
   const message = useMessage()
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
@@ -66,9 +69,15 @@ export const Login: FC = () => {
             email: res.data.email,
           }),
         )
-        navigate(location.state?.from?.pathname ?? "/", {
-          replace: true,
-        })
+        if (!isCloudVersion && appID && teamIdentifier) {
+          navigate(`/${teamIdentifier}/deploy/app/${appID}`, {
+            replace: true,
+          })
+        } else {
+          navigate(location.state?.from?.pathname ?? "/", {
+            replace: true,
+          })
+        }
         message.success({
           content: t("user.sign_in.tips.success"),
         })

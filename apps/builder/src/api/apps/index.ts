@@ -5,6 +5,7 @@ import {
   inviteByEmailResponse,
 } from "@/illa-public-component/MemberList/interface"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface fetchShareAppLinkResponse {
   appID: number
@@ -25,6 +26,7 @@ export const shareAppByEmail = async (
       email,
       userRole,
       appID,
+      hosts: !isCloudVersion ? window.location.origin : undefined,
     },
   })
   return response.data
