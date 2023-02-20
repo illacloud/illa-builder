@@ -89,7 +89,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     return get(executionResult, componentNode.displayName, null)
   })
 
-  const isAutoLimitedMode = realProps.dynamicHeight === "limited"
+  const isAutoLimitedMode = realProps?.dynamicHeight === "limited"
 
   const displayNameInMoveBar = useMemo(() => {
     if (componentNode.type === "CONTAINER_WIDGET" && realProps) {
