@@ -13,7 +13,7 @@ export interface WrappedPdfProps extends BaseWidgetProps {
 }
 
 export interface PdfWidgetProps
-  extends Omit<WrappedPdfProps, "maxLength">,
+  extends WrappedPdfProps,
     BaseWidgetProps,
     TooltipWrapperProps,
     BaseComponentNodeProps {}
