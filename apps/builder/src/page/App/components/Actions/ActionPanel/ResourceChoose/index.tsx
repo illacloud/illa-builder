@@ -91,7 +91,8 @@ export const ResourceChoose: FC = () => {
             addAfter={
               <PenIcon
                 color={globalColor(`--${illaPrefix}-grayBlue-04`)}
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation()
                   setEditorVisible(true)
                 }}
               />

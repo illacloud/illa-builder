@@ -1,13 +1,20 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
-import { getActionNameFromActionType } from "@/utils/actionResourceTransformer"
+import {
+  subTitleStyle,
+  titleContainerStyle,
+} from "@/page/Dashboard/components/ResourceGenerator/ResourceCard/style"
+import {
+  getActionNameFromActionType,
+  getActionSubTitleFromActionType,
+} from "@/utils/actionResourceTransformer"
 import { ActionTypeSelectorCardProps } from "./interface"
-import { applyItemStyle, comingStyle, nameStyle } from "./style"
+import { applyItemStyle, nameStyle } from "./style"
 
 export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
   const { actionType, onSelect, isDraft } = props
-  const { t } = useTranslation()
+
+  const subTitle = getActionSubTitleFromActionType(actionType)
 
   return (
     <div
@@ -19,12 +26,10 @@ export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
       }}
     >
       {getIconFromActionType(actionType, "24px")}
-      <span css={nameStyle}>{getActionNameFromActionType(actionType)}</span>
-      {isDraft && (
-        <span css={comingStyle}>
-          {t("editor.action.resource.card.coming_soon")}
-        </span>
-      )}
+      <div css={titleContainerStyle}>
+        <div css={nameStyle}>{getActionNameFromActionType(actionType)}</div>
+        {subTitle !== "" && <div css={subTitleStyle}>{subTitle}</div>}
+      </div>
     </div>
   )
 }
