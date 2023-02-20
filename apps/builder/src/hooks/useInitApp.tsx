@@ -70,7 +70,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
     resolve: (value: PromiseLike<CurrentAppResp> | CurrentAppResp) => void,
     reject: (reason?: any) => void,
   ) => {
-    BuilderApi.request<CurrentAppResp>(
+    BuilderApi.teamRequest<CurrentAppResp>(
       {
         url: `/apps/${appId}/versions/${versionId}`,
         method: "GET",

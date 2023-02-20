@@ -90,7 +90,7 @@ export class BuilderApi {
   static asyncRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
   ) {
-    return Api.asyncRequest(config)
+    return Api.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 
   static teamRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
@@ -113,6 +113,6 @@ export class BuilderApi {
     const teamId = getTeamID()
     config.url = `/teams/${teamId}` + config.url
 
-    return this.asyncRequest(config)
+    return this.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 }
