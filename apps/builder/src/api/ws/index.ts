@@ -91,7 +91,9 @@ export class Connection {
         let wsURL = response.data.wsURL
         if (!isCloudVersion) {
           wsURL =
-            location.protocol === "https:" ? `wss://${wsURL}` : `ws://${wsURL}`
+            location.protocol === "https:"
+              ? `wss://${location.host}${wsURL}`
+              : `ws://${location.host}${wsURL}`
         }
         let ws = generateNewWs(wsURL)
         this.roomMap.set(type + roomId, ws)
