@@ -1,75 +1,44 @@
-import { FC, useEffect, useMemo, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { BuilderApi } from "@/api/base"
 import {
   changeTeamMembersRole,
   fetchInviteLink,
-  getMembers,
   inviteByEmail,
   removeTeam,
   removeTeamMembers,
   renewInviteLink,
   setInviteLinkEnabled,
+  updateMembers,
   updateTeamPermissionConfig,
 } from "@/api/team"
 import { MemberList } from "@/illa-public-component/MemberList"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { BuilderCardInfo, MemberProps } from "@/page/Member/interface"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { MemberInfo } from "@/redux/team/teamState"
+import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const Member: FC<MemberProps> = (props) => {
-  const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const [members, setMembers] = useState<MemberInfo[]>([])
+  const members = useSelector(getMemberList) ?? []
   const [hasAppOrResource, setHasAppOrResource] = useState(false)
   const [loading, setLoading] = useState<boolean>(false)
-  const {
-    teamId,
-    currentTeamMemberID,
-    inviteLinkEnabled,
-    allowEditorManageTeamMember,
-    allowViewerManageTeamMember,
-  } = {
-    teamId: teamInfo?.id,
-    currentTeamMemberID: teamInfo?.teamMemberID,
-    inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
-    allowEditorManageTeamMember:
-      teamInfo?.permission.allowEditorManageTeamMember ?? false,
-    allowViewerManageTeamMember:
-      teamInfo?.permission.allowViewerManageTeamMember ?? false,
-  }
+  const teamId = teamInfo?.id
+  const currentTeamMemberID = teamInfo?.teamMemberID
+  const inviteLinkEnabled = teamInfo?.permission.inviteLinkEnabled ?? false
+  const allowEditorManageTeamMember =
+    teamInfo?.permission.allowEditorManageTeamMember ?? false
+  const allowViewerManageTeamMember =
+    teamInfo?.permission.allowViewerManageTeamMember ?? false
 
   const updateMemberList = async () => {
     if (!loading) {
       setLoading(true)
-      const members = await getMembers()
-      if (members) {
-        setMembers(members)
-      }
+      await updateMembers()
       setLoading(false)
     }
-  }
-
-  const handleInviteByEmail = (email: string, userRole: USER_ROLE) => {
-    return inviteByEmail(email, userRole).then((res) => {
-      updateMemberList()
-      return res
-    })
-  }
-
-  const handleChangeTeamMembersRole = (
-    teamMemberID: string,
-    userRole: USER_ROLE,
-  ) => {
-    return changeTeamMembersRole(teamMemberID, userRole).then((res) => {
-      updateMemberList()
-      return res
-    })
   }
 
   const handleRemoveTeamMembers = (teamMemberID: string) => {
@@ -77,38 +46,25 @@ export const Member: FC<MemberProps> = (props) => {
       if (teamMemberID === currentTeamMemberID) {
         window.location.reload()
       }
-      updateMemberList()
       return res
     })
   }
 
-  const getBuilderInfo = async (teamId: string) => {
-    return new Promise<BuilderCardInfo>(async (resolve, reject) => {
-      BuilderApi.teamRequest<BuilderCardInfo>(
-        {
-          method: "get",
-          url: `/builder/desc`,
-        },
-        (res) => {
-          resolve(res.data)
-        },
-        (err) => {
-          reject(err)
-        },
-        (err) => {
-          reject(err)
-        },
-      )
+  const getBuilderInfo = async () => {
+    const res = await BuilderApi.asyncTeamRequest<BuilderCardInfo>({
+      method: "get",
+      url: `/builder/desc`,
     })
+    if (res.data) {
+      const { appNum, resourceNum } = res.data
+      setHasAppOrResource(appNum > 0 || resourceNum > 0)
+    }
   }
 
   useEffect(() => {
     if (teamId) {
       updateMemberList()
-      getBuilderInfo(teamId).then((res) => {
-        const { appNum, resourceNum } = res
-        setHasAppOrResource(appNum > 0 || resourceNum > 0)
-      })
+      getBuilderInfo()
     }
   }, [teamId])
 
@@ -131,9 +87,9 @@ export const Member: FC<MemberProps> = (props) => {
       allowInviteByLink={inviteLinkEnabled}
       allowEditorManageTeamMember={allowEditorManageTeamMember}
       allowViewerManageTeamMember={allowViewerManageTeamMember}
-      inviteByEmail={handleInviteByEmail}
+      inviteByEmail={inviteByEmail}
       removeTeamMembers={handleRemoveTeamMembers}
-      changeTeamMembersRole={handleChangeTeamMembersRole}
+      changeTeamMembersRole={changeTeamMembersRole}
       updateTeamPermissionConfig={updateTeamPermissionConfig}
     />
   )

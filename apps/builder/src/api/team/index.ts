@@ -9,13 +9,13 @@ import { teamActions } from "@/redux/team/teamSlice"
 import { MemberInfo, TeamInfo } from "@/redux/team/teamState"
 import store from "@/store"
 
-export const getMembers = async () => {
+export const updateMembers = async () => {
   const response = await CloudApi.asyncTeamRequest<MemberInfo[]>({
     method: "GET",
     url: "/members",
   })
   if (!response.data) return
-  store.dispatch(teamActions.updateCurrentMemberListReducer(response.data))
+  store.dispatch(teamActions.updateMemberListReducer(response.data))
   return response.data
 }
 
@@ -132,6 +132,7 @@ export const inviteByEmail = async (email: string, userRole: USER_ROLE) => {
       userRole,
     },
   })
+  updateMembers()
   return response.data
 }
 
@@ -146,6 +147,7 @@ export const changeTeamMembersRole = async (
       userRole,
     },
   })
+  updateMembers()
   return true
 }
 
@@ -154,5 +156,6 @@ export const removeTeamMembers = async (teamMemberID: string) => {
     method: "DELETE",
     url: `/teamMembers/${teamMemberID}`,
   })
+  updateMembers()
   return true
 }

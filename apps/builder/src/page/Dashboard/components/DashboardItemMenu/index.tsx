@@ -21,9 +21,9 @@ import {
 import { BuilderApi } from "@/api/base"
 import {
   changeTeamMembersRole,
-  getMembers,
   inviteByEmail,
   setInviteLinkEnabled,
+  updateMembers,
 } from "@/api/team"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
@@ -33,7 +33,7 @@ import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
 import { MemberInfo } from "@/redux/team/teamState"
 import { RootState } from "@/store"
 import { isCloudVersion } from "@/utils/typeHelper"
@@ -59,22 +59,15 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const [renameVisible, setRenameVisible] = useState(false)
   const [duplicateVisible, setDuplicateVisible] = useState(false)
 
-  const [members, setMembers] = useState<MemberInfo[]>([])
+  const members = useSelector(getMemberList) ?? []
   const { inviteLinkEnabled, currentUserRole } = {
     currentUserRole: teamInfo?.myRole ?? USER_ROLE.VIEWER,
     inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
   }
 
-  const updateMemberList = async () => {
-    const members = await getMembers()
-    if (members) {
-      setMembers(members)
-    }
-  }
-
   const handleInviteByEmail = (email: string, userRole: USER_ROLE) => {
     return shareAppByEmail(email, userRole, appId).then((res) => {
-      updateMemberList()
+      updateMembers()
       return res
     })
   }
@@ -84,7 +77,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     userRole: USER_ROLE,
   ) => {
     return changeTeamMembersRole(teamMemberID, userRole).then((res) => {
-      updateMemberList()
+      updateMembers()
       return res
     })
   }

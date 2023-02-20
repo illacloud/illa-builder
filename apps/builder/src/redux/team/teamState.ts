@@ -39,7 +39,7 @@ export interface TeamInfo {
 export interface Team {
   items?: TeamInfo[]
   currentId?: string
-  currentMemberList?: MemberInfo[]
+  memberList?: MemberInfo[]
 }
 
 export const teamInitialState: Team = {}
