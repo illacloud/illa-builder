@@ -357,6 +357,37 @@
           "dropdown": {
             "retry": "Click to retry"
           }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Method",
+            "table": "Table",
+            "json_input": "Use JSON parameter editor",
+            "parameters": "Parameters",
+            "index": "Index name",
+            "key_condition": "Key condition expression",
+            "projection_expression": "Projection expression",
+            "filter_expression": "Filter expression",
+            "attribute_name": "Expression attribute names",
+            "attribute_value": "Expression attribute values",
+            "limit": "Limit",
+            "select": "Select",
+            "item": "Item",
+            "condition_expression": "Condition expression",
+            "key": "Key",
+            "update_expression": "Update expression"
+          },
+          "option": {
+            "query": "query",
+            "scan": "scan",
+            "put_item": "putItem",
+            "get_item": "getItem",
+            "update_item": "updateItem",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
+          }
         }
       },
       "resource": {
@@ -408,7 +439,10 @@
             "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
             "role": "Role",
             "username": "Username",
-            "password": "Password"
+            "password": "Password",
+            "dynamo_region": "AWS region",
+            "dynamo_access_key_id": "AWS Access Key ID",
+            "dynamo_secret_key": "AWS Secret Key"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -431,7 +465,8 @@
             "role": "Role",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
-            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
           },
           "tip": {
             "connect_type": "Cloud: ILLA servers will securely connect to your database.",
@@ -688,7 +723,11 @@
           "submit": "Submit",
           "success": "Success",
           "onOpenModal": "Open modal",
-          "onCloseModal": "Close modal"
+          "onCloseModal": "Close modal",
+          "play": "Play",
+          "pause": "Pause",
+          "loaded": "Loaded",
+          "ended": "Ended"
         }
       },
       "setter_default_value": {
@@ -921,7 +960,9 @@
         "show_tool_bar": "Show tool bar",
         "scale": "Scale page to",
         "scroll": "Snap scroll to each page",
-        "min_max_size": "Min size ～ Max size"
+        "min_max_size": "Min size ～ Max size",
+        "video_url": "Video URL",
+        "autoplay": "Autoplay"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -960,7 +1001,8 @@
         "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option.",
         "file_url": "Supports PDF URLs on the web, or base64 encoded data of pdf files. For example: \n{{ data:application/pdf;base64, example-data }}",
         "scale": "Scale each page to fill the width or height of the component.",
-        "scroll": "Automatically locate to the beginning of each page when scrolling."
+        "scroll": "Automatically locate to the beginning of each page when scrolling.",
+        "video_url": "Supports most video services or a direct link to any common video file type."
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
@@ -1059,7 +1101,14 @@
       "set_hidden": "Set hidden",
       "set_file_url": "Set file URL",
       "play": "Play",
-      "pause": "Pause"
+      "pause": "Pause",
+      "seek_to": {
+        "time": "Time",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "Video URL"
+      }
     }
   },
   "exit_preview": "Exit Preview",
