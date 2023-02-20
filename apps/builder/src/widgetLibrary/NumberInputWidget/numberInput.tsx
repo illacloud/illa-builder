@@ -4,6 +4,7 @@ import {
   NumberInputWidgetProps,
   WrappedNumberInputProps,
 } from "@/widgetLibrary/NumberInputWidget/interface"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -12,7 +13,6 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 
 const parserThousand = (value: number | string) =>
   `${value}`.replace(/\d+/, function (s) {

@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react"
 import {
   autoHeightContainerStyle,
   fixedHeightContainerStyle,
-} from "@/widgetLibrary/PublicSector/autoHeightContainer/style"
+} from "@/widgetLibrary/PublicSector/AutoHeightContainer/style"
 import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 
 interface AutoHeightContainerProps {

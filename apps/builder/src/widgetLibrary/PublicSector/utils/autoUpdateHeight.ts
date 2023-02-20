@@ -3,18 +3,14 @@ import { useEffect, useRef } from "react"
 export const useAutoUpdateHeight = (
   handleUpdateHeight: (height: number) => void,
   enable: boolean = true,
+  dynamicOptions?: {
+    dynamicMinHeight?: number
+    dynamicMaxHeight?: number
+  },
 ) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const isMounted = useRef(false)
-
-  const observer = useRef(
-    new ResizeObserver((entries) => {
-      if (!isMounted.current) return
-      const height = entries[0].contentRect.height
-      handleUpdateHeight?.(height)
-    }),
-  )
 
   useEffect(() => {
     isMounted.current = true
@@ -24,15 +20,37 @@ export const useAutoUpdateHeight = (
   }, [])
 
   useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      if (!isMounted.current) return
+      const height = entries[0].contentRect.height
+      if (
+        dynamicOptions &&
+        dynamicOptions.dynamicMaxHeight &&
+        height >= dynamicOptions.dynamicMaxHeight - 6
+      ) {
+        handleUpdateHeight(dynamicOptions.dynamicMaxHeight - 6)
+        return
+      }
+      if (
+        dynamicOptions &&
+        dynamicOptions.dynamicMinHeight &&
+        height <= dynamicOptions.dynamicMinHeight - 6
+      ) {
+        handleUpdateHeight(dynamicOptions.dynamicMinHeight - 6)
+        return
+      }
+
+      handleUpdateHeight?.(height)
+    })
     if (containerRef.current && enable) {
-      observer.current.observe(containerRef.current)
+      observer.observe(containerRef.current)
     }
 
     return () => {
       if (containerRef.current && enable) {
-        observer.current.unobserve(containerRef.current)
+        observer.unobserve(containerRef.current)
       }
     }
-  }, [enable])
+  }, [dynamicOptions, enable, handleUpdateHeight])
   return [containerRef]
 }

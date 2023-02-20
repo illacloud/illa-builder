@@ -259,8 +259,8 @@ export const RenderComponentCanvas: FC<{
     return childrenNode?.map((item) => {
       const h = item.h * UNIT_HEIGHT
       const w = item.w * unitWidth
-      const x = item.x * unitWidth
-      const y = item.y * UNIT_HEIGHT
+      const x = Math.floor(item.x * unitWidth)
+      const y = Math.floor(item.y * UNIT_HEIGHT)
 
       const containerHeight =
         componentNode.displayName === "root"

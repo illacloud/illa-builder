@@ -1,6 +1,7 @@
 import dayjs, { Dayjs } from "dayjs"
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { RangeDatePicker } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -8,7 +9,6 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { handleValidateCheck } from "../PublicSector/InvalidMessage/utils"
 import { DateWidgetProps, WrappedDateRangeProps } from "./interface"
 

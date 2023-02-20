@@ -1,7 +1,8 @@
-import { FC, useEffect } from "react"
+import { FC, useEffect, useMemo } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { TextProps, TextWidgetProps } from "./interface"
@@ -66,6 +67,11 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     disableMarkdown,
     tooltipText,
     dynamicHeight = "auto",
+    dynamicMinHeight,
+    dynamicMaxHeight,
+    colorScheme,
+    fs,
+    h = 0,
   } = props
 
   useEffect(() => {
@@ -94,15 +100,42 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
+  const enableAutoHeight = useMemo(() => {
+    console.log("dynamicHeight", dynamicHeight)
+    console.log("dynamicMinHeight", dynamicMinHeight)
+    console.log("dynamicMaxHeight", dynamicMaxHeight)
+    console.log("h", h)
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "limited":
+        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight, dynamicMaxHeight, dynamicMinHeight, h])
+
   const [containerRef] = useAutoUpdateHeight(
     updateComponentHeight,
-    dynamicHeight !== "fixed",
+    enableAutoHeight,
+    {
+      dynamicMinHeight,
+      dynamicMaxHeight,
+    },
   )
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div ref={containerRef} css={fullWidthAndFullHeightStyle}>
-        <Text {...props} />
+        <Text
+          horizontalAlign={horizontalAlign}
+          value={value}
+          verticalAlign={verticalAlign}
+          colorScheme={colorScheme}
+          fs={fs}
+          disableMarkdown={disableMarkdown}
+        />
       </div>
     </TooltipWrapper>
   )

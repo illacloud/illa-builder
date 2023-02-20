@@ -1,9 +1,9 @@
 import { FC, useCallback, useEffect, useRef } from "react"
 import { Switch } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { SwitchWidgetProps, WrappedSwitchProps } from "./interface"
 
 export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {

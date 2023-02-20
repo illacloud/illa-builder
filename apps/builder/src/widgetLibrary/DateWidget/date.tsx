@@ -1,6 +1,7 @@
 import dayjs, { Dayjs } from "dayjs"
 import { FC, useCallback, useEffect, useRef } from "react"
 import { SingleDatePicker } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -9,7 +10,6 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { DateWidgetProps, WrappedDateProps } from "./interface"
 
 export const WrappedDate: FC<WrappedDateProps> = (props) => {

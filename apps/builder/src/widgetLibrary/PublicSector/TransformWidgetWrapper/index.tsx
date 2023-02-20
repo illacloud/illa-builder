@@ -77,73 +77,20 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         const rootNode = getCanvas(rootState)
         const currentComponentNode = searchDsl(
           rootNode,
-          componentNode.displayName,
+          displayName,
         ) as ComponentNode
         // padding 2px so this is +4
         const newH = Math.ceil((newHeight + 6) / currentComponentNode.unitH)
         if (newH === currentComponentNode.h) return
-        const newItem = {
-          ...currentComponentNode,
-          h: Math.max(newH, currentComponentNode.minH),
-        }
-
-        const parentNodeDisplayName = currentComponentNode.parentNode
-        const target = searchDsl(rootNode, parentNodeDisplayName)
-        let allComponents: ComponentNode[] = []
-        if (target) {
-          allComponents = target.childrenNode
-        }
-
-        const cloneDeepAllComponents = cloneDeep(allComponents)
-        const findIndex = cloneDeepAllComponents.findIndex(
-          (node) => node.displayName === newItem.displayName,
+        dispatch(
+          componentsActions.updateComponentNodeHeightReducer({
+            displayName,
+            height: newH,
+            oldHeight: currentComponentNode.h,
+          }),
         )
-        cloneDeepAllComponents.splice(findIndex, 1, newItem)
-
-        if (
-          currentComponentNode.h <= newItem.h &&
-          currentComponentNode.h < newH
-        ) {
-          const result = getReflowResult(newItem, cloneDeepAllComponents, false)
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: currentComponentNode.parentNode || "root",
-                childNodes: result.finalState,
-              },
-            ]),
-          )
-        }
-        if (
-          currentComponentNode.h >= newItem.h &&
-          currentComponentNode.h > newH
-        ) {
-          const effectRows = currentComponentNode.h - newItem.h
-          const effectMap = getNearComponentNodes(
-            currentComponentNode,
-            cloneDeepAllComponents,
-          )
-          effectMap.set(newItem.displayName, newItem)
-          effectMap.forEach((node) => {
-            if (node.displayName !== currentComponentNode.displayName) {
-              node.y -= effectRows
-            }
-          })
-          let finalState = applyEffectMapToComponentNodes(
-            effectMap,
-            allComponents,
-          )
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: currentComponentNode.parentNode || "root",
-                childNodes: finalState,
-              },
-            ]),
-          )
-        }
       },
-      [componentNode.displayName, dispatch],
+      [dispatch, displayName],
     )
 
     const handleUpdateDsl = useCallback(

@@ -1,6 +1,6 @@
 import { FC, forwardRef, useEffect, useMemo } from "react"
 import { Timeline, TimelineItem } from "@illa-design/react"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import {
   TimelineWidgetProps,
   WrappedTimelineProps,

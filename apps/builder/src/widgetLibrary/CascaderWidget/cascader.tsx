@@ -4,10 +4,10 @@ import {
   CascaderWidgetProps,
   WrappedCascaderWidgetProps,
 } from "@/widgetLibrary/CascaderWidget/interface"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 
 export const WrappedCascaderWidget: FC<WrappedCascaderWidgetProps> = (
   props,
