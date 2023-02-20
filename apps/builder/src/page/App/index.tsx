@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { Connection } from "@/api/ws"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -62,25 +62,23 @@ export const Editor: FC = () => {
   const currentUser = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
 
-  const currentUserRole = useMemo(() => teamInfo?.myRole, [teamInfo])
+  const currentUserRole = teamInfo?.myRole
 
   const handleLeaveRoom = useCallback(() => {
     Connection.leaveRoom("app", appId ?? "")
   }, [appId])
 
-  useEffect(() => {
-    // check if user can manage the app
-    if (currentUserRole) {
-      const canEditApp = canManage(
-        currentUserRole,
-        ATTRIBUTE_GROUP.APP,
-        ACTION_MANAGE.EDIT_APP,
-      )
-      if (!canEditApp) {
-        throw new Error("You don't have permission to edit this app")
-      }
+  // check if user can manage the app
+  if (currentUserRole) {
+    const canEditApp = canManage(
+      currentUserRole,
+      ATTRIBUTE_GROUP.APP,
+      ACTION_MANAGE.EDIT_APP,
+    )
+    if (!canEditApp) {
+      throw new Error("You don't have permission to edit this app")
     }
-  }, [currentUserRole])
+  }
 
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {
@@ -124,7 +122,7 @@ export const Editor: FC = () => {
   // init resource
   useEffect(() => {
     const controller = new AbortController()
-    Api.request<Resource<ResourceContent>[]>(
+    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
       {
         url: "/resources",
         method: "GET",

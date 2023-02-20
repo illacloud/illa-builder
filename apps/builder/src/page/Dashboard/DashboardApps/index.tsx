@@ -42,27 +42,24 @@ export const DashboardApps: FC = () => {
   const teamInfo = useSelector(getCurrentTeamInfo)
   const [createNewModalVisible, setCreateNewModalVisible] = useState(false)
 
-  const currentUserRole = useMemo(
-    () => teamInfo?.myRole ?? USER_ROLE.VIEWER,
-    [teamInfo],
+  const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
+
+  const canEditApp = canManage(
+    currentUserRole,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.EDIT_APP,
   )
 
-  const canEditApp = useMemo(
-    () =>
-      canManage(currentUserRole, ATTRIBUTE_GROUP.APP, ACTION_MANAGE.EDIT_APP),
-    [currentUserRole],
-  )
-
-  const canCreateApp = useMemo(
-    () =>
-      canManage(currentUserRole, ATTRIBUTE_GROUP.APP, ACTION_MANAGE.CREATE_APP),
-    [currentUserRole],
+  const canCreateApp = canManage(
+    currentUserRole,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.CREATE_APP,
   )
 
   const finalAppsList = useMemo(() => {
     if (canEditApp) return appsList
     return appsList.filter((item) => {
-      return item.mainline_version !== 0
+      return item.mainlineVersion !== 0
     })
   }, [canEditApp, appsList])
 
@@ -110,7 +107,7 @@ export const DashboardApps: FC = () => {
                     <DashboardItemMenu
                       appId={item.appId}
                       canEditApp={canEditApp}
-                      isDeploy={item.mainline_version !== 0}
+                      isDeploy={item.mainlineVersion !== 0}
                     />
                   }
                 >
@@ -118,7 +115,7 @@ export const DashboardApps: FC = () => {
                     onClick={() => {
                       if (canEditApp) {
                         navigate(`/${teamIdentifier}/app/${item.appId}`)
-                      } else if (item.mainline_version !== 0) {
+                      } else if (item.mainlineVersion !== 0) {
                         navigate(`/${teamIdentifier}/deploy/app/${item.appId}`)
                       }
                     }}

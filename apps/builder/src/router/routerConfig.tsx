@@ -1,4 +1,4 @@
-import { Navigate, redirect } from "react-router-dom"
+import { LoaderFunctionArgs, Navigate, redirect } from "react-router-dom"
 import { Editor } from "@/page/App"
 import { IllaApp } from "@/page/Dashboard"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
@@ -17,12 +17,29 @@ import { Page403 } from "@/page/status/403"
 import { Page404 } from "@/page/status/404"
 import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
-import { handleRemoveUrlToken } from "@/router/loader"
+import { setLocalStorage } from "@/utils/storage"
+// import { handleRemoveUrlToken } from "@/router/loader"
 import { isCloudVersion } from "@/utils/typeHelper"
+import { removeUrlParams } from "@/utils/url"
 
 export const cloudUrl = `${location.protocol}//${
   import.meta.env.VITE_CLOUD_URL
 }`
+
+const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
+  const { request } = args
+  const url = new URL(request.url)
+  const token = url?.searchParams?.get("token")
+  if (!token) return null
+  setLocalStorage("token", token, -1)
+  const current = removeUrlParams(window.location.href, ["token"])
+  window.history.replaceState(
+    {},
+    "",
+    `${window.location.pathname}${current.search}`,
+  )
+  return null
+}
 
 // TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
 export const commonRouter: RoutesObjectPro[] = [

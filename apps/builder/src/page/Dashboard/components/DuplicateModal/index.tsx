@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, Modal, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { DuplicateModalProps } from "@/page/Dashboard/components/DuplicateModal/interface"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -56,7 +56,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
           })
           return
         }
-        Api.request<DashboardApp>(
+        BuilderApi.teamRequest<DashboardApp>(
           {
             url: `/apps/${app.appId}/duplication`,
             method: "POST",

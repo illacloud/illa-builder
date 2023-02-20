@@ -18,12 +18,12 @@ import {
   shareAppByEmail,
   updateAppPublicConfig,
 } from "@/api/apps"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import {
   changeTeamMembersRole,
-  getMembers,
   inviteByEmail,
   setInviteLinkEnabled,
+  updateMembers,
 } from "@/api/team"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
@@ -33,9 +33,10 @@ import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
 import { MemberInfo } from "@/redux/team/teamState"
 import { RootState } from "@/store"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { appId, canEditApp, isDeploy } = props
@@ -58,25 +59,15 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const [renameVisible, setRenameVisible] = useState(false)
   const [duplicateVisible, setDuplicateVisible] = useState(false)
 
-  const [members, setMembers] = useState<MemberInfo[]>([])
-  const { inviteLinkEnabled, currentUserRole } = useMemo(() => {
-    return {
-      teamId: teamInfo?.id,
-      currentUserRole: teamInfo?.myRole ?? USER_ROLE.VIEWER,
-      inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
-    }
-  }, [teamInfo])
-
-  const updateMemberList = async () => {
-    const members = await getMembers()
-    if (members) {
-      setMembers(members)
-    }
+  const members = useSelector(getMemberList) ?? []
+  const { inviteLinkEnabled, currentUserRole } = {
+    currentUserRole: teamInfo?.myRole ?? USER_ROLE.VIEWER,
+    inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
   }
 
   const handleInviteByEmail = (email: string, userRole: USER_ROLE) => {
     return shareAppByEmail(email, userRole, appId).then((res) => {
-      updateMemberList()
+      updateMembers()
       return res
     })
   }
@@ -86,7 +77,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     userRole: USER_ROLE,
   ) => {
     return changeTeamMembersRole(teamMemberID, userRole).then((res) => {
-      updateMemberList()
+      updateMembers()
       return res
     })
   }
@@ -196,7 +187,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                         },
                         closable: false,
                         onOk: () => {
-                          Api.request<DashboardApp>(
+                          BuilderApi.teamRequest<DashboardApp>(
                             {
                               url: `/apps/${appId}`,
                               method: "DELETE",
@@ -246,6 +237,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
       </Space>
       <InviteModal
         hasApp
+        isCloudVersion={isCloudVersion}
         appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
         isAppPublic={app?.config?.public}
         fetchInviteLink={fetchShareLink}

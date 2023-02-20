@@ -55,7 +55,7 @@ export const updateCurrentRoleReducer: CaseReducer<
   }
 }
 
-export const updateCurrentMemberListReducer: CaseReducer<
+export const updateMemberListReducer: CaseReducer<
   Team,
   PayloadAction<MemberInfo[]>
 > = (state, action) => {
@@ -64,6 +64,6 @@ export const updateCurrentMemberListReducer: CaseReducer<
 
   return {
     ...state,
-    currentMemberList: payload,
+    memberList: payload,
   }
 }

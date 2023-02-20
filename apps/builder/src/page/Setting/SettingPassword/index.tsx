@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Button, Password, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 
@@ -137,7 +137,7 @@ export const SettingPassword: FC = () => {
     ) {
       return
     }
-    Api.request(
+    BuilderApi.teamRequest(
       {
         url: "/users/password",
         method: "PATCH",

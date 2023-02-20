@@ -1,90 +1,10 @@
-import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { ApiError } from "@/api/base"
-import {
-  addRequestPendingPool,
-  removeRequestPendingPool,
-} from "@/api/helpers/axiosPendingPool"
-import { getCurrentId } from "@/redux/team/teamSelector"
-import { ILLARoute } from "@/router"
-import { cloudUrl } from "@/router/routerConfig"
-import store from "@/store"
-import { getAuthToken, removeAuthToken } from "@/utils/auth"
-import { isCloudVersion } from "@/utils/typeHelper"
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
+import { Api, ApiError } from "@/api/base"
+import { getTeamID } from "@/utils/team"
 
-const CLOUD = "/supervisior/api/v1"
+const CLOUD = "/supervisor/api/v1"
 
-const cloudAxios = Axios.create({
-  baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`,
-  timeout: 10000,
-  headers: {
-    "Content-Encoding": "gzip",
-    "Content-Type": "application/json",
-  },
-})
-
-const authInterceptor = (config: AxiosRequestConfig) => {
-  addRequestPendingPool(config)
-  const token = getAuthToken()
-  if (typeof token === "string") {
-    config.headers = {
-      ...(config.headers ?? {}),
-      Authorization: token,
-    }
-  }
-  return config
-}
-
-const fullFillInterceptor = (response: AxiosResponse) => {
-  const { config } = response
-  removeRequestPendingPool(config)
-  return response
-}
-
-const axiosErrorInterceptor = (error: AxiosError) => {
-  const { response } = error
-  if (!response) return Promise.reject(error)
-  const { status } = response
-  switch (status) {
-    // TODO: @aruseito maybe need custom error status, because of we'll have plugin to request other's api
-    case 401: {
-      removeAuthToken()
-      if (isCloudVersion) {
-        // navigate to illa cloud
-        ILLARoute.navigate(cloudUrl)
-      } else {
-        const { pathname } = location
-        ILLARoute.navigate("/login", {
-          replace: true,
-          state: {
-            form: pathname || "/",
-          },
-        })
-      }
-      break
-    }
-    case 403: {
-      ILLARoute.navigate("/403", {
-        replace: true,
-      })
-      break
-    }
-    case 500: {
-      ILLARoute.navigate("/500", {
-        replace: true,
-      })
-      break
-    }
-  }
-  return Promise.reject(error)
-}
-
-cloudAxios.interceptors.request.use(authInterceptor, (err) => {
-  return Promise.reject(err)
-})
-
-cloudAxios.interceptors.response.use(fullFillInterceptor, axiosErrorInterceptor)
-
-export class CloudTeamApi {
+export class CloudApi {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
     success?: (response: AxiosResponse<RespData, RequestBody>) => void,
@@ -93,34 +13,22 @@ export class CloudTeamApi {
     loading?: (loading: boolean) => void,
     errorState?: (errorState: boolean) => void,
   ) {
-    loading?.(true)
-    errorState?.(false)
-    const teamId = isCloudVersion ? getCurrentId(store.getState()) : 0
-    cloudAxios
-      .request<RespData, AxiosResponse<RespData>, RequestBody>({
-        ...config,
-        url: `/teams/${teamId}` + config.url,
-      })
-      .then((response) => {
-        loading?.(false)
-        errorState?.(false)
-        success?.(response)
-      })
-      .catch((error: AxiosError<ErrorResp, RequestBody>) => {
-        loading?.(false)
-        errorState?.(true)
-        if (error.response) {
-          failure?.(error.response)
-        }
-        if (error.response == undefined && error.request != undefined) {
-          crash?.(error)
-        }
-      })
+    config.baseURL = `${location.protocol}//${
+      import.meta.env.VITE_API_BASE_URL
+    }${CLOUD}`
+    Api.request(config, success, failure, crash, loading, errorState)
   }
-}
 
-export class CloudBaseApi {
-  static request<RespData, RequestBody = any, ErrorResp = ApiError>(
+  static asyncRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+  ) {
+    config.baseURL = `${location.protocol}//${
+      import.meta.env.VITE_API_BASE_URL
+    }${CLOUD}`
+    return Api.asyncRequest<RespData, RequestBody, ErrorResp>(config)
+  }
+
+  static teamRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
     success?: (response: AxiosResponse<RespData, RequestBody>) => void,
     failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
@@ -128,24 +36,23 @@ export class CloudBaseApi {
     loading?: (loading: boolean) => void,
     errorState?: (errorState: boolean) => void,
   ) {
-    loading?.(true)
-    errorState?.(false)
-    cloudAxios
-      .request<RespData, AxiosResponse<RespData>, RequestBody>(config)
-      .then((response) => {
-        loading?.(false)
-        errorState?.(false)
-        success?.(response)
-      })
-      .catch((error: AxiosError<ErrorResp, RequestBody>) => {
-        loading?.(false)
-        errorState?.(true)
-        if (error.response) {
-          failure?.(error.response)
-        }
-        if (error.response == undefined && error.request != undefined) {
-          crash?.(error)
-        }
-      })
+    const teamId = getTeamID()
+    config.url = `/teams/${teamId}` + config.url
+    this.request<RespData, RequestBody, ErrorResp>(
+      config,
+      success,
+      failure,
+      crash,
+      loading,
+      errorState,
+    )
+  }
+
+  static asyncTeamRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+  ) {
+    const teamId = getTeamID()
+    config.url = `/teams/${teamId}` + config.url
+    return this.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 }

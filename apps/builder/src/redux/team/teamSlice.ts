@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
   updateCurrentIdReducer,
-  updateCurrentMemberListReducer,
   updateCurrentRoleReducer,
+  updateMemberListReducer,
   updateTeamItemsReducer,
   updateTeamReducer,
 } from "@/redux/team/teamReducer"
@@ -16,7 +16,7 @@ const teamSlice = createSlice({
     updateCurrentIdReducer,
     updateTeamItemsReducer,
     updateCurrentRoleReducer,
-    updateCurrentMemberListReducer,
+    updateMemberListReducer,
   },
 })
 

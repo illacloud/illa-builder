@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -24,7 +24,7 @@ export const RedisPanel: FC = () => {
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
 
   useEffect(() => {
-    Api.request(
+    BuilderApi.teamRequest(
       {
         url: `/resources/${action.resourceId}/meta`,
         method: "GET",

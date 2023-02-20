@@ -24,7 +24,7 @@ import {
   illaPrefix,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
 import {
@@ -324,7 +324,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }, [dispatch, isFreezeCanvas])
 
   const handleClickDeploy = useCallback(() => {
-    Api.request<DeployResp>(
+    BuilderApi.teamRequest<DeployResp>(
       {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",

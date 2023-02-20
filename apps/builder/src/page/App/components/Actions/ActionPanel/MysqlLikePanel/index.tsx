@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, Select, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ReactComponent as OpenAIIcon } from "@/assets/openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
@@ -35,7 +35,7 @@ export const MysqlLikePanel: FC = (props) => {
   const { t } = useTranslation()
 
   useEffect(() => {
-    Api.request(
+    BuilderApi.teamRequest(
       {
         url: `/resources/${currentAction.resourceId}/meta`,
         method: "GET",
@@ -125,7 +125,7 @@ export const MysqlLikePanel: FC = (props) => {
             leftIcon={<OpenAIIcon />}
             onClick={() => {
               setGenerateLoading(true)
-              Api.request<{ payload: string }>(
+              BuilderApi.teamRequest<{ payload: string }>(
                 {
                   url: `/apps/${appInfo.appId}/internalActions/generateSQL`,
                   method: "POST",

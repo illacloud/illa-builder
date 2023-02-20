@@ -1,10 +1,11 @@
-import { createBrowserRouter } from "react-router-dom"
+import { LoaderFunctionArgs, createBrowserRouter } from "react-router-dom"
 import { CheckIsLogin } from "@/auth"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
 import { Page404 } from "@/page/status/404"
 import { RoutesObjectPro } from "@/router/interface"
 import { requireAuth } from "@/router/loader"
 import { routerConfig } from "@/router/routerConfig"
+import { requireSelfAuth } from "@/router/selfLoader"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 const wrappedRouter = (
@@ -27,6 +28,9 @@ const wrappedRouter = (
         }
         newRouteItem.element = <LayoutAutoChange desktopPage={element} />
       } else {
+        newRouteItem.loader = async (args) => {
+          return await requireSelfAuth(args)
+        }
         newRouteItem.element = (
           <LayoutAutoChange
             desktopPage={<CheckIsLogin>{element}</CheckIsLogin>}
