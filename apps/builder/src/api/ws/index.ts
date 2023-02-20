@@ -4,6 +4,7 @@ import { ILLAWebsocket } from "@/api/ws/illaWS"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getCurrentId, getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
+import { isCloudVersion } from "@/utils/typeHelper"
 import {
   Broadcast,
   ILLAWebSocketComponentPayload,
@@ -87,7 +88,12 @@ export class Connection {
     BuilderApi.teamRequest<Room>(
       config,
       (response) => {
-        let ws = generateNewWs(response.data.wsURL)
+        let wsURL = response.data.wsURL
+        if (!isCloudVersion) {
+          wsURL =
+            location.protocol === "https:" ? `wss://${wsURL}` : `ws://${wsURL}`
+        }
+        let ws = generateNewWs(wsURL)
         this.roomMap.set(type + roomId, ws)
       },
       (error) => {},
