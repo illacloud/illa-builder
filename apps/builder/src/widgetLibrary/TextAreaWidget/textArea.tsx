@@ -121,7 +121,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     updateComponentHeight,
     validateMessage,
     triggerEventHandler,
-    dynamicHeight,
+    dynamicHeight = "fixed",
   } = props
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)

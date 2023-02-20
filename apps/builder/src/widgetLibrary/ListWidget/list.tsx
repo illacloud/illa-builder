@@ -140,8 +140,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     itemBackGroundColor,
     illaMode,
     blockColumns,
-    dynamicHeight,
-    updateComponentHeight,
+    dynamicHeight = "fixed",
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
@@ -541,7 +540,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   const handleUpdateSelectedItem = useCallback(
     (index: number) => {
       if (!Array.isArray(dataSources) || disabled) return
-      new Promise((resolve, reject) => {
+      new Promise((resolve) => {
         let value
         if (index < 0 || index > dataSources.length) {
           value = {
