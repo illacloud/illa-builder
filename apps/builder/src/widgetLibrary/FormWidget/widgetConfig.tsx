@@ -69,10 +69,8 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
     radius: "4px",
     borderWidth: "4px",
     shadow: "small",
-    headerHeight: 7,
+    headerHeight: 11,
     footerHeight: 7,
-    dynamicHeight: "fixed",
-    resizeDirection: RESIZE_DIRECTION.ALL,
   },
 }
 

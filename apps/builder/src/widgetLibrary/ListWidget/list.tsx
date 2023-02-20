@@ -51,7 +51,6 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
 
   const updateAllComponentHeight = useCallback(
     (height: number) => {
-      console.log("height", height)
       if (itemHeight === height) return
       handleUpdateOriginalDSLMultiAttr({
         itemHeight: height,
