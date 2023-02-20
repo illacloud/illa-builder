@@ -16,6 +16,7 @@ import {
 import {
   getTextareaContentContainerStyle,
   textareaContainerStyle,
+  wrapperContainerStyle,
 } from "@/widgetLibrary/TextAreaWidget/style"
 
 export const WrappedTextarea = forwardRef<
@@ -236,16 +237,13 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <div css={textareaContainerStyle}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div
           css={[
             applyLabelAndComponentWrapperStyle(labelPosition),
-            getTextareaContentContainerStyle(labelPosition),
+            getTextareaContentContainerStyle(labelPosition, bounds.height),
           ]}
-          style={{
-            height: `calc(100% - ${bounds.height}px)`,
-          }}
         >
           <Label
             labelFull={labelFull}
@@ -259,7 +257,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <div style={{ height: "100%", width: "100%" }}>
+          <div css={wrapperContainerStyle}>
             <WrappedTextarea
               {...props}
               ref={textareaRef}

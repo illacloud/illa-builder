@@ -85,10 +85,7 @@ export const eventAndMethodWrapperStyle = css`
 
 export const eventNameStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  flex: 0 0 64px;
+  min-width: 64px;
   margin-right: 8px;
   display: flex;
   align-items: center;
