@@ -1,0 +1,273 @@
+import { debounce } from "lodash"
+import pdfWorker from "pdfjs-dist/build/pdf.worker.js?url"
+import {
+  FC,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
+import { useTranslation } from "react-i18next"
+import { Document, Page, pdfjs } from "react-pdf"
+import "react-pdf/dist/esm/Page/AnnotationLayer.css"
+import "react-pdf/dist/esm/Page/TextLayer.css"
+import {
+  DownloadIcon,
+  Loading,
+  NextIcon,
+  PreviousIcon,
+} from "@illa-design/react"
+import { ToolButton } from "@/widgetLibrary/PdfWidget/button"
+import {
+  applyHiddenStyle,
+  documentInitStyle,
+  fullPageStyle,
+  pdfContainerStyle,
+  pdfStyle,
+  pdfWrapperStyle,
+  toolBarStyle,
+} from "@/widgetLibrary/PdfWidget/style"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { PdfWidgetProps, WrappedPdfProps } from "./interface"
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker
+// or
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+
+export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
+  const { displayName, width, height, scaleMode, url, showTollBar } = props
+  const { t } = useTranslation()
+  const pageRef = useRef<HTMLDivElement[]>([])
+  const documentRef = useRef<HTMLDivElement>(null)
+  const [numPages, setNumPages] = useState<number>(0)
+  const [pageNumber, setPageNumber] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<boolean>(false)
+  const [hasButtonClicked, setButtonClick] = useState(false)
+  const hasScrollRef = useRef(false)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  const { scaleWidth, scaleHeight } = useMemo(() => {
+    if (scaleMode === "width") {
+      return { scaleWidth: width }
+    }
+    return { scaleHeight: height }
+  }, [width, height, scaleMode])
+
+  const updatePage = useCallback(
+    (offset: number) => {
+      const { offsetTop } = pageRef.current[pageNumber + offset - 1]
+      if (documentRef.current) {
+        documentRef.current.scrollTop = offsetTop
+        setButtonClick(true)
+      }
+      setPageNumber((prevPageNumber) => (prevPageNumber || 1) + offset)
+    },
+    [pageNumber],
+  )
+
+  const updateCurrentPage = debounce(() => {
+    if (hasScrollRef.current) {
+      hasScrollRef.current = false
+      // get current page
+      const { scrollTop } = documentRef.current || {}
+      if (!scrollTop) return
+      const currentPage = pageRef.current.findIndex(
+        (elem) => elem.offsetTop >= scrollTop,
+      )
+      if (currentPage === -1) return
+      setPageNumber(currentPage + 1)
+    }
+  }, 150)
+
+  const downloadFile = useCallback(async () => {
+    if (!url) return
+    const pdf = await fetch(url)
+    const pdfBlob = await pdf.blob()
+    const pdfURL = URL.createObjectURL(pdfBlob)
+    const anchor = document.createElement("a")
+    anchor.href = pdfURL
+    anchor.download = displayName
+    document.body.appendChild(anchor)
+    anchor.click()
+    document.body.removeChild(anchor)
+    URL.revokeObjectURL(pdfURL)
+  }, [url, displayName])
+
+  const handleScroll = () => {
+    if (hasButtonClicked) return setButtonClick(false)
+    if (!hasScrollRef.current) {
+      hasScrollRef.current = true
+      updateCurrentPage()
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
+      }
+    }
+  }, [])
+
+  if (!url) {
+    return <div css={fullPageStyle}>{t("widget.pdf.empty")}</div>
+  }
+
+  return (
+    <div css={pdfContainerStyle} ref={ref}>
+      {loading ? (
+        <div css={fullPageStyle}>
+          <Loading />
+        </div>
+      ) : null}
+      {showTollBar && !error && !loading ? (
+        <div css={[toolBarStyle, applyHiddenStyle(loading)]}>
+          <ToolButton
+            disabled={pageNumber <= 1}
+            onClick={() => updatePage(-1)}
+            type="button"
+            shape="round"
+            aria-label="Previous page"
+            icon={<PreviousIcon />}
+          />
+          <ToolButton
+            disabled={pageNumber >= numPages}
+            onClick={() => updatePage(1)}
+            type="button"
+            shape="round"
+            aria-label="Next page"
+            icon={<NextIcon />}
+          />
+          <ToolButton
+            type="button"
+            shape="round"
+            onClick={downloadFile}
+            icon={<DownloadIcon />}
+          />
+        </div>
+      ) : null}
+      <div
+        css={[pdfStyle, applyHiddenStyle(loading)]}
+        ref={documentRef}
+        onScroll={handleScroll}
+      >
+        <Document
+          css={documentInitStyle}
+          loading={
+            <div css={fullPageStyle}>
+              <Loading />
+            </div>
+          }
+          error={<div css={fullPageStyle}>{t("widget.pdf.failed")}</div>}
+          file={url}
+          onLoadSuccess={({ numPages: nextNumPages }) => {
+            setNumPages(nextNumPages)
+            // [TODO] wait react-pdf fix
+            clearTimeout(timeoutRef.current as NodeJS.Timeout)
+            timeoutRef.current = setTimeout(() => {
+              setLoading(false)
+              setError(false)
+            }, 200)
+          }}
+          onLoadError={(error) => {
+            console.error(error)
+            setLoading(false)
+            setError(true)
+          }}
+        >
+          {Array.from(new Array(numPages), (el, index) => (
+            <Page
+              loading={""}
+              width={scaleWidth}
+              height={scaleHeight}
+              key={`page_${index + 1}`}
+              pageNumber={index + 1}
+              inputRef={(el) => {
+                if (!el) return
+                pageRef.current[index] = el
+              }}
+            />
+          ))}
+        </Document>
+      </div>
+    </div>
+  )
+})
+
+Pdf.displayName = "Pdf"
+
+export const PdfWidget: FC<PdfWidgetProps> = (props) => {
+  const {
+    displayName,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+    handleUpdateOriginalDSLMultiAttr,
+    tooltipText,
+    width,
+    height,
+    scaleMode,
+    url,
+    showTollBar,
+    w,
+    h,
+    ...rest
+  } = props
+
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    handleUpdateGlobalData?.(displayName, {
+      setFileUrl: (url: string) => {
+        handleUpdateOriginalDSLMultiAttr({ url })
+      },
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    displayName,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+    handleUpdateOriginalDSLMultiAttr,
+  ])
+
+  useEffect(() => {
+    const offsetWidth = wrapperRef.current?.offsetWidth
+    const offsetHeight = wrapperRef.current?.offsetHeight
+    if (
+      offsetWidth &&
+      offsetHeight &&
+      (offsetWidth !== width || offsetHeight !== height)
+    ) {
+      handleUpdateOriginalDSLMultiAttr?.({
+        width: wrapperRef.current.offsetWidth,
+        height: wrapperRef.current.offsetHeight,
+      })
+    }
+  }, [w, h])
+
+  return (
+    <div css={pdfWrapperStyle} ref={wrapperRef}>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <Pdf
+          handleUpdateGlobalData={handleUpdateGlobalData}
+          handleDeleteGlobalData={handleDeleteGlobalData}
+          handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+          displayName={displayName}
+          width={width}
+          height={height}
+          scaleMode={scaleMode}
+          url={url}
+          showTollBar={showTollBar}
+          {...rest}
+        />
+      </TooltipWrapper>
+    </div>
+  )
+}
+
+PdfWidget.displayName = "PdfWidget"

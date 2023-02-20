@@ -121,6 +121,14 @@ export const generatorTableEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setImageUrl",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-fileUrl`,
+        labelName: i18n.t("editor.inspect.setter_label.file_url"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setFileUrl",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         setterType: "DYNAMIC_SWITCH_SETTER",
