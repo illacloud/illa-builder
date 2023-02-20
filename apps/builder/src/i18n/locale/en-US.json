@@ -599,6 +599,9 @@
         },
         "tip": {
           "allowlist": "If your resources are not publicly accessible, please update your network or firewall setting to add ILLA's IP addresses to the allowlist so that ILLA can connect to your resources. "
+        },
+        "button": {
+          "copy_ip": "Copy IP"
         }
       },
       "resource_choose": {
@@ -1125,7 +1128,13 @@
     "viewport": {
       "size": "Size",
       "reset": "Reset",
-      "save": "Save"
+      "save": "Save",
+      "tooltip": {
+        "fluid_width": "Fluid width",
+        "desktop": "Desktop（width = 1280px）",
+        "tablet": "Tablet（width = 1080px）",
+        "custom": "Custom"
+      }
     },
     "button_text": "Preview"
   },
