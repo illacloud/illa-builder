@@ -710,13 +710,13 @@
           "auto": "自适应"
         },
         "upload_type": {
-          "button": "Button",
-          "dropzone": "Dropzone"
+          "button": "按钮",
+          "dropzone": "文件区域"
         },
         "selection_types": {
-          "single_file": "Single file",
-          "multiple_files": "Multiple files",
-          "directory": "Directory"
+          "single_file": "单一文件",
+          "multiple_files": "多个文件",
+          "directory": "文件夹"
         },
         "size_type": {
           "kb": "KB",
@@ -906,16 +906,22 @@
         "interval": "间隔时间（毫秒）",
         "show_button": "显示两侧按钮",
         "show_dot": "显示底部指示点",
-        "hidden_images": "Hidden images",
-        "file_type": "File types",
-        "selection_types": "Selection types",
-        "append_newly_files": "Append newly selected files",
-        "file_list": "File list",
-        "parse_value": "Parse Value",
-        "max_files": "Max files",
-        "min_files": "Min files",
-        "max_size": "Max size",
-        "min_size": "Min size"
+        "hidden_images": "隐藏图片",
+        "file_type": "文件类型",
+        "selection_types": "选择类型",
+        "append_newly_files": "追加新选择的文件",
+        "file_list": "文件列表",
+        "parse_value": "解析文件",
+        "max_files": "最多文件个数",
+        "min_files": "最少文件个数",
+        "max_size": "最大文件大小",
+        "min_size": "最小文件大小",
+        "text_overflow": "文本溢出",
+        "file_url": "文件URL",
+        "show_tool_bar": "显示工具栏",
+        "scale": "缩放页面",
+        "scroll": "快速滚动到每一页",
+        "min_max_size": "最小～最大文件大小"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -949,18 +955,37 @@
         "timeline_direction": "切换时间轴的方向。",
         "timeline_pending": "是否显示一个待处理状态的节点。",
         "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
-        "file_types": "A list of file extensions allowed to upload. No value will permit all file types.",
-        "file_list": "To show a list of selected files below the uploader. The height of uploader will change dynamically based on the length of file list.",
-        "parse_value": "Attempt to parse the selected files, with support for JSON, CSV, TSV, Excel, and TXT files.\nParsed data can be accessed via {{uploader1.parsedValue}}. Files that can not be parsed will be null in the array.\nAll files are available as base64 encoded strings on the value array, regardless of this option."
+        "file_types": "允许上传的文件拓展名数组。为空时所有类型的文件均可以上传",
+        "file_list": "在上传组件下方显示所选文件的列表。 上传组件的高度会根据文件的数量动态变化。",
+        "parse_value": "尝试解析所选文件，支持 JSON、CSV、TSV、Excel 和 TXT 文件。 解析后的数据可以通过 {{uploader1.parsedValue}} 访问。 无法解析的文件在数组中将为空。 无论此选项如何，所有文件都可作为值数组中的 base64 编码字符串使用。",
+        "file_url": "支持网络上的 PDF URL，或 pdf 文件的 base64 编码数据。 例如：{{ data:application/pdf;base64, example-data }}",
+        "scale": "缩放每个页面以填充组件的宽度或高度。",
+        "scroll": "滚动时自动定位到每页的开头。"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
       "unselected_tip2": "请点击组件以选中。",
       "setter": {
-        "click_mask_close": "点击遮罩关闭modal"
+        "click_mask_close": "点击遮罩关闭modal",
+        "modal": {
+          "blank": "无图标"
+        }
       },
       "setter_tips": {
-        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。"
+      },
+      "setter_option": {
+        "fixed": "固定高度",
+        "auto_limited": "受限制的自动高度",
+        "auto_height": "自动高度",
+        "text_ellipsis": "省略",
+        "text_scroll": "滚动",
+        "text_clip": "裁切",
+        "scale_height": "高度",
+        "scale_width": "宽度"
+      },
+      "setter_placeholder": {
+        "min_max_size": "无限制"
       }
     },
     "page": {
@@ -1012,7 +1037,8 @@
       "max_size": "文件大小不能超过 {{maxSize }} {{ type }}。",
       "min_files": "要求至少 {{ minFiles }} 个文件。",
       "max_files": "支持最多 {{ maxFiles }} 个文件。",
-      "min_size": "文件大小不能小于{{minSize }} {{ type }}。"
+      "min_size": "文件大小不能小于{{minSize }} {{ type }}。",
+      "min_max_size": "Min size ~ Max size"
     },
     "widget_picker": {
       "empty_tip": "抱歉，没有搜索结果",
@@ -1028,6 +1054,10 @@
         "selects": "选择类组件"
       },
       "tab_title": "组件"
+    },
+    "method": {
+      "set_hidden": "Set hidden",
+      "set_file_url": "Set file URL"
     }
   },
   "exit_preview": "退出预览",
@@ -1338,6 +1368,13 @@
       "name": "上传",
       "default_button_text": "上传",
       "default_dropzone_text": "选择或拖放一个文件"
+    },
+    "icon": {
+      "name": "图标"
+    },
+    "pdf": {
+      "empty": "无PDF文件",
+      "failed": "无法加载PDF"
     }
   },
   "page": {
@@ -1393,6 +1430,10 @@
         "make_public_suc": "设置成功",
         "make_public_failed": "设置失败",
         "app_share_in_team": "{{ email }} 已经加入您的团队，可通过链接分享。"
+      },
+      "tab": {
+        "invite": "邀请",
+        "public": "公开"
       }
     },
     "mes": {
