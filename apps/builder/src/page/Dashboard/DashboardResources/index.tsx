@@ -161,11 +161,9 @@ export const DashboardResources: FC = () => {
     ACTION_ACCESS.VIEW,
   )
 
-  useEffect(() => {
-    if (teamInfo && !canAccessResourcesView) {
-      throw Error(`can not access resources view`)
-    }
-  }, [canAccessResourcesView])
+  if (teamInfo && !canAccessResourcesView) {
+    throw Error(`can not access resources view`)
+  }
 
   return (
     <>
