@@ -1,7 +1,7 @@
 import { debounce } from "lodash"
 import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { Menu, SubMenuProps } from "@illa-design/react"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 
 export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(

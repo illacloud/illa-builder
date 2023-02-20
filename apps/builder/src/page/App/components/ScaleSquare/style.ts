@@ -101,18 +101,9 @@ export const warningStyle = css`
   margin-left: 4px;
 `
 
-export function applyBarPointerStyle(
-  selected: boolean,
-  scaleSquareType: ScaleSquareType,
-  barPosition: BarPosition,
-): SerializedStyles {
-  if (scaleSquareType === "production") {
-    return css`
-      visibility: hidden;
-    `
-  }
-
+export const applyBarPointerShapeStyle = (barPosition: BarPosition) => {
   let barPositionStyle: SerializedStyles
+
   switch (barPosition) {
     case "t":
       barPositionStyle = css`
@@ -153,22 +144,46 @@ export function applyBarPointerStyle(
     default:
       barPositionStyle = css``
   }
-
-  const baseColor = getSelectedColor(selected)
   return css`
     ${barPositionStyle};
     box-sizing: border-box;
     position: absolute;
     border-radius: 2.5px;
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+  `
+}
+
+export function applyBarPointerStyle(
+  selected: boolean,
+  scaleSquareType: ScaleSquareType,
+  barPosition: BarPosition,
+  isLimitedMode: boolean = false,
+): SerializedStyles {
+  if (scaleSquareType === "production") {
+    return css`
+      visibility: hidden;
+    `
+  }
+
+  let barPositionStyle: SerializedStyles =
+    applyBarPointerShapeStyle(barPosition)
+
+  const baseColor =
+    isLimitedMode && selected
+      ? getColor("techPink", "01")
+      : getSelectedColor(selected)
+  return css`
+    ${barPositionStyle};
     border: 1px solid ${baseColor};
-    background: ${selected
-      ? globalColor(`--${illaPrefix}-white-01`)
-      : "transparent"};
     :hover {
-      background-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+      background-color: ${isLimitedMode
+        ? getColor("techPink", "01")
+        : getColor("techPurple", "01")};
     }
     :active {
-      background-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+      background-color: ${isLimitedMode
+        ? getColor("techPink", "01")
+        : getColor("techPurple", "01")};
     }
   `
 }
@@ -377,7 +392,6 @@ export const applyRNDWrapperStyle = (
           ? globalColor(`--${illaPrefix}-red-03`)
           : globalColor(`--${illaPrefix}-techPurple-01`)
         : "transparent"};
-      border-style: solid;
 
       > #moveBar {
         visibility: ${isEditor ? "visible" : "hidden"};
@@ -397,6 +411,7 @@ export const applyWrapperPendingStyle = (
   hasError: boolean,
   isDragging: boolean,
   isEditor: boolean,
+  isLimitedMode: boolean = false,
 ) => css`
   width: 100%;
   height: 100%;
@@ -412,6 +427,7 @@ export const applyWrapperPendingStyle = (
     ? globalColor(`--${illaPrefix}-red-07`)
     : "transparent"};
   opacity: ${isDragging ? 0 : 100};
+  ${isLimitedMode && isSelected ? `border-bottom:unset !important` : ""}
 `
 
 export const applyDashedLineStyle = (

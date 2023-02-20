@@ -1,9 +1,9 @@
 import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
 import { Progress } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { BarProgressWidgetProps, WrappedBarProgressProps } from "./interface"
 
 export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(

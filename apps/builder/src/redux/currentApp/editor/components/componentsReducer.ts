@@ -22,6 +22,7 @@ import {
   RootComponentNodeProps,
   SectionViewShape,
   UpdateComponentDisplayNamePayload,
+  UpdateComponentNodeHeightPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
   UpdateSectionViewPropsPayload,
@@ -615,4 +616,15 @@ export const updateViewportSizeReducer: CaseReducer<
   if (!state.props) state.props = {}
   state.props.viewportWidth = action.payload.viewportWidth
   state.props.viewportHeight = action.payload.viewportHeight
+}
+
+export const updateComponentNodeHeightReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentNodeHeightPayload>
+> = (state, action) => {
+  if (!state) return
+  const { displayName, height } = action.payload
+  const currentNode = searchDsl(state, displayName)
+  if (!currentNode) return
+  currentNode.h = Math.max(height, currentNode.minH)
 }

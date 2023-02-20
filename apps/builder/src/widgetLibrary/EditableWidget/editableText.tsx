@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { Input, PenIcon } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -8,7 +9,6 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"

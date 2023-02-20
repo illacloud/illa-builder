@@ -37,7 +37,7 @@ import {
   listParentContainerStyle,
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/autoHeightContainer"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
   const {
