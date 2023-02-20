@@ -696,19 +696,19 @@ export const RenderComponentCanvas: FC<{
           finalRowNumber + addedRowNumber >= rowNumber
         ) {
           setRowNumber(finalRowNumber + addedRowNumber)
-          if (
-            canAutoScroll &&
-            rowNumber !== 0 &&
-            finalRowNumber + addedRowNumber !== rowNumber
-          ) {
-            clearTimeout(autoScrollTimeoutID.current)
-            autoScrollTimeoutID.current = window.setTimeout(() => {
-              containerRef.current?.scrollBy({
-                top: (addedRowNumber * UNIT_HEIGHT) / 4,
-                behavior: "smooth",
-              })
-            }, 60)
-          }
+          // if (
+          //   canAutoScroll &&
+          //   rowNumber !== 0 &&
+          //   finalRowNumber + addedRowNumber !== rowNumber
+          // ) {
+          //   clearTimeout(autoScrollTimeoutID.current)
+          //   autoScrollTimeoutID.current = window.setTimeout(() => {
+          //     containerRef.current?.scrollBy({
+          //       top: (addedRowNumber * UNIT_HEIGHT) / 4,
+          //       behavior: "smooth",
+          //     })
+          //   }, 60)
+          // }
         } else {
           setRowNumber(finalRowNumber)
         }
@@ -740,7 +740,7 @@ export const RenderComponentCanvas: FC<{
       componentNode.childrenNode.length === 0) &&
     !isShowCanvasDot
   ) {
-    return <ContainerEmptyState />
+    return <ContainerEmptyState minHeight={minHeight} />
   }
 
   return (

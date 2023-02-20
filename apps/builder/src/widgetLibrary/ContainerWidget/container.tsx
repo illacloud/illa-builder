@@ -44,10 +44,10 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       return (
         <BasicContainer
           componentNode={currentViewComponentNode}
-          minHeight={containerBounds.height - 8}
+          minHeight={304}
           padding={4}
           safeRowNumber={1}
-          addedRowNumber={20}
+          addedRowNumber={1}
           blockColumns={blockColumns}
         />
       )
