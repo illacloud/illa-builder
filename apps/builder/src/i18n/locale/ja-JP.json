@@ -596,6 +596,9 @@
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
+        },
+        "tip": {
+          "allowlist": "リソースが公開されていない場合は、ネットワークまたはファイアウォールの設定を更新して、ILLA の IP アドレスを許可リストに追加し、ILLA がリソースに接続できるようにしてください。"
         }
       },
       "resource_choose": {
