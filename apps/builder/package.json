@@ -10,7 +10,6 @@
     "dev": "vite",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode cloud",
     "build-self": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode self",
-    "build-self-cloud": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode selfCloud",
     "preview": "vite preview",
     "test": "npx patch-package && npx jest && npx cypress run-ct -b chrome",
     "report:combined": "sh ./scripts/merge-coverage.sh",
