@@ -197,4 +197,6 @@ export const Editor: FC = () => {
   )
 }
 
+export default Editor
+
 Editor.displayName = "Editor"

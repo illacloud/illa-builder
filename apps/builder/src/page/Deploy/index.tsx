@@ -42,4 +42,6 @@ export const Deploy: FC = () => {
   )
 }
 
+export default Deploy
+
 Deploy.displayName = "Deploy"
