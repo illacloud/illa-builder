@@ -13,13 +13,19 @@ export class CloudApi {
     loading?: (loading: boolean) => void,
     errorState?: (errorState: boolean) => void,
   ) {
-    config = {
-      ...config,
-      baseURL: `${location.protocol}//${
-        import.meta.env.VITE_API_BASE_URL
-      }${CLOUD}`,
-    }
+    config.baseURL = `${location.protocol}//${
+      import.meta.env.VITE_API_BASE_URL
+    }${CLOUD}`
     Api.request(config, success, failure, crash, loading, errorState)
+  }
+
+  static asyncRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+  ) {
+    config.baseURL = `${location.protocol}//${
+      import.meta.env.VITE_API_BASE_URL
+    }${CLOUD}`
+    return Api.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 
   static teamRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
@@ -31,13 +37,22 @@ export class CloudApi {
     errorState?: (errorState: boolean) => void,
   ) {
     const teamId = getTeamID()
-    config = {
-      ...config,
-      baseURL: `${location.protocol}//${
-        import.meta.env.VITE_API_BASE_URL
-      }${CLOUD}`,
-      url: `/teams/${teamId}` + config.url,
-    }
-    Api.request(config, success, failure, crash, loading, errorState)
+    config.url = `/teams/${teamId}` + config.url
+    this.request<RespData, RequestBody, ErrorResp>(
+      config,
+      success,
+      failure,
+      crash,
+      loading,
+      errorState,
+    )
+  }
+
+  static asyncTeamRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+  ) {
+    const teamId = getTeamID()
+    config.url = `/teams/${teamId}` + config.url
+    return this.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 }

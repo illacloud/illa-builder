@@ -67,6 +67,12 @@ export class Api {
         }
       })
   }
+
+  static asyncRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+  ) {
+    return axios.request<RespData, AxiosResponse<RespData>, RequestBody>(config)
+  }
 }
 
 export class BuilderApi {
@@ -81,6 +87,12 @@ export class BuilderApi {
     Api.request(config, success, failure, crash, loading, errorState)
   }
 
+  static asyncRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+  ) {
+    return Api.asyncRequest(config)
+  }
+
   static teamRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
     success?: (response: AxiosResponse<RespData, RequestBody>) => void,
@@ -90,10 +102,17 @@ export class BuilderApi {
     errorState?: (errorState: boolean) => void,
   ) {
     const teamId = getTeamID()
-    config = {
-      ...config,
-      url: `/teams/${teamId}` + config.url,
-    }
-    Api.request(config, success, failure, crash, loading, errorState)
+    config.url = `/teams/${teamId}` + config.url
+
+    this.request(config, success, failure, crash, loading, errorState)
+  }
+
+  static asyncTeamRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+  ) {
+    const teamId = getTeamID()
+    config.url = `/teams/${teamId}` + config.url
+
+    return this.asyncRequest(config)
   }
 }

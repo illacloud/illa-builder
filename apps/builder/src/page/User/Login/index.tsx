@@ -116,7 +116,10 @@ export const Login: FC = () => {
               <TextLink
                 key="text-link"
                 onClick={() => {
-                  navigate("/user/register")
+                  navigate({
+                    pathname: "/user/register",
+                    search: location.search,
+                  })
                 }}
               />,
             ]}

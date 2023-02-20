@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom"
+import { LoaderFunctionArgs, redirect } from "react-router-dom"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { updateTeamsInfo } from "@/api/team"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
@@ -7,7 +7,11 @@ import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { filterURLSearch } from "@/utils/url"
 
-export const requireSelfAuth = async () => {
+export const requireSelfAuth = async (args: LoaderFunctionArgs) => {
+  const { request } = args
+  const url = new URL(request.url)
+  const inviteToken = url?.searchParams?.get("inviteToken")
+
   const userInfo = getCurrentUser(store.getState())
   const token = getAuthToken()
   if (!userInfo?.userId) {
@@ -15,6 +19,10 @@ export const requireSelfAuth = async () => {
     const loginUrl = `/user/login${search}`
     if (!token) {
       clearRequestPendingPool()
+      if (inviteToken) {
+        const registerUrl = `/user/register${search}`
+        return redirect(registerUrl)
+      }
       return redirect(loginUrl)
     } else {
       const userInfo = await getUserInfo(token)

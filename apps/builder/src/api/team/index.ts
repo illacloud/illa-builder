@@ -1,4 +1,3 @@
-import axios from "axios"
 import { CloudApi } from "@/api/cloudApi"
 import {
   fetchInviteLinkResponse,
@@ -10,293 +9,204 @@ import { teamActions } from "@/redux/team/teamSlice"
 import { MemberInfo, TeamInfo } from "@/redux/team/teamState"
 import store from "@/store"
 
-export const getMembersFormTeamId = async (teamId: string) => {
+export const getMembers = async () => {
   try {
-    const { data } = await axios.get<MemberInfo[]>(`/teams/${teamId}/members`)
-    if (!data) return
-    store.dispatch(teamActions.updateCurrentMemberListReducer(data))
-    return data
+    const response = await CloudApi.asyncTeamRequest<MemberInfo[]>({
+      method: "GET",
+      url: "/members",
+    })
+    if (!response.data) return
+    store.dispatch(teamActions.updateCurrentMemberListReducer(response.data))
+    return response.data
   } catch (e) {
-    return
+    console.error(e)
   }
 }
 
-export const getMembers = async () => {
-  return new Promise<MemberInfo[]>(async (resolve, reject) => {
-    CloudApi.teamRequest<MemberInfo[]>(
-      {
-        method: "GET",
-        url: "/members",
-      },
-      ({ data }) => {
-        if (!data) return
-        store.dispatch(teamActions.updateCurrentMemberListReducer(data))
-        resolve(data)
-      },
-      (e) => {
-        console.error(e)
-        reject(e)
-      },
+export const getTeamsInfo = async (teamIdentifier?: string, token?: string) => {
+  try {
+    const response = await CloudApi.asyncRequest<TeamInfo[]>({
+      url: "/teams/my",
+      method: "GET",
+      headers: token
+        ? {
+            Authorization: token,
+          }
+        : undefined,
+    })
+    const data = response.data ?? []
+    const currentTeamInfo = data.find(
+      (item) => item.identifier === teamIdentifier,
     )
-  })
+    if (currentTeamInfo) {
+      store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
+      store.dispatch(teamActions.updateTeamItemsReducer(data))
+      return currentTeamInfo
+    }
+    return Promise.reject("have no team match")
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }
 
-export const getTeamsInfo = (teamIdentifier?: string, token?: string) => {
-  return new Promise<TeamInfo>((resolve, reject) => {
-    CloudApi.request<TeamInfo[]>(
-      {
-        url: "/teams/my",
-        method: "GET",
-        headers: token
-          ? {
-              Authorization: token,
-            }
-          : undefined,
-      },
-      (response) => {
-        const data = response.data ?? []
-        const currentTeamInfo = data.find(
-          (item) => item.identifier === teamIdentifier,
-        )
-        if (currentTeamInfo) {
-          store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
-          store.dispatch(teamActions.updateTeamItemsReducer(data))
-          resolve(currentTeamInfo)
-        }
-        reject("have no team match")
-      },
-      (e) => {
-        reject(e)
-      },
-      (e) => {
-        reject(e)
-      },
-      () => {},
+export const updateTeamsInfo = async (teamIdentifier?: string) => {
+  try {
+    const response = await CloudApi.asyncRequest<TeamInfo[]>({
+      url: "/teams/my",
+      method: "GET",
+    })
+    const data = response.data
+    const currentTeamInfo = data.find(
+      (item) => item.identifier === teamIdentifier,
     )
-  })
+    if (currentTeamInfo) {
+      store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
+      store.dispatch(teamActions.updateTeamItemsReducer(data))
+    } else {
+      store.dispatch(
+        teamActions.updateTeamReducer({
+          currentId: data?.[0]?.id,
+          items: data,
+        }),
+      )
+    }
+    return data
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }
 
-export const updateTeamsInfo = (teamIdentifier?: string) => {
-  return new Promise<TeamInfo[]>((resolve, reject) => {
-    CloudApi.request<TeamInfo[]>(
-      {
-        url: "/teams/my",
-        method: "GET",
-      },
-      (response) => {
-        const data = response.data
-        const currentTeamInfo = data.find(
-          (item) => item.identifier === teamIdentifier,
-        )
-        if (currentTeamInfo) {
-          store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
-          store.dispatch(teamActions.updateTeamItemsReducer(data))
-        } else {
-          store.dispatch(
-            teamActions.updateTeamReducer({
-              currentId: data?.[0]?.id,
-              items: data,
-            }),
-          )
-        }
-        resolve(data)
-      },
-      () => {
-        reject("error")
-      },
-      () => {
-        reject("error")
-      },
-      () => {},
-    )
-  })
+export const removeTeam = async () => {
+  try {
+    await CloudApi.asyncTeamRequest({
+      method: "DELETE",
+    })
+    window.open("/", "_self")
+    return true
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }
 
-export const removeTeam = () => {
-  return new Promise<boolean>((resolve, reject) => {
-    CloudApi.teamRequest(
-      {
-        method: "DELETE",
-      },
-      () => {
-        resolve(true)
-        window.open("/", "_self")
-      },
-      (e) => {
-        reject(e)
-      },
-      (e) => {
-        reject(e)
-      },
-    )
-  })
-}
-
-export const setInviteLinkEnabled = (inviteLinkEnabled: boolean) => {
+export const setInviteLinkEnabled = async (inviteLinkEnabled: boolean) => {
   const teamInfo = getCurrentTeamInfo(store.getState())
   const teamIdentifier = teamInfo?.identifier
-  return new Promise<boolean>((resolve, reject) => {
-    CloudApi.teamRequest(
-      {
-        method: "PATCH",
-        url: `/configInviteLink`,
-        data: {
-          inviteLinkEnabled,
-        },
+
+  try {
+    await CloudApi.asyncTeamRequest({
+      method: "PATCH",
+      url: `/configInviteLink`,
+      data: {
+        inviteLinkEnabled,
       },
-      () => {
-        resolve(inviteLinkEnabled)
-        updateTeamsInfo(teamIdentifier)
-      },
-      (res) => {
-        reject(res)
-      },
-      () => {
-        reject("crash")
-      },
-    )
-  })
+    })
+    updateTeamsInfo(teamIdentifier)
+    return inviteLinkEnabled
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }
 
-export const updateTeamPermissionConfig = (
+export const updateTeamPermissionConfig = async (
   allowEditorManageTeamMember: boolean,
   allowViewerManageTeamMember: boolean,
 ) => {
-  return new Promise<boolean>((resolve, reject) => {
-    const teamInfo = getCurrentTeamInfo(store.getState())
-    const teamIdentifier = teamInfo?.identifier
-    CloudApi.teamRequest(
-      {
-        method: "PATCH",
-        url: `/permission`,
-        data: {
-          allowEditorManageTeamMember,
-          allowViewerManageTeamMember,
-        },
+  const teamInfo = getCurrentTeamInfo(store.getState())
+  const teamIdentifier = teamInfo?.identifier
+
+  try {
+    await CloudApi.asyncTeamRequest({
+      method: "PATCH",
+      url: `/permission`,
+      data: {
+        allowEditorManageTeamMember,
+        allowViewerManageTeamMember,
       },
-      () => {
-        resolve(allowEditorManageTeamMember && allowViewerManageTeamMember)
-        updateTeamsInfo(teamIdentifier)
-      },
-      (res) => {
-        reject(res)
-      },
-      () => {
-        reject("crash")
-      },
-    )
-  })
+    })
+    updateTeamsInfo(teamIdentifier)
+    return allowEditorManageTeamMember && allowViewerManageTeamMember
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }
 
-export const fetchInviteLink = (userRole: USER_ROLE) => {
-  return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
-    CloudApi.teamRequest<fetchInviteLinkResponse>(
-      {
-        method: "GET",
-        url: `/inviteLink/userRole/${userRole}`,
-      },
-      (res) => {
-        resolve(res.data)
-      },
-      (res) => {
-        reject(false)
-      },
-      () => {
-        reject(false)
-      },
-    )
-  })
+export const fetchInviteLink = async (userRole: USER_ROLE) => {
+  try {
+    const response = await CloudApi.asyncTeamRequest<fetchInviteLinkResponse>({
+      method: "GET",
+      url: `/inviteLink/userRole/${userRole}`,
+    })
+    return response.data
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }
 
-export const renewInviteLink = (userRole: USER_ROLE) => {
-  return new Promise<fetchInviteLinkResponse>((resolve, reject) => {
-    CloudApi.teamRequest<fetchInviteLinkResponse>(
-      {
-        method: "GET",
-        url: `/newInviteLink/userRole/${userRole}`,
-      },
-      (res) => {
-        resolve(res.data)
-      },
-      (res) => {
-        reject(false)
-      },
-      () => {
-        reject(false)
-      },
-    )
-  })
+export const renewInviteLink = async (userRole: USER_ROLE) => {
+  try {
+    const response = await CloudApi.asyncTeamRequest<fetchInviteLinkResponse>({
+      method: "GET",
+      url: `/newInviteLink/userRole/${userRole}`,
+    })
+    return response.data
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }
 
 // need to update member list
-export const inviteByEmail = (email: string, userRole: USER_ROLE) => {
-  return new Promise<inviteByEmailResponse>((resolve, reject) => {
-    CloudApi.teamRequest<inviteByEmailResponse>(
-      {
-        method: "POST",
-        url: `/inviteByEmail`,
-        data: {
-          email,
-          userRole,
-        },
+export const inviteByEmail = async (email: string, userRole: USER_ROLE) => {
+  try {
+    const response = await CloudApi.asyncTeamRequest<inviteByEmailResponse>({
+      method: "POST",
+      url: `/inviteByEmail`,
+      data: {
+        email,
+        userRole,
       },
-      (res) => {
-        resolve(res.data)
-        // getMembers()
-      },
-      (res) => {
-        reject(false)
-      },
-      () => {
-        reject(false)
-      },
-    )
-  })
+    })
+    return response.data
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }
 
-export const changeTeamMembersRole = (
+export const changeTeamMembersRole = async (
   teamMemberID: string,
   userRole: USER_ROLE,
 ) => {
-  return new Promise<boolean>((resolve, reject) => {
-    CloudApi.teamRequest<inviteByEmailResponse>(
-      {
-        method: "PATCH",
-        url: `/teamMembers/${teamMemberID}/role`,
-        data: {
-          userRole,
-        },
+  try {
+    await CloudApi.asyncTeamRequest<inviteByEmailResponse>({
+      method: "PATCH",
+      url: `/teamMembers/${teamMemberID}/role`,
+      data: {
+        userRole,
       },
-      (res) => {
-        resolve(true)
-      },
-      (res) => {
-        reject(false)
-      },
-      () => {
-        reject(false)
-      },
-    )
-  })
+    })
+    return true
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }
 
-export const removeTeamMembers = (teamMemberID: string) => {
-  return new Promise<boolean>((resolve, reject) => {
-    CloudApi.teamRequest(
-      {
-        method: "DELETE",
-        url: `/teamMembers/${teamMemberID}`,
-      },
-      () => {
-        resolve(true)
-        // getMembers()
-      },
-      (res) => {
-        reject(false)
-      },
-      () => {
-        reject(false)
-      },
-    )
-  })
+export const removeTeamMembers = async (teamMemberID: string) => {
+  try {
+    await CloudApi.asyncTeamRequest({
+      method: "DELETE",
+      url: `/teamMembers/${teamMemberID}`,
+    })
+    return true
+  } catch (e) {
+    console.error(e)
+    return Promise.reject(e)
+  }
 }

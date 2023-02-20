@@ -68,19 +68,17 @@ export const Editor: FC = () => {
     Connection.leaveRoom("app", appId ?? "")
   }, [appId])
 
-  useEffect(() => {
-    // check if user can manage the app
-    if (currentUserRole) {
-      const canEditApp = canManage(
-        currentUserRole,
-        ATTRIBUTE_GROUP.APP,
-        ACTION_MANAGE.EDIT_APP,
-      )
-      if (!canEditApp) {
-        throw new Error("You don't have permission to edit this app")
-      }
+  // check if user can manage the app
+  if (currentUserRole) {
+    const canEditApp = canManage(
+      currentUserRole,
+      ATTRIBUTE_GROUP.APP,
+      ACTION_MANAGE.EDIT_APP,
+    )
+    if (!canEditApp) {
+      throw new Error("You don't have permission to edit this app")
     }
-  }, [currentUserRole])
+  }
 
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {
