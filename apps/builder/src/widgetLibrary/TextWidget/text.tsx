@@ -101,10 +101,6 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
   ])
 
   const enableAutoHeight = useMemo(() => {
-    console.log("dynamicHeight", dynamicHeight)
-    console.log("dynamicMinHeight", dynamicMinHeight)
-    console.log("dynamicMaxHeight", dynamicMaxHeight)
-    console.log("h", h)
     switch (dynamicHeight) {
       case "auto":
         return true
@@ -114,7 +110,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
       default:
         return false
     }
-  }, [dynamicHeight, dynamicMaxHeight, dynamicMinHeight, h])
+  }, [dynamicHeight, dynamicMinHeight, h])
 
   const [containerRef] = useAutoUpdateHeight(
     updateComponentHeight,
