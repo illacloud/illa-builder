@@ -77,7 +77,7 @@ export const MicrosoftSqlPanel: FC = () => {
         }),
       )
     },
-    [cachedAction, selectedContent, content, dispatch],
+    [cachedAction, selectedContent, dispatch],
   )
   const handleQueryChange = useCallback(
     (value: string, name: string) => {

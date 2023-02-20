@@ -80,16 +80,118 @@ export const handleCheckPattern = (
   }
 }
 
+export const calculateFileSize = (data: unknown) => {
+  const blobArr = Array.isArray(data) ? data : [data]
+  const byteSize = new Blob(blobArr).size
+  return byteSize
+}
+
+const handleCheckFileSize = (
+  value: unknown,
+  maxSize?: number,
+  minSize?: number,
+  sizeType?: string,
+) => {
+  if (value && (value as []).length) {
+    // default to MB
+    const getFileSizeNumber = (type?: string) =>
+      type !== "mb" ? 1024 : 1024 * 1024
+
+    const maxSizeNumber = maxSize ? maxSize * getFileSizeNumber(sizeType) : 0
+    const minSizeNumber = minSize ? minSize * getFileSizeNumber(sizeType) : 0
+
+    for (let i = 0; i < (value as []).length; i++) {
+      const size =
+        (value as any)[i].originFile?.size ||
+        calculateFileSize((value as any)[i].originFile)
+
+      if (!!maxSizeNumber && size > maxSizeNumber) {
+        return {
+          hasError: true,
+          errorMessage: i18n.t("editor.validate_message.max_size", {
+            maxSize,
+            type: (sizeType || "MB").toUpperCase(),
+          }),
+        }
+      }
+      if (!!minSizeNumber && size < minSizeNumber) {
+        return {
+          hasError: true,
+          errorMessage: i18n.t("editor.validate_message.min_size", {
+            minSize,
+            type: (sizeType || "MB").toUpperCase(),
+          }),
+        }
+      }
+    }
+  }
+  return {
+    hasError: false,
+    errorMessage: "",
+  }
+}
+
+const handleCheckFilesCount = (
+  value: unknown,
+  maxFiles?: number,
+  minFiles?: number,
+) => {
+  if (value) {
+    const length = (value as []).length
+    if (maxFiles && length > maxFiles) {
+      return {
+        fileCountInvalid: true,
+        countErrorMessage: i18n.t("editor.validate_message.max_files", {
+          maxFiles,
+        }),
+      }
+    }
+    if (minFiles && length < minFiles) {
+      return {
+        fileCountInvalid: true,
+        countErrorMessage: i18n.t("editor.validate_message.min_files", {
+          minFiles,
+        }),
+      }
+    }
+  }
+  return {
+    fileCountInvalid: false,
+    countErrorMessage: "",
+  }
+}
+
 export const handleValidateCheck = (
   options?: ValidateCheckProps,
 ): string | undefined => {
   if (typeof options === "undefined") return
   if (handleCheckCustomRule(options.customRule)) {
     try {
-      return JSON.stringify(options.customRule)
+      return typeof options.customRule === "string"
+        ? options.customRule
+        : JSON.stringify(options.customRule)
     } catch (e) {
       console.error("custom rule is error")
     }
+  }
+
+  const { hasError, errorMessage } = handleCheckFileSize(
+    options.value,
+    options.maxSize,
+    options.minSize,
+    options.sizeType,
+  )
+  if (hasError) {
+    return errorMessage
+  }
+
+  const { fileCountInvalid, countErrorMessage } = handleCheckFilesCount(
+    options.value,
+    options.maxFiles,
+    options.minFiles,
+  )
+  if (fileCountInvalid) {
+    return countErrorMessage
   }
 
   if (handleCheckIsRequired(options.value, options.required)) {

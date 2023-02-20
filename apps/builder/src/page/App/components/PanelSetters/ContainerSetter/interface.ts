@@ -1,3 +1,4 @@
-import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
+import { BaseInputSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
 
-export interface ContainerDefaultViewKeySetterProps extends BaseSetter {}
+export interface ContainerDefaultViewKeySetterProps
+  extends BaseInputSetterProps {}

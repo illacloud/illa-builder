@@ -12,13 +12,7 @@ import { useDrag } from "react-dnd"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
-import {
-  DropList,
-  DropListItem,
-  Dropdown,
-  globalColor,
-  illaPrefix,
-} from "@illa-design/react"
+import { DropList, DropListItem, Dropdown } from "@illa-design/react"
 import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import {
@@ -42,6 +36,7 @@ import {
 } from "@/page/App/components/ScaleSquare/style"
 import {
   getIllaMode,
+  getIsDragging,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -90,6 +85,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   })
 
   const isAutoLimitedMode = realProps?.dynamicHeight === "limited"
+  const isDraggingStateInGlobal = useSelector(getIsDragging)
 
   const displayNameInMoveBar = useMemo(() => {
     if (componentNode.type === "CONTAINER_WIDGET" && realProps) {
@@ -220,7 +216,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
     },
-    [componentNode.displayName, dispatch, illaMode, selectedComponents],
+    [
+      componentNode.displayName,
+      componentsAttachedUsers,
+      dispatch,
+      illaMode,
+      selectedComponents,
+    ],
   )
 
   const handleUpdateComponentHeight = useCallback(
@@ -494,7 +496,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         componentsAttachedUsers,
       )
     },
-    [componentNode.displayName, dispatch],
+    [componentNode.displayName, componentsAttachedUsers, dispatch],
   )
 
   const hasEditors = !!filteredComponentAttachedUserList.length
@@ -563,7 +565,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             hasError,
             isDragging,
             illaMode === "edit",
-            isAutoLimitedMode,
+            selectedComponents?.length === 1 &&
+              isSelected &&
+              isAutoLimitedMode &&
+              !isDraggingStateInGlobal,
           )}
           onClick={handleOnSelection}
           onContextMenu={handleContextMenu}
@@ -598,16 +603,19 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         </div>
       </Dropdown>
       <div css={dragPreviewStyle} ref={dragPreviewRef} />
-      {isSelected && isAutoLimitedMode && (
-        <AutoHeightWithLimitedContainer
-          containerHeight={h}
-          dynamicMinHeight={realProps.dynamicMinHeight}
-          dynamicMaxHeight={realProps.dynamicMaxHeight}
-          displayName={componentNode.displayName}
-          resizeStart={handleResizeStart}
-          handleUpdateComponentHeight={handleUpdateComponentHeight}
-        />
-      )}
+      {selectedComponents?.length === 1 &&
+        isSelected &&
+        isAutoLimitedMode &&
+        !isDraggingStateInGlobal && (
+          <AutoHeightWithLimitedContainer
+            containerHeight={h}
+            dynamicMinHeight={realProps.dynamicMinHeight}
+            dynamicMaxHeight={realProps.dynamicMaxHeight}
+            displayName={componentNode.displayName}
+            resizeStart={handleResizeStart}
+            handleUpdateComponentHeight={handleUpdateComponentHeight}
+          />
+        )}
     </Rnd>
   )
 })
@@ -761,7 +769,13 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         componentsAttachedUsers,
       )
     },
-    [componentNode.displayName, dispatch, illaMode, selectedComponents],
+    [
+      componentNode.displayName,
+      componentsAttachedUsers,
+      dispatch,
+      illaMode,
+      selectedComponents,
+    ],
   )
 
   const handleOnResizeStop: ResizeCallback = useCallback(
@@ -922,7 +936,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         componentsAttachedUsers,
       )
     },
-    [componentNode.displayName, dispatch],
+    [componentNode.displayName, componentsAttachedUsers, dispatch],
   )
 
   const hasEditors = !!filteredComponentAttachedUserList.length

@@ -12,7 +12,7 @@
     "build-self": "NODE_OPTIONS=--max-old-space-size=12288 turbo run build-self",
     "prepare": "husky install",
     "format": "prettier --write \"apps/**/*.{ts,tsx}\"",
-    "lint": "eslint \"apps/**/src/**\" --ext \".ts,.tsx\" --config \".eslintrc.js\"",
+    "lint": "eslint \"apps/**/src/**/**.{ts,tsx}\" --config \".eslintrc.js\"",
     "test": "turbo run test",
     "ts-check": "turbo run ts-check"
   },

@@ -58,13 +58,7 @@ export const CollaboratorsList: FC<{
       setShowMoreIcon(true)
       return
     }
-  }, [
-    JSON.stringify(users),
-    bounds.width,
-    currentState,
-    disableMargin,
-    containerWidth,
-  ])
+  }, [bounds.width, currentState, disableMargin, containerWidth, users])
 
   const renderListItem = useMemo(
     () => (
@@ -116,7 +110,7 @@ export const CollaboratorsList: FC<{
         )}
       </>
     ),
-    [displayDataList, listShow, showMoreIcon, users],
+    [displayDataList, listShow, showMoreIcon, t, users],
   )
 
   if (!length) {

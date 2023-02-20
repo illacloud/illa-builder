@@ -1,5 +1,4 @@
-import { merge } from "chart.js/helpers"
-import { cloneDeep, get, set } from "lodash"
+import { cloneDeep, get, merge, set } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {

@@ -55,6 +55,7 @@ interface RectShape {
   rectBottom: number
   rectLeft: number
 }
+
 export function calcRectShapeByCenterPoint(
   centerPointPosition: CenterPointPosition,
   nodeWidthAndHeight: NodeWidthAndHeight,
@@ -355,6 +356,8 @@ export const getDragResult = (
   action: "ADD" | "UPDATE",
   canvasHeight: number,
   canResizeY: boolean = true,
+  containerTopPadding: number = 0,
+  containerLeftPadding: number = 0,
 ) => {
   const canvasPosition = {
     x: containerRef.current?.getBoundingClientRect().x || 0,
@@ -396,11 +399,14 @@ export const getDragResult = (
   } else {
     const mousePointerPosition = monitor.getClientOffset()
     // mouse position
-    let relativeX = mousePointerPosition!.x - canvasPosition.x
+
+    let relativeX =
+      mousePointerPosition!.x - canvasPosition.x - containerLeftPadding
     let relativeY =
       mousePointerPosition!.y -
       canvasPosition.y +
-      (containerRef.current?.scrollTop || 0)
+      (containerRef.current?.scrollTop || 0) -
+      containerTopPadding
 
     let renderX =
       relativeX -

@@ -12,6 +12,7 @@ import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigEle
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
 import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
+import { SnowflakeConfigElement } from "@/page/App/components/Actions/SnowflakeConfigElement"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { ResourceEditorProps } from "./interface"
 
@@ -74,6 +75,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
             onFinished={onFinished}
           />
         )
+      case "snowflake":
+        return <SnowflakeConfigElement {...generalProps} />
       case "s3":
         return <S3ConfigElement onBack={handleBack} onFinished={onFinished} />
       case "redis":

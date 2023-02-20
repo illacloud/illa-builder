@@ -29,7 +29,10 @@ export const HeightModeSelect: FC<HeightModeSetterProps> = (props) => {
               dynamicMaxHeight: currentNode.h * UNIT_HEIGHT + DEFAULT_HEIGHT,
               dynamicMinHeight: currentNode.h * UNIT_HEIGHT,
             }
-          : {}
+          : {
+              dynamicMaxHeight: undefined,
+              dynamicMinHeight: undefined,
+            }
       handleUpdateMultiAttrDSL({
         [attrName]: value,
         resizeDirection,

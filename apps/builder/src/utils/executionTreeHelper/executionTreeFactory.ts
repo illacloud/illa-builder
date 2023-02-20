@@ -298,6 +298,7 @@ export class ExecutionTreeFactory {
         errorTree: this.errorTree,
       }
     }
+    this.oldRawTree = cloneDeep(currentRawTree)
     const updatePaths = this.getUpdatePathFromDifferences(differences)
     const walkedPath = new Set<string>()
     let currentExecution = this.updateExecutionTreeByUpdatePaths(
@@ -323,7 +324,6 @@ export class ExecutionTreeFactory {
         isDeleteAction: !!isDeleteAction,
       },
     )
-    this.oldRawTree = cloneDeep(currentRawTree)
     this.mergeErrorTree(errorTree, [...updatePaths, ...path], isDeleteAction)
     this.mergeDebugDataTree(
       debuggerData,
@@ -352,6 +352,18 @@ export class ExecutionTreeFactory {
         current = convertPathToString(subPaths)
         updatePaths.push(current)
         subPaths.pop()
+      }
+      if (subPaths.length === 1 && d.kind === "N") {
+        const rhs = d.rhs
+        if (rhs && typeof rhs === "object") {
+          const keys = Object.keys(rhs)
+          keys.forEach((key) => {
+            updatePaths.push(`${subPaths[0]}.${key}`)
+          })
+        }
+      }
+      if (subPaths.length === 1 && d.kind === "D") {
+        updatePaths.push(`${subPaths[0]}`)
       }
     }
     const hasPath = new Set<string>()
