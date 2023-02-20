@@ -1,11 +1,22 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Select } from "@illa-design/react"
+import { Checkbox, Select } from "@illa-design/react"
 import { Api } from "@/api/base"
-import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { DeleteItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/DeleteItemPanel"
+import { GetItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/GetItemPanel"
+import { PutItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/PutItemPanel"
+import { QueryPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/QueryPanel"
+import { ScanPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/ScanPanel"
+import { UpdateItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/UpdateItemPanel"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import {
+  checkboxItemStyle,
+  checkoutContentStyle,
+  checkoutItemStyle,
+  smtpItemLabelStyle,
+} from "@/page/App/components/Actions/ActionPanel/SMTPPanel/style"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
   actionItemContainer,
@@ -21,21 +32,33 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
+  DynamoActionMethods,
   DynamoDBAction,
+  DynamoDBInitialMap,
   DynamoDBSelectOptions,
+  StructParams,
 } from "@/redux/currentApp/action/dynamoDBAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
+const DynamoActionMap = {
+  query: QueryPanel,
+  scan: ScanPanel,
+  getItem: GetItemPanel,
+  putItem: PutItemPanel,
+  updateItem: UpdateItemPanel,
+  deleteItem: DeleteItemPanel,
+}
+
 export const DynamoDBPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const selectedAction = useSelector(
-    getSelectedAction,
-  ) as ActionItem<DynamoDBAction>
-  const cachedAction = useSelector(
-    getCachedAction,
-  ) as ActionItem<DynamoDBAction>
+  const selectedAction = useSelector(getSelectedAction) as ActionItem<
+    DynamoDBAction<StructParams>
+  >
+  const cachedAction = useSelector(getCachedAction) as ActionItem<
+    DynamoDBAction<StructParams>
+  >
   const content = cachedAction.content
   const { content: selectedContent } = selectedAction
 
@@ -57,10 +80,20 @@ export const DynamoDBPanel: FC = () => {
   }, [cachedAction.resourceId])
 
   const handleValueChange = useCallback(
-    (value: string, name: string) => {
-      let newContent
-      if (name === "method" && value === selectedContent.method) {
-        newContent = { ...selectedContent }
+    (value: string | boolean, name: string) => {
+      let newContent: DynamoDBAction<StructParams>
+      if (name === "method") {
+        if (value === selectedContent.method) {
+          newContent = { ...selectedContent }
+        } else {
+          newContent = {
+            ...content,
+            method: value as DynamoActionMethods,
+            structParams: {
+              ...DynamoDBInitialMap[value as DynamoActionMethods],
+            },
+          }
+        }
       } else {
         newContent = {
           ...content,
@@ -76,6 +109,27 @@ export const DynamoDBPanel: FC = () => {
     },
     [cachedAction, content, dispatch, selectedContent],
   )
+
+  const handleStructParamsValueChange = useCallback(
+    (value: string, name: string) => {
+      const { structParams } = content
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...content,
+            structParams: {
+              ...structParams,
+              [name]: value,
+            },
+          },
+        }),
+      )
+    },
+    [cachedAction, content, dispatch],
+  )
+
+  const PanelComponent = DynamoActionMap[content.method] ?? QueryPanel
 
   return (
     <div css={panelContainerStyle}>
@@ -96,22 +150,40 @@ export const DynamoDBPanel: FC = () => {
         </div>
         <InputEditor
           title={"Table"}
-          placeholder="select * from users;"
           lineNumbers={false}
           expectedType={VALIDATION_TYPES.STRING}
           sqlScheme={sqlTable}
           value={content.table}
           onChange={(value) => handleValueChange(value, "table")}
         />
-        <InputEditor
-          title={"Parameter"}
-          style={{ height: "88px" }}
-          placeholder="select * from users;"
-          lineNumbers={true}
-          expectedType={VALIDATION_TYPES.STRING}
-          value={content.parameters}
-          onChange={(value) => handleValueChange(value, "parameters")}
-        />
+        <div css={checkoutItemStyle}>
+          <span css={smtpItemLabelStyle}></span>
+          <div css={checkoutContentStyle}>
+            <Checkbox
+              colorScheme="techPurple"
+              checked={content.useJson}
+              ml="16px"
+              onChange={(value) => handleValueChange(value, "useJson")}
+            />
+            <span css={checkboxItemStyle}>Use JSON parameter editor</span>
+          </div>
+        </div>
+        {content.useJson ? (
+          <InputEditor
+            title={"Parameter"}
+            style={{ height: "88px" }}
+            placeholder="select * from users;"
+            lineNumbers={true}
+            expectedType={VALIDATION_TYPES.STRING}
+            value={content.parameters}
+            onChange={(value) => handleValueChange(value, "parameters")}
+          />
+        ) : (
+          <PanelComponent
+            structParams={content.structParams}
+            handleValueChange={handleStructParamsValueChange}
+          />
+        )}
         <TransformerComponent />
       </div>
       <ActionEventHandler />

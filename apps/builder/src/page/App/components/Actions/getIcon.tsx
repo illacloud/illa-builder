@@ -1,6 +1,7 @@
 import { ReactElement } from "react"
 import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
 import { DataDogIcon } from "@/page/App/components/Icons/datadog"
+import { DynamoIcon } from "@/page/App/components/Icons/dynamo"
 import { ElasticIcon } from "@/page/App/components/Icons/elastic"
 import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
 import { GraphQLIcon } from "@/page/App/components/Icons/graphql"
@@ -34,6 +35,7 @@ export function getIconFromResourceType(
     case "elasticsearch":
       return <ElasticIcon size={size} />
     case "dynamodb":
+      return <DynamoIcon size={size} />
     case "snowflake":
       return <SnowflakeIcon size={size} />
     case "smtp":
@@ -76,6 +78,7 @@ export function getIconFromActionType(
     case "elasticsearch":
       return <ElasticIcon size={size} />
     case "dynamodb":
+      return <DynamoIcon size={size} />
     case "snowflake":
       return <SnowflakeIcon size={size} />
     case "supabasedb":
