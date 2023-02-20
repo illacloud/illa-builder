@@ -4,7 +4,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { PDF_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/PdfWidget/eventHandlerConfig"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
-const baseWidgetName = "input"
+const baseWidgetName = "pdf"
 export const PDF_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-basic`,
@@ -20,18 +20,6 @@ export const PDF_PANEL_CONFIG: PanelConfig[] = [
       },
     ],
   },
-  // {
-  //   id: `${baseWidgetName}-interaction`,
-  //   groupName: i18n.t("editor.inspect.setter_group.interaction"),
-  //   children: [
-  //     {
-  //       ...generatorEventHandlerConfig(
-  //         baseWidgetName,
-  //         PDF_EVENT_HANDLER_CONFIG.events,
-  //       ),
-  //     },
-  //   ],
-  // },
   {
     id: `${baseWidgetName}-Adornments`,
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
