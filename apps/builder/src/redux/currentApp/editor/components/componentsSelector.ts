@@ -2,6 +2,7 @@ import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import store, { RootState } from "@/store"
 import {
   BASIC_BLOCK_COLUMNS,
@@ -14,6 +15,31 @@ export function searchDSLByDisplayName(
 ) {
   const rootNode = getCanvas(rootState)
   return searchDsl(rootNode, displayName)
+}
+
+export function searchCurrentPageContainerNode(
+  pageSortedKey?: string[],
+  currentPageIndex?: number,
+): ComponentNode | null {
+  if (!pageSortedKey || !currentPageIndex) {
+    return null
+  }
+
+  const otherPageDisplayName = pageSortedKey[currentPageIndex]
+
+  const pageNode = searchDsl(getCanvas(store.getState()), otherPageDisplayName)
+
+  const groupNode = pageNode?.childrenNode?.find((node) => {
+    return node.showName === "bodySection"
+  })
+
+  if (groupNode) {
+    const { currentViewIndex, viewSortedKey } =
+      store.getState().currentApp.execution.result[groupNode.displayName]
+    const parentNodeDisplayName = viewSortedKey[currentViewIndex]
+    return searchDsl(groupNode, parentNodeDisplayName)
+  }
+  return null
 }
 
 export function searchDsl(

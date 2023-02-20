@@ -31,8 +31,8 @@ function handleCopyComponentReflowEffect(
   const componentNodes = action.payload
   const effectResultMap = new Map<string, ComponentNode>()
   componentNodes.forEach((copyShape) => {
-    const { oldComponentNode } = copyShape
-    const parentNodeDisplayName = oldComponentNode.parentNode
+    const { newComponentNode } = copyShape
+    const parentNodeDisplayName = newComponentNode.parentNode
     let parentNode = searchDsl(rootNode, parentNodeDisplayName)
     if (!parentNode) {
       return
@@ -42,7 +42,7 @@ function handleCopyComponentReflowEffect(
     }
     const childrenNodes = parentNode.childrenNode
     const { finalState } = getReflowResult(
-      oldComponentNode,
+      newComponentNode,
       childrenNodes,
       false,
     )
