@@ -220,11 +220,20 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {})
+    handleUpdateGlobalData?.(displayName, {
+      setFileUrl: (url: string) => {
+        handleUpdateOriginalDSLMultiAttr({ url })
+      },
+    })
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [displayName, handleUpdateGlobalData, handleDeleteGlobalData])
+  }, [
+    displayName,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+    handleUpdateOriginalDSLMultiAttr,
+  ])
 
   useEffect(() => {
     const offsetWidth = wrapperRef.current?.offsetWidth

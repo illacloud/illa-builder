@@ -74,9 +74,6 @@ export const buttonStyle = css`
   align-items: center;
   justify-content: center;
   padding: 10px;
-  // &:hover {
-  //   background-color: ${getColor("white", "08")};
-  // }
 `
 
 export const buttonIconStyle = css`

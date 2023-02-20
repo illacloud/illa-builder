@@ -5,7 +5,7 @@ import { WidgetConfig } from "@/widgetLibrary/interface"
 export const PDF_WIDGET_CONFIG: WidgetConfig = {
   type: "PDF_WIDGET",
   displayName: "pdf",
-  widgetName: i18n.t("widget.pdf.name"),
+  widgetName: "Pdf",
   icon: <PdfWidgetIcon />,
   keywords: ["Pdf", "pdf"],
   sessionType: "PRESENTATION",
