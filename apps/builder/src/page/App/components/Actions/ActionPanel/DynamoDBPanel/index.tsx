@@ -1,7 +1,6 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Checkbox, Select } from "@illa-design/react"
 import { Api } from "@/api/base"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { DeleteItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/DeleteItemPanel"
@@ -11,17 +10,10 @@ import { QueryPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPa
 import { ScanPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/ScanPanel"
 import { UpdateItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/UpdateItemPanel"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
-import {
-  checkboxItemStyle,
-  checkoutContentStyle,
-  checkoutItemStyle,
-  smtpItemLabelStyle,
-} from "@/page/App/components/Actions/ActionPanel/SMTPPanel/style"
+import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
   actionItemContainer,
-  actionItemLabelStyle,
-  actionItemStyle,
   panelContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import { InputEditor } from "@/page/App/components/InputEditor"
@@ -135,19 +127,13 @@ export const DynamoDBPanel: FC = () => {
     <div css={panelContainerStyle}>
       <ResourceChoose />
       <div css={actionItemContainer}>
-        <div css={actionItemStyle}>
-          <span css={actionItemLabelStyle}>
-            {t("editor.action.panel.mssql.config_type")}
-          </span>
-          <Select
-            w="100%"
-            colorScheme="techPurple"
-            ml="16px"
-            onChange={(value) => handleValueChange(value as string, "method")}
-            value={content.method}
-            options={DynamoDBSelectOptions}
-          />
-        </div>
+        <SingleTypeComponent
+          title={t("editor.action.panel.mssql.config_type")}
+          componentType="select"
+          onChange={(value) => handleValueChange(value as string, "method")}
+          value={content.method}
+          options={DynamoDBSelectOptions}
+        />
         <InputEditor
           title={"Table"}
           lineNumbers={false}
@@ -156,23 +142,18 @@ export const DynamoDBPanel: FC = () => {
           value={content.table}
           onChange={(value) => handleValueChange(value, "table")}
         />
-        <div css={checkoutItemStyle}>
-          <span css={smtpItemLabelStyle}></span>
-          <div css={checkoutContentStyle}>
-            <Checkbox
-              colorScheme="techPurple"
-              checked={content.useJson}
-              ml="16px"
-              onChange={(value) => handleValueChange(value, "useJson")}
-            />
-            <span css={checkboxItemStyle}>Use JSON parameter editor</span>
-          </div>
-        </div>
+        <SingleTypeComponent
+          title={""}
+          componentType="checkbox"
+          value={content.useJson}
+          onChange={(value) => handleValueChange(value as boolean, "useJson")}
+          options={DynamoDBSelectOptions}
+          checkoutTitle={"Use JSON parameter editor"}
+        />
         {content.useJson ? (
           <InputEditor
             title={"Parameter"}
             style={{ height: "88px" }}
-            placeholder="select * from users;"
             lineNumbers={true}
             expectedType={VALIDATION_TYPES.STRING}
             value={content.parameters}
