@@ -65,78 +65,67 @@ export const useInitBuilderApp = (model: IllaMode) => {
     }
   }
 
-  const initApp = (
+  const initApp = async (
     controller: AbortController,
-    resolve: (value: PromiseLike<CurrentAppResp> | CurrentAppResp) => void,
+    resolve: (value: CurrentAppResp) => void,
     reject: (reason?: any) => void,
   ) => {
-    BuilderApi.teamRequest<CurrentAppResp>(
-      {
+    try {
+      const response = await BuilderApi.asyncTeamRequest<CurrentAppResp>({
         url: `/apps/${appId}/versions/${versionId}`,
         method: "GET",
         signal: controller.signal,
-      },
-      (response) => {
-        handleCurrentApp(response)
-        resolve(response.data)
-      },
-      (e) => {
-        reject("failure")
-      },
-      (e) => {
-        reject("crash")
-      },
-      (loading) => {
-        setLoadingState(loading)
-      },
-    )
+      })
+      handleCurrentApp(response)
+      resolve(response.data)
+    } catch (e) {
+      reject(e)
+    }
+  }
+
+  const handleUnPublicApps = async (
+    controller: AbortController,
+    resolve: (value: CurrentAppResp) => void,
+    reject: (reason?: any) => void,
+  ) => {
+    if (teamInfo && teamInfo.identifier !== teamIdentifier) {
+      reject("failure")
+      throw new Error("have no team match")
+    }
+    try {
+      if (!teamInfo) {
+        await getTeamsInfo(teamIdentifier)
+      }
+      initApp(controller, resolve, reject)
+    } catch (e) {
+      reject("failure")
+      if (e === "have no team match") {
+        throw new Error(e)
+      }
+    }
   }
 
   useEffect(() => {
     const controller = new AbortController()
     if (isOnline) {
-      new Promise<CurrentAppResp>((resolve, reject) => {
+      new Promise<CurrentAppResp>(async (resolve, reject) => {
+        setLoadingState(true)
         if (model === "production") {
-          BuilderApi.request<CurrentAppResp>(
-            {
+          try {
+            const response = await BuilderApi.asyncRequest<CurrentAppResp>({
               url: `/teams/byIdentifier/${teamIdentifier}/publicApps/${appId}/versions/${versionId}`,
               method: "GET",
               signal: controller.signal,
-            },
-            (response) => {
-              handleCurrentApp(response)
-              resolve(response.data)
-            },
-            async () => {
-              // if failed to get the app, it means the app is not public
-              if (teamInfo && teamInfo.identifier !== teamIdentifier) {
-                reject("failure")
-                throw new Error("have no team match")
-              }
-              setLoadingState(true)
-              try {
-                if (!teamInfo) {
-                  await getTeamsInfo(teamIdentifier)
-                }
-                initApp(controller, resolve, reject)
-              } catch (e) {
-                reject("failure")
-                if (e === "have no team match") {
-                  throw new Error(e)
-                }
-              }
-              setLoadingState(false)
-            },
-            (e) => {
-              reject("crash")
-            },
-            (loading) => {
-              setLoadingState(loading)
-            },
-          )
+            })
+            handleCurrentApp(response)
+            resolve(response.data)
+          } catch (e) {
+            await handleUnPublicApps(controller, resolve, reject)
+          }
         } else {
-          initApp(controller, resolve, reject)
+          await initApp(controller, resolve, reject)
         }
+        setLoadingState(false)
       }).then((value) => {
         const autoRunAction = value.actions.filter((action) => {
           return (
