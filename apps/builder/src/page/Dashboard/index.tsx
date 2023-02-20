@@ -164,4 +164,6 @@ export const IllaApp: FC = () => {
   )
 }
 
+export default IllaApp
+
 IllaApp.displayName = "IllaApp"

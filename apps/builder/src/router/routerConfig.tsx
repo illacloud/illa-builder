@@ -1,3 +1,4 @@
+import { LazyExoticComponent, ReactNode, Suspense, lazy } from "react"
 import { LoaderFunctionArgs, Navigate, redirect } from "react-router-dom"
 import { Editor } from "@/page/App"
 import { IllaApp } from "@/page/Dashboard"
@@ -41,29 +42,37 @@ const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
   return null
 }
 
+export function layLoad(Comp: LazyExoticComponent<any>): ReactNode {
+  return (
+    <Suspense fallback={<>loading</>}>
+      <Comp />
+    </Suspense>
+  )
+}
+
 // TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
 export const commonRouter: RoutesObjectPro[] = [
   {
     path: "/:teamIdentifier/app/:appId",
-    element: <Editor />,
+    element: layLoad(lazy(() => import("@/page/App"))),
     needLogin: true,
     errorElement: <Page404 />,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId",
-    element: <Deploy />,
+    element: layLoad(lazy(() => import("@/page/Deploy"))),
     errorElement: <Page404 />,
     loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName",
-    element: <Deploy />,
+    element: layLoad(lazy(() => import("@/page/Deploy"))),
     errorElement: <Page404 />,
     loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName/:viewPath",
-    element: <Deploy />,
+    element: layLoad(lazy(() => import("@/page/Deploy"))),
     errorElement: <Page404 />,
     loader: handleRemoveUrlToken,
   },
@@ -91,7 +100,7 @@ export const cloudRouter: RoutesObjectPro[] = [
   ...commonRouter,
   {
     path: "/:teamIdentifier/dashboard",
-    element: <IllaApp />,
+    element: layLoad(lazy(() => import("@/page/Dashboard"))),
     needLogin: true,
     children: [
       {
@@ -121,7 +130,7 @@ export const selfRouter: RoutesObjectPro[] = [
   ...commonRouter,
   {
     path: "/:teamIdentifier/dashboard",
-    element: <IllaApp />,
+    element: layLoad(lazy(() => import("@/page/Dashboard"))),
     needLogin: true,
     children: [
       {
@@ -145,7 +154,7 @@ export const selfRouter: RoutesObjectPro[] = [
   },
   {
     path: "/user",
-    element: <UserLogin />,
+    element: layLoad(lazy(() => import("@/page/User"))),
     children: [
       {
         index: true,
@@ -167,7 +176,7 @@ export const selfRouter: RoutesObjectPro[] = [
   },
   {
     path: "/setting",
-    element: <Setting />,
+    element: layLoad(lazy(() => import("@/page/Setting"))),
     needLogin: true,
     children: [
       {
