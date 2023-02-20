@@ -357,6 +357,37 @@
           "dropdown": {
             "retry": "点击重试"
           }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Method",
+            "table": "Table",
+            "json_input": "Use JSON parameter editor",
+            "parameters": "Parameters",
+            "index": "Index name",
+            "key_condition": "Key condition expression",
+            "projection_expression": "Projection expression",
+            "filter_expression": "Filter expression",
+            "attribute_name": "Expression attribute names",
+            "attribute_value": "Expression attribute values",
+            "limit": "Limit",
+            "select": "Select",
+            "item": "Item",
+            "condition_expression": "Condition expression",
+            "key": "Key",
+            "update_expression": "Update expression"
+          },
+          "option": {
+            "query": "query",
+            "scan": "scan",
+            "put_item": "putItem",
+            "get_item": "getItem",
+            "update_item": "updateItem",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
+          }
         }
       },
       "resource": {
@@ -408,7 +439,10 @@
             "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
             "role": "用户角色",
             "username": "用户名",
-            "password": "密码"
+            "password": "密码",
+            "dynamo_region": "AWS区域",
+            "dynamo_access_key_id": "AWS访问密钥 ID",
+            "dynamo_secret_key": "AWS密钥"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -431,7 +465,8 @@
             "role": "用户角色",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
-            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
           },
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
@@ -561,6 +596,12 @@
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
+        },
+        "tip": {
+          "allowlist": "如果您的资源不可公开访问，请更新您的网络或防火墙设置，将 ILLA 的 IP 地址添加到白名单，以便 ILLA 可以连接到您的资源。"
+        },
+        "button": {
+          "copy_ip": "复制IP"
         }
       },
       "resource_choose": {
@@ -688,7 +729,11 @@
           "submit": "提交",
           "success": "成功后",
           "onOpenModal": "打开对话框",
-          "onCloseModal": "关闭对话框"
+          "onCloseModal": "关闭对话框",
+          "play": "播放",
+          "pause": "暂停",
+          "loaded": "已载入",
+          "ended": "已结束"
         }
       },
       "setter_default_value": {
@@ -921,7 +966,9 @@
         "show_tool_bar": "显示工具栏",
         "scale": "缩放页面",
         "scroll": "快速滚动到每一页",
-        "min_max_size": "最小～最大文件大小"
+        "min_max_size": "最小～最大文件大小",
+        "video_url": "视频 URL",
+        "autoplay": "Autoplay"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -960,7 +1007,8 @@
         "parse_value": "尝试解析所选文件，支持 JSON、CSV、TSV、Excel 和 TXT 文件。 解析后的数据可以通过 {{uploader1.parsedValue}} 访问。 无法解析的文件在数组中将为空。 无论此选项如何，所有文件都可作为值数组中的 base64 编码字符串使用。",
         "file_url": "支持网络上的 PDF URL，或 pdf 文件的 base64 编码数据。 例如：{{ data:application/pdf;base64, example-data }}",
         "scale": "缩放每个页面以填充组件的宽度或高度。",
-        "scroll": "滚动时自动定位到每页的开头。"
+        "scroll": "滚动时自动定位到每页的开头。",
+        "video_url": "支持大多数视频服务或任何常见视频文件类型的直接链接。"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -1038,7 +1086,7 @@
       "min_files": "要求至少 {{ minFiles }} 个文件。",
       "max_files": "支持最多 {{ maxFiles }} 个文件。",
       "min_size": "文件大小不能小于{{minSize }} {{ type }}。",
-      "min_max_size": "Min size ~ Max size"
+      "min_max_size": "最小～最大文件大小"
     },
     "widget_picker": {
       "empty_tip": "抱歉，没有搜索结果",
@@ -1057,7 +1105,16 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL"
+      "set_file_url": "Set file URL",
+      "play": "Play",
+      "pause": "Pause",
+      "seek_to": {
+        "time": "时间",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "视频 URL"
+      }
     }
   },
   "exit_preview": "退出预览",
@@ -1071,7 +1128,13 @@
     "viewport": {
       "size": "尺寸",
       "reset": "重置",
-      "save": "保存"
+      "save": "保存",
+      "tooltip": {
+        "fluid_width": "Fluid width",
+        "desktop": "Desktop（width = 1280px）",
+        "tablet": "Tablet（width = 1080px）",
+        "custom": "Custom"
+      }
     },
     "button_text": "预览"
   },
@@ -1375,6 +1438,9 @@
     "pdf": {
       "empty": "无PDF文件",
       "failed": "无法加载PDF"
+    },
+    "video": {
+      "name": "视频"
     }
   },
   "page": {
