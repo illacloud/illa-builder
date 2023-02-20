@@ -357,6 +357,37 @@
           "dropdown": {
             "retry": "クリックして再試行"
           }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Method",
+            "table": "Table",
+            "json_input": "Use JSON parameter editor",
+            "parameters": "Parameters",
+            "index": "Index name",
+            "key_condition": "Key condition expression",
+            "projection_expression": "Projection expression",
+            "filter_expression": "Filter expression",
+            "attribute_name": "Expression attribute names",
+            "attribute_value": "Expression attribute values",
+            "limit": "Limit",
+            "select": "Select",
+            "item": "Item",
+            "condition_expression": "Condition expression",
+            "key": "Key",
+            "update_expression": "Update expression"
+          },
+          "option": {
+            "query": "query",
+            "scan": "scan",
+            "put_item": "putItem",
+            "get_item": "getItem",
+            "update_item": "updateItem",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
+          }
         }
       },
       "resource": {
@@ -408,7 +439,10 @@
             "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
             "role": "役割",
             "username": "ユーザー名",
-            "password": "パスワード"
+            "password": "パスワード",
+            "dynamo_region": "AWS リージョン",
+            "dynamo_access_key_id": "AWS アクセス キー ID",
+            "dynamo_secret_key": "AWS シークレット キー"
           },
           "placeholder": {
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
@@ -431,7 +465,8 @@
             "role": "役割",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
-            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
           },
           "tip": {
             "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
@@ -688,7 +723,11 @@
           "submit": "確認する",
           "success": "成功後",
           "onOpenModal": "Open modal",
-          "onCloseModal": "Close modal"
+          "onCloseModal": "Close modal",
+          "play": "再生",
+          "pause": "一時停止",
+          "loaded": "ロード済み",
+          "ended": "終了済み"
         }
       },
       "setter_default_value": {
@@ -921,7 +960,9 @@
         "show_tool_bar": "ツールバーを表示",
         "scale": "ズームページ",
         "scroll": "各ページへのスナップスクロール",
-        "min_max_size": "最小～最大のサイズ"
+        "min_max_size": "最小～最大のサイズ",
+        "video_url": "ビデオ URL",
+        "autoplay": "Autoplay"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -960,7 +1001,8 @@
         "parse_value": "JSON、CSV、TSV、Excel、および TXT ファイルをサポートして、選択したファイルの解析を試みます。 解析されたデータは {{uploader1.parsedValue}} 経由でアクセスできます。 解析できないファイルは、配列内で null になります。 このオプションに関係なく、すべてのファイルは、値の配列で base64 でエンコードされた文字列として使用できます。",
         "file_url": "Web 上の PDF URL、または PDF ファイルの base64 エンコード データをサポートします。 例: {{ data:application/pdf;base64, example-data }}",
         "scale": "各ページをスケーリングして、コンポーネントの幅または高さを埋めます。",
-        "scroll": "スクロール時に各ページの先頭に自動的にロケートします。"
+        "scroll": "スクロール時に各ページの先頭に自動的にロケートします。",
+        "video_url": "ほとんどのビデオ サービスまたは一般的なビデオ ファイル タイプへの直接リンクをサポートします。"
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
@@ -1059,7 +1101,14 @@
       "set_hidden": "Set hidden",
       "set_file_url": "Set file URL",
       "play": "Play",
-      "pause": "Pause"
+      "pause": "Pause",
+      "seek_to": {
+        "time": "時刻",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "ビデオ URL"
+      }
     }
   },
   "exit_preview": "プレビューを終了",
