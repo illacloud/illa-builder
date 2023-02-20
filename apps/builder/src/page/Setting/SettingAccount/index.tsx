@@ -2,12 +2,16 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
+import { CloudApi } from "@/api/cloudApi"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import {
+  CurrentUser,
+  UserInfoResponse,
+} from "@/redux/currentUser/currentUserState"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()
@@ -85,7 +89,7 @@ export const SettingAccount: FC = () => {
             if (!!errorMessage) {
               return
             }
-            Api.request<CurrentUser>(
+            CloudApi.request<UserInfoResponse>(
               {
                 url: "/users/nickname",
                 method: "PATCH",
@@ -97,7 +101,7 @@ export const SettingAccount: FC = () => {
                 dispatch(
                   currentUserActions.updateCurrentUserReducer({
                     ...response.data,
-                    nickname: response.data.nickname,
+                    userId: response.data.id,
                   }),
                 )
                 message.success({

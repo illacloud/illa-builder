@@ -6,6 +6,8 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import store from "@/store"
 
 export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"
@@ -17,13 +19,17 @@ export class DisplayNameGenerator {
   static displayNameList = new Set<string>(PLACEHOLDER_DISPLAYNAME)
 
   static appId: string = ""
+  static teamID: string = ""
+  static uid: string = ""
 
   static isAlreadyGenerate(displayName: string): boolean {
     return this.displayNameList.has(displayName)
   }
 
-  static initApp(appId: string) {
+  static initApp(appId: string, teamID: string, uid: string) {
     this.appId = appId
+    this.teamID = teamID
+    this.uid = uid
   }
 
   // use when create success
@@ -42,6 +48,8 @@ export class DisplayNameGenerator {
         Target.TARGET_DISPLAY_NAME,
         true,
         { type: ADD_DISPLAY_NAME, payload: [name] },
+        this.teamID,
+        this.uid,
         [],
       ),
     )
@@ -83,6 +91,8 @@ export class DisplayNameGenerator {
         Target.TARGET_DISPLAY_NAME,
         true,
         { type: UPDATE_DISPLAY_NAME, payload: [oldDisplayName, displayName] },
+        this.teamID,
+        this.uid,
         [],
       ),
     )
@@ -96,6 +106,8 @@ export class DisplayNameGenerator {
         Target.TARGET_DISPLAY_NAME,
         true,
         { type: REMOVE_DISPLAY_NAME, payload: [displayName] },
+        this.teamID,
+        this.uid,
         [],
       ),
     )
@@ -111,6 +123,8 @@ export class DisplayNameGenerator {
         Target.TARGET_DISPLAY_NAME,
         true,
         { type: REMOVE_DISPLAY_NAME, payload: displayNames },
+        this.teamID,
+        this.uid,
         [],
       ),
     )

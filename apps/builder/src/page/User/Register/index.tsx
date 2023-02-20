@@ -2,7 +2,7 @@ import { FC, useRef, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import {
   Button,
   Checkbox,
@@ -14,7 +14,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { CloudApi } from "@/api/cloudApi"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { formatLanguage } from "@/i18n/config"
 import { TextLink } from "@/page/User/components/TextLink"
@@ -49,6 +49,8 @@ export const Register: FC = () => {
   const dispatch = useDispatch()
   const message = useMessage()
   const [showCountDown, setShowCountDown] = useState(false)
+  const [searchParams] = useSearchParams()
+  const inviteToken = searchParams.get("inviteToken")
   const vt = useRef<string>("")
   const {
     control,
@@ -62,14 +64,16 @@ export const Register: FC = () => {
       isSubscribed: true,
     },
   })
+
   const onSubmit: SubmitHandler<RegisterFields> = (data) => {
-    Api.request<RegisterResult>(
+    CloudApi.request<RegisterResult>(
       {
         method: "POST",
         url: "/auth/signup",
         data: {
           verificationToken: vt.current,
           language: getLocalLanguage(),
+          inviteToken,
           ...data,
         },
       },
@@ -82,7 +86,7 @@ export const Register: FC = () => {
         setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
-            userId: res.data.userId,
+            userId: res.data.id,
             nickname: res.data.nickname,
             language: res.data.language,
             email: res.data.email,
@@ -124,6 +128,7 @@ export const Register: FC = () => {
       },
     )
   }
+
   return (
     <form css={gridFormStyle} onSubmit={handleSubmit(onSubmit)}>
       <header css={gridItemStyle}>
@@ -270,7 +275,9 @@ export const Register: FC = () => {
                             const res = await trigger("email")
                             if (res) {
                               setShowCountDown(true)
-                              Api.request<{ verificationToken: string }>(
+                              CloudApi.request<{
+                                verificationToken: string
+                              }>(
                                 {
                                   method: "POST",
                                   url: "/auth/verification",

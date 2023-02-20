@@ -29,7 +29,9 @@ export const listTitleStyle: SerializedStyles = css`
 export const hoverStyle = css`
   &:hover {
     cursor: pointer;
-    .dashboardAppEditButton {
+
+    .dashboardAppEditButton,
+    .dashboardAppLaunchButton {
       visibility: visible;
     }
   }

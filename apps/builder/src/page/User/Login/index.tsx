@@ -10,7 +10,7 @@ import {
   WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { CloudApi } from "@/api/cloudApi"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
@@ -27,7 +27,10 @@ import {
   gridValidStyle,
 } from "@/page/User/style"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import {
+  CurrentUser,
+  UserInfoResponse,
+} from "@/redux/currentUser/currentUserState"
 import { setLocalStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { LoginFields } from "./interface"
@@ -49,7 +52,7 @@ export const Login: FC = () => {
 
   const message = useMessage()
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
-    Api.request<CurrentUser>(
+    CloudApi.request<UserInfoResponse>(
       { method: "POST", url: "/auth/signin", data },
       (res) => {
         const token = res.headers["illa-token"]
@@ -57,7 +60,7 @@ export const Login: FC = () => {
         setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
-            userId: res.data.userId,
+            userId: res.data.id,
             nickname: res.data.nickname,
             language: res.data.language || "en-US",
             email: res.data.email,
@@ -113,7 +116,10 @@ export const Login: FC = () => {
               <TextLink
                 key="text-link"
                 onClick={() => {
-                  navigate("/user/register")
+                  navigate({
+                    pathname: "/user/register",
+                    search: location.search,
+                  })
                 }}
               />,
             ]}

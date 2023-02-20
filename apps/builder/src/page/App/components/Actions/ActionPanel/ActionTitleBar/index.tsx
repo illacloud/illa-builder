@@ -12,7 +12,7 @@ import {
   illaPrefix,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { EditableText } from "@/components/EditableText"
 import i18n from "@/i18n/config"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
@@ -167,7 +167,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         }
         break
       case "save":
-        Api.request(
+        BuilderApi.teamRequest(
           {
             method: "PUT",
             url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
@@ -200,7 +200,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           })
           return
         }
-        Api.request(
+        BuilderApi.teamRequest(
           {
             method: "PUT",
             url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
@@ -268,7 +268,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               ...selectedAction,
               displayName: value,
             }
-            Api.request(
+            BuilderApi.teamRequest(
               {
                 method: "PUT",
                 url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,

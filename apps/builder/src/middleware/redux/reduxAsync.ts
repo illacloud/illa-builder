@@ -31,6 +31,7 @@ import {
   UpdateTargetPagePropsPayload,
   sortComponentNodeChildrenPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { ILLARoute } from "@/router"
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
@@ -39,6 +40,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const reduxType = typeList[0]
   const reduxAction = typeList[1]
   const currentAppID = store.getState().currentApp.appInfo.appId ?? ""
+  const { id: teamID = "", uid = "" } =
+    getCurrentTeamInfo(store.getState()) ?? {}
   if (typeList[typeList.length - 1] === "remote") {
     const newType = `${reduxType}/${reduxAction}`
     action.type = newType
@@ -83,6 +86,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 payload,
               ),
             )
@@ -101,6 +106,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Target.TARGET_COMPONENTS,
                 true,
                 null,
+                teamID,
+                uid,
                 [parentNode],
               ),
             )
@@ -114,6 +121,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 allChildrenNodes,
               ),
             )
@@ -132,6 +141,9 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
+
                 copyComponentPayload,
               ),
             )
@@ -153,6 +165,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 singleComponentWSPayload,
               ),
             )
@@ -160,7 +174,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           case "updateComponentReflowReducer":
             const updateComponentReflowPayload: UpdateComponentReflowPayload[] =
               payload
-
             const allEffectComponentNodes: ComponentNode[] =
               updateComponentReflowPayload.flatMap((payload) => {
                 return payload.childNodes
@@ -176,6 +189,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 updateComponentReflowWSPayload,
               ),
             )
@@ -196,6 +211,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 sortComponentNodeChildrenWSPayload,
               ),
             )
@@ -216,6 +233,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 componentNodes,
               ),
             )
@@ -236,6 +255,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
+                  teamID,
+                  uid,
                   [
                     {
                       before: {
@@ -267,6 +288,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
+                  teamID,
+                  uid,
                   wsPayload,
                 ),
               )
@@ -283,6 +306,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 deletePayload.displayNames,
               ),
             )
@@ -300,6 +325,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 resetWsPayload,
               ),
             )
@@ -325,6 +352,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [
                   {
                     before: {
@@ -351,6 +380,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Target.TARGET_COMPONENTS,
                 true,
                 null,
+                teamID,
+                uid,
                 [pageName],
               ),
             )
@@ -363,6 +394,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [pageNode],
               ),
             )
@@ -385,6 +418,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [deleteSectionName],
               ),
             )
@@ -394,6 +429,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Target.TARGET_COMPONENTS,
                 true,
                 null,
+                teamID,
+                uid,
                 WSPayload,
               ),
             )
@@ -418,6 +455,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Target.TARGET_COMPONENTS,
                 true,
                 null,
+                teamID,
+                uid,
                 WSPagePayload,
               ),
             )
@@ -430,6 +469,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [addSectionNode],
               ),
             )
@@ -452,6 +493,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 WSPagePayload,
               ),
             )
@@ -472,6 +515,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 WSPagePayload,
               ),
             )
@@ -489,6 +534,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Target.TARGET_COMPONENTS,
                 true,
                 null,
+                teamID,
+                uid,
                 rootNodeUpdateWSPayload,
               ),
             )
@@ -498,6 +545,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Target.TARGET_COMPONENTS,
                 true,
                 { type, payload },
+                teamID,
+                uid,
                 nodes,
               ),
             )
@@ -515,6 +564,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Target.TARGET_COMPONENTS,
                 true,
                 null,
+                teamID,
+                uid,
                 rootNodeUpdateWSPayload,
               ),
             )
@@ -527,6 +578,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [deletePayload.displayName],
               ),
             )
@@ -548,6 +601,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Target.TARGET_COMPONENTS,
                 true,
                 null,
+                teamID,
+                uid,
                 updateWSPayload,
               ),
             )
@@ -560,6 +615,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [containerNode],
               ),
             )
@@ -580,6 +637,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Target.TARGET_COMPONENTS,
                 true,
                 null,
+                teamID,
+                uid,
                 [viewDisplayName],
               ),
             )
@@ -592,6 +651,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 updateWSPayload,
               ),
             )
@@ -614,6 +675,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 updateWSPayload,
               ),
             )
@@ -633,6 +696,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -647,6 +712,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -665,6 +732,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -679,6 +748,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -697,6 +768,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -711,6 +784,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -725,6 +800,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -743,6 +820,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -757,6 +836,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -771,6 +852,24 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
+                teamID,
+                uid,
+                [payload],
+              ),
+            )
+            break
+          case "modifyConfigDashboardAppReducer":
+            Connection.getRoom("dashboard", "")?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_APPS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                teamID,
+                uid,
                 [payload],
               ),
             )
@@ -793,6 +892,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
+                  teamID,
+                  uid,
                   [payload],
                 ),
               )
@@ -806,6 +907,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
+                  teamID,
+                  uid,
                   [payload],
                 ),
               )
@@ -823,6 +926,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
+                  teamID,
+                  uid,
                   [payload],
                 ),
               )
@@ -836,6 +941,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
+                  teamID,
+                  uid,
                   [payload],
                 ),
               )
@@ -854,6 +961,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
+                  teamID,
+                  uid,
                   [payload],
                 ),
               )
@@ -867,6 +976,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
+                  teamID,
+                  uid,
                   [payload],
                 ),
               )

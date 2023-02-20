@@ -14,7 +14,7 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
@@ -87,7 +87,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                     },
                     closable: false,
                     onOk: () => {
-                      Api.request<Resource<ResourceContent>>(
+                      BuilderApi.teamRequest<Resource<ResourceContent>>(
                         {
                           url: `/resources/${resourceId}`,
                           method: "DELETE",

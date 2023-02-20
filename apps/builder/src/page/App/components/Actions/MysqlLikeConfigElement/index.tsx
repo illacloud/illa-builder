@@ -15,7 +15,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import {
   configItem,
   configItemTip,
@@ -96,7 +96,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
     <form
       onSubmit={handleSubmit((data, event) => {
         if (resourceId != undefined) {
-          Api.request<Resource<MysqlLikeResource>>(
+          BuilderApi.teamRequest<Resource<MysqlLikeResource>>(
             {
               method: "PUT",
               url: `/resources/${resourceId}`,
@@ -136,7 +136,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             },
           )
         } else {
-          Api.request<Resource<MysqlLikeResource>>(
+          BuilderApi.teamRequest<Resource<MysqlLikeResource>>(
             {
               method: "POST",
               url: `/resources`,
@@ -463,7 +463,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             type="button"
             onClick={() => {
               const data = getValues()
-              Api.request<Resource<MysqlLikeResource>>(
+              BuilderApi.teamRequest<Resource<MysqlLikeResource>>(
                 {
                   method: "POST",
                   url: `/resources/testConnection`,

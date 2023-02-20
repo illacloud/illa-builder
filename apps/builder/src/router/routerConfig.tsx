@@ -1,9 +1,10 @@
-import { Navigate } from "react-router-dom"
+import { LoaderFunctionArgs, Navigate, redirect } from "react-router-dom"
 import { Editor } from "@/page/App"
 import { IllaApp } from "@/page/Dashboard"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { Deploy } from "@/page/Deploy"
+import { Member } from "@/page/Member"
 import { Setting } from "@/page/Setting"
 import { SettingAccount } from "@/page/Setting/SettingAccount"
 import { SettingOthers } from "@/page/Setting/SettingOthers"
@@ -16,32 +17,129 @@ import { Page403 } from "@/page/status/403"
 import { Page404 } from "@/page/status/404"
 import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
+import { setLocalStorage } from "@/utils/storage"
+// import { handleRemoveUrlToken } from "@/router/loader"
+import { isCloudVersion } from "@/utils/typeHelper"
+import { removeUrlParams } from "@/utils/url"
+
+export const cloudUrl = `${location.protocol}//${
+  import.meta.env.VITE_CLOUD_URL
+}`
+
+const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
+  const { request } = args
+  const url = new URL(request.url)
+  const token = url?.searchParams?.get("token")
+  if (!token) return null
+  setLocalStorage("token", token, -1)
+  const current = removeUrlParams(window.location.href, ["token"])
+  window.history.replaceState(
+    {},
+    "",
+    `${window.location.pathname}${current.search}`,
+  )
+  return null
+}
 
 // TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
-export const routerConfig: RoutesObjectPro[] = [
+export const commonRouter: RoutesObjectPro[] = [
   {
-    index: true,
-    element: <Navigate to="/dashboard" replace />,
+    path: "/:teamIdentifier/app/:appId",
+    element: <Editor />,
+    needLogin: true,
+    errorElement: <Page404 />,
   },
   {
-    path: "/dashboard",
+    path: "/:teamIdentifier/deploy/app/:appId",
+    element: <Deploy />,
+    errorElement: <Page404 />,
+    loader: handleRemoveUrlToken,
+  },
+  {
+    path: "/:teamIdentifier/deploy/app/:appId/:pageName",
+    element: <Deploy />,
+    errorElement: <Page404 />,
+    loader: handleRemoveUrlToken,
+  },
+  {
+    path: "/:teamIdentifier/deploy/app/:appId/:pageName/:viewPath",
+    element: <Deploy />,
+    errorElement: <Page404 />,
+    loader: handleRemoveUrlToken,
+  },
+  {
+    path: "/403",
+    element: <Page403 />,
+  },
+  {
+    path: "/500",
+    element: <Page500 />,
+  },
+  {
+    path: "/*",
+    element: <Page404 />,
+  },
+]
+
+export const cloudRouter: RoutesObjectPro[] = [
+  {
+    index: true,
+    loader: async () => {
+      return redirect(cloudUrl)
+    },
+  },
+  ...commonRouter,
+  {
+    path: "/:teamIdentifier/dashboard",
     element: <IllaApp />,
     needLogin: true,
     children: [
       {
         index: true,
         element: <Navigate to="./apps" replace />,
-        needLogin: true,
       },
       {
-        path: "/dashboard/apps",
+        path: "/:teamIdentifier/dashboard/apps",
         element: <DashboardApps />,
-        needLogin: true,
       },
       {
-        path: "/dashboard/resources",
+        path: "/:teamIdentifier/dashboard/resources",
         element: <DashboardResources />,
-        needLogin: true,
+        errorElement: <Page404 />,
+      },
+    ],
+  },
+]
+
+export const selfRouter: RoutesObjectPro[] = [
+  {
+    index: true,
+    loader: async () => {
+      return redirect("/0/dashboard")
+    },
+  },
+  ...commonRouter,
+  {
+    path: "/:teamIdentifier/dashboard",
+    element: <IllaApp />,
+    needLogin: true,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="./apps" replace />,
+      },
+      {
+        path: "/:teamIdentifier/dashboard/apps",
+        element: <DashboardApps />,
+        errorElement: <Page404 />,
+      },
+      {
+        path: "/:teamIdentifier/dashboard/resources",
+        element: <DashboardResources />,
+      },
+      {
+        path: "/:teamIdentifier/dashboard/members",
+        element: <Member />,
       },
     ],
   },
@@ -68,12 +166,6 @@ export const routerConfig: RoutesObjectPro[] = [
     ],
   },
   {
-    path: "/app/:appId",
-    element: <Editor />,
-    needLogin: true,
-    errorElement: <Page403 />,
-  },
-  {
     path: "/setting",
     element: <Setting />,
     needLogin: true,
@@ -81,50 +173,23 @@ export const routerConfig: RoutesObjectPro[] = [
       {
         index: true,
         element: <Navigate to="./account" replace />,
-        needLogin: true,
       },
       {
         path: "/setting/account",
         element: <SettingAccount />,
-        needLogin: true,
       },
       {
         path: "/setting/password",
         element: <SettingPassword />,
-        needLogin: true,
       },
       {
         path: "/setting/others",
         element: <SettingOthers />,
-        needLogin: true,
       },
     ],
   },
-  {
-    path: "/deploy/app/:appId/version/:versionId",
-    element: <Deploy />,
-    needLogin: true,
-  },
-  {
-    path: "/deploy/app/:appId/version/:versionId/:pageName",
-    element: <Deploy />,
-    needLogin: true,
-  },
-  {
-    path: "/deploy/app/:appId/version/:versionId/:pageName/:viewPath",
-    element: <Deploy />,
-    needLogin: true,
-  },
-  {
-    path: "/403",
-    element: <Page403 />,
-  },
-  {
-    path: "/500",
-    element: <Page500 />,
-  },
-  {
-    path: "/*",
-    element: <Page404 />,
-  },
 ]
+
+export const routerConfig: RoutesObjectPro[] = isCloudVersion
+  ? cloudRouter
+  : selfRouter

@@ -20,6 +20,7 @@ import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
 import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
+import teamReducer from "@/redux/team/teamSlice"
 
 const listenerMiddleware = createListenerMiddleware()
 
@@ -55,6 +56,7 @@ const store = configureStore({
     liveFamily: liveFamilyReducer,
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
+    team: teamReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

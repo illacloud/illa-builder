@@ -1,13 +1,18 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
-import { FC, MouseEvent, useCallback, useEffect } from "react"
+import { FC, MouseEvent, useCallback, useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { Connection } from "@/api/ws"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
+import { canManage } from "@/illa-public-component/UserRoleUtils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@/illa-public-component/UserRoleUtils/interface"
 import { ActionEditor } from "@/page/App/components/Actions"
 import { initS3Client } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { AppLoading } from "@/page/App/components/AppLoading"
@@ -29,6 +34,7 @@ import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execut
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
 import { DataWorkspace } from "./components/DataWorkspace"
@@ -54,10 +60,25 @@ export const Editor: FC = () => {
   const controls = useAnimation()
 
   const currentUser = useSelector(getCurrentUser)
+  const teamInfo = useSelector(getCurrentTeamInfo)
+
+  const currentUserRole = teamInfo?.myRole
 
   const handleLeaveRoom = useCallback(() => {
     Connection.leaveRoom("app", appId ?? "")
   }, [appId])
+
+  // check if user can manage the app
+  if (currentUserRole) {
+    const canEditApp = canManage(
+      currentUserRole,
+      ATTRIBUTE_GROUP.APP,
+      ACTION_MANAGE.EDIT_APP,
+    )
+    if (!canEditApp) {
+      throw new Error("You don't have permission to edit this app")
+    }
+  }
 
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {
@@ -101,7 +122,7 @@ export const Editor: FC = () => {
   // init resource
   useEffect(() => {
     const controller = new AbortController()
-    Api.request<Resource<ResourceContent>[]>(
+    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
       {
         url: "/resources",
         method: "GET",
