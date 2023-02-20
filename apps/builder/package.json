@@ -48,7 +48,6 @@
     "axios": "^0.26.1",
     "chart.js": "^3.9.1",
     "chroma-js": "^2.4.2",
-    "codemirror": "^5.65.5",
     "copy-to-clipboard": "^3.3.2",
     "dayjs": "^1.11.7",
     "deep-diff": "^1.0.2",
@@ -105,6 +104,7 @@
     "@vitejs/plugin-react-swc": "^3.1.0",
     "cross-env": "^7.0.3",
     "e2e": "workspace:*",
+    "rollup-plugin-visualizer": "^5.9.0",
     "typescript": "^4.9.3",
     "vite-plugin-checker": "^0.5.3",
     "vite-plugin-svgr": "^2.1.0"
