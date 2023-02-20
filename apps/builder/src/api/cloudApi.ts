@@ -1,5 +1,5 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { Api, ApiError, BUILDER } from "@/api/base"
+import { Api, ApiError } from "@/api/base"
 import { getTeamID } from "@/utils/team"
 import { isCloudVersion } from "@/utils/typeHelper"
 
@@ -16,7 +16,7 @@ export class CloudApi {
   ) {
     config.baseURL = isCloudVersion
       ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`
-      : CLOUD
+      : `${location.host}${CLOUD}`
     Api.request(config, success, failure, crash, loading, errorState)
   }
 
@@ -25,7 +25,7 @@ export class CloudApi {
   ) {
     config.baseURL = isCloudVersion
       ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`
-      : CLOUD
+      : `${location.host}${CLOUD}`
     return Api.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 

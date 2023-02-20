@@ -24,7 +24,7 @@ export const CLOUD = "/supervisor/api/v1"
 const axios = Axios.create({
   baseURL: isCloudVersion
     ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${BUILDER}`
-    : BUILDER,
+    : `${location.host}${BUILDER}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
