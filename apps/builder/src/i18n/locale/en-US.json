@@ -1438,6 +1438,9 @@
     "pdf": {
       "empty": "No PDF files",
       "failed": "PDF could not be loaded"
+    },
+    "video": {
+      "name": "Video"
     }
   },
   "page": {
