@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, Select } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
+import { CloudApi } from "@/api/cloudApi"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
@@ -47,7 +48,7 @@ export const SettingOthers: FC = () => {
   const isButtonDisabled = languageValue === userLanguage
 
   const handleClickSubmit = useCallback(() => {
-    BuilderApi.teamRequest<CurrentUser>(
+    CloudApi.request<CurrentUser>(
       {
         url: "/users/language",
         method: "PATCH",

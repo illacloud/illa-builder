@@ -47,24 +47,24 @@ export const commonRouter: RoutesObjectPro[] = [
     path: "/:teamIdentifier/app/:appId",
     element: <Editor />,
     needLogin: true,
-    errorElement: <Page403 />,
+    errorElement: <Page404 />,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId",
     element: <Deploy />,
-    errorElement: <Page403 />,
+    errorElement: <Page404 />,
     loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName",
     element: <Deploy />,
-    errorElement: <Page403 />,
+    errorElement: <Page404 />,
     loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName/:viewPath",
     element: <Deploy />,
-    errorElement: <Page403 />,
+    errorElement: <Page404 />,
     loader: handleRemoveUrlToken,
   },
   {
@@ -131,6 +131,7 @@ export const selfRouter: RoutesObjectPro[] = [
       {
         path: "/:teamIdentifier/dashboard/apps",
         element: <DashboardApps />,
+        errorElement: <Page404 />,
       },
       {
         path: "/:teamIdentifier/dashboard/resources",
