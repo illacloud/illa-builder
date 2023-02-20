@@ -599,6 +599,9 @@
         },
         "tip": {
           "allowlist": "如果您的资源不可公开访问，请更新您的网络或防火墙设置，将 ILLA 的 IP 地址添加到白名单，以便 ILLA 可以连接到您的资源。"
+        },
+        "button": {
+          "copy_ip": "复制IP"
         }
       },
       "resource_choose": {
@@ -1125,7 +1128,13 @@
     "viewport": {
       "size": "尺寸",
       "reset": "重置",
-      "save": "保存"
+      "save": "保存",
+      "tooltip": {
+        "fluid_width": "Fluid width",
+        "desktop": "Desktop（width = 1280px）",
+        "tablet": "Tablet（width = 1080px）",
+        "custom": "Custom"
+      }
     },
     "button_text": "预览"
   },
