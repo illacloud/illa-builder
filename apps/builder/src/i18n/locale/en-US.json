@@ -1057,7 +1057,9 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL"
+      "set_file_url": "Set file URL",
+      "play": "Play",
+      "pause": "Pause"
     }
   },
   "exit_preview": "Exit Preview",
