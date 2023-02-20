@@ -17,7 +17,7 @@ export default defineConfig((props) => {
       checker({
         typescript: true,
       }),
-      basicSsl(),
+      env.VITE_INSTANCE_ID !== "SELF_HOST_CLOUD" ? basicSsl() : undefined,
     ],
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },
