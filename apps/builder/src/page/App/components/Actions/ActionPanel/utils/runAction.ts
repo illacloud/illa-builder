@@ -463,7 +463,6 @@ export const runAction = (
       const isClientS3 = ClientS3.includes(
         (action.content as S3Action<S3ActionTypeContent>).commands,
       )
-      console.log({ isClientS3 })
       if (isClientS3) {
         fetchS3ClientResult(
           resourceId || "",
