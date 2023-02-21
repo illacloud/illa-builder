@@ -99,7 +99,8 @@ export const AutoHeightWithLimitedContainer: FC<
       <Resizable
         size={{
           width: "100%",
-          height: `${dynamicMaxHeight ?? containerHeight + DEFAULT_HEIGHT}`,
+          // 2 is padding with wrapper
+          height: `${dynamicMaxHeight + 2 ?? containerHeight + DEFAULT_HEIGHT}`,
         }}
         style={{
           position: "absolute",
@@ -107,7 +108,7 @@ export const AutoHeightWithLimitedContainer: FC<
           zIndex: -1,
           pointerEvents: "none",
         }}
-        minHeight={containerHeight + DEFAULT_MIN_GAP}
+        minHeight={dynamicMinHeight + DEFAULT_MIN_GAP}
         handleComponent={resizeHandler}
         enable={{
           bottom: true,
@@ -131,6 +132,7 @@ export const AutoHeightWithLimitedContainer: FC<
           pointerEvents: "none",
         }}
         minHeight={27}
+        maxHeight={dynamicMaxHeight - DEFAULT_MIN_GAP}
         handleComponent={resizeHandler}
         enable={{
           bottom: true,

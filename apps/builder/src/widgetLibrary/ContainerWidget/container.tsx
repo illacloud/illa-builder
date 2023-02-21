@@ -46,7 +46,8 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       return (
         <BasicContainer
           componentNode={currentViewComponentNode}
-          minHeight={38 * UNIT_HEIGHT}
+          // 8 is the padding of the container , 7 is padding of the wrapper container
+          minHeight={h * UNIT_HEIGHT - 7 - 8}
           padding={4}
           safeRowNumber={1}
           addedRowNumber={1}
@@ -55,7 +56,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       )
     }
     return <ContainerEmptyState />
-  }, [blockColumns, childrenNode, currentIndex])
+  }, [blockColumns, childrenNode, currentIndex, h])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {

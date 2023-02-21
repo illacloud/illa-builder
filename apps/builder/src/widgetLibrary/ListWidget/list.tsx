@@ -51,6 +51,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
     h,
     dynamicMinHeight,
     dynamicMaxHeight,
+    templateContainerHeight,
   } = props
 
   const updateAllComponentHeight = useCallback(
@@ -109,7 +110,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
       <BasicContainer
         {...basicContainerProps}
         componentNode={templateComponentNodes}
-        minHeight={130}
+        minHeight={templateContainerHeight - 16}
         padding={8}
         blockColumns={blockColumns}
       />
