@@ -1,6 +1,7 @@
+import { AxiosError, AxiosResponse } from "axios"
 import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isString } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
+import { ApiError, BuilderApi } from "@/api/base"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
@@ -256,6 +257,42 @@ const fetchActionResult = (
   isTrigger: boolean,
   resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
+  const success = (data: ActionRunResult) => {
+    // @ts-ignore
+    //TODO: @aruseito not use any
+    const rawData = data.data.Rows
+    calculateFetchResultDisplayName(
+      actionType,
+      displayName,
+      isTrigger,
+      rawData,
+      transformer,
+      resultCallback,
+    )
+    const realSuccessEvent: any[] = isTrigger
+      ? successEvent || []
+      : getRealEventHandler(successEvent)
+
+    runAllEventHandler(realSuccessEvent)
+  }
+  const failure = (res: AxiosResponse<ApiError>) => {
+    resultCallback?.(res.data, true)
+    const realSuccessEvent: any[] = isTrigger
+      ? failedEvent || []
+      : getRealEventHandler(failedEvent)
+    runAllEventHandler(realSuccessEvent)
+  }
+  const crash = (res: AxiosError) => {
+    resultCallback?.(res, true)
+    const realSuccessEvent: any[] = isTrigger
+      ? failedEvent || []
+      : getRealEventHandler(failedEvent)
+    runAllEventHandler(realSuccessEvent)
+    message.error({
+      content: "not online",
+    })
+  }
+
   if (isPublic) {
     BuilderApi.teamIdentifierRequest(
       {
@@ -268,41 +305,9 @@ const fetchActionResult = (
           content: actionContent,
         },
       },
-      (data: ActionRunResult) => {
-        // @ts-ignore
-        //TODO: @aruseito not use any
-        const rawData = data.data.Rows
-        calculateFetchResultDisplayName(
-          actionType,
-          displayName,
-          isTrigger,
-          rawData,
-          transformer,
-          resultCallback,
-        )
-        const realSuccessEvent: any[] = isTrigger
-          ? successEvent || []
-          : getRealEventHandler(successEvent)
-
-        runAllEventHandler(realSuccessEvent)
-      },
-      (res) => {
-        resultCallback?.(res.data, true)
-        const realSuccessEvent: any[] = isTrigger
-          ? failedEvent || []
-          : getRealEventHandler(failedEvent)
-        runAllEventHandler(realSuccessEvent)
-      },
-      (res) => {
-        resultCallback?.(res, true)
-        const realSuccessEvent: any[] = isTrigger
-          ? failedEvent || []
-          : getRealEventHandler(failedEvent)
-        runAllEventHandler(realSuccessEvent)
-        message.error({
-          content: "not online",
-        })
-      },
+      success,
+      failure,
+      crash,
     )
   } else {
     BuilderApi.teamRequest(
@@ -316,41 +321,9 @@ const fetchActionResult = (
           content: actionContent,
         },
       },
-      (data: ActionRunResult) => {
-        // @ts-ignore
-        //TODO: @aruseito not use any
-        const rawData = data.data.Rows
-        calculateFetchResultDisplayName(
-          actionType,
-          displayName,
-          isTrigger,
-          rawData,
-          transformer,
-          resultCallback,
-        )
-        const realSuccessEvent: any[] = isTrigger
-          ? successEvent || []
-          : getRealEventHandler(successEvent)
-
-        runAllEventHandler(realSuccessEvent)
-      },
-      (res) => {
-        resultCallback?.(res.data, true)
-        const realSuccessEvent: any[] = isTrigger
-          ? failedEvent || []
-          : getRealEventHandler(failedEvent)
-        runAllEventHandler(realSuccessEvent)
-      },
-      (res) => {
-        resultCallback?.(res, true)
-        const realSuccessEvent: any[] = isTrigger
-          ? failedEvent || []
-          : getRealEventHandler(failedEvent)
-        runAllEventHandler(realSuccessEvent)
-        message.error({
-          content: "not online",
-        })
-      },
+      success,
+      failure,
+      crash,
     )
   }
 }
