@@ -1,5 +1,6 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { FC, useEffect } from "react"
+import { useSelector } from "react-redux"
 import { Loading } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
@@ -10,18 +11,21 @@ import {
   loadingStyle,
   logoStyle,
 } from "@/page/Deploy/style"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { startAppListening } from "@/store"
 
 export const Deploy: FC = () => {
   const loadingState = useInitBuilderApp("production")
+  const currentApp = useSelector(getAppInfo)
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
       setupExecutionListeners(startAppListening),
     ]
+    document.title = currentApp.appName
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
-  }, [])
+  }, [currentApp.appName])
 
   return (
     <div css={deployContainerStyle}>
