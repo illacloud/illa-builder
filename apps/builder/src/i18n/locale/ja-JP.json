@@ -968,7 +968,8 @@
         "scroll": "各ページへのスナップスクロール",
         "min_max_size": "最小～最大のサイズ",
         "video_url": "ビデオ URL",
-        "autoplay": "Autoplay"
+        "autoplay": "Autoplay",
+        "loop": "ループ"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
