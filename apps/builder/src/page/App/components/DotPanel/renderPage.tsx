@@ -322,7 +322,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
 
     if (bodyRef.current) {
       bodyRef.current.style.position = "absolute"
-      bodyRef.current.style.width = `100%`
+      bodyRef.current.style.width = `${bodyWidth}px`
       bodyRef.current.style.left = `${bodyLeft}px`
       bodyRef.current.style.top = `${bodyTop}px`
       bodyRef.current.style.height = `${bodyHeight}px`
