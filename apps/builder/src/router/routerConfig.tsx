@@ -44,7 +44,7 @@ const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
 
 export function layLoad(Comp: LazyExoticComponent<any>): ReactNode {
   return (
-    <Suspense fallback={<>loading</>}>
+    <Suspense fallback={<></>}>
       <Comp />
     </Suspense>
   )
