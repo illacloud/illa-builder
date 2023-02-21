@@ -53,6 +53,7 @@ export interface Events {
 
 export type ActionType =
   | "huggingface"
+  | "hfendpoint"
   | "firebase"
   | "supabasedb"
   | "clickhouse"

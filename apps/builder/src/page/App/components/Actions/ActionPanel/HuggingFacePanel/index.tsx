@@ -313,9 +313,7 @@ export const HuggingFacePanel: FC = () => {
                 <TextLink
                   key="editor.action.panel.hugging_face.tips.mode_id"
                   onClick={() => {
-                    handleURLClick(
-                      "https://huggingface.co/docs/api-inference/detailed_parameters",
-                    )
+                    handleURLClick("https://huggingface.co/models")
                   }}
                 />,
               ]}

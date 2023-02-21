@@ -78,6 +78,10 @@ export const Apis: ActionDataItem[] = [
     actionType: "huggingface",
     isDraft: false,
   },
+  {
+    actionType: "hfendpoint",
+    isDraft: false,
+  },
 ]
 
 export const JsTransformer: ActionDataItem[] = [

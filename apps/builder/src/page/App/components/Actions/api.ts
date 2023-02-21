@@ -184,6 +184,11 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       return {
         token: data.token,
       }
+    case "hfendpoint":
+      return {
+        token: data.token,
+        endpoint: data.token,
+      }
     case "snowflake":
       return {
         accountName: data.accountName,

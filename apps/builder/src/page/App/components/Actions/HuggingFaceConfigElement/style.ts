@@ -19,7 +19,7 @@ export const labelContainer = css`
   display: flex;
   flex-direction: row;
   justify-content: end;
-  min-width: 80px;
+  min-width: 120px;
 `
 
 export const docsItemContainerStyle = css`
@@ -63,7 +63,7 @@ export const docItemStyle = css`
 `
 
 export const labelStyle = css`
-  min-width: 80px;
+  min-width: 120px;
   display: flex;
   flex-direction: row;
   justify-content: end;
@@ -74,7 +74,7 @@ export const tipsStyle = css`
   white-space: pre-line;
   color: ${getColor("grayBlue", "04")};
   font-weight: 400;
-  margin-left: 96px;
+  margin-left: 136px;
   padding-bottom: 8px;
   padding-left: 24px;
   line-height: 22px;

@@ -78,6 +78,10 @@ export const Apis: ResourceDataItem[] = [
     resourceType: "huggingface",
     isDraft: false,
   },
+  {
+    resourceType: "hfendpoint",
+    isDraft: false,
+  },
 ]
 
 export const ResourceTypeList = [

@@ -37,6 +37,7 @@ export function getIconFromResourceType(
       return <SnowflakeIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
+    case "hfendpoint":
     case "huggingface":
       return <HuggingFaceIcon size={size} />
     case "mariadb":
@@ -80,6 +81,7 @@ export function getIconFromActionType(
       return <SupabaseIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
+    case "hfendpoint":
     case "huggingface":
       return <HuggingFaceIcon size={size} />
     case "transformer":
