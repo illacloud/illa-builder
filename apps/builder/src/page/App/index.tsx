@@ -1,9 +1,9 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
-import { FC, MouseEvent, useCallback, useEffect, useMemo } from "react"
+import { FC, MouseEvent, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
 import { Connection } from "@/api/ws"
@@ -30,7 +30,10 @@ import {
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
-import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
+import {
+  destroyExecutionTree,
+  setupExecutionListeners,
+} from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"

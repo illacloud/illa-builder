@@ -10,6 +10,7 @@ import {
   AddSectionViewPayload,
   AddTargetPageSectionPayload,
   ComponentNode,
+  ComponentsInitialState,
   ComponentsState,
   CopyComponentPayload,
   DeleteComponentNodePayload,
@@ -615,4 +616,11 @@ export const updateViewportSizeReducer: CaseReducer<
   if (!state.props) state.props = {}
   state.props.viewportWidth = action.payload.viewportWidth
   state.props.viewportHeight = action.payload.viewportHeight
+}
+
+export const resetComponentsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction
+> = (state, action) => {
+  return ComponentsInitialState
 }

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { BuilderApi } from "@/api/base"
 import { getTeamsInfo } from "@/api/team"
+import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
@@ -36,6 +37,8 @@ export const useInitBuilderApp = (model: IllaMode) => {
     uid: teamInfo?.uid ?? "",
     teamID: teamInfo?.id ?? "",
   }
+
+  useDestroyApp()
 
   const handleCurrentApp = (response: AxiosResponse<CurrentAppResp>) => {
     if (model === "edit") {

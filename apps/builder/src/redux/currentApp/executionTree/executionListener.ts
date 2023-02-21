@@ -25,6 +25,12 @@ const mergeActionResult = (rawTree: RawTreeShape) => {
   })
 }
 
+export const destroyExecutionTree = () => {
+  if (executionTree) {
+    executionTree = executionTree.destroyTree()
+  }
+}
+
 async function handleStartExecution(
   action: AnyAction,
   listenerApi: AppListenerEffectAPI,

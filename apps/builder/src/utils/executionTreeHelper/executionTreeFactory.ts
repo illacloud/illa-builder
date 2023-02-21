@@ -42,6 +42,21 @@ export class ExecutionTreeFactory {
 
   constructor() {}
 
+  destroyTree() {
+    this.dependenciesState = {}
+    this.inDependencyTree = {}
+    this.evalOrder = []
+    this.oldRawTree = {} as RawTreeShape
+    this.hasCyclical = false
+    this.executedTree = {} as RawTreeShape
+    this.errorTree = {}
+    this.debuggerData = {}
+    this.allKeys = {}
+    this.runningActionsMap = new Map()
+
+    return undefined
+  }
+
   initTree(rawTree: RawTreeShape) {
     const currentRawTree = cloneDeep(rawTree)
     this.oldRawTree = cloneDeep(currentRawTree)
