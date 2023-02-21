@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { CheckboxGroup, CheckboxOption } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -160,20 +161,12 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     handleValidate,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [validateMessage, finalOptions, labelPosition, updateComponentHeight])
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -205,7 +198,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 

@@ -6,7 +6,7 @@ import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"
 import { IMAGE_WIDGET_CONFIG } from "@/widgetLibrary/ImageWidget"
 import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
 import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 export const LIST_WIDGET_CONFIG: WidgetConfig = {
   type: "LIST_WIDGET",
@@ -24,9 +24,9 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
         {
           ...TEXT_WIDGET_CONFIG,
           w: 10,
-          h: 5,
+          h: 10,
           x: 22,
-          y: 3,
+          y: 0,
           defaults: {
             ...TEXT_WIDGET_CONFIG.defaults,
             value:
@@ -34,19 +34,19 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
             $dynamicAttrPaths: ["value"],
           },
         },
-        {
-          ...TEXT_WIDGET_CONFIG,
-          w: 20,
-          h: 5,
-          x: 22,
-          y: 8,
-          defaults: {
-            ...TEXT_WIDGET_CONFIG.defaults,
-            value:
-              "{{templateDisplayName.dataSources.map((currentItem) => (currentItem.email))}}",
-            $dynamicAttrPaths: ["value"],
-          },
-        },
+        // {
+        //   ...TEXT_WIDGET_CONFIG,
+        //   w: 20,
+        //   h: 4,
+        //   x: 22,
+        //   y: 10,
+        //   defaults: {
+        //     ...TEXT_WIDGET_CONFIG.defaults,
+        //     value:
+        //       "{{templateDisplayName.dataSources.map((currentItem) => (currentItem.email))}}",
+        //     $dynamicAttrPaths: ["value"],
+        //   },
+        // },
         {
           ...IMAGE_WIDGET_CONFIG,
           w: 16,
@@ -113,5 +113,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
     "img": "https://cdn.dribbble.com/users/693674/screenshots/20021608/media/d12b3f2b117d71626f17ee2dfd48681f.png"
   }
 ]}}`,
+    dynamicHeight: "fixed",
+    resizeDirection: RESIZE_DIRECTION.ALL,
   },
 }

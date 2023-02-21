@@ -13,6 +13,10 @@ export interface TextProps extends ILLATextProps {
 }
 
 export interface TextWidgetProps
-  extends TextProps,
+  extends Omit<TextProps, "h" | "w">,
     BaseWidgetProps,
-    TooltipWrapperProps {}
+    TooltipWrapperProps {
+  dynamicHeight: "auto" | "fixed" | "limited"
+  dynamicMaxHeight?: number
+  dynamicMinHeight?: number
+}

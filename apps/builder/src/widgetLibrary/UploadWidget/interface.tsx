@@ -1,6 +1,5 @@
 import { UploadItem, UploadProps } from "@illa-design/react"
 import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 

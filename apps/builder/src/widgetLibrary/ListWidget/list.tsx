@@ -4,6 +4,7 @@ import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { Pagination } from "@illa-design/react"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import {
   applyBarHandlerStyle,
   applyBarPointerStyle,
@@ -27,6 +28,7 @@ import {
   ListWidgetProps,
   ListWidgetPropsWithChildrenNodes,
   OVERFLOW_TYPE,
+  RenderCopyContainerProps,
   RenderTemplateContainerProps,
 } from "@/widgetLibrary/ListWidget/interface"
 import {
@@ -36,23 +38,87 @@ import {
   listParentContainerStyle,
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
-  const { templateComponentNodes, templateContainerHeight, blockColumns } =
-    props
+  const {
+    templateComponentNodes,
+    blockColumns,
+    dynamicHeight,
+    handleUpdateOriginalDSLMultiAttr,
+    updateComponentHeight,
+    itemNumber = 1,
+    h,
+    dynamicMinHeight,
+    dynamicMaxHeight,
+    templateContainerHeight,
+  } = props
+
+  const updateAllComponentHeight = useCallback(
+    (height: number) => {
+      if (height * itemNumber + 8 * (itemNumber - 1) === h) return
+
+      handleUpdateOriginalDSLMultiAttr({
+        itemHeight: height,
+      })
+      updateComponentHeight &&
+        setTimeout(() => {
+          updateComponentHeight?.(height * itemNumber + 8 * (itemNumber - 1))
+        }, 60)
+    },
+    [h, handleUpdateOriginalDSLMultiAttr, itemNumber, updateComponentHeight],
+  )
+
+  const enableAutoHeight = useMemo(() => {
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "limited":
+        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight, dynamicMinHeight, h])
+
+  const dynamicOptions = useMemo(
+    () => ({
+      dynamicMinHeight,
+      dynamicMaxHeight,
+    }),
+    [dynamicMaxHeight, dynamicMinHeight],
+  )
+
+  const basicContainerProps =
+    dynamicHeight !== "fixed"
+      ? {
+          canResizeY: true,
+          safeRowNumber: 1,
+          addedRowNumber: 1,
+        }
+      : {
+          canResizeY: false,
+          addedRowNumber: 0,
+        }
+
   return (
-    <BasicContainer
-      componentNode={templateComponentNodes}
-      canResizeY={false}
-      minHeight={templateContainerHeight - 16}
-      padding={8}
-      addedRowNumber={0}
-      blockColumns={blockColumns}
-    />
+    <AutoHeightContainer
+      updateComponentHeight={updateAllComponentHeight}
+      enable={enableAutoHeight}
+      dynamicOptions={dynamicOptions}
+    >
+      <BasicContainer
+        {...basicContainerProps}
+        componentNode={templateComponentNodes}
+        minHeight={templateContainerHeight - 16}
+        padding={8}
+        blockColumns={blockColumns}
+      />
+    </AutoHeightContainer>
   )
 }
 
-const RenderCopyContainer: FC<RenderTemplateContainerProps> = (props) => {
+const RenderCopyContainer: FC<RenderCopyContainerProps> = (props) => {
   const { templateComponentNodes, templateContainerHeight, blockColumns } =
     props
   return (
@@ -105,6 +171,8 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     itemBackGroundColor,
     illaMode,
     blockColumns,
+    dynamicHeight = "fixed",
+    h,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
@@ -172,11 +240,17 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
           key={childrenNode[0].displayName}
           bounds="parent"
           minHeight={48}
-          maxHeight={containerBounds.height - 4}
+          maxHeight={
+            dynamicHeight !== "fixed" ? "unset" : containerBounds.height - 4
+          }
           handleComponent={isMouseHover ? resizeBottomHandler() : undefined}
-          enable={{
-            bottom: true,
-          }}
+          enable={
+            dynamicHeight !== "fixed"
+              ? {}
+              : {
+                  bottom: true,
+                }
+          }
           onResizeStart={handleResizeStart}
           onResizeStop={handleOnResizeTopStop}
         >
@@ -195,6 +269,11 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
               templateComponentNodes={childrenNode[0]}
               templateContainerHeight={itemHeight}
               blockColumns={blockColumns}
+              dynamicHeight={dynamicHeight}
+              handleUpdateOriginalDSLMultiAttr={
+                handleUpdateOriginalDSLMultiAttr
+              }
+              h={h}
             />
           </div>
           {canShowBorder && (
@@ -251,11 +330,16 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
     itemHeight = 48,
     handleUpdateOriginalDSLMultiAttr,
     childrenNode,
-    copyComponents,
+    copyComponents = [],
     handleUpdateSelectedItem,
     itemBackGroundColor,
     illaMode,
     blockColumns,
+    dynamicHeight,
+    updateComponentHeight,
+    h,
+    dynamicMinHeight,
+    dynamicMaxHeight,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
@@ -298,11 +382,17 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
         }}
         bounds="parent"
         minHeight={48}
-        maxHeight={containerBounds.height - 4}
+        maxHeight={
+          dynamicHeight !== "fixed" ? "unset" : containerBounds.height - 4
+        }
         handleComponent={isMouseHover ? resizeBottomHandler() : undefined}
-        enable={{
-          bottom: true,
-        }}
+        enable={
+          dynamicHeight !== "fixed"
+            ? {}
+            : {
+                bottom: true,
+              }
+        }
         onResizeStart={handleResizeStart}
         onResizeStop={handleOnResizeTopStop}
       >
@@ -321,6 +411,13 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
             templateComponentNodes={childrenNode[0]}
             templateContainerHeight={itemHeight}
             blockColumns={blockColumns}
+            dynamicHeight={dynamicHeight}
+            handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+            itemNumber={copyComponents?.length}
+            updateComponentHeight={updateComponentHeight}
+            h={h}
+            dynamicMinHeight={dynamicMinHeight}
+            dynamicMaxHeight={dynamicMaxHeight}
           />
         </div>
         {canShowBorder && (
@@ -366,6 +463,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
     disabled,
+    dynamicHeight,
   } = props
 
   const propsRef = useRef(props)
@@ -483,7 +581,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   const handleUpdateSelectedItem = useCallback(
     (index: number) => {
       if (!Array.isArray(dataSources) || disabled) return
-      new Promise((resolve, reject) => {
+      new Promise((resolve) => {
         let value
         if (index < 0 || index > dataSources.length) {
           value = {
@@ -532,7 +630,8 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     }
   }, [dataSources, displayName, handleUpdateMultiExecutionResult])
 
-  return overflowMethod === OVERFLOW_TYPE.PAGINATION ? (
+  return overflowMethod === OVERFLOW_TYPE.PAGINATION &&
+    dynamicHeight !== "auto" ? (
     <ListWidgetWithPagination
       {...props}
       copyComponents={getChildrenNodes}

@@ -42,18 +42,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
 
-    const allComponents = useSelector<RootState, ComponentNode[]>(
-      (rootState) => {
-        const rootNode = getCanvas(rootState)
-        const parentNodeDisplayName = componentNode.parentNode
-        const target = searchDsl(rootNode, parentNodeDisplayName)
-        if (target) {
-          return target.childrenNode || []
-        }
-        return []
-      },
-    )
-
     const containerListMapChildName = useSelector(
       getContainerListDisplayNameMappedChildrenNodeDisplayName,
     )
@@ -85,56 +73,24 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
 
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
+        const rootState = store.getState() as RootState
+        const rootNode = getCanvas(rootState)
+        const currentComponentNode = searchDsl(
+          rootNode,
+          displayName,
+        ) as ComponentNode
         // padding 2px so this is +4
-        const newH = Math.ceil((newHeight + 6) / componentNode.unitH)
-        if (newH === componentNode.h) return
-        const newItem = {
-          ...componentNode,
-          h: Math.max(newH, componentNode.minH),
-        }
-        const cloneDeepAllComponents = cloneDeep(allComponents)
-        const findIndex = cloneDeepAllComponents.findIndex(
-          (node) => node.displayName === newItem.displayName,
+        const newH = Math.ceil((newHeight + 6) / currentComponentNode.unitH)
+        if (newH === currentComponentNode.h) return
+        dispatch(
+          componentsActions.updateComponentNodeHeightReducer({
+            displayName,
+            height: newH,
+            oldHeight: currentComponentNode.h,
+          }),
         )
-        cloneDeepAllComponents.splice(findIndex, 1, newItem)
-        if (componentNode.h < newItem.h) {
-          const result = getReflowResult(newItem, cloneDeepAllComponents, false)
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: componentNode.parentNode || "root",
-                childNodes: result.finalState,
-              },
-            ]),
-          )
-        }
-        if (componentNode.h > newItem.h) {
-          const effectRows = componentNode.h - newItem.h
-          const effectMap = getNearComponentNodes(
-            componentNode,
-            cloneDeepAllComponents,
-          )
-          effectMap.set(newItem.displayName, newItem)
-          effectMap.forEach((node) => {
-            if (node.displayName !== componentNode.displayName) {
-              node.y -= effectRows
-            }
-          })
-          let finalState = applyEffectMapToComponentNodes(
-            effectMap,
-            allComponents,
-          )
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: componentNode.parentNode || "root",
-                childNodes: finalState,
-              },
-            ]),
-          )
-        }
       },
-      [allComponents, componentNode, dispatch],
+      [dispatch, displayName],
     )
 
     const handleUpdateDsl = useCallback(

@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { RadioGroup } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -160,20 +161,12 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
     handleValidate,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [validateMessage, labelPosition, updateComponentHeight])
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -205,7 +198,7 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 RadioButtonWidget.displayName = "RadioButtonWidget"

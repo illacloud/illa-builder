@@ -1,6 +1,6 @@
 import { ReactComponent as TimelineWidgetIcon } from "@/assets/widgetCover/timeline.svg"
 import i18n from "@/i18n/config"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   type: "TIMELINE_WIDGET",
@@ -14,8 +14,8 @@ export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     direction: "vertical",
     items: `{{["The first milestone","The second milestone","The third milestone"]}}`,
-    width: "200px",
-    height: "20px",
     hidden: false,
+    dynamicHeight: "fixed",
+    resizeDirection: RESIZE_DIRECTION.ALL,
   },
 }
