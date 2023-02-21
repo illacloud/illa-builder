@@ -9,7 +9,6 @@ export interface UploadResponse {
 
 export const upload = async (url: string, file: Blob) => {
   const resUrl = url.split("?")[0]
-  const length = file.size
 
   await Api.asyncRequest({
     url,
@@ -17,8 +16,8 @@ export const upload = async (url: string, file: Blob) => {
     data: file,
     headers: {
       "Content-Type": "multipart/form-data",
+      "Content-Encoding": "compress",
       "x-amz-acl": "public-read",
-      "content-length": length,
     },
   })
   return resUrl
