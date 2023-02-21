@@ -30,7 +30,7 @@ export const getUserAvatarUploadAddress = async (type: string) => {
   })
   if (data) {
     if (!isCloudVersion) {
-      data.uploadAddress += window.location.origin
+      data.uploadAddress = `${window.location.origin}${data.uploadAddress}`
       return data
     }
     return data
