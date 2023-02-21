@@ -26,19 +26,31 @@ const wrappedRouter = (
           const teamIdentifier = params.teamIdentifier
           return await requireAuth(token, teamIdentifier)
         }
-        newRouteItem.element = <LayoutAutoChange desktopPage={element} />
+        if (!newRouteItem.accessByMobile) {
+          newRouteItem.element = <LayoutAutoChange desktopPage={element} />
+        } else {
+          newRouteItem.element = element
+        }
       } else {
         newRouteItem.loader = async (args) => {
           return await requireSelfAuth(args)
         }
-        newRouteItem.element = (
-          <LayoutAutoChange
-            desktopPage={<CheckIsLogin>{element}</CheckIsLogin>}
-          />
-        )
+        if (!newRouteItem.accessByMobile) {
+          newRouteItem.element = (
+            <LayoutAutoChange
+              desktopPage={<CheckIsLogin>{element}</CheckIsLogin>}
+            />
+          )
+        } else {
+          newRouteItem.element = element
+        }
       }
     } else {
-      newRouteItem.element = <LayoutAutoChange desktopPage={element} />
+      if (!newRouteItem.accessByMobile) {
+        newRouteItem.element = <LayoutAutoChange desktopPage={element} />
+      } else {
+        newRouteItem.element = element
+      }
     }
     if (Array.isArray(children) && children.length) {
       newRouteItem.children = wrappedRouter(children, true)

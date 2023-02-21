@@ -1,16 +1,11 @@
 import { LazyExoticComponent, ReactNode, Suspense, lazy } from "react"
 import { LoaderFunctionArgs, Navigate, redirect } from "react-router-dom"
-import { Editor } from "@/page/App"
-import { IllaApp } from "@/page/Dashboard"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
-import { Deploy } from "@/page/Deploy"
 import { Member } from "@/page/Member"
-import { Setting } from "@/page/Setting"
 import { SettingAccount } from "@/page/Setting/SettingAccount"
 import { SettingOthers } from "@/page/Setting/SettingOthers"
 import { SettingPassword } from "@/page/Setting/SettingPassword"
-import { UserLogin } from "@/page/User"
 import { Login } from "@/page/User/Login"
 import { Register } from "@/page/User/Register"
 import { ResetPassword } from "@/page/User/ResetPassword"
@@ -62,18 +57,21 @@ export const commonRouter: RoutesObjectPro[] = [
     path: "/:teamIdentifier/deploy/app/:appId",
     element: layLoad(lazy(() => import("@/page/Deploy"))),
     errorElement: <Page404 />,
+    accessByMobile: true,
     loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName",
     element: layLoad(lazy(() => import("@/page/Deploy"))),
     errorElement: <Page404 />,
+    accessByMobile: true,
     loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName/:viewPath",
     element: layLoad(lazy(() => import("@/page/Deploy"))),
     errorElement: <Page404 />,
+    accessByMobile: true,
     loader: handleRemoveUrlToken,
   },
   {
