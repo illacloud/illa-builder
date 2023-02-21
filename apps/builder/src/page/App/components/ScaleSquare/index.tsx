@@ -124,9 +124,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
 
   const resizeDirection = useMemo(() => {
-    const widgetConfig =
-      componentNode?.props || widgetBuilder(componentNode.type).config
-    return widgetConfig?.resizeDirection || RESIZE_DIRECTION.ALL
+    const direction =
+      componentNode?.props?.resizeDirection ||
+      widgetBuilder(componentNode.type).config?.resizeDirection
+    return direction || RESIZE_DIRECTION.ALL
   }, [componentNode?.props, componentNode.type])
 
   const enableResizing = useMemo(() => {
@@ -713,6 +714,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
 
   const resizeDirection = useMemo(() => {
     const widgetConfig = widgetBuilder(componentNode.type).config
+    console.log(222, { widgetConfig })
     return widgetConfig.resizeDirection || RESIZE_DIRECTION.ALL
   }, [componentNode.type])
 
