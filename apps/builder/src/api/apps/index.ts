@@ -57,5 +57,5 @@ export const updateAppPublicConfig = async (
       public: isPublic,
     },
   })
-  return isPublic
+  return true
 }

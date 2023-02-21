@@ -115,6 +115,7 @@ export const MysqlLikePanel: FC = (props) => {
             inputRef={inputRef}
           />
           <Button
+            minW="168px"
             loading={generateLoading}
             size="large"
             flexGrow="0"

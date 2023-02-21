@@ -7,6 +7,18 @@ export function getActionTypeFromResourceType(
   return resourceType as ActionType
 }
 
+export function getActionSubTitleFromActionType(
+  actionType: ActionType | null | undefined,
+): string {
+  if (actionType) {
+    switch (actionType) {
+      case "huggingface":
+        return "Inference API"
+    }
+  }
+  return ""
+}
+
 export function getActionNameFromActionType(actionType: ActionType): string {
   if (actionType) {
     switch (actionType) {
@@ -39,7 +51,7 @@ export function getActionNameFromActionType(actionType: ActionType): string {
       case "smtp":
         return "SMTP"
       case "huggingface":
-        return "Hugging Face Inference API"
+        return "Hugging Face"
       case "firebase":
         return "Firebase"
       case "clickhouse":
@@ -54,6 +66,18 @@ export function getActionNameFromActionType(actionType: ActionType): string {
   } else {
     return ""
   }
+}
+
+export function getResourceSubTitleFromResourceType(
+  resourceType: ResourceType | null | undefined,
+): string {
+  if (resourceType) {
+    switch (resourceType) {
+      case "huggingface":
+        return "Inference API"
+    }
+  }
+  return ""
 }
 
 export function getResourceNameFromResourceType(
@@ -90,7 +114,7 @@ export function getResourceNameFromResourceType(
       case "smtp":
         return "SMTP"
       case "huggingface":
-        return "Hugging face Inference API"
+        return "Hugging face"
       case "s3":
         return "Amazon S3"
       case "firebase":

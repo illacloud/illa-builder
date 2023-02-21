@@ -1,6 +1,7 @@
 import { css } from "@emotion/react"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import { PreviousIcon, TabPane, Tabs } from "@illa-design/react"
 import { SettingLayout } from "@/page/Setting/Components/Layout"
@@ -11,6 +12,7 @@ import {
   tabPrefixStyle,
   tabSuffixStyle,
 } from "@/page/Setting/style"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 
 export const SettingTabNavBar: FC = () => {
   const navigate = useNavigate()
@@ -18,7 +20,8 @@ export const SettingTabNavBar: FC = () => {
   const location = useLocation()
   const pathList = location.pathname.split("/")
   const key = pathList[pathList.length - 1]
-
+  const teamInfo = useSelector(getCurrentTeamInfo)
+  const teamIdentifier = teamInfo?.identifier
   const TabItems = [
     {
       title: t("setting.account.title"),
@@ -39,7 +42,7 @@ export const SettingTabNavBar: FC = () => {
       <div
         css={backAreaStyle}
         onClick={() => {
-          navigate("/dashboard")
+          navigate(`/${teamIdentifier}/dashboard`)
         }}
       >
         <PreviousIcon css={preIconStyle} />

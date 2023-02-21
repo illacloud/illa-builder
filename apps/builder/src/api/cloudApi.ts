@@ -1,6 +1,7 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
 import { Api, ApiError } from "@/api/base"
 import { getTeamID } from "@/utils/team"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 const CLOUD = "/supervisor/api/v1"
 
@@ -13,18 +14,18 @@ export class CloudApi {
     loading?: (loading: boolean) => void,
     errorState?: (errorState: boolean) => void,
   ) {
-    config.baseURL = `${location.protocol}//${
-      import.meta.env.VITE_API_BASE_URL
-    }${CLOUD}`
+    config.baseURL = isCloudVersion
+      ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`
+      : `${location.host}${CLOUD}`
     Api.request(config, success, failure, crash, loading, errorState)
   }
 
   static asyncRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
   ) {
-    config.baseURL = `${location.protocol}//${
-      import.meta.env.VITE_API_BASE_URL
-    }${CLOUD}`
+    config.baseURL = isCloudVersion
+      ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`
+      : `${location.host}${CLOUD}`
     return Api.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 

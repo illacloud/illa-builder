@@ -37,7 +37,7 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
 
   return (
     <Modal
-      w="696px"
+      w="832px"
       visible={visible}
       footer={false}
       closable
