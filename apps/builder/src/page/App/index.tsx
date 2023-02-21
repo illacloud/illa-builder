@@ -1,11 +1,10 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
-import { FC, MouseEvent, useCallback, useEffect, useMemo } from "react"
+import { FC, MouseEvent, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { Connection } from "@/api/ws"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -14,7 +13,6 @@ import {
   ATTRIBUTE_GROUP,
 } from "@/illa-public-component/UserRoleUtils/interface"
 import { ActionEditor } from "@/page/App/components/Actions"
-import { initS3Client } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { AppLoading } from "@/page/App/components/AppLoading"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import { ComponentsManager } from "@/page/App/components/ComponentManager"
@@ -32,8 +30,6 @@ import { collaboratorsActions } from "@/redux/currentApp/collaborators/collabora
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
@@ -119,24 +115,6 @@ export const Editor: FC = () => {
 
   // init app
   const loadingState = useInitBuilderApp("edit")
-  // init resource
-  useEffect(() => {
-    const controller = new AbortController()
-    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
-      {
-        url: "/resources",
-        method: "GET",
-        signal: controller.signal,
-      },
-      (response) => {
-        dispatch(resourceActions.updateResourceListReducer(response.data))
-        initS3Client(response.data)
-      },
-    )
-    return () => {
-      controller.abort()
-    }
-  }, [dispatch])
 
   const handleMouseDownOnModal = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {

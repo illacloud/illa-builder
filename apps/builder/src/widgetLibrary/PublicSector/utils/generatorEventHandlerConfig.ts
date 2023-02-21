@@ -106,7 +106,7 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setHidden",
       },
       {
-        id: `${baseWidgetName}-interaction-event-handler-disabled`,
+        id: `${baseWidgetName}-interaction-event-handler-widgetDisabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
