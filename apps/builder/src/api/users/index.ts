@@ -25,7 +25,7 @@ export const upload = async (url: string, file: Blob) => {
 export const getUserAvatarUploadAddress = async (type: string) => {
   const fileName = v4()
   const { data } = await Api.asyncRequest<UploadResponse>({
-    url: `/api/v1/users/avatar/uploadAddress/fileName/${fileName}.${type}`,
+    url: `/users/avatar/uploadAddress/fileName/${fileName}.${type}`,
     method: "GET",
   })
   if (data) {
