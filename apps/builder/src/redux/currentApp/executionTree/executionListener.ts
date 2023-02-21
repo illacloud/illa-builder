@@ -20,6 +20,7 @@ export let executionTree: ExecutionTreeFactory | undefined
 
 const mergeActionResult = (rawTree: RawTreeShape) => {
   Object.keys(actionDisplayNameMapFetchResult).forEach((key) => {
+    if (!rawTree[key]) return
     rawTree[key].data = actionDisplayNameMapFetchResult[key] || {}
   })
 }

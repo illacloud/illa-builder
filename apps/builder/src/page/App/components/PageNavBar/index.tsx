@@ -359,7 +359,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div css={rowCenter}>
         <Logo
           width="34px"
-          onClick={() => navigate(`/${teamIdentifier}/dashboard/apps`)}
+          onClick={() => {
+            window.location.href = `/${teamIdentifier}/dashboard/apps`
+          }}
           css={logoCursorStyle}
         />
         <div css={informationStyle}>
