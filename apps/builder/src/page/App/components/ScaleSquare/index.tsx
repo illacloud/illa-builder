@@ -12,13 +12,7 @@ import { useDrag } from "react-dnd"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
-import {
-  DropList,
-  DropListItem,
-  Dropdown,
-  globalColor,
-  illaPrefix,
-} from "@illa-design/react"
+import { DropList, DropListItem, Dropdown } from "@illa-design/react"
 import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import {
@@ -42,6 +36,7 @@ import {
 } from "@/page/App/components/ScaleSquare/style"
 import {
   getIllaMode,
+  getIsDragging,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -61,6 +56,7 @@ import store, { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { AutoHeightWithLimitedContainer } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/renderWithJSON"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
@@ -87,6 +83,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     const executionResult = getExecutionResult(rootState)
     return get(executionResult, componentNode.displayName, null)
   })
+
+  const isAutoLimitedMode = realProps?.dynamicHeight === "limited"
+  const isDraggingStateInGlobal = useSelector(getIsDragging)
 
   const displayNameInMoveBar = useMemo(() => {
     if (componentNode.type === "CONTAINER_WIDGET" && realProps) {
@@ -125,9 +124,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
 
   const resizeDirection = useMemo(() => {
-    const widgetConfig = widgetBuilder(componentNode.type).config
-    return widgetConfig.resizeDirection || RESIZE_DIRECTION.ALL
-  }, [componentNode.type])
+    const widgetConfig =
+      componentNode?.props || widgetBuilder(componentNode.type).config
+    return widgetConfig?.resizeDirection || RESIZE_DIRECTION.ALL
+  }, [componentNode?.props, componentNode.type])
 
   const enableResizing = useMemo(() => {
     switch (resizeDirection) {
@@ -225,13 +225,32 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     ],
   )
 
+  const handleUpdateComponentHeight = useCallback(
+    (height: number) => {
+      const finalHeight = Math.round(height / unitH)
+
+      dispatch(
+        componentsActions.updateComponentNodeHeightReducer({
+          displayName: componentNode.displayName,
+          height: finalHeight,
+          oldHeight: componentNode.h,
+        }),
+      )
+    },
+    [componentNode.displayName, componentNode.h, dispatch, unitH],
+  )
+
   const handleOnResizeStop: RndResizeCallback = useCallback(
     (e, dir, ref, delta, position) => {
       const { width, height } = delta
-      const finalWidth = Math.round((w + width) / unitW)
-      const finalHeight = Math.round((h + height) / unitH)
+      let finalWidth = Math.round((w + width) / unitW)
+      let finalHeight = Math.round((h + height) / unitH)
       const x = Math.round(position.x / unitW)
       const y = Math.round(position.y / unitH)
+      finalWidth =
+        finalWidth < componentNode.minW ? componentNode.minW : finalWidth
+      finalHeight =
+        finalHeight < componentNode.minH ? componentNode.minH : finalHeight
 
       const newComponentNode = {
         ...componentNode,
@@ -546,6 +565,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             hasError,
             isDragging,
             illaMode === "edit",
+            selectedComponents?.length === 1 &&
+              isSelected &&
+              isAutoLimitedMode &&
+              !isDraggingStateInGlobal,
           )}
           onClick={handleOnSelection}
           onContextMenu={handleContextMenu}
@@ -564,7 +587,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             widgetType={componentNode.type}
             userList={filteredComponentAttachedUserList}
           />
-
           <TransformWidgetWrapper
             componentNode={componentNode}
             blockColumns={blockColumns}
@@ -581,6 +603,19 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         </div>
       </Dropdown>
       <div css={dragPreviewStyle} ref={dragPreviewRef} />
+      {selectedComponents?.length === 1 &&
+        isSelected &&
+        isAutoLimitedMode &&
+        !isDraggingStateInGlobal && (
+          <AutoHeightWithLimitedContainer
+            containerHeight={h}
+            dynamicMinHeight={realProps.dynamicMinHeight}
+            dynamicMaxHeight={realProps.dynamicMaxHeight}
+            displayName={componentNode.displayName}
+            resizeStart={handleResizeStart}
+            handleUpdateComponentHeight={handleUpdateComponentHeight}
+          />
+        )}
     </Rnd>
   )
 })

@@ -1,8 +1,8 @@
 import { FC, ReactNode } from "react"
 import { Trans } from "react-i18next"
 import {
+  applyEmptyStateWrapperStyle,
   emptyStateStyle,
-  emptyStateWrapperStyle,
   keyPressComponentStyle,
 } from "@/widgetLibrary/ContainerWidget/style"
 
@@ -13,9 +13,14 @@ export const KeyPressComponent: FC<IKeyPressComponentProps> = (props) => {
   return <span css={keyPressComponentStyle}>{props.children}</span>
 }
 
-export const ContainerEmptyState: FC = () => {
+interface ContainerEmptyStateProps {
+  minHeight?: number
+}
+export const ContainerEmptyState: FC<ContainerEmptyStateProps> = ({
+  minHeight,
+}) => {
   return (
-    <div css={emptyStateWrapperStyle}>
+    <div css={applyEmptyStateWrapperStyle(minHeight)}>
       <span css={emptyStateStyle}>
         <Trans
           i18nKey="widget.container.empty"
