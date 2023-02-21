@@ -35,7 +35,7 @@ import {
   ListParentContainerWithScroll,
   applyListItemStyle,
   listContainerStyle,
-  listParentContainerStyle,
+  listParentContainerWithPagination,
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
@@ -223,7 +223,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
 
   return (
     <div
-      css={listParentContainerStyle}
+      css={listParentContainerWithPagination}
       onMouseEnter={() => {
         setIsMouseHover(true)
       }}

@@ -2,11 +2,6 @@ import { cloneDeep, get, merge, set } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  applyEffectMapToComponentNodes,
-  getNearComponentNodes,
-  getReflowResult,
-} from "@/page/App/components/DotPanel/calc"
-import {
   BUILDER_CALC_CONTEXT,
   GLOBAL_DATA_CONTEXT,
 } from "@/page/App/context/globalDataProvider"
@@ -23,6 +18,7 @@ import store, { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { isObject } from "@/utils/typeHelper"
+import { MIN_HEIGHT } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/config"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
@@ -80,7 +76,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           displayName,
         ) as ComponentNode
         // padding 2px so this is +4
-        const newH = Math.ceil((newHeight + 6) / currentComponentNode.unitH)
+        const newH = Math.max(
+          Math.ceil((newHeight + 6) / currentComponentNode.unitH),
+          MIN_HEIGHT,
+        )
         if (newH === currentComponentNode.h) return
         dispatch(
           componentsActions.updateComponentNodeHeightReducer({

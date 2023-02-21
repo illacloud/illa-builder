@@ -9,6 +9,11 @@ export const listParentContainerStyle = css`
   overflow: hidden;
 `
 
+export const listParentContainerWithPagination = css`
+  ${listParentContainerStyle};
+  height: 100%;
+`
+
 export const ListParentContainerWithScroll = css`
   ${listParentContainerStyle};
   overflow-y: auto;
