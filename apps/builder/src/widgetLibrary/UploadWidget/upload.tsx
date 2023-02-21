@@ -127,6 +127,7 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
     fileList,
     getValidateMessage,
     handleUpdateMultiExecutionResult,
+    handleOnChange,
   ])
 
   return (
@@ -280,7 +281,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       }
       return
     },
-    [appendFiles, getFileIndex, handleOnChange],
+    [appendFiles, getFileIndex],
   )
 
   const getValidateMessage = useCallback(
@@ -392,6 +393,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleValidate,
+    currentFileList,
   ])
 
   return (
