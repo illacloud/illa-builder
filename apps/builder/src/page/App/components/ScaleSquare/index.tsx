@@ -714,7 +714,6 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
 
   const resizeDirection = useMemo(() => {
     const widgetConfig = widgetBuilder(componentNode.type).config
-    console.log(222, { widgetConfig })
     return widgetConfig.resizeDirection || RESIZE_DIRECTION.ALL
   }, [componentNode.type])
 
