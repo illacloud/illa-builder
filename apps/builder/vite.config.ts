@@ -18,7 +18,7 @@ export default defineConfig((props) => {
       checker({
         typescript: true,
       }),
-      basicSsl(),
+      // basicSsl(),
       visualizer(),
     ],
     esbuild: {
@@ -90,7 +90,7 @@ export default defineConfig((props) => {
     },
     server: {
       port: 3000,
-      https: true,
+      https: false,
       proxy: {
         "/supervisor/api/v1": {
           target: env.VITE_PROXY_API_BASE_URL,

@@ -65,6 +65,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dnd-touch-backend": "^16.0.1",
+    "react-easy-crop": "^4.7.1",
     "react-hook-form": "^7.30.0",
     "react-hotkeys-hook": "^3.4.6",
     "react-i18next": "^12.1.4",

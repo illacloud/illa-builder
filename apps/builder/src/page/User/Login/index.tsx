@@ -67,6 +67,7 @@ export const Login: FC = () => {
             nickname: res.data.nickname,
             language: res.data.language || "en-US",
             email: res.data.email,
+            avatar: res.data.avatar,
           }),
         )
         if (!isCloudVersion && appID && teamIdentifier) {
