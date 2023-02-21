@@ -8,8 +8,8 @@ import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpda
 import { TextProps, TextWidgetProps } from "./interface"
 import {
   applyAlignStyle,
+  applyMarkdownStyle,
   fullWidthAndFullHeightStyle,
-  markdownStyle,
 } from "./style"
 
 export const Text: FC<TextProps> = (props) => {
@@ -23,14 +23,18 @@ export const Text: FC<TextProps> = (props) => {
   } = props
 
   return (
-    <div css={applyAlignStyle(horizontalAlign, verticalAlign)}>
+    <div css={applyAlignStyle()}>
       {disableMarkdown ? (
-        <ILLAText css={markdownStyle} colorScheme={colorScheme} fs={fs}>
+        <ILLAText
+          css={applyMarkdownStyle(horizontalAlign)}
+          colorScheme={colorScheme}
+          fs={fs}
+        >
           {value}
         </ILLAText>
       ) : (
         <ReactMarkdown
-          css={markdownStyle}
+          css={applyMarkdownStyle(horizontalAlign)}
           remarkPlugins={[remarkGfm]}
           components={{
             a: ({ node, ...props }) => (
