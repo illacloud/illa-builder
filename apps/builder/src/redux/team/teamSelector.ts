@@ -12,11 +12,3 @@ export const getCurrentTeamInfo = createSelector(
     return items.find((item) => item.id === currentId)
   },
 )
-
-export const getCurrentTeamIdentifier = createSelector(
-  [getCurrentId, getTeamItems],
-  (currentId, items) => {
-    if (!currentId || !items) return
-    return items.find((item) => item.id === currentId)?.identifier
-  },
-)

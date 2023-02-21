@@ -609,8 +609,10 @@ export class ExecutionTreeFactory {
                 displayName,
                 transformer,
                 triggerMode,
+                config,
               } = widgetOrAction
               const action = {
+                config: config,
                 actionId: $actionId,
                 resourceId: $resourceId,
                 actionType,
