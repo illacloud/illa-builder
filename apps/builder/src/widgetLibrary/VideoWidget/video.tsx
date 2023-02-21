@@ -1,7 +1,6 @@
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import ReactPlayer from "react-player"
 import { Loading } from "@illa-design/react"
-import { fullPageStyle } from "@/widgetLibrary/PdfWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyHiddenStyle, fullStyle } from "@/widgetLibrary/VideoWidget/style"
 import { VideoWidgetProps, WrappedVideoProps } from "./interface"
@@ -24,7 +23,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
     return (
       <>
         {loading ? (
-          <div css={fullPageStyle}>
+          <div css={fullStyle}>
             <Loading />
           </div>
         ) : null}
@@ -45,6 +44,9 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           onPlay={onPlay}
           onPause={onPause}
           onEnded={onEnded}
+          onError={() => {
+            setLoading(false)
+          }}
         />
       </>
     )
