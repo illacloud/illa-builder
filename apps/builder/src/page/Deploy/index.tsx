@@ -7,6 +7,7 @@ import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import {
   deployContainerStyle,
   deployLogoStyle,
+  loadingStyle,
   logoStyle,
 } from "@/page/Deploy/style"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
@@ -25,7 +26,7 @@ export const Deploy: FC = () => {
   return (
     <div css={deployContainerStyle}>
       {loadingState && (
-        <div>
+        <div css={loadingStyle}>
           <Loading colorScheme="techPurple" />
         </div>
       )}
