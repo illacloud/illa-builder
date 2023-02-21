@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { BuilderApi } from "@/api/base"
 import { getTeamsInfo } from "@/api/team"
+import { initS3Client } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
@@ -16,6 +17,8 @@ import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSqu
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
@@ -36,6 +39,28 @@ export const useInitBuilderApp = (model: IllaMode) => {
     uid: teamInfo?.uid ?? "",
     teamID: teamInfo?.id ?? "",
   }
+
+  // init resource
+  useEffect(() => {
+    if (!teamID) {
+      return
+    }
+    const controller = new AbortController()
+    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
+      {
+        url: "/resources",
+        method: "GET",
+        signal: controller.signal,
+      },
+      (response) => {
+        dispatch(resourceActions.updateResourceListReducer(response.data))
+        initS3Client(response.data)
+      },
+    )
+    return () => {
+      controller.abort()
+    }
+  }, [dispatch, teamID])
 
   const handleCurrentApp = (response: AxiosResponse<CurrentAppResp>) => {
     if (model === "edit") {
