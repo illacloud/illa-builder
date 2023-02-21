@@ -968,7 +968,8 @@
         "scroll": "각 페이지에 스냅 스크롤",
         "min_max_size": "가장 작은~최대 파일 크기",
         "video_url": "비디오 URL",
-        "autoplay": "Autoplay"
+        "autoplay": "Autoplay",
+        "loop": "반복"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
