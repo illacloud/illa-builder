@@ -97,7 +97,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              required: true,
+              validate: (value) => value != undefined && value.trim() != "",
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}

@@ -11,6 +11,7 @@ import {
   deleteSectionViewReducer,
   deleteTargetPageSectionReducer,
   resetComponentPropsReducer,
+  resetComponentsReducer,
   sortComponentNodeChildrenReducer,
   updateComponentContainerReducer,
   updateComponentDisplayNameReducer,
@@ -57,6 +58,7 @@ const componentsSlice = createSlice({
     updateSectionViewPropsReducer,
     updateViewportSizeReducer,
     addModalComponentReducer,
+    resetComponentsReducer,
   },
 })
 
