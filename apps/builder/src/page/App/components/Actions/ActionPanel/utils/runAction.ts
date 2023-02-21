@@ -424,10 +424,7 @@ const transformDataFormat = (
         },
       }
     case "dynamodb":
-      const { useJson, structParams } = contents
-      if (useJson) {
-        return contents
-      }
+      const { structParams } = contents
       let newStructParams = { ...structParams }
       Object.keys(DynamoActionStructParamsDataTransferType).forEach((key) => {
         const value = DynamoActionStructParamsDataTransferType[key]
