@@ -1,5 +1,5 @@
-import axios from "axios"
 import { v4 } from "uuid"
+import { Api } from "@/api/base"
 import { CloudApi } from "@/api/cloudApi"
 import { isCloudVersion } from "@/utils/typeHelper"
 
@@ -10,7 +10,10 @@ export interface UploadResponse {
 export const upload = async (url: string, file: Blob) => {
   const resUrl = url.split("?")[0]
 
-  await axios.put(url, file, {
+  await Api.asyncRequest({
+    url,
+    method: "PUT",
+    data: file,
     headers: {
       "Content-Type": "multipart/form-data",
       "x-amz-acl": "public-read",
@@ -21,11 +24,17 @@ export const upload = async (url: string, file: Blob) => {
 
 export const getUserAvatarUploadAddress = async (type: string) => {
   const fileName = v4()
-  const { data } = await CloudApi.asyncRequest<UploadResponse>({
-    url: `/users/avatar/uploadAddress/fileName/${fileName}.${type}`,
+  const { data } = await Api.asyncRequest<UploadResponse>({
+    url: `/api/v1/users/avatar/uploadAddress/fileName/${fileName}.${type}`,
     method: "GET",
   })
-  if (data) return data
+  if (data) {
+    if (!isCloudVersion) {
+      data.uploadAddress += window.location.origin
+      return data
+    }
+    return data
+  }
   return Promise.reject("data is undefined")
 }
 

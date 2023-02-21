@@ -23,8 +23,8 @@ export const CLOUD = "/supervisor/api/v1"
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
   baseURL: isCloudVersion
-    ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${BUILDER}`
-    : `${location.origin}${BUILDER}`,
+    ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}`
+    : `${location.origin}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
@@ -85,12 +85,18 @@ export class BuilderApi {
     loading?: (loading: boolean) => void,
     errorState?: (errorState: boolean) => void,
   ) {
+    config.baseURL = isCloudVersion
+      ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${BUILDER}`
+      : `${location.origin}${BUILDER}`
     Api.request(config, success, failure, crash, loading, errorState)
   }
 
   static asyncRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
   ) {
+    config.baseURL = isCloudVersion
+      ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${BUILDER}`
+      : `${location.origin}${BUILDER}`
     return Api.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 
