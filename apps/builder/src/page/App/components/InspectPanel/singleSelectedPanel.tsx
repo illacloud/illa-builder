@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from "react"
+import { FC, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Divider } from "@illa-design/react"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
@@ -87,7 +87,7 @@ export const SingleSelectedPanel: FC = () => {
           <PanelHeader />
           <Divider />
           <div css={singleSelectedPanelSetterWrapperStyle}>
-            {fieldFactory(builderPanelConfig, widgetDisplayName)}
+            {fieldFactory(builderPanelConfig, widgetDisplayName, widgetProps)}
           </div>
         </div>
       </SelectedProvider>
