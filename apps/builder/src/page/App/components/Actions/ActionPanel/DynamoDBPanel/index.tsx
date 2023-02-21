@@ -1,7 +1,8 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { DeleteItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/DeleteItemPanel"
 import { GetItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/GetItemPanel"
@@ -57,9 +58,9 @@ export const DynamoDBPanel: FC = () => {
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
 
   useEffect(() => {
-    Api.request(
+    BuilderApi.teamRequest(
       {
-        url: `resources/${cachedAction.resourceId}/meta`,
+        url: `/resources/${cachedAction.resourceId}/meta`,
         method: "GET",
       },
       ({ data }: { data: ResourcesData }) => {
@@ -139,6 +140,7 @@ export const DynamoDBPanel: FC = () => {
           lineNumbers={false}
           expectedType={VALIDATION_TYPES.STRING}
           sqlScheme={sqlTable}
+          mode={CODE_LANG.SQL}
           value={content.table}
           onChange={(value) => handleValueChange(value as string, "table")}
         />
