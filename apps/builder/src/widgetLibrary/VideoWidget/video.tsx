@@ -2,7 +2,11 @@ import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import ReactPlayer from "react-player"
 import { Loading } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { applyHiddenStyle, fullStyle } from "@/widgetLibrary/VideoWidget/style"
+import {
+  applyHiddenStyle,
+  fullStyle,
+  loadingStyle,
+} from "@/widgetLibrary/VideoWidget/style"
 import { VideoWidgetProps, WrappedVideoProps } from "./interface"
 
 export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
@@ -23,12 +27,12 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
     return (
       <>
         {loading ? (
-          <div css={fullStyle}>
+          <div css={loadingStyle}>
             <Loading />
           </div>
         ) : null}
         <ReactPlayer
-          style={{ visibility: loading ? "hidden" : "visible" }}
+          style={{ display: loading ? "none" : "unset" }}
           ref={ref}
           width="100%"
           height="100%"
