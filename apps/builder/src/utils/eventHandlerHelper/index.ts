@@ -126,11 +126,13 @@ export const transformEvents = (
     if (
       [
         "setValue",
+        "setVideoUrl",
         "setImageUrl",
         "setFileUrl",
         "setStartValue",
         "setEndValue",
         "setDisabled",
+        "seekTo",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
@@ -145,6 +147,8 @@ export const transformEvents = (
       }
     }
     if (
+      widgetMethod === "play" ||
+      widgetMethod === "pause" ||
       widgetMethod === "clearValue" ||
       widgetMethod === "clearValidation" ||
       widgetMethod === "toggle" ||

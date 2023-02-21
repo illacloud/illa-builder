@@ -189,6 +189,12 @@ import {
   UPLOAD_WIDGET_CONFIG,
   UploadWidget,
 } from "@/widgetLibrary/UploadWidget"
+import {
+  VIDEO_EVENT_HANDLER_CONFIG,
+  VIDEO_PANEL_CONFIG,
+  VIDEO_WIDGET_CONFIG,
+  VideoWidget,
+} from "@/widgetLibrary/VideoWidget"
 import { WidgetConfigs } from "./interface"
 
 export const WidgetConfig: WidgetConfigs = {
@@ -382,6 +388,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: PDF_WIDGET_CONFIG,
     panelConfig: PDF_PANEL_CONFIG,
     eventHandlerConfig: PDF_EVENT_HANDLER_CONFIG,
+  },
+  VIDEO_WIDGET: {
+    widget: VideoWidget,
+    config: VIDEO_WIDGET_CONFIG,
+    panelConfig: VIDEO_PANEL_CONFIG,
+    eventHandlerConfig: VIDEO_EVENT_HANDLER_CONFIG,
   },
 }
 

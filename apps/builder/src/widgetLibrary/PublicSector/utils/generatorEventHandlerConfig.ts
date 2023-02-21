@@ -106,7 +106,7 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setHidden",
       },
       {
-        id: `${baseWidgetName}-interaction-event-handler-disabled`,
+        id: `${baseWidgetName}-interaction-event-handler-setDisabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -147,6 +147,25 @@ export const generatorEventHandlerConfig = (
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
         shown: (widgetMethod) => widgetMethod === "setFileUrl",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-videoUrl`,
+        labelName: i18n.t("editor.inspect.setter_label.video_url"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setVideoUrl",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-seekTo`,
+        labelName:
+          i18n.t("editor.method.seek_to.time") +
+          i18n.t("editor.method.seek_to.unit"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        expectedType: VALIDATION_TYPES.NUMBER,
+        shown: (widgetMethod) => widgetMethod === "seekTo",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-disabled`,
