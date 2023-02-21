@@ -51,7 +51,6 @@ import {
   applyRightAnimationWrapperStyle,
   applyRightSectionWrapperStyle,
   applySideBarWrapperStyle,
-  bodyWrapperStyle,
   disabledHorizontalBarWrapperStyle,
   footerHeightTipsStyle,
   headerHeightTipsStyle,
@@ -131,7 +130,7 @@ export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
       (node) => node.displayName === currentViewDisplayName,
     )
     return (
-      <div ref={ref} css={bodyWrapperStyle}>
+      <div ref={ref}>
         <div
           css={applyContainerWrapperStyle(mode)}
           ref={(ele) => {

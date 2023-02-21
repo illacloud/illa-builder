@@ -1,7 +1,6 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import {
-  BODY_MIN_WIDTH,
   FOOTER_MIN_HEIGHT,
   HEADER_MIN_HEIGHT,
   LEFT_MIN_WIDTH,
@@ -209,7 +208,6 @@ export const applyHeaderSectionWrapperStyle = (
     display: flex;
     flex-direction: column;
     min-height: ${HEADER_MIN_HEIGHT}px;
-    min-width: ${BODY_MIN_WIDTH}px;
   `
 }
 
@@ -227,7 +225,6 @@ export const applyFooterSectionWrapperStyle = (
     display: flex;
     flex-direction: column-reverse;
     min-height: ${FOOTER_MIN_HEIGHT}px;
-    min-width: ${BODY_MIN_WIDTH}px;
   `
 }
 
@@ -555,8 +552,4 @@ export const modalStyle = css`
   width: 90%;
   height: 90%;
   background-color: red;
-`
-
-export const bodyWrapperStyle = css`
-  min-width: ${BODY_MIN_WIDTH}px;
 `

@@ -55,26 +55,26 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
-      {
-        id: `${baseWidgetName}-layout-height`,
-        labelName: i18n.t("editor.inspect.setter_label.height"),
-        attrName: "dynamicHeight",
-        setterType: "HEIGHT_MODE_SELECT",
-        options: [
-          {
-            label: i18n.t("editor.inspect.setter_option.fixed"),
-            value: "fixed",
-          },
-          {
-            label: i18n.t("editor.inspect.setter_option.auto_limited"),
-            value: "limited",
-          },
-          {
-            label: i18n.t("editor.inspect.setter_option.auto_height"),
-            value: "auto",
-          },
-        ],
-      },
+      // {
+      //   id: `${baseWidgetName}-layout-height`,
+      //   labelName: i18n.t("editor.inspect.setter_label.height"),
+      //   attrName: "dynamicHeight",
+      //   setterType: "HEIGHT_MODE_SELECT",
+      //   options: [
+      //     {
+      //       label: i18n.t("editor.inspect.setter_option.fixed"),
+      //       value: "fixed",
+      //     },
+      //     {
+      //       label: i18n.t("editor.inspect.setter_option.auto_limited"),
+      //       value: "limited",
+      //     },
+      //     {
+      //       label: i18n.t("editor.inspect.setter_option.auto_height"),
+      //       value: "auto",
+      //     },
+      //   ],
+      // },
       {
         id: `${baseWidgetName}-layout-col`,
         labelName: i18n.t("editor.inspect.setter_label.horizontal_alignment"),
