@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Divider } from "@illa-design/react"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"

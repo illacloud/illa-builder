@@ -72,6 +72,11 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
     )
   }, [getValues])
 
+  const validate = useCallback(
+    (value?: string) => value != undefined && value.trim() != "",
+    [],
+  )
+
   return (
     <form
       autoComplete="off"
@@ -93,7 +98,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              validate: (value) => value != undefined && value.trim() != "",
+              validate,
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}
@@ -120,7 +125,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={content.region}
           rules={[
             {
-              required: true,
+              validate,
             },
           ]}
           placeholders={[
@@ -137,7 +142,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={content.accessKeyID}
           rules={[
             {
-              required: true,
+              validate,
             },
           ]}
           name="accessKeyID"
@@ -151,7 +156,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={content.secretAccessKey}
           rules={[
             {
-              required: true,
+              validate,
             },
           ]}
           name="secretAccessKey"
