@@ -20,7 +20,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
     disableMarkdown: false,
     hidden: false,
     fs: "14px",
-    dynamicHeight: "auto",
-    resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+    dynamicHeight: "fixed",
+    resizeDirection: RESIZE_DIRECTION.ALL,
   },
 }
