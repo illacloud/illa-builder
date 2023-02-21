@@ -70,7 +70,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     updateComponentHeight,
     disableMarkdown,
     tooltipText,
-    dynamicHeight = "fixed",
+    dynamicHeight = "auto",
     dynamicMinHeight,
     dynamicMaxHeight,
     colorScheme,

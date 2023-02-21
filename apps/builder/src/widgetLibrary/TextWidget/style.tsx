@@ -1,8 +1,4 @@
 import { SerializedStyles, css } from "@emotion/react"
-import {
-  HorizontalAlign,
-  VerticalAlign,
-} from "@/widgetLibrary/TextWidget/interface"
 
 export function applyAlignStyle(): SerializedStyles {
   return css`
@@ -13,7 +9,6 @@ export function applyAlignStyle(): SerializedStyles {
 
 export const fullWidthAndFullHeightStyle = css`
   width: 100%;
-  height: 0;
 `
 
 export function applyMarkdownStyle(horizontalAlign?: string): SerializedStyles {
