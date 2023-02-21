@@ -17,13 +17,21 @@ const AvatarColors = [
 ]
 
 export const Avatar: FC<AvatarProps> = (props) => {
-  const { userId, nickname, avatar, showType, type, showTooltips } = props
+  const { userId, nickname, avatar, showType, type, showTooltips, className } =
+    props
   const avatarBgColor = AvatarColors[(parseInt(`${userId}`) || 0) % 7]
   const avatarText = nickname?.substring?.(0, 1).toUpperCase() || "U"
   const node = avatar ? (
-    <img src={avatar} css={getAvatarStyle(showType, type)} />
+    <img
+      src={avatar}
+      css={getAvatarStyle(showType, type)}
+      className={className}
+    />
   ) : (
-    <span css={applyUserAvatarStyle(avatarBgColor, showType, type)}>
+    <span
+      css={applyUserAvatarStyle(avatarBgColor, showType, type)}
+      className={className}
+    >
       {avatarText}
     </span>
   )

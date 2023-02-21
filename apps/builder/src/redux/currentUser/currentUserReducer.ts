@@ -14,3 +14,15 @@ export const updateCurrentUserReducer: CaseReducer<
   state = action.payload
   return state
 }
+
+export const updateUserAvatarReducer: CaseReducer<
+  CurrentUser,
+  PayloadAction<string>
+> = (state, action) => {
+  if (!state) return
+  const { payload } = action
+  return {
+    ...state,
+    avatar: payload,
+  }
+}

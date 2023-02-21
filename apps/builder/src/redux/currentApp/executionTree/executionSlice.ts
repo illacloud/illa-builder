@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
+  resetExecutionResultReducer,
   setDependenciesReducer,
   setExecutionDebuggerDataReducer,
   setExecutionErrorReducer,
@@ -23,6 +24,7 @@ const executionSlice = createSlice({
     updateExecutionByDisplayNameReducer,
     updateExecutionByMultiDisplayNameReducer,
     updateModalDisplayReducer,
+    resetExecutionResultReducer,
   },
 })
 

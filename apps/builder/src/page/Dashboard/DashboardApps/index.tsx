@@ -148,4 +148,6 @@ export const DashboardApps: FC = () => {
   )
 }
 
+export default DashboardApps
+
 DashboardApps.displayName = "DashboardApps"

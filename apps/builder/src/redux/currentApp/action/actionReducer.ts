@@ -2,6 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ActionContent,
   ActionItem,
+  actionInitialState,
 } from "@/redux/currentApp/action/actionState"
 
 export const updateActionListReducer: CaseReducer<
@@ -43,4 +44,11 @@ export const removeActionItemReducer: CaseReducer<
     1,
   )
   return state
+}
+
+export const resetActionReducer: CaseReducer<
+  ActionItem<ActionContent>[],
+  PayloadAction
+> = (state, action) => {
+  return actionInitialState
 }

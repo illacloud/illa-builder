@@ -2,11 +2,6 @@ import { cloneDeep, get, merge, set } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  applyEffectMapToComponentNodes,
-  getNearComponentNodes,
-  getReflowResult,
-} from "@/page/App/components/DotPanel/calc"
-import {
   BUILDER_CALC_CONTEXT,
   GLOBAL_DATA_CONTEXT,
 } from "@/page/App/context/globalDataProvider"
@@ -23,6 +18,7 @@ import store, { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { isObject } from "@/utils/typeHelper"
+import { MIN_HEIGHT } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/config"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
@@ -41,18 +37,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     const { handleUpdateGlobalData, handleDeleteGlobalData } =
       useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
-
-    const allComponents = useSelector<RootState, ComponentNode[]>(
-      (rootState) => {
-        const rootNode = getCanvas(rootState)
-        const parentNodeDisplayName = componentNode.parentNode
-        const target = searchDsl(rootNode, parentNodeDisplayName)
-        if (target) {
-          return target.childrenNode || []
-        }
-        return []
-      },
-    )
 
     const containerListMapChildName = useSelector(
       getContainerListDisplayNameMappedChildrenNodeDisplayName,
@@ -85,56 +69,27 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
 
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
+        const rootState = store.getState() as RootState
+        const rootNode = getCanvas(rootState)
+        const currentComponentNode = searchDsl(
+          rootNode,
+          displayName,
+        ) as ComponentNode
         // padding 2px so this is +4
-        const newH = Math.ceil((newHeight + 6) / componentNode.unitH)
-        if (newH === componentNode.h) return
-        const newItem = {
-          ...componentNode,
-          h: Math.max(newH, componentNode.minH),
-        }
-        const cloneDeepAllComponents = cloneDeep(allComponents)
-        const findIndex = cloneDeepAllComponents.findIndex(
-          (node) => node.displayName === newItem.displayName,
+        const newH = Math.max(
+          Math.ceil((newHeight + 6) / currentComponentNode.unitH),
+          MIN_HEIGHT,
         )
-        cloneDeepAllComponents.splice(findIndex, 1, newItem)
-        if (componentNode.h < newItem.h) {
-          const result = getReflowResult(newItem, cloneDeepAllComponents, false)
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: componentNode.parentNode || "root",
-                childNodes: result.finalState,
-              },
-            ]),
-          )
-        }
-        if (componentNode.h > newItem.h) {
-          const effectRows = componentNode.h - newItem.h
-          const effectMap = getNearComponentNodes(
-            componentNode,
-            cloneDeepAllComponents,
-          )
-          effectMap.set(newItem.displayName, newItem)
-          effectMap.forEach((node) => {
-            if (node.displayName !== componentNode.displayName) {
-              node.y -= effectRows
-            }
-          })
-          let finalState = applyEffectMapToComponentNodes(
-            effectMap,
-            allComponents,
-          )
-          dispatch(
-            componentsActions.updateComponentReflowReducer([
-              {
-                parentDisplayName: componentNode.parentNode || "root",
-                childNodes: finalState,
-              },
-            ]),
-          )
-        }
+        if (newH === currentComponentNode.h) return
+        dispatch(
+          componentsActions.updateComponentNodeHeightReducer({
+            displayName,
+            height: newH,
+            oldHeight: currentComponentNode.h,
+          }),
+        )
       },
-      [allComponents, componentNode, dispatch],
+      [dispatch, displayName],
     )
 
     const handleUpdateDsl = useCallback(

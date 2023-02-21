@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { updateCurrentUserReducer } from "@/redux/currentUser/currentUserReducer"
+import {
+  updateCurrentUserReducer,
+  updateUserAvatarReducer,
+} from "@/redux/currentUser/currentUserReducer"
 import { CurrentUserInitialState } from "@/redux/currentUser/currentUserState"
 
 const currentUserSlice = createSlice({
@@ -7,6 +10,7 @@ const currentUserSlice = createSlice({
   initialState: CurrentUserInitialState,
   reducers: {
     updateCurrentUserReducer,
+    updateUserAvatarReducer,
   },
 })
 

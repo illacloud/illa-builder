@@ -24,6 +24,7 @@ import {
   DeleteSectionViewPayload,
   DeleteTargetPageSectionPayload,
   UpdateComponentDisplayNamePayload,
+  UpdateComponentNodeHeightPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
   UpdateSectionViewPropsPayload,
@@ -663,6 +664,30 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             const rootNode = getCanvas(store.getState())
             if (!rootNode) break
             const targetNode = searchDsl(rootNode, parentNodeName)
+            if (!targetNode) break
+            const updateWSPayload =
+              transformComponentReduxPayloadToWsPayload(targetNode)
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                teamID,
+                uid,
+                updateWSPayload,
+              ),
+            )
+            break
+          }
+          case "updateComponentNodeHeightReducer": {
+            const { displayName } = payload as UpdateComponentNodeHeightPayload
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const targetNode = searchDsl(rootNode, displayName)
             if (!targetNode) break
             const updateWSPayload =
               transformComponentReduxPayloadToWsPayload(targetNode)

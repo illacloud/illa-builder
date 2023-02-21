@@ -13,6 +13,7 @@ export function applyAlignStyle(): SerializedStyles {
 
 export const fullWidthAndFullHeightStyle = css`
   width: 100%;
+  height: 0;
 `
 
 export function applyMarkdownStyle(horizontalAlign?: string): SerializedStyles {

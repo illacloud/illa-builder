@@ -16,7 +16,7 @@ export class CloudApi {
   ) {
     config.baseURL = isCloudVersion
       ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`
-      : `${location.host}${CLOUD}`
+      : `${location.origin}${CLOUD}`
     Api.request(config, success, failure, crash, loading, errorState)
   }
 
@@ -25,7 +25,7 @@ export class CloudApi {
   ) {
     config.baseURL = isCloudVersion
       ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${CLOUD}`
-      : `${location.host}${CLOUD}`
+      : `${location.origin}${CLOUD}`
     return Api.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 
