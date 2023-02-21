@@ -11,7 +11,6 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
   icon: <UploadWidgetIcon />,
   keywords: ["Upload Input", "上传"],
   sessionType: "INPUTS",
-  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     type: "button",
     buttonText: i18n.t("widget.upload.default_button_text"),
@@ -27,5 +26,6 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
     showFileList: false,
     sizeType: "mb",
     dynamicHeight: "auto",
+    resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   },
 }
