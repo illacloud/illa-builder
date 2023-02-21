@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom"
 import { BuilderApi } from "@/api/base"
 import { getTeamsInfo } from "@/api/team"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
@@ -19,13 +18,6 @@ import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShad
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { teamActions } from "@/redux/team/teamSlice"
-import {
-  TeamInfo,
-  TeamMemberPermission,
-  TeamMemberPermissionConfig,
-} from "@/redux/team/teamState"
-import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const useInitBuilderApp = (mode: IllaMode) => {
@@ -50,9 +42,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
 
   const handleCurrentApp = useCallback(
     (response: AxiosResponse<CurrentAppResp>) => {
-      if (mode === "edit") {
-        dispatch(configActions.resetConfig())
-      }
       dispatch(configActions.updateIllaMode(mode))
       dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
       dispatch(
