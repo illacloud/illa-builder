@@ -1039,7 +1039,7 @@
       "setter_tips": {
         "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url.",
         "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
-        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
+        "img_url_array": "Use {{ currentItem.key }} to get image URL from the data source. "
       },
       "setter_option": {
         "fixed": "Fixed",
@@ -1142,7 +1142,6 @@
         }
       },
       "stop": "Stop",
-      "setVolumn": "Set volumn",
       "mute": "Mute",
       "loop": "Loop",
       "show_controls": "Show Controls",
