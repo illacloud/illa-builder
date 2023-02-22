@@ -33,7 +33,7 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
 
 ## 🚀Get Started
 To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/), which is currently in beta testing. To obtain a beta tester invitation code, please fill out this [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) and provide as much information as possible. We will review your submission within two business days and contact you as soon as possible.
-To expedite the review process, we invite you to join our [Discord Community](https://discord.gg/ILLACLOUD), where you can obtain an invitation code faster.
+To expedite the review process, we invite you to join our [Discord Community](https://discord.gg/illacloud), where you can obtain an invitation code faster.
 
 You can also deploy and [self-host](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manually(Docker, docker-compose, and k8s).
 
