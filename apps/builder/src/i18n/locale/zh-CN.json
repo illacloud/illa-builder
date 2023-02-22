@@ -969,7 +969,8 @@
         "min_max_size": "最小～最大文件大小",
         "video_url": "视频 URL",
         "autoplay": "Autoplay",
-        "loop": "循环播放"
+        "loop": "循环播放",
+        "volumn": "Volumn"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1115,7 +1116,13 @@
       },
       "set_video_url": {
         "video": "视频 URL"
-      }
+      },
+      "speed": "Speed",
+      "stop": "Stop",
+      "setVolumn": "Set volumn",
+      "mute": "Mute",
+      "loop": "Loop",
+      "show_controls": "Show Controls"
     }
   },
   "exit_preview": "退出预览",
