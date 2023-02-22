@@ -36,6 +36,23 @@ export const VIDEO_PANEL_CONFIG: PanelConfig[] = [
         attrName: "loop",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
+      {
+        id: `${baseWidgetName}-basic-mute`,
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        openDynamic: true,
+        labelName: i18n.t("editor.inspect.setter_label.mute"),
+        useCustomLayout: true,
+        attrName: "muted",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+      {
+        id: `${baseWidgetName}-basic-volume`,
+        labelName: i18n.t("editor.inspect.setter_label.volume"),
+        placeholder: i18n.t("editor.inspect.setter_placeholder.volume"),
+        attrName: "volume",
+        expectedType: VALIDATION_TYPES.NUMBER,
+        setterType: "INPUT_SETTER",
+      },
     ],
   },
   {

@@ -17,6 +17,8 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
       autoPlay,
       controls = true,
       loop,
+      volume,
+      muted,
       onPlay,
       onReady,
       onPause,
@@ -37,6 +39,8 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           width="100%"
           height="100%"
           url={url}
+          volume={volume}
+          muted={muted}
           controls={controls}
           loop={loop}
           playing={autoPlay || playing}
@@ -68,6 +72,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     displayName,
     tooltipText,
     triggerEventHandler,
+    muted,
   } = props
 
   const videoRef = useRef<ReactPlayer>(null)
@@ -93,6 +98,24 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
           {
             displayName,
             value: { playing: false },
+          },
+        ])
+      },
+      mute: (value: boolean) => {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { muted: value },
+          },
+        ])
+      },
+      loop: (value: boolean) => {
+        // [TODO]
+        console.log("loop", value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { loop: value },
           },
         ])
       },
@@ -129,6 +152,12 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
   const onEnded = useCallback(() => {
     triggerEventHandler("ended")
   }, [triggerEventHandler])
+
+  // useEffect(()=>{
+  //   if (videoRef.current) {
+  //     videoRef.current.setState({mute: true})
+  //   }
+  // }, [muted])
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

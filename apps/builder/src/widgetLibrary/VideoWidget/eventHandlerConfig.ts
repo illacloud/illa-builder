@@ -28,5 +28,13 @@ export const VIDEO_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "ended",
     },
   ],
-  methods: ["play", "pause", "setVideoUrl", "seekTo"],
+  methods: [
+    "play",
+    "pause",
+    "setVideoUrl",
+    "setVolume",
+    "seekTo",
+    "mute",
+    "loop",
+  ],
 }

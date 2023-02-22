@@ -17,5 +17,6 @@ export const VIDEO_WIDGET_CONFIG: WidgetConfig = {
     autoPlay: false,
     loop: false,
     playing: false,
+    volume: undefined,
   },
 }
