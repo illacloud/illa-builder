@@ -970,7 +970,9 @@
         "video_url": "Video URL",
         "autoplay": "Autoplay",
         "loop": "Loop",
-        "volumn": "Volumn"
+        "volumn": "Volumn",
+        "volume": "Volume",
+        "show_controls": "Show controls"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1035,7 +1037,8 @@
         "scale_width": "Width"
       },
       "setter_placeholder": {
-        "min_max_size": "No limits"
+        "min_max_size": "No limits",
+        "volume": "2"
       }
     },
     "page": {
@@ -1117,12 +1120,24 @@
       "set_video_url": {
         "video": "Video URL"
       },
-      "speed": "Speed",
+      "speed": {
+        "speed": "Speed",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
       "stop": "Stop",
       "setVolumn": "Set volumn",
       "mute": "Mute",
       "loop": "Loop",
-      "show_controls": "Show Controls"
+      "show_controls": "Show Controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "Volume",
+        "placeholder": {
+          "volume": "2"
+        }
+      }
     }
   },
   "exit_preview": "Exit Preview",
