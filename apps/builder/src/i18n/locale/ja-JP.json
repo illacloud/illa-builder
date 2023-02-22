@@ -310,8 +310,8 @@
             "text": "The answer to the universe is [MASK].",
             "json": "{ \r\n\"past_user_inputs\": [\"Which movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Can you explain why ?\" \r\n}",
             "binary": "'@cats.jpg' \\",
-            "use_cache": "Boolean, leave blank for true",
-            "min_length": "Integer to define the minimum length in tokens of the output summary",
+            "use_cache": "ブール値、true の場合は空白のままにします",
+            "min_length": "出力要約のトークンの最小長を定義する整数",
             "top_k": "Integer to define the top tokens",
             "top_p": "Float to define the tokens",
             "temperature": "Float(0.0-100.0)，leave blank for 1.0",
@@ -985,7 +985,7 @@
         "loop": "ループ",
         "volume": "音量",
         "show_controls": "コントロールを表示",
-        "img_url_array": "Image URL Array"
+        "img_url_array": "画像 URL 配列"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1038,8 +1038,8 @@
       },
       "setter_tips": {
         "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。",
-        "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
-        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
+        "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}",
+        "img_url_array": "{{ currentItem.key }} を使用して、データ ソースから画像の URL を取得します。"
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1142,7 +1142,6 @@
         }
       },
       "stop": "Stop",
-      "setVolumn": "Set volumn",
       "mute": "Mute",
       "loop": "Loop",
       "show_controls": "Show Controls",
@@ -1168,10 +1167,10 @@
       "reset": "リセット",
       "save": "保存",
       "tooltip": {
-        "fluid_width": "Fluid width",
-        "desktop": "Desktop（width = 1280px）",
-        "tablet": "Tablet（width = 1080px）",
-        "custom": "Custom"
+        "fluid_width": "流体幅",
+        "desktop": "デスクトップ（幅=1280px）",
+        "tablet": "タブレット（幅=1080px）",
+        "custom": "ユーザー定義"
       }
     },
     "button_text": "プレビュー"
