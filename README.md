@@ -96,7 +96,7 @@ Deploy your app and self host it.
   </a>
 </p>
 
-**❗ The current version is still in beta, each version update will clear the data, please do not store important data in our live demo.**
+**❗ ILLA Cloud is still in the beta testing phase. If you encounter any problems, please feel free to contact us. We will investigate and respond ASAP.**
 
 ## 💬 Community
 
