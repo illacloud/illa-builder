@@ -970,7 +970,9 @@
         "video_url": "视频 URL",
         "autoplay": "Autoplay",
         "loop": "循环播放",
-        "volumn": "Volumn"
+        "volumn": "Volumn",
+        "volume": "音量",
+        "show_controls": "显示控制栏"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1035,7 +1037,8 @@
         "scale_width": "宽度"
       },
       "setter_placeholder": {
-        "min_max_size": "无限制"
+        "min_max_size": "无限制",
+        "volume": "2"
       }
     },
     "page": {
@@ -1117,12 +1120,24 @@
       "set_video_url": {
         "video": "视频 URL"
       },
-      "speed": "Speed",
+      "speed": {
+        "speed": "倍速",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
       "stop": "Stop",
       "setVolumn": "Set volumn",
       "mute": "Mute",
       "loop": "Loop",
-      "show_controls": "Show Controls"
+      "show_controls": "Show Controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "音量",
+        "placeholder": {
+          "volume": "2"
+        }
+      }
     }
   },
   "exit_preview": "退出预览",
