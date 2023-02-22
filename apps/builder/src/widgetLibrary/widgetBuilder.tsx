@@ -148,6 +148,12 @@ import {
   SelectWidget,
 } from "@/widgetLibrary/SelectWidget"
 import {
+  STATISTICS_EVENT_HANDLER_CONFIG,
+  STATISTICS_PANEL_CONFIG,
+  STATISTICS_WIDGET_CONFIG,
+  StatisticWidget,
+} from "@/widgetLibrary/StatisticsWidget"
+import {
   SWITCH_EVENT_HANDLER_CONFIG,
   SWITCH_PANEL_CONFIG,
   SWITCH_WIDGET_CONFIG,
@@ -239,6 +245,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: ICON_WIDGET_CONFIG,
     panelConfig: ICON_PANEL_CONFIG,
     eventHandlerConfig: ICON_EVENT_HANDLER_CONFIG,
+  },
+  STATISTIC_WIDGET: {
+    widget: StatisticWidget,
+    config: STATISTICS_WIDGET_CONFIG,
+    panelConfig: STATISTICS_PANEL_CONFIG,
+    eventHandlerConfig: STATISTICS_EVENT_HANDLER_CONFIG,
   },
   DATE_WIDGET: {
     widget: DateWidget,
