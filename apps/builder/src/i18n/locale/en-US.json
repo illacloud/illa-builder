@@ -734,6 +734,18 @@
           "pause": "Pause",
           "loaded": "Loaded",
           "ended": "Ended"
+        },
+        "image_list": {
+          "title": "Images",
+          "empty": "No  images",
+          "model_title": "Edit images",
+          "config": {
+            "model_label": "Label",
+            "image_url": "Image URL"
+          }
+        },
+        "image_setter": {
+          "new": "New"
         }
       },
       "setter_default_value": {
@@ -785,7 +797,8 @@
         "tabs": "TABS",
         "toolbar": "TOOLBAR",
         "validation": "VALIDATION",
-        "views": "VIEWS"
+        "views": "VIEWS",
+        "images": "IMAGES"
       },
       "setter_label": {
         "action": "Action",
@@ -970,9 +983,9 @@
         "video_url": "Video URL",
         "autoplay": "Autoplay",
         "loop": "Loop",
-        "volumn": "Volumn",
         "volume": "Volume",
-        "show_controls": "Show controls"
+        "show_controls": "Show controls",
+        "img_url_array": "Image URL Array"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1024,7 +1037,9 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url.",
+        "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
+        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
       },
       "setter_option": {
         "fixed": "Fixed",
