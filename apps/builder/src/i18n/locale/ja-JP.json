@@ -1222,7 +1222,9 @@
     },
     "back": "ホームページに戻ります",
     "mobile_forbidden": "より良い編集体験を得るには、デスクトップでこのページにアクセスしてください",
-    "back_to_cloud": "ILLA Cloudに戻る"
+    "back_to_cloud": "ILLA Cloudに戻る",
+    "no_permission_title": "Insufficient permissions",
+    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "エラ クラウドへようこそ",
   "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
