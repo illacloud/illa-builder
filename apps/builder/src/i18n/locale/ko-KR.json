@@ -1222,7 +1222,9 @@
     },
     "back": "홈페이지로 돌아 가기",
     "mobile_forbidden": "더 나은 편집 환경을 위해 데스크톱에서 이 페이지를 방문하세요.",
-    "back_to_cloud": "ILLA 클라우드 페이지로 돌아가기"
+    "back_to_cloud": "ILLA 클라우드 페이지로 돌아가기",
+    "no_permission_title": "Insufficient permissions",
+    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "엘라 클라우드에 오신 것을 환영합니다",
   "unfreeze_tips": "캔버스를 고정한 후 구성 요소를 컨테이너 안팎으로 드래그할 수 있습니다. (디 또는 케이)",
