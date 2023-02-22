@@ -969,7 +969,8 @@
         "min_max_size": "Min size ～ Max size",
         "video_url": "Video URL",
         "autoplay": "Autoplay",
-        "loop": "Loop"
+        "loop": "Loop",
+        "volumn": "Volumn"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1115,7 +1116,13 @@
       },
       "set_video_url": {
         "video": "Video URL"
-      }
+      },
+      "speed": "Speed",
+      "stop": "Stop",
+      "setVolumn": "Set volumn",
+      "mute": "Mute",
+      "loop": "Loop",
+      "show_controls": "Show Controls"
     }
   },
   "exit_preview": "Exit Preview",
