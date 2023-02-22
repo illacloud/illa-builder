@@ -969,7 +969,8 @@
         "min_max_size": "最小～最大のサイズ",
         "video_url": "ビデオ URL",
         "autoplay": "Autoplay",
-        "loop": "ループ"
+        "loop": "ループ",
+        "volumn": "Volumn"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1115,7 +1116,13 @@
       },
       "set_video_url": {
         "video": "ビデオ URL"
-      }
+      },
+      "speed": "Speed",
+      "stop": "Stop",
+      "setVolumn": "Set volumn",
+      "mute": "Mute",
+      "loop": "Loop",
+      "show_controls": "Show Controls"
     }
   },
   "exit_preview": "プレビューを終了",
