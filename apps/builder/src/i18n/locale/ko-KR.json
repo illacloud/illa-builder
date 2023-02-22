@@ -970,7 +970,9 @@
         "video_url": "비디오 URL",
         "autoplay": "Autoplay",
         "loop": "반복",
-        "volumn": "Volumn"
+        "volumn": "Volumn",
+        "volume": "음량",
+        "show_controls": "제어도구 보이기"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1035,7 +1037,8 @@
         "scale_width": "너비"
       },
       "setter_placeholder": {
-        "min_max_size": "제한 없음"
+        "min_max_size": "제한 없음",
+        "volume": "2"
       }
     },
     "page": {
@@ -1117,12 +1120,24 @@
       "set_video_url": {
         "video": "비디오 URL"
       },
-      "speed": "Speed",
+      "speed": {
+        "speed": "속도",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
       "stop": "Stop",
       "setVolumn": "Set volumn",
       "mute": "Mute",
       "loop": "Loop",
-      "show_controls": "Show Controls"
+      "show_controls": "Show Controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "음량",
+        "placeholder": {
+          "volume": "2"
+        }
+      }
     }
   },
   "exit_preview": "미리보기 종료",
