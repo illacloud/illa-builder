@@ -33,7 +33,7 @@
 LLA를 시도하는 가장 편리한 방법은 현재 베타 테스트 중인 [ILLA Cloud](https://cloud.illacloud.com/) 에 가입하여 로그인하는 것입니다. 베타 테스터 초대 코드를 받으려면 이 [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) 을 작성하고 가능한 한 많은 정보를 제공해주십시오. 제출하신 내용은 최대 2일 이내에 검토하고 가능한 빨리 연락드릴 것입니다. 
 검토 과정을 가속화하기 위해 Discord 커뮤니티에 가입하시면 초대 코드를 더 빨리 받으실 수 있습니다.
 
-또한 ILLA 유틸리티를 수동으로(Docker, docker-compose 및 k8s) 배포 및 [자체 호스팅](https://github.com/illacloud/illa-builder#self-hosted)할 수도 있습니다.
+또한 ILLA 유틸리티를 수동으로(Docker, docker-compose 및 k8s) 배포 및 [자체 호스팅](https://github.com/illacloud/illa-builder/blob/main/README-KR.md#%EC%9E%90%EC%B2%B4-%ED%98%B8%EC%8A%A4%ED%8C%85)할 수도 있습니다.
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
