@@ -1222,7 +1222,9 @@
     },
     "back": "回到主页",
     "mobile_forbidden": "为获得更好的编辑体验，请通过电脑端访问",
-    "back_to_cloud": "返回ILLA Cloud"
+    "back_to_cloud": "返回ILLA Cloud",
+    "no_permission_title": "Insufficient permissions",
+    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "欢迎来到艾拉云",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
