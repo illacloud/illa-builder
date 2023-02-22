@@ -12,6 +12,7 @@ import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/Action
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
 import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
 import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
+import { HuggingFaceEndpointPanel } from "@/page/App/components/Actions/ActionPanel/HuggingFaceEndpointPanel"
 import { HuggingFacePanel } from "@/page/App/components/Actions/ActionPanel/HuggingFacePanel"
 import { MicrosoftSqlPanel } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel"
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
@@ -81,6 +82,8 @@ export const ActionPanel = forwardRef<
         return <RestApiPanel />
       case "huggingface":
         return <HuggingFacePanel />
+      case "hfendpoint":
+        return <HuggingFaceEndpointPanel />
       case "redis":
         return <RedisPanel />
       case "mongodb":

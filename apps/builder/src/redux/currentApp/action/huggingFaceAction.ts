@@ -64,7 +64,7 @@ export const BooleanValueMap = {
 
 export interface HuggingFaceAction<T extends HuggingFaceBodyContent>
   extends Events {
-  modelID: string
+  modelID?: string
   inputs: RawBody<T>
   withDetailParams: boolean
   detailParams: {

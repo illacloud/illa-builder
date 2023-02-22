@@ -315,7 +315,7 @@ function getRealEventHandler(eventHandler?: any[]) {
 }
 
 const transformDataFormat = (
-  actionType: string,
+  actionType: ActionType,
   contents: Record<string, any>,
 ) => {
   switch (actionType) {
@@ -386,6 +386,8 @@ const transformDataFormat = (
       }
     }
     case "huggingface":
+    case "hfendpoint":
+      const isEndpoint = actionType === "hfendpoint"
       const { modelID, detailParams, ...otherParams } = contents
       const { type, content } = otherParams.inputs || {}
       let newInputs = { type, content }
@@ -402,7 +404,6 @@ const transformDataFormat = (
         }
       }
       const keys = Object.keys(detailParams)
-
       const realDetailParams = keys.map((key: string) => {
         const currentValue = detailParams[key]
         return {
@@ -416,7 +417,7 @@ const transformDataFormat = (
         }
       })
       return {
-        modelID,
+        ...(!isEndpoint && { modelID }),
         params: {
           withDetailParams: otherParams.withDetailParams,
           inputs: newInputs,

@@ -52,8 +52,9 @@ export const HuggingFaceEndpointConfigElement: FC<ConfigElementProps> = (
   const handleURLClick = (link: string) => window.open(link, "_blank")
 
   const handleURLValidate = useCallback(
-    (value: string) =>
-      isURL(value) ? true : t("editor.action.resource.error.invalid_url"),
+    (value: string) => {
+      return isURL(value) ? true : t("editor.action.resource.error.invalid_url")
+    },
     [t],
   )
 
@@ -132,11 +133,11 @@ export const HuggingFaceEndpointConfigElement: FC<ConfigElementProps> = (
           ]}
           isRequired
           tips={
-            formState.errors.baseUrl ? (
+            formState.errors.endpoint ? (
               <div css={errorMsgStyle}>
                 <>
                   <WarningCircleIcon css={errorIconStyle} />
-                  {formState.errors.baseUrl.message}
+                  {formState.errors.endpoint.message}
                 </>
               </div>
             ) : (

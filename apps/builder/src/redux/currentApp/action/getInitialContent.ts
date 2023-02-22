@@ -46,6 +46,7 @@ export function getInitialContent(actionType: ActionType): ActionContent {
     case "graphql":
       return GraphQLActionInitial
     case "huggingface":
+    case "hfendpoint":
       return HuggingFaceActionInitial
     default:
       return {} as ActionContent
