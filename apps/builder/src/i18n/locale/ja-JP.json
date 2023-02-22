@@ -970,7 +970,9 @@
         "video_url": "ビデオ URL",
         "autoplay": "Autoplay",
         "loop": "ループ",
-        "volumn": "Volumn"
+        "volumn": "Volumn",
+        "volume": "音量",
+        "show_controls": "コントロールを表示"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1035,7 +1037,8 @@
         "scale_width": "幅"
       },
       "setter_placeholder": {
-        "min_max_size": "無制限"
+        "min_max_size": "無制限",
+        "volume": "2"
       }
     },
     "page": {
@@ -1117,12 +1120,24 @@
       "set_video_url": {
         "video": "ビデオ URL"
       },
-      "speed": "Speed",
+      "speed": {
+        "speed": "再生速度",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
       "stop": "Stop",
       "setVolumn": "Set volumn",
       "mute": "Mute",
       "loop": "Loop",
-      "show_controls": "Show Controls"
+      "show_controls": "Show Controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "音量",
+        "placeholder": {
+          "volume": "2"
+        }
+      }
     }
   },
   "exit_preview": "プレビューを終了",
