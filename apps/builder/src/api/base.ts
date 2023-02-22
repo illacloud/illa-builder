@@ -5,7 +5,7 @@ import {
   axiosErrorInterceptor,
   fullFillInterceptor,
 } from "@/api/interceptors"
-import { getTeamID } from "@/utils/team"
+import { getCurrentPageTeamIdentifier, getTeamID } from "@/utils/team"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface Success {
@@ -23,8 +23,8 @@ export const CLOUD = "/supervisor/api/v1"
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
   baseURL: isCloudVersion
-    ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${BUILDER}`
-    : `${location.host}${BUILDER}`,
+    ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}`
+    : `${location.origin}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
@@ -85,13 +85,46 @@ export class BuilderApi {
     loading?: (loading: boolean) => void,
     errorState?: (errorState: boolean) => void,
   ) {
+    config.baseURL = isCloudVersion
+      ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${BUILDER}`
+      : `${location.origin}${BUILDER}`
     Api.request(config, success, failure, crash, loading, errorState)
   }
 
   static asyncRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
   ) {
+    config.baseURL = isCloudVersion
+      ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${BUILDER}`
+      : `${location.origin}${BUILDER}`
     return Api.asyncRequest<RespData, RequestBody, ErrorResp>(config)
+  }
+
+  static teamIdentifierRequest<
+    RespData,
+    RequestBody = any,
+    ErrorResp = ApiError,
+  >(
+    config: AxiosRequestConfig<RequestBody>,
+    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
+    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
+    crash?: (e: AxiosError) => void,
+    loading?: (loading: boolean) => void,
+    errorState?: (errorState: boolean) => void,
+  ) {
+    const teamIdentifier = getCurrentPageTeamIdentifier()
+    config.url = `/teams/byIdentifier/${teamIdentifier}` + config.url
+    this.request(config, success, failure, crash, loading, errorState)
+  }
+
+  static asyncTeamIdentifierRequest<
+    RespData,
+    RequestBody = any,
+    ErrorResp = ApiError,
+  >(config: AxiosRequestConfig<RequestBody>) {
+    const teamIdentifier = getCurrentPageTeamIdentifier()
+    config.url = `/teams/byIdentifier/${teamIdentifier}` + config.url
+    return this.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 
   static teamRequest<RespData, RequestBody = any, ErrorResp = ApiError>(

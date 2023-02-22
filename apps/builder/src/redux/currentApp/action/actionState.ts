@@ -78,7 +78,12 @@ export type ActionType =
 
 export type ActionTriggerMode = "manually" | "automate"
 
+export interface ActionConfig {
+  public: boolean
+}
+
 export interface ActionItem<T extends ActionContent> {
+  config: ActionConfig
   actionId: string
   displayName: string
   actionType: ActionType

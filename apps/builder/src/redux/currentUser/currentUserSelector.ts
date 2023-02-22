@@ -7,6 +7,10 @@ export const getCurrentUser = (state: RootState) => {
   return state.currentUser
 }
 
+export const getCurrentUserIsLogin = (state: RootState) => {
+  return state.currentUser.userId !== ""
+}
+
 export const getCurrentConfigLanguage = (state: RootState) => {
   let selectedLocale: Locale
   const currentUser = state.currentUser

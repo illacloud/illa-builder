@@ -1,6 +1,7 @@
+import { AxiosError, AxiosResponse } from "axios"
 import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isString } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
+import { ApiError, BuilderApi } from "@/api/base"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
@@ -244,6 +245,7 @@ const fetchS3ClientResult = async (
 }
 
 const fetchActionResult = (
+  isPublic: boolean,
   resourceId: string,
   actionType: ActionType,
   displayName: string,
@@ -256,54 +258,75 @@ const fetchActionResult = (
   isTrigger: boolean,
   resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
-  BuilderApi.teamRequest(
-    {
-      method: "POST",
-      url: `/apps/${appId}/actions/${actionId}/run`,
-      data: {
-        resourceId,
-        actionType,
-        displayName,
-        content: actionContent,
-      },
-    },
-    (data: ActionRunResult) => {
-      // @ts-ignore
-      //TODO: @aruseito not use any
-      const rawData = data.data.Rows
-      calculateFetchResultDisplayName(
-        actionType,
-        displayName,
-        isTrigger,
-        rawData,
-        transformer,
-        resultCallback,
-      )
-      const realSuccessEvent: any[] = isTrigger
-        ? successEvent || []
-        : getRealEventHandler(successEvent)
+  const success = (data: ActionRunResult) => {
+    // @ts-ignore
+    //TODO: @aruseito not use any
+    const rawData = data.data.Rows
+    calculateFetchResultDisplayName(
+      actionType,
+      displayName,
+      isTrigger,
+      rawData,
+      transformer,
+      resultCallback,
+    )
+    const realSuccessEvent: any[] = isTrigger
+      ? successEvent || []
+      : getRealEventHandler(successEvent)
 
-      runAllEventHandler(realSuccessEvent)
-    },
-    (res) => {
-      resultCallback?.(res.data, true)
-      const realSuccessEvent: any[] = isTrigger
-        ? failedEvent || []
-        : getRealEventHandler(failedEvent)
-      runAllEventHandler(realSuccessEvent)
-    },
-    (res) => {
-      resultCallback?.(res, true)
-      const realSuccessEvent: any[] = isTrigger
-        ? failedEvent || []
-        : getRealEventHandler(failedEvent)
-      runAllEventHandler(realSuccessEvent)
-      message.error({
-        content: "not online",
-      })
-    },
-    (loading) => {},
-  )
+    runAllEventHandler(realSuccessEvent)
+  }
+  const failure = (res: AxiosResponse<ApiError>) => {
+    resultCallback?.(res.data, true)
+    const realSuccessEvent: any[] = isTrigger
+      ? failedEvent || []
+      : getRealEventHandler(failedEvent)
+    runAllEventHandler(realSuccessEvent)
+  }
+  const crash = (res: AxiosError) => {
+    resultCallback?.(res, true)
+    const realSuccessEvent: any[] = isTrigger
+      ? failedEvent || []
+      : getRealEventHandler(failedEvent)
+    runAllEventHandler(realSuccessEvent)
+    message.error({
+      content: "not online",
+    })
+  }
+
+  if (isPublic) {
+    BuilderApi.teamIdentifierRequest(
+      {
+        method: "POST",
+        url: `/apps/${appId}/publicActions/${actionId}/run`,
+        data: {
+          resourceId,
+          actionType,
+          displayName,
+          content: actionContent,
+        },
+      },
+      success,
+      failure,
+      crash,
+    )
+  } else {
+    BuilderApi.teamRequest(
+      {
+        method: "POST",
+        url: `/apps/${appId}/actions/${actionId}/run`,
+        data: {
+          resourceId,
+          actionType,
+          displayName,
+          content: actionContent,
+        },
+      },
+      success,
+      failure,
+      crash,
+    )
+  }
 }
 
 function getRealEventHandler(eventHandler?: any[]) {
@@ -490,6 +513,7 @@ export const runAction = (
         )
       } else {
         fetchActionResult(
+          action.config.public,
           resourceId || "",
           actionType,
           displayName,
@@ -506,6 +530,7 @@ export const runAction = (
       break
     default:
       fetchActionResult(
+        action.config.public,
         resourceId || "",
         actionType,
         displayName,

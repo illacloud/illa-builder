@@ -9,4 +9,5 @@ export type RoutesObjectPro = RouteObject & {
    * @description child route
    */
   children?: RoutesObjectPro[]
+  accessByMobile?: boolean
 }

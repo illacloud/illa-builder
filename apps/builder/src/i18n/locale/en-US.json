@@ -968,7 +968,8 @@
         "scroll": "Snap scroll to each page",
         "min_max_size": "Min size ～ Max size",
         "video_url": "Video URL",
-        "autoplay": "Autoplay"
+        "autoplay": "Autoplay",
+        "loop": "Loop"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",

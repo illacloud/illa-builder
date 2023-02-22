@@ -15,7 +15,12 @@ export const requireSelfAuth = async (args: LoaderFunctionArgs) => {
   const userInfo = getCurrentUser(store.getState())
   const token = getAuthToken()
   if (!userInfo?.userId) {
-    const search = filterURLSearch(["inviteToken", "email"])
+    const search = filterURLSearch([
+      "inviteToken",
+      "email",
+      "appID",
+      "teamIdentifier",
+    ])
     const loginUrl = `/user/login${search}`
     if (!token) {
       clearRequestPendingPool()

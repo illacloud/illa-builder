@@ -28,7 +28,10 @@ import {
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
-import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
+import {
+  destroyExecutionTree,
+  setupExecutionListeners,
+} from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
@@ -174,5 +177,7 @@ export const Editor: FC = () => {
     </div>
   )
 }
+
+export default Editor
 
 Editor.displayName = "Editor"
