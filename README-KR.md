@@ -1,10 +1,10 @@
 <div align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
   </a>
 </div>
 
-<h1 align="center"><a href="https://fast-try.illacloud.com/">ILLA Builder (Beta)</a></h1>
+<h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder (Beta)</a></h1>
 <h3 align="center"> ⚠ 참고: 이 버전은 평가판입니다 ⚠</h3>
 <p align="center">ILLA는 개발자가 내부 도구를 구축할 수 있는 강력한 오픈 소스 로우 코드 플랫폼입니다. ILLA의 구성 요소 및 작업 라이브러리를 사용하여 개발자는 도구를 구축하는 데 엄청난 시간을 절약할 수 있습니다. </p>
 
@@ -13,7 +13,7 @@
 </div>
 <br>
 <p align="center">
-<a href="https://fast-try.illacloud.com/">
+<a href="https://cloud.illacloud.com/">
   <img src="https://github.com/illacloud/.github/blob/main/assets/images/github-home.png">
 </a>
 </p>
@@ -30,12 +30,14 @@
 
 
 ## 🚀시작하다
-ILLA Builder를 사용하는 가장 편리한 방법은 [Fast-try](https://fast-try.illacloud.com/) 에서 ILLA 계정을 만드는 것입니다. ILLA 유틸리티를 수동으로 배포할 수도 있습니다(Docker, docker-compose, and k8s). ILLA 클라우드 서비스가 올 12월에 제공됩니다. [Discord Community](https://discord.gg/zKf3WKCufR)에 가입하여 무료 클라우드 서비스 코드를 받으세요.  
+LLA를 시도하는 가장 편리한 방법은 현재 베타 테스트 중인 [ILLA Cloud](https://cloud.illacloud.com/) 에 가입하여 로그인하는 것입니다. 베타 테스터 초대 코드를 받으려면 이 [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) 을 작성하고 가능한 한 많은 정보를 제공해주십시오. 제출하신 내용은 최대 2일 이내에 검토하고 가능한 빨리 연락드릴 것입니다. 
+검토 과정을 가속화하기 위해 Discord 커뮤니티에 가입하시면 초대 코드를 더 빨리 받으실 수 있습니다.
+
+또한 ILLA 유틸리티를 수동으로(Docker, docker-compose 및 k8s) 배포 및 [자체 호스팅](https://github.com/illacloud/illa-builder#self-hosted)할 수도 있습니다.
 
 <p>
-  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/self-hosted.png" height=120 />
-  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live-demo.png" height=120 />
-  <a href="https://illacloud.com"><img src="https://github.com/illacloud/.github/blob/main/assets/images/illa-cloud.png" height=120></a>
+  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
+  <a href="https://cloud.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/ILLACLOUD.png" height=120 />
 </p>
 
 
@@ -62,7 +64,7 @@ ILLA CLI를 사용하면 상상보다 빠르게 ILLA Builder를 배포할 수 �
 
 #### 🎯 1단계: 데이터베이스에 연결
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/sql.jpeg">
   </a>
 </p>
@@ -70,7 +72,7 @@ ILLA CLI를 사용하면 상상보다 빠르게 ILLA Builder를 배포할 수 �
 #### 🎨 2단계: 기본 제공 구성 요소로 UI 빌드
 구성 요소를 캔버스로 드래그하여 UI를 구축합니다. Illa Builder 및 Illa Design에서 차트, 표, 양식 등 수십 가지 구성 요소를 제공합니다. 구성 요소가 겹치면 위치가 자동으로 조정되어 레이아웃 개발이 쉽고 유연해집니다.
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/edit-ui-with-components.gif">
   </a>
 </p>
@@ -78,7 +80,7 @@ ILLA CLI를 사용하면 상상보다 빠르게 ILLA Builder를 배포할 수 �
 #### 🔌 3단계: 데이터에 연결
 GUI 데이터 커넥터를 통해 MySQL 또는 REST API에 연결합니다. 그리고 곧 10개 이상의 데이터베이스와 API를 추가할 예정입니다.
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
   </a>
 </p>
@@ -86,12 +88,12 @@ GUI 데이터 커넥터를 통해 MySQL 또는 REST API에 연결합니다. 그�
 #### 🚀 4단계: 앱 배포
 앱을 배포하고 자체 호스팅합니다.
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
   </a>
 </p>
 
-**❗ 현재 버전은 아직 베타 버전입니다. 버전을 업데이트할 때마다 데이터가 지워지므로 라이브 데모에 중요한 데이터를 저장하지 마십시오.**
+**❗ ILLA Cloud는 아직 베타 테스트 중입니다. 문제가 발생하면 언제든지 연락 주시기 바랍니다. 우리는 조사하고 가능한 한 빨리 대응하겠습니다. **
 
 ## 💬 지역 사회
 
