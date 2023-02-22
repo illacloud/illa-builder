@@ -1038,8 +1038,8 @@
       },
       "setter_tips": {
         "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。",
-        "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
-        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
+        "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}",
+        "img_url_array": "使用 {{ currentItem.key }} 从数据源获取图像 URL。"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1142,7 +1142,6 @@
         }
       },
       "stop": "Stop",
-      "setVolumn": "Set volumn",
       "mute": "Mute",
       "loop": "Loop",
       "show_controls": "Show Controls",
@@ -1168,10 +1167,10 @@
       "reset": "重置",
       "save": "保存",
       "tooltip": {
-        "fluid_width": "Fluid width",
-        "desktop": "Desktop（width = 1280px）",
-        "tablet": "Tablet（width = 1080px）",
-        "custom": "Custom"
+        "fluid_width": "当前浏览器宽度",
+        "desktop": "PC端桌面（宽度 = 1280px）",
+        "tablet": "平板电脑（宽度 = 1080px）",
+        "custom": "自定义"
       }
     },
     "button_text": "预览"
