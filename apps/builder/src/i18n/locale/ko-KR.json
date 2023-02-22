@@ -969,7 +969,8 @@
         "min_max_size": "가장 작은~최대 파일 크기",
         "video_url": "비디오 URL",
         "autoplay": "Autoplay",
-        "loop": "반복"
+        "loop": "반복",
+        "volumn": "Volumn"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1115,7 +1116,13 @@
       },
       "set_video_url": {
         "video": "비디오 URL"
-      }
+      },
+      "speed": "Speed",
+      "stop": "Stop",
+      "setVolumn": "Set volumn",
+      "mute": "Mute",
+      "loop": "Loop",
+      "show_controls": "Show Controls"
     }
   },
   "exit_preview": "미리보기 종료",
