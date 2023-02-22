@@ -1222,7 +1222,9 @@
     },
     "back": "Back to homepage",
     "mobile_forbidden": "For the better editing experience, please visit this page on desktop",
-    "back_to_cloud": "Back to ILLA Cloud"
+    "back_to_cloud": "Back to ILLA Cloud",
+    "no_permission_title": "Insufficient permissions",
+    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "Welcome to illa",
   "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
