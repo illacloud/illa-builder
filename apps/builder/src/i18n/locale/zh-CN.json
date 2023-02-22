@@ -734,6 +734,18 @@
           "pause": "暂停",
           "loaded": "已载入",
           "ended": "已结束"
+        },
+        "image_list": {
+          "title": "图片",
+          "empty": "没有图片",
+          "model_title": "编辑图像",
+          "config": {
+            "model_label": "标签",
+            "image_url": "图片URL"
+          }
+        },
+        "image_setter": {
+          "new": "新增"
         }
       },
       "setter_default_value": {
@@ -785,7 +797,8 @@
         "tabs": "选项卡",
         "toolbar": "工具栏",
         "validation": "验证",
-        "views": "视图"
+        "views": "视图",
+        "images": "图片"
       },
       "setter_label": {
         "action": "动作",
@@ -968,11 +981,11 @@
         "scroll": "快速滚动到每一页",
         "min_max_size": "最小～最大文件大小",
         "video_url": "视频 URL",
-        "autoplay": "Autoplay",
+        "autoplay": "自动播放",
         "loop": "循环播放",
-        "volumn": "Volumn",
         "volume": "音量",
-        "show_controls": "显示控制栏"
+        "show_controls": "显示控制栏",
+        "img_url_array": "图片URL数组"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1024,7 +1037,9 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。"
+        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。",
+        "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
+        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
       },
       "setter_option": {
         "fixed": "固定高度",
