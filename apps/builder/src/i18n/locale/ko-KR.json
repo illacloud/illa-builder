@@ -734,6 +734,18 @@
           "pause": "정지시키다",
           "loaded": "짐을 실은",
           "ended": "종료"
+        },
+        "image_list": {
+          "title": "이미지",
+          "empty": "이미지 없음",
+          "model_title": "이미지 편집",
+          "config": {
+            "model_label": "상표",
+            "image_url": "이미지 URL"
+          }
+        },
+        "image_setter": {
+          "new": "새로운 빌드"
         }
       },
       "setter_default_value": {
@@ -785,7 +797,8 @@
         "tabs": "탭",
         "toolbar": "툴바",
         "validation": "확인하다",
-        "views": "보다"
+        "views": "보다",
+        "images": "이미지"
       },
       "setter_label": {
         "action": "동작",
@@ -968,11 +981,11 @@
         "scroll": "각 페이지에 스냅 스크롤",
         "min_max_size": "가장 작은~최대 파일 크기",
         "video_url": "비디오 URL",
-        "autoplay": "Autoplay",
+        "autoplay": "자동 플레이",
         "loop": "반복",
-        "volumn": "Volumn",
         "volume": "음량",
-        "show_controls": "제어도구 보이기"
+        "show_controls": "제어도구 보이기",
+        "img_url_array": "Image URL Array"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1024,7 +1037,9 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "{{ currentItem }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어 데이터 원본에 두 개의 열이 있습니다. 이미지와 URL입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ currentItem.url }}을 이용하여 url을 설정하면 됩니다."
+        "carousel_tips": "{{ currentItem }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어 데이터 원본에 두 개의 열이 있습니다. 이미지와 URL입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ currentItem.url }}을 이용하여 url을 설정하면 됩니다.",
+        "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
+        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
       },
       "setter_option": {
         "fixed": "고정 높이",
