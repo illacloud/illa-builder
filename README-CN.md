@@ -1,10 +1,10 @@
 <div align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
   </a>
 </div>
 
-<h1 align="center"><a href="https://fast-try.illacloud.com/">ILLA Builder (Beta)</a></h1>
+<h1 align="center"><a href="https://Cloud.illacloud.com/">ILLA Builder (Beta)</a></h1>
 <h3 align="center"> ⚠ 提示: 此版本为测试体验版 ⚠</h3>
 <p align="center">ILLA 是一个强大的开源低代码平台，供开发人员构建内部工具。 通过使用 ILLA 的组件和操作库，开发人员可以节省大量构建工具的时间。 </p>
 
@@ -13,7 +13,7 @@
 </div>
 <br>
 <p align="center">
-<a href="https://fast-try.illacloud.com/">
+<a href="https://cloud.illacloud.com/">
   <img src="https://github.com/illacloud/.github/blob/main/assets/images/github-home.png">
 </a>
 </p>
@@ -31,12 +31,12 @@
 
 
 ## 🚀开始体验ILLA
-试用 ILLA Builder 最方便的方法是在 [Live Demo](https://fast-try.illacloud.com/) 上创建一个 ILLA 帐户。 您还可以手动部署 ILLA 实用程序（Docker、docker-compose 和 k8s）。 ILLA Cloud 服务将于今年 12 月推出，加入我们的 [Discord社区](https://discord.gg/zKf3WKCufR) 以获得免费的云服务折扣代码。
+试用ILLA的最方便的方式是注册并登录 [ILLA Cloud](https://cloud.illacloud.com/)，它目前处于测试阶段。要获取beta测试邀请码，请填写此 [Google 表单](https://forms.gle/XFRSUc3yFpzbCdcWA)并尽可能提供更多信息。我们将在两个工作日内审核您的提交，并尽快与您联系。为加快审核过程，我们邀请您加入我们的[Discord 社区](https://discord.gg/illacloud)，在那里您可以更快地获得邀请码。
 
+您还可以手动部署和[自托管](https://github.com/illacloud/illa-builder#self-hosted)ILLA工具（Docker、Docker Compose和Kubernetes）。
 <p>
-  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/self-hosted.png" height=120 />
-  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live-demo.png" height=120 />
-  <a href="https://illacloud.com"><img src="https://github.com/illacloud/.github/blob/main/assets/images/illa-cloud.png" height=120></a>
+  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
+  <a href="https://cloud.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/ILLACLOUD.png" height=120 />
 </p>
 
 
@@ -63,7 +63,7 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 
 #### 🎯 第 1 步：连接到您的数据库
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/sql.jpeg">
   </a>
 </p>
@@ -71,7 +71,7 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 #### 🎨 第 2 步：使用内置组件构建 UI
 将组件拖动到画布来构建您的 UI。我们在 Illa Builder 和 Illa Design 中提供了数十种组件，包括图表、表格、表单等。当组件重叠时，它们的位置会自动调整，使得布局开发变得简单灵活。
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/edit-ui-with-components.gif">
   </a>
 </p>
@@ -79,7 +79,7 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 #### 🔌 第 3 步：连接您的数据
 通过我们的 GUI 数据连接器连接到 MySQL 或 REST API。我们未来将添加10多个数据库和API。
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
   </a>
 </p>
@@ -87,7 +87,7 @@ ILLA CLI 使您能够以超乎想象的速度部署 ILLA Builder。 [单击此�
 #### 🚀 第 4 步：部署您的应用
 部署您的应用程序并自行托管。
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
   </a>
 </p>
