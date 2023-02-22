@@ -21,6 +21,7 @@ export interface ConfigState {
   canvasHeight: number
   canvasWidth: number
   isOnline: boolean
+  isDragging: boolean
 }
 
 export const ConfigInitialState: ConfigState = {
@@ -39,4 +40,5 @@ export const ConfigInitialState: ConfigState = {
   canvasHeight: 1080,
   canvasWidth: 1920,
   isOnline: true,
+  isDragging: false,
 }

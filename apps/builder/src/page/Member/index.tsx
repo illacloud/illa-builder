@@ -95,4 +95,6 @@ export const Member: FC<MemberProps> = (props) => {
   )
 }
 
+export default Member
+
 Member.displayName = "Member"

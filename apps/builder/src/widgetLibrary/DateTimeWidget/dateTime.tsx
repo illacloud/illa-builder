@@ -1,6 +1,7 @@
 import dayjs, { Dayjs } from "dayjs"
 import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { SingleDatePicker } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -191,20 +192,12 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     handleValidate,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [labelPosition, validateMessage, updateComponentHeight])
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -235,7 +228,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 

@@ -53,6 +53,7 @@ export const generateRawAction = (
     resourceId,
     displayName,
     actionType,
+    config,
     triggerMode,
   } = action
   generateDynamicAttrPaths(action, $dynamicAttrPaths)
@@ -63,6 +64,7 @@ export const generateRawAction = (
     actionType,
     triggerMode,
     transformer,
+    config,
     content,
     $type: "ACTION",
     $dynamicAttrPaths,

@@ -1,6 +1,7 @@
 import { FC, ReactNode, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
+import { DynamoDBConfigElement } from "@/page/App/components/Actions/DynamoDBConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
 import { GraphQLConfigElement } from "@/page/App/components/Actions/GraphQLConfigElement"
@@ -76,6 +77,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
             onFinished={onFinished}
           />
         )
+      case "dynamodb":
+        return <DynamoDBConfigElement {...generalProps} />
       case "snowflake":
         return <SnowflakeConfigElement {...generalProps} />
       case "s3":

@@ -24,6 +24,10 @@ export interface TeamMemberPermission {
   allowViewerManageTeamMember: boolean
 }
 
+export interface TeamMemberPermissionConfig {
+  config: number
+}
+
 export interface TeamInfo {
   id: string
   uid: string
@@ -33,7 +37,7 @@ export interface TeamInfo {
   teamMemberID: string
   myRole: USER_ROLE
   permission: TeamMemberPermission
-  teamMemberPermission: { Config: number }
+  teamMemberPermission: TeamMemberPermissionConfig
 }
 
 export interface Team {

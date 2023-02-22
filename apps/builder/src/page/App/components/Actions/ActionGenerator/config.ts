@@ -40,6 +40,10 @@ export const Databases: ActionDataItem[] = [
     isDraft: false,
   },
   {
+    actionType: "dynamodb",
+    isDraft: false,
+  },
+  {
     actionType: "snowflake",
     isDraft: false,
   },

@@ -87,7 +87,7 @@ export const SingleSelectedPanel: FC = () => {
           <PanelHeader />
           <Divider />
           <div css={singleSelectedPanelSetterWrapperStyle}>
-            {fieldFactory(builderPanelConfig, widgetDisplayName)}
+            {fieldFactory(builderPanelConfig, widgetDisplayName, widgetProps)}
           </div>
         </div>
       </SelectedProvider>

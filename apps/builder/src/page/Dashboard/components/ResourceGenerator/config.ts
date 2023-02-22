@@ -40,6 +40,10 @@ export const Databases: ResourceDataItem[] = [
     isDraft: false,
   },
   {
+    resourceType: "dynamodb",
+    isDraft: false,
+  },
+  {
     resourceType: "snowflake",
     isDraft: false,
   },

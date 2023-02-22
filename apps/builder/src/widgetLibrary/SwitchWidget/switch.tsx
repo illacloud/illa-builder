@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useRef } from "react"
 import { Switch } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
@@ -76,20 +77,12 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [value, required, labelPosition])
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -107,7 +100,7 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
           <WrappedSwitch {...props} handleOnChange={handleOnChange} />
         </div>
       </TooltipWrapper>
-    </div>
+    </AutoHeightContainer>
   )
 }
 SwitchWidget.displayName = "SwitchWidget"

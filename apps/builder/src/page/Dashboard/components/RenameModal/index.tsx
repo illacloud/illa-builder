@@ -43,7 +43,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
       okText={t("save")}
       cancelText={t("dashboard.common.cancel")}
       onOk={() => {
-        if (name === "") {
+        if (name === "" || name.trim() === "") {
           message.error({
             content: t("dashboard.app.name_empty"),
           })
