@@ -734,6 +734,18 @@
           "pause": "一時停止",
           "loaded": "ロード済み",
           "ended": "終了済み"
+        },
+        "image_list": {
+          "title": "イメージ",
+          "empty": "画像がありません",
+          "model_title": "画像を編集",
+          "config": {
+            "model_label": "ラベル",
+            "image_url": "画像のURL"
+          }
+        },
+        "image_setter": {
+          "new": "追加"
         }
       },
       "setter_default_value": {
@@ -785,7 +797,8 @@
         "tabs": "タブ",
         "toolbar": "ツールバー",
         "validation": "確認",
-        "views": "見る"
+        "views": "見る",
+        "images": "イメージ"
       },
       "setter_label": {
         "action": "アクション",
@@ -968,11 +981,11 @@
         "scroll": "各ページへのスナップスクロール",
         "min_max_size": "最小～最大のサイズ",
         "video_url": "ビデオ URL",
-        "autoplay": "Autoplay",
+        "autoplay": "自動再生",
         "loop": "ループ",
-        "volumn": "Volumn",
         "volume": "音量",
-        "show_controls": "コントロールを表示"
+        "show_controls": "コントロールを表示",
+        "img_url_array": "Image URL Array"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1024,7 +1037,9 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。"
+        "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。",
+        "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
+        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
       },
       "setter_option": {
         "fixed": "固定高さ",
