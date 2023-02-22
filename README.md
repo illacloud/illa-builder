@@ -1,10 +1,10 @@
 <div align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
   </a>
 </div>
 
-<h1 align="center"><a href="https://fast-try.illacloud.com/">ILLA Builder</a> </h1>
+<h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder</a> </h1>
 <h3 align="center"> ⚠ Note: This is a Beta Version ⚠</h3>
 <p align="center">ILLA is a robust open source low-code platform for developers to build internal tools. By using ILLA's library of Components and Actions, developers can save massive amounts of time on building tools. </p>
 
@@ -14,7 +14,7 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
 
 <br>
 <p align="center">
-<a href="https://fast-try.illacloud.com/">
+<a href="https://cloud.illacloud.com/">
   <img src="https://github.com/illacloud/.github/blob/main/assets/images/github-home.png">
 </a>
 </p>
@@ -32,12 +32,14 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
 
 
 ## 🚀Get Started
-The most convenient way to try ILLA Builder is by creating an ILLA account on [Fast-try](https://fast-try.illacloud.com/). You can also deploy ILLA utils manually(Docker, docker-compose, and k8s). ILLA Cloud service is coming this December, join our [Discord Community](https://discord.gg/zKf3WKCufR) to get Free Cloud Service Code.
+To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/), which is currently in beta testing. To obtain a beta tester invitation code, please fill out this [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) and provide as much information as possible. We will review your submission within two business days and contact you as soon as possible.
+To expedite the review process, we invite you to join our [Discord Community](https://discord.gg/ILLACLOUD), where you can obtain an invitation code faster.
+
+You can also deploy and [self-host](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manually(Docker, docker-compose, and k8s).
 
 <p>
-  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/self-hosted-1.png" height=120 />
-  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live-demo-1.png" height=120 />
-  <a href="https://illacloud.com"><img src="https://github.com/illacloud/.github/blob/main/assets/images/illa-cloud-1.png" height=120></a>
+  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
+  <a href="https://cloud.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/ILLACLOUD.png" height=120 />
 </p>
 
 
@@ -64,7 +66,7 @@ After successfully deployed, you can register with email address or log in with 
 
 #### 🎯 Step 1: Connect to your database
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/sql.jpeg">
   </a>
 </p>
@@ -73,7 +75,7 @@ After successfully deployed, you can register with email address or log in with 
 Build your UI by dragging components to the canvas. We provide dozens of components including charts, tables, forms, and many more in Illa Builder and Illa Design. When components overlap, their position will be automatically adjusted, which makes the layout development easy and flexible.
 
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/edit-ui-with-components.gif">
   </a>
 </p>
@@ -81,7 +83,7 @@ Build your UI by dragging components to the canvas. We provide dozens of compone
 #### 🔌 Step 3: Connect to your data
 Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
   </a>
 </p>
@@ -89,7 +91,7 @@ Connect to MySQL or REST API through our GUI data connectors. And we will add mo
 #### 🚀 Step 4: Deploy your app
 Deploy your app and self host it. 
 <p align="center">
-  <a href="https://fast-try.illacloud.com/">
+  <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
   </a>
 </p>
