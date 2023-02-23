@@ -88,12 +88,25 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           signal: controller.signal,
         })
         handleCurrentApp(response)
+        if (mode !== "production") {
+          await BuilderApi.teamRequest<Resource<ResourceContent>[]>(
+            {
+              url: "/resources",
+              method: "GET",
+              signal: controller.signal,
+            },
+            (response) => {
+              dispatch(resourceActions.updateResourceListReducer(response.data))
+              initS3Client(response.data)
+            },
+          )
+        }
         resolve(response.data)
       } catch (e) {
         reject(e)
       }
     },
-    [appId, handleCurrentApp, versionId],
+    [appId, dispatch, handleCurrentApp, mode, versionId],
   )
 
   const handleUnPublicApps = useCallback(
@@ -121,28 +134,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     [initApp, teamIdentifier, teamInfo],
   )
 
-  // init resource
-  useEffect(() => {
-    if (!teamID) {
-      return
-    }
-    const controller = new AbortController()
-    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
-      {
-        url: "/resources",
-        method: "GET",
-        signal: controller.signal,
-      },
-      (response) => {
-        dispatch(resourceActions.updateResourceListReducer(response.data))
-        initS3Client(response.data)
-      },
-    )
-    return () => {
-      controller.abort()
-    }
-  }, [dispatch, teamID])
-
   useEffect(() => {
     const controller = new AbortController()
     if (isOnline) {
@@ -166,17 +157,40 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           await initApp(controller, resolve, reject)
         }
         setLoadingState(false)
-      }).then((value) => {
-        const autoRunAction = value.actions.filter((action) => {
-          return (
-            action.triggerMode === "automate" ||
-            action.actionType === "transformer"
-          )
-        })
-        autoRunAction.forEach((action) => {
-          runAction(action)
-        })
       })
+        // .then(async (value) => {
+        //   if (mode !== "production") {
+        //     try {
+        //       await BuilderApi.teamRequest<Resource<ResourceContent>[]>(
+        //         {
+        //           url: "/resources",
+        //           method: "GET",
+        //           signal: controller.signal,
+        //         },
+        //         (response) => {
+        //           dispatch(
+        //             resourceActions.updateResourceListReducer(response.data),
+        //           )
+        //           initS3Client(response.data)
+        //         },
+        //       )
+        //     } catch (e) {
+        //       reject(e)
+        //     }
+        //   }
+        //   return value
+        // })
+        .then((value) => {
+          const autoRunAction = value.actions.filter((action) => {
+            return (
+              action.triggerMode === "automate" ||
+              action.actionType === "transformer"
+            )
+          })
+          autoRunAction.forEach((action) => {
+            runAction(action)
+          })
+        })
     }
 
     return () => {
