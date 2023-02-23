@@ -14,7 +14,6 @@ import { Page404 } from "@/page/status/404"
 import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
 import { setLocalStorage } from "@/utils/storage"
-// import { handleRemoveUrlToken } from "@/router/loader"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { removeUrlParams } from "@/utils/url"
 
