@@ -35,7 +35,8 @@ import {
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import {
   getFreezeState,
-  getIllaMode,
+  getIsILLAEditMode,
+  getIsILLAPreviewMode,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -161,7 +162,8 @@ export const RenderComponentCanvas: FC<{
   } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
-  const illaMode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
+  const isPreviewMode = useSelector(getIsILLAPreviewMode)
   const isFreezeCanvas = useSelector(getFreezeState)
   const dispatch = useDispatch()
 
@@ -338,7 +340,7 @@ export const RenderComponentCanvas: FC<{
     () => ({
       accept: ["components"],
       canDrop: () => {
-        return illaMode === "edit"
+        return isEditMode
       },
       hover: (dragInfo, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
@@ -698,7 +700,7 @@ export const RenderComponentCanvas: FC<{
 
   useLayoutEffect(() => {
     if (!isActive && canResizeY) {
-      if (illaMode === "edit") {
+      if (isEditMode) {
         if (
           finalRowNumber === maxY &&
           finalRowNumber + addedRowNumber >= rowNumber
@@ -730,20 +732,14 @@ export const RenderComponentCanvas: FC<{
     canResizeY,
     containerRef,
     finalRowNumber,
-    illaMode,
     isActive,
+    isEditMode,
     maxY,
     rowNumber,
   ])
 
-  useEffect(() => {
-    return () => {
-      clearTimeout(autoScrollTimeoutID.current)
-    }
-  }, [])
-
   if (
-    illaMode === "edit" &&
+    isEditMode &&
     componentNode.type === "CANVAS" &&
     (!Array.isArray(componentNode.childrenNode) ||
       componentNode.childrenNode.length === 0) &&
@@ -772,7 +768,7 @@ export const RenderComponentCanvas: FC<{
       onClick={(e) => {
         if (
           e.target === currentCanvasRef.current &&
-          illaMode !== "production"
+          (isEditMode || isPreviewMode)
         ) {
           dispatch(configActions.updateSelectedComponent([]))
           clearComponentAttachedUsersHandler(selectedComponents || [])

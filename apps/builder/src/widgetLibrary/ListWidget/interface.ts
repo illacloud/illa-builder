@@ -1,4 +1,3 @@
-import { IllaMode } from "@/redux/config/configState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
@@ -44,5 +43,4 @@ export interface RenderCopyContainerProps {
 export interface ListWidgetPropsWithChildrenNodes extends ListWidgetProps {
   copyComponents: ComponentNode[] | null
   handleUpdateSelectedItem: (index: number) => void
-  illaMode: IllaMode
 }
