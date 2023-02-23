@@ -1,3 +1,4 @@
+import i18n from "@/i18n/config"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
 
@@ -16,6 +17,8 @@ export function getActionSubTitleFromActionType(
         return "Inference API"
       case "hfendpoint":
         return "Inference Endpoint"
+      case "s3":
+        return i18n.t("editor.action.form.label.s3")
     }
   }
   return ""
@@ -81,6 +84,8 @@ export function getResourceSubTitleFromResourceType(
         return "Inference API"
       case "hfendpoint":
         return "Inference Endpoint"
+      case "s3":
+        return i18n.t("editor.action.form.label.s3")
     }
   }
   return ""
