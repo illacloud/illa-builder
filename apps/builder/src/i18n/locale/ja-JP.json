@@ -143,7 +143,8 @@
         },
         "label": {
           "inference_api": "Inference API",
-          "inference_endpoint": "Inference Endpoint"
+          "inference_endpoint": "Inference Endpoint",
+          "s3": "公開アプリでは無効"
         },
         "placeholder": {
           "url": "URL をここに入力"
