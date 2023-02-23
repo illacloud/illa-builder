@@ -13,7 +13,6 @@ jobs:
             git clone -b ${CIRCLE_BRANCH} https://github.com/illacloud/illa-builder
             git submodule init
             git submodule update
-            ls -l
       - restore_cache:
           keys:
             - v1-{{ .Branch }}
@@ -31,12 +30,12 @@ jobs:
       - run:
           name: Save Docker image layer cache
           command: |
-            mkdir -p /caches
-            docker save -o /caches/illa-builder-frontend.tar illa-builder-frontend
+            mkdir -p ./caches
+            docker save -o ./caches/illa-builder-frontend.tar illa-builder-frontend
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
-            - /caches/illa-builder-frontend.tar
+            - ./caches/illa-builder-frontend.tar
       - deploy:
           name: Push application Docker image
           command: |
