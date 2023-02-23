@@ -2,9 +2,9 @@ version: 2.1
 jobs:
   build:
     working_directory: ~/project
-    docker:
-      - image: docker:17.05.0-ce-git
-    resource_class: xlarge
+    machine: # executor type
+      image: ubuntu-2004:202010-01
+    resource_class: large
     steps:
       - checkout
       - setup_remote_docker
