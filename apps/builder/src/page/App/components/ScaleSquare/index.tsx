@@ -35,8 +35,8 @@ import {
   applyWrapperPendingStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import {
-  getIllaMode,
   getIsDragging,
+  getIsILLAEditMode,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -117,7 +117,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     (user) => `${user.id}` !== `${currentUsesInfo.userId}`,
   )
 
-  const illaMode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
 
@@ -179,13 +179,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     () => (hasError ? "error" : "normal"),
     [hasError],
   )
-  if (illaMode !== "edit") {
+  if (!isEditMode) {
     scaleSquareState = "production"
   }
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      if (illaMode !== "edit") return
+      if (!isEditMode) return
       e.stopPropagation()
       if (e.metaKey || e.shiftKey) {
         const currentSelectedDisplayName = cloneDeep(selectedComponents)
@@ -221,7 +221,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       componentNode.displayName,
       componentsAttachedUsers,
       dispatch,
-      illaMode,
+      isEditMode,
       selectedComponents,
     ],
   )
@@ -300,7 +300,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     () => ({
       type: "components",
       canDrag: () => {
-        return illaMode === "edit"
+        return isEditMode
       },
       end: (draggedItem, monitor) => {
         const dropResultInfo = monitor.getDropResult()
@@ -325,7 +325,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         }
       },
     }),
-    [illaMode, componentNode, blockColumns],
+    [componentNode, blockColumns],
   )
 
   const resizeHandler = useMemo(() => {
@@ -514,16 +514,14 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         x: x,
         y: y,
       }}
-      enableResizing={
-        illaMode === "edit" && isSelected ? enableResizing : false
-      }
+      enableResizing={isEditMode && isSelected ? enableResizing : false}
       css={applyRNDWrapperStyle(
         hasEditors,
         isSelected,
         hasError,
         isShowCanvasDot,
         isDragging,
-        illaMode === "edit",
+        isEditMode,
       )}
       resizeHandleComponent={resizeHandler}
       disableDragging
@@ -534,7 +532,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       minHeight={componentNode.minH * unitH}
     >
       <Dropdown
-        disabled={illaMode !== "edit"}
+        disabled={!isEditMode}
         position="right-start"
         trigger="contextmenu"
         dropList={
@@ -565,7 +563,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             isSelected,
             hasError,
             isDragging,
-            illaMode === "edit",
+            isEditMode,
             selectedComponents?.length === 1 &&
               isSelected &&
               isAutoLimitedMode &&
@@ -580,7 +578,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             displayName={displayNameInMoveBar}
             maxWidth={componentNode.w * unitW}
             selected={isSelected}
-            isEditor={illaMode === "edit"}
+            isEditor={isEditMode}
             widgetTop={y}
             widgetHeight={h}
             containerPadding={containerPadding || 0}
@@ -696,7 +694,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   const dispatch = useDispatch()
 
   const isShowCanvasDot = useSelector(isShowDot)
-  const illaMode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
 
@@ -733,13 +731,13 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
     () => (hasError ? "error" : "normal"),
     [hasError],
   )
-  if (illaMode !== "edit") {
+  if (!isEditMode) {
     scaleSquareState = "production"
   }
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      if (illaMode !== "edit") return
+      if (!isEditMode) return
       e.stopPropagation()
       if (e.metaKey || e.shiftKey) {
         const currentSelectedDisplayName = cloneDeep(selectedComponents)
@@ -774,7 +772,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       componentNode.displayName,
       componentsAttachedUsers,
       dispatch,
-      illaMode,
+      isEditMode,
       selectedComponents,
     ],
   )
@@ -956,7 +954,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       onResizeStop={handleOnResizeStop}
     >
       <Dropdown
-        disabled={illaMode !== "edit"}
+        disabled={!isEditMode}
         position="right-start"
         trigger="contextmenu"
         dropList={
@@ -987,7 +985,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             isSelected,
             hasError,
             false,
-            illaMode === "edit",
+            isEditMode,
           )}
           onClick={handleOnSelection}
           onContextMenu={handleContextMenu}
@@ -997,7 +995,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             displayName={displayNameInMoveBar}
             maxWidth={componentNode.w * unitW}
             selected={isSelected}
-            isEditor={illaMode === "edit"}
+            isEditor={isEditMode}
             widgetTop={y}
             widgetHeight={h}
             containerPadding={containerPadding || 0}

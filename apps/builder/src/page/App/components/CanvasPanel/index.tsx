@@ -3,7 +3,10 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { LockIcon } from "@illa-design/react"
 import { DotPanel } from "@/page/App/components/DotPanel"
-import { getFreezeState, getIllaMode } from "@/redux/config/configSelector"
+import {
+  getFreezeState,
+  getIsILLAEditMode,
+} from "@/redux/config/configSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { CanvasPanelProps } from "./interface"
 import {
@@ -16,19 +19,19 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const { ...otherProps } = props
 
   const { t } = useTranslation()
-  const mode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
   const isFreeze = useSelector(getFreezeState)
 
   return (
     <div
       {...otherProps}
-      css={applyScaleContainerStyle(mode)}
+      css={applyScaleContainerStyle(isEditMode)}
       onClick={() => {
         FocusManager.switchFocus("canvas")
       }}
     >
       <DotPanel />
-      {mode === "edit" && (
+      {isEditMode && (
         <>
           {isFreeze ? (
             <div css={messageWrapperStyle}>

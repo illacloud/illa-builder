@@ -14,7 +14,11 @@ import {
 import "@/api/base"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
-import { getIllaMode } from "@/redux/config/configSelector"
+import {
+  getIsILLAEditMode,
+  getIsILLAPreviewMode,
+  getIsILLAProductMode,
+} from "@/redux/config/configSelector"
 import {
   getCurrentConfigLanguage,
   getCurrentTranslateLanguage,
@@ -26,7 +30,7 @@ function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)
   const currentUserLanguage = useSelector(getCurrentTranslateLanguage)
   const { i18n } = useTranslation()
-  const mode = useSelector(getIllaMode)
+  const isProductMode = useSelector(getIsILLAProductMode)
 
   useEffect(() => {
     if (!!currentUserLanguage) {
@@ -39,8 +43,8 @@ function App() {
       <GlobalDataProvider>
         <ConfigProvider locale={configLanguage}>
           <Global styles={globalStyle} />
-          <MessageGroup pt={mode !== "production" ? "46px" : "0"} />
-          <NotificationGroup pt={mode !== "production" ? "46px" : "0"} />
+          <MessageGroup pt={!isProductMode ? "46px" : "0"} />
+          <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
           <ModalGroup />
           <RouterProvider router={ILLARoute} />
           <div
