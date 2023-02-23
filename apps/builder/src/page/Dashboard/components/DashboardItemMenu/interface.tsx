@@ -3,3 +3,7 @@ export interface DashboardItemMenuProps {
   canEditApp: boolean
   isDeploy: boolean
 }
+
+export interface DeleteDashboardAppResponse {
+  appID: string
+}
