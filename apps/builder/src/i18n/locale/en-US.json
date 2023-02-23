@@ -803,7 +803,10 @@
         "views": "VIEWS",
         "images": "IMAGES",
         "primary_value": "Primary value",
-        "secValue": "Secondary value"
+        "secValue": "Secondary value",
+        "border": "Border",
+        "color": "Color",
+        "icon": "Icon"
       },
       "setter_label": {
         "action": "Action",
@@ -1004,7 +1007,10 @@
           "prefix_text": "Prefix text",
           "suffix_text": "Suffix text"
         },
-        "mute": "Mute"
+        "mute": "Mute",
+        "collapse": {
+          "type": "Type"
+        }
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1184,6 +1190,10 @@
       "statistics": {
         "set_primary_value": "setPrimaryValue",
         "reset_primary_value": "resetPrimaryValue"
+      },
+      "collapse": {
+        "expand_all_items": "Expand all items",
+        "collapse_all_items": "Collapse all items"
       }
     }
   },
@@ -1518,6 +1528,9 @@
     },
     "statistics": {
       "name": "Statistics"
+    },
+    "collapse": {
+      "name": "Collapse"
     }
   },
   "page": {
