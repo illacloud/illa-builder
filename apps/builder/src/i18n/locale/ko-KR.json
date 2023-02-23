@@ -798,7 +798,9 @@
         "toolbar": "툴바",
         "validation": "확인하다",
         "views": "보다",
-        "images": "이미지"
+        "images": "이미지",
+        "primary_value": "기본 값",
+        "secValue": "보조 값"
       },
       "setter_label": {
         "action": "동작",
@@ -985,7 +987,20 @@
         "loop": "반복",
         "volume": "음량",
         "show_controls": "제어도구 보이기",
-        "img_url_array": "이미지 URL 배열"
+        "img_url_array": "이미지 URL 배열",
+        "statistics": {
+          "label": "상표",
+          "primary_value": "기본 값",
+          "secValue": "보조 값",
+          "decimal": "소수 자릿수",
+          "trend_sign": "추세 표시 표시",
+          "positive_sign": "양의 부호",
+          "negative_sign": "음",
+          "thousand_separator": "천 단위 구분 기호 표시",
+          "trend_color": "트렌드 컬러",
+          "prefix_text": "접두사 텍스트",
+          "suffix_text": "접미사"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1039,7 +1054,7 @@
       "setter_tips": {
         "carousel_tips": "{{ currentItem }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어 데이터 원본에 두 개의 열이 있습니다. 이미지와 URL입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ currentItem.url }}을 이용하여 url을 설정하면 됩니다.",
         "data_source": "매핑된 평가를 사용하여 이미지 항목을 정의하는 데이터 소스입니다. 값 배열 또는 배열에 매핑된 키 개체를 사용합니다. 예: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . 작업에서 데이터를 사용할 수도 있습니다. 예: {{ mysql1.data }}",
-        "img_url_array": "{{ currentItem.key }}를 사용하여 데이터 소스에서 이미지 URL을 가져옵니다."
+        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -1053,7 +1068,14 @@
       },
       "setter_placeholder": {
         "min_max_size": "제한 없음",
-        "volume": "2"
+        "volume": "2",
+        "statistics": {
+          "decimal": "2",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "긍정적인",
+          "negative_color": "부정적인"
+        }
       }
     },
     "page": {
@@ -1151,6 +1173,10 @@
         "placeholder": {
           "volume": "2"
         }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "resetPrimaryValue"
       }
     }
   },
@@ -1482,7 +1508,7 @@
       "name": "동영상"
     },
     "statistics": {
-      "name": "Statistics"
+      "name": "통계"
     }
   },
   "page": {
