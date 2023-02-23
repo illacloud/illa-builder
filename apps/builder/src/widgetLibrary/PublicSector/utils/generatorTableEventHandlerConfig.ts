@@ -2,6 +2,7 @@ import i18n from "@/i18n/config"
 import { EventHandlerPanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
+// notice: [INPUT_SETTER] need to be replaced with [TABLE_MAPPED_VALUE_INPUT_SETTER] in table config
 export const generatorTableEventHandlerConfig = (
   baseWidgetName: string,
   events: { label: string; value: string }[] = [],
