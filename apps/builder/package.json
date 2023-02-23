@@ -73,6 +73,7 @@
     "react-json-view": "^1.21.3",
     "react-markdown": "^8.0.3",
     "react-pdf": "^6.2.2",
+    "react-player": "^2.11.2",
     "react-redux": "^8.0.1",
     "react-rnd": "^10.3.7",
     "react-router-dom": "^6.4.3",

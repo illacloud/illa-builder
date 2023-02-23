@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const restapiPanelContainerStyle = css`
   display: flex;
@@ -12,6 +12,21 @@ export const topDivider = css`
 
 export const actionItemContainer = css`
   padding: 8px 0;
+`
+
+export const urlStyle = css`
+  width: 200px;
+  box-sizing: border-box;
+  color: ${getColor("grayBlue", "02")};
+  font-weight: 400;
+  margin-left: 24px;
+  margin-right: 8px;
+  border-radius: 8px 0 0 8px;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
 `
 
 export const restapiItemStyle = css`
@@ -33,8 +48,4 @@ export const restapiItemLabelStyle = css`
 export const restapiItemInputStyle = css`
   flex-grow: 1;
   width: 0;
-  margin-left: -1px;
-  .cm-editor {
-    border-radius: 0 8px 8px 0;
-  }
 `

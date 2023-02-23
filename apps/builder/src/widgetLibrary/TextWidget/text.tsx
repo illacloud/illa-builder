@@ -6,11 +6,7 @@ import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanva
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { TextProps, TextWidgetProps } from "./interface"
-import {
-  applyAlignStyle,
-  applyMarkdownStyle,
-  fullWidthAndFullHeightStyle,
-} from "./style"
+import { applyFullWidthAndFullHeightStyle, applyMarkdownStyle } from "./style"
 
 export const Text: FC<TextProps> = (props) => {
   const {
@@ -23,7 +19,7 @@ export const Text: FC<TextProps> = (props) => {
   } = props
 
   return (
-    <div css={applyAlignStyle()}>
+    <>
       {disableMarkdown ? (
         <ILLAText
           css={applyMarkdownStyle(horizontalAlign)}
@@ -52,7 +48,7 @@ export const Text: FC<TextProps> = (props) => {
           {value ?? ""}
         </ReactMarkdown>
       )}
-    </div>
+    </>
   )
 }
 
@@ -62,7 +58,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
   const {
     value,
     horizontalAlign,
-    verticalAlign,
+    verticalAlign = "start",
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
@@ -116,18 +112,9 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     }
   }, [dynamicHeight, dynamicMinHeight, h])
 
-  const [containerRef] = useAutoUpdateHeight(
-    updateComponentHeight,
-    enableAutoHeight,
-    {
-      dynamicMinHeight,
-      dynamicMaxHeight,
-    },
-  )
-
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div ref={containerRef} css={fullWidthAndFullHeightStyle}>
+      <div css={applyFullWidthAndFullHeightStyle(verticalAlign)}>
         <Text
           horizontalAlign={horizontalAlign}
           value={value}
