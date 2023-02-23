@@ -734,6 +734,18 @@
           "pause": "정지시키다",
           "loaded": "짐을 실은",
           "ended": "종료"
+        },
+        "image_list": {
+          "title": "이미지",
+          "empty": "이미지 없음",
+          "model_title": "이미지 편집",
+          "config": {
+            "model_label": "상표",
+            "image_url": "이미지 URL"
+          }
+        },
+        "image_setter": {
+          "new": "새로운 빌드"
         }
       },
       "setter_default_value": {
@@ -785,7 +797,8 @@
         "tabs": "탭",
         "toolbar": "툴바",
         "validation": "확인하다",
-        "views": "보다"
+        "views": "보다",
+        "images": "이미지"
       },
       "setter_label": {
         "action": "동작",
@@ -968,8 +981,11 @@
         "scroll": "각 페이지에 스냅 스크롤",
         "min_max_size": "가장 작은~최대 파일 크기",
         "video_url": "비디오 URL",
-        "autoplay": "Autoplay",
-        "loop": "반복"
+        "autoplay": "자동 플레이",
+        "loop": "반복",
+        "volume": "음량",
+        "show_controls": "제어도구 보이기",
+        "img_url_array": "이미지 URL 배열"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1021,7 +1037,9 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "{{ currentItem }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어 데이터 원본에 두 개의 열이 있습니다. 이미지와 URL입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ currentItem.url }}을 이용하여 url을 설정하면 됩니다."
+        "carousel_tips": "{{ currentItem }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어 데이터 원본에 두 개의 열이 있습니다. 이미지와 URL입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ currentItem.url }}을 이용하여 url을 설정하면 됩니다.",
+        "data_source": "매핑된 평가를 사용하여 이미지 항목을 정의하는 데이터 소스입니다. 값 배열 또는 배열에 매핑된 키 개체를 사용합니다. 예: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . 작업에서 데이터를 사용할 수도 있습니다. 예: {{ mysql1.data }}",
+        "img_url_array": "{{ currentItem.key }}를 사용하여 데이터 소스에서 이미지 URL을 가져옵니다."
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -1034,7 +1052,8 @@
         "scale_width": "너비"
       },
       "setter_placeholder": {
-        "min_max_size": "제한 없음"
+        "min_max_size": "제한 없음",
+        "volume": "2"
       }
     },
     "page": {
@@ -1115,6 +1134,23 @@
       },
       "set_video_url": {
         "video": "비디오 URL"
+      },
+      "speed": {
+        "speed": "속도",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Stop",
+      "mute": "Mute",
+      "loop": "Loop",
+      "show_controls": "Show Controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "음량",
+        "placeholder": {
+          "volume": "2"
+        }
       }
     }
   },
@@ -1131,10 +1167,10 @@
       "reset": "초기화",
       "save": "저장",
       "tooltip": {
-        "fluid_width": "Fluid width",
-        "desktop": "Desktop（width = 1280px）",
-        "tablet": "Tablet（width = 1080px）",
-        "custom": "Custom"
+        "fluid_width": "유체 폭",
+        "desktop": "데스크톱(너비 = 1280px)",
+        "tablet": "태블릿(폭 = 1080px)",
+        "custom": "사용자 정의"
       }
     },
     "button_text": "시사"
@@ -1186,7 +1222,9 @@
     },
     "back": "홈페이지로 돌아 가기",
     "mobile_forbidden": "더 나은 편집 환경을 위해 데스크톱에서 이 페이지를 방문하세요.",
-    "back_to_cloud": "ILLA 클라우드 페이지로 돌아가기"
+    "back_to_cloud": "ILLA 클라우드 페이지로 돌아가기",
+    "no_permission_title": "Insufficient permissions",
+    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "엘라 클라우드에 오신 것을 환영합니다",
   "unfreeze_tips": "캔버스를 고정한 후 구성 요소를 컨테이너 안팎으로 드래그할 수 있습니다. (디 또는 케이)",
@@ -1442,6 +1480,9 @@
     },
     "video": {
       "name": "동영상"
+    },
+    "statistics": {
+      "name": "Statistics"
     }
   },
   "page": {
