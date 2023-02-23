@@ -146,7 +146,7 @@
           "inference_endpoint": "Inference Endpoint"
         },
         "placeholder": {
-          "url": "api/v2/endpoint.json"
+          "url": "URL をここに入力"
         }
       },
       "panel": {
@@ -803,7 +803,10 @@
         "views": "見る",
         "images": "イメージ",
         "primary_value": "主な値",
-        "secValue": "二次価値"
+        "secValue": "二次価値",
+        "border": "Border",
+        "color": "Color",
+        "icon": "Icon"
       },
       "setter_label": {
         "action": "アクション",
@@ -814,7 +817,7 @@
         "alt_text_desc": "スクリーン リーダーでアクセスできる画像の説明。これは、画像を読み込めない場合のフォールバックとしてもレンダリングされます。",
         "background": "バックグラウンド",
         "background_color": "背景色",
-        "border": "脳卒中",
+        "border": "フレーム",
         "border_width": "ボーダー幅",
         "caption": "字幕",
         "chart_title": "題名",
@@ -1004,7 +1007,10 @@
           "prefix_text": "プレフィックス",
           "suffix_text": "サフィックス"
         },
-        "mute": "ミュート"
+        "mute": "ミュート",
+        "collapse": {
+          "type": "Type"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1184,6 +1190,10 @@
       "statistics": {
         "set_primary_value": "setPrimaryValue",
         "reset_primary_value": "resetPrimaryValue"
+      },
+      "collapse": {
+        "expand_all_items": "Expand all items",
+        "collapse_all_items": "Collapse all items"
       }
     }
   },
@@ -1518,6 +1528,9 @@
     },
     "statistics": {
       "name": "統計"
+    },
+    "collapse": {
+      "name": "Collapse"
     }
   },
   "page": {
