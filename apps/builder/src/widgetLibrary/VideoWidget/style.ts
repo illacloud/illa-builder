@@ -4,6 +4,7 @@ import { getColor } from "@illa-design/react"
 export const fullStyle = css`
   width: 100%;
   height: 100%;
+  overflow: hidden;
 `
 
 export const loadingStyle = css`
