@@ -144,6 +144,9 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint"
+        },
+        "placeholder": {
+          "url": "api/v2/endpoint.json"
         }
       },
       "panel": {
