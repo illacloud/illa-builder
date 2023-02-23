@@ -1077,6 +1077,9 @@
           "positive_color": "正向颜色",
           "negative_color": "负向颜色"
         }
+      },
+      "setter_tootip": {
+        "volume": "0到1之间的数字"
       }
     },
     "page": {
