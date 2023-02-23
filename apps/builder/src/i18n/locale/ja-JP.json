@@ -1191,8 +1191,8 @@
         }
       },
       "stop": "Stop",
-      "mute": "Mute",
-      "loop": "Loop",
+      "mute": "ミュート",
+      "loop": "ループ",
       "show_controls": "Show Controls",
       "set_volumn": "Set Volumn",
       "set_volume": {
