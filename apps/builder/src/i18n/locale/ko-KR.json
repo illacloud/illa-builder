@@ -1191,8 +1191,8 @@
         }
       },
       "stop": "Stop",
-      "mute": "Mute",
-      "loop": "Loop",
+      "mute": "음소거",
+      "loop": "반복",
       "show_controls": "Show Controls",
       "set_volumn": "Set Volumn",
       "set_volume": {
