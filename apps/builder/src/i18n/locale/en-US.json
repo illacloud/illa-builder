@@ -1000,7 +1000,8 @@
           "trend_color": "Enable trend color",
           "prefix_text": "Prefix text",
           "suffix_text": "Suffix text"
-        }
+        },
+        "mute": "Mute"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
