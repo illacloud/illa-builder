@@ -1,7 +1,7 @@
 {
   "Logout": "サインアウト",
   "Setting": "設定",
-  "apps": "事業",
+  "apps": "アプリ",
   "back": "戻る",
   "btn": {
     "choose_file": "ファイルを選択"
@@ -144,6 +144,9 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint"
+        },
+        "placeholder": {
+          "url": "api/v2/endpoint.json"
         }
       },
       "panel": {
@@ -798,7 +801,9 @@
         "toolbar": "ツールバー",
         "validation": "確認",
         "views": "見る",
-        "images": "イメージ"
+        "images": "イメージ",
+        "primary_value": "主な値",
+        "secValue": "二次価値"
       },
       "setter_label": {
         "action": "アクション",
@@ -985,7 +990,21 @@
         "loop": "ループ",
         "volume": "音量",
         "show_controls": "コントロールを表示",
-        "img_url_array": "画像 URL 配列"
+        "img_url_array": "画像 URL 配列",
+        "statistics": {
+          "label": "ラベル",
+          "primary_value": "主な値",
+          "secValue": "二次価値",
+          "decimal": "小数位",
+          "trend_sign": "トレンドサイン",
+          "positive_sign": "プラス記号",
+          "negative_sign": "マイナス記号",
+          "thousand_separator": "桁区切りを表示",
+          "trend_color": "トレンドカラー",
+          "prefix_text": "プレフィックス",
+          "suffix_text": "サフィックス"
+        },
+        "mute": "ミュート"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1039,7 +1058,7 @@
       "setter_tips": {
         "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。",
         "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}",
-        "img_url_array": "{{ currentItem.key }} を使用して、データ ソースから画像の URL を取得します。"
+        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1053,7 +1072,17 @@
       },
       "setter_placeholder": {
         "min_max_size": "無制限",
-        "volume": "2"
+        "volume": "2",
+        "statistics": {
+          "decimal": "2",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "ポジティブ",
+          "negative_color": "ネガティブ"
+        }
+      },
+      "setter_tootip": {
+        "volume": "0 から 1 までの数値"
       }
     },
     "page": {
@@ -1151,6 +1180,10 @@
         "placeholder": {
           "volume": "2"
         }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "resetPrimaryValue"
       }
     }
   },
@@ -1482,7 +1515,7 @@
       "name": "ビデオ"
     },
     "statistics": {
-      "name": "Statistics"
+      "name": "統計"
     }
   },
   "page": {
