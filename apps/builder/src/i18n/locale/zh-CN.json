@@ -804,9 +804,9 @@
         "images": "图片",
         "primary_value": "主要数值",
         "secValue": "次要数值",
-        "border": "Border",
-        "color": "Color",
-        "icon": "Icon"
+        "border": "描边",
+        "color": "颜色",
+        "icon": "图标"
       },
       "setter_label": {
         "action": "动作",
@@ -1009,7 +1009,13 @@
         },
         "mute": "静音",
         "collapse": {
-          "type": "Type"
+          "type": "类型",
+          "accordin_mode": "手风琴模式",
+          "header_color": "头部",
+          "body_color": "主体",
+          "expand_icon": "展开",
+          "collapse_icon": "折叠面板",
+          "icon_color": "颜色"
         }
       },
       "setter_tooltip": {
@@ -1050,7 +1056,12 @@
         "file_url": "支持网络上的 PDF URL，或 pdf 文件的 base64 编码数据。 例如：{{ data:application/pdf;base64, example-data }}",
         "scale": "缩放每个页面以填充组件的宽度或高度。",
         "scroll": "滚动时自动定位到每页的开头。",
-        "video_url": "支持大多数视频服务或任何常见视频文件类型的直接链接。"
+        "video_url": "支持大多数视频服务或任何常见视频文件类型的直接链接。",
+        "collapse": {
+          "type": "折叠面板列表：列表模式，每项的组件样式一致，可通过{{ currentItem.columnName }}指定每个项中组件的数据；折叠面板：各个面板独立，可分别指定每项的组件样式和数据。",
+          "items": "项目数量",
+          "accordin_mode": "在手风琴模式下，当一个项目展开时，其他项目将折叠。"
+        }
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -1074,7 +1085,10 @@
         "text_scroll": "滚动",
         "text_clip": "裁切",
         "scale_height": "高度",
-        "scale_width": "宽度"
+        "scale_width": "宽度",
+        "collapse": {
+          "collapsible_panel": "折叠面板"
+        }
       },
       "setter_placeholder": {
         "min_max_size": "无限制",
@@ -1192,7 +1206,7 @@
         "reset_primary_value": "resetPrimaryValue"
       },
       "collapse": {
-        "expand_all_items": "Expand all items",
+        "expand_all_items": "展开所有项目",
         "collapse_all_items": "Collapse all items"
       }
     }
@@ -1706,6 +1720,15 @@
       "message": {
         "save_suc": "保存成功",
         "save_fail": "保存失败"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "折叠列表"
+        }
       }
     }
   }
