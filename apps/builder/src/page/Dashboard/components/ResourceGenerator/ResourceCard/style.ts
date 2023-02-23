@@ -22,7 +22,7 @@ export function applyItemStyle(isDraft: boolean): SerializedStyles {
 
   return css`
     display: flex;
-    padding: 0 16px;
+    padding: 0 0 0 16px;
     height: 56px;
     flex-direction: row;
     align-items: center;
