@@ -150,7 +150,13 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [handleUpdateGlobalData, displayName, handleDeleteGlobalData])
+  }, [
+    handleUpdateGlobalData,
+    displayName,
+    handleDeleteGlobalData,
+    handleUpdateMultiExecutionResult,
+    handleUpdateOriginalDSLMultiAttr,
+  ])
 
   const onPlay = useCallback(() => {
     handleUpdateMultiExecutionResult([
@@ -160,7 +166,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
       },
     ])
     triggerEventHandler("play")
-  }, [triggerEventHandler, handleUpdateMultiExecutionResult])
+  }, [handleUpdateMultiExecutionResult, displayName, triggerEventHandler])
 
   const onPause = useCallback(() => {
     handleUpdateMultiExecutionResult([
@@ -170,7 +176,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
       },
     ])
     triggerEventHandler("pause")
-  }, [triggerEventHandler, handleUpdateMultiExecutionResult])
+  }, [handleUpdateMultiExecutionResult, displayName, triggerEventHandler])
 
   const onReady = useCallback(() => {
     triggerEventHandler("ready")
