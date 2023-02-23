@@ -6,6 +6,7 @@ import {
   Select,
   SelectOptionObject,
   SelectValue,
+  Trigger,
 } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
@@ -41,6 +42,7 @@ import {
   restapiItemLabelStyle,
   restapiItemStyle,
   restapiPanelContainerStyle,
+  urlStyle,
 } from "./style"
 
 const huggingFaceMethodSelectOptions: ApiMethod[] = ["POST"]
@@ -134,12 +136,9 @@ export const RestApiPanel: FC = () => {
             options={getMethod(cachedAction.actionType)}
             onChange={handleChangeMethod}
           />
-          <Input
-            minW="230px"
-            maxW="500px"
-            colorScheme="techPurple"
-            bdRadius="8px 0 0 8px"
-            value={
+          <Trigger
+            position={"top-start"}
+            content={
               currentResource?.content
                 ? isHuggingFace
                   ? (currentResource as Resource<HuggingFaceResource>).content
@@ -148,14 +147,23 @@ export const RestApiPanel: FC = () => {
                       .content.baseUrl
                 : ""
             }
-            ml="8px"
-            readOnly
-          />
+          >
+            <div css={urlStyle}>
+              {currentResource?.content
+                ? isHuggingFace
+                  ? (currentResource as Resource<HuggingFaceResource>).content
+                      .baseURL
+                  : (currentResource as Resource<RestApiResource<RestApiAuth>>)
+                      .content.baseUrl
+                : ""}
+            </div>
+          </Trigger>
           <CodeEditor
             singleLine
             wrapperCss={restapiItemInputStyle}
             expectValueType={VALIDATION_TYPES.STRING}
             value={content.url}
+            placeholder={t("editor.action.form.placeholder.url")}
             lang={CODE_LANG.JAVASCRIPT}
             onChange={(value) => {
               dispatch(
