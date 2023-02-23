@@ -1000,7 +1000,8 @@
           "trend_color": "使用趋势色",
           "prefix_text": "前缀文字",
           "suffix_text": "后缀文字"
-        }
+        },
+        "mute": "静音"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
