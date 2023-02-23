@@ -32,6 +32,7 @@ import {
 } from "@/redux/resource/dynamoResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
+import { validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
@@ -71,11 +72,6 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
       setTestLoading,
     )
   }, [getValues])
-
-  const validate = useCallback(
-    (value?: string) => value != undefined && value.trim() != "",
-    [],
-  )
 
   return (
     <form

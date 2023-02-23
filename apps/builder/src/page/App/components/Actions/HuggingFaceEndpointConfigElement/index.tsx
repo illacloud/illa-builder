@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -30,7 +30,7 @@ import { TextLink } from "@/page/User/components/TextLink"
 import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoint"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { isURL } from "@/utils/typeHelper"
+import { urlValidate, validate } from "@/utils/form"
 
 export const HuggingFaceEndpointConfigElement: FC<ConfigElementProps> = (
   props,
@@ -50,13 +50,6 @@ export const HuggingFaceEndpointConfigElement: FC<ConfigElementProps> = (
   const [saving, setSaving] = useState(false)
 
   const handleURLClick = (link: string) => window.open(link, "_blank")
-
-  const handleURLValidate = useCallback(
-    (value: string) => {
-      return isURL(value) ? true : t("editor.action.resource.error.invalid_url")
-    },
-    [t],
-  )
 
   return (
     <form
@@ -106,7 +99,7 @@ export const HuggingFaceEndpointConfigElement: FC<ConfigElementProps> = (
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              validate: (value) => value != undefined && value.trim() != "",
+              validate,
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}
@@ -128,7 +121,7 @@ export const HuggingFaceEndpointConfigElement: FC<ConfigElementProps> = (
           rules={[
             {
               required: t("editor.action.resource.error.invalid_url"),
-              validate: handleURLValidate,
+              validate: urlValidate,
             },
           ]}
           isRequired
