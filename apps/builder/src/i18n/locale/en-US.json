@@ -1077,6 +1077,9 @@
           "positive_color": "Positive color",
           "negative_color": "Negative color"
         }
+      },
+      "setter_tootip": {
+        "volume": "A number between 0 and 1"
       }
     },
     "page": {
