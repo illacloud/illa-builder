@@ -1077,6 +1077,9 @@
           "positive_color": "긍정적인",
           "negative_color": "부정적인"
         }
+      },
+      "setter_tootip": {
+        "volume": "0 과 1 사이의 숫자"
       }
     },
     "page": {
