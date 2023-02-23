@@ -143,7 +143,8 @@
         },
         "label": {
           "inference_api": "Inference API",
-          "inference_endpoint": "Inference Endpoint"
+          "inference_endpoint": "Inference Endpoint",
+          "s3": "在公开APP中不可用"
         },
         "placeholder": {
           "url": "在此处输入请求 URL"
