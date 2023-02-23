@@ -15,7 +15,7 @@ function isValidURL(str: string) {
 }
 
 export const handleCheckCustomRule = (customRule: unknown) => {
-  if (typeof customRule !== "undefined") {
+  if (customRule != undefined && customRule !== "") {
     return true
   }
 }
@@ -166,6 +166,7 @@ export const handleValidateCheck = (
 ): string | undefined => {
   if (typeof options === "undefined") return
   if (handleCheckCustomRule(options.customRule)) {
+    console.log("????")
     try {
       return typeof options.customRule === "string"
         ? options.customRule
