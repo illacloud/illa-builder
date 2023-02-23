@@ -146,7 +146,7 @@
           "inference_endpoint": "Inference Endpoint"
         },
         "placeholder": {
-          "url": "api/v2/endpoint.json"
+          "url": "Enter request URL here"
         }
       },
       "panel": {
@@ -1512,7 +1512,9 @@
       "failed": "PDF could not be loaded"
     },
     "video": {
-      "name": "Video"
+      "name": "Video",
+      "empty": "No videos",
+      "fail": "Failed to load"
     },
     "statistics": {
       "name": "Statistics"
