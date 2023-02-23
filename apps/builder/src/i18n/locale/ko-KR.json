@@ -1512,7 +1512,9 @@
       "failed": "PDF를 로드할 수 없습니다."
     },
     "video": {
-      "name": "동영상"
+      "name": "동영상",
+      "empty": "동영상 없음",
+      "fail": "불러 오는데 실패했습니다."
     },
     "statistics": {
       "name": "통계"
