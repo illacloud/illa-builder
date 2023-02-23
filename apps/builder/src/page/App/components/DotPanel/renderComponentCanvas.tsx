@@ -36,7 +36,7 @@ import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import {
   getFreezeState,
   getIsILLAEditMode,
-  getIsILLAPreviewMode,
+  getIsILLAProductMode,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -163,7 +163,7 @@ export const RenderComponentCanvas: FC<{
 
   const isShowCanvasDot = useSelector(isShowDot)
   const isEditMode = useSelector(getIsILLAEditMode)
-  const isPreviewMode = useSelector(getIsILLAPreviewMode)
+  const isProductionMode = useSelector(getIsILLAProductMode)
   const isFreezeCanvas = useSelector(getFreezeState)
   const dispatch = useDispatch()
 
@@ -766,10 +766,7 @@ export const RenderComponentCanvas: FC<{
         minHeight,
       )}
       onClick={(e) => {
-        if (
-          e.target === currentCanvasRef.current &&
-          (isEditMode || isPreviewMode)
-        ) {
+        if (e.target === currentCanvasRef.current && !isProductionMode) {
           dispatch(configActions.updateSelectedComponent([]))
           clearComponentAttachedUsersHandler(selectedComponents || [])
         }
