@@ -75,15 +75,6 @@ export const VIDEO_PANEL_CONFIG: PanelConfig[] = [
           VIDEO_EVENT_HANDLER_CONFIG.events,
         ),
       },
-      {
-        id: `${baseWidgetName}-interaction-formId`,
-        labelName: i18n.t("editor.inspect.setter_label.submit_form"),
-        // labelDesc: i18n.t("xxxxx"),
-        attrName: "formId",
-        setterType: "INPUT_SETTER",
-        bindAttrName: ["submit"],
-        shown: (value) => value === true,
-      },
     ],
   },
   {
