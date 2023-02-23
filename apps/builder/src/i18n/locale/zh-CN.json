@@ -1480,6 +1480,9 @@
     },
     "video": {
       "name": "视频"
+    },
+    "statistics": {
+      "name": "Statistics"
     }
   },
   "page": {
