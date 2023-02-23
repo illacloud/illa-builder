@@ -20,8 +20,15 @@ export let executionTree: ExecutionTreeFactory | undefined
 
 const mergeActionResult = (rawTree: RawTreeShape) => {
   Object.keys(actionDisplayNameMapFetchResult).forEach((key) => {
+    if (!rawTree[key]) return
     rawTree[key].data = actionDisplayNameMapFetchResult[key] || {}
   })
+}
+
+export const destroyExecutionTree = () => {
+  if (executionTree) {
+    executionTree = executionTree.destroyTree()
+  }
 }
 
 async function handleStartExecution(

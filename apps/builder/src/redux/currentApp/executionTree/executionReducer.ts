@@ -6,6 +6,7 @@ import {
   ErrorShape,
   ExecutionState,
   UpdateExecutionByDisplayNamePayload,
+  executionInitialState,
   setExecutionResultPayload,
 } from "@/redux/currentApp/executionTree/executionState"
 
@@ -112,4 +113,11 @@ export const updateModalDisplayReducer: CaseReducer<
       }
     })
   }
+}
+
+export const resetExecutionResultReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction
+> = (state, action) => {
+  return executionInitialState
 }

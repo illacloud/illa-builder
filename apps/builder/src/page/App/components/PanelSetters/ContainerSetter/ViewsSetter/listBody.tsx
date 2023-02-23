@@ -117,7 +117,7 @@ export const ListBody: FC = () => {
                 label={label}
                 key={id}
                 index={index}
-                isSelected={key === currentSelected.key}
+                isSelected={key === currentSelected?.key}
               />
             </Reorder.Item>
           )

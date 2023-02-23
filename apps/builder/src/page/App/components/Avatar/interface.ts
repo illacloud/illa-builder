@@ -1,4 +1,6 @@
-export interface AvatarProps {
+import { HTMLAttributes } from "react"
+
+export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   userId?: string | number
   nickname?: string
   avatar?: string

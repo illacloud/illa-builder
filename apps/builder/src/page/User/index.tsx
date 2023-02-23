@@ -25,4 +25,6 @@ export const UserLogin: FC = () => {
   )
 }
 
+export default UserLogin
+
 UserLogin.displayName = "UserLogin"

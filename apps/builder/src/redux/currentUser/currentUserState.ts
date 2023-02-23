@@ -3,6 +3,7 @@ export interface CurrentUser {
   nickname: string
   language: string
   email: string
+  avatar?: string
 }
 
 export interface UserInfoResponse {
@@ -10,6 +11,7 @@ export interface UserInfoResponse {
   nickname: string
   language: string
   email: string
+  avatar?: string
 }
 
 export const CurrentUserInitialState: CurrentUser = {

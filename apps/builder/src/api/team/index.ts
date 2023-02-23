@@ -8,6 +8,7 @@ import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { teamActions } from "@/redux/team/teamSlice"
 import { MemberInfo, TeamInfo } from "@/redux/team/teamState"
 import store from "@/store"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const updateMembers = async () => {
   const response = await CloudApi.asyncTeamRequest<MemberInfo[]>({
@@ -130,6 +131,7 @@ export const inviteByEmail = async (email: string, userRole: USER_ROLE) => {
     data: {
       email,
       userRole,
+      hosts: !isCloudVersion ? window.location.origin : undefined,
     },
   })
   updateMembers()

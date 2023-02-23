@@ -1,14 +1,11 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react"
-import useMeasure from "react-use-measure"
 import { RequestOptions, Upload, UploadItem } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyValidateMessageWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import {
-  uploadContainerStyle,
-  uploadLayoutStyle,
-} from "@/widgetLibrary/UploadWidget/style"
+import { uploadLayoutStyle } from "@/widgetLibrary/UploadWidget/style"
 import { UploadWidgetProps, WrappedUploadProps } from "./interface"
 import {
   dataURLtoFile,
@@ -179,11 +176,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   )
   const fileCountRef = useRef<number>(0)
   const previousValueRef = useRef<UploadItem[]>([])
-
-  const [containerRef, containerBounds] = useMeasure()
-  useEffect(() => {
-    updateComponentHeight(containerBounds.height)
-  }, [updateComponentHeight, validateMessage, containerBounds.height])
 
   useEffect(() => {
     const canInitialDragValue =
@@ -389,7 +381,10 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   ])
 
   return (
-    <div css={uploadContainerStyle} ref={containerRef}>
+    <AutoHeightContainer
+      updateComponentHeight={updateComponentHeight}
+      enable={true}
+    >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={uploadLayoutStyle}>
           <WrappedUpload
@@ -405,7 +400,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       <div css={applyValidateMessageWrapperStyle(0, "left", true)}>
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 UploadWidget.displayName = "UploadWidget"

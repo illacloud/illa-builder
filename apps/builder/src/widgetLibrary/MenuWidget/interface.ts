@@ -7,5 +7,5 @@ export interface WrappedMenuProps
     MenuProps {}
 
 export interface MenuWidgetProps
-  extends Omit<WrappedMenuProps, "handleOnClickMenuItem">,
+  extends Omit<WrappedMenuProps, "handleOnClickMenuItem" | "w" | "h">,
     BaseWidgetProps {}

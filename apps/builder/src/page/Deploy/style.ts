@@ -27,3 +27,13 @@ export const logoStyle = css`
   height: 12px;
   margin-left: 8px;
 `
+
+export const loadingStyle = css`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+`

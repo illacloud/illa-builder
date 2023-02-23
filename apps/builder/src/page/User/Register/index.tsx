@@ -51,6 +51,8 @@ export const Register: FC = () => {
   const [showCountDown, setShowCountDown] = useState(false)
   const [searchParams] = useSearchParams()
   const inviteToken = searchParams.get("inviteToken")
+  const appID = searchParams.get("appID")
+  const teamIdentifier = searchParams.get("teamIdentifier")
   const vt = useRef<string>("")
   const {
     control,
@@ -92,9 +94,13 @@ export const Register: FC = () => {
             email: res.data.email,
           }),
         )
-        navigate("/", {
-          replace: true,
-        })
+        if (!isCloudVersion && appID && teamIdentifier) {
+          navigate(`/${teamIdentifier}/deploy/app/${appID}`)
+        } else {
+          navigate("/", {
+            replace: true,
+          })
+        }
       },
       (res) => {
         message.error({

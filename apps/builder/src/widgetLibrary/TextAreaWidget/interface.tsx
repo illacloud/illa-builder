@@ -33,4 +33,7 @@ export interface TextareaWidgetProps
     TooltipWrapperProps,
     ValidateMessageOldProps {
   validateMessage: string
+  dynamicHeight: "auto" | "fixed" | "limited"
+  dynamicMinHeight?: number
+  dynamicMaxHeight?: number
 }

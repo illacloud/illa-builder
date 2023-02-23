@@ -172,7 +172,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             control={control}
             defaultValue={findResource?.resourceName ?? ""}
             rules={{
-              required: true,
+              validate: (value) => value != undefined && value.trim() != "",
             }}
             render={({ field: { value, onChange, onBlur } }) => (
               <Input

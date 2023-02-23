@@ -1,5 +1,7 @@
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { Input } from "@illa-design/react"
+import { containerStyle } from "@/widgetLibrary/InputWidget/style"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -8,6 +10,7 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { InputWidgetProps, WrappedInputProps } from "./interface"
 
 export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
@@ -120,13 +123,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
 
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const inputWrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (inputWrapperRef.current) {
-      updateComponentHeight(inputWrapperRef.current?.clientHeight)
-    }
-  }, [validateMessage, labelPosition, updateComponentHeight])
+  const [containerRef] = useAutoUpdateHeight(updateComponentHeight)
 
   const getValidateMessage = useCallback(
     (value?: string) => {
@@ -236,7 +233,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <div ref={inputWrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -271,7 +268,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 

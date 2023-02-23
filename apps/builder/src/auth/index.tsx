@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { CloudApi } from "@/api/cloudApi"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import {
-  CurrentUser,
-  UserInfoResponse,
-} from "@/redux/currentUser/currentUserState"
+  getCurrentUser,
+  getCurrentUserIsLogin,
+} from "@/redux/currentUser/currentUserSelector"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
 import { getLocalStorage } from "@/utils/storage"
 
 interface CheckIsLoginWrapperProps {
@@ -21,6 +21,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
   const token = getLocalStorage("token")
   const currentUserId = useSelector(getCurrentUser).userId
   const dispatch = useDispatch()
+  const isLogin = useSelector(getCurrentUserIsLogin)
 
   useEffect(() => {
     if (!token) {
@@ -28,7 +29,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
       navigate("/user/login", { state: { from: location } })
       return
     }
-    if (currentUserId === "" || currentUserId == undefined) {
+    if (!isLogin) {
       CloudApi.request<UserInfoResponse>(
         {
           url: "/users",

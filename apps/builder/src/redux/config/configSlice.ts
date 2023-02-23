@@ -12,6 +12,7 @@ import {
   updateCanvasShapeReducer,
   updateDebuggerVisible,
   updateDevicesOnlineStatusReducer,
+  updateDraggingStateReducer,
   updateFreezeStateReducer,
   updateIllaMode,
   updateLeftPanel,
@@ -43,6 +44,7 @@ const configSlice = createSlice({
     updateFreezeStateReducer,
     updateCanvasShapeReducer,
     updateDevicesOnlineStatusReducer,
+    updateDraggingStateReducer,
   },
 })
 

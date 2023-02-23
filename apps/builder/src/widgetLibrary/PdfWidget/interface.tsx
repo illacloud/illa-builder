@@ -4,7 +4,8 @@ import {
   BaseWidgetProps,
 } from "@/widgetLibrary/interface"
 
-export interface WrappedPdfProps extends BaseWidgetProps {
+export interface WrappedPdfProps
+  extends Omit<BaseWidgetProps, "w" | "h" | "unitH" | "unitW"> {
   width?: number
   height?: number
   scaleMode?: "width" | "height"
@@ -14,6 +15,5 @@ export interface WrappedPdfProps extends BaseWidgetProps {
 
 export interface PdfWidgetProps
   extends WrappedPdfProps,
-    BaseWidgetProps,
     TooltipWrapperProps,
     BaseComponentNodeProps {}

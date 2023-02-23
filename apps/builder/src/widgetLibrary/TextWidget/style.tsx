@@ -4,23 +4,21 @@ import {
   VerticalAlign,
 } from "@/widgetLibrary/TextWidget/interface"
 
-export function applyAlignStyle(
-  horizontalAlign?: HorizontalAlign,
-  verticalAlign?: VerticalAlign,
+export function applyFullWidthAndFullHeightStyle(
+  verticalAlign: VerticalAlign,
 ): SerializedStyles {
   return css`
-    width: 100%;
     display: flex;
-    justify-content: ${horizontalAlign};
+    width: 100%;
+    height: 100%;
     align-items: ${verticalAlign};
   `
 }
 
-export const fullWidthAndFullHeightStyle = css`
-  width: 100%;
-`
-
-export const markdownStyle = css`
-  width: 100%;
-  overflow-wrap: break-word;
-`
+export function applyMarkdownStyle(horizontalAlign?: string): SerializedStyles {
+  return css`
+    width: 100%;
+    text-align: ${horizontalAlign};
+    overflow-wrap: break-word;
+  `
+}

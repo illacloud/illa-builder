@@ -37,7 +37,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
       }}
       cancelText={t("dashboard.common.cancel")}
       onOk={() => {
-        if (name === undefined || name === "") {
+        if (name === undefined || name === "" || name.trim() === "") {
           message.error({
             content: t("dashboard.app.name_empty"),
           })

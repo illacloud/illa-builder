@@ -4,7 +4,7 @@ import i18n from "@/i18n/config"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"
 import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 export const MODAL_WIDGET_CONFIG: WidgetConfig = {
   type: "MODAL_WIDGET",
@@ -89,7 +89,7 @@ export const MODAL_WIDGET_CONFIG: WidgetConfig = {
     radius: "4px",
     borderWidth: "1px",
     shadow: "small",
-    headerHeight: 7,
+    headerHeight: 11,
     footerHeight: 7,
   },
 }

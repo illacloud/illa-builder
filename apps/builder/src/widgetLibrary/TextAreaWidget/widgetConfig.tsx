@@ -21,5 +21,7 @@ export const TEXTAREA_WIDGET_CONFIG: WidgetConfig = {
     hidden: false,
     formDataKey: "textarea",
     placeholder: "enter sth",
+    dynamicHeight: "fixed",
+    resizeDirection: RESIZE_DIRECTION.ALL,
   },
 }

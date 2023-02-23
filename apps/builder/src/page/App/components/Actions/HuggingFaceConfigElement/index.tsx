@@ -91,7 +91,7 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              required: true,
+              validate: (value) => value != undefined && value.trim() != "",
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}

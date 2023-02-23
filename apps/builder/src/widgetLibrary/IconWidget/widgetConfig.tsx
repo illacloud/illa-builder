@@ -12,7 +12,7 @@ export const ICON_WIDGET_CONFIG: WidgetConfig = {
   w: 2,
   h: 4,
   defaults: {
-    iconName: "RiAddCircleLine",
+    iconName: "BsHandThumbsUp",
     colorScheme: "grayBlue",
     hidden: false,
   },

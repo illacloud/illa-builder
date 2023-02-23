@@ -1,6 +1,10 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { cloneDeep } from "lodash"
-import { getReflowResult } from "@/page/App/components/DotPanel/calc"
+import {
+  applyEffectMapToComponentNodes,
+  getNearComponentNodes,
+  getReflowResult,
+} from "@/page/App/components/DotPanel/calc"
 import { configActions } from "@/redux/config/configSlice"
 import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
@@ -399,6 +403,60 @@ function handleUpdateComponentReflowEffect(
   })
 }
 
+const handleUpdateHeightEffect = (
+  action: ReturnType<typeof componentsActions.updateComponentNodeHeightReducer>,
+  listenerApi: AppListenerEffectAPI,
+) => {
+  const { displayName, height, oldHeight } = action.payload
+  const rootState = listenerApi.getState()
+  const rootNode = getCanvas(rootState)
+  const newItem = searchDsl(rootNode, displayName)
+  if (!newItem) return
+  const parentNodeDisplayName = newItem.parentNode
+  const target = searchDsl(rootNode, parentNodeDisplayName)
+  let allComponents: ComponentNode[] = []
+  if (target) {
+    allComponents = target.childrenNode
+  }
+
+  const cloneDeepAllComponents = cloneDeep(allComponents)
+  const findIndex = cloneDeepAllComponents.findIndex(
+    (node) => node.displayName === newItem.displayName,
+  )
+  cloneDeepAllComponents.splice(findIndex, 1, newItem)
+
+  if (oldHeight <= newItem.h && oldHeight < height) {
+    const result = getReflowResult(newItem, cloneDeepAllComponents, false)
+    listenerApi.dispatch(
+      componentsActions.updateComponentReflowReducer([
+        {
+          parentDisplayName: newItem.parentNode || "root",
+          childNodes: result.finalState,
+        },
+      ]),
+    )
+  }
+  if (oldHeight >= newItem.h && oldHeight > height) {
+    const effectRows = oldHeight - newItem.h
+    const effectMap = getNearComponentNodes(newItem, cloneDeepAllComponents)
+    effectMap.set(newItem.displayName, newItem)
+    effectMap.forEach((node) => {
+      if (node.displayName !== newItem.displayName) {
+        node.y -= effectRows
+      }
+    })
+    let finalState = applyEffectMapToComponentNodes(effectMap, allComponents)
+    listenerApi.dispatch(
+      componentsActions.updateComponentReflowReducer([
+        {
+          parentDisplayName: newItem.parentNode || "root",
+          childNodes: finalState,
+        },
+      ]),
+    )
+  }
+}
+
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -429,6 +487,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateTargetPagePropsReducer,
       effect: handleUpdateTargetPagePropsEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.updateComponentNodeHeightReducer,
+      effect: handleUpdateHeightEffect,
     }),
   ]
 

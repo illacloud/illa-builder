@@ -54,7 +54,7 @@ export const transformEvents = (
     }
   }
   if (actionType === "setRouter") {
-    const { pagePath, viewPath } = event
+    const { pagePath, viewPath, enabled } = event
     let finalPath = `/${pagePath}`
     finalPath = viewPath ? finalPath + `/${viewPath}` : finalPath
     return {
@@ -119,6 +119,7 @@ export const transformEvents = (
           ),
         )
       },
+      enabled,
     }
   }
   if (actionType === "widget") {

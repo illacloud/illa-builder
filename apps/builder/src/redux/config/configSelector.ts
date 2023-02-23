@@ -70,3 +70,7 @@ export const getCanvasShape = (state: RootState) => {
 export const getIsOnline = (state: RootState) => {
   return state.config.isOnline
 }
+
+export const getIsDragging = (state: RootState) => {
+  return state.config.isDragging
+}

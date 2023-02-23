@@ -26,5 +26,6 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
     formDataKey: "upload",
     showFileList: false,
     sizeType: "mb",
+    dynamicHeight: "auto",
   },
 }
