@@ -37,6 +37,15 @@ export const VIDEO_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
+        id: `${baseWidgetName}-basic-controls`,
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        openDynamic: true,
+        labelName: i18n.t("editor.inspect.setter_label.show_controls"),
+        useCustomLayout: true,
+        attrName: "controls",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+      {
         id: `${baseWidgetName}-basic-mute`,
         setterType: "DYNAMIC_SWITCH_SETTER",
         openDynamic: true,
@@ -48,7 +57,8 @@ export const VIDEO_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-volume`,
         labelName: i18n.t("editor.inspect.setter_label.volume"),
-        placeholder: i18n.t("editor.inspect.setter_placeholder.volume"),
+        labelDesc: i18n.t("editor.inspect.setter_tootip.volume"),
+        placeholder: "{{ 0.5 }}",
         attrName: "volume",
         expectedType: VALIDATION_TYPES.NUMBER,
         setterType: "INPUT_SETTER",

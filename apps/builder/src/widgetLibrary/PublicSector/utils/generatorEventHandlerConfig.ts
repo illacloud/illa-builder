@@ -157,6 +157,26 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setVideoUrl",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-speed`,
+        labelName: i18n.t("editor.method.speed.speed"),
+        placeholder: "{{ 1.5 }}",
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        expectedType: VALIDATION_TYPES.NUMBER,
+        shown: (widgetMethod) => widgetMethod === "setSpeed",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-volume`,
+        labelName: i18n.t("editor.method.set_volume.volume"),
+        placeholder: "{{ 0.5 }}",
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        expectedType: VALIDATION_TYPES.NUMBER,
+        shown: (widgetMethod) => widgetMethod === "setVolume",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-seekTo`,
         labelName:
           i18n.t("editor.method.seek_to.time") +
@@ -176,7 +196,7 @@ export const generatorEventHandlerConfig = (
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
         expectedType: VALIDATION_TYPES.BOOLEAN,
-        shown: (widgetMethod) => widgetMethod === "loop",
+        shown: (widgetMethod) => widgetMethod === "setLoop",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-mute`,

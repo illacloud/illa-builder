@@ -1,4 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
+import { getColor } from "@illa-design/react"
 
 export const fullStyle = css`
   width: 100%;
@@ -11,6 +12,8 @@ export const loadingStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${getColor("gray", "01")};
+  color: ${getColor("white", "01")};
 `
 
 export const applyHiddenStyle = (hidden: boolean): SerializedStyles => {

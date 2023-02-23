@@ -12,11 +12,13 @@ export const VIDEO_WIDGET_CONFIG: WidgetConfig = {
   w: 32,
   h: 25,
   defaults: {
-    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    url: "https://youtu.be/8sUovZlBh_M",
     hidden: false,
     autoPlay: false,
     loop: false,
     playing: false,
+    muted: false,
+    controls: true,
     volume: undefined,
   },
 }

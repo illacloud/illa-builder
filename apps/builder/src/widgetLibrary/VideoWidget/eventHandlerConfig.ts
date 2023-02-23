@@ -34,8 +34,8 @@ export const VIDEO_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     "setVideoUrl",
     "setVolume",
     "setSpeed",
+    "setLoop",
     "seekTo",
     "mute",
-    "loop",
   ],
 }
