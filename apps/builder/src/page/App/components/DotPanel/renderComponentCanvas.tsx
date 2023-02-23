@@ -743,6 +743,7 @@ export const RenderComponentCanvas: FC<{
   }, [])
 
   if (
+    illaMode === "edit" &&
     componentNode.type === "CANVAS" &&
     (!Array.isArray(componentNode.childrenNode) ||
       componentNode.childrenNode.length === 0) &&
