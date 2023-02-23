@@ -56,6 +56,7 @@ export const toolBarStyle = css`
 
 export const pageStyle = css`
   &:not(:last-of-type) {
+    //border-bottom: 1px solid ${getColor("grayBlue", "08")};
     margin-bottom: 8px;
   }
 `
