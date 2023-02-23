@@ -7,7 +7,6 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Clone repo
           command: |
