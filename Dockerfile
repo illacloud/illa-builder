@@ -7,7 +7,7 @@ WORKDIR /opt/illa/illa-builder-frontend
 RUN cd /opt/illa/illa-builder-frontend
 RUN pwd
 
-ADD ./* ./
+COPY . ./
 
 RUN ls -l
 
