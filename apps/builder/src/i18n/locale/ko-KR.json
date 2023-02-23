@@ -146,7 +146,7 @@
           "inference_endpoint": "Inference Endpoint"
         },
         "placeholder": {
-          "url": "api/v2/endpoint.json"
+          "url": "여기에 요청 URL 입력"
         }
       },
       "panel": {
@@ -803,7 +803,10 @@
         "views": "보다",
         "images": "이미지",
         "primary_value": "기본 값",
-        "secValue": "보조 값"
+        "secValue": "보조 값",
+        "border": "Border",
+        "color": "Color",
+        "icon": "Icon"
       },
       "setter_label": {
         "action": "동작",
@@ -1004,7 +1007,10 @@
           "prefix_text": "접두사 텍스트",
           "suffix_text": "접미사"
         },
-        "mute": "음소거"
+        "mute": "음소거",
+        "collapse": {
+          "type": "Type"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1184,6 +1190,10 @@
       "statistics": {
         "set_primary_value": "setPrimaryValue",
         "reset_primary_value": "resetPrimaryValue"
+      },
+      "collapse": {
+        "expand_all_items": "Expand all items",
+        "collapse_all_items": "Collapse all items"
       }
     }
   },
@@ -1518,6 +1528,9 @@
     },
     "statistics": {
       "name": "통계"
+    },
+    "collapse": {
+      "name": "Collapse"
     }
   },
   "page": {
