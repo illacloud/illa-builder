@@ -15,11 +15,7 @@ import {
   TextareaWidgetProps,
   WrappedTextareaProps,
 } from "@/widgetLibrary/TextAreaWidget/interface"
-import {
-  getTextareaContentContainerStyle,
-  textareaContainerStyle,
-  wrapperContainerStyle,
-} from "@/widgetLibrary/TextAreaWidget/style"
+import { getTextareaContentContainerStyle } from "@/widgetLibrary/TextAreaWidget/style"
 
 export const WrappedTextarea = forwardRef<
   HTMLTextAreaElement,
@@ -73,7 +69,6 @@ export const WrappedTextarea = forwardRef<
 
   return (
     <TextArea
-      h="100%"
       w="100%"
       textAreaRef={ref}
       value={value}
@@ -285,16 +280,14 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <div css={wrapperContainerStyle}>
-            <WrappedTextarea
-              {...props}
-              ref={textareaRef}
-              getValidateMessage={getValidateMessage}
-              handleOnChange={handleOnChange}
-              handleOnFocus={handleOnFocus}
-              handleOnBlur={handleOnBlur}
-            />
-          </div>
+          <WrappedTextarea
+            {...props}
+            ref={textareaRef}
+            getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
+            handleOnFocus={handleOnFocus}
+            handleOnBlur={handleOnBlur}
+          />
         </div>
       </TooltipWrapper>
       <div
