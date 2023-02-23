@@ -109,7 +109,7 @@ export const generatorEventHandlerConfig = (
         id: `${baseWidgetName}-interaction-event-handler-setDisabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
+        // expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
         useCustomLayout: true,
@@ -163,7 +163,7 @@ export const generatorEventHandlerConfig = (
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        expectedType: VALIDATION_TYPES.NUMBER,
+        // expectedType: VALIDATION_TYPES.NUMBER,
         shown: (widgetMethod) => widgetMethod === "setSpeed",
       },
       {
@@ -173,7 +173,7 @@ export const generatorEventHandlerConfig = (
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        expectedType: VALIDATION_TYPES.NUMBER,
+        // expectedType: VALIDATION_TYPES.NUMBER,
         shown: (widgetMethod) => widgetMethod === "setVolume",
       },
       {
@@ -184,7 +184,7 @@ export const generatorEventHandlerConfig = (
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        expectedType: VALIDATION_TYPES.NUMBER,
+        // expectedType: VALIDATION_TYPES.NUMBER,
         shown: (widgetMethod) => widgetMethod === "seekTo",
       },
       {
@@ -195,7 +195,7 @@ export const generatorEventHandlerConfig = (
         openDynamic: true,
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        expectedType: VALIDATION_TYPES.BOOLEAN,
+        // expectedType: VALIDATION_TYPES.BOOLEAN,
         shown: (widgetMethod) => widgetMethod === "setLoop",
       },
       {
@@ -206,7 +206,7 @@ export const generatorEventHandlerConfig = (
         openDynamic: true,
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        expectedType: VALIDATION_TYPES.BOOLEAN,
+        // expectedType: VALIDATION_TYPES.BOOLEAN,
         shown: (widgetMethod) => widgetMethod === "mute",
       },
       {
