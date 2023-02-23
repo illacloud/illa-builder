@@ -804,9 +804,9 @@
         "images": "イメージ",
         "primary_value": "主な値",
         "secValue": "二次価値",
-        "border": "Border",
-        "color": "Color",
-        "icon": "Icon"
+        "border": "フレーム",
+        "color": "色",
+        "icon": "アイコン"
       },
       "setter_label": {
         "action": "アクション",
@@ -1009,7 +1009,13 @@
         },
         "mute": "ミュート",
         "collapse": {
-          "type": "Type"
+          "type": "タイプ",
+          "accordin_mode": "アコーディオンモード",
+          "header_color": "ヘッダー",
+          "body_color": "本体",
+          "expand_icon": "拡大",
+          "collapse_icon": "アコーディオンパネル",
+          "icon_color": "色"
         }
       },
       "setter_tooltip": {
@@ -1050,7 +1056,12 @@
         "file_url": "Web 上の PDF URL、または PDF ファイルの base64 エンコード データをサポートします。 例: {{ data:application/pdf;base64, example-data }}",
         "scale": "各ページをスケーリングして、コンポーネントの幅または高さを埋めます。",
         "scroll": "スクロール時に各ページの先頭に自動的にロケートします。",
-        "video_url": "ほとんどのビデオ サービスまたは一般的なビデオ ファイル タイプへの直接リンクをサポートします。"
+        "video_url": "ほとんどのビデオ サービスまたは一般的なビデオ ファイル タイプへの直接リンクをサポートします。",
+        "collapse": {
+          "type": "折りたたみ可能なリスト: リスト、すべてのアイテムは最初のアイテムのスタイルを自動的にコピーします。 {{ currentItem.columnName }} を使用して、各アイテムのコンポーネント データを指定できます。 折りたたみ可能なパネル: 各パネルは独立しており、各アイテムのコンポーネント スタイルとデータを個別に指定できます。",
+          "items": "アイテムの数",
+          "accordin_mode": "アコーディオン モードでは、アイテムが展開されると、他のアイテムが折りたたまれます。"
+        }
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
@@ -1074,7 +1085,10 @@
         "text_scroll": "スクロール",
         "text_clip": "クリップ",
         "scale_height": "高さ",
-        "scale_width": "幅"
+        "scale_width": "幅",
+        "collapse": {
+          "collapsible_panel": "折りたたみ式パネル"
+        }
       },
       "setter_placeholder": {
         "min_max_size": "無制限",
@@ -1192,7 +1206,7 @@
         "reset_primary_value": "resetPrimaryValue"
       },
       "collapse": {
-        "expand_all_items": "Expand all items",
+        "expand_all_items": "全ノードを展開します",
         "collapse_all_items": "Collapse all items"
       }
     }
@@ -1706,6 +1720,15 @@
       "message": {
         "save_suc": "保存しました",
         "save_fail": "保存に失敗しました"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "折りたたみ可能なリスト"
+        }
       }
     }
   }
