@@ -13,6 +13,7 @@ jobs:
             git clone -b ${CIRCLE_BRANCH} https://github.com/illacloud/illa-builder
             git submodule init
             git submodule update
+            ls -l
       - restore_cache:
           keys:
             - v1-{{ .Branch }}
