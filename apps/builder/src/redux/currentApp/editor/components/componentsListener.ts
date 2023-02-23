@@ -438,7 +438,13 @@ const handleUpdateHeightEffect = (
   }
   if (oldHeight >= newItem.h && oldHeight > height) {
     const effectRows = oldHeight - newItem.h
-    const effectMap = getNearComponentNodes(newItem, cloneDeepAllComponents)
+    const effectMap = getNearComponentNodes(
+      {
+        ...newItem,
+        h: oldHeight,
+      },
+      cloneDeepAllComponents,
+    )
     effectMap.set(newItem.displayName, newItem)
     effectMap.forEach((node) => {
       if (node.displayName !== newItem.displayName) {

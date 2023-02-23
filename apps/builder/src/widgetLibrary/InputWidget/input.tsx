@@ -1,6 +1,5 @@
-import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
+import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { Input } from "@illa-design/react"
-import { containerStyle } from "@/widgetLibrary/InputWidget/style"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
@@ -10,7 +9,6 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { InputWidgetProps, WrappedInputProps } from "./interface"
 
 export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
@@ -122,8 +120,6 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
-
-  const [containerRef] = useAutoUpdateHeight(updateComponentHeight)
 
   const getValidateMessage = useCallback(
     (value?: string) => {
