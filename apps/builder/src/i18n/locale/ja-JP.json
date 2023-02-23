@@ -1512,7 +1512,9 @@
       "failed": "PDFを読み込めませんでした"
     },
     "video": {
-      "name": "ビデオ"
+      "name": "ビデオ",
+      "empty": "ビデオはありません",
+      "fail": "失敗しました"
     },
     "statistics": {
       "name": "統計"
