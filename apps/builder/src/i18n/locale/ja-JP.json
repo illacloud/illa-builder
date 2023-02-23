@@ -1077,6 +1077,9 @@
           "positive_color": "ポジティブ",
           "negative_color": "ネガティブ"
         }
+      },
+      "setter_tootip": {
+        "volume": "0 から 1 までの数値"
       }
     },
     "page": {
