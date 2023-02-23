@@ -24,6 +24,7 @@ import {
   applyHiddenStyle,
   documentInitStyle,
   fullPageStyle,
+  pageStyle,
   pdfContainerStyle,
   pdfStyle,
   pdfWrapperStyle,
@@ -181,6 +182,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
         >
           {Array.from(new Array(numPages), (el, index) => (
             <Page
+              css={pageStyle}
               loading={""}
               width={scaleWidth}
               height={scaleHeight}
