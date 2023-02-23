@@ -8,6 +8,7 @@ export interface WrappedVideoProps extends BaseWidgetProps {
   playing?: boolean
   loop?: boolean
   volume?: number
+  playbackRate?: number
   muted?: boolean
   onPlay: () => void
   onPause: () => void

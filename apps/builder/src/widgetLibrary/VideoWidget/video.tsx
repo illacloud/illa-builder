@@ -2,11 +2,7 @@ import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import ReactPlayer from "react-player"
 import { Loading } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import {
-  applyHiddenStyle,
-  fullStyle,
-  loadingStyle,
-} from "@/widgetLibrary/VideoWidget/style"
+import { fullStyle, loadingStyle } from "@/widgetLibrary/VideoWidget/style"
 import { VideoWidgetProps, WrappedVideoProps } from "./interface"
 
 export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
@@ -19,6 +15,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
       loop,
       volume,
       muted,
+      playbackRate,
       onPlay,
       onReady,
       onPause,
@@ -42,6 +39,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           volume={volume}
           muted={muted}
           controls={controls}
+          playbackRate={playbackRate}
           loop={loop}
           playing={autoPlay || playing}
           draggable={false}
@@ -116,6 +114,16 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
           {
             displayName,
             value: { loop: value },
+          },
+        ])
+      },
+      setSpeed: (value: number) => {
+        // [TODO]
+        console.log("playbackRate", value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { playbackRate: value },
           },
         ])
       },

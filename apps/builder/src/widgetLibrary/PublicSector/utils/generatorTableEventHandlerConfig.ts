@@ -137,6 +137,24 @@ export const generatorTableEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setVideoUrl",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-speed`,
+        labelName: i18n.t("editor.method.speed.speed"),
+        placeholder: i18n.t("editor.method.speed.placeholder.speed"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setSpeed",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-volume`,
+        labelName: i18n.t("editor.method.set_volume.volume"),
+        placeholder: i18n.t("editor.method.set_volume.placeholder.volume"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setVolume",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-seekTo`,
         labelName:
           i18n.t("editor.method.seek_to.time") +

@@ -126,12 +126,14 @@ export const transformEvents = (
     if (
       [
         "setValue",
+        "setVolume",
         "setVideoUrl",
         "setImageUrl",
         "setFileUrl",
         "setStartValue",
         "setEndValue",
         "setDisabled",
+        "setSpeed",
         "seekTo",
         "mute",
         "loop",
