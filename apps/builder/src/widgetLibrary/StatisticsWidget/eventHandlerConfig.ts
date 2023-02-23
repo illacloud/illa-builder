@@ -10,6 +10,5 @@ export const STATISTICS_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "click",
     },
   ],
-  methods: [],
-  // methods: ["setPrimaryValue", "resetPrimaryValue"],
+  methods: ["setPrimaryValue", "resetPrimaryValue"],
 }

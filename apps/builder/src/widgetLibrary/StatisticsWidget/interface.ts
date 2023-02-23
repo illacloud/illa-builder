@@ -24,6 +24,7 @@ export interface WrappedStatisticProps extends BaseWidgetProps {
   textAlign?: "start" | "center" | "end"
   colorScheme?: string
   negativeColorScheme?: string
+  label?: string
   positiveColorScheme?: string
   handleOnClick?: () => void
   handleUpdateMultiExecutionResult: (
@@ -38,5 +39,6 @@ export interface WrappedStatisticProps extends BaseWidgetProps {
 export interface StatisticWidgetProps
   extends WrappedStatisticProps,
     BaseWidgetProps,
-    LabelProps,
-    TooltipWrapperProps {}
+    TooltipWrapperProps {
+  label?: string
+}

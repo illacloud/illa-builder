@@ -1,17 +1,24 @@
-import { FC, useEffect } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Statistic } from "@illa-design/react"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
-import { Label } from "@/widgetLibrary/PublicSector/Label"
+import { AllData } from "@/widgetLibrary/IconWidget/utils"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   StatisticWidgetProps,
   WrappedStatisticProps,
 } from "@/widgetLibrary/StatisticsWidget/interface"
+import {
+  getPrefixContentStyle,
+  getPrefixIconStyle,
+  getStatisticContainerStyle,
+  getStatisticStyle,
+} from "@/widgetLibrary/StatisticsWidget/style"
 
 const getNumberGroupSeparator = (value: number | undefined, lang: string) => {
   if (value === undefined) {
-    return value
+    return ""
   }
   const numberFormat = new Intl.NumberFormat(lang, {
     style: "decimal",
@@ -19,13 +26,29 @@ const getNumberGroupSeparator = (value: number | undefined, lang: string) => {
   const parts = numberFormat
     .formatToParts(value)
     .filter((part) => part.type === "group")
-  return parts[0]?.value
+  return parts[0]?.value ?? ""
+}
+
+const getIcon = (iconName: string) => (iconName && AllData[iconName]) || null
+
+const getTrendSignAndIcon = (
+  show: boolean,
+  value?: number,
+  positiveSign?: string,
+  negativeSign?: string,
+  color?: string,
+) => {
+  const positiveSignIcon = getIcon(positiveSign ?? "")
+  const negativeSignIcon = getIcon(negativeSign ?? "")
+  const icon = (value ?? 0.0) >= 0 ? positiveSignIcon : negativeSignIcon
+
+  return show && <span css={getPrefixIconStyle(color)}>{icon && icon({})}</span>
 }
 
 export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
   const builderInfo = useSelector(getBuilderInfo)
-
   const {
+    label,
     primaryValue,
     secondaryValue,
     decimalPlace,
@@ -45,43 +68,72 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
     secondaryShowSeparator,
     secondaryEnableTrendColor,
     textAlign,
+    handleOnClick,
     colorScheme,
     negativeColorScheme,
     positiveColorScheme,
-    handleOnClick,
-    handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
   } = props
 
-  const groupSeparator = getNumberGroupSeparator(
-    primaryValue ?? 0.0,
-    builderInfo.language,
+  const groupSeparator = showSeparator
+    ? getNumberGroupSeparator(primaryValue, builderInfo.language)
+    : ""
+  const secondarySeparator = secondaryShowSeparator
+    ? getNumberGroupSeparator(secondaryValue, builderInfo.language)
+    : ""
+
+  const getColor = useCallback(
+    (value?: number, enableTrendColor?: boolean) => {
+      return enableTrendColor
+        ? value && value >= 0
+          ? positiveColorScheme
+          : negativeColorScheme
+        : colorScheme
+    },
+    [colorScheme, negativeColorScheme, positiveColorScheme],
   )
-  const secondarySeparator = getNumberGroupSeparator(
+
+  const color = getColor(primaryValue, enableTrendColor)
+  const secondaryColor = getColor(secondaryValue, secondaryEnableTrendColor)
+
+  const icon = getTrendSignAndIcon(
+    !!showTrendSign,
+    primaryValue,
+    positiveSign,
+    negativeSign,
+    color,
+  )
+
+  const secondaryIcon = getTrendSignAndIcon(
+    !!secondaryShowTrendSign,
     secondaryValue,
-    builderInfo.language,
+    secondaryPositiveSign,
+    secondaryNegativeSign,
+    secondaryColor,
   )
 
   return (
-    <>
+    <div css={getStatisticContainerStyle(textAlign)} onClick={handleOnClick}>
+      {icon}
       <Statistic
-        value={primaryValue ?? 0.0}
+        title={label}
+        _css={getStatisticStyle(color)}
+        value={primaryValue}
         precision={decimalPlace}
         prefix={prefixText}
         suffix={suffixText}
         groupSeparator={groupSeparator}
       />
-      {secondaryValue && (
-        <Statistic
-          groupSeparator={secondarySeparator}
-          value={secondaryValue}
-          precision={secondaryDecimalPlace}
-          prefix={secondaryPrefixText}
-          suffix={secondarySuffixText}
-        />
-      )}
-    </>
+      {/*{secondaryValue && (*/}
+      {/*  <Statistic*/}
+      {/*    _css={getStatisticStyle(secondaryColor, true)}*/}
+      {/*    groupSeparator={secondarySeparator}*/}
+      {/*    value={secondaryValue}*/}
+      {/*    precision={secondaryDecimalPlace}*/}
+      {/*    prefix={secondaryPrefix}*/}
+      {/*    suffix={secondarySuffixText}*/}
+      {/*  />*/}
+      {/*)}*/}
+    </div>
   )
 }
 WrappedStatistic.displayName = "WrappedStatistic"
@@ -105,12 +157,13 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
     secondaryNegativeSign,
     secondaryShowSeparator,
     secondaryEnableTrendColor,
-    handleOnClick,
+    triggerEventHandler,
     prefixText,
     suffixText,
     handleUpdateDsl,
     displayName,
     tooltipText,
+    updateComponentHeight,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
   } = props
@@ -144,7 +197,6 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
     displayName,
     enableTrendColor,
     handleDeleteGlobalData,
-    handleOnClick,
     handleUpdateDsl,
     handleUpdateGlobalData,
     negativeSign,
@@ -165,19 +217,19 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
     suffixText,
   ])
 
+  const handleOnClick = useCallback(() => {
+    triggerEventHandler("click")
+  }, [triggerEventHandler])
+
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div>
-        <Label
-          label={label}
-          labelFull={true}
-          labelHidden={false}
-          labelWidth={100}
-          hasTooltip={!!tooltipText}
-        />
-        <WrappedStatistic {...props} />
-      </div>
-    </TooltipWrapper>
+    <AutoHeightContainer
+      updateComponentHeight={updateComponentHeight}
+      enable={true}
+    >
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <WrappedStatistic {...props} handleOnClick={handleOnClick} />
+      </TooltipWrapper>
+    </AutoHeightContainer>
   )
 }
 StatisticWidget.displayName = "StatisticWidget"

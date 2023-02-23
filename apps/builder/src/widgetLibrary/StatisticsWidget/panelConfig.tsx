@@ -238,6 +238,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.text_align"),
         attrName: "textAlign",
         setterType: "RADIO_GROUP_SETTER",
+        defaultValue: "start",
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -276,56 +277,20 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: `${baseWidgetName}-style-positiveColorScheme`,
-            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            labelName: "positive ColorScheme",
             setterType: "COLOR_PICKER_SETTER",
             attrName: "positiveColorScheme",
             defaultValue: "blue",
           },
           {
             id: `${baseWidgetName}-style-negativeColorScheme`,
-            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            labelName: "negative ColorScheme",
             setterType: "COLOR_PICKER_SETTER",
             attrName: "negativeColorScheme",
             defaultValue: "blue",
           },
         ],
       },
-
-      // {
-      //   id: `${baseWidgetName}-style-positiveColor`,
-      //   setterType: "LIST_SETTER",
-      //   isSetterSingleRow: true,
-      //   labelName: i18n.t("editor.inspect.setter_label.colors"),
-      //   attrName: "positiveColor",
-      //   useCustomLayout: true,
-      //   childrenSetter: [
-      //     {
-      //       id: `${baseWidgetName}-style-colorScheme`,
-      //       labelName: i18n.t("editor.inspect.setter_label.theme_color"),
-      //       setterType: "COLOR_PICKER_SETTER",
-      //       attrName: "colorScheme",
-      //       defaultValue: "blue",
-      //     },
-      //   ],
-      // },
-      //
-      // {
-      //   id: `${baseWidgetName}-style-negativeColor`,
-      //   setterType: "LIST_SETTER",
-      //   isSetterSingleRow: true,
-      //   labelName: i18n.t("editor.inspect.setter_label.colors"),
-      //   attrName: "negativeColor",
-      //   useCustomLayout: true,
-      //   childrenSetter: [
-      //     {
-      //       id: `${baseWidgetName}-style-colorScheme`,
-      //       labelName: i18n.t("editor.inspect.setter_label.theme_color"),
-      //       setterType: "COLOR_PICKER_SETTER",
-      //       attrName: "colorScheme",
-      //       defaultValue: "blue",
-      //     },
-      //   ],
-      // },
     ],
   },
 ]
