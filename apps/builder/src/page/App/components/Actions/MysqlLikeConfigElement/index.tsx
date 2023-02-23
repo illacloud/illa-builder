@@ -192,7 +192,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             control={control}
             defaultValue={resource?.resourceName ?? ""}
             rules={{
-              required: true,
+              validate: (value) => value != undefined && value.trim() != "",
             }}
             render={({ field: { value, onChange, onBlur } }) => (
               <Input

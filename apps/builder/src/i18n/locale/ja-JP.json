@@ -310,8 +310,8 @@
             "text": "The answer to the universe is [MASK].",
             "json": "{ \r\n\"past_user_inputs\": [\"Which movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Can you explain why ?\" \r\n}",
             "binary": "'@cats.jpg' \\",
-            "use_cache": "Boolean, leave blank for true",
-            "min_length": "Integer to define the minimum length in tokens of the output summary",
+            "use_cache": "ブール値、true の場合は空白のままにします",
+            "min_length": "出力要約のトークンの最小長を定義する整数",
             "top_k": "Integer to define the top tokens",
             "top_p": "Float to define the tokens",
             "temperature": "Float(0.0-100.0)，leave blank for 1.0",
@@ -734,6 +734,18 @@
           "pause": "一時停止",
           "loaded": "ロード済み",
           "ended": "終了済み"
+        },
+        "image_list": {
+          "title": "イメージ",
+          "empty": "画像がありません",
+          "model_title": "画像を編集",
+          "config": {
+            "model_label": "ラベル",
+            "image_url": "画像のURL"
+          }
+        },
+        "image_setter": {
+          "new": "追加"
         }
       },
       "setter_default_value": {
@@ -785,7 +797,8 @@
         "tabs": "タブ",
         "toolbar": "ツールバー",
         "validation": "確認",
-        "views": "見る"
+        "views": "見る",
+        "images": "イメージ"
       },
       "setter_label": {
         "action": "アクション",
@@ -968,8 +981,11 @@
         "scroll": "各ページへのスナップスクロール",
         "min_max_size": "最小～最大のサイズ",
         "video_url": "ビデオ URL",
-        "autoplay": "Autoplay",
-        "loop": "ループ"
+        "autoplay": "自動再生",
+        "loop": "ループ",
+        "volume": "音量",
+        "show_controls": "コントロールを表示",
+        "img_url_array": "画像 URL 配列"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1021,7 +1037,9 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。"
+        "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。",
+        "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}",
+        "img_url_array": "{{ currentItem.key }} を使用して、データ ソースから画像の URL を取得します。"
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1034,7 +1052,8 @@
         "scale_width": "幅"
       },
       "setter_placeholder": {
-        "min_max_size": "無制限"
+        "min_max_size": "無制限",
+        "volume": "2"
       }
     },
     "page": {
@@ -1115,6 +1134,23 @@
       },
       "set_video_url": {
         "video": "ビデオ URL"
+      },
+      "speed": {
+        "speed": "再生速度",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Stop",
+      "mute": "Mute",
+      "loop": "Loop",
+      "show_controls": "Show Controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "音量",
+        "placeholder": {
+          "volume": "2"
+        }
       }
     }
   },
@@ -1131,10 +1167,10 @@
       "reset": "リセット",
       "save": "保存",
       "tooltip": {
-        "fluid_width": "Fluid width",
-        "desktop": "Desktop（width = 1280px）",
-        "tablet": "Tablet（width = 1080px）",
-        "custom": "Custom"
+        "fluid_width": "流体幅",
+        "desktop": "デスクトップ（幅=1280px）",
+        "tablet": "タブレット（幅=1080px）",
+        "custom": "ユーザー定義"
       }
     },
     "button_text": "プレビュー"
@@ -1186,7 +1222,9 @@
     },
     "back": "ホームページに戻ります",
     "mobile_forbidden": "より良い編集体験を得るには、デスクトップでこのページにアクセスしてください",
-    "back_to_cloud": "ILLA Cloudに戻る"
+    "back_to_cloud": "ILLA Cloudに戻る",
+    "no_permission_title": "Insufficient permissions",
+    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "エラ クラウドへようこそ",
   "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
@@ -1442,6 +1480,9 @@
     },
     "video": {
       "name": "ビデオ"
+    },
+    "statistics": {
+      "name": "Statistics"
     }
   },
   "page": {

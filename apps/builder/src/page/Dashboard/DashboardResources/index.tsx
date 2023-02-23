@@ -203,4 +203,6 @@ export const DashboardResources: FC = () => {
   )
 }
 
+export default DashboardResources
+
 DashboardResources.displayName = "DashboardResources"

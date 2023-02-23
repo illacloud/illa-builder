@@ -734,6 +734,18 @@
           "pause": "暂停",
           "loaded": "已载入",
           "ended": "已结束"
+        },
+        "image_list": {
+          "title": "图片",
+          "empty": "没有图片",
+          "model_title": "编辑图像",
+          "config": {
+            "model_label": "标签",
+            "image_url": "图片URL"
+          }
+        },
+        "image_setter": {
+          "new": "新增"
         }
       },
       "setter_default_value": {
@@ -785,7 +797,8 @@
         "tabs": "选项卡",
         "toolbar": "工具栏",
         "validation": "验证",
-        "views": "视图"
+        "views": "视图",
+        "images": "图片"
       },
       "setter_label": {
         "action": "动作",
@@ -968,8 +981,11 @@
         "scroll": "快速滚动到每一页",
         "min_max_size": "最小～最大文件大小",
         "video_url": "视频 URL",
-        "autoplay": "Autoplay",
-        "loop": "循环播放"
+        "autoplay": "自动播放",
+        "loop": "循环播放",
+        "volume": "音量",
+        "show_controls": "显示控制栏",
+        "img_url_array": "图片URL数组"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1021,7 +1037,9 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。"
+        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。",
+        "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}",
+        "img_url_array": "使用 {{ currentItem.key }} 从数据源获取图像 URL。"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1034,7 +1052,8 @@
         "scale_width": "宽度"
       },
       "setter_placeholder": {
-        "min_max_size": "无限制"
+        "min_max_size": "无限制",
+        "volume": "2"
       }
     },
     "page": {
@@ -1115,6 +1134,23 @@
       },
       "set_video_url": {
         "video": "视频 URL"
+      },
+      "speed": {
+        "speed": "倍速",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Stop",
+      "mute": "Mute",
+      "loop": "Loop",
+      "show_controls": "Show Controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "音量",
+        "placeholder": {
+          "volume": "2"
+        }
       }
     }
   },
@@ -1131,10 +1167,10 @@
       "reset": "重置",
       "save": "保存",
       "tooltip": {
-        "fluid_width": "Fluid width",
-        "desktop": "Desktop（width = 1280px）",
-        "tablet": "Tablet（width = 1080px）",
-        "custom": "Custom"
+        "fluid_width": "当前浏览器宽度",
+        "desktop": "PC端桌面（宽度 = 1280px）",
+        "tablet": "平板电脑（宽度 = 1080px）",
+        "custom": "自定义"
       }
     },
     "button_text": "预览"
@@ -1186,7 +1222,9 @@
     },
     "back": "回到主页",
     "mobile_forbidden": "为获得更好的编辑体验，请通过电脑端访问",
-    "back_to_cloud": "返回ILLA Cloud"
+    "back_to_cloud": "返回ILLA Cloud",
+    "no_permission_title": "Insufficient permissions",
+    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "欢迎来到艾拉云",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
@@ -1442,6 +1480,9 @@
     },
     "video": {
       "name": "视频"
+    },
+    "statistics": {
+      "name": "Statistics"
     }
   },
   "page": {

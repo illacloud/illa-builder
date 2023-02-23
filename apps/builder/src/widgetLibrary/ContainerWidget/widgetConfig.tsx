@@ -2,7 +2,7 @@ import { v4 } from "uuid"
 import { ReactComponent as ContainerWidgetIcon } from "@/assets/widgetCover/container.svg"
 import i18n from "@/i18n/config"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 const defaultListView = [
   { id: v4(), key: "View 1", label: "View 1" },
@@ -33,5 +33,7 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
     radius: "4px",
     borderWidth: "1px",
     shadow: "small",
+    dynamicHeight: "fixed",
+    resizeDirection: RESIZE_DIRECTION.ALL,
   },
 }

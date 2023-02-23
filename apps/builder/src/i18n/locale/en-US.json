@@ -734,6 +734,18 @@
           "pause": "Pause",
           "loaded": "Loaded",
           "ended": "Ended"
+        },
+        "image_list": {
+          "title": "Images",
+          "empty": "No  images",
+          "model_title": "Edit images",
+          "config": {
+            "model_label": "Label",
+            "image_url": "Image URL"
+          }
+        },
+        "image_setter": {
+          "new": "New"
         }
       },
       "setter_default_value": {
@@ -785,7 +797,8 @@
         "tabs": "TABS",
         "toolbar": "TOOLBAR",
         "validation": "VALIDATION",
-        "views": "VIEWS"
+        "views": "VIEWS",
+        "images": "IMAGES"
       },
       "setter_label": {
         "action": "Action",
@@ -969,7 +982,10 @@
         "min_max_size": "Min size ～ Max size",
         "video_url": "Video URL",
         "autoplay": "Autoplay",
-        "loop": "Loop"
+        "loop": "Loop",
+        "volume": "Volume",
+        "show_controls": "Show controls",
+        "img_url_array": "Image URL Array"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1021,7 +1037,9 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url."
+        "carousel_tips": "Use {{ currentItem }} to get value from the data source. For example, there are two columns in the data source. They are image and url. If you want to go to different url when click image, use {{ currentItem.url }} to set the url.",
+        "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
+        "img_url_array": "Use {{ currentItem.key }} to get image URL from the data source. "
       },
       "setter_option": {
         "fixed": "Fixed",
@@ -1034,7 +1052,8 @@
         "scale_width": "Width"
       },
       "setter_placeholder": {
-        "min_max_size": "No limits"
+        "min_max_size": "No limits",
+        "volume": "2"
       }
     },
     "page": {
@@ -1115,6 +1134,23 @@
       },
       "set_video_url": {
         "video": "Video URL"
+      },
+      "speed": {
+        "speed": "Speed",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Stop",
+      "mute": "Mute",
+      "loop": "Loop",
+      "show_controls": "Show Controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "Volume",
+        "placeholder": {
+          "volume": "2"
+        }
       }
     }
   },
@@ -1186,7 +1222,9 @@
     },
     "back": "Back to homepage",
     "mobile_forbidden": "For the better editing experience, please visit this page on desktop",
-    "back_to_cloud": "Back to ILLA Cloud"
+    "back_to_cloud": "Back to ILLA Cloud",
+    "no_permission_title": "Insufficient permissions",
+    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "Welcome to illa",
   "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
@@ -1442,6 +1480,9 @@
     },
     "video": {
       "name": "Video"
+    },
+    "statistics": {
+      "name": "Statistics"
     }
   },
   "page": {
