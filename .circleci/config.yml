@@ -1,0 +1,55 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/project
+    docker:
+      - image: docker:17.05.0-ce-git
+    resource_class: xlarge
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Clone repo
+          command: |
+            git clone -b ${CIRCLE_BRANCH} https://github.com/illacloud/illa-builder
+            git submodule init
+            git submodule update
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/illa-builder-frontend.tar
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i /illa-builder-frontend.tar | true
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build --cache-from=illa-builder-frontend -f Dockerfile -t illa-builder-frontend .
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/illa-builder-frontend.tar illa-builder-frontend
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/illa-builder-frontend.tar
+      - deploy:
+          name: Push application Docker image
+          command: |
+            docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
+            docker tag illa-builder-frontend "illasoft/illa-builder-frontend:${CIRCLE_BRANCH}"
+            docker push "illasoft/illa-builder-frontend:${CIRCLE_BRANCH}"
+
+workflows:
+  illa-builder-frontend:
+    when:
+      or:
+        - equal: [develop, << pipeline.git.branch >>]
+    jobs:
+      - build:
+          context:
+            - org-global
