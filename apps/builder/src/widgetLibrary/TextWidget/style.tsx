@@ -4,17 +4,16 @@ import {
   VerticalAlign,
 } from "@/widgetLibrary/TextWidget/interface"
 
-export function applyAlignStyle(): SerializedStyles {
+export function applyFullWidthAndFullHeightStyle(
+  verticalAlign: VerticalAlign,
+): SerializedStyles {
   return css`
-    width: 100%;
     display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: ${verticalAlign};
   `
 }
-
-export const fullWidthAndFullHeightStyle = css`
-  width: 100%;
-  height: 0;
-`
 
 export function applyMarkdownStyle(horizontalAlign?: string): SerializedStyles {
   return css`
