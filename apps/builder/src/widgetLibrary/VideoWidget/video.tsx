@@ -186,7 +186,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
         <WrappedVideo
           {...props}
           // controls change need to reload react-player
-          key={controls ? 0 : 1}
+          key={Number(controls)}
           ref={videoRef}
           onReady={onReady}
           onPlay={onPlay}
