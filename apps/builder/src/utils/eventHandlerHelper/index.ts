@@ -132,6 +132,7 @@ export const transformEvents = (
         "setImageUrl",
         "setFileUrl",
         "setStartValue",
+        "setPrimaryValue",
         "setEndValue",
         "setDisabled",
         "setSpeed",
@@ -159,7 +160,8 @@ export const transformEvents = (
       widgetMethod === "toggle" ||
       widgetMethod === "focus" ||
       widgetMethod === "reset" ||
-      widgetMethod === "rowSelect"
+      widgetMethod === "rowSelect" ||
+      widgetMethod === "resetPrimaryValue"
     ) {
       return {
         script: `{{${widgetID}.${widgetMethod}()}}`,

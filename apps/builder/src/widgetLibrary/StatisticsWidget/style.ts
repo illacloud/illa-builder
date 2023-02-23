@@ -20,7 +20,7 @@ export const getStatisticContainerStyle = (textAlign?: string) => {
   return css`
     display: flex;
     width: 100%;
-    //flex-wrap: wrap;
+    flex-wrap: wrap;
     gap: 8px;
     justify-content: ${justifyContent};
     align-items: center;
@@ -57,7 +57,9 @@ export const getPrefixContentStyle = (color?: string) => {
   `
 }
 
-export const getPrefixIconStyle = (color?: string) => {
+export const getPrefixIconStyle = (color?: string, secondary?: boolean) => {
+  const size = secondary ? 12 : 24
+
   return css`
     color: ${color};
     display: flex;
@@ -65,8 +67,17 @@ export const getPrefixIconStyle = (color?: string) => {
     height: 100%;
     align-items: center;
     & > svg {
-      width: 24px;
-      height: 24px;
+      width: ${size}px;
+      height: ${size}px;
     }
   `
 }
+
+export const firstStatisticContainerStyle = css`
+  display: flex;
+`
+
+export const suffixTextStyle = css`
+  display: flex;
+  align-items: flex-end;
+`

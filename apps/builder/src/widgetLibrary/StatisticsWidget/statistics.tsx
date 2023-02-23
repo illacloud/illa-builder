@@ -10,10 +10,12 @@ import {
   WrappedStatisticProps,
 } from "@/widgetLibrary/StatisticsWidget/interface"
 import {
+  firstStatisticContainerStyle,
   getPrefixContentStyle,
   getPrefixIconStyle,
   getStatisticContainerStyle,
   getStatisticStyle,
+  suffixTextStyle,
 } from "@/widgetLibrary/StatisticsWidget/style"
 
 const getNumberGroupSeparator = (value: number | undefined, lang: string) => {
@@ -37,12 +39,18 @@ const getTrendSignAndIcon = (
   positiveSign?: string,
   negativeSign?: string,
   color?: string,
+  secondary?: boolean,
 ) => {
   const positiveSignIcon = getIcon(positiveSign ?? "")
   const negativeSignIcon = getIcon(negativeSign ?? "")
   const icon = (value ?? 0.0) >= 0 ? positiveSignIcon : negativeSignIcon
 
-  return show && <span css={getPrefixIconStyle(color)}>{icon && icon({})}</span>
+  return (
+    show &&
+    icon && (
+      <span css={getPrefixIconStyle(color, secondary)}>{icon && icon({})}</span>
+    )
+  )
 }
 
 export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
@@ -109,6 +117,26 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
     secondaryPositiveSign,
     secondaryNegativeSign,
     secondaryColor,
+    true,
+  )
+
+  const suffixNode = (
+    <div css={firstStatisticContainerStyle}>
+      <span css={suffixTextStyle}>{suffixText}</span>
+      {secondaryValue && (
+        <div css={firstStatisticContainerStyle}>
+          {secondaryIcon}
+          <Statistic
+            // _css={getStatisticStyle(secondaryColor, true)}
+            groupSeparator={secondarySeparator}
+            value={secondaryValue}
+            precision={secondaryDecimalPlace}
+            prefix={prefixText}
+            suffix={secondarySuffixText}
+          />
+        </div>
+      )}
+    </div>
   )
 
   return (
@@ -120,19 +148,9 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
         value={primaryValue}
         precision={decimalPlace}
         prefix={prefixText}
-        suffix={suffixText}
+        suffix={suffixNode}
         groupSeparator={groupSeparator}
       />
-      {/*{secondaryValue && (*/}
-      {/*  <Statistic*/}
-      {/*    _css={getStatisticStyle(secondaryColor, true)}*/}
-      {/*    groupSeparator={secondarySeparator}*/}
-      {/*    value={secondaryValue}*/}
-      {/*    precision={secondaryDecimalPlace}*/}
-      {/*    prefix={secondaryPrefix}*/}
-      {/*    suffix={secondarySuffixText}*/}
-      {/*  />*/}
-      {/*)}*/}
     </div>
   )
 }
@@ -188,6 +206,14 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
       secondaryEnableTrendColor,
       prefixText,
       suffixText,
+      setPrimaryValue: (value: number) => {
+        handleUpdateDsl({ primaryValue: value })
+      },
+      resetPrimaryValue: () => {
+        handleUpdateDsl({
+          primaryValue,
+        })
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)
