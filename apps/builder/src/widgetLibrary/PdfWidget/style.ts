@@ -32,6 +32,7 @@ export const pdfStyle = css`
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 0;
+  background-color: ${getColor("grayBlue", "09")};
 `
 
 export const documentInitStyle = css`
@@ -51,6 +52,12 @@ export const toolBarStyle = css`
   justify-content: flex-end;
   padding: 0 8px;
   flex: 0 0 auto;
+`
+
+export const pageStyle = css`
+  &:not(:last-of-type) {
+    margin-bottom: 8px;
+  }
 `
 
 export const applyHiddenStyle = (hidden: boolean): SerializedStyles => {
