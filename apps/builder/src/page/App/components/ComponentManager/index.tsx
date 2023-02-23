@@ -1,14 +1,35 @@
-import { FC, HTMLAttributes, useEffect, useRef, useState } from "react"
+import {
+  FC,
+  HTMLAttributes,
+  MouseEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { TabPane, Tabs } from "@illa-design/react"
 import { ComponentPanel } from "@/page/App/components/ComponentPanel"
 import { ConfigPanel } from "@/page/App/components/ConfigPanel"
 import { PagePanel } from "@/page/App/components/PagePanel"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
-import { componentPanelCss } from "./style"
+import { applyTabItemStyle, menuHeaderWrapperStyle } from "./style"
+
+const getRenderBody = (activeKey: string) => {
+  switch (activeKey) {
+    case "Inspect": {
+      return <ConfigPanel />
+    }
+    case "Page": {
+      return <PagePanel />
+    }
+    case "Insert":
+    default: {
+      return <ComponentPanel />
+    }
+  }
+}
 
 export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   props,
@@ -36,39 +57,41 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
       }
     }
     if (prevPageDisplayName.current !== currentPageDisplayName) {
-      setActiveKey("Page")
       prevPageDisplayName.current = currentPageDisplayName
     }
     isClickChange.current = false
   }, [activeKey, currentPageDisplayName, selectedDisplayNames])
 
+  const handleClickChangeTab: MouseEventHandler<HTMLDivElement> = (e) => {
+    const activeKey = (e.target as HTMLSpanElement)?.dataset?.key
+    if (activeKey) {
+      isClickChange.current = true
+      setActiveKey(activeKey)
+    }
+  }
+
   return (
     <div
       className={props.className}
-      css={componentPanelCss}
       onClick={() => {
         FocusManager.switchFocus("components")
       }}
     >
-      <Tabs
-        variant="text"
-        activeKey={activeKey}
-        colorScheme="grayBlue"
-        onChange={(key) => {
-          isClickChange.current = true
-          setActiveKey(key)
-        }}
-      >
-        <TabPane title={t("editor.page.tab_title")} key="Page">
-          <PagePanel />
-        </TabPane>
-        <TabPane title={t("editor.inspect.tab_title")} key="Inspect">
-          <ConfigPanel />
-        </TabPane>
-        <TabPane title={t("editor.widget_picker.tab_title")} key="Insert">
-          <ComponentPanel />
-        </TabPane>
-      </Tabs>
+      <div css={menuHeaderWrapperStyle} onClick={handleClickChangeTab}>
+        <span css={applyTabItemStyle(activeKey === "Page")} data-key="Page">
+          {t("editor.page.tab_title")}
+        </span>
+        <span
+          css={applyTabItemStyle(activeKey === "Inspect")}
+          data-key="Inspect"
+        >
+          {t("editor.inspect.tab_title")}
+        </span>
+        <span css={applyTabItemStyle(activeKey === "Insert")} data-key="Insert">
+          {t("editor.widget_picker.tab_title")}
+        </span>
+      </div>
+      <div>{getRenderBody(activeKey)}</div>
     </div>
   )
 }

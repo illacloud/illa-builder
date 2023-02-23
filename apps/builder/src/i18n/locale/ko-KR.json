@@ -146,7 +146,7 @@
           "inference_endpoint": "Inference Endpoint"
         },
         "placeholder": {
-          "url": "api/v2/endpoint.json"
+          "url": "여기에 요청 URL 입력"
         }
       },
       "panel": {
@@ -803,7 +803,10 @@
         "views": "보다",
         "images": "이미지",
         "primary_value": "기본 값",
-        "secValue": "보조 값"
+        "secValue": "보조 값",
+        "border": "뇌졸중",
+        "color": "색깔",
+        "icon": "상"
       },
       "setter_label": {
         "action": "동작",
@@ -1004,7 +1007,16 @@
           "prefix_text": "접두사 텍스트",
           "suffix_text": "접미사"
         },
-        "mute": "음소거"
+        "mute": "음소거",
+        "collapse": {
+          "type": "유형",
+          "accordin_mode": "아코디언 모드",
+          "header_color": "헤더",
+          "body_color": "본체",
+          "expand_icon": "넓히기",
+          "collapse_icon": "무너지다",
+          "icon_color": "색깔"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1044,7 +1056,12 @@
         "file_url": "웹에서 PDF URL 또는 pdf 파일의 base64 인코딩 데이터를 지원합니다. 예: {{ data:application/pdf;base64, example-data }}",
         "scale": "각 페이지의 크기를 조정하여 구성 요소의 너비 또는 높이를 채웁니다.",
         "scroll": "스크롤 시 자동으로 각 페이지의 시작 부분으로 이동합니다.",
-        "video_url": "대부분의 비디오 서비스 또는 일반적인 비디오 파일 유형에 대한 직접 링크를 지원합니다."
+        "video_url": "대부분의 비디오 서비스 또는 일반적인 비디오 파일 유형에 대한 직접 링크를 지원합니다.",
+        "collapse": {
+          "type": "접을 수 있는 목록: 목록에서 모든 항목은 첫 번째 항목의 스타일을 자동으로 복사합니다. {{ currentItem.columnName }}을 통해 각 항목의 구성 요소 데이터를 지정할 수 있습니다. 접을 수 있는 패널: 각 패널은 독립적이며 각 항목의 구성 요소 스타일과 데이터를 개별적으로 지정할 수 있습니다.",
+          "items": "아이템 갯수",
+          "accordin_mode": "아코디언 모드에서 항목이 확장되면 다른 항목이 축소됩니다."
+        }
       },
       "tab_title": "속성",
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
@@ -1068,7 +1085,10 @@
         "text_scroll": "스크롤",
         "text_clip": "클립",
         "scale_height": "높은",
-        "scale_width": "너비"
+        "scale_width": "너비",
+        "collapse": {
+          "collapsible_panel": "접을 수 있는 패널"
+        }
       },
       "setter_placeholder": {
         "min_max_size": "제한 없음",
@@ -1171,8 +1191,8 @@
         }
       },
       "stop": "Stop",
-      "mute": "Mute",
-      "loop": "Loop",
+      "mute": "음소거",
+      "loop": "반복",
       "show_controls": "Show Controls",
       "set_volumn": "Set Volumn",
       "set_volume": {
@@ -1184,6 +1204,10 @@
       "statistics": {
         "set_primary_value": "setPrimaryValue",
         "reset_primary_value": "resetPrimaryValue"
+      },
+      "collapse": {
+        "expand_all_items": "모든 스레드 펼치기",
+        "collapse_all_items": "Collapse all items"
       }
     }
   },
@@ -1512,10 +1536,15 @@
       "failed": "PDF를 로드할 수 없습니다."
     },
     "video": {
-      "name": "동영상"
+      "name": "동영상",
+      "empty": "동영상 없음",
+      "fail": "불러 오는데 실패했습니다."
     },
     "statistics": {
       "name": "통계"
+    },
+    "collapse": {
+      "name": "Collapse"
     }
   },
   "page": {
@@ -1691,6 +1720,15 @@
       "message": {
         "save_suc": "팀 아이디를 입력해주세요",
         "save_fail": "저장 실패"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "접을 수 있는 목록"
+        }
       }
     }
   }

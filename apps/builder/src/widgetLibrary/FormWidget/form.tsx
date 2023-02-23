@@ -23,7 +23,7 @@ import {
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
-import { getIllaMode } from "@/redux/config/configSelector"
+import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -71,25 +71,25 @@ function getLikeInputChildrenNode(
   }
 }
 
-function getAllChildrenNode(
-  componentNode: ComponentNode,
-  displayNames: string[],
-) {
-  if (componentNode.containerType !== "EDITOR_DOT_PANEL") {
-    displayNames.push(componentNode.displayName)
-    if (Array.isArray(componentNode.childrenNode)) {
-      componentNode.childrenNode.forEach((node) => {
-        getAllChildrenNode(node, displayNames)
-      })
-    }
-  } else {
-    if (Array.isArray(componentNode.childrenNode)) {
-      componentNode.childrenNode.forEach((node) => {
-        getAllChildrenNode(node, displayNames)
-      })
-    }
-  }
-}
+// function getAllChildrenNode(
+//   componentNode: ComponentNode,
+//   displayNames: string[],
+// ) {
+//   if (componentNode.containerType !== "EDITOR_DOT_PANEL") {
+//     displayNames.push(componentNode.displayName)
+//     if (Array.isArray(componentNode.childrenNode)) {
+//       componentNode.childrenNode.forEach((node) => {
+//         getAllChildrenNode(node, displayNames)
+//       })
+//     }
+//   } else {
+//     if (Array.isArray(componentNode.childrenNode)) {
+//       componentNode.childrenNode.forEach((node) => {
+//         getAllChildrenNode(node, displayNames)
+//       })
+//     }
+//   }
+// }
 interface DragCollection {
   isDraggingActive: boolean
 }
@@ -126,7 +126,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     null,
   ) as MutableRefObject<HTMLDivElement | null>
   const [isMouseHover, setIsMouseHover] = useState(false)
-  const illaMode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
   const executionResult = useSelector(getExecutionResult)
 
   const dispatch = useDispatch()
@@ -489,7 +489,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
         if (monitor.isOver({ shallow: true })) {
         }
       },
-      drop: (dropInfo, monitor) => {
+      drop: (dropInfo) => {
         const { item } = dropInfo
         if (disabled) {
           const updateSlice = {
@@ -539,7 +539,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
           minHeight={headerMinHeight}
           maxHeight={headerMaxHeight}
           handleComponent={
-            illaMode === "edit" && isMouseHover && !isDraggingActive
+            isEditMode && isMouseHover && !isDraggingActive
               ? resizeTopHandler
               : undefined
           }
@@ -552,14 +552,14 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
           <div css={formHeaderStyle} ref={headerRef}>
             {renderHeader}
           </div>
-          {isMouseHover && !isDraggingActive && illaMode === "edit" && (
+          {isMouseHover && !isDraggingActive && isEditMode && (
             <div css={applyDashedLineStyle(false, true, false)} />
           )}
         </Resizable>
       )}
       <div css={formBodyStyle} ref={bodyRef}>
         {renderBody}
-        {isMouseHover && !isDraggingActive && illaMode === "edit" && (
+        {isMouseHover && !isDraggingActive && isEditMode && (
           <div css={applyXDirectionDashedLineStyle(false, true, false)} />
         )}
       </div>
@@ -572,7 +572,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
           minHeight={footerMinHeight}
           maxHeight={footerMaxHeight}
           handleComponent={
-            illaMode === "edit" && isMouseHover && !isDraggingActive
+            isEditMode && isMouseHover && !isDraggingActive
               ? resizeBottomHandler
               : undefined
           }
@@ -585,7 +585,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
           <div css={formHeaderStyle} ref={footerRef}>
             {renderFooter}
           </div>
-          {isMouseHover && !isDraggingActive && illaMode === "edit" && (
+          {isMouseHover && !isDraggingActive && isEditMode && (
             <div
               css={applyDashedLineStyle(false, true, false, footerMaxHeight)}
             />

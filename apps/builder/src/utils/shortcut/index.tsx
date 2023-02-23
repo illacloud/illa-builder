@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { createModal, useMessage } from "@illa-design/react"
 import {
   getFreezeState,
-  getIllaMode,
+  getIsILLAEditMode,
   getSelectedAction,
   getSelectedComponents,
   isShowDot,
@@ -33,7 +33,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const mode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
   const message = useMessage()
 
   const currentSelectedComponent = useSelector(getSelectedComponents)
@@ -63,7 +63,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       })
     },
     {
-      enabled: mode === "edit",
+      enabled: isEditMode,
     },
     [],
   )
@@ -134,27 +134,27 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       )
     },
     {
-      enabled: mode === "edit",
+      enabled: isEditMode,
     },
     [showDeleteDialog, currentSelectedComponent],
   )
 
   useHotkeys(
     "d,k",
-    (keyboardEvent, hotkeysEvent) => {
+    (keyboardEvent) => {
       if (keyboardEvent.type === "keydown" && freezeState === false) {
         dispatch(configActions.updateFreezeStateReducer(true))
       } else if (keyboardEvent.type === "keyup" && freezeState === true) {
         dispatch(configActions.updateFreezeStateReducer(false))
       }
     },
-    { keydown: true, keyup: true, enabled: mode === "edit" },
+    { keydown: true, keyup: true, enabled: isEditMode },
     [dispatch, freezeState],
   )
 
   useHotkeys(
     "command+a,ctrl+a",
-    (keyboardEvent, hotkeysEvent) => {
+    (keyboardEvent) => {
       keyboardEvent.preventDefault()
       switch (FocusManager.getFocus()) {
         case "none":
@@ -288,7 +288,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
         }
       }
     },
-    { keydown: true, keyup: true, enabled: mode === "edit" },
+    { keydown: true, keyup: true, enabled: isEditMode },
     [dispatch],
   )
 
@@ -300,18 +300,18 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   // cancel show dot
   useEffect(() => {
-    if (mode === "edit") {
+    if (isEditMode) {
       document.addEventListener("visibilitychange", changeShadowHidden)
       window.addEventListener("blur", changeShadowHidden)
     }
 
     return () => {
-      if (mode === "edit") {
+      if (isEditMode) {
         document.removeEventListener("visibilitychange", changeShadowHidden)
         window.removeEventListener("blur", changeShadowHidden)
       }
     }
-  }, [changeShadowHidden, dispatch, mode])
+  }, [changeShadowHidden, dispatch, isEditMode])
 
   return (
     <ShortCutContext.Provider value={{ showDeleteDialog }}>

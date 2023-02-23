@@ -353,27 +353,45 @@ function handleUpdateTargetPagePropsEffect(
   }
 }
 
+const updateComponentReflowComponentsAdapter = (
+  action: ReturnType<
+    | typeof componentsActions.addComponentReducer
+    | typeof componentsActions.updateComponentsShape
+    | typeof componentsActions.updateComponentContainerReducer
+  >,
+) => {
+  switch (action.type) {
+    case "components/addComponentReducer": {
+      return action.payload
+    }
+    case "components/updateComponentsShape": {
+      return action.payload.components
+    }
+    case "components/updateComponentContainerReducer": {
+      return action.payload.updateSlice.map((slice) => {
+        return slice.component
+      })
+    }
+    default:
+      return []
+  }
+}
+
 function handleUpdateComponentReflowEffect(
   action: AnyAction,
   listenApi: AppListenerEffectAPI,
 ) {
   const rootState = listenApi.getState()
   const rootNode = getCanvas(rootState)
-  let updateComponents: ComponentNode[] = []
-  if (action.type === "components/updateComponentsShape") {
-    updateComponents = (
-      action as ReturnType<typeof componentsActions.updateComponentsShape>
-    ).payload.components
-  }
-  if (action.type === "components/updateComponentContainerReducer") {
-    ;(
+  let updateComponents: ComponentNode[] =
+    updateComponentReflowComponentsAdapter(
       action as ReturnType<
-        typeof componentsActions.updateComponentContainerReducer
-      >
-    ).payload.updateSlice.forEach((slice) => {
-      updateComponents.push(slice.component)
-    })
-  }
+        | typeof componentsActions.addComponentReducer
+        | typeof componentsActions.updateComponentsShape
+        | typeof componentsActions.updateComponentContainerReducer
+      >,
+    )
+
   const effectResultMap = new Map<string, ComponentNode>()
   updateComponents.forEach((componentNode) => {
     const parentNodeDisplayName = componentNode.parentNode
@@ -438,7 +456,13 @@ const handleUpdateHeightEffect = (
   }
   if (oldHeight >= newItem.h && oldHeight > height) {
     const effectRows = oldHeight - newItem.h
-    const effectMap = getNearComponentNodes(newItem, cloneDeepAllComponents)
+    const effectMap = getNearComponentNodes(
+      {
+        ...newItem,
+        h: oldHeight,
+      },
+      cloneDeepAllComponents,
+    )
     effectMap.set(newItem.displayName, newItem)
     effectMap.forEach((node) => {
       if (node.displayName !== newItem.displayName) {
@@ -473,6 +497,7 @@ export function setupComponentsListeners(
       matcher: isAnyOf(
         componentsActions.updateComponentsShape,
         componentsActions.updateComponentContainerReducer,
+        componentsActions.addComponentReducer,
       ),
       effect: handleUpdateComponentReflowEffect,
     }),
