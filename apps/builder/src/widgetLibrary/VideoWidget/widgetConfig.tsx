@@ -6,7 +6,7 @@ export const VIDEO_WIDGET_CONFIG: WidgetConfig = {
   type: "VIDEO_WIDGET",
   displayName: "video",
   widgetName: i18n.t("widget.video.name"),
-  keywords: ["Video", "按钮"],
+  keywords: ["Video", "视频"],
   icon: <VideoWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 32,
