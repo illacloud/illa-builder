@@ -180,32 +180,18 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     triggerEventHandler("ended")
   }, [triggerEventHandler])
 
-  const [currentUrl, setCurrentUrl] = useState(url)
-
-  useEffect(() => {
-    // controls change need to reload react-player
-    // player reload when url change
-    setCurrentUrl(undefined)
-    setTimeout(() => {
-      setCurrentUrl(url)
-    }, 10)
-  }, [controls])
-
-  useEffect(() => {
-    setCurrentUrl(url)
-  }, [url])
-
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={fullStyle}>
         <WrappedVideo
           {...props}
+          // controls change need to reload react-player
+          key={controls ? 0 : 1}
           ref={videoRef}
           onReady={onReady}
           onPlay={onPlay}
           onPause={onPause}
           onEnded={onEnded}
-          url={currentUrl}
         />
       </div>
     </TooltipWrapper>
