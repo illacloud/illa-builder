@@ -1512,7 +1512,9 @@
       "failed": "无法加载PDF"
     },
     "video": {
-      "name": "视频"
+      "name": "视频",
+      "empty": "没有视频",
+      "fail": "加载失败"
     },
     "statistics": {
       "name": "数值统计"
