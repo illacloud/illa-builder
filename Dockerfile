@@ -9,6 +9,8 @@ RUN pwd
 
 ADD ./* ./
 
+RUN ls -l
+
 RUN npm install -g pnpm
 RUN whereis pnpm
 RUN whereis node
