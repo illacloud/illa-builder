@@ -146,7 +146,7 @@
           "inference_endpoint": "Inference Endpoint"
         },
         "placeholder": {
-          "url": "api/v2/endpoint.json"
+          "url": "在此处输入请求 URL"
         }
       },
       "panel": {
@@ -803,7 +803,10 @@
         "views": "视图",
         "images": "图片",
         "primary_value": "主要数值",
-        "secValue": "次要数值"
+        "secValue": "次要数值",
+        "border": "Border",
+        "color": "Color",
+        "icon": "Icon"
       },
       "setter_label": {
         "action": "动作",
@@ -1004,7 +1007,10 @@
           "prefix_text": "前缀文字",
           "suffix_text": "后缀文字"
         },
-        "mute": "静音"
+        "mute": "静音",
+        "collapse": {
+          "type": "Type"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1184,6 +1190,10 @@
       "statistics": {
         "set_primary_value": "setPrimaryValue",
         "reset_primary_value": "resetPrimaryValue"
+      },
+      "collapse": {
+        "expand_all_items": "Expand all items",
+        "collapse_all_items": "Collapse all items"
       }
     }
   },
@@ -1518,6 +1528,9 @@
     },
     "statistics": {
       "name": "数值统计"
+    },
+    "collapse": {
+      "name": "Collapse"
     }
   },
   "page": {
