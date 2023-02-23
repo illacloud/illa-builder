@@ -1009,7 +1009,13 @@
         },
         "mute": "Mute",
         "collapse": {
-          "type": "Type"
+          "type": "Type",
+          "accordin_mode": "Accordion mode",
+          "header_color": "Header",
+          "body_color": "Body",
+          "expand_icon": "Expand",
+          "collapse_icon": "Collapse",
+          "icon_color": "Color"
         }
       },
       "setter_tooltip": {
@@ -1050,7 +1056,12 @@
         "file_url": "Supports PDF URLs on the web, or base64 encoded data of pdf files. For example: \n{{ data:application/pdf;base64, example-data }}",
         "scale": "Scale each page to fill the width or height of the component.",
         "scroll": "Automatically locate to the beginning of each page when scrolling.",
-        "video_url": "Supports most video services or a direct link to any common video file type."
+        "video_url": "Supports most video services or a direct link to any common video file type.",
+        "collapse": {
+          "type": "Collapsible list: list, all items will automatically copy the style of the first item. You can specify the component data in each item via {{ currentItem.columnName }}. Collapsible panel: each panel is independent, you can specify the component style and data of each item separately.",
+          "items": "Number of items",
+          "accordin_mode": "In accordion mode, when an item is expanded, other items will collapse."
+        }
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
@@ -1074,7 +1085,10 @@
         "text_scroll": "Scroll",
         "text_clip": "Clip",
         "scale_height": "Height",
-        "scale_width": "Width"
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Collapsible panel"
+        }
       },
       "setter_placeholder": {
         "min_max_size": "No limits",
@@ -1706,6 +1720,15 @@
       "message": {
         "save_suc": "Successfully saved",
         "save_fail": "Failed to save"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Collapsible list"
+        }
       }
     }
   }
