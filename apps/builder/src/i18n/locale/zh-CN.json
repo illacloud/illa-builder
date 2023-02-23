@@ -144,6 +144,9 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint"
+        },
+        "placeholder": {
+          "url": "api/v2/endpoint.json"
         }
       },
       "panel": {
@@ -798,7 +801,9 @@
         "toolbar": "工具栏",
         "validation": "验证",
         "views": "视图",
-        "images": "图片"
+        "images": "图片",
+        "primary_value": "主要数值",
+        "secValue": "次要数值"
       },
       "setter_label": {
         "action": "动作",
@@ -985,7 +990,21 @@
         "loop": "循环播放",
         "volume": "音量",
         "show_controls": "显示控制栏",
-        "img_url_array": "图片URL数组"
+        "img_url_array": "图片URL数组",
+        "statistics": {
+          "label": "标签",
+          "primary_value": "主要数值",
+          "secValue": "次要数值",
+          "decimal": "小数位",
+          "trend_sign": "显示趋势标识",
+          "positive_sign": "正向标识",
+          "negative_sign": "负向标识",
+          "thousand_separator": "显示千位分隔符",
+          "trend_color": "使用趋势色",
+          "prefix_text": "前缀文字",
+          "suffix_text": "后缀文字"
+        },
+        "mute": "静音"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1039,7 +1058,7 @@
       "setter_tips": {
         "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。",
         "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}",
-        "img_url_array": "使用 {{ currentItem.key }} 从数据源获取图像 URL。"
+        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1053,7 +1072,17 @@
       },
       "setter_placeholder": {
         "min_max_size": "无限制",
-        "volume": "2"
+        "volume": "2",
+        "statistics": {
+          "decimal": "2",
+          "prefix_text": "¥",
+          "suffix_text": "%",
+          "positive_color": "正向颜色",
+          "negative_color": "负向颜色"
+        }
+      },
+      "setter_tootip": {
+        "volume": "0到1之间的数字"
       }
     },
     "page": {
@@ -1151,6 +1180,10 @@
         "placeholder": {
           "volume": "2"
         }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "resetPrimaryValue"
       }
     }
   },
@@ -1482,7 +1515,7 @@
       "name": "视频"
     },
     "statistics": {
-      "name": "Statistics"
+      "name": "数值统计"
     }
   },
   "page": {
