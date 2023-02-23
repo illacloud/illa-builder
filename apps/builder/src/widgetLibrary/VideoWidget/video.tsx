@@ -64,9 +64,6 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           onError={() => {
             setLoading(false)
           }}
-          onProgress={(progress) => {
-            console.log(" video onProgress", progress)
-          }}
         />
       </>
     )
@@ -150,7 +147,12 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [handleUpdateGlobalData, displayName, handleDeleteGlobalData])
+  }, [
+    displayName,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+    handleUpdateMultiExecutionResult,
+  ])
 
   const onPlay = useCallback(() => {
     handleUpdateMultiExecutionResult([
@@ -160,7 +162,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
       },
     ])
     triggerEventHandler("play")
-  }, [triggerEventHandler, handleUpdateMultiExecutionResult])
+  }, [displayName, triggerEventHandler, handleUpdateMultiExecutionResult])
 
   const onPause = useCallback(() => {
     handleUpdateMultiExecutionResult([
@@ -170,7 +172,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
       },
     ])
     triggerEventHandler("pause")
-  }, [triggerEventHandler, handleUpdateMultiExecutionResult])
+  }, [displayName, triggerEventHandler, handleUpdateMultiExecutionResult])
 
   const onReady = useCallback(() => {
     triggerEventHandler("ready")
