@@ -31,6 +31,7 @@ export const VIDEO_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
   methods: [
     "play",
     "pause",
+    "showControls",
     "setVideoUrl",
     "setVolume",
     "setSpeed",

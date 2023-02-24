@@ -135,6 +135,7 @@ export const transformEvents = (
         "setSpeed",
         "setLoop",
         "seekTo",
+        "showControls",
         "mute",
       ].includes(widgetMethod)
     ) {

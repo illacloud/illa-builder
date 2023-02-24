@@ -119,6 +119,14 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
           },
         ])
       },
+      showControls: (value: boolean) => {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { controls: value },
+          },
+        ])
+      },
       setLoop: (value: boolean) => {
         handleUpdateMultiExecutionResult([
           {
