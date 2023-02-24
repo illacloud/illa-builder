@@ -1017,7 +1017,9 @@
           "expand_icon": "Expand",
           "collapse_icon": "Collapse",
           "icon_color": "Color"
-        }
+        },
+        "choose_at_least": "Choose at least",
+        "choose_up_to": "Choose up to"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1107,6 +1109,10 @@
       },
       "setter_tootip": {
         "volume": "A number between 0 and 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Please choose at lease {{ min }} options.",
+        "choose_up_to": "Please choose up to {{max}} options."
       }
     },
     "page": {
