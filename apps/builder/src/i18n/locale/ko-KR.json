@@ -1546,6 +1546,9 @@
     },
     "collapse": {
       "name": "Collapse"
+    },
+    "multiselect": {
+      "name": "Multiselect"
     }
   },
   "page": {
