@@ -32,5 +32,4 @@ export const titleStyle = css`
 export const errorContentStyle = css`
   min-width: 700px;
   width: 100%;
-  //overflow-y: scroll;
 `
