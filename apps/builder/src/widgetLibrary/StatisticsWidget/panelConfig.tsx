@@ -17,7 +17,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-label-label`,
-        labelName: i18n.t("editor.inspect.setter_label.label"),
+        labelName: i18n.t("editor.inspect.setter_label.statistics.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
         isSetterSingleRow: true,
@@ -25,7 +25,9 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-primaryValue`,
-        labelName: "Primary Value",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.statistics.primary_value",
+        ),
         attrName: "primaryValue",
         expectedType: VALIDATION_TYPES.NUMBER,
         isSetterSingleRow: true,
@@ -33,7 +35,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-secondaryValue`,
-        labelName: "Secondary Value",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.secValue"),
         attrName: "secondaryValue",
         isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -43,20 +45,22 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${baseWidgetName}-primaryValue`,
-    groupName: "primaryValue",
+    groupName: i18n.t("editor.inspect.setter_group.primary_value"),
     children: [
       {
         id: `${baseWidgetName}-label-decimalPlace`,
-        labelName: "Decimal place",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.decimal"),
         attrName: "decimalPlace",
         setterType: "INPUT_SETTER",
         isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.NUMBER,
-        placeholder: "{{0}}",
+        placeholder: i18n.t(
+          "editor.inspect.setter_placeholder.statistics.decimal",
+        ),
       },
       {
         id: `${baseWidgetName}-label-showTrendSign`,
-        labelName: "Show trend sign",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.trend_sign"),
         attrName: "showTrendSign",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
@@ -65,7 +69,9 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-positiveSign`,
-        labelName: "Positive sign",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.statistics.positive_sign",
+        ),
         attrName: "positiveSign",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "ICON_SETTER",
@@ -74,7 +80,9 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-negativeSign`,
-        labelName: "Negative sign",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.statistics.negative_sign",
+        ),
         attrName: "negativeSign",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "ICON_SETTER",
@@ -83,7 +91,9 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-showSeparator`,
-        labelName: "Show thousand separator",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.statistics.thousand_separator",
+        ),
         attrName: "showSeparator",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
@@ -92,7 +102,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-enableTrendColor`,
-        labelName: "Enable Trend Color",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.trend_color"),
         attrName: "enableTrendColor",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
@@ -101,29 +111,33 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-prefixText`,
-        labelName: "prefix Text",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.prefix_text"),
         attrName: "prefixText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
-        placeholder: "US$",
+        placeholder: i18n.t(
+          "editor.inspect.setter_placeholder.statistics.prefix_text",
+        ),
       },
       {
         id: `${baseWidgetName}-label-suffixText`,
-        labelName: "suffix Text",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.suffix_text"),
         attrName: "suffixText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
-        placeholder: "%",
+        placeholder: i18n.t(
+          "editor.inspect.setter_placeholder.statistics.suffix_text",
+        ),
       },
     ],
   },
   {
     id: `${baseWidgetName}-secondaryValue`,
-    groupName: "secondaryValue",
+    groupName: i18n.t("editor.inspect.setter_group.secValue"),
     children: [
       {
         id: `${baseWidgetName}-label-secondaryDecimalPlace`,
-        labelName: "Decimal place",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.decimal"),
         attrName: "secondaryDecimalPlace",
         setterType: "INPUT_SETTER",
         isSetterSingleRow: true,
@@ -131,7 +145,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-secondaryShowTrendSign`,
-        labelName: "Show trend sign",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.trend_sign"),
         attrName: "secondaryShowTrendSign",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
@@ -140,7 +154,9 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-secondaryPositiveSign`,
-        labelName: "Positive sign",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.statistics.positive_sign",
+        ),
         attrName: "secondaryPositiveSign",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "ICON_SETTER",
@@ -149,7 +165,9 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-secondaryNegativeSign`,
-        labelName: "Negative sign",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.statistics.negative_sign",
+        ),
         attrName: "secondaryNegativeSign",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "ICON_SETTER",
@@ -158,7 +176,9 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-secondaryShowSeparator`,
-        labelName: "Show thousand separator",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.statistics.thousand_separator",
+        ),
         attrName: "secondaryShowSeparator",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
@@ -167,7 +187,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-secondaryEnableTrendColor`,
-        labelName: "Enable Trend Color",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.trend_color"),
         attrName: "secondaryEnableTrendColor",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
@@ -176,7 +196,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-secondaryPrefixText`,
-        labelName: "prefix Text",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.prefix_text"),
         attrName: "secondaryPrefixText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -184,7 +204,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-secondarySuffixText`,
-        labelName: "suffix Text",
+        labelName: i18n.t("editor.inspect.setter_label.statistics.suffix_text"),
         attrName: "secondarySuffixText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -277,14 +297,18 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: `${baseWidgetName}-style-positiveColorScheme`,
-            labelName: "positive ColorScheme",
+            labelName: i18n.t(
+              "editor.inspect.setter_placeholder.statistics.positive_color",
+            ),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "positiveColorScheme",
             defaultValue: "blue",
           },
           {
             id: `${baseWidgetName}-style-negativeColorScheme`,
-            labelName: "negative ColorScheme",
+            labelName: i18n.t(
+              "editor.inspect.setter_placeholder.statistics.negative_color",
+            ),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "negativeColorScheme",
             defaultValue: "blue",

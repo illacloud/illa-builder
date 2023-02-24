@@ -26,25 +26,30 @@ export const getStatisticContainerStyle = (textAlign?: string) => {
     align-items: center;
   `
 }
-
-export const getStatisticStyle = (color?: string, secondary?: boolean) => {
-  const secondaryStyle = secondary
-    ? css`
-        & span {
-          font-size: 12px;
-          font-weight: 500;
-          line-height: 18px;
-        }
-      `
-    : css``
-
+export const getSecondaryStatisticStyle = (color?: string) => {
   return css`
-    ${secondaryStyle};
+    ${overflowStyle};
     max-width: 100%;
     & > div:last-child > div,
     & > div:last-child > div > span {
       color: ${color};
-      ${overflowStyle};
+      max-width: 100%;
+    }
+    & span {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 18px;
+    }
+  `
+}
+
+export const getStatisticStyle = (color?: string) => {
+  return css`
+    ${overflowStyle};
+    max-width: 100%;
+    & > div:last-child > div,
+    & > div:last-child > div > span {
+      color: ${color};
       max-width: 100%;
     }
   `

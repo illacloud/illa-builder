@@ -11,8 +11,8 @@ import {
 } from "@/widgetLibrary/StatisticsWidget/interface"
 import {
   firstStatisticContainerStyle,
-  getPrefixContentStyle,
   getPrefixIconStyle,
+  getSecondaryStatisticStyle,
   getStatisticContainerStyle,
   getStatisticStyle,
   suffixTextStyle,
@@ -127,11 +127,11 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
         <div css={firstStatisticContainerStyle}>
           {secondaryIcon}
           <Statistic
-            // _css={getStatisticStyle(secondaryColor, true)}
+            _css={getSecondaryStatisticStyle(secondaryColor)}
             groupSeparator={secondarySeparator}
             value={secondaryValue}
             precision={secondaryDecimalPlace}
-            prefix={prefixText}
+            prefix={secondaryPrefixText}
             suffix={secondarySuffixText}
           />
         </div>
@@ -158,26 +158,8 @@ WrappedStatistic.displayName = "WrappedStatistic"
 
 export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
   const {
-    label,
     primaryValue,
-    secondaryValue,
-    decimalPlace,
-    showTrendSign,
-    positiveSign,
-    negativeSign,
-    showSeparator,
-    enableTrendColor,
-    secondaryPrefixText,
-    secondarySuffixText,
-    secondaryDecimalPlace,
-    secondaryShowTrendSign,
-    secondaryPositiveSign,
-    secondaryNegativeSign,
-    secondaryShowSeparator,
-    secondaryEnableTrendColor,
     triggerEventHandler,
-    prefixText,
-    suffixText,
     handleUpdateDsl,
     displayName,
     tooltipText,
@@ -188,24 +170,6 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
-      primaryValue,
-      secondaryValue,
-      decimalPlace,
-      showTrendSign,
-      positiveSign,
-      negativeSign,
-      showSeparator,
-      enableTrendColor,
-      secondaryPrefixText,
-      secondarySuffixText,
-      secondaryDecimalPlace,
-      secondaryShowTrendSign,
-      secondaryPositiveSign,
-      secondaryNegativeSign,
-      secondaryShowSeparator,
-      secondaryEnableTrendColor,
-      prefixText,
-      suffixText,
       setPrimaryValue: (value: number) => {
         handleUpdateDsl({ primaryValue: value })
       },
@@ -219,28 +183,11 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
       handleDeleteGlobalData(displayName)
     }
   }, [
-    decimalPlace,
     displayName,
-    enableTrendColor,
     handleDeleteGlobalData,
     handleUpdateDsl,
     handleUpdateGlobalData,
-    negativeSign,
-    positiveSign,
-    prefixText,
     primaryValue,
-    secondaryDecimalPlace,
-    secondaryEnableTrendColor,
-    secondaryNegativeSign,
-    secondaryPositiveSign,
-    secondaryPrefixText,
-    secondaryShowSeparator,
-    secondaryShowTrendSign,
-    secondarySuffixText,
-    secondaryValue,
-    showSeparator,
-    showTrendSign,
-    suffixText,
   ])
 
   const handleOnClick = useCallback(() => {
