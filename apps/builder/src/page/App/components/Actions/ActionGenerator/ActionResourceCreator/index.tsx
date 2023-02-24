@@ -1,10 +1,12 @@
 import { FC, ReactNode, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
+import { DynamoDBConfigElement } from "@/page/App/components/Actions/DynamoDBConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
 import { GraphQLConfigElement } from "@/page/App/components/Actions/GraphQLConfigElement"
 import { HuggingFaceConfigElement } from "@/page/App/components/Actions/HuggingFaceConfigElement"
+import { HuggingFaceEndpointConfigElement } from "@/page/App/components/Actions/HuggingFaceEndpointConfigElement"
 import { MicrosoftSqlConfigElement } from "@/page/App/components/Actions/MicrosoftSqlConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
@@ -75,6 +77,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
             onFinished={onFinished}
           />
         )
+      case "dynamodb":
+        return <DynamoDBConfigElement {...generalProps} />
       case "snowflake":
         return <SnowflakeConfigElement {...generalProps} />
       case "s3":
@@ -87,6 +91,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         return <SMTPConfigElement onBack={handleBack} onFinished={onFinished} />
       case "huggingface":
         return <HuggingFaceConfigElement {...generalProps} />
+      case "hfendpoint":
+        return <HuggingFaceEndpointConfigElement {...generalProps} />
       default:
         return null
     }

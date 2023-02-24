@@ -1,5 +1,5 @@
 import { CellContext, ColumnDef } from "@tanstack/react-table"
-import { FC, useEffect, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, Empty, Space, Table } from "@illa-design/react"
@@ -38,6 +38,10 @@ import {
   ResourceContent,
   ResourceListState,
 } from "@/redux/resource/resourceState"
+import {
+  SnowflakeAuthenticationType,
+  SnowflakeResource,
+} from "@/redux/resource/snowflakeResource"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
@@ -58,8 +62,10 @@ export const DashboardResources: FC = () => {
         case "smtp":
         case "restapi":
         case "elasticsearch":
+        case "dynamodb":
         case "s3":
         case "huggingface":
+        case "hfendpoint":
           break
         case "clickhouse":
         case "supabasedb":
@@ -84,6 +90,10 @@ export const DashboardResources: FC = () => {
             dbName = (mongoRes.content.configContent as MongoDbGuiConfigContent)
               .databaseName
           }
+        case "snowflake":
+          dbName = (
+            resource.content as SnowflakeResource<SnowflakeAuthenticationType>
+          ).database
           break
       }
       return {

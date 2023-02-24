@@ -21,6 +21,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
     style = {},
     mode = CODE_LANG.JAVASCRIPT,
     lineNumbers = false,
+    sqlScheme,
   } = props
   return (
     <>
@@ -33,6 +34,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
           wrapperCss={actionItemCodeEditorStyle}
           lang={mode}
           value={value}
+          sqlScheme={sqlScheme}
           onChange={onChange}
           expectValueType={expectedType}
           placeholder={placeholder}

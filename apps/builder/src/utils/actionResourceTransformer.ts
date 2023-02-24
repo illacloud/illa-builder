@@ -1,3 +1,4 @@
+import i18n from "@/i18n/config"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
 
@@ -14,6 +15,10 @@ export function getActionSubTitleFromActionType(
     switch (actionType) {
       case "huggingface":
         return "Inference API"
+      case "hfendpoint":
+        return "Inference Endpoint"
+      case "s3":
+        return i18n.t("editor.action.form.label.s3")
     }
   }
   return ""
@@ -38,6 +43,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "Redis"
       case "elasticsearch":
         return "Elastic Search"
+      case "dynamodb":
+        return "DynamoDB"
       case "snowflake":
         return "Snowflake"
       case "postgresql":
@@ -49,6 +56,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
       case "smtp":
         return "SMTP"
       case "huggingface":
+        return "Hugging Face"
+      case "hfendpoint":
         return "Hugging Face"
       case "firebase":
         return "Firebase"
@@ -73,6 +82,10 @@ export function getResourceSubTitleFromResourceType(
     switch (resourceType) {
       case "huggingface":
         return "Inference API"
+      case "hfendpoint":
+        return "Inference Endpoint"
+      case "s3":
+        return i18n.t("editor.action.form.label.s3")
     }
   }
   return ""
@@ -99,6 +112,8 @@ export function getResourceNameFromResourceType(
         return "Redis"
       case "elasticsearch":
         return "Elastic Search"
+      case "dynamodb":
+        return "DynamoDB"
       case "snowflake":
         return "Snowflake"
       case "postgresql":
@@ -109,8 +124,10 @@ export function getResourceNameFromResourceType(
         return "TiDB"
       case "smtp":
         return "SMTP"
+      case "hfendpoint":
+        return "Hugging Face"
       case "huggingface":
-        return "Hugging face"
+        return "Hugging Face"
       case "s3":
         return "Amazon S3"
       case "firebase":
