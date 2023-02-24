@@ -736,8 +736,8 @@
           "onCloseModal": "关闭对话框",
           "play": "播放",
           "pause": "暂停",
-          "loaded": "已载入",
-          "ended": "已结束"
+          "ended": "已结束",
+          "loaded": "已载入"
         },
         "image_list": {
           "title": "图片",
@@ -1738,5 +1738,8 @@
         }
       }
     }
+  },
+  "message": {
+    "circular_dependency": "{{ nodeName }} 有循环依赖"
   }
 }
