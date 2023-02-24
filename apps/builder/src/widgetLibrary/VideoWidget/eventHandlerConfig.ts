@@ -19,7 +19,7 @@ export const VIDEO_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       label: i18n.t(
         "editor.inspect.setter_content.widget_action_type_name.loaded",
       ),
-      value: "ready",
+      value: "loaded",
     },
     {
       label: i18n.t(

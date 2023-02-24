@@ -183,7 +183,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
   }, [displayName, triggerEventHandler, handleUpdateMultiExecutionResult])
 
   const onReady = useCallback(() => {
-    triggerEventHandler("ready")
+    triggerEventHandler("loaded")
   }, [triggerEventHandler])
 
   const onEnded = useCallback(() => {
