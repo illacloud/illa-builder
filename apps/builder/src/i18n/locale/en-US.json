@@ -1100,6 +1100,9 @@
           "suffix_text": "%",
           "positive_color": "Positive color",
           "negative_color": "Negative color"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
         }
       },
       "setter_tootip": {
@@ -1194,7 +1197,7 @@
       "stop": "Stop",
       "mute": "Mute",
       "loop": "Loop",
-      "show_controls": "Show Controls",
+      "show_controls": "Show controls",
       "set_volumn": "Set Volumn",
       "set_volume": {
         "volume": "Volume",
