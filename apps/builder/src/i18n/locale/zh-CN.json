@@ -736,8 +736,8 @@
           "onCloseModal": "关闭对话框",
           "play": "播放",
           "pause": "暂停",
-          "loaded": "已载入",
-          "ended": "已结束"
+          "ended": "已结束",
+          "loaded": "已载入"
         },
         "image_list": {
           "title": "图片",
@@ -1100,6 +1100,9 @@
           "suffix_text": "%",
           "positive_color": "正向颜色",
           "negative_color": "负向颜色"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
         }
       },
       "setter_tootip": {
@@ -1194,7 +1197,7 @@
       "stop": "Stop",
       "mute": "静音",
       "loop": "循环播放",
-      "show_controls": "Show Controls",
+      "show_controls": "显示控制栏",
       "set_volumn": "Set Volumn",
       "set_volume": {
         "volume": "音量",
@@ -1546,6 +1549,9 @@
     },
     "collapse": {
       "name": "Collapse"
+    },
+    "multiselect": {
+      "name": "Multiselect"
     }
   },
   "page": {
@@ -1732,5 +1738,8 @@
         }
       }
     }
+  },
+  "message": {
+    "circular_dependency": "{{ nodeName }} 有循环依赖"
   }
 }
