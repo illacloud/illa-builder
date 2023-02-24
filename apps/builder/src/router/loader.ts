@@ -51,6 +51,9 @@ export const requireAuth = async (
 ) => {
   const userInfo = getCurrentUser(store.getState())
   const token = getAuthToken() || pathToken
+  if (userInfo.userId) {
+    return null
+  }
   if (pathToken) {
     setLocalStorage("token", pathToken, -1)
     // remove url params form location
@@ -80,20 +83,5 @@ export const requireAuth = async (
     }
     console.error(e)
   }
-  return null
-}
-
-export const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
-  const { request } = args
-  const url = new URL(request.url)
-  const token = url?.searchParams?.get("token")
-  if (!token) return null
-  setLocalStorage("token", token, -1)
-  const current = removeUrlParams(window.location.href, ["token"])
-  window.history.replaceState(
-    {},
-    "",
-    `${window.location.pathname}${current.search}`,
-  )
   return null
 }

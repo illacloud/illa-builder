@@ -381,7 +381,9 @@ export const applyRNDWrapperStyle = (
 ) => css`
   > .wrapperPending {
     > #moveBar {
-      visibility: ${hasEditors || isSelected ? "visible" : "hidden"};
+      visibility: ${isEditor && (hasEditors || isSelected)
+        ? "visible"
+        : "hidden"};
     }
   }
 

@@ -143,10 +143,11 @@
         },
         "label": {
           "inference_api": "Inference API",
-          "inference_endpoint": "Inference Endpoint"
+          "inference_endpoint": "Inference Endpoint",
+          "s3": "Invalid in public apps"
         },
         "placeholder": {
-          "url": "api/v2/endpoint.json"
+          "url": "Enter request URL here"
         }
       },
       "panel": {
@@ -735,8 +736,8 @@
           "onCloseModal": "Close modal",
           "play": "Play",
           "pause": "Pause",
-          "loaded": "Loaded",
-          "ended": "Ended"
+          "ended": "Ended",
+          "loaded": "Loaded"
         },
         "image_list": {
           "title": "Images",
@@ -803,7 +804,10 @@
         "views": "VIEWS",
         "images": "IMAGES",
         "primary_value": "Primary value",
-        "secValue": "Secondary value"
+        "secValue": "Secondary value",
+        "border": "Border",
+        "color": "Color",
+        "icon": "Icon"
       },
       "setter_label": {
         "action": "Action",
@@ -948,7 +952,7 @@
         "title": "Title",
         "tooltip": "Tooltip",
         "trail_color": "Trail color",
-        "trigger_query": "Trigger query",
+        "trigger_query": "Trigger action",
         "type": "Type",
         "validate_inputs_on_submit": "Validate inputs on submit",
         "value": "Value",
@@ -1004,7 +1008,16 @@
           "prefix_text": "Prefix text",
           "suffix_text": "Suffix text"
         },
-        "mute": "Mute"
+        "mute": "Mute",
+        "collapse": {
+          "type": "Type",
+          "accordin_mode": "Accordion mode",
+          "header_color": "Header",
+          "body_color": "Body",
+          "expand_icon": "Expand",
+          "collapse_icon": "Collapse",
+          "icon_color": "Color"
+        }
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1044,7 +1057,12 @@
         "file_url": "Supports PDF URLs on the web, or base64 encoded data of pdf files. For example: \n{{ data:application/pdf;base64, example-data }}",
         "scale": "Scale each page to fill the width or height of the component.",
         "scroll": "Automatically locate to the beginning of each page when scrolling.",
-        "video_url": "Supports most video services or a direct link to any common video file type."
+        "video_url": "Supports most video services or a direct link to any common video file type.",
+        "collapse": {
+          "type": "Collapsible list: list, all items will automatically copy the style of the first item. You can specify the component data in each item via {{ currentItem.columnName }}. Collapsible panel: each panel is independent, you can specify the component style and data of each item separately.",
+          "items": "Number of items",
+          "accordin_mode": "In accordion mode, when an item is expanded, other items will collapse."
+        }
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
@@ -1068,7 +1086,10 @@
         "text_scroll": "Scroll",
         "text_clip": "Clip",
         "scale_height": "Height",
-        "scale_width": "Width"
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Collapsible panel"
+        }
       },
       "setter_placeholder": {
         "min_max_size": "No limits",
@@ -1079,6 +1100,9 @@
           "suffix_text": "%",
           "positive_color": "Positive color",
           "negative_color": "Negative color"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
         }
       },
       "setter_tootip": {
@@ -1173,7 +1197,7 @@
       "stop": "Stop",
       "mute": "Mute",
       "loop": "Loop",
-      "show_controls": "Show Controls",
+      "show_controls": "Show controls",
       "set_volumn": "Set Volumn",
       "set_volume": {
         "volume": "Volume",
@@ -1184,6 +1208,10 @@
       "statistics": {
         "set_primary_value": "setPrimaryValue",
         "reset_primary_value": "resetPrimaryValue"
+      },
+      "collapse": {
+        "expand_all_items": "Expand all items",
+        "collapse_all_items": "Collapse all items"
       }
     }
   },
@@ -1512,10 +1540,18 @@
       "failed": "PDF could not be loaded"
     },
     "video": {
-      "name": "Video"
+      "name": "Video",
+      "empty": "No videos",
+      "fail": "Failed to load"
     },
     "statistics": {
       "name": "Statistics"
+    },
+    "collapse": {
+      "name": "Collapse"
+    },
+    "multiselect": {
+      "name": "Multiselect"
     }
   },
   "page": {
@@ -1693,5 +1729,17 @@
         "save_fail": "Failed to save"
       }
     }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Collapsible list"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "A circular dependency occurs on {{ nodeName }}"
   }
 }

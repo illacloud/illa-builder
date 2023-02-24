@@ -24,6 +24,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
     } = props
     const { t } = useTranslation()
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
 
     if (url === "") {
       return <div css={loadingStyle}>{t("widget.video.empty")}</div>
@@ -35,9 +36,11 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           <div css={loadingStyle}>
             <Loading colorScheme="white" />
           </div>
+        ) : error ? (
+          <div css={loadingStyle}>{t("widget.video.fail")}</div>
         ) : null}
         <ReactPlayer
-          style={loading ? { display: "none" } : undefined}
+          style={loading || error ? { display: "none" } : undefined}
           fallback={
             <div css={loadingStyle}>
               <Loading colorScheme="white" />
@@ -56,6 +59,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           draggable={false}
           onReady={() => {
             setLoading(false)
+            setError(false)
             onReady()
           }}
           onPlay={onPlay}
@@ -63,9 +67,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           onEnded={onEnded}
           onError={() => {
             setLoading(false)
-          }}
-          onProgress={(progress) => {
-            console.log(" video onProgress", progress)
+            setError(true)
           }}
         />
       </>
@@ -122,6 +124,14 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
           },
         ])
       },
+      showControls: (value: boolean) => {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { controls: value },
+          },
+        ])
+      },
       setLoop: (value: boolean) => {
         handleUpdateMultiExecutionResult([
           {
@@ -150,7 +160,12 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [handleUpdateGlobalData, displayName, handleDeleteGlobalData])
+  }, [
+    displayName,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+    handleUpdateMultiExecutionResult,
+  ])
 
   const onPlay = useCallback(() => {
     handleUpdateMultiExecutionResult([
@@ -160,7 +175,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
       },
     ])
     triggerEventHandler("play")
-  }, [triggerEventHandler, handleUpdateMultiExecutionResult])
+  }, [displayName, triggerEventHandler, handleUpdateMultiExecutionResult])
 
   const onPause = useCallback(() => {
     handleUpdateMultiExecutionResult([
@@ -170,10 +185,10 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
       },
     ])
     triggerEventHandler("pause")
-  }, [triggerEventHandler, handleUpdateMultiExecutionResult])
+  }, [displayName, triggerEventHandler, handleUpdateMultiExecutionResult])
 
   const onReady = useCallback(() => {
-    triggerEventHandler("ready")
+    triggerEventHandler("loaded")
   }, [triggerEventHandler])
 
   const onEnded = useCallback(() => {

@@ -27,7 +27,10 @@ import {
 } from "@/api/team"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
+import {
+  DashboardItemMenuProps,
+  DeleteDashboardAppResponse,
+} from "@/page/Dashboard/components/DashboardItemMenu/interface"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
@@ -187,7 +190,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                         },
                         closable: false,
                         onOk: () => {
-                          BuilderApi.teamRequest<DashboardApp>(
+                          BuilderApi.teamRequest<DeleteDashboardAppResponse>(
                             {
                               url: `/apps/${appId}`,
                               method: "DELETE",
@@ -195,7 +198,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                             (response) => {
                               dispatch(
                                 dashboardAppActions.removeDashboardAppReducer(
-                                  response.data.appId,
+                                  response.data.appID,
                                 ),
                               )
                               message.success({

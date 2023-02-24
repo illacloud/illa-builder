@@ -8,7 +8,7 @@ import {
   DragInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
-import { getIllaMode } from "@/redux/config/configSelector"
+import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import store from "@/store"
 import { endDrag, startDrag } from "@/utils/drag/drag"
@@ -24,7 +24,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
   (props: ComponentItemProps) => {
     const { widgetName, icon, id, ...partialDragInfo } = props
 
-    const illaMode = useSelector(getIllaMode)
+    const isEditMode = useSelector(getIsILLAEditMode)
 
     const [, dragRef, dragPreviewRef] = useDrag<
       DragInfo,
@@ -34,7 +34,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
       () => ({
         type: "components",
         canDrag: () => {
-          return illaMode === "edit"
+          return isEditMode
         },
         end: (draggedItem, monitor) => {
           const dropResultInfo = monitor.getDropResult()
@@ -58,7 +58,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
           }
         },
       }),
-      [illaMode],
+      [isEditMode],
     )
 
     return (

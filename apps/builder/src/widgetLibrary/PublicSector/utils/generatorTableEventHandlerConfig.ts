@@ -220,6 +220,17 @@ export const generatorTableEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "mute",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-showControls`,
+        labelName: i18n.t("editor.method.show_controls"),
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        // expectedType: VALIDATION_TYPES.BOOLEAN,
+        shown: (widgetMethod) => widgetMethod === "showControls",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         setterType: "DYNAMIC_SWITCH_SETTER",

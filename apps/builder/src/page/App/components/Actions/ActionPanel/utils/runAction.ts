@@ -11,6 +11,7 @@ import {
   ActionType,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
+import { DynamoActionStructParamsDataTransferType } from "@/redux/currentApp/action/dynamoDBAction"
 import {
   AuthActionTypeValue,
   FirestoreActionTypeValue,
@@ -338,7 +339,7 @@ function getRealEventHandler(eventHandler?: any[]) {
 }
 
 const transformDataFormat = (
-  actionType: string,
+  actionType: ActionType,
   contents: Record<string, any>,
 ) => {
   switch (actionType) {
@@ -409,6 +410,8 @@ const transformDataFormat = (
       }
     }
     case "huggingface":
+    case "hfendpoint":
+      const isEndpoint = actionType === "hfendpoint"
       const { modelID, detailParams, ...otherParams } = contents
       const { type, content } = otherParams.inputs || {}
       let newInputs = { type, content }
@@ -425,7 +428,6 @@ const transformDataFormat = (
         }
       }
       const keys = Object.keys(detailParams)
-
       const realDetailParams = keys.map((key: string) => {
         const currentValue = detailParams[key]
         return {
@@ -439,12 +441,25 @@ const transformDataFormat = (
         }
       })
       return {
-        modelID,
+        ...(!isEndpoint && { modelID }),
         params: {
           withDetailParams: otherParams.withDetailParams,
           inputs: newInputs,
           detailParams: realDetailParams,
         },
+      }
+    case "dynamodb":
+      const { structParams } = contents
+      let newStructParams = { ...structParams }
+      Object.keys(DynamoActionStructParamsDataTransferType).forEach((key) => {
+        const value = DynamoActionStructParamsDataTransferType[key]
+        if (structParams[key] === "") {
+          newStructParams[key] = value
+        }
+      })
+      return {
+        ...contents,
+        structParams: newStructParams,
       }
     default:
       return contents

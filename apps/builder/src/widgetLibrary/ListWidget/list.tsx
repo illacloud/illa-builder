@@ -10,7 +10,7 @@ import {
   applyBarPointerStyle,
   applyDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { getIllaMode } from "@/redux/config/configSelector"
+import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   getExecutionResult,
@@ -135,8 +135,8 @@ const RenderCopyContainer: FC<RenderCopyContainerProps> = (props) => {
 
 const resizeBottomHandler = () => {
   const rootState = store.getState()
-  const illaMode = getIllaMode(rootState)
-  const scaleSquareState = illaMode !== "edit" ? "production" : "normal"
+  const isEditMode = getIsILLAEditMode(rootState)
+  const scaleSquareState = !isEditMode ? "production" : "normal"
   return {
     bottom: (
       <div css={applyBarHandlerStyle(true, scaleSquareState, "b")}>
@@ -169,13 +169,13 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     pageSize,
     handleUpdateSelectedItem,
     itemBackGroundColor,
-    illaMode,
     blockColumns,
     dynamicHeight = "fixed",
     h,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
+  const isEditMode = useSelector(getIsILLAEditMode)
 
   const itemNumber = useMemo(() => {
     return (
@@ -217,9 +217,8 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     },
     [handleUpdateOriginalDSLMultiAttr, itemHeight],
   )
-  const isEditor = illaMode === "edit"
 
-  const canShowBorder = isEditor && isMouseHover
+  const canShowBorder = isEditMode && isMouseHover
 
   return (
     <div
@@ -259,7 +258,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
               true,
               canShowBorder,
               itemBackGroundColor,
-              isEditor,
+              isEditMode,
             )}
             onClick={() => {
               handleUpdateSelectedItem(0)
@@ -290,7 +289,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
                 false,
                 canShowBorder,
                 itemBackGroundColor,
-                isEditor,
+                isEditMode,
                 itemHeight,
               )}
               key={node.displayName}
@@ -333,7 +332,6 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
     copyComponents = [],
     handleUpdateSelectedItem,
     itemBackGroundColor,
-    illaMode,
     blockColumns,
     dynamicHeight,
     updateComponentHeight,
@@ -343,6 +341,8 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
+  const isEditMode = useSelector(getIsILLAEditMode)
+
   const propsRef = useRef(props)
 
   useEffect(() => {
@@ -362,8 +362,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
     [handleUpdateOriginalDSLMultiAttr, itemHeight],
   )
 
-  const isEditor = illaMode === "edit"
-  const canShowBorder = isEditor && isMouseHover
+  const canShowBorder = isEditMode && isMouseHover
   return (
     <div
       css={ListParentContainerWithScroll}
@@ -401,7 +400,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
             true,
             canShowBorder,
             itemBackGroundColor,
-            isEditor,
+            isEditMode,
           )}
           onClick={() => {
             handleUpdateSelectedItem(0)
@@ -432,7 +431,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
               false,
               canShowBorder,
               itemBackGroundColor,
-              isEditor,
+              isEditMode,
               itemHeight,
             )}
             key={node.displayName}
@@ -469,7 +468,6 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
   const propsRef = useRef(props)
   const executionResult = useSelector(getExecutionResult)
   const rawTree = useSelector(getRawTree)
-  const illaMode = useSelector(getIllaMode)
 
   const prevDataSourcesRef = useRef(dataSources)
 
@@ -636,14 +634,12 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
       {...props}
       copyComponents={getChildrenNodes}
       handleUpdateSelectedItem={handleUpdateSelectedItem}
-      illaMode={illaMode}
     />
   ) : (
     <ListWidgetWithScroll
       {...props}
       copyComponents={getChildrenNodes}
       handleUpdateSelectedItem={handleUpdateSelectedItem}
-      illaMode={illaMode}
     />
   )
 }
