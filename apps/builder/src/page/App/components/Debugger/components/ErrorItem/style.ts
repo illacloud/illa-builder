@@ -9,19 +9,28 @@ export const errorContainerStyle = css`
 export const errorItemStyle = css`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   padding: 8px 16px;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
-  height: 38px;
+  min-height: 38px;
   z-index: 1;
+`
+
+export const errorItemContentStyle = css`
+  display: flex;
+  align-items: start;
 `
 
 export const nameStyle = css`
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   margin-right: 8px;
+`
+
+export const errorInfoStyle = css`
+  word-break: break-word;
 `
 
 export const sourceStyle = css`
@@ -35,12 +44,14 @@ export const sourceStyle = css`
 `
 
 export const errorIconStyle = css`
+  flex-shrink: 0;
   color: ${globalColor(`--${illaPrefix}-red-03`)};
+  margin-top: 3px;
 `
 
 export const errorExpandStyle = css`
   padding: 2px 4px;
-  margin: 0 4px;
+  margin: 5px 4px;
 `
 
 export function applyExpandIconStyle(expanded?: boolean): SerializedStyles {

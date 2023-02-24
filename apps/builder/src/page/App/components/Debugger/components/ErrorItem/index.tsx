@@ -18,6 +18,8 @@ import {
   errorContainerStyle,
   errorExpandStyle,
   errorIconStyle,
+  errorInfoStyle,
+  errorItemContentStyle,
   errorItemStyle,
   errorMessageStyle,
   jsonContentAnimation,
@@ -61,7 +63,7 @@ export const ErrorItem: FC<ErrorItemProps> = (props) => {
   return (
     <div css={errorContainerStyle}>
       <div css={errorItemStyle}>
-        <div>
+        <div css={errorItemContentStyle}>
           <ErrorCircleIcon size={"16px"} css={errorIconStyle} />
           <span
             css={[errorExpandStyle, applyExpandIconStyle(isExpanded)]}
@@ -74,7 +76,7 @@ export const ErrorItem: FC<ErrorItemProps> = (props) => {
           <span css={nameStyle} onClick={handleComponentSelect}>
             [{displayName}]
           </span>
-          <span>The value at {attrPath} is invalid</span>
+          <span css={errorInfoStyle}>The value at {attrPath} is invalid</span>
         </div>
         <div css={sourceStyle} onClick={handleComponentSelect}>
           {pathName}
