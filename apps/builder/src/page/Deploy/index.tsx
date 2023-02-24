@@ -12,6 +12,7 @@ import {
   logoStyle,
 } from "@/page/Deploy/style"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { startAppListening } from "@/store"
 
@@ -21,6 +22,7 @@ export const Deploy: FC = () => {
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
+      setupComponentsListeners(startAppListening),
       setupExecutionListeners(startAppListening),
     ]
     document.title = currentApp.appName

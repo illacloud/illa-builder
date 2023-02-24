@@ -88,6 +88,7 @@ export const RenderComponentCanvasWithJson: FC<{
     })
   }, [
     addedRowNumber,
+    blockColumns,
     canResizeY,
     componentNode.childrenNode,
     minHeight,

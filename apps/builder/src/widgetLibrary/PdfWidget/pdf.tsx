@@ -24,6 +24,7 @@ import {
   applyHiddenStyle,
   documentInitStyle,
   fullPageStyle,
+  pageStyle,
   pdfContainerStyle,
   pdfStyle,
   pdfWrapperStyle,
@@ -42,7 +43,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const pageRef = useRef<HTMLDivElement[]>([])
   const documentRef = useRef<HTMLDivElement>(null)
   const [numPages, setNumPages] = useState<number>(0)
-  const [pageNumber, setPageNumber] = useState<number>(0)
+  const [pageNumber, setPageNumber] = useState<number>(1)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<boolean>(false)
   const [hasButtonClicked, setButtonClick] = useState(false)
@@ -60,7 +61,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
     (offset: number) => {
       const { offsetTop } = pageRef.current[pageNumber + offset - 1]
       if (documentRef.current) {
-        documentRef.current.scrollTop = offsetTop
+        documentRef.current.scrollTop = offsetTop - 40
         setButtonClick(true)
       }
       setPageNumber((prevPageNumber) => (prevPageNumber || 1) + offset)
@@ -75,10 +76,9 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
       const { scrollTop } = documentRef.current || {}
       if (!scrollTop) return
       const currentPage = pageRef.current.findIndex(
-        (elem) => elem.offsetTop >= scrollTop,
+        (elem) => elem.offsetTop - 40 >= scrollTop,
       )
-      if (currentPage === -1) return
-      setPageNumber(currentPage + 1)
+      setPageNumber(currentPage === -1 ? numPages : currentPage)
     }
   }, 150)
 
@@ -181,6 +181,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
         >
           {Array.from(new Array(numPages), (el, index) => (
             <Page
+              css={pageStyle}
               loading={""}
               width={scaleWidth}
               height={scaleHeight}

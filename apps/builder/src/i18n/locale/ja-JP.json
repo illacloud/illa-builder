@@ -143,10 +143,11 @@
         },
         "label": {
           "inference_api": "Inference API",
-          "inference_endpoint": "Inference Endpoint"
+          "inference_endpoint": "Inference Endpoint",
+          "s3": "公開アプリでは無効"
         },
         "placeholder": {
-          "url": "api/v2/endpoint.json"
+          "url": "URL をここに入力"
         }
       },
       "panel": {
@@ -735,8 +736,8 @@
           "onCloseModal": "Close modal",
           "play": "再生",
           "pause": "一時停止",
-          "loaded": "ロード済み",
-          "ended": "終了済み"
+          "ended": "終了済み",
+          "loaded": "ロード済み"
         },
         "image_list": {
           "title": "イメージ",
@@ -803,7 +804,10 @@
         "views": "見る",
         "images": "イメージ",
         "primary_value": "主な値",
-        "secValue": "二次価値"
+        "secValue": "二次価値",
+        "border": "フレーム",
+        "color": "色",
+        "icon": "アイコン"
       },
       "setter_label": {
         "action": "アクション",
@@ -814,7 +818,7 @@
         "alt_text_desc": "スクリーン リーダーでアクセスできる画像の説明。これは、画像を読み込めない場合のフォールバックとしてもレンダリングされます。",
         "background": "バックグラウンド",
         "background_color": "背景色",
-        "border": "脳卒中",
+        "border": "フレーム",
         "border_width": "ボーダー幅",
         "caption": "字幕",
         "chart_title": "題名",
@@ -1004,7 +1008,16 @@
           "prefix_text": "プレフィックス",
           "suffix_text": "サフィックス"
         },
-        "mute": "ミュート"
+        "mute": "ミュート",
+        "collapse": {
+          "type": "タイプ",
+          "accordin_mode": "アコーディオンモード",
+          "header_color": "ヘッダー",
+          "body_color": "本体",
+          "expand_icon": "拡大",
+          "collapse_icon": "アコーディオンパネル",
+          "icon_color": "色"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1044,7 +1057,12 @@
         "file_url": "Web 上の PDF URL、または PDF ファイルの base64 エンコード データをサポートします。 例: {{ data:application/pdf;base64, example-data }}",
         "scale": "各ページをスケーリングして、コンポーネントの幅または高さを埋めます。",
         "scroll": "スクロール時に各ページの先頭に自動的にロケートします。",
-        "video_url": "ほとんどのビデオ サービスまたは一般的なビデオ ファイル タイプへの直接リンクをサポートします。"
+        "video_url": "ほとんどのビデオ サービスまたは一般的なビデオ ファイル タイプへの直接リンクをサポートします。",
+        "collapse": {
+          "type": "折りたたみ可能なリスト: リスト、すべてのアイテムは最初のアイテムのスタイルを自動的にコピーします。 {{ currentItem.columnName }} を使用して、各アイテムのコンポーネント データを指定できます。 折りたたみ可能なパネル: 各パネルは独立しており、各アイテムのコンポーネント スタイルとデータを個別に指定できます。",
+          "items": "アイテムの数",
+          "accordin_mode": "アコーディオン モードでは、アイテムが展開されると、他のアイテムが折りたたまれます。"
+        }
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
@@ -1068,7 +1086,10 @@
         "text_scroll": "スクロール",
         "text_clip": "クリップ",
         "scale_height": "高さ",
-        "scale_width": "幅"
+        "scale_width": "幅",
+        "collapse": {
+          "collapsible_panel": "折りたたみ式パネル"
+        }
       },
       "setter_placeholder": {
         "min_max_size": "無制限",
@@ -1079,6 +1100,9 @@
           "suffix_text": "%",
           "positive_color": "ポジティブ",
           "negative_color": "ネガティブ"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
         }
       },
       "setter_tootip": {
@@ -1171,8 +1195,8 @@
         }
       },
       "stop": "Stop",
-      "mute": "Mute",
-      "loop": "Loop",
+      "mute": "ミュート",
+      "loop": "ループ",
       "show_controls": "Show Controls",
       "set_volumn": "Set Volumn",
       "set_volume": {
@@ -1184,6 +1208,10 @@
       "statistics": {
         "set_primary_value": "setPrimaryValue",
         "reset_primary_value": "resetPrimaryValue"
+      },
+      "collapse": {
+        "expand_all_items": "全ノードを展開します",
+        "collapse_all_items": "Collapse all items"
       }
     }
   },
@@ -1512,10 +1540,18 @@
       "failed": "PDFを読み込めませんでした"
     },
     "video": {
-      "name": "ビデオ"
+      "name": "ビデオ",
+      "empty": "ビデオはありません",
+      "fail": "失敗しました"
     },
     "statistics": {
       "name": "統計"
+    },
+    "collapse": {
+      "name": "Collapse"
+    },
+    "multiselect": {
+      "name": "Multiselect"
     }
   },
   "page": {
@@ -1693,5 +1729,17 @@
         "save_fail": "保存に失敗しました"
       }
     }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "折りたたみ可能なリスト"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "{{ nodeName }} で循環依存が発生しています"
   }
 }

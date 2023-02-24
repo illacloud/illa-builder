@@ -2,7 +2,10 @@ import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { applyViewportContainerWrapperStyle } from "@/page/App/components/DotPanel/style"
-import { getIllaMode } from "@/redux/config/configSelector"
+import {
+  getIllaMode,
+  getIsILLAProductMode,
+} from "@/redux/config/configSelector"
 import {
   getCanvas,
   getViewportSizeSelector,
@@ -18,13 +21,14 @@ export const DotPanel: FC = () => {
   const canvasTree = useSelector(getCanvas) as RootComponentNode
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
   const mode = useSelector(getIllaMode)
+  const isProductionMode = useSelector(getIsILLAProductMode)
   const viewportSize = useSelector(getViewportSizeSelector)
 
   const { currentPageIndex, pageSortedKey, homepageDisplayName } =
     rootExecutionProps
   let { pageName } = useParams()
   const currentDisplayName = useMemo(() => {
-    if (mode === "production") {
+    if (isProductionMode) {
       return (
         pageName ||
         homepageDisplayName ||
@@ -34,7 +38,13 @@ export const DotPanel: FC = () => {
     } else {
       return pageSortedKey[currentPageIndex] || homepageDisplayName
     }
-  }, [currentPageIndex, homepageDisplayName, mode, pageName, pageSortedKey])
+  }, [
+    currentPageIndex,
+    homepageDisplayName,
+    isProductionMode,
+    pageName,
+    pageSortedKey,
+  ])
 
   if (
     !canvasTree ||

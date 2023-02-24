@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import { BuilderApi } from "@/api/base"
 import { getTeamsInfo } from "@/api/team"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
+import { initS3Client } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
@@ -17,6 +18,8 @@ import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSqu
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
@@ -84,13 +87,24 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           method: "GET",
           signal: controller.signal,
         })
+        await BuilderApi.teamRequest<Resource<ResourceContent>[]>(
+          {
+            url: "/resources",
+            method: "GET",
+            signal: controller.signal,
+          },
+          (response) => {
+            dispatch(resourceActions.updateResourceListReducer(response.data))
+            initS3Client(response.data)
+          },
+        )
         handleCurrentApp(response)
         resolve(response.data)
       } catch (e) {
         reject(e)
       }
     },
-    [appId, handleCurrentApp, versionId],
+    [appId, dispatch, handleCurrentApp, versionId],
   )
 
   const handleUnPublicApps = useCallback(

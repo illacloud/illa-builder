@@ -1,5 +1,5 @@
-import { css } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/react"
+import { SerializedStyles, css } from "@emotion/react"
+import { getColor } from "@illa-design/react"
 
 export function applyActionEditorStyle(h: number) {
   return css`
@@ -8,19 +8,6 @@ export function applyActionEditorStyle(h: number) {
     height: ${h}px;
   `
 }
-
-export const actionEditorDragBarStyle = css`
-  top: -5px;
-  cursor: row-resize;
-  width: 100%;
-  position: absolute;
-  transition: all 0.2s;
-  height: 5px;
-
-  &:hover {
-    background: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  }
-`
 
 export const contentContainerStyle = css`
   width: 100%;
@@ -81,3 +68,39 @@ export const connectTypeStyle = css`
   color: ${getColor("grayBlue", "02")};
   margin-left: 16px;
 `
+
+export const container = css`
+  width: 100%;
+  max-height: 685px;
+  overflow-y: auto;
+`
+
+export const footerStyle = css`
+  height: 80px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const divider = css`
+  height: 16px;
+`
+
+export function applyConfigItemLabelText(
+  color: string,
+  margin?: boolean,
+): SerializedStyles {
+  let marginLeft = css``
+  if (margin) {
+    marginLeft = css`
+      margin-left: 4px;
+    `
+  }
+  return css`
+    font-size: 14px;
+    color: ${color};
+    font-weight: 500;
+    ${marginLeft};
+  `
+}

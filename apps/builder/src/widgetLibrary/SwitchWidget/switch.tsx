@@ -17,8 +17,8 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
       disabled={disabled}
       colorScheme={colorScheme}
       onChange={(value) => {
-        handleOnChange()
         handleUpdateDsl({ value })
+        handleOnChange()
       }}
     />
   )

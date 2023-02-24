@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import {
   FC,
+  MouseEvent,
   MutableRefObject,
   forwardRef,
   useCallback,
@@ -1378,21 +1379,25 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
 
   const currentComponentNodeProps = executionResult[displayName] || {}
 
+  const onClickMaskToClose = () => {
+    if (currentComponentNodeProps?.clickMaskClose) {
+      handleOnClickMask(displayName)
+    }
+  }
+
+  const onClickMaskInner = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
+  }
+
   return (
-    <div
-      css={maskStyle}
-      onClick={() => {
-        if (currentComponentNodeProps?.clickMaskClose) {
-          handleOnClickMask(displayName)
-        }
-      }}
-    >
+    <div css={maskStyle} onClick={onClickMaskToClose}>
       <div
         css={applyModalWrapperStyle(mode)}
         ref={(ele) => {
           containerBoundRef(ele)
           containerRef.current = ele
         }}
+        onClick={onClickMaskInner}
       >
         {currentComponentNode && (
           <ScaleSquareOnlyHasResize
