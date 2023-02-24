@@ -736,8 +736,8 @@
           "onCloseModal": "Close modal",
           "play": "Play",
           "pause": "Pause",
-          "loaded": "Loaded",
-          "ended": "Ended"
+          "ended": "Ended",
+          "loaded": "Loaded"
         },
         "image_list": {
           "title": "Images",
@@ -1738,5 +1738,8 @@
         }
       }
     }
+  },
+  "message": {
+    "circular_dependency": "A circular dependency occurs on {{ nodeName }}"
   }
 }
