@@ -70,6 +70,7 @@ export const WrappedTextarea = forwardRef<
   return (
     <TextArea
       w="100%"
+      flex="1"
       textAreaRef={ref}
       value={value}
       placeholder={placeholder}
