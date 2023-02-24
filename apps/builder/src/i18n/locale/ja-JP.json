@@ -390,7 +390,7 @@
             "delete_item": "deleteItem"
           },
           "placeholder": {
-            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
+            "parameters": "JSON, for exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
           }
         }
       },
@@ -1017,7 +1017,9 @@
           "expand_icon": "拡大",
           "collapse_icon": "アコーディオンパネル",
           "icon_color": "色"
-        }
+        },
+        "choose_at_least": "Choose at least",
+        "choose_up_to": "Choose up to"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1107,6 +1109,10 @@
       },
       "setter_tootip": {
         "volume": "0 から 1 までの数値"
+      },
+      "setter_message": {
+        "choose_at_least": "Please choose at lease {{ min }} options.",
+        "choose_up_to": "Please choose up to {{max}} options."
       }
     },
     "page": {

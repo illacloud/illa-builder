@@ -390,7 +390,7 @@
             "delete_item": "deleteItem"
           },
           "placeholder": {
-            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
+            "parameters": "JSON, for exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
           }
         }
       },
@@ -1017,7 +1017,9 @@
           "expand_icon": "展开",
           "collapse_icon": "折叠面板",
           "icon_color": "颜色"
-        }
+        },
+        "choose_at_least": "Choose at least",
+        "choose_up_to": "Choose up to"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1107,6 +1109,10 @@
       },
       "setter_tootip": {
         "volume": "0到1之间的数字"
+      },
+      "setter_message": {
+        "choose_at_least": "Please choose at lease {{ min }} options.",
+        "choose_up_to": "Please choose up to {{max}} options."
       }
     },
     "page": {

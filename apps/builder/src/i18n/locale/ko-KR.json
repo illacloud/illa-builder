@@ -390,7 +390,7 @@
             "delete_item": "deleteItem"
           },
           "placeholder": {
-            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
+            "parameters": "JSON, for exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
           }
         }
       },
@@ -1017,7 +1017,9 @@
           "expand_icon": "넓히기",
           "collapse_icon": "무너지다",
           "icon_color": "색깔"
-        }
+        },
+        "choose_at_least": "Choose at least",
+        "choose_up_to": "Choose up to"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1107,6 +1109,10 @@
       },
       "setter_tootip": {
         "volume": "0 과 1 사이의 숫자"
+      },
+      "setter_message": {
+        "choose_at_least": "Please choose at lease {{ min }} options.",
+        "choose_up_to": "Please choose up to {{max}} options."
       }
     },
     "page": {
