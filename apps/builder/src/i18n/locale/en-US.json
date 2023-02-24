@@ -952,7 +952,7 @@
         "title": "Title",
         "tooltip": "Tooltip",
         "trail_color": "Trail color",
-        "trigger_query": "Trigger query",
+        "trigger_query": "Trigger action",
         "type": "Type",
         "validate_inputs_on_submit": "Validate inputs on submit",
         "value": "Value",
