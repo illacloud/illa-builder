@@ -151,7 +151,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const handleOnClickMenuItem = useCallback(
     (path: string) => {
-      triggerEventHandler(path)
+      triggerEventHandler("clickMenuItem", path)
     },
     [triggerEventHandler],
   )
