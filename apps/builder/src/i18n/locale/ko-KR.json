@@ -1197,7 +1197,7 @@
       "stop": "Stop",
       "mute": "음소거",
       "loop": "반복",
-      "show_controls": "제어도구 보이기",
+      "show_controls": "Show Controls",
       "set_volumn": "Set Volumn",
       "set_volume": {
         "volume": "음량",

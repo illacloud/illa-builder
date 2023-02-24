@@ -1197,7 +1197,7 @@
       "stop": "Stop",
       "mute": "ミュート",
       "loop": "ループ",
-      "show_controls": "コントロールを表示",
+      "show_controls": "Show Controls",
       "set_volumn": "Set Volumn",
       "set_volume": {
         "volume": "音量",
