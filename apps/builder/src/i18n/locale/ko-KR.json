@@ -1100,6 +1100,9 @@
           "suffix_text": "%",
           "positive_color": "긍정적인",
           "negative_color": "부정적인"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
         }
       },
       "setter_tootip": {
@@ -1194,7 +1197,7 @@
       "stop": "Stop",
       "mute": "음소거",
       "loop": "반복",
-      "show_controls": "Show Controls",
+      "show_controls": "제어도구 보이기",
       "set_volumn": "Set Volumn",
       "set_volume": {
         "volume": "음량",
