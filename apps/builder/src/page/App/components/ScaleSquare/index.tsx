@@ -299,9 +299,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   >(
     () => ({
       type: "components",
-      canDrag: () => {
-        return isEditMode
-      },
+      canDrag: isEditMode,
       end: (draggedItem, monitor) => {
         const dropResultInfo = monitor.getDropResult()
         endDrag(draggedItem.item, dropResultInfo?.isDropOnCanvas ?? false)
@@ -325,7 +323,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         }
       },
     }),
-    [componentNode, blockColumns],
+    [componentNode, blockColumns, isEditMode],
   )
 
   const resizeHandler = useMemo(() => {
@@ -571,7 +569,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           )}
           onClick={handleOnSelection}
           onContextMenu={handleContextMenu}
-          ref={dragRef}
+          ref={isEditMode ? dragRef : undefined}
         >
           <MoveBar
             isError={hasError}
@@ -802,106 +800,61 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   )
 
   const resizeHandler = useMemo(() => {
-    switch (resizeDirection) {
-      case RESIZE_DIRECTION.HORIZONTAL: {
-        return {
-          right: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
-              />
-            </div>
-          ),
-          left: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
-              />
-            </div>
-          ),
-        }
-      }
-      case RESIZE_DIRECTION.VERTICAL: {
-        return {
-          top: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
-              />
-            </div>
-          ),
-          bottom: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
-              />
-            </div>
-          ),
-        }
-      }
-      case RESIZE_DIRECTION.ALL:
-      default: {
-        return {
-          topLeft: (
-            <div
-              css={applySquarePointerStyle(isSelected, scaleSquareState, "tl")}
-            />
-          ),
-          top: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
-              />
-            </div>
-          ),
-          topRight: (
-            <div
-              css={applySquarePointerStyle(isSelected, scaleSquareState, "tr")}
-            />
-          ),
-          right: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
-              />
-            </div>
-          ),
-          bottomRight: (
-            <div
-              css={applySquarePointerStyle(isSelected, scaleSquareState, "br")}
-            />
-          ),
-          bottom: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
-              />
-            </div>
-          ),
-          bottomLeft: (
-            <div
-              css={applySquarePointerStyle(isSelected, scaleSquareState, "bl")}
-            />
-          ),
-          left: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
-              />
-            </div>
-          ),
-        }
-      }
+    return {
+      topLeft: (
+        <div
+          css={applySquarePointerStyle(isSelected, scaleSquareState, "tl")}
+        />
+      ),
+      top: (
+        <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
+          />
+        </div>
+      ),
+      topRight: (
+        <div
+          css={applySquarePointerStyle(isSelected, scaleSquareState, "tr")}
+        />
+      ),
+      right: (
+        <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
+          />
+        </div>
+      ),
+      bottomRight: (
+        <div
+          css={applySquarePointerStyle(isSelected, scaleSquareState, "br")}
+        />
+      ),
+      bottom: (
+        <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
+          />
+        </div>
+      ),
+      bottomLeft: (
+        <div
+          css={applySquarePointerStyle(isSelected, scaleSquareState, "bl")}
+        />
+      ),
+      left: (
+        <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
+          />
+        </div>
+      ),
     }
-  }, [isSelected, resizeDirection, scaleSquareState])
+  }, [isSelected, scaleSquareState])
 
   const handleResizeStart: ResizeStartCallback = useCallback(
     (e) => {

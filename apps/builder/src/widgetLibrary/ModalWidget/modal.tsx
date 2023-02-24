@@ -9,6 +9,7 @@ import {
   useState,
 } from "react"
 import { useDrop } from "react-dnd"
+import { useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
 import {
@@ -19,6 +20,7 @@ import {
   applyDashedLineStyle,
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
+import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { BasicContainer } from "../BasicContainer/BasicContainer"
 import { ModalWidgetProps } from "./interface"
 import {
@@ -116,6 +118,8 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       ) * unitH
     )
   }, [containerBounds.height, headerHeight, unitH])
+
+  const isEditMode = useSelector(getIsILLAEditMode)
 
   const renderHeader = useMemo(() => {
     const headerComponentNode = childrenNode[0]
@@ -255,7 +259,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
             isMouseHover && !isDraggingActive ? resizeTopHandler : undefined
           }
           enable={{
-            bottom: true,
+            bottom: isEditMode,
           }}
           onResizeStart={handleResizeStart}
           onResizeStop={handleOnResizeTopStop}
@@ -263,14 +267,14 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
           <div css={formHeaderStyle} ref={headerRef}>
             {renderHeader}
           </div>
-          {isMouseHover && !isDraggingActive && (
+          {isEditMode && isMouseHover && !isDraggingActive && (
             <div css={applyDashedLineStyle(false, true, false)} />
           )}
         </Resizable>
       )}
       <div css={formBodyStyle} ref={bodyRef}>
         {renderBody}
-        {isMouseHover && !isDraggingActive && (
+        {isEditMode && isMouseHover && !isDraggingActive && (
           <div css={applyXDirectionDashedLineStyle(false, true, false)} />
         )}
       </div>
@@ -286,7 +290,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
             isMouseHover && !isDraggingActive ? resizeBottomHandler : undefined
           }
           enable={{
-            top: true,
+            top: isEditMode,
           }}
           onResizeStart={handleResizeStart}
           onResizeStop={handleOnResizeBottomStop}
@@ -294,7 +298,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
           <div css={formHeaderStyle} ref={footerRef}>
             {renderFooter}
           </div>
-          {isMouseHover && !isDraggingActive && (
+          {isEditMode && isMouseHover && !isDraggingActive && (
             <div
               css={applyDashedLineStyle(false, true, false, footerMaxHeight)}
             />
