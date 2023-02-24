@@ -79,18 +79,25 @@ export const WrappedTextarea = forwardRef<
     ],
   )
 
+  const limitedStyle =
+    dynamicHeight === "limited"
+      ? {
+          minH:
+            dynamicMinHeight !== undefined
+              ? `${dynamicMinHeight}px`
+              : undefined,
+          maxH:
+            dynamicMaxHeight !== undefined
+              ? `${dynamicMaxHeight}px`
+              : undefined,
+        }
+      : {}
+
   return (
     <TextArea
       w="100%"
       flex="1"
-      {...(dynamicHeight === "limited" && {
-        ...(dynamicMinHeight !== undefined && {
-          minH: `${dynamicMinHeight}px`,
-        }),
-        ...(dynamicMaxHeight !== undefined && {
-          maxH: `${dynamicMaxHeight}px`,
-        }),
-      })}
+      {...limitedStyle}
       textAreaRef={ref}
       value={value}
       placeholder={placeholder}
