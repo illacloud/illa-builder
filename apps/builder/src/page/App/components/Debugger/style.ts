@@ -6,13 +6,14 @@ export function applyDebuggerStyle(h: number) {
     position: relative;
     width: 100%;
     height: ${h}px;
+    display: flex;
+    flex-direction: column;
   `
 }
 
 export const containerStyle = css`
   height: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -31,5 +32,4 @@ export const titleStyle = css`
 export const errorContentStyle = css`
   min-width: 700px;
   width: 100%;
-  overflow-y: scroll;
 `

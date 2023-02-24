@@ -6,6 +6,7 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 export const jsonStyle = css`
   font-family: "Fira Code", monospace;
   padding-top: 4px;
+  padding-bottom: 6px;
   font-size: 14px;
   line-height: 22px;
 `

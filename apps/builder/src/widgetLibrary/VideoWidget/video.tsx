@@ -24,6 +24,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
     } = props
     const { t } = useTranslation()
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
 
     if (url === "") {
       return <div css={loadingStyle}>{t("widget.video.empty")}</div>
@@ -35,9 +36,11 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           <div css={loadingStyle}>
             <Loading colorScheme="white" />
           </div>
+        ) : error ? (
+          <div css={loadingStyle}>{t("widget.video.fail")}</div>
         ) : null}
         <ReactPlayer
-          style={loading ? { display: "none" } : undefined}
+          style={loading || error ? { display: "none" } : undefined}
           fallback={
             <div css={loadingStyle}>
               <Loading colorScheme="white" />
@@ -56,6 +59,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           draggable={false}
           onReady={() => {
             setLoading(false)
+            setError(false)
             onReady()
           }}
           onPlay={onPlay}
@@ -63,6 +67,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           onEnded={onEnded}
           onError={() => {
             setLoading(false)
+            setError(true)
           }}
         />
       </>
@@ -116,6 +121,14 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
           {
             displayName,
             value: { muted: value },
+          },
+        ])
+      },
+      showControls: (value: boolean) => {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { controls: value },
           },
         ])
       },
@@ -175,7 +188,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
   }, [displayName, triggerEventHandler, handleUpdateMultiExecutionResult])
 
   const onReady = useCallback(() => {
-    triggerEventHandler("ready")
+    triggerEventHandler("loaded")
   }, [triggerEventHandler])
 
   const onEnded = useCallback(() => {
