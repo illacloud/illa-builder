@@ -1,5 +1,6 @@
 import { RefObject, forwardRef, useImperativeHandle, useRef } from "react"
 import { useTranslation } from "react-i18next"
+import useMeasure from "react-use-measure"
 import { Alert, CloseIcon, SuccessCircleIcon } from "@illa-design/react"
 import { ApiError } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -22,29 +23,39 @@ interface ActionResultProps {
   result?: ActionResultType
   maxHeight?: number
   placeholderRef?: RefObject<HTMLDivElement>
+  panelRef?: RefObject<HTMLDivElement>
   onClose: () => void
 }
 
 export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
   (props, ref) => {
-    const { result, maxHeight, placeholderRef, onClose } = props
+    const {
+      result,
+      maxHeight,
+      placeholderRef,
+      onClose,
+      panelRef: wrapperPanelRef,
+    } = props
     const res = result?.result
-    const panelRef = useRef<HTMLDivElement>(null)
+    const panelRef = useRef<HTMLDivElement | null>(null)
     const { t } = useTranslation()
+    const [containerRef, panelContainerBounds] = useMeasure()
 
     useImperativeHandle(ref, () => panelRef.current as HTMLDivElement, [result])
 
     const getMaxHeight = () => {
-      if (panelRef.current) {
-        const children = panelRef.current.children
-        return children[children.length - 1].scrollHeight + 40
+      if (wrapperPanelRef?.current) {
+        return wrapperPanelRef.current.clientHeight - 120
       }
     }
 
     return res ? (
       <div
         css={[resultContainerStyle, applyMaxHeightStyle(maxHeight)]}
-        ref={panelRef}
+        ref={(el) => {
+          containerRef(el)
+          panelRef.current = el
+        }}
       >
         {result?.error ? (
           <Alert
@@ -71,13 +82,18 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
             </div>
             <div css={codeStyle}>
               <CodeEditor
-                lang={CODE_LANG.SQL}
+                lang={CODE_LANG.JSON}
                 expectValueType={VALIDATION_TYPES.STRING}
                 value={JSON.stringify(res, null, 2)}
                 wrapperCss={customerCodeStyle}
                 readOnly
                 showLineNumbers
                 editable={false}
+                height={`${
+                  panelContainerBounds.height - 40 < 180
+                    ? 180
+                    : panelContainerBounds.height - 40
+                }px`}
               />
             </div>
           </>
