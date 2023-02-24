@@ -42,6 +42,7 @@ function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
   return css`
     ${baseLabelCss};
     margin-bottom: 8px;
+    overflow: hidden;
     width: 100%;
     text-align: ${alignment};
   `

@@ -1,4 +1,13 @@
-import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import { debounce } from "lodash"
+import {
+  FC,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import useMeasure from "react-use-measure"
 import { TextArea } from "@illa-design/react"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
@@ -37,6 +46,9 @@ export const WrappedTextarea = forwardRef<
     maxLength,
     handleUpdateMultiExecutionResult,
     getValidateMessage,
+    dynamicHeight,
+    dynamicMinHeight,
+    dynamicMaxHeight,
   } = props
 
   const handleClear = () => handleUpdateDsl({ value: "" })
@@ -71,6 +83,14 @@ export const WrappedTextarea = forwardRef<
     <TextArea
       w="100%"
       flex="1"
+      {...(dynamicHeight === "limited" && {
+        ...(dynamicMinHeight !== undefined && {
+          minH: `${dynamicMinHeight}px`,
+        }),
+        ...(dynamicMaxHeight !== undefined && {
+          maxH: `${dynamicMaxHeight}px`,
+        }),
+      })}
       textAreaRef={ref}
       value={value}
       placeholder={placeholder}
@@ -84,7 +104,7 @@ export const WrappedTextarea = forwardRef<
       onBlur={handleOnBlur}
       onChange={handleChange}
       onClear={handleClear}
-      autoSize={true}
+      autoSize={dynamicHeight === "fixed" ? false : true}
     />
   )
 })
@@ -256,6 +276,36 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     dynamicMaxHeight,
   }
 
+  const minMaxValueRef = useRef<{ min?: number; max?: number }>({})
+
+  const getMinMaxHeight = (
+    width: number,
+    height: number,
+    minMaxHeight?: number,
+  ) => {
+    if (minMaxHeight === undefined) {
+      return minMaxHeight
+    }
+    return minMaxHeight - (width + height)
+  }
+
+  const minValue =
+    labelPosition === "top" && label
+      ? getMinMaxHeight(30, bounds.height, dynamicMinHeight)
+      : getMinMaxHeight(6, bounds.height, dynamicMinHeight)
+
+  const maxValue =
+    labelPosition === "top" && label
+      ? getMinMaxHeight(30, bounds.height, dynamicMaxHeight)
+      : getMinMaxHeight(6, bounds.height, dynamicMaxHeight)
+
+  if (minValue !== minMaxValueRef.current.min) {
+    minMaxValueRef.current.min = minValue
+  }
+  if (maxValue !== minMaxValueRef.current.max) {
+    minMaxValueRef.current.max = maxValue
+  }
+
   return (
     <AutoHeightContainer
       updateComponentHeight={updateComponentHeight}
@@ -288,6 +338,8 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
             handleOnChange={handleOnChange}
             handleOnFocus={handleOnFocus}
             handleOnBlur={handleOnBlur}
+            dynamicMinHeight={minMaxValueRef.current.min}
+            dynamicMaxHeight={minMaxValueRef.current.max}
           />
         </div>
       </TooltipWrapper>
