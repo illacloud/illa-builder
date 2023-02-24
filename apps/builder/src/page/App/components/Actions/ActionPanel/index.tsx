@@ -129,6 +129,7 @@ export const ActionPanel = forwardRef<
           onClose={clearActionResult}
           maxHeight={maxHeight}
           placeholderRef={contentRef}
+          panelRef={panelRef}
         />
       </ActionPanelContext.Provider>
     </div>
