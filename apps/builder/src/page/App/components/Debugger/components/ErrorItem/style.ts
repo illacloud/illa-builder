@@ -81,6 +81,18 @@ export const errorMessageStyle = css`
 `
 
 export const jsonContentAnimation: Variants = {
-  enter: { height: "unset", opacity: 1, visibility: "visible" },
-  exit: { height: 0, opacity: 0, visibility: "hidden" },
+  enter: {
+    height: "unset",
+    opacity: 1,
+    visibility: "visible",
+    display: "inherit",
+  },
+  exit: {
+    height: 0,
+    opacity: 0,
+    visibility: "hidden",
+    transitionEnd: {
+      display: "none",
+    },
+  },
 }
