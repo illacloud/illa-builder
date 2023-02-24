@@ -84,12 +84,14 @@ export const DashboardResources: FC = () => {
         case "mssql":
           dbName = (resource as Resource<MicrosoftSqlResource>).content
             .databaseName
+          break
         case "mongodb":
           const mongoRes = resource as Resource<MongoDbResource<MongoDbConfig>>
           if (mongoRes.content.configType == "gui") {
             dbName = (mongoRes.content.configContent as MongoDbGuiConfigContent)
               .databaseName
           }
+          break
         case "snowflake":
           dbName = (
             resource.content as SnowflakeResource<SnowflakeAuthenticationType>
