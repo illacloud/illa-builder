@@ -1100,6 +1100,9 @@
           "suffix_text": "%",
           "positive_color": "ポジティブ",
           "negative_color": "ネガティブ"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
         }
       },
       "setter_tootip": {
@@ -1194,7 +1197,7 @@
       "stop": "Stop",
       "mute": "ミュート",
       "loop": "ループ",
-      "show_controls": "Show Controls",
+      "show_controls": "コントロールを表示",
       "set_volumn": "Set Volumn",
       "set_volume": {
         "volume": "音量",
