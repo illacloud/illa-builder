@@ -1,3 +1,4 @@
+import { get } from "lodash"
 import { PanelBar } from "@/components/PanelBar"
 import {
   PanelConfig,
@@ -27,26 +28,58 @@ export const renderFieldAndLabel = (
 export const renderPanelBar = (
   config: PanelFieldGroupConfig,
   displayName: string,
+  widgetProps: Record<string, any>,
 ) => {
   const { id, groupName, children } = config as PanelFieldGroupConfig
   const key = `${id}-${displayName}`
-
   return (
     <PanelBar key={key} title={groupName}>
       {children && children.length > 0 && (
-        <div css={ghostEmptyStyle}>{fieldFactory(children, displayName)}</div>
+        <div css={ghostEmptyStyle}>
+          {fieldFactory(children, displayName, widgetProps)}
+        </div>
       )}
     </PanelBar>
   )
+}
+
+export const canRenderField = (
+  item: PanelFieldConfig,
+  displayName: string,
+  widgetProps: Record<string, any>,
+) => {
+  const { bindAttrName, shown } = item
+  if (!bindAttrName || !shown) return true
+  if (Array.isArray(bindAttrName)) {
+    const values = bindAttrName.map((bindAttrNameItem) =>
+      get(widgetProps, bindAttrNameItem),
+    )
+    return shown(...values)
+  }
+
+  return true
 }
 
 export const renderField = (
   item: PanelConfig,
   displayName: string,
   isInList: boolean = false,
+  widgetProps: Record<string, any>,
 ) => {
+  const canRender = canRenderField(
+    item as PanelFieldConfig,
+    displayName,
+    widgetProps,
+  )
+  if (!canRender) {
+    return null
+  }
   if ((item as PanelFieldGroupConfig).groupName) {
-    return renderPanelBar(item as PanelFieldGroupConfig, displayName)
+    return renderPanelBar(
+      item as PanelFieldGroupConfig,
+      displayName,
+      widgetProps,
+    )
   } else if ((item as PanelFieldConfig).setterType) {
     return renderFieldAndLabel(
       item as PanelFieldConfig,
@@ -58,9 +91,13 @@ export const renderField = (
   return null
 }
 
-export function fieldFactory(panelConfig: PanelConfig[], displayName: string) {
+export function fieldFactory(
+  panelConfig: PanelConfig[],
+  displayName: string,
+  widgetProps: Record<string, any>,
+) {
   if (!displayName || !panelConfig || !panelConfig.length) return null
   return panelConfig.map((item: PanelConfig) =>
-    renderField(item, displayName, false),
+    renderField(item, displayName, false, widgetProps),
   )
 }

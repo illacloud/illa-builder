@@ -11,10 +11,19 @@ export const headerStyle = css`
   font-size: 16px;
   padding: 0 16px;
   font-weight: 500;
+
   span {
     display: flex;
     align-items: center;
   }
+`
+
+export const modalHeaderText = css`
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 8px;
+  text-overflow: ellipsis;
 `
 
 export const closeIconStyle = css`

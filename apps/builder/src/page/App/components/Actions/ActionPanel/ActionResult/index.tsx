@@ -52,6 +52,7 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
             closable
             type={"warning"}
             title={(res as ApiError)?.errorMessage?.toString()}
+            onClose={onClose}
           />
         ) : (
           <>

@@ -43,7 +43,11 @@ const SettingTrigger: FC = () => {
   return (
     <div css={settingBodyStyle}>
       <div css={settingUserStyle}>
-        <Avatar userId={userInfo.userId} nickname={userInfo.nickname} />
+        <Avatar
+          userId={userInfo.userId}
+          nickname={userInfo.nickname}
+          avatar={userInfo?.avatar}
+        />
         <span css={usernameStyle}>{userInfo?.nickname}</span>
       </div>
       <Divider />
@@ -126,6 +130,7 @@ export const DashboardTitleBar: FC = () => {
                 <Avatar
                   userId={userInfo?.userId}
                   nickname={userInfo?.nickname}
+                  avatar={userInfo?.avatar}
                 />
                 <DownIcon
                   _css={expandStyle}

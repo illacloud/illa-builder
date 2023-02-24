@@ -184,6 +184,11 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       return {
         token: data.token,
       }
+    case "hfendpoint":
+      return {
+        token: data.token,
+        endpoint: data.endpoint,
+      }
     case "snowflake":
       return {
         accountName: data.accountName,
@@ -202,6 +207,13 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
                 username: data.username,
                 privateKey: data.privateKey,
               },
+      }
+    case "dynamodb":
+      const { region, accessKeyID, secretAccessKey } = data
+      return {
+        region,
+        accessKeyID,
+        secretAccessKey,
       }
   }
 }
