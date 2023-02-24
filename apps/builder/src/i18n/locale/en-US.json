@@ -736,8 +736,8 @@
           "onCloseModal": "Close modal",
           "play": "Play",
           "pause": "Pause",
-          "loaded": "Loaded",
-          "ended": "Ended"
+          "ended": "Ended",
+          "loaded": "Loaded"
         },
         "image_list": {
           "title": "Images",
@@ -952,7 +952,7 @@
         "title": "Title",
         "tooltip": "Tooltip",
         "trail_color": "Trail color",
-        "trigger_query": "Trigger query",
+        "trigger_query": "Trigger action",
         "type": "Type",
         "validate_inputs_on_submit": "Validate inputs on submit",
         "value": "Value",
@@ -1100,6 +1100,9 @@
           "suffix_text": "%",
           "positive_color": "Positive color",
           "negative_color": "Negative color"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
         }
       },
       "setter_tootip": {
@@ -1194,7 +1197,7 @@
       "stop": "Stop",
       "mute": "Mute",
       "loop": "Loop",
-      "show_controls": "Show Controls",
+      "show_controls": "Show controls",
       "set_volumn": "Set Volumn",
       "set_volume": {
         "volume": "Volume",
@@ -1546,6 +1549,9 @@
     },
     "collapse": {
       "name": "Collapse"
+    },
+    "multiselect": {
+      "name": "Multiselect"
     }
   },
   "page": {
@@ -1732,5 +1738,8 @@
         }
       }
     }
+  },
+  "message": {
+    "circular_dependency": "A circular dependency occurs on {{ nodeName }}"
   }
 }
