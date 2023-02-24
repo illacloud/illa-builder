@@ -1,6 +1,8 @@
 import { Diff, diff } from "deep-diff"
 import { cloneDeep, flatten, get, set, toPath, unset } from "lodash"
 import toposort from "toposort"
+import { createMessage } from "@illa-design/react"
+import i18n from "@/i18n/config"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -28,6 +30,8 @@ import {
 } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { validationFactory } from "@/utils/validationFactory"
+
+const message = createMessage()
 
 export class ExecutionTreeFactory {
   dependenciesState: DependenciesState = {}
@@ -61,16 +65,26 @@ export class ExecutionTreeFactory {
   initTree(rawTree: RawTreeShape) {
     const currentRawTree = cloneDeep(rawTree)
     this.oldRawTree = cloneDeep(currentRawTree)
-    this.dependenciesState = this.generateDependenciesMap(currentRawTree)
-    this.evalOrder = this.sortEvalOrder(this.dependenciesState)
-    this.inDependencyTree = this.generateInDependenciesMap()
-    const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
-      currentRawTree,
-      this.evalOrder,
-    )
-    this.errorTree = errorTree
-    this.debuggerData = debuggerData
-    this.executedTree = this.validateTree(evaluatedTree)
+    try {
+      this.dependenciesState = this.generateDependenciesMap(currentRawTree)
+      this.evalOrder = this.sortEvalOrder(this.dependenciesState)
+      this.inDependencyTree = this.generateInDependenciesMap()
+      const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
+        currentRawTree,
+        this.evalOrder,
+      )
+      this.errorTree = errorTree
+      this.debuggerData = debuggerData
+      this.executedTree = this.validateTree(evaluatedTree)
+    } catch (e) {
+      return {
+        dependencyTree: this.dependenciesState,
+        evaluatedTree: currentRawTree,
+        errorTree: this.errorTree,
+        debuggerData: this.debuggerData,
+      }
+    }
+
     return {
       dependencyTree: this.dependenciesState,
       evaluatedTree: this.executedTree,
@@ -298,9 +312,19 @@ export class ExecutionTreeFactory {
     isUpdateActionReduxAction?: boolean,
   ) {
     const currentRawTree = cloneDeep(rawTree)
-    this.dependenciesState = this.generateDependenciesMap(currentRawTree)
-    this.evalOrder = this.sortEvalOrder(this.dependenciesState)
-    this.inDependencyTree = this.generateInDependenciesMap()
+    try {
+      this.dependenciesState = this.generateDependenciesMap(currentRawTree)
+      this.evalOrder = this.sortEvalOrder(this.dependenciesState)
+      this.inDependencyTree = this.generateInDependenciesMap()
+    } catch (e) {
+      return {
+        dependencyTree: this.dependenciesState,
+        evaluatedTree: currentRawTree,
+        errorTree: this.errorTree,
+        debuggerData: this.debuggerData,
+      }
+    }
+
     const differences: Diff<RawTreeShape, RawTreeShape>[] =
       diff(this.oldRawTree, currentRawTree) || []
     if (differences.length === 0) {
@@ -517,7 +541,11 @@ export class ExecutionTreeFactory {
         if (nodes) {
           const node = nodes[1]
           const entityName = node.split(".")[0]
-          console.log("entityName", entityName)
+          message.error({
+            content: i18n.t("message.circular_dependency", {
+              nodeName: entityName,
+            }),
+          })
         }
       }
       throw new Error("Cyclic dependency")
