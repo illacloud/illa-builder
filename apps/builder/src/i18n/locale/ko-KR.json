@@ -736,8 +736,8 @@
           "onCloseModal": "Close modal",
           "play": "재생",
           "pause": "정지시키다",
-          "loaded": "짐을 실은",
-          "ended": "종료"
+          "ended": "종료",
+          "loaded": "짐을 실은"
         },
         "image_list": {
           "title": "이미지",
@@ -1738,5 +1738,8 @@
         }
       }
     }
+  },
+  "message": {
+    "circular_dependency": "{{ nodeName }} 에서 순환 종속성이 발생합니다."
   }
 }
