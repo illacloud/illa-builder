@@ -6,6 +6,7 @@ import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DependenciesState,
+  ErrorShape,
   ExecutionErrorType,
   ExecutionState,
 } from "@/redux/currentApp/executionTree/executionState"
@@ -433,11 +434,17 @@ export class ExecutionTreeFactory {
       walkedPath,
     ) as RawTreeShape
 
-    const { evaluatedTree } = this.executeTree(currentRawTree, orderPath)
+    const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
+      currentRawTree,
+      orderPath,
+    )
+    this.mergeErrorTree(errorTree, [...updatePaths, ...orderPath])
+    this.mergeDebugDataTree(debuggerData, [...updatePaths, ...orderPath])
     this.executedTree = this.validateTree(evaluatedTree)
     return {
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,
+      debuggerData: this.debuggerData,
     }
   }
 
@@ -564,7 +571,7 @@ export class ExecutionTreeFactory {
               )
               set(current, fullPath, evaluateValue)
             } catch (e) {
-              let oldError = get(errorTree, fullPath) ?? []
+              const oldError = get(errorTree, fullPath, []) as ErrorShape[]
               if (Array.isArray(oldError)) {
                 oldError.push({
                   errorType: ExecutionErrorType.EVALUATED,
@@ -572,7 +579,6 @@ export class ExecutionTreeFactory {
                   errorName: (e as Error).name,
                 })
               }
-
               set(errorTree, fullPath, oldError)
               set(current, fullPath, undefined)
               debuggerData[fullPath] = oldError
