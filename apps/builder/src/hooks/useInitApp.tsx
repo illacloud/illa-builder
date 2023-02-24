@@ -87,8 +87,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           method: "GET",
           signal: controller.signal,
         })
-        handleCurrentApp(response)
-        resolve(response.data)
         await BuilderApi.teamRequest<Resource<ResourceContent>[]>(
           {
             url: "/resources",
@@ -100,6 +98,8 @@ export const useInitBuilderApp = (mode: IllaMode) => {
             initS3Client(response.data)
           },
         )
+        handleCurrentApp(response)
+        resolve(response.data)
       } catch (e) {
         reject(e)
       }
