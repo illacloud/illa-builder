@@ -7,9 +7,7 @@ WORKDIR /opt/illa/illa-builder-frontend
 RUN cd /opt/illa/illa-builder-frontend
 RUN pwd
 
-COPY . ./
-
-RUN ls -l
+COPY ./ ./
 
 RUN npm install -g pnpm
 RUN whereis pnpm
