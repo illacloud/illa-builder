@@ -1,9 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import {
   FC,
-  MouseEvent,
   MutableRefObject,
-  forwardRef,
   useCallback,
   useEffect,
   useMemo,
@@ -52,6 +50,7 @@ import {
   applyRightAnimationWrapperStyle,
   applyRightSectionWrapperStyle,
   applySideBarWrapperStyle,
+  bodySectionWrapperStyle,
   disabledHorizontalBarWrapperStyle,
   footerHeightTipsStyle,
   headerHeightTipsStyle,
@@ -87,84 +86,79 @@ export const DEFAULT_PX_WIDTH = {
   CANVAS: 1440,
 }
 
-export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
-  (props, ref) => {
-    const { sectionNode, mode, columns } = props
-    const executionResult = useSelector(getExecutionResult)
-    const sectionNodeProps = executionResult[sectionNode.displayName] || {}
-    const [containerBoundRef, containerBound] = useMeasure()
-    const containerRef = useRef<HTMLDivElement>(
-      null,
-    ) as MutableRefObject<HTMLDivElement | null>
-    const {
-      viewSortedKey,
-      currentViewIndex,
-      defaultViewKey,
-      sectionViewConfigs,
-    } = sectionNodeProps
-    let { viewPath = "View1" } = useParams()
-    const currentViewDisplayName = useMemo(() => {
-      if (!Array.isArray(sectionViewConfigs) || !Array.isArray(viewSortedKey))
-        return "View 1"
-      const defaultedViewKey = viewSortedKey.includes(defaultViewKey)
-        ? defaultViewKey
-        : viewSortedKey[0]
-      if (mode === "production") {
-        const targetViewName = sectionViewConfigs.find(
-          (config) => config.path === decodeURIComponent(viewPath),
-        )
-        return targetViewName?.viewDisplayName || defaultedViewKey
-      } else {
-        return viewSortedKey[currentViewIndex] || defaultedViewKey
-      }
-    }, [
-      currentViewIndex,
-      defaultViewKey,
-      mode,
-      sectionViewConfigs,
-      viewPath,
-      viewSortedKey,
-    ])
-    if (!sectionNodeProps) return null
+export const RenderSection: FC<RenderSectionProps> = (props) => {
+  const { sectionNode, mode, columns } = props
+  const executionResult = useSelector(getExecutionResult)
+  const sectionNodeProps = executionResult[sectionNode.displayName] || {}
+  const [containerBoundRef, containerBound] = useMeasure()
+  const containerRef = useRef<HTMLDivElement>(
+    null,
+  ) as MutableRefObject<HTMLDivElement | null>
+  const {
+    viewSortedKey,
+    currentViewIndex,
+    defaultViewKey,
+    sectionViewConfigs,
+  } = sectionNodeProps
+  let { viewPath = "View1" } = useParams()
+  const currentViewDisplayName = useMemo(() => {
+    if (!Array.isArray(sectionViewConfigs) || !Array.isArray(viewSortedKey))
+      return "View 1"
+    const defaultedViewKey = viewSortedKey.includes(defaultViewKey)
+      ? defaultViewKey
+      : viewSortedKey[0]
+    if (mode === "production") {
+      const targetViewName = sectionViewConfigs.find(
+        (config) => config.path === decodeURIComponent(viewPath),
+      )
+      return targetViewName?.viewDisplayName || defaultedViewKey
+    } else {
+      return viewSortedKey[currentViewIndex] || defaultedViewKey
+    }
+  }, [
+    currentViewIndex,
+    defaultViewKey,
+    mode,
+    sectionViewConfigs,
+    viewPath,
+    viewSortedKey,
+  ])
+  if (!sectionNodeProps) return null
 
-    const componentNode = sectionNode.childrenNode.find(
-      (node) => node.displayName === currentViewDisplayName,
-    )
-    return (
-      <div ref={ref}>
-        <div
-          css={applyContainerWrapperStyle(mode)}
-          ref={(ele) => {
-            containerBoundRef(ele)
-            containerRef.current = ele
-          }}
-        >
-          {componentNode && (
-            <RenderComponentCanvas
-              componentNode={componentNode}
-              containerPadding={8}
-              containerRef={containerRef}
-              canResizeY
-              minHeight={containerBound.height - 16}
-              safeRowNumber={0}
-              addedRowNumber={40}
-              canAutoScroll
-              blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
-              sectionName="BODY_SECTION"
-            />
-          )}
-        </div>
+  const componentNode = sectionNode.childrenNode.find(
+    (node) => node.displayName === currentViewDisplayName,
+  )
+  return (
+    <div css={bodySectionWrapperStyle}>
+      <div
+        css={applyContainerWrapperStyle(mode)}
+        ref={(ele) => {
+          containerBoundRef(ele)
+          containerRef.current = ele
+        }}
+      >
+        {componentNode && (
+          <RenderComponentCanvas
+            componentNode={componentNode}
+            containerPadding={8}
+            containerRef={containerRef}
+            canResizeY
+            minHeight={containerBound.height - 16}
+            safeRowNumber={0}
+            addedRowNumber={40}
+            canAutoScroll
+            blockColumns={columns ?? BASIC_BLOCK_COLUMNS}
+            sectionName="BODY_SECTION"
+          />
+        )}
       </div>
-    )
-  },
-)
+    </div>
+  )
+}
 
 RenderSection.displayName = "RenderSection"
 
-export const RenderHeaderSection = forwardRef<
-  HTMLDivElement,
-  RenderHeaderSectionProps
->((props, ref) => {
+export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
   const {
     sectionNode,
     topHeight,
@@ -360,7 +354,6 @@ export const RenderHeaderSection = forwardRef<
   return (
     <div
       css={applyHeaderSectionWrapperStyle(`${topHeight}px`, "240px", "500px")}
-      ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -421,13 +414,10 @@ export const RenderHeaderSection = forwardRef<
       )}
     </div>
   )
-})
+}
 RenderHeaderSection.displayName = "RenderHeaderSection"
 
-export const RenderFooterSection = forwardRef<
-  HTMLDivElement,
-  RenderFooterSectionProps
->((props, ref) => {
+export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
   const {
     sectionNode,
     bottomHeight,
@@ -629,7 +619,6 @@ export const RenderFooterSection = forwardRef<
         "240px",
         "500px",
       )}
-      ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -690,13 +679,10 @@ export const RenderFooterSection = forwardRef<
       )}
     </div>
   )
-})
+}
 RenderFooterSection.displayName = "RenderHeaderSection"
 
-export const RenderLeftSection = forwardRef<
-  HTMLDivElement,
-  RenderLeftSectionProps
->((props, ref) => {
+export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
   const {
     sectionNode,
     offsetLeft,
@@ -832,6 +818,7 @@ export const RenderLeftSection = forwardRef<
       document.removeEventListener("mouseup", mouseUpListener)
     }
   }, [
+    canvasSize,
     containerWidth,
     currentPageDisplayName,
     dispatch,
@@ -897,7 +884,6 @@ export const RenderLeftSection = forwardRef<
         "0px",
         isFold,
       )}
-      ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -1014,13 +1000,10 @@ export const RenderLeftSection = forwardRef<
       </AnimatePresence>
     </div>
   )
-})
+}
 RenderLeftSection.displayName = "RenderLeftSection"
 
-export const RenderRightSection = forwardRef<
-  HTMLDivElement,
-  RenderRightSectionProps
->((props, ref) => {
+export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
   const {
     sectionNode,
     offsetLeft,
@@ -1158,6 +1141,7 @@ export const RenderRightSection = forwardRef<
       document.removeEventListener("mouseup", mouseUpListener)
     }
   }, [
+    canvasSize,
     containerWidth,
     currentPageDisplayName,
     dispatch,
@@ -1223,7 +1207,6 @@ export const RenderRightSection = forwardRef<
         "0px",
         isFold,
       )}
-      ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -1338,7 +1321,7 @@ export const RenderRightSection = forwardRef<
       </AnimatePresence>
     </div>
   )
-})
+}
 RenderRightSection.displayName = "RenderRightSection"
 
 export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
@@ -1385,10 +1368,6 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
     }
   }
 
-  const onClickMaskInner = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
-  }
-
   return (
     <div css={maskStyle} onClick={onClickMaskToClose}>
       <div
@@ -1397,7 +1376,6 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
           containerBoundRef(ele)
           containerRef.current = ele
         }}
-        onClick={onClickMaskInner}
       >
         {currentComponentNode && (
           <ScaleSquareOnlyHasResize
