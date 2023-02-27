@@ -15,8 +15,8 @@ export const STATISTICS_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     label: "Label",
     colorScheme: "blue",
-    positiveColorScheme: "blue",
-    negativeColorScheme: "blue",
+    positiveColorScheme: "#00aa5bff",
+    negativeColorScheme: "#ff4747ff",
     hidden: false,
     textAlign: "start",
     primaryValue: "{{0}}",

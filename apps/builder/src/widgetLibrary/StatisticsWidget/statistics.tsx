@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Statistic } from "@illa-design/react"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
@@ -10,12 +10,14 @@ import {
   WrappedStatisticProps,
 } from "@/widgetLibrary/StatisticsWidget/interface"
 import {
-  firstStatisticContainerStyle,
+  contentContainerStyle,
   getPrefixIconStyle,
+  getSecondaryStatisticContainerStyle,
   getSecondaryStatisticStyle,
   getStatisticContainerStyle,
   getStatisticStyle,
-  suffixTextStyle,
+  statisticContainerStyle,
+  statisticTitleStyle,
 } from "@/widgetLibrary/StatisticsWidget/style"
 
 const getNumberGroupSeparator = (value: number | undefined, lang: string) => {
@@ -85,14 +87,14 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
   const groupSeparator = showSeparator
     ? getNumberGroupSeparator(primaryValue, builderInfo.language)
     : ""
-  const secondarySeparator = secondaryShowSeparator
+  const secondaryGroupSeparator = secondaryShowSeparator
     ? getNumberGroupSeparator(secondaryValue, builderInfo.language)
     : ""
 
   const getColor = useCallback(
     (value?: number, enableTrendColor?: boolean) => {
       return enableTrendColor
-        ? value && value >= 0
+        ? value !== undefined && value >= 0
           ? positiveColorScheme
           : negativeColorScheme
         : colorScheme
@@ -120,37 +122,52 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
     true,
   )
 
-  const suffixNode = (
-    <div css={firstStatisticContainerStyle}>
-      <span css={suffixTextStyle}>{suffixText}</span>
-      {secondaryValue && (
-        <div css={firstStatisticContainerStyle}>
-          {secondaryIcon}
-          <Statistic
-            _css={getSecondaryStatisticStyle(secondaryColor)}
-            groupSeparator={secondarySeparator}
-            value={secondaryValue}
-            precision={secondaryDecimalPlace}
-            prefix={secondaryPrefixText}
-            suffix={secondarySuffixText}
-          />
-        </div>
-      )}
-    </div>
+  const suffixNode = useMemo(
+    () => (
+      <>
+        {secondaryValue && (
+          <div css={getSecondaryStatisticContainerStyle(secondaryColor)}>
+            {secondaryIcon}
+            <Statistic
+              _css={getSecondaryStatisticStyle(secondaryColor)}
+              groupSeparator={secondaryGroupSeparator}
+              value={secondaryValue}
+              precision={secondaryDecimalPlace}
+              prefix={secondaryPrefixText}
+              suffix={secondarySuffixText}
+            />
+          </div>
+        )}
+      </>
+    ),
+    [
+      secondaryColor,
+      secondaryDecimalPlace,
+      secondaryGroupSeparator,
+      secondaryIcon,
+      secondaryPrefixText,
+      secondarySuffixText,
+      secondaryValue,
+    ],
   )
 
   return (
     <div css={getStatisticContainerStyle(textAlign)} onClick={handleOnClick}>
       {icon}
-      <Statistic
-        title={label}
-        _css={getStatisticStyle(color)}
-        value={primaryValue}
-        precision={decimalPlace}
-        prefix={prefixText}
-        suffix={suffixNode}
-        groupSeparator={groupSeparator}
-      />
+      <div css={contentContainerStyle}>
+        <div css={statisticTitleStyle}>{label}</div>
+        <div css={statisticContainerStyle}>
+          <Statistic
+            _css={getStatisticStyle(color)}
+            value={primaryValue}
+            precision={decimalPlace}
+            prefix={prefixText}
+            suffix={suffixText}
+            groupSeparator={groupSeparator}
+          />
+          {suffixNode}
+        </div>
+      </div>
     </div>
   )
 }

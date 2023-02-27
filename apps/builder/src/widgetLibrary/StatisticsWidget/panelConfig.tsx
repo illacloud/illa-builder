@@ -302,7 +302,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
             ),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "positiveColorScheme",
-            defaultValue: "blue",
+            defaultValue: "#00aa5bff",
           },
           {
             id: `${baseWidgetName}-style-negativeColorScheme`,
@@ -311,7 +311,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
             ),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "negativeColorScheme",
-            defaultValue: "blue",
+            defaultValue: "#ff4747ff",
           },
         ],
       },
