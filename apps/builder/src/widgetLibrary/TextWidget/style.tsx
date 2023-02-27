@@ -32,7 +32,7 @@ const getRealHeight = (
         return "auto"
       }
     case "fixed":
-      return `${dynamicMinHeight}px`
+      return `100%`
     default:
       return ""
   }
