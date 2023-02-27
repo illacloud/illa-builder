@@ -151,7 +151,7 @@
           "url": "Enter request URL here"
         },
         "tips": {
-          "acl": "Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. See Cross-Origin Resource Sharing (CORS)."
+          "acl": "The provided content is a PUBLIC configuration. Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. See Cross-Origin Resource Sharing (CORS)."
         }
       },
       "panel": {
