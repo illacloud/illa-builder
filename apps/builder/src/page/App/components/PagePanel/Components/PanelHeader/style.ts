@@ -48,6 +48,7 @@ export const panelHeaderWrapperStyle = css`
   height: 48px;
   justify-content: space-between;
   align-items: center;
+  flex: none;
   ${publicPaddingStyle}
 `
 

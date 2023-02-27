@@ -55,44 +55,23 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
-      // {
-      //   id: `${baseWidgetName}-layout-height`,
-      //   labelName: i18n.t("editor.inspect.setter_label.height"),
-      //   attrName: "dynamicHeight",
-      //   setterType: "HEIGHT_MODE_SELECT",
-      //   options: [
-      //     {
-      //       label: i18n.t("editor.inspect.setter_option.fixed"),
-      //       value: "fixed",
-      //     },
-      //     {
-      //       label: i18n.t("editor.inspect.setter_option.auto_limited"),
-      //       value: "limited",
-      //     },
-      //     {
-      //       label: i18n.t("editor.inspect.setter_option.auto_height"),
-      //       value: "auto",
-      //     },
-      //   ],
-      // },
       {
-        id: `${baseWidgetName}-layout-col`,
-        labelName: i18n.t("editor.inspect.setter_label.horizontal_alignment"),
-        attrName: "horizontalAlign",
-        setterType: "RADIO_GROUP_SETTER",
-        isSetterSingleRow: true,
+        id: `${baseWidgetName}-layout-height`,
+        labelName: i18n.t("editor.inspect.setter_label.height"),
+        attrName: "dynamicHeight",
+        setterType: "HEIGHT_MODE_SELECT",
         options: [
           {
-            label: <HorizontalStartIcon />,
-            value: "start",
+            label: i18n.t("editor.inspect.setter_option.fixed"),
+            value: "fixed",
           },
           {
-            label: <HorizontalCenterIcon />,
-            value: "center",
+            label: i18n.t("editor.inspect.setter_option.auto_limited"),
+            value: "limited",
           },
           {
-            label: <HorizontalEndIcon />,
-            value: "end",
+            label: i18n.t("editor.inspect.setter_option.auto_height"),
+            value: "auto",
           },
         ],
       },
@@ -117,6 +96,30 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
+      {
+        id: `${baseWidgetName}-layout-col`,
+        labelName: i18n.t("editor.inspect.setter_label.horizontal_alignment"),
+        attrName: "horizontalAlign",
+        setterType: "RADIO_GROUP_SETTER",
+        isSetterSingleRow: true,
+        bindAttrName: ["dynamicHeight"],
+        shown: (dynamicHeight: string) => dynamicHeight !== "auto",
+        options: [
+          {
+            label: <HorizontalStartIcon />,
+            value: "start",
+          },
+          {
+            label: <HorizontalCenterIcon />,
+            value: "center",
+          },
+          {
+            label: <HorizontalEndIcon />,
+            value: "end",
+          },
+        ],
+      },
+
       {
         id: `${baseWidgetName}-layout-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
