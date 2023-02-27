@@ -144,10 +144,14 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
-          "s3": "公開アプリでは無効"
+          "s3": "公開アプリでは無効",
+          "acl": "アップロードされたファイルのデフォルトS3 ACL"
         },
         "placeholder": {
           "url": "URL をここに入力"
+        },
+        "tips": {
+          "acl": "PRIVATE の場合は空白のままにします。 バケットに CORS を設定することを忘れないでください。 クロスオリジン リソース共有 (CORS) を参照してください。"
         }
       },
       "panel": {
