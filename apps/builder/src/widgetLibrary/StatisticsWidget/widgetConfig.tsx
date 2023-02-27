@@ -10,7 +10,7 @@ export const STATISTICS_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Statistic", "数值"],
   sessionType: "PRESENTATION",
   w: 12,
-  h: 5,
+  h: 7,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     label: "Label",

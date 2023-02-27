@@ -1,9 +1,10 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { useSelector } from "react-redux"
-import { Statistic, Trigger } from "@illa-design/react"
+import { Statistic } from "@illa-design/react"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { AllData } from "@/widgetLibrary/IconWidget/utils"
-import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   StatisticWidgetProps,
   WrappedStatisticProps,
@@ -18,7 +19,6 @@ import {
   statisticContainerStyle,
   statisticTitleStyle,
 } from "@/widgetLibrary/StatisticsWidget/style"
-import { Text } from "@/widgetLibrary/TextWidget"
 
 const getNumberGroupSeparator = (value: number | undefined, lang: string) => {
   if (value === undefined) {
@@ -180,17 +180,11 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
     handleUpdateDsl,
     displayName,
     tooltipText,
-    secondaryValue,
-    prefixText,
-    suffixText,
-    secondaryPrefixText,
-    secondarySuffixText,
     updateComponentHeight,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
   } = props
 
-  const heightRef = useRef<number>(0)
   const previousValueRef = useRef<number | undefined>(primaryValue)
 
   useEffect(() => {
@@ -221,84 +215,17 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
     triggerEventHandler("click")
   }, [triggerEventHandler])
 
-  const [containerRef] = useAutoUpdateHeight(updateComponentHeight, true)
-  if (
-    heightRef.current === 0 &&
-    (containerRef.current?.clientHeight || 0) > 0
-  ) {
-    heightRef.current = containerRef.current?.clientHeight || 0
-  }
-
-  const StatisticValueContent = useMemo(() => {
-    return (
-      <>
-        {primaryValue !== undefined ? (
-          <Text
-            value={`${prefixText ? `${prefixText} ` : ""}${primaryValue}${
-              suffixText ? ` ${suffixText}` : ""
-            }`}
-            colorScheme="white"
-          />
-        ) : null}
-        {secondaryValue && (
-          <>
-            {secondaryValue !== undefined ? (
-              <Text
-                value={`${
-                  secondaryPrefixText ? `${secondaryPrefixText} ` : ""
-                }${secondaryValue}${
-                  secondarySuffixText ? ` ${secondarySuffixText}` : ""
-                }`}
-                colorScheme="white"
-              />
-            ) : null}
-          </>
-        )}
-      </>
-    )
-  }, [
-    prefixText,
-    primaryValue,
-    secondaryPrefixText,
-    secondarySuffixText,
-    secondaryValue,
-    suffixText,
-  ])
-
-  const ShowTooltipText = useMemo(() => {
-    const BasicCom = tooltipText ? (
-      <Text value={tooltipText} colorScheme="white" />
-    ) : null
-
-    if (containerRef.current) {
-      let result
-      if (heightRef.current >= containerRef.current?.clientHeight) {
-        result = BasicCom
-      } else {
-        result = StatisticValueContent
-      }
-      heightRef.current = containerRef.current?.clientHeight
-      return result
-    }
-    return BasicCom
-  }, [StatisticValueContent, containerRef, tooltipText])
-
   return (
-    <div ref={containerRef}>
-      <Trigger
-        content={<>{ShowTooltipText}</>}
-        colorScheme="grayBlue"
-        disabled={!ShowTooltipText}
-        position="top-start"
-        showArrow={false}
-        autoFitPosition={false}
-        trigger="hover"
-      >
+    <AutoHeightContainer
+      updateComponentHeight={updateComponentHeight}
+      enable={true}
+    >
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div>
           <WrappedStatistic {...props} handleOnClick={handleOnClick} />
         </div>
-      </Trigger>
-    </div>
+      </TooltipWrapper>
+    </AutoHeightContainer>
   )
 }
 StatisticWidget.displayName = "StatisticWidget"
