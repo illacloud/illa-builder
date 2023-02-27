@@ -971,7 +971,7 @@
         "show_underline": "下線を表示",
         "auto_play": "自動プレイ",
         "interval": "間隔(ミリ秒)",
-        "show_button": "両側にボタンを表示",
+        "show_button": "矢印を表示",
         "show_dot": "下部にドットを表示",
         "hidden_images": "隠し画像",
         "file_type": "ファイルの種類",
@@ -1445,7 +1445,8 @@
     "container": {
       "empty": "<keyPress> D </keyPress>または<keyPress> K </keyPress>を押したまま、コンポーネントをコンテナにドラッグします",
       "key_duplicated": "キー値が重複しています。エラーを避けるために一意の値を使用してください。",
-      "name": "容器"
+      "name": "容器",
+      "value_duplicated": "The value is duplicated. Please use unique values to avoid errors."
     },
     "date": {
       "name": "日付ピッカー"
@@ -1558,6 +1559,9 @@
     },
     "multiselect": {
       "name": "Multiselect"
+    },
+    "carousel": {
+      "name": "Carousel"
     }
   },
   "page": {
