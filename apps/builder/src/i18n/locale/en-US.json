@@ -971,7 +971,7 @@
         "show_underline": "Show underline",
         "auto_play": "Auto play",
         "interval": "Interval(ms)",
-        "show_button": "Show buttons on both sides",
+        "show_button": "Show arrows",
         "show_dot": "Show dots at the bottom",
         "hidden_images": "Hidden images",
         "file_type": "File types",
@@ -1445,7 +1445,8 @@
     "container": {
       "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here",
       "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
-      "name": "Container"
+      "name": "Container",
+      "value_duplicated": "The value is duplicated. Please use unique values to avoid errors."
     },
     "date": {
       "name": "Date"
@@ -1558,6 +1559,9 @@
     },
     "multiselect": {
       "name": "Multiselect"
+    },
+    "carousel": {
+      "name": "Carousel"
     }
   },
   "page": {
