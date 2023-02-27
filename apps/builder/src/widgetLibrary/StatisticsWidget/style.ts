@@ -89,15 +89,17 @@ export const contentContainerStyle = css`
 export const getSecondaryStatisticContainerStyle = (color?: string) => {
   return css`
     display: flex;
-    gap: 4px;
+    gap: 2px;
     align-items: center;
     height: 18px;
-    padding: 0 4px 0 2px;
-    border-radius: 4px;
+    padding: 0 4px;
+    border-radius: 2px;
     background: ${getColor(color || "", "07")};
     & span {
       line-height: 18px;
       font-size: 12px;
+      margin-right: 2px;
+      margin-left: 0;
     }
     & > div > div > div {
       display: flex;
