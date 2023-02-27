@@ -144,10 +144,14 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
-          "s3": "在公开APP中不可用"
+          "s3": "在公开APP中不可用",
+          "acl": "上传文件的默认S3 ACL"
         },
         "placeholder": {
           "url": "在此处输入请求 URL"
+        },
+        "tips": {
+          "acl": "留空为PRIVATE。不要忘记在您的存储桶上配置 CORS。 请参阅跨源资源共享 (CORS)。"
         }
       },
       "panel": {
