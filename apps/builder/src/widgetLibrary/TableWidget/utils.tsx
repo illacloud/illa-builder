@@ -1,6 +1,13 @@
 import { CellContext } from "@tanstack/table-core"
 import { FC } from "react"
-import { Button, Link, dayjsPro, isNumber } from "@illa-design/react"
+import {
+  Button,
+  Link,
+  dayjsPro,
+  isFunction,
+  isNumber,
+  isObject,
+} from "@illa-design/react"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
@@ -140,7 +147,13 @@ const getValue = (
     }
     return `${mappedValue}`
   }
-  return value ?? "-"
+  if (isObject(value)) {
+    return `${JSON.stringify(value)}`
+  }
+  if (isFunction(value)) {
+    return "-"
+  }
+  return `${value ?? "-"}`
 }
 
 export const getCellForType = (
@@ -158,7 +171,13 @@ export const getCellForType = (
 
   switch (type) {
     default:
-      return (props: CellContext<any, any>) => `${props.getValue() ?? "-"}`
+      return (props: CellContext<any, any>) => {
+        const value = props.getValue()
+        if (isObject(value)) {
+          return `${JSON.stringify(value)}`
+        }
+        return `${value ?? "-"}`
+      }
     case "text":
       return (props: CellContext<any, any>) => {
         return getValue(props, mappedValue, fromCurrentRow)
