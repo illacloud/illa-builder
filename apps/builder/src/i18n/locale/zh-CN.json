@@ -392,6 +392,10 @@
           "placeholder": {
             "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
           }
+        },
+        "status": {
+          "ran_failed": "运行失败",
+          "ran_successfully": "运行成功"
         }
       },
       "resource": {
