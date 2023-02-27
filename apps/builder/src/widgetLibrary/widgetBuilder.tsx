@@ -11,6 +11,12 @@ import {
   ButtonWidget,
 } from "@/widgetLibrary/ButtonWidget"
 import {
+  CAROUSEL_EVENT_HANDLER_CONFIG,
+  CAROUSEL_PANEL_CONFIG,
+  CAROUSEL_WIDGET_CONFIG,
+  CarouselWidget,
+} from "@/widgetLibrary/CarouselWidget"
+import {
   CASCADER_PANEL_CONFIG,
   CASCADER_WIDGET_CONFIG,
   CascaderWidget,
@@ -394,6 +400,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: VIDEO_WIDGET_CONFIG,
     panelConfig: VIDEO_PANEL_CONFIG,
     eventHandlerConfig: VIDEO_EVENT_HANDLER_CONFIG,
+  },
+  CAROUSEL_WIDGET: {
+    widget: CarouselWidget,
+    config: CAROUSEL_WIDGET_CONFIG,
+    panelConfig: CAROUSEL_PANEL_CONFIG,
+    eventHandlerConfig: CAROUSEL_EVENT_HANDLER_CONFIG,
   },
 }
 

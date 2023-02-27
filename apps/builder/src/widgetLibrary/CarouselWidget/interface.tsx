@@ -2,9 +2,16 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface CarouselProps {
-  text?: string
   handleOnClick: () => void
-  colorScheme?: string
+  dataSources?: Array<unknown>
+
+  autoPlay?: boolean
+  interval?: number
+  radius?: string
+  hidden?: boolean
+  disabled?: boolean
+  showArrows?: boolean
+  showDots?: boolean
 }
 
 export interface CarouselWidgetProps
