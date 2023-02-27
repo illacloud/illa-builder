@@ -186,15 +186,23 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
   } = props
 
   const previousValueRef = useRef<number | undefined>(primaryValue)
+  const signalRef = useRef<boolean>(false)
+
+  useEffect(() => {
+    if (signalRef.current) {
+      signalRef.current = false
+      return
+    }
+    previousValueRef.current = primaryValue
+  }, [primaryValue])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       setPrimaryValue: (value: number) => {
-        if (primaryValue === value) return
+        signalRef.current = true
         handleUpdateDsl({ primaryValue: value })
       },
       resetPrimaryValue: () => {
-        if (previousValueRef.current === primaryValue) return
         handleUpdateDsl({
           primaryValue: previousValueRef.current,
         })
