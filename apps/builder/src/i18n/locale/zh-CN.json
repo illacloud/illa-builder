@@ -1076,9 +1076,12 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。",
+        "carousel_tips": "使用 {{ item }} 从数据源中获取值。 例如，数据源中有两个属性。 它们是 imageUrl 和 url。 如果您想在点击图片时转到不同的 url，请使用 {{ item.url }} 设置 url。",
         "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}",
-        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
+        "img_url_array": "使用 {{ item.attributeName}} 从数据源获取图像 URL。",
+        "carousel": {
+          "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}"
+        }
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1105,7 +1108,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
-        }
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} "
       },
       "setter_tootip": {
         "volume": "0到1之间的数字"
@@ -1446,7 +1451,7 @@
       "empty": "按住 <keyPress>D</keyPress> 或 <keyPress>K</keyPress> ，将组件拖入容器",
       "key_duplicated": "键值重复，请使用唯一值以避免报错。",
       "name": "容器",
-      "value_duplicated": "The value is duplicated. Please use unique values to avoid errors."
+      "value_duplicated": "值重复，请使用唯一值以避免报错。"
     },
     "date": {
       "name": "日期选择器"
