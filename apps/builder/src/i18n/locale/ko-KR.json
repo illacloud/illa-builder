@@ -144,10 +144,14 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
-          "s3": "공개 앱에서 유효하지 않음"
+          "s3": "공개 앱에서 유효하지 않음",
+          "acl": "업로드 된 파일의 경우 기본 S3 ACL"
         },
         "placeholder": {
           "url": "여기에 요청 URL 입력"
+        },
+        "tips": {
+          "acl": "개인용으로 비워 둡니다. 버킷에 CORS를 구성하는 것을 잊지 마십시오. CORS (Cross-Origin Resource Sharing) 를 참조하세요."
         }
       },
       "panel": {
