@@ -144,10 +144,14 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
-          "s3": "Invalid in public apps"
+          "s3": "Invalid in public apps",
+          "acl": "Default S3 ACL for uploaded files"
         },
         "placeholder": {
           "url": "Enter request URL here"
+        },
+        "tips": {
+          "acl": "Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. See Cross-Origin Resource Sharing (CORS)."
         }
       },
       "panel": {
