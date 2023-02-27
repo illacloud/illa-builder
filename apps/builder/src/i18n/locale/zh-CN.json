@@ -971,7 +971,7 @@
         "show_underline": "展示下划线",
         "auto_play": "自动播放",
         "interval": "间隔时间（毫秒）",
-        "show_button": "显示两侧按钮",
+        "show_button": "展示指示箭头",
         "show_dot": "显示底部指示点",
         "hidden_images": "隐藏图片",
         "file_type": "文件类型",
@@ -1445,7 +1445,8 @@
     "container": {
       "empty": "按住 <keyPress>D</keyPress> 或 <keyPress>K</keyPress> ，将组件拖入容器",
       "key_duplicated": "键值重复，请使用唯一值以避免报错。",
-      "name": "容器"
+      "name": "容器",
+      "value_duplicated": "The value is duplicated. Please use unique values to avoid errors."
     },
     "date": {
       "name": "日期选择器"
@@ -1558,6 +1559,9 @@
     },
     "multiselect": {
       "name": "Multiselect"
+    },
+    "carousel": {
+      "name": "Carousel"
     }
   },
   "page": {
