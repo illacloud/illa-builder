@@ -75,4 +75,13 @@ export const customerCodeStyle = css`
   border: none;
   border-radius: 0;
   background-color: ${getColor("white", "01")};
+  > .cm-editor {
+    border: none;
+    border-radius: 0;
+    & > .cm-scroller {
+      & > .cm-gutters {
+        border-radius: 0;
+      }
+    }
+  }
 `

@@ -53,11 +53,7 @@ const getLeftAndRightWidth = (
 
 export const RenderPage: FC<RenderPageProps> = (props) => {
   const { pageNode, currentPageDisplayName } = props
-  const headerRef = useRef<HTMLDivElement>(null)
-  const footerRef = useRef<HTMLDivElement>(null)
-  const leftRef = useRef<HTMLDivElement>(null)
-  const rightRef = useRef<HTMLDivElement>(null)
-  const bodyRef = useRef<HTMLDivElement>(null)
+  const containerWrapperRef = useRef<HTMLDivElement>(null)
   const [containerRef, bounds] = useMeasure()
   const canvasShape = useSelector(getCanvasShape)
   const mode = useSelector(getIllaMode)
@@ -171,6 +167,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   }, [bounds.width, canvasSize, hasRight, isRightFold, rightWidth])
 
   useLayoutEffect(() => {
+    if (bounds.width <= 0) return
     let headerLeft = 0
     let headerWidth = bounds.width
     let leftTop = 0
@@ -183,37 +180,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     let bodyTop = 0
     let bodyLeft = 0
     let bodyHeight = bounds.height
-    let leftArea = {
-      top: leftTop,
-      bottom: leftTop + leftHeight,
-      left: 0,
-      right: realLeftWidth,
-    }
-    let rightArea = {
-      top: rightTop,
-      bottom: rightTop + rightHeight,
-      left: realRightWidth,
-      right: 0,
-    }
-    let headerArea = {
-      top: 0,
-      bottom: topHeight,
-      left: headerLeft,
-      right: headerLeft + headerWidth,
-    }
-    let footerArea = {
-      top: bodyTop + bodyHeight,
-      bottom: bodyTop + bodyHeight + bodyHeight,
-      left: footerLeft,
-      right: footerLeft + footerWidth,
-    }
-    let bodyArea = {
-      top: bodyTop,
-      bottom: bodyTop + bodyHeight,
-      left: bodyLeft,
-      right: bodyLeft + bodyWidth,
-    }
-
     if (hasLeft) {
       bodyWidth -= calcLeftWidth
       bodyLeft = calcLeftWidth
@@ -279,59 +245,65 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
       bodyHeight -= bottomHeight
     }
 
-    if (hasLeft && leftRef.current) {
-      leftRef.current.style.height = `${leftHeight}px`
-      leftRef.current.style.top = `${leftTop}px`
-      leftArea = {
-        top: leftTop,
-        bottom: leftTop + leftHeight,
-        left: 0,
-        right: calcLeftWidth,
-      }
+    if (hasLeft && containerWrapperRef.current) {
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-left-height",
+        `${leftHeight}px`,
+      )
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-left-top",
+        `${leftTop}px`,
+      )
     }
-    if (hasRight && rightRef.current) {
-      rightRef.current.style.height = `${rightHeight}px`
-      rightRef.current.style.top = `${rightTop}px`
-      rightArea = {
-        top: rightTop,
-        bottom: rightTop + rightHeight,
-        left: calcRightWidth,
-        right: 0,
-      }
+    if (hasRight && containerWrapperRef.current) {
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-right-height",
+        `${rightHeight}px`,
+      )
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-right-top",
+        `${rightTop}px`,
+      )
     }
-    if (hasHeader && headerRef.current) {
-      headerRef.current.style.width = `${headerWidth}px`
-      headerRef.current.style.left = `${headerLeft}px`
-      headerArea = {
-        top: 0,
-        bottom: topHeight,
-        left: headerLeft,
-        right: headerLeft + headerWidth,
-      }
+    if (hasHeader && containerWrapperRef.current) {
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-header-width",
+        `${headerWidth}px`,
+      )
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-header-left",
+        `${headerLeft}px`,
+      )
     }
-    if (hasFooter && footerRef.current) {
-      footerRef.current.style.width = `${footerWidth}px`
-      footerRef.current.style.left = `${footerLeft}px`
-      footerArea = {
-        top: bodyTop + bodyHeight,
-        bottom: bodyTop + bodyHeight + bodyHeight,
-        left: footerLeft,
-        right: footerLeft + footerWidth,
-      }
+    if (hasFooter && containerWrapperRef.current) {
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-footer-width",
+        `${footerWidth}px`,
+      )
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-footer-left",
+        `${footerLeft}px`,
+      )
     }
 
-    if (bodyRef.current) {
-      bodyRef.current.style.position = "absolute"
-      bodyRef.current.style.width = `${bodyWidth}px`
-      bodyRef.current.style.left = `${bodyLeft}px`
-      bodyRef.current.style.top = `${bodyTop}px`
-      bodyRef.current.style.height = `${bodyHeight}px`
-      bodyArea = {
-        top: bodyTop,
-        bottom: bodyTop + bodyHeight,
-        left: bodyLeft,
-        right: bodyLeft + bodyWidth,
-      }
+    if (containerWrapperRef.current) {
+      console.log("bodyWidth", bodyWidth)
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-body-width",
+        `${bodyWidth}px`,
+      )
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-body-left",
+        `${bodyLeft}px`,
+      )
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-body-top",
+        `${bodyTop}px`,
+      )
+      containerWrapperRef.current.style.setProperty(
+        "--illa-canvas-body-height",
+        `${bodyHeight}px`,
+      )
     }
   }, [
     bottomHeight,
@@ -383,12 +355,14 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     canvasSize === "fixed" ? `${canvasWidth}px` : `${canvasWidth}%`
 
   return (
-    <div css={applyCanvasContainerWrapperStyle(finalCanvasWidth, mode)}>
+    <div
+      css={applyCanvasContainerWrapperStyle(finalCanvasWidth, mode)}
+      ref={containerWrapperRef}
+    >
       <div css={pageContainerWrapperStyle} ref={containerRef}>
         {hasHeader && headerSection && currentPageDisplayName && (
           <RenderHeaderSection
             sectionNode={headerSection}
-            ref={headerRef}
             topHeight={topHeight}
             offsetTop={bounds.top}
             mode={mode}
@@ -403,7 +377,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
         {hasLeft && leftSection && currentPageDisplayName && (
           <RenderLeftSection
             sectionNode={leftSection}
-            ref={leftRef}
             offsetLeft={bounds.left}
             containerWidth={bounds.width}
             mode={mode}
@@ -421,7 +394,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
         {bodySection && currentPageDisplayName && (
           <RenderSection
             sectionNode={bodySection}
-            ref={bodyRef}
             mode={mode}
             columns={bodyColumns}
           />
@@ -429,7 +401,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
         {hasRight && rightSection && currentPageDisplayName && (
           <RenderRightSection
             sectionNode={rightSection}
-            ref={rightRef}
             offsetLeft={bounds.left}
             containerWidth={bounds.width}
             mode={mode}
@@ -447,7 +418,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
         {hasFooter && footerSection && currentPageDisplayName && (
           <RenderFooterSection
             sectionNode={footerSection}
-            ref={footerRef}
             bottomHeight={bottomHeight}
             offsetTop={bounds.top}
             containerHeight={bounds.height}

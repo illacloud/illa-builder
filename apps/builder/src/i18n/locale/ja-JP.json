@@ -392,6 +392,10 @@
           "placeholder": {
             "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
           }
+        },
+        "status": {
+          "ran_failed": "実行に失敗しました",
+          "ran_successfully": "正常に実行"
         }
       },
       "resource": {
@@ -971,7 +975,7 @@
         "show_underline": "下線を表示",
         "auto_play": "自動プレイ",
         "interval": "間隔(ミリ秒)",
-        "show_button": "両側にボタンを表示",
+        "show_button": "矢印を表示",
         "show_dot": "下部にドットを表示",
         "hidden_images": "隠し画像",
         "file_type": "ファイルの種類",
@@ -1017,7 +1021,9 @@
           "expand_icon": "拡大",
           "collapse_icon": "アコーディオンパネル",
           "icon_color": "色"
-        }
+        },
+        "choose_at_least": "Choose at least",
+        "choose_up_to": "Choose up to"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1076,7 +1082,10 @@
       "setter_tips": {
         "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。",
         "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}",
-        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
+        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
+        "carousel": {
+          "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}"
+        }
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1103,10 +1112,16 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
-        }
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} "
       },
       "setter_tootip": {
         "volume": "0 から 1 までの数値"
+      },
+      "setter_message": {
+        "choose_at_least": "Please choose at lease {{ min }} options.",
+        "choose_up_to": "Please choose up to {{max}} options."
       }
     },
     "page": {
@@ -1439,7 +1454,8 @@
     "container": {
       "empty": "<keyPress> D </keyPress>または<keyPress> K </keyPress>を押したまま、コンポーネントをコンテナにドラッグします",
       "key_duplicated": "キー値が重複しています。エラーを避けるために一意の値を使用してください。",
-      "name": "容器"
+      "name": "容器",
+      "value_duplicated": "値が重複しています。エラーを避けるために一意の値を使用してください。"
     },
     "date": {
       "name": "日付ピッカー"
@@ -1552,6 +1568,9 @@
     },
     "multiselect": {
       "name": "Multiselect"
+    },
+    "carousel": {
+      "name": "Carousel"
     }
   },
   "page": {

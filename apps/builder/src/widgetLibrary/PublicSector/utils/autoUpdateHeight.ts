@@ -1,4 +1,10 @@
-import { useEffect, useLayoutEffect, useRef } from "react"
+import {
+  MutableRefObject,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react"
 
 export const useAutoUpdateHeight = (
   handleUpdateHeight: (height: number) => void,
@@ -7,22 +13,14 @@ export const useAutoUpdateHeight = (
     dynamicMinHeight?: number
     dynamicMaxHeight?: number
   },
-) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const isMounted = useRef(false)
-
-  useEffect(() => {
-    isMounted.current = true
-    return () => {
-      isMounted.current = false
-    }
-  }, [])
-
-  useLayoutEffect(() => {
-    const observer = new ResizeObserver((entries) => {
+): [MutableRefObject<HTMLDivElement | null>, number] => {
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const [realHeight, setRealHeight] = useState(0)
+  const observerRef = useRef(
+    new ResizeObserver((entries) => {
       if (!isMounted.current || !handleUpdateHeight) return
       const height = entries[0].contentRect.height
+      setRealHeight(height)
       if (
         dynamicOptions &&
         dynamicOptions.dynamicMaxHeight &&
@@ -40,17 +38,28 @@ export const useAutoUpdateHeight = (
         return
       }
       handleUpdateHeight?.(height)
-    })
-    if (containerRef.current && enable) {
-      observer.unobserve(containerRef.current)
-      observer.observe(containerRef.current)
+    }),
+  )
+
+  const isMounted = useRef(false)
+
+  useEffect(() => {
+    isMounted.current = true
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
+
+  useLayoutEffect(() => {
+    if (observerRef.current && containerRef.current && enable) {
+      observerRef.current.observe(containerRef.current)
     }
 
     return () => {
       if (containerRef.current && enable) {
-        observer.unobserve(containerRef.current)
+        observerRef.current.unobserve(containerRef.current)
       }
     }
   }, [dynamicOptions, enable, handleUpdateHeight])
-  return [containerRef]
+  return [containerRef, realHeight]
 }
