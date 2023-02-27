@@ -392,6 +392,10 @@
           "placeholder": {
             "parameters": "JSON, for exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
           }
+        },
+        "status": {
+          "ran_failed": "Action failed to run",
+          "ran_successfully": "Action ran successfully"
         }
       },
       "resource": {
