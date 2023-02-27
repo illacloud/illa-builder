@@ -8,8 +8,9 @@ import {
   DropListItem,
   Dropdown,
   MoreIcon,
-  globalColor,
-  illaPrefix,
+  SuccessCircleIcon,
+  UpIcon,
+  WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
@@ -38,10 +39,15 @@ import {
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { ActionTitleBarProps } from "./interface"
 import {
+  actionFailBlockStyle,
+  actionSuccessBlockStyle,
+  actionTextStyle,
   actionTitleBarSpaceStyle,
   actionTitleBarStyle,
+  applyOpenStateStyle,
   editableTitleBarWrapperStyle,
 } from "./style"
 
@@ -106,6 +112,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
         ...cachedAction,
         content: {
           ...otherContent,
+          // if to, cc, bcc or attachment is empty, remove it from the content
           ...(to && { to }),
           ...(cc && { cc }),
           ...(bcc && { bcc }),
@@ -118,7 +125,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
 }
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const { onActionRun } = props
+  const { onResultVisibleChange } = props
 
   const message = useMessage()
   const selectedAction = useSelector(getSelectedAction)!
@@ -131,6 +138,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
   const [canRunAction, canNotRunMessage] = getCanRunAction(cachedAction)
+
+  const executionResult = useSelector(getExecutionResult)
+
+  const renderResult =
+    executionResult[selectedAction.displayName]?.runResult !== undefined
+  const runError = executionResult[selectedAction.displayName]?.runResult?.error
+
+  const [openResultState, setOpenResultState] = useState(false)
 
   let runMode: RunMode = useMemo(() => {
     if (cachedAction != undefined && isChanged) {
@@ -162,7 +177,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         if (cachedActionValue) {
           runAction(cachedActionValue, (result: unknown, error?: boolean) => {
             setLoading(false)
-            onActionRun(result, error)
           })
         }
         break
@@ -210,12 +224,10 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
             if (cachedActionValue) {
               dispatch(actionActions.updateActionItemReducer(cachedActionValue))
               setLoading(true)
-
               runAction(
                 cachedActionValue,
                 (result: unknown, error?: boolean) => {
                   setLoading(false)
-                  onActionRun(result, error)
                 },
               )
             }
@@ -244,7 +256,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     selectedAction.actionId,
     message,
     canNotRunMessage,
-    onActionRun,
     dispatch,
     t,
   ])
@@ -256,6 +267,38 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   if (cachedAction === undefined) {
     return <></>
   }
+
+  const successBlock = (
+    <div
+      css={actionSuccessBlockStyle}
+      onClick={() => {
+        setOpenResultState(!openResultState)
+        onResultVisibleChange(!openResultState)
+      }}
+    >
+      <SuccessCircleIcon fs="16px" size="16px" />
+      <span css={actionTextStyle}>
+        {t("editor.action.panel.status.ran_successfully")}
+      </span>
+      <UpIcon css={applyOpenStateStyle(openResultState)} />
+    </div>
+  )
+
+  const failBlock = (
+    <div
+      css={actionFailBlockStyle}
+      onClick={() => {
+        setOpenResultState(!openResultState)
+        onResultVisibleChange(!openResultState)
+      }}
+    >
+      <WarningCircleIcon fs="16px" size="16px" />
+      <span css={actionTextStyle}>
+        {t("editor.action.panel.status.ran_failed")}
+      </span>
+      <UpIcon css={applyOpenStateStyle(openResultState)} />
+    </div>
+  )
 
   return (
     <div css={actionTitleBarStyle}>
@@ -295,6 +338,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         />
       </div>
       <div css={actionTitleBarSpaceStyle} />
+      {renderResult && (runError ? failBlock : successBlock)}
       <Dropdown
         position="bottom-end"
         trigger="click"
