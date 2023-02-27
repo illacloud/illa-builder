@@ -1,10 +1,17 @@
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
+export interface CarouselSettings {
+  id: string
+  value: string
+  url: string
+  alt?: string
+  hidden?: boolean
+}
+
 export interface CarouselProps {
   handleOnClick: () => void
-  dataSources?: Array<unknown>
-
+  data: CarouselSettings[]
   autoPlay?: boolean
   interval?: number
   radius?: string
@@ -17,4 +24,9 @@ export interface CarouselProps {
 export interface CarouselWidgetProps
   extends CarouselProps,
     BaseWidgetProps,
-    TooltipWrapperProps {}
+    TooltipWrapperProps {
+  configureMode?: "static" | "dynamic"
+  dataSources?: Array<unknown>
+  manualData?: CarouselSettings[]
+  mappedData?: CarouselSettings[]
+}

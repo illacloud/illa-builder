@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick-theme.css"
 import "slick-carousel/slick/slick.css"
@@ -9,7 +9,7 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { CarouselProps, CarouselWidgetProps } from "./interface"
 
 export const Carousel: FC<CarouselProps> = (props) => {
-  const { handleOnClick, showArrows, showDots, autoPlay } = props
+  const { handleOnClick, showArrows, showDots, autoPlay, data } = props
 
   const settings = {
     dots: true,
@@ -28,18 +28,15 @@ export const Carousel: FC<CarouselProps> = (props) => {
       autoplay={autoPlay}
       prevArrow={<PreviousIcon />}
     >
-      <div>
-        <h3>1</h3>
-      </div>
-      <div>
-        <h3>2</h3>
-      </div>
-      <div>
-        <h3>3</h3>
-      </div>
-      <div>
-        <h3>4</h3>
-      </div>
+      {data.map((item) => {
+        const { id, value, url, alt, hidden } = item
+        if (hidden) return null
+        return (
+          <div key={id}>
+            <img src={url} alt={alt} />
+          </div>
+        )
+      })}
     </Slider>
   )
 }
@@ -53,7 +50,18 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     displayName,
     tooltipText,
     triggerEventHandler,
+    manualData,
+    mappedData,
+    configureMode,
   } = props
+
+  const data = useMemo(() => {
+    console.log({ manualData, mappedData, configureMode })
+    if (configureMode === "static") {
+      return manualData
+    }
+    return mappedData
+  }, [manualData, mappedData, configureMode])
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {})
@@ -69,7 +77,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={buttonLayoutStyle}>
-        <Carousel {...props} handleOnClick={handleOnClick} />
+        <Carousel data={data ?? []} handleOnClick={handleOnClick} />
       </div>
     </TooltipWrapper>
   )
