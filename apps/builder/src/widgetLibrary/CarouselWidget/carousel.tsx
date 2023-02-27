@@ -6,7 +6,11 @@ import { PreviousIcon } from "@illa-design/react"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import { sliderStyle } from "@/widgetLibrary/CarouselWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { CarouselProps, CarouselWidgetProps } from "./interface"
+import {
+  CarouselProps,
+  CarouselSettings,
+  CarouselWidgetProps,
+} from "./interface"
 
 export const Carousel: FC<CarouselProps> = (props) => {
   const { handleOnClick, showArrows, showDots, autoPlay, data } = props
@@ -54,6 +58,65 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     mappedData,
     configureMode,
   } = props
+
+  const formatOptions = (
+    optionConfigureMode: "dynamic" | "static" = "static",
+    manualOptions: CarouselSettings[] = [],
+    mappedOption: {
+      id: string[]
+      values: string[]
+      url: string[]
+      alt?: string[]
+      hiddens?: boolean[]
+    },
+  ) => {
+    if (optionConfigureMode === "dynamic") {
+      const url = mappedOption.url ?? []
+      const value = mappedOption.values ?? []
+      const disabled = mappedOption.hiddens ?? []
+      const maxLength = Math.max(url.length, value.length, disabled.length)
+      const options: {
+        url: string
+        value: string
+        disabled?: boolean
+      }[] = []
+      for (let i = 0; i < maxLength; i++) {
+        let urlItem = url[i] || value[i]
+        const valueItem = value[i] || url[i] || i.toString()
+        const disabledItem = disabled[i]
+
+        options.push({
+          url: urlItem,
+          value: valueItem,
+          disabled: disabledItem,
+        })
+      }
+      return options
+    } else {
+      if (!Array.isArray(manualOptions)) {
+        return []
+      }
+      const options: {
+        url: string | number
+        value: string | number
+        disabled?: boolean
+      }[] = []
+      manualOptions.forEach((option, index) => {
+        let labelItem = option.url || option.value || index
+        const valueItem = option.value || labelItem || index
+        const hiddenItem = option.hidden
+        if (typeof labelItem === "object") {
+          labelItem = index
+        }
+        options.push({
+          url: labelItem,
+          value: valueItem,
+          hidden: hiddenItem,
+        })
+      })
+      return options
+    }
+  }
 
   const data = useMemo(() => {
     console.log({ manualData, mappedData, configureMode })
