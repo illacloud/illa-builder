@@ -158,29 +158,6 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: `${baseWidgetName}-interaction`,
-    groupName: i18n.t("editor.inspect.setter_group.interaction"),
-    children: [
-      {
-        ...generatorMappedCarouselEventHandlerConfig(
-          baseWidgetName,
-          CAROUSEL_EVENT_HANDLER_CONFIG.events,
-        ),
-      },
-      {
-        id: `${baseWidgetName}-interaction-disabled`,
-        labelName: i18n.t("editor.inspect.setter_label.disabled"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
-        placeholder: "{{false}}",
-        attrName: "disabled",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-        bindAttrName: ["submit"],
-        shown: (value) => !value,
-      },
-    ],
-  },
-  {
     id: `${baseWidgetName}-adornments`,
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
