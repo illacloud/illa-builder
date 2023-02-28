@@ -151,7 +151,7 @@
           "url": "여기에 요청 URL 입력"
         },
         "tips": {
-          "acl": "버킷에 CORS를 구성하는 것을 잊지 마십시오. CORS(Cross-Origin Resource Sharing)를 참조하세요."
+          "acl": "버킷에 CORS를 구성하는 것을 잊지 마십시오. <0>CORS(Cross-Origin Resource Sharing) 를 참조하세요.</0>"
         }
       },
       "panel": {
