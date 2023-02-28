@@ -30,6 +30,7 @@ import {
   ChangeLayoutRightBar,
   ChangeLayoutTopBar,
 } from "./changeLayoutBar"
+import { getCurrentDisplayName } from "./hooks/sectionUtils"
 import {
   RenderFooterSectionProps,
   RenderHeaderSectionProps,
@@ -67,7 +68,6 @@ import {
   rightWidthTipsStyle,
   sideBarIconStyle,
 } from "./style"
-import { getCurrentDisplayName } from "./utils/sectionUtils"
 
 export const HEADER_MIN_HEIGHT = 40
 export const FOOTER_MIN_HEIGHT = 40
