@@ -1,5 +1,6 @@
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { AppWriteConfigElement } from "@/page/App/components/Actions/AppwriteConfigElement"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
 import { DynamoDBConfigElement } from "@/page/App/components/Actions/DynamoDBConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
@@ -111,6 +112,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return <HuggingFaceEndpointConfigElement {...configElementProps} />
       case "clickhouse":
         return <ClickhouseConfigElement {...configElementProps} />
+      case "appwrite":
+        return <AppWriteConfigElement {...configElementProps} />
       default:
         return null
     }

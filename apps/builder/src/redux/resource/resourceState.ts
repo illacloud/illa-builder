@@ -1,3 +1,4 @@
+import { AppWriteResource } from "@/redux/resource/appWriteResource"
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import { DynamoDBResource } from "@/redux/resource/dynamoResource"
 import { FirebaseResource } from "@/redux/resource/firebaseResource"
@@ -23,6 +24,7 @@ export type ResourceType =
   | "supabasedb"
   | "mysql"
   | "mssql"
+  | "appwrite"
   | "restapi"
   | "graphql"
   | "mongodb"
@@ -42,6 +44,7 @@ export type ResourceContent =
   | HuggingFaceEndpointResource
   | ClickhouseResource
   | FirebaseResource
+  | AppWriteResource
   | SMTPResource
   | S3Resource
   | ElasticSearchResource

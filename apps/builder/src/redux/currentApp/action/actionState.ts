@@ -76,6 +76,7 @@ export type ActionType =
   | "smtp"
   | "s3"
   | "transformer"
+  | "appwrite"
 
 export type ActionTriggerMode = "manually" | "automate"
 

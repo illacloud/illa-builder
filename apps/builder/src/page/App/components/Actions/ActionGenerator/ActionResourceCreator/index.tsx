@@ -1,5 +1,6 @@
 import { FC, ReactNode, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { AppWriteConfigElement } from "@/page/App/components/Actions/AppwriteConfigElement"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
 import { DynamoDBConfigElement } from "@/page/App/components/Actions/DynamoDBConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
@@ -93,6 +94,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         return <HuggingFaceConfigElement {...generalProps} />
       case "hfendpoint":
         return <HuggingFaceEndpointConfigElement {...generalProps} />
+      case "appwrite":
+        return <AppWriteConfigElement {...generalProps} />
       default:
         return null
     }

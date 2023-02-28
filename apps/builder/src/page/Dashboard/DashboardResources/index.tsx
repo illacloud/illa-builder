@@ -24,6 +24,7 @@ import {
 } from "@/page/Dashboard/DashboardResources/style"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
+import { AppWriteResource } from "@/redux/resource/appWriteResource"
 import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
 import {
   MongoDbConfig,
@@ -96,6 +97,9 @@ export const DashboardResources: FC = () => {
           dbName = (
             resource.content as SnowflakeResource<SnowflakeAuthenticationType>
           ).database
+          break
+        case "appwrite":
+          dbName = (resource.content as AppWriteResource).database
           break
       }
       return {

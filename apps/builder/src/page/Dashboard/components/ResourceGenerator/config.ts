@@ -55,6 +55,10 @@ export const Databases: ResourceDataItem[] = [
     resourceType: "clickhouse",
     isDraft: false,
   },
+  {
+    resourceType: "appwrite",
+    isDraft: false,
+  },
 ]
 
 export const Apis: ResourceDataItem[] = [

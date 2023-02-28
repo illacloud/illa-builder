@@ -55,6 +55,10 @@ export const Databases: ActionDataItem[] = [
     actionType: "clickhouse",
     isDraft: false,
   },
+  {
+    actionType: "appwrite",
+    isDraft: false,
+  },
 ]
 
 export const Apis: ActionDataItem[] = [

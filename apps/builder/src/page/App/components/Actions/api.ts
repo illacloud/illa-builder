@@ -215,6 +215,14 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         accessKeyID,
         secretAccessKey,
       }
+    case "appwrite":
+      const { host, projectID, database, jwt } = data
+      return {
+        host,
+        projectID,
+        database,
+        jwt,
+      }
   }
 }
 
