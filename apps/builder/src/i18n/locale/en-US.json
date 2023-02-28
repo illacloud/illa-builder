@@ -278,7 +278,9 @@
           "upload_data": "Upload data",
           "upload_data_list": "Upload data list",
           "upload_object_name": "Upload object name",
-          "upload_object_name_list": "Upload object name list"
+          "upload_object_name_list": "Upload object name list",
+          "timeout_upload": "Timeout for uploading a file (Minute)",
+          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
         },
         "smtp": {
           "attachment": "Attachment(s)",
