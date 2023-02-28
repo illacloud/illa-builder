@@ -2,10 +2,12 @@ import { FC, useCallback, useEffect, useMemo } from "react"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick-theme.css"
 import "slick-carousel/slick/slick.css"
-import { PreviousIcon } from "@illa-design/react"
+import { Loading, NextIcon, PreviousIcon } from "@illa-design/react"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import {
+  dotStyle,
   fullHeightStyle,
+  fullImageStyle,
   sliderStyle,
 } from "@/widgetLibrary/CarouselWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -17,7 +19,15 @@ import {
 } from "./interface"
 
 export const Carousel: FC<CarouselProps> = (props) => {
-  const { handleOnClick, showArrows, showDots, autoPlay, data } = props
+  const {
+    handleOnClick,
+    showArrows,
+    showDots,
+    autoPlay,
+    data,
+    disabled,
+    interval,
+  } = props
 
   const settings = {
     dots: true,
@@ -29,19 +39,24 @@ export const Carousel: FC<CarouselProps> = (props) => {
 
   return (
     <Slider
+      centerMode
+      centerPadding={"0px"}
       css={sliderStyle}
-      // dotsClass={"illa-carousel-dots"}
+      draggable={false}
       dots={showDots}
       arrows={showArrows}
       autoplay={autoPlay}
+      autoplaySpeed={interval}
       prevArrow={<PreviousIcon />}
+      nextArrow={<NextIcon />}
+      lazyLoad={"anticipated"}
     >
       {data.map((item, index) => {
         const { id, label, url, alt, hidden } = item
         if (hidden) return null
         return (
           <div css={fullHeightStyle} key={id}>
-            <img css={fullHeightStyle} src={url} alt={alt} />
+            <img css={fullImageStyle} src={url} alt={alt} />
           </div>
         )
       })}
@@ -61,6 +76,10 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     manualData,
     mappedData,
     configureMode,
+    showArrows,
+    showDots,
+    autoPlay,
+    interval,
   } = props
 
   const formatOptions = (
@@ -128,7 +147,16 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={buttonLayoutStyle}>
-        <Carousel data={data ?? []} handleOnClick={handleOnClick} />
+        <Carousel
+          // autoPlay change need to reload Carousel
+          key={Number(autoPlay)}
+          data={data ?? []}
+          handleOnClick={handleOnClick}
+          showArrows={showArrows}
+          showDots={showDots}
+          autoPlay={autoPlay}
+          interval={interval}
+        />
       </div>
     </TooltipWrapper>
   )

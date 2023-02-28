@@ -38,5 +38,6 @@ export const CAROUSEL_WIDGET_CONFIG: WidgetConfig = {
       },
     ],
     dataSources: "{{[]}}",
+    interval: "{{3000}}",
   },
 }
