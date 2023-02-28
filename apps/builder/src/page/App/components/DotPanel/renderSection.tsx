@@ -57,6 +57,7 @@ import {
   leftOpenFoldPositionStyle,
   leftWidthTipsStyle,
   maskStyle,
+  modalWrapperStyle,
   openFoldWrapperStyle,
   resizeHorizontalBarStyle,
   resizeHorizontalBarWrapperStyle,
@@ -1301,7 +1302,8 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
   }
 
   return (
-    <div css={maskStyle} onClick={onClickMaskToClose}>
+    <div css={modalWrapperStyle}>
+      <div css={maskStyle} onClick={onClickMaskToClose} />
       <div
         css={applyModalWrapperStyle(mode)}
         ref={(ele) => {
