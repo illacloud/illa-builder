@@ -29,7 +29,7 @@ const getRealHeight = (
         return `${realHeight}px`
       }
       if (realHeight > dynamicMaxHeight) {
-        return "auto"
+        return `${dynamicMaxHeight}px`
       }
     case "fixed":
       return `100%`
