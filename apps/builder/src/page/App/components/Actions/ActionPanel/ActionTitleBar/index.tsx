@@ -8,8 +8,6 @@ import {
   DropListItem,
   Dropdown,
   MoreIcon,
-  globalColor,
-  illaPrefix,
   useMessage,
 } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
@@ -38,6 +36,8 @@ import {
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
 import { ActionTitleBarProps } from "./interface"
 import {
   actionTitleBarSpaceStyle,
@@ -123,6 +123,15 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const message = useMessage()
   const selectedAction = useSelector(getSelectedAction)!
   const cachedAction = useSelector(getCachedAction)!
+  // TODO: @AruSeito
+  // const selectedActionExecutionResult = useSelector<
+  //   RootState,
+  //   Record<string, any>
+  // >((rootState) => {
+  //   const executionResult = getExecutionResult(rootState)
+  //   return executionResult[selectedAction.displayName] || {}
+  // })
+  // const isRunning = !!selectedActionExecutionResult.isRunning
 
   const isChanged =
     JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
