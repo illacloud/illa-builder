@@ -144,10 +144,14 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
-          "s3": "公開アプリでは無効"
+          "s3": "公開アプリでは無効",
+          "acl": "アップロードされたファイルのデフォルトS3 ACL"
         },
         "placeholder": {
           "url": "URL をここに入力"
+        },
+        "tips": {
+          "acl": "提供されるコンテンツは PUBLIC 構成です。 PRIVATE の場合は空白のままにします。 バケットに CORS を設定することを忘れないでください。 クロスオリジン リソース共有 (CORS) を参照してください。"
         }
       },
       "panel": {
@@ -274,7 +278,9 @@
           "upload_data": "データのアップロード",
           "upload_data_list": "アップロードデータ一覧",
           "upload_object_name": "アップロード オブジェクト名",
-          "upload_object_name_list": "オブジェクト名リストのアップロード"
+          "upload_object_name_list": "オブジェクト名リストのアップロード",
+          "timeout_upload": "Timeout for uploading a file (Minute)",
+          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
         },
         "smtp": {
           "attachment": "付録",

@@ -144,10 +144,14 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
-          "s3": "공개 앱에서 유효하지 않음"
+          "s3": "공개 앱에서 유효하지 않음",
+          "acl": "업로드 된 파일의 경우 기본 S3 ACL"
         },
         "placeholder": {
           "url": "여기에 요청 URL 입력"
+        },
+        "tips": {
+          "acl": "제공된 콘텐츠는 PUBLIC 구성입니다. 개인용으로 비워 둡니다. 버킷에 CORS를 구성하는 것을 잊지 마십시오. CORS(Cross-Origin Resource Sharing)를 참조하세요."
         }
       },
       "panel": {
@@ -274,7 +278,9 @@
           "upload_data": "데이터 업로드",
           "upload_data_list": "데이터 목록 업로드",
           "upload_object_name": "객체 이름 업로드",
-          "upload_object_name_list": "개체 이름 목록 업로드"
+          "upload_object_name_list": "개체 이름 목록 업로드",
+          "timeout_upload": "Timeout for uploading a file (Minute)",
+          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
         },
         "smtp": {
           "attachment": "부록",
