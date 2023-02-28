@@ -151,7 +151,7 @@
           "url": "在此处输入请求 URL"
         },
         "tips": {
-          "acl": "我们提供的内容是公开配置。留空为私有化配置。不要忘记在您的存储桶上配置 CORS。 请参阅跨源资源共享 (CORS)。"
+          "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>"
         }
       },
       "panel": {
@@ -639,6 +639,18 @@
       "message": {
         "mssql": {
           "table_error": "无法显示表。 请稍后再试。"
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
         }
       }
     },

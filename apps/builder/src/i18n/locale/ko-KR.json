@@ -151,7 +151,7 @@
           "url": "여기에 요청 URL 입력"
         },
         "tips": {
-          "acl": "제공된 콘텐츠는 PUBLIC 구성입니다. 개인용으로 비워 둡니다. 버킷에 CORS를 구성하는 것을 잊지 마십시오. CORS(Cross-Origin Resource Sharing)를 참조하세요."
+          "acl": "버킷에 CORS를 구성하는 것을 잊지 마십시오. <0>CORS(Cross-Origin Resource Sharing) 를 참조하세요.</0>"
         }
       },
       "panel": {
@@ -639,6 +639,18 @@
       "message": {
         "mssql": {
           "table_error": "테이블을 표시하지 못했습니다. 나중에 다시 시도 해주십시오."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
         }
       }
     },

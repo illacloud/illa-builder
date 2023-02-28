@@ -151,7 +151,7 @@
           "url": "Enter request URL here"
         },
         "tips": {
-          "acl": "The provided content is a PUBLIC configuration. Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. See Cross-Origin Resource Sharing (CORS)."
+          "acl": "The provided content is a PUBLIC configuration. Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. <0>See Cross-Origin Resource Sharing (CORS).</0>"
         }
       },
       "panel": {
@@ -639,6 +639,18 @@
       "message": {
         "mssql": {
           "table_error": "Failed to show tables. Please try again later."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
         }
       }
     },

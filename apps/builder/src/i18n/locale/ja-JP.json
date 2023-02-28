@@ -151,7 +151,7 @@
           "url": "URL をここに入力"
         },
         "tips": {
-          "acl": "提供されるコンテンツは PUBLIC 構成です。 PRIVATE の場合は空白のままにします。 バケットに CORS を設定することを忘れないでください。 クロスオリジン リソース共有 (CORS) を参照してください。"
+          "acl": "バケットに CORS を設定することを忘れないでください。 <0>クロスオリジン リソース共有 (CORS) を参照してください。</0>"
         }
       },
       "panel": {
@@ -639,6 +639,18 @@
       "message": {
         "mssql": {
           "table_error": "テーブルを表示できませんでした。 後でもう一度やり直してください。"
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
         }
       }
     },
