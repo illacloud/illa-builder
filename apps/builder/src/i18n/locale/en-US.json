@@ -145,7 +145,7 @@
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
           "s3": "Invalid in public apps",
-          "acl": "Default S3 ACL for uploaded files"
+          "acl": "S3 ACL for uploaded files"
         },
         "placeholder": {
           "url": "Enter request URL here"
