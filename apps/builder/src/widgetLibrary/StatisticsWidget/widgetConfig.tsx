@@ -18,6 +18,8 @@ export const STATISTICS_WIDGET_CONFIG: WidgetConfig = {
     positiveColorScheme: "green",
     negativeColorScheme: "red",
     hidden: false,
+    positiveSign: "TbTrendingUp",
+    negativeSign: "TbTrendingUp",
     textAlign: "start",
     primaryValue: "{{0}}",
     decimalPlace: "{{2}}",

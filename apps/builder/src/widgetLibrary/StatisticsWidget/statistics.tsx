@@ -16,8 +16,8 @@ import {
   getSecondaryStatisticStyle,
   getStatisticContainerStyle,
   getStatisticStyle,
-  statisticContainerStyle,
-  statisticTitleStyle,
+  getStatisticTitleStyle,
+  getStatisticsContainerStyle,
 } from "@/widgetLibrary/StatisticsWidget/style"
 
 const getNumberGroupSeparator = (value: number | undefined, lang: string) => {
@@ -155,8 +155,8 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
     <div css={getStatisticContainerStyle(textAlign)} onClick={handleOnClick}>
       {icon}
       <div css={contentContainerStyle}>
-        <div css={statisticTitleStyle}>{label}</div>
-        <div css={statisticContainerStyle}>
+        <div css={getStatisticTitleStyle(textAlign)}>{label}</div>
+        <div css={getStatisticsContainerStyle(textAlign)}>
           <Statistic
             _css={getStatisticStyle(color)}
             value={primaryValue}

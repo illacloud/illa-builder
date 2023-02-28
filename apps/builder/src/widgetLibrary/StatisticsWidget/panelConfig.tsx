@@ -142,6 +142,9 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.NUMBER,
+        placeholder: i18n.t(
+          "editor.inspect.setter_placeholder.statistics.decimal",
+        ),
       },
       {
         id: `${baseWidgetName}-label-secondaryShowTrendSign`,

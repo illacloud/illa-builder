@@ -8,21 +8,19 @@ const overflowStyle = css`
 `
 
 export const getStatisticContainerStyle = (textAlign?: string) => {
-  let justifyContent
-  if (!textAlign || textAlign === "start") {
-    justifyContent = "flex-start"
-  }
+  let flexDirection = css``
   if (textAlign === "center") {
-    justifyContent = "center"
+    flexDirection = css`
+      flex-direction: column;
+      justify-content: center;
+    `
   }
-  if (textAlign === "end") {
-    justifyContent = "flex-end"
-  }
+
   return css`
     display: flex;
     gap: 8px;
-    justify-content: ${justifyContent};
     align-items: center;
+    ${flexDirection};
     max-width: 100%;
   `
 }
@@ -58,7 +56,6 @@ export const getStatisticStyle = (color?: string) => {
 
 export const getPrefixIconStyle = (color?: string, secondary?: boolean) => {
   const size = secondary ? 12 : 24
-
   return css`
     color: ${getColor(color || "", "03")};
     display: flex;
@@ -71,13 +68,28 @@ export const getPrefixIconStyle = (color?: string, secondary?: boolean) => {
   `
 }
 
-export const statisticContainerStyle = css`
-  display: flex;
-  flex-wrap: wrap;
-  overflow: hidden;
-  align-items: center;
-  gap: 8px;
-`
+export const getStatisticsContainerStyle = (textAlign?: string) => {
+  let justifyContentStyle = css``
+  if (textAlign === "end") {
+    justifyContentStyle = css`
+      justify-content: end;
+    `
+  }
+  if (textAlign === "center") {
+    justifyContentStyle = css`
+      justify-content: center;
+    `
+  }
+
+  return css`
+    ${justifyContentStyle};
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    align-items: center;
+    gap: 8px;
+  `
+}
 
 export const contentContainerStyle = css`
   display: flex;
@@ -108,9 +120,24 @@ export const getSecondaryStatisticContainerStyle = (color?: string) => {
   `
 }
 
-export const statisticTitleStyle = css`
-  margin-bottom: 4px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  ${overflowStyle};
-  font-size: 12px;
-`
+export const getStatisticTitleStyle = (textAlign?: string) => {
+  let textAlignStyle = css``
+  if (textAlign === "end") {
+    textAlignStyle = css`
+      text-align: right;
+    `
+  }
+  if (textAlign === "center") {
+    textAlignStyle = css`
+      text-align: center;
+    `
+  }
+
+  return css`
+    ${textAlignStyle};
+    margin-bottom: 4px;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+    ${overflowStyle};
+    font-size: 12px;
+  `
+}
