@@ -3,6 +3,9 @@ import { ReactComponent as CarouselWidgetIcon } from "@/assets/widgetCover/carou
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 
+export const CAROUSEL_DEFAULT_IMAGE =
+  "https://images.unsplash.com/photo-1614853316476-de00d14cb1fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"
+
 export const CAROUSEL_WIDGET_CONFIG: WidgetConfig = {
   type: "CAROUSEL_WIDGET",
   displayName: "carousel",
@@ -13,24 +16,25 @@ export const CAROUSEL_WIDGET_CONFIG: WidgetConfig = {
   w: 12,
   h: 5,
   defaults: {
+    configureMode: "static",
     showArrows: true,
     showDots: true,
     hidden: false,
     manualData: [
       {
-        id: `img-${v4()}`,
-        value: "Image 1",
-        url: "https://images.unsplash.com/photo-1614853316476-de00d14cb1fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
+        id: `Image-${v4()}`,
+        label: "Image 1",
+        url: CAROUSEL_DEFAULT_IMAGE,
       },
       {
-        id: `img-${v4()}`,
-        value: "Image 2",
-        url: "https://images.unsplash.com/photo-1614853316476-de00d14cb1fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
+        id: `Image-${v4()}`,
+        label: "Image 2",
+        url: CAROUSEL_DEFAULT_IMAGE,
       },
       {
-        id: `img-${v4()}`,
-        value: "Image 3",
-        url: "https://images.unsplash.com/photo-1614853316476-de00d14cb1fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
+        id: `Image-${v4()}`,
+        label: "Image 3",
+        url: CAROUSEL_DEFAULT_IMAGE,
       },
     ],
     dataSources: "{{[]}}",

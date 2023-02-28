@@ -3,10 +3,18 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface CarouselSettings {
   id: string
-  value: string
+  label: string
   url: string
   alt?: string
   hidden?: boolean
+}
+
+export interface MappedCarouselData {
+  ids: string[]
+  label: string[]
+  urls: string[]
+  alts?: string[]
+  isHidden?: boolean[]
 }
 
 export interface CarouselProps {

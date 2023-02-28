@@ -30,14 +30,14 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-options`,
         useCustomLayout: true,
         attrName: "manualData",
-        setterType: "OPTION_LIST_SETTER",
-        bindAttrName: ["optionConfigureMode"],
+        setterType: "CAROUSEL_LIST_SETTER",
+        bindAttrName: ["configureMode"],
         shown: (value) => !value || value === "static",
         childrenSetter: [
           {
-            id: `${baseWidgetName}-options-value`,
-            labelName: i18n.t("editor.inspect.setter_label.value"),
-            attrName: "value",
+            id: `${baseWidgetName}-options-label`,
+            labelName: i18n.t("editor.inspect.setter_label.label"),
+            attrName: "label",
             setterType: "INPUT_SETTER",
           },
           {
@@ -84,7 +84,7 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         attrName: "mappedData",
         setterType: "OPTION_MAPPED_SETTER",
-        bindAttrName: ["optionConfigureMode"],
+        bindAttrName: ["configureMode"],
         shown: (value) => value === "dynamic",
         childrenSetter: [
           {

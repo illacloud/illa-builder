@@ -4,12 +4,16 @@ import "slick-carousel/slick/slick-theme.css"
 import "slick-carousel/slick/slick.css"
 import { PreviousIcon } from "@illa-design/react"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
-import { sliderStyle } from "@/widgetLibrary/CarouselWidget/style"
+import {
+  fullHeightStyle,
+  sliderStyle,
+} from "@/widgetLibrary/CarouselWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   CarouselProps,
   CarouselSettings,
   CarouselWidgetProps,
+  MappedCarouselData,
 } from "./interface"
 
 export const Carousel: FC<CarouselProps> = (props) => {
@@ -32,12 +36,12 @@ export const Carousel: FC<CarouselProps> = (props) => {
       autoplay={autoPlay}
       prevArrow={<PreviousIcon />}
     >
-      {data.map((item) => {
-        const { id, value, url, alt, hidden } = item
+      {data.map((item, index) => {
+        const { id, label, url, alt, hidden } = item
         if (hidden) return null
         return (
-          <div key={id}>
-            <img src={url} alt={alt} />
+          <div css={fullHeightStyle} key={id}>
+            <img css={fullHeightStyle} src={url} alt={alt} />
           </div>
         )
       })}
@@ -62,33 +66,26 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
   const formatOptions = (
     optionConfigureMode: "dynamic" | "static" = "static",
     manualOptions: CarouselSettings[] = [],
-    mappedOption: {
-      id: string[]
-      values: string[]
-      url: string[]
-      alt?: string[]
-      hiddens?: boolean[]
-    },
+    mappedOption: MappedCarouselData,
   ) => {
     if (optionConfigureMode === "dynamic") {
-      const url = mappedOption.url ?? []
-      const value = mappedOption.values ?? []
-      const disabled = mappedOption.hiddens ?? []
-      const maxLength = Math.max(url.length, value.length, disabled.length)
-      const options: {
-        url: string
-        value: string
-        disabled?: boolean
-      }[] = []
+      const id = mappedOption.ids ?? []
+      const url = mappedOption.urls ?? []
+      const label = mappedOption.label ?? []
+      const hidden = mappedOption.isHidden ?? []
+      const maxLength = Math.max(
+        id.length,
+        url.length,
+        label.length,
+        hidden.length,
+      )
+      const options: CarouselSettings[] = []
       for (let i = 0; i < maxLength; i++) {
-        let urlItem = url[i] || value[i]
-        const valueItem = value[i] || url[i] || i.toString()
-        const disabledItem = disabled[i]
-
         options.push({
-          url: urlItem,
-          value: valueItem,
-          disabled: disabledItem,
+          id: id[i],
+          url: url[i],
+          label: label[i],
+          hidden: hidden[i],
         })
       }
       return options
@@ -96,22 +93,13 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
       if (!Array.isArray(manualOptions)) {
         return []
       }
-      const options: {
-        url: string | number
-        value: string | number
-        disabled?: boolean
-      }[] = []
+      const options: CarouselSettings[] = []
       manualOptions.forEach((option, index) => {
-        let labelItem = option.url || option.value || index
-        const valueItem = option.value || labelItem || index
-        const hiddenItem = option.hidden
-        if (typeof labelItem === "object") {
-          labelItem = index
-        }
         options.push({
-          url: labelItem,
-          value: valueItem,
-          hidden: hiddenItem,
+          id: option.id,
+          url: option.url,
+          label: option.label,
+          hidden: option.hidden,
         })
       })
       return options
