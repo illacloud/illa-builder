@@ -316,7 +316,7 @@ export const generatorEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-title`,
         labelName: i18n.t("editor.inspect.setter_label.title"),
-        setterType: "INPUT_SETTER",
+        setterType: "OPTION_MAPPED_INPUT_SETTER",
         attrName: "title",
         bindAttrName: ["actionType"],
         expectedType: VALIDATION_TYPES.STRING,

@@ -2,7 +2,10 @@ import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { CAROUSEL_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/CarouselWidget/eventHandlerConfig"
+import {
+  CAROUSEL_EVENT_HANDLER_CONFIG,
+  generatorMappedCarouselEventHandlerConfig,
+} from "@/widgetLibrary/CarouselWidget/eventHandlerConfig"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const baseWidgetName = "carousel"
@@ -66,6 +69,12 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
             attrName: "hidden",
             expectedType: VALIDATION_TYPES.BOOLEAN,
           },
+          {
+            ...generatorEventHandlerConfig(
+              baseWidgetName,
+              CAROUSEL_EVENT_HANDLER_CONFIG.events,
+            ),
+          },
         ],
       },
       {
@@ -73,7 +82,7 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
-        bindAttrName: ["optionConfigureMode"],
+        bindAttrName: ["configureMode"],
         expectedType: VALIDATION_TYPES.ARRAY,
         shown: (value) => value === "dynamic",
         isSetterSingleRow: true,
@@ -96,9 +105,11 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
-            id: `${baseWidgetName}-mappedOption-values`,
-            labelName: i18n.t("editor.inspect.setter_label.value"),
-            attrName: "values",
+            id: `${baseWidgetName}-mappedOption-urls`,
+            labelName: i18n.t(
+              "editor.inspect.setter_content.image_list.config.image_url",
+            ),
+            attrName: "urls",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
             placeholder: "{{item}}",
             expectedType: VALIDATION_TYPES.ARRAY,
@@ -110,6 +121,20 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
             setterType: "OPTION_MAPPED_INPUT_SETTER",
             placeholder: "{{false}}",
             expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-isHidden`,
+            labelName: i18n.t("editor.inspect.setter_label.hidden"),
+            attrName: "isHidden",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            placeholder: "{{false}}",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            ...generatorMappedCarouselEventHandlerConfig(
+              baseWidgetName,
+              CAROUSEL_EVENT_HANDLER_CONFIG.events,
+            ),
           },
         ],
       },
@@ -137,7 +162,7 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        ...generatorEventHandlerConfig(
+        ...generatorMappedCarouselEventHandlerConfig(
           baseWidgetName,
           CAROUSEL_EVENT_HANDLER_CONFIG.events,
         ),

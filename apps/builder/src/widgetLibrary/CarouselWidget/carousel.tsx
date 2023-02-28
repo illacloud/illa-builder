@@ -2,25 +2,20 @@ import { FC, useCallback, useEffect, useMemo } from "react"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick-theme.css"
 import "slick-carousel/slick/slick.css"
-import { Loading, NextIcon, PreviousIcon } from "@illa-design/react"
+import { NextIcon, PreviousIcon } from "@illa-design/react"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import {
-  dotStyle,
   fullHeightStyle,
   fullImageStyle,
   sliderStyle,
 } from "@/widgetLibrary/CarouselWidget/style"
+import { formatData } from "@/widgetLibrary/CarouselWidget/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import {
-  CarouselProps,
-  CarouselSettings,
-  CarouselWidgetProps,
-  MappedCarouselData,
-} from "./interface"
+import { CarouselProps, CarouselWidgetProps } from "./interface"
 
 export const Carousel: FC<CarouselProps> = (props) => {
   const {
-    handleOnClick,
+    onClickItem,
     showArrows,
     showDots,
     autoPlay,
@@ -52,10 +47,16 @@ export const Carousel: FC<CarouselProps> = (props) => {
       lazyLoad={"anticipated"}
     >
       {data.map((item, index) => {
-        const { id, label, url, alt, hidden } = item
+        const { id, label, url, alt, hidden, disabled } = item
         if (hidden) return null
         return (
-          <div css={fullHeightStyle} key={id}>
+          <div
+            css={fullHeightStyle}
+            key={id}
+            onClick={() => {
+              !disabled && onClickItem?.(index)
+            }}
+          >
             <img css={fullImageStyle} src={url} alt={alt} />
           </div>
         )
@@ -82,55 +83,27 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     interval,
   } = props
 
-  const formatOptions = (
-    optionConfigureMode: "dynamic" | "static" = "static",
-    manualOptions: CarouselSettings[] = [],
-    mappedOption: MappedCarouselData,
-  ) => {
-    if (optionConfigureMode === "dynamic") {
-      const id = mappedOption.ids ?? []
-      const url = mappedOption.urls ?? []
-      const label = mappedOption.label ?? []
-      const hidden = mappedOption.isHidden ?? []
-      const maxLength = Math.max(
-        id.length,
-        url.length,
-        label.length,
-        hidden.length,
-      )
-      const options: CarouselSettings[] = []
-      for (let i = 0; i < maxLength; i++) {
-        options.push({
-          id: id[i],
-          url: url[i],
-          label: label[i],
-          hidden: hidden[i],
-        })
-      }
-      return options
-    } else {
-      if (!Array.isArray(manualOptions)) {
-        return []
-      }
-      const options: CarouselSettings[] = []
-      manualOptions.forEach((option, index) => {
-        options.push({
-          id: option.id,
-          url: option.url,
-          label: option.label,
-          hidden: option.hidden,
-        })
-      })
-      return options
-    }
-  }
+  const handleOnClickItem = useCallback(
+    (index: number) => {
+      const path =
+        configureMode === "static"
+          ? `manualData.${index}.events`
+          : `mappedData.events`
+      triggerEventHandler("click", path)
+    },
+    [configureMode, triggerEventHandler],
+  )
 
   const data = useMemo(() => {
-    console.log({ manualData, mappedData, configureMode })
     if (configureMode === "static") {
       return manualData
     }
-    return mappedData
+    console.log(
+      mappedData ? formatData(mappedData) : [],
+      mappedData,
+      "mappedData",
+    )
+    return mappedData ? formatData(mappedData) : []
   }, [manualData, mappedData, configureMode])
 
   useEffect(() => {
@@ -156,6 +129,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
           showDots={showDots}
           autoPlay={autoPlay}
           interval={interval}
+          onClickItem={handleOnClickItem}
         />
       </div>
     </TooltipWrapper>

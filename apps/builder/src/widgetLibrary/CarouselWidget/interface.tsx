@@ -7,14 +7,15 @@ export interface CarouselSettings {
   url: string
   alt?: string
   hidden?: boolean
+  disabled?: boolean
 }
 
 export interface MappedCarouselData {
-  ids: string[]
-  label: string[]
+  labels: string[]
   urls: string[]
   alts?: string[]
   isHidden?: boolean[]
+  disables?: boolean[]
 }
 
 export interface CarouselProps {
@@ -27,6 +28,7 @@ export interface CarouselProps {
   disabled?: boolean
   showArrows?: boolean
   showDots?: boolean
+  onClickItem?: (index: number) => void
 }
 
 export interface CarouselWidgetProps
@@ -36,5 +38,5 @@ export interface CarouselWidgetProps
   configureMode?: "static" | "dynamic"
   dataSources?: Array<unknown>
   manualData?: CarouselSettings[]
-  mappedData?: CarouselSettings[]
+  mappedData?: MappedCarouselData
 }

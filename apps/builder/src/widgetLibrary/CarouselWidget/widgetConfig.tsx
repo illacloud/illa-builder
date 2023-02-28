@@ -6,6 +6,24 @@ import { WidgetConfig } from "@/widgetLibrary/interface"
 export const CAROUSEL_DEFAULT_IMAGE =
   "https://images.unsplash.com/photo-1614853316476-de00d14cb1fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"
 
+const originData = [
+  {
+    id: `Image-${v4()}`,
+    label: "Image 1",
+    url: CAROUSEL_DEFAULT_IMAGE,
+  },
+  {
+    id: `Image-${v4()}`,
+    label: "Image 2",
+    url: CAROUSEL_DEFAULT_IMAGE,
+  },
+  {
+    id: `Image-${v4()}`,
+    label: "Image 3",
+    url: CAROUSEL_DEFAULT_IMAGE,
+  },
+]
+
 export const CAROUSEL_WIDGET_CONFIG: WidgetConfig = {
   type: "CAROUSEL_WIDGET",
   displayName: "carousel",
@@ -37,7 +55,7 @@ export const CAROUSEL_WIDGET_CONFIG: WidgetConfig = {
         url: CAROUSEL_DEFAULT_IMAGE,
       },
     ],
-    dataSources: "{{[]}}",
+    dataSources: `{{${JSON.stringify(originData, null, "  ")}}}`,
     interval: "{{3000}}",
   },
 }
