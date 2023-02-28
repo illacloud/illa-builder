@@ -640,6 +640,18 @@
         "mssql": {
           "table_error": "Failed to show tables. Please try again later."
         }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
+        }
       }
     },
     "component": {
