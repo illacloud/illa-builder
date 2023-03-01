@@ -136,7 +136,8 @@
           "configure": "{{ name }} を設定",
           "database": "データベース",
           "select": "リソースの種類を選択",
-          "huggingface": "Hugging Face"
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite"
         },
         "validate": {
           "required": "{name}入力してください"
@@ -145,13 +146,38 @@
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
           "s3": "公開アプリでは無効",
-          "acl": "アップロードされたファイルのデフォルトS3 ACL"
+          "acl": "アップロードされたファイルのデフォルトS3 ACL",
+          "editor": {
+            "appwrite": {
+              "host": "Host"
+            }
+          },
+          "appwrite": {
+            "host": "Host",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "X-Appwrite-JWT"
+          }
         },
         "placeholder": {
-          "url": "URL をここに入力"
+          "url": "URL をここに入力",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "••••••••••••••••••••"
+          }
         },
         "tips": {
           "acl": "バケットに CORS を設定することを忘れないでください。 <0>クロスオリジン リソース共有 (CORS) を参照してください。</0>"
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Create a document",
+              "list": "List documents"
+            }
+          }
         }
       },
       "panel": {
