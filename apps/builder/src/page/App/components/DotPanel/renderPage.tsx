@@ -287,7 +287,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     }
 
     if (containerWrapperRef.current) {
-      console.log("bodyWidth", bodyWidth)
       containerWrapperRef.current.style.setProperty(
         "--illa-canvas-body-width",
         `${bodyWidth}px`,
