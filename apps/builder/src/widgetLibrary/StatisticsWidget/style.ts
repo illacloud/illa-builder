@@ -27,7 +27,7 @@ const getAlignItems = (textAlign?: string) => {
   return alignItemsStyle
 }
 
-export const getStatisticContainerStyle = (textAlign?: string) => {
+export const getStatisticWrapperStyle = (textAlign?: string) => {
   const alignItemsStyle = getAlignItems(textAlign)
   return css`
     display: flex;
@@ -133,7 +133,7 @@ export const getSecondaryStatisticContainerStyle = (color?: string) => {
   `
 }
 
-export const getStatisticTitleStyle = (textAlign?: string) => {
+export const getStatisticLabelStyle = (textAlign?: string) => {
   let textAlignStyle = css``
   if (textAlign === "end") {
     textAlignStyle = css`

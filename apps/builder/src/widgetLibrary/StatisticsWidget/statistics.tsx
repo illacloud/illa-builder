@@ -13,9 +13,9 @@ import {
   getPrefixIconStyle,
   getSecondaryStatisticContainerStyle,
   getSecondaryStatisticStyle,
-  getStatisticContainerStyle,
+  getStatisticLabelStyle,
   getStatisticStyle,
-  getStatisticTitleStyle,
+  getStatisticWrapperStyle,
   getStatisticsContainerStyle,
   primaryStatisticContainerStyle,
 } from "@/widgetLibrary/StatisticsWidget/style"
@@ -152,8 +152,8 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
   )
 
   return (
-    <div css={getStatisticContainerStyle(textAlign)} onClick={handleOnClick}>
-      <div css={getStatisticTitleStyle(textAlign)}>{label}</div>
+    <div css={getStatisticWrapperStyle(textAlign)} onClick={handleOnClick}>
+      <div css={getStatisticLabelStyle(textAlign)}>{label}</div>
       <div css={getStatisticsContainerStyle(textAlign)}>
         <div css={primaryStatisticContainerStyle}>
           {icon}
