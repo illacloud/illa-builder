@@ -1155,7 +1155,7 @@
       "setter_tips": {
         "carousel_tips": "Use {{ item }} to get value from the data source. For example, there are two attributes in the data source. They are imageUrl and url. If you want to go to different url when click image, use {{ item.url }} to set the url.",
         "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
-        "img_url_array": "Use {{ item.attributeName}} to get image URL from the data source. ",
+        "img_url_array": "Use {{ item.attributeName }} to get image URL from the data source. ",
         "carousel": {
           "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} "
         }
