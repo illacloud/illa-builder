@@ -138,6 +138,8 @@ export const generatorEventHandlerConfig = (
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
+        placeholder: "{{ 1234 }}",
+        // expectedType: VALIDATION_TYPES.NUMBER,
         shown: (widgetMethod) => widgetMethod === "setPrimaryValue",
       },
       {

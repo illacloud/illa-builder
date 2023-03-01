@@ -45,7 +45,7 @@ const getTrendSignAndIcon = (
 ) => {
   const positiveSignIcon = getIcon(positiveSign ?? "")
   const negativeSignIcon = getIcon(negativeSign ?? "")
-  const icon = (value ?? 0.0) >= 0 ? positiveSignIcon : negativeSignIcon
+  const icon = (value ?? 0) >= 0 ? positiveSignIcon : negativeSignIcon
 
   return (
     show &&
@@ -125,7 +125,7 @@ export const WrappedStatistic: FC<WrappedStatisticProps> = (props) => {
   const suffixNode = useMemo(
     () => (
       <>
-        {secondaryValue && (
+        {secondaryValue !== undefined && (
           <div css={getSecondaryStatisticContainerStyle(secondaryColor)}>
             {secondaryIcon}
             <Statistic
