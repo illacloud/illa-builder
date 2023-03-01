@@ -30,6 +30,7 @@ export interface CarouselProps {
   disabled?: boolean
   showArrows?: boolean
   showDots?: boolean
+  draggable?: boolean
   onClickItem?: (index: number) => void
 }
 

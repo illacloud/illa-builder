@@ -1,8 +1,10 @@
-import { FC, useCallback, useEffect, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
+import { useSelector } from "react-redux"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick-theme.css"
 import "slick-carousel/slick/slick.css"
 import { NextIcon, PreviousIcon } from "@illa-design/react"
+import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import {
   fullHeightStyle,
@@ -22,22 +24,17 @@ export const Carousel: FC<CarouselProps> = (props) => {
     data,
     disabled,
     interval,
+    draggable,
   } = props
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  }
 
   return (
     <Slider
       centerMode
       centerPadding={"0px"}
       css={sliderStyle}
-      draggable={false}
+      // edit mode need to disable slider drag event
+      draggable={draggable}
+      touchMove={draggable}
       dots={showDots}
       arrows={showArrows}
       autoplay={autoPlay}
@@ -83,6 +80,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     autoPlay,
     interval,
   } = props
+  const isEditMode = useSelector(getIsILLAEditMode) ?? true
 
   const data = useMemo(() => {
     if (configureMode === "static") {
@@ -107,13 +105,6 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     [configureMode, triggerEventHandler, triggerMappedEventHandler],
   )
 
-  useEffect(() => {
-    handleUpdateGlobalData(displayName, {})
-    return () => {
-      handleDeleteGlobalData(displayName)
-    }
-  }, [handleUpdateGlobalData, displayName, handleDeleteGlobalData])
-
   const handleOnClick = useCallback(() => {
     triggerEventHandler("click")
   }, [triggerEventHandler])
@@ -123,6 +114,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
       <div css={buttonLayoutStyle}>
         <Carousel
           // autoPlay change need to reload Carousel
+          draggable={!isEditMode}
           key={Number(autoPlay)}
           data={data ?? []}
           handleOnClick={handleOnClick}
