@@ -136,7 +136,8 @@
           "configure": "配置 {{ name }}",
           "database": "数据库",
           "select": "选择资源类型",
-          "huggingface": "Hugging Face"
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite"
         },
         "validate": {
           "required": "请输入{name}"
@@ -144,10 +145,67 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
-          "s3": "在公开APP中不可用"
+          "s3": "在公开APP中不可用",
+          "acl": "上传文件的默认S3 ACL",
+          "appwrite": {
+            "host": "主机",
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "集合ID",
+            "documentid": "文档ID",
+            "data": "数据",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
+          }
         },
         "placeholder": {
-          "url": "在此处输入请求 URL"
+          "url": "在此处输入请求 URL",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute"
+          }
+        },
+        "tips": {
+          "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>"
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Create a document",
+              "list": "List documents",
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
         }
       },
       "panel": {
@@ -274,7 +332,9 @@
           "upload_data": "上传数据",
           "upload_data_list": "上传数据列表",
           "upload_object_name": "上传对象名称",
-          "upload_object_name_list": "上传对象名称列表"
+          "upload_object_name_list": "上传对象名称列表",
+          "timeout_upload": "Timeout for uploading a file (Minute)",
+          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
         },
         "smtp": {
           "attachment": "附件",
@@ -633,6 +693,18 @@
       "message": {
         "mssql": {
           "table_error": "无法显示表。 请稍后再试。"
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
         }
       }
     },
