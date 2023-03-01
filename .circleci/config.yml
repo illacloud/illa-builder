@@ -61,17 +61,39 @@ jobs:
             doctl kubernetes cluster kubeconfig save $DO_CLUSTER
             kubectl version
       - run:
-          name: Download deploy yaml
+          name: Download deployment configs
           command: |
-            git clone -b test $DEPLOY_REPO
-            cd $DEPLOY_TEST_DIR
-            kubectl delete pod -n test -l repo=illa-builder-frontend
-            kubectl apply -f ./illa-builder-frontend/ -n test
+            git clone $DEPLOY_REPO
+            if [ "${CIRCLE_BRANCH}" = "main" ]; then
+              echo "Deploying for main branch"
+              echo "export NS=production" >> "$BASH_ENV"
+              echo "export CFG_DIR=${DEPLOY_PRO_DIR}" >> "$BASH_ENV"
+            elif [ "${CIRCLE_BRANCH}" = "beta" ]; then
+              echo "Deploying for beta branch"
+              echo "export NS=beta" >> "$BASH_ENV"
+              echo "export CFG_DIR=${DEPLOY_BETA_DIR}" >> "$BASH_ENV"
+            elif [ "${CIRCLE_BRANCH}" = "develop" ]; then
+              echo "Deploying for develop branch"
+              echo "export NS=test" >> "$BASH_ENV"
+              echo "export CFG_DIR=${DEPLOY_TEST_DIR}" >> "$BASH_ENV"
+            else
+              echo "Not a deployable branch"
+            fi
+      - run:
+          name: Deploy different branches
+          command: |
+            echo "Deploying to ${NS} namespace"
+            cd ${CFG_DIR}
+            pwd
+            kubectl delete pod -n ${NS} -l repo=illa-builder-frontend
+            kubectl apply -f ./illa-builder-frontend/ -n ${NS}
 
 workflows:
   illa-builder-frontend:
     when:
       or:
+        - equal: [main, << pipeline.git.branch >>]
+        - equal: [beta, << pipeline.git.branch >>]
         - equal: [develop, << pipeline.git.branch >>]
     jobs:
       - build:
