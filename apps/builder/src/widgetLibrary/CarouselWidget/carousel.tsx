@@ -86,11 +86,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     if (configureMode === "static") {
       return manualData
     }
-    console.log(
-      mappedData ? formatData(mappedData) : [],
-      mappedData,
-      "mappedData",
-    )
+
     return mappedData ? formatData(mappedData) : []
   }, [manualData, mappedData, configureMode])
 
