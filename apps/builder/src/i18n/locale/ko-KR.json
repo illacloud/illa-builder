@@ -136,7 +136,8 @@
           "configure": "구성 {{ name }}",
           "database": "데이터 베이스",
           "select": "리소스 유형 선택",
-          "huggingface": "Hugging Face"
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite"
         },
         "validate": {
           "required": "{name} 을(를) 입력하세요"
@@ -144,10 +145,67 @@
         "label": {
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
-          "s3": "공개 앱에서 유효하지 않음"
+          "s3": "공개 앱에서 유효하지 않음",
+          "acl": "업로드 된 파일의 경우 기본 S3 ACL",
+          "appwrite": {
+            "host": "주인",
+            "dbid": "데이터베이스 ID",
+            "projectid": "프로젝트 ID",
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "컬렉션 ID",
+            "documentid": "문서 ID",
+            "data": "데이터",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
+          }
         },
         "placeholder": {
-          "url": "여기에 요청 URL 입력"
+          "url": "여기에 요청 URL 입력",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "데이터베이스 ID",
+            "projectid": "프로젝트 ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute"
+          }
+        },
+        "tips": {
+          "acl": "버킷에 CORS를 구성하는 것을 잊지 마십시오. <0>CORS(Cross-Origin Resource Sharing) 를 참조하세요.</0>"
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Create a document",
+              "list": "List documents",
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
         }
       },
       "panel": {
@@ -274,7 +332,9 @@
           "upload_data": "데이터 업로드",
           "upload_data_list": "데이터 목록 업로드",
           "upload_object_name": "객체 이름 업로드",
-          "upload_object_name_list": "개체 이름 목록 업로드"
+          "upload_object_name_list": "개체 이름 목록 업로드",
+          "timeout_upload": "Timeout for uploading a file (Minute)",
+          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
         },
         "smtp": {
           "attachment": "부록",
@@ -390,8 +450,12 @@
             "delete_item": "deleteItem"
           },
           "placeholder": {
-            "parameters": "JSON, for exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
           }
+        },
+        "status": {
+          "ran_failed": "실행하지 못했습니다",
+          "ran_successfully": "성공적으로 실행"
         }
       },
       "resource": {
@@ -629,6 +693,18 @@
       "message": {
         "mssql": {
           "table_error": "테이블을 표시하지 못했습니다. 나중에 다시 시도 해주십시오."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
         }
       }
     },
@@ -971,7 +1047,7 @@
         "show_underline": "밑줄 표시",
         "auto_play": "자동 재생",
         "interval": "간격(ms)",
-        "show_button": "양쪽에 버튼 표시",
+        "show_button": "화살표 표시",
         "show_dot": "하단에 점 표시",
         "hidden_images": "숨겨진 이미지",
         "file_type": "파일 종류",
@@ -1078,7 +1154,10 @@
       "setter_tips": {
         "carousel_tips": "{{ currentItem }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어 데이터 원본에 두 개의 열이 있습니다. 이미지와 URL입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ currentItem.url }}을 이용하여 url을 설정하면 됩니다.",
         "data_source": "매핑된 평가를 사용하여 이미지 항목을 정의하는 데이터 소스입니다. 값 배열 또는 배열에 매핑된 키 개체를 사용합니다. 예: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . 작업에서 데이터를 사용할 수도 있습니다. 예: {{ mysql1.data }}",
-        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. "
+        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
+        "carousel": {
+          "data_source": "매핑된 평가를 사용하여 이미지 항목을 정의하는 데이터 소스입니다. 값 배열 또는 배열에 매핑된 키 개체를 사용합니다. 예: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . 작업에서 데이터를 사용할 수도 있습니다. 예: {{ mysql1.data }}"
+        }
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -1105,7 +1184,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
-        }
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} "
       },
       "setter_tootip": {
         "volume": "0 과 1 사이의 숫자"
@@ -1445,7 +1526,8 @@
     "container": {
       "empty": "<keyPress> D </keyPress> 또는 <keyPress> K </keyPress> 를 누른 상태에서 구성 요소를 컨테이너로 드래그",
       "key_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오.",
-      "name": "컨테이너"
+      "name": "컨테이너",
+      "value_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오."
     },
     "date": {
       "name": "날짜 선택기"
@@ -1558,6 +1640,9 @@
     },
     "multiselect": {
       "name": "Multiselect"
+    },
+    "carousel": {
+      "name": "Carousel"
     }
   },
   "page": {

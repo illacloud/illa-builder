@@ -91,7 +91,7 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
           {t("editor.widget_picker.tab_title")}
         </span>
       </div>
-      <div>{getRenderBody(activeKey)}</div>
+      <>{getRenderBody(activeKey)}</>
     </div>
   )
 }
