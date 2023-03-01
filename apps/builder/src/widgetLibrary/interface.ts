@@ -82,11 +82,12 @@ export interface BaseWidgetProps {
     eventType: string,
     path?: string,
     otherCalcContext?: Record<string, any>,
+    formatPath?: (path: string) => string,
   ) => void
   triggerMappedEventHandler: (
     eventType: string,
     path: string,
-    index: number,
+    index?: number,
   ) => void
   w: number
   h: number

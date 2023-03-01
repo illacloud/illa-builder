@@ -1,4 +1,4 @@
-import { cloneDeep, get, isNumber, merge, set } from "lodash"
+import { cloneDeep, get, isFunction, isNumber, merge, set } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -171,6 +171,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         eventType: string,
         path: string = "events",
         otherCalcContext?: Record<string, any>,
+        formatPath?: (path: string) => string,
       ) => {
         const { dynamicPaths, needRunEvents, finalContext } = getRunEvents(
           eventType,
@@ -178,7 +179,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           otherCalcContext,
         )
         dynamicPaths?.forEach((path: string) => {
-          const realPath = path.split(".").slice(1).join(".")
+          const realPath = isFunction(formatPath)
+            ? formatPath(path)
+            : path.split(".").slice(1).join(".")
           try {
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {
@@ -197,7 +200,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           runEventHandler(scriptObj, finalContext)
         })
       },
-      [componentNode.props],
+      [getRunEvents],
     )
 
     const triggerMappedEventHandler = useCallback(
@@ -230,7 +233,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           runEventHandler(scriptObj, finalContext)
         })
       },
-      [componentNode.props],
+      [getRunEvents],
     )
 
     const widget = widgetBuilder(type)

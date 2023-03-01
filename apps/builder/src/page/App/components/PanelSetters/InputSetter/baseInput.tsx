@@ -62,7 +62,6 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         output = getNeedComputedValueWithList(value, currentListDisplayName)
       }
 
-      // handleUpdateDsl(attrName, output)
       handleUpdateMultiAttrDSL?.({
         [attrName]: output,
       })

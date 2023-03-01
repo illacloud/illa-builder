@@ -132,7 +132,7 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
             labelDesc: i18n.t("editor.inspect.setter_label.alt_text_desc"),
             placeholder: "{{item.alt}}",
             attrName: "alts",
-            setterType: "INPUT_SETTER",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
