@@ -12,25 +12,22 @@ export function applyAlignStyle(
   `
 }
 
-const getRealHeight = (
+const getRealHeightStyle = (
   dynamicHeight: "auto" | "fixed" | "limited",
-  realHeight: number,
   dynamicMinHeight: number = 0,
   dynamicMaxHeight: number = 0,
 ) => {
   switch (dynamicHeight) {
     case "auto":
-      return "auto"
+      return css`
+        height: auto;
+      `
     case "limited":
-      if (realHeight < (dynamicMinHeight ?? UNIT_HEIGHT * 3 - 6)) {
-        return `${dynamicMinHeight ?? UNIT_HEIGHT * 3 - 6}px`
-      }
-      if (realHeight >= dynamicMinHeight && realHeight <= dynamicMaxHeight) {
-        return `${realHeight}px`
-      }
-      if (realHeight > dynamicMaxHeight) {
-        return "auto"
-      }
+      return css`
+        min-height: ${dynamicMinHeight - 6}px;
+        height: auto;
+        max-height: ${dynamicMaxHeight - 6}px;
+      `
     case "fixed":
       return `100%`
     default:
@@ -40,19 +37,14 @@ const getRealHeight = (
 
 export const applyAutoHeightContainerStyle = (
   dynamicHeight: "auto" | "fixed" | "limited",
-  realHeight?: number,
   dynamicMinHeight?: number,
   dynamicMAxHeight?: number,
 ) => {
   return css`
     display: flex;
     width: 100%;
-    height: ${getRealHeight(
-      dynamicHeight,
-      realHeight ?? 0,
-      dynamicMinHeight,
-      dynamicMAxHeight,
-    )};
+    position: relative;
+    ${getRealHeightStyle(dynamicHeight, dynamicMinHeight, dynamicMAxHeight)};
   `
 }
 

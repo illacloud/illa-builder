@@ -1,6 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { applyChange } from "deep-diff"
-import { cloneDeep } from "lodash"
 import {
   DependenciesState,
   ErrorShape,

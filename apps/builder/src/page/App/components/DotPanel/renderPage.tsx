@@ -244,62 +244,64 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     if (hasFooter) {
       bodyHeight -= bottomHeight
     }
+    let containerWrapperStyle: CSSStyleDeclaration | undefined =
+      containerWrapperRef.current?.style
 
-    if (hasLeft && containerWrapperRef.current) {
-      containerWrapperRef.current.style.setProperty(
+    if (hasLeft && containerWrapperStyle) {
+      containerWrapperStyle.setProperty(
         "--illa-canvas-left-height",
         `${leftHeight}px`,
       )
-      containerWrapperRef.current.style.setProperty(
+      containerWrapperStyle.setProperty(
         "--illa-canvas-left-top",
         `${leftTop}px`,
       )
     }
-    if (hasRight && containerWrapperRef.current) {
-      containerWrapperRef.current.style.setProperty(
+    if (hasRight && containerWrapperStyle) {
+      containerWrapperStyle.setProperty(
         "--illa-canvas-right-height",
         `${rightHeight}px`,
       )
-      containerWrapperRef.current.style.setProperty(
+      containerWrapperStyle.setProperty(
         "--illa-canvas-right-top",
         `${rightTop}px`,
       )
     }
-    if (hasHeader && containerWrapperRef.current) {
-      containerWrapperRef.current.style.setProperty(
+    if (hasHeader && containerWrapperStyle) {
+      containerWrapperStyle.setProperty(
         "--illa-canvas-header-width",
         `${headerWidth}px`,
       )
-      containerWrapperRef.current.style.setProperty(
+      containerWrapperStyle.setProperty(
         "--illa-canvas-header-left",
         `${headerLeft}px`,
       )
     }
-    if (hasFooter && containerWrapperRef.current) {
-      containerWrapperRef.current.style.setProperty(
+    if (hasFooter && containerWrapperStyle) {
+      containerWrapperStyle.setProperty(
         "--illa-canvas-footer-width",
         `${footerWidth}px`,
       )
-      containerWrapperRef.current.style.setProperty(
+      containerWrapperStyle.setProperty(
         "--illa-canvas-footer-left",
         `${footerLeft}px`,
       )
     }
 
-    if (containerWrapperRef.current) {
-      containerWrapperRef.current.style.setProperty(
+    if (containerWrapperStyle) {
+      containerWrapperStyle.setProperty(
         "--illa-canvas-body-width",
         `${bodyWidth}px`,
       )
-      containerWrapperRef.current.style.setProperty(
+      containerWrapperStyle.setProperty(
         "--illa-canvas-body-left",
         `${bodyLeft}px`,
       )
-      containerWrapperRef.current.style.setProperty(
+      containerWrapperStyle.setProperty(
         "--illa-canvas-body-top",
         `${bodyTop}px`,
       )
-      containerWrapperRef.current.style.setProperty(
+      containerWrapperStyle.setProperty(
         "--illa-canvas-body-height",
         `${bodyHeight}px`,
       )
