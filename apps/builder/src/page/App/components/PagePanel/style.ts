@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const PagePanelWrapperStyle = css`
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  height: 100%;
+  height: calc(100% - 50px);
   width: 100%;
   padding-bottom: 16px;
   overflow: hidden;

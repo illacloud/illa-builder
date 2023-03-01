@@ -21,6 +21,7 @@ import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppSta
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { canAutoRunActionWhenInit } from "@/utils/action/canAutoRunAction"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const useInitBuilderApp = (mode: IllaMode) => {
@@ -157,10 +158,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
         setLoadingState(false)
       }).then((value) => {
         const autoRunAction = value.actions.filter((action) => {
-          return (
-            action.triggerMode === "automate" ||
-            action.actionType === "transformer"
-          )
+          return canAutoRunActionWhenInit(action)
         })
         autoRunAction.forEach((action) => {
           runAction(action)
