@@ -136,7 +136,8 @@
           "configure": "Configure {{ name }}",
           "database": "DATABASES",
           "select": "Select Resource Type",
-          "huggingface": "Hugging Face"
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite"
         },
         "validate": {
           "required": "{name} is required"
@@ -145,13 +146,66 @@
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
           "s3": "Invalid in public apps",
-          "acl": "Default S3 ACL for uploaded files"
+          "acl": "S3 ACL for uploaded files",
+          "appwrite": {
+            "host": "Host",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "Collection ID",
+            "documentid": "Document ID",
+            "data": "Data",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
+          }
         },
         "placeholder": {
-          "url": "Enter request URL here"
+          "url": "Enter request URL here",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute"
+          }
         },
         "tips": {
           "acl": "The provided content is a PUBLIC configuration. Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. <0>See Cross-Origin Resource Sharing (CORS).</0>"
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Create a document",
+              "list": "List documents",
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
         }
       },
       "panel": {

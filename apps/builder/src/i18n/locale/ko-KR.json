@@ -136,7 +136,8 @@
           "configure": "구성 {{ name }}",
           "database": "데이터 베이스",
           "select": "리소스 유형 선택",
-          "huggingface": "Hugging Face"
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite"
         },
         "validate": {
           "required": "{name} 을(를) 입력하세요"
@@ -145,13 +146,66 @@
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
           "s3": "공개 앱에서 유효하지 않음",
-          "acl": "업로드 된 파일의 경우 기본 S3 ACL"
+          "acl": "업로드 된 파일의 경우 기본 S3 ACL",
+          "appwrite": {
+            "host": "주인",
+            "dbid": "데이터베이스 ID",
+            "projectid": "프로젝트 ID",
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "컬렉션 ID",
+            "documentid": "문서 ID",
+            "data": "데이터",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
+          }
         },
         "placeholder": {
-          "url": "여기에 요청 URL 입력"
+          "url": "여기에 요청 URL 입력",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "데이터베이스 ID",
+            "projectid": "프로젝트 ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute"
+          }
         },
         "tips": {
           "acl": "버킷에 CORS를 구성하는 것을 잊지 마십시오. <0>CORS(Cross-Origin Resource Sharing) 를 참조하세요.</0>"
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Create a document",
+              "list": "List documents",
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
         }
       },
       "panel": {

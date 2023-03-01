@@ -136,7 +136,8 @@
           "configure": "配置 {{ name }}",
           "database": "数据库",
           "select": "选择资源类型",
-          "huggingface": "Hugging Face"
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite"
         },
         "validate": {
           "required": "请输入{name}"
@@ -145,13 +146,66 @@
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
           "s3": "在公开APP中不可用",
-          "acl": "上传文件的默认S3 ACL"
+          "acl": "上传文件的默认S3 ACL",
+          "appwrite": {
+            "host": "主机",
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "集合ID",
+            "documentid": "文档ID",
+            "data": "数据",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
+          }
         },
         "placeholder": {
-          "url": "在此处输入请求 URL"
+          "url": "在此处输入请求 URL",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute"
+          }
         },
         "tips": {
           "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>"
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Create a document",
+              "list": "List documents",
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
         }
       },
       "panel": {
