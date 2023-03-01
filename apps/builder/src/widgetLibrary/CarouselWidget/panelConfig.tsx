@@ -48,7 +48,16 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t(
               "editor.inspect.setter_content.image_list.config.image_url",
             ),
+            labelDesc: i18n.t("editor.inspect.setter_tips.img_url_array"),
             attrName: "url",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-alt`,
+            labelName: i18n.t("editor.inspect.setter_label.alt_text"),
+            labelDesc: i18n.t("editor.inspect.setter_label.alt_text_desc"),
+            attrName: "alt",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
@@ -73,6 +82,8 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
             ...generatorEventHandlerConfig(
               baseWidgetName,
               CAROUSEL_EVENT_HANDLER_CONFIG.events,
+              i18n.t("editor.inspect.setter_label.event_handler"),
+              "events",
             ),
           },
         ],
@@ -80,6 +91,7 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-option-data-sources`,
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.carousel.data_source"),
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         bindAttrName: ["configureMode"],
@@ -101,7 +113,7 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "labels",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
-            placeholder: "{{item}}",
+            placeholder: "{{item.label}}",
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
@@ -111,8 +123,17 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
             ),
             attrName: "urls",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
-            placeholder: "{{item}}",
+            placeholder: "{{item.url}}",
             expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-alts`,
+            labelName: i18n.t("editor.inspect.setter_label.alt_text"),
+            labelDesc: i18n.t("editor.inspect.setter_label.alt_text_desc"),
+            placeholder: "{{item.alt}}",
+            attrName: "alts",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
           },
           {
             id: `${baseWidgetName}-mappedOption-disables`,
@@ -134,6 +155,10 @@ export const CAROUSEL_PANEL_CONFIG: PanelConfig[] = [
             ...generatorMappedCarouselEventHandlerConfig(
               baseWidgetName,
               CAROUSEL_EVENT_HANDLER_CONFIG.events,
+              i18n.t("editor.inspect.setter_label.event_handler"),
+              "events",
+              undefined,
+              i18n.t("editor.inspect.setter_tips.carousel_tips"),
             ),
           },
         ],

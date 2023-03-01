@@ -21,6 +21,7 @@ export const generatorMappedCarouselEventHandlerConfig = (
   labelName: string = i18n.t("editor.inspect.setter_label.event_handler"),
   attrName: string = "events",
   defaultValue?: string,
+  labelDesc?: string,
 ) => {
   const config = generatorEventHandlerConfig(
     baseWidgetName,
@@ -28,6 +29,7 @@ export const generatorMappedCarouselEventHandlerConfig = (
     labelName,
     attrName,
     defaultValue,
+    labelDesc,
   )
   // [INPUT_SETTER] need to be replaced with [OPTION_MAPPED_INPUT_SETTER]
   config.childrenSetter = config.childrenSetter?.map((item) => {

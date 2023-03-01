@@ -8,11 +8,13 @@ export const generatorEventHandlerConfig = (
   labelName: string = i18n.t("editor.inspect.setter_label.event_handler"),
   attrName: string = "events",
   defaultValue?: string,
+  labelDesc?: string,
 ): EventHandlerPanelConfig => {
   return {
     id: `${baseWidgetName}-interaction-event-handler`,
     attrName: attrName,
     labelName: labelName,
+    labelDesc: labelDesc,
     setterType: "EVENT_HANDLER_SETTER",
     useCustomLayout: true,
     defaultValue: defaultValue,

@@ -11,6 +11,7 @@ export const formatData = (mappedData: MappedCarouselData) => {
   const label = mappedData.labels ?? []
   const hidden = mappedData.isHidden ?? []
   const disables = mappedData.disables ?? []
+  const alts = mappedData.alts ?? []
 
   const maxLength = Math.max(
     url.length,
@@ -26,6 +27,7 @@ export const formatData = (mappedData: MappedCarouselData) => {
       label: label[i],
       hidden: hidden[i],
       disabled: disables[i],
+      alt: alts[i],
     })
   }
   return options
