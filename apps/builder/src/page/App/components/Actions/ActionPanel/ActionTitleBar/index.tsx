@@ -40,6 +40,7 @@ import {
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
 import { ActionTitleBarProps } from "./interface"
 import {
   actionFailBlockStyle,
@@ -130,6 +131,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const message = useMessage()
   const selectedAction = useSelector(getSelectedAction)!
   const cachedAction = useSelector(getCachedAction)!
+  const selectedActionExecutionResult = useSelector<
+    RootState,
+    Record<string, any>
+  >((rootState) => {
+    const executionResult = getExecutionResult(rootState)
+    return executionResult[selectedAction.displayName] || {}
+  })
+  const isRunning = !!selectedActionExecutionResult.isRunning
 
   const isChanged =
     JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
@@ -372,7 +381,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           colorScheme="techPurple"
           variant={isChanged ? "fill" : "light"}
           size="medium"
-          loading={loading}
+          loading={isRunning}
           leftIcon={<CaretRightIcon />}
           onClick={handleActionOperation}
         >

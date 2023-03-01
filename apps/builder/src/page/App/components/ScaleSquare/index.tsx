@@ -85,6 +85,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   })
 
   const isAutoLimitedMode = realProps?.dynamicHeight === "limited"
+  const isOverLap =
+    isAutoLimitedMode &&
+    (realProps?.dynamicMaxHeight === h || realProps?.dynamicMinHeight === h)
   const isDraggingStateInGlobal = useSelector(getIsDragging)
 
   const displayNameInMoveBar = useMemo(() => {
@@ -500,13 +503,12 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const hasEditors = !!filteredComponentAttachedUserList.length
 
-  //  1px is left border width
   return isDragging ? null : (
     <Rnd
       bounds="parent"
       size={{
-        width: w + 1,
-        height: h + 1,
+        width: w,
+        height: h,
       }}
       position={{
         x: x,
@@ -527,7 +529,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       onResize={handleResize}
       onResizeStop={handleOnResizeStop}
       minWidth={componentNode.minW * unitW}
-      minHeight={componentNode.minH * unitH}
+      minHeight={realProps?.dynamicMinHeight ?? componentNode.minH * unitH}
     >
       <Dropdown
         disabled={!isEditMode}
@@ -562,10 +564,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             hasError,
             isDragging,
             isEditMode,
-            selectedComponents?.length === 1 &&
-              isSelected &&
-              isAutoLimitedMode &&
-              !isDraggingStateInGlobal,
+            isOverLap,
           )}
           onClick={handleOnSelection}
           onContextMenu={handleContextMenu}
@@ -600,7 +599,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         </div>
       </Dropdown>
       <div css={dragPreviewStyle} ref={dragPreviewRef} />
-      {selectedComponents?.length === 1 &&
+      {isEditMode &&
+        selectedComponents?.length === 1 &&
         isSelected &&
         isAutoLimitedMode &&
         !isDraggingStateInGlobal && (
@@ -609,7 +609,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             dynamicMinHeight={realProps.dynamicMinHeight}
             dynamicMaxHeight={realProps.dynamicMaxHeight}
             displayName={componentNode.displayName}
-            resizeStart={handleResizeStart}
             handleUpdateComponentHeight={handleUpdateComponentHeight}
           />
         )}
@@ -707,11 +706,6 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   )
 
   const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
-
-  const resizeDirection = useMemo(() => {
-    const widgetConfig = widgetBuilder(componentNode.type).config
-    return widgetConfig.resizeDirection || RESIZE_DIRECTION.ALL
-  }, [componentNode.type])
 
   const hasError = useMemo(() => {
     const displayName = componentNode.displayName

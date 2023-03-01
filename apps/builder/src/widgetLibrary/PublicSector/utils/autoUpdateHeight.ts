@@ -1,10 +1,4 @@
-import {
-  MutableRefObject,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react"
+import { MutableRefObject, useEffect, useLayoutEffect, useRef } from "react"
 
 export const useAutoUpdateHeight = (
   handleUpdateHeight: (height: number) => void,
@@ -13,14 +7,22 @@ export const useAutoUpdateHeight = (
     dynamicMinHeight?: number
     dynamicMaxHeight?: number
   },
-): [MutableRefObject<HTMLDivElement | null>, number] => {
+): [MutableRefObject<HTMLDivElement | null>] => {
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const [realHeight, setRealHeight] = useState(0)
-  const observerRef = useRef(
-    new ResizeObserver((entries) => {
+
+  const isMounted = useRef(false)
+
+  useEffect(() => {
+    isMounted.current = true
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
+
+  useLayoutEffect(() => {
+    const observerRef = new ResizeObserver((entries) => {
       if (!isMounted.current || !handleUpdateHeight) return
       const height = entries[0].contentRect.height
-      setRealHeight(height)
       if (
         dynamicOptions &&
         dynamicOptions.dynamicMaxHeight &&
@@ -38,28 +40,17 @@ export const useAutoUpdateHeight = (
         return
       }
       handleUpdateHeight?.(height)
-    }),
-  )
-
-  const isMounted = useRef(false)
-
-  useEffect(() => {
-    isMounted.current = true
-    return () => {
-      isMounted.current = false
-    }
-  }, [])
-
-  useLayoutEffect(() => {
-    if (observerRef.current && containerRef.current && enable) {
-      observerRef.current.observe(containerRef.current)
+    })
+    if (observerRef && containerRef.current && enable) {
+      observerRef.unobserve(containerRef.current)
+      observerRef.observe(containerRef.current)
     }
 
     return () => {
       if (containerRef.current && enable) {
-        observerRef.current.unobserve(containerRef.current)
+        observerRef.unobserve(containerRef.current)
       }
     }
   }, [dynamicOptions, enable, handleUpdateHeight])
-  return [containerRef, realHeight]
+  return [containerRef]
 }
