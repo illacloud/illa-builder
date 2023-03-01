@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { AppwriteSubPanelProps } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/interface"
-import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { DocumentOperations } from "@/redux/currentApp/action/appwriteAction"
 
 export const DocumentSubPanel: FC<AppwriteSubPanelProps> = (props) => {
@@ -10,23 +10,26 @@ export const DocumentSubPanel: FC<AppwriteSubPanelProps> = (props) => {
   const { t } = useTranslation()
   return (
     <>
-      <SingleTypeComponent
-        componentType="editor"
+      <InputEditor
         onChange={handleValueChange("collection")}
         value={params.collection}
         title={t("editor.action.form.label.appwrite.collectionid")}
+        lineNumbers
+        style={{ height: "88px" }}
       />
-      <SingleTypeComponent
-        componentType="editor"
+      <InputEditor
         onChange={handleValueChange("document")}
         value={params.document}
         title={t("editor.action.form.label.appwrite.documentid")}
+        lineNumbers
+        style={{ height: "88px" }}
       />
       {withDataEditor && (
-        <SingleTypeComponent
-          componentType="editor"
-          onChange={handleValueChange("data")}
+        <InputEditor
           value={params.data}
+          onChange={handleValueChange("data")}
+          lineNumbers
+          style={{ height: "88px" }}
           title={t("editor.action.form.label.appwrite.data")}
         />
       )}

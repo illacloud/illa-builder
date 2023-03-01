@@ -1,35 +1,258 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
+import { Select } from "@illa-design/react"
+import { CodeEditor } from "@/components/CodeEditor"
+import {
+  CODE_LANG,
+  CODE_TYPE,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { AppwriteSubPanelProps } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/interface"
-import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
-import { ListDocuments } from "@/redux/currentApp/action/appwriteAction"
+import {
+  codeMirrorWrapperLabelStyle,
+  codeMirrorWrapperValueStyle,
+} from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor/style"
+import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
+import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
+import { InputEditor } from "@/page/App/components/InputEditor"
+import {
+  ListDocuments,
+  ListDocumentsFilterOptions,
+  ListDocumentsOrderOptions,
+} from "@/redux/currentApp/action/appwriteAction"
+import { Params } from "@/redux/resource/restapiResource"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
   const { handleValueChange } = props
   const params = props.params as ListDocuments
   const { t } = useTranslation()
 
+  const handleOnAddKeys = useCallback(
+    (name?: string) => {
+      if (!(name && params.hasOwnProperty(name))) {
+        return
+      }
+      const oldList = params[name as keyof typeof params] as Params[]
+      const newListItem =
+        name === "filter"
+          ? { key: "", operation: "", value: "" }
+          : { key: "", operation: "" }
+
+      let newList: Params[] = [...oldList, newListItem as Params]
+      handleValueChange(name)(newList)
+    },
+    [handleValueChange, params],
+  )
+
+  const handleOnDeleteKeys = useCallback(
+    (index: number, record: Params, name?: string) => {
+      if (!(name && params.hasOwnProperty(name))) {
+        return
+      }
+      const oldList = params[name as keyof typeof params] as Params[]
+      let newRecords = [...oldList]
+      const newListItem =
+        name === "filter"
+          ? { key: "", operation: "", value: "" }
+          : { key: "", operation: "" }
+
+      newRecords.splice(index, 1)
+      if (newRecords.length === 0) {
+        newRecords = [newListItem as Params]
+      }
+      handleValueChange(name)(newRecords)
+    },
+    [handleValueChange, params],
+  )
+
+  const handleOnChangeKeyOrValue = useCallback(
+    (
+      index: number,
+      key: string,
+      value: string,
+      operation?: string,
+      name?: string,
+    ) => {
+      if (!(name && params.hasOwnProperty(name))) {
+        return
+      }
+      const oldList = params[name as keyof typeof params] as Params[]
+      let newList: Params[] = [...oldList]
+      const newListItem = operation
+        ? {
+            key,
+            value,
+            operation,
+          }
+        : { key, value }
+      newList[index] = newListItem as Params
+      handleValueChange(name)(newList)
+    },
+    [handleValueChange, params],
+  )
+
+  const handleSubTitleClick = useCallback(() => {
+    const newType = params.type === "AND" ? "AND" : "OR"
+    handleValueChange("type")(newType)
+  }, [handleValueChange, params.type])
+
   return (
     <>
-      <SingleTypeComponent
-        componentType="editor"
-        onChange={handleValueChange}
+      <InputEditor
+        onChange={handleValueChange("collection")}
         value={params.collection}
+        title={t("editor.action.form.label.appwrite.collectionid")}
+        lineNumbers
+        style={{ height: "88px" }}
       />
-      <SingleTypeComponent
-        componentType="editor"
-        onChange={handleValueChange}
-        value={params.collection}
+      <RecordEditor
+        label={t("editor.action.form.label.appwrite.filter")}
+        subtitle={
+          params.type === "AND"
+            ? t("editor.action.form.option.appwrite.filter.and")
+            : t("editor.action.form.option.appwrite.filter.or")
+        }
+        handleSubTitleClick={handleSubTitleClick}
+        records={params.filter}
+        customRender={(record, index) => (
+          <>
+            <div css={actionItemRecordEditorStyle}>
+              <CodeEditor
+                value={record.key}
+                singleLine
+                onChange={(val) => {
+                  handleOnChangeKeyOrValue(
+                    index,
+                    val,
+                    record.value,
+                    record.operation,
+                    "filter",
+                  )
+                }}
+                wrapperCss={codeMirrorWrapperLabelStyle}
+                expectValueType={VALIDATION_TYPES.STRING}
+                lang={CODE_LANG.JAVASCRIPT}
+                codeType={CODE_TYPE.EXPRESSION}
+                canShowCompleteInfo
+                placeholder={t(
+                  "editor.action.form.placeholder.appwrite.filter.attribute",
+                )}
+              />
+            </div>
+            <Select
+              colorScheme="techPurple"
+              showSearch={true}
+              defaultValue={record.operation}
+              value={record.operation}
+              w="0"
+              ml="-0.5px"
+              mr="-0.5px"
+              bdRadius="0"
+              flexGrow="1"
+              onChange={(val) =>
+                handleOnChangeKeyOrValue(
+                  index,
+                  record.key,
+                  record.value,
+                  val as string,
+                  "filter",
+                )
+              }
+              options={ListDocumentsFilterOptions}
+            />
+            <div css={actionItemRecordEditorStyle}>
+              <CodeEditor
+                singleLine
+                value={record.value}
+                onChange={(val) => {
+                  handleOnChangeKeyOrValue(
+                    index,
+                    record.key,
+                    val,
+                    record.operation,
+                    "filter",
+                  )
+                }}
+                wrapperCss={codeMirrorWrapperValueStyle}
+                expectValueType={VALIDATION_TYPES.STRING}
+                lang={CODE_LANG.JAVASCRIPT}
+                codeType={CODE_TYPE.EXPRESSION}
+                canShowCompleteInfo
+                placeholder={t(
+                  "editor.action.form.placeholder.appwrite.filter.value",
+                )}
+              />
+            </div>
+          </>
+        )}
+        name="filter"
+        onAdd={handleOnAddKeys}
+        onDelete={handleOnDeleteKeys}
+        onChangeKey={() => {}}
+        onChangeValue={() => {}}
       />
-      <SingleTypeComponent
-        componentType="editor"
-        onChange={handleValueChange}
-        value={params.collection}
+      <RecordEditor
+        label={t("editor.action.form.label.appwrite.order")}
+        records={params.filter}
+        customRender={(record, index) => (
+          <>
+            <div css={actionItemRecordEditorStyle}>
+              <CodeEditor
+                value={record.key}
+                singleLine
+                onChange={(val) => {
+                  handleOnChangeKeyOrValue(
+                    index,
+                    val,
+                    record.value,
+                    record.operation,
+                    "order",
+                  )
+                }}
+                wrapperCss={codeMirrorWrapperLabelStyle}
+                expectValueType={VALIDATION_TYPES.STRING}
+                lang={CODE_LANG.JAVASCRIPT}
+                codeType={CODE_TYPE.EXPRESSION}
+                canShowCompleteInfo
+                placeholder="field"
+              />
+            </div>
+            <Select
+              colorScheme="techPurple"
+              showSearch={true}
+              defaultValue={record.operation}
+              value={record.operation}
+              w="0"
+              ml="-0.5px"
+              mr="-0.5px"
+              bdRadius="0"
+              flexGrow="1"
+              placeholder={t("editor.action.form.placeholder.appwrite.order")}
+              onChange={(val) =>
+                handleOnChangeKeyOrValue(
+                  index,
+                  record.key,
+                  record.value,
+                  val as string,
+                  "order",
+                )
+              }
+              options={ListDocumentsOrderOptions}
+            />
+          </>
+        )}
+        name="order"
+        onAdd={handleOnAddKeys}
+        onDelete={handleOnDeleteKeys}
+        onChangeKey={() => {}}
+        onChangeValue={() => {}}
       />
-      <SingleTypeComponent
-        componentType="editor"
-        onChange={handleValueChange}
+      <InputEditor
+        onChange={handleValueChange("limit")}
         value={params.limit}
+        title={t("editor.action.form.label.appwrite.limit")}
+        lineNumbers
+        style={{ height: "88px" }}
       />
     </>
   )

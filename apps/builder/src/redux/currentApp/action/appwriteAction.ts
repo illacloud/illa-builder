@@ -1,3 +1,6 @@
+import i18n from "@/i18n/config"
+import { Params } from "@/redux/resource/restapiResource"
+
 export type AppwriteActionMethodsType =
   | "create"
   | "get"
@@ -43,18 +46,36 @@ export const DocumentOperationsInitial: DocumentOperations = {
   data: "",
 }
 
+export interface AppwriteOrderParams {
+  key: string
+  operation: string
+}
+
 export interface ListDocuments {
   collection: string
-  filter: any
-  order: string
+  filter: Params[]
+  order: AppwriteOrderParams[]
+  type: "AND" | "OR"
   limit: string
 }
 
 export const ListDocumentsInitial: ListDocuments = {
   collection: "",
-  filter: "",
-  order: "",
-  limit: "",
+  type: "AND",
+  filter: [
+    {
+      key: "",
+      operation: "equal",
+      value: "",
+    },
+  ],
+  order: [
+    {
+      key: "",
+      operation: "asc",
+    },
+  ],
+  limit: "{{1000}}",
 }
 
 export type AppwriteActionTypes = DocumentOperations | ListDocuments
@@ -69,13 +90,40 @@ export const AppwriteActionInitial: AppwriteAction<ListDocuments> = {
   params: ListDocumentsInitial,
 }
 
-// export const AppwriteTypeMap: Record<
-//   AppwriteActionMethodsType,
-//   keyof AppwriteActionTypes
-// > = {
-//   get: GetOneDocument,
-//   create: CreateOneDocument,
-//   list: ListDocuments,
-//   delete: DeleteOneDocument,
-//   update: UpdateOneDocument,
-// }
+export const ListDocumentsFilterOptions = [
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.equal"),
+    value: "equal",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.notequal"),
+    value: "notEqual",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.lessthan"),
+    value: "lessThan",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.lessthanEqual"),
+    value: "lessThanEqual",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.greaterthan"),
+    value: "greaterThan",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.greaterthanequal"),
+    value: "greaterThanEqual",
+  },
+]
+
+export const ListDocumentsOrderOptions = [
+  {
+    label: i18n.t("editor.action.form.option.appwrite.order.asc"),
+    value: "Asc",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.order.desc"),
+    value: "Desc",
+  },
+]

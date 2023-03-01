@@ -21,9 +21,10 @@ import {
   AppwriteActionMethodsOptions,
   AppwriteActionMethodsType,
   AppwriteActionTypes,
-  DocumentOperations,
-  ListDocuments,
+  DocumentOperationsInitial,
+  ListDocumentsInitial,
 } from "@/redux/currentApp/action/appwriteAction"
+import { Params } from "@/redux/resource/restapiResource"
 
 const AppwriteSubComponentMap = {
   get: DocumentSubPanel,
@@ -41,28 +42,34 @@ export const AppwritePanel: FC = () => {
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
     AppwriteAction<AppwriteActionTypes>
   >
-
   const content = cachedAction.content
   const selectedContent = selectedAction.content
   const dispatch = useDispatch()
 
   const handleMethodValueChange = useCallback(
     (value: AppwriteActionMethodsType) => {
+      const newContent =
+        selectedContent.method === value
+          ? selectedContent
+          : {
+              params:
+                value === "list"
+                  ? ListDocumentsInitial
+                  : DocumentOperationsInitial,
+              method: value,
+            }
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
-          content: {
-            ...content,
-            method: value,
-          },
+          content: newContent,
         }),
       )
     },
-    [cachedAction, content, dispatch],
+    [cachedAction, content, dispatch, selectedContent],
   )
 
   const handleValueChange = useCallback(
-    (param: string) => (value: string) => {
+    (param: string) => (value: string | Params[]) => {
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
@@ -91,8 +98,10 @@ export const AppwritePanel: FC = () => {
           onChange={handleMethodValueChange}
           value={content.method}
           options={AppwriteActionMethodsOptions}
+          title={"Method"}
         />
         <Component
+          key={content.method}
           handleValueChange={handleValueChange}
           withDataEditor={withDataEditor}
           params={content.params}
