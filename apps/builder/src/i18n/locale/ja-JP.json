@@ -147,25 +147,31 @@
           "inference_endpoint": "Inference Endpoint",
           "s3": "公開アプリでは無効",
           "acl": "アップロードされたファイルのデフォルトS3 ACL",
-          "editor": {
-            "appwrite": {
-              "host": "Host"
-            }
-          },
           "appwrite": {
-            "host": "Host",
-            "dbid": "Database ID",
-            "projectid": "Project ID",
-            "secret": "X-Appwrite-JWT"
+            "host": "ホスト",
+            "dbid": "データベースID",
+            "projectid": "プロジェクトID",
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "コレクション ID",
+            "documentid": "ドキュメント ID",
+            "data": "データ",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
           }
         },
         "placeholder": {
           "url": "URL をここに入力",
           "appwrite": {
             "host": "HOSTNAME OR IP",
-            "dbid": "Database ID",
-            "projectid": "Project ID",
-            "secret": "••••••••••••••••••••"
+            "dbid": "データベースID",
+            "projectid": "プロジェクトID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute"
           }
         },
         "tips": {
@@ -175,8 +181,30 @@
           "appwrite": {
             "method": {
               "create": "Create a document",
-              "list": "List documents"
+              "list": "List documents",
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
             }
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
           }
         }
       },
