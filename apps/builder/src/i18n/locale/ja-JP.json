@@ -1153,7 +1153,7 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。",
+        "carousel_tips": "{{ item }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの属性があります。 imageUrl と url です。 画像をクリックしたときに別の URL に移動する場合は、{{ item.url }} を使用して URL を設定します。",
         "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}",
         "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
         "carousel": {
