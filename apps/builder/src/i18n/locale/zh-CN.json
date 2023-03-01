@@ -147,25 +147,31 @@
           "inference_endpoint": "Inference Endpoint",
           "s3": "在公开APP中不可用",
           "acl": "上传文件的默认S3 ACL",
-          "editor": {
-            "appwrite": {
-              "host": "Host"
-            }
-          },
           "appwrite": {
-            "host": "Host",
-            "dbid": "Database ID",
-            "projectid": "Project ID",
-            "secret": "X-Appwrite-JWT"
+            "host": "主机",
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "集合ID",
+            "documentid": "文档ID",
+            "data": "数据",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
           }
         },
         "placeholder": {
           "url": "在此处输入请求 URL",
           "appwrite": {
             "host": "HOSTNAME OR IP",
-            "dbid": "Database ID",
-            "projectid": "Project ID",
-            "secret": "••••••••••••••••••••"
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute"
           }
         },
         "tips": {
@@ -176,8 +182,29 @@
             "method": {
               "create": "Create a document",
               "list": "List documents",
-              "get": "Get a document"
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
             }
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
           }
         }
       },
