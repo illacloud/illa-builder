@@ -296,7 +296,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
-            defaultValue: "blue",
+            defaultValue: "grayBlue",
           },
           {
             id: `${baseWidgetName}-style-positiveColorScheme`,
