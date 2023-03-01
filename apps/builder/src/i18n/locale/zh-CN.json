@@ -136,7 +136,8 @@
           "configure": "配置 {{ name }}",
           "database": "数据库",
           "select": "选择资源类型",
-          "huggingface": "Hugging Face"
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite"
         },
         "validate": {
           "required": "请输入{name}"
@@ -145,13 +146,39 @@
           "inference_api": "Inference API",
           "inference_endpoint": "Inference Endpoint",
           "s3": "在公开APP中不可用",
-          "acl": "上传文件的默认S3 ACL"
+          "acl": "上传文件的默认S3 ACL",
+          "editor": {
+            "appwrite": {
+              "host": "Host"
+            }
+          },
+          "appwrite": {
+            "host": "Host",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "X-Appwrite-JWT"
+          }
         },
         "placeholder": {
-          "url": "在此处输入请求 URL"
+          "url": "在此处输入请求 URL",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "••••••••••••••••••••"
+          }
         },
         "tips": {
           "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>"
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Create a document",
+              "list": "List documents",
+              "get": "Get a document"
+            }
+          }
         }
       },
       "panel": {
