@@ -74,6 +74,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     displayName,
     tooltipText,
     triggerEventHandler,
+    triggerMappedEventHandler,
     manualData,
     mappedData,
     configureMode,
@@ -82,17 +83,6 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     autoPlay,
     interval,
   } = props
-
-  const handleOnClickItem = useCallback(
-    (index: number) => {
-      const path =
-        configureMode === "static"
-          ? `manualData.${index}.events`
-          : `mappedData.events`
-      triggerEventHandler("click", path)
-    },
-    [configureMode, triggerEventHandler],
-  )
 
   const data = useMemo(() => {
     if (configureMode === "static") {
@@ -105,6 +95,17 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     )
     return mappedData ? formatData(mappedData) : []
   }, [manualData, mappedData, configureMode])
+
+  const handleOnClickItem = useCallback(
+    (index: number) => {
+      if (configureMode === "static") {
+        triggerEventHandler("click", `manualData.${index}.events`)
+      } else {
+        triggerMappedEventHandler("click", `mappedData.events`, index)
+      }
+    },
+    [configureMode, triggerEventHandler, triggerMappedEventHandler],
+  )
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {})

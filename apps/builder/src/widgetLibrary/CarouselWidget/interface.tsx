@@ -1,3 +1,4 @@
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
@@ -16,6 +17,7 @@ export interface MappedCarouselData {
   alts?: string[]
   isHidden?: boolean[]
   disables?: boolean[]
+  events?: Record<string, unknown>[]
 }
 
 export interface CarouselProps {
@@ -39,4 +41,5 @@ export interface CarouselWidgetProps
   dataSources?: Array<unknown>
   manualData?: CarouselSettings[]
   mappedData?: MappedCarouselData
+  componentNode: ComponentNode
 }

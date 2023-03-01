@@ -1,4 +1,4 @@
-import { cloneDeep, get, merge, set } from "lodash"
+import { cloneDeep, get, isNumber, merge, set } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -139,10 +139,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       [dispatch],
     )
 
-    const triggerEventHandler = useCallback(
+    const getRunEvents = useCallback(
       (
         eventType: string,
-        path: string = "events",
+        path: string,
         otherCalcContext?: Record<string, any>,
       ) => {
         const originEvents = get(componentNode.props, path, []) as any[]
@@ -157,6 +157,26 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           calcContext,
           otherCalcContext,
         )
+        return {
+          dynamicPaths,
+          needRunEvents,
+          finalContext,
+        }
+      },
+      [componentNode.props],
+    )
+
+    const triggerEventHandler = useCallback(
+      (
+        eventType: string,
+        path: string = "events",
+        otherCalcContext?: Record<string, any>,
+      ) => {
+        const { dynamicPaths, needRunEvents, finalContext } = getRunEvents(
+          eventType,
+          path,
+          otherCalcContext,
+        )
         dynamicPaths?.forEach((path: string) => {
           const realPath = path.split(".").slice(1).join(".")
           try {
@@ -168,6 +188,39 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
                 finalContext,
               )
               set(needRunEvents, realPath, calcValue)
+            }
+          } catch (e) {
+            console.log(e)
+          }
+        })
+        needRunEvents.forEach((scriptObj: any) => {
+          runEventHandler(scriptObj, finalContext)
+        })
+      },
+      [componentNode.props],
+    )
+
+    const triggerMappedEventHandler = useCallback(
+      (eventType: string, path: string = "events", index?: number) => {
+        const { dynamicPaths, needRunEvents, finalContext } = getRunEvents(
+          eventType,
+          path,
+        )
+        dynamicPaths?.forEach((path: string) => {
+          const realPath = path.split(".").slice(2).join(".")
+          try {
+            const dynamicString = get(needRunEvents, realPath, "")
+            if (dynamicString) {
+              const calcValue = evaluateDynamicString(
+                "",
+                dynamicString,
+                finalContext,
+              )
+              if (Array.isArray(calcValue) && isNumber(index)) {
+                set(needRunEvents, realPath, calcValue[index])
+              } else {
+                set(needRunEvents, realPath, calcValue)
+              }
             }
           } catch (e) {
             console.log(e)
@@ -230,6 +283,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           componentNode={componentNode}
           disabled={listContainerDisabled}
           triggerEventHandler={triggerEventHandler}
+          triggerMappedEventHandler={triggerMappedEventHandler}
         />
       </div>
     )

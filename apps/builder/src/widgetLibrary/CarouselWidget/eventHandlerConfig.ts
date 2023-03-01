@@ -1,5 +1,4 @@
 import i18n from "@/i18n/config"
-import { EventHandlerPanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { EventHandlerConfig } from "@/widgetLibrary/interface"
@@ -38,7 +37,5 @@ export const generatorMappedCarouselEventHandlerConfig = (
     }
     return item
   })
-  // return config
-  console.log(config, "generatorMappedCarouselEventHandlerConfig")
   return config
 }

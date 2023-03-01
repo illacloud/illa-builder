@@ -27,6 +27,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     placeholder,
     attrName,
     handleUpdateDsl,
+    handleUpdateMultiAttrDSL,
     expectedType,
     value,
     widgetDisplayName,
@@ -61,9 +62,17 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         output = getNeedComputedValueWithList(value, currentListDisplayName)
       }
 
-      handleUpdateDsl(attrName, output)
+      // handleUpdateDsl(attrName, output)
+      handleUpdateMultiAttrDSL?.({
+        [attrName]: output,
+      })
     },
-    [attrName, currentListDisplayName, handleUpdateDsl],
+    [
+      attrName,
+      currentListDisplayName,
+      handleUpdateDsl,
+      handleUpdateMultiAttrDSL,
+    ],
   )
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
