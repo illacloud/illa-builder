@@ -147,16 +147,17 @@
           "inference_endpoint": "Inference Endpoint",
           "s3": "Invalid in public apps",
           "acl": "S3 ACL for uploaded files",
-          "editor": {
-            "appwrite": {
-              "host": "Host"
-            }
-          },
           "appwrite": {
             "host": "Host",
             "dbid": "Database ID",
             "projectid": "Project ID",
-            "secret": "X-Appwrite-JWT"
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "Collection ID",
+            "documentid": "Document ID",
+            "data": "Data",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
           }
         },
         "placeholder": {
@@ -165,7 +166,12 @@
             "host": "HOSTNAME OR IP",
             "dbid": "Database ID",
             "projectid": "Project ID",
-            "secret": "••••••••••••••••••••"
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute"
           }
         },
         "tips": {
@@ -175,8 +181,30 @@
           "appwrite": {
             "method": {
               "create": "Create a document",
-              "list": "List documents"
+              "list": "List documents",
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
             }
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
           }
         }
       },
