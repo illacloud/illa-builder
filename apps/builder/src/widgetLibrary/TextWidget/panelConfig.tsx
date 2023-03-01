@@ -78,6 +78,8 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-layout-row`,
         labelName: i18n.t("editor.inspect.setter_label.vertical_alignment"),
+        shown: (dynamicHeight: string) => dynamicHeight !== "auto",
+        bindAttrName: ["dynamicHeight"],
         setterType: "RADIO_GROUP_SETTER",
         attrName: "verticalAlign",
         isSetterSingleRow: true,
@@ -102,8 +104,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "horizontalAlign",
         setterType: "RADIO_GROUP_SETTER",
         isSetterSingleRow: true,
-        bindAttrName: ["dynamicHeight"],
-        shown: (dynamicHeight: string) => dynamicHeight !== "auto",
         options: [
           {
             label: <HorizontalStartIcon />,
