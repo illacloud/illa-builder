@@ -99,7 +99,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
         <ControlledElement
           controlledType="input"
           isRequired
-          title={"Host"}
+          title={t("editor.action.form.label.appwrite.host")}
           control={control}
           defaultValue={content.host}
           rules={[
@@ -107,13 +107,13 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
               validate,
             },
           ]}
-          placeholders={["Hostname or IP"]}
+          placeholders={[t("editor.action.form.placeholder.appwrite.host")]}
           name="host"
         />
         <ControlledElement
           controlledType="input"
           isRequired
-          title={"Database ID"}
+          title={t("editor.action.form.label.appwrite.dbid")}
           control={control}
           defaultValue={content.database}
           rules={[
@@ -121,13 +121,13 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
               validate,
             },
           ]}
-          placeholders={["Database ID"]}
+          placeholders={[t("editor.action.form.placeholder.appwrite.dbid")]}
           name="database"
         />
         <ControlledElement
           controlledType="input"
           isRequired
-          title={"Project ID"}
+          title={t("editor.action.form.label.appwrite.projectid")}
           control={control}
           defaultValue={content.projectID}
           rules={[
@@ -135,13 +135,15 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
               validate,
             },
           ]}
-          placeholders={["Project ID"]}
+          placeholders={[
+            t("editor.action.form.placeholder.appwrite.projectid"),
+          ]}
           name="projectID"
         />
         <ControlledElement
-          controlledType="input"
+          controlledType="password"
           isRequired
-          title={"X-Appwrite-JWT"}
+          title={t("editor.action.form.label.appwrite.secret")}
           control={control}
           defaultValue={content.jwt}
           rules={[
@@ -149,7 +151,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
               validate,
             },
           ]}
-          placeholders={["token"]}
+          placeholders={[t("editor.action.form.placeholder.appwrite.secret")]}
           name="jwt"
         />
       </div>
