@@ -31,10 +31,11 @@ export const CAROUSEL_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Carousel", "轮播"],
   icon: <CarouselWidgetIcon />,
   sessionType: "PRESENTATION",
-  w: 12,
-  h: 5,
+  h: 30,
+  w: 40,
   defaults: {
     configureMode: "static",
+    radius: "0px",
     showArrows: true,
     showDots: true,
     hidden: false,
