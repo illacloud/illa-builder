@@ -41,6 +41,32 @@ jobs:
             docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
             docker tag illa-builder-frontend "illasoft/illa-builder-frontend:${CIRCLE_BRANCH}"
             docker push "illasoft/illa-builder-frontend:${CIRCLE_BRANCH}"
+  deploy:
+    machine: # executor type
+      image: ubuntu-2004:202010-01
+    resource_class: medium
+    steps:
+      - run:
+          name: Download doctl & kubectl
+          command: |
+            sudo snap install doctl
+            sudo snap install kubectl --classic
+            doctl version
+      - run:
+          name: Setup kubectl
+          command: |
+            doctl auth init --access-token $DO_TOKEN
+            mkdir -p /home/circleci/.kube
+            sudo snap connect doctl:kube-config
+            doctl kubernetes cluster kubeconfig save $DO_CLUSTER
+            kubectl version
+      - run:
+          name: Download deploy yaml
+          command: |
+            git clone -b test $DEPLOY_REPO
+            cd $DEPLOY_TEST_DIR
+            kubectl delete pod -n test -l repo=illa-builder-frontend
+            kubectl apply -f ./illa-builder-frontend/ -n test
 
 workflows:
   illa-builder-frontend:
@@ -51,3 +77,8 @@ workflows:
       - build:
           context:
             - org-global
+      - build:
+          context:
+            - org-global
+          requires:
+            - build
