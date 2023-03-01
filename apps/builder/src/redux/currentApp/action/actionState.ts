@@ -1,4 +1,8 @@
 import {
+  AppwriteAction,
+  AppwriteActionTypes,
+} from "@/redux/currentApp/action/appwriteAction"
+import {
   DynamoDBAction,
   StructParams,
 } from "@/redux/currentApp/action/dynamoDBAction"
@@ -111,6 +115,7 @@ export type ActionContent =
   | MicrosoftSqlAction<MicrosoftSqlActionType>
   | RestApiAction<BodyContent>
   | TransformerAction
+  | AppwriteAction<AppwriteActionTypes>
   | RedisAction
   | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>

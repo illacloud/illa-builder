@@ -2,16 +2,27 @@ import { FC, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  PreviousIcon,
+  getColor,
+} from "@illa-design/react"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
+  applyConfigItemLabelText,
+  configItemTip,
+  connectType,
+  connectTypeStyle,
   container,
   divider,
   footerStyle,
+  labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
@@ -19,9 +30,9 @@ import {
   AppWriteResource,
   AppWriteResourceInitial,
 } from "@/redux/resource/appWriteResource"
-import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
   const { resourceId, onBack, onFinished } = props
@@ -37,7 +48,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
   if (!resource) {
     content = AppWriteResourceInitial
   } else {
-    content = (resource as Resource<AppWriteResource>).content
+    content = resource.content as AppWriteResource
   }
 
   const [testLoading, setTestLoading] = useState(false)
@@ -58,6 +69,10 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
     )
   }, [getValues])
 
+  const inputValueValidate = {
+    validate,
+  }
+
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
@@ -76,11 +91,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           title={t("editor.action.resource.db.label.name")}
           control={control}
           defaultValue={resource?.resourceName ?? ""}
-          rules={[
-            {
-              validate,
-            },
-          ]}
+          rules={[inputValueValidate]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}
           name="resourceName"
           tips={t("editor.action.resource.restapi.tip.name")}
@@ -102,11 +113,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           title={t("editor.action.form.label.appwrite.host")}
           control={control}
           defaultValue={content.host}
-          rules={[
-            {
-              validate,
-            },
-          ]}
+          rules={[inputValueValidate]}
           placeholders={[t("editor.action.form.placeholder.appwrite.host")]}
           name="host"
         />
@@ -116,11 +123,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           title={t("editor.action.form.label.appwrite.dbid")}
           control={control}
           defaultValue={content.database}
-          rules={[
-            {
-              validate,
-            },
-          ]}
+          rules={[inputValueValidate]}
           placeholders={[t("editor.action.form.placeholder.appwrite.dbid")]}
           name="database"
         />
@@ -130,11 +133,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           title={t("editor.action.form.label.appwrite.projectid")}
           control={control}
           defaultValue={content.projectID}
-          rules={[
-            {
-              validate,
-            },
-          ]}
+          rules={[inputValueValidate]}
           placeholders={[
             t("editor.action.form.placeholder.appwrite.projectid"),
           ]}
@@ -146,14 +145,29 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           title={t("editor.action.form.label.appwrite.secret")}
           control={control}
           defaultValue={content.jwt}
-          rules={[
-            {
-              validate,
-            },
-          ]}
+          rules={[inputValueValidate]}
           placeholders={[t("editor.action.form.placeholder.appwrite.secret")]}
           name="jwt"
         />
+        {isCloudVersion && (
+          <>
+            <div css={configItemTip}>
+              {t("editor.action.resource.db.tip.username_password")}
+            </div>
+            <div css={connectType}>
+              <div css={labelContainer}>
+                <span
+                  css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
+                >
+                  {t("editor.action.resource.db.label.connect_type")}
+                </span>
+              </div>
+              <span css={connectTypeStyle}>
+                {t("editor.action.resource.db.tip.connect_type")}
+              </span>
+            </div>
+          </>
+        )}
       </div>
       <div css={footerStyle}>
         <Button

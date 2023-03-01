@@ -1,4 +1,5 @@
 import { ReactElement } from "react"
+import { AppwriteIcon } from "@/page/App/components/Icons/appwrite"
 import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
 import { DataDogIcon } from "@/page/App/components/Icons/datadog"
 import { DynamoIcon } from "@/page/App/components/Icons/dynamo"
@@ -65,6 +66,8 @@ export function getIconFromResourceType(
       return <FirebaseIcon size={size} />
     case "clickhouse":
       return <ClickhouseIcon size={size} />
+    case "appwrite":
+      return <AppwriteIcon size={size} />
   }
   return null
 }
@@ -113,6 +116,8 @@ export function getIconFromActionType(
       return <FirebaseIcon size={size} />
     case "clickhouse":
       return <ClickhouseIcon size={size} />
+    case "appwrite":
+      return <AppwriteIcon size={size} />
   }
   return null
 }

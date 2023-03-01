@@ -7,6 +7,7 @@ import {
   checkoutContentStyle,
   getActionItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent/style"
+import { InputEditor } from "@/page/App/components/InputEditor"
 
 export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
   const { componentType, title, onChange, value, options, checkoutTitle } =
@@ -57,6 +58,9 @@ export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
     value,
   ])
 
+  if (componentType === "editor") {
+    return <InputEditor {...props} value={props.value as string} />
+  }
   return (
     <div css={getActionItemStyle(componentType)}>
       <span css={actionLabelStyle}>{title}</span>
