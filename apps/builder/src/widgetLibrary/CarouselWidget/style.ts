@@ -4,6 +4,9 @@ import { getColor } from "@illa-design/react"
 export const sliderStyle = css`
   height: 100%;
 
+  .slick-track {
+    inset-inline-start: 0;
+  }
   .slick-dotted.slick-slider {
     margin-bottom: 30px;
   }

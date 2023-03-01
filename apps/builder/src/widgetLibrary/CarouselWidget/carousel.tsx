@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick-theme.css"
 import "slick-carousel/slick/slick.css"
-import { NextIcon, PreviousIcon } from "@illa-design/react"
+import { Image, NextIcon, PreviousIcon } from "@illa-design/react"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import {
@@ -25,6 +25,7 @@ export const Carousel: FC<CarouselProps> = (props) => {
     disabled,
     interval,
     draggable,
+    radius,
   } = props
 
   return (
@@ -54,7 +55,15 @@ export const Carousel: FC<CarouselProps> = (props) => {
               !disabled && onClickItem?.(index)
             }}
           >
-            <img css={fullImageStyle} src={url} alt={alt} />
+            <Image
+              src={url}
+              objectFit={"cover"}
+              alt={alt}
+              radius={radius}
+              height="100%"
+              width="100%"
+              css={fullImageStyle}
+            />
           </div>
         )
       })}
@@ -79,8 +88,18 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     showDots,
     autoPlay,
     interval,
+    radius,
   } = props
   const isEditMode = useSelector(getIsILLAEditMode) ?? true
+
+  const finalRadius = useMemo(() => {
+    const reg = /^\d+$/
+    const pattern = new RegExp(reg)
+    if (radius && pattern.test(radius)) {
+      return radius + "px"
+    }
+    return radius
+  }, [radius])
 
   const data = useMemo(() => {
     if (configureMode === "static") {
@@ -119,6 +138,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
           autoPlay={autoPlay}
           interval={interval}
           onClickItem={handleOnClickItem}
+          radius={finalRadius}
         />
       </div>
     </TooltipWrapper>
