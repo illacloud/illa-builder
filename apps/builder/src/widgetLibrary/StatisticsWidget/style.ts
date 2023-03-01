@@ -7,21 +7,34 @@ const overflowStyle = css`
   white-space: nowrap;
 `
 
-export const getStatisticContainerStyle = (textAlign?: string) => {
-  let flexDirection = css``
-  if (textAlign === "center") {
-    flexDirection = css`
-      flex-direction: column;
-      justify-content: center;
+const getAlignItems = (textAlign?: string) => {
+  let alignItemsStyle = css``
+  if (!textAlign || textAlign === "start") {
+    alignItemsStyle = css`
+      align-items: flex-start;
     `
   }
+  if (textAlign === "center") {
+    alignItemsStyle = css`
+      align-items: center;
+    `
+  }
+  if (textAlign === "end") {
+    alignItemsStyle = css`
+      align-items: flex-end;
+    `
+  }
+  return alignItemsStyle
+}
 
+export const getStatisticContainerStyle = (textAlign?: string) => {
+  const alignItemsStyle = getAlignItems(textAlign)
   return css`
     display: flex;
     gap: 8px;
+    flex-direction: column;
     align-items: center;
-    ${flexDirection};
-    max-width: 100%;
+    ${alignItemsStyle};
   `
 }
 export const getSecondaryStatisticStyle = (color?: string) => {
@@ -58,7 +71,7 @@ export const getPrefixIconStyle = (color?: string, secondary?: boolean) => {
   const size = secondary ? 12 : 24
   return css`
     color: ${getColor(color || "", "03")};
-    display: flex;
+    display: inline-flex;
     height: 100%;
     align-items: center;
     & > svg {
@@ -68,11 +81,18 @@ export const getPrefixIconStyle = (color?: string, secondary?: boolean) => {
   `
 }
 
+export const primaryStatisticContainerStyle = css`
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  align-items: center;
+`
+
 export const getStatisticsContainerStyle = (textAlign?: string) => {
   let justifyContentStyle = css``
   if (textAlign === "end") {
     justifyContentStyle = css`
-      justify-content: end;
+      justify-content: flex-end;
     `
   }
   if (textAlign === "center") {
@@ -90,13 +110,6 @@ export const getStatisticsContainerStyle = (textAlign?: string) => {
     gap: 8px;
   `
 }
-
-export const contentContainerStyle = css`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-width: 0;
-`
 
 export const getSecondaryStatisticContainerStyle = (color?: string) => {
   return css`
@@ -135,6 +148,7 @@ export const getStatisticTitleStyle = (textAlign?: string) => {
 
   return css`
     ${textAlignStyle};
+    max-width: 100%;
     margin-bottom: 4px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     ${overflowStyle};

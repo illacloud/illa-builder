@@ -133,7 +133,7 @@ export const STATISTICS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${baseWidgetName}-secondaryValue`,
-    groupName: i18n.t("editor.inspect.setter_group.secValue"),
+    groupName: i18n.t("editor.inspect.setter_group.secondary_value"),
     children: [
       {
         id: `${baseWidgetName}-label-secondaryDecimalPlace`,
