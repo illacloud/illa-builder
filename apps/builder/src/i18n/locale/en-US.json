@@ -1301,6 +1301,10 @@
       "collapse": {
         "expand_all_items": "Expand all items",
         "collapse_all_items": "Collapse all items"
+      },
+      "carousel": {
+        "showNext": "Show next visible image",
+        "showPrevious": "Show previous visible image"
       }
     }
   },
