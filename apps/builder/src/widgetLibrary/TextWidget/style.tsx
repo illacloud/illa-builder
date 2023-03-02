@@ -1,6 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { VerticalAlign } from "@/widgetLibrary/TextWidget/interface"
-import { UNIT_HEIGHT } from "../../page/App/components/DotPanel/renderComponentCanvas"
 
 export function applyAlignStyle(
   verticalAlign?: VerticalAlign,
@@ -29,7 +28,9 @@ const getRealHeightStyle = (
         max-height: ${dynamicMaxHeight - 6}px;
       `
     case "fixed":
-      return `100%`
+      return css`
+        height: 100%;
+      `
     default:
       return ""
   }
