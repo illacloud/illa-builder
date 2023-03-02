@@ -176,16 +176,6 @@ export const selfRouter: RoutesObjectPro[] = [
     accessByMobile: true,
   },
   {
-    path: "/user",
-    element: layLoad(lazy(() => import("@/page/User"))),
-    children: [
-      {
-        index: true,
-        element: <Navigate to="./login" replace />,
-      },
-    ],
-  },
-  {
     path: "/setting",
     element: layLoad(lazy(() => import("@/page/Setting"))),
     needLogin: true,
