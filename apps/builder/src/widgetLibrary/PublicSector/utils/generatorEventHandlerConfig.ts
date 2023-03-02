@@ -134,7 +134,7 @@ export const generatorEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-setPrimaryValue`,
-        labelName: "setPrimaryValue",
+        labelName: i18n.t("editor.method.statistics.primary_value"),
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
