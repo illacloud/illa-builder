@@ -99,7 +99,7 @@ export const DashboardResources: FC = () => {
           ).database
           break
         case "appwrite":
-          dbName = (resource.content as AppWriteResource).database
+          dbName = (resource.content as AppWriteResource).databaseID
           break
       }
       return {

@@ -24,7 +24,6 @@ import {
   DocumentOperationsInitial,
   ListDocumentsInitial,
 } from "@/redux/currentApp/action/appwriteAction"
-import { Params } from "@/redux/resource/restapiResource"
 
 const AppwriteSubComponentMap = {
   get: DocumentSubPanel,
@@ -52,7 +51,7 @@ export const AppwritePanel: FC = () => {
         selectedContent.method === value
           ? selectedContent
           : {
-              params:
+              opts:
                 value === "list"
                   ? ListDocumentsInitial
                   : DocumentOperationsInitial,
@@ -69,14 +68,14 @@ export const AppwritePanel: FC = () => {
   )
 
   const handleValueChange = useCallback(
-    (param: string) => (value: string | Params[]) => {
+    (param: string) => (value: string | Record<string, string>[]) => {
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
           content: {
             ...content,
-            params: {
-              ...content.params,
+            opts: {
+              ...content.opts,
               [param]: value,
             },
           },
@@ -104,7 +103,7 @@ export const AppwritePanel: FC = () => {
           key={content.method}
           handleValueChange={handleValueChange}
           withDataEditor={withDataEditor}
-          params={content.params}
+          params={content.opts}
         />
       </div>
       <ActionEventHandler />

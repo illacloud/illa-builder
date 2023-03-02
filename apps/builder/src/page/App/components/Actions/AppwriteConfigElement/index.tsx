@@ -61,8 +61,8 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
       {
         host: data.host,
         projectID: data.projectID,
-        database: data.database,
-        jwt: data.jwt,
+        databaseID: data.databaseID,
+        apiKey: data.apiKey,
       },
       "appwrite",
       setTestLoading,
@@ -122,10 +122,10 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           isRequired
           title={t("editor.action.form.label.appwrite.dbid")}
           control={control}
-          defaultValue={content.database}
+          defaultValue={content.databaseID}
           rules={[inputValueValidate]}
           placeholders={[t("editor.action.form.placeholder.appwrite.dbid")]}
-          name="database"
+          name="databaseID"
         />
         <ControlledElement
           controlledType="input"
@@ -144,10 +144,10 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           isRequired
           title={t("editor.action.form.label.appwrite.secret")}
           control={control}
-          defaultValue={content.jwt}
+          defaultValue={content.apiKey}
           rules={[inputValueValidate]}
           placeholders={[t("editor.action.form.placeholder.appwrite.secret")]}
-          name="jwt"
+          name="apiKey"
         />
         {isCloudVersion && (
           <>

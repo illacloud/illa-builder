@@ -1,13 +1,13 @@
 export interface AppWriteResource {
   host: string
-  database: string
+  databaseID: string
   projectID: string
-  jwt: string
+  apiKey: string
 }
 
 export const AppWriteResourceInitial: AppWriteResource = {
   host: "",
-  database: "",
+  databaseID: "",
   projectID: "",
-  jwt: "",
+  apiKey: "",
 }

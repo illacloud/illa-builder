@@ -35,44 +35,43 @@ export const AppwriteActionMethodsOptions: {
 ]
 
 export interface DocumentOperations {
-  collection: string
-  document: string
+  collectionID: string
+  documentID: string
   data: string
 }
 
 export const DocumentOperationsInitial: DocumentOperations = {
-  collection: "",
-  document: "",
+  collectionID: "",
+  documentID: "",
   data: "",
 }
 
-export interface AppwriteOrderParams {
+export interface AppwriteFilterParams extends Params {
   key: string
   operation: string
+  value: string
 }
 
 export interface ListDocuments {
-  collection: string
-  filter: Params[]
-  order: AppwriteOrderParams[]
-  type: "AND" | "OR"
+  collectionID: string
+  filter: AppwriteFilterParams[]
+  orderBy: Params[]
   limit: string
 }
 
 export const ListDocumentsInitial: ListDocuments = {
-  collection: "",
-  type: "AND",
+  collectionID: "",
   filter: [
     {
       key: "",
-      operation: "equal",
+      operation: i18n.t("editor.action.form.option.appwrite.filter.equal"),
       value: "",
     },
   ],
-  order: [
+  orderBy: [
     {
       key: "",
-      operation: "asc",
+      value: "asc",
     },
   ],
   limit: "{{1000}}",
@@ -82,48 +81,30 @@ export type AppwriteActionTypes = DocumentOperations | ListDocuments
 
 export interface AppwriteAction<T extends AppwriteActionTypes> {
   method: AppwriteActionMethodsType
-  params: T
+  opts: T
 }
 
 export const AppwriteActionInitial: AppwriteAction<ListDocuments> = {
   method: "list",
-  params: ListDocumentsInitial,
+  opts: ListDocumentsInitial,
 }
 
 export const ListDocumentsFilterOptions = [
-  {
-    label: i18n.t("editor.action.form.option.appwrite.filter.equal"),
-    value: "equal",
-  },
-  {
-    label: i18n.t("editor.action.form.option.appwrite.filter.notequal"),
-    value: "notEqual",
-  },
-  {
-    label: i18n.t("editor.action.form.option.appwrite.filter.lessthan"),
-    value: "lessThan",
-  },
-  {
-    label: i18n.t("editor.action.form.option.appwrite.filter.lessthanEqual"),
-    value: "lessThanEqual",
-  },
-  {
-    label: i18n.t("editor.action.form.option.appwrite.filter.greaterthan"),
-    value: "greaterThan",
-  },
-  {
-    label: i18n.t("editor.action.form.option.appwrite.filter.greaterthanequal"),
-    value: "greaterThanEqual",
-  },
+  i18n.t("editor.action.form.option.appwrite.filter.equal"),
+  i18n.t("editor.action.form.option.appwrite.filter.notequal"),
+  i18n.t("editor.action.form.option.appwrite.filter.lessthan"),
+  i18n.t("editor.action.form.option.appwrite.filter.lessthanEqual"),
+  i18n.t("editor.action.form.option.appwrite.filter.greaterthan"),
+  i18n.t("editor.action.form.option.appwrite.filter.greaterthanequal"),
 ]
 
 export const ListDocumentsOrderOptions = [
   {
     label: i18n.t("editor.action.form.option.appwrite.order.asc"),
-    value: "Asc",
+    value: "asc",
   },
   {
     label: i18n.t("editor.action.form.option.appwrite.order.desc"),
-    value: "Desc",
+    value: "desc",
   },
 ]

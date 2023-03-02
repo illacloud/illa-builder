@@ -11,15 +11,15 @@ export const DocumentSubPanel: FC<AppwriteSubPanelProps> = (props) => {
   return (
     <>
       <InputEditor
-        onChange={handleValueChange("collection")}
-        value={params.collection}
+        onChange={handleValueChange("collectionID")}
+        value={params.collectionID}
         title={t("editor.action.form.label.appwrite.collectionid")}
         lineNumbers
         style={{ height: "88px" }}
       />
       <InputEditor
-        onChange={handleValueChange("document")}
-        value={params.document}
+        onChange={handleValueChange("documentID")}
+        value={params.documentID}
         title={t("editor.action.form.label.appwrite.documentid")}
         lineNumbers
         style={{ height: "88px" }}

@@ -33,12 +33,16 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
         return
       }
       const oldList = params[name as keyof typeof params] as Params[]
-      const newListItem =
+      const newListItem: Params =
         name === "filter"
-          ? { key: "", operation: "", value: "" }
-          : { key: "", operation: "" }
+          ? {
+              key: "",
+              operation: "",
+              value: "",
+            }
+          : { key: "", value: "" }
 
-      let newList: Params[] = [...oldList, newListItem as Params]
+      let newList = [...oldList, newListItem]
       handleValueChange(name)(newList)
     },
     [handleValueChange, params],
@@ -51,14 +55,14 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
       }
       const oldList = params[name as keyof typeof params] as Params[]
       let newRecords = [...oldList]
-      const newListItem =
+      const newListItem: Params =
         name === "filter"
           ? { key: "", operation: "", value: "" }
-          : { key: "", operation: "" }
+          : { key: "", value: "" }
 
       newRecords.splice(index, 1)
       if (newRecords.length === 0) {
-        newRecords = [newListItem as Params]
+        newRecords = [newListItem]
       }
       handleValueChange(name)(newRecords)
     },
@@ -70,49 +74,38 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
       index: number,
       key: string,
       value: string,
-      operation?: string,
       name?: string,
+      operation?: string,
     ) => {
       if (!(name && params.hasOwnProperty(name))) {
         return
       }
       const oldList = params[name as keyof typeof params] as Params[]
-      let newList: Params[] = [...oldList]
-      const newListItem = operation
+      let newList = [...oldList]
+      const newListItem: Params = operation
         ? {
             key,
             value,
             operation,
           }
         : { key, value }
-      newList[index] = newListItem as Params
+      newList[index] = newListItem
       handleValueChange(name)(newList)
     },
     [handleValueChange, params],
   )
 
-  const handleSubTitleClick = useCallback(() => {
-    const newType = params.type === "AND" ? "AND" : "OR"
-    handleValueChange("type")(newType)
-  }, [handleValueChange, params.type])
-
   return (
     <>
       <InputEditor
-        onChange={handleValueChange("collection")}
-        value={params.collection}
+        onChange={handleValueChange("collectionID")}
+        value={params.collectionID}
         title={t("editor.action.form.label.appwrite.collectionid")}
         lineNumbers
         style={{ height: "88px" }}
       />
       <RecordEditor
         label={t("editor.action.form.label.appwrite.filter")}
-        subtitle={
-          params.type === "AND"
-            ? t("editor.action.form.option.appwrite.filter.and")
-            : t("editor.action.form.option.appwrite.filter.or")
-        }
-        handleSubTitleClick={handleSubTitleClick}
         records={params.filter}
         customRender={(record, index) => (
           <>
@@ -154,8 +147,8 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
                   index,
                   record.key,
                   record.value,
-                  val as string,
                   "filter",
+                  val as string,
                 )
               }
               options={ListDocumentsFilterOptions}
@@ -169,8 +162,8 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
                     index,
                     record.key,
                     val,
-                    record.operation,
                     "filter",
+                    record.operation,
                   )
                 }}
                 wrapperCss={codeMirrorWrapperValueStyle}
@@ -193,7 +186,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
       />
       <RecordEditor
         label={t("editor.action.form.label.appwrite.order")}
-        records={params.filter}
+        records={params.orderBy}
         customRender={(record, index) => (
           <>
             <div css={actionItemRecordEditorStyle}>
@@ -201,13 +194,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
                 value={record.key}
                 singleLine
                 onChange={(val) => {
-                  handleOnChangeKeyOrValue(
-                    index,
-                    val,
-                    record.value,
-                    record.operation,
-                    "order",
-                  )
+                  handleOnChangeKeyOrValue(index, val, record.value, "orderBy")
                 }}
                 wrapperCss={codeMirrorWrapperLabelStyle}
                 expectValueType={VALIDATION_TYPES.STRING}
@@ -221,7 +208,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
               colorScheme="techPurple"
               showSearch={true}
               defaultValue={record.operation}
-              value={record.operation}
+              value={record.value}
               w="0"
               ml="-0.5px"
               mr="-0.5px"
@@ -232,16 +219,15 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
                 handleOnChangeKeyOrValue(
                   index,
                   record.key,
-                  record.value,
                   val as string,
-                  "order",
+                  "orderBy",
                 )
               }
               options={ListDocumentsOrderOptions}
             />
           </>
         )}
-        name="order"
+        name="orderBy"
         onAdd={handleOnAddKeys}
         onDelete={handleOnDeleteKeys}
         onChangeKey={() => {}}
