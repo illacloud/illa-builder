@@ -1177,7 +1177,7 @@
         "min_max_size": "無制限",
         "volume": "2",
         "statistics": {
-          "decimal": "{{ 2 }}",
+          "decimal": "2",
           "prefix_text": "US$",
           "suffix_text": "%",
           "positive_color": "ポジティブ",
