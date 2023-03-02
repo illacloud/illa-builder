@@ -1177,7 +1177,7 @@
         "min_max_size": "无限制",
         "volume": "2",
         "statistics": {
-          "decimal": "{{ 2 }}",
+          "decimal": "2",
           "prefix_text": "¥",
           "suffix_text": "%",
           "positive_color": "正向颜色",
