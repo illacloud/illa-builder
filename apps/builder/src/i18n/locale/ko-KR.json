@@ -813,7 +813,8 @@
           "play": "재생",
           "pause": "정지시키다",
           "ended": "종료",
-          "loaded": "짐을 실은"
+          "loaded": "짐을 실은",
+          "rowSelect": "행 선택"
         },
         "image_list": {
           "title": "이미지",
