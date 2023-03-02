@@ -813,7 +813,8 @@
           "play": "再生",
           "pause": "一時停止",
           "ended": "終了済み",
-          "loaded": "ロード済み"
+          "loaded": "ロード済み",
+          "rowSelect": "行を選択"
         },
         "image_list": {
           "title": "イメージ",
