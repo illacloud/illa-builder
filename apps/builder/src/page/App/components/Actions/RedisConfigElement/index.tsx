@@ -14,7 +14,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import {
   configItem,
   configItemTip,
@@ -76,7 +76,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
     <form
       onSubmit={handleSubmit((data, event) => {
         if (resourceId != undefined) {
-          Api.request<Resource<RedisResource>>(
+          BuilderApi.teamRequest<Resource<RedisResource>>(
             {
               method: "PUT",
               url: `/resources/${resourceId}`,
@@ -116,7 +116,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             },
           )
         } else {
-          Api.request<Resource<RedisResource>>(
+          BuilderApi.teamRequest<Resource<RedisResource>>(
             {
               method: "POST",
               url: `/resources`,
@@ -172,7 +172,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             control={control}
             defaultValue={findResource?.resourceName ?? ""}
             rules={{
-              required: true,
+              validate: (value) => value != undefined && value.trim() != "",
             }}
             render={({ field: { value, onChange, onBlur } }) => (
               <Input
@@ -404,7 +404,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             type="button"
             onClick={() => {
               const data = getValues()
-              Api.request<Resource<RedisResource>>(
+              BuilderApi.teamRequest<Resource<RedisResource>>(
                 {
                   method: "POST",
                   url: `/resources/testConnection`,

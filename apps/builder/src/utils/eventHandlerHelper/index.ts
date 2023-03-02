@@ -5,7 +5,7 @@ import {
   goToURL,
   showNotification,
 } from "@/page/App/context/globalDataProvider"
-import { getIllaMode } from "@/redux/config/configSelector"
+import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
 import {
   getCanvas,
@@ -54,27 +54,25 @@ export const transformEvents = (
     }
   }
   if (actionType === "setRouter") {
-    const { pagePath, viewPath } = event
+    const { pagePath, viewPath, enabled } = event
     let finalPath = `/${pagePath}`
     finalPath = viewPath ? finalPath + `/${viewPath}` : finalPath
     return {
       script: () => {
         const originPath = window.location.pathname
         const originPathArray = originPath.split("/")
-        const mode = getIllaMode(store.getState())
+        const isProductionMode = getIsILLAProductMode(store.getState())
         const rootNodeProps = getRootNodeExecutionResult(store.getState())
         const { pageSortedKey } = rootNodeProps
         const index = pageSortedKey.findIndex(
           (path: string) => path === pagePath,
         )
         if (index === -1) return
-        if (mode === "production" && originPathArray.length >= 6) {
-          if (mode === "production") {
-            ILLARoute.navigate(
-              originPathArray.slice(0, 6).join("/") + finalPath,
-              { replace: true },
-            )
-          }
+        if (isProductionMode && originPathArray.length >= 5) {
+          ILLARoute.navigate(
+            originPathArray.slice(0, 5).join("/") + finalPath,
+            { replace: true },
+          )
         }
         const updateSlice: UpdateExecutionByDisplayNamePayload[] = [
           {
@@ -119,6 +117,7 @@ export const transformEvents = (
           ),
         )
       },
+      enabled,
     }
   }
   if (actionType === "widget") {
@@ -126,10 +125,19 @@ export const transformEvents = (
     if (
       [
         "setValue",
+        "setVolume",
+        "setVideoUrl",
         "setImageUrl",
+        "setFileUrl",
         "setStartValue",
+        "setPrimaryValue",
         "setEndValue",
         "setDisabled",
+        "setSpeed",
+        "setLoop",
+        "seekTo",
+        "showControls",
+        "mute",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
@@ -144,12 +152,15 @@ export const transformEvents = (
       }
     }
     if (
+      widgetMethod === "play" ||
+      widgetMethod === "pause" ||
       widgetMethod === "clearValue" ||
       widgetMethod === "clearValidation" ||
       widgetMethod === "toggle" ||
       widgetMethod === "focus" ||
       widgetMethod === "reset" ||
-      widgetMethod === "rowSelect"
+      widgetMethod === "rowSelect" ||
+      widgetMethod === "resetPrimaryValue"
     ) {
       return {
         script: `{{${widgetID}.${widgetMethod}()}}`,

@@ -1,14 +1,21 @@
 import { FC } from "react"
-import { useTranslation } from "react-i18next"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
-import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
+import {
+  getResourceNameFromResourceType,
+  getResourceSubTitleFromResourceType,
+} from "@/utils/actionResourceTransformer"
 import { ResourceCardSelectorProps } from "./interface"
-import { applyItemStyle, comingStyle, nameStyle } from "./style"
+import {
+  applyItemStyle,
+  nameStyle,
+  subTitleStyle,
+  titleContainerStyle,
+} from "./style"
 
 export const ResourceCard: FC<ResourceCardSelectorProps> = (props) => {
   const { resourceType, onSelect, isDraft } = props
 
-  const { t } = useTranslation()
+  const subTitle = getResourceSubTitleFromResourceType(resourceType)
 
   return (
     <div
@@ -20,14 +27,12 @@ export const ResourceCard: FC<ResourceCardSelectorProps> = (props) => {
       }}
     >
       {getIconFromResourceType(resourceType, "24px")}
-      <span css={nameStyle}>
-        {getResourceNameFromResourceType(resourceType)}
-      </span>
-      {isDraft && (
-        <span css={comingStyle}>
-          {t("editor.action.resource.card.coming_soon")}
-        </span>
-      )}
+      <div css={titleContainerStyle}>
+        <div css={nameStyle}>
+          {getResourceNameFromResourceType(resourceType)}
+        </div>
+        {subTitle !== "" && <div css={subTitleStyle}>{subTitle}</div>}
+      </div>
     </div>
   )
 }

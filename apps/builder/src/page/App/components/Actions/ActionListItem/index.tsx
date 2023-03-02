@@ -13,7 +13,7 @@ import {
   illaPrefix,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import {
@@ -92,7 +92,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           ...action,
           displayName: newName,
         }
-        Api.request(
+        BuilderApi.teamRequest(
           {
             method: "PUT",
             url: `/apps/${currentApp.appId}/actions/${action.actionId}`,

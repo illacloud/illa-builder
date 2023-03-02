@@ -31,7 +31,11 @@ import {
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
-import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
+import {
+  ClickhouseSSL,
+  Resource,
+  generateSSLConfig,
+} from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { ClickhouseConfigElementProps } from "./interface"
@@ -67,12 +71,12 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
       data,
       {
         host: data.host,
-        port: data.port,
+        port: +data.port,
         username: data.username,
         password: data.password,
         databaseName: data.databaseName,
-        ssl: generateSSLConfig(sslOpen, data, "clickhouse"),
-      } as ClickhouseResource,
+        ssl: generateSSLConfig(sslOpen, data, "clickhouse") as ClickhouseSSL,
+      },
       "clickhouse",
       setTestLoading,
     )
@@ -116,7 +120,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              required: true,
+              validate: (value) => value != undefined && value.trim() != "",
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}

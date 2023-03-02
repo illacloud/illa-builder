@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { RadioGroup } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -158,29 +159,12 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     handleValidate,
   ])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const timeoutId = useRef<number>()
-  const updateHeight = useCallback(() => {
-    timeoutId.current = window.setTimeout(() => {
-      if (wrapperRef.current) {
-        updateComponentHeight(wrapperRef.current?.clientHeight)
-      }
-    }, 200)
-  }, [updateComponentHeight])
-
-  useEffect(() => {
-    updateHeight()
-    return () => {
-      clearTimeout(timeoutId.current)
-    }
-  }, [labelPosition, direction, finalOptions, validateMessage])
-
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -212,7 +196,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 RadioGroupWidget.displayName = "RadioGroupWidget"

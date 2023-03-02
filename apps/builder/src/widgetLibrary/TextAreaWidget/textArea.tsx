@@ -1,6 +1,8 @@
-import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
+import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
 import useMeasure from "react-use-measure"
 import { TextArea } from "@illa-design/react"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -13,10 +15,7 @@ import {
   TextareaWidgetProps,
   WrappedTextareaProps,
 } from "@/widgetLibrary/TextAreaWidget/interface"
-import {
-  getTextareaContentContainerStyle,
-  textareaContainerStyle,
-} from "@/widgetLibrary/TextAreaWidget/style"
+import { getTextareaContentContainerStyle } from "@/widgetLibrary/TextAreaWidget/style"
 
 export const WrappedTextarea = forwardRef<
   HTMLTextAreaElement,
@@ -38,6 +37,9 @@ export const WrappedTextarea = forwardRef<
     maxLength,
     handleUpdateMultiExecutionResult,
     getValidateMessage,
+    dynamicHeight,
+    dynamicMinHeight,
+    dynamicMaxHeight,
   } = props
 
   const handleClear = () => handleUpdateDsl({ value: "" })
@@ -68,10 +70,25 @@ export const WrappedTextarea = forwardRef<
     ],
   )
 
+  const limitedStyle =
+    dynamicHeight === "limited"
+      ? {
+          minH:
+            dynamicMinHeight !== undefined
+              ? `${dynamicMinHeight}px`
+              : undefined,
+          maxH:
+            dynamicMaxHeight !== undefined
+              ? `${dynamicMaxHeight}px`
+              : undefined,
+        }
+      : {}
+
   return (
     <TextArea
-      h="100%"
       w="100%"
+      flex="1"
+      {...limitedStyle}
       textAreaRef={ref}
       value={value}
       placeholder={placeholder}
@@ -85,6 +102,7 @@ export const WrappedTextarea = forwardRef<
       onBlur={handleOnBlur}
       onChange={handleChange}
       onClear={handleClear}
+      autoSize={dynamicHeight === "fixed" ? false : true}
     />
   )
 })
@@ -123,6 +141,10 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     updateComponentHeight,
     validateMessage,
     triggerEventHandler,
+    dynamicHeight = "fixed",
+    h,
+    dynamicMinHeight,
+    dynamicMaxHeight,
   } = props
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -235,17 +257,65 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     triggerEventHandler("blur")
   }, [triggerEventHandler])
 
+  const enableAutoHeight = useMemo(() => {
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "limited":
+        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight, dynamicMinHeight, h])
+
+  const dynamicOptions = {
+    dynamicMinHeight,
+    dynamicMaxHeight,
+  }
+
+  const minMaxValueRef = useRef<{ min?: number; max?: number }>({})
+
+  const getMinMaxHeight = (
+    width: number,
+    height: number,
+    minMaxHeight?: number,
+  ) => {
+    if (minMaxHeight === undefined) {
+      return minMaxHeight
+    }
+    return minMaxHeight - (width + height)
+  }
+
+  const minValue =
+    labelPosition === "top" && label
+      ? getMinMaxHeight(30, bounds.height, dynamicMinHeight)
+      : getMinMaxHeight(6, bounds.height, dynamicMinHeight)
+
+  const maxValue =
+    labelPosition === "top" && label
+      ? getMinMaxHeight(30, bounds.height, dynamicMaxHeight)
+      : getMinMaxHeight(6, bounds.height, dynamicMaxHeight)
+
+  if (minValue !== minMaxValueRef.current.min) {
+    minMaxValueRef.current.min = minValue
+  }
+  if (maxValue !== minMaxValueRef.current.max) {
+    minMaxValueRef.current.max = maxValue
+  }
+
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <AutoHeightContainer
+      updateComponentHeight={updateComponentHeight}
+      enable={enableAutoHeight}
+      dynamicOptions={dynamicOptions}
+    >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div
           css={[
             applyLabelAndComponentWrapperStyle(labelPosition),
-            getTextareaContentContainerStyle(labelPosition),
+            getTextareaContentContainerStyle(labelPosition, bounds.height),
           ]}
-          style={{
-            height: `calc(100% - ${bounds.height}px)`,
-          }}
         >
           <Label
             labelFull={labelFull}
@@ -259,16 +329,16 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <div style={{ height: "100%", width: "100%" }}>
-            <WrappedTextarea
-              {...props}
-              ref={textareaRef}
-              getValidateMessage={getValidateMessage}
-              handleOnChange={handleOnChange}
-              handleOnFocus={handleOnFocus}
-              handleOnBlur={handleOnBlur}
-            />
-          </div>
+          <WrappedTextarea
+            {...props}
+            ref={textareaRef}
+            getValidateMessage={getValidateMessage}
+            handleOnChange={handleOnChange}
+            handleOnFocus={handleOnFocus}
+            handleOnBlur={handleOnBlur}
+            dynamicMinHeight={minMaxValueRef.current.min}
+            dynamicMaxHeight={minMaxValueRef.current.max}
+          />
         </div>
       </TooltipWrapper>
       <div
@@ -281,7 +351,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 

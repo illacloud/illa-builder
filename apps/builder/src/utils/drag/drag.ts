@@ -7,6 +7,7 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export function startDrag(dragNode: ComponentNode, isAdd: boolean = false) {
   store.dispatch(configActions.updateShowDot(true))
+  store.dispatch(configActions.updateDraggingStateReducer(true))
   if (!isAdd) {
     store.dispatch(
       componentsActions.updateComponentsShape({
@@ -24,6 +25,7 @@ export function startDrag(dragNode: ComponentNode, isAdd: boolean = false) {
 
 export function endDrag(dragNode: ComponentNode, isDropOnCanvas: boolean) {
   store.dispatch(configActions.updateShowDot(false))
+  store.dispatch(configActions.updateDraggingStateReducer(false))
   if (isDropOnCanvas) {
     store.dispatch(
       configActions.updateSelectedComponent([dragNode.displayName]),

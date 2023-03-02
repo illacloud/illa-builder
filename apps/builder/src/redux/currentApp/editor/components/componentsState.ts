@@ -213,3 +213,9 @@ export interface AddModalComponentPayload {
   currentPageDisplayName: string
   modalComponentNode: ComponentNode
 }
+
+export interface UpdateComponentNodeHeightPayload {
+  displayName: string
+  height: number
+  oldHeight: number
+}

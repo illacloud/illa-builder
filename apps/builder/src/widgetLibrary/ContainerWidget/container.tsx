@@ -1,7 +1,8 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
-import useMeasure from "react-use-measure"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { ContainerEmptyState } from "./emptyState"
 import { containerWrapperStyle } from "./style"
@@ -17,10 +18,14 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     tooltipText,
     childrenNode,
     blockColumns,
+    dynamicHeight = "fixed",
     triggerEventHandler,
+    updateComponentHeight,
+    dynamicMaxHeight,
+    dynamicMinHeight,
+    h,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
-  const [containerRef, containerBounds] = useMeasure()
   useEffect(() => {
     if (typeof preCurrentViewIndex.current !== "number") {
       preCurrentViewIndex.current = currentIndex
@@ -41,16 +46,17 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       return (
         <BasicContainer
           componentNode={currentViewComponentNode}
-          minHeight={containerBounds.height - 8}
+          // 8 is the padding of the container , 7 is padding of the wrapper container
+          minHeight={h * UNIT_HEIGHT - 7 - 8}
           padding={4}
           safeRowNumber={1}
-          addedRowNumber={20}
+          addedRowNumber={1}
           blockColumns={blockColumns}
         />
       )
     }
     return <ContainerEmptyState />
-  }, [blockColumns, childrenNode, containerBounds.height, currentIndex])
+  }, [blockColumns, childrenNode, currentIndex, h])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
@@ -153,14 +159,33 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     viewList,
   ])
 
+  const enableAutoHeight = useMemo(() => {
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "limited":
+        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight, dynamicMinHeight, h])
+
+  const dynamicOptions = {
+    dynamicMinHeight,
+    dynamicMaxHeight,
+  }
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div
-        css={containerWrapperStyle}
-        ref={containerRef}
-        onClick={handleOnClick}
-      >
-        {renderComponent}
+      <div css={containerWrapperStyle} onClick={handleOnClick}>
+        <AutoHeightContainer
+          updateComponentHeight={updateComponentHeight}
+          enable={enableAutoHeight}
+          dynamicOptions={dynamicOptions}
+        >
+          {renderComponent}
+        </AutoHeightContainer>
       </div>
     </TooltipWrapper>
   )

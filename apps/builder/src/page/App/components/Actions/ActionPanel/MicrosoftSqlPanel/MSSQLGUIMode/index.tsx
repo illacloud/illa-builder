@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Select, createMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/interface"
 import { InputEditor } from "@/page/App/components/InputEditor"
 import {
@@ -34,7 +34,7 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
     if (!resourceId) {
       return
     }
-    Api.request(
+    BuilderApi.teamRequest(
       {
         url: `resources/${resourceId}/meta`,
         method: "GET",

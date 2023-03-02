@@ -1,13 +1,12 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
-import { IllaMode } from "@/redux/config/configState"
 
-export const applyScaleContainerStyle = (mode: IllaMode) => {
+export const applyScaleContainerStyle = (isEditorMode: boolean) => {
   return css`
     box-sizing: border-box;
     min-width: 148px;
     height: 100%;
-    background: ${mode === "edit" ? "#f7f8fa" : "#fff"};
+    background: ${isEditorMode ? "#f7f8fa" : "#fff"};
     overflow: auto;
     flex: 1;
     position: relative;

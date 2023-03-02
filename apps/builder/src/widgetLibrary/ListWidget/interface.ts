@@ -1,4 +1,3 @@
-import { IllaMode } from "@/redux/config/configState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
@@ -16,9 +15,26 @@ export interface ListWidgetProps extends BaseWidgetProps {
   itemBackGroundColor: string
   disabled: boolean
   blockColumns: number
+  dynamicHeight: "auto" | "fixed" | "limited"
+  h: number
+  dynamicMinHeight?: number
+  dynamicMaxHeight?: number
 }
 
 export interface RenderTemplateContainerProps {
+  templateComponentNodes: ComponentNode
+  templateContainerHeight: number
+  blockColumns: number
+  dynamicHeight: "auto" | "fixed" | "limited"
+  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
+  updateComponentHeight?: (newHeight: number) => void
+  itemNumber?: number
+  h: number
+  dynamicMinHeight?: number
+  dynamicMaxHeight?: number
+}
+
+export interface RenderCopyContainerProps {
   templateComponentNodes: ComponentNode
   templateContainerHeight: number
   blockColumns: number
@@ -27,5 +43,4 @@ export interface RenderTemplateContainerProps {
 export interface ListWidgetPropsWithChildrenNodes extends ListWidgetProps {
   copyComponents: ComponentNode[] | null
   handleUpdateSelectedItem: (index: number) => void
-  illaMode: IllaMode
 }

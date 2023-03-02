@@ -1,6 +1,6 @@
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 import { createMessage, omit } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import i18n from "@/i18n/config"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -38,7 +38,7 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
     ...newAction,
     displayName,
   }
-  Api.request(
+  BuilderApi.teamRequest(
     {
       url: baseActionUrl,
       method: "POST",
@@ -68,7 +68,7 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const baseActionUrl = getBaseActionUrl()
   const { actionId, displayName } = action
 
-  Api.request(
+  BuilderApi.teamRequest(
     {
       url: `${baseActionUrl}/${actionId}`,
       method: "DELETE",
@@ -184,6 +184,11 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       return {
         token: data.token,
       }
+    case "hfendpoint":
+      return {
+        token: data.token,
+        endpoint: data.endpoint,
+      }
     case "snowflake":
       return {
         accountName: data.accountName,
@@ -202,6 +207,13 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
                 username: data.username,
                 privateKey: data.privateKey,
               },
+      }
+    case "dynamodb":
+      const { region, accessKeyID, secretAccessKey } = data
+      return {
+        region,
+        accessKeyID,
+        secretAccessKey,
       }
   }
 }
@@ -227,7 +239,7 @@ export function onActionConfigElementSubmit(
       })
       return
     }
-    Api.request<Resource<ResourceContent>>(
+    BuilderApi.teamRequest<Resource<ResourceContent>>(
       {
         method,
         url,
@@ -275,7 +287,7 @@ export function onActionConfigElementTest(
   resourceType: ResourceType,
   loadingHandler: (value: boolean) => void,
 ) {
-  return Api.request<Resource<ResourceContent>>(
+  return BuilderApi.teamRequest<Resource<ResourceContent>>(
     {
       method: "POST",
       url: `/resources/testConnection`,

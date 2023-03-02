@@ -10,3 +10,5 @@ export const Setting: FC = () => {
     </div>
   )
 }
+
+export default Setting

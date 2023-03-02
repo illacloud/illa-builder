@@ -23,5 +23,5 @@ export const resourceListStyle = css`
   padding: 8px 0;
   display: grid;
   grid-gap: 16px;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
 `

@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Spin, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -47,7 +47,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                       content: initialContent,
                       ...actionItemInitial,
                     }
-                    Api.request(
+                    BuilderApi.teamRequest(
                       {
                         url: `/apps/${appInfo.appId}/actions`,
                         method: "POST",

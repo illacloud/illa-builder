@@ -136,14 +136,83 @@
           "configure": "配置 {{ name }}",
           "database": "数据库",
           "select": "选择资源类型",
-          "huggingface": "Hugging Face"
+          "huggingface": "Hugging Face",
+          "appwrite": "Appwrite"
         },
         "validate": {
           "required": "请输入{name}"
         },
         "label": {
           "inference_api": "Inference API",
-          "inference_endpoint": "Inference Endpoint"
+          "inference_endpoint": "Inference Endpoint",
+          "s3": "在公开APP中不可用",
+          "acl": "上传文件的默认S3 ACL",
+          "appwrite": {
+            "host": "主机",
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "X-Appwrite-JWT",
+            "collectionid": "集合ID",
+            "documentid": "文档ID",
+            "data": "数据",
+            "filter": "Filter",
+            "order": "Order by",
+            "limit": "Limit"
+          }
+        },
+        "placeholder": {
+          "url": "在此处输入请求 URL",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "数据库 ID",
+            "projectid": "项目ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribute",
+              "value": "1234"
+            },
+            "order": "attribute"
+          }
+        },
+        "tips": {
+          "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>",
+          "connect_to_local": {
+            "cloud": "看起来您正在尝试连接到您机器本地的数据库或私有网络的一部分。 它可能不适用于 ILLA Cloud 版本。 查看我们的文档，了解如何使用自托管版本。",
+            "selfhost": "It looks like you're trying to connect to a database that's local to your machine. Please use the local area network IP address of the machine instead of \"localhost\" or \"127.0.0.1\".",
+            "title": {
+              "tips": "提示"
+            }
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Create a document",
+              "list": "List documents",
+              "get": "Get a document",
+              "update": "Update a document",
+              "delete": "Delete a document"
+            },
+            "filter": {
+              "and": "AND",
+              "or": "OR",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
         }
       },
       "panel": {
@@ -270,7 +339,9 @@
           "upload_data": "上传数据",
           "upload_data_list": "上传数据列表",
           "upload_object_name": "上传对象名称",
-          "upload_object_name_list": "上传对象名称列表"
+          "upload_object_name_list": "上传对象名称列表",
+          "timeout_upload": "Timeout for uploading a file (Minute)",
+          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
         },
         "smtp": {
           "attachment": "附件",
@@ -357,6 +428,41 @@
           "dropdown": {
             "retry": "点击重试"
           }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Method",
+            "table": "Table",
+            "json_input": "Use JSON parameter editor",
+            "parameters": "Parameters",
+            "index": "Index name",
+            "key_condition": "Key condition expression",
+            "projection_expression": "Projection expression",
+            "filter_expression": "Filter expression",
+            "attribute_name": "Expression attribute names",
+            "attribute_value": "Expression attribute values",
+            "limit": "Limit",
+            "select": "Select",
+            "item": "Item",
+            "condition_expression": "Condition expression",
+            "key": "Key",
+            "update_expression": "Update expression"
+          },
+          "option": {
+            "query": "query",
+            "scan": "scan",
+            "put_item": "putItem",
+            "get_item": "getItem",
+            "update_item": "updateItem",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "{{ {\r\n\"TableName\":\"abc\",\r\n\"KeyConditionExpression\":\"abc\",\r\n\"ExpressionAtt...\r\n} }}"
+          }
+        },
+        "status": {
+          "ran_failed": "运行失败",
+          "ran_successfully": "运行成功"
         }
       },
       "resource": {
@@ -408,7 +514,10 @@
             "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
             "role": "用户角色",
             "username": "用户名",
-            "password": "密码"
+            "password": "密码",
+            "dynamo_region": "AWS区域",
+            "dynamo_access_key_id": "AWS访问密钥 ID",
+            "dynamo_secret_key": "AWS密钥"
           },
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
@@ -431,7 +540,8 @@
             "role": "用户角色",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
-            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----"
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
           },
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
@@ -561,6 +671,12 @@
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
+        },
+        "tip": {
+          "allowlist": "如果您的资源不可公开访问，请更新您的网络或防火墙设置，将 ILLA 的 IP 地址添加到白名单，以便 ILLA 可以连接到您的资源。"
+        },
+        "button": {
+          "copy_ip": "复制IP"
         }
       },
       "resource_choose": {
@@ -584,6 +700,18 @@
       "message": {
         "mssql": {
           "table_error": "无法显示表。 请稍后再试。"
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authenticated-read",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
         }
       }
     },
@@ -688,7 +816,24 @@
           "submit": "提交",
           "success": "成功后",
           "onOpenModal": "打开对话框",
-          "onCloseModal": "关闭对话框"
+          "onCloseModal": "关闭对话框",
+          "play": "播放",
+          "pause": "暂停",
+          "ended": "已结束",
+          "loaded": "已载入",
+          "rowSelect": "选择行"
+        },
+        "image_list": {
+          "title": "图片",
+          "empty": "没有图片",
+          "model_title": "编辑图像",
+          "config": {
+            "model_label": "标签",
+            "image_url": "图片URL"
+          }
+        },
+        "image_setter": {
+          "new": "新增"
         }
       },
       "setter_default_value": {
@@ -740,7 +885,14 @@
         "tabs": "选项卡",
         "toolbar": "工具栏",
         "validation": "验证",
-        "views": "视图"
+        "views": "视图",
+        "images": "图片",
+        "primary_value": "主要数值",
+        "secValue": "次要数值",
+        "border": "描边",
+        "color": "颜色",
+        "icon": "图标",
+        "secondary_value": "SECONDARY VALUE"
       },
       "setter_label": {
         "action": "动作",
@@ -904,7 +1056,7 @@
         "show_underline": "展示下划线",
         "auto_play": "自动播放",
         "interval": "间隔时间（毫秒）",
-        "show_button": "显示两侧按钮",
+        "show_button": "展示指示箭头",
         "show_dot": "显示底部指示点",
         "hidden_images": "隐藏图片",
         "file_type": "文件类型",
@@ -921,7 +1073,38 @@
         "show_tool_bar": "显示工具栏",
         "scale": "缩放页面",
         "scroll": "快速滚动到每一页",
-        "min_max_size": "最小～最大文件大小"
+        "min_max_size": "最小～最大文件大小",
+        "video_url": "视频 URL",
+        "autoplay": "自动播放",
+        "loop": "循环播放",
+        "volume": "音量",
+        "show_controls": "显示控制栏",
+        "img_url_array": "图片URL数组",
+        "statistics": {
+          "label": "标签",
+          "primary_value": "主要数值",
+          "secValue": "次要数值",
+          "decimal": "小数位",
+          "trend_sign": "显示趋势标识",
+          "positive_sign": "正向标识",
+          "negative_sign": "负向标识",
+          "thousand_separator": "显示千位分隔符",
+          "trend_color": "使用趋势色",
+          "prefix_text": "前缀文字",
+          "suffix_text": "后缀文字"
+        },
+        "mute": "静音",
+        "collapse": {
+          "type": "类型",
+          "accordin_mode": "手风琴模式",
+          "header_color": "头部",
+          "body_color": "主体",
+          "expand_icon": "展开",
+          "collapse_icon": "折叠面板",
+          "icon_color": "颜色"
+        },
+        "choose_at_least": "Choose at least",
+        "choose_up_to": "Choose up to"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -960,7 +1143,13 @@
         "parse_value": "尝试解析所选文件，支持 JSON、CSV、TSV、Excel 和 TXT 文件。 解析后的数据可以通过 {{uploader1.parsedValue}} 访问。 无法解析的文件在数组中将为空。 无论此选项如何，所有文件都可作为值数组中的 base64 编码字符串使用。",
         "file_url": "支持网络上的 PDF URL，或 pdf 文件的 base64 编码数据。 例如：{{ data:application/pdf;base64, example-data }}",
         "scale": "缩放每个页面以填充组件的宽度或高度。",
-        "scroll": "滚动时自动定位到每页的开头。"
+        "scroll": "滚动时自动定位到每页的开头。",
+        "video_url": "支持大多数视频服务或任何常见视频文件类型的直接链接。",
+        "collapse": {
+          "type": "折叠面板列表：列表模式，每项的组件样式一致，可通过{{ currentItem.columnName }}指定每个项中组件的数据；折叠面板：各个面板独立，可分别指定每项的组件样式和数据。",
+          "items": "项目数量",
+          "accordin_mode": "在手风琴模式下，当一个项目展开时，其他项目将折叠。"
+        }
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -972,7 +1161,12 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。"
+        "carousel_tips": "使用 {{ item }} 从数据源中获取值。 例如，数据源中有两个属性。 它们是 imageUrl 和 url。 如果您想在点击图片时转到不同的 url，请使用 {{ item.url }} 设置 url。",
+        "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}",
+        "img_url_array": "使用 {{ item.attributeName }} 从数据源获取图像 URL",
+        "carousel": {
+          "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}"
+        }
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -982,10 +1176,33 @@
         "text_scroll": "滚动",
         "text_clip": "裁切",
         "scale_height": "高度",
-        "scale_width": "宽度"
+        "scale_width": "宽度",
+        "collapse": {
+          "collapsible_panel": "折叠面板"
+        }
       },
       "setter_placeholder": {
-        "min_max_size": "无限制"
+        "min_max_size": "无限制",
+        "volume": "2",
+        "statistics": {
+          "decimal": "2",
+          "prefix_text": "¥",
+          "suffix_text": "%",
+          "positive_color": "正向颜色",
+          "negative_color": "负向颜色"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} "
+      },
+      "setter_tootip": {
+        "volume": "0到1之间的数字"
+      },
+      "setter_message": {
+        "choose_at_least": "Please choose at lease {{ min }} options.",
+        "choose_up_to": "Please choose up to {{max}} options."
       }
     },
     "page": {
@@ -1038,7 +1255,7 @@
       "min_files": "要求至少 {{ minFiles }} 个文件。",
       "max_files": "支持最多 {{ maxFiles }} 个文件。",
       "min_size": "文件大小不能小于{{minSize }} {{ type }}。",
-      "min_max_size": "Min size ~ Max size"
+      "min_max_size": "最小～最大文件大小"
     },
     "widget_picker": {
       "empty_tip": "抱歉，没有搜索结果",
@@ -1057,7 +1274,46 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL"
+      "set_file_url": "Set file URL",
+      "play": "Play",
+      "pause": "Pause",
+      "seek_to": {
+        "time": "时间",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "视频 URL"
+      },
+      "speed": {
+        "speed": "倍速",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Stop",
+      "mute": "静音",
+      "loop": "循环播放",
+      "show_controls": "Show Controls",
+      "set_volumn": "Set Volumn",
+      "set_volume": {
+        "volume": "音量",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "resetPrimaryValue",
+        "primary_value": "主要数值"
+      },
+      "collapse": {
+        "expand_all_items": "展开所有项目",
+        "collapse_all_items": "Collapse all items"
+      },
+      "carousel": {
+        "showNext": "显示下一个可见图像",
+        "showPrevious": "显示上一个可见图像"
+      }
     }
   },
   "exit_preview": "退出预览",
@@ -1071,7 +1327,13 @@
     "viewport": {
       "size": "尺寸",
       "reset": "重置",
-      "save": "保存"
+      "save": "保存",
+      "tooltip": {
+        "fluid_width": "当前浏览器宽度",
+        "desktop": "PC端桌面（宽度 = 1280px）",
+        "tablet": "平板电脑（宽度 = 1080px）",
+        "custom": "自定义"
+      }
     },
     "button_text": "预览"
   },
@@ -1122,7 +1384,9 @@
     },
     "back": "回到主页",
     "mobile_forbidden": "为获得更好的编辑体验，请通过电脑端访问",
-    "back_to_cloud": "返回ILLA Cloud"
+    "back_to_cloud": "返回ILLA Cloud",
+    "no_permission_title": "Insufficient permissions",
+    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "欢迎来到艾拉云",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
@@ -1250,7 +1514,11 @@
         "success": "注册成功",
         "verification_code": "验证码已发送"
       },
-      "title": "注册"
+      "title": "注册",
+      "agreement": {
+        "privacy_policy": "隐私政策",
+        "terms_of_service": "服务条款"
+      }
     }
   },
   "widget": {
@@ -1276,7 +1544,8 @@
     "container": {
       "empty": "按住 <keyPress>D</keyPress> 或 <keyPress>K</keyPress> ，将组件拖入容器",
       "key_duplicated": "键值重复，请使用唯一值以避免报错。",
-      "name": "容器"
+      "name": "容器",
+      "value_duplicated": "值重复，请使用唯一值以避免报错。"
     },
     "date": {
       "name": "日期选择器"
@@ -1375,6 +1644,23 @@
     "pdf": {
       "empty": "无PDF文件",
       "failed": "无法加载PDF"
+    },
+    "video": {
+      "name": "视频",
+      "empty": "没有视频",
+      "fail": "加载失败"
+    },
+    "statistics": {
+      "name": "数值统计"
+    },
+    "collapse": {
+      "name": "Collapse"
+    },
+    "multiselect": {
+      "name": "Multiselect"
+    },
+    "carousel": {
+      "name": "Carousel"
     }
   },
   "page": {
@@ -1383,6 +1669,135 @@
         "fixed": "固定宽度",
         "auto": "自适应"
       }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "重置",
+          "send": "获取验证码"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱未注册",
+            "require": "邮箱不能为空"
+          },
+          "newPassword": {
+            "require": "密码不能为空"
+          },
+          "verification_code": {
+            "expired": "验证码已过期",
+            "invalid": "验证码错误",
+            "require": "请输入验证码"
+          }
+        },
+        "fields": {
+          "email": "邮箱",
+          "newPassword": "新密码",
+          "verification_code": "验证码"
+        },
+        "placeholder": {
+          "email": "请输入邮箱",
+          "verification_code": "请输入验证码"
+        },
+        "subtitle": "返回登录",
+        "tips": {
+          "fail": "重置密码失败",
+          "fail_sent": "发送验证码失败",
+          "success": "重置密码成功",
+          "verification_code": "验证码已发送"
+        },
+        "title": "重置密码"
+      },
+      "password": {
+        "placeholder": "请输入密码（不少于6个字符）"
+      },
+      "policy": "使用 ILLA 即表示您同意我们的<0>隐私政策</0>和<1>服务条款</1>",
+      "sign_in": {
+        "actions": {
+          "login": "登录"
+        },
+        "description": {
+          "forgot_password": "忘记密码?",
+          "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+          "register": "新用户？<0>注册账号</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱未注册",
+            "require": "邮箱不能为空"
+          },
+          "password": {
+            "incorrect": "请输入正确的账号密码",
+            "locked": "密码输错超过5次，账户将被锁定1小时",
+            "min_length": "密码须至少6个字符",
+            "require": "密码不能为空"
+          }
+        },
+        "fields": {
+          "email": "邮箱",
+          "password": "密码"
+        },
+        "placeholder": {
+          "email": "请输入邮箱"
+        },
+        "tips": {
+          "fail": "登录失败",
+          "success": "登录成功",
+          "fail_account": "请输入正确的账号密码"
+        },
+        "title": "欢迎回来"
+      },
+      "sign_up": {
+        "actions": {
+          "create": "创建账户",
+          "send": "获取验证码"
+        },
+        "description": {
+          "login": "已有账户？ <0>登录</0>",
+          "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+          "subscribe": "订阅ILLA的动态"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱已注册，请登录",
+            "require": "邮箱不能为空"
+          },
+          "password": {
+            "require": "密码不能为空"
+          },
+          "username": {
+            "length": "用户名须为3～15个字符",
+            "require": "用户名不能为空"
+          },
+          "verification_code": {
+            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "invalid": "验证码错误",
+            "require": "请输入验证码"
+          }
+        },
+        "fields": {
+          "email": "邮箱",
+          "password": "密码",
+          "username": "用户名",
+          "verification_code": "验证码"
+        },
+        "placeholder": {
+          "email": "请输入邮箱",
+          "username": "请输入用户名",
+          "verification_code": "请输入验证码"
+        },
+        "tips": {
+          "fail": "注册失败",
+          "fail_sent": "发送验证码失败",
+          "success": "注册成功",
+          "verification_code": "验证码已发送"
+        },
+        "title": "注册"
+      },
+      "description": "专属于开发者的开源低代码平台。"
     }
   },
   "frame_size": {
@@ -1551,6 +1966,28 @@
         "save_suc": "保存成功",
         "save_fail": "保存失败"
       }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "折叠列表"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "{{ nodeName }} 有循环依赖"
+  },
+  "policy": {
+    "privacy": {
+      "title": "隐私协议",
+      "description": "本隐私政策将向您说明我们如何收集、使用和披露通过我们的服务收集到的信息。"
+    },
+    "terms": {
+      "description": "这些服务条款管理您对我们网站以及我们提供的各种服务的访问和使用。",
+      "title": "服务条款"
     }
   }
 }

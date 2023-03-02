@@ -1,6 +1,7 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 import {
   Badge,
   BugIcon,
@@ -23,7 +24,7 @@ import {
   illaPrefix,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
 import {
@@ -42,7 +43,7 @@ import {
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import {
   getFreezeState,
-  getIllaMode,
+  getIsILLAEditMode,
   getIsOnline,
   isOpenBottomPanel,
   isOpenDebugger,
@@ -225,7 +226,7 @@ const PreviewButtonGroup: FC = () => {
   const closePopContent = useCallback(() => {
     setPopContentVisible(false)
   }, [])
-  const mode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
 
   return (
     <div css={previewButtonGroupWrapperStyle}>
@@ -267,18 +268,18 @@ const PreviewButtonGroup: FC = () => {
       <span css={lineStyle} />
       <Button
         colorScheme="grayBlue"
-        leftIcon={mode === "edit" ? <FullScreenIcon /> : <ExitIcon />}
+        leftIcon={isEditMode ? <FullScreenIcon /> : <ExitIcon />}
         variant="fill"
         bdRadius="0 8px 8px 0"
         onClick={() => {
-          if (mode === "edit") {
+          if (isEditMode) {
             dispatch(configActions.updateIllaMode("preview"))
           } else {
             dispatch(configActions.updateIllaMode("edit"))
           }
         }}
       >
-        {mode === "edit" ? t("preview.button_text") : t("exit_preview")}
+        {isEditMode ? t("preview.button_text") : t("exit_preview")}
       </Button>
     </div>
   )
@@ -289,6 +290,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const message = useMessage()
+  const { teamIdentifier } = useParams()
 
   const appInfo = useSelector(getAppInfo)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
@@ -300,7 +302,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const debuggerData = useSelector(getExecutionDebuggerData)
 
-  const mode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
 
   const [deployLoading, setDeployLoading] = useState(false)
 
@@ -321,26 +323,26 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }, [dispatch, isFreezeCanvas])
 
   const handleClickDeploy = useCallback(() => {
-    Api.request<DeployResp>(
+    BuilderApi.teamRequest<DeployResp>(
       {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",
       },
-      (response) => {
+      () => {
         window.open(
           window.location.protocol +
             "//" +
             window.location.host +
-            `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
+            `/${teamIdentifier}/deploy/app/${appInfo?.appId}`,
           "_blank",
         )
       },
-      (e) => {
+      () => {
         message.error({
           content: t("editor.deploy.fail"),
         })
       },
-      (e) => {
+      () => {
         message.error({
           content: t("editor.deploy.fail"),
         })
@@ -349,7 +351,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         setDeployLoading(loading)
       },
     )
-  }, [appInfo.appId, message, t])
+  }, [appInfo.appId, message, t, teamIdentifier])
 
   return (
     <div className={className} css={navBarStyle}>
@@ -357,7 +359,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         <Logo
           width="34px"
           onClick={() => {
-            window.location.href = "/"
+            window.location.href = `/${teamIdentifier}/dashboard/apps`
           }}
           css={logoCursorStyle}
         />
@@ -376,7 +378,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         </div>
       </div>
       <div css={viewControlStyle}>
-        {mode === "edit" && (
+        {isEditMode && (
           <>
             <span css={windowIconBodyStyle} onClick={handleClickLeftWindowIcon}>
               <WindowLeftIcon _css={windowIconStyle(leftPanelVisible)} />
@@ -399,7 +401,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       </div>
       <div css={rightContentStyle}>
         <CollaboratorsList />
-        {mode === "edit" && (
+        {isEditMode && (
           <div>
             <ButtonGroup spacing={"8px"}>
               <Badge count={debuggerData && Object.keys(debuggerData).length}>

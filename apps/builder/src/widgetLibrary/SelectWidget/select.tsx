@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { Select } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -187,17 +188,6 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     handleValidate,
     dataSources,
   ])
-  const wrapperRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight?.(wrapperRef.current?.clientHeight)
-    }
-
-    return () => {
-      wrapperRef.current = null
-    }
-  }, [validateMessage, labelPosition, updateComponentHeight])
 
   const handleOnChange = useCallback(() => {
     triggerEventHandler("change")
@@ -212,7 +202,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -246,7 +236,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 SelectWidget.displayName = "SelectWidget"

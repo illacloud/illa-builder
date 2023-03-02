@@ -4,6 +4,7 @@ import {
   CascaderWidgetProps,
   WrappedCascaderWidgetProps,
 } from "@/widgetLibrary/CascaderWidget/interface"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
@@ -113,14 +114,6 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
     return dataSourceMode === "dynamic" ? dataSourceJS : dataSource
   }, [dataSource, dataSourceJS, dataSourceMode])
 
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [labelPosition, updateComponentHeight])
-
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       showClear: allowClear,
@@ -169,7 +162,7 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <div ref={wrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -200,6 +193,6 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
           />
         </div>
       </TooltipWrapper>
-    </div>
+    </AutoHeightContainer>
   )
 }

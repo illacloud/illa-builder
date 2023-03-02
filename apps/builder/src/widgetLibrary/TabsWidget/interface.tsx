@@ -3,7 +3,9 @@ import { viewListItemShaper } from "@/widgetLibrary/ContainerWidget/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
-export interface WrappedTabsProps extends TabsProps, BaseWidgetProps {
+export interface WrappedTabsProps
+  extends Omit<TabsProps, "w" | "h">,
+    BaseWidgetProps {
   value?: string
   disabled?: boolean
   viewList?: viewListItemShaper[]

@@ -14,13 +14,16 @@ export const emptyStateStyle = css`
   text-align: center;
 `
 
-export const emptyStateWrapperStyle = css`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
+export const applyEmptyStateWrapperStyle = (minHeight?: number) => {
+  const heightStyle = minHeight ? `min-height: ${minHeight}px;` : "height:100%"
+  return css`
+    ${heightStyle};
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `
+}
 
 export const containerWrapperStyle = css`
   width: 100%;

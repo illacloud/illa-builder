@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Modal, useMessage } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
@@ -26,7 +26,7 @@ import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
-  const { visible, onClose, onCreateAction } = props
+  const { visible, onClose } = props
   const [currentStep, setCurrentStep] = useState<ActionCreatorPage>("select")
 
   const [currentActionType, setCurrentActionType] = useState<ActionType | null>(
@@ -97,7 +97,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         content: initialContent,
         ...actionItemInitial,
       }
-      Api.request(
+      BuilderApi.teamRequest(
         {
           url: `/apps/${appInfo.appId}/actions`,
           method: "POST",
@@ -158,10 +158,9 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const handleCreateAction = useCallback(
     (actionType: ActionType, resourceId?: string) => {
       setCurrentStep("select")
-      onCreateAction()
       onClose()
     },
-    [onClose, onCreateAction],
+    [onClose],
   )
 
   const handleFinishCreateNewResource = useCallback(
@@ -176,7 +175,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   return (
     <Modal
-      w="696px"
+      w="832px"
       visible={visible}
       footer={false}
       closable

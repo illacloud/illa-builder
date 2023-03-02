@@ -5,7 +5,7 @@ import { LIST_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ListWidget/eventHandl
 import { OVERFLOW_TYPE } from "@/widgetLibrary/ListWidget/interface"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
-const baseWidgetName = "form"
+const baseWidgetName = "list"
 export const LIST_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-data`,
@@ -17,34 +17,6 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.ARRAY,
-      },
-    ],
-  },
-  {
-    id: `${baseWidgetName}-pagination`,
-    groupName: i18n.t("editor.inspect.setter_group.pagination"),
-    children: [
-      {
-        id: `${baseWidgetName}-basic-overFlow`,
-        labelName: i18n.t("editor.inspect.setter_label.overFlow"),
-        attrName: "overflowMethod",
-        setterType: "RADIO_GROUP_SETTER",
-        options: [
-          {
-            label: i18n.t("widget.table.pagination"),
-            value: OVERFLOW_TYPE.PAGINATION,
-          },
-          { label: i18n.t("widget.table.scroll"), value: OVERFLOW_TYPE.SCROLL },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-basic-pageSize`,
-        labelName: i18n.t("editor.inspect.setter_label.pageSize"),
-        attrName: "pageSize",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
-        bindAttrName: ["overflowMethod"],
-        shown: (overflow: string) => overflow === OVERFLOW_TYPE.PAGINATION,
       },
     ],
   },
@@ -72,6 +44,51 @@ export const LIST_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
+      {
+        id: `${baseWidgetName}-layout-height`,
+        labelName: i18n.t("editor.inspect.setter_label.height"),
+        attrName: "dynamicHeight",
+        setterType: "HEIGHT_MODE_SELECT",
+        options: [
+          {
+            label: i18n.t("editor.inspect.setter_option.fixed"),
+            value: "fixed",
+          },
+          // {
+          //   label: i18n.t("editor.inspect.setter_option.auto_limited"),
+          //   value: "limited",
+          // },
+          {
+            label: i18n.t("editor.inspect.setter_option.auto_height"),
+            value: "auto",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-basic-overFlow`,
+        labelName: i18n.t("editor.inspect.setter_label.overFlow"),
+        attrName: "overflowMethod",
+        setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: ["dynamicHeight"],
+        shown: (dynamicHeight: string) => dynamicHeight !== "auto",
+        options: [
+          {
+            label: i18n.t("widget.table.pagination"),
+            value: OVERFLOW_TYPE.PAGINATION,
+          },
+          { label: i18n.t("widget.table.scroll"), value: OVERFLOW_TYPE.SCROLL },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-basic-pageSize`,
+        labelName: i18n.t("editor.inspect.setter_label.pageSize"),
+        attrName: "pageSize",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: ["overflowMethod", "dynamicHeight"],
+        shown: (overflow: string, dynamicHeight: string) =>
+          overflow === OVERFLOW_TYPE.PAGINATION && dynamicHeight !== "auto",
+      },
       {
         id: `${baseWidgetName}-layout-hidden`,
         setterType: "DYNAMIC_SWITCH_SETTER",

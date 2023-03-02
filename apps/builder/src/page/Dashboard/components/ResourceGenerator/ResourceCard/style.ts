@@ -21,14 +21,14 @@ export function applyItemStyle(isDraft: boolean): SerializedStyles {
       `
 
   return css`
-    flex-direction: column;
-    justify-content: center;
+    display: flex;
+    padding: 0 0 0 16px;
+    height: 56px;
+    flex-direction: row;
     align-items: center;
-    padding: 24px 0;
     border-radius: 8px;
     border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     position: relative;
-    display: flex;
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
     cursor: pointer;
     transition: all 0.2s ease-in-out;
@@ -38,20 +38,21 @@ export function applyItemStyle(isDraft: boolean): SerializedStyles {
 }
 
 export const nameStyle = css`
-  margin-top: 8px;
   font-size: 14px;
   font-weight: 500;
-  text-align: center;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  line-height: 22px;
+  color: ${getColor("grayBlue", "02")};
 `
 
-export const comingStyle = css`
-  position: absolute;
-  border-radius: 0 0 4px 4px;
-  padding: 0 8px;
-  top: 0;
-  height: 16px;
-  background-color: ${getColor("techPurple", "07")};
-  font-size: 10px;
-  color: ${getColor("techPurple", "02")};
+export const titleContainerStyle = css`
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 12px;
+`
+
+export const subTitleStyle = css`
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: ${getColor("grayBlue", "04")};
 `

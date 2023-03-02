@@ -1,6 +1,7 @@
 import { debounce } from "lodash"
 import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { Menu, SubMenuProps } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 
 export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
@@ -80,31 +81,18 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     }
   }, [displayName, handleUpdateGlobalData, handleDeleteGlobalData])
 
-  const ref = useRef<HTMLDivElement>(null)
-
-  const updateHeight = debounce(() => {
-    updateComponentHeight(ref.current?.clientHeight ?? 0)
-  }, 200)
-
   const handleClickSubMenu = useCallback(
     (value: string) => {
-      if (mode === "vertical") {
-        updateHeight()
-      }
       triggerEventHandler(
         "clickMenuItem",
         `items.${items?.findIndex((i) => i.value === value)}.events`,
       )
     },
-    [items, mode, triggerEventHandler, updateHeight],
+    [items, triggerEventHandler],
   )
 
-  useEffect(() => {
-    updateHeight()
-  }, [mode, updateHeight])
-
   return (
-    <div ref={ref}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <WrappedMenu
         selectedValues={selectedValues}
         mode={mode}
@@ -113,7 +101,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
         onClickSubMenu={handleClickSubMenu}
         items={items}
       />
-    </div>
+    </AutoHeightContainer>
   )
 }
 

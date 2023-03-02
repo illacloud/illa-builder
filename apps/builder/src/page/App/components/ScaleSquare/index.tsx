@@ -12,13 +12,7 @@ import { useDrag } from "react-dnd"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
-import {
-  DropList,
-  DropListItem,
-  Dropdown,
-  globalColor,
-  illaPrefix,
-} from "@illa-design/react"
+import { DropList, DropListItem, Dropdown } from "@illa-design/react"
 import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import {
@@ -41,7 +35,8 @@ import {
   applyWrapperPendingStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import {
-  getIllaMode,
+  getIsDragging,
+  getIsILLAEditMode,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -61,6 +56,7 @@ import store, { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { AutoHeightWithLimitedContainer } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/renderWithJSON"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
@@ -87,6 +83,12 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     const executionResult = getExecutionResult(rootState)
     return get(executionResult, componentNode.displayName, null)
   })
+
+  const isAutoLimitedMode = realProps?.dynamicHeight === "limited"
+  const isOverLap =
+    isAutoLimitedMode &&
+    (realProps?.dynamicMaxHeight === h || realProps?.dynamicMinHeight === h)
+  const isDraggingStateInGlobal = useSelector(getIsDragging)
 
   const displayNameInMoveBar = useMemo(() => {
     if (componentNode.type === "CONTAINER_WIDGET" && realProps) {
@@ -118,16 +120,18 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     (user) => `${user.id}` !== `${currentUsesInfo.userId}`,
   )
 
-  const illaMode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
 
   const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
 
   const resizeDirection = useMemo(() => {
-    const widgetConfig = widgetBuilder(componentNode.type).config
-    return widgetConfig.resizeDirection || RESIZE_DIRECTION.ALL
-  }, [componentNode.type])
+    const direction =
+      componentNode?.props?.resizeDirection ||
+      widgetBuilder(componentNode.type).config?.resizeDirection
+    return direction || RESIZE_DIRECTION.ALL
+  }, [componentNode?.props, componentNode.type])
 
   const enableResizing = useMemo(() => {
     switch (resizeDirection) {
@@ -178,13 +182,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     () => (hasError ? "error" : "normal"),
     [hasError],
   )
-  if (illaMode !== "edit") {
+  if (!isEditMode) {
     scaleSquareState = "production"
   }
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      if (illaMode !== "edit") return
+      if (!isEditMode) return
       e.stopPropagation()
       if (e.metaKey || e.shiftKey) {
         const currentSelectedDisplayName = cloneDeep(selectedComponents)
@@ -220,18 +224,37 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       componentNode.displayName,
       componentsAttachedUsers,
       dispatch,
-      illaMode,
+      isEditMode,
       selectedComponents,
     ],
+  )
+
+  const handleUpdateComponentHeight = useCallback(
+    (height: number) => {
+      const finalHeight = Math.round(height / unitH)
+
+      dispatch(
+        componentsActions.updateComponentNodeHeightReducer({
+          displayName: componentNode.displayName,
+          height: finalHeight,
+          oldHeight: componentNode.h,
+        }),
+      )
+    },
+    [componentNode.displayName, componentNode.h, dispatch, unitH],
   )
 
   const handleOnResizeStop: RndResizeCallback = useCallback(
     (e, dir, ref, delta, position) => {
       const { width, height } = delta
-      const finalWidth = Math.round((w + width) / unitW)
-      const finalHeight = Math.round((h + height) / unitH)
+      let finalWidth = Math.round((w + width) / unitW)
+      let finalHeight = Math.round((h + height) / unitH)
       const x = Math.round(position.x / unitW)
       const y = Math.round(position.y / unitH)
+      finalWidth =
+        finalWidth < componentNode.minW ? componentNode.minW : finalWidth
+      finalHeight =
+        finalHeight < componentNode.minH ? componentNode.minH : finalHeight
 
       const newComponentNode = {
         ...componentNode,
@@ -279,9 +302,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   >(
     () => ({
       type: "components",
-      canDrag: () => {
-        return illaMode === "edit"
-      },
+      canDrag: isEditMode,
       end: (draggedItem, monitor) => {
         const dropResultInfo = monitor.getDropResult()
         endDrag(draggedItem.item, dropResultInfo?.isDropOnCanvas ?? false)
@@ -305,7 +326,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         }
       },
     }),
-    [illaMode, componentNode, blockColumns],
+    [componentNode, blockColumns, isEditMode],
   )
 
   const resizeHandler = useMemo(() => {
@@ -482,28 +503,25 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const hasEditors = !!filteredComponentAttachedUserList.length
 
-  //  1px is left border width
   return isDragging ? null : (
     <Rnd
       bounds="parent"
       size={{
-        width: w + 1,
-        height: h + 1,
+        width: w,
+        height: h,
       }}
       position={{
         x: x,
         y: y,
       }}
-      enableResizing={
-        illaMode === "edit" && isSelected ? enableResizing : false
-      }
+      enableResizing={isEditMode && isSelected ? enableResizing : false}
       css={applyRNDWrapperStyle(
         hasEditors,
         isSelected,
         hasError,
         isShowCanvasDot,
         isDragging,
-        illaMode === "edit",
+        isEditMode,
       )}
       resizeHandleComponent={resizeHandler}
       disableDragging
@@ -511,10 +529,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       onResize={handleResize}
       onResizeStop={handleOnResizeStop}
       minWidth={componentNode.minW * unitW}
-      minHeight={componentNode.minH * unitH}
+      minHeight={realProps?.dynamicMinHeight ?? componentNode.minH * unitH}
     >
       <Dropdown
-        disabled={illaMode !== "edit"}
+        disabled={!isEditMode}
         position="right-start"
         trigger="contextmenu"
         dropList={
@@ -545,18 +563,19 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             isSelected,
             hasError,
             isDragging,
-            illaMode === "edit",
+            isEditMode,
+            isOverLap,
           )}
           onClick={handleOnSelection}
           onContextMenu={handleContextMenu}
-          ref={dragRef}
+          ref={isEditMode ? dragRef : undefined}
         >
           <MoveBar
             isError={hasError}
             displayName={displayNameInMoveBar}
             maxWidth={componentNode.w * unitW}
             selected={isSelected}
-            isEditor={illaMode === "edit"}
+            isEditor={isEditMode}
             widgetTop={y}
             widgetHeight={h}
             containerPadding={containerPadding || 0}
@@ -564,7 +583,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             widgetType={componentNode.type}
             userList={filteredComponentAttachedUserList}
           />
-
           <TransformWidgetWrapper
             componentNode={componentNode}
             blockColumns={blockColumns}
@@ -581,6 +599,19 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         </div>
       </Dropdown>
       <div css={dragPreviewStyle} ref={dragPreviewRef} />
+      {isEditMode &&
+        selectedComponents?.length === 1 &&
+        isSelected &&
+        isAutoLimitedMode &&
+        !isDraggingStateInGlobal && (
+          <AutoHeightWithLimitedContainer
+            containerHeight={h}
+            dynamicMinHeight={realProps.dynamicMinHeight}
+            dynamicMaxHeight={realProps.dynamicMaxHeight}
+            displayName={componentNode.displayName}
+            handleUpdateComponentHeight={handleUpdateComponentHeight}
+          />
+        )}
     </Rnd>
   )
 })
@@ -660,7 +691,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   const dispatch = useDispatch()
 
   const isShowCanvasDot = useSelector(isShowDot)
-  const illaMode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
 
@@ -675,11 +706,6 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   )
 
   const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
-
-  const resizeDirection = useMemo(() => {
-    const widgetConfig = widgetBuilder(componentNode.type).config
-    return widgetConfig.resizeDirection || RESIZE_DIRECTION.ALL
-  }, [componentNode.type])
 
   const hasError = useMemo(() => {
     const displayName = componentNode.displayName
@@ -697,13 +723,13 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
     () => (hasError ? "error" : "normal"),
     [hasError],
   )
-  if (illaMode !== "edit") {
+  if (!isEditMode) {
     scaleSquareState = "production"
   }
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      if (illaMode !== "edit") return
+      if (!isEditMode) return
       e.stopPropagation()
       if (e.metaKey || e.shiftKey) {
         const currentSelectedDisplayName = cloneDeep(selectedComponents)
@@ -738,7 +764,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       componentNode.displayName,
       componentsAttachedUsers,
       dispatch,
-      illaMode,
+      isEditMode,
       selectedComponents,
     ],
   )
@@ -768,106 +794,61 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   )
 
   const resizeHandler = useMemo(() => {
-    switch (resizeDirection) {
-      case RESIZE_DIRECTION.HORIZONTAL: {
-        return {
-          right: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
-              />
-            </div>
-          ),
-          left: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
-              />
-            </div>
-          ),
-        }
-      }
-      case RESIZE_DIRECTION.VERTICAL: {
-        return {
-          top: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
-              />
-            </div>
-          ),
-          bottom: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
-              />
-            </div>
-          ),
-        }
-      }
-      case RESIZE_DIRECTION.ALL:
-      default: {
-        return {
-          topLeft: (
-            <div
-              css={applySquarePointerStyle(isSelected, scaleSquareState, "tl")}
-            />
-          ),
-          top: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
-              />
-            </div>
-          ),
-          topRight: (
-            <div
-              css={applySquarePointerStyle(isSelected, scaleSquareState, "tr")}
-            />
-          ),
-          right: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
-              />
-            </div>
-          ),
-          bottomRight: (
-            <div
-              css={applySquarePointerStyle(isSelected, scaleSquareState, "br")}
-            />
-          ),
-          bottom: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
-              />
-            </div>
-          ),
-          bottomLeft: (
-            <div
-              css={applySquarePointerStyle(isSelected, scaleSquareState, "bl")}
-            />
-          ),
-          left: (
-            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
-              <div
-                className="handler"
-                css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
-              />
-            </div>
-          ),
-        }
-      }
+    return {
+      topLeft: (
+        <div
+          css={applySquarePointerStyle(isSelected, scaleSquareState, "tl")}
+        />
+      ),
+      top: (
+        <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
+          />
+        </div>
+      ),
+      topRight: (
+        <div
+          css={applySquarePointerStyle(isSelected, scaleSquareState, "tr")}
+        />
+      ),
+      right: (
+        <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
+          />
+        </div>
+      ),
+      bottomRight: (
+        <div
+          css={applySquarePointerStyle(isSelected, scaleSquareState, "br")}
+        />
+      ),
+      bottom: (
+        <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
+          />
+        </div>
+      ),
+      bottomLeft: (
+        <div
+          css={applySquarePointerStyle(isSelected, scaleSquareState, "bl")}
+        />
+      ),
+      left: (
+        <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
+          />
+        </div>
+      ),
     }
-  }, [isSelected, resizeDirection, scaleSquareState])
+  }, [isSelected, scaleSquareState])
 
   const handleResizeStart: ResizeStartCallback = useCallback(
     (e) => {
@@ -920,7 +901,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       onResizeStop={handleOnResizeStop}
     >
       <Dropdown
-        disabled={illaMode !== "edit"}
+        disabled={!isEditMode}
         position="right-start"
         trigger="contextmenu"
         dropList={
@@ -951,7 +932,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             isSelected,
             hasError,
             false,
-            illaMode === "edit",
+            isEditMode,
           )}
           onClick={handleOnSelection}
           onContextMenu={handleContextMenu}
@@ -961,7 +942,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             displayName={displayNameInMoveBar}
             maxWidth={componentNode.w * unitW}
             selected={isSelected}
-            isEditor={illaMode === "edit"}
+            isEditor={isEditMode}
             widgetTop={y}
             widgetHeight={h}
             containerPadding={containerPadding || 0}

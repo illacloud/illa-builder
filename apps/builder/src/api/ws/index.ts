@@ -1,7 +1,10 @@
 import { AxiosRequestConfig } from "axios"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { ILLAWebsocket } from "@/api/ws/illaWS"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getCurrentId, getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import store from "@/store"
+import { isCloudVersion } from "@/utils/typeHelper"
 import {
   Broadcast,
   ILLAWebSocketComponentPayload,
@@ -40,6 +43,8 @@ export function getPayload<T>(
   target: Target,
   broadcast: boolean,
   reduxBroadcast: Broadcast | null,
+  teamID: string,
+  uid: string,
   payload: T[],
 ): string {
   return JSON.stringify({
@@ -60,18 +65,19 @@ export class Connection {
     loading: (loading: boolean) => void,
     errorState: (errorState: boolean) => void,
   ) {
+    const teamId = getCurrentId(store.getState())
     let instanceId = import.meta.env.VITE_INSTANCE_ID
     let config: AxiosRequestConfig
     switch (type) {
       case "dashboard":
         config = {
-          url: `/room/${instanceId}/dashboard`,
+          url: `/room/websocketConnection/dashboard`,
           method: "GET",
         }
         break
       case "app":
         config = {
-          url: `/room/${instanceId}/app/${roomId}`,
+          url: `/room/websocketConnection/app/${roomId}`,
           method: "GET",
         }
         break
@@ -79,10 +85,17 @@ export class Connection {
         config = {}
         break
     }
-    Api.request<Room>(
+    BuilderApi.teamRequest<Room>(
       config,
       (response) => {
-        let ws = generateNewWs(response.data.wsURL)
+        let wsURL = response.data.wsURL
+        if (!isCloudVersion) {
+          wsURL =
+            location.protocol === "https:"
+              ? `wss://${location.host}${wsURL}`
+              : `ws://${location.host}${wsURL}`
+        }
+        let ws = generateNewWs(wsURL)
         this.roomMap.set(type + roomId, ws)
       },
       (error) => {},
@@ -97,6 +110,8 @@ export class Connection {
   }
 
   static leaveRoom(type: RoomType, roomId: string) {
+    const { id: teamID = "", uid = "" } =
+      getCurrentTeamInfo(store.getState()) ?? {}
     let ws = this.roomMap.get(type + roomId)
     if (ws != undefined) {
       ws.send(
@@ -108,6 +123,8 @@ export class Connection {
             type: "leave",
             payload: [],
           },
+          teamID,
+          uid,
           [],
         ),
       )

@@ -19,7 +19,7 @@ export const headerActionButtonStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${globalColor(`--${illaPrefix}-purple-01`)};
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
   cursor: pointer;
   font-weight: 400;
   margin: 0 8px;

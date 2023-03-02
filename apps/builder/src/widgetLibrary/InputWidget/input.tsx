@@ -1,5 +1,6 @@
-import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
+import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { Input } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -120,14 +121,6 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
 
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const inputWrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (inputWrapperRef.current) {
-      updateComponentHeight(inputWrapperRef.current?.clientHeight)
-    }
-  }, [validateMessage, labelPosition, updateComponentHeight])
-
   const getValidateMessage = useCallback(
     (value?: string) => {
       if (!hideValidationMessage) {
@@ -236,7 +229,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <div ref={inputWrapperRef}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -271,7 +264,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
       >
         <InvalidMessage validateMessage={validateMessage} />
       </div>
-    </div>
+    </AutoHeightContainer>
   )
 }
 

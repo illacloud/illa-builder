@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import {
   Button,
   Input,
@@ -10,7 +10,7 @@ import {
   WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { CloudApi } from "@/api/cloudApi"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
@@ -27,7 +27,10 @@ import {
   gridValidStyle,
 } from "@/page/User/style"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import {
+  CurrentUser,
+  UserInfoResponse,
+} from "@/redux/currentUser/currentUserState"
 import { setLocalStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { LoginFields } from "./interface"
@@ -46,10 +49,13 @@ export const Login: FC = () => {
   } = useForm<LoginFields>({
     mode: "onSubmit",
   })
+  const [searchParams] = useSearchParams()
+  const appID = searchParams.get("appID")
+  const teamIdentifier = searchParams.get("teamIdentifier")
 
   const message = useMessage()
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
-    Api.request<CurrentUser>(
+    CloudApi.request<UserInfoResponse>(
       { method: "POST", url: "/auth/signin", data },
       (res) => {
         const token = res.headers["illa-token"]
@@ -57,15 +63,22 @@ export const Login: FC = () => {
         setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
-            userId: res.data.userId,
+            userId: res.data.id,
             nickname: res.data.nickname,
             language: res.data.language || "en-US",
             email: res.data.email,
+            avatar: res.data.avatar,
           }),
         )
-        navigate(location.state?.from?.pathname ?? "/", {
-          replace: true,
-        })
+        if (!isCloudVersion && appID && teamIdentifier) {
+          navigate(`/${teamIdentifier}/deploy/app/${appID}`, {
+            replace: true,
+          })
+        } else {
+          navigate(location.state?.from?.pathname ?? "/", {
+            replace: true,
+          })
+        }
         message.success({
           content: t("user.sign_in.tips.success"),
         })
@@ -113,7 +126,10 @@ export const Login: FC = () => {
               <TextLink
                 key="text-link"
                 onClick={() => {
-                  navigate("/user/register")
+                  navigate({
+                    pathname: "/user/register",
+                    search: location.search,
+                  })
                 }}
               />,
             ]}

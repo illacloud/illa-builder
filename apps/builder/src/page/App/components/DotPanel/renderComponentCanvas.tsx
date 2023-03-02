@@ -6,6 +6,7 @@ import {
   RefObject,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -34,7 +35,8 @@ import {
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import {
   getFreezeState,
-  getIllaMode,
+  getIsILLAEditMode,
+  getIsILLAProductMode,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -160,7 +162,8 @@ export const RenderComponentCanvas: FC<{
   } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
-  const illaMode = useSelector(getIllaMode)
+  const isEditMode = useSelector(getIsILLAEditMode)
+  const isProductionMode = useSelector(getIsILLAProductMode)
   const isFreezeCanvas = useSelector(getFreezeState)
   const dispatch = useDispatch()
 
@@ -258,8 +261,8 @@ export const RenderComponentCanvas: FC<{
     return childrenNode?.map((item) => {
       const h = item.h * UNIT_HEIGHT
       const w = item.w * unitWidth
-      const x = item.x * unitWidth
-      const y = item.y * UNIT_HEIGHT
+      const x = Math.floor(item.x * unitWidth)
+      const y = Math.floor(item.y * UNIT_HEIGHT)
 
       const containerHeight =
         componentNode.displayName === "root"
@@ -337,7 +340,7 @@ export const RenderComponentCanvas: FC<{
     () => ({
       accept: ["components"],
       canDrop: () => {
-        return illaMode === "edit"
+        return isEditMode
       },
       hover: (dragInfo, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
@@ -695,27 +698,27 @@ export const RenderComponentCanvas: FC<{
     )
   }, [bounds.height, maxY, minHeight])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isActive && canResizeY) {
-      if (illaMode === "edit") {
+      if (isEditMode) {
         if (
           finalRowNumber === maxY &&
           finalRowNumber + addedRowNumber >= rowNumber
         ) {
           setRowNumber(finalRowNumber + addedRowNumber)
-          if (
-            canAutoScroll &&
-            rowNumber !== 0 &&
-            finalRowNumber + addedRowNumber !== rowNumber
-          ) {
-            clearTimeout(autoScrollTimeoutID.current)
-            autoScrollTimeoutID.current = window.setTimeout(() => {
-              containerRef.current?.scrollBy({
-                top: (addedRowNumber * UNIT_HEIGHT) / 4,
-                behavior: "smooth",
-              })
-            }, 60)
-          }
+          // if (
+          //   canAutoScroll &&
+          //   rowNumber !== 0 &&
+          //   finalRowNumber + addedRowNumber !== rowNumber
+          // ) {
+          //   clearTimeout(autoScrollTimeoutID.current)
+          //   autoScrollTimeoutID.current = window.setTimeout(() => {
+          //     containerRef.current?.scrollBy({
+          //       top: (addedRowNumber * UNIT_HEIGHT) / 4,
+          //       behavior: "smooth",
+          //     })
+          //   }, 60)
+          // }
         } else {
           setRowNumber(finalRowNumber)
         }
@@ -729,25 +732,20 @@ export const RenderComponentCanvas: FC<{
     canResizeY,
     containerRef,
     finalRowNumber,
-    illaMode,
     isActive,
+    isEditMode,
     maxY,
     rowNumber,
   ])
 
-  useEffect(() => {
-    return () => {
-      clearTimeout(autoScrollTimeoutID.current)
-    }
-  }, [])
-
   if (
+    isEditMode &&
     componentNode.type === "CANVAS" &&
     (!Array.isArray(componentNode.childrenNode) ||
       componentNode.childrenNode.length === 0) &&
     !isShowCanvasDot
   ) {
-    return <ContainerEmptyState />
+    return <ContainerEmptyState minHeight={minHeight} />
   }
 
   return (
@@ -768,10 +766,7 @@ export const RenderComponentCanvas: FC<{
         minHeight,
       )}
       onClick={(e) => {
-        if (
-          e.target === currentCanvasRef.current &&
-          illaMode !== "production"
-        ) {
+        if (e.target === currentCanvasRef.current && !isProductionMode) {
           dispatch(configActions.updateSelectedComponent([]))
           clearComponentAttachedUsersHandler(selectedComponents || [])
         }

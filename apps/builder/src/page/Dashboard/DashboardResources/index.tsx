@@ -3,6 +3,12 @@ import { FC, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, Empty, Space, Table } from "@illa-design/react"
+import { canAccess } from "@/illa-public-component/UserRoleUtils"
+import {
+  ACTION_ACCESS,
+  ATTRIBUTE_GROUP,
+  USER_ROLE,
+} from "@/illa-public-component/UserRoleUtils/interface"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import {
   appsContainerStyle,
@@ -32,12 +38,18 @@ import {
   ResourceContent,
   ResourceListState,
 } from "@/redux/resource/resourceState"
+import {
+  SnowflakeAuthenticationType,
+  SnowflakeResource,
+} from "@/redux/resource/snowflakeResource"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
 
+  const teamInfo = useSelector(getCurrentTeamInfo)
   const resourcesList: ResourceListState = useSelector(getAllResources)
 
   const [newResourceVisible, setNewResourceVisible] = useState(false)
@@ -50,8 +62,10 @@ export const DashboardResources: FC = () => {
         case "smtp":
         case "restapi":
         case "elasticsearch":
+        case "dynamodb":
         case "s3":
         case "huggingface":
+        case "hfendpoint":
           break
         case "clickhouse":
         case "supabasedb":
@@ -70,12 +84,18 @@ export const DashboardResources: FC = () => {
         case "mssql":
           dbName = (resource as Resource<MicrosoftSqlResource>).content
             .databaseName
+          break
         case "mongodb":
           const mongoRes = resource as Resource<MongoDbResource<MongoDbConfig>>
           if (mongoRes.content.configType == "gui") {
             dbName = (mongoRes.content.configContent as MongoDbGuiConfigContent)
               .databaseName
           }
+          break
+        case "snowflake":
+          dbName = (
+            resource.content as SnowflakeResource<SnowflakeAuthenticationType>
+          ).database
           break
       }
       return {
@@ -147,6 +167,16 @@ export const DashboardResources: FC = () => {
     ]
   }, [t])
 
+  const canAccessResourcesView = canAccess(
+    teamInfo?.myRole ?? USER_ROLE.VIEWER,
+    ATTRIBUTE_GROUP.RESOURCE,
+    ACTION_ACCESS.VIEW,
+  )
+
+  if (teamInfo && !canAccessResourcesView) {
+    throw Error(`can not access resources view`)
+  }
+
   return (
     <>
       <div css={appsContainerStyle}>
@@ -184,5 +214,7 @@ export const DashboardResources: FC = () => {
     </>
   )
 }
+
+export default DashboardResources
 
 DashboardResources.displayName = "DashboardResources"

@@ -1,6 +1,7 @@
+import { AxiosError, AxiosResponse } from "axios"
 import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isString } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { ApiError, BuilderApi } from "@/api/base"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
@@ -10,6 +11,7 @@ import {
   ActionType,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
+import { DynamoActionStructParamsDataTransferType } from "@/redux/currentApp/action/dynamoDBAction"
 import {
   AuthActionTypeValue,
   FirestoreActionTypeValue,
@@ -112,7 +114,7 @@ const transformRawData = (rawData: unknown, actionType: ActionType) => {
   switch (actionType) {
     case "graphql":
     case "restapi": {
-      if (Array.isArray(rawData) && rawData.length > 0) {
+      if (Array.isArray(rawData) && rawData.length === 1) {
         return rawData[0]
       }
       return rawData
@@ -145,6 +147,9 @@ const calculateFetchResultDisplayName = (
       displayName: displayName,
       value: {
         data: calcResult,
+        runResult: undefined,
+        isRunning: false,
+        endTime: new Date().getTime(),
       },
     }),
   )
@@ -235,6 +240,15 @@ const fetchS3ClientResult = async (
     runAllEventHandler(realSuccessEvent)
   } catch (e) {
     resultCallback?.(e, true)
+    store.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: displayName,
+        value: {
+          isRunning: false,
+          endTime: new Date().getTime(),
+        },
+      }),
+    )
     const realFailedEvent: any[] = isTrigger
       ? failedEvent || []
       : getRealEventHandler(failedEvent)
@@ -243,6 +257,7 @@ const fetchS3ClientResult = async (
 }
 
 const fetchActionResult = (
+  isPublic: boolean,
   resourceId: string,
   actionType: ActionType,
   displayName: string,
@@ -255,54 +270,104 @@ const fetchActionResult = (
   isTrigger: boolean,
   resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
-  Api.request(
-    {
-      method: "POST",
-      url: `apps/${appId}/actions/${actionId}/run`,
-      data: {
-        resourceId,
-        actionType,
-        displayName,
-        content: actionContent,
-      },
-    },
-    (data: ActionRunResult) => {
-      // @ts-ignore
-      //TODO: @aruseito not use any
-      const rawData = data.data.Rows
-      calculateFetchResultDisplayName(
-        actionType,
-        displayName,
-        isTrigger,
-        rawData,
-        transformer,
-        resultCallback,
-      )
-      const realSuccessEvent: any[] = isTrigger
-        ? successEvent || []
-        : getRealEventHandler(successEvent)
+  const success = (data: ActionRunResult) => {
+    // @ts-ignore
+    //TODO: @aruseito not use any
+    const rawData = data.data.Rows
+    calculateFetchResultDisplayName(
+      actionType,
+      displayName,
+      isTrigger,
+      rawData,
+      transformer,
+      resultCallback,
+    )
+    const realSuccessEvent: any[] = isTrigger
+      ? successEvent || []
+      : getRealEventHandler(successEvent)
 
-      runAllEventHandler(realSuccessEvent)
-    },
-    (res) => {
-      resultCallback?.(res.data, true)
-      const realSuccessEvent: any[] = isTrigger
-        ? failedEvent || []
-        : getRealEventHandler(failedEvent)
-      runAllEventHandler(realSuccessEvent)
-    },
-    (res) => {
-      resultCallback?.(res, true)
-      const realSuccessEvent: any[] = isTrigger
-        ? failedEvent || []
-        : getRealEventHandler(failedEvent)
-      runAllEventHandler(realSuccessEvent)
-      message.error({
-        content: "not online",
-      })
-    },
-    (loading) => {},
-  )
+    runAllEventHandler(realSuccessEvent)
+  }
+  const failure = (res: AxiosResponse<ApiError>) => {
+    let runResult = {
+      error: true,
+      message: res?.data?.errorMessage || "An unknown error",
+    }
+    resultCallback?.(res.data, true)
+    const realSuccessEvent: any[] = isTrigger
+      ? failedEvent || []
+      : getRealEventHandler(failedEvent)
+    runAllEventHandler(realSuccessEvent)
+    store.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: displayName,
+        value: {
+          data: undefined,
+          runResult: runResult,
+          isRunning: false,
+          endTime: new Date().getTime(),
+        },
+      }),
+    )
+  }
+  const crash = (res: AxiosError) => {
+    resultCallback?.(res, true)
+    const realSuccessEvent: any[] = isTrigger
+      ? failedEvent || []
+      : getRealEventHandler(failedEvent)
+    runAllEventHandler(realSuccessEvent)
+    message.error({
+      content: "not online",
+    })
+    store.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: displayName,
+        value: {
+          data: undefined,
+          runResult: {
+            error: true,
+            message: "An unknown error",
+          },
+          isRunning: false,
+          endTime: new Date().getTime(),
+        },
+      }),
+    )
+  }
+
+  if (isPublic) {
+    BuilderApi.teamIdentifierRequest(
+      {
+        method: "POST",
+        url: `/apps/${appId}/publicActions/${actionId}/run`,
+        data: {
+          resourceId,
+          actionType,
+          displayName,
+          content: actionContent,
+        },
+      },
+      success,
+      failure,
+      crash,
+    )
+  } else {
+    BuilderApi.teamRequest(
+      {
+        method: "POST",
+        url: `/apps/${appId}/actions/${actionId}/run`,
+        data: {
+          resourceId,
+          actionType,
+          displayName,
+          content: actionContent,
+        },
+      },
+      success,
+      failure,
+      crash,
+    )
+  }
 }
 
 function getRealEventHandler(eventHandler?: any[]) {
@@ -315,7 +380,7 @@ function getRealEventHandler(eventHandler?: any[]) {
 }
 
 const transformDataFormat = (
-  actionType: string,
+  actionType: ActionType,
   contents: Record<string, any>,
 ) => {
   switch (actionType) {
@@ -386,6 +451,8 @@ const transformDataFormat = (
       }
     }
     case "huggingface":
+    case "hfendpoint":
+      const isEndpoint = actionType === "hfendpoint"
       const { modelID, detailParams, ...otherParams } = contents
       const { type, content } = otherParams.inputs || {}
       let newInputs = { type, content }
@@ -402,7 +469,6 @@ const transformDataFormat = (
         }
       }
       const keys = Object.keys(detailParams)
-
       const realDetailParams = keys.map((key: string) => {
         const currentValue = detailParams[key]
         return {
@@ -416,12 +482,25 @@ const transformDataFormat = (
         }
       })
       return {
-        modelID,
+        ...(!isEndpoint && { modelID }),
         params: {
           withDetailParams: otherParams.withDetailParams,
           inputs: newInputs,
           detailParams: realDetailParams,
         },
+      }
+    case "dynamodb":
+      const { structParams } = contents
+      let newStructParams = { ...structParams }
+      Object.keys(DynamoActionStructParamsDataTransferType).forEach((key) => {
+        const value = DynamoActionStructParamsDataTransferType[key]
+        if (structParams[key] === "") {
+          newStructParams[key] = value
+        }
+      })
+      return {
+        ...contents,
+        structParams: newStructParams,
       }
     default:
       return contents
@@ -457,6 +536,15 @@ export const runAction = (
     actionType,
     realContent,
   ) as ActionContent
+  store.dispatch(
+    executionActions.updateExecutionByDisplayNameReducer({
+      displayName: displayName,
+      value: {
+        isRunning: true,
+        startTime: new Date().getTime(),
+      },
+    }),
+  )
 
   switch (actionType) {
     case "s3":
@@ -477,6 +565,7 @@ export const runAction = (
         )
       } else {
         fetchActionResult(
+          action.config.public,
           resourceId || "",
           actionType,
           displayName,
@@ -493,6 +582,7 @@ export const runAction = (
       break
     default:
       fetchActionResult(
+        action.config.public,
         resourceId || "",
         actionType,
         displayName,

@@ -12,7 +12,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { BuilderApi } from "@/api/base"
 import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
 import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
 import {
@@ -88,7 +88,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
     <form
       onSubmit={handleSubmit((data, event) => {
         if (resourceId != undefined) {
-          Api.request<Resource<RestApiResource<RestApiAuth>>>(
+          BuilderApi.teamRequest<Resource<RestApiResource<RestApiAuth>>>(
             {
               method: "PUT",
               url: `/resources/${resourceId}`,
@@ -128,7 +128,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             },
           )
         } else {
-          Api.request<Resource<RestApiResource<RestApiAuth>>>(
+          BuilderApi.teamRequest<Resource<RestApiResource<RestApiAuth>>>(
             {
               method: "POST",
               url: `/resources`,
@@ -184,7 +184,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             control={control}
             defaultValue={resource?.resourceName ?? ""}
             rules={{
-              required: true,
+              validate: (value) => value != undefined && value.trim() != "",
             }}
             render={({ field: { value, onChange, onBlur } }) => (
               <Input
@@ -359,7 +359,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               }}
               onChangeValue={(index, key, v) => {
                 let newRecords = [...value]
-                newRecords[index].value = v
+                newRecords[index] = { key, value: v }
                 onChange(newRecords)
               }}
             />

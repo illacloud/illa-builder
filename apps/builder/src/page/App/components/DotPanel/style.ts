@@ -1,4 +1,4 @@
-import { SerializedStyles, css } from "@emotion/react"
+import { css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import {
   FOOTER_MIN_HEIGHT,
@@ -7,21 +7,6 @@ import {
   RIGHT_MIN_WIDTH,
 } from "@/page/App/components/DotPanel/renderSection"
 import { IllaMode } from "@/redux/config/configState"
-
-export function applyScaleStyle(
-  verticalResize: boolean,
-  edgeWidth: number,
-): SerializedStyles {
-  return css`
-    /* padding-left: ${edgeWidth}px;
-    padding-right: ${edgeWidth}px;
-    padding-top: ${edgeWidth}px; */
-    overflow-x: hidden;
-    overflow-y: ${verticalResize ? "auto" : "hidden"};
-    width: 100%;
-    height: 100%;
-  `
-}
 
 export const applyComponentCanvasStyle = (
   width: number,
@@ -202,8 +187,8 @@ export const applyHeaderSectionWrapperStyle = (
   return css`
     position: absolute;
     top: 0;
-    left: ${left};
-    width: ${width};
+    left: var(--illa-canvas-header-left, ${left});
+    width: var(--illa-canvas-header-width, ${width});
     height: ${height};
     display: flex;
     flex-direction: column;
@@ -219,8 +204,8 @@ export const applyFooterSectionWrapperStyle = (
   return css`
     position: absolute;
     bottom: 0;
-    left: ${left};
-    width: ${width};
+    left: var(--illa-canvas-footer-left, ${left});
+    width: var(--illa-canvas-footer-width, ${width});
     height: ${height};
     display: flex;
     flex-direction: column-reverse;
@@ -235,9 +220,9 @@ export const applyLeftSectionWrapperStyle = (
 ) => {
   return css`
     position: absolute;
-    top: ${top};
+    top: var(--illa-canvas-left-top, ${top});
     left: 0;
-    height: 100%;
+    height: var(--illa-canvas-left-height, 100%);
     width: ${width};
     display: flex;
     flex-direction: row;
@@ -252,9 +237,9 @@ export const applyRightSectionWrapperStyle = (
 ) => {
   return css`
     position: absolute;
-    top: ${top};
+    top: var(--illa-canvas-right-top, ${top});
     right: 0;
-    height: 100%;
+    height: var(--illa-canvas-right-height, 100%);
     width: ${width};
     display: flex;
     flex-direction: row-reverse;
@@ -274,9 +259,8 @@ export const applyContainerWrapperStyle = (model: IllaMode) => {
 
 export const applyModalWrapperStyle = (model: IllaMode) => {
   return css`
-    width: 100%;
-    height: 100%;
     padding: ${model !== "edit" ? "0" : "8px"};
+    padding-top: ${model !== "edit" ? "0" : "20px"};
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
@@ -535,6 +519,18 @@ export const applyPreviewColumnsStyle = (index: number, unitWidth: number) => {
   `
 }
 
+export const modalWrapperStyle = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 8;
+`
+
 export const maskStyle = css`
   position: absolute;
   top: 0;
@@ -542,10 +538,7 @@ export const maskStyle = css`
   width: 100%;
   height: 100%;
   background-color: ${getColor("blackAlpha", "02")};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 8;
+  z-index: -1;
 `
 
 export const modalStyle = css`
@@ -553,3 +546,16 @@ export const modalStyle = css`
   height: 90%;
   background-color: red;
 `
+
+export const bodySectionWrapperStyle = css`
+  position: absolute;
+  width: var(--illa-canvas-body-width, 100%);
+  left: var(--illa-canvas-body-left, 0);
+  top: var(--illa-canvas-body-top, 0);
+  height: var(--illa-canvas-body-height);
+`
+
+// leftRef.current.style.height = `${leftHeight}px`
+// leftRef.current.style.top = `${leftTop}px`
+
+export const leftSectionWrapperStyle = css``

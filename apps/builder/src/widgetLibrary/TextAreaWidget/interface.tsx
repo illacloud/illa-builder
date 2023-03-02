@@ -23,6 +23,9 @@ export interface WrappedTextareaProps
       value: Record<string, any>
     }[],
   ) => void
+  dynamicHeight: "auto" | "fixed" | "limited"
+  dynamicMinHeight?: number
+  dynamicMaxHeight?: number
   getValidateMessage: (value: string) => string
 }
 
@@ -33,4 +36,7 @@ export interface TextareaWidgetProps
     TooltipWrapperProps,
     ValidateMessageOldProps {
   validateMessage: string
+  dynamicHeight: "auto" | "fixed" | "limited"
+  dynamicMinHeight?: number
+  dynamicMaxHeight?: number
 }

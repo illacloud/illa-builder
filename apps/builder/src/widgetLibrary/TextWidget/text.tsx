@@ -1,19 +1,15 @@
-import { debounce } from "lodash"
-import { FC, useEffect, useRef } from "react"
+import { FC, useEffect, useMemo } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import {
-  Text as ILLAText,
-  Link,
-  Paragraph,
-  Typography,
-} from "@illa-design/react"
+import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { TextProps, TextWidgetProps } from "./interface"
 import {
   applyAlignStyle,
-  fullWidthAndFullHeightStyle,
-  markdownStyle,
+  applyAutoHeightContainerStyle,
+  applyMarkdownStyle,
 } from "./style"
 
 export const Text: FC<TextProps> = (props) => {
@@ -25,16 +21,20 @@ export const Text: FC<TextProps> = (props) => {
     fs,
     disableMarkdown,
   } = props
-
+  console.log("verticalAlign", verticalAlign)
   return (
-    <div css={applyAlignStyle(horizontalAlign, verticalAlign)}>
+    <div css={applyAlignStyle(verticalAlign)}>
       {disableMarkdown ? (
-        <ILLAText css={markdownStyle} colorScheme={colorScheme} fs={fs}>
+        <ILLAText
+          css={applyMarkdownStyle(horizontalAlign)}
+          colorScheme={colorScheme}
+          fs={fs}
+        >
           {value}
         </ILLAText>
       ) : (
         <ReactMarkdown
-          css={markdownStyle}
+          css={applyMarkdownStyle(horizontalAlign)}
           remarkPlugins={[remarkGfm]}
           components={{
             a: ({ node, ...props }) => (
@@ -62,7 +62,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
   const {
     value,
     horizontalAlign,
-    verticalAlign,
+    verticalAlign = "start",
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
@@ -70,6 +70,12 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     updateComponentHeight,
     disableMarkdown,
     tooltipText,
+    dynamicHeight = "fixed",
+    dynamicMinHeight,
+    dynamicMaxHeight,
+    colorScheme,
+    fs,
+    h = 0,
   } = props
 
   useEffect(() => {
@@ -98,20 +104,51 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
-  const ref = useRef<HTMLDivElement>(null)
+  const enableAutoHeight = useMemo(() => {
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "limited":
+        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight, dynamicMinHeight, h])
 
-  const updateHeight = debounce(() => {
-    updateComponentHeight?.(ref.current?.clientHeight ?? 0)
-  }, 200)
+  const dynamicOptions = useMemo(() => {
+    return dynamicHeight === "fixed"
+      ? {
+          dynamicMinHeight,
+          dynamicMaxHeight,
+        }
+      : undefined
+  }, [dynamicHeight, dynamicMaxHeight, dynamicMinHeight])
 
-  useEffect(() => {
-    updateHeight()
-  }, [value, disableMarkdown])
+  const [containerRef] = useAutoUpdateHeight(
+    updateComponentHeight,
+    enableAutoHeight,
+    dynamicOptions,
+  )
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div ref={ref} css={fullWidthAndFullHeightStyle}>
-        <Text {...props} />
+      <div
+        ref={containerRef}
+        css={applyAutoHeightContainerStyle(
+          dynamicHeight,
+          dynamicMinHeight,
+          dynamicMaxHeight,
+        )}
+      >
+        <Text
+          horizontalAlign={horizontalAlign}
+          value={value}
+          verticalAlign={verticalAlign}
+          colorScheme={colorScheme}
+          fs={fs}
+          disableMarkdown={disableMarkdown}
+        />
       </div>
     </TooltipWrapper>
   )

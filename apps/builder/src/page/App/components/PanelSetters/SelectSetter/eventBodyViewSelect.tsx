@@ -33,6 +33,7 @@ export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
   const finalOptions = useMemo(() => {
     if (!pageComponent) return []
     const options: { label: string; value: string }[] = []
+    const walkedConfig = new Map<string, Record<string, any>>()
     pageComponent.childrenNode.forEach((node) => {
       const { props } = node
       if (
@@ -41,6 +42,8 @@ export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
         Array.isArray(props.sectionViewConfigs)
       ) {
         props.sectionViewConfigs.forEach((config) => {
+          if (walkedConfig.get(config.path)) return
+          walkedConfig.set(config.path, config)
           options.push({
             label: config.path,
             value: config.path,

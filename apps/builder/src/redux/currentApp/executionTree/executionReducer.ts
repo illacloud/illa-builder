@@ -1,11 +1,11 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { applyChange } from "deep-diff"
-import { cloneDeep } from "lodash"
 import {
   DependenciesState,
   ErrorShape,
   ExecutionState,
   UpdateExecutionByDisplayNamePayload,
+  executionInitialState,
   setExecutionResultPayload,
 } from "@/redux/currentApp/executionTree/executionState"
 
@@ -112,4 +112,11 @@ export const updateModalDisplayReducer: CaseReducer<
       }
     })
   }
+}
+
+export const resetExecutionResultReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction
+> = (state, action) => {
+  return executionInitialState
 }

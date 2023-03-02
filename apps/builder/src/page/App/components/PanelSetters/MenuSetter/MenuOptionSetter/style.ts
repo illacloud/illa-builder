@@ -76,6 +76,13 @@ export const setterMenuItemContainerStyle = css`
 
 export const setterSubMenuLabelStyle = css`
   font-weight: 400;
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
 `

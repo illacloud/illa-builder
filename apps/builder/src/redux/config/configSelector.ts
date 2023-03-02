@@ -70,3 +70,19 @@ export const getCanvasShape = (state: RootState) => {
 export const getIsOnline = (state: RootState) => {
   return state.config.isOnline
 }
+
+export const getIsDragging = (state: RootState) => {
+  return state.config.isDragging
+}
+
+export const getIsILLAEditMode = (state: RootState) => {
+  return state.config.mode === "edit"
+}
+
+export const getIsILLAPreviewMode = (state: RootState) => {
+  return state.config.mode === "preview"
+}
+
+export const getIsILLAProductMode = (state: RootState) => {
+  return state.config.mode === "production"
+}

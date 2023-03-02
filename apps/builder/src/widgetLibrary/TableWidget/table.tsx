@@ -87,6 +87,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         pinedHeader
         w="100%"
         h="100%"
+        colorScheme={"techPurple"}
         rowSelection={rowSelection}
         data={formatData}
         columns={columns}
@@ -150,7 +151,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const handleOnClickMenuItem = useCallback(
     (path: string) => {
-      triggerEventHandler(path)
+      triggerEventHandler("clickMenuItem", path)
     },
     [triggerEventHandler],
   )

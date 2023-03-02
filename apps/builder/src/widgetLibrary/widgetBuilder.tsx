@@ -118,6 +118,12 @@ import {
   NumberInputWidget,
 } from "@/widgetLibrary/NumberInputWidget"
 import {
+  PDF_EVENT_HANDLER_CONFIG,
+  PDF_PANEL_CONFIG,
+  PDF_WIDGET_CONFIG,
+  PdfWidget,
+} from "@/widgetLibrary/PdfWidget"
+import {
   RADIO_BUTTON_EVENT_HANDLER_CONFIG,
   RADIO_BUTTON_PANEL_CONFIG,
   RADIO_BUTTON_WIDGET_CONFIG,
@@ -141,6 +147,12 @@ import {
   SELECT_WIDGET_CONFIG,
   SelectWidget,
 } from "@/widgetLibrary/SelectWidget"
+import {
+  STATISTICS_EVENT_HANDLER_CONFIG,
+  STATISTICS_PANEL_CONFIG,
+  STATISTICS_WIDGET_CONFIG,
+  StatisticWidget,
+} from "@/widgetLibrary/StatisticsWidget"
 import {
   SWITCH_EVENT_HANDLER_CONFIG,
   SWITCH_PANEL_CONFIG,
@@ -183,6 +195,12 @@ import {
   UPLOAD_WIDGET_CONFIG,
   UploadWidget,
 } from "@/widgetLibrary/UploadWidget"
+import {
+  VIDEO_EVENT_HANDLER_CONFIG,
+  VIDEO_PANEL_CONFIG,
+  VIDEO_WIDGET_CONFIG,
+  VideoWidget,
+} from "@/widgetLibrary/VideoWidget"
 import { WidgetConfigs } from "./interface"
 
 export const WidgetConfig: WidgetConfigs = {
@@ -233,6 +251,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: ICON_WIDGET_CONFIG,
     panelConfig: ICON_PANEL_CONFIG,
     eventHandlerConfig: ICON_EVENT_HANDLER_CONFIG,
+  },
+  STATISTIC_WIDGET: {
+    widget: StatisticWidget,
+    config: STATISTICS_WIDGET_CONFIG,
+    panelConfig: STATISTICS_PANEL_CONFIG,
+    eventHandlerConfig: STATISTICS_EVENT_HANDLER_CONFIG,
   },
   DATE_WIDGET: {
     widget: DateWidget,
@@ -370,6 +394,18 @@ export const WidgetConfig: WidgetConfigs = {
     config: MODAL_WIDGET_CONFIG,
     panelConfig: MODAL_PANEL_CONFIG,
     eventHandlerConfig: MODAL_EVENT_HANDLER_CONFIG,
+  },
+  PDF_WIDGET: {
+    widget: PdfWidget,
+    config: PDF_WIDGET_CONFIG,
+    panelConfig: PDF_PANEL_CONFIG,
+    eventHandlerConfig: PDF_EVENT_HANDLER_CONFIG,
+  },
+  VIDEO_WIDGET: {
+    widget: VideoWidget,
+    config: VIDEO_WIDGET_CONFIG,
+    panelConfig: VIDEO_PANEL_CONFIG,
+    eventHandlerConfig: VIDEO_EVENT_HANDLER_CONFIG,
   },
 }
 

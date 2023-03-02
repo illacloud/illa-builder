@@ -23,3 +23,7 @@ export interface BaseDynamicSelectSetterProps extends PanelLabelProps {
   inputPlaceholder?: string
   isError: boolean
 }
+
+export interface HeightModeSetterProps extends BaseSelectSetterProps {
+  handleUpdateMultiAttrDSL: (updateSlice: Record<string, any>) => void
+}

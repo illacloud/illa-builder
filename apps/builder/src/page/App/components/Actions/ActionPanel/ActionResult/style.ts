@@ -1,78 +1,58 @@
-import { css } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/react"
+import { SerializedStyles, css } from "@emotion/react"
+import { getColor } from "@illa-design/react"
 
-export const resultContainerStyle = css`
-  width: 100%;
-  min-width: 700px;
+export const actionResultContainerStyle = css`
+  padding-top: 120px;
+  position: absolute;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  bottom: 0;
-  z-index: 2;
+  width: 100%;
+  pointer-events: none;
+  justify-content: end;
+  height: 100%;
 `
 
-export function applyMaxHeightStyle(h?: number) {
+export function applyActionContentContainerStyle(
+  renderResult: boolean,
+): SerializedStyles {
   return css`
-    ${h ? `max-height: ${h}px;` : ""};
+    visibility: ${renderResult ? "visible" : "hidden"};
+    position: relative;
+    pointer-events: auto;
+    z-index: 10;
   `
 }
 
-export const resultWrapperStyle = css`
+export const alertBarStyle = css`
+  width: 100%;
+  background: ${getColor("grayBlue", "09")};
+  height: 40px;
   display: flex;
-  align-items: center;
-  flex: 1;
-  line-height: 22px;
-  padding: 9px 16px;
-`
-
-export const errorResultWrapperStyle = css`
-  position: relative;
-  ${resultWrapperStyle};
-  background: ${globalColor(`--${illaPrefix}-orange-07`)};
-`
-
-export const successResultWrapperStyle = css`
-  ${resultWrapperStyle};
-  font-weight: 500;
-  justify-content: space-between;
-  background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-`
-
-export const resultSuccessLeftContainer = css`
-  display: inline-flex;
   flex-direction: row;
+  padding: 0 16px;
   align-items: center;
 `
 
-export const errorIconStyle = css`
-  margin-right: 10px;
-  color: ${globalColor(`--${illaPrefix}-red-03`)};
-`
-
-export const successIconStyle = css`
-  margin-right: 10px;
-  color: ${globalColor(`--${illaPrefix}-green-03`)};
-`
-
-export const resCloseIconStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-  cursor: pointer;
-  //padding: 8px;
+export const alertTextStyle = css`
+  font-weight: 500;
+  flex-grow: 1;
   font-size: 14px;
-  width: 14px;
-  height: 14px;
-  box-sizing: content-box;
-
-  &:hover {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  }
-`
-export const codeStyle = css`
-  overflow: scroll;
+  margin-left: 8px;
 `
 
 export const customerCodeStyle = css`
   border: none;
   border-radius: 0;
   background-color: ${getColor("white", "01")};
+
+  > .cm-editor {
+    border: none;
+    border-radius: 0;
+
+    & > .cm-scroller {
+      & > .cm-gutters {
+        border-radius: 0;
+      }
+    }
+  }
 `

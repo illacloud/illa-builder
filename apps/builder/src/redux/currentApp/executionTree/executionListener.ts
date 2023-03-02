@@ -20,8 +20,47 @@ export let executionTree: ExecutionTreeFactory | undefined
 
 const mergeActionResult = (rawTree: RawTreeShape) => {
   Object.keys(actionDisplayNameMapFetchResult).forEach((key) => {
+    if (!rawTree[key]) return
     rawTree[key].data = actionDisplayNameMapFetchResult[key] || {}
   })
+}
+
+export const destroyExecutionTree = () => {
+  if (executionTree) {
+    executionTree = executionTree.destroyTree()
+  }
+}
+
+const asyncExecutionDataToRedux = (
+  executionResult: Record<string, any>,
+  oldExecutionTree: Record<string, any>,
+  listenerApi: AppListenerEffectAPI,
+) => {
+  const errorTree = executionResult.errorTree
+  const evaluatedTree = executionResult.evaluatedTree
+  const dependencyMap = executionResult.dependencyTree
+  const debuggerData = executionResult.debuggerData
+  const updates = diff(oldExecutionTree, evaluatedTree) || []
+  listenerApi.dispatch(
+    executionActions.setExecutionResultReducer({
+      updates,
+    }),
+  )
+  listenerApi.dispatch(
+    executionActions.setDependenciesReducer({
+      ...dependencyMap,
+    }),
+  )
+  listenerApi.dispatch(
+    executionActions.setExecutionErrorReducer({
+      ...errorTree,
+    }),
+  )
+  listenerApi.dispatch(
+    executionActions.setExecutionDebuggerDataReducer({
+      ...debuggerData,
+    }),
+  )
 }
 
 async function handleStartExecution(
@@ -36,32 +75,7 @@ async function handleStartExecution(
   if (!executionTree) {
     executionTree = new ExecutionTreeFactory()
     const executionResult = executionTree.initTree(rawTree)
-    const errorTree = executionResult.errorTree
-    const evaluatedTree = executionResult.evaluatedTree
-    const dependencyMap = executionResult.dependencyTree
-    const debuggerData = executionResult.debuggerData
-
-    const updates = diff(oldExecutionTree, evaluatedTree) || []
-    listenerApi.dispatch(
-      executionActions.setExecutionResultReducer({
-        updates,
-      }),
-    )
-    listenerApi.dispatch(
-      executionActions.setDependenciesReducer({
-        ...dependencyMap,
-      }),
-    )
-    listenerApi.dispatch(
-      executionActions.setExecutionErrorReducer({
-        ...errorTree,
-      }),
-    )
-    listenerApi.dispatch(
-      executionActions.setExecutionDebuggerDataReducer({
-        ...debuggerData,
-      }),
-    )
+    asyncExecutionDataToRedux(executionResult, oldExecutionTree, listenerApi)
   } else {
     // only transformer can run this;
     const isDeleteAction =
@@ -74,31 +88,7 @@ async function handleStartExecution(
       isDeleteAction,
       isUpdateActionReduxAction,
     )
-    const errorTree = executionResult.errorTree
-    const evaluatedTree = executionResult.evaluatedTree
-    const dependencyMap = executionResult.dependencyTree
-    const debuggerData = executionResult.debuggerData
-    const updates = diff(oldExecutionTree, evaluatedTree) || []
-    listenerApi.dispatch(
-      executionActions.setExecutionResultReducer({
-        updates,
-      }),
-    )
-    listenerApi.dispatch(
-      executionActions.setDependenciesReducer({
-        ...dependencyMap,
-      }),
-    )
-    listenerApi.dispatch(
-      executionActions.setExecutionErrorReducer({
-        ...errorTree,
-      }),
-    )
-    listenerApi.dispatch(
-      executionActions.setExecutionDebuggerDataReducer({
-        ...debuggerData,
-      }),
-    )
+    asyncExecutionDataToRedux(executionResult, oldExecutionTree, listenerApi)
   }
 }
 
@@ -113,6 +103,7 @@ async function handleStartExecutionOnCanvas(
       executionTree.updateTreeFromExecution(oldExecutionTree)
     const evaluatedTree = executionResult.evaluatedTree
     const errorTree = executionResult.errorTree
+    const debuggerData = executionResult.debuggerData
     const updates = diff(oldExecutionTree, evaluatedTree) || []
     listenerApi.dispatch(
       executionActions.setExecutionResultReducer({
@@ -122,6 +113,11 @@ async function handleStartExecutionOnCanvas(
     listenerApi.dispatch(
       executionActions.setExecutionErrorReducer({
         ...errorTree,
+      }),
+    )
+    listenerApi.dispatch(
+      executionActions.setExecutionDebuggerDataReducer({
+        ...debuggerData,
       }),
     )
   }

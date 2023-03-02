@@ -15,7 +15,7 @@ function isValidURL(str: string) {
 }
 
 export const handleCheckCustomRule = (customRule: unknown) => {
-  if (typeof customRule !== "undefined") {
+  if (customRule != undefined && customRule !== "") {
     return true
   }
 }

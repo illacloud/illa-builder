@@ -50,7 +50,7 @@ export const ViewListHeader: FC<HeaderProps> = (props) => {
         hoverable
         onClick={handleClickAddButton}
       >
-        <span>{t("editor.page.label_name.add")}</span>
+        <span>{t("editor.inspect.setter_content.column_setter.new")}</span>
       </Link>
     </div>
   )

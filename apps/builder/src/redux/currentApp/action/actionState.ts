@@ -1,4 +1,8 @@
 import {
+  DynamoDBAction,
+  StructParams,
+} from "@/redux/currentApp/action/dynamoDBAction"
+import {
   FirebaseAction,
   FirebaseContentType,
 } from "@/redux/currentApp/action/firebaseAction"
@@ -53,6 +57,7 @@ export interface Events {
 
 export type ActionType =
   | "huggingface"
+  | "hfendpoint"
   | "firebase"
   | "supabasedb"
   | "clickhouse"
@@ -63,6 +68,7 @@ export type ActionType =
   | "mongodb"
   | "redis"
   | "elasticsearch"
+  | "dynamodb"
   | "snowflake"
   | "postgresql"
   | "mariadb"
@@ -73,7 +79,12 @@ export type ActionType =
 
 export type ActionTriggerMode = "manually" | "automate"
 
+export interface ActionConfig {
+  public: boolean
+}
+
 export interface ActionItem<T extends ActionContent> {
+  config: ActionConfig
   actionId: string
   displayName: string
   actionType: ActionType
@@ -94,6 +105,7 @@ export type ActionContent =
   | SMPTAction
   | S3Action<S3ActionTypeContent>
   | ElasticSearchAction
+  | DynamoDBAction<StructParams>
   | MysqlLikeAction
   | MicrosoftSqlAction<MicrosoftSqlActionType>
   | RestApiAction<BodyContent>

@@ -75,7 +75,6 @@ export const SetterSubMenu: FC<SetterSubMenuProps> = (props) => {
         >
           <span css={setterSubMenuLabelStyle}>{label}</span>
         </Trigger>
-        <div css={setterDivStyle} />
         <NewButton
           title={t("editor.inspect.setter_content.menu_setter.sub")}
           onClick={() => {
