@@ -1796,7 +1796,8 @@
           "verification_code": "验证码已发送"
         },
         "title": "注册"
-      }
+      },
+      "description": "专属于开发者的开源低代码平台。"
     }
   },
   "frame_size": {
