@@ -151,7 +151,7 @@
             "host": "ホスト",
             "dbid": "データベースID",
             "projectid": "プロジェクトID",
-            "secret": "X-Appwrite-JWT",
+            "secret": "Api key",
             "collectionid": "コレクション ID",
             "documentid": "ドキュメント ID",
             "data": "データ",
