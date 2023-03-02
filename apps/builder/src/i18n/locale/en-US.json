@@ -813,7 +813,8 @@
           "play": "Play",
           "pause": "Pause",
           "ended": "Ended",
-          "loaded": "Loaded"
+          "loaded": "Loaded",
+          "rowSelect": "Row select"
         },
         "image_list": {
           "title": "Images",
