@@ -1301,6 +1301,10 @@
       "collapse": {
         "expand_all_items": "모든 스레드 펼치기",
         "collapse_all_items": "Collapse all items"
+      },
+      "carousel": {
+        "showNext": "다음에 보이는 이미지 표시",
+        "showPrevious": "이전에 보이는 이미지 표시"
       }
     }
   },
