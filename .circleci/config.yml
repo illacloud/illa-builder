@@ -107,15 +107,15 @@ jobs:
               echo $VERSION
               echo ${CIRCLE_TAG}
               echo "export IMAGE_TAG=$VERSION" >> "$BASH_ENV"
-              echo "export FE=main" >> "$BASH_ENV"
+              echo "export FE=$TAG" >> "$BASH_ENV"
               echo "export BE=main" >> "$BASH_ENV"
-              echo "export SBE=${CIRCLE_TAG}" >> "$BASH_ENV"
+              echo "export SBE=main" >> "$BASH_ENV"
             else
               echo ${CIRCLE_BRANCH}
               echo "export IMAGE_TAG=${CIRCLE_BRANCH}" >> "$BASH_ENV"
-              echo "export FE=develop" >> "$BASH_ENV"
-              echo "export BE=develop" >> "$BASH_ENV"
-              echo "export SBE=${CIRCLE_BRANCH}" >> "$BASH_ENV"
+              echo "export FE=${CIRCLE_BRANCH}" >> "$BASH_ENV"
+              echo "export BE=main" >> "$BASH_ENV"
+              echo "export SBE=main" >> "$BASH_ENV"
             fi
       - run:
           name: Download build scripts
