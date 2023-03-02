@@ -114,7 +114,7 @@ const transformRawData = (rawData: unknown, actionType: ActionType) => {
   switch (actionType) {
     case "graphql":
     case "restapi": {
-      if (Array.isArray(rawData) && rawData.length > 0) {
+      if (Array.isArray(rawData) && rawData.length === 1) {
         return rawData[0]
       }
       return rawData
