@@ -1796,7 +1796,8 @@
           "verification_code": "인증 코드 전송됨"
         },
         "title": "등록하다"
-      }
+      },
+      "description": "개발자 전용 오픈 소스 로우 코드 플랫폼입니다."
     }
   },
   "frame_size": {
