@@ -2,7 +2,7 @@ import { SerializedStyles, css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const actionResultContainerStyle = css`
-  padding-top: 48px;
+  padding-top: 120px;
   position: absolute;
   display: flex;
   flex-direction: column;
