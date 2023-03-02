@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom"
 import { BuilderApi } from "@/api/base"
 import { getTeamsInfo } from "@/api/team"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
-import { initS3Client } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
@@ -95,7 +94,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           },
           (response) => {
             dispatch(resourceActions.updateResourceListReducer(response.data))
-            initS3Client(response.data)
           },
         )
         handleCurrentApp(response)

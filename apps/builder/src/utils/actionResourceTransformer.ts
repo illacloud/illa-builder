@@ -17,8 +17,6 @@ export function getActionSubTitleFromActionType(
         return "Inference API"
       case "hfendpoint":
         return "Inference Endpoint"
-      case "s3":
-        return i18n.t("editor.action.form.label.s3")
     }
   }
   return ""
@@ -84,8 +82,6 @@ export function getResourceSubTitleFromResourceType(
         return "Inference API"
       case "hfendpoint":
         return "Inference Endpoint"
-      case "s3":
-        return i18n.t("editor.action.form.label.s3")
     }
   }
   return ""

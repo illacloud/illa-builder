@@ -13,8 +13,8 @@ export const authInterceptor = (config: AxiosRequestConfig) => {
   const token = getAuthToken()
   if (typeof token === "string") {
     config.headers = {
-      ...(config.headers ?? {}),
       Authorization: token,
+      ...(config.headers ?? {}),
     }
   }
   return config

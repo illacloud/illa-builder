@@ -95,6 +95,7 @@
     "@types/deep-diff": "^1.0.1",
     "@types/jshint": "^2.12.1",
     "@types/lodash": "^4.14.191",
+    "@types/node": "^18.14.4",
     "@types/qs": "^6.9.7",
     "@types/react-pdf": "^6.2.0",
     "@types/redux-logger": "^3.0.9",

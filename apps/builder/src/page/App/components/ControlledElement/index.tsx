@@ -36,6 +36,7 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     options = [],
     rules = [],
     tipsStyle,
+    allowClear = false,
     labelStyle,
     onValueChange,
   } = props
@@ -115,6 +116,7 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
                 <Select
                   value={value}
                   onBlur={onBlur}
+                  allowClear={allowClear}
                   onChange={(value) => {
                     onValueChange?.(value as string)
                     onChange(value)
