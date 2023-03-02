@@ -12,17 +12,7 @@ import {
 
 export const UserLogin: FC = () => {
   const { t } = useTranslation()
-  return (
-    <div css={containerStyle}>
-      <aside css={asideStyle}>
-        <Logo css={logoStyle} />
-        <section css={introductionStyle}>{t("user.description")}</section>
-      </aside>
-      <div css={contentStyle}>
-        <Outlet />
-      </div>
-    </div>
-  )
+  return <Outlet />
 }
 
 export default UserLogin

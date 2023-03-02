@@ -6,8 +6,8 @@ import { Member } from "@/page/Member"
 import { SettingAccount } from "@/page/Setting/SettingAccount"
 import { SettingOthers } from "@/page/Setting/SettingOthers"
 import { SettingPassword } from "@/page/Setting/SettingPassword"
-import { Login } from "@/page/User/Login"
-import { Register } from "@/page/User/Register"
+// import { Login } from "@/page/User/Login"
+// import { Register } from "@/page/User/Register"
 import { ResetPassword } from "@/page/User/ResetPassword"
 import { Page403 } from "@/page/status/403"
 import { Page404 } from "@/page/status/404"
@@ -150,20 +150,22 @@ export const selfRouter: RoutesObjectPro[] = [
     ],
   },
   {
+    path: "/user/login",
+    element: layLoad(lazy(() => import("@/page/User/Login"))),
+    accessByMobile: true,
+  },
+  {
+    path: "/user/register",
+    element: layLoad(lazy(() => import("@/page/User/Register"))),
+    accessByMobile: true,
+  },
+  {
     path: "/user",
     element: layLoad(lazy(() => import("@/page/User"))),
     children: [
       {
         index: true,
         element: <Navigate to="./login" replace />,
-      },
-      {
-        path: "/user/login",
-        element: <Login />,
-      },
-      {
-        path: "/user/register",
-        element: <Register />,
       },
       {
         path: "/user/forgotPassword",

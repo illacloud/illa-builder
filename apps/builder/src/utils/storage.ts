@@ -1,3 +1,5 @@
+import ILLAStorage from "@illa-fe-utils/storage"
+
 type Storage_Type = "localStorage" | "sessionStorage"
 
 interface StorageDataShape {
@@ -111,3 +113,5 @@ export const clearLocalStorage = () => {
 export const clearSessionStorage = () => {
   clearStorage("sessionStorage")
 }
+
+export const ILLACloudStorage = new ILLAStorage("ILLACloud@0.0.0", 5)

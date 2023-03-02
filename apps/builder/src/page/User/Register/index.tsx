@@ -41,7 +41,7 @@ export function getLocalLanguage(): string {
   return finalLang
 }
 
-export const Register: FC = () => {
+const UserRegister: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState({ email: "", verificationCode: "" })
   const { t } = useTranslation()
@@ -417,4 +417,6 @@ export const Register: FC = () => {
   )
 }
 
-Register.displayName = "Register"
+export default UserRegister
+
+UserRegister.displayName = "UserRegister"
