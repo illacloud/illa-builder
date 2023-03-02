@@ -1,9 +1,8 @@
-import { FC, useContext, useState } from "react"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
   AddIcon,
-  Input,
   Modal,
   Option,
   PenIcon,
@@ -13,7 +12,6 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
@@ -50,8 +48,6 @@ export const ResourceChoose: FC = () => {
   const action = useSelector(getCachedAction)!!
   const selectedAction = useSelector(getSelectedAction)!!
 
-  const { onChangeSelectedResource } = useContext(ActionPanelContext)
-
   //maybe empty
   const currentSelectResource = resourceList.find(
     (r) => r.resourceId === action.resourceId,
@@ -85,7 +81,6 @@ export const ResourceChoose: FC = () => {
                         : getInitialContent(resource.resourceType),
                   }),
                 )
-                onChangeSelectedResource?.()
               }
             }}
             addAfter={
