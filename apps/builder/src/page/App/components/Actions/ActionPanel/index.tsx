@@ -79,15 +79,15 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           onResultVisibleChange={(visible) => {
             setResultVisible(visible)
           }}
+          openState={resultVisible}
         />
         <div css={actionContentStyle}>{panel}</div>
-        {resultVisible && (
-          <ActionResult
-            onClose={() => {
-              setResultVisible(false)
-            }}
-          />
-        )}
+        <ActionResult
+          visible={resultVisible}
+          onClose={() => {
+            setResultVisible(false)
+          }}
+        />
       </div>
     )
   },

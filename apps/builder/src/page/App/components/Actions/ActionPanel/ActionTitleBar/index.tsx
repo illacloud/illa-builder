@@ -126,7 +126,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
 }
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const { onResultVisibleChange } = props
+  const { onResultVisibleChange, openState } = props
 
   const message = useMessage()
   const selectedAction = useSelector(getSelectedAction)!
@@ -145,16 +145,15 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const currentApp = useSelector(getAppInfo)
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const [loading, setLoading] = useState(false)
   const [canRunAction, canNotRunMessage] = getCanRunAction(cachedAction)
 
   const executionResult = useSelector(getExecutionResult)
 
   const renderResult =
+    executionResult[selectedAction.displayName]?.data !== undefined ||
     executionResult[selectedAction.displayName]?.runResult !== undefined
-  const runError = executionResult[selectedAction.displayName]?.runResult?.error
 
-  const [openResultState, setOpenResultState] = useState(false)
+  const runError = executionResult[selectedAction.displayName]?.runResult?.error
 
   let runMode: RunMode = useMemo(() => {
     if (cachedAction != undefined && isChanged) {
@@ -182,10 +181,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           })
           return
         }
-        setLoading(true)
         if (cachedActionValue) {
-          runAction(cachedActionValue, (result: unknown, error?: boolean) => {
-            setLoading(false)
+          runAction(cachedActionValue, () => {
+            onResultVisibleChange(true)
           })
         }
         break
@@ -211,9 +209,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               content: t("create_fail"),
             })
           },
-          (l) => {
-            setLoading(l)
-          },
         )
         break
       case "save_and_run":
@@ -232,13 +227,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           () => {
             if (cachedActionValue) {
               dispatch(actionActions.updateActionItemReducer(cachedActionValue))
-              setLoading(true)
-              runAction(
-                cachedActionValue,
-                (result: unknown, error?: boolean) => {
-                  setLoading(false)
-                },
-              )
+              runAction(cachedActionValue, () => {
+                onResultVisibleChange(true)
+              })
             }
           },
           () => {
@@ -251,9 +242,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               content: t("editor.action.panel.btn.save_fail"),
             })
           },
-          (l) => {
-            setLoading(l)
-          },
         )
         break
     }
@@ -265,6 +253,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     selectedAction.actionId,
     message,
     canNotRunMessage,
+    onResultVisibleChange,
     dispatch,
     t,
   ])
@@ -281,15 +270,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     <div
       css={actionSuccessBlockStyle}
       onClick={() => {
-        setOpenResultState(!openResultState)
-        onResultVisibleChange(!openResultState)
+        onResultVisibleChange(!openState)
       }}
     >
       <SuccessCircleIcon fs="16px" size="16px" />
       <span css={actionTextStyle}>
         {t("editor.action.panel.status.ran_successfully")}
       </span>
-      <UpIcon css={applyOpenStateStyle(openResultState)} />
+      <UpIcon css={applyOpenStateStyle(openState)} />
     </div>
   )
 
@@ -297,15 +285,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     <div
       css={actionFailBlockStyle}
       onClick={() => {
-        setOpenResultState(!openResultState)
-        onResultVisibleChange(!openResultState)
+        onResultVisibleChange(!openState)
       }}
     >
       <WarningCircleIcon fs="16px" size="16px" />
       <span css={actionTextStyle}>
         {t("editor.action.panel.status.ran_failed")}
       </span>
-      <UpIcon css={applyOpenStateStyle(openResultState)} />
+      <UpIcon css={applyOpenStateStyle(openState)} />
     </div>
   )
 
@@ -338,9 +325,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 message.error({
                   content: t("change_fail"),
                 })
-              },
-              (l) => {
-                setLoading(l)
               },
             )
           }}
