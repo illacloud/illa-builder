@@ -1665,6 +1665,85 @@
         "fixed": "固定幅",
         "auto": "てきおう"
       }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Please enter a valid email address",
+            "registered": "The email address doesn't associate with an account.",
+            "require": "Please enter your email"
+          },
+          "newPassword": {
+            "require": "Please enter your password"
+          },
+          "verification_code": {
+            "expired": "Verification code expired",
+            "invalid": "Invalid verification code",
+            "require": "Please enter verification code"
+          }
+        },
+        "fields": {
+          "email": "Email",
+          "newPassword": "New Password",
+          "verification_code": "Verification code"
+        },
+        "placeholder": {
+          "email": "Enter your email",
+          "verification_code": "Please enter verification code"
+        },
+        "subtitle": "Back to sign in",
+        "tips": {
+          "fail": "Failed to reset password",
+          "fail_sent": "Failed to send verification code",
+          "success": "Reset password successfully",
+          "verification_code": "Verification code sent"
+        },
+        "title": "Reset Password"
+      },
+      "password": {
+        "placeholder": "Enter your new password(at least 6 characters)"
+      },
+      "policy": "By using ILLA you are agreeing to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Sign in"
+        },
+        "description": {
+          "forgot_password": "Forgot Password?",
+          "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>",
+          "register": "New user? <0>Create an account</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Please enter a valid email address",
+            "registered": "The email address doesn't associate with an account.",
+            "require": "Please enter your email"
+          },
+          "password": {
+            "incorrect": "Incorrect email or password",
+            "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
+            "min_length": "The password must be at least 6 characters",
+            "require": "Please enter password"
+          }
+        },
+        "fields": {
+          "email": "Email",
+          "password": "Password"
+        },
+        "placeholder": {
+          "email": "Enter your email"
+        },
+        "tips": {
+          "fail": "Failed to sign in",
+          "success": "Signed in successfully",
+          "fail_account": "Incorrect email or password"
+        },
+        "title": "Welcome back"
+      }
     }
   },
   "frame_size": {
@@ -1846,5 +1925,6 @@
   },
   "message": {
     "circular_dependency": "{{ nodeName }} で循環依存が発生しています"
-  }
+  },
+  "Send code": "page.user.forgot_password.actions.send"
 }
