@@ -1514,7 +1514,11 @@
         "success": "Signed up successfully",
         "verification_code": "Verification code sent"
       },
-      "title": "Sign up"
+      "title": "Sign up",
+      "agreement": {
+        "privacy_policy": "privacy policy",
+        "terms_of_service": "terms of service"
+      }
     }
   },
   "widget": {
@@ -1974,5 +1978,15 @@
   },
   "message": {
     "circular_dependency": "A circular dependency occurs on {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "This Privacy Policy explains our practices regarding the collection, use and disclosure of information that we receive through our Services."
+    },
+    "terms": {
+      "description": "These Terms of Service govern your access to, and use of, our Site, and our provision of a variety of services.",
+      "title": "Terms of service"
+    }
   }
 }
