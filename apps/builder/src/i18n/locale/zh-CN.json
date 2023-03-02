@@ -151,7 +151,7 @@
             "host": "主机",
             "dbid": "数据库 ID",
             "projectid": "项目ID",
-            "secret": "X-Appwrite-JWT",
+            "secret": "Api key",
             "collectionid": "集合ID",
             "documentid": "文档ID",
             "data": "数据",
@@ -175,7 +175,14 @@
           }
         },
         "tips": {
-          "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>"
+          "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>",
+          "connect_to_local": {
+            "cloud": "看起来您正在尝试连接到您机器本地的数据库或私有网络的一部分。 它可能不适用于 ILLA Cloud 版本。 查看我们的文档，了解如何使用自托管版本。",
+            "selfhost": "It looks like you're trying to connect to a database that's local to your machine. Please use the local area network IP address of the machine instead of \"localhost\" or \"127.0.0.1\".",
+            "title": {
+              "tips": "提示"
+            }
+          }
         },
         "option": {
           "appwrite": {
@@ -813,7 +820,8 @@
           "play": "播放",
           "pause": "暂停",
           "ended": "已结束",
-          "loaded": "已载入"
+          "loaded": "已载入",
+          "rowSelect": "选择行"
         },
         "image_list": {
           "title": "图片",
@@ -1177,7 +1185,7 @@
         "min_max_size": "无限制",
         "volume": "2",
         "statistics": {
-          "decimal": "{{ 2 }}",
+          "decimal": "2",
           "prefix_text": "¥",
           "suffix_text": "%",
           "positive_color": "正向颜色",
@@ -1506,7 +1514,11 @@
         "success": "注册成功",
         "verification_code": "验证码已发送"
       },
-      "title": "注册"
+      "title": "注册",
+      "agreement": {
+        "privacy_policy": "privacy policy",
+        "terms_of_service": "terms of service"
+      }
     }
   },
   "widget": {
@@ -1656,6 +1668,134 @@
       "model": {
         "fixed": "固定宽度",
         "auto": "自适应"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Send code"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Please enter a valid email address",
+            "registered": "The email address doesn't associate with an account.",
+            "require": "Please enter your email"
+          },
+          "newPassword": {
+            "require": "Please enter your password"
+          },
+          "verification_code": {
+            "expired": "Verification code expired",
+            "invalid": "Invalid verification code",
+            "require": "Please enter verification code"
+          }
+        },
+        "fields": {
+          "email": "Email",
+          "newPassword": "New Password",
+          "verification_code": "Verification code"
+        },
+        "placeholder": {
+          "email": "Enter your email",
+          "verification_code": "Please enter verification code"
+        },
+        "subtitle": "Back to sign in",
+        "tips": {
+          "fail": "Failed to reset password",
+          "fail_sent": "Failed to send verification code",
+          "success": "Reset password successfully",
+          "verification_code": "Verification code sent"
+        },
+        "title": "Reset Password"
+      },
+      "password": {
+        "placeholder": "Enter your new password(at least 6 characters)"
+      },
+      "policy": "By using ILLA you are agreeing to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Sign in"
+        },
+        "description": {
+          "forgot_password": "Forgot Password?",
+          "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>",
+          "register": "New user? <0>Create an account</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Please enter a valid email address",
+            "registered": "The email address doesn't associate with an account.",
+            "require": "Please enter your email"
+          },
+          "password": {
+            "incorrect": "Incorrect email or password",
+            "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
+            "min_length": "The password must be at least 6 characters",
+            "require": "Please enter password"
+          }
+        },
+        "fields": {
+          "email": "Email",
+          "password": "Password"
+        },
+        "placeholder": {
+          "email": "Enter your email"
+        },
+        "tips": {
+          "fail": "Failed to sign in",
+          "success": "Signed in successfully",
+          "fail_account": "Incorrect email or password"
+        },
+        "title": "Welcome back"
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Create Account",
+          "send": "Send code"
+        },
+        "description": {
+          "login": "Already have an account? <0>Sign in</0>",
+          "policy": "By clicking Create Account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
+          "subscribe": "I am willing to receive the updates and news about ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Please enter a valid email address",
+            "registered": "An account with that email address already exists.",
+            "require": "Please enter your email"
+          },
+          "password": {
+            "require": "Please enter password"
+          },
+          "username": {
+            "length": "The username must be 3~15 characters",
+            "require": "Please enter username"
+          },
+          "verification_code": {
+            "expired": "Verification code expired",
+            "invalid": "Invalid verification code",
+            "require": "Please enter verification code"
+          }
+        },
+        "fields": {
+          "email": "Email",
+          "password": "Password",
+          "username": "Username",
+          "verification_code": "Verification code"
+        },
+        "placeholder": {
+          "email": "Enter your email",
+          "username": "Enter your username",
+          "verification_code": "Please enter verification code"
+        },
+        "tips": {
+          "fail": "Failed to sign up",
+          "fail_sent": "Failed to send verification code",
+          "success": "Signed up successfully",
+          "verification_code": "Verification code sent"
+        },
+        "title": "Sign up"
       }
     }
   },
@@ -1838,5 +1978,15 @@
   },
   "message": {
     "circular_dependency": "{{ nodeName }} 有循环依赖"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "This Privacy Policy explains our practices regarding the collection, use and disclosure of information that we receive through our Services."
+    },
+    "terms": {
+      "description": "These Terms of Service govern your access to, and use of, our Site, and our provision of a variety of services.",
+      "title": "Terms of service"
+    }
   }
 }
