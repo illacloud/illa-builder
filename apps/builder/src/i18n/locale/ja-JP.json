@@ -1514,7 +1514,11 @@
         "success": "登録完了",
         "verification_code": "確認コードが送信されました"
       },
-      "title": "登録"
+      "title": "登録",
+      "agreement": {
+        "privacy_policy": "privacy policy",
+        "terms_of_service": "terms of service"
+      }
     }
   },
   "widget": {
@@ -1974,5 +1978,15 @@
   },
   "message": {
     "circular_dependency": "{{ nodeName }} で循環依存が発生しています"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "This Privacy Policy explains our practices regarding the collection, use and disclosure of information that we receive through our Services."
+    },
+    "terms": {
+      "description": "These Terms of Service govern your access to, and use of, our Site, and our provision of a variety of services.",
+      "title": "Terms of service"
+    }
   }
 }
