@@ -88,6 +88,51 @@ jobs:
             kubectl delete pod -n ${NS} -l repo=illa-builder-frontend
             kubectl apply -f ./illa-builder-frontend/ -n ${NS}
 
+  build-all-in-one-image:
+    parameters: # parameters are at the job level
+      TAG:
+        type: boolean
+        default: false
+    machine: # executor type
+      image: ubuntu-2004:202010-01
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: Preprocess
+          command: |
+            if [ << parameters.TAG >> = true ]; then
+              TAG=${CIRCLE_TAG}
+              VERSION=v${TAG#illa-builder@}
+              echo $VERSION
+              echo ${CIRCLE_TAG}
+              echo "export IMAGE_TAG=$VERSION" >> "$BASH_ENV"
+              echo "export FE=main" >> "$BASH_ENV"
+              echo "export BE=main" >> "$BASH_ENV"
+              echo "export SBE=${CIRCLE_TAG}" >> "$BASH_ENV"
+            else
+              echo ${CIRCLE_BRANCH}
+              echo "export IMAGE_TAG=${CIRCLE_BRANCH}" >> "$BASH_ENV"
+              echo "export FE=develop" >> "$BASH_ENV"
+              echo "export BE=develop" >> "$BASH_ENV"
+              echo "export SBE=${CIRCLE_BRANCH}" >> "$BASH_ENV"
+            fi
+      - run:
+          name: Download build scripts
+          command: |
+            git clone https://github.com/illacloud/build-all-in-one-image
+      - run:
+          name: Build and push Docker image
+          command: |
+            cd ./build-all-in-one-image
+            docker build -f ./dockerfile -t illasoft/illa-builder:${IMAGE_TAG} --build-arg FE=${FE} --build-arg BE=${BE} --build-arg SBE=${SBE} --no-cache .
+            docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
+            docker push illasoft/illa-builder:${IMAGE_TAG}
+            if [ << parameters.TAG >> = true ]; then
+              docker tag illasoft/illa-builder:${IMAGE_TAG} illasoft/illa-builder:latest
+              docker push illasoft/illa-builder:latest
+            fi
+
 workflows:
   illa-builder-frontend:
     when:
@@ -104,3 +149,22 @@ workflows:
             - org-global
           requires:
             - build
+  branch-build-all-in-one:
+    when:
+      or:
+        - equal: [main, << pipeline.git.branch >>]
+    jobs:
+      - build-all-in-one-image:
+          context:
+            - org-global
+  tag-build-all-in-one:
+    jobs:
+      - build-all-in-one-image:
+          context:
+            - org-global
+          TAG: true
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^illa-builder@[0-9].*/
