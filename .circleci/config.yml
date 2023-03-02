@@ -108,7 +108,7 @@ jobs:
               echo ${CIRCLE_TAG}
               echo "export IMAGE_TAG=$VERSION" >> "$BASH_ENV"
               echo "export FE=$TAG" >> "$BASH_ENV"
-              echo "export BE=main" >> "$BASH_ENV"
+              echo "export BE=develop" >> "$BASH_ENV"
               echo "export SBE=main" >> "$BASH_ENV"
             else
               echo ${CIRCLE_BRANCH}
