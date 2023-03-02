@@ -151,7 +151,7 @@
             "host": "ホスト",
             "dbid": "データベースID",
             "projectid": "プロジェクトID",
-            "secret": "Api key",
+            "secret": "X-Appwrite-JWT",
             "collectionid": "コレクション ID",
             "documentid": "ドキュメント ID",
             "data": "データ",
@@ -1516,8 +1516,8 @@
       },
       "title": "登録",
       "agreement": {
-        "privacy_policy": "privacy policy",
-        "terms_of_service": "terms of service"
+        "privacy_policy": "個人情報保護",
+        "terms_of_service": "サービス利用規約"
       }
     }
   },
@@ -1673,130 +1673,131 @@
     "user": {
       "forgot_password": {
         "actions": {
-          "reset": "Reset",
-          "send": "Send code"
+          "reset": "リセット",
+          "send": "確認コードを取得する"
         },
         "error_message": {
           "email": {
-            "invalid_pattern": "Please enter a valid email address",
-            "registered": "The email address doesn't associate with an account.",
-            "require": "Please enter your email"
+            "invalid_pattern": "有効なメールアドレスを入力してください",
+            "registered": "メールアドレスはどのアカウントにも関連付けられていません。",
+            "require": "メールを入力してください"
           },
           "newPassword": {
-            "require": "Please enter your password"
+            "require": "パスワードを入力してください"
           },
           "verification_code": {
-            "expired": "Verification code expired",
-            "invalid": "Invalid verification code",
-            "require": "Please enter verification code"
+            "expired": "確認コードの有効期限が切れています",
+            "invalid": "無効な認証コード",
+            "require": "認証コードを入力してください"
           }
         },
         "fields": {
-          "email": "Email",
-          "newPassword": "New Password",
-          "verification_code": "Verification code"
+          "email": "メール",
+          "newPassword": "新しいパスワード",
+          "verification_code": "確認コード"
         },
         "placeholder": {
-          "email": "Enter your email",
-          "verification_code": "Please enter verification code"
+          "email": "メールを入力してください",
+          "verification_code": "確認コードを入力してください"
         },
-        "subtitle": "Back to sign in",
+        "subtitle": "戻る ログイン",
         "tips": {
-          "fail": "Failed to reset password",
-          "fail_sent": "Failed to send verification code",
-          "success": "Reset password successfully",
-          "verification_code": "Verification code sent"
+          "fail": "パスワードのリセットに失敗しました",
+          "fail_sent": "確認コードを送信できませんでした",
+          "success": "パスワードのリセットが成功しました",
+          "verification_code": "確認コードが送信されました"
         },
-        "title": "Reset Password"
+        "title": "パスワードをリセットする"
       },
       "password": {
-        "placeholder": "Enter your new password(at least 6 characters)"
+        "placeholder": "パスワードを入力してください（6文字以上）"
       },
-      "policy": "By using ILLA you are agreeing to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+      "policy": "ILLA を使用することにより、<0>プライバシー ポリシー</0>と<1>利用規約</1>に同意したことになります",
       "sign_in": {
         "actions": {
-          "login": "Sign in"
+          "login": "ログイン"
         },
         "description": {
-          "forgot_password": "Forgot Password?",
-          "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-          "register": "New user? <0>Create an account</0>"
+          "forgot_password": "パスワードをお忘れですか？",
+          "policy": "[ログイン] をクリックして、 < 0 >サービス利用規約< /0 >および< 1 >プライバシー規約< /1 >を読み、同意したことを示します。",
+          "register": "新しいユーザー？ < 0 >アカウント登録< /0 >"
         },
         "error_message": {
           "email": {
-            "invalid_pattern": "Please enter a valid email address",
-            "registered": "The email address doesn't associate with an account.",
-            "require": "Please enter your email"
+            "invalid_pattern": "有効なメールを入力してください",
+            "registered": "メールアドレスはどのアカウントにも関連付けられていません。",
+            "require": "メールを入力してください。"
           },
           "password": {
-            "incorrect": "Incorrect email or password",
-            "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
-            "min_length": "The password must be at least 6 characters",
-            "require": "Please enter password"
+            "incorrect": "正しいアカウント パスワードを入力してください",
+            "locked": "5回以上間違ったパスワードを入力すると、アカウントは1時間ロックされます",
+            "min_length": "パスワードは最低でも6文字必要です",
+            "require": "パスワードを空白にすることはできません"
           }
         },
         "fields": {
-          "email": "Email",
-          "password": "Password"
+          "email": "メール",
+          "password": "パスワード"
         },
         "placeholder": {
-          "email": "Enter your email"
+          "email": "メールを入力してください"
         },
         "tips": {
-          "fail": "Failed to sign in",
-          "success": "Signed in successfully",
-          "fail_account": "Incorrect email or password"
+          "fail": "ログインに失敗しました",
+          "success": "新しいパスワードを入力してください",
+          "fail_account": "メールアドレスまたはパスワードが正しくありません"
         },
-        "title": "Welcome back"
+        "title": "お帰りなさい"
       },
       "sign_up": {
         "actions": {
-          "create": "Create Account",
-          "send": "Send code"
+          "create": "アカウントを作成する",
+          "send": "確認コードを取得する"
         },
         "description": {
-          "login": "Already have an account? <0>Sign in</0>",
-          "policy": "By clicking Create Account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-          "subscribe": "I am willing to receive the updates and news about ILLA"
+          "login": "すでにアカウントをお持ちですか？ < 0 >ログイン< /0 >",
+          "policy": "[今すぐ登録] をクリックして、<0>利用規約</0>と<1>プライバシー契約</1>を読んで同意したことを示します",
+          "subscribe": "ILLAのニュースを購読する"
         },
         "error_message": {
           "email": {
-            "invalid_pattern": "Please enter a valid email address",
-            "registered": "An account with that email address already exists.",
-            "require": "Please enter your email"
+            "invalid_pattern": "有効なメールを入力してください",
+            "registered": "このメールはすでに登録されています。ログインしてください",
+            "require": "メールを入力してください。"
           },
           "password": {
-            "require": "Please enter password"
+            "require": "パスワードを空白にすることはできません"
           },
           "username": {
-            "length": "The username must be 3~15 characters",
-            "require": "Please enter username"
+            "length": "ユーザー名は 3 ～ 15 文字である必要があります",
+            "require": "ユーザー名を空にすることはできません"
           },
           "verification_code": {
-            "expired": "Verification code expired",
-            "invalid": "Invalid verification code",
-            "require": "Please enter verification code"
+            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "invalid": "無効な認証コード",
+            "require": "確認コードを入力してください"
           }
         },
         "fields": {
-          "email": "Email",
-          "password": "Password",
-          "username": "Username",
-          "verification_code": "Verification code"
+          "email": "メール",
+          "password": "パスワード",
+          "username": "ユーザー名",
+          "verification_code": "確認コード"
         },
         "placeholder": {
-          "email": "Enter your email",
-          "username": "Enter your username",
-          "verification_code": "Please enter verification code"
+          "email": "メールを入力してください",
+          "username": "ユーザー名を入力してください",
+          "verification_code": "確認コードを入力してください"
         },
         "tips": {
-          "fail": "Failed to sign up",
-          "fail_sent": "Failed to send verification code",
-          "success": "Signed up successfully",
-          "verification_code": "Verification code sent"
+          "fail": "サインアップに失敗しました",
+          "fail_sent": "確認コードを送信できませんでした",
+          "success": "サインアップしました",
+          "verification_code": "確認コードが送信されました"
         },
-        "title": "Sign up"
-      }
+        "title": "サインアップ"
+      },
+      "description": "開発者専用のオープンソースのローコード プラットフォーム。"
     }
   },
   "frame_size": {
@@ -1981,12 +1982,12 @@
   },
   "policy": {
     "privacy": {
-      "title": "Privacy Policy",
-      "description": "This Privacy Policy explains our practices regarding the collection, use and disclosure of information that we receive through our Services."
+      "title": "プライバシー規約",
+      "description": "このプライバシー ポリシーでは、当社のサービスを通じて受け取る情報の収集、使用、および開示に関する当社の慣行について説明します。"
     },
     "terms": {
-      "description": "These Terms of Service govern your access to, and use of, our Site, and our provision of a variety of services.",
-      "title": "Terms of service"
+      "description": "これらの利用規約は、当社のサイトへのアクセスと使用、およびさまざまなサービスの提供を管理します。",
+      "title": "サービス利用規約"
     }
   }
 }
