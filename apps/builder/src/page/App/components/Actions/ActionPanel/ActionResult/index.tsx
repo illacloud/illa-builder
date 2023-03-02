@@ -72,7 +72,7 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
                 : t("editor.action.panel.status.ran_successfully")}
             </span>
             <CloseIcon
-              cur="pointer"
+              cursor="pointer"
               c={getColor("grayBlue", "05")}
               onClick={onClose}
             />
