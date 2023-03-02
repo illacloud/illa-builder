@@ -94,7 +94,7 @@ export const AutoHeightWithLimitedContainer: FC<
         }),
       )
       setTimeout(() => {
-        if (finalDynamicMinHeight > containerHeight * UNIT_HEIGHT) {
+        if (finalDynamicMinHeight > containerHeight) {
           handleUpdateComponentHeight(finalDynamicMinHeight)
         }
       }, 30)
