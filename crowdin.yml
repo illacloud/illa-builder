@@ -1,3 +1,4 @@
+commit_message: "[ci skip]"
 files:
   - source: /apps/builder/src/i18n/locale/en-US.json
     translation: /apps/builder/src/i18n/locale/%locale%.json
