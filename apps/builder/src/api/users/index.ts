@@ -58,3 +58,19 @@ export const updateUserAvatar = async (avatar: string) => {
   })
   return true
 }
+
+export const sendEmail = async (
+  email: string,
+  usage: "signup" | "forgetpwd",
+) => {
+  const res = await CloudApi.asyncRequest<{ verificationToken: string }>({
+    method: "POST",
+    url: "/auth/verification",
+    data: {
+      email,
+      usage,
+    },
+  })
+
+  return res?.data?.verificationToken
+}

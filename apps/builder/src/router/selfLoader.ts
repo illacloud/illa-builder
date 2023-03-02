@@ -25,7 +25,7 @@ export const requireSelfAuth = async (args: LoaderFunctionArgs) => {
     if (!token) {
       clearRequestPendingPool()
       if (inviteToken) {
-        const registerUrl = `/user/register${search}`
+        const registerUrl = `/register${search}`
         return redirect(registerUrl)
       }
       return redirect(loginUrl)

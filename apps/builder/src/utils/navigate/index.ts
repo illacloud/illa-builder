@@ -5,11 +5,11 @@ export const handleLinkOpen = (link: string) => {
 }
 
 export const toRegister = () => {
-  ILLARoute.navigate("/user/register")
+  ILLARoute.navigate("/register")
 }
 
 export const toForgotPassword = () => {
-  ILLARoute.navigate("/user/forgotPassword")
+  ILLARoute.navigate("/forgotPassword")
 }
 
 export const openDiscord = () => {
