@@ -1,4 +1,4 @@
-export interface ActionResultType {
-  result: unknown
-  error?: boolean
+interface ActionResultProps {
+  visible: boolean
+  onClose: () => void
 }

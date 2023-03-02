@@ -26,7 +26,7 @@ import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
-  const { visible, onClose, onCreateAction } = props
+  const { visible, onClose } = props
   const [currentStep, setCurrentStep] = useState<ActionCreatorPage>("select")
 
   const [currentActionType, setCurrentActionType] = useState<ActionType | null>(
@@ -158,10 +158,9 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const handleCreateAction = useCallback(
     (actionType: ActionType, resourceId?: string) => {
       setCurrentStep("select")
-      onCreateAction()
       onClose()
     },
-    [onClose, onCreateAction],
+    [onClose],
   )
 
   const handleFinishCreateNewResource = useCallback(

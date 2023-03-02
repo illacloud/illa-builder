@@ -175,7 +175,14 @@
           }
         },
         "tips": {
-          "acl": "버킷에 CORS를 구성하는 것을 잊지 마십시오. <0>CORS(Cross-Origin Resource Sharing) 를 참조하세요.</0>"
+          "acl": "버킷에 CORS를 구성하는 것을 잊지 마십시오. <0>CORS(Cross-Origin Resource Sharing) 를 참조하세요.</0>",
+          "connect_to_local": {
+            "cloud": "컴퓨터에 로컬이거나 개인 네트워크의 일부인 데이터베이스에 연결하려는 것 같습니다. ILLA 클라우드 버전에서는 작동하지 않을 수 있습니다. 자체 호스트 버전에 대한 방법은 문서를 확인하십시오.",
+            "selfhost": "컴퓨터에 로컬인 데이터베이스에 연결하려는 것 같습니다. \"localhost\" 또는 \"127.0.0.1\" 대신 머신의 로컬 영역 네트워크 IP 주소를 사용하십시오.",
+            "title": {
+              "tips": "팁"
+            }
+          }
         },
         "option": {
           "appwrite": {
@@ -813,7 +820,8 @@
           "play": "재생",
           "pause": "정지시키다",
           "ended": "종료",
-          "loaded": "짐을 실은"
+          "loaded": "짐을 실은",
+          "rowSelect": "행 선택"
         },
         "image_list": {
           "title": "이미지",
@@ -1177,7 +1185,7 @@
         "min_max_size": "제한 없음",
         "volume": "2",
         "statistics": {
-          "decimal": "{{ 2 }}",
+          "decimal": "2",
           "prefix_text": "US$",
           "suffix_text": "%",
           "positive_color": "긍정적인",
@@ -1301,6 +1309,10 @@
       "collapse": {
         "expand_all_items": "모든 스레드 펼치기",
         "collapse_all_items": "Collapse all items"
+      },
+      "carousel": {
+        "showNext": "다음에 보이는 이미지 표시",
+        "showPrevious": "이전에 보이는 이미지 표시"
       }
     }
   },
@@ -1502,7 +1514,11 @@
         "success": "등록 성공",
         "verification_code": "인증 코드 전송됨"
       },
-      "title": "등록하다"
+      "title": "등록하다",
+      "agreement": {
+        "privacy_policy": "개인 정보 정책",
+        "terms_of_service": "서비스 이용약관"
+      }
     }
   },
   "widget": {
@@ -1653,6 +1669,135 @@
         "fixed": "고정 너비",
         "auto": "적응성"
       }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "초기화",
+          "send": "코드 전송"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "올바른 이메일 주소를 입력하십시오",
+            "registered": "이 이메일 주소는 등록되지 않았습니다.",
+            "require": "이메일은 비워둘 수 없습니다."
+          },
+          "newPassword": {
+            "require": "비밀번호를 입력해주세요"
+          },
+          "verification_code": {
+            "expired": "인증 코드가 만료되었습니다",
+            "invalid": "잘못된 검증 코드",
+            "require": "인증 코드를 입력하십시오."
+          }
+        },
+        "fields": {
+          "email": "이메일",
+          "newPassword": "새 비밀번호",
+          "verification_code": "인증 코드"
+        },
+        "placeholder": {
+          "email": "이메일을 입력해주세요",
+          "verification_code": "인증 코드를 입력하세요"
+        },
+        "subtitle": "다시 로그인",
+        "tips": {
+          "fail": "비밀번호 재설정 실패",
+          "fail_sent": "인증 코드를 보내지 못했습니다.",
+          "success": "비밀번호 재설정 성공",
+          "verification_code": "인증 코드 전송됨"
+        },
+        "title": "암호를 재설정"
+      },
+      "password": {
+        "placeholder": "비밀번호를 입력해주세요(6자 이상)"
+      },
+      "policy": "ILLA를 사용하면 <0>개인정보 보호정책</0> 및 <1>서비스 약관</1>에 동의하게 됩니다.",
+      "sign_in": {
+        "actions": {
+          "login": "로그인"
+        },
+        "description": {
+          "forgot_password": "비밀번호를 잊으 셨나요?",
+          "policy": "\"로그인\"을 클릭하여 < 0 > 서비스 약관 < /0 > 및 < 1 > 개인 정보 보호 계약 < /1 > 을 읽고 동의했음을 나타냅니다.",
+          "register": "새로운 사용자? < 0 > 계정 등록 < /0 >"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "올바른 이메일 주소를 입력하십시오",
+            "registered": "이 이메일 주소는 등록되지 않았습니다.",
+            "require": "이메일은 비워둘 수 없습니다."
+          },
+          "password": {
+            "incorrect": "정확한 계정 비밀번호를 입력해주세요",
+            "locked": "5회 이상 잘못된 비밀번호를 입력하면 1시간 동안 계정이 잠깁니다.",
+            "min_length": "비밀번호는 6자 이상이어야 합니다.",
+            "require": "비밀번호는 비워둘 수 없습니다."
+          }
+        },
+        "fields": {
+          "email": "이메일",
+          "password": "비밀번호"
+        },
+        "placeholder": {
+          "email": "이메일을 입력해주세요"
+        },
+        "tips": {
+          "fail": "로그인 실패",
+          "success": "성공적 로그인",
+          "fail_account": "잘못된 이메일 또는 비밀번호"
+        },
+        "title": "다시 오신 것을 환영합니다"
+      },
+      "sign_up": {
+        "actions": {
+          "create": "계정 생성",
+          "send": "코드 전송"
+        },
+        "description": {
+          "login": "이미 계정이 있습니까? < 0 > 로그인 < /0 >",
+          "policy": "\"지금 등록\"을 클릭하여 <0>서비스 약관</0> 및 <1>개인정보 보호 계약</1>을 읽고 동의했음을 나타냅니다.",
+          "subscribe": "ILLA의 소식을 구독하세요"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "올바른 이메일 주소를 입력하십시오",
+            "registered": "이미 등록된 이메일입니다. 로그인하세요.",
+            "require": "이메일은 비워둘 수 없습니다."
+          },
+          "password": {
+            "require": "비밀번호는 비워둘 수 없습니다."
+          },
+          "username": {
+            "length": "사용자 이름은 3~15자여야 합니다.",
+            "require": "사용자 이름은 비워둘 수 없습니다."
+          },
+          "verification_code": {
+            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "invalid": "잘못된 검증 코드",
+            "require": "인증 코드를 입력하십시오."
+          }
+        },
+        "fields": {
+          "email": "이메일",
+          "password": "비밀번호",
+          "username": "사용자 이름",
+          "verification_code": "인증 코드"
+        },
+        "placeholder": {
+          "email": "이메일을 입력해주세요",
+          "username": "사용자 이름을 입력하십시오",
+          "verification_code": "인증 코드를 입력하십시오."
+        },
+        "tips": {
+          "fail": "등록 실패",
+          "fail_sent": "인증 코드를 보내지 못했습니다.",
+          "success": "등록 성공",
+          "verification_code": "인증 코드 전송됨"
+        },
+        "title": "등록하다"
+      },
+      "description": "개발자 전용 오픈 소스 로우 코드 플랫폼입니다."
     }
   },
   "frame_size": {
@@ -1834,5 +1979,15 @@
   },
   "message": {
     "circular_dependency": "{{ nodeName }} 에서 순환 종속성이 발생합니다."
+  },
+  "policy": {
+    "privacy": {
+      "title": "개인 정보 보호 계약",
+      "description": "이 개인 정보 보호 정책은 당사 서비스를 통해 받는 정보의 수집, 사용 및 공개에 관한 당사의 관행을 설명합니다."
+    },
+    "terms": {
+      "description": "본 서비스 약관은 당사 사이트에 대한 액세스 및 사용과 다양한 서비스 제공에 적용됩니다.",
+      "title": "에 동의하게 됩니다"
+    }
   }
 }

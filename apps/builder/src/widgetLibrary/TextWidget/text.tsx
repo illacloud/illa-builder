@@ -21,7 +21,7 @@ export const Text: FC<TextProps> = (props) => {
     fs,
     disableMarkdown,
   } = props
-
+  console.log("verticalAlign", verticalAlign)
   return (
     <div css={applyAlignStyle(verticalAlign)}>
       {disableMarkdown ? (
@@ -117,13 +117,15 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
   }, [dynamicHeight, dynamicMinHeight, h])
 
   const dynamicOptions = useMemo(() => {
-    return {
-      dynamicMinHeight,
-      dynamicMaxHeight,
-    }
-  }, [dynamicMaxHeight, dynamicMinHeight])
+    return dynamicHeight === "fixed"
+      ? {
+          dynamicMinHeight,
+          dynamicMaxHeight,
+        }
+      : undefined
+  }, [dynamicHeight, dynamicMaxHeight, dynamicMinHeight])
 
-  const [containerRef, realHeight] = useAutoUpdateHeight(
+  const [containerRef] = useAutoUpdateHeight(
     updateComponentHeight,
     enableAutoHeight,
     dynamicOptions,
@@ -135,7 +137,6 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
         ref={containerRef}
         css={applyAutoHeightContainerStyle(
           dynamicHeight,
-          realHeight,
           dynamicMinHeight,
           dynamicMaxHeight,
         )}

@@ -63,7 +63,7 @@ export const DragBar: FC<DragBarProps> = (props) => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
     }
-  }, [getMaxHeight, minHeight, mouseDown, onChange])
+  }, [getMaxHeight, minHeight, mouseDown, onChange, placeholderRef, resizeRef])
 
   useEffect(() => {
     const handleMouseUp = () => setMouseDown(false)
