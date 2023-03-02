@@ -135,6 +135,16 @@ export const generatorTableEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setEndValue",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-setPrimaryValue`,
+        labelName: "setPrimaryValue",
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        placeholder: "{{ 1234 }}",
+        // expectedType: VALIDATION_TYPES.NUMBER,
+        shown: (widgetMethod) => widgetMethod === "setPrimaryValue",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-imageUrl`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",

@@ -883,7 +883,8 @@
         "secValue": "보조 값",
         "border": "뇌졸중",
         "color": "색깔",
-        "icon": "상"
+        "icon": "상",
+        "secondary_value": "SECONDARY VALUE"
       },
       "setter_label": {
         "action": "동작",
@@ -1152,7 +1153,7 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "{{ currentItem }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어 데이터 원본에 두 개의 열이 있습니다. 이미지와 URL입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ currentItem.url }}을 이용하여 url을 설정하면 됩니다.",
+        "carousel_tips": "{{ item }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어, 데이터 소스에 두 개의 속성이 있습니다. 그들은 imageUrl과 url입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ item.url }}을 이용하여 url을 설정하세요.",
         "data_source": "매핑된 평가를 사용하여 이미지 항목을 정의하는 데이터 소스입니다. 값 배열 또는 배열에 매핑된 키 개체를 사용합니다. 예: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . 작업에서 데이터를 사용할 수도 있습니다. 예: {{ mysql1.data }}",
         "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
         "carousel": {
@@ -1176,7 +1177,7 @@
         "min_max_size": "제한 없음",
         "volume": "2",
         "statistics": {
-          "decimal": "2",
+          "decimal": "{{ 2 }}",
           "prefix_text": "US$",
           "suffix_text": "%",
           "positive_color": "긍정적인",
@@ -1294,11 +1295,16 @@
       },
       "statistics": {
         "set_primary_value": "setPrimaryValue",
-        "reset_primary_value": "resetPrimaryValue"
+        "reset_primary_value": "resetPrimaryValue",
+        "primary_value": "기본 값"
       },
       "collapse": {
         "expand_all_items": "모든 스레드 펼치기",
         "collapse_all_items": "Collapse all items"
+      },
+      "carousel": {
+        "showNext": "다음에 보이는 이미지 표시",
+        "showPrevious": "이전에 보이는 이미지 표시"
       }
     }
   },

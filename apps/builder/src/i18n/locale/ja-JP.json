@@ -883,7 +883,8 @@
         "secValue": "二次価値",
         "border": "フレーム",
         "color": "色",
-        "icon": "アイコン"
+        "icon": "アイコン",
+        "secondary_value": "SECONDARY VALUE"
       },
       "setter_label": {
         "action": "アクション",
@@ -1152,7 +1153,7 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "{{ currentItem }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの列があります。 それらは画像とURLです。 画像をクリックしたときに別の URL に移動する場合は、{{ currentItem.url }} を使用して URL を設定します。",
+        "carousel_tips": "{{ item }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの属性があります。 imageUrl と url です。 画像をクリックしたときに別の URL に移動する場合は、{{ item.url }} を使用して URL を設定します。",
         "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}",
         "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
         "carousel": {
@@ -1176,7 +1177,7 @@
         "min_max_size": "無制限",
         "volume": "2",
         "statistics": {
-          "decimal": "2",
+          "decimal": "{{ 2 }}",
           "prefix_text": "US$",
           "suffix_text": "%",
           "positive_color": "ポジティブ",
@@ -1294,11 +1295,16 @@
       },
       "statistics": {
         "set_primary_value": "setPrimaryValue",
-        "reset_primary_value": "resetPrimaryValue"
+        "reset_primary_value": "resetPrimaryValue",
+        "primary_value": "主な値"
       },
       "collapse": {
         "expand_all_items": "全ノードを展開します",
         "collapse_all_items": "Collapse all items"
+      },
+      "carousel": {
+        "showNext": "次の可視画像を表示",
+        "showPrevious": "前の可視画像を表示"
       }
     }
   },
