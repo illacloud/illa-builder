@@ -151,7 +151,7 @@
             "host": "主机",
             "dbid": "数据库 ID",
             "projectid": "项目ID",
-            "secret": "X-Appwrite-JWT",
+            "secret": "Api key",
             "collectionid": "集合ID",
             "documentid": "文档ID",
             "data": "数据",
