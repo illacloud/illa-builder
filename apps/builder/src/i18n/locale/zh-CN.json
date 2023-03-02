@@ -813,7 +813,8 @@
           "play": "播放",
           "pause": "暂停",
           "ended": "已结束",
-          "loaded": "已载入"
+          "loaded": "已载入",
+          "rowSelect": "选择行"
         },
         "image_list": {
           "title": "图片",
