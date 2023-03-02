@@ -175,7 +175,14 @@
           }
         },
         "tips": {
-          "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>"
+          "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>",
+          "connect_to_local": {
+            "cloud": "看起来您正在尝试连接到您机器本地的数据库或私有网络的一部分。 它可能不适用于 ILLA Cloud 版本。 查看我们的文档，了解如何使用自托管版本。",
+            "selfhost": "It looks like you're trying to connect to a database that's local to your machine. Please use the local area network IP address of the machine instead of \"localhost\" or \"127.0.0.1\".",
+            "title": {
+              "tips": "提示"
+            }
+          }
         },
         "option": {
           "appwrite": {
@@ -813,7 +820,8 @@
           "play": "播放",
           "pause": "暂停",
           "ended": "已结束",
-          "loaded": "已载入"
+          "loaded": "已载入",
+          "rowSelect": "选择行"
         },
         "image_list": {
           "title": "图片",
@@ -883,7 +891,8 @@
         "secValue": "次要数值",
         "border": "描边",
         "color": "颜色",
-        "icon": "图标"
+        "icon": "图标",
+        "secondary_value": "SECONDARY VALUE"
       },
       "setter_label": {
         "action": "动作",
@@ -1152,9 +1161,9 @@
         }
       },
       "setter_tips": {
-        "carousel_tips": "使用 {{ currentItem }} 从数据源中获取值。 例如，数据源中有两列。 它们是图片和网址。 如果您想在点击图片时转到不同的 url，请使用 {{ currentItem.url }} 设置 url。",
+        "carousel_tips": "使用 {{ item }} 从数据源中获取值。 例如，数据源中有两个属性。 它们是 imageUrl 和 url。 如果您想在点击图片时转到不同的 url，请使用 {{ item.url }} 设置 url。",
         "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}",
-        "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
+        "img_url_array": "使用 {{ item.attributeName }} 从数据源获取图像 URL",
         "carousel": {
           "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}"
         }
@@ -1294,11 +1303,16 @@
       },
       "statistics": {
         "set_primary_value": "setPrimaryValue",
-        "reset_primary_value": "resetPrimaryValue"
+        "reset_primary_value": "resetPrimaryValue",
+        "primary_value": "主要数值"
       },
       "collapse": {
         "expand_all_items": "展开所有项目",
         "collapse_all_items": "Collapse all items"
+      },
+      "carousel": {
+        "showNext": "显示下一个可见图像",
+        "showPrevious": "显示上一个可见图像"
       }
     }
   },
@@ -1500,7 +1514,11 @@
         "success": "注册成功",
         "verification_code": "验证码已发送"
       },
-      "title": "注册"
+      "title": "注册",
+      "agreement": {
+        "privacy_policy": "隐私政策",
+        "terms_of_service": "服务条款"
+      }
     }
   },
   "widget": {
@@ -1651,6 +1669,135 @@
         "fixed": "固定宽度",
         "auto": "自适应"
       }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "重置",
+          "send": "获取验证码"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱未注册",
+            "require": "邮箱不能为空"
+          },
+          "newPassword": {
+            "require": "密码不能为空"
+          },
+          "verification_code": {
+            "expired": "验证码已过期",
+            "invalid": "验证码错误",
+            "require": "请输入验证码"
+          }
+        },
+        "fields": {
+          "email": "邮箱",
+          "newPassword": "新密码",
+          "verification_code": "验证码"
+        },
+        "placeholder": {
+          "email": "请输入邮箱",
+          "verification_code": "请输入验证码"
+        },
+        "subtitle": "返回登录",
+        "tips": {
+          "fail": "重置密码失败",
+          "fail_sent": "发送验证码失败",
+          "success": "重置密码成功",
+          "verification_code": "验证码已发送"
+        },
+        "title": "重置密码"
+      },
+      "password": {
+        "placeholder": "请输入密码（不少于6个字符）"
+      },
+      "policy": "使用 ILLA 即表示您同意我们的<0>隐私政策</0>和<1>服务条款</1>",
+      "sign_in": {
+        "actions": {
+          "login": "登录"
+        },
+        "description": {
+          "forgot_password": "忘记密码?",
+          "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+          "register": "新用户？<0>注册账号</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱未注册",
+            "require": "邮箱不能为空"
+          },
+          "password": {
+            "incorrect": "请输入正确的账号密码",
+            "locked": "密码输错超过5次，账户将被锁定1小时",
+            "min_length": "密码须至少6个字符",
+            "require": "密码不能为空"
+          }
+        },
+        "fields": {
+          "email": "邮箱",
+          "password": "密码"
+        },
+        "placeholder": {
+          "email": "请输入邮箱"
+        },
+        "tips": {
+          "fail": "登录失败",
+          "success": "登录成功",
+          "fail_account": "请输入正确的账号密码"
+        },
+        "title": "欢迎回来"
+      },
+      "sign_up": {
+        "actions": {
+          "create": "创建账户",
+          "send": "获取验证码"
+        },
+        "description": {
+          "login": "已有账户？ <0>登录</0>",
+          "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+          "subscribe": "订阅ILLA的动态"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱已注册，请登录",
+            "require": "邮箱不能为空"
+          },
+          "password": {
+            "require": "密码不能为空"
+          },
+          "username": {
+            "length": "用户名须为3～15个字符",
+            "require": "用户名不能为空"
+          },
+          "verification_code": {
+            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "invalid": "验证码错误",
+            "require": "请输入验证码"
+          }
+        },
+        "fields": {
+          "email": "邮箱",
+          "password": "密码",
+          "username": "用户名",
+          "verification_code": "验证码"
+        },
+        "placeholder": {
+          "email": "请输入邮箱",
+          "username": "请输入用户名",
+          "verification_code": "请输入验证码"
+        },
+        "tips": {
+          "fail": "注册失败",
+          "fail_sent": "发送验证码失败",
+          "success": "注册成功",
+          "verification_code": "验证码已发送"
+        },
+        "title": "注册"
+      },
+      "description": "专属于开发者的开源低代码平台。"
     }
   },
   "frame_size": {
@@ -1832,5 +1979,15 @@
   },
   "message": {
     "circular_dependency": "{{ nodeName }} 有循环依赖"
+  },
+  "policy": {
+    "privacy": {
+      "title": "隐私协议",
+      "description": "本隐私政策将向您说明我们如何收集、使用和披露通过我们的服务收集到的信息。"
+    },
+    "terms": {
+      "description": "这些服务条款管理您对我们网站以及我们提供的各种服务的访问和使用。",
+      "title": "服务条款"
+    }
   }
 }

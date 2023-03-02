@@ -41,13 +41,130 @@ jobs:
             docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
             docker tag illa-builder-frontend "illasoft/illa-builder-frontend:${CIRCLE_BRANCH}"
             docker push "illasoft/illa-builder-frontend:${CIRCLE_BRANCH}"
+  deploy:
+    machine: # executor type
+      image: ubuntu-2004:202010-01
+    resource_class: medium
+    steps:
+      - run:
+          name: Download doctl & kubectl
+          command: |
+            sudo snap install doctl
+            sudo snap install kubectl --classic
+            doctl version
+      - run:
+          name: Setup kubectl
+          command: |
+            doctl auth init --access-token $DO_TOKEN
+            mkdir -p /home/circleci/.kube
+            sudo snap connect doctl:kube-config
+            doctl kubernetes cluster kubeconfig save $DO_CLUSTER
+            kubectl version
+      - run:
+          name: Download deployment configs
+          command: |
+            git clone $DEPLOY_REPO
+            if [ "${CIRCLE_BRANCH}" = "main" ]; then
+              echo "Deploying for main branch"
+              echo "export NS=production" >> "$BASH_ENV"
+              echo "export CFG_DIR=${DEPLOY_PRO_DIR}" >> "$BASH_ENV"
+            elif [ "${CIRCLE_BRANCH}" = "beta" ]; then
+              echo "Deploying for beta branch"
+              echo "export NS=beta" >> "$BASH_ENV"
+              echo "export CFG_DIR=${DEPLOY_BETA_DIR}" >> "$BASH_ENV"
+            elif [ "${CIRCLE_BRANCH}" = "develop" ]; then
+              echo "Deploying for develop branch"
+              echo "export NS=test" >> "$BASH_ENV"
+              echo "export CFG_DIR=${DEPLOY_TEST_DIR}" >> "$BASH_ENV"
+            else
+              echo "Not a deployable branch"
+            fi
+      - run:
+          name: Deploy different branches
+          command: |
+            echo "Deploying to ${NS} namespace"
+            cd ${CFG_DIR}
+            pwd
+            kubectl delete pod -n ${NS} -l repo=illa-builder-frontend
+            kubectl apply -f ./illa-builder-frontend/ -n ${NS}
+
+  build-all-in-one-image:
+    parameters: # parameters are at the job level
+      TAG:
+        type: boolean
+        default: false
+    machine: # executor type
+      image: ubuntu-2004:202010-01
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: Preprocess
+          command: |
+            if [ << parameters.TAG >> = true ]; then
+              TAG=${CIRCLE_TAG}
+              VERSION=v${TAG#illa-builder@}
+              echo $VERSION
+              echo ${CIRCLE_TAG}
+              echo "export IMAGE_TAG=$VERSION" >> "$BASH_ENV"
+              echo "export FE=$TAG" >> "$BASH_ENV"
+              echo "export BE=main" >> "$BASH_ENV"
+              echo "export SBE=main" >> "$BASH_ENV"
+            else
+              echo ${CIRCLE_BRANCH}
+              echo "export IMAGE_TAG=${CIRCLE_BRANCH}" >> "$BASH_ENV"
+              echo "export FE=${CIRCLE_BRANCH}" >> "$BASH_ENV"
+              echo "export BE=main" >> "$BASH_ENV"
+              echo "export SBE=main" >> "$BASH_ENV"
+            fi
+      - run:
+          name: Download build scripts
+          command: |
+            git clone https://github.com/illacloud/build-all-in-one-image
+      - run:
+          name: Build and push Docker image
+          command: |
+            cd ./build-all-in-one-image
+            docker build -f ./dockerfile -t illasoft/illa-builder:${IMAGE_TAG} --build-arg FE=${FE} --build-arg BE=${BE} --build-arg SBE=${SBE} --no-cache .
+            docker login -u $DOCKER_LOGIN -p $DOCKER_PWD
+            docker push illasoft/illa-builder:${IMAGE_TAG}
+            if [ << parameters.TAG >> = true ]; then
+              docker tag illasoft/illa-builder:${IMAGE_TAG} illasoft/illa-builder:latest
+              docker push illasoft/illa-builder:latest
+            fi
 
 workflows:
   illa-builder-frontend:
     when:
       or:
+        - equal: [main, << pipeline.git.branch >>]
+        - equal: [beta, << pipeline.git.branch >>]
         - equal: [develop, << pipeline.git.branch >>]
     jobs:
       - build:
           context:
             - org-global
+      - deploy:
+          context:
+            - org-global
+          requires:
+            - build
+  branch-build-all-in-one:
+    when:
+      or:
+        - equal: [main, << pipeline.git.branch >>]
+    jobs:
+      - build-all-in-one-image:
+          context:
+            - org-global
+  tag-build-all-in-one:
+    jobs:
+      - build-all-in-one-image:
+          context:
+            - org-global
+          TAG: true
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^illa-builder@[0-9].*/

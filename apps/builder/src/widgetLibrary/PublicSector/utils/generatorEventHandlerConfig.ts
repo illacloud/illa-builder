@@ -133,6 +133,16 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setEndValue",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-setPrimaryValue`,
+        labelName: i18n.t("editor.method.statistics.primary_value"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        placeholder: "{{ 1234 }}",
+        // expectedType: VALIDATION_TYPES.NUMBER,
+        shown: (widgetMethod) => widgetMethod === "setPrimaryValue",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-imageUrl`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "INPUT_SETTER",
