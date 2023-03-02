@@ -151,7 +151,7 @@
             "host": "주인",
             "dbid": "데이터베이스 ID",
             "projectid": "프로젝트 ID",
-            "secret": "X-Appwrite-JWT",
+            "secret": "Api key",
             "collectionid": "컬렉션 ID",
             "documentid": "문서 ID",
             "data": "데이터",
