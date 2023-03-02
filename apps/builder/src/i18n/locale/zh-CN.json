@@ -151,7 +151,7 @@
             "host": "主机",
             "dbid": "数据库 ID",
             "projectid": "项目ID",
-            "secret": "Api key",
+            "secret": "X-Appwrite-JWT",
             "collectionid": "集合ID",
             "documentid": "文档ID",
             "data": "数据",
@@ -1516,8 +1516,8 @@
       },
       "title": "注册",
       "agreement": {
-        "privacy_policy": "privacy policy",
-        "terms_of_service": "terms of service"
+        "privacy_policy": "隐私政策",
+        "terms_of_service": "服务条款"
       }
     }
   },
@@ -1673,129 +1673,129 @@
     "user": {
       "forgot_password": {
         "actions": {
-          "reset": "Reset",
-          "send": "Send code"
+          "reset": "重置",
+          "send": "获取验证码"
         },
         "error_message": {
           "email": {
-            "invalid_pattern": "Please enter a valid email address",
-            "registered": "The email address doesn't associate with an account.",
-            "require": "Please enter your email"
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱未注册",
+            "require": "邮箱不能为空"
           },
           "newPassword": {
-            "require": "Please enter your password"
+            "require": "密码不能为空"
           },
           "verification_code": {
-            "expired": "Verification code expired",
-            "invalid": "Invalid verification code",
-            "require": "Please enter verification code"
+            "expired": "验证码已过期",
+            "invalid": "验证码错误",
+            "require": "请输入验证码"
           }
         },
         "fields": {
-          "email": "Email",
-          "newPassword": "New Password",
-          "verification_code": "Verification code"
+          "email": "邮箱",
+          "newPassword": "新密码",
+          "verification_code": "验证码"
         },
         "placeholder": {
-          "email": "Enter your email",
-          "verification_code": "Please enter verification code"
+          "email": "请输入邮箱",
+          "verification_code": "请输入验证码"
         },
-        "subtitle": "Back to sign in",
+        "subtitle": "返回登录",
         "tips": {
-          "fail": "Failed to reset password",
-          "fail_sent": "Failed to send verification code",
-          "success": "Reset password successfully",
-          "verification_code": "Verification code sent"
+          "fail": "重置密码失败",
+          "fail_sent": "发送验证码失败",
+          "success": "重置密码成功",
+          "verification_code": "验证码已发送"
         },
-        "title": "Reset Password"
+        "title": "重置密码"
       },
       "password": {
-        "placeholder": "Enter your new password(at least 6 characters)"
+        "placeholder": "请输入密码（不少于6个字符）"
       },
-      "policy": "By using ILLA you are agreeing to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+      "policy": "使用 ILLA 即表示您同意我们的<0>隐私政策</0>和<1>服务条款</1>",
       "sign_in": {
         "actions": {
-          "login": "Sign in"
+          "login": "登录"
         },
         "description": {
-          "forgot_password": "Forgot Password?",
-          "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-          "register": "New user? <0>Create an account</0>"
+          "forgot_password": "忘记密码?",
+          "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+          "register": "新用户？<0>注册账号</0>"
         },
         "error_message": {
           "email": {
-            "invalid_pattern": "Please enter a valid email address",
-            "registered": "The email address doesn't associate with an account.",
-            "require": "Please enter your email"
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱未注册",
+            "require": "邮箱不能为空"
           },
           "password": {
-            "incorrect": "Incorrect email or password",
-            "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
-            "min_length": "The password must be at least 6 characters",
-            "require": "Please enter password"
+            "incorrect": "请输入正确的账号密码",
+            "locked": "密码输错超过5次，账户将被锁定1小时",
+            "min_length": "密码须至少6个字符",
+            "require": "密码不能为空"
           }
         },
         "fields": {
-          "email": "Email",
-          "password": "Password"
+          "email": "邮箱",
+          "password": "密码"
         },
         "placeholder": {
-          "email": "Enter your email"
+          "email": "请输入邮箱"
         },
         "tips": {
-          "fail": "Failed to sign in",
-          "success": "Signed in successfully",
-          "fail_account": "Incorrect email or password"
+          "fail": "登录失败",
+          "success": "登录成功",
+          "fail_account": "请输入正确的账号密码"
         },
-        "title": "Welcome back"
+        "title": "欢迎回来"
       },
       "sign_up": {
         "actions": {
-          "create": "Create Account",
-          "send": "Send code"
+          "create": "创建账户",
+          "send": "获取验证码"
         },
         "description": {
-          "login": "Already have an account? <0>Sign in</0>",
-          "policy": "By clicking Create Account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-          "subscribe": "I am willing to receive the updates and news about ILLA"
+          "login": "已有账户？ <0>登录</0>",
+          "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+          "subscribe": "订阅ILLA的动态"
         },
         "error_message": {
           "email": {
-            "invalid_pattern": "Please enter a valid email address",
-            "registered": "An account with that email address already exists.",
-            "require": "Please enter your email"
+            "invalid_pattern": "邮箱格式不正确",
+            "registered": "此邮箱已注册，请登录",
+            "require": "邮箱不能为空"
           },
           "password": {
-            "require": "Please enter password"
+            "require": "密码不能为空"
           },
           "username": {
-            "length": "The username must be 3~15 characters",
-            "require": "Please enter username"
+            "length": "用户名须为3～15个字符",
+            "require": "用户名不能为空"
           },
           "verification_code": {
-            "expired": "Verification code expired",
-            "invalid": "Invalid verification code",
-            "require": "Please enter verification code"
+            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "invalid": "验证码错误",
+            "require": "请输入验证码"
           }
         },
         "fields": {
-          "email": "Email",
-          "password": "Password",
-          "username": "Username",
-          "verification_code": "Verification code"
+          "email": "邮箱",
+          "password": "密码",
+          "username": "用户名",
+          "verification_code": "验证码"
         },
         "placeholder": {
-          "email": "Enter your email",
-          "username": "Enter your username",
-          "verification_code": "Please enter verification code"
+          "email": "请输入邮箱",
+          "username": "请输入用户名",
+          "verification_code": "请输入验证码"
         },
         "tips": {
-          "fail": "Failed to sign up",
-          "fail_sent": "Failed to send verification code",
-          "success": "Signed up successfully",
-          "verification_code": "Verification code sent"
+          "fail": "注册失败",
+          "fail_sent": "发送验证码失败",
+          "success": "注册成功",
+          "verification_code": "验证码已发送"
         },
-        "title": "Sign up"
+        "title": "注册"
       }
     }
   },
@@ -1981,12 +1981,12 @@
   },
   "policy": {
     "privacy": {
-      "title": "Privacy Policy",
-      "description": "This Privacy Policy explains our practices regarding the collection, use and disclosure of information that we receive through our Services."
+      "title": "隐私协议",
+      "description": "本隐私政策将向您说明我们如何收集、使用和披露通过我们的服务收集到的信息。"
     },
     "terms": {
-      "description": "These Terms of Service govern your access to, and use of, our Site, and our provision of a variety of services.",
-      "title": "Terms of service"
+      "description": "这些服务条款管理您对我们网站以及我们提供的各种服务的访问和使用。",
+      "title": "服务条款"
     }
   }
 }
