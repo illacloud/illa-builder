@@ -3,6 +3,7 @@ import { CacheProvider, Global } from "@emotion/react"
 import { useEffect } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
+import { HelmetProvider } from "react-helmet-async"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { RouterProvider } from "react-router-dom"
@@ -48,21 +49,23 @@ function App() {
 
   return (
     <CacheProvider value={cache}>
-      <DndProvider backend={HTML5Backend}>
-        <GlobalDataProvider>
-          <ConfigProvider locale={configLanguage}>
-            <Global styles={globalStyle} />
-            <MessageGroup pt={!isProductMode ? "46px" : "0"} />
-            <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
-            <ModalGroup />
-            <RouterProvider router={ILLARoute} />
-            <div
-              className="illaCodeMirrorWrapper"
-              css={illaCodeMirrorTooltipStyle}
-            />
-          </ConfigProvider>
-        </GlobalDataProvider>
-      </DndProvider>
+      <HelmetProvider>
+        <DndProvider backend={HTML5Backend}>
+          <GlobalDataProvider>
+            <ConfigProvider locale={configLanguage}>
+              <Global styles={globalStyle} />
+              <MessageGroup pt={!isProductMode ? "46px" : "0"} />
+              <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
+              <ModalGroup />
+              <RouterProvider router={ILLARoute} />
+              <div
+                className="illaCodeMirrorWrapper"
+                css={illaCodeMirrorTooltipStyle}
+              />
+            </ConfigProvider>
+          </GlobalDataProvider>
+        </DndProvider>
+      </HelmetProvider>
     </CacheProvider>
   )
 }

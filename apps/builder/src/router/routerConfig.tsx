@@ -71,6 +71,20 @@ export const commonRouter: RoutesObjectPro[] = [
     loader: handleRemoveUrlToken,
   },
   {
+    path: "/privacy-policy",
+    accessByMobile: true,
+    element: layLoad(
+      lazy(() => import("@/illa-public-component/User/policy/PrivacyPolicy")),
+    ),
+  },
+  {
+    path: "/terms-and-conditions",
+    accessByMobile: true,
+    element: layLoad(
+      lazy(() => import("@/illa-public-component/User/policy/TermsOfService")),
+    ),
+  },
+  {
     path: "/403",
     element: <Page403 />,
   },
