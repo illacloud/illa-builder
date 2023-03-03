@@ -42,5 +42,6 @@ export const CAROUSEL_WIDGET_CONFIG: WidgetConfig = {
     manualData: originData,
     dataSources: `{{${JSON.stringify(originData, null, "  ")}}}`,
     interval: "{{3000}}",
+    current: 0,
   },
 }

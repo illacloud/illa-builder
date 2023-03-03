@@ -32,6 +32,7 @@ export interface CarouselProps {
   showDots?: boolean
   draggable?: boolean
   onClickItem?: (index: number) => void
+  onChange?: (index: number) => void
 }
 
 export interface CarouselWidgetProps

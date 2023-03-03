@@ -27,6 +27,7 @@ export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
     interval,
     draggable,
     radius,
+    onChange,
   } = props
 
   return (
@@ -45,6 +46,7 @@ export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
       prevArrow={<PreviousIcon />}
       nextArrow={<NextIcon />}
       lazyLoad={"anticipated"}
+      afterChange={onChange}
     >
       {data.map((item, index) => {
         const { id, label, url, alt, hidden, disabled } = item
@@ -79,10 +81,11 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
   const {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    displayName,
-    tooltipText,
+    handleUpdateMultiExecutionResult,
     triggerEventHandler,
     triggerMappedEventHandler,
+    displayName,
+    tooltipText,
     manualData,
     mappedData,
     configureMode,
@@ -134,6 +137,18 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     triggerEventHandler("click")
   }, [triggerEventHandler])
 
+  const handleOnChange = useCallback(
+    (index: number) => {
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: { current: index },
+        },
+      ])
+    },
+    [handleUpdateMultiExecutionResult],
+  )
+
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       slickNext: () => {
@@ -163,6 +178,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
           autoPlay={autoPlay}
           interval={interval}
           onClickItem={handleOnClickItem}
+          onChange={handleOnChange}
           radius={finalRadius}
         />
       </div>
