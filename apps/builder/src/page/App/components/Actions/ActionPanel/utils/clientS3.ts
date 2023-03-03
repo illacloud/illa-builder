@@ -16,8 +16,7 @@ export const downloadActionResult = (
   const isDownloadBase64 = isBase64 && !!contentType
   let href = ""
   if (!isDownloadBase64) {
-    const options = contentType ? { type: contentType } : undefined
-    let blob = new Blob([data], options)
+    const blob = new Blob([data], { type: contentType })
     href = URL.createObjectURL(blob)
   }
   const a = document.createElement("a")

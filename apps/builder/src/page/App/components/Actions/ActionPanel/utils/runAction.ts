@@ -169,23 +169,24 @@ const fetchS3ClientResult = async (
   isTrigger: boolean,
   resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
-  const datas = presignData as { key: string; url: string; acl?: string }[]
+  const urlInfos = presignData as { key: string; url: string; acl?: string }[]
   try {
-    if (!datas.length) {
-      return Promise.reject("uploadUrl is undefined")
+    if (!urlInfos.length) {
+      return Promise.reject("presignedURL is undefined")
     }
-
+    const headers = {
+      "Content-Encoding": "compress",
+      Authorization: "",
+    }
     let result
     const { commands } = actionContent
     switch (commands) {
       case S3ActionRequestType.READ_ONE:
-        const readURL = datas[0].url
+        const readURL = urlInfos[0].url
         const response = await Api.asyncRequest({
           url: readURL,
           method: "GET",
-          headers: {
-            Authorization: "",
-          },
+          headers,
         })
         const { request: readReq, config: readConf, ...readRes } = response
         result = {
@@ -193,14 +194,12 @@ const fetchS3ClientResult = async (
         }
         break
       case S3ActionRequestType.DOWNLOAD_ONE:
-        const url = datas[0].url ?? ""
+        const url = urlInfos[0].url
         let downloadCommandArgs = actionContent.commandArgs
         const downloadResponse = await Api.asyncRequest<string>({
           url,
           method: "GET",
-          headers: {
-            Authorization: "",
-          },
+          headers,
         })
         const contentType =
           downloadResponse.headers["content-type"].split(";")[0] ?? ""
@@ -220,14 +219,14 @@ const fetchS3ClientResult = async (
         break
       case S3ActionRequestType.UPLOAD:
         let uploadCommandArgs = actionContent.commandArgs
-        const uploadUrl = datas[0].url
+        const uploadUrl = urlInfos[0].url
         const uploadResponse = await Api.asyncRequest({
           url: uploadUrl,
           method: "PUT",
           data: uploadCommandArgs.objectData,
           headers: {
-            Authorization: "",
-            "x-amz-acl": datas[0].acl ?? "public-read",
+            ...headers,
+            "x-amz-acl": urlInfos[0].acl ?? "public-read",
           },
         })
         const {
@@ -243,14 +242,14 @@ const fetchS3ClientResult = async (
         const multipleCommandArgs = actionContent.commandArgs
         const { objectDataList } = multipleCommandArgs
         let requests: any[] = []
-        datas.forEach((data, index) => {
+        urlInfos.forEach((data, index) => {
           requests.push(
             Api.asyncRequest({
               url: data.url,
               method: "PUT",
               data: objectDataList[index],
               headers: {
-                Authorization: "",
+                ...headers,
                 "x-amz-acl": data.acl ?? "public-read",
               },
             }),
