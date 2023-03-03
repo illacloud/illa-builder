@@ -29,7 +29,7 @@ const ResetPassword: FC = () => {
         },
       },
       () => {
-        navigate("/user/login")
+        navigate("/login")
         message.success({
           content: t("user.forgot_password.tips.success"),
         })

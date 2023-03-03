@@ -21,7 +21,7 @@ export const requireSelfAuth = async (args: LoaderFunctionArgs) => {
       "appID",
       "teamIdentifier",
     ])
-    const loginUrl = `/user/login${search}`
+    const loginUrl = `/login${search}`
     if (!token) {
       clearRequestPendingPool()
       if (inviteToken) {

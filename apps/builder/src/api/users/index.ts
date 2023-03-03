@@ -1,6 +1,7 @@
 import { v4 } from "uuid"
 import { Api } from "@/api/base"
 import { CloudApi } from "@/api/cloudApi"
+import { ILLACloudStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface UploadResponse {
@@ -71,6 +72,7 @@ export const sendEmail = async (
       usage,
     },
   })
-
-  return res?.data?.verificationToken
+  const verificationToken = res?.data?.verificationToken
+  ILLACloudStorage.setSessionStorage("verificationToken", verificationToken)
+  return verificationToken
 }

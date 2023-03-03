@@ -26,7 +26,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
   useEffect(() => {
     if (!token) {
       clearRequestPendingPool()
-      navigate("/user/login", { state: { from: location } })
+      navigate("/login", { state: { from: location } })
       return
     }
     if (!isLogin) {
@@ -47,7 +47,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
         () => {},
         () => {
           clearRequestPendingPool()
-          navigate("/user/login", { state: { from: location } })
+          navigate("/login", { state: { from: location } })
         },
       )
     }

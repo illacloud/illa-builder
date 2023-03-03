@@ -87,14 +87,17 @@ export const commonRouter: RoutesObjectPro[] = [
   {
     path: "/403",
     element: <Page403 />,
+    accessByMobile: true,
   },
   {
     path: "/500",
     element: <Page500 />,
+    accessByMobile: true,
   },
   {
     path: "/*",
     element: <Page404 />,
+    accessByMobile: true,
   },
 ]
 

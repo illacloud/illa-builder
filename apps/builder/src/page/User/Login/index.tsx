@@ -45,7 +45,7 @@ const UserLogin: FC = () => {
             replace: true,
           })
         } else {
-          navigate(location.state?.from?.pathname ?? "/", {
+          navigate(location.state?.from ?? "/", {
             replace: true,
           })
         }

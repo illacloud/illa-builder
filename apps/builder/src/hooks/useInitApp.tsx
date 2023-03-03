@@ -148,8 +148,14 @@ export const useInitBuilderApp = (mode: IllaMode) => {
               })
             handleCurrentApp(response)
             resolve(response.data)
-          } catch (e) {
+          } catch (error: any) {
+            console.log(error, "error")
             await handleUnPublicApps(controller, resolve, reject)
+            // if (error?.response) {
+            //   await handleUnPublicApps(controller, resolve, reject)
+            // } else {
+            //   reject(error)
+            // }
           }
         } else {
           await initApp(controller, resolve, reject)
