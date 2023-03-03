@@ -174,7 +174,6 @@ importers:
       '@sentry/tracing': 7.37.0
       '@tanstack/react-table': 8.7.9
       '@tanstack/table-core': 8.7.9
-      '@types/stylis': 4.0.2
       '@uiw/codemirror-theme-github': 4.19.8_isohugnrbrhzg62i2ejp6vhyvy
       '@uiw/react-color': 1.1.1
       '@uiw/react-color-sketch': 1.1.1
@@ -237,6 +236,7 @@ importers:
       '@types/qs': 6.9.7
       '@types/react-pdf': 6.2.0
       '@types/redux-logger': 3.0.9
+      '@types/stylis': 4.0.2
       '@types/tern': 0.23.4
       '@types/toposort': 2.0.3
       '@types/uuid': 8.3.4
@@ -4443,7 +4443,7 @@ packages:
 
   /@types/stylis/4.0.2:
     resolution: {integrity: sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg==}
-    dev: false
+    dev: true
 
   /@types/tern/0.23.4:
     resolution: {integrity: sha512-JAUw1iXGO1qaWwEOzxTKJZ/5JxVeON9kvGZ/osgZaJImBnyjyn0cjovPsf6FNLmyGY8Vw9DoXZCMlfMkMwHRWg==}
