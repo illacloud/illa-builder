@@ -1,13 +1,4 @@
-import { debounce } from "lodash"
-import {
-  FC,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
+import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
 import useMeasure from "react-use-measure"
 import { TextArea } from "@illa-design/react"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"

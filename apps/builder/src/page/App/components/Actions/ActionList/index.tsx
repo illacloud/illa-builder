@@ -35,12 +35,8 @@ import {
   searchHeaderContainerStyle,
 } from "./style"
 
-export interface ActionListProps extends HTMLAttributes<HTMLDivElement> {
-  onChangeSelectedAction: () => void
-}
-
-export const ActionList: FC<ActionListProps> = (props) => {
-  const { className, onChangeSelectedAction } = props
+export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
+  const { className } = props
 
   const selectedAction = useSelector(getSelectedAction)
   const cachedAction = useSelector(getCachedAction)
@@ -58,11 +54,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const modal = useModal()
-
-  const changeSelectedAction = (action: ActionItem<ActionContent>) => {
-    onChangeSelectedAction()
-    dispatch(configActions.changeSelectedAction(action))
-  }
 
   return (
     <div className={className} css={searchHeaderContainerStyle}>
@@ -99,7 +90,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
                   onDeleteItem={onDeleteActionItem}
                   onItemClick={(action) => {
                     if (selectedAction === null) {
-                      changeSelectedAction(action)
+                      dispatch(configActions.changeSelectedAction(action))
                       return
                     }
                     // is a change action
@@ -108,7 +99,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
                         JSON.stringify(cachedAction) ===
                         JSON.stringify(selectedAction)
                       ) {
-                        changeSelectedAction(action)
+                        dispatch(configActions.changeSelectedAction(action))
                       } else {
                         // show dialog
                         modal.show({
@@ -116,7 +107,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
                             "editor.action.action_list.message.confirm_switch",
                           ),
                           onOk: () => {
-                            changeSelectedAction(action)
+                            dispatch(configActions.changeSelectedAction(action))
                           },
                           okButtonProps: {
                             colorScheme: "red",
@@ -151,7 +142,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
       <ActionGenerator
         visible={generatorVisible}
         onClose={() => setGeneratorVisible(false)}
-        onCreateAction={onChangeSelectedAction}
       />
     </div>
   )

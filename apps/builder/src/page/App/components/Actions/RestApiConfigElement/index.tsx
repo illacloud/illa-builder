@@ -281,7 +281,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               }}
               onChangeValue={(index, key, v) => {
                 let newRecords = [...value]
-                newRecords[index].value = v
+                newRecords[index] = { key, value: v }
                 onChange(newRecords)
               }}
             />
@@ -320,7 +320,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               }}
               onChangeValue={(index, key, v) => {
                 let newRecords = [...value]
-                newRecords[index].value = v
+                newRecords[index] = { key, value: v }
                 onChange(newRecords)
               }}
             />
@@ -359,7 +359,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               }}
               onChangeValue={(index, key, v) => {
                 let newRecords = [...value]
-                newRecords[index].value = v
+                newRecords[index] = { key, value: v }
                 onChange(newRecords)
               }}
             />
