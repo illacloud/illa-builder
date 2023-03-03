@@ -1,5 +1,5 @@
 import { merge } from "chart.js/helpers"
-import { cloneDeep, get, set } from "lodash"
+import { cloneDeep, get, isFunction, isNumber, set } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -102,10 +102,10 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
       [dispatch],
     )
 
-    const triggerEventHandler = useCallback(
+    const getRunEvents = useCallback(
       (
         eventType: string,
-        path: string = "events",
+        path: string,
         otherCalcContext?: Record<string, any>,
       ) => {
         const originEvents = get(componentNode.props, path, []) as any[]
@@ -120,8 +120,31 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
           calcContext,
           otherCalcContext,
         )
+        return {
+          dynamicPaths,
+          needRunEvents,
+          finalContext,
+        }
+      },
+      [componentNode.props],
+    )
+
+    const triggerEventHandler = useCallback(
+      (
+        eventType: string,
+        path: string = "events",
+        otherCalcContext?: Record<string, any>,
+        formatPath?: (path: string) => string,
+      ) => {
+        const { dynamicPaths, needRunEvents, finalContext } = getRunEvents(
+          eventType,
+          path,
+          otherCalcContext,
+        )
         dynamicPaths?.forEach((path: string) => {
-          const realPath = path.split(".").slice(1).join(".")
+          const realPath = isFunction(formatPath)
+            ? formatPath(path)
+            : path.split(".").slice(1).join(".")
           try {
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {
@@ -140,7 +163,40 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
           runEventHandler(scriptObj, finalContext)
         })
       },
-      [componentNode.props],
+      [getRunEvents],
+    )
+
+    const triggerMappedEventHandler = useCallback(
+      (eventType: string, path: string = "events", index?: number) => {
+        const { dynamicPaths, needRunEvents, finalContext } = getRunEvents(
+          eventType,
+          path,
+        )
+        dynamicPaths?.forEach((path: string) => {
+          const realPath = path.split(".").slice(2).join(".")
+          try {
+            const dynamicString = get(needRunEvents, realPath, "")
+            if (dynamicString) {
+              const calcValue = evaluateDynamicString(
+                "",
+                dynamicString,
+                finalContext,
+              )
+              if (Array.isArray(calcValue) && isNumber(index)) {
+                set(needRunEvents, realPath, calcValue[index])
+              } else {
+                set(needRunEvents, realPath, calcValue)
+              }
+            }
+          } catch (e) {
+            console.log(e)
+          }
+        })
+        needRunEvents.forEach((scriptObj: any) => {
+          runEventHandler(scriptObj, finalContext)
+        })
+      },
+      [getRunEvents],
     )
 
     if (!type) return null
@@ -191,6 +247,7 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
           childrenNode={childrenNode}
           componentNode={componentNode}
           triggerEventHandler={triggerEventHandler}
+          triggerMappedEventHandler={triggerMappedEventHandler}
         />
       </div>
     )
