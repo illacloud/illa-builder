@@ -437,8 +437,8 @@ export class ExecutionTreeFactory {
         walkedPath.add(path)
         const fullPathValue = get(this.oldRawTree, path)
         if (isDynamicString(fullPathValue)) {
-          const value = get(this.oldRawTree, fullPathValue, undefined)
-          set(currentExecutionTree, fullPathValue, value)
+          const value = get(this.oldRawTree, path, undefined)
+          set(currentExecutionTree, path, value)
         }
       }
     })
