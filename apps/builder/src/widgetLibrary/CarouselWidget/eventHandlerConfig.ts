@@ -12,7 +12,7 @@ export const CAROUSEL_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "click",
     },
   ],
-  methods: [],
+  methods: ["slickNext", "slickPrevious"],
 }
 
 export const generatorMappedCarouselEventHandlerConfig = (

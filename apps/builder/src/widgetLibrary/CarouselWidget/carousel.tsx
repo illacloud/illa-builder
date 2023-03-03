@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from "react"
+import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
 import { useSelector } from "react-redux"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick-theme.css"
@@ -15,7 +15,7 @@ import { formatData } from "@/widgetLibrary/CarouselWidget/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { CarouselProps, CarouselWidgetProps } from "./interface"
 
-export const Carousel: FC<CarouselProps> = (props) => {
+export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
   const {
     onClickItem,
     showArrows,
@@ -30,6 +30,7 @@ export const Carousel: FC<CarouselProps> = (props) => {
 
   return (
     <Slider
+      ref={ref}
       centerMode
       centerPadding={"0px"}
       css={sliderStyle}
@@ -69,7 +70,7 @@ export const Carousel: FC<CarouselProps> = (props) => {
       })}
     </Slider>
   )
-}
+})
 
 Carousel.displayName = "Carousel"
 
@@ -90,6 +91,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     interval,
     radius,
   } = props
+  const carouselRef = useRef<Slider>(null)
   const isEditMode = useSelector(getIsILLAEditMode) ?? true
 
   const finalRadius = useMemo(() => {
@@ -131,10 +133,25 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
     triggerEventHandler("click")
   }, [triggerEventHandler])
 
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      slickNext: () => {
+        carouselRef.current?.slickNext()
+      },
+      slickPrevious: () => {
+        carouselRef.current?.slickPrev()
+      },
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [displayName, handleUpdateGlobalData, handleDeleteGlobalData])
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={buttonLayoutStyle}>
         <Carousel
+          ref={carouselRef}
           // autoPlay change need to reload Carousel
           draggable={!isEditMode}
           key={Number(autoPlay)}

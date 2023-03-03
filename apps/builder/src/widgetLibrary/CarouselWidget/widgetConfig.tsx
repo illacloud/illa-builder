@@ -4,23 +4,23 @@ import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const CAROUSEL_DEFAULT_IMAGE =
-  "https://images.unsplash.com/photo-1614853316476-de00d14cb1fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"
+  "https://images.unsplash.com/photo-1506105524407-94b39b1e7415?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTB8UUZ6YlEwZ0RodlF8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
 
 const originData = [
   {
     id: `Image-${v4()}`,
     label: "Image 1",
-    url: CAROUSEL_DEFAULT_IMAGE,
+    url: "https://images.unsplash.com/photo-1506105524407-94b39b1e7415?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTB8UUZ6YlEwZ0RodlF8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60",
   },
   {
     id: `Image-${v4()}`,
     label: "Image 2",
-    url: CAROUSEL_DEFAULT_IMAGE,
+    url: "https://images.unsplash.com/photo-1528074529665-982494e88f39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8N3xRRnpiUTBnRGh2UXx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60",
   },
   {
     id: `Image-${v4()}`,
     label: "Image 3",
-    url: CAROUSEL_DEFAULT_IMAGE,
+    url: "https://images.unsplash.com/photo-1629044297557-81cbc9d05b8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTl8UUZ6YlEwZ0RodlF8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60",
   },
 ]
 
@@ -39,23 +39,7 @@ export const CAROUSEL_WIDGET_CONFIG: WidgetConfig = {
     showArrows: true,
     showDots: true,
     hidden: false,
-    manualData: [
-      {
-        id: `Image-${v4()}`,
-        label: "Image 1",
-        url: CAROUSEL_DEFAULT_IMAGE,
-      },
-      {
-        id: `Image-${v4()}`,
-        label: "Image 2",
-        url: CAROUSEL_DEFAULT_IMAGE,
-      },
-      {
-        id: `Image-${v4()}`,
-        label: "Image 3",
-        url: CAROUSEL_DEFAULT_IMAGE,
-      },
-    ],
+    manualData: originData,
     dataSources: `{{${JSON.stringify(originData, null, "  ")}}}`,
     interval: "{{3000}}",
   },
