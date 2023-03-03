@@ -21,7 +21,7 @@ export const Text: FC<TextProps> = (props) => {
     fs,
     disableMarkdown,
   } = props
-  console.log("verticalAlign", verticalAlign)
+
   return (
     <div css={applyAlignStyle(verticalAlign)}>
       {disableMarkdown ? (
