@@ -13,8 +13,8 @@ export const authInterceptor = (config: AxiosRequestConfig) => {
   const token = getAuthToken()
   if (typeof token === "string") {
     config.headers = {
-      ...(config.headers ?? {}),
       Authorization: token,
+      ...(config.headers ?? {}),
     }
   }
   return config
@@ -39,10 +39,10 @@ export const axiosErrorInterceptor = (error: AxiosError) => {
         ILLARoute.navigate(cloudUrl)
       } else {
         const { pathname } = location
-        ILLARoute.navigate("/user/login", {
+        ILLARoute.navigate("/login", {
           replace: true,
           state: {
-            form: pathname || "/",
+            from: pathname || "/",
           },
         })
       }

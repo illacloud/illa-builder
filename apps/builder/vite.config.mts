@@ -1,3 +1,4 @@
+import mdx from "@mdx-js/rollup"
 import basicSsl from "@vitejs/plugin-basic-ssl"
 import react from "@vitejs/plugin-react-swc"
 import { resolve } from "path"
@@ -15,6 +16,7 @@ export default defineConfig((props) => {
         jsxImportSource: "@emotion/react",
       }),
       svgr(),
+      mdx(),
       checker({
         typescript: true,
       }),

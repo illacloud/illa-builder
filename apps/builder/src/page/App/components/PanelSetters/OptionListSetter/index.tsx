@@ -1,7 +1,10 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { OptionListSetterProvider } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
-import { generateNewOptionItem } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
+import {
+  generateNewOptionItem,
+  generateOptionItemId,
+} from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
 import { ListBody } from "./body"
 import { OptionListHeader } from "./header"
 import { OptionListSetterProps } from "./interface"
@@ -34,6 +37,7 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
       optionItems={value}
       attrPath={attrName}
       handleUpdateDsl={handleUpdateDsl}
+      generateItemId={generateOptionItemId}
     >
       <div css={ListStyle}>
         <OptionListHeader
