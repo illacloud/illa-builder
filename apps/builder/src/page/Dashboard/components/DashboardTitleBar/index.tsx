@@ -64,7 +64,7 @@ const SettingTrigger: FC = () => {
           css={settingItemStyle}
           onClick={() => {
             clearLocalStorage()
-            ILLARoute.navigate("/user/login", {
+            ILLARoute.navigate("/login", {
               replace: true,
             })
           }}
