@@ -1,5 +1,4 @@
-import { LoaderFunctionArgs, createBrowserRouter } from "react-router-dom"
-import { CheckIsLogin } from "@/auth"
+import { createBrowserRouter } from "react-router-dom"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
 import { Page404 } from "@/page/status/404"
 import { RoutesObjectPro } from "@/router/interface"
@@ -36,11 +35,7 @@ const wrappedRouter = (
           return await requireSelfAuth(args)
         }
         if (!newRouteItem.accessByMobile) {
-          newRouteItem.element = (
-            <LayoutAutoChange
-              desktopPage={<CheckIsLogin>{element}</CheckIsLogin>}
-            />
-          )
+          newRouteItem.element = <LayoutAutoChange desktopPage={element} />
         } else {
           newRouteItem.element = element
         }

@@ -1,54 +1,24 @@
 import { FC, useState } from "react"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { Trans, useTranslation } from "react-i18next"
+import { SubmitHandler } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
-import {
-  Button,
-  Input,
-  Password,
-  WarningCircleIcon,
-  useMessage,
-} from "@illa-design/react"
+import { useMessage } from "@illa-design/react"
 import { CloudApi } from "@/api/cloudApi"
-import { EMAIL_FORMAT } from "@/constants/regExp"
-import { TextLink } from "@/page/User/components/TextLink"
-import {
-  descriptionStyle,
-  errorIconStyle,
-  errorMsgStyle,
-  forgotPwdContainerStyle,
-  forgotPwdStyle,
-  formLabelStyle,
-  formTitleStyle,
-  gridFormFieldStyle,
-  gridFormStyle,
-  gridItemStyle,
-  gridValidStyle,
-} from "@/page/User/style"
+import LoginPage from "@/illa-public-component/User/login"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import {
-  CurrentUser,
-  UserInfoResponse,
-} from "@/redux/currentUser/currentUserState"
+import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
 import { setLocalStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { LoginFields } from "./interface"
 
-export const Login: FC = () => {
+const UserLogin: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState({ email: "", password: "" })
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
   const dispatch = useDispatch()
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFields>({
-    mode: "onSubmit",
-  })
   const [searchParams] = useSearchParams()
   const appID = searchParams.get("appID")
   const teamIdentifier = searchParams.get("teamIdentifier")
@@ -75,7 +45,7 @@ export const Login: FC = () => {
             replace: true,
           })
         } else {
-          navigate(location.state?.from?.pathname ?? "/", {
+          navigate(location.state?.from ?? "/", {
             replace: true,
           })
         }
@@ -115,133 +85,14 @@ export const Login: FC = () => {
   }
 
   return (
-    <form css={gridFormStyle} onSubmit={handleSubmit(onSubmit)}>
-      <header css={gridItemStyle}>
-        <div css={formTitleStyle}>{t("user.sign_in.title")}</div>
-        <div css={descriptionStyle}>
-          <Trans
-            i18nKey="user.sign_in.description.register"
-            t={t}
-            components={[
-              <TextLink
-                key="text-link"
-                onClick={() => {
-                  navigate({
-                    pathname: "/user/register",
-                    search: location.search,
-                  })
-                }}
-              />,
-            ]}
-          />
-        </div>
-      </header>
-      <section css={gridFormFieldStyle}>
-        <section css={gridItemStyle}>
-          <label css={formLabelStyle}>{t("user.sign_in.fields.email")}</label>
-          <div css={gridValidStyle}>
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  onChange={(value, event) => {
-                    field.onChange(event)
-                    if (errorMsg.email !== "") {
-                      setErrorMsg({ ...errorMsg, email: "" })
-                    }
-                  }}
-                  size="large"
-                  error={!!errors.email || !!errorMsg.email}
-                  variant="fill"
-                  placeholder={t("user.sign_in.placeholder.email")}
-                  colorScheme="techPurple"
-                />
-              )}
-              rules={{
-                required: t("user.sign_in.error_message.email.require"),
-                validate: (value: string) => {
-                  if (isCloudVersion && !EMAIL_FORMAT.test(value)) {
-                    return t("user.sign_up.error_message.email.invalid_pattern")
-                  }
-                  return value === "root"
-                    ? true
-                    : EMAIL_FORMAT.test(value)
-                    ? true
-                    : t("user.sign_up.error_message.email.invalid_pattern")
-                },
-              }}
-            />
-            {(errors.email || errorMsg.email) && (
-              <div css={errorMsgStyle}>
-                <WarningCircleIcon css={errorIconStyle} />
-                {errors.email?.message || errorMsg.email}
-              </div>
-            )}
-          </div>
-        </section>
-        <section css={gridItemStyle}>
-          <div css={forgotPwdContainerStyle}>
-            <label css={formLabelStyle}>
-              {t("user.sign_in.fields.password")}
-            </label>
-            <TextLink
-              css={forgotPwdStyle}
-              onClick={() => {
-                navigate("/user/forgotPassword")
-              }}
-            >
-              {t("user.sign_in.description.forgot_password")}
-            </TextLink>
-          </div>
-          <div css={gridValidStyle}>
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <Password
-                  {...field}
-                  onChange={(event) => {
-                    field.onChange(event)
-                    if (errorMsg.password !== "") {
-                      setErrorMsg({ ...errorMsg, password: "" })
-                    }
-                  }}
-                  size="large"
-                  error={!!errors.password || !!errorMsg.password}
-                  variant="fill"
-                  placeholder={t("user.password.placeholder")}
-                  colorScheme="techPurple"
-                />
-              )}
-              rules={{
-                required: t("user.sign_in.error_message.password.require"),
-                minLength: {
-                  value: 6,
-                  message: t("user.sign_in.error_message.password.min_length"),
-                },
-              }}
-            />
-            {(errors.password || errorMsg.password) && (
-              <div css={errorMsgStyle}>
-                <WarningCircleIcon css={errorIconStyle} />
-                {errors.password?.message || errorMsg.password}
-              </div>
-            )}
-          </div>
-        </section>
-      </section>
-      <Button
-        colorScheme="techPurple"
-        size="large"
-        loading={submitLoading}
-        fullWidth
-      >
-        {t("user.sign_in.actions.login")}
-      </Button>
-    </form>
+    <LoginPage
+      loading={submitLoading}
+      errorMsg={errorMsg}
+      onSubmit={onSubmit}
+    />
   )
 }
 
-Login.displayName = "Login"
+export default UserLogin
+
+UserLogin.displayName = "UserLogin"
