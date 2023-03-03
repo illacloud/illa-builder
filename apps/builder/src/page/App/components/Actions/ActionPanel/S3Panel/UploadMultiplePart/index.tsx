@@ -99,6 +99,19 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           expectValueType={VALIDATION_TYPES.ARRAY}
         />
       </div>
+      <div css={s3ItemStyle}>
+        <span css={codeEditorLabelStyle}>
+          {t("editor.action.panel.s3.timeout_upload_multiple")}
+        </span>
+        <CodeEditor
+          singleLine
+          wrapperCss={s3ItemCodeEditorStyle}
+          lang={CODE_LANG.JAVASCRIPT}
+          value={commandArgs.expiry}
+          onChange={(value) => handleValueChange(value, "expiry")}
+          expectValueType={VALIDATION_TYPES.NUMBER}
+        />
+      </div>
     </>
   )
 }

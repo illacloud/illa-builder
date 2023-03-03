@@ -437,10 +437,8 @@ export class ExecutionTreeFactory {
         walkedPath.add(path)
         const fullPathValue = get(this.oldRawTree, path)
         if (isDynamicString(fullPathValue)) {
-          const pathArray = toPath(path)
-          const rootPath = pathArray.slice(0, 2).join(".")
-          const value = get(this.oldRawTree, rootPath, undefined)
-          set(currentExecutionTree, rootPath, value)
+          const value = get(this.oldRawTree, path, undefined)
+          set(currentExecutionTree, path, value)
         }
       }
     })
@@ -466,7 +464,6 @@ export class ExecutionTreeFactory {
     const orderPath = this.calcSubTreeSortOrder(
       differences,
       currentExecutionTree as RawTreeShape,
-      true,
     )
 
     let currentRawTree = this.updateRawTreeByUpdatePaths(

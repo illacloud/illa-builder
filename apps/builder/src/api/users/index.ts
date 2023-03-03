@@ -1,6 +1,7 @@
 import { v4 } from "uuid"
 import { Api } from "@/api/base"
 import { CloudApi } from "@/api/cloudApi"
+import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface UploadResponse {
@@ -57,4 +58,21 @@ export const updateUserAvatar = async (avatar: string) => {
     },
   })
   return true
+}
+
+export const sendEmail = async (
+  email: string,
+  usage: "signup" | "forgetpwd",
+) => {
+  const res = await CloudApi.asyncRequest<{ verificationToken: string }>({
+    method: "POST",
+    url: "/auth/verification",
+    data: {
+      email,
+      usage,
+    },
+  })
+  const verificationToken = res?.data?.verificationToken
+  ILLABuilderStorage.setSessionStorage("verificationToken", verificationToken)
+  return verificationToken
 }
