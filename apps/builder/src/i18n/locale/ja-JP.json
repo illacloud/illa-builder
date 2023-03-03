@@ -340,8 +340,8 @@
           "upload_data_list": "アップロードデータ一覧",
           "upload_object_name": "アップロード オブジェクト名",
           "upload_object_name_list": "オブジェクト名リストのアップロード",
-          "timeout_upload": "Timeout for uploading a file (Minute)",
-          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
+          "timeout_upload": "파일 업로드 제한 시간(분)",
+          "timeout_upload_multiple": "単一ファイルのアップロードのタイムアウト (分)"
         },
         "smtp": {
           "attachment": "付録",
