@@ -1,13 +1,12 @@
 import { FC, ReactNode, createContext, useCallback } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { OptionItemShape } from "../interface"
-import { generateOptionItemId } from "../utils/generateNewOptions"
 
 interface ProviderProps {
-  optionItems: OptionItemShape[]
+  optionItems: Record<string, any>[]
   childrenSetter: PanelFieldConfig[]
   widgetDisplayName: string
   attrPath: string
+  generateItemId: () => string
   handleUpdateDsl: (attrPath: string, value: any) => void
   children: ReactNode
 }
@@ -21,7 +20,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
 export const OptionListSetterContext = createContext<Inject>({} as Inject)
 
 export const OptionListSetterProvider: FC<ProviderProps> = (props) => {
-  const { optionItems, attrPath, handleUpdateDsl } = props
+  const { optionItems, attrPath, handleUpdateDsl, generateItemId } = props
 
   const handleDeleteOptionItem = useCallback(
     (index: number) => {
@@ -45,7 +44,7 @@ export const OptionListSetterProvider: FC<ProviderProps> = (props) => {
       if (!targetOptionItem) return
       targetOptionItem = {
         ...targetOptionItem,
-        id: generateOptionItemId(),
+        id: generateItemId(),
       }
       const updatedArray = [...optionItems, targetOptionItem]
       handleUpdateDsl(attrPath, updatedArray)

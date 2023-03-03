@@ -28,6 +28,7 @@ export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
     expectedType,
     value,
     widgetDisplayName,
+    isInList,
   } = props
 
   const handleValueChange = useCallback(
@@ -47,7 +48,7 @@ export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
   )
 
   return (
-    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
+    <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
       <CodeEditor
         value={realInputValue(value, widgetDisplayName)}
         onChange={handleValueChange}
