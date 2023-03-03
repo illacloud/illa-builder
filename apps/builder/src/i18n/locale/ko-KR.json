@@ -340,8 +340,8 @@
           "upload_data_list": "데이터 목록 업로드",
           "upload_object_name": "객체 이름 업로드",
           "upload_object_name_list": "개체 이름 목록 업로드",
-          "timeout_upload": "Timeout for uploading a file (Minute)",
-          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
+          "timeout_upload": "파일 업로드 제한 시간(분)",
+          "timeout_upload_multiple": "단일 파일 업로드 제한 시간(분)"
         },
         "smtp": {
           "attachment": "부록",
@@ -1660,7 +1660,7 @@
       "name": "Multiselect"
     },
     "carousel": {
-      "name": "Carousel"
+      "name": "회전목마"
     }
   },
   "page": {

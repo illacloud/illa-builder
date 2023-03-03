@@ -49,6 +49,13 @@ export const S3ActionList = [
   },
 ]
 
+export const ClientS3 = [
+  S3ActionRequestType.READ_ONE,
+  S3ActionRequestType.DOWNLOAD_ONE,
+  S3ActionRequestType.UPLOAD,
+  S3ActionRequestType.UPLOAD_MULTIPLE,
+]
+
 export interface ListAllContent {
   bucketName: string
   prefix: string
@@ -70,21 +77,29 @@ export const ListAllContentInitial: ListAllContent = {
 export interface ReadOneContent {
   bucketName: string
   objectKey: string
+  signedURL: boolean
+  expiry: string
 }
 
 export const ReadOneContentInitial: ReadOneContent = {
   bucketName: "",
   objectKey: "",
+  signedURL: false,
+  expiry: "{{5}}",
 }
 
 export interface DownloadOneContent {
   bucketName: string
   objectKey: string
+  signedURL: boolean
+  expiry: string
 }
 
 export const DownloadOneContentInitial: DownloadOneContent = {
   bucketName: "",
   objectKey: "",
+  signedURL: false,
+  expiry: "{{5}}",
 }
 
 export interface DeleteOneContent {
@@ -114,6 +129,7 @@ export interface UploadContent {
   contentType: string
   objectKey: string
   objectData: string
+  expiry: string
 }
 
 export const UploadContentInitial: UploadContent = {
@@ -121,6 +137,7 @@ export const UploadContentInitial: UploadContent = {
   contentType: "",
   objectKey: "",
   objectData: "",
+  expiry: "{{1}}",
 }
 
 export interface UploadMultipleContent {
@@ -128,6 +145,7 @@ export interface UploadMultipleContent {
   contentType: string
   objectKeyList: string
   objectDataList: string
+  expiry: string
 }
 
 export const UploadMultipleContentInitial: UploadMultipleContent = {
@@ -135,6 +153,7 @@ export const UploadMultipleContentInitial: UploadMultipleContent = {
   contentType: "",
   objectKeyList: "",
   objectDataList: "",
+  expiry: "{{1}}",
 }
 
 export type S3ActionTypeContent =
@@ -162,3 +181,14 @@ export const S3ActionInitial: S3Action<ListAllContent> = {
     maxKeys: "{{100}}",
   },
 }
+
+export const SelectOption = [
+  {
+    label: "No",
+    value: 0,
+  },
+  {
+    label: "Yes",
+    value: 1,
+  },
+]
