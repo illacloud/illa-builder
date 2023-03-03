@@ -7,6 +7,7 @@ import { Image, NextIcon, PreviousIcon } from "@illa-design/react"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import {
+  applyDisabledStyle,
   fullHeightStyle,
   fullImageStyle,
   sliderStyle,
@@ -50,7 +51,7 @@ export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
         if (hidden) return null
         return (
           <div
-            css={fullHeightStyle}
+            css={[fullHeightStyle, applyDisabledStyle(disabled)]}
             key={id}
             onClick={() => {
               !disabled && onClickItem?.(index)

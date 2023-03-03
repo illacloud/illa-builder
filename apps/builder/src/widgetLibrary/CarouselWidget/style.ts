@@ -7,6 +7,7 @@ export const sliderStyle = css`
   .slick-track {
     inset-inline-start: 0;
   }
+
   .slick-dotted.slick-slider {
     margin-bottom: 30px;
   }
@@ -51,6 +52,7 @@ export const sliderStyle = css`
     background: transparent;
     transition: opacity 0.2s;
   }
+
   .slick-dots li button:focus:before {
     opacity: 0.25;
   }
@@ -130,3 +132,12 @@ export const fullImageStyle = css`
   height: 100%;
   object-fit: cover;
 `
+
+export const applyDisabledStyle = (disabled?: boolean) => {
+  if (disabled) {
+    return css`
+      cursor: not-allowed;
+    `
+  }
+  return css``
+}
