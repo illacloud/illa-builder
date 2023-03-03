@@ -35,7 +35,7 @@ export const configItemTip = css`
   padding-bottom: 8px;
   padding-left: 24px;
   line-height: 22px;
-  height: 30px;
+  min-height: 30px;
 `
 
 export const labelContainer = css`

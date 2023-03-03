@@ -30,6 +30,7 @@ export interface ControlledElementProps {
   controlledType: ControlledType | ControlledType[]
   options?: string[] | number[] | SelectOptionObject[]
   control: Control
+  allowClear?: boolean
   rules?: RegisterOptions[]
   onValueChange?: (value: ValueType) => void
 }
