@@ -5,9 +5,11 @@ import {
   ErrorShape,
   ExecutionState,
   UpdateExecutionByDisplayNamePayload,
+  UpdateWidgetLayoutInfoPayload,
   executionInitialState,
   setExecutionResultPayload,
 } from "@/redux/currentApp/executionTree/executionState"
+import { isWidget } from "@/utils/executionTreeHelper/utils"
 
 export const setDependenciesReducer: CaseReducer<
   ExecutionState,
@@ -119,4 +121,50 @@ export const resetExecutionResultReducer: CaseReducer<
   PayloadAction
 > = (state, action) => {
   return executionInitialState
+}
+
+export const updateWidgetLayoutInfoReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<UpdateWidgetLayoutInfoPayload>
+> = (state, action) => {
+  if (!state) return
+  const { displayName, layoutInfo } = action.payload
+  const result = state.result
+  const currentWidget = result[displayName]
+  if (
+    !currentWidget ||
+    !layoutInfo ||
+    Object.keys(layoutInfo).length === 0 ||
+    !isWidget(currentWidget)
+  ) {
+    return
+  }
+  currentWidget.$layoutInfo = {
+    ...currentWidget.$layoutInfo,
+    ...layoutInfo,
+  }
+}
+
+export const batchUpdateWidgetLayoutInfoReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<UpdateWidgetLayoutInfoPayload[]>
+> = (state, action) => {
+  if (!state) return
+  action.payload.forEach((updateSlice) => {
+    const { displayName, layoutInfo } = updateSlice
+    const result = state.result
+    const currentWidget = result[displayName]
+    if (
+      !currentWidget ||
+      !layoutInfo ||
+      Object.keys(layoutInfo).length === 0 ||
+      !isWidget(currentWidget)
+    ) {
+      return
+    }
+    currentWidget.$layoutInfo = {
+      ...currentWidget.$layoutInfo,
+      ...layoutInfo,
+    }
+  })
 }

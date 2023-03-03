@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
+  batchUpdateWidgetLayoutInfoReducer,
   resetExecutionResultReducer,
   setDependenciesReducer,
   setExecutionDebuggerDataReducer,
@@ -9,6 +10,7 @@ import {
   updateExecutionByDisplayNameReducer,
   updateExecutionByMultiDisplayNameReducer,
   updateModalDisplayReducer,
+  updateWidgetLayoutInfoReducer,
 } from "@/redux/currentApp/executionTree/executionReducer"
 import { executionInitialState } from "@/redux/currentApp/executionTree/executionState"
 
@@ -25,6 +27,8 @@ const executionSlice = createSlice({
     updateExecutionByMultiDisplayNameReducer,
     updateModalDisplayReducer,
     resetExecutionResultReducer,
+    updateWidgetLayoutInfoReducer,
+    batchUpdateWidgetLayoutInfoReducer,
   },
 })
 

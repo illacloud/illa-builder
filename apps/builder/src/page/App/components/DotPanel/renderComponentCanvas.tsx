@@ -46,12 +46,14 @@ import {
   modifyComponentNodeX,
   modifyComponentNodeY,
 } from "@/redux/currentApp/editor/components/componentsListener"
+import { UpdateComponentNodeLayoutInfoPayload } from "@/redux/currentApp/editor/components/componentsPayload"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   IGNORE_WIDGET_TYPES,
   getRootNodeExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
@@ -250,7 +252,6 @@ export const RenderComponentCanvas: FC<{
   const currentCanvasRef = useRef<HTMLDivElement | null>(
     null,
   ) as MutableRefObject<HTMLDivElement | null>
-  const autoScrollTimeoutID = useRef<number>()
 
   const unitWidth = useMemo(() => {
     return bounds.width / blockColumns
@@ -259,11 +260,6 @@ export const RenderComponentCanvas: FC<{
   const componentTree = useMemo(() => {
     const childrenNode = componentNode.childrenNode
     return childrenNode?.map((item) => {
-      const h = item.h * UNIT_HEIGHT
-      const w = item.w * unitWidth
-      const x = Math.floor(item.x * unitWidth)
-      const y = Math.floor(item.y * UNIT_HEIGHT)
-
       const containerHeight =
         componentNode.displayName === "root"
           ? rowNumber * UNIT_HEIGHT
@@ -288,10 +284,6 @@ export const RenderComponentCanvas: FC<{
             <ScaleSquare
               key={item.displayName}
               componentNode={item}
-              h={h}
-              w={w}
-              x={x}
-              y={y}
               unitW={unitWidth}
               unitH={UNIT_HEIGHT}
               containerHeight={containerHeight}
@@ -320,17 +312,11 @@ export const RenderComponentCanvas: FC<{
     unitWidth,
   ])
 
-  const updateComponentPositionByReflow = useCallback(
-    (updateSlice: DebounceUpdateReflow[]) => {
-      dispatch(componentsActions.updateComponentReflowReducer(updateSlice))
-    },
-    [dispatch],
-  )
-
-  const debounceUpdateComponentPositionByReflow = throttle(
-    updateComponentPositionByReflow,
-    60,
-  )
+  const throttleUpdateComponentPositionByReflow = useMemo(() => {
+    return throttle((updateSlice: UpdateComponentNodeLayoutInfoPayload[]) => {
+      dispatch(executionActions.batchUpdateWidgetLayoutInfoReducer(updateSlice))
+    }, 60)
+  }, [dispatch])
 
   const [{ isActive, nodeWidth, nodeHeight }, dropTarget] = useDrop<
     DragInfo,
@@ -438,6 +424,7 @@ export const RenderComponentCanvas: FC<{
               const { finalState, effectResultMap } = getReflowResult(
                 newItem,
                 allChildrenNodes,
+                true,
               )
               finalChildrenNodes = finalState
               finalEffectResultMap = effectResultMap
@@ -450,6 +437,7 @@ export const RenderComponentCanvas: FC<{
               const { finalState, effectResultMap } = getReflowResult(
                 newItem,
                 allChildrenNodes,
+                true,
               )
               finalChildrenNodes = finalState
               finalEffectResultMap = effectResultMap
@@ -457,32 +445,20 @@ export const RenderComponentCanvas: FC<{
           }
 
           if (!isFreezeCanvas) {
-            const updateSlice = [
-              {
-                parentDisplayName: componentNode.displayName || "root",
-                childNodes: finalChildrenNodes,
-              },
-            ]
-
-            if (newItem.parentNode !== oldParentDisplayName) {
-              let oldParentChildNodes = dragInfo.childrenNodes.filter(
-                (node) => node.parentNode === oldParentDisplayName,
-              )
-              if (oldParentChildNodes.length > 0) {
-                const indexOfOldChildren = oldParentChildNodes.findIndex(
-                  (node) => node.displayName === newItem.displayName,
-                )
-                const allChildrenNodes = [...oldParentChildNodes]
-                if (indexOfChildrenNodes !== -1) {
-                  allChildrenNodes.splice(indexOfOldChildren, 1, newItem)
+            const updateSlice: UpdateComponentNodeLayoutInfoPayload[] =
+              finalChildrenNodes.map((node) => {
+                return {
+                  displayName: node.displayName,
+                  layoutInfo: {
+                    x: node.x,
+                    y: node.y,
+                    w: node.w,
+                    h: node.h,
+                    unitW: node.unitW,
+                  },
                 }
-                updateSlice.push({
-                  parentDisplayName: oldParentDisplayName as string,
-                  childNodes: allChildrenNodes,
-                })
-              }
-            }
-            debounceUpdateComponentPositionByReflow(updateSlice)
+              })
+            throttleUpdateComponentPositionByReflow(updateSlice)
             setCollisionEffect(new Map())
           } else {
             setCollisionEffect(finalEffectResultMap)
@@ -628,14 +604,26 @@ export const RenderComponentCanvas: FC<{
                   ],
                 }),
               )
-            } else {
-              dispatch(
-                componentsActions.updateComponentsShape({
-                  isMove: false,
-                  components: [newItem],
-                }),
-              )
             }
+            dispatch(
+              componentsActions.updateComponentLayoutInfoReducer({
+                displayName: newItem.displayName,
+                layoutInfo: {
+                  x: newItem.x,
+                  y: newItem.y,
+                  w: newItem.w,
+                  h: newItem.h,
+                  unitW: newItem.unitW,
+                  unitH: newItem.unitH,
+                },
+                statusInfo: {
+                  isDragging: false,
+                },
+                options: {
+                  parentNode: newItem.parentNode,
+                },
+              }),
+            )
           }
           setCollisionEffect(new Map())
           return {

@@ -1,17 +1,13 @@
 import { cloneDeep, get, merge, set } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import {
   BUILDER_CALC_CONTEXT,
   GLOBAL_DATA_CONTEXT,
 } from "@/page/App/context/globalDataProvider"
-import {
-  getCanvas,
-  getContainerListDisplayNameMappedChildrenNodeDisplayName,
-  searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store, { RootState } from "@/store"
@@ -27,7 +23,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
     const { componentNode, blockColumns } = props
     const displayNameMapProps = useSelector(getExecutionResult)
-    const { displayName, type, w, h, unitW, unitH, childrenNode } =
+    const { displayName, type, w, h, unitW, unitH, childrenNode, parentNode } =
       componentNode
 
     const realProps = useMemo(
@@ -70,26 +66,28 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
         const rootState = store.getState() as RootState
-        const rootNode = getCanvas(rootState)
-        const currentComponentNode = searchDsl(
-          rootNode,
-          displayName,
-        ) as ComponentNode
+        const executionResult = getExecutionResult(rootState)
+        const oldH = executionResult[displayName]?.$layoutInfo.h ?? 0
         // padding 2px so this is +4
         const newH = Math.max(
-          Math.ceil((newHeight + 6) / currentComponentNode.unitH),
+          Math.ceil((newHeight + 6) / UNIT_HEIGHT),
           MIN_HEIGHT,
         )
-        if (newH === currentComponentNode.h) return
+        if (newH === oldH) return
         dispatch(
-          componentsActions.updateComponentNodeHeightReducer({
+          executionActions.updateWidgetLayoutInfoReducer({
             displayName,
-            height: newH,
-            oldHeight: currentComponentNode.h,
+            layoutInfo: {
+              h: newH,
+            },
+            options: {
+              parentNode: parentNode as string,
+              effectRows: newH - oldH,
+            },
           }),
         )
       },
-      [dispatch, displayName],
+      [dispatch, displayName, parentNode],
     )
 
     const handleUpdateDsl = useCallback(

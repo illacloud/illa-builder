@@ -1,18 +1,27 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { diff } from "deep-diff"
+import { cloneDeep } from "lodash"
 import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   getExecutionResult,
   getRawTree,
+  getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import {
+  batchMergeLayoutInfoToComponent,
+  mergeLayoutInfoToComponent,
+} from "@/utils/drag/drag"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 
@@ -123,6 +132,119 @@ async function handleStartExecutionOnCanvas(
   }
 }
 
+async function handleUpdateWidgetPosition(
+  action: AnyAction,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const rootState = listenerApi.getState()
+  const rawTree = getRawTree(rootState)
+  if (!rawTree) return
+  mergeActionResult(rawTree)
+  const oldExecutionTree = getExecutionResult(rootState)
+  if (executionTree) {
+    const executionResult = executionTree.updateWidgetLayoutInfo(rawTree)
+    const updates = diff(oldExecutionTree, executionResult.evaluatedTree) || []
+    listenerApi.dispatch(
+      executionActions.setExecutionResultReducer({
+        updates,
+      }),
+    )
+  }
+}
+
+async function handleUpdateReflowEffect(
+  action: ReturnType<typeof executionActions.updateWidgetLayoutInfoReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const rootState = listenerApi.getState()
+  const rootNode = getCanvas(rootState)
+  const executionResult = getWidgetExecutionResult(rootState)
+  let updateComponents: ComponentNode[] = [
+    {
+      displayName: action.payload.displayName,
+      parentNode: action.payload.options?.parentNode,
+      x: action.payload.layoutInfo.x,
+      y: action.payload.layoutInfo.y,
+      w: action.payload.layoutInfo.w,
+      h: action.payload.layoutInfo.h,
+    } as ComponentNode,
+  ].map((node) => {
+    const layoutInfo = executionResult[node.displayName].$layoutInfo
+    return mergeLayoutInfoToComponent(layoutInfo, node)
+  })
+
+  const effectResultMap = new Map<string, ComponentNode>()
+  const updateSlice: Array<{
+    displayName: string
+    layoutInfo: Omit<LayoutInfo, "z" | "unitW" | "unitH">
+  }> = []
+
+  updateComponents.forEach((componentNode) => {
+    const parentNodeDisplayName = componentNode.parentNode
+    let parentNode = searchDsl(rootNode, parentNodeDisplayName)
+    const originNode = searchDsl(rootNode, componentNode.displayName)
+    if (!parentNode || !originNode) {
+      return
+    }
+    if (effectResultMap.has(parentNode.displayName)) {
+      parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
+    }
+    const childrenNodes = batchMergeLayoutInfoToComponent(
+      executionResult,
+      parentNode.childrenNode,
+    )
+
+    if ((action.payload.options?.effectRows ?? 0) >= 0) {
+      const { finalState } = getReflowResult(componentNode, childrenNodes, true)
+      finalState.forEach((node) => {
+        updateSlice.push({
+          displayName: node.displayName,
+          layoutInfo: {
+            x: node.x,
+            y: node.y,
+            w: node.w,
+            h: node.h,
+          },
+        })
+      })
+      effectResultMap.set(parentNode.displayName, {
+        ...parentNode,
+        childrenNode: finalState,
+      })
+    } else {
+      const finalState = childrenNodes.map((node) => {
+        if (node.displayName === componentNode.displayName) {
+          return node
+        }
+        const originChildNode = searchDsl(rootNode, node.displayName)
+        if (!originChildNode) return node
+        return {
+          ...node,
+          y:
+            node.y + (action.payload.options?.effectRows as number) <=
+            originChildNode.y
+              ? originChildNode.y
+              : node.y + (action.payload.options?.effectRows as number),
+        }
+      })
+      finalState.forEach((node) => {
+        updateSlice.push({
+          displayName: node.displayName,
+          layoutInfo: {
+            x: node.x,
+            y: node.y,
+            w: node.w,
+            h: node.h,
+          },
+        })
+      })
+    }
+  })
+  listenerApi.dispatch(
+    executionActions.batchUpdateWidgetLayoutInfoReducer(updateSlice),
+  )
+}
+
 function handleUpdateModalEffect(
   action: ReturnType<typeof componentsActions.addModalComponentReducer>,
   listenerApi: AppListenerEffectAPI,
@@ -200,8 +322,19 @@ export function setupExecutionListeners(
       effect: handleStartExecutionOnCanvas,
     }),
     startListening({
+      matcher: isAnyOf(
+        componentsActions.updateComponentLayoutInfoReducer,
+        componentsActions.batchUpdateComponentLayoutInfoReducer,
+      ),
+      effect: handleUpdateWidgetPosition,
+    }),
+    startListening({
       actionCreator: componentsActions.addModalComponentReducer,
       effect: handleUpdateModalEffect,
+    }),
+    startListening({
+      actionCreator: executionActions.updateWidgetLayoutInfoReducer,
+      effect: handleUpdateReflowEffect,
     }),
   ]
 

@@ -5,6 +5,7 @@ import {
   addPageNodeWithSortOrderReducer,
   addSectionViewReducer,
   addTargetPageSectionReducer,
+  batchUpdateComponentLayoutInfoReducer,
   copyComponentReducer,
   deleteComponentNodeReducer,
   deletePageNodeReducer,
@@ -15,6 +16,7 @@ import {
   sortComponentNodeChildrenReducer,
   updateComponentContainerReducer,
   updateComponentDisplayNameReducer,
+  updateComponentLayoutInfoReducer,
   updateComponentNodeHeightReducer,
   updateComponentPropsReducer,
   updateComponentReducer,
@@ -61,6 +63,8 @@ const componentsSlice = createSlice({
     updateViewportSizeReducer,
     addModalComponentReducer,
     resetComponentsReducer,
+    updateComponentLayoutInfoReducer,
+    batchUpdateComponentLayoutInfoReducer,
   },
 })
 

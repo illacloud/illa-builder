@@ -5,6 +5,7 @@ import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
+import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DependenciesState,
@@ -389,6 +390,32 @@ export class ExecutionTreeFactory {
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,
       debuggerData: this.debuggerData,
+    }
+  }
+
+  updateWidgetLayoutInfo(rawTree: RawTreeShape) {
+    const currentRawTree = cloneDeep(rawTree)
+    this.oldRawTree = cloneDeep(rawTree)
+    const currentExecutedTree = cloneDeep(this.executedTree)
+    const displayNameMapLayoutInfo: Record<string, LayoutInfo> = {}
+    Object.values(currentRawTree).forEach((seed) => {
+      if (isWidget(seed)) {
+        const { displayName, $layoutInfo } = seed
+        displayNameMapLayoutInfo[displayName] = $layoutInfo
+      }
+    })
+
+    Object.keys(displayNameMapLayoutInfo).forEach((key) => {
+      const layoutInfo = displayNameMapLayoutInfo[key]
+      if (currentExecutedTree[key]) {
+        currentExecutedTree[key].$layoutInfo = layoutInfo
+      }
+    })
+
+    this.executedTree = currentExecutedTree
+
+    return {
+      evaluatedTree: this.executedTree,
     }
   }
 
