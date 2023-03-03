@@ -177,8 +177,8 @@
         "tips": {
           "acl": "不要忘记在您的存储桶上配置 CORS。 <0>请参阅跨源资源共享 (CORS)。</0>",
           "connect_to_local": {
-            "cloud": "看起来您正在尝试连接到您机器本地的数据库或私有网络的一部分。 它可能不适用于 ILLA Cloud 版本。 查看我们的文档，了解如何使用自托管版本。",
-            "selfhost": "It looks like you're trying to connect to a database that's local to your machine. Please use the local area network IP address of the machine instead of \"localhost\" or \"127.0.0.1\".",
+            "cloud": "看起来您正在尝试连接到您机器本地的数据库或私有网络的一部分。 它可能不适用于 ILLA Cloud 版本。 查看我们的<0>文档<0>，了解如何使用自托管版本。",
+            "selfhost": "看起来您正在尝试连接到您机器本地的数据库。 请使用机器的局域网 IP 地址，而不是“localhost”或“127.0.0.1”。",
             "title": {
               "tips": "提示"
             }
