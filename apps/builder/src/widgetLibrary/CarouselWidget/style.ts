@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
+import point from "@/assets/carousel/point.svg"
 
 export const sliderStyle = css`
   height: 100%;
@@ -66,15 +67,18 @@ export const sliderStyle = css`
     transition: opacity 0.2s;
     font-size: 6px;
     line-height: 20px;
-    scale: 0.4;
 
-    width: 20px;
-    height: 20px;
+    scale: 1;
+    width: 4px;
+    height: 4px;
+    content: "";
 
     opacity: 0.25;
     color: white;
     top: unset;
     left: unset;
+    border-radius: 50%;
+    background-image: url(${point});
 
     &:hover {
       opacity: 1;
