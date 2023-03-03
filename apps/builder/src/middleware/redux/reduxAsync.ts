@@ -1,3 +1,4 @@
+import { cloneDeep } from "lodash"
 import * as Redux from "redux"
 import {
   Connection,
@@ -71,6 +72,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
     }
     return next(action)
   }
+  const originalStore = cloneDeep(store.getState())
   const resp = next(action)
   //  TODO: @aruseito ws send message when connected
   try {
@@ -405,11 +407,19 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           case "deleteTargetPageSectionReducer": {
             const { pageName, deleteSectionName } =
               action.payload as DeleteTargetPageSectionPayload
+            const originFinalNode = searchDsl(
+              getCanvas(originalStore),
+              pageName,
+            )
             const finalNode = searchDsl(getCanvas(store.getState()), pageName)
 
-            if (!finalNode) break
+            if (!finalNode || !originFinalNode) break
             const WSPayload =
               transformComponentReduxPayloadToWsPayload(finalNode)
+            const targetPageChildrenNode = originFinalNode.childrenNode.find(
+              (node) => node.showName === deleteSectionName,
+            )
+            if (!targetPageChildrenNode) return
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_DELETE_STATE,
@@ -421,9 +431,10 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 },
                 teamID,
                 uid,
-                [deleteSectionName],
+                [targetPageChildrenNode.displayName],
               ),
             )
+
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,

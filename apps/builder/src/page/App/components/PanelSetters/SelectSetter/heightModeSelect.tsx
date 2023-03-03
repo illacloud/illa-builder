@@ -9,7 +9,7 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { RootState } from "@/store"
-import { DEFAULT_HEIGHT } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
+import { DEFAULT_MAX_HEIGHT } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 
 export const HeightModeSelect: FC<HeightModeSetterProps> = (props) => {
@@ -26,7 +26,8 @@ export const HeightModeSelect: FC<HeightModeSetterProps> = (props) => {
       const otherAttrs =
         value === "limited"
           ? {
-              dynamicMaxHeight: currentNode.h * UNIT_HEIGHT + DEFAULT_HEIGHT,
+              dynamicMaxHeight:
+                currentNode.h * UNIT_HEIGHT + DEFAULT_MAX_HEIGHT,
               dynamicMinHeight: currentNode.h * UNIT_HEIGHT,
             }
           : {

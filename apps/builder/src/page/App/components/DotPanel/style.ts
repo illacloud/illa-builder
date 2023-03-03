@@ -259,9 +259,8 @@ export const applyContainerWrapperStyle = (model: IllaMode) => {
 
 export const applyModalWrapperStyle = (model: IllaMode) => {
   return css`
-    width: 100%;
-    height: 100%;
     padding: ${model !== "edit" ? "0" : "8px"};
+    padding-top: ${model !== "edit" ? "0" : "20px"};
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
@@ -520,6 +519,18 @@ export const applyPreviewColumnsStyle = (index: number, unitWidth: number) => {
   `
 }
 
+export const modalWrapperStyle = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 8;
+`
+
 export const maskStyle = css`
   position: absolute;
   top: 0;
@@ -527,10 +538,7 @@ export const maskStyle = css`
   width: 100%;
   height: 100%;
   background-color: ${getColor("blackAlpha", "02")};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 8;
+  z-index: -1;
 `
 
 export const modalStyle = css`

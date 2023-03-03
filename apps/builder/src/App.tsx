@@ -1,7 +1,9 @@
-import { Global } from "@emotion/react"
+import createCache from "@emotion/cache"
+import { CacheProvider, Global } from "@emotion/react"
 import { useEffect } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
+import { HelmetProvider } from "react-helmet-async"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { RouterProvider } from "react-router-dom"
@@ -14,16 +16,13 @@ import {
 import "@/api/base"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
-import {
-  getIsILLAEditMode,
-  getIsILLAPreviewMode,
-  getIsILLAProductMode,
-} from "@/redux/config/configSelector"
+import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import {
   getCurrentConfigLanguage,
   getCurrentTranslateLanguage,
 } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
+import { px2Rem } from "@/utils/stylis-plugin/px2rem"
 import { globalStyle } from "./style"
 
 function App() {
@@ -38,22 +37,36 @@ function App() {
     }
   }, [currentUserLanguage, i18n])
 
+  let cache = createCache({
+    key: "css",
+    stylisPlugins: [
+      px2Rem({
+        unit: "rem",
+        remSize: 100,
+      }),
+    ],
+  })
+
   return (
-    <DndProvider backend={HTML5Backend}>
-      <GlobalDataProvider>
-        <ConfigProvider locale={configLanguage}>
-          <Global styles={globalStyle} />
-          <MessageGroup pt={!isProductMode ? "46px" : "0"} />
-          <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
-          <ModalGroup />
-          <RouterProvider router={ILLARoute} />
-          <div
-            className="illaCodeMirrorWrapper"
-            css={illaCodeMirrorTooltipStyle}
-          />
-        </ConfigProvider>
-      </GlobalDataProvider>
-    </DndProvider>
+    <CacheProvider value={cache}>
+      <HelmetProvider>
+        <DndProvider backend={HTML5Backend}>
+          <GlobalDataProvider>
+            <ConfigProvider locale={configLanguage}>
+              <Global styles={globalStyle} />
+              <MessageGroup pt={!isProductMode ? "46px" : "0"} />
+              <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
+              <ModalGroup />
+              <RouterProvider router={ILLARoute} />
+              <div
+                className="illaCodeMirrorWrapper"
+                css={illaCodeMirrorTooltipStyle}
+              />
+            </ConfigProvider>
+          </GlobalDataProvider>
+        </DndProvider>
+      </HelmetProvider>
+    </CacheProvider>
   )
 }
 

@@ -3,7 +3,11 @@
     "target": "ESNext",
     "noEmit": true,
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -28,6 +32,7 @@
     "types": [
       "vite/client",
       "vite-plugin-svgr/client",
+      "mdx",
       "node"
     ]
   },

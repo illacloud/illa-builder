@@ -32,6 +32,15 @@ import { isObject } from "@/utils/typeHelper"
 import { validationFactory } from "@/utils/validationFactory"
 
 const message = createMessage()
+export const IGNORE_ACTION_RUN_ATTR_NAME = [
+  "isRunning",
+  "startTime",
+  "endTime",
+  "data",
+  "runResult",
+  "runResult.error",
+  "runResult.message",
+]
 
 export class ExecutionTreeFactory {
   dependenciesState: DependenciesState = {}
@@ -157,7 +166,11 @@ export class ExecutionTreeFactory {
     }, tree)
   }
 
-  calcSubTreeSortOrder(differences: Diff<any, any>[], rawTree: RawTreeShape) {
+  calcSubTreeSortOrder(
+    differences: Diff<any, any>[],
+    rawTree: RawTreeShape,
+    isIgnoreDynamicPaths: boolean = false,
+  ) {
     const changePaths: Set<string> = new Set()
     for (const diff of differences) {
       if (!Array.isArray(diff.path) || diff.path.length === 0) continue
@@ -165,6 +178,9 @@ export class ExecutionTreeFactory {
       const entityName = diff.path[0]
       const entity = rawTree[entityName]
       if (!entity) {
+        continue
+      }
+      if (isIgnoreDynamicPaths) {
         continue
       }
       const dynamic: string[] = entity.$dynamicAttrPaths
@@ -450,6 +466,7 @@ export class ExecutionTreeFactory {
     const orderPath = this.calcSubTreeSortOrder(
       differences,
       currentExecutionTree as RawTreeShape,
+      true,
     )
 
     let currentRawTree = this.updateRawTreeByUpdatePaths(
@@ -612,7 +629,10 @@ export class ExecutionTreeFactory {
               debuggerData[fullPath] = oldError
             }
           }
-          if (isAction(widgetOrAction)) {
+          if (
+            isAction(widgetOrAction) &&
+            !IGNORE_ACTION_RUN_ATTR_NAME.includes(toPath(attrPath)[0])
+          ) {
             for (let i = currentIndex + 1; i < sortedEvalOrder.length; i++) {
               const currentDynamicString = sortedEvalOrder[i]
               if (currentDynamicString.includes(widgetOrAction.displayName)) {

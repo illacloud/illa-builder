@@ -1,13 +1,6 @@
-import {
-  forwardRef,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
+import { HTMLAttributes, forwardRef, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
-import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
 import { DynamoDBPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
@@ -23,117 +16,81 @@ import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiP
 import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
 import { SMTPPanel } from "@/page/App/components/Actions/ActionPanel/SMTPPanel"
 import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
-import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
-import {
-  ActionPanelContainerProps,
-  ActionPanelFunctionProps,
-} from "@/page/App/components/Actions/ActionPanel/interface"
 import {
   actionContentStyle,
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 
-export const ActionPanel = forwardRef<
-  ActionPanelFunctionProps,
-  ActionPanelContainerProps
->((props, ref) => {
-  const { maxHeight } = props
-  const panelRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const actionResultRef = useRef<HTMLDivElement>(null)
-  const cachedAction = useSelector(getCachedAction)
-  const [actionResult, setActionResult] = useState<ActionResultType>()
+export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
+  (props, ref) => {
+    const cachedAction = useSelector(getCachedAction)
 
-  const clearActionResult = () => {
-    setActionResult(undefined)
-    if (contentRef.current) {
-      contentRef.current.style.paddingBottom = "48px"
+    const [resultVisible, setResultVisible] = useState(false)
+
+    const panel = useMemo(() => {
+      switch (cachedAction?.actionType) {
+        case "clickhouse":
+        case "supabasedb":
+        case "mysql":
+        case "tidb":
+        case "mariadb":
+        case "postgresql":
+        case "snowflake":
+          return <MysqlLikePanel />
+        case "mssql":
+          return <MicrosoftSqlPanel />
+        case "restapi":
+          return <RestApiPanel />
+        case "huggingface":
+          return <HuggingFacePanel />
+        case "hfendpoint":
+          return <HuggingFaceEndpointPanel />
+        case "redis":
+          return <RedisPanel />
+        case "mongodb":
+          return <MongoDbPanel />
+        case "transformer":
+          return <TransformerPanel />
+        case "elasticsearch":
+          return <ElasticSearchPanel />
+        case "dynamodb":
+          return <DynamoDBPanel />
+        case "s3":
+          return <S3Panel />
+        case "smtp":
+          return <SMTPPanel />
+        case "firebase":
+          return <FirebasePanel />
+        case "graphql":
+          return <GraphQLPanel />
+        default:
+          return <></>
+      }
+    }, [cachedAction])
+
+    if (cachedAction === null || cachedAction === undefined) {
+      return <></>
     }
-  }
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      clearActionResult,
-    }),
-    [],
-  )
-
-  const run = (result: unknown, error?: boolean) => {
-    if (actionResult && actionResultRef.current) {
-      actionResultRef.current.style.height = "auto"
-    }
-    setActionResult({ result, error })
-  }
-
-  const panel = useMemo(() => {
-    switch (cachedAction?.actionType) {
-      case "clickhouse":
-      case "supabasedb":
-      case "mysql":
-      case "tidb":
-      case "mariadb":
-      case "postgresql":
-      case "snowflake":
-        return <MysqlLikePanel />
-      case "mssql":
-        return <MicrosoftSqlPanel />
-      case "restapi":
-        return <RestApiPanel />
-      case "huggingface":
-        return <HuggingFacePanel />
-      case "hfendpoint":
-        return <HuggingFaceEndpointPanel />
-      case "redis":
-        return <RedisPanel />
-      case "mongodb":
-        return <MongoDbPanel />
-      case "transformer":
-        return <TransformerPanel />
-      case "elasticsearch":
-        return <ElasticSearchPanel />
-      case "dynamodb":
-        return <DynamoDBPanel />
-      case "s3":
-        return <S3Panel />
-      case "smtp":
-        return <SMTPPanel />
-      case "firebase":
-        return <FirebasePanel />
-      case "graphql":
-        return <GraphQLPanel />
-      default:
-        return <></>
-    }
-  }, [cachedAction])
-
-  if (cachedAction === null || cachedAction === undefined) {
-    return <></>
-  }
-
-  return (
-    <div css={actionPanelStyle} ref={panelRef}>
-      <ActionPanelContext.Provider
-        value={{
-          onChangeSelectedResource: clearActionResult,
-        }}
-      >
-        <ActionTitleBar onActionRun={run} />
-        <div ref={contentRef} css={actionContentStyle}>
-          {panel}
-        </div>
-        <ActionResult
-          ref={actionResultRef}
-          result={actionResult}
-          onClose={clearActionResult}
-          maxHeight={maxHeight}
-          placeholderRef={contentRef}
-          panelRef={panelRef}
+    return (
+      <div css={actionPanelStyle}>
+        <ActionTitleBar
+          onResultVisibleChange={(visible) => {
+            setResultVisible(visible)
+          }}
+          openState={resultVisible}
         />
-      </ActionPanelContext.Provider>
-    </div>
-  )
-})
+        <div css={actionContentStyle}>{panel}</div>
+        <ActionResult
+          visible={resultVisible}
+          onClose={() => {
+            setResultVisible(false)
+          }}
+        />
+      </div>
+    )
+  },
+)
 
 ActionPanel.displayName = "ActionPanel"

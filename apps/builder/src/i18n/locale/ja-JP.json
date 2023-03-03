@@ -175,7 +175,14 @@
           }
         },
         "tips": {
-          "acl": "バケットに CORS を設定することを忘れないでください。 <0>クロスオリジン リソース共有 (CORS) を参照してください。</0>"
+          "acl": "バケットに CORS を設定することを忘れないでください。 <0>クロスオリジン リソース共有 (CORS) を参照してください。</0>",
+          "connect_to_local": {
+            "cloud": "マシンのローカルまたはプライベート ネットワークの一部であるデータベースに接続しようとしているようです。 ILLAクラウド版では動作しない場合があります。 自己ホスト バージョンの方法については、<0>ドキュメント<0>をご覧ください。",
+            "selfhost": "マシンのローカル データベースに接続しようとしているようです。 「localhost」または「127.0.0.1」の代わりに、マシンのローカル エリア ネットワーク IP アドレスを使用してください。",
+            "title": {
+              "tips": "ヒント"
+            }
+          }
         },
         "option": {
           "appwrite": {
@@ -813,7 +820,8 @@
           "play": "再生",
           "pause": "一時停止",
           "ended": "終了済み",
-          "loaded": "ロード済み"
+          "loaded": "ロード済み",
+          "rowSelect": "行を選択"
         },
         "image_list": {
           "title": "イメージ",
@@ -1177,7 +1185,7 @@
         "min_max_size": "無制限",
         "volume": "2",
         "statistics": {
-          "decimal": "{{ 2 }}",
+          "decimal": "2",
           "prefix_text": "US$",
           "suffix_text": "%",
           "positive_color": "ポジティブ",
@@ -1506,7 +1514,11 @@
         "success": "登録完了",
         "verification_code": "確認コードが送信されました"
       },
-      "title": "登録"
+      "title": "登録",
+      "agreement": {
+        "privacy_policy": "個人情報保護",
+        "terms_of_service": "サービス利用規約"
+      }
     }
   },
   "widget": {
@@ -1657,6 +1669,135 @@
         "fixed": "固定幅",
         "auto": "てきおう"
       }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "リセット",
+          "send": "確認コードを取得する"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "有効なメールアドレスを入力してください",
+            "registered": "メールアドレスはどのアカウントにも関連付けられていません。",
+            "require": "メールを入力してください"
+          },
+          "newPassword": {
+            "require": "パスワードを入力してください"
+          },
+          "verification_code": {
+            "expired": "確認コードの有効期限が切れています",
+            "invalid": "無効な認証コード",
+            "require": "認証コードを入力してください"
+          }
+        },
+        "fields": {
+          "email": "メール",
+          "newPassword": "新しいパスワード",
+          "verification_code": "確認コード"
+        },
+        "placeholder": {
+          "email": "メールを入力してください",
+          "verification_code": "確認コードを入力してください"
+        },
+        "subtitle": "戻る ログイン",
+        "tips": {
+          "fail": "パスワードのリセットに失敗しました",
+          "fail_sent": "確認コードを送信できませんでした",
+          "success": "パスワードのリセットが成功しました",
+          "verification_code": "確認コードが送信されました"
+        },
+        "title": "パスワードをリセットする"
+      },
+      "password": {
+        "placeholder": "パスワードを入力してください（6文字以上）"
+      },
+      "policy": "ILLA を使用することにより、<0>プライバシー ポリシー</0>と<1>利用規約</1>に同意したことになります",
+      "sign_in": {
+        "actions": {
+          "login": "ログイン"
+        },
+        "description": {
+          "forgot_password": "パスワードをお忘れですか？",
+          "policy": "[ログイン] をクリックして、 < 0 >サービス利用規約< /0 >および< 1 >プライバシー規約< /1 >を読み、同意したことを示します。",
+          "register": "新しいユーザー？ < 0 >アカウント登録< /0 >"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "有効なメールを入力してください",
+            "registered": "メールアドレスはどのアカウントにも関連付けられていません。",
+            "require": "メールを入力してください。"
+          },
+          "password": {
+            "incorrect": "正しいアカウント パスワードを入力してください",
+            "locked": "5回以上間違ったパスワードを入力すると、アカウントは1時間ロックされます",
+            "min_length": "パスワードは最低でも6文字必要です",
+            "require": "パスワードを空白にすることはできません"
+          }
+        },
+        "fields": {
+          "email": "メール",
+          "password": "パスワード"
+        },
+        "placeholder": {
+          "email": "メールを入力してください"
+        },
+        "tips": {
+          "fail": "ログインに失敗しました",
+          "success": "新しいパスワードを入力してください",
+          "fail_account": "メールアドレスまたはパスワードが正しくありません"
+        },
+        "title": "お帰りなさい"
+      },
+      "sign_up": {
+        "actions": {
+          "create": "アカウントを作成する",
+          "send": "確認コードを取得する"
+        },
+        "description": {
+          "login": "すでにアカウントをお持ちですか？ < 0 >ログイン< /0 >",
+          "policy": "[今すぐ登録] をクリックして、<0>利用規約</0>と<1>プライバシー契約</1>を読んで同意したことを示します",
+          "subscribe": "ILLAのニュースを購読する"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "有効なメールを入力してください",
+            "registered": "このメールはすでに登録されています。ログインしてください",
+            "require": "メールを入力してください。"
+          },
+          "password": {
+            "require": "パスワードを空白にすることはできません"
+          },
+          "username": {
+            "length": "ユーザー名は 3 ～ 15 文字である必要があります",
+            "require": "ユーザー名を空にすることはできません"
+          },
+          "verification_code": {
+            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "invalid": "無効な認証コード",
+            "require": "確認コードを入力してください"
+          }
+        },
+        "fields": {
+          "email": "メール",
+          "password": "パスワード",
+          "username": "ユーザー名",
+          "verification_code": "確認コード"
+        },
+        "placeholder": {
+          "email": "メールを入力してください",
+          "username": "ユーザー名を入力してください",
+          "verification_code": "確認コードを入力してください"
+        },
+        "tips": {
+          "fail": "サインアップに失敗しました",
+          "fail_sent": "確認コードを送信できませんでした",
+          "success": "サインアップしました",
+          "verification_code": "確認コードが送信されました"
+        },
+        "title": "サインアップ"
+      },
+      "description": "開発者専用のオープンソースのローコード プラットフォーム。"
     }
   },
   "frame_size": {
@@ -1838,5 +1979,15 @@
   },
   "message": {
     "circular_dependency": "{{ nodeName }} で循環依存が発生しています"
+  },
+  "policy": {
+    "privacy": {
+      "title": "プライバシー規約",
+      "description": "このプライバシー ポリシーでは、当社のサービスを通じて受け取る情報の収集、使用、および開示に関する当社の慣行について説明します。"
+    },
+    "terms": {
+      "description": "これらの利用規約は、当社のサイトへのアクセスと使用、およびさまざまなサービスの提供を管理します。",
+      "title": "サービス利用規約"
+    }
   }
 }
