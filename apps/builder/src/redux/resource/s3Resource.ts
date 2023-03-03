@@ -17,7 +17,7 @@ export const S3ResourceInitial: S3Resource = {
   baseURL: "",
   accessKeyID: "",
   secretAccessKey: "",
-  acl: "",
+  acl: i18n.t("editor.action.acl.option.public_read"),
 }
 
 export const SelectOptions = [
