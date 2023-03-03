@@ -8,8 +8,9 @@ import {
   DropListItem,
   Dropdown,
   MoreIcon,
-  globalColor,
-  illaPrefix,
+  SuccessCircleIcon,
+  UpIcon,
+  WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
@@ -38,10 +39,16 @@ import {
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
 import { ActionTitleBarProps } from "./interface"
 import {
+  actionFailBlockStyle,
+  actionSuccessBlockStyle,
+  actionTextStyle,
   actionTitleBarSpaceStyle,
   actionTitleBarStyle,
+  applyOpenStateStyle,
   editableTitleBarWrapperStyle,
 } from "./style"
 
@@ -106,6 +113,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
         ...cachedAction,
         content: {
           ...otherContent,
+          // if to, cc, bcc or attachment is empty, remove it from the content
           ...(to && { to }),
           ...(cc && { cc }),
           ...(bcc && { bcc }),
@@ -118,19 +126,34 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
 }
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const { onActionRun } = props
+  const { onResultVisibleChange, openState } = props
 
   const message = useMessage()
   const selectedAction = useSelector(getSelectedAction)!
   const cachedAction = useSelector(getCachedAction)!
+  const selectedActionExecutionResult = useSelector<
+    RootState,
+    Record<string, any>
+  >((rootState) => {
+    const executionResult = getExecutionResult(rootState)
+    return executionResult[selectedAction.displayName] || {}
+  })
+  const isRunning = !!selectedActionExecutionResult.isRunning
 
   const isChanged =
     JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
   const currentApp = useSelector(getAppInfo)
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const [loading, setLoading] = useState(false)
   const [canRunAction, canNotRunMessage] = getCanRunAction(cachedAction)
+
+  const executionResult = useSelector(getExecutionResult)
+
+  const renderResult =
+    executionResult[selectedAction.displayName]?.data !== undefined ||
+    executionResult[selectedAction.displayName]?.runResult !== undefined
+
+  const runError = executionResult[selectedAction.displayName]?.runResult?.error
 
   let runMode: RunMode = useMemo(() => {
     if (cachedAction != undefined && isChanged) {
@@ -158,11 +181,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           })
           return
         }
-        setLoading(true)
         if (cachedActionValue) {
-          runAction(cachedActionValue, (result: unknown, error?: boolean) => {
-            setLoading(false)
-            onActionRun(result, error)
+          runAction(cachedActionValue, () => {
+            onResultVisibleChange(true)
           })
         }
         break
@@ -188,9 +209,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               content: t("create_fail"),
             })
           },
-          (l) => {
-            setLoading(l)
-          },
         )
         break
       case "save_and_run":
@@ -209,15 +227,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           () => {
             if (cachedActionValue) {
               dispatch(actionActions.updateActionItemReducer(cachedActionValue))
-              setLoading(true)
-
-              runAction(
-                cachedActionValue,
-                (result: unknown, error?: boolean) => {
-                  setLoading(false)
-                  onActionRun(result, error)
-                },
-              )
+              runAction(cachedActionValue, () => {
+                onResultVisibleChange(true)
+              })
             }
           },
           () => {
@@ -230,9 +242,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               content: t("editor.action.panel.btn.save_fail"),
             })
           },
-          (l) => {
-            setLoading(l)
-          },
         )
         break
     }
@@ -244,7 +253,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     selectedAction.actionId,
     message,
     canNotRunMessage,
-    onActionRun,
+    onResultVisibleChange,
     dispatch,
     t,
   ])
@@ -256,6 +265,36 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   if (cachedAction === undefined) {
     return <></>
   }
+
+  const successBlock = (
+    <div
+      css={actionSuccessBlockStyle}
+      onClick={() => {
+        onResultVisibleChange(!openState)
+      }}
+    >
+      <SuccessCircleIcon fs="16px" size="16px" />
+      <span css={actionTextStyle}>
+        {t("editor.action.panel.status.ran_successfully")}
+      </span>
+      <UpIcon css={applyOpenStateStyle(openState)} />
+    </div>
+  )
+
+  const failBlock = (
+    <div
+      css={actionFailBlockStyle}
+      onClick={() => {
+        onResultVisibleChange(!openState)
+      }}
+    >
+      <WarningCircleIcon fs="16px" size="16px" />
+      <span css={actionTextStyle}>
+        {t("editor.action.panel.status.ran_failed")}
+      </span>
+      <UpIcon css={applyOpenStateStyle(openState)} />
+    </div>
+  )
 
   return (
     <div css={actionTitleBarStyle}>
@@ -287,14 +326,12 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                   content: t("change_fail"),
                 })
               },
-              (l) => {
-                setLoading(l)
-              },
             )
           }}
         />
       </div>
       <div css={actionTitleBarSpaceStyle} />
+      {renderResult && (runError ? failBlock : successBlock)}
       <Dropdown
         position="bottom-end"
         trigger="click"
@@ -328,7 +365,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           colorScheme="techPurple"
           variant={isChanged ? "fill" : "light"}
           size="medium"
-          loading={loading}
+          loading={isRunning}
           leftIcon={<CaretRightIcon />}
           onClick={handleActionOperation}
         >

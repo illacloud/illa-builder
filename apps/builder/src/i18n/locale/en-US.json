@@ -1796,7 +1796,8 @@
           "verification_code": "Verification code sent"
         },
         "title": "Sign up"
-      }
+      },
+      "description": "An open-source low-code platform for developers."
     }
   },
   "frame_size": {

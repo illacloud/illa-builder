@@ -151,7 +151,7 @@
             "host": "주인",
             "dbid": "데이터베이스 ID",
             "projectid": "프로젝트 ID",
-            "secret": "Api key",
+            "secret": "X-Appwrite-JWT",
             "collectionid": "컬렉션 ID",
             "documentid": "문서 ID",
             "data": "데이터",
@@ -1516,8 +1516,8 @@
       },
       "title": "등록하다",
       "agreement": {
-        "privacy_policy": "privacy policy",
-        "terms_of_service": "terms of service"
+        "privacy_policy": "개인 정보 정책",
+        "terms_of_service": "서비스 이용약관"
       }
     }
   },
@@ -1673,130 +1673,131 @@
     "user": {
       "forgot_password": {
         "actions": {
-          "reset": "Reset",
-          "send": "Send code"
+          "reset": "초기화",
+          "send": "코드 전송"
         },
         "error_message": {
           "email": {
-            "invalid_pattern": "Please enter a valid email address",
-            "registered": "The email address doesn't associate with an account.",
-            "require": "Please enter your email"
+            "invalid_pattern": "올바른 이메일 주소를 입력하십시오",
+            "registered": "이 이메일 주소는 등록되지 않았습니다.",
+            "require": "이메일은 비워둘 수 없습니다."
           },
           "newPassword": {
-            "require": "Please enter your password"
+            "require": "비밀번호를 입력해주세요"
           },
           "verification_code": {
-            "expired": "Verification code expired",
-            "invalid": "Invalid verification code",
-            "require": "Please enter verification code"
+            "expired": "인증 코드가 만료되었습니다",
+            "invalid": "잘못된 검증 코드",
+            "require": "인증 코드를 입력하십시오."
           }
         },
         "fields": {
-          "email": "Email",
-          "newPassword": "New Password",
-          "verification_code": "Verification code"
+          "email": "이메일",
+          "newPassword": "새 비밀번호",
+          "verification_code": "인증 코드"
         },
         "placeholder": {
-          "email": "Enter your email",
-          "verification_code": "Please enter verification code"
+          "email": "이메일을 입력해주세요",
+          "verification_code": "인증 코드를 입력하세요"
         },
-        "subtitle": "Back to sign in",
+        "subtitle": "다시 로그인",
         "tips": {
-          "fail": "Failed to reset password",
-          "fail_sent": "Failed to send verification code",
-          "success": "Reset password successfully",
-          "verification_code": "Verification code sent"
+          "fail": "비밀번호 재설정 실패",
+          "fail_sent": "인증 코드를 보내지 못했습니다.",
+          "success": "비밀번호 재설정 성공",
+          "verification_code": "인증 코드 전송됨"
         },
-        "title": "Reset Password"
+        "title": "암호를 재설정"
       },
       "password": {
-        "placeholder": "Enter your new password(at least 6 characters)"
+        "placeholder": "비밀번호를 입력해주세요(6자 이상)"
       },
-      "policy": "By using ILLA you are agreeing to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+      "policy": "ILLA를 사용하면 <0>개인정보 보호정책</0> 및 <1>서비스 약관</1>에 동의하게 됩니다.",
       "sign_in": {
         "actions": {
-          "login": "Sign in"
+          "login": "로그인"
         },
         "description": {
-          "forgot_password": "Forgot Password?",
-          "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-          "register": "New user? <0>Create an account</0>"
+          "forgot_password": "비밀번호를 잊으 셨나요?",
+          "policy": "\"로그인\"을 클릭하여 < 0 > 서비스 약관 < /0 > 및 < 1 > 개인 정보 보호 계약 < /1 > 을 읽고 동의했음을 나타냅니다.",
+          "register": "새로운 사용자? < 0 > 계정 등록 < /0 >"
         },
         "error_message": {
           "email": {
-            "invalid_pattern": "Please enter a valid email address",
-            "registered": "The email address doesn't associate with an account.",
-            "require": "Please enter your email"
+            "invalid_pattern": "올바른 이메일 주소를 입력하십시오",
+            "registered": "이 이메일 주소는 등록되지 않았습니다.",
+            "require": "이메일은 비워둘 수 없습니다."
           },
           "password": {
-            "incorrect": "Incorrect email or password",
-            "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
-            "min_length": "The password must be at least 6 characters",
-            "require": "Please enter password"
+            "incorrect": "정확한 계정 비밀번호를 입력해주세요",
+            "locked": "5회 이상 잘못된 비밀번호를 입력하면 1시간 동안 계정이 잠깁니다.",
+            "min_length": "비밀번호는 6자 이상이어야 합니다.",
+            "require": "비밀번호는 비워둘 수 없습니다."
           }
         },
         "fields": {
-          "email": "Email",
-          "password": "Password"
+          "email": "이메일",
+          "password": "비밀번호"
         },
         "placeholder": {
-          "email": "Enter your email"
+          "email": "이메일을 입력해주세요"
         },
         "tips": {
-          "fail": "Failed to sign in",
-          "success": "Signed in successfully",
-          "fail_account": "Incorrect email or password"
+          "fail": "로그인 실패",
+          "success": "성공적 로그인",
+          "fail_account": "잘못된 이메일 또는 비밀번호"
         },
-        "title": "Welcome back"
+        "title": "다시 오신 것을 환영합니다"
       },
       "sign_up": {
         "actions": {
-          "create": "Create Account",
-          "send": "Send code"
+          "create": "계정 생성",
+          "send": "코드 전송"
         },
         "description": {
-          "login": "Already have an account? <0>Sign in</0>",
-          "policy": "By clicking Create Account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
-          "subscribe": "I am willing to receive the updates and news about ILLA"
+          "login": "이미 계정이 있습니까? < 0 > 로그인 < /0 >",
+          "policy": "\"지금 등록\"을 클릭하여 <0>서비스 약관</0> 및 <1>개인정보 보호 계약</1>을 읽고 동의했음을 나타냅니다.",
+          "subscribe": "ILLA의 소식을 구독하세요"
         },
         "error_message": {
           "email": {
-            "invalid_pattern": "Please enter a valid email address",
-            "registered": "An account with that email address already exists.",
-            "require": "Please enter your email"
+            "invalid_pattern": "올바른 이메일 주소를 입력하십시오",
+            "registered": "이미 등록된 이메일입니다. 로그인하세요.",
+            "require": "이메일은 비워둘 수 없습니다."
           },
           "password": {
-            "require": "Please enter password"
+            "require": "비밀번호는 비워둘 수 없습니다."
           },
           "username": {
-            "length": "The username must be 3~15 characters",
-            "require": "Please enter username"
+            "length": "사용자 이름은 3~15자여야 합니다.",
+            "require": "사용자 이름은 비워둘 수 없습니다."
           },
           "verification_code": {
-            "expired": "Verification code expired",
-            "invalid": "Invalid verification code",
-            "require": "Please enter verification code"
+            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "invalid": "잘못된 검증 코드",
+            "require": "인증 코드를 입력하십시오."
           }
         },
         "fields": {
-          "email": "Email",
-          "password": "Password",
-          "username": "Username",
-          "verification_code": "Verification code"
+          "email": "이메일",
+          "password": "비밀번호",
+          "username": "사용자 이름",
+          "verification_code": "인증 코드"
         },
         "placeholder": {
-          "email": "Enter your email",
-          "username": "Enter your username",
-          "verification_code": "Please enter verification code"
+          "email": "이메일을 입력해주세요",
+          "username": "사용자 이름을 입력하십시오",
+          "verification_code": "인증 코드를 입력하십시오."
         },
         "tips": {
-          "fail": "Failed to sign up",
-          "fail_sent": "Failed to send verification code",
-          "success": "Signed up successfully",
-          "verification_code": "Verification code sent"
+          "fail": "등록 실패",
+          "fail_sent": "인증 코드를 보내지 못했습니다.",
+          "success": "등록 성공",
+          "verification_code": "인증 코드 전송됨"
         },
-        "title": "Sign up"
-      }
+        "title": "등록하다"
+      },
+      "description": "개발자 전용 오픈 소스 로우 코드 플랫폼입니다."
     }
   },
   "frame_size": {
@@ -1981,12 +1982,12 @@
   },
   "policy": {
     "privacy": {
-      "title": "Privacy Policy",
-      "description": "This Privacy Policy explains our practices regarding the collection, use and disclosure of information that we receive through our Services."
+      "title": "개인 정보 보호 계약",
+      "description": "이 개인 정보 보호 정책은 당사 서비스를 통해 받는 정보의 수집, 사용 및 공개에 관한 당사의 관행을 설명합니다."
     },
     "terms": {
-      "description": "These Terms of Service govern your access to, and use of, our Site, and our provision of a variety of services.",
-      "title": "Terms of service"
+      "description": "본 서비스 약관은 당사 사이트에 대한 액세스 및 사용과 다양한 서비스 제공에 적용됩니다.",
+      "title": "에 동의하게 됩니다"
     }
   }
 }
