@@ -66,12 +66,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         [attrName]: output,
       })
     },
-    [
-      attrName,
-      currentListDisplayName,
-      handleUpdateDsl,
-      handleUpdateMultiAttrDSL,
-    ],
+    [attrName, currentListDisplayName, handleUpdateMultiAttrDSL],
   )
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
