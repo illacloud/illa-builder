@@ -19,10 +19,15 @@ export const sliderStyle = css`
     position: absolute;
     display: block;
     width: 100%;
-    padding: 0;
+    padding: 16px 0 8px;
     margin: 0;
     list-style: none;
     text-align: center;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.16) 100%
+    );
   }
 
   .slick-dots li {
