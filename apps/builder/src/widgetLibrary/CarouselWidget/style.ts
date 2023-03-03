@@ -33,7 +33,7 @@ export const sliderStyle = css`
 
     width: 8px;
     height: 12px;
-    margin: 0 4px;
+    margin: 0 2px;
   }
 
   .slick-dots li button {
@@ -58,6 +58,7 @@ export const sliderStyle = css`
   }
 
   .slick-dots li button:before {
+    transition: opacity 0.2s;
     font-size: 6px;
     line-height: 20px;
     scale: 0.4;
@@ -94,6 +95,7 @@ export const sliderStyle = css`
     color: white;
     border-radius: 50%;
     padding: 2px;
+    transition: background 0.2s;
 
     &:hover {
       color: white;
