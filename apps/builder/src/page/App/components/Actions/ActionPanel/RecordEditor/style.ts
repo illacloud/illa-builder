@@ -60,9 +60,3 @@ export const recordEditorLabelStyle = css`
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
-
-export const recordEditorSubLabelStyle = css`
-  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
-  cursor: pointer;
-  margin-top: 5px;
-`

@@ -15,7 +15,6 @@ import {
   applyRecordEditorContainerStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
-  recordEditorSubLabelStyle,
   recordKeyStyle,
   recordStyle,
   recordValueStyle,
@@ -27,8 +26,6 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
     records,
     customRender,
     label,
-    subtitle,
-    handleSubTitleClick,
     onDelete,
     onAdd,
     onChangeKey,
@@ -105,16 +102,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
 
   return (
     <div css={applyRecordEditorContainerStyle(label)}>
-      {label != "" && (
-        <span css={recordEditorLabelStyle}>
-          {label}
-          {subtitle && (
-            <span css={recordEditorSubLabelStyle} onClick={handleSubTitleClick}>
-              {subtitle}
-            </span>
-          )}
-        </span>
-      )}
+      {label != "" && <span css={recordEditorLabelStyle}>{label}</span>}
       <div css={recordEditorStyle}>
         {recordList}
         <span>
