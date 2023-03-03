@@ -10,7 +10,7 @@ import { formatLanguage } from "@/i18n/config"
 import RegisterPage from "@/illa-public-component/User/register"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import {
-  ILLACloudStorage,
+  ILLABuilderStorage,
   getLocalStorage,
   setLocalStorage,
 } from "@/utils/storage"
@@ -37,7 +37,7 @@ const UserRegister: FC = () => {
 
   const onSubmit: SubmitHandler<RegisterFields> = (data) => {
     const verificationToken =
-      ILLACloudStorage.getSessionStorage("verificationToken")
+      ILLABuilderStorage.getSessionStorage("verificationToken")
     CloudApi.request<RegisterResult>(
       {
         method: "POST",

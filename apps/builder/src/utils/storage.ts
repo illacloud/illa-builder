@@ -114,4 +114,4 @@ export const clearSessionStorage = () => {
   clearStorage("sessionStorage")
 }
 
-export const ILLACloudStorage = new ILLAStorage("ILLACloud@0.0.0", 5)
+export const ILLABuilderStorage = new ILLAStorage("ILLABuilder@2.0.0", 5)

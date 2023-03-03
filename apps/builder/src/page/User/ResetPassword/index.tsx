@@ -6,7 +6,7 @@ import { useMessage } from "@illa-design/react"
 import { CloudApi } from "@/api/cloudApi"
 import { sendEmail } from "@/api/users"
 import ResetPasswordPage from "@/illa-public-component/User/resetPassword"
-import { ILLACloudStorage } from "@/utils/storage"
+import { ILLABuilderStorage } from "@/utils/storage"
 import { ResetPwdFields } from "./interface"
 
 const ResetPassword: FC = () => {
@@ -18,7 +18,7 @@ const ResetPassword: FC = () => {
 
   const onSubmit: SubmitHandler<ResetPwdFields> = (data) => {
     const verificationToken =
-      ILLACloudStorage.getSessionStorage("verificationToken")
+      ILLABuilderStorage.getSessionStorage("verificationToken")
     CloudApi.request(
       {
         method: "POST",
