@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Button,
@@ -30,6 +30,7 @@ import {
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { TextLink } from "@/page/User/components/TextLink"
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import {
   ClickhouseSSL,
@@ -37,6 +38,7 @@ import {
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
+import { isContainLocalPath } from "@/utils/form"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { ClickhouseConfigElementProps } from "./interface"
 
@@ -61,7 +63,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   const [selfSigned, setSelfSigned] = useState(
     resource?.content.ssl.selfSigned ?? false,
   )
-
+  const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
 
@@ -99,6 +101,20 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   const handleSelfSignedValueChange = useCallback((open: boolean | string) => {
     setSelfSigned(!!open)
   }, [])
+
+  const handleHostValueChange = useCallback(
+    (value: string | boolean) => {
+      const isShow = isContainLocalPath((value as string) ?? "")
+      if (isShow !== showAlert) {
+        setShowAlert(isShow)
+      }
+    },
+    [showAlert],
+  )
+
+  const handleDocLinkClick = () => {
+    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
+  }
 
   return (
     <form
@@ -168,8 +184,9 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
               ml: "8px",
             },
           ]}
+          onValueChange={handleHostValueChange}
           tips={
-            formState.errors.host ? (
+            formState.errors.host && !showAlert ? (
               <div css={errorMsgStyle}>
                 <>
                   <WarningCircleIcon css={errorIconStyle} />
@@ -179,6 +196,35 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             ) : null
           }
         />
+        {showAlert && (
+          <ControlledElement
+            title=""
+            defaultValue=""
+            name=""
+            controlledType="alert"
+            control={control}
+            alertTitle={t(
+              "editor.action.form.tips.connect_to_local.title.tips",
+            )}
+            alertContent={
+              isCloudVersion ? (
+                <Trans
+                  i18nKey="editor.action.form.tips.connect_to_local.cloud"
+                  t={t}
+                  components={[
+                    <TextLink
+                      key="editor.action.form.tips.connect_to_local.cloud"
+                      onClick={handleDocLinkClick}
+                    />,
+                  ]}
+                />
+              ) : (
+                t("editor.action.form.tips.connect_to_local.selfhost")
+              )
+            }
+            closable={false}
+          />
+        )}
         <ControlledElement
           controlledType={["input"]}
           isRequired

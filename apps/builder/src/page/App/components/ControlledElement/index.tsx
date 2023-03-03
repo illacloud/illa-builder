@@ -1,6 +1,7 @@
-import { FC, Fragment, useCallback } from "react"
+import { FC, Fragment, useCallback, useMemo } from "react"
 import { Controller, RegisterOptions } from "react-hook-form"
 import {
+  Alert,
   Checkbox,
   Input,
   InputNumber,
@@ -38,6 +39,8 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     tipsStyle,
     labelStyle,
     onValueChange,
+    alertContent,
+    alertTitle,
   } = props
 
   const filteredType = (
@@ -49,6 +52,10 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     : [defaultValue]
   const hasTextArea = filteredType.includes("textarea")
 
+  const AlertNode = useMemo(() => {
+    return <Alert title={alertTitle} content={alertContent} closable={false} />
+  }, [alertContent, alertTitle])
+
   const getElementByControlledType = useCallback(
     (
       type: string,
@@ -59,6 +66,8 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
       style: Record<string, string> | undefined = {},
     ) => {
       switch (type) {
+        case "alert":
+          return AlertNode
         case "input":
           return (
             <Controller
@@ -70,7 +79,10 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
                   w="100%"
                   {...style}
                   onBlur={onBlur}
-                  onChange={onChange}
+                  onChange={(value, e) => {
+                    onChange(value, e)
+                    onValueChange?.(value)
+                  }}
                   value={value}
                   error={error}
                   colorScheme="techPurple"
@@ -217,7 +229,7 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
           )
       }
     },
-    [contentLabel, control, error, onValueChange, options],
+    [AlertNode, contentLabel, control, error, onValueChange, options],
   )
 
   return (
