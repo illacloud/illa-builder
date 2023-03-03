@@ -13,7 +13,7 @@ export const sliderStyle = css`
   }
 
   .slick-dots {
-    bottom: 8px;
+    bottom: 0;
     z-index: 1;
 
     position: absolute;
