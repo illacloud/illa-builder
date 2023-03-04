@@ -61,6 +61,7 @@ export type ActionType =
   | "firebase"
   | "supabasedb"
   | "clickhouse"
+  | "couchdb"
   | "mysql"
   | "mssql"
   | "restapi"

@@ -1,6 +1,7 @@
 import { FC, ReactNode, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
+import { CouchDBConfigElement } from "@/page/App/components/Actions/CouchDBConfigElement"
 import { DynamoDBConfigElement } from "@/page/App/components/Actions/DynamoDBConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
@@ -93,6 +94,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         return <HuggingFaceConfigElement {...generalProps} />
       case "hfendpoint":
         return <HuggingFaceEndpointConfigElement {...generalProps} />
+      case "couchdb":
+        return <CouchDBConfigElement {...generalProps} />
       default:
         return null
     }

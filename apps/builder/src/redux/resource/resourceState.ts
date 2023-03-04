@@ -1,4 +1,5 @@
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
+import { CouchdbResource } from "@/redux/resource/couchdbResource"
 import { DynamoDBResource } from "@/redux/resource/dynamoResource"
 import { FirebaseResource } from "@/redux/resource/firebaseResource"
 import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
@@ -36,11 +37,13 @@ export type ResourceType =
   | "smtp"
   | "s3"
   | "clickhouse"
+  | "couchdb"
 
 export type ResourceContent =
   | HuggingFaceResource
   | HuggingFaceEndpointResource
   | ClickhouseResource
+  | CouchdbResource
   | FirebaseResource
   | SMTPResource
   | S3Resource

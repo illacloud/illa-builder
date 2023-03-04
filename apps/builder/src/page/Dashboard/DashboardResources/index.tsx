@@ -66,6 +66,7 @@ export const DashboardResources: FC = () => {
         case "s3":
         case "huggingface":
         case "hfendpoint":
+        case "couchdb":
           break
         case "clickhouse":
         case "supabasedb":

@@ -219,6 +219,15 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         accessKeyID,
         secretAccessKey,
       }
+    case "couchdb":
+      const { host, port, username, password, ssl } = data
+      return {
+        host,
+        port,
+        username,
+        password,
+        ssl,
+      }
   }
 }
 
