@@ -137,7 +137,10 @@
           "database": "데이터 베이스",
           "select": "리소스 유형 선택",
           "huggingface": "Hugging Face",
-          "appwrite": "Appwrite"
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "CouchDB"
+          }
         },
         "validate": {
           "required": "{name} 을(를) 입력하세요"
@@ -172,6 +175,11 @@
               "value": "1234"
             },
             "order": "attribute"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
           }
         },
         "tips": {
@@ -279,7 +287,42 @@
           "failure": "불합격",
           "resource": "자원",
           "success": "성공",
-          "transformer": "변신 로봇"
+          "transformer": "변신 로봇",
+          "couchdb": {
+            "database": "Database",
+            "action_type": "Action type"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Select a database",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "List records",
+                "retrieve": "Retrieve record",
+                "create": "Create record",
+                "update": "Update record",
+                "delete": "Delete record",
+                "find": "Find",
+                "get": "Get view"
+              },
+              "skip": "Skip",
+              "limit": "Limit",
+              "include": "Include docs",
+              "des": "Descending order",
+              "id": "_id",
+              "rev": "_rev",
+              "record": "Record",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "ViewURL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey"
+            }
+          }
         },
         "menu": {
           "more": {
