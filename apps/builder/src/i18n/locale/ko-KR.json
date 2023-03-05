@@ -140,6 +140,9 @@
           "appwrite": "Appwrite",
           "couchdb": {
             "couchdb": "CouchDB"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
           }
         },
         "validate": {
@@ -161,6 +164,10 @@
             "filter": "Filter",
             "order": "Order by",
             "limit": "Limit"
+          },
+          "oracle": {
+            "sid": "Treat Database name as SID/Service Name",
+            "ssl": "SSL"
           }
         },
         "placeholder": {
@@ -180,6 +187,10 @@
             "port": {
               "5984": "5984"
             }
+          },
+          "oracle": {
+            "username": "oracle",
+            "password": "••••••••"
           }
         },
         "tips": {
@@ -215,6 +226,13 @@
               "asc": "Asc",
               "desc": "Desc"
             }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Service Name"
+            },
+            "ssl": "Use SSL when available"
           }
         },
         "default": {
