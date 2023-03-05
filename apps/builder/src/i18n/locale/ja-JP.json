@@ -137,7 +137,10 @@
           "database": "データベース",
           "select": "リソースの種類を選択",
           "huggingface": "Hugging Face",
-          "appwrite": "Appwrite"
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "CouchDB"
+          }
         },
         "validate": {
           "required": "{name}入力してください"
@@ -172,6 +175,11 @@
               "value": "1234"
             },
             "order": "attribute"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
           }
         },
         "tips": {
@@ -279,7 +287,42 @@
           "failure": "不合格",
           "resource": "資源",
           "success": "成功",
-          "transformer": "変成器"
+          "transformer": "変成器",
+          "couchdb": {
+            "database": "Database",
+            "action_type": "Action type"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Select a database",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "List records",
+                "retrieve": "Retrieve record",
+                "create": "Create record",
+                "update": "Update record",
+                "delete": "Delete record",
+                "find": "Find",
+                "get": "Get view"
+              },
+              "skip": "Skip",
+              "limit": "Limit",
+              "include": "Include docs",
+              "des": "Descending order",
+              "id": "_id",
+              "rev": "_rev",
+              "record": "Record",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "ViewURL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey"
+            }
+          }
         },
         "menu": {
           "more": {
