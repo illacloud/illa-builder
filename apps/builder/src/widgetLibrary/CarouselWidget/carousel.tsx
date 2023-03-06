@@ -148,7 +148,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
         },
       ])
     },
-    [handleUpdateMultiExecutionResult],
+    [displayName, handleUpdateMultiExecutionResult],
   )
 
   useEffect(() => {
