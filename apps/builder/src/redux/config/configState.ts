@@ -1,4 +1,8 @@
 import {
+  ILLA_WEBSOCKET_CONTEXT,
+  ILLA_WEBSOCKET_STATUS,
+} from "@/api/ws/interface"
+import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
@@ -21,6 +25,7 @@ export interface ConfigState {
   canvasHeight: number
   canvasWidth: number
   isOnline: boolean
+  wsStatus: Record<ILLA_WEBSOCKET_CONTEXT, ILLA_WEBSOCKET_STATUS>
   isDragging: boolean
 }
 
@@ -41,4 +46,8 @@ export const ConfigInitialState: ConfigState = {
   canvasWidth: 1920,
   isOnline: true,
   isDragging: false,
+  wsStatus: {
+    [ILLA_WEBSOCKET_CONTEXT.DASHBOARD]: ILLA_WEBSOCKET_STATUS.INIT,
+    [ILLA_WEBSOCKET_CONTEXT.APP]: ILLA_WEBSOCKET_STATUS.INIT,
+  },
 }
