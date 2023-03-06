@@ -1,5 +1,11 @@
 import { getPayload } from "@/api/ws/index"
-import { Callback, Signal, Target } from "@/api/ws/interface"
+import {
+  Callback,
+  ILLA_WEBSOCKET_CONTEXT,
+  ILLA_WEBSOCKET_STATUS,
+  Signal,
+  Target,
+} from "@/api/ws/interface"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -34,14 +40,24 @@ export class ILLAWebsocket {
   pingTimeoutId: number = -1
   pongTimeoutId: number = -1
   isOnline: boolean = getIsOnline(store.getState())
+  messageQueue: string[] = []
+  status: ILLA_WEBSOCKET_STATUS = ILLA_WEBSOCKET_STATUS.INIT
+  context: ILLA_WEBSOCKET_CONTEXT = ILLA_WEBSOCKET_CONTEXT.DASHBOARD
 
-  constructor(url: string) {
+  constructor(url: string, context: ILLA_WEBSOCKET_CONTEXT) {
     this.url = url
+    this.context = context
     this.createWebsocket()
   }
 
   private createWebsocket() {
     try {
+      store.dispatch(
+        configActions.updateWSStatusReducer({
+          context: this.context,
+          wsStatus: ILLA_WEBSOCKET_STATUS.CONNECTING,
+        }),
+      )
       this.ws = new WebSocket(this.url)
       this.initEventHandle()
     } catch (e) {
@@ -54,15 +70,34 @@ export class ILLAWebsocket {
     if (this.ws) {
       this.ws.onclose = () => {
         this.reconnect()
+        store.dispatch(
+          configActions.updateWSStatusReducer({
+            context: this.context,
+            wsStatus: ILLA_WEBSOCKET_STATUS.CLOSED,
+          }),
+        )
       }
       this.ws.onerror = () => {
         this.reconnect()
+        store.dispatch(
+          configActions.updateWSStatusReducer({
+            context: this.context,
+            wsStatus: ILLA_WEBSOCKET_STATUS.FAILED,
+          }),
+        )
       }
       this.ws.onopen = () => {
         console.log(`[WS OPENED](${this.url}) connection succeeded`)
         const { id: teamID = "", uid = "" } =
           getCurrentTeamInfo(store.getState()) ?? {}
         store.dispatch(configActions.updateDevicesOnlineStatusReducer(true))
+        store.dispatch(
+          configActions.updateWSStatusReducer({
+            context: this.context,
+            wsStatus: ILLA_WEBSOCKET_STATUS.CONNECTED,
+          }),
+        )
+
         this.send(
           getPayload(
             Signal.SIGNAL_ENTER,
@@ -84,6 +119,9 @@ export class ILLAWebsocket {
         this.isOnline = true
         this.repeat = 0
         this.heartCheck()
+        while (this.messageQueue.length > 0) {
+          this.send(this.messageQueue.shift() as string)
+        }
       }
       this.ws.onmessage = (event) => {
         this.onMessage(event)
@@ -183,6 +221,10 @@ export class ILLAWebsocket {
   }
 
   public send(message: string) {
+    if (this.ws?.readyState !== 1) {
+      this.messageQueue.push(message)
+      return
+    }
     try {
       this.ws?.send(message)
     } catch (e) {

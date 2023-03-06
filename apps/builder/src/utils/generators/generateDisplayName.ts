@@ -6,14 +6,12 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import store from "@/store"
 
 export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"
 export const UPDATE_DISPLAY_NAME = "updateDisplayName"
 
-export const PLACEHOLDER_DISPLAYNAME = []
+export const PLACEHOLDER_DISPLAYNAME = ["document"]
 
 export class DisplayNameGenerator {
   static displayNameList = new Set<string>(PLACEHOLDER_DISPLAYNAME)

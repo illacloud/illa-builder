@@ -14,11 +14,7 @@ import {
 import "@/api/base"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
-import {
-  getIsILLAEditMode,
-  getIsILLAPreviewMode,
-  getIsILLAProductMode,
-} from "@/redux/config/configSelector"
+import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import {
   getCurrentConfigLanguage,
   getCurrentTranslateLanguage,

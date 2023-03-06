@@ -86,3 +86,15 @@ export const getIsILLAPreviewMode = (state: RootState) => {
 export const getIsILLAProductMode = (state: RootState) => {
   return state.config.mode === "production"
 }
+
+export const getWSStatus = (state: RootState) => {
+  return state.config.wsStatus
+}
+
+export const getDashboardWSStatus = (state: RootState) => {
+  return state.config.wsStatus.DASHBOARD
+}
+
+export const getAppWSStatus = (state: RootState) => {
+  return state.config.wsStatus.APP
+}

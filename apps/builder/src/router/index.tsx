@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
 import { CheckIsLogin } from "@/auth"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
 import { Page404 } from "@/page/status/404"
