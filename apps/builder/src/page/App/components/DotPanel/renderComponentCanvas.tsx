@@ -52,8 +52,10 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import {
   IGNORE_WIDGET_TYPES,
   getRootNodeExecutionResult,
+  getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
@@ -170,6 +172,7 @@ export const RenderComponentCanvas: FC<{
   const dispatch = useDispatch()
 
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
+  const widgetExecutionResult = useSelector(getWidgetExecutionResult)
   const selectedComponents = useSelector(getSelectedComponents)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
@@ -673,11 +676,15 @@ export const RenderComponentCanvas: FC<{
 
   const maxY = useMemo(() => {
     let maxY = 0
-    componentNode.childrenNode?.forEach((node) => {
+    const componentNodes = batchMergeLayoutInfoToComponent(
+      widgetExecutionResult,
+      componentNode.childrenNode ?? [],
+    )
+    componentNodes.forEach((node) => {
       maxY = Math.max(maxY, node.y + node.h)
     })
     return maxY
-  }, [componentNode.childrenNode])
+  }, [componentNode.childrenNode, widgetExecutionResult])
 
   const finalRowNumber = useMemo(() => {
     return Math.max(
