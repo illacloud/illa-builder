@@ -112,6 +112,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return <HuggingFaceEndpointConfigElement {...configElementProps} />
       case "clickhouse":
         return <ClickhouseConfigElement {...configElementProps} />
+      case "couchdb":
         return <CouchDBConfigElement {...configElementProps} />
       default:
         return null

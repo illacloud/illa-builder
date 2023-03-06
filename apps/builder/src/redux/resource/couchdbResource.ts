@@ -8,7 +8,7 @@ export interface CouchdbResource {
 
 export const CouchdbResourceInitial: CouchdbResource = {
   host: "",
-  port: "5984",
+  port: "",
   username: "",
   password: "",
   ssl: false,

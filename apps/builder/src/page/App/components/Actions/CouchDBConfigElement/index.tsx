@@ -36,7 +36,6 @@ import { isCloudVersion } from "@/utils/typeHelper"
 
 export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
   const { resourceId, onFinished, onBack } = props
-
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -133,7 +132,7 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
               validate,
             },
           ]}
-          placeholders={["5984"]}
+          placeholders={[t("editor.action.form.placeholder.couchdb.port.5984")]}
           name="port"
         />
         <ControlledElement

@@ -1,4 +1,8 @@
 import {
+  CouchDBAction,
+  CouchDBOptionsType,
+} from "@/redux/currentApp/action/couchDBAction"
+import {
   DynamoDBAction,
   StructParams,
 } from "@/redux/currentApp/action/dynamoDBAction"
@@ -114,5 +118,6 @@ export type ActionContent =
   | RedisAction
   | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
+  | CouchDBAction<CouchDBOptionsType>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

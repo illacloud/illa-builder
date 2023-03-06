@@ -1,0 +1,184 @@
+import { FC, useCallback, useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { SelectValue } from "@illa-design/react"
+import { BuilderApi } from "@/api/base"
+import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { CreateRecordSubPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/CreateRecordSubPanel"
+import { DeleteRecordSubPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/DeleteRecordSubPanel"
+import { FindRecordSubPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/FindRecordSubPanel"
+import { GetViewSubPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/GetViewSubPanel"
+import { ListRecordsSubPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/ListRecordsSubPanel"
+import { RetrieveRecordSubPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/RetrieveRecordSubPanel"
+import { UpdateRecordSubPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/UpdateRecordSubPanel"
+import {
+  CouchDBMethodsInitialValueMap,
+  CouchDBPanelMethodOptions,
+} from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/values"
+import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
+import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import {
+  actionItemContainer,
+  panelContainerStyle,
+} from "@/page/App/components/Actions/ActionPanel/style"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  CouchDBAction,
+  CouchDBActionMethods,
+  CouchDBOptionsType,
+} from "@/redux/currentApp/action/couchDBAction"
+import { ResourcesData } from "@/redux/resource/resourceState"
+import { isObject } from "@/utils/typeHelper"
+
+type CouchDBPanelType = ActionItem<CouchDBAction<CouchDBOptionsType>>
+
+const MethodSubPanelMap = {
+  listRecords: ListRecordsSubPanel,
+  retrieveRecord: RetrieveRecordSubPanel,
+  createRecord: CreateRecordSubPanel,
+  updateRecord: UpdateRecordSubPanel,
+  deleteRecord: DeleteRecordSubPanel,
+  find: FindRecordSubPanel,
+  getView: GetViewSubPanel,
+}
+
+export const CouchDBPanel: FC = () => {
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const selectedAction = useSelector(getSelectedAction) as CouchDBPanelType
+  const cachedAction = useSelector(getCachedAction) as CouchDBPanelType
+  const content = cachedAction.content
+  const selectedContent = selectedAction.content
+  const [selectOptions, setSelectOptions] = useState<string[]>([])
+
+  useEffect(() => {
+    BuilderApi.teamRequest(
+      {
+        url: `/resources/${cachedAction.resourceId}/meta`,
+        method: "GET",
+      },
+      ({ data }: { data: ResourcesData }) => {
+        const { schema } = data
+        setSelectOptions(schema.databases as string[])
+      },
+      () => {},
+      () => {},
+      () => {},
+    )
+  }, [cachedAction.resourceId])
+
+  const handleValueChange = useCallback(
+    (value: string | boolean, name: string[]) => {
+      const isMethod = name[0] === "method"
+      let newContent: CouchDBAction<CouchDBOptionsType> = { ...content }
+      if (isMethod) {
+        if (selectedContent.method === value) {
+          newContent = { ...selectedContent }
+        } else {
+          newContent = {
+            ...content,
+            method: value as CouchDBActionMethods,
+            opts: CouchDBMethodsInitialValueMap[value as string],
+          }
+        }
+      } else {
+        const length = name.length
+        let realChangeObj
+        for (let i = 0; i < length; i++) {
+          const val: any = (realChangeObj ?? newContent)[name[i]]
+          if (isObject(val)) {
+            realChangeObj = val
+            continue
+          }
+          let currentObj = realChangeObj ?? newContent
+          realChangeObj = {
+            ...currentObj,
+            [name[i]]: value,
+          }
+          break
+        }
+        if (length !== 1) {
+          let assignedContent = {}
+          let obj: Record<string, object> = assignedContent
+          for (let i = 0; i < length; i++) {
+            if (i !== length - 2) {
+              const newObj = {}
+              obj[name[i]] = newObj
+              obj = newObj
+            } else {
+              obj[name[i]] = {
+                ...realChangeObj,
+              }
+              break
+            }
+          }
+          Object.assign(newContent, assignedContent)
+        } else {
+          newContent = { ...realChangeObj }
+        }
+      }
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: newContent,
+        }),
+      )
+    },
+    [cachedAction, content, dispatch, selectedContent],
+  )
+
+  const handleSelectedValueChange = useCallback(
+    (name: string | string[]) => (value: SelectValue) => {
+      handleValueChange(value as string, ([] as string[]).concat(name))
+    },
+    [handleValueChange],
+  )
+
+  const handleBooleanValueChange = useCallback(
+    (name: string | string[]) => (value: boolean) => {
+      handleValueChange(value, ([] as string[]).concat(name))
+    },
+    [handleValueChange],
+  )
+
+  const SubPanel = MethodSubPanelMap[content.method]
+
+  return (
+    <div css={panelContainerStyle}>
+      <ResourceChoose />
+      <div css={actionItemContainer}>
+        <SingleTypeComponent
+          title={t("editor.action.panel.label.couchdb.database")}
+          componentType="select"
+          onSelectedValueChange={handleSelectedValueChange("database")}
+          value={content.database}
+          options={selectOptions}
+          placeholder={t(
+            "editor.action.panel.label.placeholder.couchdb.database",
+          )}
+        />
+        <SingleTypeComponent
+          title={t("editor.action.panel.label.couchdb.action_type")}
+          componentType="select"
+          onSelectedValueChange={handleSelectedValueChange("method")}
+          value={content.method}
+          options={CouchDBPanelMethodOptions}
+        />
+        <SubPanel
+          onInputValueChange={handleSelectedValueChange}
+          onBooleanValueChange={handleBooleanValueChange}
+          opts={content.opts}
+        />
+        <TransformerComponent />
+      </div>
+      <ActionEventHandler />
+    </div>
+  )
+}
+CouchDBPanel.displayName = "CouchDBPanel"
