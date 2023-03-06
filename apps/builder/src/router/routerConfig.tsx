@@ -41,7 +41,6 @@ export function layLoad(Comp: LazyExoticComponent<any>): ReactNode {
   )
 }
 
-// TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
 export const commonRouter: RoutesObjectPro[] = [
   {
     path: "/:teamIdentifier/app/:appId",

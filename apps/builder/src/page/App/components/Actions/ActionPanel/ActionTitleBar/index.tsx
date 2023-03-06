@@ -129,6 +129,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { onResultVisibleChange, openState } = props
 
   const message = useMessage()
+  const [saveLoading, setSaveLoading] = useState(false)
   const selectedAction = useSelector(getSelectedAction)!
   const cachedAction = useSelector(getCachedAction)!
   const selectedActionExecutionResult = useSelector<
@@ -188,6 +189,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         }
         break
       case "save":
+        setSaveLoading(true)
         BuilderApi.teamRequest(
           {
             method: "PUT",
@@ -209,6 +211,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               content: t("create_fail"),
             })
           },
+          (loading) => {
+            setSaveLoading(loading)
+          },
         )
         break
       case "save_and_run":
@@ -218,6 +223,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           })
           return
         }
+        setSaveLoading(true)
         BuilderApi.teamRequest(
           {
             method: "PUT",
@@ -241,6 +247,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
             message.error({
               content: t("editor.action.panel.btn.save_fail"),
             })
+          },
+          (loading) => {
+            setSaveLoading(loading)
           },
         )
         break
@@ -307,6 +316,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               ...selectedAction,
               displayName: value,
             }
+            setSaveLoading(true)
             BuilderApi.teamRequest(
               {
                 method: "PUT",
@@ -325,6 +335,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 message.error({
                   content: t("change_fail"),
                 })
+              },
+              (loading) => {
+                setSaveLoading(loading)
               },
             )
           }}
@@ -365,7 +378,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           colorScheme="techPurple"
           variant={isChanged ? "fill" : "light"}
           size="medium"
-          loading={isRunning}
+          loading={isRunning || saveLoading}
           leftIcon={<CaretRightIcon />}
           onClick={handleActionOperation}
         >
