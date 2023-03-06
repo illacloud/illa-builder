@@ -495,6 +495,7 @@ export class ExecutionTreeFactory {
     const orderPath = this.calcSubTreeSortOrder(
       differences,
       currentExecutionTree as RawTreeShape,
+      true,
     )
 
     let currentRawTree = this.updateRawTreeByUpdatePaths(
