@@ -1,7 +1,8 @@
 import { AxiosError, AxiosResponse } from "axios"
 import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isString } from "@illa-design/react"
-import { ApiError, BuilderApi } from "@/api/base"
+import { Api, ApiError, BuilderApi } from "@/api/base"
+import { downloadActionResult } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
@@ -27,6 +28,7 @@ import {
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
 import {
+  ClientS3,
   S3Action,
   S3ActionRequestType,
   S3ActionTypeContent,
@@ -43,12 +45,6 @@ import {
 } from "@/utils/evaluateDynamicString/utils"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { isObject } from "@/utils/typeHelper"
-import {
-  ClientS3,
-  downloadActionResult,
-  encodeToBase64,
-  s3ClientInitialMap,
-} from "./clientS3"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
@@ -165,6 +161,7 @@ const runAllEventHandler = (events: any[] = []) => {
 }
 
 const fetchS3ClientResult = async (
+  presignData: Record<string, any>[],
   resourceId: string,
   actionType: ActionType,
   displayName: string,
@@ -175,53 +172,97 @@ const fetchS3ClientResult = async (
   isTrigger: boolean,
   resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
+  const urlInfos = presignData as { key: string; url: string; acl?: string }[]
   try {
+    if (!urlInfos.length) {
+      return Promise.reject("presignedURL is undefined")
+    }
+    const headers = {
+      "Content-Encoding": "compress",
+      Authorization: "",
+    }
     let result
-    const { getObject, putObject } = s3ClientInitialMap.get(resourceId)
     const { commands } = actionContent
     switch (commands) {
       case S3ActionRequestType.READ_ONE:
-        let commandArgs = actionContent.commandArgs
-        const res = await getObject(commandArgs.objectKey)
+        const readURL = urlInfos[0].url
+        const response = await Api.asyncRequest({
+          url: readURL,
+          method: "GET",
+          headers,
+        })
+        const { request: readReq, config: readConf, ...readRes } = response
         result = {
-          ...res,
-          Body: encodeToBase64(
-            (await res?.Body?.transformToByteArray()) || new Uint8Array(),
-          ),
+          ...readRes,
         }
         break
       case S3ActionRequestType.DOWNLOAD_ONE:
+        const url = urlInfos[0].url
         let downloadCommandArgs = actionContent.commandArgs
-        const downloadRes = await getObject(downloadCommandArgs.objectKey)
-        const value = encodeToBase64(
-          (await downloadRes?.Body?.transformToByteArray()) || new Uint8Array(),
-        )
+        const downloadResponse = await Api.asyncRequest<string>({
+          url,
+          method: "GET",
+          headers,
+        })
+        const contentType =
+          downloadResponse.headers["content-type"].split(";")[0] ?? ""
         downloadActionResult(
-          downloadRes.ContentType || "",
+          contentType,
           downloadCommandArgs.objectKey,
-          value || "",
+          downloadResponse.data || "",
         )
+        const {
+          request: downloadReq,
+          config: downloadConf,
+          ...downloadRes
+        } = downloadResponse
+        result = {
+          ...downloadRes,
+        }
         break
       case S3ActionRequestType.UPLOAD:
         let uploadCommandArgs = actionContent.commandArgs
-        const uploadRes = await putObject(
-          uploadCommandArgs.objectKey,
-          uploadCommandArgs.objectData,
-          uploadCommandArgs.contentType,
-        )
-        result = uploadRes
+        const uploadUrl = urlInfos[0].url
+        const uploadResponse = await Api.asyncRequest({
+          url: uploadUrl,
+          method: "PUT",
+          data: uploadCommandArgs.objectData,
+          headers: {
+            ...headers,
+            "x-amz-acl": urlInfos[0].acl ?? "public-read",
+          },
+        })
+        const {
+          request: uploadReq,
+          config: uploadConf,
+          ...uploadRes
+        } = uploadResponse
+        result = {
+          ...uploadRes,
+        }
         break
       case S3ActionRequestType.UPLOAD_MULTIPLE:
         const multipleCommandArgs = actionContent.commandArgs
-        const { contentType, objectKeyList, objectDataList } =
-          multipleCommandArgs
-        let requests = []
-        for (let i = 0, len = objectDataList.length; i < len; i++) {
+        const { objectDataList } = multipleCommandArgs
+        let requests: any[] = []
+        urlInfos.forEach((data, index) => {
           requests.push(
-            putObject(objectKeyList[i], objectDataList[i], contentType),
+            Api.asyncRequest({
+              url: data.url,
+              method: "PUT",
+              data: objectDataList[index],
+              headers: {
+                ...headers,
+                "x-amz-acl": data.acl ?? "public-read",
+              },
+            }),
           )
-        }
-        result = await Promise.all(requests)
+        })
+        const res = await Promise.all(requests)
+        result = res.map((response) => {
+          const { request, config, ...others } = response
+          return others
+        })
         break
     }
     calculateFetchResultDisplayName(
@@ -271,6 +312,27 @@ const fetchActionResult = (
   resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
   const success = (data: ActionRunResult) => {
+    const isS3ActionType = actionType === "s3"
+    const isClientS3 =
+      isS3ActionType &&
+      ClientS3.includes(
+        (actionContent as S3Action<S3ActionTypeContent>).commands,
+      )
+    if (isClientS3) {
+      fetchS3ClientResult(
+        data.data.Rows,
+        resourceId || "",
+        actionType,
+        displayName,
+        actionContent,
+        successEvent,
+        failedEvent,
+        transformer,
+        isTrigger,
+        resultCallback,
+      )
+      return
+    }
     // @ts-ignore
     //TODO: @aruseito not use any
     const rawData = data.data.Rows
@@ -546,54 +608,18 @@ export const runAction = (
     }),
   )
 
-  switch (actionType) {
-    case "s3":
-      const isClientS3 = ClientS3.includes(
-        (action.content as S3Action<S3ActionTypeContent>).commands,
-      )
-      if (isClientS3) {
-        fetchS3ClientResult(
-          resourceId || "",
-          actionType,
-          displayName,
-          actionContent,
-          successEvent,
-          failedEvent,
-          transformer,
-          isTrigger,
-          resultCallback,
-        )
-      } else {
-        fetchActionResult(
-          action.config.public,
-          resourceId || "",
-          actionType,
-          displayName,
-          appId,
-          actionId,
-          actionContent,
-          successEvent,
-          failedEvent,
-          transformer,
-          isTrigger,
-          resultCallback,
-        )
-      }
-      break
-    default:
-      fetchActionResult(
-        action.config.public,
-        resourceId || "",
-        actionType,
-        displayName,
-        appId,
-        actionId,
-        actionContent,
-        successEvent,
-        failedEvent,
-        transformer,
-        isTrigger,
-        resultCallback,
-      )
-  }
+  fetchActionResult(
+    action.config.public,
+    resourceId || "",
+    actionType,
+    displayName,
+    appId,
+    actionId,
+    actionContent,
+    successEvent,
+    failedEvent,
+    transformer,
+    isTrigger,
+    resultCallback,
+  )
 }

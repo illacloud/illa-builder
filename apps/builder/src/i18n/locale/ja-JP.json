@@ -177,7 +177,7 @@
         "tips": {
           "acl": "バケットに CORS を設定することを忘れないでください。 <0>クロスオリジン リソース共有 (CORS) を参照してください。</0>",
           "connect_to_local": {
-            "cloud": "マシンのローカルまたはプライベート ネットワークの一部であるデータベースに接続しようとしているようです。 ILLAクラウド版では動作しない場合があります。 自己ホスト バージョンの方法については、ドキュメントをご覧ください。",
+            "cloud": "マシンのローカルまたはプライベート ネットワークの一部であるデータベースに接続しようとしているようです。 ILLAクラウド版では動作しない場合があります。 自己ホスト バージョンの方法については、<0>ドキュメント<0>をご覧ください。",
             "selfhost": "マシンのローカル データベースに接続しようとしているようです。 「localhost」または「127.0.0.1」の代わりに、マシンのローカル エリア ネットワーク IP アドレスを使用してください。",
             "title": {
               "tips": "ヒント"
@@ -340,8 +340,8 @@
           "upload_data_list": "アップロードデータ一覧",
           "upload_object_name": "アップロード オブジェクト名",
           "upload_object_name_list": "オブジェクト名リストのアップロード",
-          "timeout_upload": "Timeout for uploading a file (Minute)",
-          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
+          "timeout_upload": "파일 업로드 제한 시간(분)",
+          "timeout_upload_multiple": "単一ファイルのアップロードのタイムアウト (分)"
         },
         "smtp": {
           "attachment": "付録",
@@ -1660,7 +1660,7 @@
       "name": "Multiselect"
     },
     "carousel": {
-      "name": "Carousel"
+      "name": "カルーセル"
     }
   },
   "page": {

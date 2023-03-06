@@ -6,9 +6,6 @@ import { Member } from "@/page/Member"
 import { SettingAccount } from "@/page/Setting/SettingAccount"
 import { SettingOthers } from "@/page/Setting/SettingOthers"
 import { SettingPassword } from "@/page/Setting/SettingPassword"
-import { Login } from "@/page/User/Login"
-import { Register } from "@/page/User/Register"
-import { ResetPassword } from "@/page/User/ResetPassword"
 import { Page403 } from "@/page/status/403"
 import { Page404 } from "@/page/status/404"
 import { Page500 } from "@/page/status/500"
@@ -73,16 +70,33 @@ export const commonRouter: RoutesObjectPro[] = [
     loader: handleRemoveUrlToken,
   },
   {
+    path: "/privacy-policy",
+    accessByMobile: true,
+    element: layLoad(
+      lazy(() => import("@/illa-public-component/User/policy/PrivacyPolicy")),
+    ),
+  },
+  {
+    path: "/terms-and-conditions",
+    accessByMobile: true,
+    element: layLoad(
+      lazy(() => import("@/illa-public-component/User/policy/TermsOfService")),
+    ),
+  },
+  {
     path: "/403",
     element: <Page403 />,
+    accessByMobile: true,
   },
   {
     path: "/500",
     element: <Page500 />,
+    accessByMobile: true,
   },
   {
     path: "/*",
     element: <Page404 />,
+    accessByMobile: true,
   },
 ]
 
@@ -149,26 +163,19 @@ export const selfRouter: RoutesObjectPro[] = [
     ],
   },
   {
-    path: "/user",
-    element: layLoad(lazy(() => import("@/page/User"))),
-    children: [
-      {
-        index: true,
-        element: <Navigate to="./login" replace />,
-      },
-      {
-        path: "/user/login",
-        element: <Login />,
-      },
-      {
-        path: "/user/register",
-        element: <Register />,
-      },
-      {
-        path: "/user/forgotPassword",
-        element: <ResetPassword />,
-      },
-    ],
+    path: "/login",
+    element: layLoad(lazy(() => import("@/page/User/Login"))),
+    accessByMobile: true,
+  },
+  {
+    path: "/register",
+    element: layLoad(lazy(() => import("@/page/User/Register"))),
+    accessByMobile: true,
+  },
+  {
+    path: "/forgotPassword",
+    element: layLoad(lazy(() => import("@/page/User/ResetPassword"))),
+    accessByMobile: true,
   },
   {
     path: "/setting",
