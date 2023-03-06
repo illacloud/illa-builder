@@ -3,7 +3,7 @@ import { ReactComponent as FormWidgetIcon } from "@/assets/widgetCover/form.svg"
 import i18n from "@/i18n/config"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
-import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 import { BUTTON_WIDGET_CONFIG } from "../ButtonWidget"
 
 export const FORM_WIDGET_CONFIG: WidgetConfig = {

@@ -99,10 +99,10 @@ export const Editor: FC = () => {
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
+      setupExecutionListeners(startAppListening),
       setupComponentsListeners(startAppListening),
       setupActionListeners(startAppListening),
       setupConfigListeners(startAppListening),
-      setupExecutionListeners(startAppListening),
     ]
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
