@@ -1165,7 +1165,8 @@
           "icon_color": "颜色"
         },
         "choose_at_least": "Choose at least",
-        "choose_up_to": "Choose up to"
+        "choose_up_to": "Choose up to",
+        "copy_to_clipboard": "复制到剪贴板"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
