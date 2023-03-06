@@ -1165,7 +1165,8 @@
           "icon_color": "色"
         },
         "choose_at_least": "Choose at least",
-        "choose_up_to": "Choose up to"
+        "choose_up_to": "Choose up to",
+        "copy_to_clipboard": "クリップボードにコピー"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
