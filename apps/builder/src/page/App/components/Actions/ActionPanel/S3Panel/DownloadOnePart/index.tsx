@@ -86,6 +86,7 @@ export const DownloadOnePart: FC<S3ActionPartProps> = (props) => {
           w="100%"
           onChange={(value) => handleValueChange(!!value, "signedURL")}
           options={SelectOption}
+          z="0"
         />
       </div>
       {isShowSignedURL && (

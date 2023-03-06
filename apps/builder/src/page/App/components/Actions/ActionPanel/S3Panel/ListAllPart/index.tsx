@@ -104,6 +104,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           value={+commandArgs.signedURL}
           ml="16px"
           w="100%"
+          z="0"
           onChange={(value) => handleValueChange(!!value, "signedURL")}
           options={SelectOption}
         />
