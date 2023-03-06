@@ -456,14 +456,12 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     e.preventDefault()
     e.stopPropagation()
     dispatch(
-      componentsActions.updateComponentsShape({
-        isMove: false,
-        components: [
-          {
-            ...componentNode,
-            isResizing: true,
-          },
-        ],
+      componentsActions.updateComponentLayoutInfoReducer({
+        displayName: componentNode.displayName,
+        layoutInfo: {},
+        statusInfo: {
+          isResizing: true,
+        },
       }),
     )
     if (Array.isArray(childrenNode)) {
@@ -694,7 +692,6 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
     unitH,
     containerPadding,
     containerHeight,
-    childrenNode,
     collisionEffect,
     blockColumns,
   } = props
@@ -912,14 +909,12 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       e.preventDefault()
       e.stopPropagation()
       dispatch(
-        componentsActions.updateComponentsShape({
-          isMove: false,
-          components: [
-            {
-              ...componentNode,
-              isResizing: true,
-            },
-          ],
+        componentsActions.updateComponentLayoutInfoReducer({
+          displayName: componentNode.displayName,
+          layoutInfo: {},
+          statusInfo: {
+            isResizing: true,
+          },
         }),
       )
 

@@ -9,7 +9,6 @@ import { Signal, Target } from "@/api/ws/interface"
 import {
   UpdateComponentContainerPayload,
   UpdateComponentNodeLayoutInfoPayload,
-  UpdateComponentsShapePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import {
   getCanvas,
@@ -148,29 +147,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 teamID,
                 uid,
                 copyComponentPayload,
-              ),
-            )
-            break
-          case "updateComponentsShape":
-            const singleComponentPayload: UpdateComponentsShapePayload = payload
-            const singleComponentWSPayload =
-              transformComponentReduxPayloadToWsPayload(
-                singleComponentPayload.components,
-              )
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                singleComponentPayload.isMove
-                  ? Signal.SIGNAL_MOVE_STATE
-                  : Signal.SIGNAL_UPDATE_STATE,
-                Target.TARGET_COMPONENTS,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                teamID,
-                uid,
-                singleComponentWSPayload,
               ),
             )
             break

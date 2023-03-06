@@ -11,14 +11,12 @@ export function startDrag(dragNode: ComponentNode, isAdd: boolean = false) {
   store.dispatch(configActions.updateDraggingStateReducer(true))
   if (!isAdd) {
     store.dispatch(
-      componentsActions.updateComponentsShape({
-        isMove: false,
-        components: [
-          {
-            ...dragNode,
-            isDragging: true,
-          },
-        ],
+      componentsActions.updateComponentLayoutInfoReducer({
+        displayName: dragNode.displayName,
+        layoutInfo: {},
+        statusInfo: {
+          isDragging: true,
+        },
       }),
     )
   }

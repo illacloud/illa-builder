@@ -316,7 +316,6 @@ function handleUpdateTargetPagePropsEffect(
 const updateComponentReflowComponentsAdapter = (
   action: ReturnType<
     | typeof componentsActions.addComponentReducer
-    | typeof componentsActions.updateComponentsShape
     | typeof componentsActions.updateComponentContainerReducer
     | typeof componentsActions.updateComponentLayoutInfoReducer
     | typeof componentsActions.copyComponentReducer
@@ -325,9 +324,6 @@ const updateComponentReflowComponentsAdapter = (
   switch (action.type) {
     case "components/addComponentReducer": {
       return action.payload
-    }
-    case "components/updateComponentsShape": {
-      return action.payload.components
     }
     case "components/updateComponentContainerReducer": {
       return action.payload.updateSlice.map((slice) => {
@@ -366,7 +362,6 @@ function handleUpdateComponentReflowEffect(
     updateComponentReflowComponentsAdapter(
       action as ReturnType<
         | typeof componentsActions.addComponentReducer
-        | typeof componentsActions.updateComponentsShape
         | typeof componentsActions.updateComponentContainerReducer
         | typeof componentsActions.updateComponentLayoutInfoReducer
         | typeof componentsActions.copyComponentReducer
@@ -478,7 +473,6 @@ export function setupComponentsListeners(
     }),
     startListening({
       matcher: isAnyOf(
-        componentsActions.updateComponentsShape,
         componentsActions.updateComponentContainerReducer,
         componentsActions.addComponentReducer,
         componentsActions.updateComponentLayoutInfoReducer,

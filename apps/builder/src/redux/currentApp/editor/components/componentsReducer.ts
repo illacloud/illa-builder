@@ -5,7 +5,6 @@ import {
   StatusInfo,
   UpdateComponentContainerPayload,
   UpdateComponentNodeLayoutInfoPayload,
-  UpdateComponentsShapePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
@@ -330,23 +329,6 @@ export const updateComponentDisplayNameReducer: CaseReducer<
   }
 }
 
-export const updateComponentsShape: CaseReducer<
-  ComponentsState,
-  PayloadAction<UpdateComponentsShapePayload>
-> = (state, action) => {
-  action.payload.components.forEach((dealNode) => {
-    const parentNode = searchDsl(state, dealNode.parentNode)
-    if (parentNode != null) {
-      const index = parentNode.childrenNode.findIndex((value) => {
-        return value.displayName === dealNode.displayName
-      })
-      if (index > -1) {
-        parentNode.childrenNode[index] = dealNode
-      }
-    }
-  })
-}
-
 export const updateComponentContainerReducer: CaseReducer<
   ComponentsState,
   PayloadAction<UpdateComponentContainerPayload>
@@ -419,23 +401,6 @@ export const updateHeaderSectionReducer: CaseReducer<
       ...targetSection.props,
       height: payload,
     }
-  }
-}
-
-export const updateCurrentPagePropsReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<Partial<PageNodeProps>>
-> = (state, action) => {
-  if (!state?.props) return state
-  const { currentPageIndex, pageSortedKey } = state.props
-  const currentPageDisplayName = pageSortedKey[currentPageIndex]
-  const currentPage = state.childrenNode.find(
-    (node) => node.displayName === currentPageDisplayName,
-  )
-  if (!currentPage) return state
-  currentPage.props = {
-    ...currentPage.props,
-    ...action.payload,
   }
 }
 
