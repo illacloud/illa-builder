@@ -1,6 +1,5 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { diff } from "deep-diff"
-import { cloneDeep } from "lodash"
 import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -282,6 +281,19 @@ function handleUpdateModalEffect(
   )
 }
 
+function handleUpdateExecutedTree(
+  action: ReturnType<
+    typeof executionActions.batchUpdateWidgetLayoutInfoReducer
+  >,
+  listenerApi: AppListenerEffectAPI,
+) {
+  if (executionTree) {
+    const rootState = listenerApi.getState()
+    const executedTree = getExecutionResult(rootState)
+    executionTree.setEvaluatedTree(executedTree)
+  }
+}
+
 export function setupExecutionListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -335,6 +347,10 @@ export function setupExecutionListeners(
     startListening({
       actionCreator: executionActions.updateWidgetLayoutInfoReducer,
       effect: handleUpdateReflowEffect,
+    }),
+    startListening({
+      actionCreator: executionActions.batchUpdateWidgetLayoutInfoReducer,
+      effect: handleUpdateExecutedTree,
     }),
   ]
 

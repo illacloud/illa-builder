@@ -419,6 +419,10 @@ export class ExecutionTreeFactory {
     }
   }
 
+  setEvaluatedTree(executedTree: Record<string, any>) {
+    this.executedTree = executedTree as RawTreeShape
+  }
+
   getUpdatePathFromDifferences(
     differences: Diff<Record<string, any>, Record<string, any>>[],
   ) {

@@ -484,12 +484,12 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       const { width, height } = delta
       const finalWidth = Math.round((w + width) / unitW)
       const finalHeight = Math.round((h + height) / unitH)
-      const x = Math.round(position.x / unitW)
-      const y = Math.round(position.y / unitH)
+      const positionX = Math.round(position.x / unitW)
+      const positionY = Math.round(position.y / unitH)
       const newItem = {
         ...item,
-        x,
-        y,
+        x: positionX,
+        y: positionY,
         w: finalWidth,
         h: finalHeight,
       }
@@ -499,7 +499,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       const allChildrenNodes = [...childNodesRef.current]
 
       allChildrenNodes.splice(indexOfChildren, 1, newItem)
-      const { finalState } = getReflowResult(newItem, allChildrenNodes, true)
+      const { finalState } = getReflowResult(newItem, allChildrenNodes)
       const updateSlice = finalState.map((componentNode) => {
         return {
           displayName: componentNode.displayName,
@@ -661,8 +661,8 @@ export const ScaleSquareWithJSON = memo<ScaleSquarePropsWithJSON>(
       <Rnd
         bounds="parent"
         size={{
-          width: w + 1,
-          height: h + 1,
+          width: w,
+          height: h,
         }}
         position={{
           x: x,
@@ -748,9 +748,6 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   const filteredComponentAttachedUserList = attachedUserList.filter(
     (user) => `${user.id}` !== `${currentUsesInfo.userId}`,
   )
-
-  const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
-
   const hasError = useMemo(() => {
     const displayName = componentNode.displayName
     const widgetErrors = errors[displayName] ?? {}
@@ -816,25 +813,41 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   const handleOnResizeStop: ResizeCallback = useCallback(
     (e, dir, ref, delta) => {
       const { width, height } = delta
-      const finalWidth = Math.round((w + width) / unitW)
-      const finalHeight = Math.round((h + height) / unitH)
-
-      const newComponentNode = {
-        ...componentNode,
-        w: finalWidth,
-        h: finalHeight,
-        isResizing: false,
-      }
+      let finalWidth = Math.round((w + width) / unitW)
+      let finalHeight = Math.round((h + height) / unitH)
+      finalWidth =
+        finalWidth < componentNode.minW ? componentNode.minW : finalWidth
+      finalHeight =
+        finalHeight < componentNode.minH ? componentNode.minH : finalHeight
 
       dispatch(
-        componentsActions.updateComponentsShape({
-          isMove: false,
-          components: [newComponentNode],
+        componentsActions.updateComponentLayoutInfoReducer({
+          displayName: componentNode.displayName,
+          layoutInfo: {
+            x,
+            y,
+            w: finalWidth,
+            h: finalHeight,
+          },
+          statusInfo: {
+            isResizing: false,
+          },
         }),
       )
       dispatch(configActions.updateShowDot(false))
     },
-    [componentNode, dispatch, h, unitH, unitW, w],
+    [
+      componentNode.displayName,
+      componentNode.minH,
+      componentNode.minW,
+      dispatch,
+      h,
+      unitH,
+      unitW,
+      w,
+      x,
+      y,
+    ],
   )
 
   const resizeHandler = useMemo(() => {
@@ -909,10 +922,10 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
           ],
         }),
       )
-      childNodesRef.current = childrenNode ? cloneDeep(childrenNode) : []
+
       dispatch(configActions.updateShowDot(true))
     },
-    [componentNode, childrenNode, dispatch],
+    [componentNode, dispatch],
   )
 
   const handleContextMenu = useCallback(
@@ -935,8 +948,8 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
     <Resizable
       bounds="parent"
       size={{
-        width: w + 1,
-        height: h + 1,
+        width: w,
+        height: h,
       }}
       minWidth={componentNode.minW * unitW}
       minHeight={componentNode.minH * unitH}
