@@ -6,6 +6,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
 import { Connection } from "@/api/ws"
+import {
+  ILLA_WEBSOCKET_CONTEXT,
+  ILLA_WEBSOCKET_STATUS,
+} from "@/api/ws/interface"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
@@ -19,12 +23,14 @@ import { ComponentsManager } from "@/page/App/components/ComponentManager"
 import { Debugger } from "@/page/App/components/Debugger"
 import { setupConfigListeners } from "@/redux/config/configListener"
 import {
+  getAppWSStatus,
   getIsOnline,
   isOpenBottomPanel,
   isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
@@ -57,6 +63,7 @@ export const Editor: FC = () => {
 
   const currentUser = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
+  const wsStatus = useSelector(getAppWSStatus)
 
   const currentUserRole = teamInfo?.myRole
 
@@ -91,6 +98,12 @@ export const Editor: FC = () => {
       dispatch(
         collaboratorsActions.setInRoomUsers({
           inRoomUsers: [],
+        }),
+      )
+      dispatch(
+        configActions.updateWSStatusReducer({
+          context: ILLA_WEBSOCKET_CONTEXT.APP,
+          wsStatus: ILLA_WEBSOCKET_STATUS.CLOSED,
         }),
       )
       window.removeEventListener("beforeunload", handleLeaveRoom)
@@ -138,10 +151,15 @@ export const Editor: FC = () => {
     [controls],
   )
 
+  const combinLoadingState =
+    loadingState ||
+    wsStatus === ILLA_WEBSOCKET_STATUS.INIT ||
+    wsStatus === ILLA_WEBSOCKET_STATUS.CONNECTING
+
   return (
     <div css={editorContainerStyle}>
-      {loadingState && <AppLoading />}
-      {!loadingState && (
+      {combinLoadingState && <AppLoading />}
+      {!combinLoadingState && (
         <Shortcut>
           <PageNavBar css={navbarStyle} />
           <div css={contentStyle}>

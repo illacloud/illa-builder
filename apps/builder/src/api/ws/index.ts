@@ -2,12 +2,13 @@ import { AxiosRequestConfig } from "axios"
 import { BuilderApi } from "@/api/base"
 import { ILLAWebsocket } from "@/api/ws/illaWS"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getCurrentId, getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
   Broadcast,
   ILLAWebSocketComponentPayload,
+  ILLA_WEBSOCKET_CONTEXT,
   Room,
   RoomType,
   Signal,
@@ -53,6 +54,8 @@ export function getPayload<T>(
     option: broadcast ? 1 : 0,
     broadcast: reduxBroadcast,
     payload,
+    teamID,
+    uid,
   })
 }
 
@@ -65,26 +68,29 @@ export class Connection {
     loading: (loading: boolean) => void,
     errorState: (errorState: boolean) => void,
   ) {
-    const teamId = getCurrentId(store.getState())
-    let instanceId = import.meta.env.VITE_INSTANCE_ID
     let config: AxiosRequestConfig
+    let wsContext = ILLA_WEBSOCKET_CONTEXT.DASHBOARD
     switch (type) {
       case "dashboard":
         config = {
           url: `/room/websocketConnection/dashboard`,
           method: "GET",
         }
+        wsContext = ILLA_WEBSOCKET_CONTEXT.DASHBOARD
         break
       case "app":
         config = {
           url: `/room/websocketConnection/app/${roomId}`,
           method: "GET",
         }
+        wsContext = ILLA_WEBSOCKET_CONTEXT.APP
+
         break
       default:
         config = {}
         break
     }
+
     BuilderApi.teamRequest<Room>(
       config,
       (response) => {
@@ -95,7 +101,7 @@ export class Connection {
               ? `wss://${location.host}${wsURL}`
               : `ws://${location.host}${wsURL}`
         }
-        let ws = generateNewWs(wsURL)
+        let ws = generateNewWs(wsURL, wsContext)
         this.roomMap.set(type + roomId, ws)
       },
       (error) => {},
@@ -133,6 +139,6 @@ export class Connection {
   }
 }
 
-export function generateNewWs(url: string) {
-  return new ILLAWebsocket(url)
+export function generateNewWs(url: string, context: ILLA_WEBSOCKET_CONTEXT) {
+  return new ILLAWebsocket(url, context)
 }

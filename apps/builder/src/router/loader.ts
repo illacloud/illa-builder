@@ -1,5 +1,5 @@
 import axios from "axios"
-import { LoaderFunctionArgs, redirect } from "react-router-dom"
+import { redirect } from "react-router-dom"
 import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 import { getTeamsInfo } from "@/api/team"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
