@@ -9,15 +9,16 @@ import App from "./App"
 import store from "./store"
 
 if (
+  import.meta.env.PROD &&
   import.meta.env.VITE_INSTANCE_ID === "CLOUD" &&
-  import.meta.env.VITE_SENTRY_SERVER_API &&
-  import.meta.env.DEV
+  import.meta.env.VITE_SENTRY_SERVER_API
 ) {
   Sentry.init({
     dsn: import.meta.env.VITE_SENTRY_SERVER_API,
     integrations: [new BrowserTracing()],
-    environment: import.meta.env.VITE_SENTRY_ENV,
+    environment: import.meta.env.ILLA_BUILDER_ENV,
     tracesSampleRate: 1.0,
+    release: `illa-builder@${import.meta.env.ILLA_APP_VERSION}`,
   })
 }
 
