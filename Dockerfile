@@ -8,12 +8,13 @@ RUN cd /opt/illa/illa-builder-frontend
 RUN pwd
 
 COPY ./ ./
-
+ARG BUILDER_ENV=production
+ENV ILLA_BUILDER_ENV ${BUILDER_ENV}
 RUN npm install -g pnpm
 RUN whereis pnpm
 RUN whereis node
 
-## build 
+## build
 
 RUN pnpm install
 RUN pnpm build-cloud
