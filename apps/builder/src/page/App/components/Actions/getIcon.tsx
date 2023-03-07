@@ -1,5 +1,6 @@
 import { ReactElement } from "react"
 import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
+import { CouchDBIcon } from "@/page/App/components/Icons/couchdb"
 import { DataDogIcon } from "@/page/App/components/Icons/datadog"
 import { DynamoIcon } from "@/page/App/components/Icons/dynamo"
 import { ElasticIcon } from "@/page/App/components/Icons/elastic"
@@ -66,6 +67,8 @@ export function getIconFromResourceType(
       return <FirebaseIcon size={size} />
     case "clickhouse":
       return <ClickhouseIcon size={size} />
+    case "couchdb":
+      return <CouchDBIcon size={size} />
     case "oracle":
       return <OracleDBIcon size={size} />
   }
@@ -118,6 +121,8 @@ export function getIconFromActionType(
       return <ClickhouseIcon size={size} />
     case "oracle":
       return <OracleDBIcon size={size} />
+    case "couchdb":
+      return <CouchDBIcon size={size} />
   }
   return null
 }

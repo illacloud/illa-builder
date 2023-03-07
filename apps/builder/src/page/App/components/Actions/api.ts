@@ -222,6 +222,9 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         accessKeyID,
         secretAccessKey,
       }
+    case "couchdb":
+      const { resourceName: couchDBResName, ...otherCouchDBParams } = data
+      return otherCouchDBParams
   }
 }
 

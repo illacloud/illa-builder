@@ -1,4 +1,8 @@
 import {
+  CouchDBAction,
+  CouchDBOptionsType,
+} from "@/redux/currentApp/action/couchDBAction"
+import {
   DynamoDBAction,
   StructParams,
 } from "@/redux/currentApp/action/dynamoDBAction"
@@ -65,6 +69,7 @@ export type ActionType =
   | "firebase"
   | "supabasedb"
   | "clickhouse"
+  | "couchdb"
   | "mysql"
   | "mssql"
   | "oracle"
@@ -119,5 +124,6 @@ export type ActionContent =
   | RedisAction
   | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
+  | CouchDBAction<CouchDBOptionsType>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

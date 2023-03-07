@@ -2,6 +2,7 @@ import {
   ActionContent,
   ActionType,
 } from "@/redux/currentApp/action/actionState"
+import { CouchDBActionInitial } from "@/redux/currentApp/action/couchDBAction"
 import { DynamoDBActionInitial } from "@/redux/currentApp/action/dynamoDBAction"
 import { ElasticSearchActionInitial } from "@/redux/currentApp/action/elasticSearchAction"
 import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
@@ -54,6 +55,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
     case "huggingface":
     case "hfendpoint":
       return HuggingFaceActionInitial
+    case "couchdb":
+      return CouchDBActionInitial
     default:
       return {} as ActionContent
   }

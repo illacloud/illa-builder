@@ -168,6 +168,9 @@
           "oracle": {
             "sid": "Treat Database name as SID/Service Name",
             "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
           }
         },
         "placeholder": {
@@ -233,6 +236,9 @@
               "service": "Service Name"
             },
             "ssl": "Use SSL when available"
+          },
+          "couchdb": {
+            "ssl": "Use SSL/TLS when available"
           }
         },
         "default": {
