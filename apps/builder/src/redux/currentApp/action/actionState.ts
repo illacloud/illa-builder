@@ -15,6 +15,10 @@ import {
   MicrosoftSqlAction,
   MicrosoftSqlActionType,
 } from "@/redux/currentApp/action/microsoftSqlAction"
+import {
+  OracleDBAction,
+  OracleDBActionType,
+} from "@/redux/currentApp/action/oracleDBAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { MysqlLikeAction } from "./mysqlLikeAction"
@@ -109,6 +113,7 @@ export type ActionContent =
   | DynamoDBAction<StructParams>
   | MysqlLikeAction
   | MicrosoftSqlAction<MicrosoftSqlActionType>
+  | OracleDBAction<OracleDBActionType>
   | RestApiAction<BodyContent>
   | TransformerAction
   | RedisAction

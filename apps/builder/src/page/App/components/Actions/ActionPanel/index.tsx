@@ -11,6 +11,7 @@ import { HuggingFacePanel } from "@/page/App/components/Actions/ActionPanel/Hugg
 import { MicrosoftSqlPanel } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel"
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
 import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
+import { OracleDBPanel } from "@/page/App/components/Actions/ActionPanel/OracleDBPanel"
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
 import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
 import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
@@ -40,6 +41,8 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           return <MysqlLikePanel />
         case "mssql":
           return <MicrosoftSqlPanel />
+        case "oracle":
+          return <OracleDBPanel />
         case "restapi":
           return <RestApiPanel />
         case "huggingface":
