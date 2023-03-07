@@ -11,7 +11,7 @@ export const RetrieveRecordSubPanel: FC<CouchDBSubPanelProps> = (props) => {
   return (
     <>
       {RetrieveRecordInfo.map((info) => {
-        const { title, type, name, expectedType, lineNumbers } = info
+        const { title, name, expectedType, lineNumbers, style = {} } = info
         const value = opts[name[1] as keyof RetrieveRecord]
         return (
           <InputEditor
@@ -21,6 +21,7 @@ export const RetrieveRecordSubPanel: FC<CouchDBSubPanelProps> = (props) => {
             value={value as string}
             onChange={onInputValueChange(name)}
             lineNumbers={!!lineNumbers}
+            style={style}
           />
         )
       })}

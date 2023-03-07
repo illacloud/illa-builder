@@ -91,37 +91,35 @@ export const CouchDBPanel: FC = () => {
         const length = name.length
         let realChangeObj
         for (let i = 0; i < length; i++) {
-          const val: any = (realChangeObj ?? newContent)[name[i]]
-          if (isObject(val)) {
-            realChangeObj = val
-            continue
-          }
-          let currentObj = realChangeObj ?? newContent
-          realChangeObj = {
-            ...currentObj,
-            [name[i]]: value,
-          }
-          break
-        }
-        if (length !== 1) {
-          let assignedContent = {}
-          let obj: Record<string, object> = assignedContent
-          for (let i = 0; i < length; i++) {
-            if (i !== length - 2) {
-              const newObj = {}
-              obj[name[i]] = newObj
-              obj = newObj
-            } else {
-              obj[name[i]] = {
-                ...realChangeObj,
-              }
-              break
+          const paramValue: any = (realChangeObj ?? newContent)[name[i]]
+          if (!isObject(paramValue)) {
+            const currentObj = realChangeObj ?? newContent
+            realChangeObj = {
+              ...currentObj,
+              [name[i]]: value,
             }
+            break
           }
-          Object.assign(newContent, assignedContent)
-        } else {
-          newContent = { ...realChangeObj }
+          realChangeObj = paramValue
         }
+        let assignedContent: Record<string, object> = {}
+        for (let i = 0; i < length; i++) {
+          if (i >= length - 2) {
+            const newValue = { ...realChangeObj }
+            assignedContent =
+              length <= 1
+                ? newValue
+                : {
+                    [name[i]]: newValue,
+                  }
+            break
+          } else {
+            const newObj = {}
+            assignedContent[name[i]] = newObj
+            assignedContent = newObj
+          }
+        }
+        Object.assign(newContent, assignedContent)
       }
       dispatch(
         configActions.updateCachedAction({

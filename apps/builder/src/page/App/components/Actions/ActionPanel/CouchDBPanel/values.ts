@@ -57,6 +57,9 @@ export const ListRecordsInfo = [
     expectedType: VALIDATION_TYPES.NUMBER,
     name: ["opts", "skip"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.limit"),
@@ -64,6 +67,9 @@ export const ListRecordsInfo = [
     expectedType: VALIDATION_TYPES.NUMBER,
     name: ["opts", "limit"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.include"),
@@ -84,6 +90,9 @@ export const RetrieveRecordInfo = [
     expectedType: VALIDATION_TYPES.STRING,
     name: ["opts", "_id"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
 ]
 
@@ -108,6 +117,9 @@ export const UpdateRecordInfo = [
     expectedType: VALIDATION_TYPES.STRING,
     name: ["opts", "_id"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.rev"),
@@ -115,6 +127,9 @@ export const UpdateRecordInfo = [
     expectedType: VALIDATION_TYPES.STRING,
     name: ["opts", "_rev"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.record"),
@@ -136,6 +151,9 @@ export const DeleteRecordInfo = [
     expectedType: VALIDATION_TYPES.STRING,
     name: ["opts", "_id"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.rev"),
@@ -143,6 +161,9 @@ export const DeleteRecordInfo = [
     expectedType: VALIDATION_TYPES.STRING,
     name: ["opts", "_rev"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
 ]
 
@@ -169,6 +190,9 @@ export const GetViewRecordsInfo = [
     expectedType: VALIDATION_TYPES.STRING,
     name: ["opts", "viewurl"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.StartKey"),
@@ -176,6 +200,9 @@ export const GetViewRecordsInfo = [
     expectedType: VALIDATION_TYPES.STRING,
     name: ["opts", "startkey"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.EndKey"),
@@ -183,6 +210,9 @@ export const GetViewRecordsInfo = [
     expectedType: VALIDATION_TYPES.STRING,
     name: ["opts", "endkey"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.skip"),
@@ -190,6 +220,9 @@ export const GetViewRecordsInfo = [
     expectedType: VALIDATION_TYPES.NUMBER,
     name: ["opts", "skip"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.limit"),
@@ -197,6 +230,9 @@ export const GetViewRecordsInfo = [
     expectedType: VALIDATION_TYPES.NUMBER,
     name: ["opts", "limit"],
     lineNumbers: true,
+    style: {
+      maxHeight: "88px",
+    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.include"),

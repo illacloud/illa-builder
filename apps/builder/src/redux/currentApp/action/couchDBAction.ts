@@ -16,9 +16,9 @@ export interface ListRecords {
 
 export const ListRecordsInitial: ListRecords = {
   includeDocs: false,
-  descendingOrder: false,
-  limit: "",
-  skip: "",
+  descendingOrder: true,
+  limit: "{{1000}}",
+  skip: "{{0}}",
 }
 
 export interface RetrieveRecord {
@@ -80,8 +80,8 @@ export const GetViewInitial: GetView = {
   viewurl: "",
   startkey: "",
   endkey: "",
-  skip: "",
-  limit: "",
+  skip: "{{0}}",
+  limit: "{{1000}}",
   includeDocs: false,
 }
 
@@ -105,3 +105,9 @@ export const CouchDBActionInitial: CouchDBAction<CouchDBOptionsType> = {
   database: "",
   opts: ListRecordsInitial,
 }
+
+export const CouchDBActionStructParamsDataTransferType: Record<string, object> =
+  {
+    record: {},
+    mangoQuery: {},
+  }

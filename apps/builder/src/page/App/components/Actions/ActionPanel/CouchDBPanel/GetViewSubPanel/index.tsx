@@ -13,7 +13,14 @@ export const GetViewSubPanel: FC<CouchDBSubPanelProps> = (props) => {
   return (
     <>
       {GetViewRecordsInfo.map((info) => {
-        const { title, type, name, expectedType, lineNumbers } = info
+        const {
+          title,
+          type,
+          name,
+          expectedType,
+          lineNumbers,
+          style = {},
+        } = info
         const value = opts[name[1] as keyof GetView]
         if (type === "editor") {
           return (
@@ -24,6 +31,7 @@ export const GetViewSubPanel: FC<CouchDBSubPanelProps> = (props) => {
               value={value as string}
               onChange={onInputValueChange(name)}
               lineNumbers={!!lineNumbers}
+              style={style}
             />
           )
         }
