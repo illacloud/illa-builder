@@ -54,16 +54,10 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
 
   const handleResourceTest = useCallback(() => {
     const data = getValues()
-    const { host, port, username, password, ssl } = data
+    const { resourceName, ...otherParams } = data
     onActionConfigElementTest(
       data,
-      {
-        host,
-        port,
-        username,
-        password,
-        ssl,
-      },
+      otherParams as CouchdbResource,
       "couchdb",
       setTestLoading,
     )
