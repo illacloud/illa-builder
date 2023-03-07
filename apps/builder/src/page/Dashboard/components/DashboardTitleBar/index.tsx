@@ -114,7 +114,15 @@ export const DashboardTitleBar: FC = () => {
     <Tabs
       prefix={
         <div css={navBarLogoContainerStyle} key="prefix">
-          <Logo onClick={() => navigate(`/${teamIdentifier}/dashboard/apps`)} />
+          <Logo
+            onClick={() => {
+              if (isCloudVersion) {
+                window.location.href = "https://cloud.illacloud.com"
+              } else {
+                navigate(`/${teamIdentifier}/dashboard/apps`)
+              }
+            }}
+          />
         </div>
       }
       suffix={
