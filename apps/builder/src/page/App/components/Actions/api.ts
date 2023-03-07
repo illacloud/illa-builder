@@ -185,16 +185,8 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         ssl: generateSSLConfig(!!data.ssl, data, "mssql"),
       }
     case "oracle":
-      const { ssl, host, port, connectionType, name, password, username } = data
-      return {
-        ssl,
-        host,
-        port,
-        connectionType,
-        name,
-        password,
-        username,
-      }
+      const { resourceName, ...otherParams } = data
+      return otherParams
     case "huggingface":
       return {
         token: data.token,

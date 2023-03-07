@@ -1,5 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/react"
+import { getColor } from "@illa-design/react"
 
 export function applyActionEditorStyle(h: number) {
   return css`
@@ -110,7 +110,7 @@ export const errorMsgStyle: SerializedStyles = css`
   font-size: 14px;
   padding-left: 24px;
   line-height: 22px;
-  color: ${globalColor(`--${illaPrefix}-orange-03`)};
+  color: ${getColor("orange", "03")};
 `
 
 export const errorIconStyle: SerializedStyles = css`

@@ -58,10 +58,10 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
 
   const handleConnectionTest = useCallback(() => {
     const data = getValues()
-    const { ssl, host, port, connectionType, name, password, username } = data
+    const { resourceName, ...otherParams } = data
     onActionConfigElementTest(
       data,
-      { ssl, host, port, connectionType, name, password, username },
+      otherParams as OracleResource,
       "oracle",
       setTestLoading,
     )

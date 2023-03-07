@@ -55,10 +55,6 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     : [defaultValue]
   const hasTextArea = filteredType.includes("textarea")
 
-  const AlertNode = useMemo(() => {
-    return <Alert title={alertTitle} content={alertContent} closable={false} />
-  }, [alertContent, alertTitle])
-
   const getElementByControlledType = useCallback(
     (
       type: string,
@@ -70,7 +66,9 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     ) => {
       switch (type) {
         case "alert":
-          return AlertNode
+          return (
+            <Alert title={alertTitle} content={alertContent} closable={false} />
+          )
         case "input":
           return (
             <Controller
@@ -254,7 +252,8 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
       }
     },
     [
-      AlertNode,
+      alertContent,
+      alertTitle,
       allowClear,
       contentLabel,
       control,
