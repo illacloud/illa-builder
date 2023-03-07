@@ -1,7 +1,7 @@
 import { SerializedStyles } from "@emotion/react"
 import { ReactNode } from "react"
 import { Control, RegisterOptions } from "react-hook-form"
-import { SelectOptionObject } from "@illa-design/react"
+import { AlertProps, SelectOptionObject } from "@illa-design/react"
 
 export type ControlledType =
   | "checkbox"
@@ -11,11 +11,14 @@ export type ControlledType =
   | "password"
   | "textarea"
   | "select"
+  | "alert"
+  | "radio-group"
   | "none"
 
 type ValueType = string | boolean
 
-export interface ControlledElementProps {
+export interface ControlledElementProps
+  extends Omit<AlertProps, "title" | "content" | "defaultValue"> {
   title: string
   isRequired?: boolean
   defaultValue: ValueType[] | string | boolean
@@ -33,4 +36,7 @@ export interface ControlledElementProps {
   allowClear?: boolean
   rules?: RegisterOptions[]
   onValueChange?: (value: ValueType) => void
+  alertTitle?: ReactNode
+  alertContent?: ReactNode
+  forceEqualWidth?: boolean
 }

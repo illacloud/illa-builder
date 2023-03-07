@@ -11,6 +11,7 @@ import { HuggingFaceEndpointConfigElement } from "@/page/App/components/Actions/
 import { MicrosoftSqlConfigElement } from "@/page/App/components/Actions/MicrosoftSqlConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
+import { OracleDBConfigElement } from "@/page/App/components/Actions/OracleDBConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
@@ -50,6 +51,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         )
       case "mssql":
         return <MicrosoftSqlConfigElement {...configElementProps} />
+      case "oracle":
+        return <OracleDBConfigElement {...configElementProps} />
       case "restapi":
         return (
           <RestApiConfigElement

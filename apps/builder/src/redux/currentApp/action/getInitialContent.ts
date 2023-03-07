@@ -11,6 +11,7 @@ import { HuggingFaceActionInitial } from "@/redux/currentApp/action/huggingFaceA
 import { MicrosoftSqlActionInitial } from "@/redux/currentApp/action/microsoftSqlAction"
 import { MongoDbActionInitial } from "@/redux/currentApp/action/mongoDbAction"
 import { MysqlLikeActionInitial } from "@/redux/currentApp/action/mysqlLikeAction"
+import { OracleDBActionInitial } from "@/redux/currentApp/action/oracleDBAction"
 import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
 import { RestApiActionInitial } from "@/redux/currentApp/action/restapiAction"
 import { S3ActionInitial } from "@/redux/currentApp/action/s3Action"
@@ -29,6 +30,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return MysqlLikeActionInitial
     case "mssql":
       return MicrosoftSqlActionInitial
+    case "oracle":
+      return OracleDBActionInitial
     case "restapi":
       return RestApiActionInitial
     case "transformer":

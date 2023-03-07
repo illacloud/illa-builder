@@ -11,6 +11,7 @@ import { MariaDbIcon } from "@/page/App/components/Icons/mariadb"
 import { MicrosoftSqlIcon } from "@/page/App/components/Icons/microsoftsql"
 import { MongoDbIcon } from "@/page/App/components/Icons/mongodb"
 import { MySqlIcon } from "@/page/App/components/Icons/mysql"
+import { OracleDBIcon } from "@/page/App/components/Icons/oracle"
 import { PostgreSqlIcon } from "@/page/App/components/Icons/postgresql"
 import { RedisIcon } from "@/page/App/components/Icons/redis"
 import { RestApiIcon } from "@/page/App/components/Icons/restapi"
@@ -68,6 +69,8 @@ export function getIconFromResourceType(
       return <ClickhouseIcon size={size} />
     case "couchdb":
       return <CouchDBIcon size={size} />
+    case "oracle":
+      return <OracleDBIcon size={size} />
   }
   return null
 }
@@ -116,6 +119,8 @@ export function getIconFromActionType(
       return <FirebaseIcon size={size} />
     case "clickhouse":
       return <ClickhouseIcon size={size} />
+    case "oracle":
+      return <OracleDBIcon size={size} />
     case "couchdb":
       return <CouchDBIcon size={size} />
   }
