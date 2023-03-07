@@ -740,7 +740,9 @@
           }
         },
         "tip": {
-          "allowlist": "リソースが公開されていない場合は、ネットワークまたはファイアウォールの設定を更新して、ILLA の IP アドレスを許可リストに追加し、ILLA がリソースに接続できるようにしてください。"
+          "allowlist": {
+            "title": "Allow IP addresses"
+          }
         },
         "button": {
           "copy_ip": "IPをコピー"
