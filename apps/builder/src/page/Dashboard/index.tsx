@@ -6,7 +6,12 @@ import { Outlet } from "react-router-dom"
 import { Button, CloseIcon, Loading } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
 import { Connection } from "@/api/ws"
+import {
+  ILLA_WEBSOCKET_CONTEXT,
+  ILLA_WEBSOCKET_STATUS,
+} from "@/api/ws/interface"
 import { DashboardTitleBar } from "@/page/Dashboard/components/DashboardTitleBar"
+import { configActions } from "@/redux/config/configSlice"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
@@ -119,8 +124,14 @@ export const IllaApp: FC = () => {
     )
     return () => {
       Connection.leaveRoom("dashboard", "")
+      dispatch(
+        configActions.updateWSStatusReducer({
+          context: ILLA_WEBSOCKET_CONTEXT.DASHBOARD,
+          wsStatus: ILLA_WEBSOCKET_STATUS.CLOSED,
+        }),
+      )
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div css={containerStyle}>
