@@ -193,11 +193,11 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
         </div>
         <ControlledElement
           controlledType="switch"
-          title="SSL/TLS"
+          title={t("editor.action.form.label.couchdb.ssl")}
           control={control}
           defaultValue={content.ssl}
           name="ssl"
-          contentLabel="Use SSL/TLS when available"
+          contentLabel={t("editor.action.form.option.couchdb.ssl")}
         />
       </div>
       <div css={footerStyle}>
