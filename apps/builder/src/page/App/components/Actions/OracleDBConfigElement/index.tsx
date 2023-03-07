@@ -73,13 +73,13 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
 
   const handleHostValidate = useCallback(
     (value: string) => {
-      const isShowAlert = isContainLocalPath(getValues()?.host ?? "")
+      const isShowAlert = isContainLocalPath(value ?? "")
       if (isShowAlert !== showAlert) {
         setShowAlert(isShowAlert)
       }
       return urlValidate(value)
     },
-    [getValues, showAlert],
+    [showAlert],
   )
 
   return (
