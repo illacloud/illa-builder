@@ -31,6 +31,7 @@ import {
   MongoDbResource,
 } from "@/redux/resource/mongodbResource"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import { OracleResource } from "@/redux/resource/oracleResource"
 import { RedisResource } from "@/redux/resource/redisResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
@@ -96,6 +97,9 @@ export const DashboardResources: FC = () => {
           dbName = (
             resource.content as SnowflakeResource<SnowflakeAuthenticationType>
           ).database
+          break
+        case "oracle":
+          dbName = (resource.content as OracleResource).name
           break
       }
       return {

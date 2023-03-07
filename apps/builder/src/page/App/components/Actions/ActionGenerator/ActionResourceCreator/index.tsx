@@ -10,6 +10,7 @@ import { HuggingFaceEndpointConfigElement } from "@/page/App/components/Actions/
 import { MicrosoftSqlConfigElement } from "@/page/App/components/Actions/MicrosoftSqlConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
+import { OracleDBConfigElement } from "@/page/App/components/Actions/OracleDBConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
@@ -62,6 +63,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         )
       case "mssql":
         return <MicrosoftSqlConfigElement {...generalProps} />
+      case "oracle":
+        return <OracleDBConfigElement {...generalProps} />
       case "restapi":
         return (
           <RestApiConfigElement onBack={handleBack} onFinished={onFinished} />

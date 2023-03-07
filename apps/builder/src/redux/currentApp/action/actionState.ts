@@ -63,6 +63,7 @@ export type ActionType =
   | "clickhouse"
   | "mysql"
   | "mssql"
+  | "oracle"
   | "restapi"
   | "graphql"
   | "mongodb"

@@ -31,6 +31,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "MySQL"
       case "mssql":
         return "Microsoft SQL"
+      case "oracle":
+        return "Oracle DB"
       case "restapi":
         return "REST API"
       case "graphql":
@@ -98,6 +100,8 @@ export function getResourceNameFromResourceType(
         return "MySQL"
       case "mssql":
         return "Microsoft SQL"
+      case "oracle":
+        return "Oracle DB"
       case "restapi":
         return "REST API"
       case "graphql":

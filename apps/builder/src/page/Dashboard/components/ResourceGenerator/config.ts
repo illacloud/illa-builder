@@ -20,6 +20,10 @@ export const Databases: ResourceDataItem[] = [
     isDraft: false,
   },
   {
+    resourceType: "oracle",
+    isDraft: false,
+  },
+  {
     resourceType: "mariadb",
     isDraft: false,
   },
