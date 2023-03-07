@@ -1,3 +1,4 @@
+pull_request_title: "[ci skip] New Crowdin translations"
 commit_message: "[ci skip]"
 files:
   - source: /apps/builder/src/i18n/locale/en-US.json
