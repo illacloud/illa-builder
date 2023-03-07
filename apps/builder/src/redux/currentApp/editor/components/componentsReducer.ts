@@ -1,8 +1,10 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { cloneDeep } from "lodash"
 import {
+  LayoutInfo,
+  StatusInfo,
   UpdateComponentContainerPayload,
-  UpdateComponentsShapePayload,
+  UpdateComponentNodeLayoutInfoPayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
@@ -111,7 +113,7 @@ export const copyComponentReducer: CaseReducer<
   PayloadAction<CopyComponentPayload[]>
 > = (state, action) => {
   action.payload.forEach((copyShape) => {
-    const { newComponentNode, oldComponentNode } = copyShape
+    const { newComponentNode } = copyShape
     if (state == null || newComponentNode.parentNode == null) {
       return state
     } else {
@@ -327,23 +329,6 @@ export const updateComponentDisplayNameReducer: CaseReducer<
   }
 }
 
-export const updateComponentsShape: CaseReducer<
-  ComponentsState,
-  PayloadAction<UpdateComponentsShapePayload>
-> = (state, action) => {
-  action.payload.components.forEach((dealNode) => {
-    const parentNode = searchDsl(state, dealNode.parentNode)
-    if (parentNode != null) {
-      const index = parentNode.childrenNode.findIndex((value) => {
-        return value.displayName === dealNode.displayName
-      })
-      if (index > -1) {
-        parentNode.childrenNode[index] = dealNode
-      }
-    }
-  })
-}
-
 export const updateComponentContainerReducer: CaseReducer<
   ComponentsState,
   PayloadAction<UpdateComponentContainerPayload>
@@ -416,23 +401,6 @@ export const updateHeaderSectionReducer: CaseReducer<
       ...targetSection.props,
       height: payload,
     }
-  }
-}
-
-export const updateCurrentPagePropsReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<Partial<PageNodeProps>>
-> = (state, action) => {
-  if (!state?.props) return state
-  const { currentPageIndex, pageSortedKey } = state.props
-  const currentPageDisplayName = pageSortedKey[currentPageIndex]
-  const currentPage = state.childrenNode.find(
-    (node) => node.displayName === currentPageDisplayName,
-  )
-  if (!currentPage) return state
-  currentPage.props = {
-    ...currentPage.props,
-    ...action.payload,
   }
 }
 
@@ -639,4 +607,60 @@ export const resetComponentsReducer: CaseReducer<
   PayloadAction
 > = (state, action) => {
   return ComponentsInitialState
+}
+
+export const updateComponentLayoutInfoReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentNodeLayoutInfoPayload>
+> = (state, action) => {
+  if (!state) return
+  const { displayName, layoutInfo, statusInfo } = action.payload
+  let currentNode = searchDsl(state, displayName)
+  if (!currentNode || !layoutInfo || Object.keys(layoutInfo).length === 0)
+    return
+  ;(Object.keys(layoutInfo) as Partial<Array<keyof LayoutInfo>>).forEach(
+    (key) => {
+      ;(currentNode as ComponentNode)[key as keyof LayoutInfo] = layoutInfo[
+        key as keyof LayoutInfo
+      ] as number
+    },
+  )
+  if (statusInfo && Object.keys(statusInfo).length > 0) {
+    ;(Object.keys(statusInfo) as Partial<Array<keyof StatusInfo>>).forEach(
+      (key) => {
+        ;(currentNode as ComponentNode)[key as keyof StatusInfo] = statusInfo[
+          key as keyof StatusInfo
+        ] as boolean
+      },
+    )
+  }
+}
+
+export const batchUpdateComponentLayoutInfoReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentNodeLayoutInfoPayload[]>
+> = (state, action) => {
+  if (!state) return
+  action.payload.forEach((updateSlice) => {
+    const { displayName, layoutInfo, statusInfo } = updateSlice
+    let currentNode = searchDsl(state, displayName)
+    if (!currentNode || !layoutInfo || Object.keys(layoutInfo).length === 0)
+      return
+    ;(Object.keys(layoutInfo) as Partial<Array<keyof LayoutInfo>>).forEach(
+      (key) => {
+        ;(currentNode as ComponentNode)[key as keyof LayoutInfo] = layoutInfo[
+          key as keyof LayoutInfo
+        ] as number
+      },
+    )
+    if (statusInfo && Object.keys(statusInfo).length > 0) {
+      ;(Object.keys(statusInfo) as Partial<Array<keyof StatusInfo>>).forEach(
+        (key) => {
+          ;(currentNode as ComponentNode)[key as keyof StatusInfo] = statusInfo[
+            key as keyof StatusInfo
+          ] as boolean
+        },
+      )
+    }
+  })
 }

@@ -8,7 +8,7 @@ import {
 import { Signal, Target } from "@/api/ws/interface"
 import {
   UpdateComponentContainerPayload,
-  UpdateComponentsShapePayload,
+  UpdateComponentNodeLayoutInfoPayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import {
   getCanvas,
@@ -146,31 +146,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 },
                 teamID,
                 uid,
-
                 copyComponentPayload,
-              ),
-            )
-            break
-          case "updateComponentsShape":
-            const singleComponentPayload: UpdateComponentsShapePayload = payload
-            const singleComponentWSPayload =
-              transformComponentReduxPayloadToWsPayload(
-                singleComponentPayload.components,
-              )
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                singleComponentPayload.isMove
-                  ? Signal.SIGNAL_MOVE_STATE
-                  : Signal.SIGNAL_UPDATE_STATE,
-                Target.TARGET_COMPONENTS,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                teamID,
-                uid,
-                singleComponentWSPayload,
               ),
             )
             break
@@ -696,6 +672,59 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           }
           case "updateComponentNodeHeightReducer": {
             const { displayName } = payload as UpdateComponentNodeHeightPayload
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const targetNode = searchDsl(rootNode, displayName)
+            if (!targetNode) break
+            const updateWSPayload =
+              transformComponentReduxPayloadToWsPayload(targetNode)
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                teamID,
+                uid,
+                updateWSPayload,
+              ),
+            )
+            break
+          }
+          case "batchUpdateComponentLayoutInfoReducer": {
+            const displayNames = (
+              payload as UpdateComponentNodeLayoutInfoPayload[]
+            ).map((item) => item.displayName)
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const targetNodes = displayNames
+              .map((displayName) => searchDsl(rootNode, displayName))
+              .filter((node) => node !== null) as ComponentNode[]
+            if (targetNodes.length < 1) break
+            const updateWSPayload =
+              transformComponentReduxPayloadToWsPayload(targetNodes)
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                teamID,
+                uid,
+                updateWSPayload,
+              ),
+            )
+          }
+          case "updateComponentLayoutInfoReducer": {
+            const displayName = (
+              payload as UpdateComponentNodeLayoutInfoPayload
+            ).displayName
             const rootNode = getCanvas(store.getState())
             if (!rootNode) break
             const targetNode = searchDsl(rootNode, displayName)

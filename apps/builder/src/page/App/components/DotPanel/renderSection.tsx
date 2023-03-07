@@ -1315,10 +1315,6 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
           <ScaleSquareOnlyHasResize
             key={currentComponentNode.displayName}
             componentNode={currentComponentNode}
-            h={currentComponentNode.h * currentComponentNode.unitH}
-            w={currentComponentNode.w * currentComponentNode.unitW}
-            x={currentComponentNode.x}
-            y={currentComponentNode.y}
             unitW={currentComponentNode.unitW}
             unitH={UNIT_HEIGHT}
             containerHeight={containerBound.height}

@@ -48,7 +48,7 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
   const [error, setError] = useState<boolean>(false)
   const [hasButtonClicked, setButtonClick] = useState(false)
   const hasScrollRef = useRef(false)
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const timeoutRef = useRef<number | null>(null)
 
   const { scaleWidth, scaleHeight } = useMemo(() => {
     if (scaleMode === "width") {
@@ -167,8 +167,8 @@ export const Pdf = forwardRef<HTMLDivElement, WrappedPdfProps>((props, ref) => {
           onLoadSuccess={({ numPages: nextNumPages }) => {
             setNumPages(nextNumPages)
             // [TODO] wait react-pdf fix
-            clearTimeout(timeoutRef.current as NodeJS.Timeout)
-            timeoutRef.current = setTimeout(() => {
+            clearTimeout(timeoutRef.current as number)
+            timeoutRef.current = window.setTimeout(() => {
               setLoading(false)
               setError(false)
             }, 200)

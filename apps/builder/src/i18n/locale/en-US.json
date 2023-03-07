@@ -1165,7 +1165,8 @@
           "icon_color": "Color"
         },
         "choose_at_least": "Choose at least",
-        "choose_up_to": "Choose up to"
+        "choose_up_to": "Choose up to",
+        "copy_to_clipboard": "Copy to clipboard"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",

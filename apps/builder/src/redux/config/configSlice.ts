@@ -19,6 +19,7 @@ import {
   updateRightPanel,
   updateSelectedComponent,
   updateShowDot,
+  updateWSStatusReducer,
 } from "@/redux/config/configReducer"
 import { ConfigInitialState } from "@/redux/config/configState"
 
@@ -45,6 +46,7 @@ const configSlice = createSlice({
     updateCanvasShapeReducer,
     updateDevicesOnlineStatusReducer,
     updateDraggingStateReducer,
+    updateWSStatusReducer,
   },
 })
 

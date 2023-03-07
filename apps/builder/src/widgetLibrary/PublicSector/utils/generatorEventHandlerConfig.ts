@@ -51,6 +51,10 @@ export const generatorEventHandlerConfig = (
             value: "showNotification",
           },
           {
+            label: i18n.t("editor.inspect.setter_label.copy_to_clipboard"),
+            value: "copyToClipboard",
+          },
+          {
             label: i18n.t("editor.inspect.setter_label.set_router"),
             value: "setRouter",
           },
@@ -151,6 +155,14 @@ export const generatorEventHandlerConfig = (
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
         shown: (widgetMethod) => widgetMethod === "setImageUrl",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-setImage`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        setterType: "INPUT_SETTER",
+        attrName: "copiedValue",
+        bindAttrName: ["actionType"],
+        shown: (widgetMethod) => widgetMethod === "copyToClipboard",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-fileUrl`,

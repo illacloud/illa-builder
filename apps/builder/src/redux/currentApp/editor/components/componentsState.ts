@@ -155,7 +155,6 @@ export interface UpdateComponentReflowPayload {
 }
 
 export interface CopyComponentPayload {
-  oldComponentNode: ComponentNode
   newComponentNode: ComponentNode
 }
 

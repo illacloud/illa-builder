@@ -3,11 +3,8 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import {
-  getCanvas,
-  searchCurrentPageContainerNode,
-  searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
+import { searchCurrentPageContainerNode } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
@@ -61,7 +58,6 @@ export class CopyManager {
               componentsActions.copyComponentReducer(
                 this.currentCopyComponentNodes.map((node) => {
                   return {
-                    oldComponentNode: node,
                     newComponentNode: this.copyComponent(node),
                   }
                 }),
@@ -77,7 +73,6 @@ export class CopyManager {
                 componentsActions.copyComponentReducer(
                   this.currentCopyComponentNodes.map((node) => {
                     return {
-                      oldComponentNode: node,
                       newComponentNode: this.copyComponent(node, containerNode),
                     }
                   }),
@@ -100,14 +95,19 @@ export class CopyManager {
     offsetX?: number,
     offsetY?: number,
   ): ComponentNode {
+    const executionResult = getWidgetExecutionResult(store.getState())
+    const currentLayoutInfo = executionResult[node.displayName]
+      .$layoutInfo as LayoutInfo
     const newNode = {
       ...node,
       displayName: DisplayNameGenerator.generateDisplayName(
         node.type,
         node.showName,
       ),
-      x: (offsetX ?? 0) + node.x,
-      y: (offsetY ?? 0) + node.y,
+      x: (offsetX ?? 0) + currentLayoutInfo.x,
+      y: (offsetY ?? 0) + currentLayoutInfo.y,
+      w: currentLayoutInfo.w,
+      h: currentLayoutInfo.h,
       parentNode: newParentNode?.displayName ?? node.parentNode,
     } as ComponentNode
     if (Array.isArray(node.childrenNode)) {
