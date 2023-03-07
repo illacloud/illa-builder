@@ -332,9 +332,9 @@
                 "update": "Update record",
                 "delete": "Delete record",
                 "find": "探す",
-                "get": "Get view"
+                "get": "ビューを取得"
               },
-              "skip": "ビューを取得",
+              "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
               "des": "Descending order",
