@@ -4,6 +4,8 @@ import { FirebaseResource } from "@/redux/resource/firebaseResource"
 import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
 import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoint"
 import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
+import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
+import { OracleResource } from "@/redux/resource/oracleResource"
 import { SMTPResource } from "@/redux/resource/smtpResource"
 import {
   SnowflakeAuthenticationType,
@@ -23,6 +25,7 @@ export type ResourceType =
   | "supabasedb"
   | "mysql"
   | "mssql"
+  | "oracle"
   | "restapi"
   | "graphql"
   | "mongodb"
@@ -47,6 +50,8 @@ export type ResourceContent =
   | ElasticSearchResource
   | DynamoDBResource
   | MysqlLikeResource
+  | MicrosoftSqlResource
+  | OracleResource
   | GraphQLResource<GraphQLAuth>
   | RestApiResource<RestApiAuth>
   | RedisResource
