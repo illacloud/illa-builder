@@ -1,6 +1,6 @@
 import { StylisPlugin } from "@emotion/cache"
-import { isString } from "@illa-design/react"
 import { DECLARATION } from "stylis"
+import { isString } from "@illa-design/react"
 
 export type Px2RemOptions = {
   unit?: string

@@ -137,7 +137,13 @@
           "database": "데이터 베이스",
           "select": "리소스 유형 선택",
           "huggingface": "Hugging Face",
-          "appwrite": "Appwrite"
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "CouchDB"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          }
         },
         "validate": {
           "required": "{name} 을(를) 입력하세요"
@@ -158,6 +164,10 @@
             "filter": "Filter",
             "order": "Order by",
             "limit": "Limit"
+          },
+          "oracle": {
+            "sid": "Treat Database name as SID/Service Name",
+            "ssl": "SSL"
           }
         },
         "placeholder": {
@@ -172,6 +182,15 @@
               "value": "1234"
             },
             "order": "attribute"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "oracle",
+            "password": "••••••••"
           }
         },
         "tips": {
@@ -207,6 +226,13 @@
               "asc": "Asc",
               "desc": "Desc"
             }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Service Name"
+            },
+            "ssl": "Use SSL when available"
           }
         },
         "default": {
@@ -279,7 +305,42 @@
           "failure": "불합격",
           "resource": "자원",
           "success": "성공",
-          "transformer": "변신 로봇"
+          "transformer": "변신 로봇",
+          "couchdb": {
+            "database": "Database",
+            "action_type": "Action type"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Select a database",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "List records",
+                "retrieve": "Retrieve record",
+                "create": "Create record",
+                "update": "Update record",
+                "delete": "Delete record",
+                "find": "Find",
+                "get": "Get view"
+              },
+              "skip": "Skip",
+              "limit": "Limit",
+              "include": "Include docs",
+              "des": "Descending order",
+              "id": "_id",
+              "rev": "_rev",
+              "record": "Record",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "ViewURL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey"
+            }
+          }
         },
         "menu": {
           "more": {
@@ -340,8 +401,8 @@
           "upload_data_list": "데이터 목록 업로드",
           "upload_object_name": "객체 이름 업로드",
           "upload_object_name_list": "개체 이름 목록 업로드",
-          "timeout_upload": "Timeout for uploading a file (Minute)",
-          "timeout_upload_multiple": "Timeout for uploading a single file (Minute) "
+          "timeout_upload": "파일 업로드 제한 시간(분)",
+          "timeout_upload_multiple": "단일 파일 업로드 제한 시간(분)"
         },
         "smtp": {
           "attachment": "부록",
@@ -1104,7 +1165,8 @@
           "icon_color": "색깔"
         },
         "choose_at_least": "Choose at least",
-        "choose_up_to": "Choose up to"
+        "choose_up_to": "Choose up to",
+        "copy_to_clipboard": "Copy to clipboard"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1660,7 +1722,7 @@
       "name": "Multiselect"
     },
     "carousel": {
-      "name": "Carousel"
+      "name": "회전목마"
     }
   },
   "page": {

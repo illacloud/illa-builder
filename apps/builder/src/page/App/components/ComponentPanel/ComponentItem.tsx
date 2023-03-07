@@ -10,8 +10,13 @@ import {
 } from "@/page/App/components/DotPanel/interface"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
-import { endDrag, startDrag } from "@/utils/drag/drag"
+import {
+  batchMergeLayoutInfoToComponent,
+  endDrag,
+  startDrag,
+} from "@/utils/drag/drag"
 import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 import {
   dragPreviewStyle,
@@ -47,9 +52,19 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
           })
           const rootState = store.getState()
           const allComponentNodes = getFlattenArrayComponentNodes(rootState)
-          const childrenNodes = allComponentNodes
+          const executionResult = getExecutionResult(rootState)
+          let childrenNodes = allComponentNodes
             ? cloneDeep(allComponentNodes)
             : []
+          if (Array.isArray(childrenNodes)) {
+            const mergedChildrenNode = batchMergeLayoutInfoToComponent(
+              executionResult,
+              childrenNodes,
+            )
+            childrenNodes = cloneDeep(mergedChildrenNode)
+          } else {
+            childrenNodes = []
+          }
           startDrag(item, true)
           return {
             item,

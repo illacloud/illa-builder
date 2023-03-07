@@ -1,4 +1,5 @@
 import { Diff } from "deep-diff"
+import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
 
 export enum ExecutionErrorType {
   EVALUATED = "EVALUATED",
@@ -36,4 +37,13 @@ export interface setExecutionResultPayload {
 export interface UpdateExecutionByDisplayNamePayload {
   displayName: string
   value: Record<string, any>
+}
+
+export interface UpdateWidgetLayoutInfoPayload {
+  displayName: string
+  layoutInfo: Partial<LayoutInfo>
+  options?: Partial<{
+    parentNode: string
+    effectRows: number
+  }>
 }

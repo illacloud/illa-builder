@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Button,
@@ -25,8 +25,14 @@ import {
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { TextLink } from "@/page/User/components/TextLink"
 import { Resource } from "@/redux/resource/resourceState"
-import { S3Resource, S3ResourceInitial } from "@/redux/resource/s3Resource"
+import {
+  S3Resource,
+  S3ResourceInitial,
+  SelectOptions,
+} from "@/redux/resource/s3Resource"
 import { RootState } from "@/store"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { S3ConfigElementProps } from "./interface"
@@ -64,7 +70,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [baseURLOpen, setBaseURLOpen] = useState(false)
+  const [baseURLOpen, setBaseURLOpen] = useState(content.endpoint)
 
   const handleConnectionTest = () => {
     const data = getValues()
@@ -75,6 +81,10 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
       baseURL: data.baseURL,
       accessKeyID: data.accessKeyID,
       secretAccessKey: data.secretAccessKey,
+      acl:
+        !data.acl || data.acl === t("editor.action.acl.option.blank")
+          ? t("editor.action.acl.option.blank")
+          : data.acl,
     }
     onActionConfigElementTest(data, content, "s3", setTestLoading)
   }
@@ -160,6 +170,34 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
             name="bucketName"
           />
         </div>
+
+        <ControlledElement
+          title={t("editor.action.form.label.acl")}
+          defaultValue={content.acl}
+          name="acl"
+          allowClear={true}
+          controlledType="select"
+          control={control}
+          options={SelectOptions}
+          tips={
+            <Trans
+              i18nKey="editor.action.form.tips.acl"
+              t={t}
+              components={[
+                <TextLink
+                  key="editor.action.form.tips.acl"
+                  onClick={() => {
+                    window.open(
+                      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html",
+                      "_blank",
+                    )
+                  }}
+                />,
+              ]}
+            />
+          }
+        />
+
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>

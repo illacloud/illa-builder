@@ -165,6 +165,15 @@ export const getAllComponentDisplayNameMapProps = createSelector(
         $type: "WIDGET",
         $widgetType: components[key].type,
         $childrenNode: childrenNode,
+        $layoutInfo: {
+          x: components[key].x,
+          y: components[key].y,
+          z: components[key].z,
+          w: components[key].w,
+          h: components[key].h,
+          unitW: components[key].unitW,
+          unitH: components[key].unitH,
+        },
       }
     })
     return res

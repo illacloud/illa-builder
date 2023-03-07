@@ -1,5 +1,7 @@
+import copy from "copy-to-clipboard"
 import { get } from "lodash"
 import { createMessage } from "@illa-design/react"
+import i18n from "@/i18n/config"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import {
   goToURL,
@@ -53,6 +55,31 @@ export const transformEvents = (
       enabled,
     }
   }
+
+  if (actionType === "copyToClipboard") {
+    const { copiedValue, enabled } = event
+    return {
+      script: () => {
+        message.success({
+          content: i18n.t("copied"),
+        })
+        if (copiedValue === undefined || copiedValue === null) {
+          copy("")
+          return
+        }
+        if (
+          typeof copiedValue === "string" ||
+          typeof copiedValue === "number"
+        ) {
+          copy(String(copiedValue))
+          return
+        }
+        copy(JSON.stringify(copiedValue))
+      },
+      enabled,
+    }
+  }
+
   if (actionType === "setRouter") {
     const { pagePath, viewPath, enabled } = event
     let finalPath = `/${pagePath}`
@@ -160,7 +187,9 @@ export const transformEvents = (
       widgetMethod === "focus" ||
       widgetMethod === "reset" ||
       widgetMethod === "rowSelect" ||
-      widgetMethod === "resetPrimaryValue"
+      widgetMethod === "resetPrimaryValue" ||
+      widgetMethod === "slickNext" ||
+      widgetMethod === "slickPrevious"
     ) {
       return {
         script: `{{${widgetID}.${widgetMethod}()}}`,

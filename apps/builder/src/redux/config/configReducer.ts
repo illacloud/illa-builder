@@ -8,7 +8,10 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { UpdateCanvasShapePayload } from "./configPayload"
+import {
+  UpdateCanvasShapePayload,
+  UpdateWSStatusPayload,
+} from "./configPayload"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
@@ -144,4 +147,12 @@ export const updateDraggingStateReducer: CaseReducer<
   PayloadAction<boolean>
 > = (state, action) => {
   state.isDragging = action.payload
+}
+
+export const updateWSStatusReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<UpdateWSStatusPayload>
+> = (state, action) => {
+  const { context, wsStatus } = action.payload
+  state.wsStatus[context] = wsStatus
 }

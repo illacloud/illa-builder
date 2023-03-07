@@ -30,6 +30,7 @@ export interface DraggableWrapperShape {
   x?: number
   y?: number
 }
+
 export enum RESIZE_DIRECTION {
   "ALL" = "ALL",
   "HORIZONTAL" = "HORIZONTAL",
@@ -46,7 +47,9 @@ export interface BaseWidgetInfo {
   keywords?: string[]
   resizeDirection?: RESIZE_DIRECTION
 }
+
 type defaultsType = () => Record<string, any>
+
 export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
   id: string
   childrenNode?: Omit<WidgetConfig, "icon" | "keywords" | "sessionType">[]
@@ -75,7 +78,17 @@ export interface BaseWidgetProps {
   ) => void
   updateComponentHeight: (newHeight: number) => void
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
-  triggerEventHandler: (eventType: string, path?: string) => void
+  triggerEventHandler: (
+    eventType: string,
+    path?: string,
+    otherCalcContext?: Record<string, any>,
+    formatPath?: (path: string) => string,
+  ) => void
+  triggerMappedEventHandler: (
+    eventType: string,
+    path: string,
+    index?: number,
+  ) => void
   w: number
   h: number
   unitW: number

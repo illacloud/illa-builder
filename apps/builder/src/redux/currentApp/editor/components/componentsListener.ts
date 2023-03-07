@@ -24,48 +24,8 @@ import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
 } from "@/utils/generators/generatePageOrSectionConfig"
+import { UpdateComponentNodeLayoutInfoPayload } from "./componentsPayload"
 import { CONTAINER_TYPE, ComponentNode } from "./componentsState"
-
-function handleCopyComponentReflowEffect(
-  action: ReturnType<typeof componentsActions.copyComponentReducer>,
-  listenApi: AppListenerEffectAPI,
-) {
-  const rootState = listenApi.getState()
-  const rootNode = getCanvas(rootState)
-  const componentNodes = action.payload
-  const effectResultMap = new Map<string, ComponentNode>()
-  componentNodes.forEach((copyShape) => {
-    const { newComponentNode } = copyShape
-    const parentNodeDisplayName = newComponentNode.parentNode
-    let parentNode = searchDsl(rootNode, parentNodeDisplayName)
-    if (!parentNode) {
-      return
-    }
-    if (effectResultMap.has(parentNode.displayName)) {
-      parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
-    }
-    const childrenNodes = parentNode.childrenNode
-    const { finalState } = getReflowResult(
-      newComponentNode,
-      childrenNodes,
-      false,
-    )
-    effectResultMap.set(parentNode.displayName, {
-      ...parentNode,
-      childrenNode: finalState,
-    })
-  })
-  effectResultMap.forEach((value, key) => {
-    listenApi.dispatch(
-      componentsActions.updateComponentReflowReducer([
-        {
-          parentDisplayName: key,
-          childNodes: value.childrenNode,
-        },
-      ]),
-    )
-  })
-}
 
 function handleUpdateComponentDisplayNameEffect(
   action: ReturnType<
@@ -356,20 +316,35 @@ function handleUpdateTargetPagePropsEffect(
 const updateComponentReflowComponentsAdapter = (
   action: ReturnType<
     | typeof componentsActions.addComponentReducer
-    | typeof componentsActions.updateComponentsShape
     | typeof componentsActions.updateComponentContainerReducer
+    | typeof componentsActions.updateComponentLayoutInfoReducer
+    | typeof componentsActions.copyComponentReducer
   >,
 ) => {
   switch (action.type) {
     case "components/addComponentReducer": {
       return action.payload
     }
-    case "components/updateComponentsShape": {
-      return action.payload.components
-    }
     case "components/updateComponentContainerReducer": {
       return action.payload.updateSlice.map((slice) => {
         return slice.component
+      })
+    }
+    case "components/updateComponentLayoutInfoReducer": {
+      return [
+        {
+          displayName: action.payload.displayName,
+          x: action.payload.layoutInfo.x,
+          y: action.payload.layoutInfo.y,
+          w: action.payload.layoutInfo.w,
+          h: action.payload.layoutInfo.h,
+          parentNode: action.payload.options?.parentNode,
+        },
+      ] as ComponentNode[]
+    }
+    case "components/copyComponentReducer": {
+      return action.payload.map((slice) => {
+        return slice.newComponentNode
       })
     }
     default:
@@ -387,12 +362,15 @@ function handleUpdateComponentReflowEffect(
     updateComponentReflowComponentsAdapter(
       action as ReturnType<
         | typeof componentsActions.addComponentReducer
-        | typeof componentsActions.updateComponentsShape
         | typeof componentsActions.updateComponentContainerReducer
+        | typeof componentsActions.updateComponentLayoutInfoReducer
+        | typeof componentsActions.copyComponentReducer
       >,
     )
 
   const effectResultMap = new Map<string, ComponentNode>()
+  const updateSlice: UpdateComponentNodeLayoutInfoPayload[] = []
+
   updateComponents.forEach((componentNode) => {
     const parentNodeDisplayName = componentNode.parentNode
     let parentNode = searchDsl(rootNode, parentNodeDisplayName)
@@ -403,22 +381,26 @@ function handleUpdateComponentReflowEffect(
       parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
     }
     const childrenNodes = parentNode.childrenNode
-    const { finalState } = getReflowResult(componentNode, childrenNodes, false)
+    const { finalState } = getReflowResult(componentNode, childrenNodes, true)
+    finalState.forEach((node) => {
+      updateSlice.push({
+        displayName: node.displayName,
+        layoutInfo: {
+          x: node.x,
+          y: node.y,
+          w: node.w,
+          h: node.h,
+        },
+      })
+    })
     effectResultMap.set(parentNode.displayName, {
       ...parentNode,
       childrenNode: finalState,
     })
   })
-  effectResultMap.forEach((value, key) => {
-    listenApi.dispatch(
-      componentsActions.updateComponentReflowReducer([
-        {
-          parentDisplayName: key,
-          childNodes: value.childrenNode,
-        },
-      ]),
-    )
-  })
+  listenApi.dispatch(
+    componentsActions.batchUpdateComponentLayoutInfoReducer(updateSlice),
+  )
 }
 
 const handleUpdateHeightEffect = (
@@ -486,18 +468,15 @@ export function setupComponentsListeners(
 ): Unsubscribe {
   const subscriptions = [
     startListening({
-      actionCreator: componentsActions.copyComponentReducer,
-      effect: handleCopyComponentReflowEffect,
-    }),
-    startListening({
       actionCreator: componentsActions.updateComponentDisplayNameReducer,
       effect: handleUpdateComponentDisplayNameEffect,
     }),
     startListening({
       matcher: isAnyOf(
-        componentsActions.updateComponentsShape,
         componentsActions.updateComponentContainerReducer,
         componentsActions.addComponentReducer,
+        componentsActions.updateComponentLayoutInfoReducer,
+        componentsActions.copyComponentReducer,
       ),
       effect: handleUpdateComponentReflowEffect,
     }),

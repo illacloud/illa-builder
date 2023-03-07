@@ -54,3 +54,16 @@ export interface ILLAWebSocketComponentPayload {
   }
   after: ComponentNode
 }
+
+export enum ILLA_WEBSOCKET_STATUS {
+  INIT = "INIT",
+  CONNECTING = "CONNECTING",
+  CONNECTED = "CONNECTED",
+  CLOSED = "CLOSED",
+  FAILED = "FAILED",
+}
+
+export enum ILLA_WEBSOCKET_CONTEXT {
+  DASHBOARD = "DASHBOARD",
+  APP = "APP",
+}

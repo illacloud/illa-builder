@@ -34,6 +34,7 @@ export const fontButtonWrapperStyle = css`
   padding: 1px 8px;
   border-radius: 8px;
   font-size: 14px;
+
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
@@ -46,8 +47,13 @@ export const fontButtonStyle = css`
 export const listItemWrapperStyle = css`
   height: 32px;
   width: 100%;
+
   &:not(:last-child) {
     margin-bottom: 16px;
+  }
+
+  &:last-child {
+    margin-bottom: 8px;
   }
 `
 

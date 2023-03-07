@@ -143,6 +143,10 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         baseURL: data.baseURL,
         accessKeyID: data.accessKeyID,
         secretAccessKey: data.secretAccessKey,
+        acl:
+          !data.acl || data.acl === i18n.t("editor.action.acl.option.blank")
+            ? ""
+            : data.acl,
       }
     case "smtp":
       return {

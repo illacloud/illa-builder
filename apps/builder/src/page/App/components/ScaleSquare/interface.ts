@@ -6,10 +6,6 @@ export type ScaleSquareType = "error" | "normal" | "production"
 
 export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   componentNode: ComponentNode
-  h: number
-  w: number
-  x: number
-  y: number
   unitW: number
   unitH: number
   containerHeight: number
