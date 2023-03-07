@@ -88,9 +88,10 @@ export const CouchDBPanel: FC = () => {
           }
         }
       } else {
-        const length = name.length
+        let assignedContent: Record<string, object> = {}
         let realChangeObj
-        for (let i = 0; i < length; i++) {
+        let obj = assignedContent
+        for (let i = 0, length = name.length; i < length; i++) {
           const paramValue: any = (realChangeObj ?? newContent)[name[i]]
           if (!isObject(paramValue)) {
             const currentObj = realChangeObj ?? newContent
@@ -98,25 +99,18 @@ export const CouchDBPanel: FC = () => {
               ...currentObj,
               [name[i]]: value,
             }
+            if (length <= 1) {
+              assignedContent = realChangeObj
+            } else {
+              obj[name[i - 1]] = realChangeObj
+            }
             break
           }
           realChangeObj = paramValue
-        }
-        let assignedContent: Record<string, object> = {}
-        for (let i = 0; i < length; i++) {
-          if (i >= length - 2) {
-            const newValue = { ...realChangeObj }
-            assignedContent =
-              length <= 1
-                ? newValue
-                : {
-                    [name[i]]: newValue,
-                  }
-            break
-          } else {
+          if (i < length - 2) {
             const newObj = {}
-            assignedContent[name[i]] = newObj
-            assignedContent = newObj
+            obj[name[i]] = newObj
+            obj = newObj
           }
         }
         Object.assign(newContent, assignedContent)
