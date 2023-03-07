@@ -63,19 +63,20 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
 
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
-  const handleHostValueChange = useCallback(
-    (value: string | boolean) => {
-      const isShow = isContainLocalPath((value as string) ?? "")
-      if (isShow !== showAlert) {
-        setShowAlert(isShow)
-      }
-    },
-    [showAlert],
-  )
-
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
   }
+
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
+      }
+      return true
+    },
+    [showAlert],
+  )
 
   return (
     <>
@@ -94,15 +95,13 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
             control={control}
             rules={{
               required: true,
+              validate: handleHostValidate,
             }}
             render={({ field: { value, onChange, onBlur } }) => (
               <Input
                 w="100%"
                 onBlur={onBlur}
-                onChange={(value, e) => {
-                  onChange(value, e)
-                  handleHostValueChange(value)
-                }}
+                onChange={onChange}
                 value={value}
                 colorScheme="techPurple"
                 placeholder={t(

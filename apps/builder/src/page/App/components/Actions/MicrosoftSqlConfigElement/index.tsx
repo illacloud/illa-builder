@@ -85,12 +85,13 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
     )
   }, [setTestLoading, getValues, sslOpen])
 
-  const handleHostValueChange = useCallback(
-    (value: string | boolean) => {
-      const isShow = isContainLocalPath((value as string) ?? "")
-      if (isShow !== showAlert) {
-        setShowAlert(isShow)
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
       }
+      return urlValidate(value)
     },
     [showAlert],
   )
@@ -150,7 +151,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
           rules={[
             {
               required: t("editor.action.resource.error.invalid_url"),
-              validate: urlValidate,
+              validate: handleHostValidate,
             },
             {
               required: true,
@@ -168,7 +169,6 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
               ml: "8px",
             },
           ]}
-          onValueChange={handleHostValueChange}
           tips={
             formState.errors.host && !showAlert ? (
               <div css={errorMsgStyle}>

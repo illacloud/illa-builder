@@ -80,10 +80,7 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
                   w="100%"
                   {...style}
                   onBlur={onBlur}
-                  onChange={(value, e) => {
-                    onChange(value, e)
-                    onValueChange?.(value)
-                  }}
+                  onChange={onChange}
                   value={value}
                   error={error}
                   colorScheme="techPurple"

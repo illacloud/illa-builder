@@ -74,7 +74,7 @@ export const ListDocumentsInitial: ListDocuments = {
       value: "asc",
     },
   ],
-  limit: "{{1000}}",
+  limit: "{{100}}",
 }
 
 export type AppwriteActionTypes = DocumentOperations | ListDocuments

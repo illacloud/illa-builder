@@ -76,12 +76,13 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
 
-  const handleHostValueChange = useCallback(
-    (value: string | boolean) => {
-      const isShow = isContainLocalPath((value as string) ?? "")
-      if (isShow !== showAlert) {
-        setShowAlert(isShow)
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
       }
+      return true
     },
     [showAlert],
   )
@@ -233,15 +234,13 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
               control={control}
               rules={{
                 required: true,
+                validate: handleHostValidate,
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
                   w="100%"
                   onBlur={onBlur}
-                  onChange={(value, e) => {
-                    onChange(value, e)
-                    handleHostValueChange(value)
-                  }}
+                  onChange={onChange}
                   value={value}
                   colorScheme="techPurple"
                   placeholder={t(

@@ -38,7 +38,7 @@ import {
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { isContainLocalPath } from "@/utils/form"
+import { isContainLocalPath, urlValidate } from "@/utils/form"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { ClickhouseConfigElementProps } from "./interface"
 
@@ -84,13 +84,6 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     )
   }, [setTestLoading, getValues, sslOpen])
 
-  const handleURLValidate = useCallback(
-    (value: string) => {
-      return isURL(value) ? true : t("editor.action.resource.error.invalid_url")
-    },
-    [t],
-  )
-
   const handleSwitchValueChange = useCallback((open: boolean | string) => {
     setSSLOpen(!!open)
     if (!open) {
@@ -102,19 +95,20 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     setSelfSigned(!!open)
   }, [])
 
-  const handleHostValueChange = useCallback(
-    (value: string | boolean) => {
-      const isShow = isContainLocalPath((value as string) ?? "")
-      if (isShow !== showAlert) {
-        setShowAlert(isShow)
-      }
-    },
-    [showAlert],
-  )
-
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
   }
+
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
+      }
+      return urlValidate(value)
+    },
+    [showAlert],
+  )
 
   return (
     <form
@@ -166,7 +160,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           rules={[
             {
               required: t("editor.action.resource.error.invalid_url"),
-              validate: handleURLValidate,
+              validate: handleHostValidate,
             },
             {
               required: true,
@@ -184,7 +178,6 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
               ml: "8px",
             },
           ]}
-          onValueChange={handleHostValueChange}
           tips={
             formState.errors.host && !showAlert ? (
               <div css={errorMsgStyle}>

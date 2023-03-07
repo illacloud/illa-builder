@@ -236,6 +236,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
       <InputEditor
         onChange={handleValueChange("limit")}
         value={params.limit}
+        expectedType={VALIDATION_TYPES.NUMBER}
         title={t("editor.action.form.label.appwrite.limit")}
         lineNumbers
         style={{ height: "88px" }}
