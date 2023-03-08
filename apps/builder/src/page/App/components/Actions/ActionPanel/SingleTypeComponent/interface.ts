@@ -9,4 +9,5 @@ export interface SingleComponentProps
   onChange: (value: any) => void
   value: boolean | SelectValue
   checkoutTitle?: string
+  placeholder?: string
 }

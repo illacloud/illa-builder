@@ -10,8 +10,15 @@ import {
 import { InputEditor } from "@/page/App/components/InputEditor"
 
 export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
-  const { componentType, title, onChange, value, options, checkoutTitle } =
-    props
+  const {
+    componentType,
+    title,
+    onChange,
+    value,
+    options,
+    placeholder,
+    checkoutTitle,
+  } = props
 
   const handleSelectValueChange = useCallback(
     (value?: SelectValue) => {
@@ -34,6 +41,7 @@ export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
             onChange={handleSelectValueChange}
             value={value as SelectValue}
             options={options}
+            placeholder={placeholder}
           />
         )
       case "checkbox":
