@@ -5,7 +5,7 @@ export const validate = (value?: string) =>
   value != undefined && value.trim() != ""
 
 export const isContainLocalPath = (value: string) => {
-  return /(^(127|0\.0\.0\.0)(\.\d*)+$)|(^localhost)/.test(value ?? "")
+  return /(^127(\.\d*)+$)|(^0\.0\.0\.0(\.\d*)*$)|(^localhost)/.test(value)
 }
 
 export const urlValidate = (value: string) => {

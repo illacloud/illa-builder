@@ -19,7 +19,7 @@ type ValueType = string | boolean
 
 export interface ControlledElementProps
   extends Omit<AlertProps, "title" | "content" | "defaultValue"> {
-  title: string
+  title: ReactNode
   isRequired?: boolean
   defaultValue: ValueType[] | string | boolean
   placeholders?: string[]
@@ -36,7 +36,6 @@ export interface ControlledElementProps
   allowClear?: boolean
   rules?: RegisterOptions[]
   onValueChange?: (value: ValueType) => void
-  alertTitle?: ReactNode
   alertContent?: ReactNode
   forceEqualWidth?: boolean
 }

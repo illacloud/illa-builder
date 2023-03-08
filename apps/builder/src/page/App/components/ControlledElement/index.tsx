@@ -24,7 +24,7 @@ import {
 
 export const ControlledElement: FC<ControlledElementProps> = (props) => {
   const {
-    title = "",
+    title,
     contentLabel,
     isRequired = false,
     defaultValue,
@@ -43,7 +43,6 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     labelStyle,
     onValueChange,
     alertContent,
-    alertTitle,
   } = props
 
   const filteredType = (
@@ -66,9 +65,7 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     ) => {
       switch (type) {
         case "alert":
-          return (
-            <Alert title={alertTitle} content={alertContent} closable={false} />
-          )
+          return <Alert title={title} content={alertContent} closable={false} />
         case "input":
           return (
             <Controller
@@ -253,7 +250,6 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     },
     [
       alertContent,
-      alertTitle,
       allowClear,
       contentLabel,
       control,
@@ -261,6 +257,7 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
       forceEqualWidth,
       onValueChange,
       options,
+      title,
     ],
   )
 

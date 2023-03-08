@@ -115,12 +115,11 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
       </div>
       {showAlert && (
         <ControlledElement
-          title=""
           defaultValue=""
           name=""
           controlledType="alert"
           control={control}
-          alertTitle={t("editor.action.form.tips.connect_to_local.title.tips")}
+          title={t("editor.action.form.tips.connect_to_local.title.tips")}
           alertContent={
             isCloudVersion ? (
               <Trans
