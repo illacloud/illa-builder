@@ -11,7 +11,6 @@ export const receiveMessage = (
   const reduxType = typeList[0]
   const reduxAction = typeList[1]
   const newType = `${reduxType}/${reduxAction}`
-  console.log("newType", newType)
   action.type = newType
   switch (newType) {
     case "apps/removeDashboardAppReducer": {
