@@ -17,12 +17,6 @@ _main() {
     echo 
 
     # replace frontend repo
-    if [ ! -n "$API_SERVER_ADDRESS" ]; then
-        echo "API_SERVER_ADDRESS not defined, skip."
-    else
-        sed -i "s/localhost/$API_SERVER_ADDRESS/g" /opt/illa/illa-builder-frontend/assets/*.js
-    fi
-
     if [ ! -n "$RELEASE_VERSION" ]; then
         echo "RELEASE_VERSION not defined, skip."
     else
