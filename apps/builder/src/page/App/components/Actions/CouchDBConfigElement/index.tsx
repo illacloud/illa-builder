@@ -7,6 +7,7 @@ import {
   ButtonGroup,
   Divider,
   PreviousIcon,
+  WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
 import {
@@ -21,6 +22,8 @@ import {
   connectTypeStyle,
   container,
   divider,
+  errorIconStyle,
+  errorMsgStyle,
   footerStyle,
   labelContainer,
   optionLabelStyle,
@@ -31,7 +34,7 @@ import {
   CouchdbResourceInitial,
 } from "@/redux/resource/couchdbResource"
 import { RootState } from "@/store"
-import { validate } from "@/utils/form"
+import { urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
@@ -110,10 +113,21 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={content.host}
           rules={[
             {
-              validate,
+              required: t("editor.action.resource.error.invalid_url"),
+              validate: urlValidate,
             },
           ]}
           name="host"
+          tips={
+            formState.errors.host ? (
+              <div css={errorMsgStyle}>
+                <>
+                  <WarningCircleIcon css={errorIconStyle} />
+                  {formState.errors.host.message}
+                </>
+              </div>
+            ) : null
+          }
         />
         <ControlledElement
           controlledType="input"

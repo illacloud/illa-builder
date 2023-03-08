@@ -7,6 +7,7 @@ import {
   ButtonGroup,
   Divider,
   PreviousIcon,
+  WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
 import {
@@ -21,6 +22,8 @@ import {
   connectTypeStyle,
   container,
   divider,
+  errorIconStyle,
+  errorMsgStyle,
   footerStyle,
   labelContainer,
   optionLabelStyle,
@@ -31,7 +34,7 @@ import {
   AppWriteResourceInitial,
 } from "@/redux/resource/appWriteResource"
 import { RootState } from "@/store"
-import { validate } from "@/utils/form"
+import { urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
@@ -113,9 +116,24 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           title={t("editor.action.form.label.appwrite.host")}
           control={control}
           defaultValue={content.host}
-          rules={[inputValueValidate]}
+          rules={[
+            {
+              required: t("editor.action.resource.error.invalid_url"),
+              validate: urlValidate,
+            },
+          ]}
           placeholders={[t("editor.action.form.placeholder.appwrite.host")]}
           name="host"
+          tips={
+            formState.errors.host ? (
+              <div css={errorMsgStyle}>
+                <>
+                  <WarningCircleIcon css={errorIconStyle} />
+                  {formState.errors.host.message}
+                </>
+              </div>
+            ) : null
+          }
         />
         <ControlledElement
           controlledType="input"
