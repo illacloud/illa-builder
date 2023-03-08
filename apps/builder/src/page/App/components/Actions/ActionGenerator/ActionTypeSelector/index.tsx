@@ -1,7 +1,14 @@
-import { FC, useState } from "react"
+import copy from "copy-to-clipboard"
+import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Spin, useMessage } from "@illa-design/react"
+import {
+  CopyIcon,
+  DownIcon,
+  Spin,
+  UpIcon,
+  useMessage,
+} from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
 import { configActions } from "@/redux/config/configSlice"
@@ -14,9 +21,21 @@ import {
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { isCloudVersion } from "@/utils/typeHelper"
 import { ActionCard } from "../ActionCard"
 import { ActionTypeSelectorProps } from "./interface"
-import { categoryStyle, containerStyle, resourceListStyle } from "./style"
+import {
+  categoryStyle,
+  containerStyle,
+  resourceListStyle,
+  whiteListButtonContainerStyle,
+  whiteListButtonStyle,
+  whiteListContentContainerStyle,
+  whiteListContentStyle,
+  whiteListDescriptionStyle,
+  whiteListOperationIconStyle,
+  whiteListTitleStyle,
+} from "./style"
 
 export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { onSelect } = props
@@ -27,68 +46,116 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const dispatch = useDispatch()
   const message = useMessage()
 
+  const [showIPList, setShowIPList] = useState<boolean>(true)
+
+  const handleOperationIconClick = () => {
+    setShowIPList((prevState) => !prevState)
+  }
+
+  const handleCopyClick = useCallback(() => {
+    const copyResult = copy("")
+    if (copyResult) {
+      message.success({
+        content: t("copied"),
+      })
+    } else {
+      message.error({
+        content: t("copy_failed"),
+      })
+    }
+  }, [])
+
   return (
-    <Spin css={containerStyle} colorScheme="techPurple" loading={loading}>
-      {ActionTypeList.map(({ title, item, category }) => (
-        <div key={category}>
-          <span css={categoryStyle}>{title}</span>
-          <div css={resourceListStyle}>
-            {item.map((prop) => (
-              <ActionCard
-                key={prop.actionType}
-                onSelect={(item) => {
-                  if (item === "transformer") {
-                    const displayName =
-                      DisplayNameGenerator.generateDisplayName(item)
-                    const initialContent = getInitialContent(item)
-                    const data: Partial<ActionItem<ActionContent>> = {
-                      actionType: item,
-                      displayName,
-                      content: initialContent,
-                      ...actionItemInitial,
+    <>
+      <Spin css={containerStyle} colorScheme="techPurple" loading={loading}>
+        {ActionTypeList.map(({ title, item, category }) => (
+          <div key={category}>
+            <span css={categoryStyle}>{title}</span>
+            <div css={resourceListStyle}>
+              {item.map((prop) => (
+                <ActionCard
+                  key={prop.actionType}
+                  onSelect={(item) => {
+                    if (item === "transformer") {
+                      const displayName =
+                        DisplayNameGenerator.generateDisplayName(item)
+                      const initialContent = getInitialContent(item)
+                      const data: Partial<ActionItem<ActionContent>> = {
+                        actionType: item,
+                        displayName,
+                        content: initialContent,
+                        ...actionItemInitial,
+                      }
+                      BuilderApi.teamRequest(
+                        {
+                          url: `/apps/${appInfo.appId}/actions`,
+                          method: "POST",
+                          data,
+                        },
+                        ({ data }: { data: ActionItem<ActionContent> }) => {
+                          message.success({
+                            content: t(
+                              "editor.action.action_list.message.success_created",
+                            ),
+                          })
+                          dispatch(actionActions.addActionItemReducer(data))
+                          dispatch(configActions.changeSelectedAction(data))
+                          onSelect(item)
+                        },
+                        () => {
+                          message.error({
+                            content: t(
+                              "editor.action.action_list.message.failed",
+                            ),
+                          })
+                          DisplayNameGenerator.removeDisplayName(displayName)
+                        },
+                        () => {
+                          DisplayNameGenerator.removeDisplayName(displayName)
+                        },
+                        (loading) => {
+                          setLoading(loading)
+                        },
+                      )
+                    } else {
+                      onSelect(item)
                     }
-                    BuilderApi.teamRequest(
-                      {
-                        url: `/apps/${appInfo.appId}/actions`,
-                        method: "POST",
-                        data,
-                      },
-                      ({ data }: { data: ActionItem<ActionContent> }) => {
-                        message.success({
-                          content: t(
-                            "editor.action.action_list.message.success_created",
-                          ),
-                        })
-                        dispatch(actionActions.addActionItemReducer(data))
-                        dispatch(configActions.changeSelectedAction(data))
-                        onSelect(item)
-                      },
-                      () => {
-                        message.error({
-                          content: t(
-                            "editor.action.action_list.message.failed",
-                          ),
-                        })
-                        DisplayNameGenerator.removeDisplayName(displayName)
-                      },
-                      () => {
-                        DisplayNameGenerator.removeDisplayName(displayName)
-                      },
-                      (loading) => {
-                        setLoading(loading)
-                      },
-                    )
-                  } else {
-                    onSelect(item)
-                  }
-                }}
-                {...prop}
-              />
-            ))}
+                  }}
+                  {...prop}
+                />
+              ))}
+            </div>
           </div>
+        ))}
+        <div>
+          <div css={whiteListContentContainerStyle}>
+            <div css={whiteListContentStyle}>
+              <div css={whiteListTitleStyle}>
+                {t("editor.action.resource.tip.allowlist.title")}
+              </div>
+              <div css={whiteListDescriptionStyle}>
+                {t("editor.action.resource.tip.allowlist.message")}
+              </div>
+            </div>
+            {isCloudVersion && (
+              <div css={whiteListButtonContainerStyle}>
+                <div css={whiteListButtonStyle} onClick={handleCopyClick}>
+                  <CopyIcon />
+                  <span>{t("editor.action.resource.button.copy_ip")}</span>
+                </div>
+                <span
+                  css={whiteListOperationIconStyle}
+                  onClick={handleOperationIconClick}
+                >
+                  {showIPList ? <UpIcon /> : <DownIcon />}
+                </span>
+              </div>
+            )}
+          </div>
+          {isCloudVersion && showIPList && <div></div>}
         </div>
-      ))}
-    </Spin>
+      </Spin>
+    </>
   )
 }
 
