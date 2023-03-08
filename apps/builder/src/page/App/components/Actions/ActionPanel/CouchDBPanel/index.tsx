@@ -34,7 +34,7 @@ import {
   CouchDBOptionsType,
 } from "@/redux/currentApp/action/couchDBAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
-import { isObject } from "@/utils/typeHelper"
+import { updateActionContent } from "@/utils/action/calculateNewAction"
 
 type CouchDBPanelType = ActionItem<CouchDBAction<CouchDBOptionsType>>
 
@@ -88,32 +88,7 @@ export const CouchDBPanel: FC = () => {
           }
         }
       } else {
-        let assignedContent: Record<string, object> = {}
-        let realChangeObj
-        let obj = assignedContent
-        for (let i = 0, length = name.length; i < length; i++) {
-          const paramValue: any = (realChangeObj ?? newContent)[name[i]]
-          if (!isObject(paramValue)) {
-            const currentObj = realChangeObj ?? newContent
-            realChangeObj = {
-              ...currentObj,
-              [name[i]]: value,
-            }
-            if (length <= 1) {
-              assignedContent = realChangeObj
-            } else {
-              obj[name[i - 1]] = realChangeObj
-            }
-            break
-          }
-          realChangeObj = paramValue
-          if (i < length - 2) {
-            const newObj = {}
-            obj[name[i]] = newObj
-            obj = newObj
-          }
-        }
-        Object.assign(newContent, assignedContent)
+        newContent = updateActionContent({ ...newContent }, name, value)
       }
       dispatch(
         configActions.updateCachedAction({
