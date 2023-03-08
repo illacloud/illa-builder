@@ -587,26 +587,20 @@ const transformDataFormat = (
     case "appwrite":
       const { method: appwriteMethod, opts: appwriteOpts } = contents
       if (appwriteMethod === "list") {
-        const { orderBy, filter, limit } = appwriteOpts
+        const { orderBy = [], filter = [], limit = 100 } = appwriteOpts
         return {
           ...contents,
           opts: {
             ...appwriteOpts,
-            orderBy: orderBy.map((item: Params) => {
-              const { key, ...others } = item
-              return {
-                ...others,
-                attribute: key,
-              }
-            }),
-            filter: filter.map((item: Params) => {
-              const { key, value, ...others } = item
-              return {
-                ...others,
-                value: getAppwriteFilterValue(value),
-                attribute: key,
-              }
-            }),
+            orderBy: orderBy.map(({ key, ...others }: Params) => ({
+              ...others,
+              attribute: key,
+            })),
+            filter: filter.map(({ key, value, ...others }: Params) => ({
+              ...others,
+              value: getAppwriteFilterValue(value),
+              attribute: key,
+            })),
             limit: isNumber(limit) ? limit : 100,
           },
         }
