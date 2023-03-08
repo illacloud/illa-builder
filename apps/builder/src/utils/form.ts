@@ -5,10 +5,7 @@ export const validate = (value?: string) =>
   value != undefined && value.trim() != ""
 
 export const isContainLocalPath = (value: string) => {
-  const lowercaseValue = (value ?? "").toLowerCase()
-  return (
-    lowercaseValue.includes("localhost") || lowercaseValue.includes("127.0.0.1")
-  )
+  return /(^(127|0\.0\.0\.0)(\.\d*)+$)|(^localhost)/.test(value ?? "")
 }
 
 export const urlValidate = (value: string) => {

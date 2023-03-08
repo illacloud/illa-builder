@@ -37,7 +37,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
         name === "filter"
           ? {
               key: "",
-              operation: "",
+              operator: "",
               value: "",
             }
           : { key: "", value: "" }
@@ -57,7 +57,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
       let newRecords = [...oldList]
       const newListItem: Params =
         name === "filter"
-          ? { key: "", operation: "", value: "" }
+          ? { key: "", operator: "", value: "" }
           : { key: "", value: "" }
 
       newRecords.splice(index, 1)
@@ -75,18 +75,18 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
       key: string,
       value: string,
       name?: string,
-      operation?: string,
+      operator?: string,
     ) => {
       if (!(name && params.hasOwnProperty(name))) {
         return
       }
       const oldList = params[name as keyof typeof params] as Params[]
       let newList = [...oldList]
-      const newListItem: Params = operation
+      const newListItem: Params = operator
         ? {
             key,
             value,
-            operation,
+            operator,
           }
         : { key, value }
       newList[index] = newListItem
@@ -101,8 +101,6 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
         onChange={handleValueChange("collectionID")}
         value={params.collectionID}
         title={t("editor.action.form.label.appwrite.collectionid")}
-        lineNumbers
-        style={{ height: "88px" }}
       />
       <RecordEditor
         label={t("editor.action.form.label.appwrite.filter")}
@@ -118,8 +116,8 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
                     index,
                     val,
                     record.value,
-                    record.operation,
                     "filter",
+                    record.operator,
                   )
                 }}
                 wrapperCss={codeMirrorWrapperLabelStyle}
@@ -135,8 +133,8 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
             <Select
               colorScheme="techPurple"
               showSearch={true}
-              defaultValue={record.operation}
-              value={record.operation}
+              defaultValue={record.operator}
+              value={record.operator}
               w="0"
               ml="-0.5px"
               mr="-0.5px"
@@ -163,7 +161,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
                     record.key,
                     val,
                     "filter",
-                    record.operation,
+                    record.operator,
                   )
                 }}
                 wrapperCss={codeMirrorWrapperValueStyle}
@@ -207,7 +205,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
             <Select
               colorScheme="techPurple"
               showSearch={true}
-              defaultValue={record.operation}
+              defaultValue={record.value}
               value={record.value}
               w="0"
               ml="-0.5px"
@@ -238,8 +236,6 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
         value={params.limit}
         expectedType={VALIDATION_TYPES.NUMBER}
         title={t("editor.action.form.label.appwrite.limit")}
-        lineNumbers
-        style={{ height: "88px" }}
       />
     </>
   )

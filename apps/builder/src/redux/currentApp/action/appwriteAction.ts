@@ -48,7 +48,7 @@ export const DocumentOperationsInitial: DocumentOperations = {
 
 export interface AppwriteFilterParams extends Params {
   key: string
-  operation: string
+  operator: string
   value: string
 }
 
@@ -64,7 +64,7 @@ export const ListDocumentsInitial: ListDocuments = {
   filter: [
     {
       key: "",
-      operation: i18n.t("editor.action.form.option.appwrite.filter.equal"),
+      operator: "equal",
       value: "",
     },
   ],
@@ -90,12 +90,30 @@ export const AppwriteActionInitial: AppwriteAction<ListDocuments> = {
 }
 
 export const ListDocumentsFilterOptions = [
-  i18n.t("editor.action.form.option.appwrite.filter.equal"),
-  i18n.t("editor.action.form.option.appwrite.filter.notequal"),
-  i18n.t("editor.action.form.option.appwrite.filter.lessthan"),
-  i18n.t("editor.action.form.option.appwrite.filter.lessthanEqual"),
-  i18n.t("editor.action.form.option.appwrite.filter.greaterthan"),
-  i18n.t("editor.action.form.option.appwrite.filter.greaterthanequal"),
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.equal"),
+    value: "equal",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.notequal"),
+    value: "notEqual",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.lessthan"),
+    value: "lessThan",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.lessthanEqual"),
+    value: "lessThanEqual",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.greaterthan"),
+    value: "greaterThan",
+  },
+  {
+    label: i18n.t("editor.action.form.option.appwrite.filter.greaterthanequal"),
+    value: "greaterThanEqual",
+  },
 ]
 
 export const ListDocumentsOrderOptions = [

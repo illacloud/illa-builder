@@ -86,7 +86,7 @@ export const AppwritePanel: FC = () => {
   )
 
   const Component = AppwriteSubComponentMap[content.method]
-  const withDataEditor = ["get", "delete"].includes(content.method)
+  const withDataEditor = !["get", "delete"].includes(content.method)
 
   return (
     <div css={panelContainerStyle}>
