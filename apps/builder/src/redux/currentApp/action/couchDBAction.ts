@@ -106,8 +106,12 @@ export const CouchDBActionInitial: CouchDBAction<CouchDBOptionsType> = {
   opts: ListRecordsInitial,
 }
 
-export const CouchDBActionStructParamsDataTransferType: Record<string, object> =
-  {
-    record: {},
-    mangoQuery: {},
-  }
+export const CouchDBActionStructParamsDataTransferType: Record<
+  string,
+  object | number
+> = {
+  record: {},
+  mangoQuery: {},
+  limit: 1000,
+  skip: 0,
+}
