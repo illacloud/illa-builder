@@ -135,7 +135,7 @@ export interface DeletePageNodePayload {
   originPageSortedKey: string[]
 }
 
-export interface sortComponentNodeChildrenPayload {
+export interface SortComponentNodeChildrenPayload {
   parentDisplayName: string
   newChildrenNode: ComponentNode[]
 }

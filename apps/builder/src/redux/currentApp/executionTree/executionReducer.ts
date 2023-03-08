@@ -18,6 +18,13 @@ export const setDependenciesReducer: CaseReducer<
   state.dependencies = action.payload
 }
 
+export const setIndependenciesReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<DependenciesState>
+> = (state, action) => {
+  state.independencies = action.payload
+}
+
 export const setExecutionResultReducer: CaseReducer<
   ExecutionState,
   PayloadAction<setExecutionResultPayload>
