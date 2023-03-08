@@ -1,10 +1,11 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep } from "lodash"
+import { cloneDeep, set } from "lodash"
 import {
   LayoutInfo,
   StatusInfo,
   UpdateComponentContainerPayload,
   UpdateComponentNodeLayoutInfoPayload,
+  UpdateComponentSlicePropsPayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
@@ -20,7 +21,6 @@ import {
   DeleteSectionViewPayload,
   DeleteTargetPageSectionPayload,
   ModalSectionNode,
-  PageNodeProps,
   RootComponentNode,
   RootComponentNodeProps,
   SectionViewShape,
@@ -264,6 +264,26 @@ export const updateMultiComponentPropsReducer: CaseReducer<
   })
 }
 
+export const batchUpdateMultiComponentSlicePropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentSlicePropsPayload[]>
+> = (state, action) => {
+  action.payload.forEach(({ displayName, propsSlice }) => {
+    if (!isObject(propsSlice) || !displayName) {
+      return
+    }
+    const node = searchDsl(state, displayName)
+    if (!node) return
+    const widgetProps = node.props || {}
+    const clonedWidgetProps = cloneDeep(widgetProps)
+    Object.keys(propsSlice).forEach((path) => {
+      const newValue = propsSlice[path]
+      set(clonedWidgetProps, path, newValue)
+    })
+    node.props = clonedWidgetProps
+  })
+}
+
 export const resetComponentPropsReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode>
@@ -276,11 +296,11 @@ export const resetComponentPropsReducer: CaseReducer<
   node.props = componentNode.props
 }
 
-export const updateComponentDisplayNameReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<UpdateComponentDisplayNamePayload>
-> = (state, action) => {
-  const { displayName, newDisplayName } = action.payload
+const changeDisplayName = (
+  newDisplayName: string,
+  displayName: string,
+  state: ComponentsState,
+) => {
   if (!newDisplayName || !displayName) {
     return
   }
@@ -327,6 +347,14 @@ export const updateComponentDisplayNameReducer: CaseReducer<
       }
     }
   }
+}
+
+export const updateComponentDisplayNameReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentDisplayNamePayload>
+> = (state, action) => {
+  const { displayName, newDisplayName } = action.payload
+  changeDisplayName(newDisplayName, displayName, state)
 }
 
 export const updateComponentContainerReducer: CaseReducer<

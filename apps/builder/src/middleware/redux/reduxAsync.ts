@@ -9,6 +9,7 @@ import { Signal, Target } from "@/api/ws/interface"
 import {
   UpdateComponentContainerPayload,
   UpdateComponentNodeLayoutInfoPayload,
+  UpdateComponentSlicePropsPayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import {
   getCanvas,
@@ -74,7 +75,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   }
   const originalStore = cloneDeep(store.getState())
   const resp = next(action)
-  //  TODO: @aruseito ws send message when connected
   try {
     switch (reduxType) {
       case "components":
@@ -248,6 +248,39 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               )
             }
             break
+          case "batchUpdateMultiComponentSlicePropsReducer": {
+            const batchUpdatePayload: UpdateComponentSlicePropsPayload[] =
+              payload
+            const allDisplayNames = batchUpdatePayload.map(
+              ({ displayName }) => displayName,
+            )
+            const allNodes = allDisplayNames
+              .map((displayName) => {
+                return searchDsl(
+                  getCanvas(store.getState()),
+                  displayName,
+                ) as ComponentNode
+              })
+              .filter((node) => node !== null) as ComponentNode[]
+            const wsPayload =
+              transformComponentReduxPayloadToWsPayload(allNodes)
+
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                teamID,
+                uid,
+                wsPayload,
+              ),
+            )
+            break
+          }
           case "updateMultiComponentPropsReducer":
             const updateMultiPayload: UpdateComponentPropsPayload[] = payload
             const finalNodes = updateMultiPayload
