@@ -12,6 +12,7 @@ export type ControlledType =
   | "textarea"
   | "select"
   | "alert"
+  | "radio-group"
   | "none"
 
 type ValueType = string | boolean
@@ -37,4 +38,5 @@ export interface ControlledElementProps
   onValueChange?: (value: ValueType) => void
   alertTitle?: ReactNode
   alertContent?: ReactNode
+  forceEqualWidth?: boolean
 }

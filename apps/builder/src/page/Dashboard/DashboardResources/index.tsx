@@ -32,6 +32,7 @@ import {
   MongoDbResource,
 } from "@/redux/resource/mongodbResource"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import { OracleResource } from "@/redux/resource/oracleResource"
 import { RedisResource } from "@/redux/resource/redisResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
@@ -67,6 +68,7 @@ export const DashboardResources: FC = () => {
         case "s3":
         case "huggingface":
         case "hfendpoint":
+        case "couchdb":
           break
         case "clickhouse":
         case "supabasedb":
@@ -100,6 +102,9 @@ export const DashboardResources: FC = () => {
           break
         case "appwrite":
           dbName = (resource.content as AppWriteResource).databaseID
+          break
+        case "oracle":
+          dbName = (resource.content as OracleResource).name
           break
       }
       return {

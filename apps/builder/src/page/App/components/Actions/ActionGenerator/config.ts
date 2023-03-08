@@ -20,6 +20,10 @@ export const Databases: ActionDataItem[] = [
     isDraft: false,
   },
   {
+    actionType: "oracle",
+    isDraft: false,
+  },
+  {
     actionType: "mariadb",
     isDraft: false,
   },
@@ -53,6 +57,10 @@ export const Databases: ActionDataItem[] = [
   },
   {
     actionType: "clickhouse",
+    isDraft: false,
+  },
+  {
+    actionType: "couchdb",
     isDraft: false,
   },
   {

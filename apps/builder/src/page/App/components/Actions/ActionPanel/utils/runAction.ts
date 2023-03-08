@@ -12,6 +12,7 @@ import {
   ActionType,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
+import { CouchDBActionStructParamsDataTransferType } from "@/redux/currentApp/action/couchDBAction"
 import { DynamoActionStructParamsDataTransferType } from "@/redux/currentApp/action/dynamoDBAction"
 import {
   AuthActionTypeValue,
@@ -569,6 +570,19 @@ const transformDataFormat = (
       return {
         ...contents,
         structParams: newStructParams,
+      }
+    case "couchdb":
+      const { opts } = contents
+      let newOpts = { ...opts }
+      Object.keys(CouchDBActionStructParamsDataTransferType).forEach((key) => {
+        const value = CouchDBActionStructParamsDataTransferType[key]
+        if (newOpts[key] === "") {
+          newOpts[key] = value
+        }
+      })
+      return {
+        ...contents,
+        opts: newOpts,
       }
     case "appwrite":
       const { method: appwriteMethod, opts: appwriteOpts } = contents

@@ -1,5 +1,5 @@
 import { FC, useCallback, useMemo } from "react"
-import { Checkbox, Select, SelectValue } from "@illa-design/react"
+import { Checkbox, Select, SelectValue, Switch } from "@illa-design/react"
 import { SingleComponentProps } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent/interface"
 import {
   actionLabelStyle,
@@ -7,7 +7,6 @@ import {
   checkoutContentStyle,
   getActionItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent/style"
-import { InputEditor } from "@/page/App/components/InputEditor"
 
 export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
   const {
@@ -16,18 +15,31 @@ export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
     onChange,
     value,
     options,
-    placeholder,
     checkoutTitle,
+    onSelectedValueChange,
+    onBooleanValueChange,
+    placeholder,
   } = props
 
   const handleSelectValueChange = useCallback(
-    (value?: SelectValue) => {
+    (value?: boolean | SelectValue) => {
       if (value === undefined) {
         return
       }
-      onChange(value)
+      onChange?.(value)
+      if (typeof value !== "boolean") {
+        onSelectedValueChange?.(value)
+      }
     },
-    [onChange],
+    [onChange, onSelectedValueChange],
+  )
+
+  const handleBooleanValueChange = useCallback(
+    (value: boolean) => {
+      onChange?.(value)
+      onBooleanValueChange?.(value)
+    },
+    [onBooleanValueChange, onChange],
   )
 
   const node = useMemo(() => {
@@ -51,24 +63,31 @@ export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
               colorScheme="techPurple"
               checked={!!value}
               ml="16px"
-              onChange={onChange}
+              onChange={handleBooleanValueChange}
             />
             <span css={checkboxItemStyle}>{checkoutTitle}</span>
           </div>
+        )
+      case "switch":
+        return (
+          <Switch
+            colorScheme="techPurple"
+            checked={!!value}
+            ml="16px"
+            onChange={handleBooleanValueChange}
+          />
         )
     }
   }, [
     checkoutTitle,
     componentType,
+    handleBooleanValueChange,
     handleSelectValueChange,
-    onChange,
     options,
+    placeholder,
     value,
   ])
 
-  if (componentType === "editor") {
-    return <InputEditor {...props} value={props.value as string} />
-  }
   return (
     <div css={getActionItemStyle(componentType)}>
       <span css={actionLabelStyle}>{title}</span>

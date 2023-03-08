@@ -2,6 +2,7 @@ import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { AppWriteConfigElement } from "@/page/App/components/Actions/AppwriteConfigElement"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
+import { CouchDBConfigElement } from "@/page/App/components/Actions/CouchDBConfigElement"
 import { DynamoDBConfigElement } from "@/page/App/components/Actions/DynamoDBConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
@@ -11,6 +12,7 @@ import { HuggingFaceEndpointConfigElement } from "@/page/App/components/Actions/
 import { MicrosoftSqlConfigElement } from "@/page/App/components/Actions/MicrosoftSqlConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
+import { OracleDBConfigElement } from "@/page/App/components/Actions/OracleDBConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
@@ -50,6 +52,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         )
       case "mssql":
         return <MicrosoftSqlConfigElement {...configElementProps} />
+      case "oracle":
+        return <OracleDBConfigElement {...configElementProps} />
       case "restapi":
         return (
           <RestApiConfigElement
@@ -114,6 +118,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return <ClickhouseConfigElement {...configElementProps} />
       case "appwrite":
         return <AppWriteConfigElement {...configElementProps} />
+      case "couchdb":
+        return <CouchDBConfigElement {...configElementProps} />
       default:
         return null
     }

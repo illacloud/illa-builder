@@ -2,6 +2,7 @@ import { FC, ReactNode, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { AppWriteConfigElement } from "@/page/App/components/Actions/AppwriteConfigElement"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
+import { CouchDBConfigElement } from "@/page/App/components/Actions/CouchDBConfigElement"
 import { DynamoDBConfigElement } from "@/page/App/components/Actions/DynamoDBConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
@@ -11,6 +12,7 @@ import { HuggingFaceEndpointConfigElement } from "@/page/App/components/Actions/
 import { MicrosoftSqlConfigElement } from "@/page/App/components/Actions/MicrosoftSqlConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
+import { OracleDBConfigElement } from "@/page/App/components/Actions/OracleDBConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
@@ -63,6 +65,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         )
       case "mssql":
         return <MicrosoftSqlConfigElement {...generalProps} />
+      case "oracle":
+        return <OracleDBConfigElement {...generalProps} />
       case "restapi":
         return (
           <RestApiConfigElement onBack={handleBack} onFinished={onFinished} />
@@ -94,6 +98,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         return <HuggingFaceConfigElement {...generalProps} />
       case "hfendpoint":
         return <HuggingFaceEndpointConfigElement {...generalProps} />
+      case "couchdb":
+        return <CouchDBConfigElement {...generalProps} />
       case "appwrite":
         return <AppWriteConfigElement {...generalProps} />
       default:

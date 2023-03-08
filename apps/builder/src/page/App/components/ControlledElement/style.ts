@@ -43,6 +43,7 @@ export const labelContainer = css`
   flex-direction: row;
   justify-content: end;
   min-width: 176px;
+  width: 176px;
 `
 
 export function applyConfigItemLabelText(

@@ -3,6 +3,10 @@ import {
   AppwriteActionTypes,
 } from "@/redux/currentApp/action/appwriteAction"
 import {
+  CouchDBAction,
+  CouchDBOptionsType,
+} from "@/redux/currentApp/action/couchDBAction"
+import {
   DynamoDBAction,
   StructParams,
 } from "@/redux/currentApp/action/dynamoDBAction"
@@ -19,6 +23,10 @@ import {
   MicrosoftSqlAction,
   MicrosoftSqlActionType,
 } from "@/redux/currentApp/action/microsoftSqlAction"
+import {
+  OracleDBAction,
+  OracleDBActionType,
+} from "@/redux/currentApp/action/oracleDBAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { MysqlLikeAction } from "./mysqlLikeAction"
@@ -65,8 +73,10 @@ export type ActionType =
   | "firebase"
   | "supabasedb"
   | "clickhouse"
+  | "couchdb"
   | "mysql"
   | "mssql"
+  | "oracle"
   | "restapi"
   | "graphql"
   | "mongodb"
@@ -113,11 +123,13 @@ export type ActionContent =
   | DynamoDBAction<StructParams>
   | MysqlLikeAction
   | MicrosoftSqlAction<MicrosoftSqlActionType>
+  | OracleDBAction<OracleDBActionType>
   | RestApiAction<BodyContent>
   | TransformerAction
   | AppwriteAction<AppwriteActionTypes>
   | RedisAction
   | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
+  | CouchDBAction<CouchDBOptionsType>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
