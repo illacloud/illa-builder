@@ -166,8 +166,11 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "Treat Database name as SID/Service Name",
+            "sid": "データベース名を SID/サービス名として扱う",
             "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
           }
         },
         "placeholder": {
@@ -181,7 +184,8 @@
               "attribute": "attribute",
               "value": "1234"
             },
-            "order": "attribute"
+            "order": "attribute",
+            "collectionid": "コレクションを選んでください"
           },
           "couchdb": {
             "port": {
@@ -230,9 +234,12 @@
           "oracle": {
             "sid": {
               "sid": "SID",
-              "service": "Service Name"
+              "service": "サービス名"
             },
-            "ssl": "Use SSL when available"
+            "ssl": "可能な場合は SSL を使用する"
+          },
+          "couchdb": {
+            "ssl": "可能な場合は SSL/TLS を使用する"
           }
         },
         "default": {
@@ -307,12 +314,12 @@
           "success": "成功",
           "transformer": "変成器",
           "couchdb": {
-            "database": "Database",
-            "action_type": "Action type"
+            "database": "データベース",
+            "action_type": "アクションタイプ"
           },
           "placeholder": {
             "couchdb": {
-              "database": "Select a database",
+              "database": "データベースを選択",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
               "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             }
@@ -320,13 +327,13 @@
           "option": {
             "couchdb": {
               "action_type": {
-                "list": "List records",
-                "retrieve": "Retrieve record",
-                "create": "Create record",
+                "list": "リストレコード",
+                "retrieve": "レコードを取得する",
+                "create": "レコードを作成",
                 "update": "Update record",
                 "delete": "Delete record",
-                "find": "Find",
-                "get": "Get view"
+                "find": "探す",
+                "get": "ビューを取得"
               },
               "skip": "Skip",
               "limit": "Limit",
@@ -734,7 +741,10 @@
           }
         },
         "tip": {
-          "allowlist": "リソースが公開されていない場合は、ネットワークまたはファイアウォールの設定を更新して、ILLA の IP アドレスを許可リストに追加し、ILLA がリソースに接続できるようにしてください。"
+          "allowlist": {
+            "title": "Allow IP addresses",
+            "message": "リソースが公開されていない場合は、ネットワークまたはファイアウォールの設定を更新して、ILLA の IP アドレスを許可リストに追加し、ILLA がリソースに接続できるようにしてください。"
+          }
         },
         "button": {
           "copy_ip": "IPをコピー"
