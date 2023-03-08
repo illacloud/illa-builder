@@ -6,7 +6,7 @@ import {
   createListenerMiddleware,
 } from "@reduxjs/toolkit"
 import { logger } from "redux-logger"
-import { reduxAsync } from "@/middleware/redux/reduxAsync"
+import { reduxAsync } from "@/middleware/reduxAsync"
 import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
 import configReducer from "@/redux/config/configSlice"
 import actionReducer from "@/redux/currentApp/action/actionSlice"
@@ -58,6 +58,7 @@ const store = configureStore({
     resource: resourceReducer,
     team: teamReducer,
   },
+  devTools: import.meta.env.DEV,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
