@@ -1819,7 +1819,18 @@
           "success": "Signed in successfully",
           "fail_account": "Incorrect email or password"
         },
-        "title": "Welcome back"
+        "title": "Welcome back",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Sign up successfully. You can set a password for your email account later",
+            "auth_failed": "Authentication failed"
+          }
+        },
+        "option": {
+          "github": "Sign in with GitHub",
+          "google": "Sign in with Google",
+          "or": "OR"
+        }
       },
       "sign_up": {
         "actions": {
@@ -1867,7 +1878,11 @@
           "success": "Signed up successfully",
           "verification_code": "Verification code sent"
         },
-        "title": "Sign up"
+        "title": "Sign up",
+        "option": {
+          "github": "Sign up with GitHub",
+          "google": "Sign up with Google"
+        }
       },
       "description": "An open-source low-code platform for developers."
     }
@@ -2061,5 +2076,7 @@
       "description": "These Terms of Service govern your access to, and use of, our Site, and our provision of a variety of services.",
       "title": "Terms of service"
     }
-  }
+  },
+  "empty_copied_tips": "The content to be copied is empty",
+  "copy_empty": "The content to be copied is empty"
 }
