@@ -166,8 +166,11 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "Treat Database name as SID/Service Name",
+            "sid": "데이터베이스 이름을 SID/서비스 이름으로 취급",
             "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
           }
         },
         "placeholder": {
@@ -181,7 +184,8 @@
               "attribute": "attribute",
               "value": "1234"
             },
-            "order": "attribute"
+            "order": "attribute",
+            "collectionid": "컬렉션 선택"
           },
           "couchdb": {
             "port": {
@@ -230,9 +234,12 @@
           "oracle": {
             "sid": {
               "sid": "SID",
-              "service": "Service Name"
+              "service": "서비스 명"
             },
-            "ssl": "Use SSL when available"
+            "ssl": "가능한 경우 SSL 사용"
+          },
+          "couchdb": {
+            "ssl": "가능한 경우 SSL/TLS 사용"
           }
         },
         "default": {
@@ -307,12 +314,12 @@
           "success": "성공",
           "transformer": "변신 로봇",
           "couchdb": {
-            "database": "Database",
-            "action_type": "Action type"
+            "database": "데이터 베이스",
+            "action_type": "작업 유형"
           },
           "placeholder": {
             "couchdb": {
-              "database": "Select a database",
+              "database": "데이터베이스 선택",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
               "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             }
@@ -320,13 +327,13 @@
           "option": {
             "couchdb": {
               "action_type": {
-                "list": "List records",
-                "retrieve": "Retrieve record",
-                "create": "Create record",
-                "update": "Update record",
-                "delete": "Delete record",
-                "find": "Find",
-                "get": "Get view"
+                "list": "레코드 나열",
+                "retrieve": "레코드 검색",
+                "create": "레코드 만들기",
+                "update": "레코드 업데이트",
+                "delete": "레코드 삭제",
+                "find": "찾다",
+                "get": "보기"
               },
               "skip": "Skip",
               "limit": "Limit",
@@ -734,7 +741,10 @@
           }
         },
         "tip": {
-          "allowlist": "리소스에 공개적으로 액세스할 수 없는 경우 ILLA가 리소스에 연결할 수 있도록 네트워크 또는 방화벽 설정을 업데이트하여 ILLA의 IP 주소를 허용 목록에 추가하세요."
+          "allowlist": {
+            "title": "Allow IP addresses",
+            "message": "리소스에 공개적으로 액세스할 수 없는 경우 ILLA가 리소스에 연결할 수 있도록 네트워크 또는 방화벽 설정을 업데이트하여 ILLA의 IP 주소를 허용 목록에 추가하세요."
+          }
         },
         "button": {
           "copy_ip": "IP 복사"

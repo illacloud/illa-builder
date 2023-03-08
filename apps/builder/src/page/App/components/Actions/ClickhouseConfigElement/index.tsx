@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Button,
@@ -30,6 +30,7 @@ import {
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { TextLink } from "@/page/User/components/TextLink"
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import {
   ClickhouseSSL,
@@ -37,6 +38,7 @@ import {
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
+import { isContainLocalPath, urlValidate } from "@/utils/form"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { ClickhouseConfigElementProps } from "./interface"
 
@@ -61,7 +63,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   const [selfSigned, setSelfSigned] = useState(
     resource?.content.ssl.selfSigned ?? false,
   )
-
+  const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
 
@@ -82,13 +84,6 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     )
   }, [setTestLoading, getValues, sslOpen])
 
-  const handleURLValidate = useCallback(
-    (value: string) => {
-      return isURL(value) ? true : t("editor.action.resource.error.invalid_url")
-    },
-    [t],
-  )
-
   const handleSwitchValueChange = useCallback((open: boolean | string) => {
     setSSLOpen(!!open)
     if (!open) {
@@ -99,6 +94,21 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   const handleSelfSignedValueChange = useCallback((open: boolean | string) => {
     setSelfSigned(!!open)
   }, [])
+
+  const handleDocLinkClick = () => {
+    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
+  }
+
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
+      }
+      return urlValidate(value)
+    },
+    [showAlert],
+  )
 
   return (
     <form
@@ -150,7 +160,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           rules={[
             {
               required: t("editor.action.resource.error.invalid_url"),
-              validate: handleURLValidate,
+              validate: handleHostValidate,
             },
             {
               required: true,
@@ -169,7 +179,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             },
           ]}
           tips={
-            formState.errors.host ? (
+            formState.errors.host && !showAlert ? (
               <div css={errorMsgStyle}>
                 <>
                   <WarningCircleIcon css={errorIconStyle} />
@@ -179,6 +189,35 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             ) : null
           }
         />
+        {showAlert && (
+          <ControlledElement
+            title=""
+            defaultValue=""
+            name=""
+            controlledType="alert"
+            control={control}
+            alertTitle={t(
+              "editor.action.form.tips.connect_to_local.title.tips",
+            )}
+            alertContent={
+              isCloudVersion ? (
+                <Trans
+                  i18nKey="editor.action.form.tips.connect_to_local.cloud"
+                  t={t}
+                  components={[
+                    <TextLink
+                      key="editor.action.form.tips.connect_to_local.cloud"
+                      onClick={handleDocLinkClick}
+                    />,
+                  ]}
+                />
+              ) : (
+                t("editor.action.form.tips.connect_to_local.selfhost")
+              )
+            }
+            closable={false}
+          />
+        )}
         <ControlledElement
           controlledType={["input"]}
           isRequired

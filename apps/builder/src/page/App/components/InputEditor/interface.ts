@@ -8,6 +8,8 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 export interface ControlledInputProps
   extends Pick<ICodeMirrorOptions, "sqlScheme"> {
   title?: string
+  subtitle?: string
+  handleSubtitleClick?: () => void
   value: string
   onChange: (value: string) => void
   expectedType?: VALIDATION_TYPES
