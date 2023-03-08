@@ -598,12 +598,12 @@ const transformDataFormat = (
         }
       }
       const { data, ...other } = appwriteOpts
-      const showData = ["get", "delete"].includes(appwriteMethod)
+      const showData = !["get", "delete"].includes(appwriteMethod)
       return {
         ...contents,
         opts: {
           ...other,
-          ...(showData && { data: isObject(data) ? {} : data }),
+          ...(showData && { data: isObject(data) ? data : {} }),
         },
       }
       return contents

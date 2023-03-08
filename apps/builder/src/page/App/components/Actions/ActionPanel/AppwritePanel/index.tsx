@@ -1,6 +1,7 @@
-import { FC, useCallback } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { BuilderApi } from "@/api/base"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { DocumentSubPanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/DocumentSubPanel"
 import { ListDocumentsSubPanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/ListDocuments"
@@ -24,6 +25,7 @@ import {
   DocumentOperationsInitial,
   ListDocumentsInitial,
 } from "@/redux/currentApp/action/appwriteAction"
+import { ResourcesData } from "@/redux/resource/resourceState"
 
 const AppwriteSubComponentMap = {
   get: DocumentSubPanel,
@@ -44,6 +46,25 @@ export const AppwritePanel: FC = () => {
   const content = cachedAction.content
   const selectedContent = selectedAction.content
   const dispatch = useDispatch()
+  const [collectionIds, setCollectionIds] = useState<string[]>([])
+
+  useEffect(() => {
+    BuilderApi.teamRequest(
+      {
+        url: `/resources/${cachedAction.resourceId}/meta`,
+        method: "GET",
+      },
+      ({ data }: { data: ResourcesData }) => {
+        const ids = ((data.schema.collections as []) ?? []).map(
+          (item: { id: string }) => item.id,
+        )
+        setCollectionIds(ids)
+      },
+      () => {},
+      () => {},
+      () => {},
+    )
+  }, [cachedAction.resourceId])
 
   const handleMethodValueChange = useCallback(
     (value: AppwriteActionMethodsType) => {
@@ -104,6 +125,7 @@ export const AppwritePanel: FC = () => {
           handleValueChange={handleValueChange}
           withDataEditor={withDataEditor}
           params={content.opts}
+          collectionIds={collectionIds}
         />
       </div>
       <ActionEventHandler />
