@@ -10,7 +10,6 @@ export interface UploadResponse {
 
 export const upload = async (url: string, file: Blob) => {
   const resUrl = url.split("?")[0]
-
   await Api.asyncRequest({
     url,
     method: "PUT",

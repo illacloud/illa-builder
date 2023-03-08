@@ -1,3 +1,4 @@
+import { AppWriteResource } from "@/redux/resource/appWriteResource"
 import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import { CouchdbResource } from "@/redux/resource/couchdbResource"
 import { DynamoDBResource } from "@/redux/resource/dynamoResource"
@@ -27,6 +28,7 @@ export type ResourceType =
   | "mysql"
   | "mssql"
   | "oracle"
+  | "appwrite"
   | "restapi"
   | "graphql"
   | "mongodb"
@@ -48,6 +50,7 @@ export type ResourceContent =
   | ClickhouseResource
   | CouchdbResource
   | FirebaseResource
+  | AppWriteResource
   | SMTPResource
   | S3Resource
   | ElasticSearchResource

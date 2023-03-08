@@ -2,6 +2,7 @@ import { HTMLAttributes, forwardRef, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
+import { AppwritePanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel"
 import { CouchDBPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel"
 import { DynamoDBPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
@@ -68,6 +69,8 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           return <FirebasePanel />
         case "graphql":
           return <GraphQLPanel />
+        case "appwrite":
+          return <AppwritePanel />
         case "couchdb":
           return <CouchDBPanel />
         default:

@@ -225,6 +225,14 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "couchdb":
       const { resourceName: couchDBResName, ...otherCouchDBParams } = data
       return otherCouchDBParams
+    case "appwrite":
+      const { host, projectID, databaseID, apiKey } = data
+      return {
+        host,
+        projectID,
+        databaseID,
+        apiKey,
+      }
   }
 }
 

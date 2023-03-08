@@ -4,7 +4,7 @@ export type SingleComponentType = "select" | "checkbox" | "switch"
 export interface SingleComponentProps extends Pick<SelectProps, "options"> {
   componentType: SingleComponentType
   title?: string
-  onChange?: (value: boolean | SelectValue) => void
+  onChange?: (value: any) => void
   onSelectedValueChange?: (value: SelectValue) => void
   onBooleanValueChange?: (value: boolean) => void
   value: boolean | SelectValue

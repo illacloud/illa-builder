@@ -1,4 +1,5 @@
 import { ReactElement } from "react"
+import { AppwriteIcon } from "@/page/App/components/Icons/appwrite"
 import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
 import { CouchDBIcon } from "@/page/App/components/Icons/couchdb"
 import { DataDogIcon } from "@/page/App/components/Icons/datadog"
@@ -71,6 +72,8 @@ export function getIconFromResourceType(
       return <CouchDBIcon size={size} />
     case "oracle":
       return <OracleDBIcon size={size} />
+    case "appwrite":
+      return <AppwriteIcon size={size} />
   }
   return null
 }
@@ -123,6 +126,8 @@ export function getIconFromActionType(
       return <OracleDBIcon size={size} />
     case "couchdb":
       return <CouchDBIcon size={size} />
+    case "appwrite":
+      return <AppwriteIcon size={size} />
   }
   return null
 }

@@ -63,6 +63,10 @@ export const Databases: ActionDataItem[] = [
     actionType: "couchdb",
     isDraft: false,
   },
+  {
+    actionType: "appwrite",
+    isDraft: false,
+  },
 ]
 
 export const Apis: ActionDataItem[] = [

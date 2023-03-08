@@ -184,7 +184,8 @@
               "attribute": "attribute",
               "value": "1234"
             },
-            "order": "attribute"
+            "order": "attribute",
+            "collectionid": "Select a collection"
           },
           "couchdb": {
             "port": {
@@ -740,7 +741,10 @@
           }
         },
         "tip": {
-          "allowlist": "If your resources are not publicly accessible, please update your network or firewall setting to add ILLA's IP addresses to the allowlist so that ILLA can connect to your resources. "
+          "allowlist": {
+            "title": "Allow IP addresses",
+            "message": "If your resources are not publicly accessible, please update your network or firewall setting to add ILLA's IP addresses to the allowlist so that ILLA can connect to your resources."
+          }
         },
         "button": {
           "copy_ip": "Copy IP"

@@ -1,4 +1,8 @@
 import {
+  AppwriteAction,
+  AppwriteActionTypes,
+} from "@/redux/currentApp/action/appwriteAction"
+import {
   CouchDBAction,
   CouchDBOptionsType,
 } from "@/redux/currentApp/action/couchDBAction"
@@ -86,6 +90,7 @@ export type ActionType =
   | "smtp"
   | "s3"
   | "transformer"
+  | "appwrite"
 
 export type ActionTriggerMode = "manually" | "automate"
 
@@ -121,6 +126,7 @@ export type ActionContent =
   | OracleDBAction<OracleDBActionType>
   | RestApiAction<BodyContent>
   | TransformerAction
+  | AppwriteAction<AppwriteActionTypes>
   | RedisAction
   | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
