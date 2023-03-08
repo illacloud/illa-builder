@@ -4,8 +4,6 @@ import { Params } from "@/redux/resource/restapiResource"
 export interface RecordEditorProps {
   label: string
   name?: string
-  subtitle?: string
-  handleSubTitleClick?: () => void
   records: Params[] | null
   onAdd: (name?: string) => void
   customRender?: (record: Params, index: number) => ReactNode
