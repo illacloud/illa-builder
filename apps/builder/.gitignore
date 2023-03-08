@@ -112,3 +112,5 @@ report.*
 # cypress
 cypress/videos
 cypress/screenshots
+
+stats.html
