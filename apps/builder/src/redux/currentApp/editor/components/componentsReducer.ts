@@ -24,6 +24,7 @@ import {
   RootComponentNode,
   RootComponentNodeProps,
   SectionViewShape,
+  SortComponentNodeChildrenPayload,
   UpdateComponentDisplayNamePayload,
   UpdateComponentNodeHeightPayload,
   UpdateComponentPropsPayload,
@@ -31,7 +32,6 @@ import {
   UpdateSectionViewPropsPayload,
   UpdateTargetPageLayoutPayload,
   UpdateTargetPagePropsPayload,
-  sortComponentNodeChildrenPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
@@ -217,7 +217,7 @@ export const deletePageNodeReducer: CaseReducer<
 
 export const sortComponentNodeChildrenReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<sortComponentNodeChildrenPayload>
+  PayloadAction<SortComponentNodeChildrenPayload>
 > = (state, action) => {
   const { parentDisplayName, newChildrenNode } = action.payload
   const parentNode = searchDsl(state, parentDisplayName)
