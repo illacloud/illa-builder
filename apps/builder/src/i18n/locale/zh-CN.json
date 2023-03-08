@@ -184,7 +184,8 @@
               "attribute": "attribute",
               "value": "1234"
             },
-            "order": "attribute"
+            "order": "attribute",
+            "collectionid": "请选择一个集合"
           },
           "couchdb": {
             "port": {
