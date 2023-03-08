@@ -203,7 +203,7 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
                 lang={CODE_LANG.JAVASCRIPT}
                 codeType={CODE_TYPE.EXPRESSION}
                 canShowCompleteInfo
-                placeholder="field"
+                placeholder={t("editor.action.form.placeholder.appwrite.order")}
               />
             </div>
             <Select
@@ -212,11 +212,8 @@ export const ListDocumentsSubPanel: FC<AppwriteSubPanelProps> = (props) => {
               defaultValue={record.value}
               value={record.value}
               w="0"
-              ml="-0.5px"
-              mr="-0.5px"
               bdRadius="0"
               flexGrow="1"
-              placeholder={t("editor.action.form.placeholder.appwrite.order")}
               onChange={(val) =>
                 handleOnChangeKeyOrValue(
                   index,
