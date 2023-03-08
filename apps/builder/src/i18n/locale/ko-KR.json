@@ -1819,7 +1819,18 @@
           "success": "성공적 로그인",
           "fail_account": "잘못된 이메일 또는 비밀번호"
         },
-        "title": "다시 오신 것을 환영합니다"
+        "title": "다시 오신 것을 환영합니다",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "성공적으로 가입하십시오. 나중에 이메일 계정의 비밀번호를 설정할 수 있습니다.",
+            "auth_failed": "인증 실패"
+          }
+        },
+        "option": {
+          "github": "GitHub로 로그인",
+          "google": "Google 계정으로 로그인",
+          "or": "OR"
+        }
       },
       "sign_up": {
         "actions": {
@@ -1845,7 +1856,7 @@
             "require": "사용자 이름은 비워둘 수 없습니다."
           },
           "verification_code": {
-            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "expired": "인증 코드가 만료되었습니다",
             "invalid": "잘못된 검증 코드",
             "require": "인증 코드를 입력하십시오."
           }
@@ -1867,7 +1878,11 @@
           "success": "등록 성공",
           "verification_code": "인증 코드 전송됨"
         },
-        "title": "등록하다"
+        "title": "등록하다",
+        "option": {
+          "github": "GitHub 에 가입",
+          "google": "Google에 가입"
+        }
       },
       "description": "개발자 전용 오픈 소스 로우 코드 플랫폼입니다."
     }
@@ -2061,5 +2076,7 @@
       "description": "본 서비스 약관은 당사 사이트에 대한 액세스 및 사용과 다양한 서비스 제공에 적용됩니다.",
       "title": "에 동의하게 됩니다"
     }
-  }
+  },
+  "empty_copied_tips": "복사된 내용이 비어 있음",
+  "copy_empty": "The content to be copied is empty"
 }

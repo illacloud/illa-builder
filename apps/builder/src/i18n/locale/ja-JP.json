@@ -1819,7 +1819,18 @@
           "success": "新しいパスワードを入力してください",
           "fail_account": "メールアドレスまたはパスワードが正しくありません"
         },
-        "title": "お帰りなさい"
+        "title": "お帰りなさい",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "正常にサインアップします。 メールアカウントのパスワードは後で設定できます",
+            "auth_failed": "認証に失敗しました"
+          }
+        },
+        "option": {
+          "github": "GitHubでサインイン",
+          "google": "Googleでサインイン",
+          "or": "OR"
+        }
       },
       "sign_up": {
         "actions": {
@@ -1845,7 +1856,7 @@
             "require": "ユーザー名を空にすることはできません"
           },
           "verification_code": {
-            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "expired": "確認コードの有効期限が切れています",
             "invalid": "無効な認証コード",
             "require": "確認コードを入力してください"
           }
@@ -1867,7 +1878,11 @@
           "success": "サインアップしました",
           "verification_code": "確認コードが送信されました"
         },
-        "title": "サインアップ"
+        "title": "サインアップ",
+        "option": {
+          "github": "GitHubでサインアップ",
+          "google": "Google にサインアップ"
+        }
       },
       "description": "開発者専用のオープンソースのローコード プラットフォーム。"
     }
@@ -2061,5 +2076,7 @@
       "description": "これらの利用規約は、当社のサイトへのアクセスと使用、およびさまざまなサービスの提供を管理します。",
       "title": "サービス利用規約"
     }
-  }
+  },
+  "empty_copied_tips": "コピーされたコンテンツが空です",
+  "copy_empty": "The content to be copied is empty"
 }

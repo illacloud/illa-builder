@@ -1819,7 +1819,18 @@
           "success": "登录成功",
           "fail_account": "请输入正确的账号密码"
         },
-        "title": "欢迎回来"
+        "title": "欢迎回来",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "注册成功。 您可以稍后为您的电子邮件帐户设置密码",
+            "auth_failed": "认证失败"
+          }
+        },
+        "option": {
+          "github": "使用GitHub账户登入",
+          "google": "使用 Google 账户登入",
+          "or": "OR"
+        }
       },
       "sign_up": {
         "actions": {
@@ -1845,7 +1856,7 @@
             "require": "用户名不能为空"
           },
           "verification_code": {
-            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "expired": "验证码已过期",
             "invalid": "验证码错误",
             "require": "请输入验证码"
           }
@@ -1867,7 +1878,11 @@
           "success": "注册成功",
           "verification_code": "验证码已发送"
         },
-        "title": "注册"
+        "title": "注册",
+        "option": {
+          "github": "使用GitHub账户注册",
+          "google": "使用Google账户注册"
+        }
       },
       "description": "专属于开发者的开源低代码平台。"
     }
@@ -2061,5 +2076,7 @@
       "description": "这些服务条款管理您对我们网站以及我们提供的各种服务的访问和使用。",
       "title": "服务条款"
     }
-  }
+  },
+  "empty_copied_tips": "复制的内容为空",
+  "copy_empty": "The content to be copied is empty"
 }
