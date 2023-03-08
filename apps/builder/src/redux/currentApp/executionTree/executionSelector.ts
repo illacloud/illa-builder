@@ -222,10 +222,3 @@ export const getDependenciesMap = (state: RootState) => {
 export const getIndependenciesMap = (state: RootState) => {
   return state.currentApp.execution.independencies
 }
-
-export const getOriginalSeeds = createSelector(
-  [getDisplayNameMapComponent, getDisplayNameMapActions],
-  (componentNodes, actions) => {
-    return merge(componentNodes, actions)
-  },
-)
