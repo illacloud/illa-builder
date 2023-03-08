@@ -31,3 +31,10 @@ export interface UpdateComponentNodeLayoutInfoPayload {
     parentNode: string
   }>
 }
+
+export interface UpdateComponentSlicePropsPayload {
+  displayName: string
+  propsSlice: {
+    [key: string]: unknown
+  }
+}

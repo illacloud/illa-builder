@@ -1,5 +1,5 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
-import { cloneDeep } from "lodash"
+import { cloneDeep, get, toPath } from "lodash"
 import {
   applyEffectMapToComponentNodes,
   getNearComponentNodes,
@@ -17,14 +17,23 @@ import {
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getExecutionResult,
+  getIndependenciesMap,
+  getRawTree,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
 } from "@/utils/generators/generatePageOrSectionConfig"
-import { UpdateComponentNodeLayoutInfoPayload } from "./componentsPayload"
+import {
+  UpdateComponentNodeLayoutInfoPayload,
+  UpdateComponentSlicePropsPayload,
+} from "./componentsPayload"
 import { CONTAINER_TYPE, ComponentNode } from "./componentsState"
 
 function handleUpdateComponentDisplayNameEffect(
@@ -463,6 +472,45 @@ const handleUpdateHeightEffect = (
   }
 }
 
+const handleUpdateDisplayNameEffect = (
+  action: ReturnType<
+    typeof componentsActions.updateComponentDisplayNameReducer
+  >,
+  listenerApi: AppListenerEffectAPI,
+) => {
+  const { displayName, newDisplayName } = action.payload
+  const rootState = listenerApi.getState()
+  const independenciesMap = getIndependenciesMap(rootState)
+  const seeds = getRawTree(rootState)
+  const updateSlice: UpdateComponentSlicePropsPayload[] = []
+  Object.keys(independenciesMap).forEach((inDepPath) => {
+    const paths = toPath(inDepPath)
+    if (displayName === paths[0]) {
+      const usedPaths = independenciesMap[inDepPath]
+      usedPaths.forEach((usedPath) => {
+        const usedPathArray = toPath(usedPath)
+        const maybeDynamicStringValue = get(seeds, usedPath)
+        if (isDynamicString(maybeDynamicStringValue)) {
+          const newDynamicStringValue = maybeDynamicStringValue.replace(
+            displayName,
+            newDisplayName,
+          )
+          const propsPath = convertPathToString(usedPathArray.slice(1))
+          updateSlice.push({
+            displayName: usedPathArray[0],
+            propsSlice: {
+              [propsPath]: newDynamicStringValue,
+            },
+          })
+        }
+      })
+    }
+  })
+  listenerApi.dispatch(
+    componentsActions.batchUpdateMultiComponentSlicePropsReducer(updateSlice),
+  )
+}
+
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -495,6 +543,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateComponentNodeHeightReducer,
       effect: handleUpdateHeightEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.updateComponentDisplayNameReducer,
+      effect: handleUpdateDisplayNameEffect,
     }),
   ]
 
