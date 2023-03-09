@@ -109,6 +109,20 @@ export interface ActionItem<T extends ActionContent> {
   content: T
 }
 
+export interface UpdateActionDisplayNamePayload {
+  oldDisplayName: string
+  newDisplayName: string
+  actionID: string
+}
+
+export interface UpdateActionSlicePropsPayload {
+  displayName: string
+  actionID: string
+  propsSlice: {
+    [key: string]: unknown
+  }
+}
+
 export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
   transformer: TransformerInitial,
   triggerMode: "manually",

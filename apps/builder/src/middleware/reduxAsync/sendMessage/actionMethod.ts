@@ -14,7 +14,7 @@ export const actionsAsync = (
 ) => {
   const { payload } = action
   switch (reduxAction) {
-    case "addActionItemReducer":
+    case "addActionItemReducer": {
       Connection.getRoom("app", currentAppID)?.send(
         getPayload(
           Signal.SIGNAL_ONLY_BROADCAST,
@@ -27,7 +27,8 @@ export const actionsAsync = (
         ),
       )
       break
-    case "removeActionItemReducer":
+    }
+    case "removeActionItemReducer": {
       Connection.getRoom("app", currentAppID)?.send(
         getPayload(
           Signal.SIGNAL_ONLY_BROADCAST,
@@ -40,7 +41,8 @@ export const actionsAsync = (
         ),
       )
       break
-    case "updateActionItemReducer":
+    }
+    case "updateActionItemReducer": {
       Connection.getRoom("app", currentAppID)?.send(
         getPayload(
           Signal.SIGNAL_ONLY_BROADCAST,
@@ -53,5 +55,34 @@ export const actionsAsync = (
         ),
       )
       break
+    }
+    case "updateActionDisplayNameReducer": {
+      Connection.getRoom("app", currentAppID)?.send(
+        getPayload(
+          Signal.SIGNAL_ONLY_BROADCAST,
+          Target.TARGET_ACTION,
+          true,
+          action,
+          teamID,
+          uid,
+          [payload],
+        ),
+      )
+      break
+    }
+    case "batchUpdateMultiActionSlicePropsReducer": {
+      Connection.getRoom("app", currentAppID)?.send(
+        getPayload(
+          Signal.SIGNAL_ONLY_BROADCAST,
+          Target.TARGET_ACTION,
+          true,
+          action,
+          teamID,
+          uid,
+          [payload],
+        ),
+      )
+      break
+    }
   }
 }
