@@ -166,7 +166,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "데이터베이스 이름을 SID/서비스 이름으로 취급",
+            "sid": "데이터베이스 이름을 다음으로 취급",
             "ssl": "SSL"
           },
           "couchdb": {
