@@ -54,12 +54,12 @@ export const batchUpdateMultiActionSlicePropsReducer: CaseReducer<
   ActionItem<ActionContent>[],
   PayloadAction<UpdateActionSlicePropsPayload[]>
 > = (state, action) => {
-  action.payload.forEach(({ displayName, propsSlice }) => {
+  action.payload.forEach(({ actionID, displayName, propsSlice }) => {
     if (!isObject(propsSlice) || !displayName) {
       return
     }
     const actionIndex = state.findIndex((item) => {
-      return item.displayName === displayName
+      return item.actionId === actionID
     })
     if (actionIndex === -1) return
     const action = state[actionIndex]

@@ -117,6 +117,7 @@ export interface UpdateActionDisplayNamePayload {
 
 export interface UpdateActionSlicePropsPayload {
   displayName: string
+  actionID: string
   propsSlice: {
     [key: string]: unknown
   }
