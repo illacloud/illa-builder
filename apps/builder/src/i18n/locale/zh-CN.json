@@ -166,7 +166,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "将数据库名称视为 SID/服务名称",
+            "sid": "将数据库名称视为",
             "ssl": "SSL"
           },
           "couchdb": {
