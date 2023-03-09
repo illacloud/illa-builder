@@ -86,7 +86,7 @@ export const AppwritePanel: FC = () => {
         }),
       )
     },
-    [cachedAction, content, dispatch, selectedContent],
+    [cachedAction, dispatch, selectedContent],
   )
 
   const handleValueChange = useCallback(

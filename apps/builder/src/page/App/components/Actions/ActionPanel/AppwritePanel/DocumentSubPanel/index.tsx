@@ -33,6 +33,7 @@ export const DocumentSubPanel: FC<AppwriteSubPanelProps> = (props) => {
           expectedType={VALIDATION_TYPES.OBJECT}
           style={{ height: "88px" }}
           title={t("editor.action.form.label.appwrite.data")}
+          placeholder={t("editor.action.form.placeholder.appwrite.data")}
         />
       )}
     </>
