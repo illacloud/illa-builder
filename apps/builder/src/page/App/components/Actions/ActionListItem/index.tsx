@@ -99,7 +99,13 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             data: newAction,
           },
           () => {
-            dispatch(actionActions.updateActionItemReducer(newAction))
+            dispatch(
+              actionActions.updateActionDisplayNameReducer({
+                newDisplayName: newName,
+                oldDisplayName: action.displayName,
+                actionID: newAction.actionId,
+              }),
+            )
             setEditName(false)
           },
           () => {
