@@ -1,8 +1,9 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  Alert,
   Button,
   ButtonGroup,
   Divider,
@@ -23,6 +24,8 @@ import {
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { TextLink } from "@/page/User/components/TextLink"
 import {
   RedisResource,
   RedisResourceInitial,
@@ -30,6 +33,7 @@ import {
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
+import { isContainLocalPath } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { RedisConfigElementProps } from "./interface"
 import {
@@ -68,9 +72,25 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   }
 
   const [sslOpen, setSSLOpen] = useState(content.ssl ?? false)
+  const [showAlert, setShowAlert] = useState<boolean>(false)
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
+      }
+      return true
+    },
+    [showAlert],
+  )
+
+  const handleDocLinkClick = () => {
+    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
+  }
 
   return (
     <form
@@ -215,6 +235,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
               control={control}
               rules={{
                 required: true,
+                validate: handleHostValidate,
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
@@ -251,6 +272,37 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             />
           </div>
         </div>
+        {showAlert && (
+          <ControlledElement
+            defaultValue=""
+            name=""
+            title=""
+            controlledType="none"
+            control={control}
+            tips={
+              <Alert
+                title={t("editor.action.form.tips.connect_to_local.title.tips")}
+                closable={false}
+                content={
+                  isCloudVersion ? (
+                    <Trans
+                      i18nKey="editor.action.form.tips.connect_to_local.cloud"
+                      t={t}
+                      components={[
+                        <TextLink
+                          key="editor.action.form.tips.connect_to_local.cloud"
+                          onClick={handleDocLinkClick}
+                        />,
+                      ]}
+                    />
+                  ) : (
+                    t("editor.action.form.tips.connect_to_local.selfhost")
+                  )
+                }
+              />
+            }
+          />
+        )}
         <div css={configItem}>
           <div css={labelContainer}>
             <span

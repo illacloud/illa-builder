@@ -24,6 +24,7 @@ import {
 } from "@/page/Dashboard/DashboardResources/style"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
+import { AppWriteResource } from "@/redux/resource/appWriteResource"
 import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
 import {
   MongoDbConfig,
@@ -31,6 +32,7 @@ import {
   MongoDbResource,
 } from "@/redux/resource/mongodbResource"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import { OracleResource } from "@/redux/resource/oracleResource"
 import { RedisResource } from "@/redux/resource/redisResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
@@ -66,6 +68,7 @@ export const DashboardResources: FC = () => {
         case "s3":
         case "huggingface":
         case "hfendpoint":
+        case "couchdb":
           break
         case "clickhouse":
         case "supabasedb":
@@ -96,6 +99,12 @@ export const DashboardResources: FC = () => {
           dbName = (
             resource.content as SnowflakeResource<SnowflakeAuthenticationType>
           ).database
+          break
+        case "appwrite":
+          dbName = (resource.content as AppWriteResource).databaseID
+          break
+        case "oracle":
+          dbName = (resource.content as OracleResource).name
           break
       }
       return {

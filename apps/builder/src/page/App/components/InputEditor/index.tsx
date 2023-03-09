@@ -8,6 +8,7 @@ import {
   actionItemStyle,
   actionItemTip,
   codeEditorLabelStyle,
+  codeEditorSublabelStyle,
 } from "./style"
 
 export const InputEditor: FC<ControlledInputProps> = (props) => {
@@ -17,6 +18,8 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
     expectedType = VALIDATION_TYPES.STRING,
     value,
     tips,
+    subtitle,
+    handleSubtitleClick,
     placeholder,
     style = {},
     mode = CODE_LANG.JAVASCRIPT,
@@ -26,7 +29,16 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
   return (
     <>
       <div css={actionItemStyle}>
-        {title && <span css={codeEditorLabelStyle}>{title}</span>}
+        {title && (
+          <span css={codeEditorLabelStyle}>
+            <span>{title}</span>
+            {subtitle && (
+              <span css={codeEditorSublabelStyle} onClick={handleSubtitleClick}>
+                {subtitle}
+              </span>
+            )}
+          </span>
+        )}
         <CodeEditor
           {...style}
           singleLine={!lineNumbers}

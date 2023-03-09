@@ -1,10 +1,12 @@
-import { FC, Fragment, useCallback } from "react"
+import { FC, Fragment, useCallback, useMemo } from "react"
 import { Controller, RegisterOptions } from "react-hook-form"
 import {
+  Alert,
   Checkbox,
   Input,
   InputNumber,
   Password,
+  RadioGroup,
   Select,
   Switch,
   TextArea,
@@ -22,7 +24,7 @@ import {
 
 export const ControlledElement: FC<ControlledElementProps> = (props) => {
   const {
-    title = "",
+    title,
     contentLabel,
     isRequired = false,
     defaultValue,
@@ -37,6 +39,7 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     rules = [],
     tipsStyle,
     allowClear = false,
+    forceEqualWidth,
     labelStyle,
     onValueChange,
   } = props
@@ -193,6 +196,29 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
               name={name}
             />
           )
+        case "radio-group":
+          return (
+            <Controller
+              control={control}
+              defaultValue={defaultValue}
+              rules={rules}
+              render={({ field: { value, onChange, onBlur } }) => (
+                <RadioGroup
+                  colorScheme="gray"
+                  w="100%"
+                  type="button"
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  value={value}
+                  placeholder={placeholder}
+                  forceEqualWidth={forceEqualWidth}
+                  options={options}
+                  {...style}
+                />
+              )}
+              name={name}
+            />
+          )
         case "textarea":
           return (
             <Controller
@@ -219,7 +245,15 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
           )
       }
     },
-    [contentLabel, control, error, onValueChange, options],
+    [
+      allowClear,
+      contentLabel,
+      control,
+      error,
+      forceEqualWidth,
+      onValueChange,
+      options,
+    ],
   )
 
   return (

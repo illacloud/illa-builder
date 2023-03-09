@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios"
 import { cloneDeep, get, merge } from "lodash"
-import { createMessage, isString } from "@illa-design/react"
+import { createMessage, isNumber, isString } from "@illa-design/react"
 import { Api, ApiError, BuilderApi } from "@/api/base"
 import { downloadActionResult } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
@@ -12,6 +12,7 @@ import {
   ActionType,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
+import { CouchDBActionStructParamsDataTransferType } from "@/redux/currentApp/action/couchDBAction"
 import { DynamoActionStructParamsDataTransferType } from "@/redux/currentApp/action/dynamoDBAction"
 import {
   AuthActionTypeValue,
@@ -37,6 +38,7 @@ import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { Params } from "@/redux/resource/restapiResource"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import {
@@ -441,6 +443,11 @@ function getRealEventHandler(eventHandler?: any[]) {
   return realEventHandler
 }
 
+const getAppwriteFilterValue = (value: string) => {
+  const val = value.trim().replace(/^\[|\]$/g, "")
+  return `[${val.split(",").map((v) => `"${v.trim()}"`)}]`
+}
+
 const transformDataFormat = (
   actionType: ActionType,
   contents: Record<string, any>,
@@ -564,6 +571,50 @@ const transformDataFormat = (
         ...contents,
         structParams: newStructParams,
       }
+    case "couchdb":
+      const { opts } = contents
+      let newOpts = { ...opts }
+      Object.keys(CouchDBActionStructParamsDataTransferType).forEach((key) => {
+        const value = CouchDBActionStructParamsDataTransferType[key]
+        if (newOpts[key] === "") {
+          newOpts[key] = value
+        }
+      })
+      return {
+        ...contents,
+        opts: newOpts,
+      }
+    case "appwrite":
+      const { method: appwriteMethod, opts: appwriteOpts } = contents
+      if (appwriteMethod === "list") {
+        const { orderBy = [], filter = [], limit = 100 } = appwriteOpts
+        return {
+          ...contents,
+          opts: {
+            ...appwriteOpts,
+            orderBy: orderBy.map(({ key, ...others }: Params) => ({
+              ...others,
+              attribute: key,
+            })),
+            filter: filter.map(({ key, value, ...others }: Params) => ({
+              ...others,
+              value: getAppwriteFilterValue(value),
+              attribute: key,
+            })),
+            limit: isNumber(limit) ? limit : 100,
+          },
+        }
+      }
+      const { data, ...other } = appwriteOpts
+      const showData = !["get", "delete"].includes(appwriteMethod)
+      return {
+        ...contents,
+        opts: {
+          ...other,
+          ...(showData && { data: isObject(data) ? data : {} }),
+        },
+      }
+      return contents
     default:
       return contents
   }

@@ -1,8 +1,14 @@
 import { createSelector } from "@reduxjs/toolkit"
-import { cloneDeep } from "lodash"
+import { cloneDeep, merge } from "lodash"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  getActionList,
+  getDisplayNameMapActions,
+} from "@/redux/currentApp/action/actionSelector"
+import {
+  getAllComponentDisplayNameMapProps,
+  getDisplayNameMapComponent,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
@@ -189,7 +195,10 @@ export const getExecutionResultToCodeMirror = createSelector(
   (executionResult) => {
     const result: Record<string, unknown> = {}
     Object.keys(executionResult).forEach((key) => {
-      if (!IGNORE_WIDGET_TYPES.has(executionResult[key]?.$widgetType)) {
+      if (
+        !IGNORE_WIDGET_TYPES.has(executionResult[key]?.$widgetType) &&
+        executionResult[key] != undefined
+      ) {
         result[key] = cloneDeep(executionResult[key])
       }
     })
@@ -208,3 +217,11 @@ export const getExecutionResultToCodeMirror = createSelector(
     return result
   },
 )
+
+export const getDependenciesMap = (state: RootState) => {
+  return state.currentApp.execution.dependencies
+}
+
+export const getIndependenciesMap = (state: RootState) => {
+  return state.currentApp.execution.independencies
+}
