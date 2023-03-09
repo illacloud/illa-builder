@@ -189,7 +189,8 @@
               "value": "1234"
             },
             "order": "attribute",
-            "collectionid": "コレクションを選んでください"
+            "collectionid": "コレクションを選んでください",
+            "data": "{{ }} で囲まれたオブジェクト。 たとえば、{{ { \"key\": \"value\" } }}"
           },
           "couchdb": {
             "port": {
