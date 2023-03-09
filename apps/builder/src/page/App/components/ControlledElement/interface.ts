@@ -11,14 +11,12 @@ export type ControlledType =
   | "password"
   | "textarea"
   | "select"
-  | "alert"
   | "radio-group"
   | "none"
 
 type ValueType = string | boolean
 
-export interface ControlledElementProps
-  extends Omit<AlertProps, "title" | "content" | "defaultValue"> {
+export interface ControlledElementProps {
   title: ReactNode
   isRequired?: boolean
   defaultValue: ValueType[] | string | boolean
@@ -36,6 +34,5 @@ export interface ControlledElementProps
   allowClear?: boolean
   rules?: RegisterOptions[]
   onValueChange?: (value: ValueType) => void
-  alertContent?: ReactNode
   forceEqualWidth?: boolean
 }

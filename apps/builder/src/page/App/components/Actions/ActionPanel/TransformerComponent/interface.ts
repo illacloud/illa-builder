@@ -1,3 +1,3 @@
 export interface TransformComponentProps {
-  mysqlLike?: boolean
+  fullWidth?: boolean
 }

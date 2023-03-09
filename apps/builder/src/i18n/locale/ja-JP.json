@@ -166,11 +166,15 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "データベース名を SID/サービス名として扱う",
+            "sid": "データベース名を次のように扱う",
             "ssl": "SSL"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "証明書",
+            "verification_mode": "検証モード"
           }
         },
         "placeholder": {
@@ -204,6 +208,11 @@
             "selfhost": "マシンのローカル データベースに接続しようとしているようです。 「localhost」または「127.0.0.1」の代わりに、マシンのローカル エリア ネットワーク IP アドレスを使用してください。",
             "title": {
               "tips": "ヒント"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Your server may be vulnerable to attacks."
             }
           }
         },
@@ -240,6 +249,24 @@
           },
           "couchdb": {
             "ssl": "可能な場合は SSL/TLS を使用する"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Digest Auth",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk Authentication",
+              "aws_v4": "AWS Signature V4",
+              "session_based_auth": "Session Based Auth (deprecated)"
+            },
+            "certificates": "自己署名証明書を使用する",
+            "ca_certificate": "サーバー証明書",
+            "client_key": "クライアントキー",
+            "client_certificate": "クライアント証明書",
+            "verification_mode": {
+              "full_verification": "完全な検証",
+              "verify_ca_certificat": "サーバー証明書を確認する",
+              "skip_ca_certificate_": "サーバー証明書の検証をスキップ"
+            }
           }
         },
         "default": {
@@ -321,7 +348,19 @@
             "couchdb": {
               "database": "データベースを選択",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Consumer key",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "some-app-extra-data",
+              "app": "Application id",
+              "dig": "delegated-by",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
@@ -338,14 +377,75 @@
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Descending order",
+              "des": "Order",
               "id": "_id",
               "rev": "_rev",
               "record": "Record",
               "mangoquery": "MangoQuery",
               "ViewURL": "ViewURL",
               "StartKey": "StartKey",
-              "EndKey": "EndKey"
+              "EndKey": "EndKey",
+              "include_doc_option": "Docs included in the returned results",
+              "des_option": "Use descending order"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "PLAINTEXT"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "File",
+                "text": "Text"
+              },
+              "method": {
+                "options": "OPTIONS",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Query Parameters",
+                "header_authorization": "Header Authorization"
+              }
+            }
+          },
+          "restapi": {
+            "signature_method": "署名方法",
+            "consumer_key": "Consumer key",
+            "consumer_secret": "Consumer secret",
+            "access_token": "Access token",
+            "token_secret": "Token secret",
+            "private_key": "Private key",
+            "realm": "Realm",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Hawk Auth Key",
+            "algorithm": "Algorithm",
+            "user": "User",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "app",
+            "dig": "dig",
+            "timestamp": "Timestamp",
+            "aws_region": "AWS リージョン",
+            "aws_service": "AWS サービス",
+            "aws_access_key_id": "AWSアクセスキーID",
+            "aws_secret_key_id": "AWS 秘密鍵 ID",
+            "role_to_assume": "引き受ける役割（ARN）",
+            "list_of_cookies_to_f": "転送する Cookie のリスト",
+            "add_access_token_to": "Add Access Token To"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
+              }
             }
           }
         },
@@ -531,6 +631,13 @@
         "status": {
           "ran_failed": "実行に失敗しました",
           "ran_successfully": "正常に実行"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status",
+            "headers": "Headers",
+            "response": "Response"
+          }
         }
       },
       "resource": {
@@ -1819,7 +1926,18 @@
           "success": "新しいパスワードを入力してください",
           "fail_account": "メールアドレスまたはパスワードが正しくありません"
         },
-        "title": "お帰りなさい"
+        "title": "お帰りなさい",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "正常にサインアップします。 メールアカウントのパスワードは後で設定できます",
+            "auth_failed": "認証に失敗しました"
+          }
+        },
+        "option": {
+          "github": "GitHubでサインイン",
+          "google": "Googleでサインイン",
+          "or": "OR"
+        }
       },
       "sign_up": {
         "actions": {
@@ -1845,7 +1963,7 @@
             "require": "ユーザー名を空にすることはできません"
           },
           "verification_code": {
-            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "expired": "確認コードの有効期限が切れています",
             "invalid": "無効な認証コード",
             "require": "確認コードを入力してください"
           }
@@ -1867,7 +1985,11 @@
           "success": "サインアップしました",
           "verification_code": "確認コードが送信されました"
         },
-        "title": "サインアップ"
+        "title": "サインアップ",
+        "option": {
+          "github": "GitHubでサインアップ",
+          "google": "Google にサインアップ"
+        }
       },
       "description": "開発者専用のオープンソースのローコード プラットフォーム。"
     }
@@ -2037,6 +2159,9 @@
       "message": {
         "save_suc": "保存しました",
         "save_fail": "保存に失敗しました"
+      },
+      "password": {
+        "title": "パスワード"
       }
     }
   },
@@ -2061,5 +2186,7 @@
       "description": "これらの利用規約は、当社のサイトへのアクセスと使用、およびさまざまなサービスの提供を管理します。",
       "title": "サービス利用規約"
     }
-  }
+  },
+  "empty_copied_tips": "コピーされたコンテンツが空です",
+  "copy_empty": "The content to be copied is empty"
 }

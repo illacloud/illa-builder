@@ -33,7 +33,7 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const { mysqlLike } = props
+  const { fullWidth } = props
   const cachedAction = useSelector(getCachedAction)
   const selectedAction = useSelector(getSelectedAction)
 
@@ -41,7 +41,7 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
     <>
       {cachedAction && (
         <div css={transformTitleStyle}>
-          {mysqlLike ? (
+          {fullWidth ? (
             <PanelLabel
               labelName={t("editor.action.panel.label.transformer")}
             />
@@ -91,8 +91,8 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
         </div>
       )}
       {cachedAction && cachedAction.transformer.enable && (
-        <div css={getCodeMirrorContainerStyle(!!mysqlLike)}>
-          {mysqlLike ? null : <span css={transformTitle}></span>}
+        <div css={getCodeMirrorContainerStyle(!!fullWidth)}>
+          {fullWidth ? null : <span css={transformTitle}></span>}
           <CodeEditor
             value={cachedAction.transformer.rawData}
             wrapperCss={codeMirrorStyle}
