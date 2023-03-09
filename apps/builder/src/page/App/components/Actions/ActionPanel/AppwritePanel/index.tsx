@@ -7,6 +7,7 @@ import { DocumentSubPanel } from "@/page/App/components/Actions/ActionPanel/Appw
 import { ListDocumentsSubPanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/ListDocuments"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
+import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
   actionItemContainer,
   panelContainerStyle,
@@ -127,6 +128,7 @@ export const AppwritePanel: FC = () => {
           params={content.opts}
           collectionIds={collectionIds}
         />
+        <TransformerComponent />
       </div>
       <ActionEventHandler />
     </div>

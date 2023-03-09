@@ -13,21 +13,12 @@ import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redu
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
 
-export function getPath(attrName?: string, widgetDisplayName?: string) {
-  if (attrName && widgetDisplayName) {
-    return `${widgetDisplayName}.${attrName}`
-  } else {
-    return widgetDisplayName as string
-  }
-}
-
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
     isSetterSingleRow,
     placeholder,
     attrName,
     handleUpdateDsl,
-    handleUpdateMultiAttrDSL,
     expectedType,
     value,
     widgetDisplayName,
@@ -61,12 +52,9 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
       if (currentListDisplayName) {
         output = getNeedComputedValueWithList(value, currentListDisplayName)
       }
-
-      handleUpdateMultiAttrDSL?.({
-        [attrName]: output,
-      })
+      handleUpdateDsl(attrName, output)
     },
-    [attrName, currentListDisplayName, handleUpdateMultiAttrDSL],
+    [attrName, currentListDisplayName, handleUpdateDsl],
   )
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
