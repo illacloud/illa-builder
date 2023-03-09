@@ -166,8 +166,15 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "Treat Database name as SID/Service Name",
+            "sid": "将数据库名称视为",
             "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "证书",
+            "verification_mode": "验证方式"
           }
         },
         "placeholder": {
@@ -181,7 +188,9 @@
               "attribute": "attribute",
               "value": "1234"
             },
-            "order": "attribute"
+            "order": "attribute",
+            "collectionid": "请选择一个集合",
+            "data": "一个包含在{{ }}里的对象。如{{ { \"key\": \"value\" } }}"
           },
           "couchdb": {
             "port": {
@@ -200,6 +209,11 @@
             "selfhost": "看起来您正在尝试连接到您机器本地的数据库。 请使用机器的局域网 IP 地址，而不是“localhost”或“127.0.0.1”。",
             "title": {
               "tips": "提示"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Your server may be vulnerable to attacks."
             }
           }
         },
@@ -230,9 +244,30 @@
           "oracle": {
             "sid": {
               "sid": "SID",
-              "service": "Service Name"
+              "service": "服务名称"
             },
-            "ssl": "Use SSL when available"
+            "ssl": "可用时使用 SSL"
+          },
+          "couchdb": {
+            "ssl": "可用时使用 SSL/TLS"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Digest Auth",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk Authentication",
+              "aws_v4": "AWS Signature V4",
+              "session_based_auth": "Session Based Auth (deprecated)"
+            },
+            "certificates": "使用自签名证书",
+            "ca_certificate": "服务端证书",
+            "client_key": "客户端密钥",
+            "client_certificate": "客户端证书",
+            "verification_mode": {
+              "full_verification": "全面验证",
+              "verify_ca_certificat": "验证服务端证书",
+              "skip_ca_certificate_": "跳过服务端证书验证"
+            }
           }
         },
         "default": {
@@ -307,38 +342,111 @@
           "success": "成功",
           "transformer": "Transformer",
           "couchdb": {
-            "database": "Database",
-            "action_type": "Action type"
+            "database": "数据库",
+            "action_type": "动作类型"
           },
           "placeholder": {
             "couchdb": {
-              "database": "Select a database",
+              "database": "选择数据库",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Consumer key",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "some-app-extra-data",
+              "app": "Application id",
+              "dig": "delegated-by",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
             "couchdb": {
               "action_type": {
-                "list": "List records",
-                "retrieve": "Retrieve record",
-                "create": "Create record",
-                "update": "Update record",
-                "delete": "Delete record",
-                "find": "Find",
-                "get": "Get view"
+                "list": "列出记录",
+                "retrieve": "检索记录",
+                "create": "创造记录",
+                "update": "更新记录",
+                "delete": "删除记录",
+                "find": "查找",
+                "get": "获取视图"
               },
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Descending order",
+              "des": "Order",
               "id": "_id",
               "rev": "_rev",
-              "record": "Record",
+              "record": "记录",
               "mangoquery": "MangoQuery",
               "ViewURL": "ViewURL",
               "StartKey": "StartKey",
-              "EndKey": "EndKey"
+              "EndKey": "EndKey",
+              "include_doc_option": "Docs included in the returned results",
+              "des_option": "Use descending order"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "PLAINTEXT"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "File",
+                "text": "Text"
+              },
+              "method": {
+                "options": "OPTIONS",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Query Parameters",
+                "header_authorization": "Header Authorization"
+              }
+            }
+          },
+          "restapi": {
+            "signature_method": "签名方式",
+            "consumer_key": "Consumer key",
+            "consumer_secret": "Consumer secret",
+            "access_token": "Access token",
+            "token_secret": "Token secret",
+            "private_key": "Private key",
+            "realm": "Realm",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Hawk Auth Key",
+            "algorithm": "Algorithm",
+            "user": "用户",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "app",
+            "dig": "dig",
+            "timestamp": "Timestamp",
+            "aws_region": "AWS 区域",
+            "aws_service": "亚马逊服务",
+            "aws_access_key_id": "AWS 访问密钥 ID",
+            "aws_secret_key_id": "AWS 密钥 ID",
+            "role_to_assume": "使用的角色 (ARN)",
+            "list_of_cookies_to_f": "要转发的 cookie 列表",
+            "add_access_token_to": "Add Access Token To"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
+              }
             }
           }
         },
@@ -452,7 +560,7 @@
           },
           "tips": {
             "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
-            "use_detail_parameters": "<0>Click here</0> to learn more about the detail parameters",
+            "use_detail_parameters": "<0>点击这里</0>以了解更多详细参数",
             "temperature": "1表示定期抽样，0表示总是取最高分，100.0越来越接近均匀概率。",
             "repetition_penalty": "The more a token is used within generation the more it is penalized to not be picked in successive generation passes."
           },
@@ -524,6 +632,13 @@
         "status": {
           "ran_failed": "运行失败",
           "ran_successfully": "运行成功"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status",
+            "headers": "Headers",
+            "response": "Response"
+          }
         }
       },
       "resource": {
@@ -734,7 +849,10 @@
           }
         },
         "tip": {
-          "allowlist": "如果您的资源不可公开访问，请更新您的网络或防火墙设置，将 ILLA 的 IP 地址添加到白名单，以便 ILLA 可以连接到您的资源。"
+          "allowlist": {
+            "title": "Allow IP addresses",
+            "message": "如果您的资源不可公开访问，请更新您的网络或防火墙设置，将 ILLA 的 IP 地址添加到白名单，以便 ILLA 可以连接到您的资源。"
+          }
         },
         "button": {
           "copy_ip": "复制IP"
@@ -1337,8 +1455,8 @@
     "method": {
       "set_hidden": "Set hidden",
       "set_file_url": "Set file URL",
-      "play": "Play",
-      "pause": "Pause",
+      "play": "播放",
+      "pause": "暂停",
       "seek_to": {
         "time": "时间",
         "unit": "(s)"
@@ -1352,7 +1470,7 @@
           "speed": "1.5"
         }
       },
-      "stop": "Stop",
+      "stop": "停止",
       "mute": "静音",
       "loop": "循环播放",
       "show_controls": "Show Controls",
@@ -1447,7 +1565,7 @@
     "back": "回到主页",
     "mobile_forbidden": "为获得更好的编辑体验，请通过电脑端访问",
     "back_to_cloud": "返回ILLA Cloud",
-    "no_permission_title": "Insufficient permissions",
+    "no_permission_title": "权限不足",
     "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "欢迎来到艾拉云",
@@ -1809,7 +1927,18 @@
           "success": "登录成功",
           "fail_account": "请输入正确的账号密码"
         },
-        "title": "欢迎回来"
+        "title": "欢迎回来",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "注册成功。 您可以稍后为您的电子邮件帐户设置密码",
+            "auth_failed": "认证失败"
+          }
+        },
+        "option": {
+          "github": "使用GitHub账户登入",
+          "google": "使用 Google 账户登入",
+          "or": "或"
+        }
       },
       "sign_up": {
         "actions": {
@@ -1835,7 +1964,7 @@
             "require": "用户名不能为空"
           },
           "verification_code": {
-            "expired": "page.user.sign_up.error_message.verification_code.expired",
+            "expired": "验证码已过期",
             "invalid": "验证码错误",
             "require": "请输入验证码"
           }
@@ -1857,7 +1986,11 @@
           "success": "注册成功",
           "verification_code": "验证码已发送"
         },
-        "title": "注册"
+        "title": "注册",
+        "option": {
+          "github": "使用GitHub账户注册",
+          "google": "使用Google账户注册"
+        }
       },
       "description": "专属于开发者的开源低代码平台。"
     }
@@ -2027,6 +2160,9 @@
       "message": {
         "save_suc": "保存成功",
         "save_fail": "保存失败"
+      },
+      "password": {
+        "title": "密码"
       }
     }
   },
@@ -2051,5 +2187,7 @@
       "description": "这些服务条款管理您对我们网站以及我们提供的各种服务的访问和使用。",
       "title": "服务条款"
     }
-  }
+  },
+  "empty_copied_tips": "复制的内容为空",
+  "copy_empty": "The content to be copied is empty"
 }

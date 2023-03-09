@@ -31,6 +31,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "MySQL"
       case "mssql":
         return "Microsoft SQL"
+      case "oracle":
+        return "Oracle DB"
       case "restapi":
         return "REST API"
       case "graphql":
@@ -61,6 +63,10 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "Firebase"
       case "clickhouse":
         return "ClickHouse"
+      case "couchdb":
+        return "CouchDB"
+      case "appwrite":
+        return "Appwrite"
       case "s3":
         return "Amazon S3"
       case "transformer":
@@ -98,6 +104,8 @@ export function getResourceNameFromResourceType(
         return "MySQL"
       case "mssql":
         return "Microsoft SQL"
+      case "oracle":
+        return "Oracle DB"
       case "restapi":
         return "REST API"
       case "graphql":
@@ -130,6 +138,10 @@ export function getResourceNameFromResourceType(
         return "Firebase"
       case "clickhouse":
         return "ClickHouse"
+      case "appwrite":
+        return "Appwrite"
+      case "couchdb":
+        return "CouchDB"
       default:
         return ""
     }

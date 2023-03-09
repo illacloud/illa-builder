@@ -1,5 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const actionIconContainer = css`
   display: flex;
@@ -79,4 +79,10 @@ export const actionItemLeftStyle = css`
   flex-direction: row;
   align-items: center;
   flex-grow: 1;
+`
+
+export const runningTimeStyle = css`
+  font-size: 12px;
+  font-weight: 400;
+  color: ${getColor("grayBlue", "04")};
 `

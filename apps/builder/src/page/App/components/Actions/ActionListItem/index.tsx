@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useState } from "react"
+import { forwardRef, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -9,8 +9,6 @@ import {
   LoadingIcon,
   WarningCircleIcon,
   getColor,
-  globalColor,
-  illaPrefix,
   useMessage,
 } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
@@ -22,6 +20,7 @@ import {
 } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { isObject, isValidDisplayName } from "@/utils/typeHelper"
@@ -31,6 +30,7 @@ import {
   actionItemLeftStyle,
   applyActionItemContainerStyle,
   applyActionItemTitleStyle,
+  runningTimeStyle,
   warningCircleStyle,
 } from "./style"
 
@@ -41,7 +41,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     const { action, onItemClick, onCopyItem, onDeleteItem } = props
 
     const { t } = useTranslation()
-    const selectedAction = useSelector(getSelectedAction)
+    const selectedAction = useSelector(getSelectedAction)!!
     const cachedAction = useSelector(getCachedAction)
     const message = useMessage()
 
@@ -55,6 +55,36 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     })
 
     const currentApp = useSelector(getAppInfo)
+
+    const executionResult = useSelector(getExecutionResult)
+
+    const startRunningTime: number =
+      executionResult[action.displayName]?.startTime
+
+    const endRunningTime: number = executionResult[action.displayName]?.endTime
+
+    const isRunning: boolean = executionResult[action.displayName]?.isRunning
+
+    const [currentRunningTime, setCurrentRunningTime] = useState(0)
+
+    const dealData = useCallback(() => {
+      return window.setInterval(() => {
+        const currentTime = new Date().getTime() - startRunningTime
+        setCurrentRunningTime(currentTime)
+      }, 10)
+    }, [startRunningTime])
+
+    useEffect((): any => {
+      let time = -1
+      if (isRunning) {
+        time = dealData()
+      }
+      return () => {
+        if (time !== -1) {
+          window.clearInterval(time)
+        }
+      }
+    }, [isRunning, dealData])
 
     const isChanged =
       selectedAction?.actionId === action.actionId &&
@@ -99,7 +129,13 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             data: newAction,
           },
           () => {
-            dispatch(actionActions.updateActionItemReducer(newAction))
+            dispatch(
+              actionActions.updateActionDisplayNameReducer({
+                newDisplayName: newName,
+                oldDisplayName: action.displayName,
+                actionID: newAction.actionId,
+              }),
+            )
             setEditName(false)
           },
           () => {
@@ -121,6 +157,27 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
       },
       [action, currentApp.appId, dispatch, message, t],
     )
+
+    const calcTimeString = useCallback(
+      (startTime?: number, endTime?: number) => {
+        if (startTime && endTime) {
+          const time = endTime - startTime
+          if (time > 1000) {
+            return `${(time / 1000).toFixed(2)}s`
+          }
+          return `${time}ms`
+        } else {
+          return ""
+        }
+      },
+      [],
+    )
+
+    const calcLoadingTimeString = useCallback((currentRunningTime: number) => {
+      return currentRunningTime > 1000
+        ? `${(currentRunningTime / 1000).toFixed(2)}s`
+        : `${currentRunningTime}ms`
+    }, [])
 
     return (
       <Dropdown
@@ -200,6 +257,11 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               />
             )}
             {isChanged && <div css={actionItemDotStyle} />}
+          </div>
+          <div css={runningTimeStyle}>
+            {isRunning
+              ? calcLoadingTimeString(currentRunningTime)
+              : calcTimeString(startRunningTime, endRunningTime)}
           </div>
         </div>
       </Dropdown>

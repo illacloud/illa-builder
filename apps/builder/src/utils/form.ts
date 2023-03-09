@@ -4,6 +4,10 @@ import { isURL } from "@/utils/typeHelper"
 export const validate = (value?: string) =>
   value != undefined && value.trim() != ""
 
+export const isContainLocalPath = (value: string) => {
+  return /(^(127\.|0\.0\.0\.0)(\.*\d*)+$)|(^localhost)/.test(value)
+}
+
 export const urlValidate = (value: string) => {
   return isURL(value)
     ? true

@@ -1,8 +1,9 @@
 import { FC, useCallback, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
+  Alert,
   Button,
   ButtonGroup,
   Divider,
@@ -26,10 +27,12 @@ import {
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
+import { TextLink } from "@/page/User/components/TextLink"
 import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { isCloudVersion, isURL } from "@/utils/typeHelper"
+import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
+import { isCloudVersion } from "@/utils/typeHelper"
 import { MicrosoftSqlConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -59,13 +62,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-
-  const handleURLValidate = useCallback(
-    (value: string) => {
-      return isURL(value) ? true : t("editor.action.resource.error.invalid_url")
-    },
-    [t],
-  )
+  const [showAlert, setShowAlert] = useState<boolean>(false)
 
   const handleSwitchValueChange = useCallback((open: boolean | string) => {
     setSSLOpen(!!open)
@@ -89,6 +86,21 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
     )
   }, [setTestLoading, getValues, sslOpen])
 
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
+      }
+      return urlValidate(value)
+    },
+    [showAlert],
+  )
+
+  const handleDocLinkClick = () => {
+    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
+  }
+
   return (
     <form
       autoComplete="off"
@@ -110,7 +122,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              validate: (value) => value != undefined && value.trim() != "",
+              validate,
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}
@@ -140,7 +152,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
           rules={[
             {
               required: t("editor.action.resource.error.invalid_url"),
-              validate: handleURLValidate,
+              validate: handleHostValidate,
             },
             {
               required: true,
@@ -159,7 +171,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
             },
           ]}
           tips={
-            formState.errors.host ? (
+            formState.errors.host && !showAlert ? (
               <div css={errorMsgStyle}>
                 <>
                   <WarningCircleIcon css={errorIconStyle} />
@@ -170,6 +182,37 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
           }
         />
 
+        {showAlert && (
+          <ControlledElement
+            defaultValue=""
+            name=""
+            title=""
+            controlledType="none"
+            control={control}
+            tips={
+              <Alert
+                title={t("editor.action.form.tips.connect_to_local.title.tips")}
+                closable={false}
+                content={
+                  isCloudVersion ? (
+                    <Trans
+                      i18nKey="editor.action.form.tips.connect_to_local.cloud"
+                      t={t}
+                      components={[
+                        <TextLink
+                          key="editor.action.form.tips.connect_to_local.cloud"
+                          onClick={handleDocLinkClick}
+                        />,
+                      ]}
+                    />
+                  ) : (
+                    t("editor.action.form.tips.connect_to_local.selfhost")
+                  )
+                }
+              />
+            }
+          />
+        )}
         <ControlledElement
           controlledType={["input"]}
           isRequired
@@ -178,7 +221,7 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
           defaultValue={resource?.content.databaseName}
           rules={[
             {
-              required: true,
+              validate,
             },
           ]}
           placeholders={[

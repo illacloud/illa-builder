@@ -1,11 +1,12 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
-import { cloneDeep } from "lodash"
+import { cloneDeep, get, toPath } from "lodash"
 import {
   applyEffectMapToComponentNodes,
   getNearComponentNodes,
   getReflowResult,
 } from "@/page/App/components/DotPanel/calc"
 import { configActions } from "@/redux/config/configSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   getCanvas,
@@ -17,9 +18,14 @@ import {
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getExecutionResult,
+  getIndependenciesMap,
+  getRawTree,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
@@ -463,6 +469,34 @@ const handleUpdateHeightEffect = (
   }
 }
 
+const handleUpdateDisplayNameEffect = (
+  action: ReturnType<
+    typeof componentsActions.updateComponentDisplayNameReducer
+  >,
+  listenerApi: AppListenerEffectAPI,
+) => {
+  const { displayName, newDisplayName } = action.payload
+  const rootState = listenerApi.getState()
+  const independenciesMap = getIndependenciesMap(rootState)
+  const seeds = getRawTree(rootState)
+
+  const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
+    independenciesMap,
+    seeds,
+    displayName,
+    newDisplayName,
+  )
+
+  listenerApi.dispatch(
+    componentsActions.batchUpdateMultiComponentSlicePropsReducer(
+      updateWidgetSlice,
+    ),
+  )
+  listenerApi.dispatch(
+    actionActions.batchUpdateMultiActionSlicePropsReducer(updateActionSlice),
+  )
+}
+
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -495,6 +529,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateComponentNodeHeightReducer,
       effect: handleUpdateHeightEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.updateComponentDisplayNameReducer,
+      effect: handleUpdateDisplayNameEffect,
     }),
   ]
 

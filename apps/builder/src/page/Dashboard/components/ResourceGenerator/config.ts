@@ -20,6 +20,10 @@ export const Databases: ResourceDataItem[] = [
     isDraft: false,
   },
   {
+    resourceType: "oracle",
+    isDraft: false,
+  },
+  {
     resourceType: "mariadb",
     isDraft: false,
   },
@@ -53,6 +57,14 @@ export const Databases: ResourceDataItem[] = [
   },
   {
     resourceType: "clickhouse",
+    isDraft: false,
+  },
+  {
+    resourceType: "couchdb",
+    isDraft: false,
+  },
+  {
+    resourceType: "appwrite",
     isDraft: false,
   },
 ]

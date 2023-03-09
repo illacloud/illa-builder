@@ -3,16 +3,16 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { RadioGroup } from "@illa-design/react"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import {
-  actionItemLabelStyle,
-  actionItemStyle,
-} from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
-import { actionItemContainer } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel/style"
 import { MSSQLGUIMode } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/MSSQLGUIMode"
 import { MSSQLSqlMode } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/MSSQLSqlMode"
-import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import {
+  actionItemContainer,
+  actionItemLabelStyle,
+  actionItemStyle,
+  panelContainerStyle,
+} from "@/page/App/components/Actions/ActionPanel/style"
 import {
   getCachedAction,
   getSelectedAction,
@@ -101,7 +101,7 @@ export const MicrosoftSqlPanel: FC = () => {
   )
 
   return (
-    <div css={redisContainerStyle}>
+    <div css={panelContainerStyle}>
       <ResourceChoose />
       <div css={actionItemContainer}>
         <div css={actionItemStyle}>

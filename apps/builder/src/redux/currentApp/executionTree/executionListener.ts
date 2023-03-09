@@ -47,6 +47,7 @@ const asyncExecutionDataToRedux = (
   const errorTree = executionResult.errorTree
   const evaluatedTree = executionResult.evaluatedTree
   const dependencyMap = executionResult.dependencyTree
+  const independencyMap = executionResult.independencyTree
   const debuggerData = executionResult.debuggerData
   const updates = diff(oldExecutionTree, evaluatedTree) || []
   listenerApi.dispatch(
@@ -57,6 +58,11 @@ const asyncExecutionDataToRedux = (
   listenerApi.dispatch(
     executionActions.setDependenciesReducer({
       ...dependencyMap,
+    }),
+  )
+  listenerApi.dispatch(
+    executionActions.setIndependenciesReducer({
+      ...independencyMap,
     }),
   )
   listenerApi.dispatch(
@@ -85,7 +91,6 @@ async function handleStartExecution(
     const executionResult = executionTree.initTree(rawTree)
     asyncExecutionDataToRedux(executionResult, oldExecutionTree, listenerApi)
   } else {
-    // only transformer can run this;
     const isDeleteAction =
       action.type === "components/deleteComponentNodeReducer" ||
       action.type === "action/removeActionItemReducer"
@@ -304,7 +309,7 @@ export function setupExecutionListeners(
         componentsActions.copyComponentReducer,
         componentsActions.updateComponentPropsReducer,
         componentsActions.deleteComponentNodeReducer,
-        componentsActions.updateComponentDisplayNameReducer,
+        componentsActions.batchUpdateMultiComponentSlicePropsReducer,
         componentsActions.resetComponentPropsReducer,
         componentsActions.updateMultiComponentPropsReducer,
         componentsActions.addTargetPageSectionReducer,
@@ -321,6 +326,7 @@ export function setupExecutionListeners(
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
+        actionActions.batchUpdateMultiActionSlicePropsReducer,
         executionActions.startExecutionReducer,
       ),
       effect: handleStartExecution,

@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor } from "@illa-design/react"
 
 export const actionItemStyle = css`
   display: flex;
@@ -18,7 +18,7 @@ export const checkoutItemStyle = css`
 `
 
 export const getActionItemStyle = (type: string) => {
-  if (type === "checkbox") {
+  if (["checkbox", "switch"].includes(type)) {
     return css`
       ${checkoutItemStyle};
     `
@@ -34,7 +34,7 @@ export const actionLabelStyle = css`
   font-size: 14px;
   font-weight: 500;
   text-align: right;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
   line-height: 22px;
   display: flex;
   flex-direction: row;
@@ -48,7 +48,7 @@ export const checkboxItemStyle = css`
   font-weight: 500;
   margin-left: 10px;
   text-align: left;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const checkoutContentStyle = css`

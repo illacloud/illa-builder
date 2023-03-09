@@ -17,7 +17,6 @@ export const iconSelectorIconStyle = css`
   height: 24px;
   padding: 4px;
   position: absolute;
-  left: 0;
   top: 4px;
   left: 8px;
   & > svg {

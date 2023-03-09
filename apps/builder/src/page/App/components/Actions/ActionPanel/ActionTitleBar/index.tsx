@@ -324,7 +324,13 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 data: newAction,
               },
               () => {
-                dispatch(actionActions.updateActionItemReducer(newAction))
+                dispatch(
+                  actionActions.updateActionDisplayNameReducer({
+                    newDisplayName: value,
+                    oldDisplayName: selectedAction.displayName,
+                    actionID: newAction.actionId,
+                  }),
+                )
               },
               () => {
                 message.error({

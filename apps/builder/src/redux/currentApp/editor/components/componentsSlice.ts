@@ -6,6 +6,7 @@ import {
   addSectionViewReducer,
   addTargetPageSectionReducer,
   batchUpdateComponentLayoutInfoReducer,
+  batchUpdateMultiComponentSlicePropsReducer,
   copyComponentReducer,
   deleteComponentNodeReducer,
   deletePageNodeReducer,
@@ -61,6 +62,7 @@ const componentsSlice = createSlice({
     resetComponentsReducer,
     updateComponentLayoutInfoReducer,
     batchUpdateComponentLayoutInfoReducer,
+    batchUpdateMultiComponentSlicePropsReducer,
   },
 })
 

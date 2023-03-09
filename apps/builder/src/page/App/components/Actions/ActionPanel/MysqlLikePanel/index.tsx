@@ -188,7 +188,7 @@ export const MysqlLikePanel: FC = (props) => {
             }}
           />
         </div>
-        <TransformerComponent mysqlLike />
+        <TransformerComponent fullWidth />
       </div>
       <ActionEventHandler />
     </div>
