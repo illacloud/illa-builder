@@ -189,7 +189,8 @@
               "value": "1234"
             },
             "order": "attribute",
-            "collectionid": "请选择一个集合"
+            "collectionid": "请选择一个集合",
+            "data": "一个包含在{{ }}里的对象。如{{ { \"key\": \"value\" } }}"
           },
           "couchdb": {
             "port": {
