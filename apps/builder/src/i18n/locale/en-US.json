@@ -189,7 +189,8 @@
               "value": "1234"
             },
             "order": "attribute",
-            "collectionid": "Select a collection"
+            "collectionid": "Select a collection",
+            "data": "An object enclosed in {{ }}. For example, \n{{ { \"key\": \"value\" } }}"
           },
           "couchdb": {
             "port": {
