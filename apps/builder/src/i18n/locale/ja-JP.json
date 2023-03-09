@@ -348,7 +348,7 @@
             "couchdb": {
               "database": "データベースを選択",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
             },
             "restapi": {
               "consumer_key": "Consumer key",
@@ -377,14 +377,16 @@
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Descending order",
+              "des": "Order",
               "id": "_id",
               "rev": "_rev",
               "record": "Record",
               "mangoquery": "MangoQuery",
               "ViewURL": "ViewURL",
               "StartKey": "StartKey",
-              "EndKey": "EndKey"
+              "EndKey": "EndKey",
+              "include_doc_option": "Docs included in the returned results",
+              "des_option": "Use descending order"
             },
             "restapi": {
               "signature_method": {
