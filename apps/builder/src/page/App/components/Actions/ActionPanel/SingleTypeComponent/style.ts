@@ -18,7 +18,7 @@ export const checkoutItemStyle = css`
 `
 
 export const getActionItemStyle = (type: string) => {
-  if (type === "checkbox") {
+  if (["checkbox", "switch"].includes(type)) {
     return css`
       ${checkoutItemStyle};
     `

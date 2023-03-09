@@ -145,7 +145,7 @@ export const DynamoDBPanel: FC = () => {
           onChange={(value) => handleValueChange(value as string, "table")}
         />
         <SingleTypeComponent
-          title={""}
+          title=""
           componentType="checkbox"
           value={content.useJson}
           onChange={(value) => handleValueChange(value as boolean, "useJson")}

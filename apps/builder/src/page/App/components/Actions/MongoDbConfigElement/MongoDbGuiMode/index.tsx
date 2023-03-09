@@ -1,6 +1,6 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { Controller } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Input,
@@ -20,6 +20,8 @@ import {
   connectTypeStyle,
   labelContainer,
 } from "@/page/App/components/Actions/styles"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { TextLink } from "@/page/User/components/TextLink"
 import {
   MongoDbConnectionFormat,
   MongoDbGuiConfigContent,
@@ -28,6 +30,7 @@ import {
 } from "@/redux/resource/mongodbResource"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
+import { isContainLocalPath } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
@@ -58,6 +61,23 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
   const [connectionFormat, setConnectionFormat] =
     useState<MongoDbConnectionFormat>(content.connectionFormat ?? "standard")
 
+  const [showAlert, setShowAlert] = useState<boolean>(false)
+
+  const handleDocLinkClick = () => {
+    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
+  }
+
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
+      }
+      return true
+    },
+    [showAlert],
+  )
+
   return (
     <>
       <div css={configItem}>
@@ -75,6 +95,7 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
             control={control}
             rules={{
               required: true,
+              validate: handleHostValidate,
             }}
             render={({ field: { value, onChange, onBlur } }) => (
               <Input
@@ -92,6 +113,32 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
           />
         </div>
       </div>
+      {showAlert && (
+        <ControlledElement
+          defaultValue=""
+          name=""
+          controlledType="alert"
+          control={control}
+          title={t("editor.action.form.tips.connect_to_local.title.tips")}
+          alertContent={
+            isCloudVersion ? (
+              <Trans
+                i18nKey="editor.action.form.tips.connect_to_local.cloud"
+                t={t}
+                components={[
+                  <TextLink
+                    key="editor.action.form.tips.connect_to_local.cloud"
+                    onClick={handleDocLinkClick}
+                  />,
+                ]}
+              />
+            ) : (
+              t("editor.action.form.tips.connect_to_local.selfhost")
+            )
+          }
+          closable={false}
+        />
+      )}
       <div css={configItem}>
         <div css={labelContainer}>
           <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>

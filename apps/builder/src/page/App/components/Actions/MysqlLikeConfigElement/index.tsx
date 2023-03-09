@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
   Button,
@@ -25,10 +25,12 @@ import {
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { TextLink } from "@/page/User/components/TextLink"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
+import { isContainLocalPath, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
 import {
@@ -83,7 +85,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
-
+  const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const message = useMessage()
@@ -91,6 +93,20 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   const handleSwitchValueChange = useCallback((open: boolean | string) => {
     setSSLOpen(!!open)
   }, [])
+
+  const handleHostValueChange = useCallback(
+    (value: string | boolean) => {
+      const isShow = isContainLocalPath((value as string) ?? "")
+      if (isShow !== showAlert) {
+        setShowAlert(isShow)
+      }
+    },
+    [showAlert],
+  )
+
+  const handleDocLinkClick = () => {
+    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
+  }
 
   return (
     <form
@@ -237,13 +253,16 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               defaultValue={resource?.content.host}
               control={control}
               rules={{
-                required: true,
+                validate,
               }}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
                   w="100%"
                   onBlur={onBlur}
-                  onChange={onChange}
+                  onChange={(value, e) => {
+                    onChange(value, e)
+                    handleHostValueChange(value)
+                  }}
                   value={value}
                   colorScheme="techPurple"
                   placeholder={t(
@@ -274,6 +293,33 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             />
           </div>
         </div>
+
+        {showAlert && (
+          <ControlledElement
+            defaultValue=""
+            name=""
+            controlledType="alert"
+            control={control}
+            title={t("editor.action.form.tips.connect_to_local.title.tips")}
+            alertContent={
+              isCloudVersion ? (
+                <Trans
+                  i18nKey="editor.action.form.tips.connect_to_local.cloud"
+                  t={t}
+                  components={[
+                    <TextLink
+                      key="editor.action.form.tips.connect_to_local.cloud"
+                      onClick={handleDocLinkClick}
+                    />,
+                  ]}
+                />
+              ) : (
+                t("editor.action.form.tips.connect_to_local.selfhost")
+              )
+            }
+            closable={false}
+          />
+        )}
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>

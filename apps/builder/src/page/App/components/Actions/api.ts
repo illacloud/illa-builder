@@ -184,6 +184,9 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         connectionOpts: data.connectionOpts,
         ssl: generateSSLConfig(!!data.ssl, data, "mssql"),
       }
+    case "oracle":
+      const { resourceName, ...otherParams } = data
+      return otherParams
     case "huggingface":
       return {
         token: data.token,
@@ -218,6 +221,17 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         region,
         accessKeyID,
         secretAccessKey,
+      }
+    case "couchdb":
+      const { resourceName: couchDBResName, ...otherCouchDBParams } = data
+      return otherCouchDBParams
+    case "appwrite":
+      const { host, projectID, databaseID, apiKey } = data
+      return {
+        host,
+        projectID,
+        databaseID,
+        apiKey,
       }
   }
 }
