@@ -22,17 +22,25 @@ export const changeDisplayNameHelper = (
       const usedPaths = independenciesMap[inDepPath]
       usedPaths.forEach((usedPath) => {
         const usedPathArray = toPath(usedPath)
-        const maybeDynamicStringValue = get(seeds, usedPath)
+        const displayName =
+          usedPathArray[0] === oldDisplayName
+            ? newDisplayName
+            : usedPathArray[0]
+        const finalUsedPathArray = [...usedPathArray]
+        finalUsedPathArray.splice(0, 1, displayName)
+        const finalUsedPath = convertPathToString(finalUsedPathArray)
+        const maybeDynamicStringValue = get(seeds, finalUsedPath)
+
         if (isDynamicString(maybeDynamicStringValue)) {
           const newDynamicStringValue = maybeDynamicStringValue.replace(
             oldDisplayName,
             newDisplayName,
           )
           const propsPath = convertPathToString(usedPathArray.slice(1))
-          const seed = seeds[usedPathArray[0]]
+          const seed = seeds[displayName]
           if (isAction(seed)) {
             updateActionSlice.push({
-              displayName: usedPathArray[0],
+              displayName: displayName,
               propsSlice: {
                 [propsPath]: newDynamicStringValue,
               },
@@ -40,7 +48,7 @@ export const changeDisplayNameHelper = (
           }
           if (isWidget(seed)) {
             updateWidgetSlice.push({
-              displayName: usedPathArray[0],
+              displayName: displayName,
               propsSlice: {
                 [propsPath]: newDynamicStringValue,
               },
