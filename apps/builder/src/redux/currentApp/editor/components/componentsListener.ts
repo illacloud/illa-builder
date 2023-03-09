@@ -6,6 +6,7 @@ import {
   getReflowResult,
 } from "@/page/App/components/DotPanel/calc"
 import { configActions } from "@/redux/config/configSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   getCanvas,
@@ -24,16 +25,12 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
+import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
 } from "@/utils/generators/generatePageOrSectionConfig"
-import {
-  UpdateComponentNodeLayoutInfoPayload,
-  UpdateComponentSlicePropsPayload,
-} from "./componentsPayload"
+import { UpdateComponentNodeLayoutInfoPayload } from "./componentsPayload"
 import { CONTAINER_TYPE, ComponentNode } from "./componentsState"
 
 function handleUpdateComponentDisplayNameEffect(
@@ -482,32 +479,21 @@ const handleUpdateDisplayNameEffect = (
   const rootState = listenerApi.getState()
   const independenciesMap = getIndependenciesMap(rootState)
   const seeds = getRawTree(rootState)
-  const updateSlice: UpdateComponentSlicePropsPayload[] = []
-  Object.keys(independenciesMap).forEach((inDepPath) => {
-    const paths = toPath(inDepPath)
-    if (displayName === paths[0]) {
-      const usedPaths = independenciesMap[inDepPath]
-      usedPaths.forEach((usedPath) => {
-        const usedPathArray = toPath(usedPath)
-        const maybeDynamicStringValue = get(seeds, usedPath)
-        if (isDynamicString(maybeDynamicStringValue)) {
-          const newDynamicStringValue = maybeDynamicStringValue.replace(
-            displayName,
-            newDisplayName,
-          )
-          const propsPath = convertPathToString(usedPathArray.slice(1))
-          updateSlice.push({
-            displayName: usedPathArray[0],
-            propsSlice: {
-              [propsPath]: newDynamicStringValue,
-            },
-          })
-        }
-      })
-    }
-  })
+
+  const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
+    independenciesMap,
+    seeds,
+    displayName,
+    newDisplayName,
+  )
+
   listenerApi.dispatch(
-    componentsActions.batchUpdateMultiComponentSlicePropsReducer(updateSlice),
+    componentsActions.batchUpdateMultiComponentSlicePropsReducer(
+      updateWidgetSlice,
+    ),
+  )
+  listenerApi.dispatch(
+    actionActions.batchUpdateMultiActionSlicePropsReducer(updateActionSlice),
   )
 }
 

@@ -195,7 +195,10 @@ export const getExecutionResultToCodeMirror = createSelector(
   (executionResult) => {
     const result: Record<string, unknown> = {}
     Object.keys(executionResult).forEach((key) => {
-      if (!IGNORE_WIDGET_TYPES.has(executionResult[key]?.$widgetType)) {
+      if (
+        !IGNORE_WIDGET_TYPES.has(executionResult[key]?.$widgetType) &&
+        executionResult[key] != undefined
+      ) {
         result[key] = cloneDeep(executionResult[key])
       }
     })

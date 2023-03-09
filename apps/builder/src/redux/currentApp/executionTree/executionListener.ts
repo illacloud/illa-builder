@@ -326,6 +326,7 @@ export function setupExecutionListeners(
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
+        actionActions.batchUpdateMultiActionSlicePropsReducer,
         executionActions.startExecutionReducer,
       ),
       effect: handleStartExecution,
