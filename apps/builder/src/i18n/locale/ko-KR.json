@@ -171,6 +171,10 @@
           },
           "couchdb": {
             "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "인증서",
+            "verification_mode": "확인 모드"
           }
         },
         "placeholder": {
@@ -240,6 +244,24 @@
           },
           "couchdb": {
             "ssl": "가능한 경우 SSL/TLS 사용"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Digest Auth",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk Authentication",
+              "aws_v4": "AWS Signature V4",
+              "session_based_auth": "Session Based Auth (deprecated)"
+            },
+            "certificates": "자체 서명된 인증서 사용",
+            "ca_certificate": "서버 인증서",
+            "client_key": "클라이언트 키",
+            "client_certificate": "클라이언트 인증서",
+            "verification_mode": {
+              "full_verification": "전체 확인",
+              "verify_ca_certificat": "서버 인증서 확인",
+              "skip_ca_certificate_": "서버 인증서 확인 건너뛰기"
+            }
           }
         },
         "default": {
@@ -322,6 +344,18 @@
               "database": "데이터베이스 선택",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
               "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+            },
+            "restapi": {
+              "consumer_key": "Consumer key",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "some-app-extra-data",
+              "app": "Application id",
+              "dig": "delegated-by",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
@@ -346,7 +380,46 @@
               "ViewURL": "ViewURL",
               "StartKey": "StartKey",
               "EndKey": "EndKey"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "PLAINTEXT"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              }
             }
+          },
+          "restapi": {
+            "signature_method": "서명 방법",
+            "consumer_key": "Consumer key",
+            "consumer_secret": "Consumer secret",
+            "access_token": "Access token",
+            "token_secret": "Token secret",
+            "private_key": "Private key",
+            "realm": "Realm",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Hawk Auth Key",
+            "algorithm": "Algorithm",
+            "user": "User",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "app",
+            "dig": "dig",
+            "timestamp": "Timestamp",
+            "aws_region": "AWS 리전",
+            "aws_service": "AWS 서비스",
+            "aws_access_key_id": "AWS 액세스 키 ID",
+            "aws_secret_key_id": "AWS 비밀 키 ID",
+            "role_to_assume": "수임할 역할(ARN)",
+            "list_of_cookies_to_f": "전달할 쿠키 목록"
           }
         },
         "menu": {
@@ -2052,6 +2125,9 @@
       "message": {
         "save_suc": "팀 아이디를 입력해주세요",
         "save_fail": "저장 실패"
+      },
+      "password": {
+        "title": "비밀번호"
       }
     }
   },
