@@ -348,7 +348,7 @@
             "couchdb": {
               "database": "选择数据库",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
             },
             "restapi": {
               "consumer_key": "Consumer key",
@@ -369,7 +369,7 @@
                 "list": "列出记录",
                 "retrieve": "检索记录",
                 "create": "创造记录",
-                "update": "Update record",
+                "update": "更新记录",
                 "delete": "删除记录",
                 "find": "查找",
                 "get": "获取视图"
@@ -377,14 +377,16 @@
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Descending order",
+              "des": "Order",
               "id": "_id",
               "rev": "_rev",
               "record": "记录",
               "mangoquery": "MangoQuery",
               "ViewURL": "ViewURL",
               "StartKey": "StartKey",
-              "EndKey": "EndKey"
+              "EndKey": "EndKey",
+              "include_doc_option": "Docs included in the returned results",
+              "des_option": "Use descending order"
             },
             "restapi": {
               "signature_method": {
@@ -557,7 +559,7 @@
           },
           "tips": {
             "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
-            "use_detail_parameters": "<0>Click here</0> to learn more about the detail parameters",
+            "use_detail_parameters": "<0>点击这里</0>以了解更多详细参数",
             "temperature": "1表示定期抽样，0表示总是取最高分，100.0越来越接近均匀概率。",
             "repetition_penalty": "The more a token is used within generation the more it is penalized to not be picked in successive generation passes."
           },
@@ -1452,8 +1454,8 @@
     "method": {
       "set_hidden": "Set hidden",
       "set_file_url": "Set file URL",
-      "play": "Play",
-      "pause": "Pause",
+      "play": "播放",
+      "pause": "暂停",
       "seek_to": {
         "time": "时间",
         "unit": "(s)"
@@ -1467,7 +1469,7 @@
           "speed": "1.5"
         }
       },
-      "stop": "Stop",
+      "stop": "停止",
       "mute": "静音",
       "loop": "循环播放",
       "show_controls": "Show Controls",
@@ -1562,7 +1564,7 @@
     "back": "回到主页",
     "mobile_forbidden": "为获得更好的编辑体验，请通过电脑端访问",
     "back_to_cloud": "返回ILLA Cloud",
-    "no_permission_title": "Insufficient permissions",
+    "no_permission_title": "权限不足",
     "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
   },
   "title": "欢迎来到艾拉云",
@@ -1934,7 +1936,7 @@
         "option": {
           "github": "使用GitHub账户登入",
           "google": "使用 Google 账户登入",
-          "or": "OR"
+          "or": "或"
         }
       },
       "sign_up": {
