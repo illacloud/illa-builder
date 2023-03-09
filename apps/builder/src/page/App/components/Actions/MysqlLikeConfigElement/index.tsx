@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  Alert,
   Button,
   ButtonGroup,
   Divider,
@@ -298,26 +299,31 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
           <ControlledElement
             defaultValue=""
             name=""
-            controlledType="alert"
+            title=""
+            controlledType="none"
             control={control}
-            title={t("editor.action.form.tips.connect_to_local.title.tips")}
-            alertContent={
-              isCloudVersion ? (
-                <Trans
-                  i18nKey="editor.action.form.tips.connect_to_local.cloud"
-                  t={t}
-                  components={[
-                    <TextLink
-                      key="editor.action.form.tips.connect_to_local.cloud"
-                      onClick={handleDocLinkClick}
-                    />,
-                  ]}
-                />
-              ) : (
-                t("editor.action.form.tips.connect_to_local.selfhost")
-              )
+            tips={
+              <Alert
+                title={t("editor.action.form.tips.connect_to_local.title.tips")}
+                closable={false}
+                content={
+                  isCloudVersion ? (
+                    <Trans
+                      i18nKey="editor.action.form.tips.connect_to_local.cloud"
+                      t={t}
+                      components={[
+                        <TextLink
+                          key="editor.action.form.tips.connect_to_local.cloud"
+                          onClick={handleDocLinkClick}
+                        />,
+                      ]}
+                    />
+                  ) : (
+                    t("editor.action.form.tips.connect_to_local.selfhost")
+                  )
+                }
+              />
             }
-            closable={false}
           />
         )}
         <div css={configItem}>

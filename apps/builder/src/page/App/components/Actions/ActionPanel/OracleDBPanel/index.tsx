@@ -50,14 +50,13 @@ export const OracleDBPanel: FC = () => {
       <ResourceChoose />
       <div css={actionItemContainer}>
         <InputEditor
-          title="SQL"
           style={{ height: "88px" }}
           placeholder={t("editor.action.panel.mssql.placeholder.query")}
           lineNumbers={true}
           value={(content.opts as OracleDBActionSQLMode).raw}
           onChange={handleValueChange("raw")}
         />
-        <TransformerComponent />
+        <TransformerComponent fullWidth />
       </div>
       <ActionEventHandler />
     </div>

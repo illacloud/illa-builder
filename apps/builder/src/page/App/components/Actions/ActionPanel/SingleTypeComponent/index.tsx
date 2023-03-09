@@ -16,6 +16,7 @@ export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
     value,
     options,
     checkoutTitle,
+    switchContent,
     onSelectedValueChange,
     onBooleanValueChange,
     placeholder,
@@ -70,12 +71,15 @@ export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
         )
       case "switch":
         return (
-          <Switch
-            colorScheme="techPurple"
-            checked={!!value}
-            ml="16px"
-            onChange={handleBooleanValueChange}
-          />
+          <>
+            <Switch
+              colorScheme="techPurple"
+              checked={!!value}
+              ml="16px"
+              onChange={handleBooleanValueChange}
+            />
+            <span css={checkboxItemStyle}>{switchContent}</span>
+          </>
         )
     }
   }, [
@@ -85,6 +89,7 @@ export const SingleTypeComponent: FC<SingleComponentProps> = (props) => {
     handleSelectValueChange,
     options,
     placeholder,
+    switchContent,
     value,
   ])
 
