@@ -75,11 +75,17 @@ export const ListRecordsInfo = [
     title: i18n.t("editor.action.panel.label.option.couchdb.include"),
     type: "switch",
     name: ["opts", "includeDocs"],
+    content: i18n.t(
+      "editor.action.panel.label.option.couchdb.include_doc_option",
+    ),
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.des"),
     type: "switch",
     name: ["opts", "descendingOrder"],
+    content: i18n.t(
+      "editor.action.panel.label.option.couchdb.include_doc_option",
+    ),
   },
 ]
 
@@ -238,6 +244,9 @@ export const GetViewRecordsInfo = [
     title: i18n.t("editor.action.panel.label.option.couchdb.include"),
     type: "switch",
     name: ["opts", "includeDocs"],
+    content: i18n.t(
+      "editor.action.panel.label.option.couchdb.include_doc_option",
+    ),
   },
 ]
 

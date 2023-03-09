@@ -9,5 +9,6 @@ export interface SingleComponentProps extends Pick<SelectProps, "options"> {
   onBooleanValueChange?: (value: boolean) => void
   value: boolean | SelectValue
   checkoutTitle?: string
+  switchContent?: string
   placeholder?: string
 }

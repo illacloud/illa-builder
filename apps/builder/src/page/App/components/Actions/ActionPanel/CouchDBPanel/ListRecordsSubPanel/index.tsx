@@ -19,6 +19,7 @@ export const ListRecordsSubPanel: FC<CouchDBSubPanelProps> = (props) => {
           name,
           expectedType,
           lineNumbers,
+          content = "",
           style = {},
         } = info
         const value = opts[name[1] as keyof ListRecords]
@@ -42,6 +43,7 @@ export const ListRecordsSubPanel: FC<CouchDBSubPanelProps> = (props) => {
             componentType={type as SingleComponentType}
             onBooleanValueChange={onBooleanValueChange(name)}
             value={value}
+            switchContent={content}
           />
         )
       })}
