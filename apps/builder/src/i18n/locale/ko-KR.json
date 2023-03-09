@@ -209,6 +209,11 @@
             "title": {
               "tips": "팁"
             }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Your server may be vulnerable to attacks."
+            }
           }
         },
         "option": {
@@ -394,6 +399,18 @@
               "algorithm": {
                 "sha256": "sha256",
                 "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "File",
+                "text": "Text"
+              },
+              "method": {
+                "options": "OPTIONS",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Query Parameters",
+                "header_authorization": "Header Authorization"
               }
             }
           },
@@ -419,7 +436,15 @@
             "aws_access_key_id": "AWS 액세스 키 ID",
             "aws_secret_key_id": "AWS 비밀 키 ID",
             "role_to_assume": "수임할 역할(ARN)",
-            "list_of_cookies_to_f": "전달할 쿠키 목록"
+            "list_of_cookies_to_f": "전달할 쿠키 목록",
+            "add_access_token_to": "Add Access Token To"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
+              }
+            }
           }
         },
         "menu": {
@@ -604,6 +629,13 @@
         "status": {
           "ran_failed": "실행하지 못했습니다",
           "ran_successfully": "성공적으로 실행"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status",
+            "headers": "Headers",
+            "response": "Response"
+          }
         }
       },
       "resource": {
