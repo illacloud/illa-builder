@@ -18,14 +18,11 @@ export const changeDisplayNameHelper = (
   const updateActionSlice: UpdateActionSlicePropsPayload[] = []
   Object.keys(independenciesMap).forEach((inDepPath) => {
     const paths = toPath(inDepPath)
-    console.log("oldDisplayName", oldDisplayName)
-    console.log("oldDisplayName", paths[0])
     if (oldDisplayName === paths[0]) {
       const usedPaths = independenciesMap[inDepPath]
       usedPaths.forEach((usedPath) => {
         const usedPathArray = toPath(usedPath)
         const maybeDynamicStringValue = get(seeds, usedPath)
-        console.log("maybeDynamicStringValue", maybeDynamicStringValue)
         if (isDynamicString(maybeDynamicStringValue)) {
           const newDynamicStringValue = maybeDynamicStringValue.replace(
             oldDisplayName,
