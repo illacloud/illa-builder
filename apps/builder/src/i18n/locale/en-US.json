@@ -209,6 +209,11 @@
             "title": {
               "tips": "Tips"
             }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Your server may be vulnerable to attacks."
+            }
           }
         },
         "option": {
@@ -394,6 +399,18 @@
               "algorithm": {
                 "sha256": "sha256",
                 "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "File",
+                "text": "Text"
+              },
+              "method": {
+                "options": "OPTIONS",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Query Parameters",
+                "header_authorization": "Header Authorization"
               }
             }
           },
@@ -419,7 +436,15 @@
             "aws_access_key_id": "AWS Access Key ID",
             "aws_secret_key_id": "AWS Secret Key ID",
             "role_to_assume": "Role to assume (ARN)",
-            "list_of_cookies_to_f": "List of cookies to forward"
+            "list_of_cookies_to_f": "List of cookies to forward",
+            "add_access_token_to": "Add Access Token To"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
+              }
+            }
           }
         },
         "menu": {
@@ -604,6 +629,13 @@
         "status": {
           "ran_failed": "Action failed to run",
           "ran_successfully": "Action ran successfully"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status",
+            "headers": "Headers",
+            "response": "Response"
+          }
         }
       },
       "resource": {
