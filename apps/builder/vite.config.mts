@@ -6,7 +6,7 @@ import { visualizer } from "rollup-plugin-visualizer"
 import { defineConfig, loadEnv } from "vite"
 import checker from "vite-plugin-checker"
 import svgr from "vite-plugin-svgr"
-import packageConfig from "./package.json"
+import versionConfig from "./public/appInfo.json"
 
 // https://vitejs.dev/config/
 export default defineConfig((props) => {
@@ -35,7 +35,7 @@ export default defineConfig((props) => {
     },
     envPrefix: ["VITE_", "ILLA_"],
     define: {
-      "import.meta.env.ILLA_APP_VERSION": JSON.stringify(packageConfig.version),
+      "import.meta.env.ILLA_APP_VERSION": JSON.stringify(versionConfig.version),
       "import.meta.env.ILLA_BUILDER_ENV": JSON.stringify(env.ILLA_BUILDER_ENV),
     },
     build: {

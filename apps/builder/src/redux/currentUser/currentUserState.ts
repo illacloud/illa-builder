@@ -8,10 +8,13 @@ export interface CurrentUser {
 
 export interface UserInfoResponse {
   id: string
+  uid: string
   nickname: string
-  language: string
   email: string
   avatar?: string
+  language: string
+  createdAt: string
+  updatedAt: string
 }
 
 export const CurrentUserInitialState: CurrentUser = {

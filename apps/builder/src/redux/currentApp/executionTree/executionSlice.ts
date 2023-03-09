@@ -6,6 +6,7 @@ import {
   setExecutionDebuggerDataReducer,
   setExecutionErrorReducer,
   setExecutionResultReducer,
+  setIndependenciesReducer,
   startExecutionReducer,
   updateExecutionByDisplayNameReducer,
   updateExecutionByMultiDisplayNameReducer,
@@ -19,6 +20,7 @@ const executionSlice = createSlice({
   initialState: executionInitialState,
   reducers: {
     setDependenciesReducer,
+    setIndependenciesReducer,
     setExecutionResultReducer,
     setExecutionErrorReducer,
     setExecutionDebuggerDataReducer,
