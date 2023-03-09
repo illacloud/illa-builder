@@ -166,7 +166,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "将数据库名称视为 SID/服务名称",
+            "sid": "将数据库名称视为",
             "ssl": "SSL"
           },
           "couchdb": {
@@ -370,7 +370,7 @@
                 "retrieve": "检索记录",
                 "create": "创造记录",
                 "update": "Update record",
-                "delete": "Delete record",
+                "delete": "删除记录",
                 "find": "查找",
                 "get": "获取视图"
               },
@@ -380,7 +380,7 @@
               "des": "Descending order",
               "id": "_id",
               "rev": "_rev",
-              "record": "Record",
+              "record": "记录",
               "mangoquery": "MangoQuery",
               "ViewURL": "ViewURL",
               "StartKey": "StartKey",
@@ -425,7 +425,7 @@
             "hawk_auth_id": "Hawk Auth ID",
             "hawk_auth_key": "Hawk Auth Key",
             "algorithm": "Algorithm",
-            "user": "User",
+            "user": "用户",
             "nonce": "Nonce",
             "ext": "ext",
             "app": "app",
