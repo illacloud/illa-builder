@@ -2,7 +2,7 @@ import createCache from "@emotion/cache"
 import { CacheProvider, Global } from "@emotion/react"
 import { useEffect } from "react"
 import { DndProvider } from "react-dnd"
-import { HTML5Backend } from "react-dnd-html5-backend"
+import { TouchBackend } from "react-dnd-touch-backend"
 import { HelmetProvider } from "react-helmet-async"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -24,6 +24,11 @@ import {
 import { ILLARoute } from "@/router"
 import { px2Rem } from "@/utils/stylis-plugin/px2rem"
 import { globalStyle } from "./style"
+
+const dragOptions = {
+  enableTouchEvents: false,
+  enableMouseEvents: true,
+}
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)
@@ -50,7 +55,7 @@ function App() {
   return (
     <CacheProvider value={cache}>
       <HelmetProvider>
-        <DndProvider backend={HTML5Backend}>
+        <DndProvider backend={TouchBackend} options={dragOptions}>
           <GlobalDataProvider>
             <ConfigProvider locale={configLanguage}>
               <Global styles={globalStyle} />

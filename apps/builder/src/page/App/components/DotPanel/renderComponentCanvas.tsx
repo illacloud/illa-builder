@@ -21,7 +21,6 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
 import {
-  DebounceUpdateReflow,
   DragInfo,
   DropCollectedInfo,
   DropResultInfo,
@@ -408,7 +407,6 @@ export const RenderComponentCanvas: FC<{
           /**
            * generate component node with new position
            */
-          const oldParentDisplayName = item.parentNode
           const newItem = {
             ...scaleItem,
             parentNode: componentNode.displayName || "root",
@@ -751,6 +749,7 @@ export const RenderComponentCanvas: FC<{
         canvasRef(node)
       }}
       id="realCanvas"
+      className="illa-canvas"
       css={applyComponentCanvasStyle(
         bounds.width,
         bounds.height,
