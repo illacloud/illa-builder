@@ -26,7 +26,7 @@ import { px2Rem } from "@/utils/stylis-plugin/px2rem"
 import { globalStyle } from "./style"
 
 const dragOptions = {
-  enableTouchEvents: false,
+  enableTouchEvents: true,
   enableMouseEvents: true,
 }
 
