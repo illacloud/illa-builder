@@ -118,6 +118,7 @@ importers:
       i18next-browser-languagedetector: ^7.0.1
       jshint: ^2.13.6
       lodash: ^4.17.21
+      lottie-react: ^2.4.0
       pdfjs-dist: 2.16.105
       qs: ^6.11.0
       re-resizable: ^6.9.9
@@ -194,6 +195,7 @@ importers:
       i18next-browser-languagedetector: 7.0.1
       jshint: 2.13.6
       lodash: 4.17.21
+      lottie-react: registry.npmjs.org/lottie-react/2.4.0
       pdfjs-dist: 2.16.105
       qs: 6.11.0
       re-resizable: 6.9.9
@@ -11024,6 +11026,23 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  registry.npmjs.org/lottie-react/2.4.0:
+    resolution: {integrity: sha512-pDJGj+AQlnlyHvOHFK7vLdsDcvbuqvwPZdMlJ360wrzGFurXeKPr8SiRCjLf3LrNYKANQtSsh5dz9UYQHuqx4w==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/lottie-react/-/lottie-react-2.4.0.tgz}
+    name: lottie-react
+    version: 2.4.0
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      lottie-web: registry.npmjs.org/lottie-web/5.10.2
+    dev: false
+
+  registry.npmjs.org/lottie-web/5.10.2:
+    resolution: {integrity: sha512-d0PFIGiwuMsJYaF4uPo+qG8dEorlI+xFI2zrrFtE1bGO4WoLIz+NjremxEq1swpR7juR10aeOtmNh3d6G3ub0A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/lottie-web/-/lottie-web-5.10.2.tgz}
+    name: lottie-web
+    version: 5.10.2
+    dev: false
 
   registry.npmjs.org/react-dnd-touch-backend/16.0.1:
     resolution: {integrity: sha512-NonoCABzzjyWGZuDxSG77dbgMZ2Wad7eQiCd/ECtsR2/NBLTjGksPUx9UPezZ1nQ/L7iD130Tz3RUshL/ClKLA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/react-dnd-touch-backend/-/react-dnd-touch-backend-16.0.1.tgz}
