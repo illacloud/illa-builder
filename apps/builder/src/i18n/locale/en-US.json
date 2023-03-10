@@ -779,7 +779,9 @@
             "scopes": "Scopes (separated by\n a space)",
             "share_oauth2_credentials_between_users": "Share OAuth2.0 credentials between users",
             "url_parameters": "URL Parameters",
-            "use_client_credentials_auth": "Use client credentials auth"
+            "use_client_credentials_auth": "Use client credentials auth",
+            "digest_auth_username": "Username",
+            "digest_auth_password": "Password"
           },
           "option": {
             "authentication": {
