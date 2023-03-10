@@ -1,47 +1,28 @@
 import { FC } from "react"
-import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { Input, getColor } from "@illa-design/react"
-import { applyConfigItemLabelText } from "@/page/App/components/Actions/RestApiConfigElement/style"
-import {
-  configItem,
-  labelContainer,
-} from "@/page/App/components/Actions/styles"
-import { BearerAuthPanelProps } from "./interface"
+import { RestApiAuthPanelProps } from "@/page/App/components/Actions/RestApiConfigElement/interface"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { BearerAuth } from "@/redux/resource/restapiResource"
 
-export const BearerAuthPanel: FC<BearerAuthPanelProps> = (props) => {
-  const { control, auth } = props
-
+export const BearerAuthPanel: FC<RestApiAuthPanelProps> = (props) => {
+  const { control } = props
+  const auth = props.auth as BearerAuth
   const { t } = useTranslation()
 
   return (
-    <div css={configItem}>
-      <div css={labelContainer}>
-        <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-        <span css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}>
-          {t("editor.action.resource.restapi.label.bearerToken")}
-        </span>
-      </div>
-      <Controller
-        control={control}
-        rules={{
+    <ControlledElement
+      title={t("editor.action.resource.restapi.label.bearerToken")}
+      defaultValue={auth?.token ?? ""}
+      name="token"
+      controlledType="input"
+      control={control}
+      isRequired
+      rules={[
+        {
           required: true,
-        }}
-        defaultValue={auth?.token}
-        render={({ field: { value, onChange, onBlur } }) => (
-          <Input
-            w="100%"
-            ml="16px"
-            mr="24px"
-            onBlur={onBlur}
-            onChange={onChange}
-            value={value}
-            colorScheme="techPurple"
-          />
-        )}
-        name="token"
-      />
-    </div>
+        },
+      ]}
+    />
   )
 }
 
