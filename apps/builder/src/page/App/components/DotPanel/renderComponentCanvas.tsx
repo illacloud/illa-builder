@@ -11,7 +11,7 @@ import {
   useRef,
   useState,
 } from "react"
-import { useDrop } from "react-dnd"
+import { useDragDropManager, useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
@@ -21,7 +21,6 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
 import {
-  DebounceUpdateReflow,
   DragInfo,
   DropCollectedInfo,
   DropResultInfo,
@@ -165,6 +164,8 @@ export const RenderComponentCanvas: FC<{
     sectionName,
   } = props
 
+  const autoScrollTimeID = useRef<number>()
+
   const isShowCanvasDot = useSelector(isShowDot)
   const isEditMode = useSelector(getIsILLAEditMode)
   const isProductionMode = useSelector(getIsILLAProductMode)
@@ -184,6 +185,7 @@ export const RenderComponentCanvas: FC<{
   const [collisionEffect, setCollisionEffect] = useState(
     new Map<string, ComponentNode>(),
   )
+  const dragDropManager = useDragDropManager()
 
   const [ShowColumnsChange, setShowColumnsChange] = useState(false)
   const canShowColumnsTimeoutChange = useRef<number | null>(null)
@@ -393,7 +395,7 @@ export const RenderComponentCanvas: FC<{
             canResizeY &&
             landingY / UNIT_HEIGHT + item.h > rowNumber - safeRowNumber
           ) {
-            const finalNumber = landingY / UNIT_HEIGHT + item.h + safeRowNumber
+            const finalNumber = landingY / UNIT_HEIGHT + item.h + 30
             setRowNumber(finalNumber)
           }
 
@@ -408,7 +410,6 @@ export const RenderComponentCanvas: FC<{
           /**
            * generate component node with new position
            */
-          const oldParentDisplayName = item.parentNode
           const newItem = {
             ...scaleItem,
             parentNode: componentNode.displayName || "root",
@@ -733,6 +734,120 @@ export const RenderComponentCanvas: FC<{
     rowNumber,
   ])
 
+  useEffect(() => {
+    if (!currentCanvasRef.current) return
+    const autoScroll = (e: MouseEvent) => {
+      if (!isActive || !containerRef.current) return
+      const { top, bottom } = containerRef.current.getBoundingClientRect()
+      const monitor = dragDropManager.getMonitor()
+      const dragInfo = dragDropManager.getMonitor().getItem()
+      const { clientY } = e
+      const { item } = dragInfo
+      const actionName = isAddAction(
+        item.x,
+        item.y,
+        item.parentNode,
+        componentNode.displayName,
+      )
+        ? "ADD"
+        : "UPDATE"
+      window.clearInterval(autoScrollTimeID.current)
+      if (clientY < top + 50) {
+        autoScrollTimeID.current = window.setInterval(() => {
+          const dragResult = getDragResult(
+            // @ts-ignore
+            monitor,
+            containerRef,
+            item,
+            unitWidth,
+            UNIT_HEIGHT,
+            currentCanvasRef.current?.getBoundingClientRect().width,
+            actionName,
+            currentCanvasRef.current?.getBoundingClientRect().height,
+            canResizeY,
+            containerPadding,
+            containerPadding,
+          )
+          const { ladingPosition, rectCenterPosition } = dragResult
+          const { landingX, landingY, isOverstep } = ladingPosition
+          setRowNumber((prevState) => {
+            if (
+              canResizeY &&
+              landingY / UNIT_HEIGHT + item.h > prevState - safeRowNumber
+            ) {
+              return landingY / UNIT_HEIGHT + item.h + 30
+            } else {
+              return prevState
+            }
+          })
+
+          setXY([rectCenterPosition.x, rectCenterPosition.y])
+          setLunchXY([landingX, landingY])
+          setCanDrop(isOverstep)
+          containerRef.current!.scrollBy({
+            top: -10,
+          })
+        }, 1)
+      }
+      if (clientY > bottom - 50) {
+        window.clearInterval(autoScrollTimeID.current)
+        autoScrollTimeID.current = window.setInterval(() => {
+          const dragResult = getDragResult(
+            // @ts-ignore
+            monitor,
+            containerRef,
+            item,
+            unitWidth,
+            UNIT_HEIGHT,
+            currentCanvasRef.current?.getBoundingClientRect().width,
+            actionName,
+            currentCanvasRef.current?.getBoundingClientRect().height,
+            canResizeY,
+            containerPadding,
+            containerPadding,
+          )
+          const { ladingPosition, rectCenterPosition } = dragResult
+          const { landingX, landingY, isOverstep } = ladingPosition
+          setRowNumber((prevState) => {
+            if (
+              canResizeY &&
+              landingY / UNIT_HEIGHT + item.h > prevState - safeRowNumber
+            ) {
+              return landingY / UNIT_HEIGHT + item.h + 30
+            } else {
+              return prevState
+            }
+          })
+
+          setXY([rectCenterPosition.x, rectCenterPosition.y])
+          setLunchXY([landingX, landingY])
+          setCanDrop(isOverstep)
+          containerRef.current!.scrollBy({
+            top: 10,
+          })
+        }, 1)
+      }
+    }
+
+    currentCanvasRef.current?.addEventListener("mousemove", autoScroll)
+
+    return () => {
+      if (currentCanvasRef.current) {
+        currentCanvasRef.current?.removeEventListener("mousemove", autoScroll)
+      }
+      window.clearInterval(autoScrollTimeID.current)
+    }
+  }, [
+    canResizeY,
+    componentNode.displayName,
+    containerPadding,
+    containerRef,
+    dragDropManager,
+    isActive,
+    safeRowNumber,
+    unitWidth,
+  ])
+
   if (
     isEditMode &&
     componentNode.type === "CANVAS" &&
@@ -751,6 +866,7 @@ export const RenderComponentCanvas: FC<{
         canvasRef(node)
       }}
       id="realCanvas"
+      className="illa-canvas"
       css={applyComponentCanvasStyle(
         bounds.width,
         bounds.height,
