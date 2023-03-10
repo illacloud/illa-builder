@@ -1,4 +1,11 @@
-import { MouseEvent, forwardRef, useMemo, useRef, useState } from "react"
+import {
+  MouseEvent,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
@@ -67,7 +74,7 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
     const isError =
       executionResult[selectedAction.displayName]?.runResult?.error
     const isRestApi = selectedAction.actionType === "restapi"
-    const isActionRunSuccess = results?.extraData?.statusCode === 200
+    const isActionRunSuccess = results?.extraData?.status === 200
     const isRestApiSuccess = isRestApi && isActionRunSuccess
 
     const runningTimes =
@@ -83,63 +90,48 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
 
     const ActionResultPanel = useMemo(() => {
       return (
-        <>
-          <div ref={alertRef} css={restApiAlertBarStyle}>
-            <div css={alertTabsContainerStyle}>
-              {RestApiResultTabs.map((info) => (
-                <div
-                  key={info.name}
-                  css={[
-                    alertTabsItemStyle,
-                    getActiveStyle(showType === (info.name as ResultShowType)),
-                  ]}
-                  data-key={info.name}
-                  onClick={handleResultTabsClick}
-                >
-                  <div css={tabsContentStyle}>{info.title}</div>
-                </div>
-              ))}
-            </div>
-            <div css={alertInfoContainerStyle}>
-              <div css={alertInfoStyle}>
-                {t("editor.action.panel.result.restapi.status")}
-                <span css={statusStyle}>{results?.extraData?.statusCode}</span>
+        <div ref={alertRef} css={restApiAlertBarStyle}>
+          <div css={alertTabsContainerStyle}>
+            {RestApiResultTabs.map((info) => (
+              <div
+                key={info.name}
+                css={[
+                  alertTabsItemStyle,
+                  getActiveStyle(showType === (info.name as ResultShowType)),
+                ]}
+                data-key={info.name}
+                onClick={handleResultTabsClick}
+              >
+                <div css={tabsContentStyle}>{info.title}</div>
               </div>
-              <div css={alertInfoStyle}>
-                Times
-                <span css={timestampStyle}>{`${runningTimes}ms`}</span>
-              </div>
-              <CloseIcon
-                cur="pointer"
-                c={getColor("grayBlue", "05")}
-                onClick={onClose}
-              />
-            </div>
+            ))}
           </div>
-          <CodeEditor
-            height={codeMirrorHeight + "px"}
-            wrapperCss={customerCodeStyle}
-            showLineNumbers
-            editable={false}
-            value={JSON.stringify(
-              showType === "response" ? otherData : extraData?.headers,
-              undefined,
-              2,
-            )}
-            lang={CODE_LANG.JSON}
-          />
-        </>
+          <div css={alertInfoContainerStyle}>
+            <div css={alertInfoStyle}>
+              {t("editor.action.panel.result.restapi.status")}
+              <span css={statusStyle}>{results?.extraData?.status}</span>
+            </div>
+            <div css={alertInfoStyle}>
+              Times
+              <span css={timestampStyle}>{`${runningTimes}ms`}</span>
+            </div>
+            <CloseIcon
+              cur="pointer"
+              c={getColor("grayBlue", "05")}
+              onClick={onClose}
+            />
+          </div>
+        </div>
       )
-    }, [
-      t,
-      results?.extraData?.statusCode,
-      runningTimes,
-      onClose,
-      codeMirrorHeight,
-      showType,
-      otherData,
-      extraData?.headers,
-    ])
+    }, [t, results?.extraData?.status, runningTimes, onClose, showType])
+
+    const displayData = isRestApi
+      ? isActionRunSuccess
+        ? showType === "response"
+          ? otherData
+          : extraData?.headers
+        : otherData
+      : results
 
     return (
       <div css={actionResultContainerStyle}>
@@ -157,46 +149,42 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
               )
             }}
           />
+
           {isRestApiSuccess ? (
             <>{ActionResultPanel}</>
           ) : (
-            <>
-              <div ref={alertRef} css={alertBarStyle}>
-                {isError ? (
-                  <WarningCircleIcon c={getColor("red", "03")} />
-                ) : (
-                  <SuccessCircleIcon c={getColor("green", "03")} />
-                )}
-                <span css={alertTextStyle}>
-                  {isError
-                    ? t("editor.action.panel.status.ran_failed")
-                    : t("editor.action.panel.status.ran_successfully")}
-                </span>
-                <CloseIcon
-                  cur="pointer"
-                  c={getColor("grayBlue", "05")}
-                  onClick={onClose}
-                />
-              </div>
-              <CodeEditor
-                height={codeMirrorHeight + "px"}
-                wrapperCss={customerCodeStyle}
-                showLineNumbers
-                editable={false}
-                value={
-                  isError
-                    ? executionResult[selectedAction.displayName]?.runResult
-                        ?.message
-                    : JSON.stringify(
-                        isRestApi ? otherData : results,
-                        undefined,
-                        2,
-                      )
-                }
-                lang={CODE_LANG.JSON}
+            <div ref={alertRef} css={alertBarStyle}>
+              {isError ? (
+                <WarningCircleIcon c={getColor("red", "03")} />
+              ) : (
+                <SuccessCircleIcon c={getColor("green", "03")} />
+              )}
+              <span css={alertTextStyle}>
+                {isError
+                  ? t("editor.action.panel.status.ran_failed")
+                  : t("editor.action.panel.status.ran_successfully")}
+              </span>
+              <CloseIcon
+                cur="pointer"
+                c={getColor("grayBlue", "05")}
+                onClick={onClose}
               />
-            </>
+            </div>
           )}
+
+          <CodeEditor
+            height={codeMirrorHeight + "px"}
+            wrapperCss={customerCodeStyle}
+            showLineNumbers
+            editable={false}
+            value={
+              isError
+                ? executionResult[selectedAction.displayName]?.runResult
+                    ?.message
+                : JSON.stringify(displayData, undefined, 2)
+            }
+            lang={CODE_LANG.JSON}
+          />
         </div>
       </div>
     )

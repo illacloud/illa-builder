@@ -213,7 +213,7 @@
           },
           "restapi": {
             "verification_mode": {
-              "skip_ca_certificate": "Your server may be vulnerable to attacks."
+              "skip_ca_certificate": "您的服务器可能容易受到攻击"
             }
           }
         },
@@ -779,7 +779,9 @@
             "scopes": "Scopes",
             "share_oauth2_credentials_between_users": "在用户之间共享 OAuth2.0 凭据",
             "url_parameters": "URL parameters",
-            "use_client_credentials_auth": "使用客户端凭据身份验证"
+            "use_client_credentials_auth": "使用客户端凭据身份验证",
+            "digest_auth_username": "用户名",
+            "digest_auth_password": "密码"
           },
           "option": {
             "authentication": {
