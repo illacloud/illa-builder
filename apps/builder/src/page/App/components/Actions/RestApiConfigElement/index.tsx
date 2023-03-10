@@ -28,7 +28,6 @@ import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { Resource } from "@/redux/resource/resourceState"
 import {
   RestApiAuth,
-  RestApiAuthType,
   RestApiResource,
   RestApiResourceInit,
 } from "@/redux/resource/restapiResource"
@@ -59,17 +58,16 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
   const content = resource?.content ?? RestApiResourceInit
 
   const [saving, setSaving] = useState(false)
-  const [authType, setAuthType] = useState(content.authentication)
 
   const showCertificates = (watch("baseUrl", content.baseUrl) ?? "").startsWith(
     "https://",
   )
-  const showCertificatesConfig = watch("selfSignedCert", content.selfSignedCert)
-  const showSkipVerify = watch("mode", content.certs.mode) === "skip"
-
-  const handleAuthenticationChange = (value: string | boolean) => {
-    setAuthType(value as RestApiAuthType)
-  }
+  const showCertificatesConfig = watch(
+    "selfSignedCert",
+    content?.selfSignedCert,
+  )
+  const showSkipVerify = watch("mode", content.certs?.mode) === "skip"
+  const authType = watch("authentication", content.authentication)
 
   const SubPanelComponent =
     RestApiAuthTypeComponentMap[
@@ -238,7 +236,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               controlledType={["textarea"]}
               title={t("editor.action.form.option.restapi.ca_certificate")}
               control={control}
-              defaultValue={content.certs.caCert}
+              defaultValue={content?.certs?.caCert ?? ""}
               name="caCert"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),
@@ -248,7 +246,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               controlledType={["textarea"]}
               title={t("editor.action.form.option.restapi.client_key")}
               control={control}
-              defaultValue={content.certs.clientKey}
+              defaultValue={content?.certs?.clientKey ?? ""}
               name="clientKey"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),
@@ -258,7 +256,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               controlledType={["textarea"]}
               title={t("editor.action.form.option.restapi.client_certificate")}
               control={control}
-              defaultValue={content.certs.clientCert}
+              defaultValue={content?.certs?.clientCert ?? ""}
               name="clientCert"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),
@@ -266,7 +264,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             />
             <ControlledElement
               title={t("editor.action.form.label.restapi.verification_mode")}
-              defaultValue={content.certs.mode}
+              defaultValue={content?.certs?.mode ?? "verify-full"}
               name="mode"
               controlledType="select"
               control={control}
@@ -299,7 +297,6 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           name="authentication"
           controlledType="select"
           control={control}
-          onValueChange={handleAuthenticationChange}
           options={AuthenticationOptions}
         />
 
