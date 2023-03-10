@@ -306,7 +306,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           ref={isEditMode ? dragRef : undefined}
-          data-displayName={componentNode.displayName}
+          data-displayname={componentNode.displayName}
         >
           <MoveBar
             isError={hasError}

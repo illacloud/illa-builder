@@ -267,7 +267,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onContextMenu={handleContextMenu}
-          data-displayName={componentNode.displayName}
+          data-displayname={componentNode.displayName}
         >
           <MoveBar
             isError={hasError}
