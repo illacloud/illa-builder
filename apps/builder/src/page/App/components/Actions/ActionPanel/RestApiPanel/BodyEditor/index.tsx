@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Popover, Select } from "@illa-design/react"
+import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
@@ -264,51 +264,44 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                     lang={CODE_LANG.JAVASCRIPT}
                     placeholder="key"
                   />
-                  <Popover
-                    disabled={record.type !== "file"}
-                    content={t(
-                      "editor.action.panel.label.tips.restapi.body_type.file",
-                    )}
-                    hasCloseIcon={false}
-                    trigger="hover"
-                    colorScheme="gray"
-                    showArrow={false}
-                  >
-                    <Select
-                      colorScheme="techPurple"
-                      showSearch={true}
-                      defaultValue={record.type}
-                      value={record.type}
-                      w="0"
-                      mr="-0.5px"
-                      bdRadius="0"
-                      flexGrow="1"
-                      onChange={(val) =>
-                        handleRecordEditorValueChange(
-                          index,
-                          record.key,
-                          val as string,
-                          record.value,
-                        )
-                      }
-                      options={[
-                        {
-                          label: t(
-                            "editor.action.panel.label.option.restapi.body_type.text",
-                          ),
-                          value: "text",
-                        },
-                        {
-                          label: t(
-                            "editor.action.panel.label.option.restapi.body_type.file",
-                          ),
-                          value: "file",
-                        },
-                      ]}
-                    />
-                  </Popover>
+                  <Select
+                    colorScheme="techPurple"
+                    showSearch={true}
+                    defaultValue={record.type}
+                    value={record.type}
+                    w="0"
+                    bdRadius="0"
+                    flexGrow="1"
+                    onChange={(val) =>
+                      handleRecordEditorValueChange(
+                        index,
+                        record.key,
+                        val as string,
+                        record.value,
+                      )
+                    }
+                    options={[
+                      {
+                        label: t(
+                          "editor.action.panel.label.option.restapi.body_type.text",
+                        ),
+                        value: "text",
+                      },
+                      {
+                        label: t(
+                          "editor.action.panel.label.option.restapi.body_type.file",
+                        ),
+                        value: "file",
+                      },
+                    ]}
+                  />
                   <CodeEditor
                     singleLine
+                    expectValueType={
+                      record.type === "file"
+                        ? VALIDATION_TYPES.OBJECT
+                        : VALIDATION_TYPES.STRING
+                    }
                     value={record.value}
                     onChange={(val) =>
                       handleRecordEditorValueChange(
@@ -321,7 +314,13 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                     height="32px"
                     wrapperCss={recordValueStyle}
                     lang={CODE_LANG.JAVASCRIPT}
-                    placeholder="value"
+                    placeholder={
+                      record.type === "file"
+                        ? t(
+                            "editor.action.panel.placeholder.restapi.body_type.file",
+                          )
+                        : "value"
+                    }
                   />
                 </>
               )

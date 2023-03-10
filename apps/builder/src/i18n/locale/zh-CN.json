@@ -639,6 +639,13 @@
             "headers": "Headers",
             "response": "Response"
           }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
         }
       },
       "resource": {
