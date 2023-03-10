@@ -14,7 +14,7 @@ export const useMouseHover = () => {
     (e: MouseEvent<HTMLDivElement>) => {
       if (isDragging) return
       const currentDisplayName =
-        e.currentTarget.getAttribute("data-displayName")
+        e.currentTarget.getAttribute("data-displayname")
       if (!currentDisplayName) return
       const newHoveredComponents = [...hoveredComponents, currentDisplayName]
       dispatch(configActions.updateHoveredComponent(newHoveredComponents))
@@ -25,7 +25,7 @@ export const useMouseHover = () => {
   const handleMouseLeave = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
       const currentDisplayName =
-        e.currentTarget.getAttribute("data-displayName")
+        e.currentTarget.getAttribute("data-displayname")
       if (!currentDisplayName) return
 
       const newHoveredComponents = hoveredComponents.filter(
