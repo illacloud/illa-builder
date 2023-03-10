@@ -2,13 +2,24 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { Divider, Empty, useMessage } from "@illa-design/react"
+import { NextIcon, useMessage } from "@illa-design/react"
+import { ReactComponent as CardCover } from "@/assets/tutorial/card-cover.svg"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
   USER_ROLE,
 } from "@/illa-public-component/UserRoleUtils/interface"
+import { appsContainerStyle } from "@/page/Dashboard/DashboardApps/style"
+import { TemplateList } from "@/page/Dashboard/Tutorial/TemplateList"
+import {
+  cardBgStyle,
+  cardDescStyle,
+  cardFooterStyle,
+  cardStyle,
+  cardTitleStyle,
+  titleStyle,
+} from "@/page/Dashboard/Tutorial/style"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 
 const Tutorial: FC = () => {
@@ -31,9 +42,20 @@ const Tutorial: FC = () => {
   }
 
   return (
-    <div>
-      <Divider direction="horizontal" />
-      <Empty paddingVertical="120px" />
+    <div css={appsContainerStyle}>
+      <div css={titleStyle}>Tutorial</div>
+      <div css={cardStyle}>
+        <CardCover css={cardBgStyle} />
+        <div css={cardTitleStyle}>{"Onboarding app"}</div>
+        <div css={cardDescStyle}>
+          {"Follow ILLA's tutorial to learn how to build an app in 5 minutes."}
+        </div>
+        <div css={cardFooterStyle}>
+          Go <NextIcon />
+        </div>
+      </div>
+      <div css={titleStyle}>Use Cases</div>
+      <TemplateList />
     </div>
   )
 }
