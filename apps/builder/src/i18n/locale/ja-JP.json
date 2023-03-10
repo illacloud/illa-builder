@@ -213,7 +213,7 @@
           },
           "restapi": {
             "verification_mode": {
-              "skip_ca_certificate": "Your server may be vulnerable to attacks."
+              "skip_ca_certificate": "サーバーが攻撃に対して脆弱である可能性があります"
             }
           }
         },
@@ -779,7 +779,9 @@
             "scopes": "スコープ",
             "share_oauth2_credentials_between_users": "ユーザー間で OAuth2.0 クレデンシャルを共有する",
             "url_parameters": "URL パラメータ",
-            "use_client_credentials_auth": "クライアント資格情報を使用して認証する"
+            "use_client_credentials_auth": "クライアント資格情報を使用して認証する",
+            "digest_auth_username": "ユーザー名",
+            "digest_auth_password": "パスワード"
           },
           "option": {
             "authentication": {
