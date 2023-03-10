@@ -347,7 +347,10 @@ const fetchActionResult = (
     const isRestApi = actionType === "restapi"
     const paramsData = !isRestApi
       ? rawData
-      : { data: rawData, extraData: { headers, statusCode } }
+      : {
+          data: !rawData.length ? data.data?.Extra?.body : rawData,
+          extraData: { headers, statusCode },
+        }
 
     calculateFetchResultDisplayName(
       actionType,

@@ -226,7 +226,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           <ControlledElement
             title={t("editor.action.form.label.restapi.certificates")}
             defaultValue={content.selfSignedCert}
-            name="certificate"
+            name="selfSignedCert"
             controlledType="switch"
             control={control}
             contentLabel={t("editor.action.form.option.restapi.certificates")}

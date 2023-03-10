@@ -79,9 +79,9 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
     const handleResultTabsClick = (e: MouseEvent<HTMLDivElement>) => {
       setShowType(e.currentTarget.dataset.key as ResultShowType)
     }
+    const { extraData = {}, ...otherData } = results
 
     const ActionResultPanel = useMemo(() => {
-      const { extraData, ...otherData } = results
       return (
         <>
           <div ref={alertRef} css={restApiAlertBarStyle}>
@@ -130,7 +130,16 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
           />
         </>
       )
-    }, [results, showType, t, runningTimes, onClose, codeMirrorHeight])
+    }, [
+      t,
+      results?.extraData?.statusCode,
+      runningTimes,
+      onClose,
+      codeMirrorHeight,
+      showType,
+      otherData,
+      extraData?.headers,
+    ])
 
     return (
       <div css={actionResultContainerStyle}>
@@ -179,7 +188,7 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
                     ? executionResult[selectedAction.displayName]?.runResult
                         ?.message
                     : JSON.stringify(
-                        isRestApi ? results?.data : results,
+                        isRestApi ? otherData : results,
                         undefined,
                         2,
                       )
