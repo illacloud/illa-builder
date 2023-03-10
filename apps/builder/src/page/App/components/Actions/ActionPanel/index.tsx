@@ -30,6 +30,7 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
     const cachedAction = useSelector(getCachedAction)
 
     const [resultVisible, setResultVisible] = useState(false)
+    const [shownResult, setShownResult] = useState<unknown>("")
 
     const panel = useMemo(() => {
       switch (cachedAction?.actionType) {
@@ -82,17 +83,23 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
       return <></>
     }
 
+    const handleResultValueChange = (value: unknown) => {
+      setShownResult(value)
+    }
+
     return (
       <div css={actionPanelStyle}>
         <ActionTitleBar
           onResultVisibleChange={(visible) => {
             setResultVisible(visible)
           }}
+          onResultValueChange={handleResultValueChange}
           openState={resultVisible}
         />
         <div css={actionContentStyle}>{panel}</div>
         <ActionResult
           visible={resultVisible}
+          results={shownResult}
           onClose={() => {
             setResultVisible(false)
           }}

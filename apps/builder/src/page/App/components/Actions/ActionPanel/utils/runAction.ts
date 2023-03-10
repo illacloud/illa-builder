@@ -131,12 +131,17 @@ const calculateFetchResultDisplayName = (
   resultCallback?: (data: unknown, error: boolean) => void,
   actionCommand?: string,
 ) => {
-  const transRawData = transformRawData(rawData, actionType)
+  const isRestApi = actionType === "restapi"
+  const realData = isRestApi ? rawData?.data : rawData
+  const transRawData = transformRawData(realData, actionType)
   let calcResult = runTransformer(transformer, transRawData)
   let data = calcResult
   if (actionCommand && actionCommand === S3ActionRequestType.READ_ONE) {
     const { Body = {}, ...otherData } = calcResult
     data = { ...otherData, Body: {} }
+  }
+  if (isRestApi) {
+    data = { ...calcResult, extraData: rawData?.extraData }
   }
   resultCallback?.(data, false)
   actionDisplayNameMapFetchResult[displayName] = calcResult
@@ -338,11 +343,20 @@ const fetchActionResult = (
     // @ts-ignore
     //TODO: @aruseito not use any
     const rawData = data.data.Rows
+    const { headers, statusCode } = data.data?.Extra || {}
+    const isRestApi = actionType === "restapi"
+    const paramsData = !isRestApi
+      ? rawData
+      : {
+          data: !rawData.length ? data.data?.Extra?.body : rawData,
+          extraData: { headers, statusCode },
+        }
+
     calculateFetchResultDisplayName(
       actionType,
       displayName,
       isTrigger,
-      rawData,
+      paramsData,
       transformer,
       resultCallback,
     )

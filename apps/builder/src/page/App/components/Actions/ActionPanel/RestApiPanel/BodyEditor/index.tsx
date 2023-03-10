@@ -1,10 +1,14 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Select } from "@illa-design/react"
+import { Popover, Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
+import {
+  recordKeyStyle,
+  recordValueStyle,
+} from "@/page/App/components/Actions/ActionPanel/RecordEditor/style"
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -15,7 +19,6 @@ import {
   RawBody,
   RawBodyContent,
   RawBodyInitial,
-  RawBodyType,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
 import { Params } from "@/redux/resource/restapiResource"
@@ -34,6 +37,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const actionItem = props.actionItem
   const bodyType = actionItem.content.bodyType
   const body = actionItem.content.body
+  const isFormData = bodyType === "form-data"
 
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
     RestApiAction<BodyContent>
@@ -78,8 +82,10 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             newBody = null
             break
           case "x-www-form-urlencoded":
-          case "form-data":
             newBody = [{ key: "", value: "" }] as Params[]
+            break
+          case "form-data":
+            newBody = [{ key: "", type: "", value: "" }] as Params[]
             break
           case "raw":
             newBody = RawBodyInitial
@@ -103,6 +109,81 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
     [actionItem, dispatch, selectedAction.content, selectedAction.resourceId],
   )
 
+  const handleOnBodyChange = useCallback(
+    (value: string | Params[]) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...actionItem,
+          content: {
+            ...actionItem.content,
+            body: value,
+          },
+        }),
+      )
+    },
+    [actionItem, dispatch],
+  )
+
+  const handleRecordEditorValueChange = useCallback(
+    (index: number, key: string, type: string, value: string) => {
+      let newList: Params[] = [...(body as Params[])]
+      newList[index] = isFormData
+        ? { key, type, value }
+        : ({ key, value } as Params)
+      handleOnBodyChange(newList)
+    },
+    [body, handleOnBodyChange, isFormData],
+  )
+
+  const handleRawBodyTypeChange = useCallback(
+    (value: string, paramName: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...actionItem,
+          content: {
+            ...actionItem.content,
+            body: {
+              ...(body as RawBody<RawBodyContent>),
+              [paramName]: value,
+            },
+          },
+        }),
+      )
+    },
+    [actionItem, body, dispatch],
+  )
+
+  const handleFormUrlencodedValueChange = (
+    index: number,
+    key: string,
+    v: string,
+  ) => {
+    handleRecordEditorValueChange(index, key, "", v)
+  }
+
+  const handleOnAddKeys = useCallback(() => {
+    const newListItem = (
+      isFormData ? { key: "", type: "", value: "" } : { key: "", value: "" }
+    ) as Params
+    const newList: Params[] = [...(body as Params[]), newListItem]
+    handleOnBodyChange(newList)
+  }, [body, handleOnBodyChange, isFormData])
+
+  const handleOnDeleteKeys = useCallback(
+    (index: number) => {
+      let newList: Params[] = [...(body as Params[])]
+      const newListItem = (
+        isFormData ? { key: "", type: "", value: "" } : { key: "", value: "" }
+      ) as Params
+      newList.splice(index, 1)
+      if (newList.length === 0) {
+        newList = [newListItem]
+      }
+      handleOnBodyChange(newList)
+    },
+    [body, handleOnBodyChange, isFormData],
+  )
+
   return (
     <div css={bodyEditorContainerStyle}>
       <span css={bodyLabelStyle}>
@@ -121,9 +202,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               "binary",
             ]}
             bdRadius={bodyType === "raw" ? " 8px 0 0 8px" : "8px"}
-            onChange={(v) => {
-              handleActionTypeChange(v as string)
-            }}
+            onChange={(v) => handleActionTypeChange(v as string)}
           />
           {bodyType === "raw" && (
             <Select
@@ -133,20 +212,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               ml="-1px"
               value={(body as RawBody<RawBodyContent>).type}
               options={["text", "json", "xml", "javascript", "html"]}
-              onChange={(value) => {
-                dispatch(
-                  configActions.updateCachedAction({
-                    ...actionItem,
-                    content: {
-                      ...actionItem.content,
-                      body: {
-                        ...(body as RawBody<RawBodyContent>),
-                        type: value as RawBodyType,
-                      },
-                    },
-                  }),
-                )
-              }}
+              onChange={(val) => handleRawBodyTypeChange(val as string, "type")}
             />
           )}
         </div>
@@ -158,81 +224,112 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               value={(body as RawBody<RawBodyContent>).content}
               expectValueType={VALIDATION_TYPES.STRING}
               height="88px"
-              onChange={(value) => {
-                dispatch(
-                  configActions.updateCachedAction({
-                    ...actionItem,
-                    content: {
-                      ...actionItem.content,
-                      body: {
-                        ...(body as RawBody<RawBodyContent>),
-                        content: value,
-                      },
-                    },
-                  }),
-                )
-              }}
+              onChange={(value) => handleRawBodyTypeChange(value, "content")}
             />
           </div>
         )}
-        {(bodyType === "form-data" || bodyType === "x-www-form-urlencoded") && (
+        {bodyType === "x-www-form-urlencoded" && (
           <RecordEditor
             label=""
+            name="body"
             records={body as Params[]}
-            onChangeKey={(index, key, v) => {
-              let newList: Params[] = [...(body as Params[])]
-              newList[index] = { key, value: v } as Params
-              dispatch(
-                configActions.updateCachedAction({
-                  ...actionItem,
-                  content: {
-                    ...actionItem.content,
-                    body: newList,
-                  },
-                }),
+            onChangeKey={handleFormUrlencodedValueChange}
+            onChangeValue={handleFormUrlencodedValueChange}
+            onDelete={handleOnDeleteKeys}
+            onAdd={handleOnAddKeys}
+          />
+        )}
+        {bodyType === "form-data" && (
+          <RecordEditor
+            label=""
+            name="body"
+            records={body as Params[]}
+            customRender={(record, index) => {
+              return (
+                <>
+                  <CodeEditor
+                    value={record.key}
+                    singleLine
+                    height="32px"
+                    onChange={(val) =>
+                      handleRecordEditorValueChange(
+                        index,
+                        val,
+                        record.type,
+                        record.value,
+                      )
+                    }
+                    wrapperCss={recordKeyStyle}
+                    expectValueType={VALIDATION_TYPES.STRING}
+                    lang={CODE_LANG.JAVASCRIPT}
+                    placeholder="key"
+                  />
+                  <Popover
+                    disabled={record.type !== "file"}
+                    content={t(
+                      "editor.action.panel.label.tips.restapi.body_type.file",
+                    )}
+                    hasCloseIcon={false}
+                    trigger="hover"
+                    colorScheme="gray"
+                    showArrow={false}
+                  >
+                    <Select
+                      colorScheme="techPurple"
+                      showSearch={true}
+                      defaultValue={record.type}
+                      value={record.type}
+                      w="0"
+                      mr="-0.5px"
+                      bdRadius="0"
+                      flexGrow="1"
+                      onChange={(val) =>
+                        handleRecordEditorValueChange(
+                          index,
+                          record.key,
+                          val as string,
+                          record.value,
+                        )
+                      }
+                      options={[
+                        {
+                          label: t(
+                            "editor.action.panel.label.option.restapi.body_type.text",
+                          ),
+                          value: "text",
+                        },
+                        {
+                          label: t(
+                            "editor.action.panel.label.option.restapi.body_type.file",
+                          ),
+                          value: "file",
+                        },
+                      ]}
+                    />
+                  </Popover>
+                  <CodeEditor
+                    singleLine
+                    value={record.value}
+                    onChange={(val) =>
+                      handleRecordEditorValueChange(
+                        index,
+                        record.key,
+                        record.type,
+                        val,
+                      )
+                    }
+                    height="32px"
+                    wrapperCss={recordValueStyle}
+                    lang={CODE_LANG.JAVASCRIPT}
+                    placeholder="value"
+                  />
+                </>
               )
             }}
-            onChangeValue={(index, key, v) => {
-              let newList: Params[] = [...(body as Params[])]
-              newList[index] = { key, value: v } as Params
-              dispatch(
-                configActions.updateCachedAction({
-                  ...actionItem,
-                  content: {
-                    ...actionItem.content,
-                    body: newList,
-                  },
-                }),
-              )
-            }}
-            onDelete={(index, record) => {
-              let newList: Params[] = [...(body as Params[])]
-              newList.splice(index, 1)
-              dispatch(
-                configActions.updateCachedAction({
-                  ...actionItem,
-                  content: {
-                    ...actionItem.content,
-                    body: newList,
-                  },
-                }),
-              )
-            }}
-            onAdd={() => {
-              let newList: Params[] = [
-                ...(body as Params[]),
-                { key: "", value: "" } as Params,
-              ]
-              dispatch(
-                configActions.updateCachedAction({
-                  ...actionItem,
-                  content: {
-                    ...actionItem.content,
-                    body: newList,
-                  },
-                }),
-              )
-            }}
+            onChangeKey={() => {}}
+            onChangeValue={() => {}}
+            onDelete={handleOnDeleteKeys}
+            onAdd={handleOnAddKeys}
           />
         )}
         {bodyType === "binary" && (
@@ -243,17 +340,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               value={(body as string) ?? ""}
               expectValueType={VALIDATION_TYPES.STRING}
               height="88px"
-              onChange={(value) => {
-                dispatch(
-                  configActions.updateCachedAction({
-                    ...actionItem,
-                    content: {
-                      ...actionItem.content,
-                      body: value,
-                    },
-                  }),
-                )
-              }}
+              onChange={handleOnBodyChange}
             />
           </div>
         )}
