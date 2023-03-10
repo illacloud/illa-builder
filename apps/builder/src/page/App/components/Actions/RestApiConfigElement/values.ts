@@ -55,14 +55,14 @@ export const VerificationModeOptions: {
 
 export const DigestAuthInfo = [
   {
-    title: i18n.t("editor.action.resource.restapi.label.basic_auth_username"),
+    title: i18n.t("editor.action.resource.restapi.label.digest_auth_username"),
     name: "username",
     controlledType: "input",
     defaultValue: "",
     required: false,
   },
   {
-    title: i18n.t("editor.action.resource.restapi.label.basic_auth_password"),
+    title: i18n.t("editor.action.resource.restapi.label.digest_auth_password"),
     name: "password",
     controlledType: "password",
     defaultValue: "",
