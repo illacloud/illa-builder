@@ -20,6 +20,7 @@ export const GetViewSubPanel: FC<CouchDBSubPanelProps> = (props) => {
           expectedType,
           lineNumbers,
           style = {},
+          content = "",
         } = info
         const value = opts[name[1] as keyof GetView]
         if (type === "editor") {
@@ -42,6 +43,7 @@ export const GetViewSubPanel: FC<CouchDBSubPanelProps> = (props) => {
             componentType={type as SingleComponentType}
             onBooleanValueChange={onBooleanValueChange(name)}
             value={value}
+            switchContent={content}
           />
         )
       })}

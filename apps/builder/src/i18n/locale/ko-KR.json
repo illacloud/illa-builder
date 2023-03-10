@@ -189,7 +189,8 @@
               "value": "1234"
             },
             "order": "attribute",
-            "collectionid": "컬렉션 선택"
+            "collectionid": "컬렉션 선택",
+            "data": "{{ }}로 묶인 객체. 예: {{ { \"key\": \"value\" } }}"
           },
           "couchdb": {
             "port": {
