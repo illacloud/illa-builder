@@ -11,7 +11,7 @@ import {
   useRef,
   useState,
 } from "react"
-import { useDragDropManager, useDrop } from "react-dnd"
+import { DropTargetMonitor, useDragDropManager, useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
@@ -261,6 +261,8 @@ export const RenderComponentCanvas: FC<{
   const currentCanvasRef = useRef<HTMLDivElement | null>(
     null,
   ) as MutableRefObject<HTMLDivElement | null>
+  const canvasBoundingClientRect =
+    currentCanvasRef.current?.getBoundingClientRect()
 
   const unitWidth = useMemo(() => {
     return bounds.width / blockColumns
@@ -381,8 +383,6 @@ export const RenderComponentCanvas: FC<{
           setCollisionEffect(new Map())
         }
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
-          const canvasBoundingClientRect =
-            currentCanvasRef.current?.getBoundingClientRect()
           const {
             dragResult,
             reflowUpdateSlice,
@@ -654,16 +654,72 @@ export const RenderComponentCanvas: FC<{
     rowNumber,
   ])
 
+  const throttleScrollEffect = useMemo(() => {
+    return throttle(
+      (
+        dragInfo: DragInfo,
+        monitor: DropTargetMonitor<DragInfo, DropResultInfo>,
+      ) => {
+        const { dragResult, reflowUpdateSlice, newEffectResultMap, scaleItem } =
+          moveCallback(
+            dragInfo,
+            blockColumns,
+            componentNode.displayName,
+            monitor,
+            containerRef,
+            unitWidth,
+            canvasBoundingClientRect,
+            canResizeY,
+            containerPadding,
+            isFreezeCanvas,
+          )
+        moveEffect(
+          dragResult,
+          reflowUpdateSlice,
+          newEffectResultMap,
+          scaleItem.h,
+        )
+      },
+      1,
+    )
+  }, [
+    blockColumns,
+    canResizeY,
+    canvasBoundingClientRect,
+    componentNode.displayName,
+    containerPadding,
+    containerRef,
+    isFreezeCanvas,
+    moveEffect,
+    unitWidth,
+  ])
+
+  useEffect(() => {
+    if (!containerRef.current) return
+
+    const dragInfo = dragDropManager.getMonitor().getItem()
+    const monitor = dragDropManager.getMonitor() as any
+
+    const scrollHandler = () => {
+      if (dragInfo && monitor) {
+        throttleScrollEffect(dragInfo, monitor)
+      }
+    }
+    containerRef.current.addEventListener("scroll", scrollHandler)
+
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      containerRef.current?.removeEventListener("scroll", scrollHandler)
+    }
+  }, [containerRef, dragDropManager, throttleScrollEffect])
+
   useEffect(() => {
     if (!currentCanvasRef.current) return
     const autoScroll = (e: MouseEvent) => {
       if (!isActive || !containerRef.current) return
       const { top, bottom } = containerRef.current.getBoundingClientRect()
-      const monitor = dragDropManager.getMonitor()
-      const dragInfo = dragDropManager.getMonitor().getItem()
       const { clientY } = e
-      const canvasBoundingClientRect =
-        currentCanvasRef.current?.getBoundingClientRect()
+
       window.clearInterval(autoScrollTimeID.current)
       autoScrollTimeID.current = window.setInterval(() => {
         if (clientY < top + 50) {
@@ -676,33 +732,6 @@ export const RenderComponentCanvas: FC<{
             top: 10,
           })
         }
-
-        if (clientY < top + 50 || clientY > bottom - 50) {
-          const {
-            dragResult,
-            reflowUpdateSlice,
-            newEffectResultMap,
-            scaleItem,
-          } = moveCallback(
-            dragInfo,
-            blockColumns,
-            componentNode.displayName,
-            // @ts-ignore
-            monitor,
-            containerRef,
-            unitWidth,
-            canvasBoundingClientRect,
-            canResizeY,
-            containerPadding,
-            isFreezeCanvas,
-          )
-          moveEffect(
-            dragResult,
-            reflowUpdateSlice,
-            newEffectResultMap,
-            scaleItem.h,
-          )
-        }
       }, 1)
     }
 
@@ -714,19 +743,7 @@ export const RenderComponentCanvas: FC<{
       }
       window.clearInterval(autoScrollTimeID.current)
     }
-  }, [
-    blockColumns,
-    canResizeY,
-    componentNode.displayName,
-    containerPadding,
-    containerRef,
-    dragDropManager,
-    isActive,
-    isFreezeCanvas,
-    moveEffect,
-    safeRowNumber,
-    unitWidth,
-  ])
+  }, [containerRef, isActive])
 
   if (
     isEditMode &&
