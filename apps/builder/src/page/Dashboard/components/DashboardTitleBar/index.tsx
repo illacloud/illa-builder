@@ -12,9 +12,9 @@ import {
   illaPrefix,
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
-import { canAccess } from "@/illa-public-component/UserRoleUtils"
+import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
-  ACTION_ACCESS,
+  ACTION_MANAGE,
   ATTRIBUTE_GROUP,
   USER_ROLE,
 } from "@/illa-public-component/UserRoleUtils/interface"
@@ -85,6 +85,12 @@ export const DashboardTitleBar: FC = () => {
   let location = useLocation()
   let pathList = location.pathname.split("/")
 
+  const canEditApp = canManage(
+    teamInfo?.myRole ?? USER_ROLE.VIEWER,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.EDIT_APP,
+  )
+
   const tabs: {
     key: string
     title: string
@@ -97,16 +103,17 @@ export const DashboardTitleBar: FC = () => {
     {
       key: "resources",
       title: t("resources"),
-      hidden: !canAccess(
-        teamInfo?.myRole ?? USER_ROLE.VIEWER,
-        ATTRIBUTE_GROUP.RESOURCE,
-        ACTION_ACCESS.VIEW,
-      ),
+      hidden: !canEditApp,
     },
     {
       key: "members",
       title: t("user_management.page.member"),
       hidden: isCloudVersion,
+    },
+    {
+      key: "tutorial",
+      title: t("tutorial"),
+      hidden: !canEditApp,
     },
   ]
 
@@ -165,6 +172,9 @@ export const DashboardTitleBar: FC = () => {
             break
           case "members":
             navigate(`./members`)
+            break
+          case "tutorial":
+            navigate(`./tutorial`)
             break
         }
       }}
