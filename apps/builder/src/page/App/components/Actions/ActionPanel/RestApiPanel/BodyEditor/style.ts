@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor } from "@illa-design/react"
 
 export const bodyEditorContainerStyle = css`
   display: flex;
@@ -16,7 +16,7 @@ export const bodyLabelStyle = css`
   align-items: center;
   font-size: 14px;
   font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const bodyChooserStyle = css`

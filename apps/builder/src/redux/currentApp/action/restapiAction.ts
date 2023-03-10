@@ -52,7 +52,14 @@ export type BodyContent =
   | BinaryBody
   | RawBody<RawBodyContent>
 
-export type ApiMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
+export type ApiMethod =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "DELETE"
+  | "PATCH"
+  | "HEAD"
+  | "OPTIONS"
 
 export interface RestApiAction<T extends BodyContent> extends Events {
   method: ApiMethod
