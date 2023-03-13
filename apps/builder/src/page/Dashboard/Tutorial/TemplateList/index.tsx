@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
-import { TemplateConfig, getTemplateAppConfig } from "@/config/template"
+import { getTemplateAppConfig } from "@/config/template"
 import { TemplateListProps } from "@/page/Dashboard/Tutorial/TemplateList/interface"
 import {
   descStyle,
@@ -68,6 +68,7 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
       },
     )
   }
+
   return (
     <div css={templateStyle}>
       {data.map((item) => {

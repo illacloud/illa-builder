@@ -1,9 +1,10 @@
+import { TemplateName, TemplateSetting } from "@/config/template/interface"
 import {
   VIDEO_APP_CONFIG,
   VIDEO_RESOURCES_CONFIG,
 } from "@/config/template/video"
 
-export const TemplateConfig = {
+export const templateConfig = {
   Video: {
     appConfig: VIDEO_APP_CONFIG,
     resourcesConfig: VIDEO_RESOURCES_CONFIG,
@@ -14,14 +15,7 @@ export const TemplateConfig = {
   },
 }
 
-type TemplateName = keyof typeof TemplateConfig
-
-export interface Template {
-  name: TemplateName
-  desc: string
-}
-
-export const Templates: Template[] = [
+export const Templates: TemplateSetting[] = [
   {
     name: "Video",
     desc: "A template designed to show off visualization capabilities",
@@ -33,9 +27,9 @@ export const Templates: Template[] = [
 ]
 
 export const getTemplateAppConfig = (templateName: TemplateName) => {
-  return TemplateConfig[templateName]?.appConfig
+  return templateConfig[templateName]?.appConfig
 }
 
 export const getTemplateResources = (templateName: TemplateName) => {
-  return TemplateConfig[templateName]?.resourcesConfig
+  return templateConfig[templateName]?.resourcesConfig
 }

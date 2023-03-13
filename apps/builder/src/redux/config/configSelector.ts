@@ -87,6 +87,10 @@ export const getIsILLAProductMode = (state: RootState) => {
   return state.config.mode === "production"
 }
 
+export const getIsILLATemplatePreviewMode = (state: RootState) => {
+  return state.config.mode === "template-preview"
+}
+
 export const getWSStatus = (state: RootState) => {
   return state.config.wsStatus
 }

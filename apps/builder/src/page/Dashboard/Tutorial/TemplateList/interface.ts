@@ -1,5 +1,5 @@
-import { Template } from "@/config/template"
+import { TemplateSetting } from "@/config/template/interface"
 
 export interface TemplateListProps {
-  data: Template[]
+  data: TemplateSetting[]
 }
