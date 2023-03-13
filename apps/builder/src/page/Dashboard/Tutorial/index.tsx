@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { NextIcon, useMessage } from "@illa-design/react"
 import { ReactComponent as CardCover } from "@/assets/tutorial/card-cover.svg"
+import { Templates } from "@/config/template"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
@@ -55,7 +56,7 @@ const Tutorial: FC = () => {
         </div>
       </div>
       <div css={titleStyle}>Use Cases</div>
-      <TemplateList />
+      <TemplateList data={Templates} />
     </div>
   )
 }

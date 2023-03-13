@@ -1,6 +1,12 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
+export const templateStyle = css`
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+`
+
 export const itemStyle = css`
   padding: 24px;
   width: 380px;
