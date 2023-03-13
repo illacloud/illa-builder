@@ -333,9 +333,6 @@ export const VIDEO_APP_CONFIG = [
 
 export const VIDEO_RESOURCES_CONFIG = [
   {
-    resourceId: "ILAfx4p1C7dL",
-    uid: "651c853d-f7b1-4998-958c-6416d84950a9",
-    teamID: "ILAfx4p1C7dV",
     resourceName: "e",
     resourceType: "mysql",
     content: {
@@ -346,15 +343,8 @@ export const VIDEO_RESOURCES_CONFIG = [
       port: "111",
       ssl: { clientCert: "", clientKey: "", serverCert: "", ssl: false },
     },
-    createdAt: "2023-03-10T07:45:30.951013Z",
-    createdBy: "ILAfx4p1C7dY",
-    updatedAt: "2023-03-10T07:45:30.951013Z",
-    updatedBy: "ILAfx4p1C7dY",
   },
   {
-    resourceId: "ILAfx4p1C7dq",
-    uid: "edb06de5-1c08-4cee-99ea-ebf1c897e8f2",
-    teamID: "ILAfx4p1C7dV",
     resourceName: "jsonplaceholder",
     resourceType: "restapi",
     content: {
@@ -365,15 +355,8 @@ export const VIDEO_RESOURCES_CONFIG = [
       headers: [{ key: "", value: "" }],
       urlParams: [{ key: "", value: "" }],
     },
-    createdAt: "2023-03-01T16:30:12.085717Z",
-    createdBy: "ILAfx4p1C7dY",
-    updatedAt: "2023-03-01T16:30:12.085717Z",
-    updatedBy: "ILAfx4p1C7dY",
   },
   {
-    resourceId: "ILAfx4p1C7ds",
-    uid: "0b5b55da-ade2-4817-90d3-08c71d5e0697",
-    teamID: "ILAfx4p1C7dV",
     resourceName: "aa",
     resourceType: "restapi",
     content: {
@@ -384,9 +367,5 @@ export const VIDEO_RESOURCES_CONFIG = [
       headers: [{ key: "", value: "" }],
       urlParams: [{ key: "", value: "" }],
     },
-    createdAt: "2023-03-01T16:02:53.02953Z",
-    createdBy: "ILAfx4p1C7dY",
-    updatedAt: "2023-03-01T16:26:14.80158Z",
-    updatedBy: "ILAfx4p1C7dY",
   },
 ]

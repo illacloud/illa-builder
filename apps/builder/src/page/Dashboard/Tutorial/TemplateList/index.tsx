@@ -3,9 +3,11 @@ import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
+import { createAction, createResource } from "@/api/actions"
+import { createApp } from "@/api/apps"
+import { Api, BuilderApi } from "@/api/base"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
-import { getTemplateAppConfig } from "@/config/template"
+import { getTemplateAppConfig, getTemplateConfig } from "@/config/template"
 import { TemplateListProps } from "@/page/Dashboard/Tutorial/TemplateList/interface"
 import {
   descStyle,
@@ -35,40 +37,6 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
     },
   ]
 
-  const createApp = (
-    appName: string,
-    initScheme: Record<string, unknown>[],
-  ) => {
-    BuilderApi.teamRequest<DashboardApp>(
-      {
-        url: "/apps",
-        method: "POST",
-        data: {
-          appName,
-          initScheme,
-        },
-      },
-      (response) => {
-        dispatch(
-          dashboardAppActions.addDashboardAppReducer({
-            app: response.data,
-          }),
-        )
-        navigate(`/${teamIdentifier}/app/${response.data.appId}`)
-      },
-      (failure) => {},
-      (error) => {},
-      (loading) => {
-        // setLoading(loading)
-      },
-      (errorState) => {
-        if (errorState) {
-          message.error({ content: t("create_fail") })
-        }
-      },
-    )
-  }
-
   return (
     <div css={templateStyle}>
       {data.map((item) => {
@@ -81,8 +49,25 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
             </div>
             <div
               css={forkItemStyle}
-              onClick={() => {
-                createApp(item.name, getTemplateAppConfig(item.name))
+              onClick={async () => {
+                const { name } = item
+                const { appConfig, actions, resources } =
+                  getTemplateConfig(name)
+                const resourceList = await Promise.all(
+                  resources.map((data, index) => {
+                    return createResource(data)
+                  }),
+                )
+                const appId = await createApp(name, appConfig)
+                const actionList = await Promise.all(
+                  actions.map((data, index) => {
+                    return createAction(appId, {
+                      ...data,
+                      resourceId: resourceList[data.resourceId] || "",
+                    })
+                  }),
+                )
+                navigate(`/${teamIdentifier}/app/${appId}`)
               }}
             >
               <ForkIcon css={forkIconStyle} />
