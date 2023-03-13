@@ -14,8 +14,10 @@ import {
   updateDevicesOnlineStatusReducer,
   updateDraggingStateReducer,
   updateFreezeStateReducer,
+  updateHoveredComponent,
   updateIllaMode,
   updateLeftPanel,
+  updateResizingStateReducer,
   updateRightPanel,
   updateSelectedComponent,
   updateShowDot,
@@ -47,6 +49,8 @@ const configSlice = createSlice({
     updateDevicesOnlineStatusReducer,
     updateDraggingStateReducer,
     updateWSStatusReducer,
+    updateResizingStateReducer,
+    updateHoveredComponent,
   },
 })
 
