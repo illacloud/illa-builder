@@ -4,7 +4,6 @@ import {
   MutableRefObject,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react"
@@ -12,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import useMeasure from "react-use-measure"
 import { NextIcon, PreviousIcon } from "@illa-design/react"
-import { ScaleSquareOnlyHasResize } from "@/page/App/components/ScaleSquare"
+import { ScaleSquareOnlyHasResize } from "@/page/App/components/ScaleSquare/scaleSquareOnlyHasResize"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   ComponentNode,

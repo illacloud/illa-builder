@@ -75,6 +75,10 @@ export const getIsDragging = (state: RootState) => {
   return state.config.isDragging
 }
 
+export const getIsResizing = (state: RootState) => {
+  return state.config.isResizing
+}
+
 export const getIsILLAEditMode = (state: RootState) => {
   return state.config.mode === "edit"
 }
@@ -87,6 +91,10 @@ export const getIsILLAProductMode = (state: RootState) => {
   return state.config.mode === "production"
 }
 
+export const getIsLikeProductMode = (state: RootState) => {
+  return state.config.mode === "preview" || state.config.mode === "production"
+}
+
 export const getWSStatus = (state: RootState) => {
   return state.config.wsStatus
 }
@@ -97,4 +105,8 @@ export const getDashboardWSStatus = (state: RootState) => {
 
 export const getAppWSStatus = (state: RootState) => {
   return state.config.wsStatus.APP
+}
+
+export const getHoveredComponents = (state: RootState) => {
+  return state.config.hoveredComponents
 }

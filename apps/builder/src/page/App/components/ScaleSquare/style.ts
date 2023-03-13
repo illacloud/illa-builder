@@ -290,13 +290,13 @@ export const applyMoveBarWrapperStyle = (
   minWidth: number,
   isError: boolean,
   selected: boolean,
-  isEditor: boolean,
+  isLikeProductionMode: boolean,
   position: MoveBarPositionShape,
   isFreeze: boolean,
+  hasEditors: boolean,
+  isMouseHover: boolean,
 ) => {
-  let positionStyle = css`
-    top: 0;
-  `
+  let positionStyle: SerializedStyles
   let borderRadiusStyle = css`
     border-radius: 4px 4px 0 0;
   `
@@ -332,8 +332,10 @@ export const applyMoveBarWrapperStyle = (
     color: #fff;
     max-width: ${maxWidth}px;
     min-width: ${minWidth}px;
-    //overflow: hidden;
-    visibility: ${isEditor && selected ? "visible" : "hidden"};
+    visibility: ${!isLikeProductionMode &&
+    (selected || hasEditors || isMouseHover)
+      ? "visible"
+      : "hidden"};
     z-index: 100;
     cursor: move;
   `
@@ -379,14 +381,6 @@ export const applyRNDWrapperStyle = (
   isDragging: boolean,
   isEditor: boolean,
 ) => css`
-  > .wrapperPending {
-    > #moveBar {
-      visibility: ${isEditor && (hasEditors || isSelected)
-        ? "visible"
-        : "hidden"};
-    }
-  }
-
   :hover {
     > .wrapperPending {
       border-color: ${isEditor
@@ -407,6 +401,62 @@ export const applyRNDWrapperStyle = (
   opacity: ${isDragging ? 0 : 100};
 `
 
+const getWrapperBorderColor = (
+  isLikProductionMode: boolean,
+  isSelected: boolean,
+  hasEditors: boolean,
+  isHover: boolean,
+) => {
+  if (isLikProductionMode) {
+    return "transparent"
+  }
+  if (isSelected || hasEditors || isHover) {
+    return getColor("techPurple", "01")
+  }
+  return "transparent"
+}
+
+const getWrapperBorderStyle = (
+  hasEditors: boolean,
+  isSelected: boolean,
+  isDragging: boolean,
+  isHover: boolean,
+) => {
+  if (hasEditors && !isSelected && !isDragging && !isHover) {
+    return "dashed"
+  }
+  return "solid"
+}
+
+const getWrapperBorder = (
+  isLikProductionMode: boolean,
+  isSelected: boolean,
+  hasEditors: boolean,
+  isHover: boolean,
+  isDragging: boolean,
+) => {
+  if (isLikProductionMode) {
+    return css`
+      border: none;
+    `
+  }
+  return css`
+    border-width: 1px;
+    border-style: ${getWrapperBorderStyle(
+      hasEditors,
+      isSelected,
+      isDragging,
+      isHover,
+    )};
+    border-color: ${getWrapperBorderColor(
+      isLikProductionMode,
+      isSelected,
+      hasEditors,
+      isHover,
+    )};
+  `
+}
+
 export const applyWrapperPendingStyle = (
   hasEditors: boolean,
   isSelected: boolean,
@@ -414,21 +464,22 @@ export const applyWrapperPendingStyle = (
   isDragging: boolean,
   isEditor: boolean,
   isLimitedModeAndOverLap: boolean = false,
+  isLikProductionMode: boolean,
+  isHover: boolean,
 ) => css`
   width: 100%;
   height: 100%;
   padding: 2px;
-  border: 1px solid
-    ${(isEditor && isSelected) || hasEditors
-      ? globalColor(`--${illaPrefix}-techPurple-01`)
-      : "transparent"};
-  border-style: ${hasEditors && !isSelected && !isDragging
-    ? "dashed"
-    : "solid"};
+  ${getWrapperBorder(
+    isLikProductionMode,
+    isSelected,
+    hasEditors,
+    isHover,
+    isDragging,
+  )};
   background-color: ${isEditor && hasError && !isSelected
     ? globalColor(`--${illaPrefix}-red-07`)
     : "transparent"};
-  opacity: ${isDragging ? 0 : 100};
   ${isLimitedModeAndOverLap && isSelected
     ? `border-bottom:unset !important`
     : ""}

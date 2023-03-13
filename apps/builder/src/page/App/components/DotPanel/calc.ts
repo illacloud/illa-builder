@@ -72,6 +72,11 @@ export function calcRectShapeByCenterPoint(
   }
 }
 
+export interface LandingPosition {
+  isOverstep: boolean
+  landingX: number
+  landingY: number
+}
 export function calcLadingPosition(
   rectPosition: RectShape,
   unitWidth: number,
@@ -79,7 +84,7 @@ export function calcLadingPosition(
   canvasWidth: number,
   canvasHeight: number,
   canResizeY: boolean,
-) {
+): LandingPosition {
   const { rectLeft, rectTop, rectRight, rectBottom } = rectPosition
   let landingX = Math.round(rectLeft / unitWidth) * unitWidth
   let landingY = Math.round(rectTop / unitHeight) * unitHeight
@@ -346,22 +351,29 @@ export const getNodeWidthAndHeight = (
   }
 }
 
+export interface MoveDragResult {
+  ladingPosition: LandingPosition
+  rectPosition: RectShape
+  rectCenterPosition: CenterPointPosition
+}
+
 export const getDragResult = (
   monitor: DropTargetMonitor<DragInfo, DropResultInfo>,
   containerRef: RefObject<HTMLDivElement>,
   item: ComponentNode,
   unitWidth: number,
   unitHeight: number,
-  canvasWidth: number,
+  canvasWidth: number = 0,
   action: "ADD" | "UPDATE",
-  canvasHeight: number,
+  canvasHeight: number = 0,
   canResizeY: boolean = true,
   containerTopPadding: number = 0,
   containerLeftPadding: number = 0,
-) => {
-  const canvasPosition = {
-    x: containerRef.current?.getBoundingClientRect().x || 0,
-    y: containerRef.current?.getBoundingClientRect().y || 0,
+): MoveDragResult => {
+  const containerClientRect = containerRef.current?.getBoundingClientRect()
+  const containerPosition = {
+    x: containerClientRect?.x || 0,
+    y: containerClientRect?.y || 0,
   }
   if (action === "ADD") {
     const itemPosition = getItemPosition(
@@ -375,7 +387,7 @@ export const getDragResult = (
     )
     const rectCenterPosition = calcRectCenterPointPosition(
       itemPosition,
-      canvasPosition,
+      containerPosition,
       nodeWidthAndHeight,
     )
     const rectPosition = calcRectShapeByCenterPoint(
@@ -401,10 +413,10 @@ export const getDragResult = (
     // mouse position
 
     let relativeX =
-      mousePointerPosition!.x - canvasPosition.x - containerLeftPadding
+      mousePointerPosition!.x - containerPosition.x - containerLeftPadding
     let relativeY =
       mousePointerPosition!.y -
-      canvasPosition.y +
+      containerPosition.y +
       (containerRef.current?.scrollTop || 0) -
       containerTopPadding
 
