@@ -48,6 +48,7 @@ import {
   mergeLayoutInfoToComponent,
   startDrag,
 } from "@/utils/drag/drag"
+import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { AutoHeightWithLimitedContainer } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
@@ -136,6 +137,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
+      FocusManager.switchFocus("canvas")
       if (!isEditMode) return
       e.stopPropagation()
       if (e.metaKey || e.shiftKey) {
@@ -244,6 +246,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const handleContextMenu = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
+      FocusManager.switchFocus("canvas")
       e.stopPropagation()
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
