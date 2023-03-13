@@ -2,6 +2,7 @@ import { FC, ReactNode, useCallback, useEffect, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { Key } from "ts-key-enum"
 import { createModal, useMessage } from "@illa-design/react"
 import {
   getFreezeState,
@@ -28,6 +29,7 @@ import { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { isMAC, isWindows } from "@/utils/userAgent"
 
 export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
@@ -39,7 +41,9 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const currentSelectedComponent = useSelector(getSelectedComponents)
   const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
     (rootState) => {
-      const result = currentSelectedComponent.map((displayName) => {
+      const currentSelectedComponentDisplayName =
+        getSelectedComponents(rootState)
+      const result = currentSelectedComponentDisplayName.map((displayName) => {
         return searchDSLByDisplayName(displayName)
       })
       return result.filter((node) => node) as ComponentNode[]
@@ -55,17 +59,34 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const showShadows = useSelector(isShowDot)
 
   useHotkeys(
-    "command+s,ctrl+s",
-    (event) => {
-      event.preventDefault()
+    `${Key.Meta}+s`,
+    () => {
       message.success({
         content: t("dont_need_save"),
       })
     },
     {
-      enabled: isEditMode,
+      enableOnFormTags: true,
+      enableOnContentEditable: true,
+      preventDefault: true,
+      enabled: isEditMode && isMAC(),
     },
     [],
+  )
+
+  useHotkeys(
+    `${Key.Control}+s`,
+    () => {
+      message.success({
+        content: t("dont_need_save"),
+      })
+    },
+    {
+      enableOnFormTags: true,
+      enableOnContentEditable: true,
+      preventDefault: true,
+      enabled: isEditMode && isWindows(),
+    },
   )
 
   // shortcut
@@ -124,9 +145,8 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   }
 
   useHotkeys(
-    "Backspace",
-    (event) => {
-      event.preventDefault()
+    Key.Backspace,
+    () => {
       showDeleteDialog(
         currentSelectedComponent.map((displayName) => {
           return displayName
@@ -152,144 +172,241 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     [dispatch, freezeState],
   )
 
-  useHotkeys(
-    "command+a,ctrl+a",
-    (keyboardEvent) => {
-      keyboardEvent.preventDefault()
-      switch (FocusManager.getFocus()) {
-        case "none":
-          break
-        case "canvas": {
-          if (canvasRootNode) {
-            const childNodeDisplayNames: string[] = []
-            const rootNode = executionResult.root
-            if (!rootNode) return
-            const currentPageDisplayName =
-              rootNode.pageSortedKey[rootNode.currentPageIndex]
-            const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
-            if (!pageNode) return
-            const sectionContainerNodeDisplayName: string[] = []
-            pageNode.childrenNode.forEach((sectionNode) => {
-              const displayName = sectionNode.displayName
-              const currentSectionProps = executionResult[displayName]
-              if (
-                currentSectionProps &&
-                currentSectionProps.viewSortedKey &&
-                currentSectionProps.currentViewIndex >= 0
-              ) {
-                const { currentViewIndex, viewSortedKey } = currentSectionProps
-                const currentDisplayName = viewSortedKey[currentViewIndex]
-                sectionContainerNodeDisplayName.push(currentDisplayName)
-              }
-            })
-            const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
-            const allChildrenNodes: ComponentNode[] = []
-            sectionContainerNodeDisplayName.forEach((displayName) => {
-              if (componentNodesMap[displayName]) {
-                const childrenNode = Array.isArray(
-                  componentNodesMap[displayName].childrenNode,
-                )
-                  ? componentNodesMap[displayName].childrenNode
-                  : []
-                allChildrenNodes.push(...childrenNode)
-              }
-            })
+  const selectAllComponentsHandler = useCallback(() => {
+    switch (FocusManager.getFocus()) {
+      case "none":
+        break
+      case "canvas": {
+        if (canvasRootNode) {
+          const childNodeDisplayNames: string[] = []
+          const rootNode = executionResult.root
+          if (!rootNode) return
+          const currentPageDisplayName =
+            rootNode.pageSortedKey[rootNode.currentPageIndex]
+          const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
+          if (!pageNode) return
+          const sectionContainerNodeDisplayName: string[] = []
+          pageNode.childrenNode.forEach((sectionNode) => {
+            const displayName = sectionNode.displayName
+            const currentSectionProps = executionResult[displayName]
+            if (
+              currentSectionProps &&
+              currentSectionProps.viewSortedKey &&
+              currentSectionProps.currentViewIndex >= 0
+            ) {
+              const { currentViewIndex, viewSortedKey } = currentSectionProps
+              const currentDisplayName = viewSortedKey[currentViewIndex]
+              sectionContainerNodeDisplayName.push(currentDisplayName)
+            }
+          })
+          const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
+          const allChildrenNodes: ComponentNode[] = []
+          sectionContainerNodeDisplayName.forEach((displayName) => {
+            if (componentNodesMap[displayName]) {
+              const childrenNode = Array.isArray(
+                componentNodesMap[displayName].childrenNode,
+              )
+                ? componentNodesMap[displayName].childrenNode
+                : []
+              allChildrenNodes.push(...childrenNode)
+            }
+          })
 
-            allChildrenNodes.forEach((node) => {
-              childNodeDisplayNames.push(node.displayName)
-            })
+          allChildrenNodes.forEach((node) => {
+            childNodeDisplayNames.push(node.displayName)
+          })
 
-            dispatch(
-              configActions.updateSelectedComponent(childNodeDisplayNames),
-            )
-            updateSelectedComponentUsersHandler(childNodeDisplayNames)
-          }
+          dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
+          updateSelectedComponentUsersHandler(childNodeDisplayNames)
         }
       }
+    }
+  }, [canvasRootNode, dispatch, executionResult])
+
+  useHotkeys(
+    `${Key.Control}+a`,
+    () => {
+      selectAllComponentsHandler()
     },
-    [canvasRootNode, executionResult],
+    {
+      preventDefault: true,
+      enabled: isEditMode && isWindows(),
+    },
+    [selectAllComponentsHandler],
   )
 
   useHotkeys(
-    "command+c,command+v,ctrl+c,ctrl+v,command+d,ctrl+d",
-    (keyboardEvent, hotkeysEvent) => {
-      switch (hotkeysEvent.shortcut) {
-        case "ctrl+c":
-        case "command+c":
-          switch (FocusManager.getFocus()) {
-            case "none":
-              break
-            case "canvas":
-            case "dataWorkspace_component":
-              if (
-                currentSelectedComponent != null &&
-                currentSelectedComponentNode.length > 0
-              ) {
-                CopyManager.copyComponentNode(currentSelectedComponentNode)
-              }
-              break
-            case "dataWorkspace_action":
-            case "action":
-              if (currentSelectedAction != null) {
-                CopyManager.copyAction(currentSelectedAction)
-              }
-              break
-            case "widget_picker":
-              break
-            case "components":
-              break
-          }
-          break
-        case "command+v":
-        case "ctrl+v":
-          CopyManager.paste()
-          break
-        case "command+d":
-        case "ctrl+d":
-          keyboardEvent.preventDefault()
-          switch (FocusManager.getFocus()) {
-            case "none":
-              break
-            case "canvas":
-            case "dataWorkspace_component":
-              if (
-                currentSelectedComponent != null &&
-                currentSelectedComponentNode.length > 0
-              ) {
-                CopyManager.copyComponentNode(currentSelectedComponentNode)
-              }
-              break
-            case "dataWorkspace_action":
-            case "action":
-              if (currentSelectedAction != null) {
-                CopyManager.copyAction(currentSelectedAction)
-              }
-              break
-            case "widget_picker":
-              break
-            case "components":
-              break
-          }
-          CopyManager.paste()
-          break
-      }
+    `${Key.Meta}+a`,
+    () => {
+      selectAllComponentsHandler()
     },
-    [currentSelectedComponent, currentSelectedAction],
+    {
+      preventDefault: true,
+      enabled: isEditMode && isMAC(),
+    },
+    [selectAllComponentsHandler],
+  )
+
+  const copySomethingHandler = useCallback(() => {
+    switch (FocusManager.getFocus()) {
+      case "none":
+        break
+      case "canvas":
+      case "dataWorkspace_component":
+        if (
+          currentSelectedComponent != null &&
+          currentSelectedComponentNode.length > 0
+        ) {
+          CopyManager.copyComponentNode(currentSelectedComponentNode)
+        }
+        break
+      case "dataWorkspace_action":
+      case "action":
+        if (currentSelectedAction != null) {
+          CopyManager.copyAction(currentSelectedAction)
+        }
+        break
+      case "widget_picker":
+        break
+      case "components":
+        break
+    }
+  }, [
+    currentSelectedAction,
+    currentSelectedComponent,
+    currentSelectedComponentNode,
+  ])
+
+  useHotkeys(
+    `${Key.Meta}+c`,
+    () => {
+      copySomethingHandler()
+    },
+    {
+      preventDefault: true,
+      enabled: isEditMode && isMAC(),
+    },
+    [copySomethingHandler],
   )
 
   useHotkeys(
-    "*",
-    (keyboardEvent) => {
-      if (keyboardEvent.key === "Meta" || keyboardEvent.key === "Ctrl") {
-        if (keyboardEvent.type === "keydown") {
-          dispatch(configActions.updateShowDot(true))
-        } else if (keyboardEvent.type === "keyup") {
-          dispatch(configActions.updateShowDot(false))
+    `${Key.Control}+c`,
+    () => {
+      copySomethingHandler()
+    },
+    { preventDefault: true, enabled: isEditMode && isWindows() },
+    [copySomethingHandler],
+  )
+
+  useHotkeys(
+    `${Key.Meta}+v`,
+    () => {
+      CopyManager.paste()
+    },
+    {
+      preventDefault: true,
+      enabled: isEditMode && isMAC(),
+    },
+    [copySomethingHandler],
+  )
+
+  useHotkeys(
+    `${Key.Control}+v`,
+    () => {
+      CopyManager.paste()
+    },
+    { preventDefault: true, enabled: isEditMode && isWindows() },
+    [copySomethingHandler],
+  )
+
+  const copyAndPasteHandler = useCallback(() => {
+    switch (FocusManager.getFocus()) {
+      case "none":
+        break
+      case "canvas":
+      case "dataWorkspace_component":
+        if (
+          currentSelectedComponent != null &&
+          currentSelectedComponentNode.length > 0
+        ) {
+          CopyManager.copyComponentNode(currentSelectedComponentNode)
         }
+        break
+      case "dataWorkspace_action":
+      case "action":
+        if (currentSelectedAction != null) {
+          CopyManager.copyAction(currentSelectedAction)
+        }
+        break
+      case "widget_picker":
+        break
+      case "components":
+        break
+    }
+    CopyManager.paste()
+  }, [
+    currentSelectedAction,
+    currentSelectedComponent,
+    currentSelectedComponentNode,
+  ])
+
+  useHotkeys(
+    `${Key.Meta}+d`,
+    () => {
+      copyAndPasteHandler()
+    },
+    {
+      preventDefault: true,
+      enabled: isEditMode && isMAC(),
+    },
+    [copyAndPasteHandler],
+  )
+
+  useHotkeys(
+    `${Key.Control}+d`,
+    () => {
+      copyAndPasteHandler()
+    },
+    { preventDefault: true, enabled: isEditMode && isWindows() },
+    [copyAndPasteHandler],
+  )
+
+  const showDotHandler = useCallback(
+    (keyboardEventType: string) => {
+      if (keyboardEventType === "keydown") {
+        dispatch(configActions.updateShowDot(true))
+      } else if (keyboardEventType === "keyup") {
+        dispatch(configActions.updateShowDot(false))
       }
     },
-    { keydown: true, keyup: true, enabled: isEditMode },
     [dispatch],
+  )
+
+  useHotkeys(
+    Key.Meta,
+    (keyboardEvent) => {
+      showDotHandler(keyboardEvent.type)
+    },
+    {
+      keydown: true,
+      keyup: true,
+      enabled: isEditMode && isMAC(),
+    },
+    [showDotHandler],
+  )
+
+  useHotkeys(
+    Key.Control,
+    (keyboardEvent) => {
+      showDotHandler(keyboardEvent.type)
+    },
+    {
+      keydown: true,
+      keyup: true,
+      preventDefault: true,
+      enabled: isEditMode && isWindows(),
+    },
+    [showDotHandler],
   )
 
   const changeShadowHidden = useCallback(() => {
