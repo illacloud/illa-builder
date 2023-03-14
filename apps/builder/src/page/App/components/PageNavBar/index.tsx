@@ -1,4 +1,5 @@
-import { FC, useCallback, useState } from "react"
+import { motion } from "framer-motion"
+import { FC, MouseEvent, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -9,12 +10,10 @@ import {
   ButtonGroup,
   CaretRightIcon,
   CloseIcon,
-  DownIcon,
   ExitIcon,
   FullScreenIcon,
   InputNumber,
   LockIcon,
-  ResetIcon,
   Trigger,
   UnlockIcon,
   WindowBottomIcon,
@@ -25,6 +24,10 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
+import { ReactComponent as DesktopIcon } from "@/assets/appSize/desktop.svg"
+import { ReactComponent as CustomIcon } from "@/assets/appSize/filter.svg"
+import { ReactComponent as FluidIcon } from "@/assets/appSize/fluid.svg"
+import { ReactComponent as TabletIcon } from "@/assets/appSize/tablet.svg"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
 import {
@@ -37,6 +40,7 @@ import {
 } from "@/page/App/components/DotPanel/renderSection"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
 import {
+  AppSizeType,
   PageNavBarProps,
   PreviewPopContentProps,
 } from "@/page/App/components/PageNavBar/interface"
@@ -57,10 +61,12 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import { fromNow } from "@/utils/dayjs"
 import {
+  appSizeContainerStyle,
+  appSizeIconContainerStyle,
+  appSizeIconStyle,
   closeIconStyle,
   descriptionStyle,
-  downIconStyle,
-  hasMarginClosIconStyle,
+  getAppSizeIconSelectedStyle,
   informationStyle,
   inputAreaLabelWrapperStyle,
   inputAreaWrapperStyle,
@@ -69,20 +75,47 @@ import {
   nameStyle,
   navBarStyle,
   previewButtonGroupWrapperStyle,
-  previewPopContentHeaderStyle,
-  previewPopContentWrapperStyle,
-  resetButtonContentStyle,
-  resetIconStyle,
-  resetLabelStyle,
   rightContentStyle,
   rowCenter,
-  saveButtonWrapperStyle,
   saveFailedTipStyle,
   viewControlStyle,
-  viewportFontStyle,
   windowIconBodyStyle,
   windowIconStyle,
 } from "./style"
+
+const AppSizeIcons = [
+  {
+    type: "fluid",
+    Icon: FluidIcon,
+  },
+  {
+    type: "desktop",
+    Icon: DesktopIcon,
+  },
+  {
+    type: "tablet",
+    Icon: TabletIcon,
+  },
+  {
+    type: "custom",
+    Icon: CustomIcon,
+  },
+]
+
+const defaultAppSize = {
+  fluid: {
+    viewportWidth: undefined,
+    viewportHeight: undefined,
+  },
+  desktop: {
+    viewportWidth: 1280,
+    viewportHeight: undefined,
+  },
+  tablet: {
+    viewportWidth: 1080,
+    viewportHeight: undefined,
+  },
+}
 
 const validateHeight = (currentHeight: number | undefined) => {
   return !(
@@ -99,19 +132,30 @@ const validateWidth = (currentWidth: number | undefined) => {
 }
 
 const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
-  const { viewportHeight, viewportWidth, closePopContent } = props
+  const { viewportHeight, viewportWidth } = props
   const [inputWidth, setInputWidth] = useState(viewportWidth)
   const [inputHeight, setInputHeight] = useState(viewportHeight)
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const message = useMessage()
 
-  const canShowResetButton =
-    typeof viewportWidth != "undefined" || typeof viewportHeight != "undefined"
+  const saveNewViewportSize = useCallback(() => {
+    dispatch(
+      componentsActions.updateViewportSizeReducer({
+        viewportWidth: inputWidth,
+        viewportHeight: inputHeight,
+      }),
+    )
+  }, [dispatch, inputHeight, inputWidth])
 
   const handleUpdateInputWidth = useCallback((value?: number) => {
     setInputWidth(value)
   }, [])
+
+  const handleUpdateInputHeight = useCallback((value?: number) => {
+    setInputHeight(value)
+  }, [])
+
   const handleOnBlurInputHeight = useCallback(() => {
     const isValidate = validateHeight(inputHeight)
     if (!isValidate) {
@@ -122,7 +166,9 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
       })
       return
     }
-  }, [inputHeight, message, t])
+    saveNewViewportSize()
+  }, [inputHeight, message, saveNewViewportSize, t])
+
   const handleOnBlurInputWidth = useCallback(() => {
     const isValidate = validateWidth(inputWidth)
     if (!isValidate) {
@@ -133,154 +179,118 @@ const PreviewPopContent: FC<PreviewPopContentProps> = (props) => {
       })
       return
     }
-  }, [inputWidth, message, t])
-  const handleUpdateInputHeight = useCallback((value?: number) => {
-    setInputHeight(value)
-  }, [])
-
-  const onClickSaveButton = useCallback(() => {
-    const isValidateWidth = validateWidth(inputWidth)
-    const isValidateHeight = validateHeight(inputHeight)
-    if (!isValidateWidth || !isValidateHeight) {
-      return
-    }
-    closePopContent()
-    dispatch(
-      componentsActions.updateViewportSizeReducer({
-        viewportWidth: inputWidth,
-        viewportHeight: inputHeight,
-      }),
-    )
-  }, [closePopContent, dispatch, inputHeight, inputWidth])
-
-  const onClickResetButton = useCallback(() => {
-    dispatch(
-      componentsActions.updateViewportSizeReducer({
-        viewportWidth: undefined,
-        viewportHeight: undefined,
-      }),
-    )
-    setInputHeight(undefined)
-    setInputWidth(undefined)
-  }, [dispatch])
+    saveNewViewportSize()
+  }, [inputWidth, message, saveNewViewportSize, t])
 
   return (
-    <div css={previewPopContentWrapperStyle}>
-      <div css={previewPopContentHeaderStyle}>
-        <span css={resetLabelStyle}>{t("preview.viewport.size")} (Px)</span>
-        {canShowResetButton && (
-          <Button
-            leftIcon={<ResetIcon css={resetIconStyle} />}
-            variant="text"
-            colorScheme="grayBlue"
-            onClick={onClickResetButton}
-          >
-            <span css={resetButtonContentStyle}>
-              {t("preview.viewport.reset")}
-            </span>
-          </Button>
-        )}
+    <div css={inputAreaWrapperStyle}>
+      <div css={inputAreaLabelWrapperStyle}>
+        <span>W</span>
+        <CloseIcon css={closeIconStyle} />
+        <span>H:</span>
       </div>
-      <div css={inputAreaWrapperStyle}>
-        <div css={inputAreaLabelWrapperStyle}>
-          <span>W</span>
-          <CloseIcon css={closeIconStyle} />
-          <span>H:</span>
-        </div>
-        <div css={inputAreaLabelWrapperStyle}>
-          <InputNumber
-            w="80px"
-            colorScheme="techPurple"
-            value={inputWidth}
-            placeholder="--"
-            onChange={handleUpdateInputWidth}
-            onBlur={handleOnBlurInputWidth}
-            min={BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH}
-          />
-          <CloseIcon css={closeIconStyle} />
-          <InputNumber
-            w="80px"
-            colorScheme="techPurple"
-            value={inputHeight}
-            placeholder="--"
-            onChange={handleUpdateInputHeight}
-            onBlur={handleOnBlurInputHeight}
-            min={BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT}
-          />
-        </div>
-      </div>
-      <div css={saveButtonWrapperStyle}>
-        <Button fullWidth colorScheme="grayBlue" onClick={onClickSaveButton}>
-          {t("preview.viewport.save")}
-        </Button>
+      <div css={inputAreaLabelWrapperStyle}>
+        <InputNumber
+          w="100px"
+          colorScheme="techPurple"
+          value={inputWidth}
+          placeholder="--"
+          onChange={handleUpdateInputWidth}
+          onBlur={handleOnBlurInputWidth}
+          min={BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH}
+          suffix="px"
+          hideControl
+        />
+        <CloseIcon css={closeIconStyle} />
+        <InputNumber
+          w="100px"
+          colorScheme="techPurple"
+          value={inputHeight}
+          placeholder="--"
+          suffix="px"
+          hideControl
+          onChange={handleUpdateInputHeight}
+          onBlur={handleOnBlurInputHeight}
+          min={BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT}
+        />
       </div>
     </div>
   )
 }
 
-const PreviewButtonGroup: FC = () => {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
+const AppSizeButtonGroup: FC = () => {
   const viewportSize = useSelector(getViewportSizeSelector)
-  const [popContentVisible, setPopContentVisible] = useState(false)
-  const closePopContent = useCallback(() => {
-    setPopContentVisible(false)
-  }, [])
-  const isEditMode = useSelector(getIsILLAEditMode)
+  const [appSizeType, setAppSizeType] = useState<AppSizeType>("fluid")
+  const dispatch = useDispatch()
+
+  const showCustomInputs = appSizeType === "custom"
+
+  const updateAppSize = useCallback(
+    ({
+      viewportWidth,
+      viewportHeight,
+    }: {
+      viewportWidth?: number
+      viewportHeight?: number
+    }) => {
+      dispatch(
+        componentsActions.updateViewportSizeReducer({
+          viewportWidth,
+          viewportHeight,
+        }),
+      )
+    },
+    [dispatch],
+  )
+
+  const handleAppSizeTypeChange = useCallback(
+    (e: MouseEvent<HTMLSpanElement>) => {
+      const newType = e.currentTarget.dataset.key as AppSizeType
+      setAppSizeType(newType)
+      if (newType !== "custom") {
+        updateAppSize(defaultAppSize[newType])
+      }
+    },
+    [updateAppSize],
+  )
 
   return (
     <div css={previewButtonGroupWrapperStyle}>
-      <Trigger
-        trigger="click"
-        content={
+      <div css={appSizeContainerStyle}>
+        {AppSizeIcons.map((info) => {
+          const { Icon, type } = info
+          return (
+            <span
+              key={type}
+              data-key={type}
+              css={appSizeIconContainerStyle}
+              onClick={handleAppSizeTypeChange}
+            >
+              <span
+                css={[
+                  appSizeIconStyle,
+                  getAppSizeIconSelectedStyle(appSizeType === type),
+                ]}
+              >
+                <Icon />
+              </span>
+            </span>
+          )
+        })}
+      </div>
+      {showCustomInputs && (
+        <motion.div
+          initial={{ display: "none" }}
+          animate={{ display: "flex" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          exit={{ display: "none" }}
+        >
           <PreviewPopContent
             viewportHeight={viewportSize.viewportHeight}
             viewportWidth={viewportSize.viewportWidth}
-            closePopContent={closePopContent}
           />
-        }
-        popupVisible={popContentVisible}
-        onVisibleChange={setPopContentVisible}
-        position="bottom-start"
-        showArrow={false}
-        withoutPadding
-        colorScheme="white"
-      >
-        <Button
-          colorScheme="grayBlue"
-          variant="fill"
-          bdRadius="8px 0 0 8px"
-          rightIcon={<DownIcon css={downIconStyle} />}
-        >
-          <span css={viewportFontStyle}>
-            {viewportSize.viewportWidth
-              ? viewportSize.viewportWidth + "px"
-              : "--"}
-          </span>
-          <CloseIcon css={hasMarginClosIconStyle} />
-          <span css={viewportFontStyle}>
-            {viewportSize.viewportHeight
-              ? viewportSize.viewportHeight + "px"
-              : "--"}
-          </span>
-        </Button>
-      </Trigger>
-      <span css={lineStyle} />
-      <Button
-        colorScheme="grayBlue"
-        leftIcon={isEditMode ? <FullScreenIcon /> : <ExitIcon />}
-        variant="fill"
-        bdRadius="0 8px 8px 0"
-        onClick={() => {
-          if (isEditMode) {
-            dispatch(configActions.updateIllaMode("preview"))
-          } else {
-            dispatch(configActions.updateIllaMode("edit"))
-          }
-        }}
-      >
-        {isEditMode ? t("preview.button_text") : t("exit_preview")}
-      </Button>
+        </motion.div>
+      )}
     </div>
   )
 }
@@ -299,12 +309,13 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const debuggerVisible = useSelector(isOpenDebugger)
   const isFreezeCanvas = useSelector(getFreezeState)
   const isOnline = useSelector(getIsOnline)
-
   const debuggerData = useSelector(getExecutionDebuggerData)
-
   const isEditMode = useSelector(getIsILLAEditMode)
-
   const [deployLoading, setDeployLoading] = useState(false)
+
+  const previewButtonText = isEditMode
+    ? t("preview.button_text")
+    : t("exit_preview")
 
   const handleClickLeftWindowIcon = useCallback(() => {
     dispatch(configActions.updateLeftPanel(!leftPanelVisible))
@@ -353,6 +364,29 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     )
   }, [appInfo.appId, message, t, teamIdentifier])
 
+  const handlePreviewButtonClick = useCallback(() => {
+    if (isEditMode) {
+      dispatch(configActions.updateIllaMode("preview"))
+    } else {
+      dispatch(configActions.updateIllaMode("edit"))
+    }
+  }, [dispatch, isEditMode])
+
+  const PreviewButton = useMemo(
+    () => (
+      <Button
+        colorScheme="grayBlue"
+        leftIcon={isEditMode ? <FullScreenIcon /> : <ExitIcon />}
+        variant="fill"
+        bdRadius="8px"
+        onClick={handlePreviewButtonClick}
+      >
+        {previewButtonText}
+      </Button>
+    ),
+    [handlePreviewButtonClick, isEditMode, previewButtonText],
+  )
+
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
@@ -395,15 +429,16 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             >
               <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
             </span>
+            <span css={lineStyle} />
           </>
         )}
-        <PreviewButtonGroup />
+        <AppSizeButtonGroup />
       </div>
       <div css={rightContentStyle}>
         <CollaboratorsList />
-        {isEditMode && (
+        {isEditMode ? (
           <div>
-            <ButtonGroup spacing={"8px"}>
+            <ButtonGroup spacing="8px">
               <Badge count={debuggerData && Object.keys(debuggerData).length}>
                 <Button
                   colorScheme="gray"
@@ -444,6 +479,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                   onClick={handleClickFreezeIcon}
                 />
               </Trigger>
+              {PreviewButton}
               <Button
                 loading={deployLoading}
                 colorScheme="techPurple"
@@ -455,6 +491,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               </Button>
             </ButtonGroup>
           </div>
+        ) : (
+          <>{PreviewButton}</>
         )}
       </div>
     </div>
