@@ -28,7 +28,10 @@ import {
   moveBarDisplayNameStyle,
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { getFreezeState } from "@/redux/config/configSelector"
+import {
+  getFreezeState,
+  getIsLikeProductMode,
+} from "@/redux/config/configSelector"
 import {
   AVATAR_GAP,
   AVATAR_WIDTH,
@@ -74,13 +77,13 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     isError,
     maxWidth,
     selected,
-    isEditor,
     widgetTop,
     widgetHeight,
     containerHeight,
     containerPadding,
     widgetType,
     userList,
+    isMouseOver,
   } = props
 
   const { t } = useTranslation()
@@ -88,6 +91,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
   const [currentState, setCurrentState] = useState<string>("right")
   const [containerRef, bounds] = useMeasure()
   const containerWidthRef = useRef(0)
+  const isLikeProductionMode = useSelector(getIsLikeProductMode)
 
   useEffect(() => {
     if (bounds.width > containerWidthRef.current) {
@@ -138,9 +142,11 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
         minWidth,
         isError,
         selected,
-        isEditor,
+        isLikeProductionMode,
         position,
         isFreezeCanvas,
+        !!userList.length,
+        isMouseOver,
       )}
       id="moveBar"
       ref={containerRef}

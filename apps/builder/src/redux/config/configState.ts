@@ -27,6 +27,8 @@ export interface ConfigState {
   isOnline: boolean
   wsStatus: Record<ILLA_WEBSOCKET_CONTEXT, ILLA_WEBSOCKET_STATUS>
   isDragging: boolean
+  isResizing: boolean
+  hoveredComponents: string[]
 }
 
 export const ConfigInitialState: ConfigState = {
@@ -46,6 +48,8 @@ export const ConfigInitialState: ConfigState = {
   canvasWidth: 1920,
   isOnline: true,
   isDragging: false,
+  isResizing: false,
+  hoveredComponents: [],
   wsStatus: {
     [ILLA_WEBSOCKET_CONTEXT.DASHBOARD]: ILLA_WEBSOCKET_STATUS.INIT,
     [ILLA_WEBSOCKET_CONTEXT.APP]: ILLA_WEBSOCKET_STATUS.INIT,

@@ -213,7 +213,7 @@
           },
           "restapi": {
             "verification_mode": {
-              "skip_ca_certificate": "Your server may be vulnerable to attacks."
+              "skip_ca_certificate": "서버가 공격에 취약할 수 있습니다"
             }
           }
         },
@@ -639,6 +639,13 @@
             "headers": "Headers",
             "response": "Response"
           }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
         }
       },
       "resource": {
@@ -772,7 +779,9 @@
             "scopes": "범위",
             "share_oauth2_credentials_between_users": "사용자 간에 OAuth2.0 자격 증명 공유",
             "url_parameters": "URL 매개변수",
-            "use_client_credentials_auth": "클라이언트 자격 증명을 사용하여 인증"
+            "use_client_credentials_auth": "클라이언트 자격 증명을 사용하여 인증",
+            "digest_auth_username": "사용자 이름",
+            "digest_auth_password": "비밀번호"
           },
           "option": {
             "authentication": {

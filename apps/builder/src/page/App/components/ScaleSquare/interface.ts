@@ -29,9 +29,9 @@ export interface ScaleSquarePropsWithJSON {
 export interface MoveBarProps {
   displayName: string
   isError: boolean
+  isMouseOver: boolean
   maxWidth: number
   selected: boolean
-  isEditor: boolean
   widgetTop: number
   widgetHeight: number
   containerHeight: number

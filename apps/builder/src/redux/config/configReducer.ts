@@ -149,10 +149,24 @@ export const updateDraggingStateReducer: CaseReducer<
   state.isDragging = action.payload
 }
 
+export const updateResizingStateReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<boolean>
+> = (state, action) => {
+  state.isResizing = action.payload
+}
+
 export const updateWSStatusReducer: CaseReducer<
   ConfigState,
   PayloadAction<UpdateWSStatusPayload>
 > = (state, action) => {
   const { context, wsStatus } = action.payload
   state.wsStatus[context] = wsStatus
+}
+
+export const updateHoveredComponent: CaseReducer<
+  ConfigState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  state.hoveredComponents = action.payload
 }

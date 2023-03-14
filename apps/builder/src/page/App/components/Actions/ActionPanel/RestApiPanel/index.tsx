@@ -1,19 +1,21 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  Input,
-  Select,
-  SelectOptionObject,
-  SelectValue,
-  Trigger,
-} from "@illa-design/react"
+import { Select, SelectValue, Trigger } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
+import {
+  actionItemContainer,
+  restapiItemInputStyle,
+  restapiItemLabelStyle,
+  restapiItemStyle,
+  restapiPanelContainerStyle,
+  urlStyle,
+} from "@/page/App/components/Actions/ActionPanel/RestApiPanel/style"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
   getCachedAction,
@@ -36,22 +38,16 @@ import {
 } from "@/redux/resource/restapiResource"
 import { RootState } from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import {
-  actionItemContainer,
-  restapiItemInputStyle,
-  restapiItemLabelStyle,
-  restapiItemStyle,
-  restapiPanelContainerStyle,
-  urlStyle,
-} from "./style"
 
 const huggingFaceMethodSelectOptions: ApiMethod[] = ["POST"]
 const resetAPIMethodSelectOptions: ApiMethod[] = [
   "GET",
   "POST",
   "PUT",
+  "HEAD",
   "PATCH",
   "DELETE",
+  "OPTIONS",
 ]
 
 const getMethod = (actionType: ActionType) => {
@@ -137,7 +133,7 @@ export const RestApiPanel: FC = () => {
             onChange={handleChangeMethod}
           />
           <Trigger
-            position={"top-start"}
+            position="top-start"
             content={
               currentResource?.content
                 ? isHuggingFace
@@ -353,7 +349,9 @@ export const RestApiPanel: FC = () => {
             )
           }}
         />
-        {content.method !== "GET" && <BodyEditor actionItem={cachedAction} />}
+        {!["GET", "HEAD"].includes(content.method) && (
+          <BodyEditor actionItem={cachedAction} />
+        )}
         <TransformerComponent />
       </div>
       <ActionEventHandler />

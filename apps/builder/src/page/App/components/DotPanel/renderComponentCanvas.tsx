@@ -11,17 +11,16 @@ import {
   useRef,
   useState,
 } from "react"
-import { useDrop } from "react-dnd"
+import { DropTargetMonitor, useDragDropManager, useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
+  MoveDragResult,
   getDragResult,
-  getReflowResult,
   isAddAction,
 } from "@/page/App/components/DotPanel/calc"
 import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
 import {
-  DebounceUpdateReflow,
   DragInfo,
   DropCollectedInfo,
   DropResultInfo,
@@ -32,6 +31,10 @@ import {
   applyComponentCanvasStyle,
   borderLineStyle,
 } from "@/page/App/components/DotPanel/style"
+import {
+  getScaleItem,
+  moveCallback,
+} from "@/page/App/components/DotPanel/utils"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import {
   getFreezeState,
@@ -165,6 +168,8 @@ export const RenderComponentCanvas: FC<{
     sectionName,
   } = props
 
+  const autoScrollTimeID = useRef<number>()
+
   const isShowCanvasDot = useSelector(isShowDot)
   const isEditMode = useSelector(getIsILLAEditMode)
   const isProductionMode = useSelector(getIsILLAProductMode)
@@ -184,6 +189,7 @@ export const RenderComponentCanvas: FC<{
   const [collisionEffect, setCollisionEffect] = useState(
     new Map<string, ComponentNode>(),
   )
+  const dragDropManager = useDragDropManager()
 
   const [ShowColumnsChange, setShowColumnsChange] = useState(false)
   const canShowColumnsTimeoutChange = useRef<number | null>(null)
@@ -255,6 +261,8 @@ export const RenderComponentCanvas: FC<{
   const currentCanvasRef = useRef<HTMLDivElement | null>(
     null,
   ) as MutableRefObject<HTMLDivElement | null>
+  const canvasBoundingClientRect =
+    currentCanvasRef.current?.getBoundingClientRect()
 
   const unitWidth = useMemo(() => {
     return bounds.width / blockColumns
@@ -321,6 +329,45 @@ export const RenderComponentCanvas: FC<{
     }, 60)
   }, [dispatch])
 
+  const moveEffect = useCallback(
+    (
+      dragResult: MoveDragResult,
+      reflowUpdateSlice: UpdateComponentNodeLayoutInfoPayload[] | undefined,
+      newEffectResultMap: Map<string, ComponentNode>,
+      itemHeight: number,
+    ) => {
+      const { ladingPosition, rectCenterPosition } = dragResult
+      const { landingX, landingY, isOverstep } = ladingPosition
+      setXY([rectCenterPosition.x, rectCenterPosition.y])
+      setLunchXY([landingX, landingY])
+      setCanDrop(isOverstep)
+      setRowNumber((prevState) => {
+        if (
+          canResizeY &&
+          landingY / UNIT_HEIGHT + itemHeight > prevState - safeRowNumber
+        ) {
+          return landingY / UNIT_HEIGHT + itemHeight + safeRowNumber
+        } else {
+          return prevState
+        }
+      })
+      if (!isFreezeCanvas) {
+        setCollisionEffect(new Map())
+      } else {
+        setCollisionEffect(newEffectResultMap)
+      }
+      if (reflowUpdateSlice) {
+        throttleUpdateComponentPositionByReflow(reflowUpdateSlice)
+      }
+    },
+    [
+      canResizeY,
+      isFreezeCanvas,
+      safeRowNumber,
+      throttleUpdateComponentPositionByReflow,
+    ],
+  )
+
   const [{ isActive, nodeWidth, nodeHeight }, dropTarget] = useDrop<
     DragInfo,
     DropResultInfo,
@@ -336,139 +383,29 @@ export const RenderComponentCanvas: FC<{
           setCollisionEffect(new Map())
         }
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
-          const { item, currentColumnNumber } = dragInfo
-          const scale = blockColumns / currentColumnNumber
-
-          let scaleItem: ComponentNode = {
-            ...item,
-            w:
-              Math.ceil(item.w * scale) < item.minW
-                ? item.minW
-                : Math.ceil(item.w * scale),
-          }
-          let dragResult
-          if (
-            isAddAction(
-              item.x,
-              item.y,
-              item.parentNode,
-              componentNode.displayName,
-            )
-          ) {
-            dragResult = getDragResult(
-              monitor,
-              containerRef,
-              scaleItem,
-              unitWidth,
-              UNIT_HEIGHT,
-              bounds.width,
-              "ADD",
-              bounds.height,
-              canResizeY,
-              containerPadding,
-              containerPadding,
-            )
-          } else {
-            dragResult = getDragResult(
-              monitor,
-              containerRef,
-              item,
-              unitWidth,
-              UNIT_HEIGHT,
-              bounds.width,
-              "UPDATE",
-              bounds.height,
-              canResizeY,
-              containerPadding,
-              containerPadding,
-            )
-          }
-          const { ladingPosition, rectCenterPosition } = dragResult
-          const { landingX, landingY, isOverstep } = ladingPosition
-
-          /**
-           * add rows when node over canvas
-           */
-          if (
-            canResizeY &&
-            landingY / UNIT_HEIGHT + item.h > rowNumber - safeRowNumber
-          ) {
-            const finalNumber = landingY / UNIT_HEIGHT + item.h + safeRowNumber
-            setRowNumber(finalNumber)
-          }
-
-          let childrenNodes = dragInfo.childrenNodes.filter(
-            (node) => node.parentNode === componentNode.displayName,
+          const {
+            dragResult,
+            reflowUpdateSlice,
+            newEffectResultMap,
+            scaleItem,
+          } = moveCallback(
+            dragInfo,
+            blockColumns,
+            componentNode.displayName,
+            monitor,
+            containerRef,
+            unitWidth,
+            canvasBoundingClientRect,
+            canResizeY,
+            containerPadding,
+            isFreezeCanvas,
           )
-          const indexOfChildrenNodes = childrenNodes.findIndex(
-            (node) => node.displayName === item.displayName,
+          moveEffect(
+            dragResult,
+            reflowUpdateSlice,
+            newEffectResultMap,
+            scaleItem.h,
           )
-          let finalChildrenNodes: ComponentNode[] = []
-          let finalEffectResultMap: Map<string, ComponentNode> = new Map()
-          /**
-           * generate component node with new position
-           */
-          const oldParentDisplayName = item.parentNode
-          const newItem = {
-            ...scaleItem,
-            parentNode: componentNode.displayName || "root",
-            x: Math.round(landingX / unitWidth),
-            y: Math.round(landingY / UNIT_HEIGHT),
-            unitW: unitWidth,
-            unitH: UNIT_HEIGHT,
-          }
-
-          if (item.type !== "MODAL_WIDGET") {
-            /**
-             * only when add component nodes
-             */
-            if (indexOfChildrenNodes === -1) {
-              const allChildrenNodes = [...childrenNodes, newItem]
-              const { finalState, effectResultMap } = getReflowResult(
-                newItem,
-                allChildrenNodes,
-                true,
-              )
-              finalChildrenNodes = finalState
-              finalEffectResultMap = effectResultMap
-            } else {
-              const indexOfChildren = childrenNodes.findIndex(
-                (node) => node.displayName === newItem.displayName,
-              )
-              const allChildrenNodes = [...childrenNodes]
-              allChildrenNodes.splice(indexOfChildren, 1, newItem)
-              const { finalState, effectResultMap } = getReflowResult(
-                newItem,
-                allChildrenNodes,
-                true,
-              )
-              finalChildrenNodes = finalState
-              finalEffectResultMap = effectResultMap
-            }
-          }
-
-          if (!isFreezeCanvas) {
-            const updateSlice: UpdateComponentNodeLayoutInfoPayload[] =
-              finalChildrenNodes.map((node) => {
-                return {
-                  displayName: node.displayName,
-                  layoutInfo: {
-                    x: node.x,
-                    y: node.y,
-                    w: node.w,
-                    h: node.h,
-                    unitW: node.unitW,
-                  },
-                }
-              })
-            throttleUpdateComponentPositionByReflow(updateSlice)
-            setCollisionEffect(new Map())
-          } else {
-            setCollisionEffect(finalEffectResultMap)
-          }
-          setXY([rectCenterPosition.x, rectCenterPosition.y])
-          setLunchXY([landingX, landingY])
-          setCanDrop(isOverstep)
         }
       },
       drop: (dragInfo, monitor) => {
@@ -485,25 +422,22 @@ export const RenderComponentCanvas: FC<{
         }
 
         if (monitor.getClientOffset()) {
-          const scale = blockColumns / currentColumnNumber
+          let scaleItem: ComponentNode = getScaleItem(
+            blockColumns,
+            currentColumnNumber,
+            item,
+          )
 
-          let scaleItem: ComponentNode = {
-            ...item,
-            w:
-              Math.ceil(item.w * scale) < item.minW
-                ? item.minW
-                : Math.ceil(item.w * scale),
-          }
+          const actionName = isAddAction(
+            item.x,
+            item.y,
+            item.parentNode,
+            componentNode.displayName,
+          )
+            ? "ADD"
+            : "UPDATE"
 
-          let dragResult
-          if (
-            isAddAction(
-              item.x,
-              item.y,
-              item.parentNode,
-              componentNode.displayName,
-            )
-          ) {
+          if (actionName === "ADD") {
             const displayNameMapComponent: Record<string, ComponentNode> = {}
             buildDisplayNameMapComponentNode(scaleItem, displayNameMapComponent)
             if (
@@ -532,34 +466,21 @@ export const RenderComponentCanvas: FC<{
                 }
               })
             }
-            dragResult = getDragResult(
-              monitor,
-              containerRef,
-              scaleItem,
-              unitWidth,
-              UNIT_HEIGHT,
-              bounds.width,
-              "ADD",
-              bounds.height,
-              canResizeY,
-              containerPadding,
-              containerPadding,
-            )
-          } else {
-            dragResult = getDragResult(
-              monitor,
-              containerRef,
-              scaleItem,
-              unitWidth,
-              UNIT_HEIGHT,
-              bounds.width,
-              "UPDATE",
-              bounds.height,
-              canResizeY,
-              containerPadding,
-              containerPadding,
-            )
           }
+
+          let dragResult = getDragResult(
+            monitor,
+            containerRef,
+            scaleItem,
+            unitWidth,
+            UNIT_HEIGHT,
+            bounds.width,
+            actionName,
+            bounds.height,
+            canResizeY,
+            containerPadding,
+            containerPadding,
+          )
           const { ladingPosition } = dragResult
           const { landingX, landingY } = ladingPosition
 
@@ -733,6 +654,97 @@ export const RenderComponentCanvas: FC<{
     rowNumber,
   ])
 
+  const throttleScrollEffect = useMemo(() => {
+    return throttle(
+      (
+        dragInfo: DragInfo,
+        monitor: DropTargetMonitor<DragInfo, DropResultInfo>,
+      ) => {
+        const { dragResult, reflowUpdateSlice, newEffectResultMap, scaleItem } =
+          moveCallback(
+            dragInfo,
+            blockColumns,
+            componentNode.displayName,
+            monitor,
+            containerRef,
+            unitWidth,
+            canvasBoundingClientRect,
+            canResizeY,
+            containerPadding,
+            isFreezeCanvas,
+          )
+        moveEffect(
+          dragResult,
+          reflowUpdateSlice,
+          newEffectResultMap,
+          scaleItem.h,
+        )
+      },
+      1,
+    )
+  }, [
+    blockColumns,
+    canResizeY,
+    canvasBoundingClientRect,
+    componentNode.displayName,
+    containerPadding,
+    containerRef,
+    isFreezeCanvas,
+    moveEffect,
+    unitWidth,
+  ])
+
+  useEffect(() => {
+    if (!containerRef.current) return
+
+    const dragInfo = dragDropManager.getMonitor().getItem()
+    const monitor = dragDropManager.getMonitor() as any
+
+    const scrollHandler = () => {
+      if (dragInfo && monitor) {
+        throttleScrollEffect(dragInfo, monitor)
+      }
+    }
+    containerRef.current.addEventListener("scroll", scrollHandler)
+
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      containerRef.current?.removeEventListener("scroll", scrollHandler)
+    }
+  }, [containerRef, dragDropManager, throttleScrollEffect])
+
+  useEffect(() => {
+    if (!currentCanvasRef.current) return
+    const autoScroll = (e: MouseEvent) => {
+      if (!isActive || !containerRef.current) return
+      const { top, bottom } = containerRef.current.getBoundingClientRect()
+      const { clientY } = e
+
+      window.clearInterval(autoScrollTimeID.current)
+      autoScrollTimeID.current = window.setInterval(() => {
+        if (clientY < top + 50) {
+          containerRef.current!.scrollBy({
+            top: -10,
+          })
+        }
+        if (clientY > bottom - 50) {
+          containerRef.current!.scrollBy({
+            top: 10,
+          })
+        }
+      }, 1)
+    }
+
+    currentCanvasRef.current?.addEventListener("mousemove", autoScroll)
+
+    return () => {
+      if (currentCanvasRef.current) {
+        currentCanvasRef.current?.removeEventListener("mousemove", autoScroll)
+      }
+      window.clearInterval(autoScrollTimeID.current)
+    }
+  }, [containerRef, isActive])
+
   if (
     isEditMode &&
     componentNode.type === "CANVAS" &&
@@ -751,6 +763,7 @@ export const RenderComponentCanvas: FC<{
         canvasRef(node)
       }}
       id="realCanvas"
+      className="illa-canvas"
       css={applyComponentCanvasStyle(
         bounds.width,
         bounds.height,

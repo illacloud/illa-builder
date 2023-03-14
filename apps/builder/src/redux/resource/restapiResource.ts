@@ -4,7 +4,9 @@ export interface Params {
   [key: string]: string
 }
 
-export type RestApiAuthType = "none" | "basic" | "bearer"
+export type RestApiAuthType = "none" | "basic" | "bearer" | "digest"
+
+export type VerifyMode = "verify-full" | "verify-ca" | "skip"
 
 export interface RestApiResource<T extends RestApiAuth> {
   baseUrl: string
@@ -12,10 +14,50 @@ export interface RestApiResource<T extends RestApiAuth> {
   headers: Params[]
   cookies: Params[]
   authentication: RestApiAuthType
+  selfSignedCert: boolean
+  certs: {
+    caCert: string
+    clientKey: string
+    clientCert: string
+    mode: VerifyMode
+  }
   authContent: T
 }
 
-export type RestApiAuth = BasicAuth | BearerAuth
+export const RestApiResourceInit: RestApiResource<RestApiAuth> = {
+  baseUrl: "",
+  urlParams: [
+    {
+      key: "",
+      value: "",
+    },
+  ],
+  headers: [
+    {
+      key: "",
+      value: "",
+    },
+  ],
+  cookies: [
+    {
+      key: "",
+      value: "",
+    },
+  ],
+  authentication: "none",
+  selfSignedCert: false,
+  certs: {
+    caCert: "",
+    clientKey: "",
+    clientCert: "",
+    mode: "verify-full",
+  },
+  authContent: {},
+}
+
+export type RestApiAuth = NoneAuth | BasicAuth | BearerAuth | DigestAuth
+
+export interface NoneAuth {}
 
 export interface BasicAuth {
   username: string
@@ -24,4 +66,9 @@ export interface BasicAuth {
 
 export interface BearerAuth {
   token: string
+}
+
+export interface DigestAuth {
+  username: string
+  password: string
 }

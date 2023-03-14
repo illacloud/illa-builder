@@ -8,7 +8,7 @@ import {
 } from "react"
 import useMeasure from "react-use-measure"
 import { applyComponentCanvasStyle } from "@/page/App/components/DotPanel/style"
-import { ScaleSquareWithJSON } from "@/page/App/components/ScaleSquare"
+import { ScaleSquareWithJSON } from "@/page/App/components/ScaleSquare/scaleSquareWithJSON"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"

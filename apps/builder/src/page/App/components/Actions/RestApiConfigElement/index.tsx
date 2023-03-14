@@ -1,265 +1,133 @@
 import { FC, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import {
+  Alert,
   Button,
   ButtonGroup,
   Divider,
-  Input,
   PreviousIcon,
-  Select,
-  getColor,
-  useMessage,
 } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
 import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
+import { DigestAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/DigestAuthPanel"
 import {
-  configItem,
-  configItemTip,
-  labelContainer,
-  optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
-import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource } from "@/redux/resource/resourceState"
+  AuthenticationOptions,
+  VerificationModeOptions,
+} from "@/page/App/components/Actions/RestApiConfigElement/values"
+import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
 import {
-  BasicAuth,
-  BearerAuth,
-  RestApiAuth,
-  RestApiAuthType,
-  RestApiResource,
-} from "@/redux/resource/restapiResource"
-import { RootState } from "@/store"
-import { RestApiConfigElementProps } from "./interface"
-import {
-  applyConfigItemLabelText,
   container,
   divider,
   footerStyle,
-} from "./style"
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
+import { Resource } from "@/redux/resource/resourceState"
+import {
+  RestApiAuth,
+  RestApiResource,
+  RestApiResourceInit,
+} from "@/redux/resource/restapiResource"
+import { RootState } from "@/store"
+import { validate } from "@/utils/form"
+import { RestApiConfigElementProps } from "./interface"
 
-function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
-  let authContent: RestApiAuth | null = null
-  switch (data.authentication) {
-    case "basic":
-      authContent = {
-        username: data.username,
-        password: data.password,
-      }
-      break
-    case "bearer":
-      authContent = {
-        token: data.token,
-      }
-      break
-    default:
-      break
-  }
-  return authContent
+const RestApiAuthTypeComponentMap = {
+  none: null,
+  basic: BasicAuthPanel,
+  bearer: BearerAuthPanel,
+  digest: DigestAuthPanel,
 }
 
 export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
   const { onBack, onFinished, resourceId } = props
 
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const message = useMessage()
-
-  const { control, handleSubmit, formState } = useForm({
+  const { control, handleSubmit, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
-
   const resource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId) as Resource<
       RestApiResource<RestApiAuth>
     >
   })
+  const content = resource?.content ?? RestApiResourceInit
 
   const [saving, setSaving] = useState(false)
 
-  const [authType, setAuthType] = useState(
-    resource?.content.authentication ?? "none",
+  const showCertificates = (watch("baseUrl", content.baseUrl) ?? "").startsWith(
+    "https://",
   )
+  const showCertificatesConfig = watch(
+    "selfSignedCert",
+    content?.selfSignedCert,
+  )
+  const showSkipVerify = watch("mode", content.certs?.mode) === "skip"
+  const authType = watch("authentication", content.authentication)
+
+  const SubPanelComponent =
+    RestApiAuthTypeComponentMap[
+      authType as keyof typeof RestApiAuthTypeComponentMap
+    ]
 
   return (
     <form
-      onSubmit={handleSubmit((data, event) => {
-        if (resourceId != undefined) {
-          BuilderApi.teamRequest<Resource<RestApiResource<RestApiAuth>>>(
-            {
-              method: "PUT",
-              url: `/resources/${resourceId}`,
-              data: {
-                resourceId: data.resourceId,
-                resourceName: data.resourceName,
-                resourceType: "restapi",
-                content: {
-                  baseUrl: data.baseUrl,
-                  urlParams: data.urlParams,
-                  headers: data.headers,
-                  cookies: data.cookies,
-                  authentication: data.authentication,
-                  authContent: generateAuthContent(data),
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.updateResourceItemReducer(response.data))
-              message.success({
-                content: t("dashboard.resource.save_success"),
-              })
-              onFinished(response.data.resourceId)
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        } else {
-          BuilderApi.teamRequest<Resource<RestApiResource<RestApiAuth>>>(
-            {
-              method: "POST",
-              url: `/resources`,
-              data: {
-                resourceName: data.resourceName,
-                resourceType: "restapi",
-                content: {
-                  baseUrl: data.baseUrl,
-                  urlParams: data.urlParams,
-                  headers: data.headers,
-                  cookies: data.cookies,
-                  authentication: data.authentication,
-                  authContent: generateAuthContent(data),
-                },
-              },
-            },
-            (response) => {
-              onFinished(response.data.resourceId)
-              dispatch(resourceActions.addResourceItemReducer(response.data))
-              message.success({
-                content: t("dashboard.resource.save_success"),
-              })
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        }
-      })}
+      onSubmit={onActionConfigElementSubmit(
+        handleSubmit,
+        resourceId,
+        "restapi",
+        onFinished,
+        setSaving,
+      )}
     >
       <div css={container}>
         <div css={divider} />
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.restapi.label.name")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={resource?.resourceName ?? ""}
-            rules={{
-              validate: (value) => value != undefined && value.trim() != "",
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                colorScheme="techPurple"
-                placeholder={t(
-                  "editor.action.resource.restapi.placeholder.name",
-                )}
-              />
-            )}
-            name="resourceName"
-          />
-        </div>
-        <div css={configItemTip}>
-          {t("editor.action.resource.restapi.tip.name")}
-        </div>
+        <ControlledElement
+          controlledType="input"
+          isRequired
+          title={t("editor.action.resource.db.label.name")}
+          control={control}
+          defaultValue={resource?.resourceName ?? ""}
+          rules={[
+            {
+              validate,
+            },
+          ]}
+          placeholders={[t("editor.action.resource.db.placeholder.name")]}
+          name="resourceName"
+          tips={t("editor.action.resource.restapi.tip.name")}
+        />
         <Divider
           direction="horizontal"
           ml="24px"
           mr="24px"
-          mt="16px"
+          mt="8px"
           mb="8px"
           w="unset"
         />
         <div css={optionLabelStyle}>
-          {t("editor.action.resource.restapi.title.advanced_option")}
+          {t("editor.action.resource.db.title.general_option")}
         </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.restapi.label.base_url")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={resource?.content.baseUrl ?? ""}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                colorScheme="techPurple"
-                placeholder={t(
-                  "editor.action.resource.restapi.placeholder.base_url",
-                )}
-              />
-            )}
-            name="baseUrl"
-          />
-        </div>
+        <ControlledElement
+          title={t("editor.action.resource.restapi.label.base_url")}
+          defaultValue={content.baseUrl}
+          isRequired
+          name="baseUrl"
+          controlledType="input"
+          control={control}
+          rules={[{ required: true }]}
+          placeholders={[
+            t("editor.action.resource.restapi.placeholder.base_url"),
+          ]}
+        />
         <Controller
           control={control}
-          defaultValue={
-            resource?.content.urlParams ?? [
-              {
-                key: "",
-                value: "",
-              },
-            ]
-          }
-          render={({ field: { value, onChange, onBlur } }) => (
+          defaultValue={content.urlParams}
+          render={({ field: { value, onChange } }) => (
             <InputRecordEditor
               label={t("editor.action.resource.restapi.label.url_parameters")}
               records={value}
@@ -290,14 +158,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
         />
         <Controller
           control={control}
-          defaultValue={
-            resource?.content.headers ?? [
-              {
-                key: "",
-                value: "",
-              },
-            ]
-          }
+          defaultValue={content.headers}
           render={({ field: { value, onChange } }) => (
             <InputRecordEditor
               label={t("editor.action.resource.restapi.label.headers")}
@@ -329,14 +190,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
         />
         <Controller
           control={control}
-          defaultValue={
-            resource?.content.cookies ?? [
-              {
-                key: "",
-                value: "",
-              },
-            ]
-          }
+          defaultValue={content.cookies}
           render={({ field: { value, onChange } }) => (
             <InputRecordEditor
               label={t("editor.action.resource.restapi.label.cookies")}
@@ -366,48 +220,88 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           )}
           name="cookies"
         />
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.restapi.label.authentication")}
-            </span>
-          </div>
-          <Controller
+        {showCertificates && (
+          <ControlledElement
+            title={t("editor.action.form.label.restapi.certificates")}
+            defaultValue={content?.selfSignedCert ?? false}
+            name="selfSignedCert"
+            controlledType="switch"
             control={control}
-            defaultValue={resource?.content.authentication ?? "none"}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Select
-                value={value}
-                onBlur={onBlur}
-                onChange={(value) => {
-                  setAuthType(value as RestApiAuthType)
-                  onChange(value)
-                }}
-                ml="16px"
-                mr="24px"
-                colorScheme="techPurple"
-                options={["none", "basic", "bearer"]}
-              />
-            )}
-            name="authentication"
-          />
-        </div>
-        {authType === "basic" && (
-          <BasicAuthPanel
-            control={control}
-            auth={resource?.content.authContent as BasicAuth}
+            contentLabel={t("editor.action.form.option.restapi.certificates")}
           />
         )}
-        {authType === "bearer" && (
-          <BearerAuthPanel
-            control={control}
-            auth={resource?.content.authContent as BearerAuth}
-          />
+        {showCertificatesConfig && (
+          <>
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.form.option.restapi.ca_certificate")}
+              control={control}
+              defaultValue={content?.certs?.caCert ?? ""}
+              name="caCert"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.form.option.restapi.client_key")}
+              control={control}
+              defaultValue={content?.certs?.clientKey ?? ""}
+              name="clientKey"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
+            <ControlledElement
+              controlledType={["textarea"]}
+              title={t("editor.action.form.option.restapi.client_certificate")}
+              control={control}
+              defaultValue={content?.certs?.clientCert ?? ""}
+              name="clientCert"
+              placeholders={[
+                t("editor.action.resource.db.placeholder.certificate"),
+              ]}
+            />
+            <ControlledElement
+              title={t("editor.action.form.label.restapi.verification_mode")}
+              defaultValue={content?.certs?.mode ?? "verify-full"}
+              name="mode"
+              controlledType="select"
+              control={control}
+              options={VerificationModeOptions}
+            />
+            {showSkipVerify && (
+              <ControlledElement
+                title=""
+                defaultValue=""
+                name=""
+                controlledType="none"
+                control={control}
+                tips={
+                  <Alert
+                    title={t(
+                      "editor.action.form.tips.connect_to_local.title.tips",
+                    )}
+                    content={t(
+                      "editor.action.form.tips.restapi.verification_mode.skip_ca_certificate",
+                    )}
+                  />
+                }
+              />
+            )}
+          </>
+        )}
+        <ControlledElement
+          title={t("editor.action.resource.restapi.label.authentication")}
+          defaultValue={content.authentication}
+          name="authentication"
+          controlledType="select"
+          control={control}
+          options={AuthenticationOptions}
+        />
+
+        {SubPanelComponent && (
+          <SubPanelComponent control={control} auth={content.authContent} />
         )}
       </div>
       <div css={footerStyle}>
@@ -416,9 +310,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           variant="text"
           colorScheme="gray"
           type="button"
-          onClick={() => {
-            onBack()
-          }}
+          onClick={onBack}
         >
           {t("back")}
         </Button>
