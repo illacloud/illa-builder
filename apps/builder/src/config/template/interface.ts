@@ -3,6 +3,7 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
+import { ResourceContent, ResourceType } from "@/redux/resource/resourceState"
 
 export type TemplateName = keyof typeof templateConfig
 
@@ -11,7 +12,13 @@ export interface TemplateSetting {
   desc: string
 }
 
-export type TemplateResources = (Partial<ActionItem<ActionContent>> & {
+export type TemplateResources = {
+  resourceName: string
+  resourceType: ResourceType
+  content: ResourceContent
+}[]
+
+export type TemplateActions = (Partial<ActionItem<ActionContent>> & {
   // The resourceIndex here is used to replace the real resourceId later.
   resourceIndex: number
 })[]

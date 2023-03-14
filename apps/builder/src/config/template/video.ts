@@ -1,8 +1,4 @@
-import { PageNode } from "@/redux/currentApp/editor/components/componentsState"
-import {
-  ResourceContent,
-  ResourceInitialConfig,
-} from "@/redux/resource/resourceState"
+import { TemplateResources } from "@/config/template/interface"
 
 export const VIDEO_APP_CONFIG = [
   {
@@ -335,42 +331,51 @@ export const VIDEO_APP_CONFIG = [
   },
 ]
 
-export const VIDEO_RESOURCES_CONFIG: ResourceInitialConfig<ResourceContent>[] =
-  [
-    {
-      resourceName: "e",
-      resourceType: "mysql",
-      content: {
-        databaseName: "1231",
-        databasePassword: "43123",
-        databaseUsername: "12312",
-        host: "111",
-        port: "111",
-        ssl: { clientCert: "", clientKey: "", serverCert: "", ssl: false },
-      },
+export const VIDEO_RESOURCES_CONFIG: TemplateResources = [
+  {
+    resourceName: "e",
+    resourceType: "mysql",
+    content: {
+      databaseName: "1231",
+      databasePassword: "43123",
+      databaseUsername: "12312",
+      host: "111",
+      port: "111",
+      ssl: { clientCert: "", clientKey: "", serverCert: "", ssl: false },
     },
-    {
-      resourceName: "jsonplaceholder",
-      resourceType: "restapi",
-      content: {
-        authContent: null,
-        authentication: "none",
-        baseUrl: "https://jsonplaceholder.typicode.com",
-        cookies: [{ key: "", value: "" }],
-        headers: [{ key: "", value: "" }],
-        urlParams: [{ key: "", value: "" }],
+  },
+  {
+    resourceName: "jsonplaceholder",
+    resourceType: "restapi",
+    content: {
+      authContent: {},
+      authentication: "none",
+      baseUrl: "https://jsonplaceholder.typicode.com",
+      certs: {
+        caCert: "",
+        clientCert: "",
+        clientKey: "",
+        mode: "verify-full",
       },
+      cookies: [
+        {
+          key: "",
+          value: "",
+        },
+      ],
+      headers: [
+        {
+          key: "",
+          value: "",
+        },
+      ],
+      selfSignedCert: false,
+      urlParams: [
+        {
+          key: "",
+          value: "",
+        },
+      ],
     },
-    {
-      resourceName: "aa",
-      resourceType: "restapi",
-      content: {
-        authContent: null,
-        authentication: "none",
-        baseUrl: "https://jsonplaceholder.typicode.com/users",
-        cookies: [{ key: "", value: "" }],
-        headers: [{ key: "", value: "" }],
-        urlParams: [{ key: "", value: "" }],
-      },
-    },
-  ]
+  },
+]

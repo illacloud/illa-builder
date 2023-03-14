@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Button, useMessage } from "@illa-design/react"
 import { createAction, createResource } from "@/api/actions"
 import { createApp } from "@/api/apps"
-import { Api, BuilderApi } from "@/api/base"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { getTemplateAppConfig, getTemplateConfig } from "@/config/template"
 import { TemplateListProps } from "@/page/Dashboard/Tutorial/TemplateList/interface"
@@ -18,8 +17,6 @@ import {
   templateStyle,
   titleStyle,
 } from "@/page/Dashboard/Tutorial/TemplateList/style"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 
 export const TemplateList: FC<TemplateListProps> = (props) => {
   const { data } = props
