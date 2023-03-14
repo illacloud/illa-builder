@@ -19,6 +19,7 @@ export const itemStyle = css`
   overflow: hidden;
   transition: all 0.2s ease-in-out;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  align-items: flex-start;
 
   &:hover {
     border-color: ${getColor("techPurple", "01")};
@@ -48,10 +49,18 @@ export const descStyle = css`
 `
 
 export const forkItemStyle = css`
+  padding: 5px 11px;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 4px;
   font-size: 14px;
+  border-radius: 8px;
+  transition: background-color 200ms ease-in-out;
+
+  &:hover {
+    background: ${getColor("grayBlue", "09")};
+  }
 `
 
 export const forkIconStyle = css`

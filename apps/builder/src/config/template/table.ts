@@ -1,4 +1,13 @@
+import { TemplateResources } from "@/config/template/interface"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 import { PageNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  ResourceContent,
+  ResourceInitialConfig,
+} from "@/redux/resource/resourceState"
 
 export const TABLE_APP_CONFIG = [
   {
@@ -437,47 +446,47 @@ export const TABLE_APP_CONFIG = [
   },
 ]
 
-export const TABLE_TEMPLATE_RESOURCES = [
-  {
-    resourceName: "illa",
-    resourceType: "mysql",
-    content: {
-      databaseName: "illa_mvp",
-      databasePassword: "2022illa",
-      databaseUsername: "root",
-      host: "82.156.26.142",
-      port: "31097",
-      ssl: {
-        clientCert: "",
-        clientKey: "",
-        serverCert: "",
-        ssl: false,
+export const TABLE_TEMPLATE_RESOURCES: ResourceInitialConfig<ResourceContent>[] =
+  [
+    {
+      resourceName: "illa",
+      resourceType: "mysql",
+      content: {
+        databaseName: "illa_mvp",
+        databasePassword: "2022illa",
+        databaseUsername: "root",
+        host: "82.156.26.142",
+        port: "31097",
+        ssl: {
+          clientCert: "",
+          clientKey: "",
+          serverCert: "",
+          ssl: false,
+        },
       },
     },
-  },
-  {
-    resourceName: "db_invite_code",
-    resourceType: "tidb",
-    content: {
-      databaseName: "invite_code_list",
-      databasePassword: "273kUAuHvDCAU4qf",
-      databaseUsername: "2Sg9npLLZQEFKX2.root",
-      host: "gateway01.us-east-1.prod.aws.tidbcloud.com",
-      port: "4000",
-      ssl: {
-        clientCert: "",
-        clientKey: "",
-        serverCert: "",
-        ssl: false,
+    {
+      resourceName: "db_invite_code",
+      resourceType: "tidb",
+      content: {
+        databaseName: "invite_code_list",
+        databasePassword: "273kUAuHvDCAU4qf",
+        databaseUsername: "2Sg9npLLZQEFKX2.root",
+        host: "gateway01.us-east-1.prod.aws.tidbcloud.com",
+        port: "4000",
+        ssl: {
+          clientCert: "",
+          clientKey: "",
+          serverCert: "",
+          ssl: false,
+        },
       },
     },
-  },
-]
+  ]
 
-export const TABLE_TEMPLATE_ACTIONS = [
+export const TABLE_TEMPLATE_ACTIONS: TemplateResources = [
   {
-    // 这里的 resourceId 用 resources 的 index 暂代, 后续需要替换成真实的 resourceId
-    resourceId: 0,
+    resourceIndex: 0,
     displayName: "mysql1",
     actionType: "mysql",
     content: {

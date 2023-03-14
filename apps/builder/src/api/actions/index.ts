@@ -11,15 +11,14 @@ import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   Resource,
   ResourceContent,
+  ResourceInitialConfig,
   ResourceType,
 } from "@/redux/resource/resourceState"
 import store from "@/store"
 
-export const createResource = async (data: {
-  resourceName: string
-  resourceType: ResourceType
-  content: ResourceContent
-}) => {
+export const createResource = async (
+  data: ResourceInitialConfig<ResourceContent>,
+) => {
   const response = await BuilderApi.asyncTeamRequest<Resource<ResourceContent>>(
     {
       method: "POST",

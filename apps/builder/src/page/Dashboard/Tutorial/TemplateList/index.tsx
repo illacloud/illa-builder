@@ -2,7 +2,7 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { useMessage } from "@illa-design/react"
+import { Button, useMessage } from "@illa-design/react"
 import { createAction, createResource } from "@/api/actions"
 import { createApp } from "@/api/apps"
 import { Api, BuilderApi } from "@/api/base"
@@ -49,21 +49,24 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
             </div>
             <div
               css={forkItemStyle}
-              onClick={async () => {
+              onClick={async (e) => {
+                e.stopPropagation()
                 const { name } = item
                 const { appConfig, actions, resources } =
                   getTemplateConfig(name)
                 const resourceList = await Promise.all(
-                  resources.map((data, index) => {
+                  resources.map((data) => {
                     return createResource(data)
                   }),
                 )
                 const appId = await createApp(name, appConfig)
                 const actionList = await Promise.all(
-                  actions.map((data, index) => {
+                  actions.map((data) => {
+                    const { resourceIndex, ...actionData } = data
+                    const resourceId = resourceList[resourceIndex] || ""
                     return createAction(appId, {
-                      ...data,
-                      resourceId: resourceList[data.resourceId] || "",
+                      ...actionData,
+                      resourceId,
                     })
                   }),
                 )
