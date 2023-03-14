@@ -26,14 +26,6 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
   const { teamIdentifier } = useParams()
   const message = useMessage()
 
-  const list = [
-    {
-      name: "Table",
-      desc: "A template designed to show off visualization capabilities",
-      icon: "",
-    },
-  ]
-
   return (
     <div css={templateStyle}>
       {data.map((item) => {
@@ -57,16 +49,18 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
                   }),
                 )
                 const appId = await createApp(name, appConfig)
-                const actionList = await Promise.all(
-                  actions.map((data) => {
-                    const { resourceIndex, ...actionData } = data
-                    const resourceId = resourceList[resourceIndex] || ""
-                    return createAction(appId, {
-                      ...actionData,
-                      resourceId,
-                    })
-                  }),
-                )
+                if (resourceList.length) {
+                  const actionList = await Promise.all(
+                    actions.map((data) => {
+                      const { resourceIndex, ...actionData } = data
+                      const resourceId = resourceList[resourceIndex] || ""
+                      return createAction(appId, {
+                        ...actionData,
+                        resourceId,
+                      })
+                    }),
+                  )
+                }
                 navigate(`/${teamIdentifier}/app/${appId}`)
               }}
             >
