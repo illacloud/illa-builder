@@ -1,18 +1,19 @@
+import { isEqual } from "lodash"
+import { createApp } from "@/api/apps"
 import { BuilderApi } from "@/api/base"
-import { CloudApi } from "@/api/cloudApi"
-import { fetchInviteLinkResponse } from "@/illa-public-component/MemberList/interface"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
+import { getTemplateConfig } from "@/config/template"
+import { TemplateName } from "@/config/template/interface"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
+import { getAllResources } from "@/redux/resource/resourceSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   Resource,
   ResourceContent,
   ResourceInitialConfig,
-  ResourceType,
 } from "@/redux/resource/resourceState"
 import store from "@/store"
 
@@ -43,4 +44,35 @@ export const createAction = async (
   )
   store.dispatch(actionActions.addActionItemReducer(response.data))
   return response.data.actionId
+}
+
+export const forkTemplateApp = async (name: TemplateName) => {
+  const { appConfig, actions, resources } = getTemplateConfig(name)
+  const resourceList = await Promise.all(
+    resources.map((data) => {
+      const currentResources = getAllResources(store.getState())
+      const resource = currentResources.find(
+        (item) =>
+          item.resourceName === data.resourceName &&
+          item.resourceType === data.resourceType &&
+          isEqual(item.content, data.content),
+      )
+
+      return resource ? resource.resourceId : createResource(data)
+    }),
+  )
+  const appId = await createApp(name, appConfig)
+  if (resourceList.length) {
+    const actionList = await Promise.all(
+      actions.map((data) => {
+        const { resourceIndex, ...actionData } = data
+        const resourceId = resourceList[resourceIndex] || ""
+        return createAction(appId, {
+          ...actionData,
+          resourceId,
+        })
+      }),
+    )
+  }
+  return appId
 }

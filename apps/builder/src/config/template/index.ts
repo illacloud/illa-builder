@@ -14,11 +14,13 @@ export const templateConfig = {
     appConfig: VIDEO_APP_CONFIG,
     resources: VIDEO_RESOURCES_CONFIG,
     actions: [],
+    example: "https://builder.illacloud.com/chakra/deploy/app/ILAfx4p1C7eq",
   },
   Table: {
     appConfig: TABLE_APP_CONFIG,
     resources: TABLE_TEMPLATE_RESOURCES,
     actions: TABLE_TEMPLATE_ACTIONS,
+    example: "https://builder.illacloud.com/chakra/deploy/app/ILAfx4p1C7eq",
   },
 }
 

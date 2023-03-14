@@ -96,7 +96,11 @@ export const getIsILLATemplatePreviewMode = (state: RootState) => {
 }
 
 export const getIsLikeProductMode = (state: RootState) => {
-  return state.config.mode === "preview" || state.config.mode === "production"
+  return (
+    state.config.mode === "preview" ||
+    state.config.mode === "production" ||
+    state.config.mode === "template-preview"
+  )
 }
 
 export const getWSStatus = (state: RootState) => {

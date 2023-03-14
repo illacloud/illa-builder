@@ -477,6 +477,7 @@ export const TABLE_TEMPLATE_RESOURCES: TemplateResources = [
 export const TABLE_TEMPLATE_ACTIONS: TemplateActions = [
   {
     resourceIndex: 0,
+    resourceId: "ILAfx4p1C7d4",
     displayName: "mysql1",
     actionType: "mysql",
     content: {

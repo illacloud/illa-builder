@@ -112,7 +112,7 @@ export const DashboardTitleBar: FC = () => {
     },
     {
       key: "tutorial",
-      title: t("tutorial"),
+      title: t("editor.tutorial.panel.tutorial.tab.title"),
       hidden: !canEditApp,
     },
   ]

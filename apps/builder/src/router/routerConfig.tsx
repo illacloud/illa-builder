@@ -71,9 +71,10 @@ export const commonRouter: RoutesObjectPro[] = [
     loader: handleRemoveUrlToken,
   },
   {
-    path: "/:teamIdentifier/template/:appId",
+    path: "/:teamIdentifier/template/:templateName",
     element: layLoad(lazy(() => import("@/page/Template"))),
     errorElement: <Page404 />,
+    needLogin: true,
   },
   {
     path: "/privacy-policy",

@@ -1,12 +1,11 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, useMessage } from "@illa-design/react"
-import { createAction, createResource } from "@/api/actions"
-import { createApp } from "@/api/apps"
+import { forkTemplateApp } from "@/api/actions"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
-import { getTemplateAppConfig, getTemplateConfig } from "@/config/template"
+import { TemplateName } from "@/config/template/interface"
 import { TemplateListProps } from "@/page/Dashboard/Tutorial/TemplateList/interface"
 import {
   descStyle,
@@ -26,11 +25,28 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
   const { teamIdentifier } = useParams()
   const message = useMessage()
 
+  const [loading, setLoading] = useState(false)
+
+  const handleForkApp = async (templateName: string) => {
+    if (loading) return
+    setLoading(true)
+    try {
+      const appId = await forkTemplateApp(templateName as TemplateName)
+      navigate(`/${teamIdentifier}/app/${appId}`)
+    } catch (e) {}
+    setLoading(false)
+  }
+
   return (
     <div css={templateStyle}>
       {data.map((item) => {
         return (
-          <div css={itemStyle}>
+          <div
+            css={itemStyle}
+            onClick={() => {
+              navigate(`/${teamIdentifier}/template/${item.name}`)
+            }}
+          >
             <div css={iconStyle} />
             <div>
               <div css={titleStyle}>{item.name}</div>
@@ -40,32 +56,11 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
               css={forkItemStyle}
               onClick={async (e) => {
                 e.stopPropagation()
-                const { name } = item
-                const { appConfig, actions, resources } =
-                  getTemplateConfig(name)
-                const resourceList = await Promise.all(
-                  resources.map((data) => {
-                    return createResource(data)
-                  }),
-                )
-                const appId = await createApp(name, appConfig)
-                if (resourceList.length) {
-                  const actionList = await Promise.all(
-                    actions.map((data) => {
-                      const { resourceIndex, ...actionData } = data
-                      const resourceId = resourceList[resourceIndex] || ""
-                      return createAction(appId, {
-                        ...actionData,
-                        resourceId,
-                      })
-                    }),
-                  )
-                }
-                navigate(`/${teamIdentifier}/app/${appId}`)
+                handleForkApp(item.name)
               }}
             >
               <ForkIcon css={forkIconStyle} />
-              Fork
+              {t("editor.tutorial.panel.tutorial.templates_action.fork")}
             </div>
           </div>
         )
