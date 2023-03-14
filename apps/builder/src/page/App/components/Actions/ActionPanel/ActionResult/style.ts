@@ -7,6 +7,7 @@ export const actionResultContainerStyle = css`
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 700px;
   pointer-events: none;
   justify-content: end;
   height: 100%;
