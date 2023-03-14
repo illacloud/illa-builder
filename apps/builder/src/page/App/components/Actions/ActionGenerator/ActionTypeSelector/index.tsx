@@ -1,15 +1,9 @@
-import copy from "copy-to-clipboard"
-import { FC, useCallback, useState } from "react"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  CopyIcon,
-  DownIcon,
-  Spin,
-  UpIcon,
-  useMessage,
-} from "@illa-design/react"
+import { Spin, useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
+import { WhiteList } from "@/components/WhiteList"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -21,21 +15,9 @@ import {
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { isCloudVersion } from "@/utils/typeHelper"
 import { ActionCard } from "../ActionCard"
 import { ActionTypeSelectorProps } from "./interface"
-import {
-  categoryStyle,
-  containerStyle,
-  resourceListStyle,
-  whiteListButtonContainerStyle,
-  whiteListButtonStyle,
-  whiteListContentContainerStyle,
-  whiteListContentStyle,
-  whiteListDescriptionStyle,
-  whiteListOperationIconStyle,
-  whiteListTitleStyle,
-} from "./style"
+import { categoryStyle, containerStyle, resourceListStyle } from "./style"
 
 export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { onSelect } = props
@@ -45,25 +27,6 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const message = useMessage()
-
-  const [showIPList, setShowIPList] = useState<boolean>(true)
-
-  const handleOperationIconClick = () => {
-    setShowIPList((prevState) => !prevState)
-  }
-
-  const handleCopyClick = useCallback(() => {
-    const copyResult = copy("")
-    if (copyResult) {
-      message.success({
-        content: t("copied"),
-      })
-    } else {
-      message.error({
-        content: t("copy_failed"),
-      })
-    }
-  }, [])
 
   return (
     <>
@@ -127,33 +90,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
             </div>
           </div>
         ))}
-        <div>
-          <div css={whiteListContentContainerStyle}>
-            <div css={whiteListContentStyle}>
-              <div css={whiteListTitleStyle}>
-                {t("editor.action.resource.tip.allowlist.title")}
-              </div>
-              <div css={whiteListDescriptionStyle}>
-                {t("editor.action.resource.tip.allowlist.message")}
-              </div>
-            </div>
-            {isCloudVersion && (
-              <div css={whiteListButtonContainerStyle}>
-                <div css={whiteListButtonStyle} onClick={handleCopyClick}>
-                  <CopyIcon />
-                  <span>{t("editor.action.resource.button.copy_ip")}</span>
-                </div>
-                <span
-                  css={whiteListOperationIconStyle}
-                  onClick={handleOperationIconClick}
-                >
-                  {showIPList ? <UpIcon /> : <DownIcon />}
-                </span>
-              </div>
-            )}
-          </div>
-          {isCloudVersion && showIPList && <div></div>}
-        </div>
+        <WhiteList />
       </Spin>
     </>
   )
