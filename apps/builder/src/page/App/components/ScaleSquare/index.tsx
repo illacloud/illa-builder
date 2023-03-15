@@ -15,6 +15,7 @@ import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
 import {
   applyDashedLineStyle,
   applyWrapperPendingStyle,
+  hoverHotspotStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import {
   getHoveredComponents,
@@ -267,77 +268,84 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       unitH={unitH}
       componentNode={componentNode}
     >
-      <Dropdown
-        disabled={!isEditMode}
-        position="right-start"
-        trigger="contextmenu"
-        dropList={
-          <DropList w="184px">
-            <DropListItem
-              value="duplicate"
-              title={t("editor.context_menu.duplicate")}
-              onClick={() => {
-                CopyManager.copyComponentNode([componentNode])
-                CopyManager.paste()
-              }}
-            />
-            <DropListItem
-              deleted
-              value="delete"
-              title={t("editor.context_menu.delete")}
-              onClick={() => {
-                shortcut.showDeleteDialog([componentNode.displayName])
-              }}
-            />
-          </DropList>
-        }
+      <div
+        css={hoverHotspotStyle}
+        data-displayname={componentNode.displayName}
+        data-parentnode={componentNode.parentNode}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <div
-          className="wrapperPending"
-          css={applyWrapperPendingStyle(
-            hasEditors,
-            isSelected,
-            hasError,
-            isDragging,
-            isEditMode,
-            isOverLap,
-            isLikeProductionMode,
-            isMouseOver,
-          )}
-          onClick={handleOnSelection}
-          onContextMenu={handleContextMenu}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          ref={isEditMode ? dragRef : undefined}
+        <Dropdown
+          disabled={!isEditMode}
+          position="right-start"
+          trigger="contextmenu"
+          dropList={
+            <DropList w="184px">
+              <DropListItem
+                value="duplicate"
+                title={t("editor.context_menu.duplicate")}
+                onClick={() => {
+                  CopyManager.copyComponentNode([componentNode])
+                  CopyManager.paste()
+                }}
+              />
+              <DropListItem
+                deleted
+                value="delete"
+                title={t("editor.context_menu.delete")}
+                onClick={() => {
+                  shortcut.showDeleteDialog([componentNode.displayName])
+                }}
+              />
+            </DropList>
+          }
         >
-          <MoveBar
-            isError={hasError}
-            isMouseOver={isMouseOver}
-            displayName={displayNameInMoveBar}
-            maxWidth={w}
-            selected={isSelected}
-            widgetTop={y}
-            widgetHeight={h}
-            containerPadding={containerPadding || 0}
-            containerHeight={containerHeight}
-            widgetType={componentNode.type}
-            userList={filteredComponentAttachedUserList}
-          />
-          <TransformWidgetWrapper
-            componentNode={componentNode}
-            blockColumns={blockColumns}
-          />
-          {canRenderDashedLine && (
-            <div
-              css={applyDashedLineStyle(
-                isSelected,
-                isShowCanvasDot,
-                isDragging,
-              )}
+          <div
+            className="wrapperPending"
+            css={applyWrapperPendingStyle(
+              hasEditors,
+              isSelected,
+              hasError,
+              isDragging,
+              isEditMode,
+              isOverLap,
+              isLikeProductionMode,
+              isMouseOver,
+            )}
+            onClick={handleOnSelection}
+            onContextMenu={handleContextMenu}
+            ref={isEditMode ? dragRef : undefined}
+          >
+            <MoveBar
+              isError={hasError}
+              isMouseOver={isMouseOver}
+              displayName={displayNameInMoveBar}
+              maxWidth={w}
+              selected={isSelected}
+              widgetTop={y}
+              widgetHeight={h}
+              containerPadding={containerPadding || 0}
+              containerHeight={containerHeight}
+              widgetType={componentNode.type}
+              userList={filteredComponentAttachedUserList}
             />
-          )}
-        </div>
-      </Dropdown>
+            <TransformWidgetWrapper
+              componentNode={componentNode}
+              blockColumns={blockColumns}
+            />
+            {canRenderDashedLine && (
+              <div
+                css={applyDashedLineStyle(
+                  isSelected,
+                  isShowCanvasDot,
+                  isDragging,
+                )}
+              />
+            )}
+          </div>
+        </Dropdown>
+      </div>
+
       <div css={dragPreviewStyle} ref={dragPreviewRef} />
       {isEditMode &&
         selectedComponents?.length === 1 &&

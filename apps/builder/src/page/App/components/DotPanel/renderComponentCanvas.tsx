@@ -789,6 +789,11 @@ export const RenderComponentCanvas: FC<{
           containerWidgetDisplayName={componentNode.displayName}
         />
       )}
+      <MultiSelectCanvas
+        currentCanvasRef={currentCanvasRef}
+        containerRef={containerRef}
+        canvasNodeDisplayName={componentNode.displayName}
+      />
       {isShowCanvasDot && <div css={borderLineStyle} />}
       {isActive && (
         <FreezePlaceholder
@@ -802,11 +807,6 @@ export const RenderComponentCanvas: FC<{
           <PreviewColumnsChange unitWidth={unitWidth} columns={blockColumns} />
         )}
       </AnimatePresence>
-      <MultiSelectCanvas
-        currentCanvasRef={currentCanvasRef}
-        containerRef={containerRef}
-        canvasNodeDisplayName={componentNode.displayName}
-      />
     </div>
   )
 }
