@@ -1293,7 +1293,12 @@
         },
         "choose_at_least": "Choose at least",
         "choose_up_to": "Choose up to",
-        "copy_to_clipboard": "复制到剪贴板"
+        "copy_to_clipboard": "复制到剪贴板",
+        "file_download": {
+          "file_data": "File data",
+          "file_name": "File name with extension",
+          "file_type": "File type"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1355,6 +1360,9 @@
         "img_url_array": "使用 {{ item.attributeName }} 从数据源获取图像 URL",
         "carousel": {
           "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}"
+        },
+        "file_download": {
+          "file_data": "Support base64 data, raw data, mapped data of table. "
         }
       },
       "setter_option": {
@@ -1368,6 +1376,17 @@
         "scale_width": "宽度",
         "collapse": {
           "collapsible_panel": "折叠面板"
+        },
+        "file_download": {
+          "auto": "Auto",
+          "plain_text": "Plain text",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
         }
       },
       "setter_placeholder": {
@@ -1384,7 +1403,11 @@
           "value": "{{ [\"x\",\"y\",...] }}"
         },
         "img_url_array": "{{ item.image_url }} ",
-        "alt_text_mapped": "{{ item.alt_text }} "
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "{{ new_data.csv }}"
+        }
       },
       "setter_tootip": {
         "volume": "0到1之间的数字"
@@ -1502,6 +1525,9 @@
       "carousel": {
         "showNext": "显示下一个可见图像",
         "showPrevious": "显示上一个可见图像"
+      },
+      "file_download": {
+        "download": "Download"
       }
     },
     "tutorial": {
