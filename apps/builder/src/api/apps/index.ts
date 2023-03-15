@@ -5,6 +5,7 @@ import {
   inviteByEmailResponse,
 } from "@/illa-public-component/MemberList/interface"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import store from "@/store"
@@ -67,7 +68,7 @@ export const updateAppPublicConfig = async (
 
 export const createApp = async (
   appName: string,
-  initScheme: Record<string, unknown>[],
+  initScheme: ComponentNode[],
 ) => {
   const response = await BuilderApi.asyncTeamRequest<DashboardApp>({
     url: "/apps",

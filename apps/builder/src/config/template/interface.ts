@@ -10,6 +10,7 @@ export type TemplateName = keyof typeof templateConfig
 export interface TemplateSetting {
   name: TemplateName
   desc: string
+  appId: string
 }
 
 export type TemplateResources = {

@@ -47,7 +47,9 @@ export const createAction = async (
 }
 
 export const forkTemplateApp = async (name: TemplateName) => {
-  const { appConfig, actions, resources } = getTemplateConfig(name)
+  const {
+    config: { appConfig, actions, resources },
+  } = getTemplateConfig(name)
   const resourceList = await Promise.all(
     resources.map((data) => {
       const currentResources = getAllResources(store.getState())
