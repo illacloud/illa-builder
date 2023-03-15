@@ -13,8 +13,6 @@ import { IllaMode } from "@/redux/config/configState"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
-import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
@@ -52,16 +50,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
       )
       dispatch(actionActions.updateActionListReducer(response.data.actions))
 
-      dispatch(
-        dragShadowActions.updateDragShadowReducer(
-          response.data.dragShadowState,
-        ),
-      )
-      dispatch(
-        dottedLineSquareActions.updateDottedLineSquareReducer(
-          response.data.dottedLineSquareState,
-        ),
-      )
       DisplayNameGenerator.initApp(appId, teamID, uid)
       DisplayNameGenerator.updateDisplayNameList(
         response.data.components,
@@ -73,6 +61,18 @@ export const useInitBuilderApp = (mode: IllaMode) => {
       }
     },
     [appId, dispatch, mode, teamID, uid],
+  )
+
+  const initPublicApp = useCallback(
+    (controller: AbortController) => {
+      // don't use asyncTeamRequest here, because we need to mock the team info
+      return BuilderApi.asyncTeamIdentifierRequest<CurrentAppResp>({
+        url: `/publicApps/${appId}/versions/${versionId}`,
+        method: "GET",
+        signal: controller.signal,
+      })
+    },
+    [appId, versionId],
   )
 
   const initApp = useCallback(
@@ -138,23 +138,12 @@ export const useInitBuilderApp = (mode: IllaMode) => {
         setLoadingState(true)
         if (mode === "production") {
           try {
-            // don't use asyncTeamRequest here, because we need to mock the team info
-            const response =
-              await BuilderApi.asyncTeamIdentifierRequest<CurrentAppResp>({
-                url: `/publicApps/${appId}/versions/${versionId}`,
-                method: "GET",
-                signal: controller.signal,
-              })
+            const response = await initPublicApp(controller)
             handleCurrentApp(response)
             resolve(response.data)
           } catch (error: any) {
             console.log(error, "error")
             await handleUnPublicApps(controller, resolve, reject)
-            // if (error?.response) {
-            //   await handleUnPublicApps(controller, resolve, reject)
-            // } else {
-            //   reject(error)
-            // }
           }
         } else {
           await initApp(controller, resolve, reject)

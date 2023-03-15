@@ -1293,7 +1293,12 @@
         },
         "choose_at_least": "Choose at least",
         "choose_up_to": "Choose up to",
-        "copy_to_clipboard": "クリップボードにコピー"
+        "copy_to_clipboard": "クリップボードにコピー",
+        "file_download": {
+          "file_data": "File data",
+          "file_name": "File name with extension",
+          "file_type": "File type"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1355,6 +1360,9 @@
         "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
         "carousel": {
           "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}"
+        },
+        "file_download": {
+          "file_data": "Support base64 data, raw data, mapped data of table. "
         }
       },
       "setter_option": {
@@ -1368,6 +1376,17 @@
         "scale_width": "幅",
         "collapse": {
           "collapsible_panel": "折りたたみ式パネル"
+        },
+        "file_download": {
+          "auto": "Auto",
+          "plain_text": "Plain text",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
         }
       },
       "setter_placeholder": {
@@ -1384,7 +1403,11 @@
           "value": "{{ [\"x\",\"y\",...] }}"
         },
         "img_url_array": "{{ item.image_url }} ",
-        "alt_text_mapped": "{{ item.alt_text }} "
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "{{ new_data.csv }}"
+        }
       },
       "setter_tootip": {
         "volume": "0 から 1 までの数値"
@@ -1502,6 +1525,73 @@
       "carousel": {
         "showNext": "次の可視画像を表示",
         "showPrevious": "前の可視画像を表示"
+      },
+      "file_download": {
+        "download": "Download"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "チュートリアル"
+          },
+          "title": {
+            "tutorial": "チュートリアル",
+            "templates": "テンプレート"
+          },
+          "onboarding_app": {
+            "name": "Onboarding app",
+            "description": "アプリケーションの構築方法については、ILLA のチュートリアルに従ってください",
+            "action": "始める"
+          },
+          "templates_action": {
+            "fork": "アプリケーションを作成",
+            "fork_description": "このテンプレートを使用してアプリを作成する"
+          },
+          "templates_name": {
+            "table": "ダッシュボード",
+            "form": "アンケート",
+            "list": "管理パネル"
+          },
+          "templates_description": {
+            "table": "テーブルやその他のコンポーネントを使用してダッシュボードを作成し、データのクエリと使用を簡単にします。",
+            "form": "フォームおよび入力コンポーネントを使用して、満足度調査、販売前フォームなどのフォームを作成します",
+            "list": "リスト コンポーネントを使用した情報の表示と管理"
+          },
+          "modal": {
+            "title": "フォーク & デプロイ",
+            "placeholder": "アプリケーション名",
+            "cancel": "キャンセル",
+            "fork": "フォーク & デプロイ"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "ステップ 1: 入力コンポーネントをここにドラッグします",
+          "drag_button": "ステップ 2: ボタン コンポーネントをここにドラッグします",
+          "drag_table": "ステップ 3: テーブル コンポーネントをここにドラッグします",
+          "exit": "ブートを終了",
+          "do_it": "このステップを手伝ってください",
+          "drag_title": "コンポーネントをキャンバスにドラッグします",
+          "modify_action_title": "ACTIONを変更",
+          "modify_action_description_modify": "ACTIONを変更してデータを取得します。 {{input1.value}} を使用して、入力コンポーネントに入力されたデータを取得できます。",
+          "modify_action_description_click": "[保存]、[実行] の順にクリックします",
+          "display_data_title": "テーブルにデータを表示する",
+          "display_data_description_select": "キャンバスでテーブルを選択",
+          "display_data_description_modify": "右側のパネルでデータ ソースを変更します。 {{postgre1.data}} を使用してデータを取得できます。",
+          "event_handler_title": "ボタンをクリックしてアクションをトリガーします",
+          "event_handler_description_1": "キャンバス上のボタンを選択",
+          "event_handler_description_2": "イベント ハンドラーを追加する",
+          "event_handler_description_3": "クリックイベントハンドラー",
+          "event_handler_description_4": "アクション トリガー アクションの変更",
+          "event_handler_description_5": "クエリを postgre1 に変更します",
+          "test_it_title": "テストを受けます",
+          "test_it_description": "検索するユーザー名を入力し、ボタンをクリックします",
+          "test_it_button": "次のステップ",
+          "congratulations_title": "おめでとう🎉",
+          "congratulations_description": "最初のアプリケーションを作成しました。 使用中に質問がある場合は、<0>Discord<0> からご連絡ください",
+          "congratulations_button": "完成済み"
+        }
       }
     }
   },
@@ -2002,6 +2092,13 @@
         }
       },
       "description": "開発者専用のオープンソースのローコード プラットフォーム。"
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "チュートリアル"
+        }
+      }
     }
   },
   "frame_size": {
@@ -2198,5 +2295,17 @@
     }
   },
   "empty_copied_tips": "コピーされたコンテンツが空です",
-  "copy_empty": "The content to be copied is empty"
+  "copy_empty": "The content to be copied is empty",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "5 分でアプリを作成する方法を学ぶ",
+          "description": "ILLA のチュートリアルに従って、アプリのビルド方法を学びましょう。所要時間は約 5 分です。",
+          "cancel": "キャンセル",
+          "take": "チュートリアルを開始"
+        }
+      }
+    }
+  }
 }

@@ -75,6 +75,12 @@ export interface Resource<T extends ResourceContent> {
   content: T
 }
 
+export interface ResourceInitialConfig<T extends ResourceContent> {
+  resourceName: string
+  resourceType: ResourceType
+  content: T
+}
+
 export interface ResourcesData {
   schema: Record<string, unknown>
   resourceName: string
