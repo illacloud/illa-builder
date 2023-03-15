@@ -2,7 +2,6 @@ import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import store, { RootState } from "@/store"
 import {
   BASIC_BLOCK_COLUMNS,
@@ -142,6 +141,16 @@ export const getComponentNodeBySingleSelected = createSelector(
       return searchDsl(rootDsl, selectedComponentDisplayNames[0])
     }
     return null
+  },
+)
+
+export const getDisplayNameMapComponent = createSelector(
+  [getCanvas],
+  (rootDSL) => {
+    if (rootDSL == null) {
+      return {}
+    }
+    return flattenDslToMap(rootDSL)
   },
 )
 

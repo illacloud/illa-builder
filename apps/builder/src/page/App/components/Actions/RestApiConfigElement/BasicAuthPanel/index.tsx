@@ -1,79 +1,42 @@
 import { FC } from "react"
-import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { Input, Password, getColor } from "@illa-design/react"
-import { applyConfigItemLabelText } from "@/page/App/components/Actions/RestApiConfigElement/style"
-import {
-  configItem,
-  labelContainer,
-} from "@/page/App/components/Actions/styles"
-import { BasicAuthPanelProps } from "./interface"
+import { RestApiAuthPanelProps } from "@/page/App/components/Actions/RestApiConfigElement/interface"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { BasicAuth } from "@/redux/resource/restapiResource"
 
-export const BasicAuthPanel: FC<BasicAuthPanelProps> = (props) => {
-  const { control, auth } = props
-
+export const BasicAuthPanel: FC<RestApiAuthPanelProps> = (props) => {
+  const { control } = props
+  const auth = props.auth as BasicAuth
   const { t } = useTranslation()
 
   return (
     <>
-      <div css={configItem}>
-        <div css={labelContainer}>
-          <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-          <span
-            css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-          >
-            {t("editor.action.resource.restapi.label.basic_auth_username")}
-          </span>
-        </div>
-        <Controller
-          control={control}
-          rules={{
+      <ControlledElement
+        title={t("editor.action.resource.restapi.label.basic_auth_username")}
+        defaultValue={auth?.username ?? ""}
+        name="username"
+        isRequired
+        controlledType="input"
+        control={control}
+        rules={[
+          {
             required: true,
-          }}
-          defaultValue={auth?.username}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <Input
-              w="100%"
-              ml="16px"
-              mr="24px"
-              onBlur={onBlur}
-              onChange={onChange}
-              value={value}
-              colorScheme="techPurple"
-            />
-          )}
-          name="username"
-        />
-      </div>
-      <div css={configItem}>
-        <div css={labelContainer}>
-          <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-          <span
-            css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-          >
-            {t("editor.action.resource.restapi.label.basic_auth_password")}
-          </span>
-        </div>
-        <Controller
-          control={control}
-          rules={{
+          },
+        ]}
+      />
+      <ControlledElement
+        title={t("editor.action.resource.restapi.label.basic_auth_password")}
+        defaultValue={auth?.password ?? ""}
+        name="password"
+        isRequired
+        controlledType="password"
+        control={control}
+        rules={[
+          {
             required: true,
-          }}
-          defaultValue={auth?.password}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <Password
-              w="100%"
-              ml="16px"
-              mr="24px"
-              onBlur={onBlur}
-              onChange={onChange}
-              value={value}
-              colorScheme="techPurple"
-            />
-          )}
-          name="password"
-        />
-      </div>
+          },
+        ]}
+      />
     </>
   )
 }

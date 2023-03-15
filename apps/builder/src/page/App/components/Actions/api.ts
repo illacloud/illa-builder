@@ -17,6 +17,7 @@ import {
   ResourceType,
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
+import { RestApiAuth } from "@/redux/resource/restapiResource"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
@@ -120,6 +121,30 @@ export function generateGraphQLAuthContent(data: {
   return authContent
 }
 
+export const generateRestAPIAuthContent = (data: {
+  [p: string]: any
+}): RestApiAuth => {
+  let authContent: RestApiAuth = {}
+  switch (data.authentication) {
+    case "basic":
+    case "digest":
+      authContent = {
+        username: data.username,
+        password: data.password,
+      }
+      break
+    case "bearer":
+      authContent = {
+        token: data.token,
+      }
+      break
+    default:
+      authContent = {}
+      break
+  }
+  return authContent
+}
+
 function getActionContentByType(data: FieldValues, type: ResourceType) {
   switch (type) {
     case "firebase":
@@ -184,6 +209,9 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         connectionOpts: data.connectionOpts,
         ssl: generateSSLConfig(!!data.ssl, data, "mssql"),
       }
+    case "oracle":
+      const { resourceName, ...otherParams } = data
+      return otherParams
     case "huggingface":
       return {
         token: data.token,
@@ -218,6 +246,36 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         region,
         accessKeyID,
         secretAccessKey,
+      }
+    case "couchdb":
+      const { resourceName: couchDBResName, ...otherCouchDBParams } = data
+      return otherCouchDBParams
+    case "appwrite":
+      const { host, projectID, databaseID, apiKey } = data
+      return {
+        host,
+        projectID,
+        databaseID,
+        apiKey,
+      }
+    case "restapi":
+      const {
+        resourceName: restApiResName,
+        caCert = "",
+        clientKey = "",
+        clientCert = "",
+        mode = "verify-full",
+        ...otherRestApiParams
+      } = data
+      return {
+        ...otherRestApiParams,
+        authContent: generateRestAPIAuthContent(data),
+        certs: {
+          caCert,
+          clientKey,
+          clientCert,
+          mode,
+        },
       }
   }
 }

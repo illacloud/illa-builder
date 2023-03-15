@@ -37,7 +37,7 @@ export const BaseIconSetter: FC<BaseIconSetterProps> = (props) => {
           {displayData?.getIcon && displayData?.getIcon({})}
         </div>
         <Input
-          css={iconContentStyle}
+          _css={iconContentStyle}
           value={displayData?.name ?? ""}
           disabled
         />

@@ -166,11 +166,15 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "데이터베이스 이름을 SID/서비스 이름으로 취급",
+            "sid": "데이터베이스 이름을 다음으로 취급",
             "ssl": "SSL"
           },
           "couchdb": {
             "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "인증서",
+            "verification_mode": "확인 모드"
           }
         },
         "placeholder": {
@@ -185,7 +189,8 @@
               "value": "1234"
             },
             "order": "attribute",
-            "collectionid": "컬렉션 선택"
+            "collectionid": "컬렉션 선택",
+            "data": "{{ }}로 묶인 객체. 예: {{ { \"key\": \"value\" } }}"
           },
           "couchdb": {
             "port": {
@@ -204,6 +209,11 @@
             "selfhost": "컴퓨터에 로컬인 데이터베이스에 연결하려는 것 같습니다. \"localhost\" 또는 \"127.0.0.1\" 대신 머신의 로컬 영역 네트워크 IP 주소를 사용하십시오.",
             "title": {
               "tips": "팁"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "서버가 공격에 취약할 수 있습니다"
             }
           }
         },
@@ -240,6 +250,24 @@
           },
           "couchdb": {
             "ssl": "가능한 경우 SSL/TLS 사용"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Digest Auth",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk Authentication",
+              "aws_v4": "AWS Signature V4",
+              "session_based_auth": "Session Based Auth (deprecated)"
+            },
+            "certificates": "자체 서명된 인증서 사용",
+            "ca_certificate": "서버 인증서",
+            "client_key": "클라이언트 키",
+            "client_certificate": "클라이언트 인증서",
+            "verification_mode": {
+              "full_verification": "전체 확인",
+              "verify_ca_certificat": "서버 인증서 확인",
+              "skip_ca_certificate_": "서버 인증서 확인 건너뛰기"
+            }
           }
         },
         "default": {
@@ -321,7 +349,19 @@
             "couchdb": {
               "database": "데이터베이스 선택",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Consumer key",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "some-app-extra-data",
+              "app": "Application id",
+              "dig": "delegated-by",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
@@ -338,14 +378,75 @@
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Descending order",
+              "des": "Order",
               "id": "_id",
               "rev": "_rev",
               "record": "Record",
               "mangoquery": "MangoQuery",
               "ViewURL": "ViewURL",
               "StartKey": "StartKey",
-              "EndKey": "EndKey"
+              "EndKey": "EndKey",
+              "include_doc_option": "Docs included in the returned results",
+              "des_option": "Use descending order"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "PLAINTEXT"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "File",
+                "text": "Text"
+              },
+              "method": {
+                "options": "OPTIONS",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Query Parameters",
+                "header_authorization": "Header Authorization"
+              }
+            }
+          },
+          "restapi": {
+            "signature_method": "서명 방법",
+            "consumer_key": "Consumer key",
+            "consumer_secret": "Consumer secret",
+            "access_token": "Access token",
+            "token_secret": "Token secret",
+            "private_key": "Private key",
+            "realm": "Realm",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Hawk Auth Key",
+            "algorithm": "Algorithm",
+            "user": "User",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "app",
+            "dig": "dig",
+            "timestamp": "Timestamp",
+            "aws_region": "AWS 리전",
+            "aws_service": "AWS 서비스",
+            "aws_access_key_id": "AWS 액세스 키 ID",
+            "aws_secret_key_id": "AWS 비밀 키 ID",
+            "role_to_assume": "수임할 역할(ARN)",
+            "list_of_cookies_to_f": "전달할 쿠키 목록",
+            "add_access_token_to": "Add Access Token To"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
+              }
             }
           }
         },
@@ -531,6 +632,20 @@
         "status": {
           "ran_failed": "실행하지 못했습니다",
           "ran_successfully": "성공적으로 실행"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status",
+            "headers": "Headers",
+            "response": "Response"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
         }
       },
       "resource": {
@@ -664,7 +779,9 @@
             "scopes": "범위",
             "share_oauth2_credentials_between_users": "사용자 간에 OAuth2.0 자격 증명 공유",
             "url_parameters": "URL 매개변수",
-            "use_client_credentials_auth": "클라이언트 자격 증명을 사용하여 인증"
+            "use_client_credentials_auth": "클라이언트 자격 증명을 사용하여 인증",
+            "digest_auth_username": "사용자 이름",
+            "digest_auth_password": "비밀번호"
           },
           "option": {
             "authentication": {
@@ -2052,6 +2169,9 @@
       "message": {
         "save_suc": "팀 아이디를 입력해주세요",
         "save_fail": "저장 실패"
+      },
+      "password": {
+        "title": "비밀번호"
       }
     }
   },

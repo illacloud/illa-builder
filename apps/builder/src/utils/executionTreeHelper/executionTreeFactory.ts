@@ -92,6 +92,7 @@ export class ExecutionTreeFactory {
         evaluatedTree: currentRawTree,
         errorTree: this.errorTree,
         debuggerData: this.debuggerData,
+        independencyTree: this.inDependencyTree,
       }
     }
 
@@ -100,6 +101,7 @@ export class ExecutionTreeFactory {
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,
       debuggerData: this.debuggerData,
+      independencyTree: this.inDependencyTree,
     }
   }
 
@@ -339,6 +341,7 @@ export class ExecutionTreeFactory {
         evaluatedTree: currentRawTree,
         errorTree: this.errorTree,
         debuggerData: this.debuggerData,
+        independencyTree: this.inDependencyTree,
       }
     }
 
@@ -349,6 +352,7 @@ export class ExecutionTreeFactory {
         dependencyTree: this.dependenciesState,
         evaluatedTree: this.executedTree,
         errorTree: this.errorTree,
+        independencyTree: this.inDependencyTree,
       }
     }
     this.oldRawTree = cloneDeep(currentRawTree)
@@ -390,6 +394,7 @@ export class ExecutionTreeFactory {
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,
       debuggerData: this.debuggerData,
+      independencyTree: this.inDependencyTree,
     }
   }
 

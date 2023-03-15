@@ -126,7 +126,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
 }
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const { onResultVisibleChange, openState } = props
+  const { onResultVisibleChange, openState, onResultValueChange } = props
 
   const message = useMessage()
   const [saveLoading, setSaveLoading] = useState(false)
@@ -183,8 +183,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           return
         }
         if (cachedActionValue) {
-          runAction(cachedActionValue, () => {
+          runAction(cachedActionValue, (data) => {
             onResultVisibleChange(true)
+            onResultValueChange(data)
           })
         }
         break
@@ -233,8 +234,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           () => {
             if (cachedActionValue) {
               dispatch(actionActions.updateActionItemReducer(cachedActionValue))
-              runAction(cachedActionValue, () => {
+              runAction(cachedActionValue, (data) => {
                 onResultVisibleChange(true)
+                onResultValueChange(data)
               })
             }
           },
@@ -324,7 +326,13 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 data: newAction,
               },
               () => {
-                dispatch(actionActions.updateActionItemReducer(newAction))
+                dispatch(
+                  actionActions.updateActionDisplayNameReducer({
+                    newDisplayName: value,
+                    oldDisplayName: selectedAction.displayName,
+                    actionID: newAction.actionId,
+                  }),
+                )
               },
               () => {
                 message.error({

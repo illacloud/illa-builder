@@ -2,6 +2,8 @@ import { HTMLAttributes, forwardRef, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
+import { AppwritePanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel"
+import { CouchDBPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel"
 import { DynamoDBPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
 import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
@@ -11,6 +13,7 @@ import { HuggingFacePanel } from "@/page/App/components/Actions/ActionPanel/Hugg
 import { MicrosoftSqlPanel } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel"
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
 import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
+import { OracleDBPanel } from "@/page/App/components/Actions/ActionPanel/OracleDBPanel"
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
 import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
 import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
@@ -27,6 +30,7 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
     const cachedAction = useSelector(getCachedAction)
 
     const [resultVisible, setResultVisible] = useState(false)
+    const [shownResult, setShownResult] = useState<unknown>("")
 
     const panel = useMemo(() => {
       switch (cachedAction?.actionType) {
@@ -40,6 +44,8 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           return <MysqlLikePanel />
         case "mssql":
           return <MicrosoftSqlPanel />
+        case "oracle":
+          return <OracleDBPanel />
         case "restapi":
           return <RestApiPanel />
         case "huggingface":
@@ -64,6 +70,10 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           return <FirebasePanel />
         case "graphql":
           return <GraphQLPanel />
+        case "appwrite":
+          return <AppwritePanel />
+        case "couchdb":
+          return <CouchDBPanel />
         default:
           return <></>
       }
@@ -73,17 +83,23 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
       return <></>
     }
 
+    const handleResultValueChange = (value: unknown) => {
+      setShownResult(value)
+    }
+
     return (
       <div css={actionPanelStyle}>
         <ActionTitleBar
           onResultVisibleChange={(visible) => {
             setResultVisible(visible)
           }}
+          onResultValueChange={handleResultValueChange}
           openState={resultVisible}
         />
         <div css={actionContentStyle}>{panel}</div>
         <ActionResult
           visible={resultVisible}
+          results={shownResult}
           onClose={() => {
             setResultVisible(false)
           }}

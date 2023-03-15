@@ -47,6 +47,7 @@ export const RedisPanel: FC = () => {
       <div css={actionItemContainer}>
         <CodeEditor
           wrapperCss={redisCodeEditorStyle}
+          maxHeight="88px"
           placeholder="SET runoobkey redis"
           showLineNumbers
           value={currentContent.query}
@@ -65,7 +66,7 @@ export const RedisPanel: FC = () => {
             )
           }}
         />
-        <TransformerComponent mysqlLike={true} />
+        <TransformerComponent fullWidth />
       </div>
 
       <ActionEventHandler />

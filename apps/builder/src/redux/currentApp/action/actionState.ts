@@ -1,4 +1,12 @@
 import {
+  AppwriteAction,
+  AppwriteActionTypes,
+} from "@/redux/currentApp/action/appwriteAction"
+import {
+  CouchDBAction,
+  CouchDBOptionsType,
+} from "@/redux/currentApp/action/couchDBAction"
+import {
   DynamoDBAction,
   StructParams,
 } from "@/redux/currentApp/action/dynamoDBAction"
@@ -15,6 +23,10 @@ import {
   MicrosoftSqlAction,
   MicrosoftSqlActionType,
 } from "@/redux/currentApp/action/microsoftSqlAction"
+import {
+  OracleDBAction,
+  OracleDBActionType,
+} from "@/redux/currentApp/action/oracleDBAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { MysqlLikeAction } from "./mysqlLikeAction"
@@ -34,6 +46,8 @@ export interface ActionRunResult {
     Rows: Record<string, any>[]
     Extra?: Record<string, any> | null
   }
+  headers?: Record<string, any>
+  status?: number
 }
 
 export const TransformerInitial: Transformer = {
@@ -61,8 +75,10 @@ export type ActionType =
   | "firebase"
   | "supabasedb"
   | "clickhouse"
+  | "couchdb"
   | "mysql"
   | "mssql"
+  | "oracle"
   | "restapi"
   | "graphql"
   | "mongodb"
@@ -76,6 +92,7 @@ export type ActionType =
   | "smtp"
   | "s3"
   | "transformer"
+  | "appwrite"
 
 export type ActionTriggerMode = "manually" | "automate"
 
@@ -94,6 +111,20 @@ export interface ActionItem<T extends ActionContent> {
   content: T
 }
 
+export interface UpdateActionDisplayNamePayload {
+  oldDisplayName: string
+  newDisplayName: string
+  actionID: string
+}
+
+export interface UpdateActionSlicePropsPayload {
+  displayName: string
+  actionID: string
+  propsSlice: {
+    [key: string]: unknown
+  }
+}
+
 export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
   transformer: TransformerInitial,
   triggerMode: "manually",
@@ -108,10 +139,13 @@ export type ActionContent =
   | DynamoDBAction<StructParams>
   | MysqlLikeAction
   | MicrosoftSqlAction<MicrosoftSqlActionType>
+  | OracleDBAction<OracleDBActionType>
   | RestApiAction<BodyContent>
   | TransformerAction
+  | AppwriteAction<AppwriteActionTypes>
   | RedisAction
   | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
+  | CouchDBAction<CouchDBOptionsType>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

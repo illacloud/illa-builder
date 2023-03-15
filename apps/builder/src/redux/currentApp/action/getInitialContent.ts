@@ -2,6 +2,8 @@ import {
   ActionContent,
   ActionType,
 } from "@/redux/currentApp/action/actionState"
+import { AppwriteActionInitial } from "@/redux/currentApp/action/appwriteAction"
+import { CouchDBActionInitial } from "@/redux/currentApp/action/couchDBAction"
 import { DynamoDBActionInitial } from "@/redux/currentApp/action/dynamoDBAction"
 import { ElasticSearchActionInitial } from "@/redux/currentApp/action/elasticSearchAction"
 import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
@@ -10,6 +12,7 @@ import { HuggingFaceActionInitial } from "@/redux/currentApp/action/huggingFaceA
 import { MicrosoftSqlActionInitial } from "@/redux/currentApp/action/microsoftSqlAction"
 import { MongoDbActionInitial } from "@/redux/currentApp/action/mongoDbAction"
 import { MysqlLikeActionInitial } from "@/redux/currentApp/action/mysqlLikeAction"
+import { OracleDBActionInitial } from "@/redux/currentApp/action/oracleDBAction"
 import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
 import { RestApiActionInitial } from "@/redux/currentApp/action/restapiAction"
 import { S3ActionInitial } from "@/redux/currentApp/action/s3Action"
@@ -28,6 +31,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return MysqlLikeActionInitial
     case "mssql":
       return MicrosoftSqlActionInitial
+    case "oracle":
+      return OracleDBActionInitial
     case "restapi":
       return RestApiActionInitial
     case "transformer":
@@ -51,6 +56,10 @@ export function getInitialContent(actionType: ActionType): ActionContent {
     case "huggingface":
     case "hfendpoint":
       return HuggingFaceActionInitial
+    case "appwrite":
+      return AppwriteActionInitial
+    case "couchdb":
+      return CouchDBActionInitial
     default:
       return {} as ActionContent
   }

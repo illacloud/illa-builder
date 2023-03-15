@@ -24,10 +24,6 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
-import {
   actionListEmptyStyle,
   addNewActionButtonStyle,
   listContainerStyle,

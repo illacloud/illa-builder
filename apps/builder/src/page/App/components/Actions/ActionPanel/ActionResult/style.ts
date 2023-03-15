@@ -7,6 +7,7 @@ export const actionResultContainerStyle = css`
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 700px;
   pointer-events: none;
   justify-content: end;
   height: 100%;
@@ -31,6 +32,83 @@ export const alertBarStyle = css`
   flex-direction: row;
   padding: 0 16px;
   align-items: center;
+`
+
+export const restApiAlertBarStyle = css`
+  width: 100%;
+  background: ${getColor("grayBlue", "09")};
+  height: 48px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const alertTabsContainerStyle = css`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  height: 32px;
+`
+
+export const alertTabsItemStyle = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 8px;
+  gap: 10px;
+  cursor: pointer;
+  width: 82px;
+  height: 32px;
+  font-size: 14px;
+`
+
+export const tabsContentStyle = css`
+  line-height: 22px;
+`
+
+export const getActiveStyle = (active: boolean): SerializedStyles => {
+  if (active) {
+    return css`
+      box-shadow: inset 0px -2px 0px ${getColor("grayBlue", "02")};
+    `
+  }
+  return css``
+}
+
+export const alertInfoContainerStyle = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 24px;
+  height: 24px;
+`
+
+export const alertInfoStyle = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  color: ${getColor("grayBlue", "04")};
+  font-size: 14px;
+  line-height: 22px;
+`
+
+export const statusStyle = css`
+  font-weight: 500;
+  font-size: 14px;
+
+  color: ${getColor("green", "03")};
+`
+
+export const timestampStyle = css`
+  font-weight: 500;
+  font-size: 14px;
+
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const alertTextStyle = css`

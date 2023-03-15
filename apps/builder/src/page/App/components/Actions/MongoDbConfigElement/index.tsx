@@ -9,8 +9,6 @@ import {
   Input,
   PreviousIcon,
   RadioGroup,
-  Switch,
-  TextArea,
   getColor,
   useMessage,
 } from "@illa-design/react"
@@ -33,14 +31,12 @@ import {
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { sslStyle } from "../MysqlLikeConfigElement/style"
 import { MongoDbConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
   container,
   divider,
   footerStyle,
-  sslItem,
 } from "./style"
 
 export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {

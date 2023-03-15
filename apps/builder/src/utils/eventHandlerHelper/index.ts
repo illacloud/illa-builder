@@ -60,13 +60,19 @@ export const transformEvents = (
     const { copiedValue, enabled } = event
     return {
       script: () => {
+        if (
+          copiedValue === undefined ||
+          copiedValue === null ||
+          copiedValue === ""
+        ) {
+          message.info({
+            content: i18n.t("empty_copied_tips"),
+          })
+          return
+        }
         message.success({
           content: i18n.t("copied"),
         })
-        if (copiedValue === undefined || copiedValue === null) {
-          copy("")
-          return
-        }
         if (
           typeof copiedValue === "string" ||
           typeof copiedValue === "number"
