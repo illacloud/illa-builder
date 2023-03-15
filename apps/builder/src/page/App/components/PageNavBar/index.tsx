@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -12,6 +12,7 @@ import {
   DownIcon,
   ExitIcon,
   FullScreenIcon,
+  Input,
   InputNumber,
   LockIcon,
   ResetIcon,
@@ -52,11 +53,17 @@ import {
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getViewportSizeSelector } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { fromNow } from "@/utils/dayjs"
 import {
+  appNameEditorSaveButtonWrapperStyle,
+  appNameEditorWrapperStyle,
+  appNameInputLabelStyle,
+  appNameInputWrapperStyle,
   closeIconStyle,
   descriptionStyle,
   downIconStyle,
@@ -78,6 +85,7 @@ import {
   rowCenter,
   saveButtonWrapperStyle,
   saveFailedTipStyle,
+  triggerStyle,
   viewControlStyle,
   viewportFontStyle,
   windowIconBodyStyle,
@@ -293,18 +301,20 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { teamIdentifier } = useParams()
 
   const appInfo = useSelector(getAppInfo)
+  const appList = useSelector(getDashboardApps)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
   const debuggerVisible = useSelector(isOpenDebugger)
   const isFreezeCanvas = useSelector(getFreezeState)
   const isOnline = useSelector(getIsOnline)
-
   const debuggerData = useSelector(getExecutionDebuggerData)
-
   const isEditMode = useSelector(getIsILLAEditMode)
 
   const [deployLoading, setDeployLoading] = useState(false)
+  const [appNewName, setAppNewName] = useState<string>(appInfo.appName)
+  const [popContentVisible, setPopContentVisible] = useState(false)
+  const [saveLoading, setSaveLoading] = useState<boolean>(false)
 
   const handleClickLeftWindowIcon = useCallback(() => {
     dispatch(configActions.updateLeftPanel(!leftPanelVisible))
@@ -353,6 +363,75 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     )
   }, [appInfo.appId, message, t, teamIdentifier])
 
+  const handleClickSaveButton = useCallback(() => {
+    if (appNewName === "" || appNewName.trim() === "") {
+      message.error({
+        content: t("dashboard.app.name_empty"),
+      })
+      return
+    }
+    if (appList.some((item) => item.appName === appNewName)) {
+      message.error({
+        content: t("dashboard.app.name_existed"),
+      })
+      return
+    }
+    BuilderApi.teamRequest(
+      {
+        url: `/apps/${appInfo.appId}`,
+        method: "PUT",
+        data: {
+          appName: appNewName,
+        },
+      },
+      (response) => {
+        dispatch(appInfoActions.updateAppInfoReducer(response.data))
+        message.success({
+          content: t("dashboard.app.rename_success"),
+        })
+        setPopContentVisible(false)
+      },
+      (failure) => {
+        message.error({
+          content: t("dashboard.app.rename_fail"),
+        })
+      },
+      (crash) => {
+        message.error({
+          content: t("network_error"),
+        })
+      },
+      (loading) => {
+        setSaveLoading(loading)
+      },
+    )
+  }, [appInfo.appId, appList, appNewName, dispatch, message, t])
+
+  const handleOnNewNameChange = useCallback((value: string) => {
+    setAppNewName(value.trim())
+  }, [])
+
+  const AppNameEditorModal = useMemo(() => {
+    return (
+      <div css={appNameEditorWrapperStyle}>
+        <div css={appNameInputWrapperStyle}>
+          <span css={appNameInputLabelStyle}>Name</span>
+          <Input onChange={handleOnNewNameChange} defaultValue={appNewName} />
+        </div>
+        <div css={appNameEditorSaveButtonWrapperStyle}>
+          <Button
+            fullWidth
+            colorScheme="grayBlue"
+            onClick={handleClickSaveButton}
+            loading={saveLoading}
+          >
+            {t("preview.viewport.save")}
+          </Button>
+        </div>
+      </div>
+    )
+  }, [appNewName, handleOnNewNameChange, handleClickSaveButton, saveLoading, t])
+
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
@@ -363,8 +442,21 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           }}
           css={logoCursorStyle}
         />
+
         <div css={informationStyle}>
-          <div css={nameStyle}>{appInfo?.appName}</div>
+          <Trigger
+            _css={triggerStyle}
+            trigger="click"
+            content={AppNameEditorModal}
+            popupVisible={popContentVisible}
+            onVisibleChange={setPopContentVisible}
+            position="bottom-start"
+            showArrow={false}
+            withoutPadding
+            colorScheme="white"
+          >
+            <div css={nameStyle}>{appInfo?.appName}</div>
+          </Trigger>
           {isOnline ? (
             <div css={descriptionStyle}>
               {t("edit_at") + " " + fromNow(appInfo?.updatedAt)}
