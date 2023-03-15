@@ -1,11 +1,10 @@
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { forkTemplateApp } from "@/api/actions"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
-import { TemplateName } from "@/config/template/interface"
+import { TemplateName, TemplateSetting } from "@/config/template/interface"
 import { TemplateListProps } from "@/page/Dashboard/Tutorial/TemplateList/interface"
 import {
   contentStyle,
@@ -25,11 +24,11 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
   const { teamIdentifier } = useParams()
   const message = useMessage()
 
-  const handleForkApp = async (templateName: string) => {
+  const handleForkApp = async (templateType: TemplateName, appName: string) => {
     if (loading) return
     setLoading(true)
     try {
-      const appId = await forkTemplateApp(templateName as TemplateName)
+      const appId = await forkTemplateApp(templateType, appName)
       navigate(`/${teamIdentifier}/app/${appId}`)
     } catch (e: any) {
       if (e?.response?.data?.errorMessage) {
@@ -59,14 +58,14 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
           >
             <img css={iconStyle} src={item.icon} />
             <div css={contentStyle}>
-              <div css={titleStyle}>{item.name}</div>
-              <div css={descStyle}>{item.desc}</div>
+              <div css={titleStyle}>{t(`${item.nameKey}`)}</div>
+              <div css={descStyle}>{t(`${item.descKey}`)}</div>
             </div>
             <div
               css={forkItemStyle}
               onClick={async (e) => {
                 e.stopPropagation()
-                handleForkApp(item.type)
+                handleForkApp(item.type, t(`${item.nameKey}`))
               }}
             >
               <ForkIcon css={forkIconStyle} />
