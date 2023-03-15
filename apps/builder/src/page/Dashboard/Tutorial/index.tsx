@@ -63,7 +63,9 @@ const Tutorial: FC = () => {
           </div>
         </div>
       </div>
-      <div css={titleStyle}>Use Cases</div>
+      <div css={titleStyle}>
+        {t("editor.tutorial.panel.tutorial.title.templates")}
+      </div>
       <TemplateList
         data={Templates}
         loading={loading}
