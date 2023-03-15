@@ -1,8 +1,7 @@
 import { cloneDeep } from "lodash"
-import { RefObject } from "react"
-import { DropTargetMonitor } from "react-dnd"
+import { XYCoord } from "react-dnd"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { DragInfo, DropResultInfo } from "./interface"
 
 interface ItemPosition {
   x: number
@@ -331,12 +330,12 @@ export const getReflowResult = (
 }
 
 export const getItemPosition = (
-  monitor: DropTargetMonitor<DragInfo, DropResultInfo>,
+  clientOffSet: XYCoord,
   containerScrollTop: number = 0,
 ) => {
   return {
-    x: monitor.getClientOffset()!.x,
-    y: monitor.getClientOffset()!.y + containerScrollTop,
+    x: clientOffSet.x,
+    y: clientOffSet.y + containerScrollTop,
   }
 }
 
@@ -357,126 +356,160 @@ export interface MoveDragResult {
   rectCenterPosition: CenterPointPosition
 }
 
-export const getDragResult = (
-  monitor: DropTargetMonitor<DragInfo, DropResultInfo>,
-  containerRef: RefObject<HTMLDivElement>,
-  item: ComponentNode,
+const getDragResultWhenAdd = (
+  clientOffset: XYCoord,
+  containerPosition: XYCoord,
+  containerScrollTop: number = 0,
   unitWidth: number,
-  unitHeight: number,
-  canvasWidth: number = 0,
-  action: "ADD" | "UPDATE",
-  canvasHeight: number = 0,
-  canResizeY: boolean = true,
-  containerTopPadding: number = 0,
-  containerLeftPadding: number = 0,
-): MoveDragResult => {
-  const containerClientRect = containerRef.current?.getBoundingClientRect()
-  const containerPosition = {
-    x: containerClientRect?.x || 0,
-    y: containerClientRect?.y || 0,
+  item: ComponentNode,
+  canvasWidth: number,
+  canvasHeight: number,
+  canResizeY: boolean,
+) => {
+  const itemPosition = getItemPosition(clientOffset!, containerScrollTop)
+  const nodeWidthAndHeight = getNodeWidthAndHeight(item, unitWidth, UNIT_HEIGHT)
+  const rectCenterPosition = calcRectCenterPointPosition(
+    itemPosition,
+    containerPosition,
+    nodeWidthAndHeight,
+  )
+  const rectPosition = calcRectShapeByCenterPoint(
+    rectCenterPosition,
+    nodeWidthAndHeight,
+  )
+  const ladingPosition = calcLadingPosition(
+    rectPosition,
+    unitWidth,
+    UNIT_HEIGHT,
+    canvasWidth,
+    canvasHeight,
+    canResizeY,
+  )
+
+  return {
+    ladingPosition,
+    rectPosition,
+    rectCenterPosition,
   }
+}
+
+const getDragResultWhenUpdate = (
+  clientOffset: XYCoord,
+  containerPosition: XYCoord,
+  containerLeftPadding: number,
+  containerTopPadding: number,
+  containerScrollTop: number = 0,
+  initialClientOffset: XYCoord,
+  initialSourceClientOffSet: XYCoord,
+  unitWidth: number,
+  item: ComponentNode,
+  canvasWidth: number,
+  canvasHeight: number,
+  canResizeY: boolean,
+) => {
+  let relativeX = clientOffset!.x - containerPosition.x - containerLeftPadding
+  let relativeY =
+    clientOffset!.y -
+    containerPosition.y +
+    containerScrollTop -
+    containerTopPadding
+
+  let renderX =
+    relativeX - initialClientOffset!.x + initialSourceClientOffSet!.x
+  let renderY =
+    relativeY - initialClientOffset!.y + initialSourceClientOffSet!.y
+
+  let squareX = Math.round(renderX / unitWidth) * unitWidth
+  let squareY = Math.round(renderY / UNIT_HEIGHT) * UNIT_HEIGHT
+  let isOverstep = true
+  const rectTop = relativeY
+  const rectBottom = renderY + item.h * UNIT_HEIGHT
+  const rectLeft = relativeX
+  const rectRight = relativeX + item.w * unitWidth
+
+  if (renderY < 0) {
+    squareY = 0
+    isOverstep = false
+  }
+  if (renderX < 0) {
+    squareX = 0
+    isOverstep = false
+  }
+  if (renderX + item.w * unitWidth > canvasWidth) {
+    const overRight =
+      Math.round((renderX + item.w * unitWidth) / unitWidth) * unitWidth -
+      canvasWidth
+    squareX = squareX - overRight
+    isOverstep = false
+  }
+  if (renderY + item.h * UNIT_HEIGHT > canvasHeight && !canResizeY) {
+    const overBottom =
+      Math.round((renderY + item.h * UNIT_HEIGHT) / UNIT_HEIGHT) * UNIT_HEIGHT -
+      canvasHeight
+    squareY = squareY - overBottom
+    isOverstep = false
+  }
+
+  return {
+    ladingPosition: {
+      landingX: squareX,
+      landingY: squareY,
+      isOverstep,
+    },
+    rectPosition: {
+      rectTop,
+      rectLeft,
+      rectRight,
+      rectBottom,
+    },
+    rectCenterPosition: {
+      x: renderX,
+      y: renderY,
+    },
+  }
+}
+
+export const getDragResult = (
+  action: "ADD" | "UPDATE",
+  clientOffset: XYCoord,
+  initialClientOffset: XYCoord,
+  initialSourceClientOffSet: XYCoord,
+  containerPosition: XYCoord,
+  containerScrollTop: number = 0,
+  unitWidth: number,
+  item: ComponentNode,
+  canvasWidth: number,
+  canvasHeight: number,
+  canResizeY: boolean,
+  containerLeftPadding: number,
+  containerTopPadding: number,
+) => {
   if (action === "ADD") {
-    const itemPosition = getItemPosition(
-      monitor,
-      containerRef.current?.scrollTop,
-    )
-    const nodeWidthAndHeight = getNodeWidthAndHeight(
-      item,
-      unitWidth,
-      unitHeight,
-    )
-    const rectCenterPosition = calcRectCenterPointPosition(
-      itemPosition,
+    return getDragResultWhenAdd(
+      clientOffset!,
       containerPosition,
-      nodeWidthAndHeight,
-    )
-    const rectPosition = calcRectShapeByCenterPoint(
-      rectCenterPosition,
-      nodeWidthAndHeight,
-    )
-    const ladingPosition = calcLadingPosition(
-      rectPosition,
+      containerScrollTop,
       unitWidth,
-      unitHeight,
+      item,
       canvasWidth,
       canvasHeight,
       canResizeY,
     )
-
-    return {
-      ladingPosition,
-      rectPosition,
-      rectCenterPosition,
-    }
   } else {
-    const mousePointerPosition = monitor.getClientOffset()
-    // mouse position
-
-    let relativeX =
-      mousePointerPosition!.x - containerPosition.x - containerLeftPadding
-    let relativeY =
-      mousePointerPosition!.y -
-      containerPosition.y +
-      (containerRef.current?.scrollTop || 0) -
-      containerTopPadding
-
-    let renderX =
-      relativeX -
-      monitor.getInitialClientOffset()!.x +
-      monitor.getInitialSourceClientOffset()!.x
-    let renderY =
-      relativeY -
-      monitor.getInitialClientOffset()!.y +
-      monitor.getInitialSourceClientOffset()!.y
-
-    let squareX = Math.round(renderX / unitWidth) * unitWidth
-    let squareY = Math.round(renderY / unitHeight) * unitHeight
-    let isOverstep = true
-    const rectTop = relativeY
-    const rectBottom = renderY + item.h * unitHeight
-    const rectLeft = relativeX
-    const rectRight = relativeX + item.w * unitWidth
-
-    if (renderY < 0) {
-      squareY = 0
-      isOverstep = false
-    }
-    if (renderX < 0) {
-      squareX = 0
-      isOverstep = false
-    }
-    if (renderX + item.w * unitWidth > canvasWidth) {
-      const overRight =
-        Math.round((renderX + item.w * unitWidth) / unitWidth) * unitWidth -
-        canvasWidth
-      squareX = squareX - overRight
-      isOverstep = false
-    }
-    if (renderY + item.h * unitHeight > canvasHeight && !canResizeY) {
-      const overBottom =
-        Math.round((renderY + item.h * unitHeight) / unitHeight) * unitHeight -
-        canvasHeight
-      squareY = squareY - overBottom
-      isOverstep = false
-    }
-
-    return {
-      ladingPosition: {
-        landingX: squareX,
-        landingY: squareY,
-        isOverstep,
-      },
-      rectPosition: {
-        rectTop,
-        rectLeft,
-        rectRight,
-        rectBottom,
-      },
-      rectCenterPosition: {
-        x: renderX,
-        y: renderY,
-      },
-    }
+    return getDragResultWhenUpdate(
+      clientOffset!,
+      containerPosition,
+      containerLeftPadding,
+      containerTopPadding,
+      containerScrollTop,
+      initialClientOffset!,
+      initialSourceClientOffSet!,
+      unitWidth,
+      item,
+      canvasWidth,
+      canvasHeight,
+      canResizeY,
+    )
   }
 }
 
