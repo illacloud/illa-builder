@@ -1550,7 +1550,21 @@
           "modify_action_title": "Modify the action",
           "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component.",
           "modify_action_description_click": "Click Save and then click Run",
-          "display_data_title": "Display data on table"
+          "display_data_title": "Display data on table",
+          "display_data_description_select": "Select the table on the frame",
+          "display_data_description_modify": "Modify the data source on the right panel. We can use {{postgre1.data}} to get the data.",
+          "event_handler_title": "Click button to trigger action",
+          "event_handler_description_1": "Select the button on the frame",
+          "event_handler_description_2": "Add an event handler",
+          "event_handler_description_3": "Click the event handler",
+          "event_handler_description_4": "Change the action to trigger action",
+          "event_handler_description_5": "Change the Query to postgre1",
+          "test_it_title": "Test it out",
+          "test_it_description": "Input a user name you want to search for and click the button",
+          "test_it_button": "Next",
+          "congratulations_title": "Congratulations 🎉",
+          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
+          "congratulations_button": "Done"
         }
       }
     }
