@@ -1516,7 +1516,7 @@
           },
           "onboarding_app": {
             "name": "Onboarding app",
-            "description": "5 分でアプリを作成する方法を学ぶ",
+            "description": "アプリケーションの構築方法については、ILLA のチュートリアルに従ってください",
             "action": "始める"
           },
           "templates_action": {
@@ -1530,25 +1530,25 @@
           },
           "templates_description": {
             "table": "テーブルやその他のコンポーネントを使用してダッシュボードを作成し、データのクエリと使用を簡単にします。",
-            "form": "Use form and input components to create form such as satisfaction survey, pre-sale form, etc.",
-            "list": "Use a list component to display and manage information"
+            "form": "フォームおよび入力コンポーネントを使用して、満足度調査、販売前フォームなどのフォームを作成します",
+            "list": "リスト コンポーネントを使用した情報の表示と管理"
           },
           "modal": {
-            "title": "Fork and deploy",
-            "placeholder": "App name",
-            "cancel": "Cancel",
-            "fork": "Fork and deploy"
+            "title": "フォーク & デプロイ",
+            "placeholder": "アプリケーション名",
+            "cancel": "キャンセル",
+            "fork": "フォーク & デプロイ"
           }
         },
         "onboarding_app": {
-          "drag_input": "Step 1: Drag an input here",
-          "drag_button": "Step 2: Drag a button here",
-          "drag_table": "Step 3:  Drag a table here",
-          "exit": "Exit",
-          "do_it": "Do it for me",
-          "drag_title": "Drag components to the frame",
-          "modify_action_title": "Modify the action",
-          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component.",
+          "drag_input": "ステップ 1: 入力コンポーネントをここにドラッグします",
+          "drag_button": "ステップ 2: ボタン コンポーネントをここにドラッグします",
+          "drag_table": "ステップ 3: テーブル コンポーネントをここにドラッグします",
+          "exit": "ブートを終了",
+          "do_it": "このステップを手伝ってください",
+          "drag_title": "コンポーネントをキャンバスにドラッグします",
+          "modify_action_title": "ACTIONを変更",
+          "modify_action_description_modify": "ACTIONを変更してデータを取得します。 {{input1.value}} を使用して、入力コンポーネントに入力されたデータを取得できます。",
           "modify_action_description_click": "[保存]、[実行] の順にクリックします",
           "display_data_title": "テーブルにデータを表示する",
           "display_data_description_select": "キャンバスでテーブルを選択",
@@ -1562,9 +1562,9 @@
           "test_it_title": "テストを受けます",
           "test_it_description": "検索するユーザー名を入力し、ボタンをクリックします",
           "test_it_button": "次のステップ",
-          "congratulations_title": "Congratulations 🎉",
-          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
-          "congratulations_button": "Done"
+          "congratulations_title": "おめでとう🎉",
+          "congratulations_description": "最初のアプリケーションを作成しました。 使用中に質問がある場合は、<0>Discord<0> からご連絡ください",
+          "congratulations_button": "完成済み"
         }
       }
     }
@@ -2274,9 +2274,9 @@
     "modal": {
       "tutorial": {
         "first_time": {
-          "title": "Learn how to build an app in 5 minutes",
+          "title": "5 分でアプリを作成する方法を学ぶ",
           "description": "ILLA のチュートリアルに従って、アプリのビルド方法を学びましょう。所要時間は約 5 分です。",
-          "cancel": "Cancel",
+          "cancel": "キャンセル",
           "take": "チュートリアルを開始"
         }
       }
