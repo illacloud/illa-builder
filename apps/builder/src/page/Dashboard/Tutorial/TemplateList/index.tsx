@@ -19,14 +19,11 @@ import {
 } from "@/page/Dashboard/Tutorial/TemplateList/style"
 
 export const TemplateList: FC<TemplateListProps> = (props) => {
-  const { data } = props
+  const { data, loading, setLoading } = props
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { teamIdentifier } = useParams()
   const message = useMessage()
-
-  const [loading, setLoading] = useState(false)
 
   const handleForkApp = async (templateName: string) => {
     if (loading) return
@@ -34,7 +31,18 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
     try {
       const appId = await forkTemplateApp(templateName as TemplateName)
       navigate(`/${teamIdentifier}/app/${appId}`)
-    } catch (e) {}
+    } catch (e: any) {
+      if (e?.response?.data?.errorMessage) {
+        message.error({
+          content: e?.response?.data?.errorMessage,
+        })
+      }
+      if (e?.response == undefined && e?.request != undefined) {
+        message.warning({
+          content: t("network_error"),
+        })
+      }
+    }
     setLoading(false)
   }
 
