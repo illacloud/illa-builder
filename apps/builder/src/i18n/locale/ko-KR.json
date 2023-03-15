@@ -166,7 +166,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "데이터베이스 이름을 다음으로 취급",
+            "sid": "Treat Database name as SID/Service Name",
             "ssl": "SSL"
           },
           "couchdb": {
@@ -349,7 +349,7 @@
             "couchdb": {
               "database": "데이터베이스 선택",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             },
             "restapi": {
               "consumer_key": "Consumer key",
@@ -378,7 +378,7 @@
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Order",
+              "des": "Descending order",
               "id": "_id",
               "rev": "_rev",
               "record": "Record",
@@ -1546,7 +1546,7 @@
             "action": "시작"
           },
           "templates_action": {
-            "fork": "응용 프로그램 만들기",
+            "fork": "포크",
             "fork_description": "이 템플릿을 사용하여 앱 만들기"
           },
           "templates_name": {
