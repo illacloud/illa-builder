@@ -1508,28 +1508,28 @@
       "panel": {
         "tutorial": {
           "tab": {
-            "title": "Tutorial"
+            "title": "教程"
           },
           "title": {
-            "tutorial": "Tutorial",
-            "templates": "Templates"
+            "tutorial": "教程",
+            "templates": "模板"
           },
           "onboarding_app": {
             "name": "Onboarding app",
-            "description": "Follow ILLA's tutorial to learn how to build an app.",
-            "action": "Go"
+            "description": "了解如何在 5 分钟内构建应用程序",
+            "action": "开始"
           },
           "templates_action": {
-            "fork": "Fork",
-            "fork_description": "Fork this template as a new app"
+            "fork": "创建应用",
+            "fork_description": "使用此模板创建一个应用"
           },
           "templates_name": {
-            "table": "Dashboard",
-            "form": "Survey",
-            "list": "Admin panel"
+            "table": "仪表板",
+            "form": "调查问卷",
+            "list": "管理面板"
           },
           "templates_description": {
-            "table": "Use tables and other components to create dashboards to query and make use of data easily.",
+            "table": "使用表格和其他组件创建仪表板以轻松查询和使用数据。",
             "form": "Use form and input components to create form such as satisfaction survey, pre-sale form, etc.",
             "list": "Use a list component to display and manage information"
           },
@@ -1549,9 +1549,22 @@
           "drag_title": "Drag components to the frame",
           "modify_action_title": "Modify the action",
           "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component.",
-          "modify_action_description_click": "Click Save and then click Run",
-          "display_data_title": "Display data on table",
-          "display_data_description_select": "Select the table on the frame"
+          "modify_action_description_click": "单击保存，然后单击运行",
+          "display_data_title": "在表格中显示数据",
+          "display_data_description_select": "选择画布中的表格",
+          "display_data_description_modify": "修改右侧面板上的数据源。 我们可以使用 {{postgre1.data}} 来获取数据。",
+          "event_handler_title": "点击按钮触发动作",
+          "event_handler_description_1": "选择画布里的按钮",
+          "event_handler_description_2": "添加事件处理器",
+          "event_handler_description_3": "点击事件处理器",
+          "event_handler_description_4": "将动作改为触发ACTION",
+          "event_handler_description_5": "将查询更改为postgre1",
+          "test_it_title": "测试一下",
+          "test_it_description": "输入您要搜索的用户名，然后点击按钮",
+          "test_it_button": "下一步",
+          "congratulations_title": "Congratulations 🎉",
+          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
+          "congratulations_button": "Done"
         }
       }
     }
@@ -2057,7 +2070,7 @@
     "left": {
       "menu": {
         "tutorial": {
-          "tutorial": "Tutorial"
+          "tutorial": "教程"
         }
       }
     }
@@ -2262,9 +2275,9 @@
       "tutorial": {
         "first_time": {
           "title": "Learn how to build an app in 5 minutes",
-          "description": "Follow ILLA's tutorial to learn how to build an app. This will take about 5 minutes.",
+          "description": "按照 ILLA 的教程学习如何构建应用程序，这大约需要 5 分钟。",
           "cancel": "Cancel",
-          "take": "Take a tutorial"
+          "take": "开始教程"
         }
       }
     }
