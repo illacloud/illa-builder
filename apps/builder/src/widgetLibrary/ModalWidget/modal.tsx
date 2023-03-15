@@ -188,7 +188,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
   const handleResizeStart: ResizeStartCallback = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    dispatch(configActions.updateResizingStateReducer(false))
+    dispatch(configActions.updateResizingStateReducer(true))
   }
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(
