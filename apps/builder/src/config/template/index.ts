@@ -38,11 +38,3 @@ export const Templates: TemplateSetting[] = [
 export const getTemplateConfig = (templateName: TemplateName) => {
   return templateConfig[templateName]
 }
-
-export const getTemplateAppConfig = (templateName: TemplateName) => {
-  return templateConfig[templateName]?.appConfig
-}
-
-export const getTemplateResources = (templateName: TemplateName) => {
-  return templateConfig[templateName]?.resources ?? []
-}

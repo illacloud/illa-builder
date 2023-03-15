@@ -84,5 +84,4 @@ export const createApp = async (
     }),
   )
   return response.data.appId
-  // navigate(`/${teamIdentifier}/app/${response.data.appId}`)
 }
