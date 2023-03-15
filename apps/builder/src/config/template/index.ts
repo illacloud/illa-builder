@@ -1,36 +1,38 @@
+import {
+  DASHBOARD_APP_CONFIG,
+  DASHBOARD_TEMPLATE_ACTIONS,
+  DASHBOARD_TEMPLATE_RESOURCES,
+} from "@/config/template/dashboard"
 import { TemplateName, TemplateSetting } from "@/config/template/interface"
 import {
   TABLE_APP_CONFIG,
   TABLE_TEMPLATE_ACTIONS,
   TABLE_TEMPLATE_RESOURCES,
 } from "@/config/template/table"
-import {
-  VIDEO_APP_CONFIG,
-  VIDEO_RESOURCES_CONFIG,
-} from "@/config/template/video"
 
 export const templateConfig = {
-  Video: {
-    appConfig: VIDEO_APP_CONFIG,
-    resources: VIDEO_RESOURCES_CONFIG,
-    actions: [],
-    example: "https://builder.illacloud.com/chakra/deploy/app/ILAfx4p1C7eq",
-  },
   Table: {
     appConfig: TABLE_APP_CONFIG,
     resources: TABLE_TEMPLATE_RESOURCES,
     actions: TABLE_TEMPLATE_ACTIONS,
     example: "https://builder.illacloud.com/chakra/deploy/app/ILAfx4p1C7eq",
   },
+  Dashboard: {
+    appConfig: DASHBOARD_APP_CONFIG,
+    resources: DASHBOARD_TEMPLATE_RESOURCES,
+    actions: DASHBOARD_TEMPLATE_ACTIONS,
+    example:
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74H",
+  },
 }
 
 export const Templates: TemplateSetting[] = [
   {
-    name: "Video",
+    name: "Table",
     desc: "A template designed to show off visualization capabilities",
   },
   {
-    name: "Table",
+    name: "Dashboard",
     desc: "A template designed to show off visualization capabilities",
   },
 ]

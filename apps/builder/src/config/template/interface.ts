@@ -18,7 +18,9 @@ export type TemplateResources = {
   content: ResourceContent
 }[]
 
-export type TemplateActions = (Partial<ActionItem<ActionContent>> & {
+export type TemplateAction<T extends ActionContent> = Partial<ActionItem<T>> & {
   // The resourceIndex here is used to replace the real resourceId later.
   resourceIndex: number
-})[]
+}
+
+export type TemplateActions = TemplateAction<ActionContent>[]
