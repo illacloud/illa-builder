@@ -31,6 +31,11 @@ export const iconStyle = css`
   height: 40px;
   background: #83ffb4;
   border-radius: 4px;
+  flex: none;
+`
+
+export const contentStyle = css`
+  width: 188px;
 `
 
 export const titleStyle = css`
@@ -38,6 +43,9 @@ export const titleStyle = css`
   font-size: 18px;
   line-height: 24px;
   color: ${getColor("grayBlue", "02")};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `
 export const descStyle = css`
   margin-top: 4px;
@@ -46,6 +54,9 @@ export const descStyle = css`
   font-size: 12px;
   line-height: 16px;
   color: ${getColor("grayBlue", "02")};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `
 
 export const forkItemStyle = css`

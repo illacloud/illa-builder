@@ -8,6 +8,7 @@ import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { TemplateName } from "@/config/template/interface"
 import { TemplateListProps } from "@/page/Dashboard/Tutorial/TemplateList/interface"
 import {
+  contentStyle,
   descStyle,
   forkIconStyle,
   forkItemStyle,
@@ -49,7 +50,7 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
             }}
           >
             <div css={iconStyle} />
-            <div>
+            <div css={contentStyle}>
               <div css={titleStyle}>{item.name}</div>
               <div css={descStyle}>{item.desc}</div>
             </div>
