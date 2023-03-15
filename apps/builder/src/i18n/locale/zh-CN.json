@@ -1516,7 +1516,7 @@
           },
           "onboarding_app": {
             "name": "Onboarding app",
-            "description": "了解如何在 5 分钟内构建应用程序",
+            "description": "跟着 ILLA 的教程学习如何构建应用程序",
             "action": "开始"
           },
           "templates_action": {
@@ -1530,25 +1530,25 @@
           },
           "templates_description": {
             "table": "使用表格和其他组件创建仪表板以轻松查询和使用数据。",
-            "form": "Use form and input components to create form such as satisfaction survey, pre-sale form, etc.",
-            "list": "Use a list component to display and manage information"
+            "form": "使用表单和输入组件创建表单，例如满意度调查、预售表单等",
+            "list": "使用列表组件显示和管理信息"
           },
           "modal": {
-            "title": "Fork and deploy",
-            "placeholder": "App name",
-            "cancel": "Cancel",
-            "fork": "Fork and deploy"
+            "title": "新建应用并部署",
+            "placeholder": "应用名称",
+            "cancel": "取消",
+            "fork": "新建应用并部署"
           }
         },
         "onboarding_app": {
-          "drag_input": "Step 1: Drag an input here",
-          "drag_button": "Step 2: Drag a button here",
-          "drag_table": "Step 3:  Drag a table here",
-          "exit": "Exit",
-          "do_it": "Do it for me",
-          "drag_title": "Drag components to the frame",
-          "modify_action_title": "Modify the action",
-          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component.",
+          "drag_input": "第 1 步：将输入组件拖到此处",
+          "drag_button": "第 2 步：将按钮组件拖到此处",
+          "drag_table": "第 3 步：将表格组件拖到此处",
+          "exit": "退出引导",
+          "do_it": "帮我完成该步骤",
+          "drag_title": "将组件拖到画布中",
+          "modify_action_title": "修改ACTION",
+          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。",
           "modify_action_description_click": "单击保存，然后单击运行",
           "display_data_title": "在表格中显示数据",
           "display_data_description_select": "选择画布中的表格",
@@ -1562,9 +1562,9 @@
           "test_it_title": "测试一下",
           "test_it_description": "输入您要搜索的用户名，然后点击按钮",
           "test_it_button": "下一步",
-          "congratulations_title": "Congratulations 🎉",
-          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
-          "congratulations_button": "Done"
+          "congratulations_title": "恭喜🎉",
+          "congratulations_description": "您刚刚构建了您的第一个应用程序。 如果您在使用过程中有任何疑问，可以通过<0>Discord<0>联系我们",
+          "congratulations_button": "完成"
         }
       }
     }
@@ -2274,9 +2274,9 @@
     "modal": {
       "tutorial": {
         "first_time": {
-          "title": "Learn how to build an app in 5 minutes",
+          "title": "了解如何在 5 分钟内构建应用程序",
           "description": "按照 ILLA 的教程学习如何构建应用程序，这大约需要 5 分钟。",
-          "cancel": "Cancel",
+          "cancel": "取消",
           "take": "开始教程"
         }
       }
