@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { Button } from "@illa-design/react"
+import { Button, useMessage } from "@illa-design/react"
 import { forkTemplateApp } from "@/api/actions"
 import { BuilderApi } from "@/api/base"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
@@ -26,6 +26,7 @@ import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
 const Template: FC = () => {
   const dispatch = useDispatch()
+  const message = useMessage()
   const { t } = useTranslation()
   const { templateName, teamIdentifier } = useParams()
   const { example, name } = getTemplateConfig(templateName as TemplateName)
@@ -38,7 +39,18 @@ const Template: FC = () => {
     try {
       const appId = await forkTemplateApp(templateName as TemplateName)
       navigate(`/${teamIdentifier}/app/${appId}`)
-    } catch (e) {}
+    } catch (e: any) {
+      if (e?.response?.data?.errorMessage) {
+        message.error({
+          content: e?.response?.data?.errorMessage,
+        })
+      }
+      if (e?.response == undefined && e?.request != undefined) {
+        message.warning({
+          content: t("network_error"),
+        })
+      }
+    }
     setLoading(false)
   }
 
