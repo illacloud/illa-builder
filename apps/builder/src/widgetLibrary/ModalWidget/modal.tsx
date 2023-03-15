@@ -9,7 +9,7 @@ import {
   useState,
 } from "react"
 import { useDrop } from "react-dnd"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
 import {
@@ -21,6 +21,7 @@ import {
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { BasicContainer } from "../BasicContainer/BasicContainer"
 import { ModalWidgetProps } from "./interface"
 import {
@@ -57,6 +58,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
 
   const prevVisible = useRef<boolean>()
   const isMount = useRef(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     isMount.current = true
@@ -186,6 +188,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
   const handleResizeStart: ResizeStartCallback = (e) => {
     e.preventDefault()
     e.stopPropagation()
+    dispatch(configActions.updateResizingStateReducer(false))
   }
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(
@@ -198,6 +201,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         headerHeight: finalHeight,
       })
+      dispatch(configActions.updateResizingStateReducer(false))
     },
     [handleUpdateOriginalDSLMultiAttr, headerHeight, headerMaxHeight, unitH],
   )
@@ -212,6 +216,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         footerHeight: finalHeight,
       })
+      dispatch(configActions.updateResizingStateReducer(false))
     },
     [footerHeight, footerMaxHeight, handleUpdateOriginalDSLMultiAttr, unitH],
   )
