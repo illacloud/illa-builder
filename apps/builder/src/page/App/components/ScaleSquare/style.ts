@@ -542,3 +542,8 @@ export const docTipsWrapperStyle = css`
   color: ${getColor("grayBlue", "02")};
   word-break: break-all;
 `
+
+export const hoverHotspotStyle = css`
+  width: 100%;
+  height: 100%;
+`

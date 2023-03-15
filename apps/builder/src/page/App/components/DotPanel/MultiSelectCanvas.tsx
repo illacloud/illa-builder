@@ -51,7 +51,7 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
 
   const onScrollHandler = (e: SelectoEvents["scroll"]) => {
     const { direction } = e
-    containerRef.current!.scrollBy(direction[0] * 10, direction[1] * 10)
+    containerRef.current!.scrollBy(0, direction[1] * 10)
   }
 
   const dragConditionHandler = (e: OnDragStart<unknown>) => {
@@ -84,6 +84,7 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
     const containerX = containerClientRect?.x ?? 0
     const scrollTop = containerRef.current?.scrollTop ?? 0
     const currentY = clientY - (containerClientRect?.y ?? 0) + scrollTop
+    const startAndDraggingDiff = currentY - selectStartPositionRef.current[1]
     const dir = scrollTop - startScrollTop.current > 0 ? 1 : -1
     const diff = scrollTop - startScrollTop.current!
     const currentHeight =
@@ -91,15 +92,13 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
       (dir === -1 ? -diff : 0)
 
     let currentXOrigin = selectStartPositionRef.current[0]
-    let currentYOrigin =
-      selectStartPositionRef.current[1] + (dir === -1 ? diff : 0)
+    let currentYOrigin = selectStartPositionRef.current[1]
     if (distX < 0) {
       currentXOrigin += distX
     }
-    if (distY < 0) {
-      currentYOrigin += distY
+    if (startAndDraggingDiff < 0) {
+      currentYOrigin = currentY
     }
-
     currentCanvasStyle?.setProperty(
       "--illa-select-area-left",
       `${currentXOrigin}px`,
