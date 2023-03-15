@@ -1516,7 +1516,7 @@
           },
           "onboarding_app": {
             "name": "Onboarding app",
-            "description": "5분 안에 앱을 빌드하는 방법 알아보기",
+            "description": "ILLA의 튜토리얼을 따라 애플리케이션 구축 방법을 배우십시오",
             "action": "시작"
           },
           "templates_action": {
@@ -1530,25 +1530,25 @@
           },
           "templates_description": {
             "table": "테이블 및 기타 구성 요소를 사용하여 대시보드를 생성하여 데이터를 쉽게 쿼리하고 사용할 수 있습니다.",
-            "form": "Use form and input components to create form such as satisfaction survey, pre-sale form, etc.",
-            "list": "Use a list component to display and manage information"
+            "form": "양식 및 입력 구성 요소를 사용하여 만족도 조사, 사전 판매 양식 등과 같은 양식을 만듭니다",
+            "list": "목록 구성 요소를 사용하여 정보 표시 및 관리"
           },
           "modal": {
-            "title": "Fork and deploy",
-            "placeholder": "App name",
-            "cancel": "Cancel",
-            "fork": "Fork and deploy"
+            "title": "포크 & 배포",
+            "placeholder": "애플리케이션 이름",
+            "cancel": "취소",
+            "fork": "포크 & 배포"
           }
         },
         "onboarding_app": {
-          "drag_input": "Step 1: Drag an input here",
-          "drag_button": "Step 2: Drag a button here",
-          "drag_table": "Step 3:  Drag a table here",
-          "exit": "Exit",
-          "do_it": "Do it for me",
-          "drag_title": "Drag components to the frame",
-          "modify_action_title": "Modify the action",
-          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component.",
+          "drag_input": "1단계: 입력 구성 요소를 여기로 드래그합니다.",
+          "drag_button": "2단계: 버튼 구성요소를 여기로 드래그합니다.",
+          "drag_table": "3단계: 표 구성요소를 여기로 드래그",
+          "exit": "종료 부팅",
+          "do_it": "이 단계를 도와주세요",
+          "drag_title": "구성 요소를 캔버스로 드래그",
+          "modify_action_title": "ACTION수정",
+          "modify_action_description_modify": "ACTION을 수정하여 데이터를 가져옵니다. {{input1.value}}를 사용하여 입력 구성 요소에 입력된 데이터를 가져올 수 있습니다.",
           "modify_action_description_click": "저장을 클릭한 다음 실행을 클릭합니다.",
           "display_data_title": "테이블에 데이터 표시",
           "display_data_description_select": "캔버스에서 테이블 선택",
@@ -1562,9 +1562,9 @@
           "test_it_title": "시험을 치다",
           "test_it_description": "검색할 사용자 이름을 입력하고 버튼을 클릭합니다.",
           "test_it_button": "다음 단계",
-          "congratulations_title": "Congratulations 🎉",
-          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
-          "congratulations_button": "Done"
+          "congratulations_title": "축하해요",
+          "congratulations_description": "첫 번째 애플리케이션을 구축했습니다. 사용 중 궁금한 점이 있으면 <0>Discord<0>를 통해 문의하실 수 있습니다.",
+          "congratulations_button": "마치다"
         }
       }
     }
@@ -2274,9 +2274,9 @@
     "modal": {
       "tutorial": {
         "first_time": {
-          "title": "Learn how to build an app in 5 minutes",
+          "title": "5분 안에 앱을 빌드하는 방법 알아보기",
           "description": "약 5분 정도 소요되는 앱 빌드 방법을 배우려면 ILLA의 튜토리얼을 따르세요.",
-          "cancel": "Cancel",
+          "cancel": "취소",
           "take": "튜토리얼 시작"
         }
       }
