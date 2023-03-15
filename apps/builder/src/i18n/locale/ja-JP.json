@@ -1293,7 +1293,12 @@
         },
         "choose_at_least": "Choose at least",
         "choose_up_to": "Choose up to",
-        "copy_to_clipboard": "クリップボードにコピー"
+        "copy_to_clipboard": "クリップボードにコピー",
+        "file_download": {
+          "file_data": "File data",
+          "file_name": "File name with extension",
+          "file_type": "File type"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1355,6 +1360,9 @@
         "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
         "carousel": {
           "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}"
+        },
+        "file_download": {
+          "file_data": "Support base64 data, raw data, mapped data of table. "
         }
       },
       "setter_option": {
@@ -1368,6 +1376,17 @@
         "scale_width": "幅",
         "collapse": {
           "collapsible_panel": "折りたたみ式パネル"
+        },
+        "file_download": {
+          "auto": "Auto",
+          "plain_text": "Plain text",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
         }
       },
       "setter_placeholder": {
@@ -1384,7 +1403,11 @@
           "value": "{{ [\"x\",\"y\",...] }}"
         },
         "img_url_array": "{{ item.image_url }} ",
-        "alt_text_mapped": "{{ item.alt_text }} "
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "{{ new_data.csv }}"
+        }
       },
       "setter_tootip": {
         "volume": "0 から 1 までの数値"
@@ -1502,6 +1525,9 @@
       "carousel": {
         "showNext": "次の可視画像を表示",
         "showPrevious": "前の可視画像を表示"
+      },
+      "file_download": {
+        "download": "Download"
       }
     },
     "tutorial": {
