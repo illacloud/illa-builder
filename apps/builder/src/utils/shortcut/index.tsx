@@ -29,7 +29,7 @@ import { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import { isMAC, isWindows } from "@/utils/userAgent"
+import { isMAC } from "@/utils/userAgent"
 
 export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
@@ -85,7 +85,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       enableOnFormTags: true,
       enableOnContentEditable: true,
       preventDefault: true,
-      enabled: isEditMode && isWindows(),
+      enabled: isEditMode && !isMAC(),
     },
   )
 
@@ -230,7 +230,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     },
     {
       preventDefault: true,
-      enabled: isEditMode && isWindows(),
+      enabled: isEditMode && !isMAC(),
     },
     [selectAllComponentsHandler],
   )
@@ -294,7 +294,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     () => {
       copySomethingHandler()
     },
-    { preventDefault: true, enabled: isEditMode && isWindows() },
+    { preventDefault: true, enabled: isEditMode && !isMAC() },
     [copySomethingHandler],
   )
 
@@ -315,7 +315,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     () => {
       CopyManager.paste()
     },
-    { preventDefault: true, enabled: isEditMode && isWindows() },
+    { preventDefault: true, enabled: isEditMode && !isMAC() },
     [copySomethingHandler],
   )
 
@@ -367,7 +367,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     () => {
       copyAndPasteHandler()
     },
-    { preventDefault: true, enabled: isEditMode && isWindows() },
+    { preventDefault: true, enabled: isEditMode && !isMAC() },
     [copyAndPasteHandler],
   )
 
@@ -404,7 +404,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       keydown: true,
       keyup: true,
       preventDefault: true,
-      enabled: isEditMode && isWindows(),
+      enabled: isEditMode && !isMAC(),
     },
     [showDotHandler],
   )

@@ -14,6 +14,7 @@ import {
 import { DropTargetMonitor, useDragDropManager, useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
+import { MultiSelectCanvas } from "@/page/App/components/DotPanel/MultiSelectCanvas"
 import {
   MoveDragResult,
   getDragResult,
@@ -30,6 +31,7 @@ import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceh
 import {
   applyComponentCanvasStyle,
   borderLineStyle,
+  selectoSelectionStyle,
 } from "@/page/App/components/DotPanel/style"
 import {
   getScaleItem,
@@ -39,12 +41,9 @@ import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import {
   getFreezeState,
   getIsILLAEditMode,
-  getIsILLAProductMode,
-  getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { clearComponentAttachedUsersHandler } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   modifyComponentNodeX,
   modifyComponentNodeY,
@@ -172,13 +171,11 @@ export const RenderComponentCanvas: FC<{
 
   const isShowCanvasDot = useSelector(isShowDot)
   const isEditMode = useSelector(getIsILLAEditMode)
-  const isProductionMode = useSelector(getIsILLAProductMode)
   const isFreezeCanvas = useSelector(getFreezeState)
   const dispatch = useDispatch()
 
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
   const widgetExecutionResult = useSelector(getWidgetExecutionResult)
-  const selectedComponents = useSelector(getSelectedComponents)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
 
@@ -384,10 +381,10 @@ export const RenderComponentCanvas: FC<{
         }
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
           const {
-            dragResult,
             reflowUpdateSlice,
             newEffectResultMap,
             scaleItem,
+            dragResult,
           } = moveCallback(
             dragInfo,
             blockColumns,
@@ -762,23 +759,21 @@ export const RenderComponentCanvas: FC<{
         dropTarget(node)
         canvasRef(node)
       }}
+      data-isroot={!!sectionName}
       id="realCanvas"
       className="illa-canvas"
-      css={applyComponentCanvasStyle(
-        bounds.width,
-        bounds.height,
-        bounds.width / blockColumns,
-        UNIT_HEIGHT,
-        isShowCanvasDot,
-        rowNumber * 8,
-        minHeight,
-      )}
-      onClick={(e) => {
-        if (e.target === currentCanvasRef.current && !isProductionMode) {
-          dispatch(configActions.updateSelectedComponent([]))
-          clearComponentAttachedUsersHandler(selectedComponents || [])
-        }
-      }}
+      css={[
+        applyComponentCanvasStyle(
+          bounds.width,
+          bounds.height,
+          bounds.width / blockColumns,
+          UNIT_HEIGHT,
+          isShowCanvasDot,
+          rowNumber * 8,
+          minHeight,
+        ),
+        selectoSelectionStyle,
+      ]}
     >
       {componentTree}
       {isActive && (
@@ -803,6 +798,11 @@ export const RenderComponentCanvas: FC<{
           <PreviewColumnsChange unitWidth={unitWidth} columns={blockColumns} />
         )}
       </AnimatePresence>
+      <MultiSelectCanvas
+        currentCanvasRef={currentCanvasRef}
+        containerRef={containerRef}
+        canvasNodeDisplayName={componentNode.displayName}
+      />
     </div>
   )
 }
