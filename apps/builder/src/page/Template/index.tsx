@@ -29,7 +29,7 @@ const Template: FC = () => {
   const message = useMessage()
   const { t } = useTranslation()
   const { templateName, teamIdentifier } = useParams()
-  const { example, name } = getTemplateConfig(templateName as TemplateName)
+  const { example, nameKey } = getTemplateConfig(templateName as TemplateName)
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
@@ -37,7 +37,10 @@ const Template: FC = () => {
     if (loading) return
     setLoading(true)
     try {
-      const appId = await forkTemplateApp(templateName as TemplateName)
+      const appId = await forkTemplateApp(
+        templateName as TemplateName,
+        t(`${nameKey}`),
+      )
       navigate(`/${teamIdentifier}/app/${appId}`)
     } catch (e: any) {
       if (e?.response?.data?.errorMessage) {
@@ -87,7 +90,7 @@ const Template: FC = () => {
             css={logoCursorStyle}
           />
           <div css={informationStyle}>
-            <div css={nameStyle}>{name}</div>
+            <div css={nameStyle}>{t(`${nameKey}`)}</div>
           </div>
         </div>
         <div css={viewControlStyle}>

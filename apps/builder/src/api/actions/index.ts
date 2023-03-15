@@ -46,11 +46,13 @@ export const createAction = async (
   return response.data.actionId
 }
 
-export const forkTemplateApp = async (templateName: TemplateName) => {
+export const forkTemplateApp = async (
+  templateType: TemplateName,
+  appName: string,
+) => {
   const {
-    name,
     config: { appConfig, actions, resources },
-  } = getTemplateConfig(templateName)
+  } = getTemplateConfig(templateType)
   const resourceList = await Promise.all(
     resources.map((data) => {
       const currentResources = getAllResources(store.getState())
@@ -64,7 +66,7 @@ export const forkTemplateApp = async (templateName: TemplateName) => {
       return resource ? resource.resourceId : createResource(data)
     }),
   )
-  const appId = await createApp(name, appConfig)
+  const appId = await createApp(appName, appConfig)
   if (resourceList.length) {
     const actionList = await Promise.all(
       actions.map((data) => {

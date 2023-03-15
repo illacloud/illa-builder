@@ -11,7 +11,6 @@ import {
   TemplateSetting,
 } from "@/config/template/interface"
 import Resources from "@/config/template/resources.json"
-import i18n from "@/i18n/config"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
@@ -64,19 +63,19 @@ const handleTemplateData = (currentApp: CurrentAppResp) => {
 
 export const templateConfig = {
   Table: {
-    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.table"),
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.table",
     config: handleTemplateData(TABLE_DATA),
     example:
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74H",
   },
   Form: {
-    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.form"),
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.form",
     config: handleTemplateData(FORM_DATA),
     example:
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74O",
   },
   List: {
-    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.list"),
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.list",
     config: handleTemplateData(LIST_DATA),
     example:
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74N",
@@ -86,22 +85,22 @@ export const templateConfig = {
 export const Templates: TemplateSetting[] = [
   {
     type: "Table",
-    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.table"),
-    desc: i18n.t("editor.tutorial.panel.tutorial.templates_description.table"),
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.table",
+    descKey: "editor.tutorial.panel.tutorial.templates_description.table",
     appId: "ILAex4p1C74H",
     icon: TableIcon,
   },
   {
     type: "Form",
-    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.form"),
-    desc: i18n.t("editor.tutorial.panel.tutorial.templates_description.form"),
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.form",
+    descKey: "editor.tutorial.panel.tutorial.templates_description.form",
     appId: "ILAex4p1C74O",
     icon: FormIcon,
   },
   {
     type: "List",
-    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.list"),
-    desc: i18n.t("editor.tutorial.panel.tutorial.templates_description.list"),
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.list",
+    descKey: "editor.tutorial.panel.tutorial.templates_description.list",
     appId: "ILAex4p1C74N",
     icon: ListIcon,
   },
