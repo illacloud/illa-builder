@@ -697,7 +697,7 @@ export const RenderComponentCanvas: FC<{
     const dragInfo = dragDropManager.getMonitor().getItem()
     const monitor = dragDropManager.getMonitor() as any
 
-    const scrollHandler = () => {
+    const scrollHandler = (e: Event) => {
       if (dragInfo && monitor) {
         throttleScrollEffect(dragInfo, monitor)
       }

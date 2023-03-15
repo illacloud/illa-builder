@@ -215,6 +215,8 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       onResizeStart={handleResizeStart}
       onResize={handleResize}
       onResizeStop={handleOnResizeStop}
+      data-displayname={componentNode.displayName}
+      data-parentnode={componentNode.parentNode}
     >
       {children}
     </Rnd>
