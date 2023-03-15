@@ -29,70 +29,68 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const message = useMessage()
 
   return (
-    <>
-      <Spin css={containerStyle} colorScheme="techPurple" loading={loading}>
-        {ActionTypeList.map(({ title, item, category }) => (
-          <div key={category}>
-            <span css={categoryStyle}>{title}</span>
-            <div css={resourceListStyle}>
-              {item.map((prop) => (
-                <ActionCard
-                  key={prop.actionType}
-                  onSelect={(item) => {
-                    if (item === "transformer") {
-                      const displayName =
-                        DisplayNameGenerator.generateDisplayName(item)
-                      const initialContent = getInitialContent(item)
-                      const data: Partial<ActionItem<ActionContent>> = {
-                        actionType: item,
-                        displayName,
-                        content: initialContent,
-                        ...actionItemInitial,
-                      }
-                      BuilderApi.teamRequest(
-                        {
-                          url: `/apps/${appInfo.appId}/actions`,
-                          method: "POST",
-                          data,
-                        },
-                        ({ data }: { data: ActionItem<ActionContent> }) => {
-                          message.success({
-                            content: t(
-                              "editor.action.action_list.message.success_created",
-                            ),
-                          })
-                          dispatch(actionActions.addActionItemReducer(data))
-                          dispatch(configActions.changeSelectedAction(data))
-                          onSelect(item)
-                        },
-                        () => {
-                          message.error({
-                            content: t(
-                              "editor.action.action_list.message.failed",
-                            ),
-                          })
-                          DisplayNameGenerator.removeDisplayName(displayName)
-                        },
-                        () => {
-                          DisplayNameGenerator.removeDisplayName(displayName)
-                        },
-                        (loading) => {
-                          setLoading(loading)
-                        },
-                      )
-                    } else {
-                      onSelect(item)
+    <Spin css={containerStyle} colorScheme="techPurple" loading={loading}>
+      {ActionTypeList.map(({ title, item, category }) => (
+        <div key={category}>
+          <span css={categoryStyle}>{title}</span>
+          <div css={resourceListStyle}>
+            {item.map((prop) => (
+              <ActionCard
+                key={prop.actionType}
+                onSelect={(item) => {
+                  if (item === "transformer") {
+                    const displayName =
+                      DisplayNameGenerator.generateDisplayName(item)
+                    const initialContent = getInitialContent(item)
+                    const data: Partial<ActionItem<ActionContent>> = {
+                      actionType: item,
+                      displayName,
+                      content: initialContent,
+                      ...actionItemInitial,
                     }
-                  }}
-                  {...prop}
-                />
-              ))}
-            </div>
+                    BuilderApi.teamRequest(
+                      {
+                        url: `/apps/${appInfo.appId}/actions`,
+                        method: "POST",
+                        data,
+                      },
+                      ({ data }: { data: ActionItem<ActionContent> }) => {
+                        message.success({
+                          content: t(
+                            "editor.action.action_list.message.success_created",
+                          ),
+                        })
+                        dispatch(actionActions.addActionItemReducer(data))
+                        dispatch(configActions.changeSelectedAction(data))
+                        onSelect(item)
+                      },
+                      () => {
+                        message.error({
+                          content: t(
+                            "editor.action.action_list.message.failed",
+                          ),
+                        })
+                        DisplayNameGenerator.removeDisplayName(displayName)
+                      },
+                      () => {
+                        DisplayNameGenerator.removeDisplayName(displayName)
+                      },
+                      (loading) => {
+                        setLoading(loading)
+                      },
+                    )
+                  } else {
+                    onSelect(item)
+                  }
+                }}
+                {...prop}
+              />
+            ))}
           </div>
-        ))}
-        <WhiteList />
-      </Spin>
-    </>
+        </div>
+      ))}
+      <WhiteList />
+    </Spin>
   )
 }
 

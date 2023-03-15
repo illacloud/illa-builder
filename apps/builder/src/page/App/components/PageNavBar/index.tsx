@@ -321,7 +321,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const [deployLoading, setDeployLoading] = useState(false)
   const [appNewName, setAppNewName] = useState<string>(appInfo.appName)
-  const [popContentVisible, setPopContentVisible] = useState(false)
+  const [popContentVisible, setPopContentVisible] = useState<boolean>(false)
   const [saveLoading, setSaveLoading] = useState<boolean>(false)
 
   const previewButtonText = isEditMode
