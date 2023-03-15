@@ -46,10 +46,11 @@ export const createAction = async (
   return response.data.actionId
 }
 
-export const forkTemplateApp = async (name: TemplateName) => {
+export const forkTemplateApp = async (templateName: TemplateName) => {
   const {
+    name,
     config: { appConfig, actions, resources },
-  } = getTemplateConfig(name)
+  } = getTemplateConfig(templateName)
   const resourceList = await Promise.all(
     resources.map((data) => {
       const currentResources = getAllResources(store.getState())

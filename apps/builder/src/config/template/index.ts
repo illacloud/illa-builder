@@ -12,12 +12,7 @@ import i18n from "@/i18n/config"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
-const DemoProject = "illacloud_demo"
-
-const handleTemplateData = (
-  currentApp: CurrentAppResp,
-  // currentResources: Resource<ResourceContent>[],
-) => {
+const handleTemplateData = (currentApp: CurrentAppResp) => {
   const currentResources = Resources as Resource<ResourceContent>[]
   const resourceIdList = currentApp.actions.map((action) => action.resourceId)
 
@@ -30,7 +25,7 @@ const handleTemplateData = (
       content,
     })) as TemplateResources
 
-  // 给 actions 加上 resourceIndex 属性
+  // Add the resourceIndex attribute to actions
   const actions = currentApp.actions.map(
     ({
       resourceId,
@@ -55,7 +50,6 @@ const handleTemplateData = (
     },
   ) as TemplateActions
 
-  // 取出 components 里的 childrenNode 参数
   const appConfig = currentApp.components.childrenNode
 
   return {
@@ -79,7 +73,7 @@ export const templateConfig = {
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74O",
   },
   List: {
-    name: "List",
+    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.list"),
     config: handleTemplateData(LIST_DATA),
     example:
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74N",
