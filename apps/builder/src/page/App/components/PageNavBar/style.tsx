@@ -204,5 +204,5 @@ export const appNameEditorSaveButtonWrapperStyle = css`
 `
 
 export const triggerStyle = css`
-  margin-top: 19px;
+  margin-top: 20px;
 `
