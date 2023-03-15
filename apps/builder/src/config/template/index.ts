@@ -1,4 +1,6 @@
-import { DASHBOARD_DATA } from "@/config/template/Dashboard"
+import { FORM_DATA } from "@/config/template/Form"
+import { LIST_DATA } from "@/config/template/List"
+import { TABLE_DATA } from "@/config/template/Table"
 import {
   TemplateActions,
   TemplateName,
@@ -6,6 +8,7 @@ import {
   TemplateSetting,
 } from "@/config/template/interface"
 import Resources from "@/config/template/resources.json"
+import i18n from "@/i18n/config"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
@@ -64,32 +67,45 @@ const handleTemplateData = (
 
 export const templateConfig = {
   Table: {
-    config: handleTemplateData(DASHBOARD_DATA),
-    example: "https://builder.illacloud.com/chakra/deploy/app/ILAfx4p1C7eq",
-  },
-  Dashboard: {
-    config: handleTemplateData(DASHBOARD_DATA),
+    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.table"),
+    config: handleTemplateData(TABLE_DATA),
     example:
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74H",
+  },
+  Form: {
+    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.form"),
+    config: handleTemplateData(FORM_DATA),
+    example:
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74O",
+  },
+  List: {
+    name: "List",
+    config: handleTemplateData(LIST_DATA),
+    example:
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74N",
   },
 }
 
 export const Templates: TemplateSetting[] = [
   {
-    name: "Table",
-    desc: "A template designed to show off visualization capabilities",
+    type: "Table",
+    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.table"),
+    desc: i18n.t("editor.tutorial.panel.tutorial.templates_description.table"),
     appId: "ILAex4p1C74H",
   },
   {
-    name: "Dashboard",
-    desc: "A template designed to show off visualization capabilities",
-    appId: "ILAex4p1C74H",
+    type: "Form",
+    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.form"),
+    desc: i18n.t("editor.tutorial.panel.tutorial.templates_description.form"),
+    appId: "ILAex4p1C74O",
+  },
+  {
+    type: "List",
+    name: i18n.t("editor.tutorial.panel.tutorial.templates_name.list"),
+    desc: i18n.t("editor.tutorial.panel.tutorial.templates_description.list"),
+    appId: "ILAex4p1C74N",
   },
 ]
-
-const getTemplateList = () => {
-  Templates.map((template) => {})
-}
 
 export const getTemplateConfig = (templateName: TemplateName) => {
   return templateConfig[templateName]

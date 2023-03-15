@@ -8,7 +8,8 @@ import { ResourceContent, ResourceType } from "@/redux/resource/resourceState"
 export type TemplateName = keyof typeof templateConfig
 
 export interface TemplateSetting {
-  name: TemplateName
+  type: TemplateName
+  name: string
   desc: string
   appId: string
 }

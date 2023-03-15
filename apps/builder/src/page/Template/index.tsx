@@ -28,7 +28,7 @@ const Template: FC = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const { templateName, teamIdentifier } = useParams()
-  const { example } = getTemplateConfig(templateName as TemplateName)
+  const { example, name } = getTemplateConfig(templateName as TemplateName)
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
@@ -75,7 +75,7 @@ const Template: FC = () => {
             css={logoCursorStyle}
           />
           <div css={informationStyle}>
-            <div css={nameStyle}>{templateName}</div>
+            <div css={nameStyle}>{name}</div>
           </div>
         </div>
         <div css={viewControlStyle}>

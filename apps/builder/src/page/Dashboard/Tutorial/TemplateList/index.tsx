@@ -44,7 +44,7 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
           <div
             css={itemStyle}
             onClick={() => {
-              navigate(`/${teamIdentifier}/template/${item.name}`)
+              navigate(`/${teamIdentifier}/template/${item.type}`)
             }}
           >
             <div css={iconStyle} />
@@ -56,7 +56,7 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
               css={forkItemStyle}
               onClick={async (e) => {
                 e.stopPropagation()
-                handleForkApp(item.name)
+                handleForkApp(item.type)
               }}
             >
               <ForkIcon css={forkIconStyle} />
