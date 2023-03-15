@@ -77,4 +77,5 @@ export const forkItemStyle = css`
 export const forkIconStyle = css`
   width: 16px;
   height: 16px;
+  flex: none;
 `

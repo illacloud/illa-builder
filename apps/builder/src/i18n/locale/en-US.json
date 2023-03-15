@@ -1555,8 +1555,8 @@
             "list": "Admin panel"
           },
           "templates_description": {
-            "table": "Use tables and other components to create dashboards to query and make use of data easily.",
-            "form": "Use form and input components to create form such as satisfaction survey, pre-sale form, etc.",
+            "table": "Use tables and other components to create dashboards.",
+            "form": "Use form and input components to create form apps.",
             "list": "Use a list component to display and manage information"
           },
           "modal": {

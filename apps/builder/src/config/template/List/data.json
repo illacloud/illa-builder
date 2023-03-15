@@ -4,8 +4,8 @@
     "uid": "00000000-0000-0000-0000-000000000000",
     "teamID": "ILAfx4p1C7d0",
     "appName": "Admin panel",
-    "releaseVersion": 1,
-    "mainlineVersion": 1,
+    "releaseVersion": 2,
+    "mainlineVersion": 2,
     "config": {
       "public": true
     },
@@ -18,8 +18,8 @@
   },
   "actions": [
     {
-      "actionId": "ILAex4p1C7XB",
-      "uid": "374dd63d-8eed-419a-9de7-1011f14ddb2a",
+      "actionId": "ILAex4p1C7UB",
+      "uid": "c76d0dc6-be64-4e1d-8c6e-576c927358ba",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "add_new",
@@ -65,8 +65,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7XA",
-      "uid": "a9736fd8-9f01-4f92-98c6-fb0d5c09da66",
+      "actionId": "ILAex4p1C7UQ",
+      "uid": "4ec4a50b-0bf3-4abd-b97c-a043285865ba",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "user_order",
@@ -89,8 +89,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7Xz",
-      "uid": "c273cfb8-a87e-4ff8-a97a-99c0cd8c1e91",
+      "actionId": "ILAex4p1C7UP",
+      "uid": "3befd2f7-7628-4019-a306-446ae0ab2f77",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "delete_user",
@@ -137,8 +137,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7Xy",
-      "uid": "1480919f-3c1f-45a1-b0aa-f0a89fa577df",
+      "actionId": "ILAex4p1C7UO",
+      "uid": "b7fe2ef5-2a0b-4e71-a471-fbe3cc50a2f0",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "update_user",
@@ -185,8 +185,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7Xx",
-      "uid": "19def7dd-4e2b-48e9-85f4-ffd06d3c3058",
+      "actionId": "ILAex4p1C7UN",
+      "uid": "2b6c4ec3-764c-4fcf-91f0-7a0297f7c27b",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "orders",
@@ -209,8 +209,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7Xw",
-      "uid": "698a8879-f443-4801-8e88-23028e405993",
+      "actionId": "ILAex4p1C7UM",
+      "uid": "98a4c77d-2c77-4325-a178-95460a0d4c96",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "id",
