@@ -12,6 +12,7 @@ export interface TemplateSetting {
   name: string
   desc: string
   appId: string
+  icon: string
 }
 
 export type TemplateResources = {

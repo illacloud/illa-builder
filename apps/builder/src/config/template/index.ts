@@ -1,6 +1,9 @@
 import { FORM_DATA } from "@/config/template/Form"
 import { LIST_DATA } from "@/config/template/List"
 import { TABLE_DATA } from "@/config/template/Table"
+import FormIcon from "@/config/template/icon/form.svg"
+import ListIcon from "@/config/template/icon/list.svg"
+import TableIcon from "@/config/template/icon/table.svg"
 import {
   TemplateActions,
   TemplateName,
@@ -86,18 +89,21 @@ export const Templates: TemplateSetting[] = [
     name: i18n.t("editor.tutorial.panel.tutorial.templates_name.table"),
     desc: i18n.t("editor.tutorial.panel.tutorial.templates_description.table"),
     appId: "ILAex4p1C74H",
+    icon: TableIcon,
   },
   {
     type: "Form",
     name: i18n.t("editor.tutorial.panel.tutorial.templates_name.form"),
     desc: i18n.t("editor.tutorial.panel.tutorial.templates_description.form"),
     appId: "ILAex4p1C74O",
+    icon: FormIcon,
   },
   {
     type: "List",
     name: i18n.t("editor.tutorial.panel.tutorial.templates_name.list"),
     desc: i18n.t("editor.tutorial.panel.tutorial.templates_description.list"),
     appId: "ILAex4p1C74N",
+    icon: ListIcon,
   },
 ]
 

@@ -55,7 +55,7 @@ export const descStyle = css`
   line-height: 16px;
   color: ${getColor("grayBlue", "02")};
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: break-spaces;
   overflow: hidden;
 `
 

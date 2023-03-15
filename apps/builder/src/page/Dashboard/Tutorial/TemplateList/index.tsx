@@ -49,7 +49,7 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
               navigate(`/${teamIdentifier}/template/${item.type}`)
             }}
           >
-            <div css={iconStyle} />
+            <img css={iconStyle} src={item.icon} />
             <div css={contentStyle}>
               <div css={titleStyle}>{item.name}</div>
               <div css={descStyle}>{item.desc}</div>
