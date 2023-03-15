@@ -45,7 +45,7 @@ const Template: FC = () => {
   useEffect(() => {
     // initTemplate
     const controller = new AbortController()
-    dispatch(configActions.updateIllaMode("template-preview"))
+    dispatch(configActions.updateIllaMode("preview"))
     BuilderApi.teamRequest<Resource<ResourceContent>[]>(
       {
         url: "/resources",

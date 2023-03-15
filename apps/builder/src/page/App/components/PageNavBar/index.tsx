@@ -44,7 +44,6 @@ import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import {
   getFreezeState,
   getIsILLAEditMode,
-  getIsILLATemplatePreviewMode,
   getIsOnline,
   isOpenBottomPanel,
   isOpenDebugger,
@@ -304,7 +303,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const debuggerData = useSelector(getExecutionDebuggerData)
 
   const isEditMode = useSelector(getIsILLAEditMode)
-  const isTemplatePreviewMode = useSelector(getIsILLATemplatePreviewMode)
 
   const [deployLoading, setDeployLoading] = useState(false)
 

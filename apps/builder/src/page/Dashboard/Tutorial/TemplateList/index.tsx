@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { Button, useMessage } from "@illa-design/react"
+import { useMessage } from "@illa-design/react"
 import { forkTemplateApp } from "@/api/actions"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { TemplateName } from "@/config/template/interface"
@@ -42,6 +42,7 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
       {data.map((item) => {
         return (
           <div
+            key={item.type}
             css={itemStyle}
             onClick={() => {
               navigate(`/${teamIdentifier}/template/${item.type}`)
