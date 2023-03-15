@@ -2,7 +2,7 @@ import {
   DASHBOARD_APP_CONFIG,
   DASHBOARD_TEMPLATE_ACTIONS,
   DASHBOARD_TEMPLATE_RESOURCES,
-} from "@/config/template/dashboard"
+} from "@/config/template/Dashboard"
 import { TemplateName, TemplateSetting } from "@/config/template/interface"
 import {
   TABLE_APP_CONFIG,

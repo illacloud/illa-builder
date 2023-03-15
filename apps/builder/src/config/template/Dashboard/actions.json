@@ -1,0 +1,156 @@
+[
+  {
+    "resourceIndex": 0,
+    "resourceId": "ILAfx4p1C7cn",
+    "displayName": "requests",
+    "actionType": "postgresql",
+    "content": {
+      "mode": "sql",
+      "query": "SELECT count(*) as requests FROM survey;"
+    },
+    "transformer": {
+      "enable": false,
+      "rawData": ""
+    },
+    "triggerMode": "automate",
+    "config": {
+      "public": false
+    }
+  },
+  {
+    "resourceIndex": 0,
+    "resourceId": "ILAfx4p1C7cn",
+    "displayName": "list_all",
+    "actionType": "postgresql",
+    "content": {
+      "mode": "sql",
+      "query": "select * from survey"
+    },
+    "transformer": {
+      "enable": false,
+      "rawData": ""
+    },
+    "triggerMode": "automate",
+    "config": {
+      "public": false
+    }
+  },
+  {
+    "resourceIndex": 0,
+    "resourceId": "ILAfx4p1C7cn",
+    "displayName": "available",
+    "actionType": "postgresql",
+    "content": {
+      "mode": "sql",
+      "query": "select count(familiar) as requests from survey where available = '1'"
+    },
+    "transformer": {
+      "enable": false,
+      "rawData": ""
+    },
+    "triggerMode": "automate",
+    "config": {
+      "public": false
+    }
+  },
+  {
+    "resourceIndex": 0,
+    "resourceId": "ILAfx4p1C7cn",
+    "displayName": "delete_row",
+    "actionType": "postgresql",
+    "content": {
+      "$dynamicAttrPaths": [],
+      "failedEvent": [
+        {
+          "actionType": "showNotification",
+          "eventType": "fail",
+          "id": "events-42160dd3-4249-4068-8122-d5db50dea091",
+          "title": "Failed to delete"
+        }
+      ],
+      "mode": "sql",
+      "query": "DELETE FROM survey WHERE id='{{table1.selectedRow[0].id}}';",
+      "successEvent": [
+        {
+          "actionType": "showNotification",
+          "eventType": "success",
+          "id": "events-5421ab78-1a4e-4c40-8444-891387913c71",
+          "title": "Deleted successfully"
+        },
+        {
+          "actionType": "datasource",
+          "eventType": "success",
+          "id": "events-d21926ac-d664-499b-9070-8c00585aff48",
+          "queryID": "list_all"
+        }
+      ]
+    },
+    "transformer": {
+      "enable": false,
+      "rawData": ""
+    },
+    "triggerMode": "manually",
+    "config": {
+      "public": false
+    }
+  },
+  {
+    "resourceIndex": 0,
+    "resourceId": "ILAfx4p1C7cn",
+    "displayName": "update_available",
+    "actionType": "postgresql",
+    "content": {
+      "mode": "sql",
+      "$dynamicAttrPaths": [],
+      "failedEvent": [
+        {
+          "actionType": "showNotification",
+          "eventType": "fail",
+          "id": "events-414c3730-3b68-4a49-9da2-938f7bb51f06",
+          "title": "Failed to update"
+        }
+      ],
+      "query": "UPDATE survey SET available = '0' WHERE id='{{table1.selectedRow[0].id}}' ;",
+      "successEvent": [
+        {
+          "actionType": "datasource",
+          "eventType": "success",
+          "id": "events-db4b026c-e351-4ca6-a208-3e78eb9f8ff8",
+          "queryID": "list_all"
+        },
+        {
+          "actionType": "showNotification",
+          "eventType": "success",
+          "id": "events-28a01658-4370-4593-acc7-cfb7cad9dedc",
+          "title": "Successfully updated"
+        }
+      ]
+    },
+    "transformer": {
+      "enable": false,
+      "rawData": ""
+    },
+    "triggerMode": "manually",
+    "config": {
+      "public": false
+    }
+  },
+  {
+    "resourceIndex": 0,
+    "resourceId": "ILAfx4p1C7cn",
+    "displayName": "familiar",
+    "actionType": "postgresql",
+    "content": {
+      "mode": "sql",
+      "query": "select count(id) as num, familiar from survey group by familiar"
+    },
+    "transformer": {
+      "enable": false,
+      "rawData": ""
+    },
+    "triggerMode": "automate",
+    "config": {
+      "public": false
+    }
+  }
+]
