@@ -1,4 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit"
+import { appInfoAsync } from "@/middleware/reduxAsync/sendMessage/appInfoMethod"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { RootState } from "@/store"
 import { actionsAsync } from "./actionMethod"
@@ -13,6 +14,7 @@ export const sendMessage = (
   nextRootState: RootState,
   action: PayloadAction<any>,
 ) => {
+  console.log("action: ", { action })
   const currentAppID = nextRootState.currentApp.appInfo.appId ?? ""
   const { id: teamID = "", uid = "" } = getCurrentTeamInfo(nextRootState) ?? {}
   const { type } = action
@@ -71,6 +73,18 @@ export const sendMessage = (
     }
     case "apps": {
       appsAsync(
+        reduxAction,
+        currentAppID,
+        action,
+        teamID,
+        uid,
+        prevRootState,
+        nextRootState,
+      )
+      break
+    }
+    case "appInfo": {
+      appInfoAsync(
         reduxAction,
         currentAppID,
         action,
