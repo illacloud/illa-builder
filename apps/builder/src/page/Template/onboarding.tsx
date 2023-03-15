@@ -11,6 +11,8 @@ import {
   middlePanelStyle,
   navbarStyle,
 } from "@/page/App/style"
+import { setupConfigListeners } from "@/redux/config/configListener"
+import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
@@ -25,9 +27,14 @@ const Onboarding: FC = () => {
     const subscriptions: Unsubscribe[] = [
       setupComponentsListeners(startAppListening),
       setupExecutionListeners(startAppListening),
+      setupActionListeners(startAppListening),
+      setupConfigListeners(startAppListening),
     ]
-    document.title = currentApp.appName
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
+  }, [])
+
+  useEffect(() => {
+    document.title = currentApp.appName
   }, [currentApp.appName])
 
   return (
