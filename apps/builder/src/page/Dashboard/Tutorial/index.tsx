@@ -44,20 +44,23 @@ const Tutorial: FC = () => {
 
   return (
     <div css={appsContainerStyle}>
-      <div css={titleStyle}>
-        {t("editor.tutorial.panel.tutorial.tab.title")}
-      </div>
-      <div css={cardStyle}>
-        <CardCover css={cardBgStyle} />
-        <div css={cardTitleStyle}>
-          {t("editor.tutorial.panel.tutorial.onboarding_app.name")}
+      // [TODO] onboarding app @xiaoyu
+      <div style={{ display: "none" }}>
+        <div css={titleStyle}>
+          {t("editor.tutorial.panel.tutorial.tab.title")}
         </div>
-        <div css={cardDescStyle}>
-          {t("editor.tutorial.panel.tutorial.onboarding_app.description")}
-        </div>
-        <div css={cardFooterStyle}>
-          {t("editor.tutorial.panel.tutorial.onboarding_app.action")}{" "}
-          <NextIcon />
+        <div css={cardStyle}>
+          <CardCover css={cardBgStyle} />
+          <div css={cardTitleStyle}>
+            {t("editor.tutorial.panel.tutorial.onboarding_app.name")}
+          </div>
+          <div css={cardDescStyle}>
+            {t("editor.tutorial.panel.tutorial.onboarding_app.description")}
+          </div>
+          <div css={cardFooterStyle}>
+            {t("editor.tutorial.panel.tutorial.onboarding_app.action")}{" "}
+            <NextIcon />
+          </div>
         </div>
       </div>
       <div css={titleStyle}>Use Cases</div>
