@@ -44,7 +44,6 @@ const Tutorial: FC = () => {
 
   return (
     <div css={appsContainerStyle}>
-      // [TODO] onboarding app @xiaoyu
       <div style={{ display: "none" }}>
         <div css={titleStyle}>
           {t("editor.tutorial.panel.tutorial.tab.title")}
