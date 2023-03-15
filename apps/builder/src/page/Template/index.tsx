@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button } from "@illa-design/react"
 import { forkTemplateApp } from "@/api/actions"
+import { BuilderApi } from "@/api/base"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { getTemplateConfig } from "@/config/template"
@@ -20,6 +21,8 @@ import { editorContainerStyle } from "@/page/App/style"
 import { forkIconStyle, forkTextStyle, frameStyle } from "@/page/Template/style"
 import { Page404 } from "@/page/status/404"
 import { configActions } from "@/redux/config/configSlice"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
 const Template: FC = () => {
   const dispatch = useDispatch()
@@ -40,7 +43,22 @@ const Template: FC = () => {
   }
 
   useEffect(() => {
+    // initTemplate
+    const controller = new AbortController()
     dispatch(configActions.updateIllaMode("template-preview"))
+    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
+      {
+        url: "/resources",
+        method: "GET",
+        signal: controller.signal,
+      },
+      (response) => {
+        dispatch(resourceActions.updateResourceListReducer(response.data))
+      },
+    )
+    return () => {
+      controller.abort()
+    }
   }, [])
 
   if (!example || !templateName) return <Page404 />
