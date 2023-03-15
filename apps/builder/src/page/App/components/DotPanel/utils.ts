@@ -72,16 +72,6 @@ export const moveCallback = (
 
   const { ladingPosition } = dragResult
   const { landingX, landingY } = ladingPosition
-  // /**
-  //  * add rows when node over canvas
-  //  */
-  // if (
-  //   canResizeY &&
-  //   landingY / UNIT_HEIGHT + item.h > rowNumber - safeRowNumber
-  // ) {
-  //   const finalNumber = landingY / UNIT_HEIGHT + item.h + safeRowNumber
-  //   setRowNumber(finalNumber)
-  // }
 
   let childrenNodes = dragInfo.childrenNodes.filter(
     (node) => node.parentNode === containerWidgetDisplayName,

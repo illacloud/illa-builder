@@ -555,7 +555,16 @@ export const bodySectionWrapperStyle = css`
   height: var(--illa-canvas-body-height);
 `
 
-// leftRef.current.style.height = `${leftHeight}px`
-// leftRef.current.style.top = `${leftTop}px`
-
-export const leftSectionWrapperStyle = css``
+export const selectoSelectionStyle = css`
+  > .selecto-selection {
+    position: absolute !important;
+    transform: translate(
+      var(--illa-select-area-left, 0),
+      var(--illa-select-area-top, 0)
+    ) !important;
+    width: var(--illa-select-area-width, 0) !important;
+    height: var(--illa-select-area-height, 0) !important;
+    background: rgba(101, 74, 236, 0.08) !important;
+    border: 1px solid ${getColor("techPurple", "01")} !important;
+  }
+`
