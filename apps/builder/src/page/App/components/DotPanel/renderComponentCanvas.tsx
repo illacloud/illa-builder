@@ -20,6 +20,7 @@ import {
   getDragResult,
   isAddAction,
 } from "@/page/App/components/DotPanel/calc"
+import DragPreview from "@/page/App/components/DotPanel/dragPreview"
 import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
 import {
   DragInfo,
@@ -27,7 +28,6 @@ import {
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
 import { PreviewColumnsChange } from "@/page/App/components/DotPanel/previewColumnsChange"
-import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
 import {
   applyComponentCanvasStyle,
   borderLineStyle,
@@ -179,9 +179,6 @@ export const RenderComponentCanvas: FC<{
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
 
-  const [xy, setXY] = useState([0, 0])
-  const [lunchXY, setLunchXY] = useState([0, 0])
-  const [canDrop, setCanDrop] = useState(true)
   const [rowNumber, setRowNumber] = useState(0)
   const [collisionEffect, setCollisionEffect] = useState(
     new Map<string, ComponentNode>(),
@@ -265,61 +262,6 @@ export const RenderComponentCanvas: FC<{
     return bounds.width / blockColumns
   }, [blockColumns, bounds.width])
 
-  const componentTree = useMemo(() => {
-    const childrenNode = componentNode.childrenNode
-    return childrenNode?.map((item) => {
-      const containerHeight =
-        componentNode.displayName === "root"
-          ? rowNumber * UNIT_HEIGHT
-          : (componentNode.h - 1) * UNIT_HEIGHT
-      switch (item.containerType) {
-        case "EDITOR_DOT_PANEL":
-          return (
-            <BasicContainer
-              componentNode={item}
-              key={item.displayName}
-              canResizeY={canResizeY}
-              minHeight={minHeight}
-              safeRowNumber={safeRowNumber}
-              addedRowNumber={addedRowNumber}
-              blockColumns={blockColumns}
-            />
-          )
-        case "EDITOR_SCALE_SQUARE":
-          const widget = widgetBuilder(item.type)
-          if (!widget) return null
-          return (
-            <ScaleSquare
-              key={item.displayName}
-              componentNode={item}
-              unitW={unitWidth}
-              unitH={UNIT_HEIGHT}
-              containerHeight={containerHeight}
-              containerPadding={containerPadding}
-              childrenNode={componentNode.childrenNode}
-              collisionEffect={collisionEffect}
-              blockColumns={blockColumns}
-            />
-          )
-        default:
-          return null
-      }
-    })
-  }, [
-    addedRowNumber,
-    blockColumns,
-    canResizeY,
-    collisionEffect,
-    componentNode.childrenNode,
-    componentNode.displayName,
-    componentNode.h,
-    containerPadding,
-    minHeight,
-    rowNumber,
-    safeRowNumber,
-    unitWidth,
-  ])
-
   const throttleUpdateComponentPositionByReflow = useMemo(() => {
     return throttle((updateSlice: UpdateComponentNodeLayoutInfoPayload[]) => {
       dispatch(executionActions.batchUpdateWidgetLayoutInfoReducer(updateSlice))
@@ -333,11 +275,8 @@ export const RenderComponentCanvas: FC<{
       newEffectResultMap: Map<string, ComponentNode>,
       itemHeight: number,
     ) => {
-      const { ladingPosition, rectCenterPosition } = dragResult
-      const { landingX, landingY, isOverstep } = ladingPosition
-      setXY([rectCenterPosition.x, rectCenterPosition.y])
-      setLunchXY([landingX, landingY])
-      setCanDrop(isOverstep)
+      const { ladingPosition } = dragResult
+      const { landingY } = ladingPosition
       setRowNumber((prevState) => {
         if (
           canResizeY &&
@@ -365,7 +304,7 @@ export const RenderComponentCanvas: FC<{
     ],
   )
 
-  const [{ isActive, nodeWidth, nodeHeight }, dropTarget] = useDrop<
+  const [{ isActive }, dropTarget] = useDrop<
     DragInfo,
     DropResultInfo,
     DropCollectedInfo
@@ -392,7 +331,7 @@ export const RenderComponentCanvas: FC<{
             monitor,
             containerRef,
             unitWidth,
-            canvasBoundingClientRect,
+            canvasBoundingClientRect!,
             canResizeY,
             containerPadding,
             isFreezeCanvas,
@@ -465,14 +404,28 @@ export const RenderComponentCanvas: FC<{
             }
           }
 
-          let dragResult = getDragResult(
-            monitor,
-            containerRef,
-            scaleItem,
-            unitWidth,
-            UNIT_HEIGHT,
-            bounds.width,
+          const containerClientRect =
+            containerRef.current?.getBoundingClientRect()
+          const containerPosition = {
+            x: containerClientRect?.x || 0,
+            y: containerClientRect?.y || 0,
+          }
+          const scrollTop = containerRef.current?.scrollTop
+          const clientOffset = monitor.getClientOffset()
+          const initialClientOffset = monitor.getInitialClientOffset()
+          const initialSourceClientOffSet =
+            monitor.getInitialSourceClientOffset()
+
+          const dragResult = getDragResult(
             actionName,
+            clientOffset!,
+            initialClientOffset!,
+            initialSourceClientOffSet!,
+            containerPosition,
+            scrollTop,
+            unitWidth,
+            scaleItem,
+            bounds.width,
             bounds.height,
             canResizeY,
             containerPadding,
@@ -560,24 +513,11 @@ export const RenderComponentCanvas: FC<{
         if (!dragInfo) {
           return {
             isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
-            nodeWidth: 0,
-            nodeHeight: 0,
           }
         }
-        const { item, currentColumnNumber } = dragInfo
-        let nodeWidth = item?.w ?? 0
-        let nodeHeight = item?.h ?? 0
-
-        nodeWidth =
-          Math.ceil(nodeWidth * (blockColumns / currentColumnNumber)) <
-          (item?.minW ?? 2)
-            ? item?.minW ?? 2
-            : Math.ceil(nodeWidth * (blockColumns / currentColumnNumber))
 
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
-          nodeWidth: nodeWidth,
-          nodeHeight: nodeHeight,
         }
       },
     }),
@@ -585,12 +525,66 @@ export const RenderComponentCanvas: FC<{
       bounds,
       unitWidth,
       UNIT_HEIGHT,
-      canDrop,
       isFreezeCanvas,
       componentNode,
       currentPageDisplayName,
     ],
   )
+
+  const componentTree = useMemo(() => {
+    const childrenNode = componentNode.childrenNode
+    return childrenNode?.map((item) => {
+      const containerHeight =
+        componentNode.displayName === "root"
+          ? rowNumber * UNIT_HEIGHT
+          : (componentNode.h - 1) * UNIT_HEIGHT
+      switch (item.containerType) {
+        case "EDITOR_DOT_PANEL":
+          return (
+            <BasicContainer
+              componentNode={item}
+              key={item.displayName}
+              canResizeY={canResizeY}
+              minHeight={minHeight}
+              safeRowNumber={safeRowNumber}
+              addedRowNumber={addedRowNumber}
+              blockColumns={blockColumns}
+            />
+          )
+        case "EDITOR_SCALE_SQUARE":
+          const widget = widgetBuilder(item.type)
+          if (!widget) return null
+          return (
+            <ScaleSquare
+              key={item.displayName}
+              componentNode={item}
+              unitW={unitWidth}
+              unitH={UNIT_HEIGHT}
+              containerHeight={containerHeight}
+              containerPadding={containerPadding}
+              childrenNode={componentNode.childrenNode}
+              collisionEffect={collisionEffect}
+              blockColumns={blockColumns}
+            />
+          )
+        default:
+          return null
+      }
+    })
+  }, [
+    addedRowNumber,
+    blockColumns,
+    canResizeY,
+    collisionEffect,
+    componentNode.childrenNode,
+    componentNode.displayName,
+    componentNode.h,
+    containerPadding,
+    minHeight,
+    rowNumber,
+    safeRowNumber,
+    unitWidth,
+  ])
 
   const maxY = useMemo(() => {
     let maxY = 0
@@ -665,7 +659,7 @@ export const RenderComponentCanvas: FC<{
             monitor,
             containerRef,
             unitWidth,
-            canvasBoundingClientRect,
+            canvasBoundingClientRect!,
             canResizeY,
             containerPadding,
             isFreezeCanvas,
@@ -692,12 +686,18 @@ export const RenderComponentCanvas: FC<{
   ])
 
   useEffect(() => {
+    if (!isActive) {
+      setCollisionEffect(new Map())
+    }
+  }, [isActive])
+
+  useEffect(() => {
     if (!containerRef.current) return
 
     const dragInfo = dragDropManager.getMonitor().getItem()
     const monitor = dragDropManager.getMonitor() as any
 
-    const scrollHandler = (e: Event) => {
+    const scrollHandler = () => {
       if (dragInfo && monitor) {
         throttleScrollEffect(dragInfo, monitor)
       }
@@ -777,22 +777,26 @@ export const RenderComponentCanvas: FC<{
     >
       {componentTree}
       {isActive && (
-        <PreviewPlaceholder
-          x={xy[0]}
-          y={xy[1]}
-          lunchX={lunchXY[0]}
-          lunchY={lunchXY[1]}
-          w={nodeWidth * unitWidth}
-          h={nodeHeight * UNIT_HEIGHT}
-          canDrop={canDrop}
+        <DragPreview
+          containerRef={containerRef}
+          canResizeY={canResizeY}
+          unitWidth={unitWidth}
+          canvasHeight={bounds.height}
+          canvasWidth={bounds.width}
+          containerLeftPadding={containerPadding}
+          containerTopPadding={containerPadding}
+          columnNumber={blockColumns}
+          containerWidgetDisplayName={componentNode.displayName}
         />
       )}
       {isShowCanvasDot && <div css={borderLineStyle} />}
-      <FreezePlaceholder
-        effectMap={collisionEffect}
-        unitW={unitWidth}
-        unitH={UNIT_HEIGHT}
-      />
+      {isActive && (
+        <FreezePlaceholder
+          effectMap={collisionEffect}
+          unitW={unitWidth}
+          unitH={UNIT_HEIGHT}
+        />
+      )}
       <AnimatePresence>
         {componentNode.type === "CONTAINER_NODE" && ShowColumnsChange && (
           <PreviewColumnsChange unitWidth={unitWidth} columns={blockColumns} />

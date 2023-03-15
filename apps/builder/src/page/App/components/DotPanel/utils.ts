@@ -36,7 +36,7 @@ export const moveCallback = (
   monitor: DropTargetMonitor<DragInfo, DropResultInfo>,
   containerRef: RefObject<HTMLDivElement>,
   unitWidth: number,
-  canvasBoundingClientRect: DOMRect | undefined,
+  canvasBoundingClientRect: DOMRect,
   canResizeY: boolean,
   containerPadding: number,
   isFreezeCanvas: boolean,
@@ -56,15 +56,27 @@ export const moveCallback = (
     ? "ADD"
     : "UPDATE"
 
-  let dragResult = getDragResult(
-    monitor,
-    containerRef,
-    scaleItem,
-    unitWidth,
-    UNIT_HEIGHT,
-    canvasBoundingClientRect?.width,
+  const containerClientRect = containerRef.current?.getBoundingClientRect()
+  const containerPosition = {
+    x: containerClientRect?.x || 0,
+    y: containerClientRect?.y || 0,
+  }
+  const scrollTop = containerRef.current?.scrollTop
+  const clientOffset = monitor.getClientOffset()
+  const initialClientOffset = monitor.getInitialClientOffset()
+  const initialSourceClientOffSet = monitor.getInitialSourceClientOffset()
+
+  const dragResult = getDragResult(
     actionName,
-    canvasBoundingClientRect?.height,
+    clientOffset!,
+    initialClientOffset!,
+    initialSourceClientOffSet!,
+    containerPosition,
+    scrollTop,
+    unitWidth,
+    scaleItem,
+    canvasBoundingClientRect.width,
+    canvasBoundingClientRect.height,
     canResizeY,
     containerPadding,
     containerPadding,
