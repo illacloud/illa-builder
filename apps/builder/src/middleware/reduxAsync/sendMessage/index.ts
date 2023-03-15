@@ -14,7 +14,6 @@ export const sendMessage = (
   nextRootState: RootState,
   action: PayloadAction<any>,
 ) => {
-  console.log("action: ", { action })
   const currentAppID = nextRootState.currentApp.appInfo.appId ?? ""
   const { id: teamID = "", uid = "" } = getCurrentTeamInfo(nextRootState) ?? {}
   const { type } = action
