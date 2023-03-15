@@ -61,7 +61,6 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getViewportSizeSelector } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { fromNow } from "@/utils/dayjs"
 import {
   appNameEditorSaveButtonWrapperStyle,
@@ -311,7 +310,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { teamIdentifier } = useParams()
 
   const appInfo = useSelector(getAppInfo)
-  const appList = useSelector(getDashboardApps)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
@@ -320,6 +318,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const isOnline = useSelector(getIsOnline)
   const debuggerData = useSelector(getExecutionDebuggerData)
   const isEditMode = useSelector(getIsILLAEditMode)
+
   const [deployLoading, setDeployLoading] = useState(false)
   const [appNewName, setAppNewName] = useState<string>(appInfo.appName)
   const [popContentVisible, setPopContentVisible] = useState(false)
@@ -383,12 +382,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       })
       return
     }
-    if (appList.some((item) => item.appName === appNewName)) {
-      message.error({
-        content: t("dashboard.app.name_existed"),
-      })
-      return
-    }
     BuilderApi.teamRequest(
       {
         url: `/apps/${appInfo.appId}`,
@@ -418,7 +411,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         setSaveLoading(loading)
       },
     )
-  }, [appInfo.appId, appList, appNewName, dispatch, message, t])
+  }, [appInfo.appId, appNewName, dispatch, message, t])
 
   const handleOnNewNameChange = useCallback((value: string) => {
     setAppNewName(value.trim())
@@ -468,17 +461,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [handlePreviewButtonClick, isEditMode, previewButtonText],
   )
 
+  const handleLogoClick = useCallback(() => {
+    window.location.href = `/${teamIdentifier}/dashboard/apps`
+  }, [])
+
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
-        <Logo
-          width="34px"
-          onClick={() => {
-            window.location.href = `/${teamIdentifier}/dashboard/apps`
-          }}
-          css={logoCursorStyle}
-        />
-
+        <Logo width="34px" onClick={handleLogoClick} css={logoCursorStyle} />
         <div css={informationStyle}>
           <Trigger
             _css={triggerStyle}
