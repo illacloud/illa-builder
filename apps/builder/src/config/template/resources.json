@@ -7,8 +7,8 @@
     "resourceType": "postgresql",
     "content": {
       "databaseName": "illa_demo",
-      "databasePassword": "hcgtlyIwYIhtBUx",
-      "databaseUsername": "postgres",
+      "databasePassword": "illa2022",
+      "databaseUsername": "illa",
       "host": "143.198.231.148",
       "port": "30739",
       "ssl": {
@@ -20,7 +20,7 @@
     },
     "createdAt": "2023-03-14T12:31:02.198393Z",
     "createdBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-03-15T02:36:32.077928Z",
+    "updatedAt": "2023-03-15T11:08:05.864299Z",
     "updatedBy": "ILAfx4p1C7eb"
   },
   {

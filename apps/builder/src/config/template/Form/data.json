@@ -4,22 +4,22 @@
     "uid": "00000000-0000-0000-0000-000000000000",
     "teamID": "ILAfx4p1C7d0",
     "appName": "Survey",
-    "releaseVersion": 2,
-    "mainlineVersion": 2,
+    "releaseVersion": 4,
+    "mainlineVersion": 4,
     "config": {
       "public": true
     },
     "updatedBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-03-15T05:49:24.122031Z",
+    "updatedAt": "2023-03-15T11:16:32.446864Z",
     "appActivity": {
       "modifier": "Marshall～A",
-      "modifiedAt": "2023-03-15T05:49:24.122031Z"
+      "modifiedAt": "2023-03-15T11:16:32.446864Z"
     }
   },
   "actions": [
     {
-      "actionId": "ILAex4p1C7Xj",
-      "uid": "a6f2b296-874a-4b93-96ce-1ba0d5baa8fb",
+      "actionId": "ILAex4p1C7UL",
+      "uid": "a58910ef-9468-49a4-aa0b-3b6fd80aef58",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "postgresql1",
@@ -35,7 +35,7 @@
           }
         ],
         "mode": "sql",
-        "query": "insert into survey values('{{radioGroup1.value}}','{{input1.value}}','{{select2.value}}','{{radioGroup2.value}}',ARRAY{{checkboxGroup1.value}},'{{textarea1.value}}','1')",
+        "query": "insert into survey values('{{radioGroup1.value}}','{{input1.value}}','{{select2.value}}','{{radioGroup2.value}}','{{textarea1.value}}','1')",
         "successEvent": [
           {
             "actionType": "showNotification",
@@ -55,7 +55,7 @@
       },
       "createdAt": "2023-03-15T02:00:14.061864Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T02:15:15.849307Z",
+      "updatedAt": "2023-03-15T11:16:32.440285Z",
       "updatedBy": "ILAfx4p1C7eb"
     }
   ],
@@ -525,7 +525,7 @@
                             "type": "INPUT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
-                            "h": 5,
+                            "h": 8,
                             "w": 62,
                             "minH": 3,
                             "minW": 2,
