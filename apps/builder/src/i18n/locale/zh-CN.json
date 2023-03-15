@@ -1503,6 +1503,57 @@
         "showNext": "显示下一个可见图像",
         "showPrevious": "显示上一个可见图像"
       }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Tutorial"
+          },
+          "title": {
+            "tutorial": "Tutorial",
+            "templates": "Templates"
+          },
+          "onboarding_app": {
+            "name": "Onboarding app",
+            "description": "Follow ILLA's tutorial to learn how to build an app.",
+            "action": "Go"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Fork this template as a new app"
+          },
+          "templates_name": {
+            "table": "Dashboard",
+            "form": "Survey",
+            "list": "Admin panel"
+          },
+          "templates_description": {
+            "table": "Use tables and other components to create dashboards to query and make use of data easily.",
+            "form": "Use form and input components to create form such as satisfaction survey, pre-sale form, etc.",
+            "list": "Use a list component to display and manage information"
+          },
+          "modal": {
+            "title": "Fork and deploy",
+            "placeholder": "App name",
+            "cancel": "Cancel",
+            "fork": "Fork and deploy"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Step 1: Drag an input here",
+          "drag_button": "Step 2: Drag a button here",
+          "drag_table": "Step 3:  Drag a table here",
+          "exit": "Exit",
+          "do_it": "Do it for me",
+          "drag_title": "Drag components to the frame",
+          "modify_action_title": "Modify the action",
+          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component.",
+          "modify_action_description_click": "Click Save and then click Run",
+          "display_data_title": "Display data on table",
+          "display_data_description_select": "Select the table on the frame"
+        }
+      }
     }
   },
   "exit_preview": "退出预览",
@@ -2002,6 +2053,13 @@
         }
       },
       "description": "专属于开发者的开源低代码平台。"
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Tutorial"
+        }
+      }
     }
   },
   "frame_size": {
@@ -2198,5 +2256,17 @@
     }
   },
   "empty_copied_tips": "复制的内容为空",
-  "copy_empty": "The content to be copied is empty"
+  "copy_empty": "The content to be copied is empty",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Learn how to build an app in 5 minutes",
+          "description": "Follow ILLA's tutorial to learn how to build an app. This will take about 5 minutes.",
+          "cancel": "Cancel",
+          "take": "Take a tutorial"
+        }
+      }
+    }
+  }
 }
