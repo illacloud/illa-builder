@@ -166,7 +166,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "データベース名を次のように扱う",
+            "sid": "Treat Database name as SID/Service Name",
             "ssl": "SSL"
           },
           "couchdb": {
@@ -349,7 +349,7 @@
             "couchdb": {
               "database": "データベースを選択",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             },
             "restapi": {
               "consumer_key": "Consumer key",
@@ -378,7 +378,7 @@
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Order",
+              "des": "Descending order",
               "id": "_id",
               "rev": "_rev",
               "record": "Record",
@@ -1546,7 +1546,7 @@
             "action": "始める"
           },
           "templates_action": {
-            "fork": "アプリケーションを作成",
+            "fork": "作成",
             "fork_description": "このテンプレートを使用してアプリを作成する"
           },
           "templates_name": {

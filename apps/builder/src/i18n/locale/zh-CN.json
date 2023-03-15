@@ -166,7 +166,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "将数据库名称视为",
+            "sid": "Treat Database name as SID/Service Name",
             "ssl": "SSL"
           },
           "couchdb": {
@@ -349,7 +349,7 @@
             "couchdb": {
               "database": "选择数据库",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             },
             "restapi": {
               "consumer_key": "Consumer key",
@@ -378,7 +378,7 @@
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Order",
+              "des": "Descending order",
               "id": "_id",
               "rev": "_rev",
               "record": "记录",
@@ -1546,7 +1546,7 @@
             "action": "开始"
           },
           "templates_action": {
-            "fork": "创建应用",
+            "fork": "创建",
             "fork_description": "使用此模板创建一个应用"
           },
           "templates_name": {
