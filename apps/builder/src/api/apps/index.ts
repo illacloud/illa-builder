@@ -5,6 +5,10 @@ import {
   inviteByEmailResponse,
 } from "@/illa-public-component/MemberList/interface"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import store from "@/store"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface fetchShareAppLinkResponse {
@@ -60,4 +64,25 @@ export const updateAppPublicConfig = async (
     },
   })
   return true
+}
+
+export const createApp = async (
+  appName: string,
+  initScheme: ComponentNode[],
+) => {
+  const response = await BuilderApi.asyncTeamRequest<DashboardApp>({
+    url: "/apps",
+    method: "POST",
+    data: {
+      appName,
+      initScheme,
+    },
+  })
+
+  store.dispatch(
+    dashboardAppActions.addDashboardAppReducer({
+      app: response.data,
+    }),
+  )
+  return response.data.appId
 }

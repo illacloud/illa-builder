@@ -2,6 +2,7 @@ import { LazyExoticComponent, ReactNode, Suspense, lazy } from "react"
 import { LoaderFunctionArgs, Navigate, redirect } from "react-router-dom"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
+import Tutorial from "@/page/Dashboard/Tutorial"
 import { Member } from "@/page/Member"
 import { SettingAccount } from "@/page/Setting/SettingAccount"
 import { SettingOthers } from "@/page/Setting/SettingOthers"
@@ -70,6 +71,12 @@ export const commonRouter: RoutesObjectPro[] = [
     loader: handleRemoveUrlToken,
   },
   {
+    path: "/:teamIdentifier/template/:templateName",
+    element: layLoad(lazy(() => import("@/page/Template"))),
+    errorElement: <Page404 />,
+    needLogin: true,
+  },
+  {
     path: "/privacy-policy",
     accessByMobile: true,
     element: layLoad(
@@ -126,6 +133,10 @@ export const cloudRouter: RoutesObjectPro[] = [
         element: <DashboardResources />,
         errorElement: <Page404 />,
       },
+      {
+        path: "/:teamIdentifier/dashboard/tutorial",
+        element: <Tutorial />,
+      },
     ],
   },
 ]
@@ -155,6 +166,10 @@ export const selfRouter: RoutesObjectPro[] = [
       {
         path: "/:teamIdentifier/dashboard/resources",
         element: <DashboardResources />,
+      },
+      {
+        path: "/:teamIdentifier/dashboard/tutorial",
+        element: <Tutorial />,
       },
       {
         path: "/:teamIdentifier/dashboard/members",
