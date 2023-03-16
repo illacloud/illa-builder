@@ -49,6 +49,7 @@ export const descriptionStyle = css`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  height: 18px;
   color: ${getColor("grayBlue", "04")};
 `
 
@@ -56,6 +57,7 @@ export const saveFailedTipStyle = css`
   display: flex;
   align-items: center;
   width: 100%;
+  height: 18px;
   color: ${getColor("grayBlue", "03")};
   gap: 4px;
 `
@@ -76,6 +78,9 @@ export const inputAreaWrapperStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
+  left: calc(100% + 16px);
+  top: 0;
 `
 
 export const inputAreaLabelWrapperStyle = css`
