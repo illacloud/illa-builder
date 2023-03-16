@@ -74,6 +74,7 @@ importers:
       '@illa-design/react': workspace:*
       '@illa-fe-utils/storage': ^0.0.3
       '@mdx-js/rollup': ^2.3.0
+      '@reactour/tour': ^3.3.0
       '@reduxjs/toolkit': ^1.8.1
       '@sentry/react': ^7.17.3
       '@sentry/tracing': ^7.17.3
@@ -172,6 +173,7 @@ importers:
       '@fontsource/fira-code': 4.5.13
       '@illa-design/react': link:../../illa-design/packages/react
       '@illa-fe-utils/storage': 0.0.3
+      '@reactour/tour': 3.3.0
       '@reduxjs/toolkit': 1.9.2_react-redux@8.0.5
       '@sentry/react': 7.37.0
       '@sentry/tracing': 7.37.0
@@ -3055,15 +3057,50 @@ packages:
     dev: true
 
   /@react-dnd/asap/5.0.2:
-    resolution: {integrity: sha512-WLyfoHvxhs0V9U+GTsGilGgf2QsPl6ZZ44fnv0/b8T3nQyvzxidxsg/ZltbWssbsRDlYW8UKSQMTGotuTotZ6A==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-WLyfoHvxhs0V9U+GTsGilGgf2QsPl6ZZ44fnv0/b8T3nQyvzxidxsg/ZltbWssbsRDlYW8UKSQMTGotuTotZ6A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@react-dnd/asap/-/asap-5.0.2.tgz}
     dev: false
 
   /@react-dnd/invariant/4.0.2:
-    resolution: {integrity: sha512-xKCTqAK/FFauOM9Ta2pswIyT3D8AQlfrYdOi/toTPEhqCuAs1v5tcJ3Y08Izh1cJ5Jchwy9SeAXmMg6zrKs2iw==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-xKCTqAK/FFauOM9Ta2pswIyT3D8AQlfrYdOi/toTPEhqCuAs1v5tcJ3Y08Izh1cJ5Jchwy9SeAXmMg6zrKs2iw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@react-dnd/invariant/-/invariant-4.0.2.tgz}
     dev: false
 
   /@react-dnd/shallowequal/4.0.2:
     resolution: {integrity: sha512-/RVXdLvJxLg4QKvMoM5WlwNR9ViO9z8B/qPcc+C0Sa/teJY7QG7kJ441DwzOjMYEY7GmU4dj5EcGHIkKZiQZCA==}
+    dev: false
+
+  /@reactour/mask/1.0.5:
+    resolution: {integrity: sha512-SMakvPUsH83j4MAq87jBMpdzoVQ+amZTQ6rYsDBqN1Hcz+A8JN9IDgaA49UaLcRPZq+ioQrmos8mBTe8uEtPeQ==}
+    peerDependencies:
+      react: 16.x || 17.x || 18.x
+    dependencies:
+      '@reactour/utils': 0.4.7
+    dev: false
+
+  /@reactour/popover/1.0.5:
+    resolution: {integrity: sha512-d6BMcyXGj3RdSc2huiU6v/wG2XG1ad+lAFmjyFerlZNS1ccp/49HvLUnqxE0Td+86e7RPrdEzpZb5PKtBybPrA==}
+    peerDependencies:
+      react: 16.x || 17.x || 18.x
+    dependencies:
+      '@reactour/utils': 0.4.7
+    dev: false
+
+  /@reactour/tour/3.3.0:
+    resolution: {integrity: sha512-Dx/jDKEZ29fSOmnc07zCgHS6lmEKCNreyvFhhPQTI1OAG6MTTWuQJhKUmrytECncFJb+oH95zvE9mf137rSBtA==}
+    peerDependencies:
+      react: 16.x || 17.x || 18.x
+    dependencies:
+      '@reactour/mask': 1.0.5
+      '@reactour/popover': 1.0.5
+      '@reactour/utils': 0.4.7
+    dev: false
+
+  /@reactour/utils/0.4.7:
+    resolution: {integrity: sha512-d+/Xhi2nKCc6OrDEFGg15iN8ZyWDTdOrwIKkndJXrnWiN6b+nqoS2Tb7hZvt79rqCyUsQxekUndPFPQyIW81EA==}
+    peerDependencies:
+      react: 16.x || 17.x || 18.x
+    dependencies:
+      '@rooks/use-mutation-observer': 4.11.2
+      resize-observer-polyfill: 1.5.1
     dev: false
 
   /@reduxjs/toolkit/1.9.2_react-redux@8.0.5:
@@ -3119,6 +3156,12 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
+
+  /@rooks/use-mutation-observer/4.11.2:
+    resolution: {integrity: sha512-vpsdrZdr6TkB1zZJcHx+fR1YC/pHs2BaqcuYiEGjBVbwY5xcC49+h0hAUtQKHth3oJqXfIX/Ng8S7s5HFHdM/A==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dev: false
 
   /@sentry/browser/7.37.0:
     resolution: {integrity: sha512-EMlSo4Ebtryd5id2nC31dwcLigwYPWjrAYt36vUJ/L47oXetaH4dndK6wqYyxR2sl8uP2GlsQUnWpGLHKyG3ww==}
@@ -4744,7 +4787,7 @@ packages:
     dev: true
 
   /clone/1.0.4:
-    resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz}
     engines: {node: '>=0.8'}
     dev: true
 
@@ -5202,7 +5245,7 @@ packages:
     dev: true
 
   /defaults/1.0.4:
-    resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/defaults/-/defaults-1.0.4.tgz}
     dependencies:
       clone: 1.0.4
     dev: true
@@ -5255,7 +5298,7 @@ packages:
     dev: true
 
   /dnd-core/16.0.1:
-    resolution: {integrity: sha512-HK294sl7tbw6F6IeuK16YSBUoorvHpY8RHO+9yFfaJyCDVb6n7PRcezrOEOa2SBCqiYpemh5Jx20ZcjKdFAVng==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-HK294sl7tbw6F6IeuK16YSBUoorvHpY8RHO+9yFfaJyCDVb6n7PRcezrOEOa2SBCqiYpemh5Jx20ZcjKdFAVng==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/dnd-core/-/dnd-core-16.0.1.tgz}
     dependencies:
       '@react-dnd/asap': 5.0.2
       '@react-dnd/invariant': 4.0.2
@@ -7480,7 +7523,7 @@ packages:
       js-tokens: 4.0.0
 
   /lottie-react/2.4.0:
-    resolution: {integrity: sha512-pDJGj+AQlnlyHvOHFK7vLdsDcvbuqvwPZdMlJ360wrzGFurXeKPr8SiRCjLf3LrNYKANQtSsh5dz9UYQHuqx4w==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-pDJGj+AQlnlyHvOHFK7vLdsDcvbuqvwPZdMlJ360wrzGFurXeKPr8SiRCjLf3LrNYKANQtSsh5dz9UYQHuqx4w==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/lottie-react/-/lottie-react-2.4.0.tgz}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -7489,7 +7532,7 @@ packages:
     dev: false
 
   /lottie-web/5.10.2:
-    resolution: {integrity: sha512-d0PFIGiwuMsJYaF4uPo+qG8dEorlI+xFI2zrrFtE1bGO4WoLIz+NjremxEq1swpR7juR10aeOtmNh3d6G3ub0A==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-d0PFIGiwuMsJYaF4uPo+qG8dEorlI+xFI2zrrFtE1bGO4WoLIz+NjremxEq1swpR7juR10aeOtmNh3d6G3ub0A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.10.2.tgz}
     dev: false
 
   /lru-cache/4.1.5:
@@ -8848,7 +8891,7 @@ packages:
     dev: false
 
   /react-dnd-touch-backend/16.0.1:
-    resolution: {integrity: sha512-NonoCABzzjyWGZuDxSG77dbgMZ2Wad7eQiCd/ECtsR2/NBLTjGksPUx9UPezZ1nQ/L7iD130Tz3RUshL/ClKLA==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-NonoCABzzjyWGZuDxSG77dbgMZ2Wad7eQiCd/ECtsR2/NBLTjGksPUx9UPezZ1nQ/L7iD130Tz3RUshL/ClKLA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/react-dnd-touch-backend/-/react-dnd-touch-backend-16.0.1.tgz}
     dependencies:
       '@react-dnd/invariant': 4.0.2
       dnd-core: 16.0.1
@@ -8958,7 +9001,7 @@ packages:
     dev: false
 
   /react-hotkeys-hook/4.3.7:
-    resolution: {integrity: sha512-qUcA5vl/liGWr9wLYI5/8oppHLa6nExFqOAMC6CyZhpj7C56PIzYZ76xAtJ+5lgxObgl4A4pQz8upy+nq7orSQ==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-qUcA5vl/liGWr9wLYI5/8oppHLa6nExFqOAMC6CyZhpj7C56PIzYZ76xAtJ+5lgxObgl4A4pQz8upy+nq7orSQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/react-hotkeys-hook/-/react-hotkeys-hook-4.3.7.tgz}
     peerDependencies:
       react: '>=16.8.1'
       react-dom: '>=16.8.1'
@@ -10187,7 +10230,7 @@ packages:
     dev: false
 
   /ts-key-enum/2.0.12:
-    resolution: {integrity: sha512-Ety4IvKMaeG34AyXMp5r11XiVZNDRL+XWxXbVVJjLvq2vxKRttEANBE7Za1bxCAZRdH2/sZT6jFyyTWxXz28hw==, registry: https://registry.yarnpkg.com/}
+    resolution: {integrity: sha512-Ety4IvKMaeG34AyXMp5r11XiVZNDRL+XWxXbVVJjLvq2vxKRttEANBE7Za1bxCAZRdH2/sZT6jFyyTWxXz28hw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/ts-key-enum/-/ts-key-enum-2.0.12.tgz}
     dev: false
 
   /ts-node/10.9.1_2cogyjchoknpkalymtikkc6nay:

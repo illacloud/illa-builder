@@ -55,9 +55,9 @@ export const axiosErrorInterceptor = (error: AxiosError) => {
       break
     }
     case 500: {
-      ILLARoute.navigate("/500", {
-        replace: true,
-      })
+      // ILLARoute.navigate("/500", {
+      //   replace: true,
+      // })
       break
     }
   }

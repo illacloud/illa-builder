@@ -80,7 +80,11 @@ export const getIsResizing = (state: RootState) => {
 }
 
 export const getIsILLAEditMode = (state: RootState) => {
-  return state.config.mode === "edit"
+  return state.config.mode === "edit" || state.config.mode === "template-edit"
+}
+
+export const getIsILLAGuideMode = (state: RootState) => {
+  return state.config.mode === "template-edit"
 }
 
 export const getIsILLAPreviewMode = (state: RootState) => {

@@ -1,3 +1,4 @@
+import Badge, { TourProvider, components, useTour } from "@reactour/tour"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
 import { FC, MouseEvent, useCallback, useEffect } from "react"
@@ -156,12 +157,24 @@ export const Editor: FC = () => {
     wsStatus === ILLA_WEBSOCKET_STATUS.INIT ||
     wsStatus === ILLA_WEBSOCKET_STATUS.CONNECTING
 
+  const { setIsOpen, isOpen } = useTour()
+
+  useEffect(() => {
+    if (!combinLoadingState) {
+      setIsOpen(true)
+    }
+
+    return () => {
+      setIsOpen(false)
+    }
+  }, [combinLoadingState])
+
   return (
     <div css={editorContainerStyle}>
       {combinLoadingState && <AppLoading />}
       {!combinLoadingState && (
         <Shortcut>
-          <PageNavBar css={navbarStyle} />
+          <PageNavBar className={"app-editor"} css={navbarStyle} />
           <div css={contentStyle}>
             {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
             <div css={middlePanelStyle}>

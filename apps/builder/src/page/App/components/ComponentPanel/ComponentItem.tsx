@@ -8,7 +8,10 @@ import {
   DragInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
-import { getIsILLAEditMode } from "@/redux/config/configSelector"
+import {
+  getIsILLAEditMode,
+  getIsILLAGuideMode,
+} from "@/redux/config/configSelector"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
@@ -27,9 +30,10 @@ import {
 
 export const ComponentItem: FC<ComponentItemProps> = memo(
   (props: ComponentItemProps) => {
-    const { widgetName, icon, id, ...partialDragInfo } = props
+    const { widgetName, icon, id, type, ...partialDragInfo } = props
 
     const isEditMode = useSelector(getIsILLAEditMode)
+    const isGuideMode = useSelector(getIsILLAGuideMode)
 
     const [, dragRef, dragPreviewRef] = useDrag<
       DragInfo,
@@ -79,7 +83,12 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
     return (
       <div css={itemContainerStyle} ref={dragRef}>
         <div css={dragPreviewStyle} ref={dragPreviewRef} />
-        <span css={iconStyle}>{icon}</span>
+        <span
+          css={iconStyle}
+          {...(isGuideMode ? {} : { "data-onboarding-comp": type })}
+        >
+          {icon}
+        </span>
         <span css={nameStyle}>{widgetName}</span>
       </div>
     )
