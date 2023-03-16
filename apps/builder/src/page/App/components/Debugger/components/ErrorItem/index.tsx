@@ -93,12 +93,7 @@ export const ErrorItem: FC<ErrorItemProps> = (props) => {
         <div css={errorMessageStyle}>
           {item?.errorName}: {item?.errorMessage}
         </div>
-        <JsonView
-          key={attrPath}
-          name={attrPath}
-          value={attrValue}
-          // value={{"a": "bbbb"}}
-        />
+        <JsonView key={attrPath} name={attrPath} value={attrValue} />
       </motion.div>
     </div>
   )

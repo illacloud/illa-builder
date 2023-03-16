@@ -1,6 +1,15 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
+export const IpListContainerStyle = css`
+  padding: 8px 0px;
+`
+
+export const IpListStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+`
+
 export const whiteListContentContainerStyle = css`
   width: 100%;
   padding-top: 16px;
@@ -44,6 +53,11 @@ export const whiteListOperationIconStyle = css`
   height: 12px;
   cursor: pointer;
   display: flex;
+  color: ${getColor("grayBlue", "04")};
+  & > svg {
+    width: 12px;
+    height: 12px;
+  }
 `
 
 export const whiteListButtonStyle = css`
