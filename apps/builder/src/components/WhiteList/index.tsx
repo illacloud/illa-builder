@@ -12,8 +12,8 @@ import {
 import { Api } from "@/api/base"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
-  IpListContainerStyle,
-  IpListStyle,
+  ipListContainerStyle,
+  ipListStyle,
   whiteListButtonContainerStyle,
   whiteListButtonStyle,
   whiteListContentContainerStyle,
@@ -90,9 +90,9 @@ export const WhiteList = () => {
         )}
       </div>
       {isCloudVersion && showIPList && (
-        <div css={IpListContainerStyle}>
+        <div css={ipListContainerStyle}>
           <Card>
-            <div css={IpListStyle}>
+            <div css={ipListStyle}>
               {ipList.map((ip) => (
                 <div key={ip}>{ip}</div>
               ))}
