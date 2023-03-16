@@ -33,8 +33,7 @@ const validateWidth = (currentWidth: number | undefined) => {
 }
 
 export const PreviewPopContent = () => {
-  const viewportSize = useSelector(getViewportSizeSelector)
-  const { viewportWidth, viewportHeight } = viewportSize
+  const { viewportWidth, viewportHeight } = useSelector(getViewportSizeSelector)
 
   const [inputWidth, setInputWidth] = useState(viewportWidth)
   const [inputHeight, setInputHeight] = useState(viewportHeight)

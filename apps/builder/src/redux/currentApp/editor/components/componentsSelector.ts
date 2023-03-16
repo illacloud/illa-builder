@@ -1,10 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
 import { getSelectedComponents } from "@/redux/config/configSelector"
-import {
-  ComponentNode,
-  ViewportSizeType,
-} from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import store, { RootState } from "@/store"
 import {
   BASIC_BLOCK_COLUMNS,
@@ -321,6 +318,7 @@ export const getViewportSizeSelector = createSelector(
       return {
         viewportWidth: undefined,
         viewportHeight: undefined,
+        viewportSizeType: "fluid",
       }
     const { viewportWidth, viewportHeight, viewportSizeType } =
       rootComponentNode.props
