@@ -361,13 +361,15 @@ const getDragResultWhenAdd = (
   containerPosition: XYCoord,
   containerScrollTop: number = 0,
   unitWidth: number,
-  item: ComponentNode,
+  nodeWidthAndHeight: {
+    w: number
+    h: number
+  },
   canvasWidth: number,
   canvasHeight: number,
   canResizeY: boolean,
 ) => {
   const itemPosition = getItemPosition(clientOffset!, containerScrollTop)
-  const nodeWidthAndHeight = getNodeWidthAndHeight(item, unitWidth, UNIT_HEIGHT)
   const rectCenterPosition = calcRectCenterPointPosition(
     itemPosition,
     containerPosition,
@@ -402,10 +404,14 @@ const getDragResultWhenUpdate = (
   initialClientOffset: XYCoord,
   initialSourceClientOffSet: XYCoord,
   unitWidth: number,
-  item: ComponentNode,
+  item: {
+    w: number
+    h: number
+  },
   canvasWidth: number,
   canvasHeight: number,
   canResizeY: boolean,
+  leftTopPosition: XYCoord,
 ) => {
   let relativeX = clientOffset!.x - containerPosition.x - containerLeftPadding
   let relativeY =
@@ -414,10 +420,8 @@ const getDragResultWhenUpdate = (
     containerScrollTop -
     containerTopPadding
 
-  let renderX =
-    relativeX - initialClientOffset!.x + initialSourceClientOffSet!.x
-  let renderY =
-    relativeY - initialClientOffset!.y + initialSourceClientOffSet!.y
+  let renderX = relativeX - initialClientOffset!.x + leftTopPosition.x
+  let renderY = relativeY - initialClientOffset!.y + leftTopPosition.y
 
   let squareX = Math.round(renderX / unitWidth) * unitWidth
   let squareY = Math.round(renderY / UNIT_HEIGHT) * UNIT_HEIGHT
@@ -477,12 +481,16 @@ export const getDragResult = (
   containerPosition: XYCoord,
   containerScrollTop: number = 0,
   unitWidth: number,
-  item: ComponentNode,
+  item: {
+    w: number
+    h: number
+  },
   canvasWidth: number,
   canvasHeight: number,
   canResizeY: boolean,
   containerLeftPadding: number,
   containerTopPadding: number,
+  leftTopPosition: XYCoord,
 ) => {
   if (action === "ADD") {
     return getDragResultWhenAdd(
@@ -509,6 +517,7 @@ export const getDragResult = (
       canvasWidth,
       canvasHeight,
       canResizeY,
+      leftTopPosition,
     )
   }
 }

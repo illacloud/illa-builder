@@ -57,8 +57,7 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
   const dragConditionHandler = (e: OnDragStart<unknown>) => {
     const triggerTarget = e.inputEvent.target
     const isRoot = triggerTarget.getAttribute("data-isroot")
-    if (isRoot === "true") return true
-    return false
+    return isRoot === "true"
   }
 
   const onDragStartHandler = (e: SelectoEvents["dragStart"]) => {
@@ -77,7 +76,7 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
 
   const onDraggingHandler = (e: SelectoEvents["drag"]) => {
     prevSelectorStatus.current = true
-    const { rect, distX, distY, clientY } = e
+    const { rect, distX, clientY } = e
     let currentCanvasStyle: CSSStyleDeclaration | undefined =
       currentCanvasRef.current?.style
     const containerY = containerClientRect?.y ?? 0

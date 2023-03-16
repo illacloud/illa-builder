@@ -45,9 +45,9 @@ import store, { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import {
   batchMergeLayoutInfoToComponent,
-  endDrag,
+  endDragMultiNodes,
   mergeLayoutInfoToComponent,
-  startDrag,
+  startDragMultiNodes,
 } from "@/utils/drag/drag"
 import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
@@ -205,7 +205,12 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       canDrag: isEditMode && !isResizingStateInGlobal,
       end: (draggedItem, monitor) => {
         const dropResultInfo = monitor.getDropResult()
-        endDrag(draggedItem.item, dropResultInfo?.isDropOnCanvas ?? false)
+        const { draggedSelectedComponents } = draggedItem
+        endDragMultiNodes(
+          draggedSelectedComponents,
+          dropResultInfo?.isDropOnCanvas ?? false,
+          false,
+        )
       },
       item: () => {
         const rootState = store.getState()
@@ -223,16 +228,30 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         } else {
           childrenNodes = []
         }
+        let draggedSelectedComponents: ComponentNode[]
+        if (
+          selectedComponents.length > 0 &&
+          selectedComponents.includes(componentNode.displayName)
+        ) {
+          draggedSelectedComponents = childrenNodes.filter((node) =>
+            selectedComponents.includes(node.displayName),
+          )
+        } else {
+          draggedSelectedComponents = childrenNodes.filter(
+            (node) => node.displayName === componentNode.displayName,
+          )
+        }
         const itemLayoutInfo =
           executionResult[componentNode.displayName]?.$layoutInfo
         const mergedItem: ComponentNode = mergeLayoutInfoToComponent(
           itemLayoutInfo,
           componentNode,
         )
-        startDrag(mergedItem)
+        startDragMultiNodes(draggedSelectedComponents)
         return {
           item: mergedItem,
           childrenNodes,
+          draggedSelectedComponents,
           currentColumnNumber: blockColumns,
         }
       },
@@ -242,7 +261,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         }
       },
     }),
-    [componentNode, blockColumns, isEditMode, isResizingStateInGlobal],
+    [
+      componentNode,
+      blockColumns,
+      isEditMode,
+      isResizingStateInGlobal,
+      selectedComponents,
+    ],
   )
 
   const handleContextMenu = useCallback(
@@ -262,7 +287,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const hasEditors = !!filteredComponentAttachedUserList.length
 
-  return isDragging ? null : (
+  return componentNode.isDragging ? null : (
     <ResizingContainer
       unitW={unitW}
       unitH={unitH}

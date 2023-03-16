@@ -87,7 +87,7 @@ export const generateComponentNode = (
     minH: 3,
     minW: 2,
     verticalResize: false,
-    isDragging: true,
+    isDragging: false,
     isResizing: false,
     unitH: UNIT_HEIGHT,
     unitW: 0,

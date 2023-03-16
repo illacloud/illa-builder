@@ -1,3 +1,4 @@
+import { cloneDeep } from "lodash"
 import { RefObject } from "react"
 import { DropTargetMonitor } from "react-dnd"
 import {
@@ -40,13 +41,22 @@ export const moveCallback = (
   canResizeY: boolean,
   containerPadding: number,
   isFreezeCanvas: boolean,
+  currentDragStartScrollTop: number,
 ) => {
-  const { item, currentColumnNumber } = dragInfo
-  let scaleItem: ComponentNode = getScaleItem(
+  const { item, currentColumnNumber, draggedSelectedComponents } = dragInfo
+
+  const scaleItemsShape = getLargeItemSharpe(
+    draggedSelectedComponents,
     blockColumns,
     currentColumnNumber,
-    item,
   )
+
+  let scaleItem: ComponentNode = {
+    ...item,
+    ...scaleItemsShape,
+    displayName: "largeItem",
+    type: "LARGE_ITEM",
+  }
   const actionName = isAddAction(
     item.x,
     item.y,
@@ -80,6 +90,14 @@ export const moveCallback = (
     canResizeY,
     containerPadding,
     containerPadding,
+    {
+      x: scaleItem.x * unitWidth + containerPadding + containerPosition!.x,
+      y:
+        scaleItem.y * UNIT_HEIGHT +
+        containerPadding +
+        containerPosition!.y -
+        currentDragStartScrollTop,
+    },
   )
 
   const { ladingPosition } = dragResult
@@ -87,9 +105,6 @@ export const moveCallback = (
 
   let childrenNodes = dragInfo.childrenNodes.filter(
     (node) => node.parentNode === containerWidgetDisplayName,
-  )
-  const indexOfChildrenNodes = childrenNodes.findIndex(
-    (node) => node.displayName === item.displayName,
   )
   let finalChildrenNodes: ComponentNode[] = []
   let finalEffectResultMap: Map<string, ComponentNode> = new Map()
@@ -109,29 +124,22 @@ export const moveCallback = (
     /**
      * only when add component nodes
      */
-    if (indexOfChildrenNodes === -1) {
-      const allChildrenNodes = [...childrenNodes, newItem]
-      const { finalState, effectResultMap } = getReflowResult(
-        newItem,
-        allChildrenNodes,
-        true,
-      )
-      finalChildrenNodes = finalState
-      finalEffectResultMap = effectResultMap
-    } else {
-      const indexOfChildren = childrenNodes.findIndex(
-        (node) => node.displayName === newItem.displayName,
-      )
-      const allChildrenNodes = [...childrenNodes]
-      allChildrenNodes.splice(indexOfChildren, 1, newItem)
-      const { finalState, effectResultMap } = getReflowResult(
-        newItem,
-        allChildrenNodes,
-        true,
-      )
-      finalChildrenNodes = finalState
-      finalEffectResultMap = effectResultMap
-    }
+
+    const draggableDisplayNames = draggedSelectedComponents.map(
+      (node) => node.displayName,
+    )
+
+    const allChildrenNodes = childrenNodes.filter((node) => {
+      return !draggableDisplayNames.includes(node.displayName)
+    })
+
+    const { finalState, effectResultMap } = getReflowResult(
+      newItem,
+      allChildrenNodes,
+      true,
+    )
+    finalChildrenNodes = finalState
+    finalEffectResultMap = effectResultMap
   }
   let updateSlice: UpdateComponentNodeLayoutInfoPayload[] | undefined
   if (!isFreezeCanvas) {
@@ -148,11 +156,30 @@ export const moveCallback = (
       }
     })
   }
-
   return {
     dragResult,
     reflowUpdateSlice: updateSlice,
     newEffectResultMap: finalEffectResultMap,
     scaleItem,
+  }
+}
+
+export const getLargeItemSharpe = (
+  draggedSelectedComponents: ComponentNode[],
+  columnNumber: number,
+  currentColumnNumber: number,
+) => {
+  const scaleItems = draggedSelectedComponents.map((item) =>
+    getScaleItem(columnNumber, currentColumnNumber, item),
+  )
+  const top = Math.min(...scaleItems.map((item) => item.y))
+  const left = Math.min(...scaleItems.map((item) => item.x))
+  const bottom = Math.max(...scaleItems.map((item) => item.y + item.h))
+  const right = Math.max(...scaleItems.map((item) => item.x + item.w))
+  return {
+    x: left,
+    y: top,
+    w: right - left,
+    h: bottom - top,
   }
 }

@@ -153,6 +153,11 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             w: finalWidth,
             h: finalHeight,
           },
+        }),
+      )
+      dispatch(
+        componentsActions.updateComponentStatusInfoReducer({
+          displayName: componentNode.displayName,
           statusInfo: {
             isResizing: false,
           },
@@ -182,6 +187,11 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         componentsActions.updateComponentLayoutInfoReducer({
           displayName: componentNode.displayName,
           layoutInfo: {},
+        }),
+      )
+      dispatch(
+        componentsActions.updateComponentStatusInfoReducer({
+          displayName: componentNode.displayName,
           statusInfo: {
             isResizing: true,
           },
