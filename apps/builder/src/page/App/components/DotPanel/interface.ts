@@ -10,6 +10,7 @@ import {
 export interface DragInfo {
   item: ComponentNode
   childrenNodes: ComponentNode[]
+  draggedSelectedComponents: ComponentNode[]
   currentColumnNumber: number
 }
 

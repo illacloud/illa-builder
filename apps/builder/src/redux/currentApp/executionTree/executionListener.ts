@@ -4,6 +4,7 @@ import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/A
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
+import { batchUpdateComponentLayoutInfoWhenReflowReducer } from "@/redux/currentApp/editor/components/componentsReducer"
 import {
   getCanvas,
   searchDsl,
@@ -342,7 +343,7 @@ export function setupExecutionListeners(
     startListening({
       matcher: isAnyOf(
         componentsActions.updateComponentLayoutInfoReducer,
-        componentsActions.batchUpdateComponentLayoutInfoReducer,
+        componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer,
       ),
       effect: handleUpdateWidgetPosition,
     }),

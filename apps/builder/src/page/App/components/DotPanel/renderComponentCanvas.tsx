@@ -14,19 +14,19 @@ import {
 import { DropTargetMonitor, useDragDropManager, useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
-import { MultiSelectCanvas } from "@/page/App/components/DotPanel/MultiSelectCanvas"
 import {
   MoveDragResult,
   getDragResult,
   isAddAction,
 } from "@/page/App/components/DotPanel/calc"
-import DragPreview from "@/page/App/components/DotPanel/dragPreview"
+import { DragPreview } from "@/page/App/components/DotPanel/dragPreview"
 import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
 import {
   DragInfo,
   DropCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
+import { MultiSelectCanvas } from "@/page/App/components/DotPanel/multiSelectCanvas"
 import { PreviewColumnsChange } from "@/page/App/components/DotPanel/previewColumnsChange"
 import {
   applyComponentCanvasStyle,
@@ -34,6 +34,7 @@ import {
   selectoSelectionStyle,
 } from "@/page/App/components/DotPanel/style"
 import {
+  getLargeItemSharpe,
   getScaleItem,
   moveCallback,
 } from "@/page/App/components/DotPanel/utils"
@@ -178,6 +179,7 @@ export const RenderComponentCanvas: FC<{
   const widgetExecutionResult = useSelector(getWidgetExecutionResult)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
+  const currentDragStartScrollTop = useRef(0)
 
   const [rowNumber, setRowNumber] = useState(0)
   const [collisionEffect, setCollisionEffect] = useState(
@@ -335,6 +337,7 @@ export const RenderComponentCanvas: FC<{
             canResizeY,
             containerPadding,
             isFreezeCanvas,
+            currentDragStartScrollTop.current,
           )
           moveEffect(
             dragResult,
@@ -347,7 +350,8 @@ export const RenderComponentCanvas: FC<{
       drop: (dragInfo, monitor) => {
         const isDrop = monitor.didDrop()
         const dropResult = monitor.getDropResult()
-        const { item, currentColumnNumber } = dragInfo
+        const { item, currentColumnNumber, draggedSelectedComponents } =
+          dragInfo
         if (
           (isDrop || item.displayName === componentNode.displayName) &&
           dropResult
@@ -404,6 +408,18 @@ export const RenderComponentCanvas: FC<{
             }
           }
 
+          const scaleItemsShape = getLargeItemSharpe(
+            draggedSelectedComponents,
+            blockColumns,
+            currentColumnNumber,
+          )
+          scaleItem = {
+            ...scaleItem,
+            ...scaleItemsShape,
+            displayName: "largeItem",
+            type: "LARGE_ITEM",
+          }
+
           const containerClientRect =
             containerRef.current?.getBoundingClientRect()
           const containerPosition = {
@@ -430,6 +446,17 @@ export const RenderComponentCanvas: FC<{
             canResizeY,
             containerPadding,
             containerPadding,
+            {
+              x:
+                scaleItem.x * unitWidth +
+                containerPadding +
+                containerPosition!.x,
+              y:
+                scaleItem.y * UNIT_HEIGHT +
+                containerPadding +
+                containerPosition!.y -
+                currentDragStartScrollTop.current,
+            },
           )
           const { ladingPosition } = dragResult
           const { landingX, landingY } = ladingPosition
@@ -451,50 +478,93 @@ export const RenderComponentCanvas: FC<{
           /**
            * add new nodes
            */
+
+          const relativePositionWithComponentNode =
+            draggedSelectedComponents.map((node) => {
+              const scaleNode = getScaleItem(
+                blockColumns,
+                currentColumnNumber,
+                node,
+              )
+              return {
+                ...scaleNode,
+                x: scaleNode.x - scaleItemsShape.x,
+                y: scaleNode.y - scaleItemsShape.y,
+                unitW: unitWidth,
+                unitH: UNIT_HEIGHT,
+                parentNode: componentNode.displayName || "root",
+              }
+            })
+
+          const realPositionWithComponentNode =
+            relativePositionWithComponentNode.map((node) => {
+              return {
+                ...node,
+                x: node.x + newItem.x,
+                y: node.y + newItem.y,
+              }
+            })
+
           if (item.x === -1 && item.y === -1) {
             if (item.type === "MODAL_WIDGET") {
               dispatch(
                 componentsActions.addModalComponentReducer({
                   currentPageDisplayName,
-                  modalComponentNode: newItem,
+                  modalComponentNode: realPositionWithComponentNode[0],
                 }),
               )
             } else {
-              dispatch(componentsActions.addComponentReducer([newItem]))
+              dispatch(
+                componentsActions.addComponentReducer(
+                  realPositionWithComponentNode,
+                ),
+              )
             }
           } else {
             /**
              * update node when change container
              */
+            const updateSlice = realPositionWithComponentNode.map((node) => {
+              return {
+                displayName: node.displayName,
+                layoutInfo: {
+                  x: node.x,
+                  y: node.y,
+                  w: node.w,
+                  h: node.h,
+                },
+                options: {
+                  parentNode: newItem.parentNode,
+                },
+              }
+            })
             if (oldParentNodeDisplayName !== componentNode.displayName) {
+              const updateContainerSlice = realPositionWithComponentNode.map(
+                (node) => {
+                  return {
+                    component: node,
+                    oldParentDisplayName: oldParentNodeDisplayName,
+                  }
+                },
+              )
               dispatch(
                 componentsActions.updateComponentContainerReducer({
                   isMove: false,
-                  updateSlice: [
-                    {
-                      component: newItem,
-                      oldParentDisplayName: oldParentNodeDisplayName,
-                    },
-                  ],
+                  updateSlice: updateContainerSlice,
                 }),
               )
             }
             dispatch(
-              componentsActions.updateComponentLayoutInfoReducer({
+              componentsActions.batchUpdateComponentLayoutInfoReducer(
+                updateSlice,
+              ),
+            )
+
+            dispatch(
+              componentsActions.updateComponentStatusInfoReducer({
                 displayName: newItem.displayName,
-                layoutInfo: {
-                  x: newItem.x,
-                  y: newItem.y,
-                  w: newItem.w,
-                  h: newItem.h,
-                  unitW: newItem.unitW,
-                  unitH: newItem.unitH,
-                },
                 statusInfo: {
                   isDragging: false,
-                },
-                options: {
-                  parentNode: newItem.parentNode,
                 },
               }),
             )
@@ -663,6 +733,7 @@ export const RenderComponentCanvas: FC<{
             canResizeY,
             containerPadding,
             isFreezeCanvas,
+            currentDragStartScrollTop.current,
           )
         moveEffect(
           dragResult,
@@ -690,6 +761,16 @@ export const RenderComponentCanvas: FC<{
       setCollisionEffect(new Map())
     }
   }, [isActive])
+
+  useEffect(() => {
+    if (isActive) {
+      currentDragStartScrollTop.current = containerRef.current?.scrollTop ?? 0
+    }
+
+    return () => {
+      currentDragStartScrollTop.current = 0
+    }
+  }, [containerRef, isActive])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -787,6 +868,7 @@ export const RenderComponentCanvas: FC<{
           containerTopPadding={containerPadding}
           columnNumber={blockColumns}
           containerWidgetDisplayName={componentNode.displayName}
+          currentDragStartScrollTop={currentDragStartScrollTop.current}
         />
       )}
       <MultiSelectCanvas
