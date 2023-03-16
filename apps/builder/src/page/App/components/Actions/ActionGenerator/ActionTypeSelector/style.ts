@@ -25,12 +25,3 @@ export const resourceListStyle = css`
   grid-gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 `
-
-export const IpListContainerStyle = css`
-  padding: 8px 0px;
-`
-
-export const IpListStyle = css`
-  color: ${getColor("grayBlue", "02")};
-  font-size: 14px;
-`

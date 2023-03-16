@@ -10,12 +10,10 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { Api } from "@/api/base"
+import { isCloudVersion } from "@/utils/typeHelper"
 import {
   IpListContainerStyle,
   IpListStyle,
-} from "@/page/App/components/Actions/ActionGenerator/ActionTypeSelector/style"
-import { isCloudVersion } from "@/utils/typeHelper"
-import {
   whiteListButtonContainerStyle,
   whiteListButtonStyle,
   whiteListContentContainerStyle,
