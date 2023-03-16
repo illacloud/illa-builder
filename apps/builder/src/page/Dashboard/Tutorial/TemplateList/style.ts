@@ -29,7 +29,7 @@ export const itemStyle = css`
 export const iconStyle = css`
   width: 40px;
   height: 40px;
-  background: #83ffb4;
+  background: ${getColor("grayBlue", "09")};
   border-radius: 4px;
   flex: none;
 `
