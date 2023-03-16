@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CloseIcon, InputNumber, useMessage } from "@illa-design/react"
@@ -50,6 +50,7 @@ export const PreviewPopContent = () => {
       componentsActions.updateViewportSizeReducer({
         viewportWidth: width,
         viewportHeight: height,
+        viewportSizeType: "custom",
       }),
     )
   }, [dispatch, height, width])
