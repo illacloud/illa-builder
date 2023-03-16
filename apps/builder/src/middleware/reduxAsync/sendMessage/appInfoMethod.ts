@@ -14,7 +14,7 @@ export const appInfoAsync = (
 ) => {
   const { payload } = action
   switch (reduxAction) {
-    case "updateAppInfoReducer": {
+    case "updateAppNameReducer": {
       Connection.getRoom("app", currentAppID)?.send(
         getPayload(
           Signal.SIGNAL_UPDATE_STATE,
