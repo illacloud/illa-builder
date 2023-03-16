@@ -42,7 +42,7 @@ import { RootState } from "@/store"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
-  const { appId, canEditApp, isDeploy } = props
+  const { appId, canEditApp, canManageApp, isDeploy } = props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -63,9 +63,18 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const [duplicateVisible, setDuplicateVisible] = useState(false)
 
   const members = useSelector(getMemberList) ?? []
-  const { inviteLinkEnabled, currentUserRole } = {
+  const {
+    inviteLinkEnabled,
+    currentUserRole,
+    allowEditorManageTeamMember,
+    allowViewerManageTeamMember,
+  } = {
     currentUserRole: teamInfo?.myRole ?? USER_ROLE.VIEWER,
     inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
+    allowEditorManageTeamMember:
+      teamInfo?.permission.allowEditorManageTeamMember ?? false,
+    allowViewerManageTeamMember:
+      teamInfo?.permission.allowViewerManageTeamMember ?? false,
   }
 
   const handleInviteByEmail = (email: string, userRole: USER_ROLE) => {
@@ -236,6 +245,31 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
               />
             </Dropdown>
           </>
+        ) : isDeploy && canManageApp ? (
+          // for viewer
+          <Dropdown
+            position="bottom-end"
+            trigger="click"
+            triggerProps={{ closeDelay: 0, openDelay: 0 }}
+            dropList={
+              <DropList w={"184px"}>
+                <DropListItem
+                  key="share"
+                  value="share"
+                  title={t("share")}
+                  onClick={() => {
+                    setShareVisible(true)
+                  }}
+                />
+              </DropList>
+            }
+          >
+            <Button
+              ml="4px"
+              colorScheme="grayBlue"
+              leftIcon={<MoreIcon size="14px" />}
+            />
+          </Dropdown>
         ) : null}
       </Space>
       <InviteModal
@@ -247,6 +281,8 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         renewInviteLink={renewShareLink}
         configInviteLink={setInviteLinkEnabled}
         allowInviteByLink={inviteLinkEnabled}
+        allowEditorManageTeamMember={allowEditorManageTeamMember}
+        allowViewerManageTeamMember={allowViewerManageTeamMember}
         userListData={members}
         currentUserRole={currentUserRole}
         inviteByEmail={handleInviteByEmail}

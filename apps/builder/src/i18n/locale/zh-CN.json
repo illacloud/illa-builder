@@ -166,7 +166,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "将数据库名称视为",
+            "sid": "Treat Database name as SID/Service Name",
             "ssl": "SSL"
           },
           "couchdb": {
@@ -349,7 +349,7 @@
             "couchdb": {
               "database": "选择数据库",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             },
             "restapi": {
               "consumer_key": "Consumer key",
@@ -378,7 +378,7 @@
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Order",
+              "des": "Descending order",
               "id": "_id",
               "rev": "_rev",
               "record": "记录",
@@ -1293,7 +1293,12 @@
         },
         "choose_at_least": "Choose at least",
         "choose_up_to": "Choose up to",
-        "copy_to_clipboard": "复制到剪贴板"
+        "copy_to_clipboard": "复制到剪贴板",
+        "file_download": {
+          "file_data": "File data",
+          "file_name": "File name with extension",
+          "file_type": "File type"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1355,6 +1360,9 @@
         "img_url_array": "使用 {{ item.attributeName }} 从数据源获取图像 URL",
         "carousel": {
           "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}"
+        },
+        "file_download": {
+          "file_data": "Support base64 data, raw data, mapped data of table. "
         }
       },
       "setter_option": {
@@ -1368,6 +1376,17 @@
         "scale_width": "宽度",
         "collapse": {
           "collapsible_panel": "折叠面板"
+        },
+        "file_download": {
+          "auto": "Auto",
+          "plain_text": "Plain text",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
         }
       },
       "setter_placeholder": {
@@ -1384,7 +1403,11 @@
           "value": "{{ [\"x\",\"y\",...] }}"
         },
         "img_url_array": "{{ item.image_url }} ",
-        "alt_text_mapped": "{{ item.alt_text }} "
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "{{ new_data.csv }}"
+        }
       },
       "setter_tootip": {
         "volume": "0到1之间的数字"
@@ -1502,6 +1525,73 @@
       "carousel": {
         "showNext": "显示下一个可见图像",
         "showPrevious": "显示上一个可见图像"
+      },
+      "file_download": {
+        "download": "Download"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "教程"
+          },
+          "title": {
+            "tutorial": "教程",
+            "templates": "模板"
+          },
+          "onboarding_app": {
+            "name": "Onboarding app",
+            "description": "跟着 ILLA 的教程学习如何构建应用程序",
+            "action": "开始"
+          },
+          "templates_action": {
+            "fork": "创建",
+            "fork_description": "使用此模板创建一个应用"
+          },
+          "templates_name": {
+            "table": "仪表板",
+            "form": "调查问卷",
+            "list": "管理面板"
+          },
+          "templates_description": {
+            "table": "使用表格和其他组件创建仪表板。",
+            "form": "使用表单和输入组件创建表单，例如满意度调查、预售表单等",
+            "list": "使用列表组件显示和管理信息"
+          },
+          "modal": {
+            "title": "新建应用并部署",
+            "placeholder": "应用名称",
+            "cancel": "取消",
+            "fork": "新建应用并部署"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "第 1 步：将输入组件拖到此处",
+          "drag_button": "第 2 步：将按钮组件拖到此处",
+          "drag_table": "第 3 步：将表格组件拖到此处",
+          "exit": "退出引导",
+          "do_it": "帮我完成该步骤",
+          "drag_title": "将组件拖到画布中",
+          "modify_action_title": "修改ACTION",
+          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。",
+          "modify_action_description_click": "单击保存，然后单击运行",
+          "display_data_title": "在表格中显示数据",
+          "display_data_description_select": "选择画布中的表格",
+          "display_data_description_modify": "修改右侧面板上的数据源。 我们可以使用 {{postgre1.data}} 来获取数据。",
+          "event_handler_title": "点击按钮触发动作",
+          "event_handler_description_1": "选择画布里的按钮",
+          "event_handler_description_2": "添加事件处理器",
+          "event_handler_description_3": "点击事件处理器",
+          "event_handler_description_4": "将动作改为触发ACTION",
+          "event_handler_description_5": "将查询更改为postgre1",
+          "test_it_title": "测试一下",
+          "test_it_description": "输入您要搜索的用户名，然后点击按钮",
+          "test_it_button": "下一步",
+          "congratulations_title": "恭喜🎉",
+          "congratulations_description": "您刚刚构建了您的第一个应用程序。 如果您在使用过程中有任何疑问，可以通过<0>Discord<0>联系我们",
+          "congratulations_button": "完成"
+        }
       }
     }
   },
@@ -2002,6 +2092,13 @@
         }
       },
       "description": "专属于开发者的开源低代码平台。"
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "教程"
+        }
+      }
     }
   },
   "frame_size": {
@@ -2198,5 +2295,17 @@
     }
   },
   "empty_copied_tips": "复制的内容为空",
-  "copy_empty": "The content to be copied is empty"
+  "copy_empty": "The content to be copied is empty",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "了解如何在 5 分钟内构建应用程序",
+          "description": "按照 ILLA 的教程学习如何构建应用程序，这大约需要 5 分钟。",
+          "cancel": "取消",
+          "take": "开始教程"
+        }
+      }
+    }
+  }
 }
