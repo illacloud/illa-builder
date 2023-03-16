@@ -1555,7 +1555,7 @@
             "list": "Admin panel"
           },
           "templates_description": {
-            "table": "Use tables and other components to create dashboards.",
+            "table": "Use tables to create dashboards.",
             "form": "Use form and input components to create form apps.",
             "list": "Use a list component to display and manage information"
           },

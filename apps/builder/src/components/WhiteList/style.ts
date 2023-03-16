@@ -1,11 +1,11 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const IpListContainerStyle = css`
+export const ipListContainerStyle = css`
   padding: 8px 0px;
 `
 
-export const IpListStyle = css`
+export const ipListStyle = css`
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
 `
