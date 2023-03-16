@@ -1,4 +1,4 @@
-import { SerializedStyles, css } from "@emotion/react"
+import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const navBarStyle = css`
@@ -84,5 +84,11 @@ export const inputAreaLabelWrapperStyle = css`
   justify-content: center;
   font-size: 12px;
   gap: 8px;
+  color: ${getColor("grayBlue", "02")};
+`
+
+export const nameStyle = css`
+  font-weight: 500;
+  cursor: pointer;
   color: ${getColor("grayBlue", "02")};
 `
