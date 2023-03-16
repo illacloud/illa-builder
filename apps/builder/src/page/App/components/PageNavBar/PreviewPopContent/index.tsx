@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CloseIcon, InputNumber, useMessage } from "@illa-design/react"
@@ -33,8 +33,7 @@ const validateWidth = (currentWidth: number | undefined) => {
 }
 
 export const PreviewPopContent = () => {
-  const viewportSize = useSelector(getViewportSizeSelector)
-  const { viewportWidth, viewportHeight } = viewportSize
+  const { viewportWidth, viewportHeight } = useSelector(getViewportSizeSelector)
 
   const [inputWidth, setInputWidth] = useState(viewportWidth)
   const [inputHeight, setInputHeight] = useState(viewportHeight)
@@ -50,6 +49,7 @@ export const PreviewPopContent = () => {
       componentsActions.updateViewportSizeReducer({
         viewportWidth: width,
         viewportHeight: height,
+        viewportSizeType: "custom",
       }),
     )
   }, [dispatch, height, width])
