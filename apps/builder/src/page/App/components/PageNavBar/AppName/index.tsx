@@ -1,8 +1,8 @@
 import { FC, useState } from "react"
-import { Trigger } from "@illa-design/react"
+import { PenIcon, Trigger } from "@illa-design/react"
 import { AppNameEditModal } from "@/page/App/components/PageNavBar/AppNameEditModal"
 import { AppNameProps } from "@/page/App/components/PageNavBar/interface"
-import { nameStyle, triggerStyle } from "./style"
+import { nameContainerStyle, nameStyle, triggerStyle } from "./style"
 
 export const AppName: FC<AppNameProps> = (props) => {
   const { appName } = props
@@ -25,7 +25,10 @@ export const AppName: FC<AppNameProps> = (props) => {
       withoutPadding
       colorScheme="white"
     >
-      <div css={nameStyle}>{appName}</div>
+      <div css={nameContainerStyle}>
+        <span css={nameStyle}>{appName}</span>
+        <PenIcon size="16px" />
+      </div>
     </Trigger>
   )
 }
