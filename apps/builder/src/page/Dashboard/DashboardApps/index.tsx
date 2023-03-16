@@ -12,7 +12,11 @@ import {
   ListItemMeta,
   useMessage,
 } from "@illa-design/react"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
+import {
+  canManage,
+  canManageApp,
+  isBiggerThanTargetRole,
+} from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -23,6 +27,7 @@ import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { TeamInfo } from "@/redux/team/teamState"
 import { fromNow } from "@/utils/dayjs"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
@@ -43,6 +48,12 @@ export const DashboardApps: FC = () => {
   const [createNewModalVisible, setCreateNewModalVisible] = useState(false)
 
   const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
+
+  const canSetPublic = canManageApp(
+    currentUserRole,
+    teamInfo?.permission?.allowEditorManageTeamMember,
+    teamInfo?.permission?.allowViewerManageTeamMember,
+  )
 
   const canEditApp = canManage(
     currentUserRole,
@@ -107,6 +118,7 @@ export const DashboardApps: FC = () => {
                     <DashboardItemMenu
                       appId={item.appId}
                       canEditApp={canEditApp}
+                      canManageApp={canSetPublic}
                       isDeploy={item.mainlineVersion !== 0}
                     />
                   }

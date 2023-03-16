@@ -8,8 +8,9 @@ export const appsContainerStyle: SerializedStyles = css`
   flex-grow: 1;
   flex-direction: column;
   margin: 0 auto;
-  width: 67%;
-  padding: 40px 0;
+  // Compatible child element box-shadow style
+  width: calc(67% + 16px);
+  padding: 40px 16px;
 `
 
 export const listTitleContainerStyle: SerializedStyles = css`

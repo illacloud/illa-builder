@@ -12,6 +12,8 @@ export enum SECTION_POSITION {
   "FULL" = "FULL",
   "NONE" = "NONE",
 }
+export type ViewportSizeType = "fluid" | "desktop" | "tablet" | "custom"
+
 export interface ComponentNode {
   displayName: string
   parentNode: string | null
@@ -48,6 +50,7 @@ export interface RootComponentNodeProps {
 
   viewportWidth?: number
   viewportHeight?: number
+  viewportSizeType?: ViewportSizeType
 }
 
 export interface RootComponentNode extends ComponentNode {
