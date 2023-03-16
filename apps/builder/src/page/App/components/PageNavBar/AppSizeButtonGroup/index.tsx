@@ -1,13 +1,14 @@
 import { motion } from "framer-motion"
-import { FC, MouseEvent, useCallback, useState } from "react"
-import { useDispatch } from "react-redux"
+import { FC, MouseEvent, useCallback } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { ReactComponent as DesktopIcon } from "@/assets/appSize/desktop.svg"
 import { ReactComponent as CustomIcon } from "@/assets/appSize/filter.svg"
 import { ReactComponent as FluidIcon } from "@/assets/appSize/fluid.svg"
 import { ReactComponent as TabletIcon } from "@/assets/appSize/tablet.svg"
 import { PreviewPopContent } from "@/page/App/components/PageNavBar/PreviewPopContent"
-import { AppSizeType } from "@/page/App/components/PageNavBar/interface"
+import { getViewportSizeSelector } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { ViewportSizeType } from "@/redux/currentApp/editor/components/componentsState"
 import {
   appSizeContainerStyle,
   appSizeIconContainerStyle,
@@ -62,23 +63,29 @@ const variants = {
 }
 
 export const AppSizeButtonGroup: FC = () => {
-  const [appSizeType, setAppSizeType] = useState<AppSizeType>("fluid")
+  const { viewportSizeType, viewportWidth, viewportHeight } = useSelector(
+    getViewportSizeSelector,
+  )
   const dispatch = useDispatch()
 
-  const showCustomInputs = appSizeType === "custom"
+  const showCustomInputs = viewportSizeType === "custom"
+  const currentSizeType = viewportSizeType ?? "fluid"
 
   const updateAppSize = useCallback(
     ({
       viewportWidth,
       viewportHeight,
+      viewportSizeType,
     }: {
       viewportWidth?: number
       viewportHeight?: number
+      viewportSizeType?: ViewportSizeType
     }) => {
       dispatch(
         componentsActions.updateViewportSizeReducer({
           viewportWidth,
           viewportHeight,
+          viewportSizeType,
         }),
       )
     },
@@ -87,13 +94,20 @@ export const AppSizeButtonGroup: FC = () => {
 
   const handleAppSizeTypeChange = useCallback(
     (e: MouseEvent<HTMLSpanElement>) => {
-      const newType = e.currentTarget.dataset.key as AppSizeType
-      setAppSizeType(newType)
-      if (newType !== "custom") {
-        updateAppSize(defaultAppSize[newType])
-      }
+      const newType = e.currentTarget.dataset.key as ViewportSizeType
+      const sizeObj =
+        newType !== "custom"
+          ? defaultAppSize[newType]
+          : {
+              viewportHeight,
+              viewportWidth,
+            }
+      updateAppSize({
+        ...sizeObj,
+        viewportSizeType: newType,
+      })
     },
-    [updateAppSize],
+    [updateAppSize, viewportHeight, viewportWidth],
   )
 
   return (
@@ -111,7 +125,7 @@ export const AppSizeButtonGroup: FC = () => {
               <span
                 css={[
                   appSizeIconStyle,
-                  getAppSizeIconSelectedStyle(appSizeType === type),
+                  getAppSizeIconSelectedStyle(currentSizeType === type),
                 ]}
               >
                 <Icon />

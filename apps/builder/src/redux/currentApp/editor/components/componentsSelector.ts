@@ -318,11 +318,14 @@ export const getViewportSizeSelector = createSelector(
       return {
         viewportWidth: undefined,
         viewportHeight: undefined,
+        viewportSizeType: "fluid",
       }
-    const { viewportWidth, viewportHeight } = rootComponentNode.props
+    const { viewportWidth, viewportHeight, viewportSizeType } =
+      rootComponentNode.props
     return {
       viewportWidth: viewportWidth,
       viewportHeight: viewportHeight,
+      viewportSizeType,
     }
   },
 )
