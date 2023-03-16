@@ -370,14 +370,18 @@ const getDragResultWhenAdd = (
   canResizeY: boolean,
 ) => {
   const itemPosition = getItemPosition(clientOffset!, containerScrollTop)
+  const realNodeWidthAndHeight = {
+    w: nodeWidthAndHeight.w * unitWidth,
+    h: nodeWidthAndHeight.h * UNIT_HEIGHT,
+  }
   const rectCenterPosition = calcRectCenterPointPosition(
     itemPosition,
     containerPosition,
-    nodeWidthAndHeight,
+    realNodeWidthAndHeight,
   )
   const rectPosition = calcRectShapeByCenterPoint(
     rectCenterPosition,
-    nodeWidthAndHeight,
+    realNodeWidthAndHeight,
   )
   const ladingPosition = calcLadingPosition(
     rectPosition,

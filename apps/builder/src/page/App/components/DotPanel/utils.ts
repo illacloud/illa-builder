@@ -1,4 +1,3 @@
-import { cloneDeep } from "lodash"
 import { RefObject } from "react"
 import { DropTargetMonitor } from "react-dnd"
 import {
@@ -14,19 +13,24 @@ import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanva
 import { UpdateComponentNodeLayoutInfoPayload } from "@/redux/currentApp/editor/components/componentsPayload"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
+export const getScaleResult = (
+  origin: number,
+  blockColumns: number,
+  currentColumnNumber: number,
+) => {
+  const scale = blockColumns / currentColumnNumber
+  return Math.floor(origin * scale)
+}
+
 export const getScaleItem = (
   blockColumns: number,
   currentColumnNumber: number,
   item: ComponentNode,
 ) => {
-  const scale = blockColumns / currentColumnNumber
-
+  const scaleW = getScaleResult(item.w, blockColumns, currentColumnNumber)
   return {
     ...item,
-    w:
-      Math.ceil(item.w * scale) < item.minW
-        ? item.minW
-        : Math.ceil(item.w * scale),
+    w: scaleW < item.minW ? item.minW : scaleW,
   }
 }
 
@@ -169,17 +173,17 @@ export const getLargeItemSharpe = (
   columnNumber: number,
   currentColumnNumber: number,
 ) => {
-  const scaleItems = draggedSelectedComponents.map((item) =>
-    getScaleItem(columnNumber, currentColumnNumber, item),
-  )
+  const scaleItems = draggedSelectedComponents
   const top = Math.min(...scaleItems.map((item) => item.y))
   const left = Math.min(...scaleItems.map((item) => item.x))
   const bottom = Math.max(...scaleItems.map((item) => item.y + item.h))
   const right = Math.max(...scaleItems.map((item) => item.x + item.w))
+  const minW = Math.max(...scaleItems.map((item) => item.minW))
+  const scaleW = getScaleResult(right - left, columnNumber, currentColumnNumber)
   return {
     x: left,
     y: top,
-    w: right - left,
+    w: scaleW < minW ? minW : scaleW,
     h: bottom - top,
   }
 }

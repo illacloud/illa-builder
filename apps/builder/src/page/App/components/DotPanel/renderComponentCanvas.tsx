@@ -36,6 +36,7 @@ import {
 import {
   getLargeItemSharpe,
   getScaleItem,
+  getScaleResult,
   moveCallback,
 } from "@/page/App/components/DotPanel/utils"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
@@ -475,16 +476,17 @@ export const RenderComponentCanvas: FC<{
             isDragging: false,
           }
 
-          /**
-           * add new nodes
-           */
-
           const relativePositionWithComponentNode =
             draggedSelectedComponents.map((node) => {
               const scaleNode = getScaleItem(
                 blockColumns,
                 currentColumnNumber,
                 node,
+              )
+              scaleNode.x = getScaleResult(
+                scaleNode.x,
+                blockColumns,
+                currentColumnNumber,
               )
               return {
                 ...scaleNode,
@@ -504,7 +506,9 @@ export const RenderComponentCanvas: FC<{
                 y: node.y + newItem.y,
               }
             })
-
+          /**
+           * add new nodes
+           */
           if (item.x === -1 && item.y === -1) {
             if (item.type === "MODAL_WIDGET") {
               dispatch(
