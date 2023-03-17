@@ -1527,7 +1527,11 @@
         "showPrevious": "Show previous visible image"
       },
       "file_download": {
-        "download": "Download"
+        "download": "Download",
+        "message": {
+          "suc": "Start to download",
+          "fail": "Request failed"
+        }
       }
     },
     "tutorial": {
