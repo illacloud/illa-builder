@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon } from "@illa-design/react"
 import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { isMAC } from "@/utils/userAgent"
 import { WorkSpaceTreeNode } from "./WorkSpaceTreeNode"
 import { WorkSpaceTreeItemProps } from "./interface"
 import {
@@ -39,7 +40,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
         <div
           css={applyItemContainerStyle(isSelected, 0)}
           onClick={(e: MouseEvent<HTMLDivElement>) => {
-            if (e.metaKey || e.shiftKey) {
+            if ((isMAC() && e.metaKey) || (!isMAC() && e.ctrlKey)) {
               handleSelect?.([title], e)
               return
             }
