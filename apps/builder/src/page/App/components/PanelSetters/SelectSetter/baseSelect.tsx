@@ -11,6 +11,7 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
     handleUpdateDsl,
     value,
     allowClear,
+    defaultValue,
     onChange,
   } = props
 
@@ -19,6 +20,7 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
       <Select
         options={options}
         size="medium"
+        defaultValue={defaultValue}
         value={value}
         colorScheme="techPurple"
         onChange={(value) => {
