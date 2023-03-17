@@ -1527,7 +1527,11 @@
         "showPrevious": "显示上一个可见图像"
       },
       "file_download": {
-        "download": "Download"
+        "download": "Download",
+        "message": {
+          "suc": "开始下载",
+          "fail": "请求失败"
+        }
       }
     },
     "tutorial": {
