@@ -1,11 +1,4 @@
-import {
-  MouseEvent,
-  forwardRef,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
+import { MouseEvent, forwardRef, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
@@ -17,6 +10,7 @@ import {
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import i18n from "@/i18n/config"
+import { ActionResultProps } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 import {
   actionResultContainerStyle,
   alertBarStyle,
