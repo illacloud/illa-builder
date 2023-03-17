@@ -1530,7 +1530,8 @@
         "download": "Download",
         "message": {
           "suc": "다운로드 시작",
-          "fail": "요청 실패"
+          "fail": "요청 실패",
+          "download_failed": "불러 오는데 실패했습니다."
         }
       }
     },
