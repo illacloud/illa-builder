@@ -1530,7 +1530,8 @@
         "download": "Download",
         "message": {
           "suc": "Start to download",
-          "fail": "Request failed"
+          "fail": "Request failed",
+          "download_failed": "Failed to download"
         }
       }
     },
