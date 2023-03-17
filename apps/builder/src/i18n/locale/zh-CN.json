@@ -1530,7 +1530,8 @@
         "download": "Download",
         "message": {
           "suc": "开始下载",
-          "fail": "请求失败"
+          "fail": "请求失败",
+          "download_failed": "下载失败"
         }
       }
     },
