@@ -78,6 +78,7 @@ export const buildComponentList = (): ComponentSessionProps[] => {
   const keys = Object.keys(configs) as SessionType[]
   return keys.map((key) => {
     return {
+      type: key,
       title: sessionTypeMapSessionNameKey[key],
       widgetCardInfos: configs[key],
     }

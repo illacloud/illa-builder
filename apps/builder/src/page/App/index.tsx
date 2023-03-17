@@ -11,6 +11,7 @@ import {
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
+import { Guide } from "@/components/Guide"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
@@ -174,6 +175,7 @@ export const Editor: FC = () => {
       {combinLoadingState && <AppLoading />}
       {!combinLoadingState && (
         <Shortcut>
+          {isOpen && <Guide />}
           <PageNavBar className={"app-editor"} css={navbarStyle} />
           <div css={contentStyle}>
             {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}

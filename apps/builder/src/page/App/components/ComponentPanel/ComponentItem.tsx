@@ -1,3 +1,4 @@
+import { useTour } from "@reactour/tour"
 import { cloneDeep } from "lodash"
 import { FC, memo } from "react"
 import { useDrag } from "react-dnd"
@@ -8,10 +9,7 @@ import {
   DragInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
-import {
-  getIsILLAEditMode,
-  getIsILLAGuideMode,
-} from "@/redux/config/configSelector"
+import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
@@ -33,7 +31,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
     const { widgetName, icon, id, type, ...partialDragInfo } = props
 
     const isEditMode = useSelector(getIsILLAEditMode)
-    const isGuideMode = useSelector(getIsILLAGuideMode)
+    const { isOpen } = useTour()
 
     const [, dragRef, dragPreviewRef] = useDrag<
       DragInfo,
@@ -52,6 +50,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
         item: () => {
           const item = generateComponentNode({
             widgetName,
+            type,
             ...partialDragInfo,
           })
           const rootState = store.getState()
@@ -80,12 +79,15 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
       [isEditMode],
     )
 
+    console.log(isOpen, "isOpen")
+
     return (
       <div css={itemContainerStyle} ref={dragRef}>
         <div css={dragPreviewStyle} ref={dragPreviewRef} />
         <span
           css={iconStyle}
-          {...(isGuideMode ? {} : { "data-onboarding-comp": type })}
+          // isGuideMode
+          {...(isOpen ? { "data-onboarding-comp": type } : {})}
         >
           {icon}
         </span>

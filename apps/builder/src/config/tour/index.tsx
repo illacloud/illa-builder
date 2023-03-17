@@ -1,18 +1,22 @@
 import { StepType } from "@reactour/tour"
 import { getColor } from "@illa-design/react"
-import ButtonHighlightIcon from "@/assets/widgetCover/tab.svg"
+import ButtonHighlightIcon from "@/assets/widgetCover/button-highlight.svg"
+import InputHighlightIcon from "@/assets/widgetCover/input-highlight.svg"
+import TableHighlightIcon from "@/assets/widgetCover/table-highlight.svg"
 
-const SELECT_WIDGET = ["INPUT_WIDGET", "BUTTON_WIDGET", "TABLE_WIDGET"]
-const SELECT_ICON = {
-  INPUT_WIDGET: ButtonHighlightIcon,
+export const STEP_0_SELECT_ICON = {
+  INPUT_WIDGET: InputHighlightIcon,
   BUTTON_WIDGET: ButtonHighlightIcon,
-  TABLE_WIDGET: ButtonHighlightIcon,
+  TABLE_WIDGET: TableHighlightIcon,
 }
-
-type SelectWidget = keyof typeof SELECT_ICON
+type SelectWidget = keyof typeof STEP_0_SELECT_ICON
+export const STEP_0_SELECT_WIDGET = Object.keys(
+  STEP_0_SELECT_ICON,
+) as SelectWidget[]
 
 export const STEP: StepType[] = [
   {
+    disableActions: true,
     styles: {
       popover: (base: any) => ({
         ...base,
@@ -44,38 +48,7 @@ export const STEP: StepType[] = [
     selector: ".app-editor",
     content: "",
     // disableActions: true,
-    action: (elem) => {
-      // for SELECT_WIDGET array, get all the elements with the data-onboarding-comp attribute
-      const elements = SELECT_WIDGET.map(
-        (widget) =>
-          document.querySelectorAll(
-            `[data-onboarding-comp=${widget}]`,
-          ) as NodeListOf<HTMLDivElement>,
-      )
-      console.log("elements", elements)
-      // set color style to the elements
-      elements.forEach((element) => {
-        element.forEach((el) => {
-          const onboardingComp = el.dataset.onboardingComp as SelectWidget
-          const icon = SELECT_ICON[onboardingComp]
-          el.setAttribute(
-            "style",
-            `
-            color: ${getColor("techPurple", "01")}; 
-            content: url(${icon})`,
-          )
-        })
-      })
-    },
-    actionAfter: () => {
-      const elements = SELECT_WIDGET.map((widget) =>
-        document.querySelectorAll(`[data-onboarding-comp=${widget}]`),
-      )
-      elements.forEach((element) => {
-        element.forEach((el) => {
-          el.removeAttribute("style")
-        })
-      })
-    },
+    action: (elem) => {},
+    actionAfter: () => {},
   },
 ]
