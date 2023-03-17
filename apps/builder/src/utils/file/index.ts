@@ -1,7 +1,7 @@
-import Axios from "axios"
 import download from "downloadjs"
 import XLSX from "xlsx"
-import { isArray, isObject } from "@illa-design/react"
+import { createMessage, isArray, isObject } from "@illa-design/react"
+import { Api } from "@/api/base"
 import { isUrl } from "@/utils/url"
 import { isBase64 } from "@/utils/url/base64"
 
@@ -113,21 +113,38 @@ const downloadExcelFile = (data: any, contentType: string) => {
     ? [data]
     : [{ value: data }]
   const skipHeader = !(isArray(data) || isObject(data))
-  const worksheet = XLSX.utils.json_to_sheet(passData)
+  const worksheet = XLSX.utils.json_to_sheet(passData, {
+    skipHeader,
+  })
   XLSX.utils.book_append_sheet(workbook, worksheet, sheetName)
   return XLSX.write(workbook, { type: "buffer", bookType })
 }
 
 const convertToCSV = (data: any): string => {
   if (Array.isArray(data)) {
-    const rows = data.map((row) => convertToCSV(row))
-    return rows.join("\n")
-  } else if (typeof data === "object" && data !== null) {
-    const keys = Object.keys(data)
+    if (data.length === 0) {
+      return ""
+    }
+    const firstRow = data[0]
+    const keys = Object.keys(firstRow)
     const header = keys.map((key) => `${key}`).join(",")
-    const values = keys.map((key) => data[key])
-    const row = values.map((value: any) => convertToCSV(value)).join(",")
-    return `${header}\n${row}`
+    const rows = data.map((row) => convertToCSV(row))
+    return `${header}\n${rows.join("\n")}`
+  } else if (typeof data === "object" && data !== null) {
+    const values = []
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        const value = data[key]
+        if (typeof value === "object" && !Array.isArray(value)) {
+          values.push(JSON.stringify(value))
+        } else if (Array.isArray(value)) {
+          values.push(value.join(" | "))
+        } else {
+          values.push(value)
+        }
+      }
+    }
+    return values.join(",")
   } else {
     return `${data}`
   }
@@ -136,7 +153,11 @@ const convertToCSV = (data: any): string => {
 function toTsv(data: any): string {
   if (Array.isArray(data)) {
     const headers = Object.keys(data[0]).join("\t")
-    const rows = data.map((obj) => Object.values(obj).join("\t"))
+    const rows = data.map((obj) =>
+      Object.values(obj)
+        .map((val) => (isObject(val) ? JSON.stringify(val) : val))
+        .join("\t"),
+    )
     return [headers, ...rows].join("\n")
   } else if (typeof data === "object" && data !== null) {
     return Object.values(data).map(toTsv).join("\t")
@@ -165,7 +186,12 @@ export const downloadFileFromEventHandler = async (
   fileName: string,
   data: any,
 ) => {
+  const message = createMessage()
   try {
+    message.info({
+      content: "文件下载中...",
+    })
+
     const fileDownloadName = getFileName((fileName ?? "").trim(), fileType)
     const contentType = getContentTypeByFileExtension(
       fileDownloadName.split(".")[1],
@@ -175,15 +201,24 @@ export const downloadFileFromEventHandler = async (
 
     let params
 
-    if (isValidBase64) {
+    if (isValidBase64 || data instanceof Blob) {
       params = data
     } else if (isBase64Suffix) {
       params = `data:${contentType};base64,${data}`
-    } else if (data instanceof Blob) {
-      params = data
     } else if (isUrl(data)) {
-      const res = await Axios.get(data)
-      params = await res.data.blob()
+      try {
+        const res = await Api.asyncCustomRequest<Blob>({
+          url: data,
+          method: "GET",
+          responseType: "blob",
+        })
+        params = await res.data
+      } catch (e) {
+        message.error({
+          content: "文件下载失败",
+        })
+        return
+      }
     } else {
       switch (contentType) {
         case "text/csv":
@@ -203,13 +238,21 @@ export const downloadFileFromEventHandler = async (
           params = toTsv(data)
           break
         default:
-          params = isObject(data) ? JSON.stringify(data) : String(data)
+          {
+            if (typeof data === "object") {
+              params = JSON.stringify(data)
+            } else {
+              params = data
+            }
+          }
           break
       }
     }
-    console.log({ params, fileDownloadName, contentType })
     download(params, fileDownloadName, contentType)
   } catch (e) {
+    message.error({
+      content: "文件下载失败",
+    })
     console.error(e)
   }
 }

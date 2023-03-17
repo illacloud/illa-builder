@@ -54,7 +54,6 @@
     "deep-diff": "^1.0.2",
     "downloadjs": "^1.4.7",
     "events": "^3.3.0",
-    "file-saver": "^2.0.5",
     "framer-motion": "^7.6.12",
     "hotkeys-js": "^3.10.1",
     "i18next": "^22.4.9",

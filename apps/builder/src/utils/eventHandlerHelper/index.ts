@@ -159,6 +159,9 @@ export const transformEvents = (
 
     return {
       script: () => {
+        if ([undefined, null, ""].includes(fileData)) {
+          return
+        }
         downloadFileFromEventHandler(fileType, fileName, fileData)
       },
     }

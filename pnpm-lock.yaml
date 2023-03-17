@@ -114,7 +114,6 @@ importers:
       downloadjs: ^1.4.7
       e2e: workspace:*
       events: ^3.3.0
-      file-saver: ^2.0.5
       framer-motion: ^7.6.12
       hotkeys-js: ^3.10.1
       i18next: ^22.4.9
@@ -194,7 +193,6 @@ importers:
       deep-diff: 1.0.2
       downloadjs: 1.4.7
       events: 3.3.0
-      file-saver: 2.0.5
       framer-motion: 7.10.3
       hotkeys-js: 3.10.1
       i18next: 22.4.9
@@ -6092,10 +6090,6 @@ packages:
     dependencies:
       flat-cache: 3.0.4
     dev: true
-
-  /file-saver/2.0.5:
-    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
-    dev: false
 
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
