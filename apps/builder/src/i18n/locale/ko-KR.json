@@ -1527,7 +1527,11 @@
         "showPrevious": "이전에 보이는 이미지 표시"
       },
       "file_download": {
-        "download": "Download"
+        "download": "Download",
+        "message": {
+          "suc": "다운로드 시작",
+          "fail": "요청 실패"
+        }
       }
     },
     "tutorial": {
