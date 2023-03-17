@@ -1527,7 +1527,12 @@
         "showPrevious": "前の可視画像を表示"
       },
       "file_download": {
-        "download": "Download"
+        "download": "Download",
+        "message": {
+          "suc": "ダウンロードを開始します",
+          "fail": "失敗しました",
+          "download_failed": "ダウンロード失敗"
+        }
       }
     },
     "tutorial": {
