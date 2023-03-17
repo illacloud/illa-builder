@@ -2,7 +2,6 @@ import {
   MouseEvent,
   forwardRef,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -14,7 +13,6 @@ import {
   SuccessCircleIcon,
   WarningCircleIcon,
   getColor,
-  isObject,
 } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
