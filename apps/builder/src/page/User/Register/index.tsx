@@ -1,3 +1,4 @@
+import { Global } from "@emotion/react"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -9,6 +10,7 @@ import { sendEmail } from "@/api/users"
 import { formatLanguage } from "@/i18n/config"
 import RegisterPage from "@/illa-public-component/User/register"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { mobileAdaptationStyle } from "@/style"
 import {
   ILLABuilderStorage,
   getLocalStorage,
@@ -106,12 +108,15 @@ const UserRegister: FC = () => {
   }
 
   return (
-    <RegisterPage
-      loading={submitLoading}
-      errorMsg={errorMsg}
-      onSubmit={onSubmit}
-      sendEmail={sendEmail}
-    />
+    <>
+      <Global styles={mobileAdaptationStyle} />
+      <RegisterPage
+        loading={submitLoading}
+        errorMsg={errorMsg}
+        onSubmit={onSubmit}
+        sendEmail={sendEmail}
+      />
+    </>
   )
 }
 
