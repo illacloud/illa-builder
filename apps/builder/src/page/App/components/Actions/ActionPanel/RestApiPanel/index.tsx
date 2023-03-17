@@ -207,6 +207,9 @@ export const RestApiPanel: FC = () => {
           onDelete={(index, record) => {
             let newList: Params[] = [...content.urlParams]
             newList.splice(index, 1)
+            if (newList.length === 0) {
+              newList = [{ key: "", value: "" }]
+            }
             dispatch(
               configActions.updateCachedAction({
                 ...cachedAction,
@@ -265,6 +268,9 @@ export const RestApiPanel: FC = () => {
           onDelete={(index, record) => {
             let newList: Params[] = [...content.headers]
             newList.splice(index, 1)
+            if (newList.length === 0) {
+              newList = [{ key: "", value: "" }]
+            }
             dispatch(
               configActions.updateCachedAction({
                 ...cachedAction,
@@ -323,6 +329,9 @@ export const RestApiPanel: FC = () => {
           onDelete={(index, record) => {
             let newList: Params[] = [...content.cookies]
             newList.splice(index, 1)
+            if (newList.length === 0) {
+              newList = [{ key: "", value: "" }]
+            }
             dispatch(
               configActions.updateCachedAction({
                 ...cachedAction,

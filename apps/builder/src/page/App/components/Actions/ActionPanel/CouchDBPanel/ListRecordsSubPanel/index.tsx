@@ -13,15 +13,7 @@ export const ListRecordsSubPanel: FC<CouchDBSubPanelProps> = (props) => {
   return (
     <>
       {ListRecordsInfo.map((info) => {
-        const {
-          title,
-          type,
-          name,
-          expectedType,
-          lineNumbers,
-          content = "",
-          style = {},
-        } = info
+        const { title, type, name, expectedType, content = "" } = info
         const value = opts[name[1] as keyof ListRecords]
         if (type === "editor") {
           return (
@@ -31,8 +23,6 @@ export const ListRecordsSubPanel: FC<CouchDBSubPanelProps> = (props) => {
               expectedType={expectedType}
               value={value as string}
               onChange={onInputValueChange(name)}
-              lineNumbers={!!lineNumbers}
-              style={style}
             />
           )
         }
