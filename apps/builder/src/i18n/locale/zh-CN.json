@@ -1295,9 +1295,9 @@
         "choose_up_to": "Choose up to",
         "copy_to_clipboard": "复制到剪贴板",
         "file_download": {
-          "file_data": "File data",
-          "file_name": "File name with extension",
-          "file_type": "File type"
+          "file_data": "文件数据",
+          "file_name": "带扩展名的文件名",
+          "file_type": "文件类型"
         }
       },
       "setter_tooltip": {
@@ -1362,7 +1362,7 @@
           "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}"
         },
         "file_download": {
-          "file_data": "Support base64 data, raw data, mapped data of table. "
+          "file_data": "支持Base64编码数据、表格的原始数据或映射数据"
         }
       },
       "setter_option": {
@@ -1378,8 +1378,8 @@
           "collapsible_panel": "折叠面板"
         },
         "file_download": {
-          "auto": "Auto",
-          "plain_text": "Plain text",
+          "auto": "自动",
+          "plain_text": "纯文本",
           "jpeg": "JPEG",
           "png": "PNG",
           "svg": "SVG",
