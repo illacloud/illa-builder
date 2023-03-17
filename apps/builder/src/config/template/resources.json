@@ -1,0 +1,200 @@
+[
+  {
+    "resourceId": "ILAfx4p1C7cn",
+    "uid": "518778b8-7b56-409b-8b57-244abb624d7e",
+    "teamID": "ILAfx4p1C7en",
+    "resourceName": "Onboarding DB",
+    "resourceType": "postgresql",
+    "content": {
+      "databaseName": "illa_demo",
+      "databasePassword": "illa2022",
+      "databaseUsername": "illa",
+      "host": "143.198.231.148",
+      "port": "30739",
+      "ssl": {
+        "clientCert": "",
+        "clientKey": "",
+        "serverCert": "",
+        "ssl": false
+      }
+    },
+    "createdAt": "2023-03-14T12:31:02.198393Z",
+    "createdBy": "ILAfx4p1C7eb",
+    "updatedAt": "2023-03-15T11:08:05.864299Z",
+    "updatedBy": "ILAfx4p1C7eb"
+  },
+  {
+    "resourceId": "ILAfx4p1C7dE",
+    "uid": "b3789243-f981-4e8a-be58-3d1b7737c715",
+    "teamID": "ILAfx4p1C7en",
+    "resourceName": "134324234234",
+    "resourceType": "mysql",
+    "content": {
+      "databaseName": "234234",
+      "databasePassword": "234234",
+      "databaseUsername": "234234",
+      "host": "234234234",
+      "port": "234234",
+      "ssl": {
+        "clientCert": "",
+        "clientKey": "",
+        "serverCert": "",
+        "ssl": false
+      }
+    },
+    "createdAt": "2023-03-08T07:49:55.928046Z",
+    "createdBy": "ILAfx4p1C7dT",
+    "updatedAt": "2023-03-08T07:49:55.928046Z",
+    "updatedBy": "ILAfx4p1C7dT"
+  },
+  {
+    "resourceId": "ILAfx4p1C7dF",
+    "uid": "7a6bb601-574c-4a0c-9a14-6adc3dbbae42",
+    "teamID": "ILAfx4p1C7en",
+    "resourceName": "123123",
+    "resourceType": "mysql",
+    "content": {
+      "databaseName": "123123",
+      "databasePassword": "123123",
+      "databaseUsername": "123123",
+      "host": "123123",
+      "port": "123123",
+      "ssl": {
+        "clientCert": "",
+        "clientKey": "",
+        "serverCert": "",
+        "ssl": false
+      }
+    },
+    "createdAt": "2023-03-08T07:48:27.182121Z",
+    "createdBy": "ILAfx4p1C7dT",
+    "updatedAt": "2023-03-08T07:48:27.182121Z",
+    "updatedBy": "ILAfx4p1C7dT"
+  },
+  {
+    "resourceId": "ILAfx4p1C7dk",
+    "uid": "310bc552-0c26-43b1-ad5e-e2ccb20e87e9",
+    "teamID": "ILAfx4p1C7en",
+    "resourceName": "test",
+    "resourceType": "s3",
+    "content": {
+      "accessKeyID": "DO00EKVF4FYUWH9DZT9L",
+      "baseURL": "https://sfo3.digitaloceanspaces.com",
+      "bucketName": "test-a",
+      "endpoint": true,
+      "region": "sfo3",
+      "secretAccessKey": "cfgxlw1+DyPmCQeDXyBYPRh54dShR1eVcNrrIVyYjaY"
+    },
+    "createdAt": "2023-02-28T10:53:01.814293Z",
+    "createdBy": "ILAfx4p1C7eb",
+    "updatedAt": "2023-03-03T13:10:08.266951Z",
+    "updatedBy": "ILAfx4p1C7eb"
+  },
+  {
+    "resourceId": "ILAfx4p1C7dC",
+    "uid": "936375d1-c3c0-4aff-8982-059c12674a63",
+    "teamID": "ILAfx4p1C7en",
+    "resourceName": "https://jsonplaceholder.typicode.com/",
+    "resourceType": "restapi",
+    "content": {
+      "authContent": null,
+      "authentication": "none",
+      "baseUrl": "https://jsonplaceholder.typicode.com/users",
+      "cookies": [
+        {
+          "key": "",
+          "value": ""
+        }
+      ],
+      "headers": [
+        {
+          "key": "",
+          "value": ""
+        }
+      ],
+      "urlParams": [
+        {
+          "key": "",
+          "value": ""
+        }
+      ]
+    },
+    "createdAt": "2023-03-02T15:37:02.89246Z",
+    "createdBy": "ILAfx4p1C7dT",
+    "updatedAt": "2023-03-02T15:37:02.89246Z",
+    "updatedBy": "ILAfx4p1C7dT"
+  },
+  {
+    "resourceId": "ILAfx4p1C7dh",
+    "uid": "5f7ede8e-7070-49f3-8009-f1bd0277a0a2",
+    "teamID": "ILAfx4p1C7en",
+    "resourceName": "88888888",
+    "resourceType": "tidb",
+    "content": {
+      "databaseName": "test",
+      "databasePassword": "4T2246Ri1XptlavY",
+      "databaseUsername": "2Tm1EThrjpYpEDi.root",
+      "host": "gateway01.eu-central-1.prod.aws.tidbcloud.com",
+      "port": "4000",
+      "ssl": {
+        "clientCert": "",
+        "clientKey": "",
+        "serverCert": "",
+        "ssl": false
+      }
+    },
+    "createdAt": "2023-03-01T07:46:27.977326Z",
+    "createdBy": "ILAfx4p1C7dT",
+    "updatedAt": "2023-03-01T07:55:59.217344Z",
+    "updatedBy": "ILAfx4p1C7dT"
+  },
+  {
+    "resourceId": "ILAfx4p1C7cO",
+    "uid": "6b64661a-47d8-44d5-aa12-22f9040acecb",
+    "teamID": "ILAfx4p1C7en",
+    "resourceName": "illa_mvp",
+    "resourceType": "mysql",
+    "content": {
+      "databaseName": "illa_mvp",
+      "databasePassword": "2022illa",
+      "databaseUsername": "root",
+      "host": "82.156.26.142",
+      "port": "31097",
+      "ssl": {
+        "clientCert": "",
+        "clientKey": "",
+        "serverCert": "",
+        "ssl": false
+      }
+    },
+    "createdAt": "2023-02-24T07:18:48.045161Z",
+    "createdBy": "ILAfx4p1C7dT",
+    "updatedAt": "2023-03-01T06:38:44.064737Z",
+    "updatedBy": "ILAfx4p1C7eb"
+  },
+  {
+    "resourceId": "ILAfx4p1C7c5",
+    "uid": "1669bfe5-88cd-4df4-af0d-7edcfaf13dd0",
+    "teamID": "ILAfx4p1C7en",
+    "resourceName": "1111",
+    "resourceType": "mongodb",
+    "content": {
+      "configContent": {
+        "connectionFormat": "standard",
+        "databaseName": "111",
+        "databasePassword": "1111",
+        "databaseUsername": "11",
+        "host": "111",
+        "port": "111"
+      },
+      "configType": "gui",
+      "ssl": {
+        "open": false
+      }
+    },
+    "createdAt": "2023-02-27T11:04:32.822917Z",
+    "createdBy": "ILAfx4p1C7dT",
+    "updatedAt": "2023-02-27T11:04:32.822917Z",
+    "updatedBy": "ILAfx4p1C7dT"
+  }
+]

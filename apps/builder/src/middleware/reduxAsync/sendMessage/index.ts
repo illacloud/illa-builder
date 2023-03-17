@@ -2,6 +2,7 @@ import { PayloadAction } from "@reduxjs/toolkit"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { RootState } from "@/store"
 import { actionsAsync } from "./actionMethod"
+import { appInfoAsync } from "./appInfoMethod"
 import { appsAsync } from "./appsMethod"
 import { componentsAsync } from "./componentsMethod"
 import { dottedLineSquareAsync } from "./dottedLineSquareMethod"
@@ -71,6 +72,18 @@ export const sendMessage = (
     }
     case "apps": {
       appsAsync(
+        reduxAction,
+        currentAppID,
+        action,
+        teamID,
+        uid,
+        prevRootState,
+        nextRootState,
+      )
+      break
+    }
+    case "appInfo": {
+      appInfoAsync(
         reduxAction,
         currentAppID,
         action,

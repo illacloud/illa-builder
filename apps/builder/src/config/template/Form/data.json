@@ -1,0 +1,798 @@
+{
+  "appInfo": {
+    "appId": "ILAex4p1C74O",
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "teamID": "ILAfx4p1C7d0",
+    "appName": "Survey",
+    "releaseVersion": 5,
+    "mainlineVersion": 5,
+    "config": {
+      "public": true
+    },
+    "updatedBy": "ILAfx4p1C7eb",
+    "updatedAt": "2023-03-16T05:54:50.737713Z",
+    "appActivity": {
+      "modifier": "Marshall～A",
+      "modifiedAt": "2023-03-16T05:54:50.737713Z"
+    }
+  },
+  "actions": [
+    {
+      "actionId": "ILAex4p1C7UZ",
+      "uid": "3a0f3ad5-fc7b-45bd-b4d7-a94404155df6",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "postgresql1",
+      "actionType": "postgresql",
+      "content": {
+        "$dynamicAttrPaths": [],
+        "failedEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "fail",
+            "id": "events-31e82bf7-fe1e-415b-a169-c27adfd49532",
+            "title": "Failed to submit"
+          }
+        ],
+        "mode": "sql",
+        "query": "insert into survey values('{{radioGroup1.value}}','{{input1.value}}','{{select2.value}}','{{radioGroup2.value}}','{{textarea1.value}}','1')",
+        "successEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "success",
+            "id": "events-4cf8b8da-d005-48b6-a04e-eb8992fa0ff0",
+            "title": "Submitted successfully"
+          }
+        ]
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "manually",
+      "config": {
+        "public": true
+      },
+      "createdAt": "2023-03-15T02:00:14.061864Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-03-15T11:16:32.440285Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    }
+  ],
+  "components": {
+    "displayName": "root",
+    "parentNode": "",
+    "showName": "root",
+    "error": false,
+    "isDragging": false,
+    "isResizing": false,
+    "childrenNode": [
+      {
+        "displayName": "page1",
+        "parentNode": "root",
+        "showName": "page",
+        "error": false,
+        "isDragging": false,
+        "isResizing": false,
+        "childrenNode": [
+          {
+            "displayName": "bodySection1",
+            "parentNode": "page1",
+            "showName": "bodySection",
+            "error": false,
+            "isDragging": false,
+            "isResizing": false,
+            "childrenNode": [
+              {
+                "displayName": "bodySection1-bodySectionContainer1",
+                "parentNode": "bodySection1",
+                "showName": "bodySection1-bodySectionContainer1",
+                "error": false,
+                "isDragging": false,
+                "isResizing": false,
+                "childrenNode": [
+                  {
+                    "displayName": "form1",
+                    "parentNode": "bodySection1-bodySectionContainer1",
+                    "showName": "form",
+                    "error": false,
+                    "isDragging": false,
+                    "isResizing": false,
+                    "childrenNode": [
+                      {
+                        "displayName": "canvas1",
+                        "parentNode": "form1",
+                        "showName": "canvas",
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
+                        "childrenNode": [
+                          {
+                            "displayName": "container1",
+                            "parentNode": "canvas1",
+                            "showName": "container",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
+                            "childrenNode": [
+                              {
+                                "displayName": "canvas4",
+                                "parentNode": "container1",
+                                "showName": "canvas",
+                                "error": false,
+                                "isDragging": true,
+                                "isResizing": false,
+                                "childrenNode": [
+                                  {
+                                    "displayName": "text2",
+                                    "parentNode": "canvas4",
+                                    "showName": "text",
+                                    "error": false,
+                                    "isDragging": false,
+                                    "isResizing": false,
+                                    "childrenNode": null,
+                                    "type": "TEXT_WIDGET",
+                                    "containerType": "EDITOR_SCALE_SQUARE",
+                                    "verticalResize": false,
+                                    "h": 12,
+                                    "w": 62,
+                                    "minH": 3,
+                                    "minW": 2,
+                                    "unitW": 4.3984375,
+                                    "unitH": 8,
+                                    "x": 1,
+                                    "y": 3,
+                                    "z": 0,
+                                    "props": {
+                                      "$dynamicAttrPaths": [],
+                                      "colorScheme": "#ffffffff",
+                                      "disableMarkdown": true,
+                                      "dynamicHeight": "fixed",
+                                      "fs": "24px",
+                                      "hidden": false,
+                                      "horizontalAlign": "start",
+                                      "resizeDirection": "ALL",
+                                      "value": "Product pricing survey",
+                                      "verticalAlign": "center"
+                                    },
+                                    "panelConfig": null
+                                  }
+                                ],
+                                "type": "CANVAS",
+                                "containerType": "EDITOR_DOT_PANEL",
+                                "verticalResize": false,
+                                "h": 0,
+                                "w": 0,
+                                "minH": 3,
+                                "minW": 2,
+                                "unitW": 0,
+                                "unitH": 8,
+                                "x": -1,
+                                "y": -1,
+                                "z": 0,
+                                "props": {},
+                                "panelConfig": null
+                              },
+                              {
+                                "displayName": "canvas5",
+                                "parentNode": "container1",
+                                "showName": "canvas",
+                                "error": false,
+                                "isDragging": true,
+                                "isResizing": false,
+                                "childrenNode": null,
+                                "type": "CANVAS",
+                                "containerType": "EDITOR_DOT_PANEL",
+                                "verticalResize": false,
+                                "h": 0,
+                                "w": 0,
+                                "minH": 3,
+                                "minW": 2,
+                                "unitW": 0,
+                                "unitH": 8,
+                                "x": -1,
+                                "y": -1,
+                                "z": 0,
+                                "props": {},
+                                "panelConfig": null
+                              },
+                              {
+                                "displayName": "canvas6",
+                                "parentNode": "container1",
+                                "showName": "canvas",
+                                "error": false,
+                                "isDragging": true,
+                                "isResizing": false,
+                                "childrenNode": null,
+                                "type": "CANVAS",
+                                "containerType": "EDITOR_DOT_PANEL",
+                                "verticalResize": false,
+                                "h": 0,
+                                "w": 0,
+                                "minH": 3,
+                                "minW": 2,
+                                "unitW": 0,
+                                "unitH": 8,
+                                "x": -1,
+                                "y": -1,
+                                "z": 0,
+                                "props": {},
+                                "panelConfig": null
+                              }
+                            ],
+                            "type": "CONTAINER_WIDGET",
+                            "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
+                            "h": 20,
+                            "w": 64,
+                            "minH": 3,
+                            "minW": 2,
+                            "unitW": 14.875,
+                            "unitH": 8,
+                            "x": 0,
+                            "y": 0,
+                            "z": 0,
+                            "props": {
+                              "$dynamicAttrPaths": [],
+                              "backgroundColor": "purple",
+                              "borderColor": "#ffffffff",
+                              "borderWidth": "1px",
+                              "currentIndex": 0,
+                              "currentKey": "View 1",
+                              "dynamicHeight": "fixed",
+                              "radius": "4px",
+                              "resizeDirection": "ALL",
+                              "shadow": "small",
+                              "viewList": [
+                                {
+                                  "id": "63d8d169-3ada-4d38-ac4a-45a9d5a4b0c7",
+                                  "key": "View 1",
+                                  "label": "View 1"
+                                },
+                                {
+                                  "id": "e02bc607-35d1-4718-b05e-f7380ecad7e8",
+                                  "key": "View 2",
+                                  "label": "View 2"
+                                },
+                                {
+                                  "id": "432ca28f-3d95-4f79-9dbb-e60a1889f1ca",
+                                  "key": "View 3",
+                                  "label": "View 3"
+                                }
+                              ]
+                            },
+                            "panelConfig": null
+                          }
+                        ],
+                        "type": "CANVAS",
+                        "containerType": "EDITOR_DOT_PANEL",
+                        "verticalResize": false,
+                        "h": 0,
+                        "w": 0,
+                        "minH": 3,
+                        "minW": 2,
+                        "unitW": 0,
+                        "unitH": 8,
+                        "x": -1,
+                        "y": -1,
+                        "z": 0,
+                        "props": {},
+                        "panelConfig": null
+                      },
+                      {
+                        "displayName": "canvas2",
+                        "parentNode": "form1",
+                        "showName": "canvas",
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
+                        "childrenNode": [
+                          {
+                            "displayName": "radioGroup1",
+                            "parentNode": "canvas2",
+                            "showName": "radioGroup",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
+                            "childrenNode": null,
+                            "type": "RADIO_GROUP_WIDGET",
+                            "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
+                            "h": 7,
+                            "w": 62,
+                            "minH": 3,
+                            "minW": 2,
+                            "unitW": 14.875,
+                            "unitH": 8,
+                            "x": 1,
+                            "y": 3,
+                            "z": 0,
+                            "props": {
+                              "$dynamicAttrPaths": [
+                                "labelWidth",
+                                "dataSources",
+                                "formDataKey"
+                              ],
+                              "colorScheme": "purple",
+                              "dataSources": "{{[]}}",
+                              "direction": "horizontal",
+                              "formDataKey": "{{radioGroup1.displayName}}",
+                              "hidden": false,
+                              "hideValidationMessage": true,
+                              "label": "Are you familiar with the product?",
+                              "labelAlign": "left",
+                              "labelPosition": "top",
+                              "labelWidth": "{{33}}",
+                              "manualOptions": [
+                                {
+                                  "id": "option-f75d5ec7-2ec8-4cb9-b31a-ee951c180ce7",
+                                  "label": "Yes, I own it.",
+                                  "value": "Yes, I own it."
+                                },
+                                {
+                                  "id": "option-faa6d61b-997a-4fad-9eca-89a42e63869a",
+                                  "label": "Yes, I have seen it.",
+                                  "value": "Yes, I have seen it."
+                                },
+                                {
+                                  "id": "option-6c059d02-f28f-49a4-8a8d-ef4ae7d6d812",
+                                  "label": "Yes, I have heard of it.",
+                                  "value": "Yes, I have heard of it."
+                                },
+                                {
+                                  "id": "option-2bc0a6b1-7279-4a10-b4dd-299e4ac7ba03",
+                                  "label": "Maybe, I'm not sure.",
+                                  "value": "Maybe, Im not sure."
+                                },
+                                {
+                                  "id": "option-5794dc9a-d4db-4453-8d09-06e91cbeef82",
+                                  "label": "Not at all.",
+                                  "value": "Not at all."
+                                }
+                              ],
+                              "optionConfigureMode": "static",
+                              "required": true,
+                              "value": "Option 1"
+                            },
+                            "panelConfig": null
+                          },
+                          {
+                            "displayName": "select2",
+                            "parentNode": "canvas2",
+                            "showName": "select",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
+                            "childrenNode": null,
+                            "type": "SELECT_WIDGET",
+                            "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
+                            "h": 8,
+                            "w": 62,
+                            "minH": 3,
+                            "minW": 2,
+                            "unitW": 14.875,
+                            "unitH": 8,
+                            "x": 1,
+                            "y": 22,
+                            "z": 0,
+                            "props": {
+                              "$dynamicAttrPaths": [
+                                "labelWidth",
+                                "dataSources",
+                                "formDataKey"
+                              ],
+                              "colorScheme": "purple",
+                              "dataSources": "{{[]}}",
+                              "formDataKey": "{{select2.displayName}}",
+                              "hidden": false,
+                              "hideValidationMessage": true,
+                              "label": "How often do you purchase electronics?",
+                              "labelAlign": "left",
+                              "labelPosition": "top",
+                              "labelWidth": "{{33}}",
+                              "manualOptions": [
+                                {
+                                  "id": "option-dd409771-335e-4ce3-b970-f7b9958e328d",
+                                  "label": "Option 1",
+                                  "value": "Option 1"
+                                },
+                                {
+                                  "id": "option-d5ec133a-903d-49d8-ac51-5314dd4074e4",
+                                  "label": "Option 2",
+                                  "value": "Option 2"
+                                },
+                                {
+                                  "id": "option-7531bcb9-d32e-44fa-a6e0-a327684d687b",
+                                  "label": "Option 3",
+                                  "value": "Option 3"
+                                }
+                              ],
+                              "optionConfigureMode": "static",
+                              "placeholder": "Select an option",
+                              "required": true
+                            },
+                            "panelConfig": null
+                          },
+                          {
+                            "displayName": "radioGroup2",
+                            "parentNode": "canvas2",
+                            "showName": "radioGroup",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
+                            "childrenNode": null,
+                            "type": "RADIO_GROUP_WIDGET",
+                            "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
+                            "h": 4,
+                            "w": 62,
+                            "minH": 3,
+                            "minW": 2,
+                            "unitW": 14.875,
+                            "unitH": 8,
+                            "x": 1,
+                            "y": 32,
+                            "z": 0,
+                            "props": {
+                              "$dynamicAttrPaths": [
+                                "labelWidth",
+                                "dataSources",
+                                "formDataKey"
+                              ],
+                              "colorScheme": "purple",
+                              "dataSources": "{{[]}}",
+                              "direction": "horizontal",
+                              "formDataKey": "{{radioGroup2.displayName}}",
+                              "hidden": false,
+                              "hideValidationMessage": true,
+                              "label": "How interested are you in owning the product?",
+                              "labelAlign": "left",
+                              "labelPosition": "top",
+                              "labelWidth": "{{33}}",
+                              "manualOptions": [
+                                {
+                                  "id": "option-f75d5ec7-2ec8-4cb9-b31a-ee951c180ce7",
+                                  "label": "Very interested",
+                                  "value": "Very interested"
+                                },
+                                {
+                                  "id": "option-faa6d61b-997a-4fad-9eca-89a42e63869a",
+                                  "label": "Somewhat interested",
+                                  "value": "Somewhat interested"
+                                },
+                                {
+                                  "id": "option-6c059d02-f28f-49a4-8a8d-ef4ae7d6d812",
+                                  "label": "No interested",
+                                  "value": "No interested"
+                                }
+                              ],
+                              "optionConfigureMode": "static",
+                              "required": true,
+                              "value": "Option 1"
+                            },
+                            "panelConfig": null
+                          },
+                          {
+                            "displayName": "textarea1",
+                            "parentNode": "canvas2",
+                            "showName": "textarea",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
+                            "childrenNode": null,
+                            "type": "TEXTAREA_INPUT_WIDGET",
+                            "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
+                            "h": 13,
+                            "w": 62,
+                            "minH": 3,
+                            "minW": 2,
+                            "unitW": 14.875,
+                            "unitH": 8,
+                            "x": 1,
+                            "y": 41,
+                            "z": 0,
+                            "props": {
+                              "$dynamicAttrPaths": [
+                                "labelWidth",
+                                "formDataKey"
+                              ],
+                              "colorScheme": "purple",
+                              "dynamicHeight": "fixed",
+                              "formDataKey": "{{textarea1.displayName}}",
+                              "hidden": "",
+                              "hiddenDynamic": true,
+                              "hideValidationMessage": true,
+                              "label": "Other features you would like to see",
+                              "labelAlign": "left",
+                              "labelPosition": "top",
+                              "labelWidth": "{{33}}",
+                              "placeholder": "enter sth",
+                              "resizeDirection": "ALL",
+                              "value": ""
+                            },
+                            "panelConfig": null
+                          },
+                          {
+                            "displayName": "input1",
+                            "parentNode": "canvas2",
+                            "showName": "input",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
+                            "childrenNode": null,
+                            "type": "INPUT_WIDGET",
+                            "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
+                            "h": 8,
+                            "w": 62,
+                            "minH": 3,
+                            "minW": 2,
+                            "unitW": 14.875,
+                            "unitH": 8,
+                            "x": 1,
+                            "y": 12,
+                            "z": 0,
+                            "props": {
+                              "$dynamicAttrPaths": [
+                                "labelWidth",
+                                "formDataKey"
+                              ],
+                              "colorScheme": "purple",
+                              "formDataKey": "{{input1.displayName}}",
+                              "hidden": false,
+                              "label": "How much would you expect to pay for the product?",
+                              "labelAlign": "left",
+                              "labelPosition": "top",
+                              "labelWidth": "{{33}}",
+                              "placeholder": "input sth",
+                              "value": ""
+                            },
+                            "panelConfig": null
+                          }
+                        ],
+                        "type": "CANVAS",
+                        "containerType": "EDITOR_DOT_PANEL",
+                        "verticalResize": false,
+                        "h": 0,
+                        "w": 0,
+                        "minH": 3,
+                        "minW": 2,
+                        "unitW": 0,
+                        "unitH": 8,
+                        "x": -1,
+                        "y": -1,
+                        "z": 0,
+                        "props": {},
+                        "panelConfig": null
+                      },
+                      {
+                        "displayName": "canvas3",
+                        "parentNode": "form1",
+                        "showName": "canvas",
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
+                        "childrenNode": [
+                          {
+                            "displayName": "button2",
+                            "parentNode": "canvas3",
+                            "showName": "button",
+                            "error": false,
+                            "isDragging": true,
+                            "isResizing": false,
+                            "childrenNode": null,
+                            "type": "BUTTON_WIDGET",
+                            "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
+                            "h": 5,
+                            "w": 16,
+                            "minH": 3,
+                            "minW": 2,
+                            "unitW": 0,
+                            "unitH": 8,
+                            "x": 48,
+                            "y": 0,
+                            "z": 0,
+                            "props": {
+                              "$dynamicAttrPaths": [
+                                "loading"
+                              ],
+                              "colorScheme": "purple",
+                              "events": [
+                                {
+                                  "actionType": "datasource",
+                                  "eventType": "click",
+                                  "id": "7ca6dceb-e22f-4eb1-8b14-dcb792e0f4d6",
+                                  "queryID": "postgresql1"
+                                }
+                              ],
+                              "hidden": false,
+                              "loading": "{{postgresql1.isRunning}}",
+                              "text": "Submit",
+                              "variant": "fill"
+                            },
+                            "panelConfig": null
+                          }
+                        ],
+                        "type": "CANVAS",
+                        "containerType": "EDITOR_DOT_PANEL",
+                        "verticalResize": false,
+                        "h": 0,
+                        "w": 0,
+                        "minH": 3,
+                        "minW": 2,
+                        "unitW": 0,
+                        "unitH": 8,
+                        "x": -1,
+                        "y": -1,
+                        "z": 0,
+                        "props": {},
+                        "panelConfig": null
+                      }
+                    ],
+                    "type": "FORM_WIDGET",
+                    "containerType": "EDITOR_SCALE_SQUARE",
+                    "verticalResize": false,
+                    "h": 91,
+                    "w": 64,
+                    "minH": 3,
+                    "minW": 2,
+                    "unitW": 15.34375,
+                    "unitH": 8,
+                    "x": 0,
+                    "y": 2,
+                    "z": 0,
+                    "props": {
+                      "$dynamicAttrPaths": [],
+                      "backgroundColor": "#ffffffff",
+                      "borderColor": "#ffffffff",
+                      "borderWidth": "4px",
+                      "footerHeight": 7,
+                      "headerHeight": 22,
+                      "radius": "4px",
+                      "resetAfterSuccessful": true,
+                      "shadow": "small",
+                      "showFooter": true,
+                      "showHeader": true,
+                      "validateInputsOnSubmit": true
+                    },
+                    "panelConfig": null
+                  }
+                ],
+                "type": "CONTAINER_NODE",
+                "containerType": "EDITOR_DOT_PANEL",
+                "verticalResize": true,
+                "h": 0,
+                "w": 0,
+                "minH": 0,
+                "minW": 0,
+                "unitW": 0,
+                "unitH": 0,
+                "x": -1,
+                "y": -1,
+                "z": 0,
+                "props": {},
+                "panelConfig": null
+              }
+            ],
+            "type": "SECTION_NODE",
+            "containerType": "EDITOR_LAYOUT_SQUARE",
+            "verticalResize": true,
+            "h": 0,
+            "w": 0,
+            "minH": 0,
+            "minW": 0,
+            "unitW": 0,
+            "unitH": 0,
+            "x": -1,
+            "y": -1,
+            "z": 0,
+            "props": {
+              "currentViewIndex": 0,
+              "defaultViewKey": "View 1",
+              "sectionViewConfigs": [
+                {
+                  "id": "b8a15a09-3c37-4319-a3a1-b7c375a8b17a",
+                  "key": "View 1",
+                  "path": "View 1",
+                  "viewDisplayName": "bodySection1-bodySectionContainer1"
+                }
+              ],
+              "viewSortedKey": [
+                "bodySection1-bodySectionContainer1"
+              ]
+            },
+            "panelConfig": null
+          },
+          {
+            "displayName": "modalSection1",
+            "parentNode": "page1",
+            "showName": "modalSection",
+            "error": false,
+            "isDragging": false,
+            "isResizing": false,
+            "childrenNode": null,
+            "type": "MODAL_SECTION_NODE",
+            "containerType": "EDITOR_LAYOUT_SQUARE",
+            "verticalResize": true,
+            "h": 0,
+            "w": 0,
+            "minH": 0,
+            "minW": 0,
+            "unitW": 0,
+            "unitH": 0,
+            "x": -1,
+            "y": -1,
+            "z": 0,
+            "props": {},
+            "panelConfig": null
+          }
+        ],
+        "type": "PAGE_NODE",
+        "containerType": "EDITOR_PAGE_SQUARE",
+        "verticalResize": true,
+        "h": 0,
+        "w": 0,
+        "minH": 0,
+        "minW": 0,
+        "unitW": 0,
+        "unitH": 0,
+        "x": -1,
+        "y": -1,
+        "z": 0,
+        "props": {
+          "bodyColumns": 64,
+          "bottomHeight": 0,
+          "canvasSize": "fixed",
+          "canvasWidth": 1000,
+          "footerColumns": 64,
+          "hasFooter": false,
+          "hasHeader": false,
+          "hasLeft": false,
+          "hasRight": false,
+          "headerColumns": 64,
+          "isFooterFixed": true,
+          "isHeaderFixed": true,
+          "isLeftFixed": true,
+          "isRightFixed": true,
+          "layout": "default",
+          "leftColumns": 16,
+          "leftPosition": "NONE",
+          "leftWidth": 0,
+          "rightColumns": 16,
+          "rightPosition": "NONE",
+          "rightWidth": 0,
+          "showLeftFoldIcon": false,
+          "showRightFoldIcon": false,
+          "topHeight": 0
+        },
+        "panelConfig": null
+      }
+    ],
+    "type": "DOT_PANEL",
+    "containerType": "EDITOR_DOT_PANEL",
+    "verticalResize": true,
+    "h": 0,
+    "w": 0,
+    "minH": 0,
+    "minW": 0,
+    "unitW": 0,
+    "unitH": 0,
+    "x": -1,
+    "y": -1,
+    "z": 0,
+    "props": {
+      "currentPageIndex": 0,
+      "pageSortedKey": [
+        "page1"
+      ]
+    },
+    "panelConfig": null
+  },
+  "dependenciesState": {},
+  "dragShadowState": {},
+  "dottedLineSquareState": {},
+  "displayNameState": []
+}

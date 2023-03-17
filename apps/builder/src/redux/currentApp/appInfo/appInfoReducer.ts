@@ -7,3 +7,10 @@ export const updateAppInfoReducer: CaseReducer<
 > = (state, action) => {
   return action.payload
 }
+
+export const updateAppNameReducer: CaseReducer<
+  DashboardApp,
+  PayloadAction<DashboardApp>
+> = (state, action) => {
+  return action.payload
+}

@@ -33,6 +33,7 @@ import {
   UpdateSectionViewPropsPayload,
   UpdateTargetPageLayoutPayload,
   UpdateTargetPagePropsPayload,
+  ViewportSizeType,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
@@ -612,12 +613,17 @@ export const deleteSectionViewReducer: CaseReducer<
 
 export const updateViewportSizeReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<{ viewportWidth?: number; viewportHeight?: number }>
+  PayloadAction<{
+    viewportWidth?: number
+    viewportHeight?: number
+    viewportSizeType?: ViewportSizeType
+  }>
 > = (state, action) => {
   if (!state) return
   if (!state.props) state.props = {}
   state.props.viewportWidth = action.payload.viewportWidth
   state.props.viewportHeight = action.payload.viewportHeight
+  state.props.viewportSizeType = action.payload.viewportSizeType
 }
 
 export const updateComponentNodeHeightReducer: CaseReducer<

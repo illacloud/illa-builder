@@ -166,7 +166,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "데이터베이스 이름을 다음으로 취급",
+            "sid": "Treat Database name as SID/Service Name",
             "ssl": "SSL"
           },
           "couchdb": {
@@ -349,7 +349,7 @@
             "couchdb": {
               "database": "데이터베이스 선택",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+              "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             },
             "restapi": {
               "consumer_key": "Consumer key",
@@ -378,7 +378,7 @@
               "skip": "Skip",
               "limit": "Limit",
               "include": "Include docs",
-              "des": "Order",
+              "des": "Descending order",
               "id": "_id",
               "rev": "_rev",
               "record": "Record",
@@ -1293,7 +1293,12 @@
         },
         "choose_at_least": "Choose at least",
         "choose_up_to": "Choose up to",
-        "copy_to_clipboard": "Copy to clipboard"
+        "copy_to_clipboard": "Copy to clipboard",
+        "file_download": {
+          "file_data": "File data",
+          "file_name": "File name with extension",
+          "file_type": "File type"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1355,6 +1360,9 @@
         "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
         "carousel": {
           "data_source": "매핑된 평가를 사용하여 이미지 항목을 정의하는 데이터 소스입니다. 값 배열 또는 배열에 매핑된 키 개체를 사용합니다. 예: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . 작업에서 데이터를 사용할 수도 있습니다. 예: {{ mysql1.data }}"
+        },
+        "file_download": {
+          "file_data": "Support base64 data, raw data, mapped data of table. "
         }
       },
       "setter_option": {
@@ -1368,6 +1376,17 @@
         "scale_width": "너비",
         "collapse": {
           "collapsible_panel": "접을 수 있는 패널"
+        },
+        "file_download": {
+          "auto": "Auto",
+          "plain_text": "Plain text",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
         }
       },
       "setter_placeholder": {
@@ -1384,7 +1403,11 @@
           "value": "{{ [\"x\",\"y\",...] }}"
         },
         "img_url_array": "{{ item.image_url }} ",
-        "alt_text_mapped": "{{ item.alt_text }} "
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "{{ new_data.csv }}"
+        }
       },
       "setter_tootip": {
         "volume": "0 과 1 사이의 숫자"
@@ -1502,6 +1525,73 @@
       "carousel": {
         "showNext": "다음에 보이는 이미지 표시",
         "showPrevious": "이전에 보이는 이미지 표시"
+      },
+      "file_download": {
+        "download": "Download"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "지도 시간"
+          },
+          "title": {
+            "tutorial": "지도 시간",
+            "templates": "주형"
+          },
+          "onboarding_app": {
+            "name": "Onboarding app",
+            "description": "ILLA의 튜토리얼을 따라 애플리케이션 구축 방법을 배우십시오",
+            "action": "시작"
+          },
+          "templates_action": {
+            "fork": "포크",
+            "fork_description": "이 템플릿을 사용하여 앱 만들기"
+          },
+          "templates_name": {
+            "table": "계기반",
+            "form": "설문지",
+            "list": "관리자 패널"
+          },
+          "templates_description": {
+            "table": "테이블 및 기타 구성 요소를 사용하여 대시보드를 만듭니다.",
+            "form": "양식 및 입력 구성 요소를 사용하여 만족도 조사, 사전 판매 양식 등과 같은 양식을 만듭니다",
+            "list": "목록 구성 요소를 사용하여 정보 표시 및 관리"
+          },
+          "modal": {
+            "title": "포크 & 배포",
+            "placeholder": "애플리케이션 이름",
+            "cancel": "취소",
+            "fork": "포크 & 배포"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "1단계: 입력 구성 요소를 여기로 드래그합니다.",
+          "drag_button": "2단계: 버튼 구성요소를 여기로 드래그합니다.",
+          "drag_table": "3단계: 표 구성요소를 여기로 드래그",
+          "exit": "종료 부팅",
+          "do_it": "이 단계를 도와주세요",
+          "drag_title": "구성 요소를 캔버스로 드래그",
+          "modify_action_title": "ACTION수정",
+          "modify_action_description_modify": "ACTION을 수정하여 데이터를 가져옵니다. {{input1.value}}를 사용하여 입력 구성 요소에 입력된 데이터를 가져올 수 있습니다.",
+          "modify_action_description_click": "저장을 클릭한 다음 실행을 클릭합니다.",
+          "display_data_title": "테이블에 데이터 표시",
+          "display_data_description_select": "캔버스에서 테이블 선택",
+          "display_data_description_modify": "오른쪽 패널에서 데이터 소스를 수정합니다. {{postgre1.data}}를 사용하여 데이터를 가져올 수 있습니다.",
+          "event_handler_title": "버튼을 클릭하여 작업을 트리거합니다.",
+          "event_handler_description_1": "캔버스에서 버튼 선택",
+          "event_handler_description_2": "이벤트 핸들러 추가",
+          "event_handler_description_3": "클릭 이벤트 핸들러",
+          "event_handler_description_4": "액션 트리거 액션 변경",
+          "event_handler_description_5": "쿼리를 postgre1로 변경",
+          "test_it_title": "시험을 치다",
+          "test_it_description": "검색할 사용자 이름을 입력하고 버튼을 클릭합니다.",
+          "test_it_button": "다음 단계",
+          "congratulations_title": "축하해요",
+          "congratulations_description": "첫 번째 애플리케이션을 구축했습니다. 사용 중 궁금한 점이 있으면 <0>Discord<0>를 통해 문의하실 수 있습니다.",
+          "congratulations_button": "마치다"
+        }
       }
     }
   },
@@ -2002,6 +2092,13 @@
         }
       },
       "description": "개발자 전용 오픈 소스 로우 코드 플랫폼입니다."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "지도 시간"
+        }
+      }
     }
   },
   "frame_size": {
@@ -2198,5 +2295,17 @@
     }
   },
   "empty_copied_tips": "복사된 내용이 비어 있음",
-  "copy_empty": "The content to be copied is empty"
+  "copy_empty": "The content to be copied is empty",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "5분 안에 앱을 빌드하는 방법 알아보기",
+          "description": "약 5분 정도 소요되는 앱 빌드 방법을 배우려면 ILLA의 튜토리얼을 따르세요.",
+          "cancel": "취소",
+          "take": "튜토리얼 시작"
+        }
+      }
+    }
+  }
 }
