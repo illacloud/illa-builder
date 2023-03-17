@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder (Beta)</a></h1>
-<h3 align="center"> ⚠ 참고: 이 버전은 평가판입니다 ⚠</h3>
+
 <p align="center">ILLA는 개발자가 내부 도구를 구축할 수 있는 강력한 오픈 소스 로우 코드 플랫폼입니다. ILLA의 구성 요소 및 작업 라이브러리를 사용하여 개발자는 도구를 구축하는 데 엄청난 시간을 절약할 수 있습니다. </p>
 
 <div align="center">
@@ -30,7 +30,7 @@
 
 
 ## 🚀시작하다
-LLA를 시도하는 가장 편리한 방법은 현재 베타 테스트 중인 [ILLA Cloud](https://cloud.illacloud.com/) 에 가입하여 로그인하는 것입니다. 베타 테스터 초대 코드를 받으려면 이 [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) 을 작성하고 가능한 한 많은 정보를 제공해주십시오. 제출하신 내용은 최대 2일 이내에 검토하고 가능한 빨리 연락드릴 것입니다. 
+ILLA를 사용하는 가장 쉬운 방법은 [ILLA Cloud](https://cloud.illacloud.com/)에 등록하고 로그인하는 것입니다. 초대 코드를 받으려면 이 [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA)을 작성하고 최대한 많은 정보를 제공해 주세요. 최대 2일 이내에 제출 내용을 검토하고 곧 연락드리겠습니다.
 검토 과정을 가속화하기 위해 Discord 커뮤니티에 가입하시면 초대 코드를 더 빨리 받으실 수 있습니다.
 
 또한 ILLA 유틸리티를 수동으로(Docker, docker-compose 및 k8s) 배포 및 [자체 호스팅](https://github.com/illacloud/illa-builder/blob/main/README-KR.md#%EC%9E%90%EC%B2%B4-%ED%98%B8%EC%8A%A4%ED%8C%85)할 수도 있습니다.
