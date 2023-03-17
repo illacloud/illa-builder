@@ -74,6 +74,7 @@ importers:
       '@illa-design/react': workspace:*
       '@illa-fe-utils/storage': ^0.0.3
       '@mdx-js/rollup': ^2.3.0
+      '@reactour/popover': ^1.0.5
       '@reactour/tour': ^3.3.0
       '@reduxjs/toolkit': ^1.8.1
       '@sentry/react': ^7.17.3
@@ -173,6 +174,7 @@ importers:
       '@fontsource/fira-code': 4.5.13
       '@illa-design/react': link:../../illa-design/packages/react
       '@illa-fe-utils/storage': 0.0.3
+      '@reactour/popover': 1.0.5
       '@reactour/tour': 3.3.0
       '@reduxjs/toolkit': 1.9.2_react-redux@8.0.5
       '@sentry/react': 7.37.0

@@ -176,7 +176,7 @@ export const Editor: FC = () => {
       {!combinLoadingState && (
         <Shortcut>
           {isOpen && <Guide />}
-          <PageNavBar className={"app-editor"} css={navbarStyle} />
+          <PageNavBar css={navbarStyle} />
           <div css={contentStyle}>
             {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
             <div css={middlePanelStyle}>
@@ -190,7 +190,10 @@ export const Editor: FC = () => {
             </div>
             {showRightPanel && (
               <TriggerProvider renderInBody zIndex={10}>
-                <ComponentsManager css={rightPanelStyle} />
+                <ComponentsManager
+                  className={"app-editor"}
+                  css={rightPanelStyle}
+                />
               </TriggerProvider>
             )}
           </div>
