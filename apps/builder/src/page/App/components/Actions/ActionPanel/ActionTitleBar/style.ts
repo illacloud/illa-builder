@@ -72,6 +72,7 @@ export function applyOpenStateStyle(openState: boolean): SerializedStyles {
       `
 
   return css`
+    font-size: 12px;
     transition: transform 0.2s ease;
     ${transform};
   `

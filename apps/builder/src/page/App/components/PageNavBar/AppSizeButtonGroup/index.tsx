@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { Variants, motion } from "framer-motion"
 import { FC, MouseEvent, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { ReactComponent as DesktopIcon } from "@/assets/appSize/desktop.svg"
@@ -51,14 +51,20 @@ const defaultAppSize = {
   },
 }
 
-const variants = {
+const variants: Variants = {
   hidden: {
+    height: 0,
     opacity: 0,
-    display: "none",
+    visibility: "hidden",
+    transitionEnd: {
+      display: "none",
+    },
   },
   shown: {
+    height: "unset",
     opacity: 1,
-    display: "flex",
+    visibility: "visible",
+    display: "inherit",
   },
 }
 
@@ -134,16 +140,14 @@ export const AppSizeButtonGroup: FC = () => {
           )
         })}
       </div>
-      {showCustomInputs && (
-        <motion.div
-          initial="hidden"
-          animate={showCustomInputs ? "shown" : "hidden"}
-          variants={variants}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-        >
-          <PreviewPopContent />
-        </motion.div>
-      )}
+      <motion.div
+        initial="hidden"
+        animate={showCustomInputs ? "shown" : "hidden"}
+        variants={variants}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        <PreviewPopContent />
+      </motion.div>
     </div>
   )
 }

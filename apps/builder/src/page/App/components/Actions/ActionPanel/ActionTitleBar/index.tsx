@@ -265,6 +265,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     message,
     canNotRunMessage,
     onResultVisibleChange,
+    onResultValueChange,
     dispatch,
     t,
   ])

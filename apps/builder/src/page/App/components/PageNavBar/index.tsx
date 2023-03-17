@@ -13,8 +13,7 @@ import {
   LockIcon,
   Trigger,
   UnlockIcon,
-  globalColor,
-  illaPrefix,
+  getColor,
   useMessage,
 } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
@@ -161,13 +160,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             <ButtonGroup spacing="8px">
               <Badge count={debuggerData && Object.keys(debuggerData).length}>
                 <Button
-                  colorScheme="gray"
+                  colorScheme="white"
                   size="medium"
                   leftIcon={
-                    <BugIcon
-                      color={globalColor(`--${illaPrefix}-grayBlue-03`)}
-                      size="14px"
-                    />
+                    <BugIcon color={getColor("grayBlue", "02")} size="14px" />
                   }
                   onClick={handleClickDebuggerIcon}
                 />
@@ -182,18 +178,18 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 zIndex={10}
               >
                 <Button
-                  colorScheme="gray"
+                  colorScheme="white"
                   size="medium"
                   leftIcon={
                     isFreezeCanvas ? (
                       <LockIcon
                         size="14px"
-                        color={globalColor(`--${illaPrefix}-techPurple-01`)}
+                        color={getColor("grayBlue", "02")}
                       />
                     ) : (
                       <UnlockIcon
                         size="14px"
-                        color={globalColor(`--${illaPrefix}-grayBlue-03`)}
+                        color={getColor("grayBlue", "02")}
                       />
                     )
                   }
