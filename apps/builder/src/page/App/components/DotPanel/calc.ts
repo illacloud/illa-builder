@@ -423,7 +423,6 @@ const getDragResultWhenUpdate = (
     containerPosition.y +
     containerScrollTop -
     containerTopPadding
-
   let renderX = relativeX - initialClientOffset!.x + leftTopPosition.x
   let renderY = relativeY - initialClientOffset!.y + leftTopPosition.y
 

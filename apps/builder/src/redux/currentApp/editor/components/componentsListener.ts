@@ -8,7 +8,6 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
-import { batchUpdateComponentLayoutInfoWhenReflowReducer } from "@/redux/currentApp/editor/components/componentsReducer"
 import {
   getCanvas,
   getCurrentPageBodySectionComponentsSelector,
