@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center"><a href="https://Cloud.illacloud.com/">ILLA Builder (Beta)</a></h1>
-<h3 align="center"> ⚠ 提示: 此版本为测试体验版 ⚠</h3>
+
 <p align="center">ILLA 是一个强大的开源低代码平台，供开发人员构建内部工具。 通过使用 ILLA 的组件和操作库，开发人员可以节省大量构建工具的时间。 </p>
 
 <div align="center">
@@ -31,7 +31,7 @@
 
 
 ## 🚀开始体验ILLA
-试用ILLA的最方便的方式是注册并登录 [ILLA Cloud](https://cloud.illacloud.com/)，它目前处于测试阶段。要获取beta测试邀请码，请填写此 [Google 表单](https://forms.gle/XFRSUc3yFpzbCdcWA)并尽可能提供更多信息。我们将在两个工作日内审核您的提交，并尽快与您联系。为加快审核过程，我们邀请您加入我们的[Discord 社区](https://discord.gg/illacloud)，在那里您可以更快地获得邀请码。
+试用ILLA的最方便的方式是注册并登录 [ILLA Cloud](https://cloud.illacloud.com/)。要获取邀请码，请填写此 [Google 表单](https://forms.gle/XFRSUc3yFpzbCdcWA)并尽可能提供更多信息。我们将在两个工作日内审核您的提交，并尽快与您联系。为加快审核过程，我们邀请您加入我们的[Discord 社区](https://discord.gg/illacloud)，在那里您可以更快地获得邀请码。
 
 您还可以[本地部署](https://github.com/illacloud/illa-builder/blob/main/README-CN.md#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2)ILLA工具（Docker、Docker Compose和Kubernetes）。
 <p>
