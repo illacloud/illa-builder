@@ -172,8 +172,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     value,
     files,
     minSize,
-    dynamicMinHeight,
-    dynamicMaxHeight,
     validateMessage,
     triggerEventHandler,
     hideValidationMessage,
@@ -390,16 +388,11 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     currentFileList,
   ])
 
-  const dynamicOptions = {
-    dynamicMinHeight,
-    dynamicMaxHeight,
-  }
-
   return (
     <AutoHeightContainer
       updateComponentHeight={updateComponentHeight}
       enable={true}
-      dynamicOptions={dynamicOptions}
+      dynamicOptions={{}}
     >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={uploadLayoutStyle}>

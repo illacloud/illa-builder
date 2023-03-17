@@ -55,6 +55,4 @@ export interface UploadWidgetProps
     size: number
     type: string
   }[]
-  dynamicMinHeight?: number
-  dynamicMaxHeight?: number
 }
