@@ -56,20 +56,12 @@ export const ListRecordsInfo = [
     type: "editor",
     expectedType: VALIDATION_TYPES.NUMBER,
     name: ["opts", "skip"],
-    lineNumbers: true,
-    style: {
-      maxHeight: "88px",
-    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.limit"),
     type: "editor",
     expectedType: VALIDATION_TYPES.NUMBER,
     name: ["opts", "limit"],
-    lineNumbers: true,
-    style: {
-      maxHeight: "88px",
-    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.include"),
@@ -223,20 +215,12 @@ export const GetViewRecordsInfo = [
     type: "editor",
     expectedType: VALIDATION_TYPES.NUMBER,
     name: ["opts", "skip"],
-    lineNumbers: true,
-    style: {
-      maxHeight: "88px",
-    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.limit"),
     type: "editor",
     expectedType: VALIDATION_TYPES.NUMBER,
     name: ["opts", "limit"],
-    lineNumbers: true,
-    style: {
-      maxHeight: "88px",
-    },
   },
   {
     title: i18n.t("editor.action.panel.label.option.couchdb.include"),

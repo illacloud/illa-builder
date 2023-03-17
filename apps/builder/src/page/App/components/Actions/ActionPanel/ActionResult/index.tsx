@@ -1,6 +1,7 @@
 import {
   MouseEvent,
   forwardRef,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -13,6 +14,7 @@ import {
   SuccessCircleIcon,
   WarningCircleIcon,
   getColor,
+  isObject,
 } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
@@ -76,7 +78,6 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
     const isRestApi = selectedAction.actionType === "restapi"
     const isActionRunSuccess = results?.extraData?.status === 200
     const isRestApiSuccess = isRestApi && isActionRunSuccess
-
     const runningTimes =
       (executionResult[selectedAction.displayName]?.endTime ?? 0) -
       (executionResult[selectedAction.displayName]?.startTime ?? 0)
@@ -86,7 +87,6 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
     const handleResultTabsClick = (e: MouseEvent<HTMLDivElement>) => {
       setShowType(e.currentTarget.dataset.key as ResultShowType)
     }
-    const { extraData = {}, ...otherData } = results
 
     const ActionResultPanel = useMemo(() => {
       return (
@@ -125,13 +125,16 @@ export const ActionResult = forwardRef<HTMLDivElement, ActionResultProps>(
       )
     }, [t, results?.extraData?.status, runningTimes, onClose, showType])
 
-    const displayData = isRestApi
-      ? isActionRunSuccess
-        ? showType === "response"
-          ? otherData
-          : extraData?.headers
-        : otherData
-      : results
+    const getDisplayData = useCallback(() => {
+      if (!isRestApi) {
+        return results
+      }
+      return showType === "response"
+        ? results?.result
+        : results?.extraData?.headers
+    }, [isRestApi, results, showType])
+
+    const displayData = getDisplayData()
 
     return (
       <div css={actionResultContainerStyle}>

@@ -154,6 +154,7 @@ export const ResourceChoose: FC = () => {
         closable
         withoutLine
         withoutPadding
+        maskClosable={false}
         title={t("editor.action.form.title.configure", {
           name: getResourceNameFromResourceType(
             getResourceTypeFromActionType(action.actionType),

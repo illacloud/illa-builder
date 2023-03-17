@@ -35,12 +35,15 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
       break
   }
 
+  const isMaskCloseable = currentStep === "select"
+
   return (
     <Modal
       w="832px"
       visible={visible}
       footer={false}
       closable
+      maskClosable={isMaskCloseable}
       withoutLine
       withoutPadding
       title={title}

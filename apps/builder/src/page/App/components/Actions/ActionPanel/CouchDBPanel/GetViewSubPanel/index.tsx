@@ -18,7 +18,7 @@ export const GetViewSubPanel: FC<CouchDBSubPanelProps> = (props) => {
           type,
           name,
           expectedType,
-          lineNumbers,
+          lineNumbers = false,
           style = {},
           content = "",
         } = info
@@ -31,7 +31,7 @@ export const GetViewSubPanel: FC<CouchDBSubPanelProps> = (props) => {
               expectedType={expectedType}
               value={value as string}
               onChange={onInputValueChange(name)}
-              lineNumbers={!!lineNumbers}
+              lineNumbers={lineNumbers}
               style={style}
             />
           )
