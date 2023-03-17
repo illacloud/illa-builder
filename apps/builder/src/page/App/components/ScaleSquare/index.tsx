@@ -17,6 +17,7 @@ import {
   applyWrapperPendingStyle,
   hoverHotspotStyle,
 } from "@/page/App/components/ScaleSquare/style"
+import { changeSelectedDisplayName } from "@/page/App/components/ScaleSquare/utils/changeSelectedDisplayName"
 import {
   getHoveredComponents,
   getIsDragging,
@@ -33,7 +34,11 @@ import {
   getTargetCurrentUsersExpendMe,
 } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  getComponentDisplayNameMapDepth,
+  getFlattenArrayComponentNodes,
+  getShowWidgetNameParentMap,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
@@ -51,6 +56,7 @@ import {
 } from "@/utils/drag/drag"
 import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { isMAC } from "@/utils/userAgent"
 import { AutoHeightWithLimitedContainer } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { ResizingContainer } from "./ResizingContainer"
@@ -83,6 +89,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const isResizingStateInGlobal = useSelector(getIsResizing)
   const isShowCanvasDot = useSelector(isShowDot)
   const hoveredComponents = useSelector(getHoveredComponents)
+  const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
+  const widgetDisplayNameRelationMap = useSelector(getShowWidgetNameParentMap)
   const isMouseOver =
     hoveredComponents[hoveredComponents.length - 1] ===
     componentNode.displayName
@@ -141,9 +149,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       FocusManager.switchFocus("canvas")
       if (!isEditMode) return
       e.stopPropagation()
-      if (e.metaKey || e.shiftKey) {
-        const currentSelectedDisplayName = cloneDeep(selectedComponents)
 
+      if ((isMAC() && e.metaKey) || e.shiftKey || (!isMAC() && e.ctrlKey)) {
+        let currentSelectedDisplayName = cloneDeep(selectedComponents)
         const index = currentSelectedDisplayName.findIndex(
           (displayName) => displayName === componentNode.displayName,
         )
@@ -152,6 +160,17 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         } else {
           currentSelectedDisplayName.push(componentNode.displayName)
         }
+
+        changeSelectedDisplayName(
+          currentSelectedDisplayName,
+          widgetDisplayNameRelationMap,
+          componentNode.displayName,
+          displayNameMapDepth,
+        )
+
+        currentSelectedDisplayName = Array.from(
+          new Set(currentSelectedDisplayName),
+        )
         dispatch(
           configActions.updateSelectedComponent(currentSelectedDisplayName),
         )
@@ -162,21 +181,22 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
         return
       }
+      dispatch(
+        configActions.updateSelectedComponent([componentNode.displayName]),
+      )
       updateCurrentAllComponentsAttachedUsers(
         [componentNode.displayName],
         componentsAttachedUsers,
-      )
-
-      dispatch(
-        configActions.updateSelectedComponent([componentNode.displayName]),
       )
     },
     [
       componentNode.displayName,
       componentsAttachedUsers,
       dispatch,
+      displayNameMapDepth,
       isEditMode,
       selectedComponents,
+      widgetDisplayNameRelationMap,
     ],
   )
 

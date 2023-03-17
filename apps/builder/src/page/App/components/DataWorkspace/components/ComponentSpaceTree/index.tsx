@@ -7,10 +7,15 @@ import { PanelBar } from "@/components/PanelBar"
 import { hiddenFields } from "@/page/App/components/DataWorkspace/components/WorkSpaceTree"
 import { WorkSpaceTreeGroup } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeGroup"
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
+import { changeSelectedDisplayName } from "@/page/App/components/ScaleSquare/utils/changeSelectedDisplayName"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
+import {
+  getComponentDisplayNameMapDepth,
+  getShowWidgetNameParentMap,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   getGeneralWidgetExecutionResultArray,
   getModalWidgetExecutionResultArray,
@@ -31,10 +36,12 @@ export const ComponentSpaceTree: FC = () => {
     getModalWidgetExecutionResultArray,
   )
   const selectedComponents = useSelector(getSelectedComponents)
+  const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
+  const widgetDisplayNameRelationMap = useSelector(getShowWidgetNameParentMap)
 
   const handleSelectComponentWhenPressMetaKey = useCallback(
     (selectedKeys: string[]) => {
-      const currentSelectedDisplayName = cloneDeep(selectedComponents)
+      let currentSelectedDisplayName = cloneDeep(selectedComponents)
       const index = currentSelectedDisplayName.findIndex(
         (displayName) => displayName === selectedKeys[0],
       )
@@ -43,6 +50,15 @@ export const ComponentSpaceTree: FC = () => {
       } else {
         currentSelectedDisplayName.push(...selectedKeys)
       }
+      changeSelectedDisplayName(
+        currentSelectedDisplayName,
+        widgetDisplayNameRelationMap,
+        selectedKeys[0],
+        displayNameMapDepth,
+      )
+      currentSelectedDisplayName = Array.from(
+        new Set(currentSelectedDisplayName),
+      )
       dispatch(
         configActions.updateSelectedComponent(currentSelectedDisplayName),
       )
@@ -51,30 +67,36 @@ export const ComponentSpaceTree: FC = () => {
         componentsAttachedUsers,
       )
     },
-    [componentsAttachedUsers, dispatch, selectedComponents],
+    [
+      componentsAttachedUsers,
+      dispatch,
+      displayNameMapDepth,
+      selectedComponents,
+      widgetDisplayNameRelationMap,
+    ],
   )
 
   const handleGeneralComponentSelect = useCallback(
     (selectedKeys: string[], e: MouseEvent<HTMLDivElement>) => {
-      if ((isMAC() && e.metaKey) || (!isMAC() && e.ctrlKey)) {
-        handleSelectComponentWhenPressMetaKey(selectedKeys)
-        return
-      }
+      // if ((isMAC() && e.metaKey) || (!isMAC() && e.ctrlKey)) {
+      //   handleSelectComponentWhenPressMetaKey(selectedKeys)
+      //   return
+      // }
       dispatch(configActions.updateSelectedComponent(selectedKeys))
       updateCurrentAllComponentsAttachedUsers(
         selectedKeys,
         componentsAttachedUsers,
       )
     },
-    [dispatch, componentsAttachedUsers, handleSelectComponentWhenPressMetaKey],
+    [dispatch, componentsAttachedUsers],
   )
 
   const handleModalComponentSelect = useCallback(
     (selectedKeys: string[], e: MouseEvent<HTMLDivElement>) => {
-      if ((isMAC() && e.metaKey) || (!isMAC() && e.ctrlKey)) {
-        handleSelectComponentWhenPressMetaKey(selectedKeys)
-        return
-      }
+      // if ((isMAC() && e.metaKey) || (!isMAC() && e.ctrlKey)) {
+      //   handleSelectComponentWhenPressMetaKey(selectedKeys)
+      //   return
+      // }
       dispatch(
         executionActions.updateModalDisplayReducer({
           displayName: selectedKeys[0],
@@ -87,7 +109,7 @@ export const ComponentSpaceTree: FC = () => {
         componentsAttachedUsers,
       )
     },
-    [dispatch, componentsAttachedUsers, handleSelectComponentWhenPressMetaKey],
+    [dispatch, componentsAttachedUsers],
   )
 
   const componentTotalNumber =

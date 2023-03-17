@@ -190,6 +190,7 @@ export const RenderComponentCanvas: FC<{
 
   const [ShowColumnsChange, setShowColumnsChange] = useState(false)
   const canShowColumnsTimeoutChange = useRef<number | null>(null)
+  const canSetCurrentScrollTop = useRef(true)
 
   const showColumnsPreview = useCallback(() => {
     dispatch(configActions.updateShowDot(true))
@@ -280,10 +281,11 @@ export const RenderComponentCanvas: FC<{
     ) => {
       const { ladingPosition } = dragResult
       const { landingY } = ladingPosition
+      const currentRowHeight = landingY / UNIT_HEIGHT
       setRowNumber((prevState) => {
         if (
           canResizeY &&
-          landingY / UNIT_HEIGHT + itemHeight > prevState - safeRowNumber
+          currentRowHeight + itemHeight > prevState - safeRowNumber
         ) {
           return landingY / UNIT_HEIGHT + itemHeight + safeRowNumber
         } else {
@@ -357,6 +359,7 @@ export const RenderComponentCanvas: FC<{
           (isDrop || item.displayName === componentNode.displayName) &&
           dropResult
         ) {
+          canSetCurrentScrollTop.current = true
           return {
             isDropOnCanvas: dropResult.isDropOnCanvas,
           }
@@ -483,14 +486,15 @@ export const RenderComponentCanvas: FC<{
                 currentColumnNumber,
                 node,
               )
-              scaleNode.x = getScaleResult(
-                scaleNode.x,
+              const relativeX = scaleNode.x - scaleItemsShape.x
+              const scaleX = getScaleResult(
+                relativeX,
                 blockColumns,
                 currentColumnNumber,
               )
               return {
                 ...scaleNode,
-                x: scaleNode.x - scaleItemsShape.x,
+                x: scaleX,
                 y: scaleNode.y - scaleItemsShape.y,
                 unitW: unitWidth,
                 unitH: UNIT_HEIGHT,
@@ -574,10 +578,12 @@ export const RenderComponentCanvas: FC<{
             )
           }
           setCollisionEffect(new Map())
+          canSetCurrentScrollTop.current = true
           return {
             isDropOnCanvas: true,
           }
         }
+        canSetCurrentScrollTop.current = true
         return {
           isDropOnCanvas: false,
         }
@@ -687,19 +693,6 @@ export const RenderComponentCanvas: FC<{
           finalRowNumber + addedRowNumber >= rowNumber
         ) {
           setRowNumber(finalRowNumber + addedRowNumber)
-          // if (
-          //   canAutoScroll &&
-          //   rowNumber !== 0 &&
-          //   finalRowNumber + addedRowNumber !== rowNumber
-          // ) {
-          //   clearTimeout(autoScrollTimeoutID.current)
-          //   autoScrollTimeoutID.current = window.setTimeout(() => {
-          //     containerRef.current?.scrollBy({
-          //       top: (addedRowNumber * UNIT_HEIGHT) / 4,
-          //       behavior: "smooth",
-          //     })
-          //   }, 60)
-          // }
         } else {
           setRowNumber(finalRowNumber)
         }
@@ -767,14 +760,17 @@ export const RenderComponentCanvas: FC<{
   }, [isActive])
 
   useEffect(() => {
-    if (isActive) {
+    if (isActive && canSetCurrentScrollTop.current) {
       currentDragStartScrollTop.current = containerRef.current?.scrollTop ?? 0
+      canSetCurrentScrollTop.current = false
     }
 
     return () => {
-      currentDragStartScrollTop.current = 0
+      if (canSetCurrentScrollTop.current) {
+        currentDragStartScrollTop.current = 0
+      }
     }
-  }, [containerRef, isActive])
+  }, [containerRef, dragDropManager, isActive])
 
   useEffect(() => {
     if (!containerRef.current) return
