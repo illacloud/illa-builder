@@ -173,12 +173,15 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
     [handleDirectCreateAction, onClose],
   )
 
+  const isMaskClosable = currentStep !== "createResource"
+
   return (
     <Modal
       w="832px"
       visible={visible}
       footer={false}
       closable
+      maskClosable={isMaskClosable}
       withoutLine
       withoutPadding
       title={title}
