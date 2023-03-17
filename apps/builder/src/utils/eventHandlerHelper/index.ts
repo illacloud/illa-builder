@@ -21,6 +21,7 @@ import { ILLARoute } from "@/router"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { downloadFileFromEventHandler, downloadSingleFile } from "@/utils/file"
 
 const message = createMessage()
 
@@ -151,6 +152,15 @@ export const transformEvents = (
         )
       },
       enabled,
+    }
+  }
+  if (actionType === "downloadFile") {
+    const { fileData, fileType, fileName } = event
+
+    return {
+      script: () => {
+        downloadFileFromEventHandler(fileType, fileName, fileData)
+      },
     }
   }
   if (actionType === "widget") {

@@ -2,7 +2,6 @@ import { AxiosError, AxiosResponse } from "axios"
 import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isNumber, isString } from "@illa-design/react"
 import { Api, ApiError, BuilderApi } from "@/api/base"
-import { downloadActionResult } from "@/page/App/components/Actions/ActionPanel/utils/clientS3"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import {
@@ -46,6 +45,7 @@ import {
   wrapFunctionCode,
 } from "@/utils/evaluateDynamicString/utils"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
+import { downloadSingleFile } from "@/utils/file"
 import { isObject } from "@/utils/typeHelper"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
@@ -213,7 +213,7 @@ const fetchS3ClientResult = async (
         })
         const contentType =
           downloadResponse.headers["content-type"].split(";")[0] ?? ""
-        downloadActionResult(
+        downloadSingleFile(
           contentType,
           downloadCommandArgs.objectKey,
           downloadResponse.data || "",
