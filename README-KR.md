@@ -4,7 +4,7 @@
   </a>
 </div>
 
-<h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder (Beta)</a></h1>
+<h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder</a></h1>
 
 <p align="center">ILLA는 개발자가 내부 도구를 구축할 수 있는 강력한 오픈 소스 로우 코드 플랫폼입니다. ILLA의 구성 요소 및 작업 라이브러리를 사용하여 개발자는 도구를 구축하는 데 엄청난 시간을 절약할 수 있습니다. </p>
 
@@ -93,7 +93,6 @@ GUI 데이터 커넥터를 통해 MySQL 또는 REST API에 연결합니다. 그�
   </a>
 </p>
 
-**❗ ILLA Cloud는 아직 베타 테스트 중입니다. 문제가 발생하면 언제든지 연락 주시기 바랍니다. 우리는 조사하고 가능한 한 빨리 대응하겠습니다. **
 
 ## 💬 지역 사회
 
