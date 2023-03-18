@@ -4,7 +4,7 @@
   </a>
 </div>
 
-<h1 align="center"><a href="https://Cloud.illacloud.com/">ILLA Builder (Beta)</a></h1>
+<h1 align="center"><a href="https://Cloud.illacloud.com/">ILLA Builder</a></h1>
 
 <p align="center">ILLA 是一个强大的开源低代码平台，供开发人员构建内部工具。 通过使用 ILLA 的组件和操作库，开发人员可以节省大量构建工具的时间。 </p>
 
