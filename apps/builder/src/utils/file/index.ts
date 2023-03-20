@@ -3,7 +3,7 @@ import XLSX from "xlsx"
 import { createMessage, isArray, isObject } from "@illa-design/react"
 import { Api } from "@/api/base"
 import i18n from "@/i18n/config"
-import { isUrl } from "@/utils/url"
+import { isURL } from "@/utils/typeHelper"
 import { isBase64 } from "@/utils/url/base64"
 
 export const calculateFileSize = (data: string | string[]) => {
@@ -74,6 +74,7 @@ export const FILE_EXTENSION_TO_CONTENT_TYPE_MAP = {
   xml: "application/xml",
 
   // Documents
+  epub: "application/epub+zip",
   pdf: "application/pdf",
   doc: "application/msword",
   docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -221,18 +222,21 @@ const convertToTSV = (data: any): string => {
 }
 
 const getFileName = (fileName: string, fileType: string) => {
-  const fileRealName = !fileName ? "download" : fileName.split(".")[0]
-  const fileExtension = fileName.split(".")[1]
+  const namePart = fileName.split(".")
+  const fileRealName = !fileName
+    ? "download"
+    : namePart.slice(0, -1).join(".") || "download"
+  const fileExtension = namePart.length > 1 ? namePart[namePart.length - 1] : ""
 
   if (fileExtension) {
     return `${fileRealName}.${fileExtension}`
-  } else {
-    if (fileType !== "auto") {
-      return `${fileRealName}.${fileType}`
-    } else {
-      return `${fileRealName}`
-    }
   }
+
+  if (fileType !== "auto") {
+    return `${fileRealName}.${fileType}`
+  }
+
+  return `${fileRealName}`
 }
 
 export const downloadFileFromEventHandler = async (
@@ -242,17 +246,12 @@ export const downloadFileFromEventHandler = async (
 ) => {
   const message = createMessage()
   try {
-    message.info({
-      content: i18n.t("editor.method.file_download.message.suc"),
-    })
-
     const fileDownloadName = getFileName((fileName ?? "").trim(), fileType)
     const contentType = getContentTypeByFileExtension(
       fileDownloadName.split(".")[1],
     )
     const isBase64Suffix = typeof data === "string" && isBase64(data)
     const isValidBase64 = typeof data === "string" && isBase64(data, true)
-
     const formatData = isArray(data) ? data : isObject(data) ? [data] : data
 
     let params
@@ -261,14 +260,18 @@ export const downloadFileFromEventHandler = async (
       params = data
     } else if (isBase64Suffix) {
       params = `data:${contentType};base64,${data}`
-    } else if (isUrl(data)) {
+    } else if (isURL(data)) {
       try {
-        const res = await Api.asyncCustomRequest<Blob>({
+        const res = await Api.asyncCustomRequest({
           url: data,
           method: "GET",
-          responseType: "blob",
         })
-        params = await res.data
+        await downloadFileFromEventHandler(
+          contentType,
+          fileDownloadName,
+          res.data,
+        )
+        return
       } catch (e) {
         message.error({
           content: i18n.t("editor.method.file_download.message.fail"),
@@ -305,6 +308,9 @@ export const downloadFileFromEventHandler = async (
       }
     }
     download(params, fileDownloadName, contentType)
+    message.success({
+      content: i18n.t("editor.action.action_list.message.success_saved"),
+    })
   } catch (e) {
     message.error({
       content: i18n.t("editor.method.file_download.message.download_failed"),
