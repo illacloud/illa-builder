@@ -152,14 +152,31 @@ export const FORM_PANEL_CONFIG: PanelConfig[] = [
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "#ffffffff",
           },
-          // {
-          //   id: `${baseWidgetName}-style-shadow`,
-          //   labelName: i18n.t("editor.inspect.setter_label.shadow"),
-          //   attrName: "shadow",
-          //   icon: <ShadowIcon />,
-          //   setterType: "EDITABLE_INPUT_SETTER",
-          //   defaultValue: "small",
-          // },
+          {
+            id: `${baseWidgetName}-style-shadow`,
+            labelName: i18n.t("editor.inspect.setter_label.shadow.shadow"),
+            attrName: "shadow",
+            setterType: "SHADOW_SELECT_SETTER",
+            defaultValue: "small",
+            options: [
+              {
+                label: i18n.t("editor.inspect.setter_option.shadow.none"),
+                value: "none",
+              },
+              {
+                label: i18n.t("editor.inspect.setter_option.shadow.large"),
+                value: "large",
+              },
+              {
+                label: i18n.t("editor.inspect.setter_option.shadow.medium"),
+                value: "medium",
+              },
+              {
+                label: i18n.t("editor.inspect.setter_option.shadow.small"),
+                value: "small",
+              },
+            ],
+          },
         ],
       },
     ],
