@@ -172,49 +172,44 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     [dispatch, freezeState],
   )
 
-  const selectAllComponentsHandler = useCallback(() => {
+  const selectAllBodyComponentsHandler = useCallback(() => {
     switch (FocusManager.getFocus()) {
       case "none":
         break
       case "canvas": {
         if (canvasRootNode) {
-          const childNodeDisplayNames: string[] = []
           const rootNode = executionResult.root
           if (!rootNode) return
           const currentPageDisplayName =
             rootNode.pageSortedKey[rootNode.currentPageIndex]
           const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
           if (!pageNode) return
-          const sectionContainerNodeDisplayName: string[] = []
-          pageNode.childrenNode.forEach((sectionNode) => {
+          let bodySectionDisplayName: string = ""
+          pageNode.childrenNode.find((sectionNode) => {
             const displayName = sectionNode.displayName
             const currentSectionProps = executionResult[displayName]
             if (
               currentSectionProps &&
               currentSectionProps.viewSortedKey &&
-              currentSectionProps.currentViewIndex >= 0
+              currentSectionProps.currentViewIndex >= 0 &&
+              sectionNode.showName === "bodySection"
             ) {
               const { currentViewIndex, viewSortedKey } = currentSectionProps
               const currentDisplayName = viewSortedKey[currentViewIndex]
-              sectionContainerNodeDisplayName.push(currentDisplayName)
+              bodySectionDisplayName = currentDisplayName
             }
           })
+          if (!bodySectionDisplayName) return
           const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
-          const allChildrenNodes: ComponentNode[] = []
-          sectionContainerNodeDisplayName.forEach((displayName) => {
-            if (componentNodesMap[displayName]) {
-              const childrenNode = Array.isArray(
-                componentNodesMap[displayName].childrenNode,
-              )
-                ? componentNodesMap[displayName].childrenNode
-                : []
-              allChildrenNodes.push(...childrenNode)
-            }
-          })
+          const allChildrenNodes = Array.isArray(
+            componentNodesMap[bodySectionDisplayName].childrenNode,
+          )
+            ? componentNodesMap[bodySectionDisplayName].childrenNode
+            : []
 
-          allChildrenNodes.forEach((node) => {
-            childNodeDisplayNames.push(node.displayName)
-          })
+          const childNodeDisplayNames = allChildrenNodes.map(
+            (node) => node.displayName,
+          )
 
           dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
           updateSelectedComponentUsersHandler(childNodeDisplayNames)
@@ -223,29 +218,31 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [canvasRootNode, dispatch, executionResult])
 
-  // useHotkeys(
-  //   `${Key.Control}+a`,
-  //   () => {
-  //     selectAllComponentsHandler()
-  //   },
-  //   {
-  //     preventDefault: true,
-  //     enabled: isEditMode && !isMAC(),
-  //   },
-  //   [selectAllComponentsHandler],
-  // )
-  //
-  // useHotkeys(
-  //   `${Key.Meta}+a`,
-  //   () => {
-  //     selectAllComponentsHandler()
-  //   },
-  //   {
-  //     preventDefault: true,
-  //     enabled: isEditMode && isMAC(),
-  //   },
-  //   [selectAllComponentsHandler],
-  // )
+  useHotkeys(
+    `${Key.Control}+a`,
+    (e) => {
+      e.preventDefault()
+      selectAllBodyComponentsHandler()
+    },
+    {
+      preventDefault: true,
+      enabled: isEditMode && !isMAC(),
+    },
+    [selectAllBodyComponentsHandler],
+  )
+
+  useHotkeys(
+    `${Key.Meta}+a`,
+    (e) => {
+      e.preventDefault()
+      selectAllBodyComponentsHandler()
+    },
+    {
+      preventDefault: true,
+      enabled: isEditMode && isMAC(),
+    },
+    [selectAllBodyComponentsHandler],
+  )
 
   const copySomethingHandler = useCallback(() => {
     switch (FocusManager.getFocus()) {
@@ -390,6 +387,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     {
       keydown: true,
       keyup: true,
+      preventDefault: true,
       enabled: isEditMode && isMAC(),
     },
     [showDotHandler],
