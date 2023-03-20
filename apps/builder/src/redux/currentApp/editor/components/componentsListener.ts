@@ -1,5 +1,5 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
-import { cloneDeep, get, toPath } from "lodash"
+import { cloneDeep } from "lodash"
 import {
   applyEffectMapToComponentNodes,
   getNearComponentNodes,
@@ -325,6 +325,7 @@ const updateComponentReflowComponentsAdapter = (
     | typeof componentsActions.updateComponentContainerReducer
     | typeof componentsActions.updateComponentLayoutInfoReducer
     | typeof componentsActions.copyComponentReducer
+    | typeof componentsActions.batchUpdateComponentLayoutInfoReducer
   >,
 ) => {
   switch (action.type) {
@@ -352,6 +353,16 @@ const updateComponentReflowComponentsAdapter = (
       return action.payload.map((slice) => {
         return slice.newComponentNode
       })
+    }
+    case "components/batchUpdateComponentLayoutInfoReducer": {
+      return action.payload.map((slice) => ({
+        displayName: slice.displayName,
+        x: slice.layoutInfo.x,
+        y: slice.layoutInfo.y,
+        w: slice.layoutInfo.w,
+        h: slice.layoutInfo.h,
+        parentNode: slice.options?.parentNode,
+      })) as ComponentNode[]
     }
     default:
       return []
@@ -405,7 +416,9 @@ function handleUpdateComponentReflowEffect(
     })
   })
   listenApi.dispatch(
-    componentsActions.batchUpdateComponentLayoutInfoReducer(updateSlice),
+    componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer(
+      updateSlice,
+    ),
   )
 }
 
@@ -511,6 +524,7 @@ export function setupComponentsListeners(
         componentsActions.addComponentReducer,
         componentsActions.updateComponentLayoutInfoReducer,
         componentsActions.copyComponentReducer,
+        componentsActions.batchUpdateComponentLayoutInfoReducer,
       ),
       effect: handleUpdateComponentReflowEffect,
     }),

@@ -1,4 +1,4 @@
-interface ActionResultProps {
+export interface ActionResultProps {
   visible: boolean
   results: any
   onClose: () => void

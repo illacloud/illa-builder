@@ -32,6 +32,11 @@ export interface UpdateComponentNodeLayoutInfoPayload {
   }>
 }
 
+export interface updateComponentStatusInfoPayload {
+  displayName: string
+  statusInfo: Partial<StatusInfo>
+}
+
 export interface UpdateComponentSlicePropsPayload {
   displayName: string
   propsSlice: {
