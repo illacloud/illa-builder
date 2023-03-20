@@ -107,12 +107,27 @@ const downloadExcelFile = (data: any, contentType: string) => {
 
   const workbook = XLSX.utils.book_new()
   const sheetName = "Sheet1"
-  const passData = isArray(data)
-    ? data.map((item) => convertCSVObj(item))
-    : isObject(data)
-    ? [convertCSVObj(data)]
-    : [{ value: data }]
-  const skipHeader = !(isArray(data) || isObject(data))
+
+  let isObjectItem = true
+
+  let passData
+  if (isArray(data)) {
+    isObjectItem = data.every((item) => isObject(item) || isArray(item))
+    if (isObjectItem) {
+      passData = data.map((item) => convertObj(item, false, true))
+    } else {
+      passData = [
+        {
+          value: JSON.stringify(data),
+        },
+      ]
+    }
+  } else if (isObject(data)) {
+    passData = [convertObj(data, false, true)]
+  } else {
+    passData = [{ value: data }]
+  }
+  const skipHeader = !((isArray(data) && isObjectItem) || isObject(data))
   const worksheet = XLSX.utils.json_to_sheet(passData, {
     skipHeader,
   })
@@ -120,16 +135,20 @@ const downloadExcelFile = (data: any, contentType: string) => {
   return XLSX.write(workbook, { type: "buffer", bookType })
 }
 
-const convertCSVObj = (obj: any): any => {
+const convertObj = (
+  obj: any,
+  format?: boolean,
+  objFormat: boolean = false,
+): any => {
   if (isArray(obj)) {
-    return `[${obj.map((item) => convertCSVObj(item))}]`
+    return `[${obj.map((item) => convertObj(item))}]`
   }
   if (isObject(obj)) {
     const newObj: any = {}
     Object.keys(obj).forEach((key) => {
-      newObj[key] = convertCSVObj(obj[key])
+      newObj[key] = convertObj(obj[key], objFormat)
     })
-    return newObj
+    return format ? JSON.stringify(newObj) : newObj
   }
   return obj
 }
@@ -150,13 +169,11 @@ const convertToCSV = (data: any): string => {
       if (data.hasOwnProperty(key)) {
         const value = data[key]
         if (typeof value === "object" && !Array.isArray(value)) {
-          values.push(
-            `"${JSON.stringify(convertCSVObj(value)).replace(/"/g, '""')}"`,
-          )
+          values.push(`"${convertObj(value, true).replace(/"/g, '""')}"`)
         } else if (Array.isArray(value)) {
           values.push(`"[${value.join(" , ").replace(/"/g, '""')}]"`)
         } else {
-          values.push(`"${value.toString().replace(/"/g, '""')}"`)
+          values.push(value)
         }
       }
     }
