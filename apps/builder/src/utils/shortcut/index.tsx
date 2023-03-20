@@ -223,29 +223,29 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [canvasRootNode, dispatch, executionResult])
 
-  useHotkeys(
-    `${Key.Control}+a`,
-    () => {
-      selectAllComponentsHandler()
-    },
-    {
-      preventDefault: true,
-      enabled: isEditMode && !isMAC(),
-    },
-    [selectAllComponentsHandler],
-  )
-
-  useHotkeys(
-    `${Key.Meta}+a`,
-    () => {
-      selectAllComponentsHandler()
-    },
-    {
-      preventDefault: true,
-      enabled: isEditMode && isMAC(),
-    },
-    [selectAllComponentsHandler],
-  )
+  // useHotkeys(
+  //   `${Key.Control}+a`,
+  //   () => {
+  //     selectAllComponentsHandler()
+  //   },
+  //   {
+  //     preventDefault: true,
+  //     enabled: isEditMode && !isMAC(),
+  //   },
+  //   [selectAllComponentsHandler],
+  // )
+  //
+  // useHotkeys(
+  //   `${Key.Meta}+a`,
+  //   () => {
+  //     selectAllComponentsHandler()
+  //   },
+  //   {
+  //     preventDefault: true,
+  //     enabled: isEditMode && isMAC(),
+  //   },
+  //   [selectAllComponentsHandler],
+  // )
 
   const copySomethingHandler = useCallback(() => {
     switch (FocusManager.getFocus()) {

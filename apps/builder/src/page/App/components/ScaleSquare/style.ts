@@ -483,6 +483,7 @@ export const applyWrapperPendingStyle = (
   ${isLimitedModeAndOverLap && isSelected
     ? `border-bottom:unset !important`
     : ""}
+  ${isEditor && "cursor: move"}
 `
 
 export const applyDashedLineStyle = (
