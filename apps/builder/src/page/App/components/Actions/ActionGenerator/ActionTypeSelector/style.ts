@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor } from "@illa-design/react"
 
 export const containerStyle = css`
   width: 100%;
@@ -16,7 +16,7 @@ export const categoryStyle = css`
   padding-top: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  color: ${getColor("grayBlue", "04")};
 `
 
 export const resourceListStyle = css`

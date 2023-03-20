@@ -137,6 +137,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
         w="696px"
         visible={resourceEditorVisible}
         footer={false}
+        maskClosable={false}
         closable
         withoutLine
         withoutPadding

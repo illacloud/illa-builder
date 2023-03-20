@@ -136,12 +136,8 @@ const calculateFetchResultDisplayName = (
   const transRawData = transformRawData(realData, actionType)
   let calcResult = runTransformer(transformer, transRawData)
   let data = calcResult
-  if (actionCommand && actionCommand === S3ActionRequestType.READ_ONE) {
-    const { Body = {}, ...otherData } = calcResult
-    data = { ...otherData, Body: {} }
-  }
   if (isRestApi) {
-    data = { ...calcResult, extraData: rawData?.extraData }
+    data = { result: calcResult, extraData: rawData?.extraData }
   }
   resultCallback?.(data, false)
   actionDisplayNameMapFetchResult[displayName] = calcResult

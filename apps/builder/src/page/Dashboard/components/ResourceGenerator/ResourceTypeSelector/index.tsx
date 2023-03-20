@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { WhiteList } from "@/components/WhiteList"
 import { ResourceCard } from "@/page/Dashboard/components/ResourceGenerator/ResourceCard"
 import { ResourceTypeList } from "@/page/Dashboard/components/ResourceGenerator/config"
 import { ResourceTypeSelectorProps } from "./interface"
@@ -25,6 +26,7 @@ export const ResourceTypeSelector: FC<ResourceTypeSelectorProps> = (props) => {
           </div>
         </div>
       ))}
+      <WhiteList />
     </div>
   )
 }

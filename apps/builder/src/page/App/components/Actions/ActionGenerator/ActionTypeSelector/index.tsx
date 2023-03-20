@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Spin, useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
+import { WhiteList } from "@/components/WhiteList"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -88,6 +89,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
           </div>
         </div>
       ))}
+      <WhiteList />
     </Spin>
   )
 }
