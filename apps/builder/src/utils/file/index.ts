@@ -2,6 +2,7 @@ import download from "downloadjs"
 import XLSX from "xlsx"
 import { createMessage, isArray, isObject } from "@illa-design/react"
 import { Api } from "@/api/base"
+import i18n from "@/i18n/config"
 import { isUrl } from "@/utils/url"
 import { isBase64 } from "@/utils/url/base64"
 
@@ -242,7 +243,7 @@ export const downloadFileFromEventHandler = async (
   const message = createMessage()
   try {
     message.info({
-      content: "文件下载中...",
+      content: i18n.t("editor.method.file_download.message.suc"),
     })
 
     const fileDownloadName = getFileName((fileName ?? "").trim(), fileType)
@@ -270,7 +271,7 @@ export const downloadFileFromEventHandler = async (
         params = await res.data
       } catch (e) {
         message.error({
-          content: "文件下载失败",
+          content: i18n.t("editor.method.file_download.message.fail"),
         })
         return
       }
@@ -306,7 +307,7 @@ export const downloadFileFromEventHandler = async (
     download(params, fileDownloadName, contentType)
   } catch (e) {
     message.error({
-      content: "文件下载失败",
+      content: i18n.t("editor.method.file_download.message.download_failed"),
     })
     console.error(e)
   }
