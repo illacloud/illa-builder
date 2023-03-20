@@ -1200,7 +1200,9 @@
         "scale_type": "확대/축소 유형",
         "set_router": "라우팅 설정",
         "set_temporary_state": "임시 상태 설정",
-        "shadow": "그림자",
+        "shadow": {
+          "shadow": "그림자"
+        },
         "show_character_count": "문자 수 표시",
         "show_clear_button": "지우기 버튼 표시",
         "show_footer": "디스플레이 작동 영역",
@@ -1387,6 +1389,12 @@
           "csv": "CSV",
           "tsv": "TSV",
           "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "없음",
+          "large": "크게",
+          "medium": "보통",
+          "small": "작음"
         }
       },
       "setter_placeholder": {
