@@ -2,6 +2,7 @@ import download from "downloadjs"
 import XLSX from "xlsx"
 import { createMessage, isArray, isObject } from "@illa-design/react"
 import { Api } from "@/api/base"
+import i18n from "@/i18n/config"
 import { isUrl } from "@/utils/url"
 import { isBase64 } from "@/utils/url/base64"
 
@@ -107,17 +108,46 @@ const downloadExcelFile = (data: any, contentType: string) => {
 
   const workbook = XLSX.utils.book_new()
   const sheetName = "Sheet1"
-  const passData = isArray(data)
-    ? data.map((item) => (isObject(item) ? item : { value: item }))
-    : isObject(data)
-    ? [data]
-    : [{ value: data }]
-  const skipHeader = !(isArray(data) || isObject(data))
+
+  let isObjectItem = true
+
+  let passData
+  if (isArray(data)) {
+    isObjectItem = data.every((item) => isObject(item) || isArray(item))
+    if (isObjectItem) {
+      passData = data.map((item) => convertObj(item, false))
+    } else {
+      passData = [
+        {
+          value: JSON.stringify(data),
+        },
+      ]
+    }
+  } else if (isObject(data)) {
+    passData = [convertObj(data, false)]
+  } else {
+    passData = [{ value: data }]
+  }
+  const skipHeader = !((isArray(data) && isObjectItem) || isObject(data))
   const worksheet = XLSX.utils.json_to_sheet(passData, {
     skipHeader,
   })
   XLSX.utils.book_append_sheet(workbook, worksheet, sheetName)
   return XLSX.write(workbook, { type: "buffer", bookType })
+}
+
+const convertObj = (obj: any, format?: boolean): any => {
+  if (isArray(obj)) {
+    return `[${obj.map((item) => convertObj(item, true))}]`
+  }
+  if (isObject(obj)) {
+    const newObj: any = {}
+    Object.keys(obj).forEach((key) => {
+      newObj[key] = convertObj(obj[key], true)
+    })
+    return format ? JSON.stringify(newObj) : newObj
+  }
+  return obj
 }
 
 const convertToCSV = (data: any): string => {
@@ -136,9 +166,14 @@ const convertToCSV = (data: any): string => {
       if (data.hasOwnProperty(key)) {
         const value = data[key]
         if (typeof value === "object" && !Array.isArray(value)) {
-          values.push(JSON.stringify(value))
+          values.push(`"${convertObj(value, true).replace(/"/g, '""')}"`)
         } else if (Array.isArray(value)) {
-          values.push(value.join(" | "))
+          values.push(
+            `"[${value
+              .map((item) => convertObj(item, true))
+              .join(" , ")
+              .replace(/"/g, '""')}]"`,
+          )
         } else {
           values.push(value)
         }
@@ -150,19 +185,38 @@ const convertToCSV = (data: any): string => {
   }
 }
 
-function toTsv(data: any): string {
+const convertToTSV = (data: any): string => {
   if (Array.isArray(data)) {
-    const headers = Object.keys(data[0]).join("\t")
-    const rows = data.map((obj) =>
-      Object.values(obj)
-        .map((val) => (isObject(val) ? JSON.stringify(val) : val))
-        .join("\t"),
-    )
-    return [headers, ...rows].join("\n")
+    if (data.length === 0) {
+      return ""
+    }
+    const firstRow = data[0]
+    const keys = Object.keys(firstRow)
+    const header = keys.join("\t")
+    const rows = data.map((row) => convertToTSV(row))
+    return `${header}\n${rows.join("\n")}`
   } else if (typeof data === "object" && data !== null) {
-    return Object.values(data).map(toTsv).join("\t")
+    const values = []
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        const value = data[key]
+        if (typeof value === "object" && !Array.isArray(value)) {
+          values.push(`"${convertObj(value, true).replace(/"/g, '""')}"`)
+        } else if (Array.isArray(value)) {
+          values.push(
+            `"[${value
+              .map((item) => convertObj(item, true))
+              .join(", ")
+              .replace(/"/g, '""')}]"`,
+          )
+        } else {
+          values.push(value)
+        }
+      }
+    }
+    return values.join("\t")
   } else {
-    return String(data)
+    return `${data}`
   }
 }
 
@@ -189,7 +243,7 @@ export const downloadFileFromEventHandler = async (
   const message = createMessage()
   try {
     message.info({
-      content: "文件下载中...",
+      content: i18n.t("editor.method.file_download.message.suc"),
     })
 
     const fileDownloadName = getFileName((fileName ?? "").trim(), fileType)
@@ -198,6 +252,8 @@ export const downloadFileFromEventHandler = async (
     )
     const isBase64Suffix = typeof data === "string" && isBase64(data)
     const isValidBase64 = typeof data === "string" && isBase64(data, true)
+
+    const formatData = isArray(data) ? data : isObject(data) ? [data] : data
 
     let params
 
@@ -215,14 +271,14 @@ export const downloadFileFromEventHandler = async (
         params = await res.data
       } catch (e) {
         message.error({
-          content: "文件下载失败",
+          content: i18n.t("editor.method.file_download.message.fail"),
         })
         return
       }
     } else {
       switch (contentType) {
         case "text/csv":
-          params = new Blob(["\ufeff", convertToCSV(data)], {
+          params = new Blob(["\ufeff", convertToCSV(formatData)], {
             type: "text/csv;charset=utf-8",
           })
           break
@@ -235,7 +291,7 @@ export const downloadFileFromEventHandler = async (
           }
           break
         case "text/tab-separated-values":
-          params = toTsv(data)
+          params = convertToTSV(formatData)
           break
         default:
           {
@@ -251,7 +307,7 @@ export const downloadFileFromEventHandler = async (
     download(params, fileDownloadName, contentType)
   } catch (e) {
     message.error({
-      content: "文件下载失败",
+      content: i18n.t("editor.method.file_download.message.download_failed"),
     })
     console.error(e)
   }
