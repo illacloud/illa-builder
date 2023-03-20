@@ -102,7 +102,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     RootState,
     CollaboratorsInfo[]
   >((rootState) => {
-    const currentUserID = getCurrentUser(rootState).userId
+    const currentUserInfo = getCurrentUser(rootState)
+    const currentUserID = currentUserInfo.userId
     const componentsAttachedUsers = getComponentAttachUsers(rootState)
     return getTargetCurrentUsersExpendMe(
       componentsAttachedUsers,
@@ -167,6 +168,26 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           componentNode.displayName,
           displayNameMapDepth,
         )
+        const firstParentNode =
+          executionResult[currentSelectedDisplayName[0]].$parentNode
+        const isSameParentNode = currentSelectedDisplayName.every(
+          (displayName) => {
+            const parentNode = executionResult[displayName].$parentNode
+            return parentNode === firstParentNode
+          },
+        )
+        if (!isSameParentNode) {
+          const lastParentNode =
+            executionResult[
+              currentSelectedDisplayName[currentSelectedDisplayName.length - 1]
+            ].$parentNode
+          currentSelectedDisplayName = currentSelectedDisplayName.filter(
+            (displayName) => {
+              const currentParentNode = executionResult[displayName].$parentNode
+              return lastParentNode === currentParentNode
+            },
+          )
+        }
 
         currentSelectedDisplayName = Array.from(
           new Set(currentSelectedDisplayName),

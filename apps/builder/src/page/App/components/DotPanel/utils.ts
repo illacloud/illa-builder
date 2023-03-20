@@ -168,22 +168,40 @@ export const moveCallback = (
   }
 }
 
-export const getLargeItemSharpe = (
-  draggedSelectedComponents: ComponentNode[],
-  columnNumber: number,
-  currentColumnNumber: number,
+interface WidgetShape {
+  x: number
+  y: number
+  w: number
+  h: number
+  minW: number
+}
+
+export const getLargeItemShapeWithNodeScale = (
+  selectedComponents: WidgetShape[],
 ) => {
-  const scaleItems = draggedSelectedComponents
-  const top = Math.min(...scaleItems.map((item) => item.y))
-  const left = Math.min(...scaleItems.map((item) => item.x))
-  const bottom = Math.max(...scaleItems.map((item) => item.y + item.h))
-  const right = Math.max(...scaleItems.map((item) => item.x + item.w))
-  const minW = Math.max(...scaleItems.map((item) => item.minW))
-  const scaleW = getScaleResult(right - left, columnNumber, currentColumnNumber)
+  const top = Math.min(...selectedComponents.map((item) => item.y))
+  const left = Math.min(...selectedComponents.map((item) => item.x))
+  const bottom = Math.max(...selectedComponents.map((item) => item.y + item.h))
+  const right = Math.max(...selectedComponents.map((item) => item.x + item.w))
+  const minW = Math.max(...selectedComponents.map((item) => item.minW))
   return {
     x: left,
     y: top,
-    w: scaleW < minW ? minW : scaleW,
+    w: right - left,
     h: bottom - top,
+    minW,
+  }
+}
+
+export const getLargeItemSharpe = (
+  draggedSelectedComponents: WidgetShape[],
+  columnNumber: number,
+  currentColumnNumber: number,
+) => {
+  const scaleItem = getLargeItemShapeWithNodeScale(draggedSelectedComponents)
+  const scaleW = getScaleResult(scaleItem.w, columnNumber, currentColumnNumber)
+  return {
+    ...scaleItem,
+    w: scaleW < scaleItem.minW ? scaleItem.minW : scaleW,
   }
 }

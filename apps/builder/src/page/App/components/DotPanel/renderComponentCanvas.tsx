@@ -40,6 +40,7 @@ import {
   moveCallback,
 } from "@/page/App/components/DotPanel/utils"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
+import { MultiSelectedScaleSquare } from "@/page/App/components/ScaleSquare/multiSelectedScaleSquare"
 import {
   getFreezeState,
   getIsILLAEditMode,
@@ -876,6 +877,12 @@ export const RenderComponentCanvas: FC<{
         containerRef={containerRef}
         canvasNodeDisplayName={componentNode.displayName}
       />
+      {!dragDropManager.getMonitor().isDragging() && (
+        <MultiSelectedScaleSquare
+          unitW={unitWidth}
+          containerDisplayName={componentNode.displayName}
+        />
+      )}
       {isShowCanvasDot && <div css={borderLineStyle} />}
       {isActive && (
         <FreezePlaceholder

@@ -569,3 +569,20 @@ export const selectoSelectionStyle = css`
     border: 1px solid ${getColor("techPurple", "01")} !important;
   }
 `
+
+export const applyMultiSelectedScaleSquareStyle = (
+  width: number,
+  height: number,
+  left: number,
+  top: number,
+) => {
+  return css`
+    position: absolute;
+    border: 1px dashed ${getColor("techPurple", "01")};
+    width: ${width}px;
+    height: ${height}px;
+    left: 0;
+    top: 0;
+    transform: translate(${left}px, ${top}px);
+  `
+}
