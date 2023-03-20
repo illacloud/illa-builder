@@ -103,6 +103,30 @@ function applyEffectMapToComponentNode(
   return newComponentNode
 }
 
+function getChildrenNodeUpdateSlice(
+  componentNode: ComponentNode,
+  childrenUpdateSlice: UpdateComponentNodeLayoutInfoPayload[],
+) {
+  const childrenNode = componentNode.childrenNode
+  if (Array.isArray(childrenNode) && childrenNode.length > 0) {
+    childrenNode.forEach((childNode) => {
+      childrenUpdateSlice.push({
+        displayName: childNode.displayName,
+        layoutInfo: {
+          x: childNode.x,
+          y: childNode.y,
+          w: childNode.w,
+          h: childNode.h,
+        },
+        options: {
+          parentNode: childNode.parentNode!,
+        },
+      })
+      getChildrenNodeUpdateSlice(childNode, childrenUpdateSlice)
+    })
+  }
+}
+
 function modifyChildrenNodeXWhenDrop(
   componentNode: ComponentNode,
   currentColumns: number,
@@ -547,6 +571,8 @@ export const RenderComponentCanvas: FC<{
                 },
               }
             })
+            const childrenUpdateSlice: UpdateComponentNodeLayoutInfoPayload[] =
+              []
             if (oldParentNodeDisplayName !== componentNode.displayName) {
               const updateContainerSlice = realPositionWithComponentNode.map(
                 (node) => {
@@ -556,6 +582,7 @@ export const RenderComponentCanvas: FC<{
                   }
                 },
               )
+              getChildrenNodeUpdateSlice(newItem, childrenUpdateSlice)
               dispatch(
                 componentsActions.updateComponentContainerReducer({
                   isMove: false,
@@ -564,9 +591,10 @@ export const RenderComponentCanvas: FC<{
               )
             }
             dispatch(
-              componentsActions.batchUpdateComponentLayoutInfoReducer(
-                updateSlice,
-              ),
+              componentsActions.batchUpdateComponentLayoutInfoReducer([
+                ...updateSlice,
+                ...childrenUpdateSlice,
+              ]),
             )
 
             dispatch(
