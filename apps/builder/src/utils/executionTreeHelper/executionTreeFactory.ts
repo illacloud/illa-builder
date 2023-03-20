@@ -414,6 +414,7 @@ export class ExecutionTreeFactory {
       const layoutInfo = displayNameMapLayoutInfo[key]
       if (currentExecutedTree[key]) {
         currentExecutedTree[key].$layoutInfo = layoutInfo
+        currentExecutedTree[key].$parentNode = rawTree[key].$parentNode
       }
     })
 

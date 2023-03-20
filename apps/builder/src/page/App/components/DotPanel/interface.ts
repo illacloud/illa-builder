@@ -10,6 +10,7 @@ import {
 export interface DragInfo {
   item: ComponentNode
   childrenNodes: ComponentNode[]
+  draggedSelectedComponents: ComponentNode[]
   currentColumnNumber: number
 }
 
@@ -21,8 +22,6 @@ export interface DropResultInfo {
 // return when drop collect trigger
 export interface DropCollectedInfo {
   isActive: boolean
-  nodeWidth: number
-  nodeHeight: number
 }
 
 // return when drag collect trigger

@@ -13,19 +13,24 @@ import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanva
 import { UpdateComponentNodeLayoutInfoPayload } from "@/redux/currentApp/editor/components/componentsPayload"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
+export const getScaleResult = (
+  origin: number,
+  blockColumns: number,
+  currentColumnNumber: number,
+) => {
+  const scale = blockColumns / currentColumnNumber
+  return Math.floor(origin * scale)
+}
+
 export const getScaleItem = (
   blockColumns: number,
   currentColumnNumber: number,
   item: ComponentNode,
 ) => {
-  const scale = blockColumns / currentColumnNumber
-
+  const scaleW = getScaleResult(item.w, blockColumns, currentColumnNumber)
   return {
     ...item,
-    w:
-      Math.ceil(item.w * scale) < item.minW
-        ? item.minW
-        : Math.ceil(item.w * scale),
+    w: scaleW < item.minW ? item.minW : scaleW,
   }
 }
 
@@ -36,17 +41,26 @@ export const moveCallback = (
   monitor: DropTargetMonitor<DragInfo, DropResultInfo>,
   containerRef: RefObject<HTMLDivElement>,
   unitWidth: number,
-  canvasBoundingClientRect: DOMRect | undefined,
+  canvasBoundingClientRect: DOMRect,
   canResizeY: boolean,
   containerPadding: number,
   isFreezeCanvas: boolean,
+  currentDragStartScrollTop: number,
 ) => {
-  const { item, currentColumnNumber } = dragInfo
-  let scaleItem: ComponentNode = getScaleItem(
+  const { item, currentColumnNumber, draggedSelectedComponents } = dragInfo
+
+  const scaleItemsShape = getLargeItemSharpe(
+    draggedSelectedComponents,
     blockColumns,
     currentColumnNumber,
-    item,
   )
+
+  let scaleItem: ComponentNode = {
+    ...item,
+    ...scaleItemsShape,
+    displayName: "largeItem",
+    type: "LARGE_ITEM",
+  }
   const actionName = isAddAction(
     item.x,
     item.y,
@@ -56,38 +70,45 @@ export const moveCallback = (
     ? "ADD"
     : "UPDATE"
 
-  let dragResult = getDragResult(
-    monitor,
-    containerRef,
-    scaleItem,
-    unitWidth,
-    UNIT_HEIGHT,
-    canvasBoundingClientRect?.width,
+  const containerClientRect = containerRef.current?.getBoundingClientRect()
+  const containerPosition = {
+    x: containerClientRect?.x || 0,
+    y: containerClientRect?.y || 0,
+  }
+  const scrollTop = containerRef.current?.scrollTop
+  const clientOffset = monitor.getClientOffset()
+  const initialClientOffset = monitor.getInitialClientOffset()
+  const initialSourceClientOffSet = monitor.getInitialSourceClientOffset()
+
+  const dragResult = getDragResult(
     actionName,
-    canvasBoundingClientRect?.height,
+    clientOffset!,
+    initialClientOffset!,
+    initialSourceClientOffSet!,
+    containerPosition,
+    scrollTop,
+    unitWidth,
+    scaleItem,
+    canvasBoundingClientRect.width,
+    canvasBoundingClientRect.height,
     canResizeY,
     containerPadding,
     containerPadding,
+    {
+      x: scaleItem.x * unitWidth + containerPadding + containerPosition!.x,
+      y:
+        scaleItem.y * UNIT_HEIGHT +
+        containerPadding +
+        containerPosition!.y -
+        currentDragStartScrollTop,
+    },
   )
 
   const { ladingPosition } = dragResult
   const { landingX, landingY } = ladingPosition
-  // /**
-  //  * add rows when node over canvas
-  //  */
-  // if (
-  //   canResizeY &&
-  //   landingY / UNIT_HEIGHT + item.h > rowNumber - safeRowNumber
-  // ) {
-  //   const finalNumber = landingY / UNIT_HEIGHT + item.h + safeRowNumber
-  //   setRowNumber(finalNumber)
-  // }
 
   let childrenNodes = dragInfo.childrenNodes.filter(
     (node) => node.parentNode === containerWidgetDisplayName,
-  )
-  const indexOfChildrenNodes = childrenNodes.findIndex(
-    (node) => node.displayName === item.displayName,
   )
   let finalChildrenNodes: ComponentNode[] = []
   let finalEffectResultMap: Map<string, ComponentNode> = new Map()
@@ -107,29 +128,22 @@ export const moveCallback = (
     /**
      * only when add component nodes
      */
-    if (indexOfChildrenNodes === -1) {
-      const allChildrenNodes = [...childrenNodes, newItem]
-      const { finalState, effectResultMap } = getReflowResult(
-        newItem,
-        allChildrenNodes,
-        true,
-      )
-      finalChildrenNodes = finalState
-      finalEffectResultMap = effectResultMap
-    } else {
-      const indexOfChildren = childrenNodes.findIndex(
-        (node) => node.displayName === newItem.displayName,
-      )
-      const allChildrenNodes = [...childrenNodes]
-      allChildrenNodes.splice(indexOfChildren, 1, newItem)
-      const { finalState, effectResultMap } = getReflowResult(
-        newItem,
-        allChildrenNodes,
-        true,
-      )
-      finalChildrenNodes = finalState
-      finalEffectResultMap = effectResultMap
-    }
+
+    const draggableDisplayNames = draggedSelectedComponents.map(
+      (node) => node.displayName,
+    )
+
+    const allChildrenNodes = childrenNodes.filter((node) => {
+      return !draggableDisplayNames.includes(node.displayName)
+    })
+
+    const { finalState, effectResultMap } = getReflowResult(
+      newItem,
+      allChildrenNodes,
+      true,
+    )
+    finalChildrenNodes = finalState
+    finalEffectResultMap = effectResultMap
   }
   let updateSlice: UpdateComponentNodeLayoutInfoPayload[] | undefined
   if (!isFreezeCanvas) {
@@ -146,11 +160,48 @@ export const moveCallback = (
       }
     })
   }
-
   return {
     dragResult,
     reflowUpdateSlice: updateSlice,
     newEffectResultMap: finalEffectResultMap,
     scaleItem,
+  }
+}
+
+interface WidgetShape {
+  x: number
+  y: number
+  w: number
+  h: number
+  minW: number
+}
+
+export const getLargeItemShapeWithNodeScale = (
+  selectedComponents: WidgetShape[],
+) => {
+  const top = Math.min(...selectedComponents.map((item) => item.y))
+  const left = Math.min(...selectedComponents.map((item) => item.x))
+  const bottom = Math.max(...selectedComponents.map((item) => item.y + item.h))
+  const right = Math.max(...selectedComponents.map((item) => item.x + item.w))
+  const minW = Math.max(...selectedComponents.map((item) => item.minW))
+  return {
+    x: left,
+    y: top,
+    w: right - left,
+    h: bottom - top,
+    minW,
+  }
+}
+
+export const getLargeItemSharpe = (
+  draggedSelectedComponents: WidgetShape[],
+  columnNumber: number,
+  currentColumnNumber: number,
+) => {
+  const scaleItem = getLargeItemShapeWithNodeScale(draggedSelectedComponents)
+  const scaleW = getScaleResult(scaleItem.w, columnNumber, currentColumnNumber)
+  return {
+    ...scaleItem,
+    w: scaleW < scaleItem.minW ? scaleItem.minW : scaleW,
   }
 }

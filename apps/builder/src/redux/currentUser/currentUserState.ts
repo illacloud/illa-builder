@@ -15,6 +15,7 @@ export interface UserInfoResponse {
   language: string
   createdAt: string
   updatedAt: string
+  userID: string
 }
 
 export const CurrentUserInitialState: CurrentUser = {

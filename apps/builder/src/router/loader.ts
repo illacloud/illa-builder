@@ -28,7 +28,7 @@ export const getUserInfo = async (token?: string) => {
     store.dispatch(
       currentUserActions.updateCurrentUserReducer({
         ...response.data,
-        userId: response.data.id,
+        userId: response.data.userID,
       }),
     )
     return response.data
