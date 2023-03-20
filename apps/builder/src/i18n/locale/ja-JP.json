@@ -2320,5 +2320,7 @@
         }
       }
     }
-  }
+  },
+  "oauth_redirect_title": "이동",
+  "oauth_redirect_description": "<0>ILLA Cloud にリダイレクトしています..."
 }
