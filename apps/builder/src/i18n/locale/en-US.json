@@ -2320,5 +2320,7 @@
         }
       }
     }
-  }
+  },
+  "oauth_redirect_title": "Redirect",
+  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud<0>"
 }
