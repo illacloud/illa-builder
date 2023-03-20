@@ -1,3 +1,4 @@
+import { Global } from "@emotion/react"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -8,6 +9,7 @@ import { CloudApi } from "@/api/cloudApi"
 import LoginPage from "@/illa-public-component/User/login"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
+import { mobileAdaptationStyle } from "@/style"
 import { setLocalStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { LoginFields } from "./interface"
@@ -85,11 +87,14 @@ const UserLogin: FC = () => {
   }
 
   return (
-    <LoginPage
-      loading={submitLoading}
-      errorMsg={errorMsg}
-      onSubmit={onSubmit}
-    />
+    <>
+      <Global styles={mobileAdaptationStyle} />
+      <LoginPage
+        loading={submitLoading}
+        errorMsg={errorMsg}
+        onSubmit={onSubmit}
+      />
+    </>
   )
 }
 

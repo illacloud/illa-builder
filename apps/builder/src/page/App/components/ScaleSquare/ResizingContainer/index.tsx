@@ -84,6 +84,11 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
         componentsActions.updateComponentLayoutInfoReducer({
           displayName: componentNode.displayName,
           layoutInfo: {},
+        }),
+      )
+      dispatch(
+        componentsActions.updateComponentStatusInfoReducer({
+          displayName: componentNode.displayName,
           statusInfo: {
             isResizing: true,
           },
@@ -176,11 +181,16 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
             w: finalWidth,
             h: finalHeight,
           },
-          statusInfo: {
-            isResizing: false,
-          },
           options: {
             parentNode: componentNode.parentNode as string,
+          },
+        }),
+      )
+      dispatch(
+        componentsActions.updateComponentStatusInfoReducer({
+          displayName: componentNode.displayName,
+          statusInfo: {
+            isResizing: false,
           },
         }),
       )

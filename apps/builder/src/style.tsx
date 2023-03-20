@@ -4,7 +4,7 @@ const FONT_SIZE = (100 / 780) * 100
 export const MOBILE_MIN_WIDTH = 320
 export const MOBILE_MAX_WIDTH = 780
 
-export const globalStyle = css`
+export const mobileAdaptationStyle = css`
   html {
     // when vw doesn't work
     font-size: 41px;
@@ -21,7 +21,9 @@ export const globalStyle = css`
     }
     --dvh: 1dvh;
   }
+`
 
+export const globalStyle = css`
   html,
   body,
   #root {

@@ -24,7 +24,7 @@ export const getListItemContainerStyle = (type: string = "") => {
     `
   }
   return css`
-    display: inline-block;
+    display: inline-flex;
   `
 }
 

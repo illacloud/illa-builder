@@ -15,8 +15,8 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import store from "@/store"
 import {
   batchMergeLayoutInfoToComponent,
-  endDrag,
-  startDrag,
+  endDragMultiNodes,
+  startDragMultiNodes,
 } from "@/utils/drag/drag"
 import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 import {
@@ -45,7 +45,12 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
         },
         end: (draggedItem, monitor) => {
           const dropResultInfo = monitor.getDropResult()
-          endDrag(draggedItem.item, dropResultInfo?.isDropOnCanvas ?? false)
+          const { draggedSelectedComponents } = draggedItem
+          endDragMultiNodes(
+            draggedSelectedComponents,
+            dropResultInfo?.isDropOnCanvas ?? false,
+            true,
+          )
         },
         item: () => {
           const item = generateComponentNode({
@@ -68,10 +73,11 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
           } else {
             childrenNodes = []
           }
-          startDrag(item, true)
+          startDragMultiNodes([item], true)
           return {
             item,
             childrenNodes,
+            draggedSelectedComponents: [item],
             currentColumnNumber: 64,
           }
         },

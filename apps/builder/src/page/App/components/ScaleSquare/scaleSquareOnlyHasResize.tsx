@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { DropList, DropListItem, Dropdown } from "@illa-design/react"
 import { getResizeHandler } from "@/page/App/components/ScaleSquare/ResizingContainer/utils"
+import { changeSelectedDisplayName } from "@/page/App/components/ScaleSquare/utils/changeSelectedDisplayName"
 import {
   getHoveredComponents,
   getIsILLAEditMode,
@@ -16,11 +17,17 @@ import { configActions } from "@/redux/config/configSlice"
 import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import {
+  getComponentDisplayNameMapDepth,
+  getShowWidgetNameParentMap,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { CopyManager } from "@/utils/copyManager"
+import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { isMAC } from "@/utils/userAgent"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import { ScaleSquareProps, ScaleSquareType } from "./interface"
@@ -64,6 +71,9 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
   const hoveredComponents = useSelector(getHoveredComponents)
+  const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
+  const widgetDisplayNameRelationMap = useSelector(getShowWidgetNameParentMap)
+
   const isMouseOver =
     hoveredComponents[hoveredComponents.length - 1] ===
     componentNode.displayName
@@ -94,10 +104,11 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
+      FocusManager.switchFocus("canvas")
       if (!isEditMode) return
       e.stopPropagation()
-      if (e.metaKey || e.shiftKey) {
-        const currentSelectedDisplayName = cloneDeep(selectedComponents)
+      if ((isMAC() && e.metaKey) || e.shiftKey || (!isMAC() && e.ctrlKey)) {
+        let currentSelectedDisplayName = cloneDeep(selectedComponents)
 
         const index = currentSelectedDisplayName.findIndex(
           (displayName) => displayName === componentNode.displayName,
@@ -107,6 +118,16 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         } else {
           currentSelectedDisplayName.push(componentNode.displayName)
         }
+        changeSelectedDisplayName(
+          currentSelectedDisplayName,
+          widgetDisplayNameRelationMap,
+          componentNode.displayName,
+          displayNameMapDepth,
+        )
+
+        currentSelectedDisplayName = Array.from(
+          new Set(currentSelectedDisplayName),
+        )
         dispatch(
           configActions.updateSelectedComponent(currentSelectedDisplayName),
         )
@@ -129,8 +150,10 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       componentNode.displayName,
       componentsAttachedUsers,
       dispatch,
+      displayNameMapDepth,
       isEditMode,
       selectedComponents,
+      widgetDisplayNameRelationMap,
     ],
   )
 
@@ -153,6 +176,11 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             w: finalWidth,
             h: finalHeight,
           },
+        }),
+      )
+      dispatch(
+        componentsActions.updateComponentStatusInfoReducer({
+          displayName: componentNode.displayName,
           statusInfo: {
             isResizing: false,
           },
@@ -182,6 +210,11 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         componentsActions.updateComponentLayoutInfoReducer({
           displayName: componentNode.displayName,
           layoutInfo: {},
+        }),
+      )
+      dispatch(
+        componentsActions.updateComponentStatusInfoReducer({
+          displayName: componentNode.displayName,
           statusInfo: {
             isResizing: true,
           },

@@ -1,3 +1,4 @@
+import { Global } from "@emotion/react"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -6,6 +7,7 @@ import { useMessage } from "@illa-design/react"
 import { CloudApi } from "@/api/cloudApi"
 import { sendEmail } from "@/api/users"
 import ResetPasswordPage from "@/illa-public-component/User/resetPassword"
+import { mobileAdaptationStyle } from "@/style"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { ResetPwdFields } from "./interface"
 
@@ -68,12 +70,15 @@ const ResetPassword: FC = () => {
   }
 
   return (
-    <ResetPasswordPage
-      loading={submitLoading}
-      errorMsg={errorMsg}
-      onSubmit={onSubmit}
-      sendEmail={sendEmail}
-    />
+    <div>
+      <Global styles={mobileAdaptationStyle} />
+      <ResetPasswordPage
+        loading={submitLoading}
+        errorMsg={errorMsg}
+        onSubmit={onSubmit}
+        sendEmail={sendEmail}
+      />
+    </div>
   )
 }
 
