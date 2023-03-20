@@ -27,6 +27,7 @@ import { EventTargetWidgetSelect } from "@/page/App/components/PanelSetters/Sele
 import { EventWidgetMethodSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventWidgetMethodSelect"
 import { HeightModeSelect } from "@/page/App/components/PanelSetters/SelectSetter/heightModeSelect"
 import { SearchSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/searchSelect"
+import { ShadowSelect } from "@/page/App/components/PanelSetters/SelectSetter/shadowSelect"
 import { BaseSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/baseSwitch"
 import { DynamicSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/dynamicSwitch"
 import { ColumnSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter"
@@ -84,6 +85,7 @@ const SetterTypeMapSetter = {
   MENU_OPTION_SETTER: MenuOptionSetter,
   DATA_SOURCE_SELECT_SETTER: DataSourceSetter,
   HEIGHT_MODE_SELECT: HeightModeSelect,
+  SHADOW_SELECT_SETTER: ShadowSelect,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

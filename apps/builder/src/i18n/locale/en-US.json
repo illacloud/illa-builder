@@ -1200,7 +1200,9 @@
         "scale_type": "Scale Type",
         "set_router": "Set router",
         "set_temporary_state": "Set temporary state",
-        "shadow": "Shadow",
+        "shadow": {
+          "shadow": "Shadow"
+        },
         "show_character_count": "Show character count",
         "show_clear_button": "Show clear button",
         "show_footer": "Show footer",
@@ -1387,6 +1389,12 @@
           "csv": "CSV",
           "tsv": "TSV",
           "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "None",
+          "large": "Large",
+          "medium": "Medium",
+          "small": "Small"
         }
       },
       "setter_placeholder": {
