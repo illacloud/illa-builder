@@ -344,6 +344,7 @@ export function setupExecutionListeners(
       matcher: isAnyOf(
         componentsActions.updateComponentLayoutInfoReducer,
         componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer,
+        componentsActions.updateComponentContainerReducer,
       ),
       effect: handleUpdateWidgetPosition,
     }),
