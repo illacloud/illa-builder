@@ -85,6 +85,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     wrapperCss,
     singleLine,
     wrappedCodeFunc,
+    className,
   } = props
   const [result, setResult] = useState<string>("")
   const [error, setError] = useState<boolean>(false)
@@ -187,6 +188,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   return (
     <ILLACodeMirrorCore
+      className={className}
       showLineNumbers={showLineNumbers}
       placeholder={placeholder}
       value={value}

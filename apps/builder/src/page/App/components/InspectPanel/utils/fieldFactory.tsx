@@ -21,6 +21,7 @@ export const renderFieldAndLabel = (
       {...config}
       isInList={isInList}
       parentAttrName={parentAttrName}
+      displayName={displayName}
     />
   )
 }

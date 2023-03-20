@@ -23,6 +23,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     expectedType,
     defaultValue,
     icon,
+    displayName,
   } = props
   const Comp = getSetterByType(setterType)
   const componentNode = useSelector(getComponentNodeBySingleSelected)
@@ -102,6 +103,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
       >
         <Comp
           {...props}
+          className={`${displayName}-${_finalAttrName}`}
           attrName={_finalAttrName}
           isSetterSingleRow={isSetterSingleRowWrapper}
           value={finalValue}

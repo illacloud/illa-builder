@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { getColor } from "@illa-design/react"
 import { STEP_0_ITEM, STEP_0_SELECT_WIDGET } from "@/config/tour"
 
 const STEP_0_STYLE = css`
@@ -24,3 +25,11 @@ export const applyGuideStyle = (currentStep: number) => {
 }
 
 export const GuideStyle = css``
+
+export const stepMaskStyle = css`
+  width: 268px;
+  height: 48px;
+  //color: ${getColor("techPurple", "07")};
+  background: ${getColor("techPurple", "07")};
+  border: 1px dashed ${getColor("techPurple", "01")};
+`

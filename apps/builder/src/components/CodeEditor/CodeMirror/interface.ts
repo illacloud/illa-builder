@@ -19,4 +19,5 @@ export interface ILLACodeMirrorProps
   readOnly?: boolean
   placeholder?: string
   wrapperCss?: SerializedStyles
+  className?: string
 }

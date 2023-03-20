@@ -2,6 +2,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface BaseSetter {
+  className?: string
   isSetterSingleRow?: boolean
   value?: unknown
   attrName: string

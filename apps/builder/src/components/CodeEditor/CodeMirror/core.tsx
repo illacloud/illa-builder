@@ -24,6 +24,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 // thk ReactCodeMirror:https://github.com/uiwjs/react-codemirror
 export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
   const {
+    className,
     extensions = [],
     value,
     height = "",
@@ -236,6 +237,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
           applyEditorWrapperStyle(hasError, isFocus, editable, readOnly),
           wrapperCss,
         ]}
+        className={className}
       />
     </HintToolTip>
   )

@@ -1,9 +1,10 @@
 import { Global } from "@emotion/react"
+import { Popover } from "@reactour/popover"
 import { useTour } from "@reactour/tour"
 import { motion } from "framer-motion"
-import { FC } from "react"
+import { FC, HTMLAttributes } from "react"
 import { Button } from "@illa-design/react"
-import { applyGuideStyle } from "@/components/Guide/style"
+import { applyGuideStyle, stepMaskStyle } from "@/components/Guide/style"
 
 const getElementPosition = (element: HTMLElement) => {
   const { top, left, width, height } = element.getBoundingClientRect()
@@ -14,6 +15,19 @@ const getElementPosition = (element: HTMLElement) => {
 const getPosition = (selector: string) => {
   const element = document.querySelector(selector) as HTMLElement
   return element ? getElementPosition(element) : undefined
+}
+
+export interface StepMaskProps extends HTMLAttributes<HTMLDivElement> {
+  desc: string
+}
+
+export const StepMask: FC<StepMaskProps> = (props) => {
+  const { desc, ...otherProps } = props
+  return (
+    <div css={stepMaskStyle} {...otherProps}>
+      {desc}
+    </div>
+  )
 }
 
 export const Guide: FC = () => {
