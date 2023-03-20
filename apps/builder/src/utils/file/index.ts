@@ -108,9 +108,9 @@ const downloadExcelFile = (data: any, contentType: string) => {
   const workbook = XLSX.utils.book_new()
   const sheetName = "Sheet1"
   const passData = isArray(data)
-    ? data.map((item) => (isObject(item) ? item : { value: item }))
+    ? data.map((item) => convertCSVObj(item))
     : isObject(data)
-    ? [data]
+    ? [convertCSVObj(data)]
     : [{ value: data }]
   const skipHeader = !(isArray(data) || isObject(data))
   const worksheet = XLSX.utils.json_to_sheet(passData, {
@@ -118,6 +118,20 @@ const downloadExcelFile = (data: any, contentType: string) => {
   })
   XLSX.utils.book_append_sheet(workbook, worksheet, sheetName)
   return XLSX.write(workbook, { type: "buffer", bookType })
+}
+
+const convertCSVObj = (obj: any): any => {
+  if (isArray(obj)) {
+    return `[${obj.map((item) => convertCSVObj(item))}]`
+  }
+  if (isObject(obj)) {
+    const newObj: any = {}
+    Object.keys(obj).forEach((key) => {
+      newObj[key] = convertCSVObj(obj[key])
+    })
+    return newObj
+  }
+  return obj
 }
 
 const convertToCSV = (data: any): string => {
@@ -136,11 +150,13 @@ const convertToCSV = (data: any): string => {
       if (data.hasOwnProperty(key)) {
         const value = data[key]
         if (typeof value === "object" && !Array.isArray(value)) {
-          values.push(JSON.stringify(value))
+          values.push(
+            `"${JSON.stringify(convertCSVObj(value)).replace(/"/g, '""')}"`,
+          )
         } else if (Array.isArray(value)) {
-          values.push(value.join(" | "))
+          values.push(`"[${value.join(" , ").replace(/"/g, '""')}]"`)
         } else {
-          values.push(value)
+          values.push(`"${value.toString().replace(/"/g, '""')}"`)
         }
       }
     }
@@ -151,7 +167,7 @@ const convertToCSV = (data: any): string => {
 }
 
 function toTsv(data: any): string {
-  if (Array.isArray(data)) {
+  if (isArray(data)) {
     const headers = Object.keys(data[0]).join("\t")
     const rows = data.map((obj) =>
       Object.values(obj)
@@ -222,9 +238,17 @@ export const downloadFileFromEventHandler = async (
     } else {
       switch (contentType) {
         case "text/csv":
-          params = new Blob(["\ufeff", convertToCSV(data)], {
-            type: "text/csv;charset=utf-8",
-          })
+          params = new Blob(
+            [
+              "\ufeff",
+              convertToCSV(
+                isArray(data) ? data : isObject(data) ? [data] : data,
+              ),
+            ],
+            {
+              type: "text/csv;charset=utf-8",
+            },
+          )
           break
         case "application/vnd.ms-excel":
         case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
