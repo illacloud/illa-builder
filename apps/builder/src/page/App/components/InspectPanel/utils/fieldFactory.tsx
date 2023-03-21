@@ -1,4 +1,6 @@
 import { get } from "lodash"
+import { useSelector } from "react-redux"
+import { Trigger } from "@illa-design/react"
 import { PanelBar } from "@/components/PanelBar"
 import {
   PanelConfig,
@@ -7,6 +9,7 @@ import {
 } from "@/page/App/components/InspectPanel/interface"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
+import { getGuideStatus } from "@/redux/guide/guideSelector"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,
@@ -23,6 +26,29 @@ export const renderFieldAndLabel = (
       parentAttrName={parentAttrName}
       displayName={displayName}
     />
+  )
+}
+
+export const renderGuideModeFieldAndLabel = (
+  config: PanelFieldConfig,
+  displayName: string,
+  isInList: boolean,
+  parentAttrName: string,
+) => {
+  const { id } = config
+  console.log("Trigger", id)
+  return (
+    <Trigger
+      popupVisible={true}
+      trigger={"hover"}
+      content={"1111"}
+      position="bottom"
+      colorScheme="techPurple"
+    >
+      <div>
+        {renderFieldAndLabel(config, displayName, isInList, parentAttrName)}
+      </div>
+    </Trigger>
   )
 }
 
@@ -67,6 +93,7 @@ export const renderField = (
   isInList: boolean = false,
   widgetProps: Record<string, any>,
 ) => {
+  const isOpen = useSelector(getGuideStatus)
   const canRender = canRenderField(
     item as PanelFieldConfig,
     displayName,
@@ -82,6 +109,14 @@ export const renderField = (
       widgetProps,
     )
   } else if ((item as PanelFieldConfig).setterType) {
+    if (isOpen) {
+      return renderGuideModeFieldAndLabel(
+        item as PanelFieldConfig,
+        displayName,
+        isInList,
+        "",
+      )
+    }
     return renderFieldAndLabel(
       item as PanelFieldConfig,
       displayName,

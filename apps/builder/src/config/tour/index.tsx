@@ -58,7 +58,7 @@ export const STEP: StepType[] = [
   },
 ]
 
-const guide = [
+export const guideConfig = [
   {
     // 0
     step: 0,
@@ -106,7 +106,7 @@ const guide = [
     step: 6,
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_2",
-    selector: ".button-event-add",
+    selector: "button-interaction-event-handler",
   },
   {
     step: 7,
