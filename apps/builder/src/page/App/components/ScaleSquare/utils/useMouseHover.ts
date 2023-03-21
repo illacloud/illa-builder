@@ -1,14 +1,23 @@
-import { MouseEvent, useCallback } from "react"
+import { MouseEvent, useCallback, useEffect } from "react"
 import { useDragDropManager } from "react-dnd"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { getHoveredComponents } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import store from "@/store"
 
 export const useMouseHover = () => {
-  const hoveredComponents = useSelector(getHoveredComponents)
   const dragDropManager = useDragDropManager()
   const isDragging = dragDropManager.getMonitor().isDragging()
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (isDragging) {
+      dispatch(configActions.updateHoveredComponent([]))
+    }
+    return () => {
+      dispatch(configActions.updateHoveredComponent([]))
+    }
+  }, [dispatch, isDragging])
 
   const handleMouseEnter = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -16,10 +25,15 @@ export const useMouseHover = () => {
       const currentDisplayName =
         e.currentTarget.getAttribute("data-displayname")
       if (!currentDisplayName) return
-      const newHoveredComponents = [...hoveredComponents, currentDisplayName]
+      const rootState = store.getState()
+      const hoveredComponents = getHoveredComponents(rootState)
+
+      const newHoveredComponents = Array.from(
+        new Set([...hoveredComponents, currentDisplayName]),
+      )
       dispatch(configActions.updateHoveredComponent(newHoveredComponents))
     },
-    [dispatch, hoveredComponents, isDragging],
+    [dispatch, isDragging],
   )
 
   const handleMouseLeave = useCallback(
@@ -27,13 +41,14 @@ export const useMouseHover = () => {
       const currentDisplayName =
         e.currentTarget.getAttribute("data-displayname")
       if (!currentDisplayName) return
-
+      const rootState = store.getState()
+      const hoveredComponents = getHoveredComponents(rootState)
       const newHoveredComponents = hoveredComponents.filter(
         (hDisplayName) => hDisplayName !== currentDisplayName,
       )
       dispatch(configActions.updateHoveredComponent(newHoveredComponents))
     },
-    [dispatch, hoveredComponents],
+    [dispatch],
   )
 
   return {

@@ -61,6 +61,21 @@ const getShadowStyle = (shadow?: "none" | "small" | "medium" | "large") => {
   }
 }
 
+const getWrapperBackgroundColor = (
+  widgetType?: string,
+  backgroundColor?: string,
+) => {
+  if (
+    widgetType === "CONTAINER_WIDGET" ||
+    widgetType === "LIST_WIDGET" ||
+    widgetType === "MODAL_WIDGET" ||
+    widgetType === "FORM_WIDGET"
+  ) {
+    return backgroundColor || "white"
+  }
+  return "transparent"
+}
+
 export const applyWrapperStylesStyle = (
   borderColor?: string,
   borderWidth?: string,
@@ -79,11 +94,7 @@ export const applyWrapperStylesStyle = (
     height: 100%;
     border: ${borderStyle};
     border-radius: ${radius};
-    background-color: ${widgetType === "CONTAINER_WIDGET" ||
-    widgetType === "LIST_WIDGET" ||
-    widgetType === "MODAL_WIDGET"
-      ? backgroundColor || "white"
-      : "transparent"};
+    background-color: ${getWrapperBackgroundColor(widgetType, backgroundColor)};
     box-shadow: ${shadowStyle};
     overflow-x: hidden;
   `

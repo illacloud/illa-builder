@@ -1200,7 +1200,9 @@
         "scale_type": "확대/축소 유형",
         "set_router": "라우팅 설정",
         "set_temporary_state": "임시 상태 설정",
-        "shadow": "그림자",
+        "shadow": {
+          "shadow": "그림자"
+        },
         "show_character_count": "문자 수 표시",
         "show_clear_button": "지우기 버튼 표시",
         "show_footer": "디스플레이 작동 영역",
@@ -1295,10 +1297,11 @@
         "choose_up_to": "Choose up to",
         "copy_to_clipboard": "Copy to clipboard",
         "file_download": {
-          "file_data": "File data",
-          "file_name": "File name with extension",
-          "file_type": "File type"
-        }
+          "file_data": "파일 데이터",
+          "file_name": "확장자가 있는 파일 이름",
+          "file_type": "파일 종류"
+        },
+        "action_name": "Action name"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1362,7 +1365,7 @@
           "data_source": "매핑된 평가를 사용하여 이미지 항목을 정의하는 데이터 소스입니다. 값 배열 또는 배열에 매핑된 키 개체를 사용합니다. 예: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . 작업에서 데이터를 사용할 수도 있습니다. 예: {{ mysql1.data }}"
         },
         "file_download": {
-          "file_data": "Support base64 data, raw data, mapped data of table. "
+          "file_data": "base64 데이터, 원시 데이터, 테이블의 매핑된 데이터 지원"
         }
       },
       "setter_option": {
@@ -1378,8 +1381,8 @@
           "collapsible_panel": "접을 수 있는 패널"
         },
         "file_download": {
-          "auto": "Auto",
-          "plain_text": "Plain text",
+          "auto": "방문 허용",
+          "plain_text": "일반 텍스트",
           "jpeg": "JPEG",
           "png": "PNG",
           "svg": "SVG",
@@ -1387,6 +1390,12 @@
           "csv": "CSV",
           "tsv": "TSV",
           "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "없음",
+          "large": "크게",
+          "medium": "보통",
+          "small": "작음"
         }
       },
       "setter_placeholder": {
@@ -2312,5 +2321,7 @@
         }
       }
     }
-  }
+  },
+  "oauth_redirect_title": "이동",
+  "oauth_redirect_description": "<0>ILLA Cloud(으)로 리디렉션 중..."
 }
