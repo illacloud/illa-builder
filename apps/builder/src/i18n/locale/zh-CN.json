@@ -1300,7 +1300,8 @@
           "file_data": "文件数据",
           "file_name": "带扩展名的文件名",
           "file_type": "文件类型"
-        }
+        },
+        "action_name": "Action name"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1414,7 +1415,7 @@
         "alt_text_mapped": "{{ item.alt_text }} ",
         "file_download": {
           "file_data": "{{ mysql1.data }}",
-          "file_name": "new_data.csv"
+          "file_name": "{{ new_data.csv }}"
         }
       },
       "setter_tootip": {
