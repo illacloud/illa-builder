@@ -91,6 +91,10 @@ export const Apis: ResourceDataItem[] = [
     isDraft: false,
   },
   {
+    resourceType: "googlesheet",
+    isDraft: false,
+  },
+  {
     resourceType: "huggingface",
     isDraft: false,
   },

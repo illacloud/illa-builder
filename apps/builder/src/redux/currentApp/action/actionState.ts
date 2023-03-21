@@ -90,6 +90,7 @@ export type ActionType =
   | "mariadb"
   | "tidb"
   | "smtp"
+  | "googlesheet"
   | "s3"
   | "transformer"
   | "appwrite"

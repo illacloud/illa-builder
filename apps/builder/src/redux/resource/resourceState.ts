@@ -3,6 +3,7 @@ import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import { CouchdbResource } from "@/redux/resource/couchdbResource"
 import { DynamoDBResource } from "@/redux/resource/dynamoResource"
 import { FirebaseResource } from "@/redux/resource/firebaseResource"
+import { GoogleSheetResource } from "@/redux/resource/googleSheetResource"
 import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
 import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoint"
 import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
@@ -40,6 +41,7 @@ export type ResourceType =
   | "mariadb"
   | "tidb"
   | "smtp"
+  | "googlesheet"
   | "s3"
   | "clickhouse"
   | "couchdb"
@@ -52,6 +54,7 @@ export type ResourceContent =
   | FirebaseResource
   | AppWriteResource
   | SMTPResource
+  | GoogleSheetResource
   | S3Resource
   | ElasticSearchResource
   | DynamoDBResource

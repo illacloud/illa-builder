@@ -55,6 +55,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "TiDB"
       case "smtp":
         return "SMTP"
+      case "googlesheet":
+        return "Google Sheets"
       case "huggingface":
         return "Hugging Face"
       case "hfendpoint":
@@ -71,6 +73,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "Amazon S3"
       case "transformer":
         return "Transformer"
+      case "googlesheet":
+        return "Google Sheets"
       default:
         return ""
     }
@@ -128,6 +132,8 @@ export function getResourceNameFromResourceType(
         return "TiDB"
       case "smtp":
         return "SMTP"
+      case "googlesheet":
+        return "Google Sheets"
       case "hfendpoint":
         return "Hugging Face"
       case "huggingface":
@@ -142,6 +148,8 @@ export function getResourceNameFromResourceType(
         return "Appwrite"
       case "couchdb":
         return "CouchDB"
+      case "googlesheet":
+        return "Google Sheets"
       default:
         return ""
     }
