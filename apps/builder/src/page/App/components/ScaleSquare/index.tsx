@@ -52,7 +52,6 @@ import { CopyManager } from "@/utils/copyManager"
 import {
   batchMergeLayoutInfoToComponent,
   endDragMultiNodes,
-  mergeLayoutInfoToComponent,
   startDragMultiNodes,
 } from "@/utils/drag/drag"
 import { FocusManager } from "@/utils/focusManager"
@@ -187,25 +186,30 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           componentNode.displayName,
           displayNameMapDepth,
         )
-        const firstParentNode =
-          executionResult[currentSelectedDisplayName[0]].$parentNode
-        const isSameParentNode = currentSelectedDisplayName.every(
-          (displayName) => {
-            const parentNode = executionResult[displayName].$parentNode
-            return parentNode === firstParentNode
-          },
-        )
-        if (!isSameParentNode) {
-          const lastParentNode =
-            executionResult[
-              currentSelectedDisplayName[currentSelectedDisplayName.length - 1]
-            ].$parentNode
-          currentSelectedDisplayName = currentSelectedDisplayName.filter(
+        if (currentSelectedDisplayName.length > 1) {
+          const firstParentNode =
+            executionResult[currentSelectedDisplayName[0]].$parentNode
+          const isSameParentNode = currentSelectedDisplayName.every(
             (displayName) => {
-              const currentParentNode = executionResult[displayName].$parentNode
-              return lastParentNode === currentParentNode
+              const parentNode = executionResult[displayName].$parentNode
+              return parentNode === firstParentNode
             },
           )
+          if (!isSameParentNode) {
+            const lastParentNode =
+              executionResult[
+                currentSelectedDisplayName[
+                  currentSelectedDisplayName.length - 1
+                ]
+              ].$parentNode
+            currentSelectedDisplayName = currentSelectedDisplayName.filter(
+              (displayName) => {
+                const currentParentNode =
+                  executionResult[displayName].$parentNode
+                return lastParentNode === currentParentNode
+              },
+            )
+          }
         }
 
         currentSelectedDisplayName = Array.from(
@@ -296,7 +300,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           widgetDisplayNameRelationMap,
         )
         if (
-          selectedComponents.length > 0 &&
+          selectedComponents.length > 1 &&
           (selectedComponents.includes(componentNode.displayName) ||
             !!relativeRelation)
         ) {
@@ -309,7 +313,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           )
         }
         let findDisplayName = componentNode.displayName
-        if (!!relativeRelation) {
+        if (!!relativeRelation && selectedComponents.length > 1) {
           findDisplayName = relativeRelation.parentNode
         }
         const mergedItem = childrenNodes.find((node) => {
