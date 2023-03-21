@@ -10,6 +10,10 @@ export const applyScaleContainerStyle = (isEditorMode: boolean) => {
     overflow: auto;
     flex: 1;
     position: relative;
+    ${isEditorMode &&
+    `* {
+      user-select: none;
+    }`}
   `
 }
 

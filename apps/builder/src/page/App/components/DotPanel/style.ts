@@ -104,6 +104,7 @@ export const borderLineStyle = css`
   width: 100%;
   height: 100%;
   border: 2px solid #f7f8fa;
+  pointer-events: none;
 `
 
 export const applyFreezePlaceholderShapeStyle = (
@@ -555,7 +556,34 @@ export const bodySectionWrapperStyle = css`
   height: var(--illa-canvas-body-height);
 `
 
-// leftRef.current.style.height = `${leftHeight}px`
-// leftRef.current.style.top = `${leftTop}px`
+export const selectoSelectionStyle = css`
+  > .selecto-selection {
+    position: absolute !important;
+    transform: translate(
+      var(--illa-select-area-left, 0),
+      var(--illa-select-area-top, 0)
+    ) !important;
+    width: var(--illa-select-area-width, 0) !important;
+    height: var(--illa-select-area-height, 0) !important;
+    background: rgba(101, 74, 236, 0.08) !important;
+    border: 1px solid ${getColor("techPurple", "01")} !important;
+  }
+`
 
-export const leftSectionWrapperStyle = css``
+export const applyMultiSelectedScaleSquareStyle = (
+  width: number,
+  height: number,
+  left: number,
+  top: number,
+) => {
+  return css`
+    position: absolute;
+    border: 1px dashed ${getColor("techPurple", "01")};
+    width: ${width}px;
+    height: ${height}px;
+    left: 0;
+    top: 0;
+    transform: translate(${left}px, ${top}px);
+    pointer-events: none;
+  `
+}

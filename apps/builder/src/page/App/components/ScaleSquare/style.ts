@@ -483,6 +483,7 @@ export const applyWrapperPendingStyle = (
   ${isLimitedModeAndOverLap && isSelected
     ? `border-bottom:unset !important`
     : ""}
+  ${isEditor && "cursor: move"}
 `
 
 export const applyDashedLineStyle = (
@@ -541,4 +542,9 @@ export const docTipsWrapperStyle = css`
   font-size: 14px;
   color: ${getColor("grayBlue", "02")};
   word-break: break-all;
+`
+
+export const hoverHotspotStyle = css`
+  width: 100%;
+  height: 100%;
 `

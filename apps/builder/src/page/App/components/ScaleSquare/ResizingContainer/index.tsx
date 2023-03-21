@@ -30,7 +30,7 @@ import { applyRNDWrapperStyle } from "./style"
 import { getEnableResizing, getResizeHandler } from "./utils"
 
 export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
-  const { unitW, unitH, componentNode, children } = props
+  const { unitW, unitH, componentNode, children, childrenNode } = props
 
   const { minW, minH } = componentNode
   const dispatch = useDispatch()
@@ -84,15 +84,20 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
         componentsActions.updateComponentLayoutInfoReducer({
           displayName: componentNode.displayName,
           layoutInfo: {},
+        }),
+      )
+      dispatch(
+        componentsActions.updateComponentStatusInfoReducer({
+          displayName: componentNode.displayName,
           statusInfo: {
             isResizing: true,
           },
         }),
       )
-      if (Array.isArray(componentNode.childrenNode)) {
+      if (Array.isArray(childrenNode)) {
         const mergedChildrenNode = batchMergeLayoutInfoToComponent(
           executionResult,
-          componentNode.childrenNode,
+          childrenNode,
         )
         childNodesRef.current = cloneDeep(mergedChildrenNode)
       } else {
@@ -100,12 +105,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       }
       dispatch(configActions.updateShowDot(true))
     },
-    [
-      componentNode.childrenNode,
-      componentNode.displayName,
-      dispatch,
-      executionResult,
-    ],
+    [childrenNode, componentNode.displayName, dispatch, executionResult],
   )
 
   const handleResize: RndResizeCallback = useCallback(
@@ -127,7 +127,6 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
         (node) => node.displayName === newItem.displayName,
       )
       const allChildrenNodes = [...childNodesRef.current]
-
       allChildrenNodes.splice(indexOfChildren, 1, newItem)
       const { finalState } = getReflowResult(newItem, allChildrenNodes)
       const updateSlice = finalState.map((componentNode) => {
@@ -176,11 +175,16 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
             w: finalWidth,
             h: finalHeight,
           },
-          statusInfo: {
-            isResizing: false,
-          },
           options: {
             parentNode: componentNode.parentNode as string,
+          },
+        }),
+      )
+      dispatch(
+        componentsActions.updateComponentStatusInfoReducer({
+          displayName: componentNode.displayName,
+          statusInfo: {
+            isResizing: false,
           },
         }),
       )

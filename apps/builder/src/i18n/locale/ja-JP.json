@@ -1200,7 +1200,9 @@
         "scale_type": "ズームタイプ",
         "set_router": "ルーティングを設定する",
         "set_temporary_state": "一時的な状態を設定",
-        "shadow": "影の多い",
+        "shadow": {
+          "shadow": "影"
+        },
         "show_character_count": "文字数表示",
         "show_clear_button": "クリアボタンを表示",
         "show_footer": "表示操作エリア",
@@ -1295,10 +1297,11 @@
         "choose_up_to": "Choose up to",
         "copy_to_clipboard": "クリップボードにコピー",
         "file_download": {
-          "file_data": "File data",
-          "file_name": "File name with extension",
-          "file_type": "File type"
-        }
+          "file_data": "ファイルデータ",
+          "file_name": "拡張子を含まないファイル名",
+          "file_type": "ファイルの種類"
+        },
+        "action_name": "Action name"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1362,7 +1365,7 @@
           "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}"
         },
         "file_download": {
-          "file_data": "Support base64 data, raw data, mapped data of table. "
+          "file_data": "テーブルの base64 データ、生データ、マップされたデータをサポートします"
         }
       },
       "setter_option": {
@@ -1378,8 +1381,8 @@
           "collapsible_panel": "折りたたみ式パネル"
         },
         "file_download": {
-          "auto": "Auto",
-          "plain_text": "Plain text",
+          "auto": "自動",
+          "plain_text": "プレーンテキスト",
           "jpeg": "JPEG",
           "png": "PNG",
           "svg": "SVG",
@@ -1387,6 +1390,12 @@
           "csv": "CSV",
           "tsv": "TSV",
           "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "なし",
+          "large": "大型",
+          "medium": "中型",
+          "small": "小型"
         }
       },
       "setter_placeholder": {
@@ -2312,5 +2321,7 @@
         }
       }
     }
-  }
+  },
+  "oauth_redirect_title": "이동",
+  "oauth_redirect_description": "<0>ILLA Cloud にリダイレクトしています..."
 }
