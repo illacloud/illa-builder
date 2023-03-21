@@ -254,7 +254,7 @@ const downloadFileFromURL = async (
       url: data,
       method: "GET",
     })
-    await downloadFileFromEventHandler(contentType, fileDownloadName, res.data)
+    downloadFileFromEventHandler(contentType, fileDownloadName, res.data)
     return
   } catch (e) {
     message.error({
