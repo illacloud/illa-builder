@@ -37,6 +37,7 @@ export default defineConfig((props) => {
     define: {
       "import.meta.env.ILLA_APP_VERSION": JSON.stringify(versionConfig.version),
       "import.meta.env.ILLA_BUILDER_ENV": JSON.stringify(env.ILLA_BUILDER_ENV),
+      "import.meta.env.ILLA_GOOGLE_MAP_KEY": JSON.stringify(env.ILLA_GOOGLE_MAP_KEY),
     },
     build: {
       sourcemap: true,
