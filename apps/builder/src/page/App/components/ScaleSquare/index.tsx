@@ -91,6 +91,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     containerHeight,
     collisionEffect,
     blockColumns,
+    childrenNode,
   } = props
 
   const shortcut = useContext(ShortCutContext)
@@ -364,6 +365,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       unitW={unitW}
       unitH={unitH}
       componentNode={componentNode}
+      childrenNode={childrenNode}
     >
       <div
         css={hoverHotspotStyle}
