@@ -1300,7 +1300,8 @@
           "file_data": "文件数据",
           "file_name": "带扩展名的文件名",
           "file_type": "文件类型"
-        }
+        },
+        "action_name": "Action name"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2320,5 +2321,7 @@
         }
       }
     }
-  }
+  },
+  "oauth_redirect_title": "重定向",
+  "oauth_redirect_description": "正在重定向到<0>ILLA Cloud<0>"
 }

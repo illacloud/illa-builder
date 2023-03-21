@@ -38,6 +38,7 @@ export const DragPreview: FC<DragPreviewProps> = (props) => {
   const dragDropManager = useDragDropManager()
   const monitor = dragDropManager.getMonitor()
   const dragItemInfo = dragDropManager.getMonitor().getItem() as DragInfo
+  if (!dragItemInfo) return null
   const { item, currentColumnNumber, draggedSelectedComponents } = dragItemInfo
 
   const containerClientRect = containerRef.current?.getBoundingClientRect()

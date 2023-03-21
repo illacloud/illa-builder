@@ -551,7 +551,19 @@ export const getShowWidgetNameParentMap = createSelector(
         editorScaleSquareNodeRelationMap[key] = {
           ...editorScaleSquareNodeRelationMap[key],
           parentNode: findPrevTargetNode(parentNode, relationMap),
+          childrenNode: [],
         }
+      }
+    })
+    Object.keys(editorScaleSquareNodeRelationMap).forEach((key) => {
+      const currentNode = editorScaleSquareNodeRelationMap[key]
+      if (
+        currentNode.parentNode &&
+        editorScaleSquareNodeRelationMap[currentNode.parentNode]
+      ) {
+        editorScaleSquareNodeRelationMap[
+          currentNode.parentNode
+        ].childrenNode.push(key)
       }
     })
     return editorScaleSquareNodeRelationMap
