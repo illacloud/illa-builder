@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder</a> </h1>
-<h3 align="center"> ⚠ Note: This is a Beta Version ⚠</h3>
+
 <p align="center">ILLA is a robust open source low-code platform for developers to build internal tools. By using ILLA's library of Components and Actions, developers can save massive amounts of time on building tools. </p>
 
 <div align="center">
@@ -32,14 +32,14 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
 
 
 ## 🚀Get Started
-To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/), which is currently in beta testing. To obtain a beta tester invitation code, please fill out this [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) and provide as much information as possible. We will review your submission within two business days and contact you as soon as possible.
+To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/). To obtain an invitation code, please fill out this [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) and provide as much information as possible. We will review your submission within two business days and contact you as soon as possible.
 To expedite the review process, we invite you to join our [Discord Community](https://discord.gg/illacloud), where you can obtain an invitation code faster.
 
 You can also deploy and [self-host](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manually(Docker, docker-compose, and k8s).
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
-  <a href="https://cloud.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/ILLACLOUD.png" height=120 />
+  <a href="https://cloud.illacloud.com/"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 
 
@@ -96,7 +96,6 @@ Deploy your app and self host it.
   </a>
 </p>
 
-**❗ ILLA Cloud is still in the beta testing phase. If you encounter any problems, please feel free to contact us. We will investigate and respond ASAP.**
 
 ## 💬 Community
 
