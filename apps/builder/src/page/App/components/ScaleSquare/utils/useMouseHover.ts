@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback } from "react"
+import { MouseEvent, useCallback, useEffect } from "react"
 import { useDragDropManager } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import { getHoveredComponents } from "@/redux/config/configSelector"
@@ -9,6 +9,15 @@ export const useMouseHover = () => {
   const dragDropManager = useDragDropManager()
   const isDragging = dragDropManager.getMonitor().isDragging()
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (isDragging) {
+      dispatch(configActions.updateHoveredComponent([]))
+    }
+    return () => {
+      dispatch(configActions.updateHoveredComponent([]))
+    }
+  }, [dispatch, isDragging])
 
   const handleMouseEnter = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
