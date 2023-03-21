@@ -1300,7 +1300,8 @@
           "file_data": "파일 데이터",
           "file_name": "확장자가 있는 파일 이름",
           "file_type": "파일 종류"
-        }
+        },
+        "action_name": "Action name"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1414,7 +1415,7 @@
         "alt_text_mapped": "{{ item.alt_text }} ",
         "file_download": {
           "file_data": "{{ mysql1.data }}",
-          "file_name": "new_data.csv"
+          "file_name": "{{ new_data.csv }}"
         }
       },
       "setter_tootip": {
