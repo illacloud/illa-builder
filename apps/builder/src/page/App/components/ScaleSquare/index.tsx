@@ -215,6 +215,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       componentsAttachedUsers,
       dispatch,
       displayNameMapDepth,
+      executionResult,
       isEditMode,
       selectedComponents,
       widgetDisplayNameRelationMap,

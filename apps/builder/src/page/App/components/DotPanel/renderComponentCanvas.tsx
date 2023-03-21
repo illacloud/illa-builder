@@ -60,6 +60,7 @@ import {
   getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import store from "@/store"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
@@ -641,45 +642,50 @@ export const RenderComponentCanvas: FC<{
   )
 
   const componentTree = useMemo(() => {
-    const childrenNode = componentNode.childrenNode
-    return childrenNode?.map((item) => {
-      const containerHeight =
-        componentNode.displayName === "root"
-          ? rowNumber * UNIT_HEIGHT
-          : (componentNode.h - 1) * UNIT_HEIGHT
-      switch (item.containerType) {
-        case "EDITOR_DOT_PANEL":
-          return (
-            <BasicContainer
-              componentNode={item}
-              key={item.displayName}
-              canResizeY={canResizeY}
-              minHeight={minHeight}
-              safeRowNumber={safeRowNumber}
-              addedRowNumber={addedRowNumber}
-              blockColumns={blockColumns}
-            />
-          )
-        case "EDITOR_SCALE_SQUARE":
-          const widget = widgetBuilder(item.type)
-          if (!widget) return null
-          return (
-            <ScaleSquare
-              key={item.displayName}
-              componentNode={item}
-              unitW={unitWidth}
-              unitH={UNIT_HEIGHT}
-              containerHeight={containerHeight}
-              containerPadding={containerPadding}
-              childrenNode={componentNode.childrenNode}
-              collisionEffect={collisionEffect}
-              blockColumns={blockColumns}
-            />
-          )
-        default:
-          return null
-      }
-    })
+    const componentNodes = batchMergeLayoutInfoToComponent(
+      widgetExecutionResult,
+      componentNode.childrenNode ?? [],
+    )
+    return componentNodes
+      .sort((a, b) => (a.y > b.y ? 1 : -1))
+      .map((item) => {
+        const containerHeight =
+          componentNode.displayName === "root"
+            ? rowNumber * UNIT_HEIGHT
+            : (componentNode.h - 1) * UNIT_HEIGHT
+        switch (item.containerType) {
+          case "EDITOR_DOT_PANEL":
+            return (
+              <BasicContainer
+                componentNode={item}
+                key={item.displayName}
+                canResizeY={canResizeY}
+                minHeight={minHeight}
+                safeRowNumber={safeRowNumber}
+                addedRowNumber={addedRowNumber}
+                blockColumns={blockColumns}
+              />
+            )
+          case "EDITOR_SCALE_SQUARE":
+            const widget = widgetBuilder(item.type)
+            if (!widget) return null
+            return (
+              <ScaleSquare
+                key={item.displayName}
+                componentNode={item}
+                unitW={unitWidth}
+                unitH={UNIT_HEIGHT}
+                containerHeight={containerHeight}
+                containerPadding={containerPadding}
+                childrenNode={componentNode.childrenNode}
+                collisionEffect={collisionEffect}
+                blockColumns={blockColumns}
+              />
+            )
+          default:
+            return null
+        }
+      })
   }, [
     addedRowNumber,
     blockColumns,
@@ -693,6 +699,7 @@ export const RenderComponentCanvas: FC<{
     rowNumber,
     safeRowNumber,
     unitWidth,
+    widgetExecutionResult,
   ])
 
   const maxY = useMemo(() => {
