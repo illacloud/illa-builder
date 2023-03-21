@@ -132,6 +132,16 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setEndOfRange",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-markers`,
+        labelName: i18n.t("editor.inspect.setter_label.map.markers"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.map.markers"),
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        expectedType: VALIDATION_TYPES.ARRAY,
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setMarkers",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-selectValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         placeholder: i18n.t(
