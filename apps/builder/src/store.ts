@@ -18,6 +18,7 @@ import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSl
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
+import guideReducer from "@/redux/guide/guideSlice"
 import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import teamReducer from "@/redux/team/teamSlice"
@@ -57,6 +58,7 @@ const store = configureStore({
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
     team: teamReducer,
+    guide: guideReducer,
   },
   devTools: import.meta.env.DEV,
   middleware: (getDefaultMiddleware) =>

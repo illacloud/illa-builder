@@ -25,7 +25,7 @@ export const STEP: StepType[] = [
     styles: {
       popover: (base: any) => ({
         ...base,
-        display: "none",
+        // display: "none",
       }),
       maskWrapper: (base: any) => ({
         ...base,
@@ -50,10 +50,86 @@ export const STEP: StepType[] = [
         // y: props.y + 10,
       }),
     },
-    selector: ".app-editor",
-    content: "",
+    selector: ".button4-text",
+    content: "22222",
     // disableActions: true,
     action: (elem) => {},
     actionAfter: () => {},
+  },
+]
+
+const guide = [
+  {
+    // 0
+    step: 0,
+    titleKey: "editor.tutorial.panel.onboarding_app.drag_title",
+    descKey: "editor.tutorial.panel.onboarding_app.drag_input",
+  },
+  {
+    // 1
+    step: 1,
+    titleKey: "editor.tutorial.panel.onboarding_app.modify_action_title",
+    descKey:
+      "editor.tutorial.panel.onboarding_app.modify_action_description_modify",
+    selector: ".mysql-value",
+  },
+  {
+    step: 2,
+    titleKey: "editor.tutorial.panel.onboarding_app.modify_action_title",
+    descKey:
+      "editor.tutorial.panel.onboarding_app.modify_action_description_click",
+    selector: ".mysql-save",
+  },
+  {
+    // 2
+    step: 3,
+    titleKey: "editor.tutorial.panel.onboarding_app.display_data_title",
+    descKey:
+      "editor.tutorial.panel.onboarding_app.display_data_description_select",
+    selector: ".table-iframe",
+  },
+  {
+    step: 4,
+    titleKey: "editor.tutorial.panel.onboarding_app.display_data_title",
+    descKey:
+      "editor.tutorial.panel.onboarding_app.display_data_description_modify",
+    selector: ".table-dataSource",
+  },
+  {
+    // 3
+    step: 5,
+    titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
+    descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_1",
+    selector: ".button-iframe",
+  },
+  {
+    step: 6,
+    titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
+    descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_2",
+    selector: ".button-event-add",
+  },
+  {
+    step: 7,
+    titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
+    descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_3",
+    selector: ".button-event-0",
+  },
+  {
+    step: 8,
+    titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
+    descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_4",
+    selector: ".button-event-trigger-action",
+  },
+  {
+    step: 9,
+    titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
+    descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_5",
+    selector: ".button-event-query",
+  },
+  {
+    // 4
+    step: 10,
+    titleKey: "editor.tutorial.panel.onboarding_app.test_it_title",
+    descKey: "editor.tutorial.panel.onboarding_app.test_it_description",
   },
 ]

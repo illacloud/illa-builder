@@ -1,10 +1,11 @@
 import { Global } from "@emotion/react"
-import { Popover } from "@reactour/popover"
 import { useTour } from "@reactour/tour"
 import { motion } from "framer-motion"
 import { FC, HTMLAttributes } from "react"
+import { useSelector } from "react-redux"
 import { Button } from "@illa-design/react"
 import { applyGuideStyle, stepMaskStyle } from "@/components/Guide/style"
+import { getCurrentStep } from "@/redux/guide/guideSelector"
 
 const getElementPosition = (element: HTMLElement) => {
   const { top, left, width, height } = element.getBoundingClientRect()
@@ -31,7 +32,8 @@ export const StepMask: FC<StepMaskProps> = (props) => {
 }
 
 export const Guide: FC = () => {
-  const { setIsOpen, isOpen, currentStep } = useTour()
+  const { setIsOpen, isOpen } = useTour()
+  const currentStep = useSelector(getCurrentStep)
 
   return (
     <>

@@ -38,6 +38,8 @@ import { collaboratorsActions } from "@/redux/currentApp/collaborators/collabora
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getCurrentStep, getGuideStatus } from "@/redux/guide/guideSelector"
+import { guideActions } from "@/redux/guide/guideSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
@@ -158,15 +160,14 @@ export const Editor: FC = () => {
     wsStatus === ILLA_WEBSOCKET_STATUS.INIT ||
     wsStatus === ILLA_WEBSOCKET_STATUS.CONNECTING
 
-  const { setIsOpen, isOpen } = useTour()
-
+  const isOpen = useSelector(getGuideStatus)
   useEffect(() => {
     if (!combinLoadingState) {
-      setIsOpen(true)
+      dispatch(guideActions.updateGuideStatusReducer(true))
     }
 
     return () => {
-      setIsOpen(false)
+      dispatch(guideActions.updateGuideStatusReducer(false))
     }
   }, [combinLoadingState])
 
