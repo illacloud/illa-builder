@@ -1813,7 +1813,7 @@ packages:
       to-fast-properties: 2.0.0
 
   /@cfcs/core/0.0.6:
-    resolution: {integrity: sha512-FxfJMwoLB8MEMConeXUCqtMGqxdtePQxRBOiGip9ULcYYam3WfCgoY6xdnMaSkYvRvmosp5iuG+TiPofm65+Pw==}
+    resolution: {integrity: sha512-FxfJMwoLB8MEMConeXUCqtMGqxdtePQxRBOiGip9ULcYYam3WfCgoY6xdnMaSkYvRvmosp5iuG+TiPofm65+Pw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@cfcs/core/-/core-0.0.6.tgz}
     dependencies:
       '@egjs/component': 3.0.4
     dev: false
@@ -2435,22 +2435,22 @@ packages:
       - supports-color
     dev: true
 
-  /@daybrush/utils/1.10.3:
-    resolution: {integrity: sha512-wLdO+AxqzexDvfp5EghgEPYlEY0TmjOqzXc+CAGvNnuZdn5DTrv0kAIpzNjCK/i+Xtjer0gw1FP7O+WfacTgYA==}
+  /@daybrush/utils/1.10.2:
+    resolution: {integrity: sha512-fNMWeGUDokdIpebU8oIBUXkyGYITCwwodBfgx277p8d+kvI+k9wdFtKtdY4mvbWxhbAwuWprtVDq8My3KQ24Dg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@daybrush/utils/-/utils-1.10.2.tgz}
     dev: false
 
   /@egjs/children-differ/1.0.1:
-    resolution: {integrity: sha512-DRvyqMf+CPCOzAopQKHtW+X8iN6Hy6SFol+/7zCUiE5y4P/OB8JP8FtU4NxtZwtafvSL4faD5KoQYPj3JHzPFQ==}
+    resolution: {integrity: sha512-DRvyqMf+CPCOzAopQKHtW+X8iN6Hy6SFol+/7zCUiE5y4P/OB8JP8FtU4NxtZwtafvSL4faD5KoQYPj3JHzPFQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@egjs/children-differ/-/children-differ-1.0.1.tgz}
     dependencies:
       '@egjs/list-differ': 1.0.0
     dev: false
 
   /@egjs/component/3.0.4:
-    resolution: {integrity: sha512-sXA7bGbIeLF2OAw/vpka66c6QBBUPcA4UUhR4WGJfnp2XWdiI8QrnJGJMr/UxpE/xnevX9tN3jvNPlW8WkHl3g==}
+    resolution: {integrity: sha512-sXA7bGbIeLF2OAw/vpka66c6QBBUPcA4UUhR4WGJfnp2XWdiI8QrnJGJMr/UxpE/xnevX9tN3jvNPlW8WkHl3g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@egjs/component/-/component-3.0.4.tgz}
     dev: false
 
   /@egjs/list-differ/1.0.0:
-    resolution: {integrity: sha512-HsbMKc0ZAQH+EUeCmI/2PvTYSybmkaWwakU8QGDYYgMVIg9BQ5sM0A0Nnombjxo2+JzXHxmH+jw//yGX+y6GYw==}
+    resolution: {integrity: sha512-HsbMKc0ZAQH+EUeCmI/2PvTYSybmkaWwakU8QGDYYgMVIg9BQ5sM0A0Nnombjxo2+JzXHxmH+jw//yGX+y6GYw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@egjs/list-differ/-/list-differ-1.0.0.tgz}
     dev: false
 
   /@emotion/babel-plugin/11.10.5:
@@ -3087,11 +3087,11 @@ packages:
     dev: true
 
   /@react-dnd/asap/5.0.2:
-    resolution: {integrity: sha512-WLyfoHvxhs0V9U+GTsGilGgf2QsPl6ZZ44fnv0/b8T3nQyvzxidxsg/ZltbWssbsRDlYW8UKSQMTGotuTotZ6A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@react-dnd/asap/-/asap-5.0.2.tgz}
+    resolution: {integrity: sha512-WLyfoHvxhs0V9U+GTsGilGgf2QsPl6ZZ44fnv0/b8T3nQyvzxidxsg/ZltbWssbsRDlYW8UKSQMTGotuTotZ6A==}
     dev: false
 
   /@react-dnd/invariant/4.0.2:
-    resolution: {integrity: sha512-xKCTqAK/FFauOM9Ta2pswIyT3D8AQlfrYdOi/toTPEhqCuAs1v5tcJ3Y08Izh1cJ5Jchwy9SeAXmMg6zrKs2iw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@react-dnd/invariant/-/invariant-4.0.2.tgz}
+    resolution: {integrity: sha512-xKCTqAK/FFauOM9Ta2pswIyT3D8AQlfrYdOi/toTPEhqCuAs1v5tcJ3Y08Izh1cJ5Jchwy9SeAXmMg6zrKs2iw==}
     dev: false
 
   /@react-dnd/shallowequal/4.0.2:
@@ -3153,22 +3153,22 @@ packages:
     dev: true
 
   /@scena/dragscroll/1.4.0:
-    resolution: {integrity: sha512-3O8daaZD9VXA9CP3dra6xcgt/qrm0mg0xJCwiX6druCteQ9FFsXffkF8PrqxY4Z4VJ58fFKEa0RlKqbsi/XnRA==}
+    resolution: {integrity: sha512-3O8daaZD9VXA9CP3dra6xcgt/qrm0mg0xJCwiX6druCteQ9FFsXffkF8PrqxY4Z4VJ58fFKEa0RlKqbsi/XnRA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@scena/dragscroll/-/dragscroll-1.4.0.tgz}
     dependencies:
-      '@daybrush/utils': 1.10.3
+      '@daybrush/utils': 1.10.2
       '@scena/event-emitter': 1.0.5
     dev: false
 
   /@scena/event-emitter/1.0.5:
-    resolution: {integrity: sha512-AzY4OTb0+7ynefmWFQ6hxDdk0CySAq/D4efljfhtRHCOP7MBF9zUfhKG3TJiroVjASqVgkRJFdenS8ArZo6Olg==}
+    resolution: {integrity: sha512-AzY4OTb0+7ynefmWFQ6hxDdk0CySAq/D4efljfhtRHCOP7MBF9zUfhKG3TJiroVjASqVgkRJFdenS8ArZo6Olg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@scena/event-emitter/-/event-emitter-1.0.5.tgz}
     dependencies:
-      '@daybrush/utils': 1.10.3
+      '@daybrush/utils': 1.10.2
     dev: false
 
   /@scena/matrix/1.1.1:
-    resolution: {integrity: sha512-JVKBhN0tm2Srl+Yt+Ywqu0oLgLcdemDQlD1OxmN9jaCTwaFPZ7tY8n6dhVgMEaR9qcR7r+kAlMXnSfNyYdE+Vg==}
+    resolution: {integrity: sha512-JVKBhN0tm2Srl+Yt+Ywqu0oLgLcdemDQlD1OxmN9jaCTwaFPZ7tY8n6dhVgMEaR9qcR7r+kAlMXnSfNyYdE+Vg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@scena/matrix/-/matrix-1.1.1.tgz}
     dependencies:
-      '@daybrush/utils': 1.10.3
+      '@daybrush/utils': 1.10.2
     dev: false
 
   /@sentry/browser/7.37.0:
@@ -5028,16 +5028,16 @@ packages:
     dev: false
 
   /css-styled/1.0.1:
-    resolution: {integrity: sha512-psJCbNDPPusDBWH/gszP6BetPh577QaqpvaysTNPitxX0nxdGiTgELiOCus0gZ0yXk3gvjShBrFP07nvn58/TQ==}
+    resolution: {integrity: sha512-psJCbNDPPusDBWH/gszP6BetPh577QaqpvaysTNPitxX0nxdGiTgELiOCus0gZ0yXk3gvjShBrFP07nvn58/TQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/css-styled/-/css-styled-1.0.1.tgz}
     dependencies:
-      '@daybrush/utils': 1.10.3
+      '@daybrush/utils': 1.10.2
       string-hash: 1.1.3
     dev: false
 
   /css-to-mat/1.0.3:
-    resolution: {integrity: sha512-HADRhVqPc8wFqEp6ClK+uuPYg+FMBinNo2ReLyI/KQCncmHPJ60o5zldyJG7NjsTqXWbdfGJO51jnoxfMvWJiA==}
+    resolution: {integrity: sha512-HADRhVqPc8wFqEp6ClK+uuPYg+FMBinNo2ReLyI/KQCncmHPJ60o5zldyJG7NjsTqXWbdfGJO51jnoxfMvWJiA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/css-to-mat/-/css-to-mat-1.0.3.tgz}
     dependencies:
-      '@daybrush/utils': 1.10.3
+      '@daybrush/utils': 1.10.2
       '@scena/matrix': 1.1.1
     dev: false
 
@@ -5324,7 +5324,7 @@ packages:
     dev: true
 
   /dnd-core/16.0.1:
-    resolution: {integrity: sha512-HK294sl7tbw6F6IeuK16YSBUoorvHpY8RHO+9yFfaJyCDVb6n7PRcezrOEOa2SBCqiYpemh5Jx20ZcjKdFAVng==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/dnd-core/-/dnd-core-16.0.1.tgz}
+    resolution: {integrity: sha512-HK294sl7tbw6F6IeuK16YSBUoorvHpY8RHO+9yFfaJyCDVb6n7PRcezrOEOa2SBCqiYpemh5Jx20ZcjKdFAVng==}
     dependencies:
       '@react-dnd/asap': 5.0.2
       '@react-dnd/invariant': 4.0.2
@@ -6276,7 +6276,7 @@ packages:
     dev: false
 
   /framework-utils/1.1.0:
-    resolution: {integrity: sha512-KAfqli5PwpFJ8o3psRNs8svpMGyCSAe8nmGcjQ0zZBWN2H6dZDnq+ABp3N3hdUmFeMrLtjOCTXD4yplUJIWceg==}
+    resolution: {integrity: sha512-KAfqli5PwpFJ8o3psRNs8svpMGyCSAe8nmGcjQ0zZBWN2H6dZDnq+ABp3N3hdUmFeMrLtjOCTXD4yplUJIWceg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/framework-utils/-/framework-utils-1.1.0.tgz}
     dev: false
 
   /fromentries/1.3.2:
@@ -6363,9 +6363,9 @@ packages:
     dev: true
 
   /gesto/1.15.1:
-    resolution: {integrity: sha512-mqdBeVeYpymupHojEEyH33u0KvL/hbG6gKbqoQKoR7aeWrN82CIXYZkAo4Ie81PUhxS5HNDdmJVcSzqOpPm0JQ==}
+    resolution: {integrity: sha512-mqdBeVeYpymupHojEEyH33u0KvL/hbG6gKbqoQKoR7aeWrN82CIXYZkAo4Ie81PUhxS5HNDdmJVcSzqOpPm0JQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/gesto/-/gesto-1.15.1.tgz}
     dependencies:
-      '@daybrush/utils': 1.10.3
+      '@daybrush/utils': 1.10.2
       '@scena/event-emitter': 1.0.5
     dev: false
 
@@ -7332,14 +7332,14 @@ packages:
     dev: true
 
   /keycode/2.2.1:
-    resolution: {integrity: sha512-Rdgz9Hl9Iv4QKi8b0OlCRQEzp4AgVxyCtz5S/+VIHezDmrDhkp2N2TqBWOLz0/gbeREXOOiI9/4b8BY9uw2vFg==}
+    resolution: {integrity: sha512-Rdgz9Hl9Iv4QKi8b0OlCRQEzp4AgVxyCtz5S/+VIHezDmrDhkp2N2TqBWOLz0/gbeREXOOiI9/4b8BY9uw2vFg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/keycode/-/keycode-2.2.1.tgz}
     dev: false
 
   /keycon/1.4.0:
-    resolution: {integrity: sha512-p1NAIxiRMH3jYfTeXRs2uWbVJ1WpEjpi8ktzUyBJsX7/wn2qu2VRXktneBLNtKNxJmlUYxRi9gOJt1DuthXR7A==}
+    resolution: {integrity: sha512-p1NAIxiRMH3jYfTeXRs2uWbVJ1WpEjpi8ktzUyBJsX7/wn2qu2VRXktneBLNtKNxJmlUYxRi9gOJt1DuthXR7A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/keycon/-/keycon-1.4.0.tgz}
     dependencies:
       '@cfcs/core': 0.0.6
-      '@daybrush/utils': 1.10.3
+      '@daybrush/utils': 1.10.2
       '@scena/event-emitter': 1.0.5
       keycode: 2.2.1
     dev: false
@@ -8555,9 +8555,9 @@ packages:
     dev: true
 
   /overlap-area/1.1.0:
-    resolution: {integrity: sha512-3dlJgJCaVeXH0/eZjYVJvQiLVVrPO4U1ZGqlATtx6QGO3b5eNM6+JgUKa7oStBTdYuGTk7gVoABCW6Tp+dhRdw==}
+    resolution: {integrity: sha512-3dlJgJCaVeXH0/eZjYVJvQiLVVrPO4U1ZGqlATtx6QGO3b5eNM6+JgUKa7oStBTdYuGTk7gVoABCW6Tp+dhRdw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/overlap-area/-/overlap-area-1.1.0.tgz}
     dependencies:
-      '@daybrush/utils': 1.10.3
+      '@daybrush/utils': 1.10.2
     dev: false
 
   /p-filter/2.1.0:
@@ -9274,7 +9274,7 @@ packages:
     dev: false
 
   /react-selecto/1.22.0:
-    resolution: {integrity: sha512-LJJoA9sbpUTlZSKNgYoxcm3CNgim9fVQHb/hwpS8N3F2sqmZMTsKd/YeoNYdFYVkIZsMctEbTJk3saS/IY8e9w==}
+    resolution: {integrity: sha512-LJJoA9sbpUTlZSKNgYoxcm3CNgim9fVQHb/hwpS8N3F2sqmZMTsKd/YeoNYdFYVkIZsMctEbTJk3saS/IY8e9w==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/react-selecto/-/react-selecto-1.22.0.tgz}
     dependencies:
       selecto: 1.22.0
     dev: false
@@ -9707,9 +9707,9 @@ packages:
     dev: false
 
   /selecto/1.22.0:
-    resolution: {integrity: sha512-R3Ih5KGswqoX56sEw3TB0XMDylO4YekUFc8GIceC+tAM5RZ54360U/x4vPsnzi4BijO5z3sofAjRKygWrF21UQ==}
+    resolution: {integrity: sha512-R3Ih5KGswqoX56sEw3TB0XMDylO4YekUFc8GIceC+tAM5RZ54360U/x4vPsnzi4BijO5z3sofAjRKygWrF21UQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/selecto/-/selecto-1.22.0.tgz}
     dependencies:
-      '@daybrush/utils': 1.10.3
+      '@daybrush/utils': 1.10.2
       '@egjs/children-differ': 1.0.1
       '@scena/dragscroll': 1.4.0
       '@scena/event-emitter': 1.0.5
@@ -9998,7 +9998,7 @@ packages:
     dev: false
 
   /string-hash/1.1.3:
-    resolution: {integrity: sha512-kJUvRUFK49aub+a7T1nNE66EJbZBMnBgoC1UbCZ5n6bsZKBRga4KgBRTMn/pFkeCZSYtNeSyMxPDM0AXWELk2A==}
+    resolution: {integrity: sha512-kJUvRUFK49aub+a7T1nNE66EJbZBMnBgoC1UbCZ5n6bsZKBRga4KgBRTMn/pFkeCZSYtNeSyMxPDM0AXWELk2A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/string-hash/-/string-hash-1.1.3.tgz}
     dev: false
 
   /string-width/4.2.3:
@@ -10454,7 +10454,7 @@ packages:
     optional: true
 
   /turbo/1.8.3:
-    resolution: {integrity: sha512-zGrkU1EuNFmkq6iky6LcMqD4h0OLE8XysVFxQWRIZbcTNnf0XAycbsbeEyiJpiWeqb7qtg2bVuY9EYcNoNhVuQ==}
+    resolution: {integrity: sha512-zGrkU1EuNFmkq6iky6LcMqD4h0OLE8XysVFxQWRIZbcTNnf0XAycbsbeEyiJpiWeqb7qtg2bVuY9EYcNoNhVuQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/turbo/-/turbo-1.8.3.tgz}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
