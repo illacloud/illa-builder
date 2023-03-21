@@ -35,6 +35,7 @@ import {
 } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import {
+  RelationMap,
   getComponentDisplayNameMapDepth,
   getFlattenArrayComponentNodes,
   getShowWidgetNameParentMap,
@@ -51,7 +52,6 @@ import { CopyManager } from "@/utils/copyManager"
 import {
   batchMergeLayoutInfoToComponent,
   endDragMultiNodes,
-  mergeLayoutInfoToComponent,
   startDragMultiNodes,
 } from "@/utils/drag/drag"
 import { FocusManager } from "@/utils/focusManager"
@@ -64,6 +64,24 @@ import { getRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
 import { useDisplayNameInMoveBarSelector } from "./utils/useGetDisplayNameInMoveBar"
 import { useMouseHover } from "./utils/useMouseHover"
 
+const getRelativeRelation = (
+  selectedComponents: string[],
+  currentDisplayName: string,
+  relationMap: RelationMap,
+): { parentNode: string; childrenNode: string[]; containerType: string } => {
+  const relation = relationMap[currentDisplayName]
+  if (!relation) return relation
+
+  if (!selectedComponents.includes(relation.parentNode)) {
+    return getRelativeRelation(
+      selectedComponents,
+      relation.parentNode,
+      relationMap,
+    )
+  }
+  return relation
+}
+
 export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const {
     componentNode,
@@ -73,6 +91,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     containerHeight,
     collisionEffect,
     blockColumns,
+    childrenNode,
   } = props
 
   const shortcut = useContext(ShortCutContext)
@@ -168,25 +187,30 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           componentNode.displayName,
           displayNameMapDepth,
         )
-        const firstParentNode =
-          executionResult[currentSelectedDisplayName[0]].$parentNode
-        const isSameParentNode = currentSelectedDisplayName.every(
-          (displayName) => {
-            const parentNode = executionResult[displayName].$parentNode
-            return parentNode === firstParentNode
-          },
-        )
-        if (!isSameParentNode) {
-          const lastParentNode =
-            executionResult[
-              currentSelectedDisplayName[currentSelectedDisplayName.length - 1]
-            ].$parentNode
-          currentSelectedDisplayName = currentSelectedDisplayName.filter(
+        if (currentSelectedDisplayName.length > 1) {
+          const firstParentNode =
+            executionResult[currentSelectedDisplayName[0]].$parentNode
+          const isSameParentNode = currentSelectedDisplayName.every(
             (displayName) => {
-              const currentParentNode = executionResult[displayName].$parentNode
-              return lastParentNode === currentParentNode
+              const parentNode = executionResult[displayName].$parentNode
+              return parentNode === firstParentNode
             },
           )
+          if (!isSameParentNode) {
+            const lastParentNode =
+              executionResult[
+                currentSelectedDisplayName[
+                  currentSelectedDisplayName.length - 1
+                ]
+              ].$parentNode
+            currentSelectedDisplayName = currentSelectedDisplayName.filter(
+              (displayName) => {
+                const currentParentNode =
+                  executionResult[displayName].$parentNode
+                return lastParentNode === currentParentNode
+              },
+            )
+          }
         }
 
         currentSelectedDisplayName = Array.from(
@@ -271,9 +295,15 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           childrenNodes = []
         }
         let draggedSelectedComponents: ComponentNode[]
+        const relativeRelation = getRelativeRelation(
+          selectedComponents,
+          componentNode.displayName,
+          widgetDisplayNameRelationMap,
+        )
         if (
-          selectedComponents.length > 0 &&
-          selectedComponents.includes(componentNode.displayName)
+          selectedComponents.length > 1 &&
+          (selectedComponents.includes(componentNode.displayName) ||
+            !!relativeRelation)
         ) {
           draggedSelectedComponents = childrenNodes.filter((node) =>
             selectedComponents.includes(node.displayName),
@@ -283,12 +313,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             (node) => node.displayName === componentNode.displayName,
           )
         }
-        const itemLayoutInfo =
-          executionResult[componentNode.displayName]?.$layoutInfo
-        const mergedItem: ComponentNode = mergeLayoutInfoToComponent(
-          itemLayoutInfo,
-          componentNode,
-        )
+        let findDisplayName = componentNode.displayName
+        if (!!relativeRelation && selectedComponents.length > 1) {
+          findDisplayName = relativeRelation.parentNode
+        }
+        const mergedItem = childrenNodes.find((node) => {
+          return node.displayName === findDisplayName
+        })!
         startDragMultiNodes(draggedSelectedComponents)
         return {
           item: mergedItem,
@@ -334,6 +365,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       unitW={unitW}
       unitH={unitH}
       componentNode={componentNode}
+      childrenNode={childrenNode}
     >
       <div
         css={hoverHotspotStyle}

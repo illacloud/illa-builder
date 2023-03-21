@@ -1300,7 +1300,8 @@
           "file_data": "ファイルデータ",
           "file_name": "拡張子を含まないファイル名",
           "file_type": "ファイルの種類"
-        }
+        },
+        "action_name": "Action name"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2320,5 +2321,7 @@
         }
       }
     }
-  }
+  },
+  "oauth_redirect_title": "이동",
+  "oauth_redirect_description": "<0>ILLA Cloud にリダイレクトしています..."
 }
