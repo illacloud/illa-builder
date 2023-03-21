@@ -1,6 +1,9 @@
 import { get } from "lodash"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Trigger } from "@illa-design/react"
+import { GuidePopover } from "@/components/Guide/GuidePopover"
+import { guideConfig } from "@/components/Guide/config"
 import { PanelBar } from "@/components/PanelBar"
 import {
   PanelConfig,
@@ -9,7 +12,11 @@ import {
 } from "@/page/App/components/InspectPanel/interface"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
-import { getGuideStatus } from "@/redux/guide/guideSelector"
+import {
+  getCurrentStep,
+  getCurrentStepInfo,
+  getGuideStatus,
+} from "@/redux/guide/guideSelector"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,
@@ -36,20 +43,27 @@ export const renderGuideModeFieldAndLabel = (
   parentAttrName: string,
 ) => {
   const { id } = config
+  const { t } = useTranslation()
+  const currentStepInfo = useSelector(getCurrentStepInfo)
+  const { titleKey, descKey, selector } = currentStepInfo
   console.log("Trigger", id)
-  return (
-    <Trigger
-      popupVisible={true}
-      trigger={"hover"}
-      content={"1111"}
-      position="bottom"
-      colorScheme="techPurple"
-    >
-      <div>
-        {renderFieldAndLabel(config, displayName, isInList, parentAttrName)}
-      </div>
-    </Trigger>
-  )
+
+  if (selector === id) {
+    return (
+      <Trigger
+        popupVisible={true}
+        trigger="hover"
+        content={<GuidePopover title={t(titleKey)} description={t(descKey)} />}
+        position="bottom"
+        colorScheme="techPurple"
+      >
+        <div>
+          {renderFieldAndLabel(config, displayName, isInList, parentAttrName)}
+        </div>
+      </Trigger>
+    )
+  }
+  return renderFieldAndLabel(config, displayName, isInList, parentAttrName)
 }
 
 export const renderPanelBar = (
