@@ -13,7 +13,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "baseUrl": "./src",
@@ -27,5 +27,10 @@
     "./src/**/*.tsx",
     "./src/**/*.ts",
     "./src/assets/animationForLottie/*.json"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }

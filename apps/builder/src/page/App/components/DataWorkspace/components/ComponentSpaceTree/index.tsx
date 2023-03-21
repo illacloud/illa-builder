@@ -7,16 +7,22 @@ import { PanelBar } from "@/components/PanelBar"
 import { hiddenFields } from "@/page/App/components/DataWorkspace/components/WorkSpaceTree"
 import { WorkSpaceTreeGroup } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeGroup"
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
+import { changeSelectedDisplayName } from "@/page/App/components/ScaleSquare/utils/changeSelectedDisplayName"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
+import {
+  getComponentDisplayNameMapDepth,
+  getShowWidgetNameParentMap,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   getGeneralWidgetExecutionResultArray,
   getModalWidgetExecutionResultArray,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { FocusManager } from "@/utils/focusManager"
+import { isMAC } from "@/utils/userAgent"
 
 export const ComponentSpaceTree: FC = () => {
   const { t } = useTranslation()
@@ -30,10 +36,12 @@ export const ComponentSpaceTree: FC = () => {
     getModalWidgetExecutionResultArray,
   )
   const selectedComponents = useSelector(getSelectedComponents)
+  const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
+  const widgetDisplayNameRelationMap = useSelector(getShowWidgetNameParentMap)
 
   const handleSelectComponentWhenPressMetaKey = useCallback(
     (selectedKeys: string[]) => {
-      const currentSelectedDisplayName = cloneDeep(selectedComponents)
+      let currentSelectedDisplayName = cloneDeep(selectedComponents)
       const index = currentSelectedDisplayName.findIndex(
         (displayName) => displayName === selectedKeys[0],
       )
@@ -42,6 +50,15 @@ export const ComponentSpaceTree: FC = () => {
       } else {
         currentSelectedDisplayName.push(...selectedKeys)
       }
+      changeSelectedDisplayName(
+        currentSelectedDisplayName,
+        widgetDisplayNameRelationMap,
+        selectedKeys[0],
+        displayNameMapDepth,
+      )
+      currentSelectedDisplayName = Array.from(
+        new Set(currentSelectedDisplayName),
+      )
       dispatch(
         configActions.updateSelectedComponent(currentSelectedDisplayName),
       )
@@ -50,84 +67,36 @@ export const ComponentSpaceTree: FC = () => {
         componentsAttachedUsers,
       )
     },
-    [componentsAttachedUsers, dispatch, selectedComponents],
-  )
-  const handleSelectComponentWhenPressShiftKey = useCallback(
-    (selectedKeys: string[], referenceComponent: Record<string, any>[]) => {
-      const currentSelectedDisplayName = cloneDeep(selectedComponents)
-      if (currentSelectedDisplayName.length === 0) return
-      const lastCurrentSelectDisplayName =
-        currentSelectedDisplayName[currentSelectedDisplayName.length - 1]
-      const selectedDisplayName = selectedKeys[0]
-      const currentIndex = referenceComponent.findIndex(
-        (node) => node.displayName === lastCurrentSelectDisplayName,
-      )
-      const selectedIndex = referenceComponent.findIndex(
-        (node) => node.displayName === selectedDisplayName,
-      )
-      let left = currentIndex === -1 ? 0 : currentIndex
-      let right =
-        selectedIndex === -1 ? referenceComponent.length - 1 : selectedIndex
-      if (left > right) {
-        right = currentIndex
-        left = selectedIndex
-      } else if (left < right) {
-        right = selectedIndex
-        left = currentIndex
-      }
-      if (left !== -1 && right !== -1) {
-        const result: string[] = []
-        for (let i = left; i <= right; i++) {
-          result.push(referenceComponent[i].displayName)
-        }
-        dispatch(configActions.updateSelectedComponent(result))
-        updateCurrentAllComponentsAttachedUsers(result, componentsAttachedUsers)
-      }
-    },
-    [componentsAttachedUsers, dispatch, selectedComponents],
+    [
+      componentsAttachedUsers,
+      dispatch,
+      displayNameMapDepth,
+      selectedComponents,
+      widgetDisplayNameRelationMap,
+    ],
   )
 
   const handleGeneralComponentSelect = useCallback(
     (selectedKeys: string[], e: MouseEvent<HTMLDivElement>) => {
-      if (e.metaKey) {
-        handleSelectComponentWhenPressMetaKey(selectedKeys)
-        return
-      }
-      if (e.shiftKey) {
-        handleSelectComponentWhenPressShiftKey(
-          selectedKeys,
-          generalWidgetExecutionArray,
-        )
-        return
-      }
+      // if ((isMAC() && e.metaKey) || (!isMAC() && e.ctrlKey)) {
+      //   handleSelectComponentWhenPressMetaKey(selectedKeys)
+      //   return
+      // }
       dispatch(configActions.updateSelectedComponent(selectedKeys))
       updateCurrentAllComponentsAttachedUsers(
         selectedKeys,
         componentsAttachedUsers,
       )
     },
-    [
-      dispatch,
-      componentsAttachedUsers,
-      handleSelectComponentWhenPressMetaKey,
-      handleSelectComponentWhenPressShiftKey,
-      generalWidgetExecutionArray,
-    ],
+    [dispatch, componentsAttachedUsers],
   )
 
   const handleModalComponentSelect = useCallback(
     (selectedKeys: string[], e: MouseEvent<HTMLDivElement>) => {
-      if (e.metaKey) {
-        handleSelectComponentWhenPressMetaKey(selectedKeys)
-        return
-      }
-      if (e.shiftKey) {
-        handleSelectComponentWhenPressShiftKey(
-          selectedKeys,
-          generalWidgetExecutionArray,
-        )
-        return
-      }
+      // if ((isMAC() && e.metaKey) || (!isMAC() && e.ctrlKey)) {
+      //   handleSelectComponentWhenPressMetaKey(selectedKeys)
+      //   return
+      // }
       dispatch(
         executionActions.updateModalDisplayReducer({
           displayName: selectedKeys[0],
@@ -140,13 +109,7 @@ export const ComponentSpaceTree: FC = () => {
         componentsAttachedUsers,
       )
     },
-    [
-      dispatch,
-      componentsAttachedUsers,
-      handleSelectComponentWhenPressMetaKey,
-      handleSelectComponentWhenPressShiftKey,
-      generalWidgetExecutionArray,
-    ],
+    [dispatch, componentsAttachedUsers],
   )
 
   const componentTotalNumber =
