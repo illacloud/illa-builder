@@ -1414,7 +1414,7 @@
         "alt_text_mapped": "{{ item.alt_text }} ",
         "file_download": {
           "file_data": "{{ mysql1.data }}",
-          "file_name": "{{ new_data.csv }}"
+          "file_name": "new_data.csv"
         }
       },
       "setter_tootip": {
