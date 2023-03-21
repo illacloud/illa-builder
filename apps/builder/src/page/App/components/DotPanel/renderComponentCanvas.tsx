@@ -60,7 +60,6 @@ import {
   getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import store from "@/store"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
@@ -213,6 +212,7 @@ export const RenderComponentCanvas: FC<{
     new Map<string, ComponentNode>(),
   )
   const dragDropManager = useDragDropManager()
+  const dragInfo = dragDropManager.getMonitor().getItem() as DragInfo
 
   const [ShowColumnsChange, setShowColumnsChange] = useState(false)
   const canShowColumnsTimeoutChange = useRef<number | null>(null)
@@ -811,7 +811,6 @@ export const RenderComponentCanvas: FC<{
   useEffect(() => {
     if (!containerRef.current) return
 
-    const dragInfo = dragDropManager.getMonitor().getItem()
     const monitor = dragDropManager.getMonitor() as any
 
     const scrollHandler = () => {
@@ -825,7 +824,7 @@ export const RenderComponentCanvas: FC<{
       // eslint-disable-next-line react-hooks/exhaustive-deps
       containerRef.current?.removeEventListener("scroll", scrollHandler)
     }
-  }, [containerRef, dragDropManager, throttleScrollEffect])
+  }, [containerRef, dragDropManager, dragInfo, throttleScrollEffect])
 
   useEffect(() => {
     if (!currentCanvasRef.current) return
@@ -893,7 +892,7 @@ export const RenderComponentCanvas: FC<{
       ]}
     >
       {componentTree}
-      {isActive && (
+      {isActive && dragInfo && (
         <DragPreview
           containerRef={containerRef}
           canResizeY={canResizeY}

@@ -53,13 +53,15 @@ export function endDragMultiNodes(
 ) {
   store.dispatch(configActions.updateShowDot(false))
   store.dispatch(configActions.updateDraggingStateReducer(false))
+  const displayNames = dragNodes.map((node) => node.displayName)
   if (isDropOnCanvas) {
-    const displayNames = dragNodes.map((node) => node.displayName)
     store.dispatch(configActions.updateSelectedComponent(displayNames))
     updateCurrentAllComponentsAttachedUsers(
       displayNames,
       store.getState().currentApp.collaborators.components,
     )
+  }
+  if (!isAddAction) {
     const updateSlice = dragNodes.map((dragNode) => ({
       displayName: dragNode.displayName,
       statusInfo: {
