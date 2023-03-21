@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { STEP_0_ITEM, STEP_0_SELECT_WIDGET } from "@/config/tour"
+import { STEP_0_ITEM, STEP_0_SELECT_WIDGET } from "@/components/Guide/config"
 
 const STEP_0_STYLE = css`
   [data-onboarding-session="COMMON"] {

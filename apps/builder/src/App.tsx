@@ -16,7 +16,7 @@ import {
 } from "@illa-design/react"
 import "@/api/base"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
-import { STEP } from "@/config/tour"
+import { STEP } from "@/components/Guide/config"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import {
