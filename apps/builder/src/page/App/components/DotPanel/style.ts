@@ -584,5 +584,6 @@ export const applyMultiSelectedScaleSquareStyle = (
     left: 0;
     top: 0;
     transform: translate(${left}px, ${top}px);
+    pointer-events: none;
   `
 }
