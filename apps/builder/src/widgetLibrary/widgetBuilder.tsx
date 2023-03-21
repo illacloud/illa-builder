@@ -1,3 +1,4 @@
+import { isCloudVersion } from "@/utils/typeHelper"
 import {
   AUDIO_EVENT_HANDLER_CONFIG,
   AUDIO_PANEL_CONFIG,
@@ -111,6 +112,12 @@ import {
   LIST_WIDGET_CONFIG,
   ListWidget,
 } from "@/widgetLibrary/ListWidget"
+import {
+  MAP_EVENT_HANDLER_CONFIG,
+  MAP_PANEL_CONFIG,
+  MAP_WIDGET_CONFIG,
+  MapWidget,
+} from "@/widgetLibrary/MapBoxWidget"
 import {
   MENU_EVENT_HANDLER_CONFIG,
   MENU_PANEL_CONFIG,
@@ -443,6 +450,15 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: CAROUSEL_PANEL_CONFIG,
     eventHandlerConfig: CAROUSEL_EVENT_HANDLER_CONFIG,
   },
+}
+
+if (isCloudVersion) {
+  WidgetConfig["MAP_WIDGET"] = {
+    widget: MapWidget,
+    config: MAP_WIDGET_CONFIG,
+    panelConfig: MAP_PANEL_CONFIG,
+    eventHandlerConfig: MAP_EVENT_HANDLER_CONFIG,
+  }
 }
 
 export type WidgetType = keyof typeof WidgetConfig
