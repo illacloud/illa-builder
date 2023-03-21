@@ -223,10 +223,14 @@ const convertToTSV = (data: any): string => {
 
 const getFileName = (fileName: string, fileType: string) => {
   const namePart = fileName.split(".")
-  const fileRealName = !fileName
-    ? "download"
-    : namePart.slice(0, -1).join(".") || "download"
-  const fileExtension = namePart.length > 1 ? namePart[namePart.length - 1] : ""
+  const length = namePart.length
+  const fileRealName =
+    (!fileName
+      ? "download"
+      : length > 1
+      ? namePart.slice(0, -1).join(".")
+      : namePart[0]) || "download"
+  const fileExtension = length > 1 ? namePart[length - 1] : ""
 
   if (fileExtension) {
     return `${fileRealName}.${fileExtension}`
@@ -239,7 +243,28 @@ const getFileName = (fileName: string, fileType: string) => {
   return `${fileRealName}`
 }
 
-export const downloadFileFromEventHandler = async (
+const downloadFileFromURL = async (
+  data: string,
+  fileDownloadName: string,
+  contentType: string,
+) => {
+  const message = createMessage()
+  try {
+    const res = await Api.asyncCustomRequest({
+      url: data,
+      method: "GET",
+    })
+    await downloadFileFromEventHandler(contentType, fileDownloadName, res.data)
+    return
+  } catch (e) {
+    message.error({
+      content: i18n.t("editor.method.file_download.message.fail"),
+    })
+    return
+  }
+}
+
+export const downloadFileFromEventHandler = (
   fileType: string,
   fileName: string,
   data: any,
@@ -253,6 +278,7 @@ export const downloadFileFromEventHandler = async (
     const isBase64Suffix = typeof data === "string" && isBase64(data)
     const isValidBase64 = typeof data === "string" && isBase64(data, true)
     const formatData = isArray(data) ? data : isObject(data) ? [data] : data
+    const isValidUrl = typeof data === "string" && isURL(data)
 
     let params
 
@@ -260,30 +286,17 @@ export const downloadFileFromEventHandler = async (
       params = data
     } else if (isBase64Suffix) {
       params = `data:${contentType};base64,${data}`
-    } else if (isURL(data)) {
-      try {
-        const res = await Api.asyncCustomRequest({
-          url: data,
-          method: "GET",
-        })
-        await downloadFileFromEventHandler(
-          contentType,
-          fileDownloadName,
-          res.data,
-        )
-        return
-      } catch (e) {
-        message.error({
-          content: i18n.t("editor.method.file_download.message.fail"),
-        })
-        return
-      }
+    } else if (isValidUrl) {
+      downloadFileFromURL(data, fileDownloadName, contentType)
+      return
     } else {
       switch (contentType) {
         case "text/csv":
-          params = new Blob(["\ufeff", convertToCSV(formatData)], {
-            type: "text/csv;charset=utf-8",
-          })
+          {
+            params = new Blob(["\ufeff", convertToCSV(formatData)], {
+              type: "text/csv;charset=utf-8",
+            })
+          }
           break
         case "application/vnd.ms-excel":
         case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
@@ -294,7 +307,9 @@ export const downloadFileFromEventHandler = async (
           }
           break
         case "text/tab-separated-values":
-          params = convertToTSV(formatData)
+          {
+            params = convertToTSV(formatData)
+          }
           break
         default:
           {
@@ -308,9 +323,6 @@ export const downloadFileFromEventHandler = async (
       }
     }
     download(params, fileDownloadName, contentType)
-    message.success({
-      content: i18n.t("editor.action.action_list.message.success_saved"),
-    })
   } catch (e) {
     message.error({
       content: i18n.t("editor.method.file_download.message.download_failed"),
