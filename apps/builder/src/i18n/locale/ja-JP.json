@@ -1300,7 +1300,8 @@
           "file_data": "ファイルデータ",
           "file_name": "拡張子を含まないファイル名",
           "file_type": "ファイルの種類"
-        }
+        },
+        "action_name": "Action name"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1414,7 +1415,7 @@
         "alt_text_mapped": "{{ item.alt_text }} ",
         "file_download": {
           "file_data": "{{ mysql1.data }}",
-          "file_name": "new_data.csv"
+          "file_name": "{{ new_data.csv }}"
         }
       },
       "setter_tootip": {
