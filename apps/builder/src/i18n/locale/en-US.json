@@ -549,7 +549,7 @@
             "mode_id": "bert-base-uncased",
             "text": "The answer to the universe is [MASK].",
             "json": "{ \r\n\"past_user_inputs\": [\"Which movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Can you explain why ?\" \r\n}",
-            "binary": "'@cats.jpg' \\",
+            "binary": "i.e. {{ upload1.file[0] }}. A binary files without file prefix",
             "use_cache": "Boolean, leave blank for true",
             "min_length": "Integer to define the minimum length in tokens of the output summary",
             "top_k": "Integer to define the top tokens",
@@ -1200,7 +1200,9 @@
         "scale_type": "Scale Type",
         "set_router": "Set router",
         "set_temporary_state": "Set temporary state",
-        "shadow": "Shadow",
+        "shadow": {
+          "shadow": "Shadow"
+        },
         "show_character_count": "Show character count",
         "show_clear_button": "Show clear button",
         "show_footer": "Show footer",
@@ -1298,7 +1300,8 @@
           "file_data": "File data",
           "file_name": "File name with extension",
           "file_type": "File type"
-        }
+        },
+        "action_name": "Action name"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1387,6 +1390,12 @@
           "csv": "CSV",
           "tsv": "TSV",
           "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "None",
+          "large": "Large",
+          "medium": "Medium",
+          "small": "Small"
         }
       },
       "setter_placeholder": {
@@ -1406,7 +1415,7 @@
         "alt_text_mapped": "{{ item.alt_text }} ",
         "file_download": {
           "file_data": "{{ mysql1.data }}",
-          "file_name": "{{ new_data.csv }}"
+          "file_name": "new_data.csv"
         }
       },
       "setter_tootip": {
@@ -2312,5 +2321,7 @@
         }
       }
     }
-  }
+  },
+  "oauth_redirect_title": "Redirect",
+  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud<0>"
 }

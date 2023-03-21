@@ -148,12 +148,21 @@ export const componentsAsync = (
         ),
       )
       break
-    case "updateComponentContainerReducer":
+    case "updateComponentContainerReducer": {
       const updateComponentContainerPayload: UpdateComponentContainerPayload =
         payload
-      const componentNodes = updateComponentContainerPayload.updateSlice.map(
-        (slice) => slice.component,
+
+      const allDisplayNames = updateComponentContainerPayload.updateSlice.map(
+        (slice) => slice.component.displayName,
       )
+      const allNodes = allDisplayNames
+        .map((displayName) => {
+          return searchDsl(
+            getCanvas(nextRootState),
+            displayName,
+          ) as ComponentNode
+        })
+        .filter((node) => node !== null) as ComponentNode[]
       Connection.getRoom("app", currentAppID)?.send(
         getPayload(
           Signal.SIGNAL_MOVE_STATE,
@@ -162,10 +171,11 @@ export const componentsAsync = (
           action,
           teamID,
           uid,
-          componentNodes,
+          allNodes,
         ),
       )
       break
+    }
     case "updateComponentPropsReducer":
       const updatePayload: UpdateComponentPropsPayload = payload
       const finalNode = searchDsl(
@@ -639,7 +649,59 @@ export const componentsAsync = (
           updateWSPayload,
         ),
       )
+      break
     }
+    case "batchUpdateComponentLayoutInfoWhenReflowReducer": {
+      const displayNames = (
+        payload as UpdateComponentNodeLayoutInfoPayload[]
+      ).map((item) => item.displayName)
+      const rootNode = getCanvas(nextRootState)
+      if (!rootNode) break
+      const targetNodes = displayNames
+        .map((displayName) => searchDsl(rootNode, displayName))
+        .filter((node) => node !== null) as ComponentNode[]
+      if (targetNodes.length < 1) break
+      const updateWSPayload =
+        transformComponentReduxPayloadToWsPayload(targetNodes)
+      Connection.getRoom("app", currentAppID)?.send(
+        getPayload(
+          Signal.SIGNAL_UPDATE_STATE,
+          Target.TARGET_COMPONENTS,
+          false,
+          null,
+          teamID,
+          uid,
+          updateWSPayload,
+        ),
+      )
+      break
+    }
+    case "batchUpdateComponentStatusInfoReducer": {
+      const displayNames = (
+        payload as UpdateComponentNodeLayoutInfoPayload[]
+      ).map((item) => item.displayName)
+      const rootNode = getCanvas(nextRootState)
+      if (!rootNode) break
+      const targetNodes = displayNames
+        .map((displayName) => searchDsl(rootNode, displayName))
+        .filter((node) => node !== null) as ComponentNode[]
+      if (targetNodes.length < 1) break
+      const updateWSPayload =
+        transformComponentReduxPayloadToWsPayload(targetNodes)
+      Connection.getRoom("app", currentAppID)?.send(
+        getPayload(
+          Signal.SIGNAL_UPDATE_STATE,
+          Target.TARGET_COMPONENTS,
+          true,
+          action,
+          teamID,
+          uid,
+          updateWSPayload,
+        ),
+      )
+      break
+    }
+    case "updateComponentStatusInfoReducer":
     case "updateComponentLayoutInfoReducer": {
       const displayName = (payload as UpdateComponentNodeLayoutInfoPayload)
         .displayName
