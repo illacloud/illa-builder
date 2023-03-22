@@ -1,15 +1,18 @@
 import { Global } from "@emotion/react"
+import { Popover } from "@reactour/popover"
 import { motion } from "framer-motion"
-import { FC, HTMLAttributes } from "react"
+import { FC, HTMLAttributes, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Button } from "@illa-design/react"
+import { GuidePopover } from "@/components/Guide/GuidePopover"
+import { guideConfig } from "@/components/Guide/config"
 import { applyGuideStyle, stepMaskStyle } from "@/components/Guide/style"
+import { getCachedAction } from "@/redux/config/configSelector"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
 import { guideActions } from "@/redux/guide/guideSlice"
 
 const getElementPosition = (element: HTMLElement) => {
   const { top, left, width, height } = element.getBoundingClientRect()
-  console.log({ top, left, width, height })
   return { top, left, width, height }
 }
 
@@ -34,6 +37,16 @@ export const StepMask: FC<StepMaskProps> = (props) => {
 export const Guide: FC = () => {
   const currentStep = useSelector(getCurrentStep)
   const dispatch = useDispatch()
+  const cachedAction = useSelector(getCachedAction)
+  const { selector, titleKey, descKey, doItForMe } = guideConfig[currentStep]
+  const size = useMemo(() => {
+    if (currentStep === 3 || currentStep === 4) {
+      const { selector } = guideConfig[currentStep]
+      const element = document.querySelector(selector)
+      return element?.getBoundingClientRect()
+    }
+  }, [currentStep])
+
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />
@@ -67,6 +80,15 @@ export const Guide: FC = () => {
             </Button>
           </div>
         </motion.div>
+      )}
+      {(currentStep === 3 || currentStep === 4) && size && (
+        <Popover sizes={size} className={currentStep.toString()}>
+          <GuidePopover
+            title={titleKey}
+            description={descKey}
+            onClickDoIt={doItForMe}
+          />
+        </Popover>
       )}
     </>
   )

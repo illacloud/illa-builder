@@ -4,6 +4,11 @@ import { getColor } from "@illa-design/react"
 import ButtonHighlightIcon from "@/assets/widgetCover/button-highlight.svg"
 import InputHighlightIcon from "@/assets/widgetCover/input-highlight.svg"
 import TableHighlightIcon from "@/assets/widgetCover/table-highlight.svg"
+import { getCachedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
+import { guideActions } from "@/redux/guide/guideSlice"
+import store from "@/store"
 
 export const SELECT_WIDGET_ITEM = {
   INPUT_WIDGET: {
@@ -20,6 +25,13 @@ type SelectWidget = keyof typeof SELECT_WIDGET_ITEM
 export const GUIDE_SELECT_WIDGET = Object.keys(
   SELECT_WIDGET_ITEM,
 ) as SelectWidget[]
+
+export const GUIDE_SQL_QUERY =
+  "select * \n" +
+  "from users\n" +
+  "join orders\n" +
+  "on users.id = orders.id\n" +
+  "where {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'"
 
 export const STEP: StepType[] = [
   {
@@ -67,17 +79,20 @@ export const guideConfig = [
     titleKey: "editor.tutorial.panel.onboarding_app.drag_title",
     descKey: "editor.tutorial.panel.onboarding_app.drag_input",
     widgetType: "INPUT_WIDGET",
+    selector: "",
   },
   {
     step: 0.2,
     titleKey: "",
     descKey: "",
+    selector: "",
     widgetType: "BUTTON_WIDGET",
   },
   {
     step: 0.3,
     titleKey: "",
     descKey: "",
+    selector: "",
     widgetType: "TABLE_WIDGET",
   },
   {
@@ -86,14 +101,34 @@ export const guideConfig = [
     titleKey: "editor.tutorial.panel.onboarding_app.modify_action_title",
     descKey:
       "editor.tutorial.panel.onboarding_app.modify_action_description_modify",
-    selector: ".mysql-value",
+    selector: ".postgresql1-query",
+    doItForMe: () => {
+      const currentAction = getCachedAction(store.getState())!!
+      const mysqlContent = currentAction.content as MysqlLikeAction
+      store.dispatch(
+        configActions.updateCachedAction({
+          ...currentAction,
+          content: {
+            ...mysqlContent,
+            query: GUIDE_SQL_QUERY,
+          },
+        }),
+      )
+    },
   },
   {
     step: 2,
     titleKey: "editor.tutorial.panel.onboarding_app.modify_action_title",
     descKey:
       "editor.tutorial.panel.onboarding_app.modify_action_description_click",
-    selector: ".mysql-save",
+    selector: ".postgresql1-run",
+    doItForMe: () => {
+      const element = document.querySelector(
+        ".postgresql1-run",
+      ) as HTMLButtonElement
+      element?.click()
+      store.dispatch(guideActions.updateNextStepReducer())
+    },
   },
   {
     // 2
@@ -108,7 +143,7 @@ export const guideConfig = [
     titleKey: "editor.tutorial.panel.onboarding_app.display_data_title",
     descKey:
       "editor.tutorial.panel.onboarding_app.display_data_description_modify",
-    selector: ".table-dataSource",
+    selector: "table-dataSource",
   },
   {
     // 3
@@ -147,5 +182,6 @@ export const guideConfig = [
     step: 10,
     titleKey: "editor.tutorial.panel.onboarding_app.test_it_title",
     descKey: "editor.tutorial.panel.onboarding_app.test_it_description",
+    selector: "",
   },
 ]

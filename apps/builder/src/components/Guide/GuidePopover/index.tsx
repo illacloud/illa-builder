@@ -12,10 +12,11 @@ import { guideActions } from "@/redux/guide/guideSlice"
 export interface GuidePopoverProps extends HTMLAttributes<HTMLDivElement> {
   title: string
   description: string
+  onClickDoIt?: () => void
 }
 
 export const GuidePopover: FC<GuidePopoverProps> = (props) => {
-  const { title, description, ...rest } = props
+  const { title, description, onClickDoIt, ...rest } = props
   const dispatch = useDispatch()
 
   return (
@@ -30,7 +31,8 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
           variant={"fill"}
           colorScheme={"techPurple"}
           onClick={() => {
-            dispatch(guideActions.updateNextStepReducer())
+            onClickDoIt?.()
+            // dispatch(guideActions.updateNextStepReducer())
           }}
         >
           Do it for me
