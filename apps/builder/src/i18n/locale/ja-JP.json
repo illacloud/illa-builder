@@ -918,7 +918,10 @@
       "actions_title": "アクションリスト",
       "components_title": "コンポーネントリスト",
       "globals_title": "グローバル変数",
-      "pages_title": "ページリスト"
+      "pages_title": "ページリスト",
+      "global_data_modal": {
+        "title": "Edit global data"
+      }
     },
     "deploy": {
       "fail": "展開に失敗しました"
