@@ -16,12 +16,12 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   }
   const prevRootState = cloneDeep(store.getState())
   const resp = next(action)
-  if (!isGuideOpen) {
-    try {
-      sendMessage(prevRootState, store.getState(), action)
-    } catch (e) {
-      console.log(e)
-    }
+  // if (!isGuideOpen) {
+  try {
+    sendMessage(prevRootState, store.getState(), action)
+  } catch (e) {
+    console.log(e)
   }
+  // }
   return resp
 }
