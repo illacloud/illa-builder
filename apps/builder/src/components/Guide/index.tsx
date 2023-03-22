@@ -2,10 +2,12 @@ import { Global } from "@emotion/react"
 import { useTour } from "@reactour/tour"
 import { motion } from "framer-motion"
 import { FC, HTMLAttributes } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Button } from "@illa-design/react"
 import { applyGuideStyle, stepMaskStyle } from "@/components/Guide/style"
+import { nextStepReducer } from "@/redux/guide/guideReducer"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
+import { guideActions } from "@/redux/guide/guideSlice"
 
 const getElementPosition = (element: HTMLElement) => {
   const { top, left, width, height } = element.getBoundingClientRect()
@@ -34,7 +36,7 @@ export const StepMask: FC<StepMaskProps> = (props) => {
 export const Guide: FC = () => {
   const { setIsOpen, isOpen } = useTour()
   const currentStep = useSelector(getCurrentStep)
-
+  const dispatch = useDispatch()
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />
@@ -59,7 +61,13 @@ export const Guide: FC = () => {
           成功摆放三个组件后，进入下一步
           <div>
             <Button>Exit</Button>
-            <Button>Do it for me</Button>
+            <Button
+              onClick={() => {
+                dispatch(guideActions.nextStepReducer())
+              }}
+            >
+              Do it for me
+            </Button>
           </div>
         </motion.div>
       )}

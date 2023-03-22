@@ -12,6 +12,14 @@ export const updateCurrentStepReducer: CaseReducer<
   }
 }
 
+export const nextStepReducer: CaseReducer<Guide> = (state) => {
+  const { currentStep } = state
+  return {
+    ...state,
+    currentStep: currentStep + 1,
+  }
+}
+
 export const updateGuideStatusReducer: CaseReducer<
   Guide,
   PayloadAction<boolean>

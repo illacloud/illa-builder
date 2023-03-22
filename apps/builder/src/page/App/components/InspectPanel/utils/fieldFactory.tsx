@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Trigger } from "@illa-design/react"
 import { GuidePopover } from "@/components/Guide/GuidePopover"
-import { guideConfig } from "@/components/Guide/config"
+import { triggerStyle } from "@/components/Guide/GuidePopover/style"
 import { PanelBar } from "@/components/PanelBar"
 import {
   PanelConfig,
@@ -12,13 +12,9 @@ import {
 } from "@/page/App/components/InspectPanel/interface"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
-import {
-  getCurrentStep,
-  getCurrentStepInfo,
-  getGuideStatus,
-} from "@/redux/guide/guideSelector"
+import { getCurrentStepInfo, getGuideStatus } from "@/redux/guide/guideSelector"
 
-export const renderFieldAndLabel = (
+export const renderPanelSetter = (
   config: PanelFieldConfig,
   displayName: string,
   isInList: boolean = false,
@@ -36,7 +32,7 @@ export const renderFieldAndLabel = (
   )
 }
 
-export const renderGuideModeFieldAndLabel = (
+export const renderGuideModePanelSetter = (
   config: PanelFieldConfig,
   displayName: string,
   isInList: boolean,
@@ -51,6 +47,7 @@ export const renderGuideModeFieldAndLabel = (
   if (selector === id) {
     return (
       <Trigger
+        _css={triggerStyle}
         popupVisible={true}
         trigger="hover"
         content={<GuidePopover title={t(titleKey)} description={t(descKey)} />}
@@ -58,12 +55,30 @@ export const renderGuideModeFieldAndLabel = (
         colorScheme="techPurple"
       >
         <div>
-          {renderFieldAndLabel(config, displayName, isInList, parentAttrName)}
+          {renderPanelSetter(config, displayName, isInList, parentAttrName)}
         </div>
       </Trigger>
     )
   }
-  return renderFieldAndLabel(config, displayName, isInList, parentAttrName)
+  return renderPanelSetter(config, displayName, isInList, parentAttrName)
+}
+
+export const renderFieldAndLabel = (
+  config: PanelFieldConfig,
+  displayName: string,
+  isInList: boolean = false,
+  parentAttrName: string,
+) => {
+  const isOpen = useSelector(getGuideStatus)
+  if (isOpen) {
+    return renderGuideModePanelSetter(
+      config,
+      displayName,
+      isInList,
+      parentAttrName,
+    )
+  }
+  return renderPanelSetter(config, displayName, isInList, parentAttrName)
 }
 
 export const renderPanelBar = (
@@ -107,7 +122,6 @@ export const renderField = (
   isInList: boolean = false,
   widgetProps: Record<string, any>,
 ) => {
-  const isOpen = useSelector(getGuideStatus)
   const canRender = canRenderField(
     item as PanelFieldConfig,
     displayName,
@@ -123,14 +137,6 @@ export const renderField = (
       widgetProps,
     )
   } else if ((item as PanelFieldConfig).setterType) {
-    if (isOpen) {
-      return renderGuideModeFieldAndLabel(
-        item as PanelFieldConfig,
-        displayName,
-        isInList,
-        "",
-      )
-    }
     return renderFieldAndLabel(
       item as PanelFieldConfig,
       displayName,

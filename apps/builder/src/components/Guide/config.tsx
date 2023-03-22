@@ -112,19 +112,20 @@ export const guideConfig = [
     step: 7,
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_3",
-    selector: ".button-event-0",
+    // selector: ".button-event-0",
+    selector: "button-interaction-event-handler",
   },
   {
     step: 8,
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_4",
-    selector: ".button-event-trigger-action",
+    selector: "button-interaction-event-handler-action",
   },
   {
     step: 9,
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_5",
-    selector: ".button-event-query",
+    selector: "button-interaction-event-handler-query",
   },
   {
     // 4
