@@ -19,6 +19,10 @@ export const cloudUrl = `${location.protocol}//${
   import.meta.env.VITE_CLOUD_URL
 }`
 
+export const cloudRedirect = `${cloudUrl}?redirectUrl=${encodeURIComponent(
+  location.href,
+)}`
+
 const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
   const { request } = args
   const url = new URL(request.url)
