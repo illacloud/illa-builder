@@ -918,7 +918,10 @@
       "actions_title": "ACTIONS 列表 ",
       "components_title": "组件列表 ",
       "globals_title": "全局变量 ",
-      "pages_title": "页面列表"
+      "pages_title": "页面列表",
+      "global_data_modal": {
+        "title": "Edit global data"
+      }
     },
     "deploy": {
       "fail": "部署失败"
