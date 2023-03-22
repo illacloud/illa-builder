@@ -918,7 +918,10 @@
       "actions_title": "ACTIONS & TRANSFORMERS ",
       "components_title": "COMPONENTS ",
       "globals_title": "GLOBALS ",
-      "pages_title": "PAGES"
+      "pages_title": "PAGES",
+      "global_data_modal": {
+        "title": "Edit global data"
+      }
     },
     "deploy": {
       "fail": "Failed to deploy"
