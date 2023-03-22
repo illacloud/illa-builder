@@ -5,7 +5,7 @@ import ButtonHighlightIcon from "@/assets/widgetCover/button-highlight.svg"
 import InputHighlightIcon from "@/assets/widgetCover/input-highlight.svg"
 import TableHighlightIcon from "@/assets/widgetCover/table-highlight.svg"
 
-export const STEP_0_ITEM = {
+export const SELECT_WIDGET_ITEM = {
   INPUT_WIDGET: {
     icon: InputHighlightIcon,
   },
@@ -16,8 +16,10 @@ export const STEP_0_ITEM = {
     icon: TableHighlightIcon,
   },
 }
-type SelectWidget = keyof typeof STEP_0_ITEM
-export const SELECT_WIDGET = Object.keys(STEP_0_ITEM) as SelectWidget[]
+type SelectWidget = keyof typeof SELECT_WIDGET_ITEM
+export const GUIDE_SELECT_WIDGET = Object.keys(
+  SELECT_WIDGET_ITEM,
+) as SelectWidget[]
 
 export const STEP: StepType[] = [
   {
@@ -64,16 +66,19 @@ export const guideConfig = [
     step: 0.1,
     titleKey: "editor.tutorial.panel.onboarding_app.drag_title",
     descKey: "editor.tutorial.panel.onboarding_app.drag_input",
+    widgetType: "INPUT_WIDGET",
   },
   {
     step: 0.2,
     titleKey: "",
     descKey: "",
+    widgetType: "BUTTON_WIDGET",
   },
   {
     step: 0.3,
     titleKey: "",
     descKey: "",
+    widgetType: "TABLE_WIDGET",
   },
   {
     // 1

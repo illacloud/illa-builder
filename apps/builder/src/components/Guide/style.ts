@@ -1,11 +1,14 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { SELECT_WIDGET, STEP_0_ITEM } from "@/components/Guide/config"
+import {
+  GUIDE_SELECT_WIDGET,
+  SELECT_WIDGET_ITEM,
+} from "@/components/Guide/config"
 
 const applyHighlightStyle = (currentStep: number) => css`
   [data-onboarding-session="COMMON"] {
-    ${SELECT_WIDGET.slice(currentStep).map((widget) => {
-      const icon = STEP_0_ITEM[widget].icon
+    ${GUIDE_SELECT_WIDGET.slice(currentStep).map((widget) => {
+      const icon = SELECT_WIDGET_ITEM[widget].icon
       return css`
         [data-onboarding-comp=${widget}] {
           content: url(${icon});
