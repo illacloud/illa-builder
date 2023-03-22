@@ -1301,7 +1301,10 @@
           "file_name": "확장자가 있는 파일 이름",
           "file_type": "파일 종류"
         },
-        "action_name": "Action name"
+        "action_name": "Action name",
+        "variable": {
+          "path_of_value": "Path of value"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1366,6 +1369,10 @@
         },
         "file_download": {
           "file_data": "base64 데이터, 원시 데이터, 테이블의 매핑된 데이터 지원"
+        },
+        "variable": {
+          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
+          "the_target_value": "The target value"
         }
       },
       "setter_option": {
@@ -1416,6 +1423,9 @@
         "file_download": {
           "file_data": "{{ mysql1.data }}",
           "file_name": "{{ new_data.csv }}"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
         }
       },
       "setter_tootip": {
