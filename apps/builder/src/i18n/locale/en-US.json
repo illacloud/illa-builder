@@ -1301,7 +1301,10 @@
           "file_name": "File name with extension",
           "file_type": "File type"
         },
-        "action_name": "Action name"
+        "action_name": "Action name",
+        "variable": {
+          "path_of_value": "Path of value"
+        }
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1366,6 +1369,10 @@
         },
         "file_download": {
           "file_data": "Support base64 data, raw data, mapped data of table. "
+        },
+        "variable": {
+          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
+          "the_target_value": "The target value"
         }
       },
       "setter_option": {
@@ -1416,6 +1423,9 @@
         "file_download": {
           "file_data": "{{ mysql1.data }}",
           "file_name": "new_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
         }
       },
       "setter_tootip": {
