@@ -918,7 +918,10 @@
       "actions_title": "작업 목록",
       "components_title": "구성 요소 목록",
       "globals_title": "글로벌 변수",
-      "pages_title": "페이지 목록"
+      "pages_title": "페이지 목록",
+      "global_data_modal": {
+        "title": "Edit global data"
+      }
     },
     "deploy": {
       "fail": "배포 실패"
