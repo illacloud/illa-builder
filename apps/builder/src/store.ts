@@ -6,6 +6,7 @@ import {
   createListenerMiddleware,
 } from "@reduxjs/toolkit"
 import { logger } from "redux-logger"
+import { guideAsync } from "@/middleware/guideAsync"
 import { reduxAsync } from "@/middleware/reduxAsync"
 import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
 import configReducer from "@/redux/config/configSlice"
@@ -43,7 +44,7 @@ const dashboardReducer = combineReducers({
   dashboardApps: dashboardAppReducer,
 })
 
-const middlewares = [reduxAsync]
+const middlewares = [reduxAsync, guideAsync]
 
 if (import.meta.env.DEV) {
   middlewares.push(logger)

@@ -30,7 +30,7 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
           variant={"fill"}
           colorScheme={"techPurple"}
           onClick={() => {
-            dispatch(guideActions.nextStepReducer())
+            dispatch(guideActions.updateNextStepReducer())
           }}
         >
           Do it for me

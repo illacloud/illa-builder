@@ -12,11 +12,19 @@ export const updateCurrentStepReducer: CaseReducer<
   }
 }
 
-export const nextStepReducer: CaseReducer<Guide> = (state) => {
+export const updateNextStepReducer: CaseReducer<Guide> = (state) => {
   const { currentStep } = state
   return {
     ...state,
     currentStep: currentStep + 1,
+  }
+}
+
+export const updateInsideStepReducer: CaseReducer<Guide> = (state) => {
+  const { currentStep } = state
+  return {
+    ...state,
+    currentStep: currentStep + 0.1,
   }
 }
 

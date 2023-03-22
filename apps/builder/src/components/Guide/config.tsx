@@ -17,7 +17,7 @@ export const STEP_0_ITEM = {
   },
 }
 type SelectWidget = keyof typeof STEP_0_ITEM
-export const STEP_0_SELECT_WIDGET = Object.keys(STEP_0_ITEM) as SelectWidget[]
+export const SELECT_WIDGET = Object.keys(STEP_0_ITEM) as SelectWidget[]
 
 export const STEP: StepType[] = [
   {
@@ -61,9 +61,19 @@ export const STEP: StepType[] = [
 export const guideConfig = [
   {
     // 0
-    step: 0,
+    step: 0.1,
     titleKey: "editor.tutorial.panel.onboarding_app.drag_title",
     descKey: "editor.tutorial.panel.onboarding_app.drag_input",
+  },
+  {
+    step: 0.2,
+    titleKey: "",
+    descKey: "",
+  },
+  {
+    step: 0.3,
+    titleKey: "",
+    descKey: "",
   },
   {
     // 1

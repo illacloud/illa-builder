@@ -38,6 +38,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     uid: teamInfo?.uid ?? "",
     teamID: teamInfo?.id ?? "",
   }
+  console.log(teamInfo, teamID, "teamID")
 
   useDestroyApp()
 

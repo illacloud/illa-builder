@@ -1,4 +1,3 @@
-import { useTour } from "@reactour/tour"
 import { cloneDeep } from "lodash"
 import { FC, memo } from "react"
 import { useDrag } from "react-dnd"
@@ -12,6 +11,7 @@ import {
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getGuideStatus } from "@/redux/guide/guideSelector"
 import store from "@/store"
 import {
   batchMergeLayoutInfoToComponent,
@@ -31,7 +31,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
     const { widgetName, icon, id, type, ...partialDragInfo } = props
 
     const isEditMode = useSelector(getIsILLAEditMode)
-    const { isOpen } = useTour()
+    const isGuideOpen = useSelector(getGuideStatus)
 
     const [, dragRef, dragPreviewRef] = useDrag<
       DragInfo,
@@ -85,15 +85,12 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
       [isEditMode],
     )
 
-    console.log(isOpen, "isOpen")
-
     return (
       <div css={itemContainerStyle} ref={dragRef}>
         <div css={dragPreviewStyle} ref={dragPreviewRef} />
         <span
           css={iconStyle}
-          // isGuideMode
-          {...(isOpen ? { "data-onboarding-comp": type } : {})}
+          {...(isGuideOpen ? { "data-onboarding-comp": type } : {})}
         >
           {icon}
         </span>

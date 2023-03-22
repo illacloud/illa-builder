@@ -1,11 +1,9 @@
 import { Global } from "@emotion/react"
-import { useTour } from "@reactour/tour"
 import { motion } from "framer-motion"
 import { FC, HTMLAttributes } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Button } from "@illa-design/react"
 import { applyGuideStyle, stepMaskStyle } from "@/components/Guide/style"
-import { nextStepReducer } from "@/redux/guide/guideReducer"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
 import { guideActions } from "@/redux/guide/guideSlice"
 
@@ -34,7 +32,6 @@ export const StepMask: FC<StepMaskProps> = (props) => {
 }
 
 export const Guide: FC = () => {
-  const { setIsOpen, isOpen } = useTour()
   const currentStep = useSelector(getCurrentStep)
   const dispatch = useDispatch()
   return (
@@ -63,7 +60,7 @@ export const Guide: FC = () => {
             <Button>Exit</Button>
             <Button
               onClick={() => {
-                dispatch(guideActions.nextStepReducer())
+                dispatch(guideActions.updateNextStepReducer())
               }}
             >
               Do it for me

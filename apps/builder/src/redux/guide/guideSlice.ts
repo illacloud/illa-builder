@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
-  nextStepReducer,
   updateCurrentStepReducer,
   updateGuideStatusReducer,
+  updateInsideStepReducer,
+  updateNextStepReducer,
 } from "@/redux/guide/guideReducer"
 import { GuideInitialState } from "@/redux/guide/guideState"
 
@@ -12,7 +13,8 @@ const guideSlice = createSlice({
   reducers: {
     updateCurrentStepReducer,
     updateGuideStatusReducer,
-    nextStepReducer,
+    updateInsideStepReducer,
+    updateNextStepReducer,
   },
 })
 
