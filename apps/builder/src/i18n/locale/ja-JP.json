@@ -1301,7 +1301,10 @@
           "file_name": "拡張子を含まないファイル名",
           "file_type": "ファイルの種類"
         },
-        "action_name": "Action name"
+        "action_name": "Action name",
+        "variable": {
+          "path_of_value": "Path of value"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1366,6 +1369,10 @@
         },
         "file_download": {
           "file_data": "テーブルの base64 データ、生データ、マップされたデータをサポートします"
+        },
+        "variable": {
+          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
+          "the_target_value": "The target value"
         }
       },
       "setter_option": {
@@ -1416,6 +1423,9 @@
         "file_download": {
           "file_data": "{{ mysql1.data }}",
           "file_name": "{{ new_data.csv }}"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
         }
       },
       "setter_tootip": {
