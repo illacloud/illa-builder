@@ -1296,8 +1296,8 @@
           "collapse_icon": "무너지다",
           "icon_color": "색깔"
         },
-        "choose_at_least": "Choose at least",
-        "choose_up_to": "Choose up to",
+        "choose_at_least": "최소한의 선택",
+        "choose_up_to": "가장 많이 선택된",
         "copy_to_clipboard": "Copy to clipboard",
         "file_download": {
           "file_data": "파일 데이터",
@@ -1963,7 +1963,7 @@
       "name": "Collapse"
     },
     "multiselect": {
-      "name": "Multiselect"
+      "name": "다중 선택"
     },
     "carousel": {
       "name": "회전목마"
