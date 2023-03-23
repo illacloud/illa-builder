@@ -35,6 +35,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   openDynamic?: boolean
   allowClear?: boolean
   detailedDescription?: string
+  canShowLabel?: boolean
 }
 
 export interface PanelFieldGroupConfig {

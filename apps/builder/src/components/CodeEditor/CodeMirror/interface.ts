@@ -19,6 +19,5 @@ export interface ILLACodeMirrorProps
   editable?: boolean
   readOnly?: boolean
   placeholder?: string
-  wrapperCss?: SerializedStyles
   tooltipContainer?: RefObject<HTMLElement>
 }

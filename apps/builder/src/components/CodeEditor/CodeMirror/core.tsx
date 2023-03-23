@@ -44,7 +44,6 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     hasError = false,
     resultType = VALIDATION_TYPES.STRING,
     canShowCompleteInfo = false,
-    wrapperCss,
     sqlScheme = {},
     singleLine,
     onChange,
@@ -234,10 +233,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     >
       <div
         ref={editorWrapperRef}
-        css={[
-          applyEditorWrapperStyle(hasError, isFocus, editable, readOnly),
-          wrapperCss,
-        ]}
+        css={applyEditorWrapperStyle(hasError, isFocus, editable, readOnly)}
       />
     </HintToolTip>
   )

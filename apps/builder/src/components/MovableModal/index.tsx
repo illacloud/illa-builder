@@ -40,6 +40,6 @@ export const MovableModal: FC<MovableModalProps> = (props) => {
         </ModalFooter>
       </div>
     </Rnd>,
-    document.querySelector("#root")!,
+    document.body,
   )
 }

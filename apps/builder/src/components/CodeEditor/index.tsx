@@ -207,7 +207,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }, [])
 
   return (
-    <div css={ILLACodeMirrorWrapperStyle} ref={popupContainerRef}>
+    <div css={[ILLACodeMirrorWrapperStyle, wrapperCss]} ref={popupContainerRef}>
       <ILLACodeMirrorCore
         showLineNumbers={showLineNumbers}
         placeholder={placeholder}
@@ -230,7 +230,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         minWidth={minWidth}
         minHeight={minHeight}
         canShowCompleteInfo={canShowCompleteInfo}
-        wrapperCss={wrapperCss}
         sqlScheme={sqlScheme}
         singleLine={singleLine}
         tooltipContainer={popupContainerRef ?? undefined}

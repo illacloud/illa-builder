@@ -1,3 +1,4 @@
+import { SerializedStyles } from "@emotion/react"
 import { ILLACodeMirrorProps } from "@/components/CodeEditor/CodeMirror/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
@@ -11,4 +12,5 @@ export interface CodeEditorProps
   canExpand?: boolean
   modalTitle?: string
   modalDescription?: string
+  wrapperCss?: SerializedStyles
 }
