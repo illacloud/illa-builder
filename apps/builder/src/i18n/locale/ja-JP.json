@@ -1568,7 +1568,7 @@
             "templates": "テンプレート"
           },
           "onboarding_app": {
-            "name": "Onboarding app",
+            "name": "初心者ガイド",
             "description": "アプリケーションの構築方法については、ILLA のチュートリアルに従ってください",
             "action": "始める"
           },
@@ -2331,6 +2331,12 @@
           "description": "ILLA のチュートリアルに従って、アプリのビルド方法を学びましょう。所要時間は約 5 分です。",
           "cancel": "キャンセル",
           "take": "チュートリアルを開始"
+        },
+        "exit_confirm": {
+          "title": "チュートリアルを終了？",
+          "description": "次回初心者ガイドに入ると、ガイド付きの手順が再生されます",
+          "cancel": "キャンセル",
+          "exit": "終了"
         }
       }
     }
