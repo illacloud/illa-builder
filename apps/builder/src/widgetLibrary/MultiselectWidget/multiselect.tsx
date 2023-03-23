@@ -40,7 +40,7 @@ export const WrappedMultiselect: FC<WrappedMultiselectProps> = (props) => {
           {
             displayName,
             value: {
-              value: value || "",
+              value: value || [],
               validateMessage: message,
             },
           },
@@ -63,7 +63,7 @@ export const WrappedMultiselect: FC<WrappedMultiselectProps> = (props) => {
       allowClear={showClear}
       multiple
       options={options}
-      value={value}
+      value={value ?? []}
       placeholder={placeholder}
       disabled={disabled}
       loading={loading}
@@ -139,8 +139,7 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       setValue: (value: any) => {
-        const formatValue = Array.isArray(value) ? value : [value]
-        handleUpdateDsl({ value: formatValue })
+        handleUpdateDsl({ value })
       },
       clearValue: () => {
         handleUpdateDsl({ value: undefined })

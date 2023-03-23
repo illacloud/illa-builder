@@ -26,6 +26,7 @@ export const MULTISELECT_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_tooltip.component_default_value",
         ),
         attrName: "value",
+        expectedType: VALIDATION_TYPES.ARRAY,
         setterType: "INPUT_SETTER",
       },
       {
@@ -175,6 +176,7 @@ export const MULTISELECT_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-validation-leastNumber`,
         labelName: i18n.t("editor.inspect.setter_label.choose_at_least"),
         labelDesc: i18n.t("editor.inspect.setter_message.choose_at_least"),
+        isSetterSingleRow: true,
         attrName: "atLeastNumber",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -183,6 +185,7 @@ export const MULTISELECT_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-validation-upNumber`,
         labelName: i18n.t("editor.inspect.setter_label.choose_up_to"),
         labelDesc: i18n.t("editor.inspect.setter_message.choose_up_to"),
+        isSetterSingleRow: true,
         attrName: "upToNumber",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
