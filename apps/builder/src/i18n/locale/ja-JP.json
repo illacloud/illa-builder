@@ -1296,8 +1296,8 @@
           "collapse_icon": "アコーディオンパネル",
           "icon_color": "色"
         },
-        "choose_at_least": "Choose at least",
-        "choose_up_to": "Choose up to",
+        "choose_at_least": "最低の選択",
+        "choose_up_to": "最も選ばれた",
         "copy_to_clipboard": "クリップボードにコピー",
         "file_download": {
           "file_data": "ファイルデータ",
@@ -1963,7 +1963,7 @@
       "name": "Collapse"
     },
     "multiselect": {
-      "name": "Multiselect"
+      "name": "複数選択"
     },
     "carousel": {
       "name": "カルーセル"
