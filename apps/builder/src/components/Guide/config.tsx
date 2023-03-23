@@ -137,6 +137,9 @@ export const guideConfig = [
     descKey:
       "editor.tutorial.panel.onboarding_app.display_data_description_select",
     selector: ".table-iframe",
+    doItForMe: () => {
+      store.dispatch(configActions.updateSelectedComponent(["table1"]))
+    },
   },
   {
     step: 4,
@@ -151,6 +154,9 @@ export const guideConfig = [
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_1",
     selector: ".button-iframe",
+    doItForMe: () => {
+      store.dispatch(configActions.updateSelectedComponent(["button"]))
+    },
   },
   {
     step: 6,
