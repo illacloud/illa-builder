@@ -1296,8 +1296,8 @@
           "collapse_icon": "折叠面板",
           "icon_color": "颜色"
         },
-        "choose_at_least": "Choose at least",
-        "choose_up_to": "Choose up to",
+        "choose_at_least": "最少选择",
+        "choose_up_to": "最多选择",
         "copy_to_clipboard": "复制到剪贴板",
         "file_download": {
           "file_data": "文件数据",
@@ -1963,7 +1963,7 @@
       "name": "Collapse"
     },
     "multiselect": {
-      "name": "Multiselect"
+      "name": "多项选择"
     },
     "carousel": {
       "name": "轮播图"
