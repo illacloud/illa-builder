@@ -38,7 +38,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     uid: teamInfo?.uid ?? "",
     teamID: teamInfo?.id ?? "",
   }
-  console.log(teamInfo, teamID, "teamID")
 
   useDestroyApp()
 
@@ -63,6 +62,8 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     },
     [appId, dispatch, mode, teamID, uid],
   )
+
+  const initGuideModeApp = () => {}
 
   const initPublicApp = useCallback(
     (controller: AbortController) => {
