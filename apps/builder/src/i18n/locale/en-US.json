@@ -2331,6 +2331,12 @@
           "description": "Follow ILLA's tutorial to learn how to build an app. This will take about 5 minutes.",
           "cancel": "Cancel",
           "take": "Take a tutorial"
+        },
+        "exit_confirm": {
+          "title": "Exit the tutorial?",
+          "description": "The next time you enter the onboarding app, the guided steps will be replayed ",
+          "cancel": "Cancel",
+          "exit": "Exit"
         }
       }
     }
