@@ -1307,6 +1307,9 @@
         "action_name": "Action name",
         "variable": {
           "path_of_value": "Path of value"
+        },
+        "code": {
+          "write_code": "Write code"
         }
       },
       "setter_tooltip": {
@@ -1437,6 +1440,11 @@
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
         "choose_up_to": "Please choose up to {{max}} options."
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Write your code here. Use JavaScript inside of {{ }}"
+        }
       }
     },
     "page": {
