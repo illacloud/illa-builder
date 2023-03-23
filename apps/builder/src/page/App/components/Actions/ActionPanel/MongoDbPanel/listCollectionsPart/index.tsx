@@ -41,6 +41,7 @@ export const ListCollectionsPart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.query}
+          modalTitle={t("editor.action.panel.mongodb.query")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

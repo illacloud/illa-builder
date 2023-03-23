@@ -19,6 +19,9 @@ export const ContainerDefaultViewKeySetter: FC<
     widgetType,
     widgetOrAction,
     value,
+    labelName,
+    labelDesc,
+    detailedDescription,
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -74,6 +77,9 @@ export const ContainerDefaultViewKeySetter: FC<
       widgetType={widgetType}
       widgetOrAction={widgetOrAction}
       value={value}
+      labelName={labelName}
+      labelDesc={labelDesc}
+      detailedDescription={detailedDescription}
     />
   )
 }

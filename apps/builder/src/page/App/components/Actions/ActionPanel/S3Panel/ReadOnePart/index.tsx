@@ -56,6 +56,7 @@ export const ReadOnePart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
+          modalTitle={t("editor.action.panel.s3.bucket_name")}
           onChange={(value) => handleValueChange(value, "bucketName")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -69,6 +70,7 @@ export const ReadOnePart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.objectKey}
+          modalTitle={t("editor.action.panel.s3.object_key")}
           onChange={(value) => handleValueChange(value, "objectKey")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -92,7 +94,7 @@ export const ReadOnePart: FC<S3ActionPartProps> = (props) => {
       {isShowSignedURL && (
         <div css={s3ItemStyle}>
           <span css={codeEditorLabelStyle}>
-            {t("editor.action.panel.s3.expiry_duration_of_signed_url")}
+            {t("editor.action.panel.s3.generate_signed_url")}
           </span>
           <CodeEditor
             key="read"
@@ -100,6 +102,9 @@ export const ReadOnePart: FC<S3ActionPartProps> = (props) => {
             wrapperCss={s3ItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={String(commandArgs.expiry)}
+            modalTitle={t(
+              "editor.action.panel.s3.expiry_duration_of_signed_url",
+            )}
             onChange={(value) => handleValueChange(value, "expiry")}
             expectValueType={VALIDATION_TYPES.NUMBER}
           />

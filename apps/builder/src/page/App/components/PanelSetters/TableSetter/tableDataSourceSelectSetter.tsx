@@ -27,6 +27,7 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
     widgetDisplayName,
     labelName,
     labelDesc,
+    detailedDescription,
     handleUpdateDsl,
     handleUpdateMultiAttrDSL,
   } = props
@@ -171,6 +172,7 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
         value={finalValue}
         labelName={labelName}
         labelDesc={labelDesc}
+        detailedDescription={detailedDescription}
         isError={isError}
       />
     </div>
