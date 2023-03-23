@@ -8,8 +8,6 @@ export const evaluateDynamicString = (
   dataTree: Record<string, any>,
   evaluationType: EVALUATION_TYPE = EVALUATION_TYPE.TEMPLATE,
 ) => {
-  const data = dataTree[keyInDataTree]
-  // if (!data) return
   const requiresEval = isDynamicString(dynamicString)
   let evalResult
   if (requiresEval) {
@@ -17,7 +15,7 @@ export const evaluateDynamicString = (
       evalResult = getDynamicValue(dynamicString, dataTree, evaluationType)
     } catch (error) {
       evalResult = undefined
-      throw error
+      console.error(error)
     }
   } else {
     evalResult = dynamicString

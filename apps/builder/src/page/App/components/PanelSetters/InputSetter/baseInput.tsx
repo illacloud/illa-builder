@@ -23,6 +23,9 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     value,
     widgetDisplayName,
     isInList,
+    labelName,
+    detailedDescription,
+    labelDesc,
   } = props
 
   const listWidgets = useSelector(
@@ -68,6 +71,8 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         maxHeight="208px"
         maxWidth="100%"
         codeType={CODE_TYPE.EXPRESSION}
+        modalTitle={labelName}
+        modalDescription={detailedDescription ?? labelDesc}
       />
     </div>
   )

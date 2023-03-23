@@ -381,16 +381,17 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
               </div>
             )}
             {currentParameterType === "text" && (
-              <CodeEditor
-                wrapperCss={textCodeEditorStyle}
-                lang={CODE_LANG.JAVASCRIPT}
-                value={(content?.inputs.content ?? "") as TextRawBody}
-                onChange={handleInputsValueChange}
-                expectValueType={VALIDATION_TYPES.STRING}
-                placeholder={t(
-                  "editor.action.panel.hugging_face.placeholder.text",
-                )}
-              />
+              <div css={textCodeEditorStyle}>
+                <CodeEditor
+                  lang={CODE_LANG.JAVASCRIPT}
+                  value={(content?.inputs.content ?? "") as TextRawBody}
+                  onChange={handleInputsValueChange}
+                  expectValueType={VALIDATION_TYPES.STRING}
+                  placeholder={t(
+                    "editor.action.panel.hugging_face.placeholder.text",
+                  )}
+                />
+              </div>
             )}
           </div>
         </div>

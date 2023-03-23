@@ -33,6 +33,7 @@ export const recordKeyStyle = css`
   min-width: 160px;
   flex-grow: 1;
   width: 0;
+  height: auto;
   .cm-editor {
     border-radius: 8px 0 0 8px;
   }
@@ -42,6 +43,7 @@ export const recordValueStyle = css`
   margin-left: -1px;
   flex-grow: 1;
   width: 0;
+  height: auto;
   .cm-editor {
     border-radius: 0;
   }
