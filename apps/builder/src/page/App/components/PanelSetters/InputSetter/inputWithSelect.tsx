@@ -1,4 +1,5 @@
 import { FC, useCallback, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   DownIcon,
@@ -49,6 +50,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
   } = props
 
   const [popupVisible, setPopupVisible] = useState<boolean>(false)
+  const { t } = useTranslation()
 
   const listWidgets = useSelector(
     getContainerListDisplayNameMappedChildrenNodeDisplayName,
@@ -156,6 +158,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
           placeholder={placeholder}
           maxWidth="100%"
           codeType={CODE_TYPE.EXPRESSION}
+          modalTitle={t("editor.inspect.setter_label.max_size")}
         />
         <div css={dashCharStyle}>~</div>
         <CodeEditor
@@ -169,6 +172,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
           maxHeight="208px"
           maxWidth="100%"
           codeType={CODE_TYPE.EXPRESSION}
+          modalTitle={t("editor.inspect.setter_label.min_size")}
         />
       </div>
     </div>

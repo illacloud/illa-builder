@@ -23,7 +23,6 @@ export const ShadowSelect: FC<BaseSelectSetterProps> = (props) => {
   const { t } = useTranslation()
 
   const dropList = useMemo(() => {
-    console.log("options", options)
     return options?.map((option: { label: string; value: string }) => {
       return (
         <DropListItem

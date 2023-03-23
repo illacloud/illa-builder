@@ -22,6 +22,7 @@ export interface BaseDynamicSelectSetterProps extends PanelLabelProps {
   selectPlaceholder?: string
   inputPlaceholder?: string
   isError: boolean
+  detailedDescription?: string
 }
 
 export interface HeightModeSetterProps extends BaseSelectSetterProps {

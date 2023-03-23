@@ -5,7 +5,7 @@ import { getTeamsInfo } from "@/api/team"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
-import { cloudUrl } from "@/router/routerConfig"
+import { cloudRedirect } from "@/router/routerConfig"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { setLocalStorage } from "@/utils/storage"
@@ -67,11 +67,11 @@ export const requireAuth = async (
   if (!userInfo?.userId) {
     if (!token) {
       clearRequestPendingPool()
-      return redirect(cloudUrl)
+      return redirect(cloudRedirect)
     } else {
       const userInfo = await getUserInfo(token)
       if (!userInfo) {
-        return redirect(cloudUrl)
+        return redirect(cloudRedirect)
       }
     }
   }

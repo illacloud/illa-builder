@@ -32,6 +32,7 @@ export const applyEditorWrapperStyle = (
         `
   return css`
     width: 100%;
+    height: 100%;
     .cm-editor {
       border: 1px solid
         ${getEditorWrapperBorderColor(hasError, isFocused, false)};

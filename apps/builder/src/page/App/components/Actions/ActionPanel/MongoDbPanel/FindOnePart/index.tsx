@@ -40,6 +40,7 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.query}
+          modalTitle={t("editor.action.panel.mongodb.query")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -67,6 +68,7 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.projection}
+          modalTitle={t("editor.action.panel.mongodb.projection")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -94,6 +96,7 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.skip}
+          modalTitle={t("editor.action.panel.mongodb.skip")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

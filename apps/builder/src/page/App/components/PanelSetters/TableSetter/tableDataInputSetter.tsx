@@ -20,6 +20,9 @@ export const TableDataInputSetter: FC<TableDataInputSetterProps> = (props) => {
     value,
     placeholder,
     isInList,
+    labelDesc,
+    labelName,
+    detailedDescription,
     handleUpdateMultiAttrDSL,
   } = props
 
@@ -68,6 +71,9 @@ export const TableDataInputSetter: FC<TableDataInputSetterProps> = (props) => {
       widgetType={widgetType}
       isInList={isInList}
       isSetterSingleRow={isSetterSingleRow}
+      labelDesc={labelDesc}
+      labelName={labelName}
+      detailedDescription={detailedDescription}
     />
   )
 }

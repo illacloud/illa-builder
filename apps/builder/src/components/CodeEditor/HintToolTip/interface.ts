@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from "react"
+import { Dispatch, ReactNode, RefObject, SetStateAction } from "react"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface HintTooltipProps {
@@ -7,6 +7,7 @@ export interface HintTooltipProps {
   resultType?: VALIDATION_TYPES
   result?: string
   children: ReactNode
+  toolTipContainer?: RefObject<HTMLElement>
 }
 
 export interface HintTooltipContentProps
