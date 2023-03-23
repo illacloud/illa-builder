@@ -26,6 +26,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     expectedType,
     widgetOrAction,
     openDynamic,
+    detailedDescription,
   } = props
 
   const customSelected = get(panelConfig, `${attrName}Dynamic`, false)
@@ -79,6 +80,8 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             widgetDisplayName={widgetDisplayName}
             widgetType={VALIDATION_TYPES.BOOLEAN}
             widgetOrAction={widgetOrAction}
+            labelName={labelName}
+            detailedDescription={detailedDescription ?? labelDesc}
           />
         </div>
       )}

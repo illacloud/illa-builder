@@ -1,10 +1,16 @@
 import { debounce } from "lodash"
-import { FC, useMemo, useState } from "react"
+import { FC, useCallback, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
+import { ReactComponent as OpenWindowIcon } from "@/assets/public/openWindow.svg"
 import { ILLACodeMirrorCore } from "@/components/CodeEditor/CodeMirror/core"
 import { IExpressionShape } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { githubLightScheme } from "@/components/CodeEditor/CodeMirror/theme"
+import { ModalCodeMirror } from "@/components/CodeEditor/ModalCodeMirror"
 import { CodeEditorProps } from "@/components/CodeEditor/interface"
+import {
+  ILLACodeMirrorWrapperStyle,
+  openWindowIconHotspotStyle,
+} from "@/components/CodeEditor/style"
 import { getExecutionResultToCodeMirror } from "@/redux/currentApp/executionTree/executionSelector"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { getStringSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
@@ -65,6 +71,8 @@ const MAX_LEN_WITH_SNIPPETS = 1024
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     value = "",
+    modalTitle = "",
+    modalDescription,
     onChange = () => {},
     showLineNumbers,
     placeholder,
@@ -84,12 +92,15 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     canShowCompleteInfo,
     wrapperCss,
     singleLine,
+    canExpand = true,
     wrappedCodeFunc,
     className,
   } = props
   const [result, setResult] = useState<string>("")
   const [error, setError] = useState<boolean>(false)
   const [resultType, setResultType] = useState(VALIDATION_TYPES.STRING)
+  const [isExpanded, setIsExpanded] = useState(false)
+  const popupContainerRef = useRef<HTMLDivElement>(null)
 
   const executionResult = useSelector(getExecutionResultToCodeMirror)
 
@@ -179,40 +190,73 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     return result
   }, [wrappedCodeFunc, value, expectValueType, executionResult])
 
-  const debounceHandleChange = debounce(onChange, 160)
+  const debounceHandleChange = useMemo(() => {
+    return debounce(onChange, 160)
+  }, [onChange])
 
   const customExtensions = useMemo(
     () => (extensions ? [extensions, githubLightScheme] : [githubLightScheme]),
     [extensions],
   )
 
+  const handleOpenExpandModal = useCallback(() => {
+    setIsExpanded(true)
+  }, [])
+
+  const handleCloseExpandModal = useCallback(() => {
+    setIsExpanded(false)
+  }, [])
+
   return (
-    <ILLACodeMirrorCore
-      className={className}
-      showLineNumbers={showLineNumbers}
-      placeholder={placeholder}
-      value={value}
-      onChange={debounceHandleChange}
-      lang={lang}
-      executionResult={executionResult}
-      expressions={stringSnippets}
-      result={result}
-      hasError={error}
-      resultType={resultType}
-      width={width}
-      maxWidth={maxWidth}
-      height={height}
-      maxHeight={maxHeight}
-      editable={editable}
-      readOnly={readOnly}
-      codeType={codeType}
-      extensions={customExtensions}
-      minWidth={minWidth}
-      minHeight={minHeight}
-      canShowCompleteInfo={canShowCompleteInfo}
-      wrapperCss={wrapperCss}
-      sqlScheme={sqlScheme}
-      singleLine={singleLine}
-    />
+    <div css={[ILLACodeMirrorWrapperStyle, wrapperCss]} ref={popupContainerRef}>
+      <ILLACodeMirrorCore
+        className={className}
+        showLineNumbers={showLineNumbers}
+        placeholder={placeholder}
+        value={value}
+        onChange={debounceHandleChange}
+        lang={lang}
+        executionResult={executionResult}
+        expressions={stringSnippets}
+        result={result}
+        hasError={error}
+        resultType={resultType}
+        width={width}
+        maxWidth={maxWidth}
+        height={height}
+        maxHeight={maxHeight}
+        editable={editable}
+        readOnly={readOnly}
+        codeType={codeType}
+        extensions={customExtensions}
+        minWidth={minWidth}
+        minHeight={minHeight}
+        canShowCompleteInfo={canShowCompleteInfo}
+        sqlScheme={sqlScheme}
+        singleLine={singleLine}
+        tooltipContainer={popupContainerRef ?? undefined}
+      />
+      {canExpand && (
+        <div
+          css={openWindowIconHotspotStyle}
+          className="open-window-icon-hotspot"
+          onClick={handleOpenExpandModal}
+        >
+          <OpenWindowIcon />
+        </div>
+      )}
+      {isExpanded && (
+        <ModalCodeMirror
+          title={modalTitle}
+          onClose={handleCloseExpandModal}
+          value={value}
+          onChange={onChange}
+          expectValueType={expectValueType}
+          lang={lang}
+          description={modalDescription}
+          placeholder={placeholder}
+        />
+      )}
+    </div>
   )
 }

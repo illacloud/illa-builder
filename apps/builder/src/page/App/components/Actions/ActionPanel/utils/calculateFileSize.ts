@@ -3,6 +3,7 @@ import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { calculateFileSize } from "@/utils/file"
 
 const message = createMessage()
 const MAX_SIZE = 5 * 1024 * 1024
@@ -19,12 +20,6 @@ export const getFileValue = (data: string) => {
     }
   }
   return value
-}
-
-export const calculateFileSize = (data: string | string[]) => {
-  const bolbArr = Array.isArray(data) ? data : [data]
-  const byteSize = new Blob(bolbArr).size
-  return byteSize
 }
 
 export const isFileOversize = (data: string, type?: ActionType) => {

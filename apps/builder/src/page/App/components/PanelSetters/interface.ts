@@ -22,4 +22,7 @@ export interface BaseSetter {
   widgetOrAction: "ACTION" | "WIDGET"
   defaultValue?: any
   componentNode?: ComponentNode
+  detailedDescription?: string
+  labelName?: string
+  labelDesc?: string
 }

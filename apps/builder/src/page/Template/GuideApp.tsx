@@ -110,7 +110,7 @@ const GuideApp: FC = () => {
     [controls],
   )
   // init app
-  const loadingState = useInitBuilderApp("edit")
+  const { loadingState } = useInitBuilderApp("edit")
 
   const isOpen = useSelector(getGuideStatus)
   useEffect(() => {

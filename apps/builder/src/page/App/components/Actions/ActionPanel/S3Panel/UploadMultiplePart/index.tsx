@@ -52,6 +52,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
+          modalTitle={t("editor.action.panel.s3.bucket_name")}
           onChange={(value) => handleValueChange(value, "bucketName")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -65,6 +66,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.contentType}
+          modalTitle={t("editor.action.panel.s3.content_type")}
           onChange={(value) => handleValueChange(value, "contentType")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -80,6 +82,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           lang={CODE_LANG.JAVASCRIPT}
           placeholder={t("editor.action.panel.s3.placeholder.object_name_list")}
           value={commandArgs.objectKeyList}
+          modalTitle={t("editor.action.panel.s3.upload_object_name_list")}
           onChange={(value) => handleValueChange(value, "objectKeyList")}
           expectValueType={VALIDATION_TYPES.ARRAY}
         />
@@ -95,6 +98,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           lang={CODE_LANG.JAVASCRIPT}
           placeholder={t("editor.action.panel.s3.placeholder.data_list")}
           value={commandArgs.objectDataList}
+          modalTitle={t("editor.action.panel.s3.upload_data_list")}
           onChange={(value) => handleValueChange(value, "objectDataList")}
           expectValueType={VALIDATION_TYPES.ARRAY}
         />
@@ -108,6 +112,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.expiry}
+          modalTitle={t("editor.action.panel.s3.timeout_upload_multiple")}
           onChange={(value) => handleValueChange(value, "expiry")}
           expectValueType={VALIDATION_TYPES.NUMBER}
         />

@@ -4,9 +4,6 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 export const transformerPanelContainerStyle = css`
   display: flex;
   flex-direction: column;
-`
-
-export const transformerEditorStyle = css`
   padding: 8px 16px;
 `
 

@@ -1,5 +1,6 @@
 import { Extension } from "@codemirror/state"
 import { SerializedStyles } from "@emotion/react"
+import { RefObject } from "react"
 import { ICodeMirrorOptions } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { HintTooltipProps } from "@/components/CodeEditor/HintToolTip/interface"
 
@@ -18,6 +19,6 @@ export interface ILLACodeMirrorProps
   editable?: boolean
   readOnly?: boolean
   placeholder?: string
-  wrapperCss?: SerializedStyles
   className?: string
+  tooltipContainer?: RefObject<HTMLElement>
 }

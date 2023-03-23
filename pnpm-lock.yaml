@@ -84,6 +84,7 @@ importers:
       '@types/chroma-js': ^2.1.4
       '@types/codemirror': ^5.60.5
       '@types/deep-diff': ^1.0.1
+      '@types/downloadjs': ^1.4.3
       '@types/jshint': ^2.12.1
       '@types/lodash': ^4.14.191
       '@types/mdx': ^2.0.3
@@ -112,6 +113,7 @@ importers:
       cross-env: ^7.0.3
       dayjs: ^1.11.7
       deep-diff: ^1.0.2
+      downloadjs: ^1.4.7
       e2e: workspace:*
       events: ^3.3.0
       framer-motion: ^7.6.12
@@ -195,6 +197,7 @@ importers:
       copy-to-clipboard: 3.3.3
       dayjs: 1.11.7
       deep-diff: 1.0.2
+      downloadjs: 1.4.7
       events: 3.3.0
       framer-motion: 7.10.3
       hotkeys-js: 3.10.1
@@ -244,6 +247,7 @@ importers:
       '@types/chroma-js': 2.1.5
       '@types/codemirror': 5.60.7
       '@types/deep-diff': 1.0.2
+      '@types/downloadjs': 1.4.3
       '@types/jshint': 2.12.1
       '@types/lodash': 4.14.191
       '@types/mdx': 2.0.3
@@ -3633,6 +3637,10 @@ packages:
     resolution: {integrity: sha512-WD2O611C7Oz7RSwKbSls8LaznKfWfXh39CHY9Amd8FhQz+NJRe20nUHhYpOopVq9M2oqDZd4L6AzqJIXQycxiA==}
     dev: true
 
+  /@types/downloadjs/1.4.3:
+    resolution: {integrity: sha512-MjJepFle/tLtT2/jmDNth6ZnwWzEhm40L+olE5HKR70ISUCfgT55eqreeHldAzFLY2HDUGsn8zgyto8KygN0CA==}
+    dev: true
+
   /@types/estree-jsx/1.0.0:
     resolution: {integrity: sha512-3qvGd0z8F2ENTGr/GG1yViqfiKmRfrXVx5sJyHGFu3z7m5g5utCQtGp/g29JnjflhtQJBv1WDQukHiT58xPcYQ==}
     dependencies:
@@ -5435,6 +5443,10 @@ packages:
     resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
     engines: {node: '>=10'}
     dev: true
+
+  /downloadjs/1.4.7:
+    resolution: {integrity: sha512-LN1gO7+u9xjU5oEScGFKvXhYf7Y/empUIIEAGBs1LzUq/rg5duiDrkuH5A2lQGd5jfMOb9X9usDa2oVXwJ0U/Q==}
+    dev: false
 
   /eastasianwidth/0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}

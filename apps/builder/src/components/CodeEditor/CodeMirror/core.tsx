@@ -45,10 +45,10 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     hasError = false,
     resultType = VALIDATION_TYPES.STRING,
     canShowCompleteInfo = false,
-    wrapperCss,
     sqlScheme = {},
     singleLine,
     onChange,
+    tooltipContainer,
   } = props
 
   const [isFocus, setIsFocus] = useState(false)
@@ -230,14 +230,12 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       result={!result ? '""' : result}
       hasError={hasError}
       resultType={resultType}
+      toolTipContainer={tooltipContainer}
     >
       <div
         ref={editorWrapperRef}
-        css={[
-          applyEditorWrapperStyle(hasError, isFocus, editable, readOnly),
-          wrapperCss,
-        ]}
         className={className}
+        css={applyEditorWrapperStyle(hasError, isFocus, editable, readOnly)}
       />
     </HintToolTip>
   )
