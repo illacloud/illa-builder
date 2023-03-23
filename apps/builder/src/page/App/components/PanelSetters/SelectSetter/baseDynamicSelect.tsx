@@ -23,11 +23,11 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
     onChangeInput,
     onChangeSelect,
     expectedType,
-    path,
     options,
     selectPlaceholder,
     inputPlaceholder,
     isError,
+    detailedDescription,
   } = props
 
   return (
@@ -53,6 +53,8 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
             minHeight="30px"
             maxWidth="100%"
             codeType={CODE_TYPE.EXPRESSION}
+            modalTitle={labelName}
+            modalDescription={labelDesc ?? detailedDescription}
           />
         ) : (
           <Select

@@ -48,6 +48,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     sqlScheme = {},
     singleLine,
     onChange,
+    tooltipContainer,
   } = props
 
   const [isFocus, setIsFocus] = useState(false)
@@ -229,6 +230,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       result={!result ? '""' : result}
       hasError={hasError}
       resultType={resultType}
+      toolTipContainer={tooltipContainer}
     >
       <div
         ref={editorWrapperRef}

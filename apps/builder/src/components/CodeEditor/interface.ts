@@ -8,4 +8,7 @@ export interface CodeEditorProps
   > {
   expectValueType?: VALIDATION_TYPES
   wrappedCodeFunc?: (value: string) => string
+  canExpand?: boolean
+  modalTitle?: string
+  modalDescription?: string
 }

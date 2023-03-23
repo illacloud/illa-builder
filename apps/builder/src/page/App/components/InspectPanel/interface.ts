@@ -9,7 +9,7 @@ export interface PanelHeaderActionProps {
 }
 
 export interface PanelLabelProps {
-  labelName?: any
+  labelName?: string
   labelDesc?: string
   isInList?: boolean
 }
@@ -34,6 +34,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   bindAttrName?: string | string[]
   openDynamic?: boolean
   allowClear?: boolean
+  detailedDescription?: string
 }
 
 export interface PanelFieldGroupConfig {
