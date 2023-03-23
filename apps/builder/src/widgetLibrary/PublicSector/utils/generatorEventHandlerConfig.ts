@@ -66,7 +66,7 @@ export const generatorEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-query`,
-        labelName: "Query",
+        labelName: i18n.t("editor.inspect.setter_label.action_name"),
         setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
         attrName: "queryID",
         bindAttrName: ["actionType"],

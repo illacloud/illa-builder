@@ -28,7 +28,3 @@ export const isBase64 = (v: string, mimeRequired?: boolean) => {
   }
   return true
 }
-
-export const isBase64Prefix = (v: string) => {
-  return mimeRegex.test(v)
-}
