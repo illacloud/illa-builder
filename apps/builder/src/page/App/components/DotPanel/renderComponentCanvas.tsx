@@ -60,6 +60,7 @@ import {
   getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import store from "@/store"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"

@@ -53,6 +53,7 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
               }),
             )
           }}
+          modalTitle={t("editor.action.panel.mongodb.aggregation")}
           height="88px"
           wrapperCss={mongoItemCodeEditorStyle}
           expectValueType={VALIDATION_TYPES.STRING}
@@ -71,6 +72,7 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.options}
+          modalTitle={t("editor.action.panel.mongodb.options")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

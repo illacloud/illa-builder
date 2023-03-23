@@ -54,6 +54,7 @@ export const DeleteMultiplePart: FC<S3ActionPartProps> = (props) => {
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
           // TODO: refactor inline function
+          modalTitle={t("editor.action.panel.s3.bucket_name")}
           onChange={(value) => handleValueChange(value, "bucketName")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -68,6 +69,7 @@ export const DeleteMultiplePart: FC<S3ActionPartProps> = (props) => {
           lang={CODE_LANG.JAVASCRIPT}
           placeholder={t("editor.action.panel.s3.placeholder.object_key_list")}
           value={commandArgs.objectKeyList}
+          modalTitle={t("editor.action.panel.s3.object_key_list")}
           onChange={(value) => handleValueChange(value, "objectKeyList")}
           expectValueType={VALIDATION_TYPES.ARRAY}
         />
