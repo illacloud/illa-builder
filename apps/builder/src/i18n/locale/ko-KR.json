@@ -1568,7 +1568,7 @@
             "templates": "주형"
           },
           "onboarding_app": {
-            "name": "Onboarding app",
+            "name": "초보자 가이드",
             "description": "ILLA의 튜토리얼을 따라 애플리케이션 구축 방법을 배우십시오",
             "action": "시작"
           },
@@ -2331,6 +2331,12 @@
           "description": "약 5분 정도 소요되는 앱 빌드 방법을 배우려면 ILLA의 튜토리얼을 따르세요.",
           "cancel": "취소",
           "take": "튜토리얼 시작"
+        },
+        "exit_confirm": {
+          "title": "튜토리얼 건너 뛰기？",
+          "description": "다음에 온보딩 앱에 들어가면 안내 단계가 재생됩니다.",
+          "cancel": "취소",
+          "exit": "종료 부팅"
         }
       }
     }
