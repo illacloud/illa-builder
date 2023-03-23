@@ -11,13 +11,14 @@ import {
   loadingStyle,
   logoStyle,
 } from "@/page/Deploy/style"
+import { Page404 } from "@/page/status/404"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { startAppListening } from "@/store"
 
 export const Deploy: FC = () => {
-  const loadingState = useInitBuilderApp("production")
+  const { loadingState, errorState } = useInitBuilderApp("production")
   const currentApp = useSelector(getAppInfo)
 
   useEffect(() => {
@@ -28,6 +29,8 @@ export const Deploy: FC = () => {
     document.title = currentApp.appName
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [currentApp.appName])
+
+  if (errorState) return <Page404 />
 
   return (
     <div css={deployContainerStyle}>

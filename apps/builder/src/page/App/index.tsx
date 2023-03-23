@@ -127,7 +127,7 @@ export const Editor: FC = () => {
   const isOnline = useSelector(getIsOnline)
 
   // init app
-  const loadingState = useInitBuilderApp("edit")
+  const { loadingState } = useInitBuilderApp("edit")
 
   const handleMouseDownOnModal = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
