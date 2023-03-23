@@ -1309,7 +1309,7 @@
           "path_of_value": "Path of value"
         },
         "code": {
-          "write_code": "Write code"
+          "write_code": "코드 작성"
         }
       },
       "setter_tooltip": {
@@ -1443,7 +1443,7 @@
       },
       "setter_description": {
         "code": {
-          "write_code": "Write your code here. Use JavaScript inside of {{ }}"
+          "write_code": "여기에 코드를 작성하십시오. {{ }} 내부에서 JavaScript 사용"
         }
       }
     },
