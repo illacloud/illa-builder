@@ -29,15 +29,17 @@ export const fullFillInterceptor = (response: AxiosResponse) => {
 export const axiosErrorInterceptor = (error: AxiosError) => {
   const { response } = error
   if (!response) return Promise.reject(error)
-  const { pathname } = location
+  const { pathname, href } = location
   const { status } = response
   switch (status) {
     // TODO: @aruseito maybe need custom error status, because of we'll have plugin to request other's api
     case 401: {
       removeAuthToken()
       if (isCloudVersion) {
-        // navigate to illa cloud
-        window.location.href = cloudRedirect
+        // navigate to illa cloud, avoid redirect loop
+        if (!href.includes("redirectUrl")) {
+          window.location.href = cloudRedirect
+        }
       } else {
         ILLARoute.navigate("/login", {
           replace: true,
