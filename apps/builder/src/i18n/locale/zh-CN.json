@@ -1568,7 +1568,7 @@
             "templates": "模板"
           },
           "onboarding_app": {
-            "name": "Onboarding app",
+            "name": "新手引导",
             "description": "跟着 ILLA 的教程学习如何构建应用程序",
             "action": "开始"
           },
@@ -2331,6 +2331,12 @@
           "description": "按照 ILLA 的教程学习如何构建应用程序，这大约需要 5 分钟。",
           "cancel": "取消",
           "take": "开始教程"
+        },
+        "exit_confirm": {
+          "title": "退出教程？",
+          "description": "下次您进入新手引导时，将重新播放引导步骤",
+          "cancel": "取消",
+          "exit": "退出"
         }
       }
     }
