@@ -38,6 +38,7 @@ export const InsertOnePart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.document}
+          modalTitle={t("editor.action.panel.mongodb.document")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

@@ -36,6 +36,10 @@ axios.interceptors.request.use(authInterceptor)
 
 axios.interceptors.response.use(fullFillInterceptor, axiosErrorInterceptor)
 
+const customAxios = Axios.create({
+  timeout: 10000,
+})
+
 export class Api {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
@@ -73,6 +77,15 @@ export class Api {
     config: AxiosRequestConfig<RequestBody>,
   ) {
     return axios.request<RespData, AxiosResponse<RespData>, RequestBody>(config)
+  }
+
+  // use to request user links
+  static asyncCustomRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+  ) {
+    return customAxios.request<RespData, AxiosResponse<RespData>, RequestBody>(
+      config,
+    )
   }
 }
 

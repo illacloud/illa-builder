@@ -41,6 +41,7 @@ export const DeleteOnePart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.filter}
+          modalTitle={t("editor.action.panel.mongodb.filter")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

@@ -76,6 +76,7 @@ export const SMTPPanel: FC = () => {
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.from}
+            modalTitle={t("editor.action.panel.smtp.from_email")}
             onChange={(value) => handleValueChange(value, "from")}
             expectValueType={VALIDATION_TYPES.STRING}
           />
@@ -104,6 +105,7 @@ export const SMTPPanel: FC = () => {
               wrapperCss={smtpItemCodeEditorStyle}
               lang={CODE_LANG.JAVASCRIPT}
               value={content.replyTo}
+              modalTitle={t("editor.action.panel.smtp.replay_email")}
               onChange={(value) => handleValueChange(value, "replyTo")}
               expectValueType={VALIDATION_TYPES.STRING}
             />
@@ -118,6 +120,7 @@ export const SMTPPanel: FC = () => {
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.to}
+            modalTitle={t("editor.action.panel.smtp.to_email")}
             placeholder={t("editor.action.panel.smtp.placeholder.emails")}
             onChange={(value) => handleValueChange(value, "to")}
             expectValueType={VALIDATION_TYPES.ARRAY}
@@ -133,6 +136,7 @@ export const SMTPPanel: FC = () => {
             lang={CODE_LANG.JAVASCRIPT}
             placeholder={t("editor.action.panel.smtp.placeholder.emails")}
             value={content.bcc}
+            modalTitle={t("editor.action.panel.smtp.bcc_email")}
             onChange={(value) => handleValueChange(value, "bcc")}
             expectValueType={VALIDATION_TYPES.ARRAY}
           />
@@ -147,6 +151,7 @@ export const SMTPPanel: FC = () => {
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.cc}
+            modalTitle={t("editor.action.panel.smtp.cc_email")}
             placeholder={t("editor.action.panel.smtp.placeholder.emails")}
             onChange={(value) => handleValueChange(value, "cc")}
             expectValueType={VALIDATION_TYPES.ARRAY}
@@ -162,6 +167,7 @@ export const SMTPPanel: FC = () => {
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.subject}
+            modalTitle={t("editor.action.panel.smtp.subject")}
             onChange={(value) => handleValueChange(value, "subject")}
             expectValueType={VALIDATION_TYPES.STRING}
           />
@@ -181,6 +187,7 @@ export const SMTPPanel: FC = () => {
             wrapperCss={smtpItemCodeEditorStyle}
             lang={isHTML ? CODE_LANG.HTML : CODE_LANG.JAVASCRIPT}
             value={content.body}
+            modalTitle={t("editor.action.panel.smtp.body")}
             onChange={(value) => handleValueChange(value, "body")}
             expectValueType={VALIDATION_TYPES.STRING}
           />
@@ -194,6 +201,7 @@ export const SMTPPanel: FC = () => {
             wrapperCss={smtpItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={content.attachment}
+            modalTitle={t("editor.action.panel.smtp.attachment")}
             placeholder={t("editor.action.panel.smtp.placeholder.attachment")}
             onChange={(value) => handleValueChange(value, "attachment")}
             expectValueType={VALIDATION_TYPES.ARRAY}

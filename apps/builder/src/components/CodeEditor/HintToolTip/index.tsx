@@ -47,7 +47,14 @@ export const HintTooltipContent: FC<HintTooltipContentProps> = (props) => {
 }
 
 export const HintToolTip: FC<HintTooltipProps> = (props) => {
-  const { isEditorFocused, result, hasError, resultType, children } = props
+  const {
+    isEditorFocused,
+    result,
+    hasError,
+    resultType,
+    children,
+    toolTipContainer,
+  } = props
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -60,7 +67,7 @@ export const HintToolTip: FC<HintTooltipProps> = (props) => {
       popupVisible={isEditorFocused || isHovered}
       position="bottom-start"
       colorScheme="white"
-      renderInBody={false}
+      popupContainer={toolTipContainer}
       content={
         <HintTooltipContent
           hasError={hasError}
