@@ -81,6 +81,12 @@ export const commonRouter: RoutesObjectPro[] = [
     needLogin: true,
   },
   {
+    path: "/:teamIdentifier/guide",
+    element: layLoad(lazy(() => import("@/page/Template/GuideApp"))),
+    errorElement: <Page404 />,
+    needLogin: true,
+  },
+  {
     path: "/privacy-policy",
     accessByMobile: true,
     element: layLoad(

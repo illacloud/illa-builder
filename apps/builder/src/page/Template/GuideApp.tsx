@@ -4,6 +4,7 @@ import { FC, MouseEvent, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
+import { BuilderApi } from "@/api/base"
 import { Guide } from "@/components/Guide"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -33,19 +34,21 @@ import {
 } from "@/page/App/style"
 import { setupConfigListeners } from "@/redux/config/configListener"
 import {
-  getAppWSStatus,
   getIsOnline,
   isOpenBottomPanel,
   isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { guideActions } from "@/redux/guide/guideSlice"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
@@ -86,42 +89,17 @@ const GuideApp: FC = () => {
   const showRightPanel = useSelector(isOpenRightPanel)
   const showBottomPanel = useSelector(isOpenBottomPanel)
   const showDebugger = useSelector(isOpenDebugger)
-  const isOnline = useSelector(getIsOnline)
 
-  const handleMouseDownOnModal = useCallback(
-    (e: MouseEvent<HTMLDivElement>) => {
-      e.stopPropagation()
-      controls
-        .start({
-          scale: 1.05,
-          transition: {
-            duration: 0.2,
-          },
-        })
-        .then(() => {
-          controls.start({
-            scale: 1,
-            transition: {
-              duration: 0.2,
-            },
-          })
-        })
-    },
-    [controls],
-  )
   // init app
-  const { loadingState } = useInitBuilderApp("edit")
+  const { loadingState } = useInitBuilderApp("template-edit")
 
   const isOpen = useSelector(getGuideStatus)
   useEffect(() => {
-    if (!loadingState) {
-      dispatch(guideActions.updateGuideStatusReducer(true))
-    }
-
+    dispatch(guideActions.updateGuideStatusReducer(true))
     return () => {
       dispatch(guideActions.updateGuideStatusReducer(false))
     }
-  }, [loadingState])
+  }, [])
 
   return (
     <div css={editorContainerStyle}>
@@ -152,14 +130,6 @@ const GuideApp: FC = () => {
               </TriggerProvider>
             )}
           </div>
-          {!isOnline && (
-            <div css={modalStyle} onMouseDown={handleMouseDownOnModal}>
-              <motion.div css={messageWrapperStyle} animate={controls}>
-                <WarningCircleIcon css={waringIconStyle} />
-                {t("not_online_tips")}
-              </motion.div>
-            </div>
-          )}
         </Shortcut>
       )}
     </div>

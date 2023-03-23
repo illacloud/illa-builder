@@ -3,6 +3,7 @@
     "resourceId": "ILAfx4p1C7cn",
     "uid": "518778b8-7b56-409b-8b57-244abb624d7e",
     "teamID": "ILAfx4p1C7en",
+    "resourceIndex": 0,
     "resourceName": "Onboarding DB",
     "resourceType": "postgresql",
     "content": {

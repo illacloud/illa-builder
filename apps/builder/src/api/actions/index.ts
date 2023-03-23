@@ -1,6 +1,7 @@
 import { isEqual } from "lodash"
 import { createApp } from "@/api/apps"
 import { BuilderApi } from "@/api/base"
+import { GUIDE_CONFIG } from "@/config/guide"
 import { getTemplateConfig } from "@/config/template"
 import { TemplateName } from "@/config/template/interface"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"

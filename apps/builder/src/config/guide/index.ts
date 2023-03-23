@@ -1,6 +1,102 @@
-import Actions from "@/config/guide/actions.json";
-import Resources from "@/config/guide/resources.json";
+import { isEqual } from "lodash"
+import { createResource } from "@/api/actions"
+import Actions from "@/config/guide/actions.json"
+import Components from "@/config/guide/components.json"
+import data from "@/config/guide/data.json"
+import Resources from "@/config/guide/resources.json"
+import { TemplateActions, TemplateResources } from "@/config/template/interface"
+import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
+import { getAllResources } from "@/redux/resource/resourceSelector"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import store from "@/store"
 
-
-export const GUIDE_RESOURCES = Resources
+export const GUIDE_COMPONENTS = Components
+export const GUIDE_RESOURCES = Resources as Resource<ResourceContent>[]
 export const GUIDE_ACTIONS = Actions
+
+export const GUIDE_DATA = data as unknown as CurrentAppResp
+
+const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
+  const resourceIdList = currentApp.actions.map((action) => action.resourceId)
+
+  // get resources form resourceIdList, and generate filter
+  const resources = GUIDE_RESOURCES.filter((resource) =>
+    resourceIdList.includes(resource.resourceId),
+  ).map(({ resourceName, resourceType, content, resourceId }) => ({
+    resourceName,
+    resourceType,
+    content,
+  })) as TemplateResources
+
+  // Add the resourceIndex attribute to actions
+  const actions = currentApp.actions.map(
+    ({
+      resourceId,
+      displayName,
+      actionType,
+      transformer,
+      triggerMode,
+      content,
+      config,
+    }) => {
+      const resourceIndex = resourceIdList.indexOf(resourceId)
+      return {
+        resourceId,
+        displayName,
+        actionType,
+        transformer,
+        triggerMode,
+        content,
+        config,
+        resourceIndex,
+      }
+    },
+  ) as TemplateActions
+
+  return {
+    resources,
+    actions,
+  }
+}
+
+export const GUIDE_CONFIG = {
+  ...formatAppDataToConfig(GUIDE_DATA),
+}
+
+export const initGuideApp = async (): Promise<CurrentAppResp> => {
+  const { actions, resources } = GUIDE_CONFIG
+  const resourceList = await Promise.all(
+    resources.map((data) => {
+      const currentResources = getAllResources(store.getState())
+      const resource = currentResources.find(
+        (item) =>
+          item.resourceName === data.resourceName &&
+          item.resourceType === data.resourceType &&
+          isEqual(item.content, data.content),
+      )
+      return resource ? resource.resourceId : createResource(data)
+    }),
+  )
+
+  let actionList
+  if (resourceList.length) {
+    actionList = await Promise.all(
+      actions.map((data) => {
+        const { resourceIndex, ...actionData } = data
+        const resourceId = resourceList[resourceIndex] || ""
+        return {
+          ...actionData,
+          resourceId,
+        } as ActionItem<ActionContent>
+      }),
+    )
+  }
+  return {
+    ...GUIDE_DATA,
+    actions: actionList ?? [],
+  }
+}

@@ -1,0 +1,214 @@
+[
+  {
+    "displayName": "input1",
+    "parentNode": "bodySection1-bodySectionContainer1",
+    "showName": "input",
+    "error": false,
+    "isDragging": false,
+    "isResizing": false,
+    "childrenNode": null,
+    "type": "INPUT_WIDGET",
+    "containerType": "EDITOR_SCALE_SQUARE",
+    "verticalResize": false,
+    "h": 5,
+    "w": 13,
+    "minH": 3,
+    "minW": 2,
+    "unitW": 14,
+    "unitH": 8,
+    "x": 18,
+    "y": 17,
+    "z": 0,
+    "props": {
+      "$dynamicAttrPaths": [
+        "labelWidth",
+        "formDataKey"
+      ],
+      "colorScheme": "blue",
+      "formDataKey": "{{input1.displayName}}",
+      "hidden": false,
+      "label": "Label",
+      "labelAlign": "left",
+      "labelPosition": "left",
+      "labelWidth": "{{33}}",
+      "placeholder": "input sth",
+      "value": ""
+    },
+    "panelConfig": null
+  },
+  {
+    "displayName": "button1",
+    "parentNode": "bodySection1-bodySectionContainer1",
+    "showName": "button",
+    "error": false,
+    "isDragging": false,
+    "isResizing": false,
+    "childrenNode": null,
+    "type": "BUTTON_WIDGET",
+    "containerType": "EDITOR_SCALE_SQUARE",
+    "verticalResize": false,
+    "h": 5,
+    "w": 13,
+    "minH": 3,
+    "minW": 2,
+    "unitW": 14,
+    "unitH": 8,
+    "x": 33,
+    "y": 17,
+    "z": 0,
+    "props": {
+      "$dynamicAttrPaths": [],
+      "colorScheme": "blue",
+      "events": [
+        {
+          "actionType": "datasource",
+          "eventType": "click",
+          "id": "events-1066d305-af86-4f1f-9b67-273a70db353b",
+          "queryID": "postgresql1"
+        }
+      ],
+      "hidden": false,
+      "text": "Button",
+      "variant": "fill"
+    },
+    "panelConfig": null
+  },
+  {
+    "displayName": "table1",
+    "parentNode": "bodySection1-bodySectionContainer1",
+    "showName": "table",
+    "error": false,
+    "isDragging": false,
+    "isResizing": false,
+    "childrenNode": null,
+    "type": "TABLE_WIDGET",
+    "containerType": "EDITOR_SCALE_SQUARE",
+    "verticalResize": false,
+    "h": 38,
+    "w": 28,
+    "minH": 3,
+    "minW": 2,
+    "unitW": 14,
+    "unitH": 8,
+    "x": 18,
+    "y": 25,
+    "z": 0,
+    "props": {
+      "$dynamicAttrPaths": [
+        "pageSize",
+        "dataSourceJS"
+      ],
+      "columns": [
+        {
+          "accessorKey": "charge",
+          "columnIndex": 0,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "charge",
+          "id": "charge",
+          "type": "text",
+          "visible": true
+        },
+        {
+          "accessorKey": "email",
+          "columnIndex": 1,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "email",
+          "id": "email",
+          "type": "text",
+          "visible": true
+        },
+        {
+          "accessorKey": "expired_time",
+          "columnIndex": 2,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "expired_time",
+          "id": "expired_time",
+          "type": "text",
+          "visible": true
+        },
+        {
+          "accessorKey": "feature_flag",
+          "columnIndex": 3,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "feature_flag",
+          "id": "feature_flag",
+          "type": "text",
+          "visible": true
+        },
+        {
+          "accessorKey": "id",
+          "columnIndex": 4,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "id",
+          "id": "id",
+          "type": "text",
+          "visible": true
+        },
+        {
+          "accessorKey": "img",
+          "columnIndex": 5,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "img",
+          "id": "img",
+          "type": "text",
+          "visible": true
+        },
+        {
+          "accessorKey": "name",
+          "columnIndex": 6,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "name",
+          "id": "name",
+          "type": "text",
+          "visible": true
+        },
+        {
+          "accessorKey": "start_time",
+          "columnIndex": 7,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "start_time",
+          "id": "start_time",
+          "type": "text",
+          "visible": true
+        }
+      ],
+      "dataSourceJS": "{{postgresql1.data}}",
+      "dataSourceMode": "dynamic",
+      "defaultSortKey": "default",
+      "defaultSortOrder": "ascend",
+      "download": false,
+      "emptyState": "No rows found",
+      "filter": false,
+      "overFlow": "pagination",
+      "pageSize": "{{10}}",
+      "rowEvents": {},
+      "rowSelection": {
+        "0": true
+      },
+      "selectedRow": [
+        {
+          "charge": "7500",
+          "email": "James@outlook.com",
+          "expired_time": "2024-03-14",
+          "feature_flag": [
+            "Feature2",
+            "Feature3"
+          ],
+          "id": "1",
+          "img": "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
+          "name": "James",
+          "start_time": "2023-03-15"
+        }
+      ]
+    },
+    "panelConfig": null
+  }
+]

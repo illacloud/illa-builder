@@ -1,9 +1,9 @@
-import { AxiosResponse } from "axios"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { BuilderApi } from "@/api/base"
 import { getTeamsInfo } from "@/api/team"
+import { initGuideApp } from "@/config/guide"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
@@ -15,6 +15,7 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
+import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -43,28 +44,21 @@ export const useInitBuilderApp = (mode: IllaMode) => {
   useDestroyApp()
 
   const handleCurrentApp = useCallback(
-    (response: AxiosResponse<CurrentAppResp>) => {
+    (data: CurrentAppResp) => {
       dispatch(configActions.updateIllaMode(mode))
-      dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
-      dispatch(
-        componentsActions.updateComponentReducer(response.data.components),
-      )
-      dispatch(actionActions.updateActionListReducer(response.data.actions))
+      dispatch(appInfoActions.updateAppInfoReducer(data.appInfo))
+      dispatch(componentsActions.updateComponentReducer(data.components))
+      dispatch(actionActions.updateActionListReducer(data.actions))
 
       DisplayNameGenerator.initApp(appId, teamID, uid)
-      DisplayNameGenerator.updateDisplayNameList(
-        response.data.components,
-        response.data.actions,
-      )
+      DisplayNameGenerator.updateDisplayNameList(data.components, data.actions)
       dispatch(executionActions.startExecutionReducer())
-      if (mode === "edit" && response.data.actions.length > 0) {
-        dispatch(configActions.changeSelectedAction(response.data.actions[0]))
+      if (mode === "edit" && data.actions.length > 0) {
+        dispatch(configActions.changeSelectedAction(data.actions[0]))
       }
     },
     [appId, dispatch, mode, teamID, uid],
   )
-
-  const initGuideModeApp = () => {}
 
   const initPublicApp = useCallback(
     (controller: AbortController) => {
@@ -100,7 +94,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
             dispatch(resourceActions.updateResourceListReducer(response.data))
           },
         )
-        handleCurrentApp(response)
+        handleCurrentApp(response.data)
         resolve(response.data)
       } catch (e) {
         reject(e)
@@ -137,14 +131,30 @@ export const useInitBuilderApp = (mode: IllaMode) => {
 
   useEffect(() => {
     const controller = new AbortController()
+    console.log(isOnline, "isOnline")
     if (isOnline) {
       new Promise<CurrentAppResp>(async (resolve, reject) => {
         setErrorState(false)
         setLoadingState(true)
-        if (mode === "production") {
+        if (mode === "template-edit") {
+          BuilderApi.teamRequest<Resource<ResourceContent>[]>(
+            {
+              url: "/resources",
+              method: "GET",
+              signal: controller.signal,
+            },
+            (response) => {
+              dispatch(resourceActions.updateResourceListReducer(response.data))
+              initGuideApp().then((data) => {
+                console.log(data, "initGuideApp")
+                handleCurrentApp(data)
+              })
+            },
+          )
+        } else if (mode === "production") {
           try {
             const response = await initPublicApp(controller)
-            handleCurrentApp(response)
+            handleCurrentApp(response.data)
             resolve(response.data)
           } catch (error: any) {
             console.log(error, "error")
