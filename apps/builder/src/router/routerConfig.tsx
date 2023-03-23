@@ -20,7 +20,7 @@ export const cloudUrl = `${location.protocol}//${
 }`
 
 export const cloudRedirect = `${cloudUrl}?redirectUrl=${encodeURIComponent(
-  location.href,
+  location.origin + location.pathname,
 )}`
 
 const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
