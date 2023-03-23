@@ -48,6 +48,47 @@ export const createGlobalData = (
   return GLOBAL_DATA
 }
 
+const globalVarNames = new Set<PropertyKey>([
+  "window",
+  "globalThis",
+  "self",
+  "global",
+])
+
+function isDomElement(obj: any): boolean {
+  return obj instanceof Element || obj instanceof HTMLCollection
+}
+
+function getPropertyFromNativeWindow(prop: PropertyKey) {
+  const ret = Reflect.get(window, prop)
+  if (typeof ret === "function" && !ret.prototype) {
+    return ret.bind(window)
+  }
+  // get DOM element by id, serializing may cause error
+  if (isDomElement(ret)) {
+    return undefined
+  }
+  return ret
+}
+
+export function createMockWindow(base?: object) {
+  const win: any = new Proxy(Object.assign({}, base), {
+    has() {
+      return true
+    },
+    get(target, p) {
+      if (p in target) {
+        return Reflect.get(target, p)
+      }
+      if (globalVarNames.has(p)) {
+        return win
+      }
+      return getPropertyFromNativeWindow(p)
+    },
+  })
+  return win
+}
+
 export const stringToJS = (string: string): string => {
   const { jsSnippets, stringSnippets } = getSnippets(string)
   return stringSnippets

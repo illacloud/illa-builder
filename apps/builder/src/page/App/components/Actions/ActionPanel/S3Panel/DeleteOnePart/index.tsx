@@ -53,6 +53,7 @@ export const DeleteOnePart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
+          modalTitle={t("editor.action.panel.s3.bucket_name")}
           onChange={(value) => handleValueChange(value, "bucketName")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -66,6 +67,7 @@ export const DeleteOnePart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.objectKey}
+          modalTitle={t("editor.action.panel.s3.object_key")}
           onChange={(value) => handleValueChange(value, "objectKey")}
           expectValueType={VALIDATION_TYPES.STRING}
         />

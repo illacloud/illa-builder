@@ -118,6 +118,7 @@ export const ElasticSearchPanel: FC = () => {
             <div css={esItemCodeEditorStyle}>
               <CodeEditor
                 value={content.body}
+                modalTitle={t("editor.action.panel.elastic.body")}
                 onChange={(value) => {
                   dispatch(
                     configActions.updateCachedAction({
@@ -148,6 +149,7 @@ export const ElasticSearchPanel: FC = () => {
               <CodeEditor
                 key={cachedAction.content.operation}
                 value={content.query}
+                modalTitle={t("editor.action.panel.elastic.query")}
                 onChange={(value) => {
                   dispatch(
                     configActions.updateCachedAction({
@@ -177,6 +179,7 @@ export const ElasticSearchPanel: FC = () => {
             <CodeEditor
               singleLine
               value={content.index}
+              modalTitle={t("editor.action.panel.elastic.index")}
               onChange={(value) => {
                 dispatch(
                   configActions.updateCachedAction({
@@ -203,6 +206,7 @@ export const ElasticSearchPanel: FC = () => {
               <CodeEditor
                 singleLine
                 value={content.id}
+                modalTitle={t("editor.action.panel.elastic.id")}
                 onChange={(value) => {
                   dispatch(
                     configActions.updateCachedAction({

@@ -45,27 +45,29 @@ export const RedisPanel: FC = () => {
     <div css={redisContainerStyle}>
       <ResourceChoose />
       <div css={actionItemContainer}>
-        <CodeEditor
-          wrapperCss={redisCodeEditorStyle}
-          maxHeight="88px"
-          placeholder="SET runoobkey redis"
-          showLineNumbers
-          value={currentContent.query}
-          lang={CODE_LANG.JAVASCRIPT}
-          expectValueType={VALIDATION_TYPES.STRING}
-          sqlScheme={sqlTable}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...action,
-                content: {
-                  ...currentContent,
-                  query: value,
-                },
-              }),
-            )
-          }}
-        />
+        <div css={redisCodeEditorStyle}>
+          <CodeEditor
+            maxHeight="88px"
+            placeholder="SET runoobkey redis"
+            showLineNumbers
+            value={currentContent.query}
+            lang={CODE_LANG.JAVASCRIPT}
+            expectValueType={VALIDATION_TYPES.STRING}
+            sqlScheme={sqlTable}
+            onChange={(value) => {
+              dispatch(
+                configActions.updateCachedAction({
+                  ...action,
+                  content: {
+                    ...currentContent,
+                    query: value,
+                  },
+                }),
+              )
+            }}
+          />
+        </div>
+
         <TransformerComponent fullWidth />
       </div>
 
