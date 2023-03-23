@@ -1309,7 +1309,7 @@
           "path_of_value": "Path of value"
         },
         "code": {
-          "write_code": "Write code"
+          "write_code": "コードを書く"
         }
       },
       "setter_tooltip": {
@@ -1443,7 +1443,7 @@
       },
       "setter_description": {
         "code": {
-          "write_code": "Write your code here. Use JavaScript inside of {{ }}"
+          "write_code": "ここにコードを書きます。 {{ }} 内で JavaScript を使用する"
         }
       }
     },
