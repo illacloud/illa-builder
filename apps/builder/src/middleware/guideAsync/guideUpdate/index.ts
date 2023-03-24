@@ -3,7 +3,7 @@ import {
   GUIDE_SELECT_WIDGET,
   GUIDE_SQL_QUERY,
   GUIDE_STEP,
-} from "@/components/Guide/config"
+} from "@/config/guide/config"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
 import { guideActions } from "@/redux/guide/guideSlice"
 import { RootState } from "@/store"

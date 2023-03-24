@@ -1,9 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import {
-  GUIDE_SELECT_WIDGET,
-  SELECT_WIDGET_ITEM,
-} from "@/components/Guide/config"
+import { GUIDE_SELECT_WIDGET, SELECT_WIDGET_ITEM } from "@/config/guide/config"
 
 const applyHighlightStyle = (currentStep: number) => css`
   [data-onboarding-session="COMMON"] {
