@@ -4,7 +4,7 @@ import {
   removeRequestPendingPool,
 } from "@/api/helpers/axiosPendingPool"
 import { ILLARoute } from "@/router"
-import { cloudRedirect, cloudUrl } from "@/router/routerConfig"
+import { cloudRedirect } from "@/router/routerConfig"
 import { getAuthToken, removeAuthToken } from "@/utils/auth"
 import { isCloudVersion } from "@/utils/typeHelper"
 
@@ -36,8 +36,10 @@ export const axiosErrorInterceptor = (error: AxiosError) => {
     case 401: {
       removeAuthToken()
       if (isCloudVersion) {
-        // navigate to illa cloud
-        ILLARoute.navigate(cloudRedirect)
+        // navigate to illa cloud, avoid redirect loop
+        if (!href.includes("redirectUrl")) {
+          window.location.href = cloudRedirect
+        }
       } else {
         ILLARoute.navigate("/login", {
           replace: true,

@@ -13,14 +13,13 @@ import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
 import { setLocalStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { removeUrlParams } from "@/utils/url"
 
 export const cloudUrl = `${location.protocol}//${
   import.meta.env.VITE_CLOUD_URL
 }`
 
 export const cloudRedirect = `${cloudUrl}?redirectUrl=${encodeURIComponent(
-  location.href,
+  location.origin + location.pathname,
 )}`
 
 const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
@@ -29,12 +28,7 @@ const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
   const token = url?.searchParams?.get("token")
   if (!token) return null
   setLocalStorage("token", token, -1)
-  const current = removeUrlParams(window.location.href, ["token"])
-  window.history.replaceState(
-    {},
-    "",
-    `${window.location.pathname}${current.search}`,
-  )
+  window.history.replaceState({}, "", window.location.pathname)
   return null
 }
 
