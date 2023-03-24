@@ -1,4 +1,3 @@
-import Badge, { TourProvider, components, useTour } from "@reactour/tour"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
 import { FC, MouseEvent, useCallback, useEffect } from "react"
@@ -11,7 +10,6 @@ import {
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
-import { Guide } from "@/components/Guide"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
@@ -38,8 +36,6 @@ import { collaboratorsActions } from "@/redux/currentApp/collaborators/collabora
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentStep, getGuideStatus } from "@/redux/guide/guideSelector"
-import { guideActions } from "@/redux/guide/guideSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
@@ -160,23 +156,11 @@ export const Editor: FC = () => {
     wsStatus === ILLA_WEBSOCKET_STATUS.INIT ||
     wsStatus === ILLA_WEBSOCKET_STATUS.CONNECTING
 
-  const isOpen = useSelector(getGuideStatus)
-  useEffect(() => {
-    if (!combinLoadingState) {
-      dispatch(guideActions.updateGuideStatusReducer(true))
-    }
-
-    return () => {
-      dispatch(guideActions.updateGuideStatusReducer(false))
-    }
-  }, [combinLoadingState])
-
   return (
     <div css={editorContainerStyle}>
       {combinLoadingState && <AppLoading />}
       {!combinLoadingState && (
         <Shortcut>
-          {isOpen && <Guide />}
           <TriggerProvider renderInBody zIndex={10}>
             <PageNavBar css={navbarStyle} />
           </TriggerProvider>
