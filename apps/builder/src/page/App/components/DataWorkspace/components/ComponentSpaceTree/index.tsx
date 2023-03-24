@@ -10,8 +10,6 @@ import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/component
 import { changeSelectedDisplayName } from "@/page/App/components/ScaleSquare/utils/changeSelectedDisplayName"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
-import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import {
   getComponentDisplayNameMapDepth,
   getShowWidgetNameParentMap,
@@ -28,7 +26,6 @@ export const ComponentSpaceTree: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
   const generalWidgetExecutionArray = useSelector(
     getGeneralWidgetExecutionResultArray,
   )
@@ -62,13 +59,8 @@ export const ComponentSpaceTree: FC = () => {
       dispatch(
         configActions.updateSelectedComponent(currentSelectedDisplayName),
       )
-      updateCurrentAllComponentsAttachedUsers(
-        currentSelectedDisplayName,
-        componentsAttachedUsers,
-      )
     },
     [
-      componentsAttachedUsers,
       dispatch,
       displayNameMapDepth,
       selectedComponents,
@@ -83,12 +75,8 @@ export const ComponentSpaceTree: FC = () => {
       //   return
       // }
       dispatch(configActions.updateSelectedComponent(selectedKeys))
-      updateCurrentAllComponentsAttachedUsers(
-        selectedKeys,
-        componentsAttachedUsers,
-      )
     },
-    [dispatch, componentsAttachedUsers],
+    [dispatch],
   )
 
   const handleModalComponentSelect = useCallback(
@@ -104,12 +92,8 @@ export const ComponentSpaceTree: FC = () => {
         }),
       )
       dispatch(configActions.updateSelectedComponent(selectedKeys))
-      updateCurrentAllComponentsAttachedUsers(
-        selectedKeys,
-        componentsAttachedUsers,
-      )
     },
-    [dispatch, componentsAttachedUsers],
+    [dispatch],
   )
 
   const componentTotalNumber =

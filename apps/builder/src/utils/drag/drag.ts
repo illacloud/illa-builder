@@ -1,5 +1,4 @@
 import { configActions } from "@/redux/config/configSlice"
-import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -36,10 +35,6 @@ export function endDrag(
     store.dispatch(
       configActions.updateSelectedComponent([dragNode.displayName]),
     )
-    updateCurrentAllComponentsAttachedUsers(
-      [dragNode.displayName],
-      store.getState().currentApp.collaborators.components,
-    )
   }
   if (isAddAction && !isDropOnCanvas) {
     DisplayNameGenerator.removeDisplayName(dragNode.displayName)
@@ -56,10 +51,6 @@ export function endDragMultiNodes(
   const displayNames = dragNodes.map((node) => node.displayName)
   if (isDropOnCanvas) {
     store.dispatch(configActions.updateSelectedComponent(displayNames))
-    updateCurrentAllComponentsAttachedUsers(
-      displayNames,
-      store.getState().currentApp.collaborators.components,
-    )
   }
   if (!isAddAction) {
     const updateSlice = dragNodes.map((dragNode) => ({
