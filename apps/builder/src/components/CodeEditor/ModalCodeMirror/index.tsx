@@ -16,6 +16,7 @@ export const ModalCodeMirror: FC<ModalCodeMirrorProps> = (props) => {
     onClickSaveButton,
     onClose,
     placeholder,
+    wrappedCodeFunc,
   } = props
   const { t } = useTranslation()
 
@@ -33,6 +34,7 @@ export const ModalCodeMirror: FC<ModalCodeMirrorProps> = (props) => {
           value={value}
           onChange={onChange}
           placeholder={placeholder}
+          wrappedCodeFunc={wrappedCodeFunc}
         />
       }
       footerContent={

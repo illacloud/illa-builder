@@ -253,6 +253,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           lang={lang}
           description={modalDescription}
           placeholder={placeholder}
+          wrappedCodeFunc={wrappedCodeFunc}
         />
       )}
     </div>
