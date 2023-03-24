@@ -80,6 +80,7 @@ export const guideConfig = [
     descKey: "editor.tutorial.panel.onboarding_app.drag_input",
     widgetType: "INPUT_WIDGET",
     selector: "",
+    reduxAction: "components/addComponentReducer",
   },
   {
     step: 0.2,
@@ -87,6 +88,7 @@ export const guideConfig = [
     descKey: "",
     selector: "",
     widgetType: "BUTTON_WIDGET",
+    reduxAction: "components/addComponentReducer",
   },
   {
     step: 0.3,
@@ -94,6 +96,7 @@ export const guideConfig = [
     descKey: "",
     selector: "",
     widgetType: "TABLE_WIDGET",
+    reduxAction: "components/addComponentReducer",
   },
   {
     // 1
@@ -102,6 +105,7 @@ export const guideConfig = [
     descKey:
       "editor.tutorial.panel.onboarding_app.modify_action_description_modify",
     selector: ".postgresql1-query",
+    reduxAction: "config/updateCachedAction",
     doItForMe: () => {
       const currentAction = getCachedAction(store.getState())!!
       const mysqlContent = currentAction.content as MysqlLikeAction
@@ -122,6 +126,7 @@ export const guideConfig = [
     descKey:
       "editor.tutorial.panel.onboarding_app.modify_action_description_click",
     selector: ".postgresql1-run",
+    reduxAction: "guideActions/updateNextStepReducer",
     doItForMe: () => {
       const element = document.querySelector(
         ".postgresql1-run",
@@ -137,6 +142,7 @@ export const guideConfig = [
     descKey:
       "editor.tutorial.panel.onboarding_app.display_data_description_select",
     selector: ".table-iframe",
+    reduxAction: "configActions/updateSelectedComponent",
     doItForMe: () => {
       store.dispatch(configActions.updateSelectedComponent(["table1"]))
     },
@@ -154,6 +160,7 @@ export const guideConfig = [
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_1",
     selector: ".button-iframe",
+    reduxAction: "configActions/updateSelectedComponent",
     doItForMe: () => {
       store.dispatch(configActions.updateSelectedComponent(["button"]))
     },

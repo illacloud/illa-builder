@@ -1,5 +1,9 @@
 import { Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { GUIDE_SELECT_WIDGET, GUIDE_SQL_QUERY } from "@/components/Guide/config"
+import {
+  GUIDE_SELECT_WIDGET,
+  GUIDE_SQL_QUERY,
+  guideConfig,
+} from "@/components/Guide/config"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
 import { guideActions } from "@/redux/guide/guideSlice"
 import { RootState } from "@/store"
@@ -18,21 +22,41 @@ export const guideUpdate = (
     }
   }
 
-  if (currentStep < 3) {
-    switch (type) {
-      case "components/addComponentReducer": {
+  switch (currentStep) {
+    case 0:
+    case 1:
+    case 2: {
+      if (type === "components/addComponentReducer") {
         const addedWidget = payload[0].type
         const isCurrentStepWidget =
           GUIDE_SELECT_WIDGET[currentStep] === addedWidget
         handleNext(isCurrentStepWidget)
-        break
       }
+      break
     }
-  } else if (currentStep === 3) {
-    switch (type) {
-      case "config/updateCachedAction": {
+    case 3: {
+      if (type === "config/updateCachedAction") {
         const query = payload?.content?.query
         handleNext(query === GUIDE_SQL_QUERY)
+      }
+      break
+    }
+    case 6:
+    case 8: {
+      const { reduxAction, selector } = guideConfig[currentStep]
+      if (reduxAction === type) {
+        const selectedWidget = (payload as string[])[0]
+        const isCurrentStepWidget = selectedWidget === selector
+        handleNext(isCurrentStepWidget)
+      }
+      break
+    }
+    default: {
+      const { reduxAction, selector } = guideConfig[currentStep]
+      if (reduxAction === type) {
+        const selectedWidget = (payload as string[])[0]
+        const isCurrentStepWidget = selectedWidget === selector
+        handleNext(isCurrentStepWidget)
       }
     }
   }
