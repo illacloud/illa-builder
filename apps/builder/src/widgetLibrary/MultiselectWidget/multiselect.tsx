@@ -1,7 +1,12 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/react"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import {
+  MultiselectWidgetProps,
+  WrappedMultiselectProps,
+} from "@/widgetLibrary/MultiselectWidget/interface"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -10,9 +15,8 @@ import {
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
-import { SelectWidgetProps, WrappedSelectProps } from "./interface"
 
-export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
+export const WrappedMultiselect: FC<WrappedMultiselectProps> = (props) => {
   const {
     showClear,
     value,
@@ -25,8 +29,8 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     colorScheme,
     handleUpdateMultiExecutionResult,
     handleOnChange,
-    handleOnFocus,
     handleOnBlur,
+    handleOnFocus,
     getValidateMessage,
     displayName,
   } = props
@@ -39,7 +43,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
           {
             displayName,
             value: {
-              value: value || "",
+              value: value || [],
               validateMessage: message,
             },
           },
@@ -60,8 +64,9 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   return (
     <Select
       allowClear={showClear}
+      multiple
       options={options}
-      value={value}
+      value={value ?? []}
       placeholder={placeholder}
       disabled={disabled}
       loading={loading}
@@ -74,22 +79,11 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     />
   )
 }
+WrappedMultiselect.displayName = "WrappedMultiselect"
 
-WrappedSelect.displayName = "WrappedSelect"
-
-export const SelectWidget: FC<SelectWidgetProps> = (props) => {
+export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
   const {
-    showClear,
     value,
-    placeholder,
-    disabled,
-    loading,
-    readOnly,
-    showSearch,
-    colorScheme,
-    optionConfigureMode,
-    mappedOption,
-    manualOptions,
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
@@ -101,20 +95,24 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     labelWidth = 33,
     labelCaption,
     labelWidthUnit,
+    dynamicHeight,
+    atLeastNumber,
+    upToNumber,
     required,
     labelHidden,
     tooltipText,
     customRule,
     hideValidationMessage,
     validateMessage,
-    dataSources,
+    dynamicMinHeight,
+    dynamicMaxHeight,
+    optionConfigureMode,
+    mappedOption,
+    manualOptions,
+    h,
     updateComponentHeight,
     triggerEventHandler,
   } = props
-
-  const finalOptions = useMemo(() => {
-    return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
-  }, [optionConfigureMode, manualOptions, mappedOption])
 
   const getValidateMessage = useCallback(
     (value: unknown) => {
@@ -123,13 +121,15 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
           value,
           required,
           customRule,
+          atLeastNumber,
+          upToNumber,
         })
         const showMessage = message && message.length > 0
         return showMessage ? message : ""
       }
       return ""
     },
-    [customRule, hideValidationMessage, required],
+    [customRule, hideValidationMessage, required, atLeastNumber, upToNumber],
   )
 
   const handleValidate = useCallback(
@@ -145,19 +145,6 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
-      showClear,
-      value,
-      placeholder,
-      disabled,
-      loading,
-      readOnly,
-      showSearch,
-      colorScheme,
-      optionConfigureMode,
-      mappedOption,
-      manualOptions,
-      options: finalOptions,
-      dataSources,
       setValue: (value: any) => {
         handleUpdateDsl({ value })
       },
@@ -167,30 +154,22 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
       validate: () => {
         return handleValidate(value)
       },
-      clearValidation: () => {},
+      clearValidation: () => {
+        handleUpdateDsl({
+          validateMessage: undefined,
+        })
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)
     }
   }, [
     displayName,
-    finalOptions,
-    showClear,
-    value,
-    placeholder,
-    disabled,
-    loading,
-    readOnly,
-    showSearch,
-    colorScheme,
-    optionConfigureMode,
-    mappedOption,
-    manualOptions,
-    handleUpdateGlobalData,
-    handleUpdateDsl,
     handleDeleteGlobalData,
+    handleUpdateDsl,
+    handleUpdateGlobalData,
     handleValidate,
-    dataSources,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {
@@ -205,8 +184,33 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     triggerEventHandler("blur")
   }, [triggerEventHandler])
 
+  const enableAutoHeight = useMemo(() => {
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "limited":
+        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight, dynamicMinHeight, h])
+
+  const dynamicOptions = {
+    dynamicMinHeight,
+    dynamicMaxHeight,
+  }
+
+  const finalOptions = useMemo(() => {
+    return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
+  }, [optionConfigureMode, manualOptions, mappedOption])
+
   return (
-    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
+    <AutoHeightContainer
+      updateComponentHeight={updateComponentHeight}
+      enable={enableAutoHeight}
+      dynamicOptions={dynamicOptions}
+    >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -221,7 +225,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedSelect
+          <WrappedMultiselect
             {...props}
             options={finalOptions}
             getValidateMessage={getValidateMessage}
@@ -243,4 +247,5 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     </AutoHeightContainer>
   )
 }
-SelectWidget.displayName = "SelectWidget"
+
+MultiselectWidget.displayName = "MultiselectWidget"

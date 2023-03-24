@@ -20,6 +20,32 @@ export const handleCheckCustomRule = (customRule: unknown) => {
   }
 }
 
+export const handleCheckMinSelectedItems = (
+  value: unknown,
+  minCount?: number,
+) => {
+  if (
+    typeof minCount === "number" &&
+    ((Array.isArray(value) && value.length < minCount) ||
+      typeof value === "undefined")
+  ) {
+    return true
+  }
+}
+
+export const handleCheckMaxSelectedItems = (
+  value: unknown,
+  maxCount?: number,
+) => {
+  if (
+    typeof maxCount === "number" &&
+    ((Array.isArray(value) && value.length > maxCount) ||
+      typeof value === "undefined")
+  ) {
+    return true
+  }
+}
+
 export const handleCheckIsRequired = (value: unknown, required?: boolean) => {
   if (required && typeof value === "undefined") return true
 }
@@ -209,5 +235,18 @@ export const handleValidateCheck = (
       number: options.minLength,
     })
   }
+
+  if (handleCheckMinSelectedItems(options.value, options.atLeastNumber)) {
+    return i18n.t("editor.inspect.setter_message.choose_at_least", {
+      min: options.atLeastNumber,
+    })
+  }
+
+  if (handleCheckMaxSelectedItems(options.value, options.upToNumber)) {
+    return i18n.t("editor.inspect.setter_message.choose_up_to", {
+      max: options.upToNumber,
+    })
+  }
+
   return handleCheckPattern(options.value, options.pattern, options.regex)
 }
