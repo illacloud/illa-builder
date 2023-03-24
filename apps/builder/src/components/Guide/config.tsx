@@ -1,4 +1,3 @@
-import { StepType } from "@reactour/tour"
 import { motion } from "framer-motion"
 import { getColor } from "@illa-design/react"
 import ButtonHighlightIcon from "@/assets/widgetCover/button-highlight.svg"
@@ -33,46 +32,7 @@ export const GUIDE_SQL_QUERY =
   "on users.id = orders.id\n" +
   "where {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'"
 
-export const STEP: StepType[] = [
-  {
-    disableActions: true,
-    styles: {
-      popover: (base: any) => ({
-        ...base,
-        // display: "none",
-      }),
-      maskWrapper: (base: any) => ({
-        ...base,
-        color: "transparent",
-      }),
-      clickArea: (base: any) => ({
-        ...base,
-        display: "none",
-      }),
-      highlightedArea: (base: any, props: any) => ({
-        ...base,
-        // display: "block",
-        // stroke: "#5ae",
-        // fill: "rgb(85, 170, 238,.5);",
-        // cursor: "pointer",
-        // // Dot with animation
-        // strokeWidth: 4,
-        // width: 15,
-        // height: 15,
-        // rx: 100,
-        // x: props.x + 10,
-        // y: props.y + 10,
-      }),
-    },
-    selector: ".button4-text",
-    content: "22222",
-    // disableActions: true,
-    action: (elem) => {},
-    actionAfter: () => {},
-  },
-]
-
-export const guideConfig = [
+export const GUIDE_STEP = [
   {
     // 0
     step: 0.1,

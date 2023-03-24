@@ -2,7 +2,7 @@ import { Dispatch, PayloadAction } from "@reduxjs/toolkit"
 import {
   GUIDE_SELECT_WIDGET,
   GUIDE_SQL_QUERY,
-  guideConfig,
+  GUIDE_STEP,
 } from "@/components/Guide/config"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
 import { guideActions } from "@/redux/guide/guideSlice"
@@ -43,7 +43,7 @@ export const guideUpdate = (
     }
     case 6:
     case 8: {
-      const { reduxAction, selector } = guideConfig[currentStep]
+      const { reduxAction, selector } = GUIDE_STEP[currentStep]
       if (reduxAction === type) {
         const selectedWidget = (payload as string[])[0]
         const isCurrentStepWidget = selectedWidget === selector
@@ -52,7 +52,7 @@ export const guideUpdate = (
       break
     }
     default: {
-      const { reduxAction, selector } = guideConfig[currentStep]
+      const { reduxAction, selector } = GUIDE_STEP[currentStep]
       if (reduxAction === type) {
         const selectedWidget = (payload as string[])[0]
         const isCurrentStepWidget = selectedWidget === selector

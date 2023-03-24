@@ -5,7 +5,7 @@ import { FC, HTMLAttributes, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Button } from "@illa-design/react"
 import { GuidePopover } from "@/components/Guide/GuidePopover"
-import { guideConfig } from "@/components/Guide/config"
+import { GUIDE_STEP } from "@/components/Guide/config"
 import { applyGuideStyle, stepMaskStyle } from "@/components/Guide/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
@@ -38,10 +38,10 @@ export const Guide: FC = () => {
   const currentStep = useSelector(getCurrentStep)
   const dispatch = useDispatch()
   const cachedAction = useSelector(getCachedAction)
-  const { selector, titleKey, descKey, doItForMe } = guideConfig[currentStep]
+  const { selector, titleKey, descKey, doItForMe } = GUIDE_STEP[currentStep]
   const size = useMemo(() => {
     if (currentStep === 3 || currentStep === 4) {
-      const { selector } = guideConfig[currentStep]
+      const { selector } = GUIDE_STEP[currentStep]
       const element = document.querySelector(selector)
       return element?.getBoundingClientRect()
     }

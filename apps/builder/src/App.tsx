@@ -1,6 +1,5 @@
 import createCache from "@emotion/cache"
-import { CSSObject, CacheProvider, Global } from "@emotion/react"
-import { Tour, TourProvider, components } from "@reactour/tour"
+import { CacheProvider, Global } from "@emotion/react"
 import { useEffect } from "react"
 import { DndProvider } from "react-dnd"
 import { TouchBackend } from "react-dnd-touch-backend"
@@ -16,7 +15,6 @@ import {
 } from "@illa-design/react"
 import "@/api/base"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
-import { STEP } from "@/components/Guide/config"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import {
@@ -60,22 +58,15 @@ function App() {
         <DndProvider backend={TouchBackend} options={dragOptions}>
           <GlobalDataProvider>
             <ConfigProvider locale={configLanguage}>
-              <TourProvider
-                showNavigation={false}
-                showBadge={false}
-                showCloseButton={false}
-                steps={STEP}
-              >
-                <Global styles={globalStyle} />
-                <MessageGroup pt={!isProductMode ? "46px" : "0"} />
-                <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
-                <ModalGroup />
-                <RouterProvider router={ILLARoute} />
-                <div
-                  className="illaCodeMirrorWrapper"
-                  css={illaCodeMirrorTooltipStyle}
-                />
-              </TourProvider>
+              <Global styles={globalStyle} />
+              <MessageGroup pt={!isProductMode ? "46px" : "0"} />
+              <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
+              <ModalGroup />
+              <RouterProvider router={ILLARoute} />
+              <div
+                className="illaCodeMirrorWrapper"
+                css={illaCodeMirrorTooltipStyle}
+              />
             </ConfigProvider>
           </GlobalDataProvider>
         </DndProvider>
