@@ -47,7 +47,12 @@ export const handleCheckMaxSelectedItems = (
 }
 
 export const handleCheckIsRequired = (value: unknown, required?: boolean) => {
-  if (required && typeof value === "undefined") return true
+  if (
+    required &&
+    (typeof value === "undefined" ||
+      (Array.isArray(value) && value.length === 0))
+  )
+    return true
 }
 
 export const handleCheckMaxLength = (value: unknown, maxLength?: number) => {
