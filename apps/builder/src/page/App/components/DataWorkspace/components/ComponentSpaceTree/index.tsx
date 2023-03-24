@@ -106,6 +106,7 @@ export const ComponentSpaceTree: FC = () => {
       onIllaFocus={() => {
         FocusManager.switchFocus("dataWorkspace_component")
       }}
+      destroyChildrenWhenClose
     >
       <WorkSpaceTreeGroup title="Modal">{modalWidgetTree}</WorkSpaceTreeGroup>
       <WorkSpaceTreeGroup title="General">

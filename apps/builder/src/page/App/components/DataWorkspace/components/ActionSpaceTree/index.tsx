@@ -37,6 +37,7 @@ export const ActionSpaceTree: FC = () => {
       onIllaFocus={() => {
         FocusManager.switchFocus("dataWorkspace_action")
       }}
+      destroyChildrenWhenClose
     >
       {actionExecutionArray.map((data) => (
         <WorkSpaceTreeItem

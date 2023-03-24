@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { FC, MouseEvent, memo, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon } from "@illa-design/react"
+import { panelBarItemContainerAnimationVariants } from "@/components/PanelBar/style"
 import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { WorkSpaceTreeNode } from "./WorkSpaceTreeNode"
@@ -60,11 +61,10 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
           {isExpanded && (
             <motion.div
               css={applyJsonContentStyle(isSelected)}
-              role="region"
-              animate={{ height: "auto", opacity: 1 }}
-              initial={{ height: 0, opacity: 0 }}
-              exit={{ height: 0, opacity: 0 }}
+              variants={panelBarItemContainerAnimationVariants}
+              animate={isExpanded ? "enter" : "exit"}
               transition={{ duration: 0.2 }}
+              exit="exit"
             >
               {tree}
             </motion.div>

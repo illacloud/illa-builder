@@ -21,6 +21,7 @@ export const GlobalsSpaceTree: FC = () => {
       onIllaFocus={() => {
         FocusManager.switchFocus("dataWorkspace_action")
       }}
+      destroyChildrenWhenClose
     >
       {globalInfoList.map((data) => (
         <WorkSpaceTreeItem

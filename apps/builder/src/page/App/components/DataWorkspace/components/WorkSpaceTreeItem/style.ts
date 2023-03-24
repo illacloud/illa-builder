@@ -62,15 +62,12 @@ export function applyItemContainerStyle(
 
 export function applyJsonContentStyle(isSelected?: boolean): SerializedStyles {
   return css`
-    ${isSelected
-      ? css`
-          background-color: ${chroma(
-            globalColor(`--${illaPrefix}-techPurple-07`),
-          )
-            .alpha(0.5)
-            .hex()};
-        `
-      : ""}
+    background-color: ${isSelected
+      ? chroma(globalColor(`--${illaPrefix}-techPurple-07`))
+          .alpha(0.5)
+          .hex()
+      : ""};
+    height: 0;
   `
 }
 export const jsonNameStyle: SerializedStyles = css`

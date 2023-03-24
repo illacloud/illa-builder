@@ -78,6 +78,7 @@ export const PageSpaceTree: FC = () => {
       title={t("editor.data_work_space.pages_title")}
       isAddIcon
       addAction={handleClickAddButton}
+      destroyChildrenWhenClose
     >
       {Array.isArray(pageSortedKey) &&
         pageSortedKey.map((key: string, index: number) => {

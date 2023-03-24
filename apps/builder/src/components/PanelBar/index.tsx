@@ -7,7 +7,7 @@ import {
   applyPanelBarHeaderStyle,
   applyPanelBarOpenedIconStyle,
   applyPanelBarTitleStyle,
-  panelBarItemAnimation,
+  panelBarItemContainerAnimationVariants,
   panelBarItemContentStyle,
 } from "./style"
 
@@ -21,6 +21,7 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
     onIllaFocus,
     isAddIcon = false,
     addAction,
+    destroyChildrenWhenClose = false,
   } = props
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 
@@ -48,22 +49,37 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
           )}
         </span>
       </div>
-      <AnimatePresence initial={false}>
-        <motion.div
-          css={panelBarItemContentStyle}
-          role="region"
-          variants={panelBarItemAnimation}
-          transition={{
-            default: { ease: "easeInOut" },
-          }}
-          animate={isOpenedState ? "enter" : "exit"}
-          exit="exit"
-          initial={false}
-          onClick={onIllaFocus}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
+      {destroyChildrenWhenClose ? (
+        <AnimatePresence initial={false}>
+          isOpenedState && (
+          <motion.div
+            css={panelBarItemContentStyle}
+            variants={panelBarItemContainerAnimationVariants}
+            animate={isOpenedState ? "enter" : "exit"}
+            initial={false}
+            transition={{ duration: 0.2 }}
+            exit="exit"
+            onClick={onIllaFocus}
+          >
+            {children}
+          </motion.div>
+          )
+        </AnimatePresence>
+      ) : (
+        <AnimatePresence initial={false}>
+          <motion.div
+            css={panelBarItemContentStyle}
+            variants={panelBarItemContainerAnimationVariants}
+            animate={isOpenedState ? "enter" : "exit"}
+            initial={false}
+            transition={{ duration: 0.2 }}
+            exit="exit"
+            onClick={onIllaFocus}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      )}
     </>
   )
 })

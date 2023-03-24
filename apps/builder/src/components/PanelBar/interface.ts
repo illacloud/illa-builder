@@ -9,4 +9,5 @@ export interface PanelBarProps {
   addAction?: () => void
   saveToggleState?: (value: boolean) => void
   onIllaFocus?: () => void
+  destroyChildrenWhenClose?: boolean
 }

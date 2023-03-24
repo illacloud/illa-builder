@@ -119,11 +119,20 @@ export const panelBarItemContentStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   position: relative;
+  height: auto;
 `
 
-export const panelBarItemAnimation: Variants = {
-  enter: { height: "auto", opacity: 1 },
-  exit: { height: 0, opacity: 0 },
+export const panelBarItemContainerAnimationVariants: Variants = {
+  enter: {
+    height: "auto",
+    overflowY: "hidden",
+    transitionEnd: { overflowY: "visible" },
+  },
+  exit: {
+    height: 0,
+    overflowY: "hidden",
+    transitionEnd: { overflowY: "hidden" },
+  },
 }
 
 export const addIconHotpotStyle = css`
