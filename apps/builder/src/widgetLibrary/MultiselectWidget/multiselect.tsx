@@ -14,6 +14,7 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
 export const WrappedMultiselect: FC<WrappedMultiselectProps> = (props) => {
   const {
@@ -79,7 +80,6 @@ WrappedMultiselect.displayName = "WrappedMultiselect"
 export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
   const {
     value,
-    dataSources,
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
@@ -102,6 +102,9 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
     validateMessage,
     dynamicMinHeight,
     dynamicMaxHeight,
+    optionConfigureMode,
+    mappedOption,
+    manualOptions,
     h,
     updateComponentHeight,
     triggerEventHandler,
@@ -194,6 +197,10 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
     dynamicMaxHeight,
   }
 
+  const finalOptions = useMemo(() => {
+    return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
+  }, [optionConfigureMode, manualOptions, mappedOption])
+
   return (
     <AutoHeightContainer
       updateComponentHeight={updateComponentHeight}
@@ -216,7 +223,7 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
           />
           <WrappedMultiselect
             {...props}
-            options={dataSources as any}
+            options={finalOptions}
             getValidateMessage={getValidateMessage}
             handleOnChange={handleOnChange}
             handleOnBlur={handleOnBlur}

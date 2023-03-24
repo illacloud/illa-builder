@@ -106,6 +106,17 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setValue",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-selectValue`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        placeholder: i18n.t(
+          "editor.inspect.setter_placeholder.multiselect.value",
+        ),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setSelectedValue",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-setHidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         setterType: "DYNAMIC_SWITCH_SETTER",
