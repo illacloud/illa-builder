@@ -26,12 +26,44 @@ export const applyGuideStyle = (currentStep: number) => {
   }
 }
 
-export const GuideStyle = css``
+export const applyStepMaskWrapperStyle = (visible: boolean) => {
+  return css`
+    display: ${visible ? "block" : "none"};
+    z-index: 2;
+    position: absolute;
+    top: 168px;
+    padding: 10px;
+    pointer-events: none;
+    background-color: #eeeeee;
+    left: 50%;
+    transform: translateX(-50%);
+  `
+}
+
+export const stepFirstLineStyle = css`
+  display: flex;
+`
 
 export const stepMaskStyle = css`
+  // text align center and middle
   width: 268px;
   height: 48px;
-  //color: ${getColor("techPurple", "07")};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${getColor("grayBlue", "04")};
   background: ${getColor("techPurple", "07")};
   border: 1px dashed ${getColor("techPurple", "01")};
 `
+export const moveIconStyle = css`
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+`
+
+// hidden function, use visible to control
+export const applyVisibleStyle = (visible: boolean) => {
+  return css`
+    visibility: ${visible ? "visible" : "hidden"};
+  `
+}

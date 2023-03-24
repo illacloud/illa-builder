@@ -4,6 +4,6 @@ export interface Guide {
 }
 
 export const GuideInitialState: Guide = {
-  currentStep: 6,
+  currentStep: 0,
   isOpen: false,
 }

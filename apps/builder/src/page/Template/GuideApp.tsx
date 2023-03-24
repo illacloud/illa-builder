@@ -1,6 +1,6 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
-import { FC, MouseEvent, useCallback, useEffect } from "react"
+import { FC, MouseEvent, useCallback, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
@@ -61,6 +61,8 @@ const GuideApp: FC = () => {
   const currentUser = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
 
+  const canvasRef = useRef<HTMLDivElement>(null)
+
   const currentUserRole = teamInfo?.myRole
 
   // check if user can manage the app
@@ -106,7 +108,7 @@ const GuideApp: FC = () => {
       {loadingState && <AppLoading />}
       {!loadingState && (
         <Shortcut>
-          {isOpen && <Guide />}
+          {isOpen && <Guide canvasRef={canvasRef} />}
           <TriggerProvider renderInBody zIndex={10}>
             <PageNavBar css={navbarStyle} />
           </TriggerProvider>
@@ -114,7 +116,7 @@ const GuideApp: FC = () => {
             {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
             <div css={middlePanelStyle}>
               <TriggerProvider renderInBody zIndex={10}>
-                <CanvasPanel css={centerPanelStyle} />
+                <CanvasPanel ref={canvasRef} css={centerPanelStyle} />
               </TriggerProvider>
               {showBottomPanel && !showDebugger ? (
                 <ActionEditor css={bottomPanelStyle} />
