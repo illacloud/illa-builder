@@ -1,5 +1,3 @@
-import { motion } from "framer-motion"
-import { getColor } from "@illa-design/react"
 import ButtonHighlightIcon from "@/assets/widgetCover/button-highlight.svg"
 import InputHighlightIcon from "@/assets/widgetCover/input-highlight.svg"
 import TableHighlightIcon from "@/assets/widgetCover/table-highlight.svg"
@@ -20,7 +18,9 @@ export const SELECT_WIDGET_ITEM = {
     icon: TableHighlightIcon,
   },
 }
+
 type SelectWidget = keyof typeof SELECT_WIDGET_ITEM
+
 export const GUIDE_SELECT_WIDGET = Object.keys(
   SELECT_WIDGET_ITEM,
 ) as SelectWidget[]
@@ -135,7 +135,6 @@ export const GUIDE_STEP = [
     step: 7,
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_3",
-    // selector: ".button-event-0",
     selector: "button-interaction-event-handler",
   },
   {
