@@ -25,8 +25,6 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     colorScheme,
     handleUpdateMultiExecutionResult,
     handleOnChange,
-    handleOnFocus,
-    handleOnBlur,
     getValidateMessage,
     displayName,
   } = props
@@ -69,8 +67,6 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
       showSearch={showSearch}
       colorScheme={colorScheme}
       onChange={onChangeSelectValue}
-      onFocus={handleOnFocus}
-      onBlur={handleOnBlur}
     />
   )
 }

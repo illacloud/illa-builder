@@ -26,8 +26,8 @@ export const MULTISELECT_WIDGET_CONFIG: WidgetConfig = {
       { id: `option-${v4()}`, label: "Option 2", value: "Option 2" },
       { id: `option-${v4()}`, label: "Option 3", value: "Option 3" },
     ],
-    dynamicHeight: "fixed",
+    dynamicHeight: "auto",
     formDataKey: "multiselect",
-    resizeDirection: RESIZE_DIRECTION.ALL,
+    resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   },
 }
