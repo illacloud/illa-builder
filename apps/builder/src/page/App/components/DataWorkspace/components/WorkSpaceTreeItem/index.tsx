@@ -39,11 +39,6 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
         <div
           css={applyItemContainerStyle(isSelected, 0)}
           onClick={(e: MouseEvent<HTMLDivElement>) => {
-            // maybe need to later
-            // if ((isMAC() && e.metaKey) || (!isMAC() && e.ctrlKey)) {
-            //   handleSelect?.([title], e)
-            //   return
-            // }
             handleSelect?.([title], e)
             if (isExpanded) {
               dispatch(configActions.removeExpandedKey(title))
