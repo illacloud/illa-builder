@@ -41,6 +41,7 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.operations}
+          modalTitle={t("editor.action.panel.mongodb.operations")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -67,6 +68,7 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.options}
+          modalTitle={t("editor.action.panel.mongodb.options")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

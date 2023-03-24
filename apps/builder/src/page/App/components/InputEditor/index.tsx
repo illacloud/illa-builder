@@ -50,6 +50,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
           onChange={onChange}
           expectValueType={expectedType}
           placeholder={placeholder}
+          modalTitle={title}
         />
       </div>
       {tips && (

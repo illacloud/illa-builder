@@ -10,13 +10,9 @@ import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import {
-  transformerEditorStyle,
-  transformerPanelContainerStyle,
-  transformerTipStyle,
-} from "./style"
+import { transformerPanelContainerStyle, transformerTipStyle } from "./style"
 
-export const TransformerPanel: FC = (props) => {
+export const TransformerPanel: FC = () => {
   const { t } = useTranslation()
 
   const action = useSelector(getCachedAction)!!
@@ -37,7 +33,6 @@ export const TransformerPanel: FC = (props) => {
     <div css={transformerPanelContainerStyle}>
       <CodeEditor
         value={realInputValue}
-        wrapperCss={transformerEditorStyle}
         showLineNumbers
         height="88px"
         expectValueType={VALIDATION_TYPES.STRING}

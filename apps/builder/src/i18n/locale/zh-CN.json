@@ -918,7 +918,10 @@
       "actions_title": "ACTIONS 列表 ",
       "components_title": "组件列表 ",
       "globals_title": "全局变量 ",
-      "pages_title": "页面列表"
+      "pages_title": "页面列表",
+      "global_data_modal": {
+        "title": "Edit global data"
+      }
     },
     "deploy": {
       "fail": "部署失败"
@@ -1293,15 +1296,21 @@
           "collapse_icon": "折叠面板",
           "icon_color": "颜色"
         },
-        "choose_at_least": "Choose at least",
-        "choose_up_to": "Choose up to",
+        "choose_at_least": "最少选择",
+        "choose_up_to": "最多选择",
         "copy_to_clipboard": "复制到剪贴板",
         "file_download": {
           "file_data": "文件数据",
           "file_name": "带扩展名的文件名",
           "file_type": "文件类型"
         },
-        "action_name": "Action name"
+        "action_name": "Action name",
+        "variable": {
+          "path_of_value": "Path of value"
+        },
+        "code": {
+          "write_code": "编写代码"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1366,6 +1375,10 @@
         },
         "file_download": {
           "file_data": "支持Base64编码数据、表格的原始数据或映射数据"
+        },
+        "variable": {
+          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
+          "the_target_value": "The target value"
         }
       },
       "setter_option": {
@@ -1416,6 +1429,9 @@
         "file_download": {
           "file_data": "{{ mysql1.data }}",
           "file_name": "{{ new_data.csv }}"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
         }
       },
       "setter_tootip": {
@@ -1424,6 +1440,11 @@
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
         "choose_up_to": "Please choose up to {{max}} options."
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "在这里写下你的代码。 在 {{ }} 中使用 JavaScript"
+        }
       }
     },
     "page": {
@@ -1555,7 +1576,7 @@
             "templates": "模板"
           },
           "onboarding_app": {
-            "name": "Onboarding app",
+            "name": "新手引导",
             "description": "跟着 ILLA 的教程学习如何构建应用程序",
             "action": "开始"
           },
@@ -1950,7 +1971,7 @@
       "name": "Collapse"
     },
     "multiselect": {
-      "name": "Multiselect"
+      "name": "多项选择"
     },
     "carousel": {
       "name": "轮播图"
@@ -2318,6 +2339,12 @@
           "description": "按照 ILLA 的教程学习如何构建应用程序，这大约需要 5 分钟。",
           "cancel": "取消",
           "take": "开始教程"
+        },
+        "exit_confirm": {
+          "title": "退出教程？",
+          "description": "下次您进入新手引导时，将重新播放引导步骤",
+          "cancel": "取消",
+          "exit": "退出"
         }
       }
     }

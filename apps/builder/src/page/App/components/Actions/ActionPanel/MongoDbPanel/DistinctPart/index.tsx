@@ -41,6 +41,7 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.query}
+          modalTitle={t("editor.action.panel.mongodb.query")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -67,6 +68,7 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.field}
+          modalTitle={t("editor.action.panel.mongodb.field")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -93,6 +95,7 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.options}
+          modalTitle={t("editor.action.panel.mongodb.options")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

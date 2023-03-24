@@ -39,6 +39,7 @@ export const UpdateManyPart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.filter}
+          modalTitle={t("editor.action.panel.mongodb.filter")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -66,6 +67,7 @@ export const UpdateManyPart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.update}
+          modalTitle={t("editor.action.panel.mongodb.update")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -93,6 +95,7 @@ export const UpdateManyPart: FC<MongoDbActionPartProps> = (props) => {
           wrapperCss={mongoItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={typeContent.options}
+          modalTitle={t("editor.action.panel.mongodb.options")}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

@@ -29,6 +29,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
   const { teamIdentifier } = useParams()
 
   const [loadingState, setLoadingState] = useState(true)
+  const [errorState, setErrorState] = useState(false)
 
   // versionId = -1 represents the latest edited version of the app.
   // versionId = -2 represents the latest released version of the user.
@@ -124,6 +125,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
       } catch (e) {
         reject("failure")
         if (e === "have no team match") {
+          setErrorState(true)
           throw new Error(e)
         }
       }
@@ -135,6 +137,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     const controller = new AbortController()
     if (isOnline) {
       new Promise<CurrentAppResp>(async (resolve, reject) => {
+        setErrorState(false)
         setLoadingState(true)
         if (mode === "production") {
           try {
@@ -175,5 +178,5 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     initApp,
   ])
 
-  return loadingState
+  return { loadingState, errorState }
 }

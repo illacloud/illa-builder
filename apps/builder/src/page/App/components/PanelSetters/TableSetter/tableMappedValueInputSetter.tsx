@@ -57,6 +57,9 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
     expectedType,
     value,
     widgetDisplayName,
+    labelDesc,
+    labelName,
+    detailedDescription,
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -120,6 +123,8 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
         maxWidth="100%"
         codeType={CODE_TYPE.EXPRESSION}
         wrappedCodeFunc={wrappedCodeFunc}
+        modalTitle={labelName}
+        modalDescription={detailedDescription || labelDesc}
       />
     </div>
   )
