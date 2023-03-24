@@ -14,7 +14,6 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import {
@@ -131,24 +130,14 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         dispatch(
           configActions.updateSelectedComponent(currentSelectedDisplayName),
         )
-
-        updateCurrentAllComponentsAttachedUsers(
-          currentSelectedDisplayName,
-          componentsAttachedUsers,
-        )
         return
       }
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
-      updateCurrentAllComponentsAttachedUsers(
-        [componentNode.displayName],
-        componentsAttachedUsers,
-      )
     },
     [
       componentNode.displayName,
-      componentsAttachedUsers,
       dispatch,
       displayNameMapDepth,
       isEditMode,
@@ -232,12 +221,8 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
-      updateCurrentAllComponentsAttachedUsers(
-        [componentNode.displayName],
-        componentsAttachedUsers,
-      )
     },
-    [componentNode.displayName, componentsAttachedUsers, dispatch],
+    [componentNode.displayName, dispatch],
   )
 
   const hasEditors = !!filteredComponentAttachedUserList.length

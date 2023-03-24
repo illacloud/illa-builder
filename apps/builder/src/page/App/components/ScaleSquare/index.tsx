@@ -28,7 +28,6 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   getComponentAttachUsers,
   getTargetCurrentUsersExpendMe,
@@ -113,9 +112,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const isMouseOver =
     hoveredComponents[hoveredComponents.length - 1] ===
     componentNode.displayName
-  const componentsAttachedUsers = useSelector(
-    getComponentAttachUsers,
-  ) as Record<string, CollaboratorsInfo[]>
 
   const filteredComponentAttachedUserList = useSelector<
     RootState,
@@ -219,24 +215,14 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         dispatch(
           configActions.updateSelectedComponent(currentSelectedDisplayName),
         )
-        updateCurrentAllComponentsAttachedUsers(
-          currentSelectedDisplayName,
-          componentsAttachedUsers,
-        )
-
         return
       }
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
-      updateCurrentAllComponentsAttachedUsers(
-        [componentNode.displayName],
-        componentsAttachedUsers,
-      )
     },
     [
       componentNode.displayName,
-      componentsAttachedUsers,
       dispatch,
       displayNameMapDepth,
       executionResult,
@@ -350,12 +336,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
-      updateCurrentAllComponentsAttachedUsers(
-        [componentNode.displayName],
-        componentsAttachedUsers,
-      )
     },
-    [componentNode.displayName, componentsAttachedUsers, dispatch],
+    [componentNode.displayName, dispatch],
   )
 
   const hasEditors = !!filteredComponentAttachedUserList.length

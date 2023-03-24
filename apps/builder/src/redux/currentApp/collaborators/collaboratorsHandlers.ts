@@ -1,8 +1,10 @@
 import { Connection, getPayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/interface"
+import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import store from "@/store"
+import store, { AppListenerEffectAPI } from "@/store"
 
 export const getDisattachedComponents = (
   currentAttached: Record<string, CollaboratorsInfo[]>,
@@ -66,6 +68,25 @@ export const updateCurrentAllComponentsAttachedUsers = (
   if (!!disattachedComponents.length) {
     clearComponentAttachedUsersHandler(disattachedComponents)
   }
+}
+
+export const handleUpdateSelectedComponentExecution = (
+  action: ReturnType<typeof configActions.updateSelectedComponent>,
+  listenerApi: AppListenerEffectAPI,
+) => {
+  const currentComponentsAttachedUsers =
+    listenerApi.getState().currentApp.collaborators.components
+  updateCurrentAllComponentsAttachedUsers(
+    action.payload,
+    currentComponentsAttachedUsers,
+  )
+}
+
+export const handleClearSelectedComponentExecution = (
+  action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
+  listenerApi: AppListenerEffectAPI,
+) => {
+  clearComponentAttachedUsersHandler(action.payload.displayNames)
 }
 
 export const AVATAR_WIDTH = 14
