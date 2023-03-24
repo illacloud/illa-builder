@@ -16,9 +16,11 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
+import { forkCurrentApp } from "@/api/apps"
 import { BuilderApi } from "@/api/base"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
+import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
@@ -34,6 +36,7 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { fromNow } from "@/utils/dayjs"
 import {
   descriptionStyle,
@@ -59,7 +62,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const isOnline = useSelector(getIsOnline)
   const debuggerData = useSelector(getExecutionDebuggerData)
   const isEditMode = useSelector(getIsILLAEditMode)
+  const isGuideOpen = useSelector(getGuideStatus)
 
+  const [forkModalVisible, setForkModalVisible] = useState(false)
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
 
   const previewButtonText = isEditMode
@@ -73,36 +78,62 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     dispatch(configActions.updateFreezeStateReducer(!isFreezeCanvas))
   }, [dispatch, isFreezeCanvas])
 
+  const deployApp = useCallback(
+    (appId: string) => {
+      BuilderApi.teamRequest<DeployResp>(
+        {
+          url: `/apps/${appId}/deploy`,
+          method: "POST",
+        },
+        () => {
+          window.open(
+            window.location.protocol +
+              "//" +
+              window.location.host +
+              `/${teamIdentifier}/deploy/app/${appId}`,
+            "_blank",
+          )
+        },
+        () => {
+          message.error({
+            content: t("editor.deploy.fail"),
+          })
+        },
+        () => {
+          message.error({
+            content: t("editor.deploy.fail"),
+          })
+        },
+        (loading) => {
+          setDeployLoading(loading)
+        },
+      )
+    },
+    [teamIdentifier, message, t],
+  )
+
+  const forkGuideAppAndDeploy = useCallback(
+    async (appName: string) => {
+      if (appName === undefined || appName === "" || appName?.trim() === "") {
+        message.error({
+          content: t("dashboard.app.name_empty"),
+        })
+        return
+      }
+      setDeployLoading(true)
+      const appId = await forkCurrentApp(appName)
+      deployApp(appId)
+    },
+    [deployApp, t],
+  )
+
   const handleClickDeploy = useCallback(() => {
-    BuilderApi.teamRequest<DeployResp>(
-      {
-        url: `/apps/${appInfo.appId}/deploy`,
-        method: "POST",
-      },
-      () => {
-        window.open(
-          window.location.protocol +
-            "//" +
-            window.location.host +
-            `/${teamIdentifier}/deploy/app/${appInfo?.appId}`,
-          "_blank",
-        )
-      },
-      () => {
-        message.error({
-          content: t("editor.deploy.fail"),
-        })
-      },
-      () => {
-        message.error({
-          content: t("editor.deploy.fail"),
-        })
-      },
-      (loading) => {
-        setDeployLoading(loading)
-      },
-    )
-  }, [appInfo.appId, message, t, teamIdentifier])
+    if (isGuideOpen) {
+      setForkModalVisible(true)
+    } else {
+      deployApp(appInfo.appId)
+    }
+  }, [appInfo.appId, isGuideOpen, deployApp])
 
   const handlePreviewButtonClick = useCallback(() => {
     if (isEditMode) {
@@ -204,7 +235,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 leftIcon={<CaretRightIcon />}
                 onClick={handleClickDeploy}
               >
-                {t("deploy")}
+                {isGuideOpen
+                  ? t("editor.tutorial.panel.tutorial.modal.fork")
+                  : t("deploy")}
               </Button>
             </ButtonGroup>
           </div>
@@ -212,6 +245,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           <>{PreviewButton}</>
         )}
       </div>
+      <ForkAndDeployModal
+        visible={forkModalVisible}
+        okLoading={deployLoading}
+        onOk={forkGuideAppAndDeploy}
+        onVisibleChange={setForkModalVisible}
+      />
     </div>
   )
 }
