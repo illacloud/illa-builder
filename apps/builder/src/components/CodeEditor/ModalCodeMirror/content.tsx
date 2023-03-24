@@ -11,8 +11,15 @@ import {
 import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 
 export const ModalContent: FC<ModalBodyContent> = (props) => {
-  const { description, lang, expectValueType, onChange, value, placeholder } =
-    props
+  const {
+    description,
+    lang,
+    expectValueType,
+    onChange,
+    value,
+    placeholder,
+    wrappedCodeFunc,
+  } = props
 
   const descriptionRef = useRef<HTMLParagraphElement | null>(null)
   const [canRender, setCanRender] = useState(false)
@@ -57,6 +64,7 @@ export const ModalContent: FC<ModalBodyContent> = (props) => {
             wrapperCss={codeMirrorContainerStyle}
             onChange={onChange}
             canExpand={false}
+            wrappedCodeFunc={wrappedCodeFunc}
           />
         </div>
       )}

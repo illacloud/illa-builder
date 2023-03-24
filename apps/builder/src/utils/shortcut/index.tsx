@@ -12,10 +12,7 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  clearComponentAttachedUsersHandler,
-  updateSelectedComponentUsersHandler,
-} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { clearComponentAttachedUsersHandler } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   flattenAllComponentNodeToMap,
   getCanvas,
@@ -138,7 +135,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
             }),
           )
           dispatch(configActions.clearSelectedComponent())
-          clearComponentAttachedUsersHandler(displayName)
         },
       })
     }
@@ -212,7 +208,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
           )
 
           dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
-          updateSelectedComponentUsersHandler(childNodeDisplayNames)
         }
       }
     }
