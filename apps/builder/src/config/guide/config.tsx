@@ -112,7 +112,7 @@ export const GUIDE_STEP = [
     titleKey: "editor.tutorial.panel.onboarding_app.display_data_title",
     descKey:
       "editor.tutorial.panel.onboarding_app.display_data_description_modify",
-    selector: "table-dataSource",
+    selector: "table-data-source",
   },
   {
     // 3

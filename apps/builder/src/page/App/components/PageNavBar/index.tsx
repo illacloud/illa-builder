@@ -30,13 +30,13 @@ import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import {
   getFreezeState,
   getIsILLAEditMode,
+  getIsILLAGuideMode,
   getIsOnline,
   isOpenDebugger,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { fromNow } from "@/utils/dayjs"
 import {
   descriptionStyle,
@@ -62,7 +62,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const isOnline = useSelector(getIsOnline)
   const debuggerData = useSelector(getExecutionDebuggerData)
   const isEditMode = useSelector(getIsILLAEditMode)
-  const isGuideOpen = useSelector(getGuideStatus)
+  const isGuideMode = useSelector(getIsILLAGuideMode)
 
   const [forkModalVisible, setForkModalVisible] = useState(false)
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
@@ -128,12 +128,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   )
 
   const handleClickDeploy = useCallback(() => {
-    if (isGuideOpen) {
+    if (isGuideMode) {
       setForkModalVisible(true)
     } else {
       deployApp(appInfo.appId)
     }
-  }, [appInfo.appId, isGuideOpen, deployApp])
+  }, [appInfo.appId, isGuideMode, deployApp])
 
   const handlePreviewButtonClick = useCallback(() => {
     if (isEditMode) {
@@ -235,7 +235,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 leftIcon={<CaretRightIcon />}
                 onClick={handleClickDeploy}
               >
-                {isGuideOpen
+                {isGuideMode
                   ? t("editor.tutorial.panel.tutorial.modal.fork")
                   : t("deploy")}
               </Button>

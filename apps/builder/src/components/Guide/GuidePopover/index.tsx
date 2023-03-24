@@ -1,6 +1,7 @@
 import { FC, HTMLAttributes } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { Button } from "@illa-design/react"
+import { Button, useMessage, useModal } from "@illa-design/react"
 import {
   actionStyle,
   decsStyle,
@@ -18,18 +19,41 @@ export interface GuidePopoverProps extends HTMLAttributes<HTMLDivElement> {
 export const GuidePopover: FC<GuidePopoverProps> = (props) => {
   const { title, description, onClickDoIt, ...rest } = props
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+  const modal = useModal()
+  const message = useMessage()
+
+  const handleExitGuide = () => {
+    modal.show({
+      id: "exitGuide",
+      title: t("tutorial.modal.tutorial.exit_confirm.title"),
+      children: t("tutorial.modal.tutorial.exit_confirm.description"),
+      cancelText: t("tutorial.modal.tutorial.exit_confirm.cancel"),
+      okText: t("tutorial.modal.tutorial.exit_confirm.exit"),
+      okButtonProps: {
+        colorScheme: "techPurple",
+      },
+      onOk: () => {
+        dispatch(guideActions.updateGuideStatusReducer(false))
+      },
+    })
+  }
 
   return (
     <div css={guidePopoverStyle} {...rest}>
       <div css={titleStyle}>{title}</div>
       <div css={decsStyle}>{description}</div>
       <div css={actionStyle}>
-        <Button variant={"fill"} colorScheme={"techPurple"}>
+        <Button
+          variant="fill"
+          colorScheme="techPurple"
+          onClick={handleExitGuide}
+        >
           Skip
         </Button>
         <Button
-          variant={"fill"}
-          colorScheme={"techPurple"}
+          variant="fill"
+          colorScheme="techPurple"
           onClick={() => {
             onClickDoIt?.()
             // dispatch(guideActions.updateNextStepReducer())
