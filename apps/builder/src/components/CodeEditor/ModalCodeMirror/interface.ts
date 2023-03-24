@@ -7,6 +7,7 @@ export interface ModalBodyContent {
   lang?: CodeEditorProps["lang"]
   expectValueType?: CodeEditorProps["expectValueType"]
   onChange?: CodeEditorProps["onChange"]
+  wrappedCodeFunc?: CodeEditorProps["wrappedCodeFunc"]
   value: string
 }
 
