@@ -93,4 +93,5 @@ export const FORM_CAN_BIND_WIDGET_TYPE = new Map([
   ["RATE_WIDGET", true],
   ["FORM_WIDGET", true],
   ["UPLOAD_WIDGET", true],
+  ["MULTISELECT_WIDGET", true],
 ])

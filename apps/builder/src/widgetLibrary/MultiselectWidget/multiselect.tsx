@@ -145,7 +145,7 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
-      setValue: (value: any) => {
+      setSelectedValue: (value: any) => {
         handleUpdateDsl({ value })
       },
       clearValue: () => {

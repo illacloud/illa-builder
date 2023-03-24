@@ -1,7 +1,7 @@
 import { v4 } from "uuid"
 import { ReactComponent as MultiselectWidgetIcon } from "@/assets/widgetCover/multiselect.svg"
 import i18n from "@/i18n/config"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 export const MULTISELECT_WIDGET_CONFIG: WidgetConfig = {
   type: "MULTISELECT_WIDGET",
@@ -28,5 +28,6 @@ export const MULTISELECT_WIDGET_CONFIG: WidgetConfig = {
     ],
     dynamicHeight: "fixed",
     formDataKey: "multiselect",
+    resizeDirection: RESIZE_DIRECTION.ALL,
   },
 }
