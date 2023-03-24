@@ -7,7 +7,7 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   getCanvas,
   getCurrentPageBodySectionComponentsSelector,
@@ -42,7 +42,6 @@ function handleUpdateComponentDisplayNameEffect(
   const { newDisplayName } = action.payload
   const rootState = listenApi.getState()
   const rootNode = getCanvas(rootState)
-  const componentsAttachedUsers = rootState.currentApp.collaborators.components
   const newComponent = searchDsl(rootNode, newDisplayName)
   if (
     newComponent &&
@@ -50,10 +49,6 @@ function handleUpdateComponentDisplayNameEffect(
   ) {
     listenApi.dispatch(
       configActions.updateSelectedComponent([newComponent.displayName]),
-    )
-    updateCurrentAllComponentsAttachedUsers(
-      [newComponent.displayName],
-      componentsAttachedUsers,
     )
   }
 }
@@ -531,6 +526,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.deletePageNodeReducer,
       effect: handleChangeCurrentPageWhenDelete,
+    }),
+    startListening({
+      actionCreator: componentsActions.deleteComponentNodeReducer,
+      effect: handleClearSelectedComponentExecution,
     }),
     startListening({
       actionCreator: componentsActions.deleteSectionViewReducer,

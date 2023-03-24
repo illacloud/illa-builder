@@ -61,7 +61,7 @@ export const generatorTableEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-query`,
-        labelName: "Query",
+        labelName: i18n.t("editor.inspect.setter_label.action_name"),
         setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
         attrName: "queryID",
         bindAttrName: ["actionType"],
@@ -100,6 +100,17 @@ export const generatorTableEventHandlerConfig = (
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
         shown: (widgetMethod) => widgetMethod === "setValue",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-selectValue`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        placeholder: i18n.t(
+          "editor.inspect.setter_placeholder.multiselect.value",
+        ),
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setSelectedValue",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-setHidden`,
