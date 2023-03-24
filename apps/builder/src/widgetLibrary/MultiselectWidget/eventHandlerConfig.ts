@@ -22,5 +22,5 @@ export const MULTISELECT_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "blur",
     },
   ],
-  methods: ["setValue", "clearValue", "validate", "clearValidation"],
+  methods: ["setSelectedValue", "clearValue", "validate", "clearValidation"],
 }

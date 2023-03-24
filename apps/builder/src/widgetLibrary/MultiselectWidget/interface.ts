@@ -45,4 +45,16 @@ export interface MultiselectWidgetProps
   dynamicMaxHeight?: number
   atLeastNumber?: number
   upToNumber?: number
+  optionConfigureMode?: "dynamic" | "static"
+  manualOptions?: {
+    label: string
+    value: string | number
+    disabled?: boolean
+    extra?: any
+  }[]
+  mappedOption?: {
+    labels: string[]
+    values: any[]
+    disables: boolean[]
+  }
 }
