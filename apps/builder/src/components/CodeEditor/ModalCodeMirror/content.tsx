@@ -1,6 +1,5 @@
-import { cloneDeep } from "lodash"
 import { FC, useLayoutEffect, useRef, useState } from "react"
-import useMeasure from "react-use-measure"
+import { getColor } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { ModalBodyContent } from "@/components/CodeEditor/ModalCodeMirror/interface"
 import {
@@ -9,6 +8,7 @@ import {
   contentWrapperStyle,
   descriptionStyle,
 } from "@/components/CodeEditor/ModalCodeMirror/style"
+import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 
 export const ModalContent: FC<ModalBodyContent> = (props) => {
   const { description, lang, expectValueType, onChange, value, placeholder } =
@@ -34,9 +34,13 @@ export const ModalContent: FC<ModalBodyContent> = (props) => {
   return (
     <div css={contentWrapperStyle}>
       {description && (
-        <p css={descriptionStyle} ref={descriptionRef}>
-          {description}
-        </p>
+        <div css={descriptionStyle} ref={descriptionRef}>
+          <ILLAMarkdown
+            textString={description}
+            textColor={getColor("grayBlue", "04")}
+            urlColor="grayBlue"
+          />
+        </div>
       )}
       {canRender && (
         <div css={applyCodeMirrorWrapperStyle(descriptionHeight)}>

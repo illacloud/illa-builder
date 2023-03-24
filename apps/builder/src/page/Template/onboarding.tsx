@@ -19,7 +19,7 @@ import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execut
 import { startAppListening } from "@/store"
 
 const Onboarding: FC = () => {
-  const loadingState = useInitBuilderApp("template-edit")
+  const { loadingState } = useInitBuilderApp("template-edit")
 
   const currentApp = useSelector(getAppInfo)
 
