@@ -118,6 +118,12 @@ import {
   ModalWidget,
 } from "@/widgetLibrary/ModalWidget"
 import {
+  MULTISELECT_EVENT_HANDLER_CONFIG,
+  MULTISELECT_PANEL_CONFIG,
+  MULTISELECT_WIDGET_CONFIG,
+  MultiselectWidget,
+} from "@/widgetLibrary/MultiselectWidget"
+import {
   INPUT_NUMBER_EVENT_HANDLER_CONFIG,
   NUMBER_INPUT_PANEL_CONFIG,
   NUMBER_INPUT_WIDGET_CONFIG,
@@ -239,6 +245,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: SELECT_WIDGET_CONFIG,
     panelConfig: SELECT_PANEL_CONFIG,
     eventHandlerConfig: SELECT_EVENT_HANDLER_CONFIG,
+  },
+  MULTISELECT_WIDGET: {
+    widget: MultiselectWidget,
+    config: MULTISELECT_WIDGET_CONFIG,
+    panelConfig: MULTISELECT_PANEL_CONFIG,
+    eventHandlerConfig: MULTISELECT_EVENT_HANDLER_CONFIG,
   },
   RADIO_GROUP_WIDGET: {
     widget: RadioGroupWidget,

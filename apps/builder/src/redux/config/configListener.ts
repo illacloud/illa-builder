@@ -1,5 +1,6 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { configActions } from "@/redux/config/configSlice"
+import { handleUpdateSelectedComponentExecution } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import store, { AppListenerEffectAPI, AppStartListening } from "@/store"
 
 async function handleChangeSelectedActionExecution(
@@ -16,6 +17,10 @@ export function setupConfigListeners(
     startListening({
       actionCreator: configActions.changeSelectedAction,
       effect: handleChangeSelectedActionExecution,
+    }),
+    startListening({
+      actionCreator: configActions.updateSelectedComponent,
+      effect: handleUpdateSelectedComponentExecution,
     }),
   ]
 

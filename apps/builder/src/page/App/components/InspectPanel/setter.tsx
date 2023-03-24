@@ -46,7 +46,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
         }
         return get(widgetProps, bindAttrNameItem)
       })
-
       return shown(...bindAttrNameValues)
     }
     return true

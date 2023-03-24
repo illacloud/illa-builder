@@ -171,6 +171,7 @@ export const transformEvents = (
     if (
       [
         "setValue",
+        "setSelectedValue",
         "setVolume",
         "setVideoUrl",
         "setImageUrl",
