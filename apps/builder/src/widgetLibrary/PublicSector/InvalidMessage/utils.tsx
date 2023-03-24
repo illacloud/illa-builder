@@ -28,8 +28,9 @@ export const handleCheckMinSelectedItems = (
     typeof minCount === "number" &&
     ((Array.isArray(value) && value.length < minCount) ||
       typeof value === "undefined")
-  )
+  ) {
     return true
+  }
 }
 
 export const handleCheckMaxSelectedItems = (
@@ -40,8 +41,9 @@ export const handleCheckMaxSelectedItems = (
     typeof maxCount === "number" &&
     ((Array.isArray(value) && value.length > maxCount) ||
       typeof value === "undefined")
-  )
+  ) {
     return true
+  }
 }
 
 export const handleCheckIsRequired = (value: unknown, required?: boolean) => {

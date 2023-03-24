@@ -12,12 +12,93 @@ export const MULTISELECT_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.options"),
     children: [
       {
+        id: `${baseWidgetName}-options-mode`,
+        attrName: "optionConfigureMode",
+        setterType: "RADIO_GROUP_SETTER",
+        options: [
+          {
+            label: i18n.t("widget.public.select_options.manual"),
+            value: "static",
+          },
+          {
+            label: i18n.t("widget.public.select_options.mapped"),
+            value: "dynamic",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-basic-options`,
+        useCustomLayout: true,
+        attrName: "manualOptions",
+        setterType: "OPTION_LIST_SETTER",
+        bindAttrName: ["optionConfigureMode"],
+        shown: (value) => !value || value === "static",
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-options-label`,
+            labelName: i18n.t("editor.inspect.setter_label.label"),
+            attrName: "label",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-value`,
+            labelName: i18n.t("editor.inspect.setter_label.value"),
+            attrName: "value",
+            setterType: "INPUT_SETTER",
+          },
+          {
+            id: `${baseWidgetName}-options-disabled`,
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
+            attrName: "disabled",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.BOOLEAN,
+          },
+        ],
+      },
+      {
         id: `${baseWidgetName}-option-data-sources`,
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.ARRAY,
         isSetterSingleRow: true,
+      },
+      {
+        id: `${baseWidgetName}-option-mapped`,
+        labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.map_data_option"),
+        useCustomLayout: true,
+        attrName: "mappedOption",
+        setterType: "OPTION_MAPPED_SETTER",
+        bindAttrName: ["optionConfigureMode"],
+        shown: (value) => value === "dynamic",
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-mappedOption-labels`,
+            labelName: i18n.t("editor.inspect.setter_label.label"),
+            attrName: "labels",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            placeholder: "{{item}}",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-values`,
+            labelName: i18n.t("editor.inspect.setter_label.value"),
+            attrName: "values",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            placeholder: "{{item}}",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-disables`,
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
+            attrName: "disables",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            placeholder: "{{false}}",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+        ],
       },
       {
         id: `${baseWidgetName}-basic-defaultValue`,
