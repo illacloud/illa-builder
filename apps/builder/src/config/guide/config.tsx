@@ -6,20 +6,30 @@ import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { guideActions } from "@/redux/guide/guideSlice"
 import store from "@/store"
+import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
+
+const enum GUIDE_SELECT {
+  "INPUT_WIDGET",
+  "BUTTON_WIDGET",
+  "TABLE_WIDGET",
+}
 
 export const SELECT_WIDGET_ITEM = {
   INPUT_WIDGET: {
-    icon: InputHighlightIcon,
+    highlightIcon: InputHighlightIcon,
+    ...WidgetConfig["INPUT_WIDGET"].config,
   },
   BUTTON_WIDGET: {
-    icon: ButtonHighlightIcon,
+    highlightIcon: ButtonHighlightIcon,
+    ...WidgetConfig["BUTTON_WIDGET"].config,
   },
   TABLE_WIDGET: {
-    icon: TableHighlightIcon,
+    highlightIcon: TableHighlightIcon,
+    ...WidgetConfig["TABLE_WIDGET"].config,
   },
 }
 
-type SelectWidget = keyof typeof SELECT_WIDGET_ITEM
+export type SelectWidget = keyof typeof SELECT_WIDGET_ITEM
 
 export const GUIDE_SELECT_WIDGET = Object.keys(
   SELECT_WIDGET_ITEM,

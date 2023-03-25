@@ -5,10 +5,10 @@ import { GUIDE_SELECT_WIDGET, SELECT_WIDGET_ITEM } from "@/config/guide/config"
 const applyHighlightStyle = (currentStep: number) => css`
   [data-onboarding-session="COMMON"] {
     ${GUIDE_SELECT_WIDGET.slice(currentStep).map((widget) => {
-      const icon = SELECT_WIDGET_ITEM[widget].icon
+      const { highlightIcon } = SELECT_WIDGET_ITEM[widget]
       return css`
         [data-onboarding-comp=${widget}] {
-          content: url(${icon});
+          content: url(${highlightIcon});
         }
       `
     })}
@@ -26,15 +26,18 @@ export const applyGuideStyle = (currentStep: number) => {
   }
 }
 
-export const applyStepMaskWrapperStyle = (visible: boolean) => {
+export const applyStepMaskWrapperStyle = (
+  visible: boolean,
+  unitWidth: number,
+) => {
   return css`
-    display: ${visible ? "block" : "none"};
-    z-index: 2;
+    z-index: 1;
+    display: ${visible ? "flex" : "none"};
+    flex-direction: column;
     position: absolute;
-    top: 168px;
-    padding: 10px;
+    top: ${unitWidth * 5}px;
+    gap: ${unitWidth * 3}px;
     pointer-events: none;
-    background-color: #eeeeee;
     left: 50%;
     transform: translateX(-50%);
   `
@@ -42,10 +45,10 @@ export const applyStepMaskWrapperStyle = (visible: boolean) => {
 
 export const stepFirstLineStyle = css`
   display: flex;
+  justify-content: space-between;
 `
 
 export const stepMaskStyle = css`
-  // text align center and middle
   width: 268px;
   height: 48px;
   display: flex;
@@ -55,10 +58,36 @@ export const stepMaskStyle = css`
   background: ${getColor("techPurple", "07")};
   border: 1px dashed ${getColor("techPurple", "01")};
 `
+
+// transform stepMaskStyle to function, set {width, height}
+export const applyStepMaskStyle = (shape: {
+  width: number
+  height: number
+}) => {
+  const { width, height } = shape
+  return css`
+    width: ${width}px;
+    height: ${height}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${getColor("grayBlue", "04")};
+    background: ${getColor("techPurple", "07")};
+    border: 1px dashed ${getColor("techPurple", "01")};
+  `
+}
+
 export const moveIconStyle = css`
   width: 24px;
   height: 24px;
   margin-right: 4px;
+  flex-shrink: 0;
+`
+
+export const ellipsisStyle = css`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 // hidden function, use visible to control
