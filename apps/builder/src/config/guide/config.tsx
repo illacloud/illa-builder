@@ -55,6 +55,7 @@ export const GUIDE_STEP = [
     reduxAction: "components/addComponentReducer",
     doItForMe: () => {
       store.dispatch(componentsActions.addComponentReducer(GUIDE_COMPONENTS))
+      store.dispatch(guideActions.updateCurrentStepReducer(3))
     },
   },
   {
