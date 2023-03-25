@@ -1,4 +1,5 @@
 import { createModal } from "@illa-design/react"
+import { updateTutorialViewed } from "@/api/users"
 import i18n from "@/i18n/config"
 import { ILLARoute } from "@/router"
 
@@ -17,6 +18,7 @@ export const openGuideModal = (teamIdentifier: string) => {
     },
     onOk: () => {
       ILLARoute.navigate(`/${teamIdentifier}/guide`)
+      updateTutorialViewed(true)
     },
   })
 }

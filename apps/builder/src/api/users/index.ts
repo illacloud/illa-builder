@@ -75,3 +75,13 @@ export const sendEmail = async (
   ILLABuilderStorage.setSessionStorage("verificationToken", verificationToken)
   return verificationToken
 }
+
+export const updateTutorialViewed = async (isTutorialViewed: boolean) => {
+  await CloudApi.asyncRequest({
+    url: "/users/tutorialViewed",
+    method: "PATCH",
+    data: {
+      isTutorialViewed,
+    },
+  })
+}
