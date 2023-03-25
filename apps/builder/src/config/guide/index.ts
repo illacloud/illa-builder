@@ -10,11 +10,12 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import store from "@/store"
 
-export const GUIDE_COMPONENTS = Components
+export const GUIDE_COMPONENTS = Components as unknown as ComponentNode[]
 export const GUIDE_RESOURCES = Resources as Resource<ResourceContent>[]
 export const GUIDE_ACTIONS = Actions
 

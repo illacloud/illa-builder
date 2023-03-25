@@ -59,14 +59,6 @@
     "props": {
       "$dynamicAttrPaths": [],
       "colorScheme": "blue",
-      "events": [
-        {
-          "actionType": "datasource",
-          "eventType": "click",
-          "id": "events-1066d305-af86-4f1f-9b67-273a70db353b",
-          "queryID": "postgresql1"
-        }
-      ],
       "hidden": false,
       "text": "Button",
       "variant": "fill"
@@ -94,119 +86,50 @@
     "y": 25,
     "z": 0,
     "props": {
-      "$dynamicAttrPaths": [
-        "pageSize",
-        "dataSourceJS"
-      ],
+      "dataSourceMode": "dynamic",
+      "dataSourceJS": "{{[\n  {\n    \"month\": \"April\",\n    \"users\": 3700,\n    \"incomes\": 4000\n  },\n  {\n    \"month\": \"May\",\n    \"users\": 5400,\n    \"incomes\": 8700\n  },\n  {\n    \"month\": \"June\",\n    \"users\": 6000,\n    \"incomes\": 12000\n  },\n  {\n    \"month\": \"July\",\n    \"users\": 8000,\n    \"incomes\": 14000\n  }\n]}}",
       "columns": [
         {
-          "accessorKey": "charge",
-          "columnIndex": 0,
+          "id": "month",
+          "header": "month",
+          "accessorKey": "month",
           "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "charge",
-          "id": "charge",
           "type": "text",
-          "visible": true
+          "visible": true,
+          "format": "YYYY-MM-DD",
+          "columnIndex": 0
         },
         {
-          "accessorKey": "email",
-          "columnIndex": 1,
+          "id": "users",
+          "header": "users",
+          "accessorKey": "users",
           "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "email",
-          "id": "email",
           "type": "text",
-          "visible": true
+          "visible": true,
+          "format": "YYYY-MM-DD",
+          "columnIndex": 1
         },
         {
-          "accessorKey": "expired_time",
-          "columnIndex": 2,
+          "id": "incomes",
+          "header": "incomes",
+          "accessorKey": "incomes",
           "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "expired_time",
-          "id": "expired_time",
           "type": "text",
-          "visible": true
-        },
-        {
-          "accessorKey": "feature_flag",
-          "columnIndex": 3,
-          "enableSorting": true,
+          "visible": true,
           "format": "YYYY-MM-DD",
-          "header": "feature_flag",
-          "id": "feature_flag",
-          "type": "text",
-          "visible": true
-        },
-        {
-          "accessorKey": "id",
-          "columnIndex": 4,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "id",
-          "id": "id",
-          "type": "text",
-          "visible": true
-        },
-        {
-          "accessorKey": "img",
-          "columnIndex": 5,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "img",
-          "id": "img",
-          "type": "text",
-          "visible": true
-        },
-        {
-          "accessorKey": "name",
-          "columnIndex": 6,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "name",
-          "id": "name",
-          "type": "text",
-          "visible": true
-        },
-        {
-          "accessorKey": "start_time",
-          "columnIndex": 7,
-          "enableSorting": true,
-          "format": "YYYY-MM-DD",
-          "header": "start_time",
-          "id": "start_time",
-          "type": "text",
-          "visible": true
+          "columnIndex": 2
         }
       ],
-      "dataSourceJS": "{{postgresql1.data}}",
-      "dataSourceMode": "dynamic",
       "defaultSortKey": "default",
       "defaultSortOrder": "ascend",
-      "download": false,
       "emptyState": "No rows found",
-      "filter": false,
       "overFlow": "pagination",
+      "download": false,
+      "filter": false,
       "pageSize": "{{10}}",
-      "rowEvents": {},
-      "rowSelection": {
-        "0": true
-      },
-      "selectedRow": [
-        {
-          "charge": "7500",
-          "email": "James@outlook.com",
-          "expired_time": "2024-03-14",
-          "feature_flag": [
-            "Feature2",
-            "Feature3"
-          ],
-          "id": "1",
-          "img": "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
-          "name": "James",
-          "start_time": "2023-03-15"
-        }
+      "$dynamicAttrPaths": [
+        "dataSourceJS",
+        "pageSize"
       ]
     },
     "panelConfig": null
