@@ -36,10 +36,9 @@ export const applyStepMaskWrapperStyle = (
     flex-direction: column;
     position: absolute;
     top: ${unitWidth * 5}px;
+    left: ${unitWidth * 5}px;
     gap: ${unitWidth * 3}px;
     pointer-events: none;
-    left: 50%;
-    transform: translateX(-50%);
   `
 }
 
