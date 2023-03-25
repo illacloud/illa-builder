@@ -7,7 +7,6 @@ import {
   getSelectedComponents,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { clearComponentAttachedUsersHandler } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 
 interface MultiSelectCanvasProps {
   containerRef: RefObject<HTMLDivElement>
@@ -157,7 +156,6 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
   const onDragEndHandler = (e: SelectoEvents["dragEnd"]) => {
     if (!prevSelectorStatus.current && !isProductionMode) {
       dispatch(configActions.updateSelectedComponent([]))
-      clearComponentAttachedUsersHandler(selectedComponents || [])
     }
     prevSelectorStatus.current = false
     prevContainerScrollTop.current = undefined
