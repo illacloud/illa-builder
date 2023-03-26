@@ -3,7 +3,7 @@ import { FC } from "react"
 import { popoverStyle } from "@/components/Guide/GuideSuccess/style"
 import animationData from "@/components/Guide/assets/lottie/point.json"
 
-export const GuideSuccess: FC = () => {
+export const GuidePoint: FC = () => {
   return (
     <div css={popoverStyle}>
       <Lottie animationData={animationData} loop={true} autoplay={true} />
@@ -11,4 +11,4 @@ export const GuideSuccess: FC = () => {
   )
 }
 
-GuideSuccess.displayName = "GuideSuccess"
+GuidePoint.displayName = "GuidePoint"
