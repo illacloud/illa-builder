@@ -6,10 +6,7 @@ export const updateCurrentStepReducer: CaseReducer<
   PayloadAction<number>
 > = (state, action) => {
   const { payload } = action
-  return {
-    ...state,
-    currentStep: payload,
-  }
+  state.currentStep = payload
 }
 
 export const updateNextStepReducer: CaseReducer<Guide> = (state) => {
@@ -34,8 +31,5 @@ export const updateGuideStatusReducer: CaseReducer<
 > = (state, action) => {
   if (!state) return
   const { payload } = action
-  return {
-    ...state,
-    isOpen: payload,
-  }
+  state.isOpen = payload
 }

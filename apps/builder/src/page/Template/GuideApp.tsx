@@ -1,6 +1,6 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
-import { FC, MouseEvent, useCallback, useEffect, useRef } from "react"
+import { FC, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
@@ -111,14 +111,17 @@ const GuideApp: FC = () => {
                 <CanvasPanel ref={canvasRef} css={centerPanelStyle} />
               </TriggerProvider>
               {showBottomPanel && !showDebugger ? (
-                <ActionEditor css={bottomPanelStyle} />
+                <ActionEditor
+                  data-onboarding-action="actionEditor"
+                  css={bottomPanelStyle}
+                />
               ) : null}
               {showDebugger && <Debugger css={bottomPanelStyle} />}
             </div>
             {showRightPanel && (
               <TriggerProvider renderInBody zIndex={10}>
                 <ComponentsManager
-                  className={"app-editor"}
+                  data-onboarding-comp="componentsManager"
                   css={rightPanelStyle}
                 />
               </TriggerProvider>

@@ -1,9 +1,9 @@
 import { Global } from "@emotion/react"
-import { Popover } from "@reactour/popover"
 import { FC, HTMLAttributes, RefObject, useEffect, useMemo } from "react"
-import { createPortal } from "react-dom"
+import { createPortal, render } from "react-dom"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { GuidePoint } from "@/components/Guide/GuidePoint"
 import { GuidePopover } from "@/components/Guide/GuidePopover"
 import { GuideSuccess } from "@/components/Guide/GuideSuccess"
 import { ReactComponent as MoveIcon } from "@/components/Guide/assets/move.svg"
@@ -109,7 +109,89 @@ export const Guide: FC<GuideProps> = (props) => {
       return element?.getBoundingClientRect()
     }
   }, [currentStep])
+  const postgresqlQuery = document.querySelector(".postgresql1-query")
+  const currentElement = selector && document.querySelector(selector)
 
+  const ActionMutationObserver = new MutationObserver((mutations) => {
+    const targetNode = document.querySelector(
+      '[data-onboarding-action="actionEditor"]',
+    )
+    mutations.forEach((mutation) => {
+      // 检查新增子节点是否含有.postgresql1-query类名
+      const addedNodes = Array.from(mutation.addedNodes)
+      const hasPostgresqlQueryClass = addedNodes.some((node) => {
+        console.log(node, "node")
+        if (node instanceof HTMLElement) {
+          return node.classList.contains("postgresql1-query")
+        }
+        return false
+      })
+
+      if (hasPostgresqlQueryClass) {
+        const myElementContainer = document.createElement("div")
+
+        createPortal(
+          <GuidePopover title={"111"} description={"222"} />,
+          myElementContainer,
+        )
+        targetNode?.appendChild(myElementContainer)
+      }
+    })
+  })
+
+  // if (reduxAction === "updateCurrentStepReducer") {
+  //   const { titleKey, descKey, selector } = GUIDE_STEP[payload]
+  //
+  //   switch (payload) {
+  //     case 3: {
+  //       const targetNode = document.querySelector(
+  //         '[data-onboarding-action="actionEditor"]',
+  //       )
+  //       if (targetNode) {
+  //         createPortal(<div>wwww</div>, document.body)
+  //         const postgresqlQueryNodes =
+  //           targetNode?.querySelector(".postgresql1-query")
+  //         // 检查初始节点中是否存在符合条件的元素
+  //         if (postgresqlQueryNodes) {
+  //           const myElementContainer = document.createElement("div")
+  //
+  //           render(
+  //             createPortal(
+  //               <GuidePopover title={titleKey} description={descKey} />,
+  //               myElementContainer,
+  //             ),
+  //             myElementContainer,
+  //           )
+  //           postgresqlQueryNodes.appendChild(myElementContainer)
+  //
+  //           // postgresqlQueryNodes.insertBefore()
+  //         }
+  //
+  //         // 传入目标元素和选项进行观察
+  //         ActionMutationObserver.observe(targetNode, {
+  //           childList: true,
+  //           subtree: true,
+  //         })
+  //       }
+  //       break
+  //     }
+  //     case 4: {
+  //       console.log(selector, "element selector")
+  //       const element = document.querySelector(selector)
+  //       if (element) {
+  //         const myElementContainer = document.createElement("div")
+  //         console.log(element, "element")
+  //         element.appendChild(myElementContainer)
+  //         setTimeout(() => {
+  //           console.log(element.children, "create portal element")
+  //           const a = createPortal(<div>2222</div>, myElementContainer)
+  //           console.log(a, "create portal element")
+  //         }, 500)
+  //       }
+  //       break
+  //     }
+  //   }
+  // }
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />
@@ -126,10 +208,6 @@ export const Guide: FC<GuideProps> = (props) => {
             height: 230,
             border: "2px solid #5ae",
             background: "white",
-            padding: 10,
-            borderRadius: 10,
-            textAlign: "center",
-            fontSize: ".7em",
             zIndex: 10,
           }}
         >
@@ -146,15 +224,20 @@ export const Guide: FC<GuideProps> = (props) => {
           </div>
         </div>
       )}
-      {(currentStep === 3 || currentStep === 4) && size && (
-        <Popover sizes={size} className={currentStep.toString()}>
+      {currentStep === 3 &&
+        postgresqlQuery &&
+        createPortal(
           <GuidePopover
+            position={"top"}
             title={titleKey}
             description={descKey}
             onClickDoIt={doItForMe}
-          />
-        </Popover>
-      )}
+          />,
+          postgresqlQuery,
+        )}
+      {(currentStep === 3 || currentStep === 4) &&
+        currentElement &&
+        createPortal(<GuidePoint />, currentElement)}
     </>
   )
 }

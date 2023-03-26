@@ -177,10 +177,7 @@ export const Editor: FC = () => {
             </div>
             {showRightPanel && (
               <TriggerProvider renderInBody zIndex={10}>
-                <ComponentsManager
-                  className={"app-editor"}
-                  css={rightPanelStyle}
-                />
+                <ComponentsManager css={rightPanelStyle} />
               </TriggerProvider>
             )}
           </div>

@@ -1,10 +1,10 @@
 import { css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
 
 export const popoverStyle = css`
+  width: 32px;
+  height: 32px;
   position: absolute;
   top: 0;
-  // center
   left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 2;
 `

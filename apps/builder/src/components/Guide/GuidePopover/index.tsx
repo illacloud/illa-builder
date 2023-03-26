@@ -7,6 +7,7 @@ import {
   decsStyle,
   guidePopoverStyle,
   titleStyle,
+  topStyle,
 } from "@/components/Guide/GuidePopover/style"
 import { guideActions } from "@/redux/guide/guideSlice"
 
@@ -14,10 +15,11 @@ export interface GuidePopoverProps extends HTMLAttributes<HTMLDivElement> {
   title: string
   description: string
   onClickDoIt?: () => void
+  position?: "top" | "bottom"
 }
 
 export const GuidePopover: FC<GuidePopoverProps> = (props) => {
-  const { title, description, onClickDoIt, ...rest } = props
+  const { position, title, description, onClickDoIt, ...rest } = props
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const modal = useModal()
@@ -40,7 +42,10 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
   }
 
   return (
-    <div css={guidePopoverStyle} {...rest}>
+    <div
+      css={[guidePopoverStyle, position === "top" ? topStyle : undefined]}
+      {...rest}
+    >
       <div css={titleStyle}>{title}</div>
       <div css={decsStyle}>{description}</div>
       <div css={actionStyle}>
@@ -56,7 +61,6 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
           colorScheme="techPurple"
           onClick={() => {
             onClickDoIt?.()
-            // dispatch(guideActions.updateNextStepReducer())
           }}
         >
           Do it for me

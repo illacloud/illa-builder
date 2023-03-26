@@ -66,9 +66,7 @@ const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
   }
 }
 
-export const GUIDE_CONFIG = {
-  ...formatAppDataToConfig(GUIDE_DATA),
-}
+export const GUIDE_CONFIG = formatAppDataToConfig(GUIDE_DATA)
 
 export const initGuideApp = async (): Promise<CurrentAppResp> => {
   const { actions, resources } = GUIDE_CONFIG

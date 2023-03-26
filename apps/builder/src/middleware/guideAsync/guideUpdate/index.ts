@@ -14,11 +14,14 @@ export const guideUpdate = (
   action: PayloadAction<any>,
 ) => {
   const { type, payload } = action
+  const typeList = type.split("/")
+  const reduxType = typeList[0]
+  const reduxAction = typeList[1]
   const currentStep = getCurrentStep(rootState)
 
   const handleNext = (goNext: boolean) => {
     if (goNext) {
-      dispatch(guideActions.updateNextStepReducer())
+      dispatch(guideActions.updateCurrentStepReducer(currentStep + 1))
     }
   }
 
@@ -27,10 +30,13 @@ export const guideUpdate = (
     case 1:
     case 2: {
       if (type === "components/addComponentReducer") {
-        const addedWidget = payload[0].type
-        const isCurrentStepWidget =
-          GUIDE_SELECT_WIDGET[currentStep] === addedWidget
-        handleNext(isCurrentStepWidget)
+        // exclude the case of doItForMe
+        if (payload.length === 1) {
+          const addedWidget = payload[0].type
+          const isCurrentStepWidget =
+            GUIDE_SELECT_WIDGET[currentStep] === addedWidget
+          handleNext(isCurrentStepWidget)
+        }
       }
       break
     }
