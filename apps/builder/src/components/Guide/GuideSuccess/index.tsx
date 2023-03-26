@@ -1,13 +1,30 @@
 import Lottie from "lottie-react"
-import { FC } from "react"
+import { FC, useState } from "react"
+import { createPortal } from "react-dom"
+import { popoverStyle } from "@/components/Guide/GuideSuccess/style"
 import animationData from "@/components/Guide/assets/lottie/success.json"
 
 export const GuideSuccess: FC = () => {
-  // add lottie react component
+  const [showAnimation, setShowAnimation] = useState(true)
 
-  return (
-    <div>
-      <Lottie animationData={animationData} loop={false} autoplay={true} />
-    </div>
-  )
+  const handleAnimationComplete = () => {
+    console.log("animation complete")
+    setShowAnimation(false)
+  }
+
+  return showAnimation
+    ? createPortal(
+        <div css={popoverStyle}>
+          <Lottie
+            animationData={animationData}
+            loop={false}
+            autoplay={true}
+            onComplete={handleAnimationComplete}
+          />
+        </div>,
+        document.body,
+      )
+    : null
 }
+
+GuideSuccess.displayName = "GuideSuccess"

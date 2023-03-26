@@ -5,6 +5,7 @@ import { createPortal } from "react-dom"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { GuidePopover } from "@/components/Guide/GuidePopover"
+import { GuideSuccess } from "@/components/Guide/GuideSuccess"
 import { ReactComponent as MoveIcon } from "@/components/Guide/assets/move.svg"
 import {
   applyGuideStyle,
@@ -111,6 +112,7 @@ export const Guide: FC<GuideProps> = (props) => {
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />
+      <GuideSuccess />
       {canvasRef.current &&
         createPortal(<StepMask step={currentStep} />, canvasRef.current)}
       {currentStep === 0 && (
