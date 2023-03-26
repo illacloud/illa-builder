@@ -7,7 +7,7 @@ const applyHighlightStyle = (currentStep: number) => css`
     ${GUIDE_SELECT_WIDGET.slice(currentStep).map((widget) => {
       const { highlightIcon } = SELECT_WIDGET_ITEM[widget]
       return css`
-        [data-onboarding-comp=${widget}] {
+        [data-onboarding-icon=${widget}] {
           content: url(${highlightIcon});
         }
       `

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { Button, useMessage, useModal } from "@illa-design/react"
 import {
   actionStyle,
+  bottomStyle,
   decsStyle,
   guidePopoverStyle,
   titleStyle,
@@ -43,7 +44,14 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
 
   return (
     <div
-      css={[guidePopoverStyle, position === "top" ? topStyle : undefined]}
+      css={[
+        guidePopoverStyle,
+        position === "top"
+          ? topStyle
+          : position === "bottom"
+          ? bottomStyle
+          : undefined,
+      ]}
       {...rest}
     >
       <div css={titleStyle}>{title}</div>

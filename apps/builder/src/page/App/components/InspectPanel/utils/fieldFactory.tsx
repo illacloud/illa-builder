@@ -5,6 +5,7 @@ import { Trigger } from "@illa-design/react"
 import { GuidePopover } from "@/components/Guide/GuidePopover"
 import { triggerStyle } from "@/components/Guide/GuidePopover/style"
 import { PanelBar } from "@/components/PanelBar"
+import { GUIDE_STEP } from "@/config/guide/config"
 import {
   PanelConfig,
   PanelFieldConfig,
@@ -13,6 +14,7 @@ import {
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
 import { getCurrentStepInfo, getGuideStatus } from "@/redux/guide/guideSelector"
+import { Guide } from "@/redux/guide/guideState"
 
 export const renderPanelSetter = (
   config: PanelFieldConfig,
@@ -37,12 +39,12 @@ export const renderGuideModePanelSetter = (
   displayName: string,
   isInList: boolean,
   parentAttrName: string,
+  currentStep: number,
 ) => {
   const { id } = config
   const { t } = useTranslation()
-  const currentStepInfo = useSelector(getCurrentStepInfo)
+  const currentStepInfo = GUIDE_STEP[currentStep]
   const { titleKey, descKey, selector } = currentStepInfo
-  console.log("Trigger", id)
 
   if (selector === id) {
     return (
@@ -68,14 +70,15 @@ export const renderFieldAndLabel = (
   displayName: string,
   isInList: boolean = false,
   parentAttrName: string,
+  guideInfo: Guide = { isOpen: false, currentStep: 0 },
 ) => {
-  const isOpen = useSelector(getGuideStatus)
-  if (isOpen) {
+  if (guideInfo.isOpen) {
     return renderGuideModePanelSetter(
       config,
       displayName,
       isInList,
       parentAttrName,
+      guideInfo.currentStep,
     )
   }
   return renderPanelSetter(config, displayName, isInList, parentAttrName)
@@ -85,6 +88,7 @@ export const renderPanelBar = (
   config: PanelFieldGroupConfig,
   displayName: string,
   widgetProps: Record<string, any>,
+  guideInfo: Guide,
 ) => {
   const { id, groupName, children } = config as PanelFieldGroupConfig
   const key = `${id}-${displayName}`
@@ -92,7 +96,7 @@ export const renderPanelBar = (
     <PanelBar key={key} title={groupName}>
       {children && children.length > 0 && (
         <div css={ghostEmptyStyle}>
-          {fieldFactory(children, displayName, widgetProps)}
+          {fieldFactory(children, displayName, widgetProps, guideInfo)}
         </div>
       )}
     </PanelBar>
@@ -121,6 +125,7 @@ export const renderField = (
   displayName: string,
   isInList: boolean = false,
   widgetProps: Record<string, any>,
+  guideInfo: Guide,
 ) => {
   const canRender = canRenderField(
     item as PanelFieldConfig,
@@ -135,6 +140,7 @@ export const renderField = (
       item as PanelFieldGroupConfig,
       displayName,
       widgetProps,
+      guideInfo,
     )
   } else if ((item as PanelFieldConfig).setterType) {
     return renderFieldAndLabel(
@@ -142,6 +148,7 @@ export const renderField = (
       displayName,
       isInList,
       "",
+      guideInfo,
     )
   }
   return null
@@ -151,9 +158,10 @@ export function fieldFactory(
   panelConfig: PanelConfig[],
   displayName: string,
   widgetProps: Record<string, any>,
+  guideInfo: Guide,
 ) {
   if (!displayName || !panelConfig || !panelConfig.length) return null
   return panelConfig.map((item: PanelConfig) =>
-    renderField(item, displayName, false, widgetProps),
+    renderField(item, displayName, false, widgetProps, guideInfo),
   )
 }

@@ -6,6 +6,17 @@ export const topStyle = css`
   top: 0;
   transform: translateY(calc(-100% - 20px));
   z-index: 2;
+  color: ${getColor("white", "01")};
+  padding: 16px;
+  border-radius: 2px;
+`
+export const bottomStyle = css`
+  position: absolute;
+  top: calc(100% + 10px);
+  z-index: 2;
+  color: ${getColor("white", "01")};
+  padding: 16px;
+  border-radius: 2px;
 `
 
 export const guidePopoverStyle = css`

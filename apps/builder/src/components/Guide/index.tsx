@@ -192,50 +192,36 @@ export const Guide: FC<GuideProps> = (props) => {
   //     }
   //   }
   // }
+  console.log(currentElement, "currentElement")
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />
       <GuideSuccess />
       {canvasRef.current &&
         createPortal(<StepMask currentStep={currentStep} />, canvasRef.current)}
-      {currentStep === 0 && (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            width: 230,
-            height: 230,
-            border: "2px solid #5ae",
-            background: "white",
-            zIndex: 10,
-          }}
-        >
-          成功摆放三个组件后，进入下一步
-          <div>
-            <Button>Exit</Button>
-            <Button
-              onClick={() => {
-                GUIDE_STEP[0]?.doItForMe?.()
-              }}
-            >
-              Do it for me
-            </Button>
-          </div>
-        </div>
-      )}
+      {currentStep === 0 &&
+        currentElement &&
+        createPortal(
+          <GuidePopover
+            position={"bottom"}
+            title={t(titleKey)}
+            description={t(descKey)}
+            onClickDoIt={doItForMe}
+          />,
+          currentElement,
+        )}
       {currentStep === 3 &&
         postgresqlQuery &&
         createPortal(
           <GuidePopover
             position={"top"}
-            title={titleKey}
-            description={descKey}
+            title={t(titleKey)}
+            description={t(descKey)}
             onClickDoIt={doItForMe}
           />,
           postgresqlQuery,
         )}
-      {(currentStep === 3 || currentStep === 4) &&
+      {(currentStep === 0 || currentStep === 3 || currentStep === 4) &&
         currentElement &&
         createPortal(<GuidePoint />, currentElement)}
     </>

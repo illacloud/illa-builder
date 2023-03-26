@@ -9,6 +9,11 @@ import {
 } from "@/page/App/components/InspectPanel/style"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import {
+  getCurrentStep,
+  getGuideInfo,
+  getGuideStatus,
+} from "@/redux/guide/guideSelector"
 import { isObject } from "@/utils/typeHelper"
 import { panelBuilder } from "@/widgetLibrary/panelBuilder"
 import { fieldFactory } from "./utils/fieldFactory"
@@ -16,6 +21,7 @@ import { fieldFactory } from "./utils/fieldFactory"
 export const SingleSelectedPanel: FC = () => {
   const dispatch = useDispatch()
 
+  const guideInfo = useSelector(getGuideInfo)
   const singleSelectedComponentNode = useSelector(
     getComponentNodeBySingleSelected,
   )
@@ -87,7 +93,12 @@ export const SingleSelectedPanel: FC = () => {
           <PanelHeader />
           <Divider />
           <div css={singleSelectedPanelSetterWrapperStyle}>
-            {fieldFactory(builderPanelConfig, widgetDisplayName, widgetProps)}
+            {fieldFactory(
+              builderPanelConfig,
+              widgetDisplayName,
+              widgetProps,
+              guideInfo,
+            )}
           </div>
         </div>
       </SelectedProvider>

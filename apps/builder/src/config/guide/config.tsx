@@ -51,7 +51,7 @@ export const GUIDE_STEP = [
     titleKey: "editor.tutorial.panel.onboarding_app.drag_title",
     descKey: "editor.tutorial.panel.onboarding_app.drag_input",
     widgetType: "INPUT_WIDGET",
-    selector: "",
+    selector: `[data-onboarding-element="INPUT_WIDGET"]`,
     reduxAction: "components/addComponentReducer",
     doItForMe: () => {
       store.dispatch(componentsActions.addComponentReducer(GUIDE_COMPONENTS))

@@ -25,4 +25,5 @@ export interface BaseSetter {
   detailedDescription?: string
   labelName?: string
   labelDesc?: string
+  isGuideMode?: boolean
 }

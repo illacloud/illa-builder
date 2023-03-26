@@ -86,11 +86,15 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
     )
 
     return (
-      <div css={itemContainerStyle} ref={dragRef}>
+      <div
+        css={itemContainerStyle}
+        ref={dragRef}
+        {...(isGuideOpen ? { "data-onboarding-element": type } : {})}
+      >
         <div css={dragPreviewStyle} ref={dragPreviewRef} />
         <span
           css={iconStyle}
-          {...(isGuideOpen ? { "data-onboarding-comp": type } : {})}
+          {...(isGuideOpen ? { "data-onboarding-icon": type } : {})}
         >
           {icon}
         </span>
