@@ -147,7 +147,7 @@ export const GUIDE_STEP = [
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_1",
     selector: `[data-displayname="button1"]`,
-    displayName: `BUTTON_WIDGET`,
+    displayName: `button1`,
     reduxAction: "config/updateSelectedComponent",
     doItForMe: () => {
       store.dispatch(configActions.updateSelectedComponent(["button1"]))
@@ -168,8 +168,8 @@ export const GUIDE_STEP = [
               {
                 id: "events-3e2c0390-b4f7-4570-9f4b-93c5d59e4c13",
                 eventType: "click",
-                targetId: "query1",
-                type: "datasource",
+                queryID: "query1",
+                actionType: "datasource",
                 method: "trigger",
               },
             ],
@@ -185,6 +185,11 @@ export const GUIDE_STEP = [
     selector: "button-interaction-event-handler",
     doItForMe: () => {
       //
+      const element = document.querySelector(
+        ".button-interaction-event-handler",
+      ) as HTMLButtonElement
+      element?.click()
+      store.dispatch(guideActions.updateNextStepReducer())
     },
   },
   {
@@ -197,7 +202,7 @@ export const GUIDE_STEP = [
         componentsActions.updateComponentPropsReducer({
           displayName: "button1",
           updateSlice: {
-            "events.0.type": "datasource",
+            "events.0.actionType": "datasource",
           },
         }),
       )

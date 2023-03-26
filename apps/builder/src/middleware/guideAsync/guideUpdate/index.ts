@@ -74,6 +74,13 @@ export const guideUpdate = (
       }
       break
     }
+    case 8: {
+      if (type === "components/updateComponentPropsReducer") {
+        const eventType = get(payload, "updateSlice.events.0.eventType")
+        handleNext(eventType === "click")
+      }
+      break
+    }
     default: {
       const { reduxAction, selector } = GUIDE_STEP[currentStep]
       if (reduxAction === type) {

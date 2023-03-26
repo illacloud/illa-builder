@@ -22,7 +22,6 @@ import { getCachedAction, getCanvasShape } from "@/redux/config/configSelector"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
-import { Button } from "../../../../../illa-design/packages/button"
 
 const getElementPosition = (element: HTMLElement) => {
   const { top, left, width, height } = element.getBoundingClientRect()
@@ -192,7 +191,13 @@ export const Guide: FC<GuideProps> = (props) => {
   //     }
   //   }
   // }
-  console.log(currentElement, "currentElement")
+
+  useEffect(() => {
+    if (currentStep === 1) {
+      createPortal(<div>234234</div>, document.body)
+    }
+  }, [currentStep])
+
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />

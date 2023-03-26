@@ -2,6 +2,7 @@ import { get } from "lodash"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Trigger } from "@illa-design/react"
+import { GuidePoint } from "@/components/Guide/GuidePoint"
 import { GuidePopover } from "@/components/Guide/GuidePopover"
 import { triggerStyle } from "@/components/Guide/GuidePopover/style"
 import { PanelBar } from "@/components/PanelBar"
@@ -42,7 +43,6 @@ export const renderGuideModePanelSetter = (
   currentStep: number,
 ) => {
   const { id } = config
-  const { t } = useTranslation()
   const currentStepInfo = GUIDE_STEP[currentStep]
   const { titleKey, descKey, selector, doItForMe } = currentStepInfo
 
@@ -54,8 +54,8 @@ export const renderGuideModePanelSetter = (
         trigger="hover"
         content={
           <GuidePopover
-            title={t(titleKey)}
-            description={t(descKey)}
+            title={titleKey}
+            description={descKey}
             onClickDoIt={doItForMe}
           />
         }
@@ -63,6 +63,7 @@ export const renderGuideModePanelSetter = (
         colorScheme="techPurple"
       >
         <div>
+          <GuidePoint />
           {renderPanelSetter(config, displayName, isInList, parentAttrName)}
         </div>
       </Trigger>

@@ -24,22 +24,21 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const modal = useModal()
-  const message = useMessage()
 
   const handleExitGuide = () => {
-    modal.show({
-      id: "exitGuide",
-      title: t("tutorial.modal.tutorial.exit_confirm.title"),
-      children: t("tutorial.modal.tutorial.exit_confirm.description"),
-      cancelText: t("tutorial.modal.tutorial.exit_confirm.cancel"),
-      okText: t("tutorial.modal.tutorial.exit_confirm.exit"),
-      okButtonProps: {
-        colorScheme: "techPurple",
-      },
-      onOk: () => {
-        dispatch(guideActions.updateGuideStatusReducer(false))
-      },
-    })
+    // modal.show({
+    //   id: "exitGuide",
+    //   title: t("tutorial.modal.tutorial.exit_confirm.title"),
+    //   children: t("tutorial.modal.tutorial.exit_confirm.description"),
+    //   cancelText: t("tutorial.modal.tutorial.exit_confirm.cancel"),
+    //   okText: t("tutorial.modal.tutorial.exit_confirm.exit"),
+    //   okButtonProps: {
+    //     colorScheme: "techPurple",
+    //   },
+    //   onOk: () => {
+    //     dispatch(guideActions.updateGuideStatusReducer(false))
+    //   },
+    // })
   }
 
   return (
@@ -54,8 +53,8 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
       ]}
       {...rest}
     >
-      <div css={titleStyle}>{title}</div>
-      <div css={decsStyle}>{description}</div>
+      <div css={titleStyle}>{t(title)}</div>
+      <div css={decsStyle}>{t(description)}</div>
       <div css={actionStyle}>
         <Button
           variant="fill"
