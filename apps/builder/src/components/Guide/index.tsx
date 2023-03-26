@@ -35,13 +35,13 @@ const getPosition = (selector: string) => {
 }
 
 export interface StepMaskProps {
-  step: number
+  currentStep: number
 }
 
 export const StepMask: FC<StepMaskProps> = (props) => {
   const { t } = useTranslation()
 
-  const { step } = props
+  const { currentStep } = props
   const canvasShape = useSelector(getCanvasShape)
 
   const unitWidth = useMemo(() => {
@@ -61,11 +61,12 @@ export const StepMask: FC<StepMaskProps> = (props) => {
   const applyMaskStyle = (step: number) => {
     return [
       applyStepMaskStyle(widgetShape[step]),
-      applyVisibleStyle(step <= step),
+      applyVisibleStyle(currentStep <= step),
     ]
   }
+
   return (
-    <div css={applyStepMaskWrapperStyle(step <= 2, unitWidth)}>
+    <div css={applyStepMaskWrapperStyle(currentStep <= 2, unitWidth)}>
       <div css={stepFirstLineStyle}>
         <div css={applyMaskStyle(0)}>
           <MoveIcon css={moveIconStyle} />
@@ -114,7 +115,7 @@ export const Guide: FC<GuideProps> = (props) => {
       <Global styles={applyGuideStyle(currentStep)} />
       <GuideSuccess />
       {canvasRef.current &&
-        createPortal(<StepMask step={currentStep} />, canvasRef.current)}
+        createPortal(<StepMask currentStep={currentStep} />, canvasRef.current)}
       {currentStep === 0 && (
         <div
           style={{

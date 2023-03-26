@@ -6,6 +6,8 @@ import data from "@/config/guide/data.json"
 import Resources from "@/config/guide/resources.json"
 import { TemplateActions, TemplateResources } from "@/config/template/interface"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
+import { configActions } from "@/redux/config/configSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
   ActionItem,
@@ -70,9 +72,9 @@ export const GUIDE_CONFIG = {
 
 export const initGuideApp = async (): Promise<CurrentAppResp> => {
   const { actions, resources } = GUIDE_CONFIG
+  const currentResources = getAllResources(store.getState())
   const resourceList = await Promise.all(
     resources.map((data) => {
-      const currentResources = getAllResources(store.getState())
       const resource = currentResources.find(
         (item) =>
           item.resourceName === data.resourceName &&
@@ -82,7 +84,7 @@ export const initGuideApp = async (): Promise<CurrentAppResp> => {
       return resource ? resource.resourceId : createResource(data)
     }),
   )
-
+  // init actions
   let actionList
   if (resourceList.length) {
     actionList = await Promise.all(
@@ -95,7 +97,13 @@ export const initGuideApp = async (): Promise<CurrentAppResp> => {
         } as ActionItem<ActionContent>
       }),
     )
+    if (actionList?.length) {
+      const currentAction = actionList[0]
+      store.dispatch(actionActions.addActionItemReducer(currentAction))
+      store.dispatch(configActions.changeSelectedAction(currentAction))
+    }
   }
+
   return {
     ...GUIDE_DATA,
     actions: actionList ?? [],

@@ -4,7 +4,6 @@ import { FC, MouseEvent, useCallback, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { Guide } from "@/components/Guide"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -25,30 +24,23 @@ import {
   contentStyle,
   editorContainerStyle,
   leftPanelStyle,
-  messageWrapperStyle,
   middlePanelStyle,
-  modalStyle,
   navbarStyle,
   rightPanelStyle,
-  waringIconStyle,
 } from "@/page/App/style"
 import { setupConfigListeners } from "@/redux/config/configListener"
 import {
-  getIsOnline,
   isOpenBottomPanel,
   isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { guideActions } from "@/redux/guide/guideSlice"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"

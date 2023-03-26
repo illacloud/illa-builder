@@ -54,9 +54,9 @@ export const forkTemplateApp = async (
   const {
     config: { appConfig, actions, resources },
   } = getTemplateConfig(templateType)
+  const currentResources = getAllResources(store.getState())
   const resourceList = await Promise.all(
     resources.map((data) => {
-      const currentResources = getAllResources(store.getState())
       const resource = currentResources.find(
         (item) =>
           item.resourceName === data.resourceName &&
