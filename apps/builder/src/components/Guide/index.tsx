@@ -221,7 +221,11 @@ export const Guide: FC<GuideProps> = (props) => {
           />,
           postgresqlQuery,
         )}
-      {(currentStep === 0 || currentStep === 3 || currentStep === 4) &&
+      {(currentStep === 0 ||
+        currentStep === 3 ||
+        currentStep === 4 ||
+        currentStep === 5 ||
+        currentStep === 7) &&
         currentElement &&
         createPortal(<GuidePoint />, currentElement)}
     </>

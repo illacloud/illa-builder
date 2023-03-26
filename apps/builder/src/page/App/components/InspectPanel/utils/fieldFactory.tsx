@@ -44,7 +44,7 @@ export const renderGuideModePanelSetter = (
   const { id } = config
   const { t } = useTranslation()
   const currentStepInfo = GUIDE_STEP[currentStep]
-  const { titleKey, descKey, selector } = currentStepInfo
+  const { titleKey, descKey, selector, doItForMe } = currentStepInfo
 
   if (selector === id) {
     return (
@@ -52,7 +52,13 @@ export const renderGuideModePanelSetter = (
         _css={triggerStyle}
         popupVisible={true}
         trigger="hover"
-        content={<GuidePopover title={t(titleKey)} description={t(descKey)} />}
+        content={
+          <GuidePopover
+            title={t(titleKey)}
+            description={t(descKey)}
+            onClickDoIt={doItForMe}
+          />
+        }
         position="bottom"
         colorScheme="techPurple"
       >

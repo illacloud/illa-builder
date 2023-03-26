@@ -292,7 +292,6 @@ export const RenderComponentCanvas: FC<{
   const unitWidth = useMemo(() => {
     return bounds.width / blockColumns
   }, [blockColumns, bounds.width])
-  console.log(unitWidth, bounds, "unitWidth")
 
   const throttleUpdateComponentPositionByReflow = useMemo(() => {
     return throttle((updateSlice: UpdateComponentNodeLayoutInfoPayload[]) => {

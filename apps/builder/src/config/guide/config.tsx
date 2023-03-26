@@ -117,8 +117,9 @@ export const GUIDE_STEP = [
     titleKey: "editor.tutorial.panel.onboarding_app.display_data_title",
     descKey:
       "editor.tutorial.panel.onboarding_app.display_data_description_select",
-    selector: ".table-iframe",
-    reduxAction: "configActions/updateSelectedComponent",
+    selector: `[data-displayname="table1"]`,
+    displayName: `table1`,
+    reduxAction: "config/updateSelectedComponent",
     doItForMe: () => {
       store.dispatch(configActions.updateSelectedComponent(["table1"]))
     },
@@ -145,8 +146,9 @@ export const GUIDE_STEP = [
     step: 5,
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_1",
-    selector: ".button-iframe",
-    reduxAction: "configActions/updateSelectedComponent",
+    selector: `[data-displayname="button1"]`,
+    displayName: `BUTTON_WIDGET`,
+    reduxAction: "config/updateSelectedComponent",
     doItForMe: () => {
       store.dispatch(configActions.updateSelectedComponent(["button1"]))
     },

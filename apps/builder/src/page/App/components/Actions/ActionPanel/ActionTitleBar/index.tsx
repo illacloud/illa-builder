@@ -40,6 +40,7 @@ import {
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { RootState } from "@/store"
 import { ActionTitleBarProps } from "./interface"
 import {
@@ -149,6 +150,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const [canRunAction, canNotRunMessage] = getCanRunAction(cachedAction)
 
   const executionResult = useSelector(getExecutionResult)
+  const isGuideOpen = useSelector(getGuideStatus)
 
   const renderResult =
     executionResult[selectedAction.displayName]?.data !== undefined ||
@@ -157,6 +159,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const runError = executionResult[selectedAction.displayName]?.runResult?.error
 
   let runMode: RunMode = useMemo(() => {
+    if (isGuideOpen) {
+      return "run"
+    }
     if (cachedAction != undefined && isChanged) {
       if (cachedAction.triggerMode === "manually") {
         return "save"
@@ -168,7 +173,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     } else {
       return "run"
     }
-  }, [isChanged, cachedAction])
+  }, [isChanged, cachedAction, isGuideOpen])
 
   const handleActionOperation = useCallback(() => {
     let cachedActionValue: ActionItem<ActionContent> =

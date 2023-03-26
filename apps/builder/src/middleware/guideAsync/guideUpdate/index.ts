@@ -1,4 +1,5 @@
 import { Dispatch, PayloadAction } from "@reduxjs/toolkit"
+import { get } from "lodash"
 import {
   GUIDE_SELECT_WIDGET,
   GUIDE_SQL_QUERY,
@@ -47,13 +48,29 @@ export const guideUpdate = (
       }
       break
     }
-    case 6:
-    case 8: {
-      const { reduxAction, selector } = GUIDE_STEP[currentStep]
+    case 4: {
+      if (type === "execution/updateExecutionByDisplayNameReducer") {
+        const query = payload.displayName
+        handleNext(query === "postgresql1")
+      }
+      break
+    }
+    case 5:
+    case 7: {
+      const { reduxAction, displayName } = GUIDE_STEP[currentStep]
+      console.log(reduxAction, type, payload, displayName, "guideUpdate")
       if (reduxAction === type) {
         const selectedWidget = (payload as string[])[0]
-        const isCurrentStepWidget = selectedWidget === selector
+        console.log(selectedWidget, "currentStep")
+        const isCurrentStepWidget = selectedWidget === displayName
         handleNext(isCurrentStepWidget)
+      }
+      break
+    }
+    case 6: {
+      if (type === "components/updateComponentPropsReducer") {
+        const dataSourceJS = get(payload, "updateSlice.dataSourceJS")
+        handleNext(dataSourceJS === "{{postgresql1.data}}")
       }
       break
     }
