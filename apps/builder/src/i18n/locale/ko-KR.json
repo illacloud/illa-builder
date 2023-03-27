@@ -993,7 +993,8 @@
         "title": "Edit global data",
         "variable_name": {
           "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
-          "label": "변수 이름"
+          "label": "변수 이름",
+          "message": "이름은 문자 또는 \"_\"로 시작해야 하며 문자, 숫자만 포함할 수 있습니다."
         },
         "initial_value": {
           "label": "Initial value",
