@@ -1076,8 +1076,8 @@
           "sortingChange": "変化で並べ替え",
           "submit": "確認する",
           "success": "成功後",
-          "onOpenModal": "Open modal",
-          "onCloseModal": "Close modal",
+          "onOpenModal": "モーダルを開く",
+          "onCloseModal": "モーダルを閉じる",
           "play": "再生",
           "pause": "一時停止",
           "ended": "終了済み",
@@ -1380,6 +1380,12 @@
         },
         "code": {
           "write_code": "コードを書く"
+        },
+        "slider": {
+          "step_size": "刻み幅",
+          "minimum": "最小値",
+          "maximum": "最大値",
+          "hide_output": "出力を隠す"
         }
       },
       "setter_tooltip": {
@@ -1431,7 +1437,7 @@
       "unselected_tip1": "コンポーネントが選択されていません。",
       "unselected_tip2": "コンポーネントをクリックして選択してください。",
       "setter": {
-        "click_mask_close": "Click mask to close modal",
+        "click_mask_close": "マスクをクリックしてモーダルを閉じます",
         "modal": {
           "blank": "アイコンなし"
         }
@@ -1535,7 +1541,7 @@
         "views": "見る",
         "width": "幅",
         "height": "高い",
-        "columns": "Columns"
+        "columns": "コラム"
       },
       "model_tips": {
         "cancel_button": "キャンセル",
@@ -1551,7 +1557,7 @@
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
         "view_path": "このビューにアクセスするための文字列スペル example.com/app/page/",
-        "auto_canvas_width": "The width of page as a percentage of the browser width."
+        "auto_canvas_width": "ブラウザーの幅に対するページの幅のパーセンテージ。"
       }
     },
     "validate_message": {
@@ -1710,7 +1716,7 @@
   "not_online_tips": "ネットワークが切断されています。このデバイスのネットワークを確認してください",
   "preview": {
     "viewport": {
-      "size": "Size",
+      "size": "サイズ",
       "reset": "リセット",
       "save": "保存",
       "tooltip": {
