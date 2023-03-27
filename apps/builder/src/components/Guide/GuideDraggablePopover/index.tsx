@@ -5,7 +5,7 @@ import { applyPopoverStyle } from "@/components/Guide/GuideDraggablePopover/styl
 import { GuidePopover } from "@/components/Guide/GuidePopover"
 import { GUIDE_STEP } from "@/config/guide/config"
 
-export type CurrentMaskPosition = "top" | "bottom"
+export type CurrentMaskPosition = "top" | "bottom" | "right"
 
 export interface GuideCurrentMaskProps {
   currentStep: number
@@ -15,6 +15,10 @@ export interface GuideCurrentMaskProps {
 export const GuideDraggablePopover: FC<GuideCurrentMaskProps> = (props) => {
   const { currentStep, position = "bottom" } = props
   const { selector, titleKey, descKey, doItForMe } = GUIDE_STEP[currentStep]
+  const isLastStep = useMemo(
+    () => currentStep === GUIDE_STEP.length - 1,
+    [currentStep],
+  )
 
   const domRect = useMemo(() => {
     if (selector) {
@@ -33,6 +37,7 @@ export const GuideDraggablePopover: FC<GuideCurrentMaskProps> = (props) => {
         title={titleKey}
         description={descKey}
         onClickDoIt={doItForMe}
+        isLastStep={isLastStep}
       />
     </motion.div>,
     document.body,

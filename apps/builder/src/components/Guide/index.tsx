@@ -51,6 +51,9 @@ export const Guide: FC<GuideProps> = (props) => {
       {(currentStep === 3 || currentStep === 4) && postgresqlQuery && (
         <GuideDraggablePopover currentStep={currentStep} position="top" />
       )}
+      {currentStep === 11 && currentElement && (
+        <GuideDraggablePopover currentStep={currentStep} position="right" />
+      )}
       {(currentStep === 3 ||
         currentStep === 4 ||
         currentStep === 5 ||

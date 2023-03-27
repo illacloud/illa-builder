@@ -197,6 +197,9 @@ export const GUIDE_STEP = [
     step: 10,
     titleKey: "editor.tutorial.panel.onboarding_app.test_it_title",
     descKey: "editor.tutorial.panel.onboarding_app.test_it_description",
-    selector: "",
+    selector: `[data-onboarding-comp="componentsManager"]`,
+    doItForMe: () => {
+      store.dispatch(guideActions.updateGuideStatusReducer(false))
+    },
   },
 ]

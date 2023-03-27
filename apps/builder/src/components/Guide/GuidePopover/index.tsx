@@ -4,23 +4,22 @@ import { useDispatch } from "react-redux"
 import { Button, useModal } from "@illa-design/react"
 import {
   actionStyle,
-  bottomStyle,
+  applyVisibleStyle,
   decsStyle,
   guidePopoverStyle,
   titleStyle,
-  topStyle,
 } from "@/components/Guide/GuidePopover/style"
 import { guideActions } from "@/redux/guide/guideSlice"
 
 export interface GuidePopoverProps extends HTMLAttributes<HTMLDivElement> {
   title: string
   description: string
+  isLastStep?: boolean
   onClickDoIt?: () => void
-  position?: "top" | "bottom"
 }
 
 export const GuidePopover: FC<GuidePopoverProps> = (props) => {
-  const { position, title, description, onClickDoIt, ...rest } = props
+  const { title, description, isLastStep, onClickDoIt, ...rest } = props
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const modal = useModal()
@@ -42,26 +41,17 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
   }
 
   return (
-    <div
-      css={[
-        guidePopoverStyle,
-        position === "top"
-          ? topStyle
-          : position === "bottom"
-          ? bottomStyle
-          : undefined,
-      ]}
-      {...rest}
-    >
+    <div css={[guidePopoverStyle]} {...rest}>
       <div css={titleStyle}>{t(title)}</div>
       <div css={decsStyle}>{t(description)}</div>
       <div css={actionStyle}>
         <Button
+          css={applyVisibleStyle(!isLastStep)}
           variant="fill"
           colorScheme="techPurple"
           onClick={handleExitGuide}
         >
-          Skip
+          {t("editor.tutorial.panel.onboarding_app.exit")}
         </Button>
         <Button
           variant="fill"
@@ -70,7 +60,9 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
             onClickDoIt?.()
           }}
         >
-          Do it for me
+          {isLastStep
+            ? t("editor.tutorial.panel.onboarding_app.congratulations_button")
+            : t("editor.tutorial.panel.onboarding_app.do_it")}
         </Button>
       </div>
     </div>

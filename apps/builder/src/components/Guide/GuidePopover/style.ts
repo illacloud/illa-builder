@@ -56,3 +56,9 @@ export const triggerStyle = css`
     }
   }
 `
+
+export const applyVisibleStyle = (visible?: boolean) => {
+  return css`
+    visibility: ${visible ? "visible" : "hidden"};
+  `
+}
