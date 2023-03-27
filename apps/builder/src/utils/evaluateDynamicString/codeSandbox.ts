@@ -1,11 +1,27 @@
 import { getScriptToEval } from "./scriptTemplate"
 import { createGlobalData } from "./utils"
 
-const access_white_list: string[] = []
+const block_list: string[] = [
+  "top",
+  "window",
+  "self",
+  "globalThis",
+  "global",
+  "frames",
+  "parent",
+  "fetch",
+  "XMLHttpRequest",
+  "document",
+]
 
 function runUsersCode(code: string) {
-  code = "with(shadow) {" + code + "}"
-  return new Function("shadow", code)
+  const finalCode = `with(this){
+    return (function() {
+      'use strict';
+      ${code};
+    }).call(this);
+  }`
+  return new Function(finalCode)
 }
 
 export function evalScript(
@@ -18,18 +34,15 @@ export function evalScript(
 
     const GlobalData = createGlobalData(dataTree)
 
-    const ctxProxy = new Proxy(GlobalData, {
-      has: (target, prop) => {
-        if (typeof prop === "symbol") {
-          return false
+    const ctxProxy = new Proxy(Object.assign({}, GlobalData), {
+      get: (target, prop) => {
+        if (prop in target) {
+          return Reflect.get(target, prop)
         }
-        if (access_white_list.includes(prop)) {
-          return target.hasOwnProperty(prop)
+        if (block_list.includes(prop.toString())) {
+          return undefined
         }
-        if (!target.hasOwnProperty(prop)) {
-          throw new Error(`${prop} is not defined`)
-        }
-        return true
+        return Reflect.get(window, prop)
       },
     })
 
@@ -38,11 +51,6 @@ export function evalScript(
       result = runUsersCode(userScript).call(ctxProxy, ctxProxy)
     } catch (error) {
       throw error
-    } finally {
-      for (const entity in GlobalData) {
-        // @ts-ignore: No types available
-        delete self[entity]
-      }
     }
     return result
   })()

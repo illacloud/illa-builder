@@ -1,5 +1,5 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
-import { cloneDeep, get, toPath } from "lodash"
+import { cloneDeep } from "lodash"
 import {
   applyEffectMapToComponentNodes,
   getNearComponentNodes,
@@ -7,7 +7,7 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
   getCanvas,
   getCurrentPageBodySectionComponentsSelector,
@@ -42,7 +42,6 @@ function handleUpdateComponentDisplayNameEffect(
   const { newDisplayName } = action.payload
   const rootState = listenApi.getState()
   const rootNode = getCanvas(rootState)
-  const componentsAttachedUsers = rootState.currentApp.collaborators.components
   const newComponent = searchDsl(rootNode, newDisplayName)
   if (
     newComponent &&
@@ -50,10 +49,6 @@ function handleUpdateComponentDisplayNameEffect(
   ) {
     listenApi.dispatch(
       configActions.updateSelectedComponent([newComponent.displayName]),
-    )
-    updateCurrentAllComponentsAttachedUsers(
-      [newComponent.displayName],
-      componentsAttachedUsers,
     )
   }
 }
@@ -325,6 +320,7 @@ const updateComponentReflowComponentsAdapter = (
     | typeof componentsActions.updateComponentContainerReducer
     | typeof componentsActions.updateComponentLayoutInfoReducer
     | typeof componentsActions.copyComponentReducer
+    | typeof componentsActions.batchUpdateComponentLayoutInfoReducer
   >,
 ) => {
   switch (action.type) {
@@ -352,6 +348,16 @@ const updateComponentReflowComponentsAdapter = (
       return action.payload.map((slice) => {
         return slice.newComponentNode
       })
+    }
+    case "components/batchUpdateComponentLayoutInfoReducer": {
+      return action.payload.map((slice) => ({
+        displayName: slice.displayName,
+        x: slice.layoutInfo.x,
+        y: slice.layoutInfo.y,
+        w: slice.layoutInfo.w,
+        h: slice.layoutInfo.h,
+        parentNode: slice.options?.parentNode,
+      })) as ComponentNode[]
     }
     default:
       return []
@@ -405,7 +411,9 @@ function handleUpdateComponentReflowEffect(
     })
   })
   listenApi.dispatch(
-    componentsActions.batchUpdateComponentLayoutInfoReducer(updateSlice),
+    componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer(
+      updateSlice,
+    ),
   )
 }
 
@@ -511,12 +519,17 @@ export function setupComponentsListeners(
         componentsActions.addComponentReducer,
         componentsActions.updateComponentLayoutInfoReducer,
         componentsActions.copyComponentReducer,
+        componentsActions.batchUpdateComponentLayoutInfoReducer,
       ),
       effect: handleUpdateComponentReflowEffect,
     }),
     startListening({
       actionCreator: componentsActions.deletePageNodeReducer,
       effect: handleChangeCurrentPageWhenDelete,
+    }),
+    startListening({
+      actionCreator: componentsActions.deleteComponentNodeReducer,
+      effect: handleClearSelectedComponentExecution,
     }),
     startListening({
       actionCreator: componentsActions.deleteSectionViewReducer,

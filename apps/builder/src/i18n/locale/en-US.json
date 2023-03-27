@@ -143,6 +143,9 @@
           },
           "oracle": {
             "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google Sheets"
           }
         },
         "validate": {
@@ -175,6 +178,25 @@
           "restapi": {
             "certificates": "Certificates",
             "verification_mode": "Verification mode"
+          },
+          "gs": {
+            "private_key": "Private key",
+            "action_type": "Action type",
+            "spreadsheet": "Spreadsheet",
+            "sheet_name": "Sheet name",
+            "data_range": "Data range",
+            "limit": "Limit",
+            "offset": "Offset",
+            "a1_notation": "A1 notation",
+            "values_to_append": "Values to append",
+            "filter_by": "Filter by",
+            "update_value": "Update value",
+            "primary_key_column": "Primary key column",
+            "array_of_rows_to_upd": "Array of rows to update",
+            "filters_to_match_row": "Filters to match row",
+            "consider_queries_tha": "Consider queries that delete no rows as successes",
+            "title_of_spreadsheet": "Title of spreadsheet",
+            "sheet_id_to_copy": "Sheet ID to copy"
           }
         },
         "placeholder": {
@@ -200,6 +222,20 @@
           "oracle": {
             "username": "oracle",
             "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "column_name",
+              "value": "value"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "column_name",
+            "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
+            "filters_to_match_row": {
+              "key": "key",
+              "value": "value"
+            }
           }
         },
         "tips": {
@@ -215,6 +251,14 @@
             "verification_mode": {
               "skip_ca_certificate": "Your server may be vulnerable to attacks."
             }
+          },
+          "gs": {
+            "private_key": "Used to connect to Google Sheets. Click <0>here<0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here<1> for documentation on creating a service account and access key.",
+            "leave_blank_to_selec": "Leave blank to select the first sheet",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets"
           }
         },
         "option": {
@@ -268,11 +312,37 @@
               "verify_ca_certificat": "Verify CA Certificate",
               "skip_ca_certificate_": "Skip CA Certificate verification"
             }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Read data from a spreadsheet",
+              "append_data_to_a_spr": "Append data to a spreadsheet",
+              "update_a_spreadsheet": "Update a spreadsheet",
+              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
+              "delete_a_single_row_": "Delete a single row from a spreadsheet",
+              "create_a_spreadsheet": "Create a spreadsheet",
+              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "list_available_sprea": "List available spreadsheets",
+              "get_spreadsheet_info": "Get spreadsheet info"
+            },
+            "data_range": {
+              "use_a1_notation": "Use A1 notation",
+              "use_limit_and_offset": "Use limit and offset"
+            },
+            "filter_by": {
+              "use_a1_notation": "Use A1 notation",
+              "use_row_filters": "Use row filters"
+            }
           }
         },
         "default": {
           "appwrite": {
             "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Service Account"
           }
         }
       },
@@ -549,7 +619,7 @@
             "mode_id": "bert-base-uncased",
             "text": "The answer to the universe is [MASK].",
             "json": "{ \r\n\"past_user_inputs\": [\"Which movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Can you explain why ?\" \r\n}",
-            "binary": "'@cats.jpg' \\",
+            "binary": "i.e. {{ upload1.file[0] }}. A binary files without file prefix",
             "use_cache": "Boolean, leave blank for true",
             "min_length": "Integer to define the minimum length in tokens of the output summary",
             "top_k": "Integer to define the top tokens",
@@ -918,7 +988,10 @@
       "actions_title": "ACTIONS & TRANSFORMERS ",
       "components_title": "COMPONENTS ",
       "globals_title": "GLOBALS ",
-      "pages_title": "PAGES"
+      "pages_title": "PAGES",
+      "global_data_modal": {
+        "title": "Edit global data"
+      }
     },
     "deploy": {
       "fail": "Failed to deploy"
@@ -1200,7 +1273,9 @@
         "scale_type": "Scale Type",
         "set_router": "Set router",
         "set_temporary_state": "Set temporary state",
-        "shadow": "Shadow",
+        "shadow": {
+          "shadow": "Shadow"
+        },
         "show_character_count": "Show character count",
         "show_clear_button": "Show clear button",
         "show_footer": "Show footer",
@@ -1298,6 +1373,23 @@
           "file_data": "File data",
           "file_name": "File name with extension",
           "file_type": "File type"
+        },
+        "action_name": "Action name",
+        "variable": {
+          "path_of_value": "Path of value"
+        },
+        "code": {
+          "write_code": "Write code"
+        },
+        "slider": {
+          "step_size": "Step size",
+          "minimum": "Minimum",
+          "maximum": "Maximum",
+          "hide_output": "Hide output"
+        },
+        "range_slider": {
+          "start_value": "Start value",
+          "end_value": "End value"
         }
       },
       "setter_tooltip": {
@@ -1363,6 +1455,10 @@
         },
         "file_download": {
           "file_data": "Support base64 data, raw data, mapped data of table. "
+        },
+        "variable": {
+          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
+          "the_target_value": "The target value"
         }
       },
       "setter_option": {
@@ -1387,6 +1483,12 @@
           "csv": "CSV",
           "tsv": "TSV",
           "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "None",
+          "large": "Large",
+          "medium": "Medium",
+          "small": "Small"
         }
       },
       "setter_placeholder": {
@@ -1406,7 +1508,10 @@
         "alt_text_mapped": "{{ item.alt_text }} ",
         "file_download": {
           "file_data": "{{ mysql1.data }}",
-          "file_name": "{{ new_data.csv }}"
+          "file_name": "new_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
         }
       },
       "setter_tootip": {
@@ -1415,6 +1520,11 @@
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
         "choose_up_to": "Please choose up to {{max}} options."
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Write your code here. Use JavaScript inside of {{ }}"
+        }
       }
     },
     "page": {
@@ -1595,7 +1705,8 @@
           "test_it_button": "Next",
           "congratulations_title": "Congratulations 🎉",
           "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
-          "congratulations_button": "Done"
+          "congratulations_button": "Done",
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     }
@@ -2309,8 +2420,16 @@
           "description": "Follow ILLA's tutorial to learn how to build an app. This will take about 5 minutes.",
           "cancel": "Cancel",
           "take": "Take a tutorial"
+        },
+        "exit_confirm": {
+          "title": "Exit the tutorial?",
+          "description": "The next time you enter the onboarding app, the guided steps will be replayed ",
+          "cancel": "Cancel",
+          "exit": "Exit"
         }
       }
     }
-  }
+  },
+  "oauth_redirect_title": "Redirect",
+  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud<0>"
 }

@@ -51,6 +51,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
+          modalTitle={t("editor.action.panel.s3.bucket_name")}
           onChange={(value) => handleValueChange(value, "bucketName")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -64,6 +65,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.contentType}
+          modalTitle={t("editor.action.panel.s3.content_type")}
           onChange={(value) => handleValueChange(value, "contentType")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -78,6 +80,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           lang={CODE_LANG.JAVASCRIPT}
           placeholder={t("editor.action.panel.s3.placeholder.object_name")}
           value={commandArgs.objectKey}
+          modalTitle={t("editor.action.panel.s3.upload_object_name")}
           onChange={(value) => handleValueChange(value, "objectKey")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -92,6 +95,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.objectData}
+          modalTitle={t("editor.action.panel.s3.upload_data")}
           onChange={(value) => handleValueChange(value, "objectData")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -105,6 +109,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.expiry}
+          modalTitle={t("editor.action.panel.s3.timeout_upload")}
           onChange={(value) => handleValueChange(value, "expiry")}
           expectValueType={VALIDATION_TYPES.NUMBER}
         />

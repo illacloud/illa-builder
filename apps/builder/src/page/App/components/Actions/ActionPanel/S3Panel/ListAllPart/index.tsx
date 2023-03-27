@@ -56,6 +56,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.bucketName}
+          modalTitle={t("editor.action.panel.s3.bucket_name")}
           onChange={(value) => handleValueChange(value, "bucketName")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -69,6 +70,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.prefix}
+          modalTitle={t("editor.action.panel.s3.prefix_to_filter_reseults")}
           onChange={(value) => handleValueChange(value, "prefix")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -90,6 +92,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.delimiter}
+          modalTitle={t("editor.action.panel.s3.delimiter")}
           onChange={(value) => handleValueChange(value, "delimiter")}
           expectValueType={VALIDATION_TYPES.STRING}
         />
@@ -119,6 +122,9 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
             wrapperCss={s3ItemCodeEditorStyle}
             lang={CODE_LANG.JAVASCRIPT}
             value={String(commandArgs.expiry)}
+            modalTitle={t(
+              "editor.action.panel.s3.expiry_duration_of_signed_url",
+            )}
             onChange={(value) => handleValueChange(value, "expiry")}
             expectValueType={VALIDATION_TYPES.NUMBER}
           />
@@ -141,6 +147,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           wrapperCss={s3ItemCodeEditorStyle}
           lang={CODE_LANG.JAVASCRIPT}
           value={commandArgs.maxKeys}
+          modalTitle={t("editor.action.panel.s3.max_keys")}
           onChange={(value) => handleValueChange(value, "maxKeys")}
           expectValueType={VALIDATION_TYPES.NUMBER}
         />

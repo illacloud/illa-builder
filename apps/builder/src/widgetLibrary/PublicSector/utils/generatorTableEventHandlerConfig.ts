@@ -53,11 +53,15 @@ export const generatorTableEventHandlerConfig = (
             label: i18n.t("editor.inspect.setter_label.set_router"),
             value: "setRouter",
           },
+          {
+            label: i18n.t("editor.method.file_download.download"),
+            value: "downloadFile",
+          },
         ],
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-query`,
-        labelName: "Query",
+        labelName: i18n.t("editor.inspect.setter_label.action_name"),
         setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
         attrName: "queryID",
         bindAttrName: ["actionType"],
@@ -96,6 +100,17 @@ export const generatorTableEventHandlerConfig = (
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
         shown: (widgetMethod) => widgetMethod === "setValue",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-selectValue`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        placeholder: i18n.t(
+          "editor.inspect.setter_placeholder.multiselect.value",
+        ),
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setSelectedValue",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-setHidden`,
@@ -411,6 +426,87 @@ export const generatorTableEventHandlerConfig = (
         expectedType: VALIDATION_TYPES.NUMBER,
         placeholder: "{{4500}}",
         shown: (type) => type === "showNotification",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-fileName`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.file_download.file_name",
+        ),
+        placeholder: i18n.t(
+          "editor.inspect.setter_placeholder.file_download.file_name",
+        ),
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        attrName: "fileName",
+        bindAttrName: ["actionType"],
+        shown: (type) => type === "downloadFile",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-fileData`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.file_download.file_data",
+        ),
+        labelDesc: i18n.t("editor.inspect.setter_tips.file_download.file_data"),
+        placeholder: i18n.t(
+          "editor.inspect.setter_placeholder.file_download.file_data",
+        ),
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        attrName: "fileData",
+        bindAttrName: ["actionType"],
+        shown: (type) => type === "downloadFile",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-fileType`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.file_download.file_type",
+        ),
+        setterType: "BASE_SELECT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        attrName: "fileType",
+        bindAttrName: ["actionType"],
+        defaultValue: "auto",
+        shown: (type) => type === "downloadFile",
+        options: [
+          {
+            label: i18n.t("editor.inspect.setter_option.file_download.auto"),
+            value: "auto",
+          },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_option.file_download.plain_text",
+            ),
+            value: "txt",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.file_download.jpeg"),
+            value: "jpeg",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.file_download.png"),
+            value: "png",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.file_download.svg"),
+            value: "svg",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.file_download.json"),
+            value: "json",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.file_download.csv"),
+            value: "csv",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.file_download.tsv"),
+            value: "tsv",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.file_download.excel"),
+            value: "xlsx",
+          },
+        ],
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-enabled`,

@@ -13,10 +13,6 @@ import {
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
-  clearComponentAttachedUsersHandler,
-  updateSelectedComponentUsersHandler,
-} from "@/redux/currentApp/collaborators/collaboratorsHandlers"
-import {
   flattenAllComponentNodeToMap,
   getCanvas,
   searchDSLByDisplayName,
@@ -29,7 +25,7 @@ import { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import { isMAC, isWindows } from "@/utils/userAgent"
+import { isMAC } from "@/utils/userAgent"
 
 export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
@@ -85,7 +81,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       enableOnFormTags: true,
       enableOnContentEditable: true,
       preventDefault: true,
-      enabled: isEditMode && isWindows(),
+      enabled: isEditMode && !isMAC(),
     },
   )
 
@@ -138,7 +134,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
             }),
           )
           dispatch(configActions.clearSelectedComponent())
-          clearComponentAttachedUsersHandler(displayName)
         },
       })
     }
@@ -172,52 +167,46 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     [dispatch, freezeState],
   )
 
-  const selectAllComponentsHandler = useCallback(() => {
+  const selectAllBodyComponentsHandler = useCallback(() => {
     switch (FocusManager.getFocus()) {
       case "none":
         break
       case "canvas": {
         if (canvasRootNode) {
-          const childNodeDisplayNames: string[] = []
           const rootNode = executionResult.root
           if (!rootNode) return
           const currentPageDisplayName =
             rootNode.pageSortedKey[rootNode.currentPageIndex]
           const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
           if (!pageNode) return
-          const sectionContainerNodeDisplayName: string[] = []
-          pageNode.childrenNode.forEach((sectionNode) => {
+          let bodySectionDisplayName: string = ""
+          pageNode.childrenNode.find((sectionNode) => {
             const displayName = sectionNode.displayName
             const currentSectionProps = executionResult[displayName]
             if (
               currentSectionProps &&
               currentSectionProps.viewSortedKey &&
-              currentSectionProps.currentViewIndex >= 0
+              currentSectionProps.currentViewIndex >= 0 &&
+              sectionNode.showName === "bodySection"
             ) {
               const { currentViewIndex, viewSortedKey } = currentSectionProps
               const currentDisplayName = viewSortedKey[currentViewIndex]
-              sectionContainerNodeDisplayName.push(currentDisplayName)
+              bodySectionDisplayName = currentDisplayName
             }
           })
+          if (!bodySectionDisplayName) return
           const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
-          const allChildrenNodes: ComponentNode[] = []
-          sectionContainerNodeDisplayName.forEach((displayName) => {
-            if (componentNodesMap[displayName]) {
-              const childrenNode = Array.isArray(
-                componentNodesMap[displayName].childrenNode,
-              )
-                ? componentNodesMap[displayName].childrenNode
-                : []
-              allChildrenNodes.push(...childrenNode)
-            }
-          })
+          const allChildrenNodes = Array.isArray(
+            componentNodesMap[bodySectionDisplayName].childrenNode,
+          )
+            ? componentNodesMap[bodySectionDisplayName].childrenNode
+            : []
 
-          allChildrenNodes.forEach((node) => {
-            childNodeDisplayNames.push(node.displayName)
-          })
+          const childNodeDisplayNames = allChildrenNodes.map(
+            (node) => node.displayName,
+          )
 
           dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
-          updateSelectedComponentUsersHandler(childNodeDisplayNames)
         }
       }
     }
@@ -225,26 +214,28 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   useHotkeys(
     `${Key.Control}+a`,
-    () => {
-      selectAllComponentsHandler()
+    (e) => {
+      e.preventDefault()
+      selectAllBodyComponentsHandler()
     },
     {
       preventDefault: true,
-      enabled: isEditMode && isWindows(),
+      enabled: isEditMode && !isMAC(),
     },
-    [selectAllComponentsHandler],
+    [selectAllBodyComponentsHandler],
   )
 
   useHotkeys(
     `${Key.Meta}+a`,
-    () => {
-      selectAllComponentsHandler()
+    (e) => {
+      e.preventDefault()
+      selectAllBodyComponentsHandler()
     },
     {
       preventDefault: true,
       enabled: isEditMode && isMAC(),
     },
-    [selectAllComponentsHandler],
+    [selectAllBodyComponentsHandler],
   )
 
   const copySomethingHandler = useCallback(() => {
@@ -294,7 +285,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     () => {
       copySomethingHandler()
     },
-    { preventDefault: true, enabled: isEditMode && isWindows() },
+    { preventDefault: true, enabled: isEditMode && !isMAC() },
     [copySomethingHandler],
   )
 
@@ -315,7 +306,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     () => {
       CopyManager.paste()
     },
-    { preventDefault: true, enabled: isEditMode && isWindows() },
+    { preventDefault: true, enabled: isEditMode && !isMAC() },
     [copySomethingHandler],
   )
 
@@ -367,7 +358,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     () => {
       copyAndPasteHandler()
     },
-    { preventDefault: true, enabled: isEditMode && isWindows() },
+    { preventDefault: true, enabled: isEditMode && !isMAC() },
     [copyAndPasteHandler],
   )
 
@@ -390,6 +381,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     {
       keydown: true,
       keyup: true,
+      preventDefault: true,
       enabled: isEditMode && isMAC(),
     },
     [showDotHandler],
@@ -404,7 +396,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       keydown: true,
       keyup: true,
       preventDefault: true,
-      enabled: isEditMode && isWindows(),
+      enabled: isEditMode && !isMAC(),
     },
     [showDotHandler],
   )

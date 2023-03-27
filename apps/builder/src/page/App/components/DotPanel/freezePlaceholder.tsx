@@ -20,32 +20,6 @@ export const FreezePlaceholder: FC<FreezePlaceholderProps> = ({
     })
     return res
   }, [effectMap])
-  const largeWrapper = useMemo(() => {
-    if (componentNodesArray.length === 0) return [-1, -1, -1, -1]
-    let topComponentNode = componentNodesArray[0],
-      bottomComponentNode = componentNodesArray[0],
-      leftComponentNode = componentNodesArray[0],
-      rightComponentNode = componentNodesArray[0]
-    componentNodesArray.forEach((node) => {
-      if (node.y < topComponentNode.y) {
-        topComponentNode = node
-      }
-      if (node.y + node.h > bottomComponentNode.y + bottomComponentNode.h) {
-        bottomComponentNode = node
-      }
-      if (node.x < leftComponentNode.x) {
-        leftComponentNode = node
-      }
-      if (node.x + node.w > rightComponentNode.x + rightComponentNode.w) {
-        rightComponentNode = node
-      }
-    })
-    const top = topComponentNode.y
-    const left = leftComponentNode.x
-    const width = rightComponentNode.x + rightComponentNode.w - left
-    const height = bottomComponentNode.y + bottomComponentNode.h - top
-    return [top, left, height, width]
-  }, [componentNodesArray])
 
   const renderItem = useMemo(() => {
     if (componentNodesArray.length <= 0) return null

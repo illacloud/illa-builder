@@ -24,6 +24,7 @@ import {
 } from "@/page/App/components/ScaleSquare/style"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -448,6 +449,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   const handleResizeStart: ResizeStartCallback = (e) => {
     e.preventDefault()
     e.stopPropagation()
+    dispatch(configActions.updateResizingStateReducer(true))
   }
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(
@@ -460,8 +462,15 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         headerHeight: finalHeight,
       })
+      dispatch(configActions.updateResizingStateReducer(false))
     },
-    [handleUpdateOriginalDSLMultiAttr, headerHeight, headerMaxHeight, unitH],
+    [
+      dispatch,
+      handleUpdateOriginalDSLMultiAttr,
+      headerHeight,
+      headerMaxHeight,
+      unitH,
+    ],
   )
 
   const handleOnResizeBottomStop: ResizeCallback = useCallback(
@@ -474,8 +483,15 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         footerHeight: finalHeight,
       })
+      dispatch(configActions.updateResizingStateReducer(false))
     },
-    [footerHeight, footerMaxHeight, handleUpdateOriginalDSLMultiAttr, unitH],
+    [
+      dispatch,
+      footerHeight,
+      footerMaxHeight,
+      handleUpdateOriginalDSLMultiAttr,
+      unitH,
+    ],
   )
 
   const [{ isDraggingActive }, dropRef] = useDrop<

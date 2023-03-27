@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import useMeasure from "react-use-measure"
 import { MoreIcon, Trigger } from "@illa-design/react"
@@ -27,38 +27,44 @@ export const CollaboratorsList: FC<{
   const [listShow, setListShow] = useState(false)
   const [listContainerRef, bounds] = useMeasure()
   const { t } = useTranslation()
-  const [displayDataList, setDisplayDataList] = useState<CollaboratorsInfo[]>(
-    [],
-  )
-  const [showMoreIcon, setShowMoreIcon] = useState(false)
   const length = users.length
 
-  useLayoutEffect(() => {
+  const { showMoreIcon, displayDataList } = useMemo(() => {
+    let showMoreIcon = false
+    let displayDataList: CollaboratorsInfo[] = []
+
     const listLength = users.length
     if (listLength < 3) {
-      setDisplayDataList(users)
-      setShowMoreIcon(false)
-      return
+      return {
+        showMoreIcon: false,
+        displayDataList: users,
+      }
     }
     if (currentState === "right") {
-      if (containerWidth > MIN_THREE_AVATAR_MOVE_BAR_WIDTH) {
-        setDisplayDataList(listLength === 3 ? users : users.slice(0, 2))
-        setShowMoreIcon(listLength === 3 ? false : true)
-      } else {
-        setDisplayDataList(users.slice(0, 1))
-        setShowMoreIcon(true)
-      }
-      return
+      return containerWidth > MIN_THREE_AVATAR_MOVE_BAR_WIDTH
+        ? {
+            showMoreIcon: listLength !== 3,
+            displayDataList: listLength === 3 ? users : users.slice(0, 2),
+          }
+        : {
+            showMoreIcon: true,
+            displayDataList: users.slice(0, 1),
+          }
     }
     if (
       (currentState === "left" && bounds.width <= MIN_THREE_AVATAR_WIDTH) ||
       disableMargin
     ) {
-      setDisplayDataList(users.slice(0, 1))
-      setShowMoreIcon(true)
-      return
+      return {
+        showMoreIcon: true,
+        displayDataList: users.slice(0, 1),
+      }
     }
-  }, [bounds.width, currentState, disableMargin, containerWidth, users])
+    return {
+      showMoreIcon,
+      displayDataList,
+    }
+  }, [bounds.width, containerWidth, currentState, disableMargin, users])
 
   const renderListItem = useMemo(
     () => (

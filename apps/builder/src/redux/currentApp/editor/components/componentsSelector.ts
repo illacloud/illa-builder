@@ -465,3 +465,107 @@ export const getCurrentPageSectionColumns = createSelector(
     }
   },
 )
+
+function getNodeDepths(tree: ComponentNode) {
+  const nodeDepths: Record<string, number> = {}
+  function traverse(node: ComponentNode, depth: number) {
+    nodeDepths[node.displayName] = depth
+    if (node.childrenNode) {
+      for (let i = 0; i < node.childrenNode.length; i++) {
+        traverse(node.childrenNode[i], depth + 1)
+      }
+    }
+  }
+  traverse(tree, 0)
+  return nodeDepths
+}
+
+export const getComponentDisplayNameMapDepth = createSelector(
+  [getCanvas],
+  (rootNode) => {
+    if (!rootNode) return {}
+    return getNodeDepths(rootNode)
+  },
+)
+
+export type RelationMap = Record<
+  string,
+  { parentNode: string; childrenNode: string[]; containerType: string }
+>
+const generateRelationMap = (rootNode: ComponentNode) => {
+  const queue = [rootNode]
+  let relationMap: RelationMap = {}
+  while (queue.length > 0) {
+    const head = queue[queue.length - 1]
+    relationMap = {
+      ...relationMap,
+      [head.displayName]: {
+        parentNode: head.parentNode || "",
+        childrenNode:
+          head.childrenNode?.map((child) => child.displayName) ?? [],
+        containerType: head.containerType,
+      },
+    }
+
+    queue.pop()
+    if (head.childrenNode) {
+      head.childrenNode.forEach((child) => {
+        if (child) {
+          queue.push(child)
+        }
+      })
+    }
+  }
+  return relationMap
+}
+
+const findPrevTargetNode = (
+  displayName: string,
+  relationMap: RelationMap,
+): string => {
+  let parentNode = relationMap[displayName]
+
+  if (parentNode.containerType === "EDITOR_SCALE_SQUARE") {
+    return displayName
+  } else {
+    if (parentNode.parentNode === "") return displayName
+    return findPrevTargetNode(parentNode.parentNode, relationMap)
+  }
+}
+
+export const getShowWidgetNameParentMap = createSelector(
+  [getCanvas],
+  (rootNode) => {
+    if (!rootNode) return {}
+    const relationMap = generateRelationMap(rootNode)
+    const editorScaleSquareNodeRelationMap: RelationMap = {}
+    Object.keys(relationMap).forEach((key) => {
+      const { containerType } = relationMap[key]
+      if (containerType === "EDITOR_SCALE_SQUARE") {
+        editorScaleSquareNodeRelationMap[key] = relationMap[key]
+      }
+    })
+    Object.keys(editorScaleSquareNodeRelationMap).forEach((key) => {
+      const { parentNode } = editorScaleSquareNodeRelationMap[key]
+      if (parentNode) {
+        editorScaleSquareNodeRelationMap[key] = {
+          ...editorScaleSquareNodeRelationMap[key],
+          parentNode: findPrevTargetNode(parentNode, relationMap),
+          childrenNode: [],
+        }
+      }
+    })
+    Object.keys(editorScaleSquareNodeRelationMap).forEach((key) => {
+      const currentNode = editorScaleSquareNodeRelationMap[key]
+      if (
+        currentNode.parentNode &&
+        editorScaleSquareNodeRelationMap[currentNode.parentNode]
+      ) {
+        editorScaleSquareNodeRelationMap[
+          currentNode.parentNode
+        ].childrenNode.push(key)
+      }
+    })
+    return editorScaleSquareNodeRelationMap
+  },
+)

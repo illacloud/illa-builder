@@ -143,6 +143,9 @@
           },
           "oracle": {
             "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google Sheets"
           }
         },
         "validate": {
@@ -175,6 +178,25 @@
           "restapi": {
             "certificates": "인증서",
             "verification_mode": "확인 모드"
+          },
+          "gs": {
+            "private_key": "Private key",
+            "action_type": "Action type",
+            "spreadsheet": "Spreadsheet",
+            "sheet_name": "Sheet name",
+            "data_range": "Data range",
+            "limit": "Limit",
+            "offset": "Offset",
+            "a1_notation": "A1 notation",
+            "values_to_append": "Values to append",
+            "filter_by": "Filter by",
+            "update_value": "Update value",
+            "primary_key_column": "Primary key column",
+            "array_of_rows_to_upd": "Array of rows to update",
+            "filters_to_match_row": "Filters to match row",
+            "consider_queries_tha": "Consider queries that delete no rows as successes",
+            "title_of_spreadsheet": "Title of spreadsheet",
+            "sheet_id_to_copy": "Sheet ID to copy"
           }
         },
         "placeholder": {
@@ -200,6 +222,20 @@
           "oracle": {
             "username": "oracle",
             "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "column_name",
+              "value": "value"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "column_name",
+            "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
+            "filters_to_match_row": {
+              "key": "key",
+              "value": "value"
+            }
           }
         },
         "tips": {
@@ -215,6 +251,14 @@
             "verification_mode": {
               "skip_ca_certificate": "서버가 공격에 취약할 수 있습니다"
             }
+          },
+          "gs": {
+            "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기<0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기<1>를 참조하세요.",
+            "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
+            "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오."
           }
         },
         "option": {
@@ -268,11 +312,37 @@
               "verify_ca_certificat": "서버 인증서 확인",
               "skip_ca_certificate_": "서버 인증서 확인 건너뛰기"
             }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Read data from a spreadsheet",
+              "append_data_to_a_spr": "Append data to a spreadsheet",
+              "update_a_spreadsheet": "Update a spreadsheet",
+              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
+              "delete_a_single_row_": "Delete a single row from a spreadsheet",
+              "create_a_spreadsheet": "Create a spreadsheet",
+              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "list_available_sprea": "List available spreadsheets",
+              "get_spreadsheet_info": "Get spreadsheet info"
+            },
+            "data_range": {
+              "use_a1_notation": "Use A1 notation",
+              "use_limit_and_offset": "Use limit and offset"
+            },
+            "filter_by": {
+              "use_a1_notation": "Use A1 notation",
+              "use_row_filters": "Use row filters"
+            }
           }
         },
         "default": {
           "appwrite": {
             "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Service Account"
           }
         }
       },
@@ -918,7 +988,10 @@
       "actions_title": "작업 목록",
       "components_title": "구성 요소 목록",
       "globals_title": "글로벌 변수",
-      "pages_title": "페이지 목록"
+      "pages_title": "페이지 목록",
+      "global_data_modal": {
+        "title": "Edit global data"
+      }
     },
     "deploy": {
       "fail": "배포 실패"
@@ -1003,8 +1076,8 @@
           "sortingChange": "변경된 순으로 정렬",
           "submit": "제출하다",
           "success": "성공 후",
-          "onOpenModal": "Open modal",
-          "onCloseModal": "Close modal",
+          "onOpenModal": "오픈 모달",
+          "onCloseModal": "모달 닫기",
           "play": "재생",
           "pause": "정지시키다",
           "ended": "종료",
@@ -1200,7 +1273,9 @@
         "scale_type": "확대/축소 유형",
         "set_router": "라우팅 설정",
         "set_temporary_state": "임시 상태 설정",
-        "shadow": "그림자",
+        "shadow": {
+          "shadow": "그림자"
+        },
         "show_character_count": "문자 수 표시",
         "show_clear_button": "지우기 버튼 표시",
         "show_footer": "디스플레이 작동 영역",
@@ -1291,13 +1366,30 @@
           "collapse_icon": "무너지다",
           "icon_color": "색깔"
         },
-        "choose_at_least": "Choose at least",
-        "choose_up_to": "Choose up to",
+        "choose_at_least": "최소한의 선택",
+        "choose_up_to": "가장 많이 선택된",
         "copy_to_clipboard": "Copy to clipboard",
         "file_download": {
-          "file_data": "File data",
-          "file_name": "File name with extension",
-          "file_type": "File type"
+          "file_data": "파일 데이터",
+          "file_name": "확장자가 있는 파일 이름",
+          "file_type": "파일 종류"
+        },
+        "action_name": "액션 이름",
+        "variable": {
+          "path_of_value": "값 경로"
+        },
+        "code": {
+          "write_code": "코드 작성"
+        },
+        "slider": {
+          "step_size": "단계 크기",
+          "minimum": "최저한의",
+          "maximum": "최고",
+          "hide_output": "출력 숨기기"
+        },
+        "range_slider": {
+          "start_value": "시작 값",
+          "end_value": "종료 값"
         }
       },
       "setter_tooltip": {
@@ -1349,7 +1441,7 @@
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
       "unselected_tip2": "구성 요소를 클릭하여 선택하십시오.",
       "setter": {
-        "click_mask_close": "Click mask to close modal",
+        "click_mask_close": "마스크를 클릭하여 모달을 닫습니다.",
         "modal": {
           "blank": "아이콘 없음"
         }
@@ -1362,7 +1454,11 @@
           "data_source": "매핑된 평가를 사용하여 이미지 항목을 정의하는 데이터 소스입니다. 값 배열 또는 배열에 매핑된 키 개체를 사용합니다. 예: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . 작업에서 데이터를 사용할 수도 있습니다. 예: {{ mysql1.data }}"
         },
         "file_download": {
-          "file_data": "Support base64 data, raw data, mapped data of table. "
+          "file_data": "base64 데이터, 원시 데이터, 테이블의 매핑된 데이터 지원"
+        },
+        "variable": {
+          "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 객체의 속성 경로: {{objectName.attributeName}}. 배열에 있는 값의 인덱스: {{1}}. 개체의 배열: {{objectName.attributeName.1}}",
+          "the_target_value": "목표값"
         }
       },
       "setter_option": {
@@ -1378,8 +1474,8 @@
           "collapsible_panel": "접을 수 있는 패널"
         },
         "file_download": {
-          "auto": "Auto",
-          "plain_text": "Plain text",
+          "auto": "방문 허용",
+          "plain_text": "일반 텍스트",
           "jpeg": "JPEG",
           "png": "PNG",
           "svg": "SVG",
@@ -1387,6 +1483,12 @@
           "csv": "CSV",
           "tsv": "TSV",
           "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "없음",
+          "large": "크게",
+          "medium": "보통",
+          "small": "작음"
         }
       },
       "setter_placeholder": {
@@ -1407,6 +1509,9 @@
         "file_download": {
           "file_data": "{{ mysql1.data }}",
           "file_name": "{{ new_data.csv }}"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
         }
       },
       "setter_tootip": {
@@ -1415,6 +1520,11 @@
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
         "choose_up_to": "Please choose up to {{max}} options."
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "여기에 코드를 작성하십시오. {{ }} 내부에서 JavaScript 사용"
+        }
       }
     },
     "page": {
@@ -1435,7 +1545,7 @@
         "views": "보다",
         "width": "너비",
         "height": "높은",
-        "columns": "Columns"
+        "columns": "열"
       },
       "model_tips": {
         "cancel_button": "취소",
@@ -1451,7 +1561,7 @@
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
         "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/",
-        "auto_canvas_width": "The width of page as a percentage of the browser width."
+        "auto_canvas_width": "브라우저 너비의 백분율로 나타낸 페이지 너비입니다."
       }
     },
     "validate_message": {
@@ -1527,7 +1637,7 @@
         "showPrevious": "이전에 보이는 이미지 표시"
       },
       "file_download": {
-        "download": "Download",
+        "download": "다운로드",
         "message": {
           "suc": "다운로드 시작",
           "fail": "요청 실패",
@@ -1546,7 +1656,7 @@
             "templates": "주형"
           },
           "onboarding_app": {
-            "name": "Onboarding app",
+            "name": "초보자 가이드",
             "description": "ILLA의 튜토리얼을 따라 애플리케이션 구축 방법을 배우십시오",
             "action": "시작"
           },
@@ -1595,7 +1705,8 @@
           "test_it_button": "다음 단계",
           "congratulations_title": "축하해요",
           "congratulations_description": "첫 번째 애플리케이션을 구축했습니다. 사용 중 궁금한 점이 있으면 <0>Discord<0>를 통해 문의하실 수 있습니다.",
-          "congratulations_button": "마치다"
+          "congratulations_button": "마치다",
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     }
@@ -1609,7 +1720,7 @@
   "not_online_tips": "네트워크 연결이 끊어졌습니다. 이 장치의 네트워크를 확인하십시오.",
   "preview": {
     "viewport": {
-      "size": "Size",
+      "size": "크기",
       "reset": "초기화",
       "save": "저장",
       "tooltip": {
@@ -1912,7 +2023,7 @@
       "vertical": "초상화"
     },
     "modal": {
-      "name": "Modal"
+      "name": "모달"
     },
     "textarea": {
       "name": "긴 텍스트 입력"
@@ -1941,7 +2052,7 @@
       "name": "Collapse"
     },
     "multiselect": {
-      "name": "Multiselect"
+      "name": "다중 선택"
     },
     "carousel": {
       "name": "회전목마"
@@ -2107,7 +2218,7 @@
     }
   },
   "frame_size": {
-    "invalid_tips": "Please enter a value not less than {{ size }}."
+    "invalid_tips": "{{ size }} 이상의 값을 입력하세요."
   },
   "failed_to_copy": "복사 실패",
   "copied": "복사됨!",
@@ -2309,8 +2420,16 @@
           "description": "약 5분 정도 소요되는 앱 빌드 방법을 배우려면 ILLA의 튜토리얼을 따르세요.",
           "cancel": "취소",
           "take": "튜토리얼 시작"
+        },
+        "exit_confirm": {
+          "title": "튜토리얼 건너 뛰기？",
+          "description": "다음에 온보딩 앱에 들어가면 안내 단계가 재생됩니다.",
+          "cancel": "취소",
+          "exit": "종료 부팅"
         }
       }
     }
-  }
+  },
+  "oauth_redirect_title": "이동",
+  "oauth_redirect_description": "<0>ILLA Cloud(으)로 리디렉션 중..."
 }

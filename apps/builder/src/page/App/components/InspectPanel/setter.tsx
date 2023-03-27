@@ -23,6 +23,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     expectedType,
     defaultValue,
     icon,
+    canShowLabel = true,
   } = props
   const Comp = getSetterByType(setterType)
   const componentNode = useSelector(getComponentNodeBySingleSelected)
@@ -45,21 +46,20 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
         }
         return get(widgetProps, bindAttrNameItem)
       })
-
       return shown(...bindAttrNameValues)
     }
     return true
   }, [bindAttrName, shown, parentAttrName, widgetProps])
 
   const renderLabel = useMemo(() => {
-    return !useCustomLayout && labelName ? (
+    return canShowLabel && !useCustomLayout && labelName ? (
       <PanelLabel
         labelName={labelName}
         labelDesc={labelDesc}
         isInList={isInList}
       />
     ) : null
-  }, [useCustomLayout, labelName, labelDesc, isInList])
+  }, [canShowLabel, useCustomLayout, labelName, labelDesc, isInList])
 
   const _finalAttrName = useMemo(() => {
     if (typeof attrName === "string") {

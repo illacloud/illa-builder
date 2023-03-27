@@ -208,6 +208,7 @@ export const MongoDbPanel: FC = () => {
               wrapperCss={mongoItemCodeEditorStyle}
               lang={CODE_LANG.JAVASCRIPT}
               value={content.collection}
+              modalTitle={t("editor.action.panel.mongodb.collection")}
               onChange={(value) => {
                 dispatch(
                   configActions.updateCachedAction({
