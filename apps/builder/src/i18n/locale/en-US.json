@@ -241,7 +241,7 @@
         "tips": {
           "acl": "The provided content is a PUBLIC configuration. Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. <0>See Cross-Origin Resource Sharing (CORS).</0>",
           "connect_to_local": {
-            "cloud": "It looks like you're trying to connect to a database that's local to your machine or part of a private network. It might not work in the ILLA Cloud version. Check out our <0>docs<0> for how to the self-host version.",
+            "cloud": "It looks like you're trying to connect to a database that's local to your machine or part of a private network. It might not work in the ILLA Cloud version. Check out our <0>docs</0> for how to the self-host version.",
             "selfhost": "It looks like you're trying to connect to a database that's local to your machine. Please use the local area network IP address of the machine instead of \"localhost\" or \"127.0.0.1\".",
             "title": {
               "tips": "Tips"
@@ -253,11 +253,11 @@
             }
           },
           "gs": {
-            "private_key": "Used to connect to Google Sheets. Click <0>here<0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here<1> for documentation on creating a service account and access key.",
+            "private_key": "Used to connect to Google Sheets. Click <0>here</0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here</1> for documentation on creating a service account and access key.",
             "leave_blank_to_selec": "Leave blank to select the first sheet",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
-            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets"
           }
         },
@@ -430,8 +430,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
-              "role_to_assume": "Use a <0>different role<0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
+              "role_to_assume": "Use a <0>different role</0> when accessing the API"
             }
           },
           "option": {
@@ -990,7 +990,15 @@
       "globals_title": "GLOBALS ",
       "pages_title": "PAGES",
       "global_data_modal": {
-        "title": "Edit global data"
+        "title": "Edit global data",
+        "variable_name": {
+          "tooltips": "Use the initial value in this app via {{variableName}}"
+        },
+        "initial_value": {
+          "label": "Initial value",
+          "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
+          "placeholder": "{ count: 0 }"
+        }
       }
     },
     "deploy": {
@@ -1704,7 +1712,7 @@
           "test_it_description": "Input a user name you want to search for and click the button",
           "test_it_button": "Next",
           "congratulations_title": "Congratulations 🎉",
-          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
+          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord</0>. ",
           "congratulations_button": "Done",
           "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
@@ -2431,5 +2439,5 @@
     }
   },
   "oauth_redirect_title": "Redirect",
-  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud<0>"
+  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud</0>"
 }
