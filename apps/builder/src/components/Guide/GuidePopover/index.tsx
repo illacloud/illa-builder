@@ -22,6 +22,7 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
   const { title, description, isLastStep, onClickDoIt, ...rest } = props
   const dispatch = useDispatch()
   const { t } = useTranslation()
+
   const modal = useModal()
 
   const handleExitGuide = () => {
