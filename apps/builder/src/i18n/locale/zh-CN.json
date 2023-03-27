@@ -1380,6 +1380,12 @@
         },
         "code": {
           "write_code": "编写代码"
+        },
+        "slider": {
+          "step_size": "步进值",
+          "minimum": "最小值",
+          "maximum": "最大值",
+          "hide_output": "隐藏输出数值"
         }
       },
       "setter_tooltip": {
