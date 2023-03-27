@@ -1380,6 +1380,12 @@
         },
         "code": {
           "write_code": "Write code"
+        },
+        "slider": {
+          "step_size": "Step size",
+          "minimum": "Minimum",
+          "maximum": "Maximum",
+          "hide_output": "Hide output"
         }
       },
       "setter_tooltip": {
