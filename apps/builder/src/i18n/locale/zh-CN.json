@@ -992,7 +992,7 @@
       "global_data_modal": {
         "title": "Edit global data",
         "variable_name": {
-          "tooltips": "Use the initial value in this app via {{variableName}}",
+          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
           "label": "变量名"
         },
         "initial_value": {
