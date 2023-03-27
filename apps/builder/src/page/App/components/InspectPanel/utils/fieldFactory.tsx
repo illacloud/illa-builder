@@ -1,5 +1,4 @@
 import { get } from "lodash"
-import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Trigger } from "@illa-design/react"
 import { GuidePoint } from "@/components/Guide/GuidePoint"
@@ -62,7 +61,7 @@ export const renderGuideModePanelSetter = (
         position="bottom"
         colorScheme="techPurple"
       >
-        <div>
+        <div style={{ position: "relative" }}>
           <GuidePoint />
           {renderPanelSetter(config, displayName, isInList, parentAttrName)}
         </div>

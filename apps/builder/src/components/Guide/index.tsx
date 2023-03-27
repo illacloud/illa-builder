@@ -201,7 +201,8 @@ export const Guide: FC<GuideProps> = (props) => {
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />
-      <GuideSuccess />
+
+      {currentStep === 1 && <GuideSuccess />}
       {canvasRef.current &&
         createPortal(<StepMask currentStep={currentStep} />, canvasRef.current)}
       {currentStep === 0 &&
