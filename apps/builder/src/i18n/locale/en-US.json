@@ -1695,7 +1695,8 @@
           "test_it_button": "Next",
           "congratulations_title": "Congratulations 🎉",
           "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
-          "congratulations_button": "Done"
+          "congratulations_button": "Done",
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     }
