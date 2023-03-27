@@ -1471,15 +1471,20 @@
           "the_target_value": "目標値"
         },
         "slider": {
-          "default_value": "The initial value of the slider. You can dynamically change the initial value by typing JavaScript in {{}}.",
-          "minimum": "The minimum value of the slider",
-          "maximum": "The maximum value of the slider",
-          "step_size": "The minimum change unit of the slide",
-          "label": "The name of the field displayed to the user",
-          "caption": "A caption used to describe the field in detail",
-          "hide_label": "Set whether to display the label",
-          "allow_wrapping": "Set whether to allow label wrapping",
-          "position": "Set the position of the label relative to the component"
+          "default_value": "スライダーの初期値。 {{}} に JavaScript を入力すると、初期値を動的に変更できます。",
+          "minimum": "スライダーの最小値",
+          "maximum": "スライダーの最大値",
+          "step_size": "スライドの最小変化単位",
+          "label": "ユーザーに表示されるフィールドの名前",
+          "caption": "フィールドを詳細に説明するために使用されるキャプション",
+          "hide_label": "ラベルを表示するかどうかを設定します",
+          "allow_wrapping": "ラベルのラッピングを許可するかどうかを設定します",
+          "position": "コンポーネントに対するラベルの位置を設定します",
+          "alignment": "ラベルの配置を設定する",
+          "width": "ラベルがコンポーネントの左側にある場合、ラベルの幅の比率を設定します",
+          "prefix_icon": "コンポーネントの前に表示されるアイコン",
+          "suffix_icon": "コンポーネントの後に表示されるアイコン",
+          "hide_output": "スライド時に値を非表示にするかどうかを設定します"
         }
       },
       "setter_option": {
