@@ -1469,6 +1469,17 @@
         "variable": {
           "available_in_objects": "オブジェクトと配列で利用できます。 オブジェクトの属性のパス: {{objectName.attributeName}}。 配列内の値のインデックス: {{1}}。 オブジェクトの配列: {{objectName.attributeName.1}}",
           "the_target_value": "目標値"
+        },
+        "slider": {
+          "default_value": "The initial value of the slider. You can dynamically change the initial value by typing JavaScript in {{}}.",
+          "minimum": "The minimum value of the slider",
+          "maximum": "The maximum value of the slider",
+          "step_size": "The minimum change unit of the slide",
+          "label": "The name of the field displayed to the user",
+          "caption": "A caption used to describe the field in detail",
+          "hide_label": "Set whether to display the label",
+          "allow_wrapping": "Set whether to allow label wrapping",
+          "position": "Set the position of the label relative to the component"
         }
       },
       "setter_option": {
