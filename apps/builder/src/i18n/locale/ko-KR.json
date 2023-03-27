@@ -1471,15 +1471,20 @@
           "the_target_value": "목표값"
         },
         "slider": {
-          "default_value": "The initial value of the slider. You can dynamically change the initial value by typing JavaScript in {{}}.",
-          "minimum": "The minimum value of the slider",
-          "maximum": "The maximum value of the slider",
-          "step_size": "The minimum change unit of the slide",
-          "label": "The name of the field displayed to the user",
-          "caption": "A caption used to describe the field in detail",
-          "hide_label": "Set whether to display the label",
-          "allow_wrapping": "Set whether to allow label wrapping",
-          "position": "Set the position of the label relative to the component"
+          "default_value": "슬라이더의 초기 값입니다. {{}}에 JavaScript를 입력하여 초기 값을 동적으로 변경할 수 있습니다.",
+          "minimum": "슬라이더의 최소값",
+          "maximum": "슬라이더의 최대값",
+          "step_size": "슬라이드의 최소 변경 단위",
+          "label": "사용자에게 표시되는 필드의 이름",
+          "caption": "필드를 자세히 설명하는 데 사용되는 캡션",
+          "hide_label": "레이블 표시 여부 설정",
+          "allow_wrapping": "라벨 포장 허용 여부 설정",
+          "position": "구성 요소를 기준으로 레이블 위치 설정",
+          "alignment": "레이블 정렬 설정",
+          "width": "라벨이 구성 요소의 왼쪽에 있을 때 라벨의 너비 비율을 설정합니다.",
+          "prefix_icon": "구성 요소 앞에 표시되는 아이콘",
+          "suffix_icon": "구성 요소 뒤에 표시되는 아이콘",
+          "hide_output": "슬라이딩 시 값 숨기기 여부 설정"
         }
       },
       "setter_option": {
