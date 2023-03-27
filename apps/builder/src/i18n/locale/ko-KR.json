@@ -253,12 +253,12 @@
             }
           },
           "gs": {
-            "private_key": "Used to connect to Google Sheets. Click <0>here<0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here<1> for documentation on creating a service account and access key.",
-            "leave_blank_to_selec": "Leave blank to select the first sheet",
+            "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기<0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기<1>를 참조하세요.",
+            "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
-            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
-            "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets"
+            "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
+            "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오."
           }
         },
         "option": {
@@ -1374,9 +1374,9 @@
           "file_name": "확장자가 있는 파일 이름",
           "file_type": "파일 종류"
         },
-        "action_name": "Action name",
+        "action_name": "액션 이름",
         "variable": {
-          "path_of_value": "Path of value"
+          "path_of_value": "값 경로"
         },
         "code": {
           "write_code": "코드 작성"
@@ -1447,8 +1447,8 @@
           "file_data": "base64 데이터, 원시 데이터, 테이블의 매핑된 데이터 지원"
         },
         "variable": {
-          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
-          "the_target_value": "The target value"
+          "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 객체의 속성 경로: {{objectName.attributeName}}. 배열에 있는 값의 인덱스: {{1}}. 개체의 배열: {{objectName.attributeName.1}}",
+          "the_target_value": "목표값"
         }
       },
       "setter_option": {
@@ -1627,7 +1627,7 @@
         "showPrevious": "이전에 보이는 이미지 표시"
       },
       "file_download": {
-        "download": "Download",
+        "download": "다운로드",
         "message": {
           "suc": "다운로드 시작",
           "fail": "요청 실패",
@@ -2013,7 +2013,7 @@
       "vertical": "초상화"
     },
     "modal": {
-      "name": "Modal"
+      "name": "모달"
     },
     "textarea": {
       "name": "긴 텍스트 입력"
@@ -2208,7 +2208,7 @@
     }
   },
   "frame_size": {
-    "invalid_tips": "Please enter a value not less than {{ size }}."
+    "invalid_tips": "{{ size }} 이상의 값을 입력하세요."
   },
   "failed_to_copy": "복사 실패",
   "copied": "복사됨!",
