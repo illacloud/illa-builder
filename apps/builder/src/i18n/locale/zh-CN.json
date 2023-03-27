@@ -188,7 +188,15 @@
             "limit": "Limit",
             "offset": "Offset",
             "a1_notation": "A1 notation",
-            "values_to_append": "Values to append"
+            "values_to_append": "Values to append",
+            "filter_by": "Filter by",
+            "update_value": "Update value",
+            "primary_key_column": "Primary key column",
+            "array_of_rows_to_upd": "Array of rows to update",
+            "filters_to_match_row": "Filters to match row",
+            "consider_queries_tha": "Consider queries that delete no rows as successes",
+            "title_of_spreadsheet": "Title of spreadsheet",
+            "sheet_id_to_copy": "Sheet ID to copy"
           }
         },
         "placeholder": {
@@ -216,7 +224,18 @@
             "password": "••••••••"
           },
           "gs": {
-            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}"
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "column_name",
+              "value": "value"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "column_name",
+            "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
+            "filters_to_match_row": {
+              "key": "key",
+              "value": "value"
+            }
           }
         },
         "tips": {
@@ -236,7 +255,10 @@
           "gs": {
             "private_key": "Used to connect to Google Sheets. Click <0>here<0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here<1> for documentation on creating a service account and access key.",
             "leave_blank_to_selec": "Leave blank to select the first sheet",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>"
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets"
           }
         },
         "option": {
@@ -306,6 +328,10 @@
             "data_range": {
               "use_a1_notation": "Use A1 notation",
               "use_limit_and_offset": "Use limit and offset"
+            },
+            "filter_by": {
+              "use_a1_notation": "Use A1 notation",
+              "use_row_filters": "Use row filters"
             }
           }
         },
