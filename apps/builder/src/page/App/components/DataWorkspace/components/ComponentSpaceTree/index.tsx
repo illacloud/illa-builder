@@ -8,8 +8,6 @@ import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/component
 import { hiddenFields } from "@/page/App/components/DataWorkspace/constant"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { updateCurrentAllComponentsAttachedUsers } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
-import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import {
   getGeneralWidgetExecutionResultArray,
   getModalWidgetExecutionResultArray,
@@ -21,7 +19,6 @@ export const ComponentSpaceTree: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
   const generalWidgetExecutionArray = useSelector(
     getGeneralWidgetExecutionResultArray,
   )
@@ -33,12 +30,8 @@ export const ComponentSpaceTree: FC = () => {
   const handleGeneralComponentSelect = useCallback(
     (selectedKeys: string[], e: MouseEvent<HTMLDivElement>) => {
       dispatch(configActions.updateSelectedComponent(selectedKeys))
-      updateCurrentAllComponentsAttachedUsers(
-        selectedKeys,
-        componentsAttachedUsers,
-      )
     },
-    [dispatch, componentsAttachedUsers],
+    [dispatch],
   )
 
   const handleModalComponentSelect = useCallback(
@@ -50,12 +43,8 @@ export const ComponentSpaceTree: FC = () => {
         }),
       )
       dispatch(configActions.updateSelectedComponent(selectedKeys))
-      updateCurrentAllComponentsAttachedUsers(
-        selectedKeys,
-        componentsAttachedUsers,
-      )
     },
-    [dispatch, componentsAttachedUsers],
+    [dispatch],
   )
 
   const componentTotalNumber =
