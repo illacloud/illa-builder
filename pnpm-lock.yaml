@@ -74,8 +74,6 @@ importers:
       '@illa-design/react': workspace:*
       '@illa-fe-utils/storage': ^0.0.3
       '@mdx-js/rollup': ^2.3.0
-      '@reactour/popover': ^1.0.5
-      '@reactour/tour': ^3.3.0
       '@reduxjs/toolkit': ^1.8.1
       '@sentry/react': ^7.17.3
       '@sentry/tracing': ^7.17.3
@@ -178,8 +176,6 @@ importers:
       '@fontsource/fira-code': 4.5.13
       '@illa-design/react': link:../../illa-design/packages/react
       '@illa-fe-utils/storage': 0.0.3
-      '@reactour/popover': 1.0.5
-      '@reactour/tour': 3.3.0
       '@reduxjs/toolkit': 1.9.2_react-redux@8.0.5
       '@sentry/react': 7.37.0
       '@sentry/tracing': 7.37.0
@@ -3102,41 +3098,6 @@ packages:
     resolution: {integrity: sha512-/RVXdLvJxLg4QKvMoM5WlwNR9ViO9z8B/qPcc+C0Sa/teJY7QG7kJ441DwzOjMYEY7GmU4dj5EcGHIkKZiQZCA==}
     dev: false
 
-  /@reactour/mask/1.0.5:
-    resolution: {integrity: sha512-SMakvPUsH83j4MAq87jBMpdzoVQ+amZTQ6rYsDBqN1Hcz+A8JN9IDgaA49UaLcRPZq+ioQrmos8mBTe8uEtPeQ==}
-    peerDependencies:
-      react: 16.x || 17.x || 18.x
-    dependencies:
-      '@reactour/utils': 0.4.7
-    dev: false
-
-  /@reactour/popover/1.0.5:
-    resolution: {integrity: sha512-d6BMcyXGj3RdSc2huiU6v/wG2XG1ad+lAFmjyFerlZNS1ccp/49HvLUnqxE0Td+86e7RPrdEzpZb5PKtBybPrA==}
-    peerDependencies:
-      react: 16.x || 17.x || 18.x
-    dependencies:
-      '@reactour/utils': 0.4.7
-    dev: false
-
-  /@reactour/tour/3.3.0:
-    resolution: {integrity: sha512-Dx/jDKEZ29fSOmnc07zCgHS6lmEKCNreyvFhhPQTI1OAG6MTTWuQJhKUmrytECncFJb+oH95zvE9mf137rSBtA==}
-    peerDependencies:
-      react: 16.x || 17.x || 18.x
-    dependencies:
-      '@reactour/mask': 1.0.5
-      '@reactour/popover': 1.0.5
-      '@reactour/utils': 0.4.7
-    dev: false
-
-  /@reactour/utils/0.4.7:
-    resolution: {integrity: sha512-d+/Xhi2nKCc6OrDEFGg15iN8ZyWDTdOrwIKkndJXrnWiN6b+nqoS2Tb7hZvt79rqCyUsQxekUndPFPQyIW81EA==}
-    peerDependencies:
-      react: 16.x || 17.x || 18.x
-    dependencies:
-      '@rooks/use-mutation-observer': 4.11.2
-      resize-observer-polyfill: 1.5.1
-    dev: false
-
   /@reduxjs/toolkit/1.9.2_react-redux@8.0.5:
     resolution: {integrity: sha512-5ZAZ7hwAKWSii5T6NTPmgIBUqyVdlDs+6JjThz6J6dmHLDm6zCzv2OjHIFAi3Vvs1qjmXU0bm6eBojukYXjVMQ==}
     peerDependencies:
@@ -3190,12 +3151,6 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
-
-  /@rooks/use-mutation-observer/4.11.2:
-    resolution: {integrity: sha512-vpsdrZdr6TkB1zZJcHx+fR1YC/pHs2BaqcuYiEGjBVbwY5xcC49+h0hAUtQKHth3oJqXfIX/Ng8S7s5HFHdM/A==}
-    peerDependencies:
-      react: '>=16.8.0'
-    dev: false
 
   /@scena/dragscroll/1.4.0:
     resolution: {integrity: sha512-3O8daaZD9VXA9CP3dra6xcgt/qrm0mg0xJCwiX6druCteQ9FFsXffkF8PrqxY4Z4VJ58fFKEa0RlKqbsi/XnRA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@scena/dragscroll/-/dragscroll-1.4.0.tgz}
