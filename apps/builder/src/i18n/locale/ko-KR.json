@@ -1469,6 +1469,17 @@
         "variable": {
           "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 객체의 속성 경로: {{objectName.attributeName}}. 배열에 있는 값의 인덱스: {{1}}. 개체의 배열: {{objectName.attributeName.1}}",
           "the_target_value": "목표값"
+        },
+        "slider": {
+          "default_value": "The initial value of the slider. You can dynamically change the initial value by typing JavaScript in {{}}.",
+          "minimum": "The minimum value of the slider",
+          "maximum": "The maximum value of the slider",
+          "step_size": "The minimum change unit of the slide",
+          "label": "The name of the field displayed to the user",
+          "caption": "A caption used to describe the field in detail",
+          "hide_label": "Set whether to display the label",
+          "allow_wrapping": "Set whether to allow label wrapping",
+          "position": "Set the position of the label relative to the component"
         }
       },
       "setter_option": {
