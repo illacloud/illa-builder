@@ -34,7 +34,7 @@ export const Guide: FC<GuideProps> = (props) => {
     <>
       <Global styles={applyGuideStyle(currentStep)} />
       {/* success */}
-      {currentStep === 12 && <GuideSuccess />}
+      {currentStep === 11 && <GuideSuccess />}
       {canvasRef.current &&
         createPortal(
           <WidgetStepMask currentStep={currentStep} />,

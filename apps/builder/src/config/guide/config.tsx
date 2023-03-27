@@ -175,22 +175,7 @@ export const GUIDE_STEP = [
         }),
       )
       // to last step
-      store.dispatch(guideActions.updateCurrentStepReducer(12))
-    },
-  },
-  {
-    step: 7,
-    titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
-    descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_3",
-    selector: "button-interaction-event-handler",
-    hideTrigger: true,
-    doItForMe: () => {
-      //
-      const element = document.querySelector(
-        ".button-interaction-event-handler",
-      ) as HTMLButtonElement
-      element?.click()
-      store.dispatch(guideActions.updateNextStepReducer())
+      store.dispatch(guideActions.updateCurrentStepReducer(11))
     },
   },
   {
@@ -199,16 +184,6 @@ export const GUIDE_STEP = [
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_4",
     selector: "button-interaction-event-handler-action",
     hideTrigger: true,
-    doItForMe: () => {
-      store.dispatch(
-        componentsActions.updateComponentPropsReducer({
-          displayName: "button1",
-          updateSlice: {
-            "events.0.actionType": "datasource",
-          },
-        }),
-      )
-    },
   },
   {
     step: 9,
@@ -216,16 +191,6 @@ export const GUIDE_STEP = [
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_5",
     selector: "button-interaction-event-handler-query",
     hideTrigger: true,
-    doItForMe: () => {
-      store.dispatch(
-        componentsActions.updateComponentPropsReducer({
-          displayName: "button1",
-          updateSlice: {
-            "events.0.queryID": "postgresql1",
-          },
-        }),
-      )
-    },
   },
   {
     // 4

@@ -1,5 +1,5 @@
 import { Dispatch, PayloadAction } from "@reduxjs/toolkit"
-import { get } from "lodash"
+import { get, isObject } from "lodash"
 import {
   GUIDE_SELECT_WIDGET,
   GUIDE_SQL_QUERY,
@@ -58,10 +58,8 @@ export const guideUpdate = (
     case 5:
     case 7: {
       const { reduxAction, displayName } = GUIDE_STEP[currentStep]
-      console.log(reduxAction, type, payload, displayName, "guideUpdate")
       if (reduxAction === type) {
         const selectedWidget = (payload as string[])[0]
-        console.log(selectedWidget, "currentStep")
         const isCurrentStepWidget = selectedWidget === displayName
         handleNext(isCurrentStepWidget)
       }
@@ -76,9 +74,10 @@ export const guideUpdate = (
     }
     case 8: {
       if (type === "components/updateComponentPropsReducer") {
-        const events = get(payload, "updateSlice.events")
-        if (Array.isArray(events)) {
-          const newEvent = events.pop()
+        const displayName = payload.displayName
+        const events = payload?.updateSlice?.events
+        if (Array.isArray(events) && displayName === "button1") {
+          const newEvent = events[events.length - 1]
           handleNext(
             newEvent?.targetId === "query1" && newEvent?.type === "datasource",
           )
@@ -86,13 +85,39 @@ export const guideUpdate = (
       }
       break
     }
-    default: {
-      const { reduxAction, selector } = GUIDE_STEP[currentStep]
-      if (reduxAction === type) {
-        const selectedWidget = (payload as string[])[0]
-        const isCurrentStepWidget = selectedWidget === selector
-        handleNext(isCurrentStepWidget)
+    case 9: {
+      if (type === "components/updateComponentPropsReducer") {
+        const displayName = payload.displayName
+        const updateSlice = payload.updateSlice
+        if (isObject(updateSlice) && displayName === "button1") {
+          const actionType = Object.values(updateSlice).reduce(
+            (result, value) => {
+              if (value?.actionType) {
+                return value.actionType === "datasource"
+              }
+              return undefined
+            },
+          )
+          handleNext(actionType)
+        }
       }
+      break
+    }
+    case 10: {
+      if (type === "components/updateComponentPropsReducer") {
+        const displayName = payload.displayName
+        const updateSlice = payload.updateSlice
+        if (isObject(updateSlice) && displayName === "button1") {
+          const queryID = Object.values(updateSlice).reduce((result, value) => {
+            if (value?.actionType) {
+              return value.queryID === "postgresql1"
+            }
+            return undefined
+          })
+          handleNext(queryID)
+        }
+      }
+      break
     }
   }
 }

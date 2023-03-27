@@ -122,6 +122,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       }
       setDeployLoading(true)
       const appId = await forkCurrentApp(appName)
+      setForkModalVisible(false)
       deployApp(appId)
     },
     [deployApp, t],
