@@ -993,7 +993,8 @@
         "title": "Edit global data",
         "variable_name": {
           "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
-          "label": "変数名"
+          "label": "変数名",
+          "message": "名前は文字または「_」で始まる必要があり、文字と数字のみを含めることができます"
         },
         "initial_value": {
           "label": "Initial value",
