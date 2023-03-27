@@ -1695,7 +1695,8 @@
           "test_it_button": "次のステップ",
           "congratulations_title": "おめでとう🎉",
           "congratulations_description": "最初のアプリケーションを作成しました。 使用中に質問がある場合は、<0>Discord<0> からご連絡ください",
-          "congratulations_button": "完成済み"
+          "congratulations_button": "完成済み",
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     }
