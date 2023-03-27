@@ -24,3 +24,7 @@ export const applyGuideStyle = (currentStep: number) => {
       return css``
   }
 }
+
+export const shiftStyle = css`
+  top: -15px;
+`

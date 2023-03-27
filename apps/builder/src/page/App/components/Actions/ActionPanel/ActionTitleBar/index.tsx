@@ -388,6 +388,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       </Dropdown>
       {renderButton && (
         <Button
+          pos="relative"
           className={`${cachedAction.displayName}-run`}
           ml="8px"
           colorScheme="techPurple"

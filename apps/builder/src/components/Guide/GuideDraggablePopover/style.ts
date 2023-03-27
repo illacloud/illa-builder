@@ -2,16 +2,6 @@ import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 import { CurrentMaskPosition } from "@/components/Guide/GuideDraggablePopover/index"
 
-export const topStyle = css`
-  position: absolute;
-  top: 0;
-  transform: translateY(calc(-100% - 20px));
-  z-index: 2;
-  color: ${getColor("white", "01")};
-  padding: 16px;
-  border-radius: 2px;
-`
-
 const POPOVER_MARGIN = 14
 
 const applyTriangleStyle = (position: CurrentMaskPosition) => {
@@ -51,11 +41,11 @@ export const applyPopoverStyle = (
     ? position === "top"
       ? css`
           bottom: ${window.innerHeight - domRect?.top + POPOVER_MARGIN}px;
-          left: ${domRect?.left}px;
+          left: ${domRect?.left - 60}px;
         `
       : css`
           top: ${domRect?.bottom + POPOVER_MARGIN}px;
-          left: ${domRect?.left - domRect?.width / 2}px;
+          left: ${domRect?.left - domRect?.width}px;
         `
     : css``
 
