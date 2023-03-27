@@ -143,6 +143,9 @@
           },
           "oracle": {
             "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google Sheets"
           }
         },
         "validate": {
@@ -175,6 +178,25 @@
           "restapi": {
             "certificates": "証明書",
             "verification_mode": "検証モード"
+          },
+          "gs": {
+            "private_key": "Private key",
+            "action_type": "Action type",
+            "spreadsheet": "Spreadsheet",
+            "sheet_name": "Sheet name",
+            "data_range": "Data range",
+            "limit": "Limit",
+            "offset": "Offset",
+            "a1_notation": "A1 notation",
+            "values_to_append": "Values to append",
+            "filter_by": "Filter by",
+            "update_value": "Update value",
+            "primary_key_column": "Primary key column",
+            "array_of_rows_to_upd": "Array of rows to update",
+            "filters_to_match_row": "Filters to match row",
+            "consider_queries_tha": "Consider queries that delete no rows as successes",
+            "title_of_spreadsheet": "Title of spreadsheet",
+            "sheet_id_to_copy": "Sheet ID to copy"
           }
         },
         "placeholder": {
@@ -200,6 +222,20 @@
           "oracle": {
             "username": "oracle",
             "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "column_name",
+              "value": "value"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "column_name",
+            "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
+            "filters_to_match_row": {
+              "key": "key",
+              "value": "value"
+            }
           }
         },
         "tips": {
@@ -215,6 +251,14 @@
             "verification_mode": {
               "skip_ca_certificate": "サーバーが攻撃に対して脆弱である可能性があります"
             }
+          },
+          "gs": {
+            "private_key": "Google スプレッドシートへの接続に使用されます。 <0>ここ<0>をクリックしてプロジェクトを作成し、OAuth 認証情報を取得してください。 サービス アカウント認証では、使用されているサービス アカウントに対応するメール アドレスで共有されたスプレッドシートにのみアクセスできます。 サービス アカウントとアクセス キーの作成に関するドキュメントについては、<1>こちら<1>をご覧ください。",
+            "leave_blank_to_selec": "空白のままにして最初のシートを選択します",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
+            "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。"
           }
         },
         "option": {
@@ -268,11 +312,37 @@
               "verify_ca_certificat": "サーバー証明書を確認する",
               "skip_ca_certificate_": "サーバー証明書の検証をスキップ"
             }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Read data from a spreadsheet",
+              "append_data_to_a_spr": "Append data to a spreadsheet",
+              "update_a_spreadsheet": "Update a spreadsheet",
+              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
+              "delete_a_single_row_": "Delete a single row from a spreadsheet",
+              "create_a_spreadsheet": "Create a spreadsheet",
+              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "list_available_sprea": "List available spreadsheets",
+              "get_spreadsheet_info": "Get spreadsheet info"
+            },
+            "data_range": {
+              "use_a1_notation": "Use A1 notation",
+              "use_limit_and_offset": "Use limit and offset"
+            },
+            "filter_by": {
+              "use_a1_notation": "Use A1 notation",
+              "use_row_filters": "Use row filters"
+            }
           }
         },
         "default": {
           "appwrite": {
             "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Service Account"
           }
         }
       },
@@ -370,8 +440,8 @@
                 "list": "リストレコード",
                 "retrieve": "レコードを取得する",
                 "create": "レコードを作成",
-                "update": "Update record",
-                "delete": "Delete record",
+                "update": "更新記録",
+                "delete": "レコードを削除",
                 "find": "探す",
                 "get": "ビューを取得"
               },
@@ -1006,8 +1076,8 @@
           "sortingChange": "変化で並べ替え",
           "submit": "確認する",
           "success": "成功後",
-          "onOpenModal": "Open modal",
-          "onCloseModal": "Close modal",
+          "onOpenModal": "モーダルを開く",
+          "onCloseModal": "モーダルを閉じる",
           "play": "再生",
           "pause": "一時停止",
           "ended": "終了済み",
@@ -1304,12 +1374,22 @@
           "file_name": "拡張子を含まないファイル名",
           "file_type": "ファイルの種類"
         },
-        "action_name": "Action name",
+        "action_name": "アクション名",
         "variable": {
-          "path_of_value": "Path of value"
+          "path_of_value": "値のパス"
         },
         "code": {
           "write_code": "コードを書く"
+        },
+        "slider": {
+          "step_size": "刻み幅",
+          "minimum": "最小値",
+          "maximum": "最大値",
+          "hide_output": "出力を隠す"
+        },
+        "range_slider": {
+          "start_value": "開始値",
+          "end_value": "終了値"
         }
       },
       "setter_tooltip": {
@@ -1361,7 +1441,7 @@
       "unselected_tip1": "コンポーネントが選択されていません。",
       "unselected_tip2": "コンポーネントをクリックして選択してください。",
       "setter": {
-        "click_mask_close": "Click mask to close modal",
+        "click_mask_close": "マスクをクリックしてモーダルを閉じます",
         "modal": {
           "blank": "アイコンなし"
         }
@@ -1377,8 +1457,8 @@
           "file_data": "テーブルの base64 データ、生データ、マップされたデータをサポートします"
         },
         "variable": {
-          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
-          "the_target_value": "The target value"
+          "available_in_objects": "オブジェクトと配列で利用できます。 オブジェクトの属性のパス: {{objectName.attributeName}}。 配列内の値のインデックス: {{1}}。 オブジェクトの配列: {{objectName.attributeName.1}}",
+          "the_target_value": "目標値"
         }
       },
       "setter_option": {
@@ -1465,7 +1545,7 @@
         "views": "見る",
         "width": "幅",
         "height": "高い",
-        "columns": "Columns"
+        "columns": "コラム"
       },
       "model_tips": {
         "cancel_button": "キャンセル",
@@ -1481,7 +1561,7 @@
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
         "view_path": "このビューにアクセスするための文字列スペル example.com/app/page/",
-        "auto_canvas_width": "The width of page as a percentage of the browser width."
+        "auto_canvas_width": "ブラウザーの幅に対するページの幅のパーセンテージ。"
       }
     },
     "validate_message": {
@@ -1557,7 +1637,7 @@
         "showPrevious": "前の可視画像を表示"
       },
       "file_download": {
-        "download": "Download",
+        "download": "ダウンロード",
         "message": {
           "suc": "ダウンロードを開始します",
           "fail": "失敗しました",
@@ -1625,7 +1705,8 @@
           "test_it_button": "次のステップ",
           "congratulations_title": "おめでとう🎉",
           "congratulations_description": "最初のアプリケーションを作成しました。 使用中に質問がある場合は、<0>Discord<0> からご連絡ください",
-          "congratulations_button": "完成済み"
+          "congratulations_button": "完成済み",
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     }
@@ -1639,7 +1720,7 @@
   "not_online_tips": "ネットワークが切断されています。このデバイスのネットワークを確認してください",
   "preview": {
     "viewport": {
-      "size": "Size",
+      "size": "サイズ",
       "reset": "リセット",
       "save": "保存",
       "tooltip": {
@@ -1942,7 +2023,7 @@
       "vertical": "肖像画"
     },
     "modal": {
-      "name": "Modal"
+      "name": "モーダル"
     },
     "textarea": {
       "name": "長いテキスト入力"
@@ -2137,7 +2218,7 @@
     }
   },
   "frame_size": {
-    "invalid_tips": "Please enter a value not less than {{ size }}."
+    "invalid_tips": "{{ size }}以上の値を入力してください。"
   },
   "failed_to_copy": "コピーに失敗しました",
   "copied": "コピーしました！",
