@@ -253,12 +253,12 @@
             }
           },
           "gs": {
-            "private_key": "Used to connect to Google Sheets. Click <0>here<0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here<1> for documentation on creating a service account and access key.",
-            "leave_blank_to_selec": "Leave blank to select the first sheet",
+            "private_key": "Google スプレッドシートへの接続に使用されます。 <0>ここ<0>をクリックしてプロジェクトを作成し、OAuth 認証情報を取得してください。 サービス アカウント認証では、使用されているサービス アカウントに対応するメール アドレスで共有されたスプレッドシートにのみアクセスできます。 サービス アカウントとアクセス キーの作成に関するドキュメントについては、<1>こちら<1>をご覧ください。",
+            "leave_blank_to_selec": "空白のままにして最初のシートを選択します",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
-            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
-            "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets"
+            "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
+            "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。"
           }
         },
         "option": {
@@ -440,8 +440,8 @@
                 "list": "リストレコード",
                 "retrieve": "レコードを取得する",
                 "create": "レコードを作成",
-                "update": "Update record",
-                "delete": "Delete record",
+                "update": "更新記録",
+                "delete": "レコードを削除",
                 "find": "探す",
                 "get": "ビューを取得"
               },
@@ -1374,9 +1374,9 @@
           "file_name": "拡張子を含まないファイル名",
           "file_type": "ファイルの種類"
         },
-        "action_name": "Action name",
+        "action_name": "アクション名",
         "variable": {
-          "path_of_value": "Path of value"
+          "path_of_value": "値のパス"
         },
         "code": {
           "write_code": "コードを書く"
@@ -1447,8 +1447,8 @@
           "file_data": "テーブルの base64 データ、生データ、マップされたデータをサポートします"
         },
         "variable": {
-          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
-          "the_target_value": "The target value"
+          "available_in_objects": "オブジェクトと配列で利用できます。 オブジェクトの属性のパス: {{objectName.attributeName}}。 配列内の値のインデックス: {{1}}。 オブジェクトの配列: {{objectName.attributeName.1}}",
+          "the_target_value": "目標値"
         }
       },
       "setter_option": {
@@ -1627,7 +1627,7 @@
         "showPrevious": "前の可視画像を表示"
       },
       "file_download": {
-        "download": "Download",
+        "download": "ダウンロード",
         "message": {
           "suc": "ダウンロードを開始します",
           "fail": "失敗しました",
@@ -2013,7 +2013,7 @@
       "vertical": "肖像画"
     },
     "modal": {
-      "name": "Modal"
+      "name": "モーダル"
     },
     "textarea": {
       "name": "長いテキスト入力"
@@ -2208,7 +2208,7 @@
     }
   },
   "frame_size": {
-    "invalid_tips": "Please enter a value not less than {{ size }}."
+    "invalid_tips": "{{ size }}以上の値を入力してください。"
   },
   "failed_to_copy": "コピーに失敗しました",
   "copied": "コピーしました！",
