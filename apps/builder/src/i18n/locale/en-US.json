@@ -196,7 +196,8 @@
             "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
-            "sheet_id_to_copy": "Sheet ID to copy"
+            "sheet_id_to_copy": "Sheet ID to copy",
+            "sheet_to_copy_to": "Sheet to copy to"
           }
         },
         "placeholder": {
