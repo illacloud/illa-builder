@@ -1076,8 +1076,8 @@
           "sortingChange": "변경된 순으로 정렬",
           "submit": "제출하다",
           "success": "성공 후",
-          "onOpenModal": "Open modal",
-          "onCloseModal": "Close modal",
+          "onOpenModal": "오픈 모달",
+          "onCloseModal": "모달 닫기",
           "play": "재생",
           "pause": "정지시키다",
           "ended": "종료",
@@ -1380,6 +1380,12 @@
         },
         "code": {
           "write_code": "코드 작성"
+        },
+        "slider": {
+          "step_size": "단계 크기",
+          "minimum": "최저한의",
+          "maximum": "최고",
+          "hide_output": "출력 숨기기"
         }
       },
       "setter_tooltip": {
@@ -1431,7 +1437,7 @@
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
       "unselected_tip2": "구성 요소를 클릭하여 선택하십시오.",
       "setter": {
-        "click_mask_close": "Click mask to close modal",
+        "click_mask_close": "마스크를 클릭하여 모달을 닫습니다.",
         "modal": {
           "blank": "아이콘 없음"
         }
@@ -1535,7 +1541,7 @@
         "views": "보다",
         "width": "너비",
         "height": "높은",
-        "columns": "Columns"
+        "columns": "열"
       },
       "model_tips": {
         "cancel_button": "취소",
@@ -1551,7 +1557,7 @@
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
         "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/",
-        "auto_canvas_width": "The width of page as a percentage of the browser width."
+        "auto_canvas_width": "브라우저 너비의 백분율로 나타낸 페이지 너비입니다."
       }
     },
     "validate_message": {
@@ -1710,7 +1716,7 @@
   "not_online_tips": "네트워크 연결이 끊어졌습니다. 이 장치의 네트워크를 확인하십시오.",
   "preview": {
     "viewport": {
-      "size": "Size",
+      "size": "크기",
       "reset": "초기화",
       "save": "저장",
       "tooltip": {
