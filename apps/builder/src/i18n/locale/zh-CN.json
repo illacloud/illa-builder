@@ -1471,15 +1471,20 @@
           "the_target_value": "目标值"
         },
         "slider": {
-          "default_value": "The initial value of the slider. You can dynamically change the initial value by typing JavaScript in {{}}.",
-          "minimum": "The minimum value of the slider",
-          "maximum": "The maximum value of the slider",
-          "step_size": "The minimum change unit of the slide",
-          "label": "The name of the field displayed to the user",
-          "caption": "A caption used to describe the field in detail",
-          "hide_label": "Set whether to display the label",
-          "allow_wrapping": "Set whether to allow label wrapping",
-          "position": "Set the position of the label relative to the component"
+          "default_value": "滑块的初始值。 您可以通过在 {{}} 中键入 JavaScript 来动态更改初始值。",
+          "minimum": "滑块的最小值",
+          "maximum": "滑块的最大值",
+          "step_size": "滑块的最小变化单位",
+          "label": "显示给用户的字段名称",
+          "caption": "用于详细描述字段的标题",
+          "hide_label": "设置是否显示标签",
+          "allow_wrapping": "设置是否允许标签换行",
+          "position": "设置标签相对于组件的位置",
+          "alignment": "设置标签的对齐方式",
+          "width": "当标签在组件左侧时，设置标签的宽度比例",
+          "prefix_icon": "显示在组件前面的图标",
+          "suffix_icon": "组件后显示的图标",
+          "hide_output": "设置滑动时是否隐藏值"
         }
       },
       "setter_option": {
