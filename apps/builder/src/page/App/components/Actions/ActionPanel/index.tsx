@@ -7,6 +7,7 @@ import { CouchDBPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBP
 import { DynamoDBPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
 import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
+import { GoogleSheetsPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel"
 import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
 import { HuggingFaceEndpointPanel } from "@/page/App/components/Actions/ActionPanel/HuggingFaceEndpointPanel"
 import { HuggingFacePanel } from "@/page/App/components/Actions/ActionPanel/HuggingFacePanel"
@@ -45,7 +46,9 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
         case "mssql":
           return <MicrosoftSqlPanel />
         case "oracle":
-          return <OracleDBPanel />
+        case "googlesheet":
+          return <GoogleSheetsPanel />
+        // return <OracleDBPanel />
         case "restapi":
           return <RestApiPanel />
         case "huggingface":

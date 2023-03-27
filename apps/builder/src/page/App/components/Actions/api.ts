@@ -277,6 +277,9 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
           mode,
         },
       }
+    case "googlesheet":
+      const { resourceName: googleSheetName, ...otherGoogleSheetsParams } = data
+      return otherGoogleSheetsParams
   }
 }
 

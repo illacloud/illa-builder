@@ -14,6 +14,10 @@ import {
   FirebaseAction,
   FirebaseContentType,
 } from "@/redux/currentApp/action/firebaseAction"
+import {
+  GoogleSheetsAction,
+  GoogleSheetsActionOpts,
+} from "@/redux/currentApp/action/googleSheetsAction"
 import { GraphQLAction } from "@/redux/currentApp/action/graphqlAction"
 import {
   HuggingFaceAction,
@@ -148,5 +152,6 @@ export type ActionContent =
   | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
   | CouchDBAction<CouchDBOptionsType>
+  | GoogleSheetsAction<GoogleSheetsActionOpts>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

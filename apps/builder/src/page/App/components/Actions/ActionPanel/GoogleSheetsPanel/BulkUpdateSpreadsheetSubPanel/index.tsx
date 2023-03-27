@@ -1,0 +1,39 @@
+import { FC } from "react"
+import { useTranslation } from "react-i18next"
+import { BasicSheetConfig } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BasicSheetConfig"
+import { GoogleSheetsActionSubPanelProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
+import { InputEditor } from "@/page/App/components/InputEditor"
+import { GoogleSheetsActionBulkOpts } from "@/redux/currentApp/action/googleSheetsAction"
+
+export const BulkUpdateSpreadsheetSubPanel: FC<
+  GoogleSheetsActionSubPanelProps
+> = (props) => {
+  const { t } = useTranslation()
+  const { onChange } = props
+  const opts = props.opts as GoogleSheetsActionBulkOpts
+
+  return (
+    <>
+      <BasicSheetConfig
+        sheetName={opts.sheetName}
+        spreadsheet={opts.spreadsheet}
+        onChange={onChange}
+      />
+      <InputEditor
+        value={opts.primaryKey}
+        onChange={onChange("primaryKey")}
+        title={t("editor.action.form.label.gs.primary_key_column")}
+        placeholder={t("editor.action.form.placeholder.gs.primary_key_column")}
+      />
+      <InputEditor
+        value={opts.arrayUpdate}
+        onChange={onChange("arrayUpdate")}
+        title={t("editor.action.form.label.gs.array_of_rows_to_upd")}
+        placeholder={t(
+          "editor.action.form.placeholder.gs.array_of_rows_to_upd",
+        )}
+      />
+    </>
+  )
+}
+BulkUpdateSpreadsheetSubPanel.displayName = "BulkUpdateSpreadsheetSubPanel"

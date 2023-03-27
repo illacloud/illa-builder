@@ -1,20 +1,15 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
+import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
-import {
-  container,
-  divider,
-  footerStyle,
-  optionLabelStyle,
-} from "@/page/App/components/Actions/styles"
+import { container, footerStyle } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { TextLink } from "@/page/User/components/TextLink"
 import {
-  GoogleSheetAccessOptions,
-  GoogleSheetAuthenticationOptions,
   GoogleSheetResource,
   GoogleSheetResourceInitial,
 } from "@/redux/resource/googleSheetResource"
@@ -24,7 +19,7 @@ import { validate } from "@/utils/form"
 export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   const { resourceId, onBack, onFinished } = props
   const { t } = useTranslation()
-  const { handleSubmit, control, formState, watch } = useForm({
+  const { handleSubmit, control, formState } = useForm({
     shouldUnregister: true,
     mode: "onChange",
   })
@@ -36,9 +31,12 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
 
   const [saving, setSaving] = useState<boolean>(false)
 
-  const authType = watch("authentication", content.authentication)
-  const isServiceAccount = authType === "serviceAccount"
-  const isOAuth = authType === "oauth"
+  const handleLinkTo = useCallback(
+    (link: string) => () => {
+      window.open(link, "_blank")
+    },
+    [],
+  )
 
   return (
     <form
@@ -51,74 +49,42 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
       )}
     >
       <div css={container}>
-        <div css={divider} />
+        <ResourceDivider type="Service Account" />
         <ControlledElement
-          title={"Authentication"}
-          defaultValue={content.authentication}
-          name="authentication"
+          title={t("editor.action.form.label.gs.private_key")}
+          defaultValue={content.privateKey}
+          name="privateKey"
           isRequired
           rules={[
             {
               validate,
             },
           ]}
-          controlledType="select"
+          controlledType="textarea"
           control={control}
-          options={GoogleSheetAuthenticationOptions}
+          placeholders={[t("editor.action.form.placeholder.gs.private_key")]}
           tips={
-            isServiceAccount
-              ? "With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See here for documentation on creating a service account and access key."
-              : null
+            <Trans
+              i18nKey="editor.action.form.tips.gs.private_key"
+              t={t}
+              components={[
+                <TextLink
+                  key="editor.action.form.tips.gs.private_key.console"
+                  onClick={handleLinkTo(
+                    "https://console.cloud.google.com/cloud-resource-manager",
+                  )}
+                />,
+                <TextLink
+                  key="editor.action.form.tips.gs.private_key.docs"
+                  onClick={handleLinkTo(
+                    "https://cloud.google.com/docs/authentication/getting-started",
+                  )}
+                />,
+              ]}
+            />
           }
         />
-
-        {isServiceAccount && (
-          <ControlledElement
-            title={"Private Key"}
-            defaultValue={content.privateKey}
-            name="privateKey"
-            isRequired={isServiceAccount}
-            rules={[
-              {
-                validate,
-              },
-            ]}
-            controlledType="textarea"
-            control={control}
-            placeholders={[
-              `{
-                  "type": "service_account",
-                  "project_id": "projectId",
-                  "private_key_id": "privateKeyId",
-                  "private_key": "-----BEGIN PRIVATE KEY-----
-                privateKey
-                -----END PRIVATE KEY-----",
-                  "client_email": "clientEmail",
-                  "client_id": "100000000000000000000",
-                  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                  "token_uri": "https://oauth2.googleapis.com/token",
-                  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-                  "client_x509_cert_url": "clientx509CertUrl"
-                }`,
-            ]}
-            tips={
-              "Used to connect to Google Sheets. Click here to create a project and get the OAuth credential. "
-            }
-          />
-        )}
-
-        <Divider
-          direction="horizontal"
-          ml="24px"
-          mr="24px"
-          mt="8px"
-          mb="8px"
-          w="unset"
-        />
-        <div css={optionLabelStyle}>
-          {t("editor.action.resource.db.title.general_option")}
-        </div>
-
+        <ResourceDivider type="General Option" />
         <ControlledElement
           controlledType="input"
           isRequired
@@ -134,32 +100,6 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
           name="resourceName"
           tips={t("editor.action.resource.restapi.tip.name")}
         />
-        {isOAuth && (
-          <>
-            <ControlledElement
-              title={"Access Type"}
-              name="accessType"
-              controlledType="select"
-              control={control}
-              defaultValue={content.accessType}
-              isRequired
-              options={GoogleSheetAccessOptions}
-              tips={
-                "If you want to build apps that can modify your spreadsheets, make sure to enable read and write access."
-              }
-            />
-            <ControlledElement
-              title={"Share credentials"}
-              name="shareCredentials"
-              controlledType="checkbox"
-              control={control}
-              defaultValue={content.shareCredentials}
-              contentLabel={
-                "Share Google Sheets credentials with members and share with users when the app is public."
-              }
-            />
-          </>
-        )}
       </div>
       <div css={footerStyle}>
         <Button
