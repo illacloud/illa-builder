@@ -164,18 +164,18 @@ export const GUIDE_STEP = [
         componentsActions.updateComponentPropsReducer({
           displayName: "button1",
           updateSlice: {
-            events: [
-              {
-                id: "events-3e2c0390-b4f7-4570-9f4b-93c5d59e4c13",
-                eventType: "click",
-                queryID: "query1",
-                actionType: "datasource",
-                method: "trigger",
-              },
-            ],
+            "events.0": {
+              id: "events-3e2c0390-b4f7-4570-9f4b-93c5d59e4c13",
+              eventType: "click",
+              queryID: "postgresql1",
+              actionType: "datasource",
+              method: "trigger",
+            },
           },
         }),
       )
+      // to last step
+      store.dispatch(guideActions.updateCurrentStepReducer(12))
     },
   },
   {
@@ -183,6 +183,7 @@ export const GUIDE_STEP = [
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_3",
     selector: "button-interaction-event-handler",
+    hideTrigger: true,
     doItForMe: () => {
       //
       const element = document.querySelector(
@@ -197,6 +198,7 @@ export const GUIDE_STEP = [
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_4",
     selector: "button-interaction-event-handler-action",
+    hideTrigger: true,
     doItForMe: () => {
       store.dispatch(
         componentsActions.updateComponentPropsReducer({
@@ -213,6 +215,7 @@ export const GUIDE_STEP = [
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
     descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_5",
     selector: "button-interaction-event-handler-query",
+    hideTrigger: true,
     doItForMe: () => {
       store.dispatch(
         componentsActions.updateComponentPropsReducer({

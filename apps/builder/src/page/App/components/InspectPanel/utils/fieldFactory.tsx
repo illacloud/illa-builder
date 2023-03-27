@@ -1,5 +1,4 @@
 import { get } from "lodash"
-import { useSelector } from "react-redux"
 import { Trigger } from "@illa-design/react"
 import { GuidePoint } from "@/components/Guide/GuidePoint"
 import { GuidePopover } from "@/components/Guide/GuidePopover"
@@ -13,7 +12,6 @@ import {
 } from "@/page/App/components/InspectPanel/interface"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
-import { getCurrentStepInfo, getGuideStatus } from "@/redux/guide/guideSelector"
 import { Guide } from "@/redux/guide/guideState"
 
 export const renderPanelSetter = (
@@ -43,9 +41,18 @@ export const renderGuideModePanelSetter = (
 ) => {
   const { id } = config
   const currentStepInfo = GUIDE_STEP[currentStep]
-  const { titleKey, descKey, selector, doItForMe } = currentStepInfo
+  const { hideTrigger, titleKey, descKey, selector, doItForMe } =
+    currentStepInfo
 
   if (selector === id) {
+    if (hideTrigger) {
+      return (
+        <div style={{ position: "relative" }}>
+          <GuidePoint />
+          {renderPanelSetter(config, displayName, isInList, parentAttrName)}
+        </div>
+      )
+    }
     return (
       <Trigger
         _css={triggerStyle}

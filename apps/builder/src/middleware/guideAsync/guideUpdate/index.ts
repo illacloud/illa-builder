@@ -76,8 +76,13 @@ export const guideUpdate = (
     }
     case 8: {
       if (type === "components/updateComponentPropsReducer") {
-        const eventType = get(payload, "updateSlice.events.0.eventType")
-        handleNext(eventType === "click")
+        const events = get(payload, "updateSlice.events")
+        if (Array.isArray(events)) {
+          const newEvent = events.pop()
+          handleNext(
+            newEvent?.targetId === "query1" && newEvent?.type === "datasource",
+          )
+        }
       }
       break
     }

@@ -48,6 +48,7 @@ export const triggerStyle = css`
   & > div > div {
     & > div {
       background-color: ${getColor("techPurple", "01")};
+      border-radius: 2px;
     }
 
     & > svg {
