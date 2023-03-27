@@ -1479,7 +1479,12 @@
           "caption": "A caption used to describe the field in detail",
           "hide_label": "Set whether to display the label",
           "allow_wrapping": "Set whether to allow label wrapping",
-          "position": "Set the position of the label relative to the component"
+          "position": "Set the position of the label relative to the component",
+          "alignment": "Set the alignment of the label",
+          "width": "When the label is on the left side of the component, set the width ratio of the label",
+          "prefix_icon": "The icon displayed in front of the component",
+          "suffix_icon": "The icon displayed after the component",
+          "hide_output": "Set whether to hide the value when sliding"
         }
       },
       "setter_option": {
