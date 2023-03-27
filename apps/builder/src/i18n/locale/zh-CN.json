@@ -253,12 +253,12 @@
             }
           },
           "gs": {
-            "private_key": "Used to connect to Google Sheets. Click <0>here<0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here<1> for documentation on creating a service account and access key.",
-            "leave_blank_to_selec": "Leave blank to select the first sheet",
+            "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。",
+            "leave_blank_to_selec": "留空以选择第一张表",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
-            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
-            "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets"
+            "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
+            "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它"
           }
         },
         "option": {
@@ -1153,7 +1153,7 @@
         "border": "描边",
         "color": "颜色",
         "icon": "图标",
-        "secondary_value": "SECONDARY VALUE"
+        "secondary_value": "次要值"
       },
       "setter_label": {
         "action": "动作",
@@ -1374,9 +1374,9 @@
           "file_name": "带扩展名的文件名",
           "file_type": "文件类型"
         },
-        "action_name": "Action name",
+        "action_name": "查询名称",
         "variable": {
-          "path_of_value": "Path of value"
+          "path_of_value": "值的路径"
         },
         "code": {
           "write_code": "编写代码"
@@ -1447,8 +1447,8 @@
           "file_data": "支持Base64编码数据、表格的原始数据或映射数据"
         },
         "variable": {
-          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
-          "the_target_value": "The target value"
+          "available_in_objects": "在对象和数组中可用。 属性在对象中的路径：{{objectName.attributeName}}。 数组中值的索引：{{1}}。 对象中的数组：{{objectName.attributeName.1}}",
+          "the_target_value": "目标值"
         }
       },
       "setter_option": {
@@ -1627,7 +1627,7 @@
         "showPrevious": "显示上一个可见图像"
       },
       "file_download": {
-        "download": "Download",
+        "download": "下载",
         "message": {
           "suc": "开始下载",
           "fail": "请求失败",
@@ -1665,10 +1665,10 @@
             "list": "使用列表组件显示和管理信息"
           },
           "modal": {
-            "title": "新建应用并部署",
+            "title": "复制并部署",
             "placeholder": "应用名称",
             "cancel": "取消",
-            "fork": "新建应用并部署"
+            "fork": "复制并部署"
           }
         },
         "onboarding_app": {
