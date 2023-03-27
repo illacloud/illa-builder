@@ -1,26 +1,28 @@
 import { FC, useCallback, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import {
   Alert,
   Button,
   ButtonGroup,
   Divider,
-  Input,
-  InputNumber,
-  Password,
   PreviousIcon,
-  Switch,
   getColor,
-  useMessage,
 } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import {
-  configItem,
+  onActionConfigElementSubmit,
+  onActionConfigElementTest,
+} from "@/page/App/components/Actions/api"
+import { ConfigElementProps } from "@/page/App/components/Actions/interface"
+import {
+  applyConfigItemLabelText,
   configItemTip,
   connectType,
   connectTypeStyle,
+  container,
+  divider,
+  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
@@ -30,52 +32,34 @@ import {
   RedisResource,
   RedisResourceInitial,
 } from "@/redux/resource/redisResource"
-import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { isContainLocalPath } from "@/utils/form"
+import { isContainLocalPath, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { RedisConfigElementProps } from "./interface"
-import {
-  applyConfigItemLabelText,
-  container,
-  divider,
-  footerStyle,
-  hostInputContainer,
-  sslStyle,
-} from "./style"
 
-export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
+export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
-
   const { t } = useTranslation()
-
-  const dispatch = useDispatch()
-
-  const message = useMessage()
-
-  const { control, handleSubmit, getValues, formState } = useForm({
+  const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
-
   const findResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
   })
 
   let content: RedisResource
-
   if (findResource === undefined) {
     content = RedisResourceInitial
   } else {
     content = (findResource as Resource<RedisResource>).content
   }
 
-  const [sslOpen, setSSLOpen] = useState(content.ssl ?? false)
   const [showAlert, setShowAlert] = useState<boolean>(false)
-
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+
+  const sslOpenWatch = watch("ssl", content.ssl ?? false)
 
   const handleHostValidate = useCallback(
     (value: string) => {
@@ -92,126 +76,50 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
   }
 
+  const handleConnectionTest = useCallback(() => {
+    const data = getValues()
+    onActionConfigElementTest(
+      data,
+      {
+        host: data.host,
+        port: data.port.toString(),
+        databaseIndex: data.databaseIndex ?? 0,
+        databaseUsername: data.databaseUsername,
+        databasePassword: data.databasePassword,
+        ssl: sslOpenWatch,
+      },
+      "redis",
+      setTestLoading,
+    )
+  }, [getValues, sslOpenWatch])
+
   return (
     <form
-      onSubmit={handleSubmit((data, event) => {
-        if (resourceId != undefined) {
-          BuilderApi.teamRequest<Resource<RedisResource>>(
-            {
-              method: "PUT",
-              url: `/resources/${resourceId}`,
-              data: {
-                resourceId: data.resourceId,
-                resourceName: data.resourceName,
-                resourceType: "redis",
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseIndex: data.databaseIndex ?? 0,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                  ssl: sslOpen,
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.updateResourceItemReducer(response.data))
-              message.success({
-                content: t("dashboard.resource.save_success"),
-              })
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              message.error({
-                content: error.data.errorMessage,
-              })
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        } else {
-          BuilderApi.teamRequest<Resource<RedisResource>>(
-            {
-              method: "POST",
-              url: `/resources`,
-              data: {
-                resourceName: data.resourceName,
-                resourceType: "redis",
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseIndex: data.databaseIndex ?? 0,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                  ssl: sslOpen,
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.addResourceItemReducer(response.data))
-              message.success({
-                content: t("dashboard.resource.save_success"),
-              })
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              message.error({
-                content: error.data.errorMessage,
-              })
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        }
-      })}
+      onSubmit={onActionConfigElementSubmit(
+        handleSubmit,
+        resourceId,
+        "redis",
+        onFinished,
+        setSaving,
+      )}
     >
       <div css={container}>
         <div css={divider} />
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.name")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={findResource?.resourceName ?? ""}
-            rules={{
-              validate: (value) => value != undefined && value.trim() != "",
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                colorScheme="techPurple"
-                placeholder={t("editor.action.resource.db.placeholder.name")}
-              />
-            )}
-            name="resourceName"
-          />
-        </div>
-        <div css={configItemTip}>
-          {t("editor.action.resource.restapi.tip.name")}
-        </div>
+        <ControlledElement
+          controlledType="input"
+          isRequired
+          title={t("editor.action.resource.db.label.name")}
+          control={control}
+          defaultValue={findResource?.resourceName ?? ""}
+          rules={[
+            {
+              validate,
+            },
+          ]}
+          placeholders={[t("editor.action.resource.db.placeholder.name")]}
+          name="resourceName"
+          tips={t("editor.action.resource.restapi.tip.name")}
+        />
         <Divider
           direction="horizontal"
           ml="24px"
@@ -220,58 +128,39 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           mb="8px"
           w="unset"
         />
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.hostname_port")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={content.host}
-              control={control}
-              rules={{
-                required: true,
-                validate: handleHostValidate,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.hostname",
-                  )}
-                />
-              )}
-              name="host"
-            />
-            <Controller
-              defaultValue={content.port}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <InputNumber
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  w="142px"
-                  ml="8px"
-                  placeholder="6379"
-                />
-              )}
-              name="port"
-            />
-          </div>
+        <div css={optionLabelStyle}>
+          {t("editor.action.resource.db.title.general_option")}
         </div>
+
+        <ControlledElement
+          defaultValue={[content.host, content.port]}
+          title={t("editor.action.resource.db.label.hostname_port")}
+          control={control}
+          rules={[
+            {
+              required: true,
+              validate: handleHostValidate,
+            },
+            {
+              required: true,
+            },
+          ]}
+          isRequired
+          controlledType={["input", "number"]}
+          name={["host", "port"]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.hostname"),
+            "6379",
+          ]}
+          styles={[
+            {
+              flex: 4,
+            },
+            {
+              flex: 1,
+            },
+          ]}
+        />
         {showAlert && (
           <ControlledElement
             defaultValue=""
@@ -303,80 +192,27 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             }
           />
         )}
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.database_index")}
-            </span>
-          </div>
-          <Controller
-            defaultValue={content.databaseIndex}
-            control={control}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <InputNumber
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                colorScheme="techPurple"
-                placeholder={t(
-                  "editor.action.resource.db.placeholder.database_index",
-                )}
-              />
-            )}
-            name="databaseIndex"
-          />
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.username_password")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={content.databaseUsername}
-              control={control}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.username",
-                  )}
-                />
-              )}
-              name="databaseUsername"
-            />
-            <Controller
-              control={control}
-              defaultValue={content.databasePassword}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Password
-                  colorScheme="techPurple"
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  ml="8px"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.password",
-                  )}
-                />
-              )}
-              name="databasePassword"
-            />
-          </div>
-        </div>
+        <ControlledElement
+          title={t("editor.action.resource.db.label.database_index")}
+          defaultValue={content.databaseIndex}
+          name="databaseIndex"
+          placeholders={[
+            t("editor.action.resource.db.placeholder.database_index"),
+          ]}
+          controlledType="input"
+          control={control}
+        />
+        <ControlledElement
+          title={t("editor.action.resource.db.label.username_password")}
+          controlledType={["input", "password"]}
+          control={control}
+          defaultValue={[content.databaseUsername, content.databasePassword]}
+          name={["databaseUsername", "databasePassword"]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.username"),
+            t("editor.action.resource.db.placeholder.password"),
+          ]}
+        />
         {isCloudVersion && (
           <>
             <div css={configItemTip}>
@@ -396,7 +232,6 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             </div>
           </>
         )}
-
         <Divider
           direction="horizontal"
           ml="24px"
@@ -408,33 +243,14 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.advanced_option")}
         </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.db.label.ssl_options")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={content.ssl}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Switch
-                checked={value}
-                ml="16px"
-                colorScheme="techPurple"
-                onChange={(open) => {
-                  onChange(open)
-                  setSSLOpen(open)
-                }}
-                onBlur={onBlur}
-              />
-            )}
-            name="ssl"
-          />
-          <span css={sslStyle}>
-            {t("editor.action.resource.db.tip.ssl_options")}
-          </span>
-        </div>
+        <ControlledElement
+          title={t("editor.action.resource.db.label.ssl_options")}
+          control={control}
+          defaultValue={content.ssl}
+          controlledType="switch"
+          name="ssl"
+          contentLabel={t("editor.action.resource.db.tip.ssl_options")}
+        />
       </div>
       <div css={footerStyle}>
         <Button
@@ -442,9 +258,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           variant="text"
           colorScheme="gray"
           type="button"
-          onClick={() => {
-            onBack()
-          }}
+          onClick={onBack}
         >
           {t("back")}
         </Button>
@@ -454,46 +268,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             loading={testLoading}
             disabled={!formState.isValid}
             type="button"
-            onClick={() => {
-              const data = getValues()
-              BuilderApi.teamRequest<Resource<RedisResource>>(
-                {
-                  method: "POST",
-                  url: `/resources/testConnection`,
-                  data: {
-                    resourceId: data.resourceId,
-                    resourceName: data.resourceName,
-                    resourceType: "redis",
-                    content: {
-                      host: data.host,
-                      port: data.port.toString(),
-                      databaseIndex: data.databaseIndex ?? 0,
-                      databaseUsername: data.databaseUsername,
-                      databasePassword: data.databasePassword,
-                      ssl: sslOpen,
-                    },
-                  },
-                },
-                (response) => {
-                  message.success({
-                    content: t("dashboard.resource.test_success"),
-                  })
-                },
-                (error) => {
-                  message.error({
-                    content: error.data.errorMessage,
-                  })
-                },
-                () => {
-                  message.error({
-                    content: t("dashboard.resource.test_fail"),
-                  })
-                },
-                (loading) => {
-                  setTestLoading(loading)
-                },
-              )
-            }}
+            onClick={handleConnectionTest}
           >
             {t("editor.action.form.btn.test_connection")}
           </Button>

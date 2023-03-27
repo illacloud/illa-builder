@@ -1,14 +1,11 @@
-import { FC, useMemo, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
+import { FC, useCallback, useMemo, useState } from "react"
+import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
   Divider,
-  Input,
-  InputNumber,
-  Password,
   PreviousIcon,
   WarningCircleIcon,
   getColor,
@@ -17,34 +14,30 @@ import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
-  configItem,
+  applyConfigItemLabelText,
   configItemTip,
   connectType,
   connectTypeStyle,
+  container,
+  divider,
+  errorIconStyle,
+  errorMsgStyle,
+  footerStyle,
   labelContainer,
 } from "@/page/App/components/Actions/styles"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
   ElasticSearchResource,
   ElasticSearchResourceInitial,
 } from "@/redux/resource/elasticSearchResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { isCloudVersion, isURL } from "@/utils/typeHelper"
-import { RedisConfigElementProps } from "./interface"
-import {
-  applyConfigItemLabelText,
-  container,
-  divider,
-  errorIconStyle,
-  errorMsgStyle,
-  footerStyle,
-  hostInputContainer,
-} from "./style"
+import { urlValidate, validate } from "@/utils/form"
+import { isCloudVersion } from "@/utils/typeHelper"
 
-export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
-  props,
-) => {
+export const ElasticSearchConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
@@ -69,6 +62,21 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
 
+  const handleResourceTest = useCallback(() => {
+    const data = getValues()
+    onActionConfigElementTest(
+      data,
+      {
+        host: data.host,
+        port: data.port.toString(),
+        username: data.username,
+        password: data.password,
+      },
+      "elasticsearch",
+      setTestLoading,
+    )
+  }, [getValues])
+
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
@@ -81,39 +89,21 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
     >
       <div css={container}>
         <div css={divider} />
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.name")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={findResource?.resourceName ?? ""}
-            rules={{
-              validate: (value) => value != undefined && value.trim() != "",
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                colorScheme="techPurple"
-                placeholder={t("editor.action.resource.db.placeholder.name")}
-              />
-            )}
-            name="resourceName"
-          />
-        </div>
-        <div css={configItemTip}>
-          {t("editor.action.resource.restapi.tip.name")}
-        </div>
+        <ControlledElement
+          controlledType="input"
+          isRequired
+          title={t("editor.action.resource.db.label.name")}
+          control={control}
+          defaultValue={findResource?.resourceName ?? ""}
+          rules={[
+            {
+              validate,
+            },
+          ]}
+          placeholders={[t("editor.action.resource.db.placeholder.name")]}
+          name="resourceName"
+          tips={t("editor.action.resource.restapi.tip.name")}
+        />
         <Divider
           direction="horizontal"
           ml="24px"
@@ -122,131 +112,50 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
           mb="8px"
           w="unset"
         />
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.hosturl")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={content.host}
-              control={control}
-              rules={{
-                required: t("editor.action.form.required"),
-                validate: (value: string) => {
-                  return isURL(value)
-                    ? true
-                    : t("editor.action.resource.error.invalid_url")
-                },
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  error={!!formState.errors.host}
-                  colorScheme="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.hosturl",
-                  )}
-                />
-              )}
-              name="host"
-            />
-          </div>
-        </div>
-        {formState.errors.host && (
-          <div css={configItemTip}>
-            <div css={errorMsgStyle}>
-              <>
-                <WarningCircleIcon css={errorIconStyle} />
-                {formState.errors.host.message}
-              </>
-            </div>
-          </div>
-        )}
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.port")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={content.port}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <InputNumber
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  w="100%"
-                  placeholder="9200"
-                />
-              )}
-              name="port"
-            />
-          </div>
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.username_password")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={content.username}
-              control={control}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.username",
-                  )}
-                />
-              )}
-              name="username"
-            />
-            <Controller
-              control={control}
-              defaultValue={content.password}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Password
-                  colorScheme="techPurple"
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  ml="8px"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.password",
-                  )}
-                />
-              )}
-              name="password"
-            />
-          </div>
-        </div>
+
+        <ControlledElement
+          controlledType="input"
+          isRequired
+          title={t("editor.action.resource.db.label.hosturl")}
+          control={control}
+          defaultValue={content.host}
+          rules={[
+            {
+              required: t("editor.action.resource.error.invalid_url"),
+              validate: urlValidate,
+            },
+          ]}
+          name="host"
+          tips={
+            formState.errors.host ? (
+              <div css={errorMsgStyle}>
+                <>
+                  <WarningCircleIcon css={errorIconStyle} />
+                  {formState.errors.host.message}
+                </>
+              </div>
+            ) : null
+          }
+        />
+
+        <ControlledElement
+          isRequired
+          title={t("editor.action.resource.db.label.port")}
+          defaultValue={content.port}
+          name="port"
+          controlledType="number"
+          control={control}
+        />
+
+        <ControlledElement
+          title={t("editor.action.resource.db.label.username_password")}
+          controlledType={["input", "password"]}
+          defaultValue={[content.username, content.password]}
+          name={["username", "password"]}
+          control={control}
+          isRequired
+        />
+
         {isCloudVersion && (
           <>
             <div css={configItemTip}>
@@ -273,9 +182,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
           variant="text"
           colorScheme="gray"
           type="button"
-          onClick={() => {
-            onBack()
-          }}
+          onClick={onBack}
         >
           {t("back")}
         </Button>
@@ -285,20 +192,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
             loading={testLoading}
             disabled={!formState.isValid}
             type="button"
-            onClick={() => {
-              const data = getValues()
-              onActionConfigElementTest(
-                data,
-                {
-                  host: data.host,
-                  port: data.port.toString(),
-                  username: data.username,
-                  password: data.password,
-                },
-                "elasticsearch",
-                setTestLoading,
-              )
-            }}
+            onClick={handleResourceTest}
           >
             {t("editor.action.form.btn.test_connection")}
           </Button>

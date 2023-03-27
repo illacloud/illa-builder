@@ -1,14 +1,11 @@
-import { FC, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
+import { FC, useCallback, useState } from "react"
+import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
   Divider,
-  Input,
-  InputNumber,
-  Password,
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
@@ -16,46 +13,40 @@ import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
-  configItem,
+  applyConfigItemLabelText,
   configItemTip,
   connectType,
   connectTypeStyle,
+  container,
+  divider,
+  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
+import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { Resource } from "@/redux/resource/resourceState"
 import {
   SMTPResource,
   SMTPResourceInitial,
 } from "@/redux/resource/smtpResource"
 import { RootState } from "@/store"
+import { validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { SMTPConfigElementProps } from "./interface"
-import {
-  applyConfigItemLabelText,
-  container,
-  divider,
-  footerStyle,
-  hostInputContainer,
-} from "./style"
 
-export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
+export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
-
   const { t } = useTranslation()
-
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
-
   const findResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
   })
 
   let content: SMTPResource
-
   if (findResource === undefined) {
     content = SMTPResourceInitial
   } else {
@@ -65,7 +56,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
 
-  const handleConnectionTest = () => {
+  const handleConnectionTest = useCallback(() => {
     const data = getValues()
     const content = {
       host: data.host,
@@ -74,7 +65,7 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
       password: data.password,
     }
     onActionConfigElementTest(data, content, "smtp", setTestLoading)
-  }
+  }, [getValues])
 
   return (
     <form
@@ -88,39 +79,21 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
     >
       <div css={container}>
         <div css={divider} />
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.name")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={findResource?.resourceName ?? ""}
-            rules={{
-              validate: (value) => value != undefined && value.trim() != "",
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                colorScheme="techPurple"
-                placeholder={t("editor.action.resource.db.placeholder.name")}
-              />
-            )}
-            name="resourceName"
-          />
-        </div>
-        <div css={configItemTip}>
-          {t("editor.action.resource.restapi.tip.name")}
-        </div>
+        <ControlledElement
+          controlledType="input"
+          isRequired
+          title={t("editor.action.resource.db.label.name")}
+          control={control}
+          defaultValue={findResource?.resourceName ?? ""}
+          rules={[
+            {
+              validate,
+            },
+          ]}
+          placeholders={[t("editor.action.resource.db.placeholder.name")]}
+          name="resourceName"
+          tips={t("editor.action.resource.restapi.tip.name")}
+        />
         <Divider
           direction="horizontal"
           ml="24px"
@@ -132,104 +105,46 @@ export const SMTPConfigElement: FC<SMTPConfigElementProps> = (props) => {
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.general_option")}
         </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.hostname_port")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={content.host}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.hostname",
-                  )}
-                />
-              )}
-              name="host"
-            />
-            <Controller
-              defaultValue={content.port}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <InputNumber
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  w="142px"
-                  ml="8px"
-                  placeholder="25"
-                />
-              )}
-              name="port"
-            />
-          </div>
-        </div>
-        <div css={configItemTip}>{t("editor.action.panel.smtp.tips.port")}</div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.username_password")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={content.username}
-              control={control}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.username",
-                  )}
-                />
-              )}
-              name="username"
-            />
-            <Controller
-              control={control}
-              defaultValue={content.password}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Password
-                  colorScheme="techPurple"
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  ml="8px"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.password",
-                  )}
-                />
-              )}
-              name="password"
-            />
-          </div>
-        </div>
+        <ControlledElement
+          title={t("editor.action.resource.db.label.hostname_port")}
+          defaultValue={[content.host, content.port]}
+          name={["host", "port"]}
+          controlledType={["input", "number"]}
+          control={control}
+          isRequired
+          rules={[
+            {
+              validate,
+            },
+            {
+              required: true,
+            },
+          ]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.hostname"),
+            "25",
+          ]}
+          styles={[
+            {
+              flex: 4,
+            },
+            {
+              flex: 1,
+            },
+          ]}
+          tips={t("editor.action.panel.smtp.tips.port")}
+        />
+        <ControlledElement
+          title={t("editor.action.resource.db.label.username_password")}
+          defaultValue={[content.username, content.password]}
+          name={["username", "password"]}
+          controlledType={["input", "password"]}
+          control={control}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.username"),
+            t("editor.action.resource.db.placeholder.password"),
+          ]}
+        />
         {isCloudVersion && (
           <>
             <div css={configItemTip}>

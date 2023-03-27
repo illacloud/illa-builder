@@ -19,7 +19,6 @@ import {
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
   AuthenticationOptions,
-  SnowflakeAuthenticationSelectType,
   SnowflakeAuthenticationType,
   SnowflakeBasicAuthenticationType,
   SnowflakeKeyAuthenticationType,
@@ -27,13 +26,14 @@ import {
   snowflakeResourceInitial,
 } from "@/redux/resource/snowflakeResource"
 import { RootState } from "@/store"
+import { validate } from "@/utils/form"
 
 type SnowflakeType = SnowflakeResource<SnowflakeAuthenticationType>
 
 export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
   const { t } = useTranslation()
-  const { control, handleSubmit, getValues, formState } = useForm({
+  const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
@@ -43,11 +43,10 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
 
   const content = (resource?.content ??
     snowflakeResourceInitial) as SnowflakeType
+  const authenticationType = watch("authentication", content.authentication)
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [authenticationType, setAuthenticationType] =
-    useState<SnowflakeAuthenticationSelectType>(content.authentication)
 
   const handleConnectionTest = useCallback(() => {
     const data = getValues()
@@ -97,7 +96,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              validate: (value) => value != undefined && value.trim() != "",
+              validate,
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}
@@ -123,7 +122,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={content.accountName}
           rules={[
             {
-              required: true,
+              validate,
             },
           ]}
           placeholders={[
@@ -139,7 +138,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={content.warehouse}
           rules={[
             {
-              required: true,
+              validate,
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.warehouse")]}
@@ -153,7 +152,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={content.database}
           rules={[
             {
-              required: true,
+              validate,
             },
           ]}
           placeholders={[
@@ -191,9 +190,6 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
           name="authentication"
           defaultValue={content.authentication}
           options={AuthenticationOptions}
-          onValueChange={(value) =>
-            setAuthenticationType(value as SnowflakeAuthenticationSelectType)
-          }
         />
         {authenticationType === "basic" ? (
           <BasicAuthConfig
