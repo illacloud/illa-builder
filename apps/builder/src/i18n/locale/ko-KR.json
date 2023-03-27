@@ -1386,6 +1386,10 @@
           "minimum": "최저한의",
           "maximum": "최고",
           "hide_output": "출력 숨기기"
+        },
+        "range_slider": {
+          "start_value": "시작 값",
+          "end_value": "종료 값"
         }
       },
       "setter_tooltip": {
