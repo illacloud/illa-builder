@@ -39,6 +39,7 @@ import { setupComponentsListeners } from "@/redux/currentApp/editor/components/c
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
+import { guideActions } from "@/redux/guide/guideSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"

@@ -1,8 +1,7 @@
 import { Global } from "@emotion/react"
-import { FC, RefObject, useEffect, useMemo } from "react"
+import { FC, RefObject, useEffect, useState } from "react"
 import { createPortal } from "react-dom"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { GuideDraggablePopover } from "@/components/Guide/GuideDraggablePopover"
 import { GuidePoint } from "@/components/Guide/GuidePoint"
 import { GuideSuccess } from "@/components/Guide/GuideSuccess"
@@ -17,33 +16,40 @@ export interface GuideProps {
 
 export const Guide: FC<GuideProps> = (props) => {
   const { canvasRef } = props
-  const dispatch = useDispatch()
-  const { t } = useTranslation()
   const currentStep = useSelector(getCurrentStep)
+  const [firstStepElement, setFirstStepElement] = useState<Element | null>()
+
   const { selector } = GUIDE_STEP[currentStep]
   const postgresqlQuery = document.querySelector(".postgresql1-query")
   const currentElement = selector && document.querySelector(selector)
 
+  let timeout: number
+
   useEffect(() => {
-    if (currentStep === 1) {
-      createPortal(<div>234234</div>, document.body)
+    // get first step element
+    if (currentStep === 0 && selector) {
+      timeout = window.setTimeout(() => {
+        const element = document.querySelector(selector)
+        setFirstStepElement(element)
+      }, 10)
     }
-  }, [currentStep])
+    return () => {
+      window.clearTimeout(timeout)
+    }
+  }, [currentStep, selector])
 
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />
-      {/* success */}
-      {currentStep === 11 && <GuideSuccess />}
       {canvasRef.current &&
         createPortal(
           <WidgetStepMask currentStep={currentStep} />,
           canvasRef.current,
         )}
       {/* widget tip */}
-      {currentStep === 0 && currentElement && (
+      {currentStep === 0 && firstStepElement && (
         <>
-          {createPortal(<GuidePoint />, currentElement)}
+          {createPortal(<GuidePoint />, firstStepElement)}
           <GuideDraggablePopover currentStep={0} position="bottom" />
         </>
       )}
@@ -51,15 +57,17 @@ export const Guide: FC<GuideProps> = (props) => {
       {(currentStep === 3 || currentStep === 4) && postgresqlQuery && (
         <GuideDraggablePopover currentStep={currentStep} position="top" />
       )}
-      {currentStep === 11 && currentElement && (
-        <GuideDraggablePopover currentStep={currentStep} position="right" />
-      )}
       {(currentStep === 3 ||
         currentStep === 4 ||
         currentStep === 5 ||
         currentStep === 7) &&
         currentElement &&
         createPortal(<GuidePoint css={shiftStyle} />, currentElement)}
+      {/* success tip */}
+      {currentStep === 11 && <GuideSuccess />}
+      {currentStep === 11 && currentElement && (
+        <GuideDraggablePopover currentStep={currentStep} position="right" />
+      )}
     </>
   )
 }
