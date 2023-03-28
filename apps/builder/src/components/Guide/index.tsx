@@ -1,8 +1,7 @@
 import { Global } from "@emotion/react"
-import { FC, RefObject, useEffect, useMemo } from "react"
+import { FC, RefObject, useEffect } from "react"
 import { createPortal } from "react-dom"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { GuideDraggablePopover } from "@/components/Guide/GuideDraggablePopover"
 import { GuidePoint } from "@/components/Guide/GuidePoint"
 import { GuideSuccess } from "@/components/Guide/GuideSuccess"
@@ -17,8 +16,6 @@ export interface GuideProps {
 
 export const Guide: FC<GuideProps> = (props) => {
   const { canvasRef } = props
-  const dispatch = useDispatch()
-  const { t } = useTranslation()
   const currentStep = useSelector(getCurrentStep)
   const { selector } = GUIDE_STEP[currentStep]
   const postgresqlQuery = document.querySelector(".postgresql1-query")
@@ -33,8 +30,6 @@ export const Guide: FC<GuideProps> = (props) => {
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />
-      {/* success */}
-      {currentStep === 11 && <GuideSuccess />}
       {canvasRef.current &&
         createPortal(
           <WidgetStepMask currentStep={currentStep} />,
@@ -51,15 +46,17 @@ export const Guide: FC<GuideProps> = (props) => {
       {(currentStep === 3 || currentStep === 4) && postgresqlQuery && (
         <GuideDraggablePopover currentStep={currentStep} position="top" />
       )}
-      {currentStep === 11 && currentElement && (
-        <GuideDraggablePopover currentStep={currentStep} position="right" />
-      )}
       {(currentStep === 3 ||
         currentStep === 4 ||
         currentStep === 5 ||
         currentStep === 7) &&
         currentElement &&
         createPortal(<GuidePoint css={shiftStyle} />, currentElement)}
+      {/* success tip */}
+      {currentStep === 11 && <GuideSuccess />}
+      {currentStep === 11 && currentElement && (
+        <GuideDraggablePopover currentStep={currentStep} position="right" />
+      )}
     </>
   )
 }
