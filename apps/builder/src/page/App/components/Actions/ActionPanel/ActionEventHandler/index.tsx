@@ -28,7 +28,6 @@ export const ActionEventHandler: FC = () => {
         const updateSlice: Record<string, unknown> = { [attrPath]: value }
 
         const result = getNewWidgetPropsByUpdateSlice(
-          action?.displayName ?? "",
           updateSlice,
           newActionContent,
         ) as ActionContent

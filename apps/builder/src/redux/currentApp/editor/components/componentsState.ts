@@ -221,3 +221,12 @@ export interface UpdateComponentNodeHeightPayload {
   height: number
   oldHeight: number
 }
+
+export interface SetGlobalStateReducer {
+  key: string
+  value: string
+}
+
+export interface DeleteGlobalStateReducer {
+  key: string
+}

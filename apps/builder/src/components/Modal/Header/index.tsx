@@ -1,21 +1,19 @@
 import { FC } from "react"
 import { CloseIcon, DragPointIcon } from "@illa-design/react"
-import { HeaderProps } from "@/components/MovableModal/Header/interface"
+import { HeaderProps } from "@/components/Modal/Header/interface"
 import {
+  applyTitleStyle,
   closeButtonHotSpotStyle,
-  draggableAndTitleStyle,
+  dragIconStyle,
   headerWrapperStyle,
-  titleStyle,
-} from "@/components/MovableModal/Header/style"
+} from "@/components/Modal/Header/style"
 
 export const ModalHeader: FC<HeaderProps> = (props) => {
-  const { title, onClose } = props
+  const { title, canMove, onClose } = props
   return (
     <div css={headerWrapperStyle}>
-      <div css={draggableAndTitleStyle}>
-        <DragPointIcon />
-        <span css={titleStyle}>{title}</span>
-      </div>
+      {canMove && <DragPointIcon css={dragIconStyle} />}
+      <span css={applyTitleStyle(canMove)}>{title}</span>
       <div css={closeButtonHotSpotStyle} onClick={onClose}>
         <CloseIcon />
       </div>

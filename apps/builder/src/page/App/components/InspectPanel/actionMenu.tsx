@@ -36,7 +36,6 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
       },
     }
     newComponentNode.props = getNewWidgetPropsByUpdateSlice(
-      newComponentNode.displayName as string,
       newComponentNode.props || {},
       newComponentNode.props || {},
     )

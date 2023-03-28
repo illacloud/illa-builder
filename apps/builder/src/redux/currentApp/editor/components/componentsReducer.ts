@@ -18,6 +18,7 @@ import {
   ComponentsState,
   CopyComponentPayload,
   DeleteComponentNodePayload,
+  DeleteGlobalStateReducer,
   DeletePageNodePayload,
   DeleteSectionViewPayload,
   DeleteTargetPageSectionPayload,
@@ -25,6 +26,7 @@ import {
   RootComponentNode,
   RootComponentNodeProps,
   SectionViewShape,
+  SetGlobalStateReducer,
   SortComponentNodeChildrenPayload,
   UpdateComponentDisplayNamePayload,
   UpdateComponentNodeHeightPayload,
@@ -64,7 +66,6 @@ export const addComponentReducer: CaseReducer<
       if (parentNode != null) {
         if (dealNode.props) {
           dealNode.props = getNewWidgetPropsByUpdateSlice(
-            dealNode.displayName,
             dealNode.props ?? {},
             dealNode.props ?? {},
           )
@@ -123,7 +124,6 @@ export const copyComponentReducer: CaseReducer<
       if (parentNode != null) {
         if (newComponentNode.props) {
           newComponentNode.props = getNewWidgetPropsByUpdateSlice(
-            newComponentNode.displayName,
             newComponentNode.props ?? {},
             newComponentNode.props ?? {},
           )
@@ -181,14 +181,9 @@ export const deletePageNodeReducer: CaseReducer<
     return
   }
   const rootNode = state
-  const allDisplayNames = [displayName]
 
   const searchNode = searchDsl(rootNode, displayName)
   if (!searchNode) return
-  const searchNodeChildNodes = searchNode.childrenNode
-  searchNodeChildNodes?.forEach((node) => {
-    allDisplayNames.push(node.displayName)
-  })
   const parentNode = rootNode as RootComponentNode
   const childrenNodes = parentNode.childrenNode
   const currentIndex = childrenNodes.findIndex((value) => {
@@ -239,11 +234,7 @@ export const updateComponentPropsReducer: CaseReducer<
   if (!node) return
   const widgetProps = node.props || {}
   const clonedWidgetProps = cloneDeep(widgetProps)
-  node.props = getNewWidgetPropsByUpdateSlice(
-    displayName,
-    updateSlice,
-    clonedWidgetProps,
-  )
+  node.props = getNewWidgetPropsByUpdateSlice(updateSlice, clonedWidgetProps)
 }
 
 export const updateMultiComponentPropsReducer: CaseReducer<
@@ -258,11 +249,7 @@ export const updateMultiComponentPropsReducer: CaseReducer<
     if (!node) return
     const widgetProps = node.props || {}
     const clonedWidgetProps = cloneDeep(widgetProps)
-    node.props = getNewWidgetPropsByUpdateSlice(
-      displayName,
-      updateSlice,
-      clonedWidgetProps,
-    )
+    node.props = getNewWidgetPropsByUpdateSlice(updateSlice, clonedWidgetProps)
   })
 }
 
@@ -727,4 +714,34 @@ export const batchUpdateComponentStatusInfoReducer: CaseReducer<
     const { displayName, statusInfo } = updateSlice
     updateComponentStatusInfoHelper(state, displayName, statusInfo)
   })
+}
+
+export const setGlobalStateReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<SetGlobalStateReducer>
+> = (state, action) => {
+  if (!state) return
+  const { value, key } = action.payload
+  const originGlobalData = state.props?.globalData || {}
+  const newProps = {
+    ...state.props,
+    globalData: {
+      ...originGlobalData,
+      [key]: value,
+    },
+  }
+  state.props = getNewWidgetPropsByUpdateSlice(
+    newProps ?? {},
+    state.props ?? {},
+  )
+}
+
+export const deleteGlobalStateByKeyReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeleteGlobalStateReducer>
+> = (state, action) => {
+  if (!state || !state.props) return
+  const { key } = action.payload
+  const originGlobalData = state.props?.globalData || {}
+  if (Object.hasOwn(originGlobalData, key)) delete originGlobalData[key]
 }

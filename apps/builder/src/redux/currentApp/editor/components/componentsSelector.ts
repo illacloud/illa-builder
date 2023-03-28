@@ -573,3 +573,7 @@ export const getShowWidgetNameParentMap = createSelector(
     return editorScaleSquareNodeRelationMap
   },
 )
+
+export const getOriginalGlobalData = createSelector([getCanvas], (rootNode) => {
+  return (rootNode?.props?.globalData ?? {}) as Record<string, string>
+})

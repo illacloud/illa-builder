@@ -1,13 +1,16 @@
 import { css } from "@emotion/react"
 
-export const applyModalFooterWrapperStyle = (hasChildren: boolean) => css`
+export const applyModalFooterWrapperStyle = (
+  hasChildren: boolean,
+  footerH?: number,
+) => css`
   width: 100%;
   display: flex;
   align-items: center;
   position: relative;
   cursor: auto;
   padding: 0 16px;
-  height: ${hasChildren ? "64px" : "16px"};
+  height: ${footerH ? `${footerH}px` : hasChildren ? "64px" : "16px"};
   flex: none;
 `
 

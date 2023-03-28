@@ -992,15 +992,15 @@
       "globals_title": "グローバル変数",
       "pages_title": "ページリスト",
       "global_data_modal": {
-        "title": "Edit global data",
+        "title": "グローバル データの編集",
         "variable_name": {
-          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "tooltips": "変数の名前。 {{name}} 経由でこのアプリの初期値を使用します",
           "label": "変数名",
           "message": "名前は文字または「_」で始まる必要があり、文字と数字のみを含めることができます"
         },
         "initial_value": {
-          "label": "Initial value",
-          "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
+          "label": "초기 값",
+          "tooltips": "オブジェクトまたはプリミティブ値をサポートします。 例: { カウント: 0 }",
           "placeholder": "{ count: 0 }"
         }
       }
@@ -1388,7 +1388,8 @@
         },
         "action_name": "アクション名",
         "variable": {
-          "path_of_value": "値のパス"
+          "path_of_value": "値のパス",
+          "variable": "グローバル データ"
         },
         "code": {
           "write_code": "コードを書く"
@@ -1671,7 +1672,9 @@
           "fail": "失敗しました",
           "download_failed": "ダウンロード失敗"
         }
-      }
+      },
+      "setGlobalData": "グローバル データ",
+      "setLocalStorage": "ローカルストレージ"
     },
     "tutorial": {
       "panel": {

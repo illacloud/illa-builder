@@ -4,7 +4,6 @@ import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/A
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
-import { batchUpdateComponentLayoutInfoWhenReflowReducer } from "@/redux/currentApp/editor/components/componentsReducer"
 import {
   getCanvas,
   searchDsl,
@@ -324,6 +323,8 @@ export function setupExecutionListeners(
         componentsActions.deleteSectionViewReducer,
         componentsActions.updateSectionViewPropsReducer,
         componentsActions.addModalComponentReducer,
+        componentsActions.setGlobalStateReducer,
+        componentsActions.deleteGlobalStateByKeyReducer,
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
@@ -337,6 +338,10 @@ export function setupExecutionListeners(
         executionActions.updateExecutionByDisplayNameReducer,
         executionActions.updateExecutionByMultiDisplayNameReducer,
         executionActions.updateModalDisplayReducer,
+        executionActions.setGlobalStateInExecutionReducer,
+        executionActions.setInGlobalStateInExecutionReducer,
+        executionActions.setLocalStorageInExecutionReducer,
+        executionActions.clearLocalStorageInExecutionReducer,
       ),
       effect: handleStartExecutionOnCanvas,
     }),
