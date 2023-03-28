@@ -355,7 +355,8 @@
           "run": "运行",
           "save": "保存",
           "save_and_run": "保存 & 运行",
-          "save_fail": "保存失败"
+          "save_fail": "保存失败",
+          "test_run": "测试运行"
         },
         "elastic": {
           "action_type": "Action Type",
