@@ -1713,15 +1713,15 @@
           "drag_input": "第 1 步：将输入组件拖到此处",
           "drag_button": "第 2 步：将按钮组件拖到此处",
           "drag_table": "第 3 步：将表格组件拖到此处",
-          "exit": "退出引导",
-          "do_it": "帮我完成该步骤",
+          "exit": "中止",
+          "do_it": "帮我完成",
           "drag_title": "将组件拖到画布中",
           "modify_action_title": "修改ACTION",
-          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。",
+          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "单击保存，然后单击运行",
           "display_data_title": "在表格中显示数据",
           "display_data_description_select": "选择画布中的表格",
-          "display_data_description_modify": "修改右侧面板上的数据源。 我们可以使用 {{postgre1.data}} 来获取数据。",
+          "display_data_description_modify": "修改右侧面板上的数据源。 我们可以使用 {{postgresql1.data}} 来获取数据。",
           "event_handler_title": "点击按钮触发动作",
           "event_handler_description_1": "选择画布里的按钮",
           "event_handler_description_2": "添加事件处理器",
@@ -2450,10 +2450,10 @@
           "take": "开始教程"
         },
         "exit_confirm": {
-          "title": "退出教程？",
+          "title": "中止教程？",
           "description": "下次您进入新手引导时，将重新播放引导步骤",
           "cancel": "取消",
-          "exit": "退出"
+          "exit": "中止"
         }
       }
     }
