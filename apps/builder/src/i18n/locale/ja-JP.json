@@ -355,7 +355,8 @@
           "run": "走る",
           "save": "保存",
           "save_and_run": "保存して実行",
-          "save_fail": "保存に失敗しました"
+          "save_fail": "保存に失敗しました",
+          "test_run": "テストの実行"
         },
         "elastic": {
           "action_type": "アクションタイプ",
