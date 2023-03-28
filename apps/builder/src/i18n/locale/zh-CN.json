@@ -1713,8 +1713,8 @@
           "drag_input": "第 1 步：将输入组件拖到此处",
           "drag_button": "第 2 步：将按钮组件拖到此处",
           "drag_table": "第 3 步：将表格组件拖到此处",
-          "exit": "退出引导",
-          "do_it": "帮我完成该步骤",
+          "exit": "中止",
+          "do_it": "帮我完成",
           "drag_title": "将组件拖到画布中",
           "modify_action_title": "修改ACTION",
           "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
@@ -2450,10 +2450,10 @@
           "take": "开始教程"
         },
         "exit_confirm": {
-          "title": "退出教程？",
+          "title": "中止教程？",
           "description": "下次您进入新手引导时，将重新播放引导步骤",
           "cancel": "取消",
-          "exit": "退出"
+          "exit": "中止"
         }
       }
     }
