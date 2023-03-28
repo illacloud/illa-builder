@@ -1713,8 +1713,8 @@
           "drag_input": "1단계: 입력 구성 요소를 여기로 드래그합니다.",
           "drag_button": "2단계: 버튼 구성요소를 여기로 드래그합니다.",
           "drag_table": "3단계: 표 구성요소를 여기로 드래그",
-          "exit": "종료 부팅",
-          "do_it": "이 단계를 도와주세요",
+          "exit": "종료",
+          "do_it": "자동 완성",
           "drag_title": "구성 요소를 캔버스로 드래그",
           "modify_action_title": "ACTION수정",
           "modify_action_description_modify": "ACTION을 수정하여 데이터를 가져옵니다. {{input1.value}}를 사용하여 입력 구성 요소에 입력된 데이터를 가져올 수 있습니다. \\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
@@ -2453,7 +2453,7 @@
           "title": "튜토리얼 건너 뛰기？",
           "description": "다음에 온보딩 앱에 들어가면 안내 단계가 재생됩니다.",
           "cancel": "취소",
-          "exit": "종료 부팅"
+          "exit": "종료"
         }
       }
     }
