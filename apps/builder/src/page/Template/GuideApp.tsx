@@ -3,9 +3,9 @@ import { motion, useAnimation } from "framer-motion"
 import { FC, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
+import { TriggerProvider } from "@illa-design/react"
 import { Guide } from "@/components/Guide"
-import { useInitBuilderApp } from "@/hooks/useInitApp"
+import { useInitGuideApp } from "@/hooks/useInitGuideApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
@@ -85,7 +85,7 @@ const GuideApp: FC = () => {
   const showDebugger = useSelector(isOpenDebugger)
 
   // init app
-  const { loadingState } = useInitBuilderApp("template-edit")
+  const { loadingState } = useInitGuideApp()
 
   const isOpen = useSelector(getGuideStatus)
   useEffect(() => {
