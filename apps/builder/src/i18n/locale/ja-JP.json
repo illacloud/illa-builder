@@ -999,8 +999,8 @@
           "message": "名前は文字または「_」で始まる必要があり、文字と数字のみを含めることができます"
         },
         "initial_value": {
-          "label": "Initial value",
-          "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
+          "label": "초기 값",
+          "tooltips": "オブジェクトまたはプリミティブ値をサポートします。 例: { カウント: 0 }",
           "placeholder": "{ count: 0 }"
         }
       }
@@ -1388,7 +1388,8 @@
         },
         "action_name": "アクション名",
         "variable": {
-          "path_of_value": "値のパス"
+          "path_of_value": "値のパス",
+          "variable": "グローバル データ"
         },
         "code": {
           "write_code": "コードを書く"
@@ -1671,7 +1672,9 @@
           "fail": "失敗しました",
           "download_failed": "ダウンロード失敗"
         }
-      }
+      },
+      "setGlobalData": "グローバル データ",
+      "setLocalStorage": "ローカルストレージ"
     },
     "tutorial": {
       "panel": {
