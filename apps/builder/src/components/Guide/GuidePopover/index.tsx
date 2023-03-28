@@ -1,10 +1,10 @@
 import { FC, HTMLAttributes } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { Button, useModal } from "@illa-design/react"
+import { useModal } from "@illa-design/react"
 import {
   actionStyle,
-  applyVisibleStyle,
+  applyHiddenStyle,
   buttonStyle,
   decsStyle,
   guidePopoverStyle,
@@ -15,12 +15,14 @@ import { guideActions } from "@/redux/guide/guideSlice"
 export interface GuidePopoverProps extends HTMLAttributes<HTMLDivElement> {
   title: string
   description: string
+  hideExit?: boolean
   isLastStep?: boolean
   onClickDoIt?: () => void
 }
 
 export const GuidePopover: FC<GuidePopoverProps> = (props) => {
-  const { title, description, isLastStep, onClickDoIt, ...rest } = props
+  const { title, description, hideExit, isLastStep, onClickDoIt, ...rest } =
+    props
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -48,7 +50,7 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
       <div css={decsStyle}>{t(description)}</div>
       <div css={actionStyle}>
         <span
-          css={[buttonStyle, applyVisibleStyle(!isLastStep)]}
+          css={[buttonStyle, applyHiddenStyle(isLastStep || hideExit)]}
           onClick={handleExitGuide}
         >
           {t("editor.tutorial.panel.onboarding_app.exit")}
@@ -61,6 +63,8 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
         >
           {isLastStep
             ? t("editor.tutorial.panel.onboarding_app.congratulations_button")
+            : hideExit
+            ? t("editor.tutorial.panel.onboarding_app.test_it_button")
             : t("editor.tutorial.panel.onboarding_app.do_it")}
         </span>
       </div>

@@ -19,7 +19,7 @@ export const Guide: FC<GuideProps> = (props) => {
   const currentStep = useSelector(getCurrentStep)
   const [firstStepElement, setFirstStepElement] = useState<Element | null>()
 
-  const { selector } = GUIDE_STEP[currentStep]
+  const { selector, doItForMe } = GUIDE_STEP[currentStep]
   const postgresqlQuery = document.querySelector(".postgresql1-query")
   const currentElement = selector && document.querySelector(selector)
 
@@ -57,6 +57,9 @@ export const Guide: FC<GuideProps> = (props) => {
       {(currentStep === 3 || currentStep === 4) && postgresqlQuery && (
         <GuideDraggablePopover currentStep={currentStep} position="top" />
       )}
+      {currentStep === 11 && currentElement && (
+        <GuideDraggablePopover currentStep={currentStep} position="right" />
+      )}
       {(currentStep === 3 ||
         currentStep === 4 ||
         currentStep === 5 ||
@@ -64,8 +67,8 @@ export const Guide: FC<GuideProps> = (props) => {
         currentElement &&
         createPortal(<GuidePoint css={shiftStyle} />, currentElement)}
       {/* success tip */}
-      {currentStep === 11 && <GuideSuccess />}
-      {currentStep === 11 && currentElement && (
+      {currentStep === 12 && <GuideSuccess />}
+      {currentStep === 12 && currentElement && (
         <GuideDraggablePopover currentStep={currentStep} position="right" />
       )}
     </>

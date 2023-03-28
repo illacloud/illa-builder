@@ -156,7 +156,8 @@ export const GUIDE_STEP = [
   {
     step: 6,
     titleKey: "editor.tutorial.panel.onboarding_app.event_handler_title",
-    descKey: "editor.tutorial.panel.onboarding_app.event_handler_description_2",
+    descKey:
+      "editor.tutorial.panel.onboarding_app.event_handler_description_all",
     selector: "button-interaction-event-handler",
     doItForMe: () => {
       // whole event
@@ -197,6 +198,17 @@ export const GUIDE_STEP = [
     step: 10,
     titleKey: "editor.tutorial.panel.onboarding_app.test_it_title",
     descKey: "editor.tutorial.panel.onboarding_app.test_it_description",
+    selector: `[data-onboarding-comp="componentsManager"]`,
+    hideExit: true,
+    doItForMe: () => {
+      store.dispatch(guideActions.updateCurrentStepReducer(12))
+    },
+  },
+  {
+    // success
+    step: 10,
+    titleKey: "editor.tutorial.panel.onboarding_app.congratulations_title",
+    descKey: "editor.tutorial.panel.onboarding_app.congratulations_description",
     selector: `[data-onboarding-comp="componentsManager"]`,
     doItForMe: () => {
       store.dispatch(guideActions.updateGuideStatusReducer(false))

@@ -37,6 +37,10 @@ export const decsStyle = css`
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export const actionStyle = css`
@@ -57,9 +61,9 @@ export const triggerStyle = css`
   }
 `
 
-export const applyVisibleStyle = (visible?: boolean) => {
+export const applyHiddenStyle = (hide?: boolean) => {
   return css`
-    visibility: ${visible ? "visible" : "hidden"};
+    visibility: ${hide ? "hidden" : "visible"};
   `
 }
 
