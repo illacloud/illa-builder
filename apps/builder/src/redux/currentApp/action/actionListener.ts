@@ -28,7 +28,7 @@ async function handleRemoveActionItem(
 }
 
 async function handleUpdateActionItem(
-  action: ReturnType<typeof actionActions.updateActionItemReducer>,
+  action: AnyAction,
   listenerApi: AppListenerEffectAPI,
 ) {
   if (
