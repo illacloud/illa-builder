@@ -45,6 +45,7 @@ export const ActionSpaceTree: FC = () => {
           title={data.displayName}
           data={omit(data, hiddenFields)}
           handleSelect={handleActionSelect}
+          level={0}
           isSelected={selectedAction?.displayName === data.displayName}
         />
       ))}

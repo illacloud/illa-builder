@@ -5,9 +5,8 @@ export interface PanelBarProps {
   size?: "default" | "small"
   children?: ReactNode
   isOpened?: boolean
-  isAddIcon?: boolean
-  addAction?: () => void
   saveToggleState?: (value: boolean) => void
   onIllaFocus?: () => void
   destroyChildrenWhenClose?: boolean
+  customIcon?: ReactNode
 }

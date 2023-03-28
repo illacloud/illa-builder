@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { ModalBodyProps } from "@/components/MovableModal/Body/interface"
-import { applyModalBodyWrapperStyle } from "@/components/MovableModal/Body/style"
-import { stopDragAndDrop } from "@/components/MovableModal/utils/stopDragAndDrop"
+import { ModalBodyProps } from "@/components/Modal/Body/interface"
+import { applyModalBodyWrapperStyle } from "@/components/Modal/Body/style"
+import { stopDragAndDrop } from "@/components/Modal/utils/stopDragAndDrop"
 
 export const ModalBody: FC<ModalBodyProps> = (props) => {
   const { children, hasFooterChildren } = props

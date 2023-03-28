@@ -20,7 +20,7 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getExecutionResult,
-  getIndependenciesMap,
+  getInDependenciesMap,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -485,7 +485,7 @@ const handleUpdateDisplayNameEffect = (
 ) => {
   const { displayName, newDisplayName } = action.payload
   const rootState = listenerApi.getState()
-  const independenciesMap = getIndependenciesMap(rootState)
+  const independenciesMap = getInDependenciesMap(rootState)
   const seeds = getRawTree(rootState)
 
   const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(

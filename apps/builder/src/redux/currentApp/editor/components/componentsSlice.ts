@@ -11,11 +11,13 @@ import {
   batchUpdateMultiComponentSlicePropsReducer,
   copyComponentReducer,
   deleteComponentNodeReducer,
+  deleteGlobalStateByKeyReducer,
   deletePageNodeReducer,
   deleteSectionViewReducer,
   deleteTargetPageSectionReducer,
   resetComponentPropsReducer,
   resetComponentsReducer,
+  setGlobalStateReducer,
   sortComponentNodeChildrenReducer,
   updateComponentContainerReducer,
   updateComponentDisplayNameReducer,
@@ -69,6 +71,8 @@ const componentsSlice = createSlice({
     updateComponentStatusInfoReducer,
     batchUpdateComponentStatusInfoReducer,
     batchUpdateComponentLayoutInfoReducer,
+    setGlobalStateReducer,
+    deleteGlobalStateByKeyReducer,
   },
 })
 

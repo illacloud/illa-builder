@@ -135,7 +135,7 @@ export const panelBarItemContainerAnimationVariants: Variants = {
   },
 }
 
-export const addIconHotpotStyle = css`
+export const customIconHotpotStyle = css`
   font-size: 12px;
   width: 16px;
   height: 16px;

@@ -1,5 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { applyChange } from "deep-diff"
+import { has } from "lodash"
 import {
   DependenciesState,
   ErrorShape,
@@ -10,6 +11,8 @@ import {
   setExecutionResultPayload,
 } from "@/redux/currentApp/executionTree/executionState"
 import { isWidget } from "@/utils/executionTreeHelper/utils"
+import { CUSTOM_STORAGE_PREFIX } from "../../../utils/storage"
+import { isObject } from "../../../utils/typeHelper"
 
 export const setDependenciesReducer: CaseReducer<
   ExecutionState,
@@ -174,4 +177,66 @@ export const batchUpdateWidgetLayoutInfoReducer: CaseReducer<
       ...layoutInfo,
     }
   })
+}
+
+export const setGlobalStateInExecutionReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<{
+    key: string
+    value: unknown
+  }>
+> = (state, action) => {
+  const result = state.result
+  if (!result) return
+  const globalState = result.globalData
+  if (!globalState) return
+  globalState[action.payload.key] = action.payload.value
+}
+
+export const setInGlobalStateInExecutionReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<{
+    key: string
+    path: string
+    value: unknown
+  }>
+> = (state, action) => {
+  const result = state.result
+  if (!result) return
+  const globalState = result.globalData
+  if (!isObject(globalState)) return
+  const targetState = globalState[action.payload.key]
+  if (
+    (isObject(targetState) || Array.isArray(targetState)) &&
+    has(targetState, action.payload.path)
+  ) {
+    targetState[action.payload.path] = action.payload.value
+  }
+}
+
+export const clearLocalStorageInExecutionReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction
+> = (state, action) => {
+  state.result.localStorage = {}
+}
+
+export const setLocalStorageInExecutionReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<{
+    key: string
+    value: unknown
+  }>
+> = (state, action) => {
+  const { key, value } = action.payload
+  const localStorage = state.result.localStorage ?? {}
+  const newLocalStorage = {
+    ...localStorage,
+    [key]: value,
+  }
+  state.result.localStorage = newLocalStorage
+  window.localStorage.setItem(
+    CUSTOM_STORAGE_PREFIX,
+    JSON.stringify(newLocalStorage),
+  )
 }

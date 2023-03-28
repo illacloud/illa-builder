@@ -1,5 +1,5 @@
 import { CodeEditorProps } from "@/components/CodeEditor/interface"
-import { MovableModalProps } from "@/components/MovableModal/interface"
+import { MovableModalProps } from "@/components/Modal/interface"
 
 export interface ModalBodyContent {
   description?: string

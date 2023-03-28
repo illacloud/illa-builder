@@ -57,6 +57,7 @@ export const ComponentSpaceTree: FC = () => {
           key={data.displayName}
           title={data.displayName}
           data={omit(data, hiddenFields)}
+          level={0}
           handleSelect={handleGeneralComponentSelect}
           isSelected={selectedComponents?.includes(data.displayName)}
         />
@@ -75,6 +76,7 @@ export const ComponentSpaceTree: FC = () => {
           key={data.displayName}
           title={data.displayName}
           data={omit(data, hiddenFields)}
+          level={0}
           handleSelect={handleModalComponentSelect}
           isSelected={selectedComponents?.includes(data.displayName)}
         />
