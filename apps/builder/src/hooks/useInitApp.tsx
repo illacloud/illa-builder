@@ -143,6 +143,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     if (isOnline) {
       new Promise<CurrentAppResp>(async (resolve, reject) => {
         setErrorState(false)
+        setLoadingState(true)
         if (mode === "production") {
           try {
             const response = await initPublicApp(controller)
@@ -155,6 +156,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
         } else {
           await initApp(controller, resolve, reject)
         }
+        setLoadingState(false)
       }).then((value) => {
         const autoRunAction = value.actions.filter((action) => {
           return canAutoRunActionWhenInit(action)
