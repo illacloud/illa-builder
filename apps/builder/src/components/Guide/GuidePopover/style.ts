@@ -43,6 +43,11 @@ export const decsStyle = css`
   overflow: hidden;
 `
 
+export const linkStyle = css`
+  color: ${getColor("white", "01")};
+  text-decoration: underline;
+`
+
 export const actionStyle = css`
   display: flex;
   justify-content: space-between;

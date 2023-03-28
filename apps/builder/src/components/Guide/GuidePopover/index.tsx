@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes } from "react"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useModal } from "@illa-design/react"
 import {
@@ -8,9 +8,12 @@ import {
   buttonStyle,
   decsStyle,
   guidePopoverStyle,
+  linkStyle,
   titleStyle,
 } from "@/components/Guide/GuidePopover/style"
+import { TextLink } from "@/page/User/components/TextLink"
 import { guideActions } from "@/redux/guide/guideSlice"
+import { openDiscord } from "@/utils/navigate"
 
 export interface GuidePopoverProps extends HTMLAttributes<HTMLDivElement> {
   title: string
@@ -47,7 +50,13 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
   return (
     <div css={guidePopoverStyle} {...rest}>
       <div css={titleStyle}>{t(title)}</div>
-      <div css={decsStyle}>{t(description)}</div>
+      <div css={decsStyle}>
+        <Trans
+          i18nKey={description}
+          t={t}
+          components={[<TextLink css={linkStyle} onClick={openDiscord} />]}
+        />
+      </div>
       <div css={actionStyle}>
         <span
           css={[buttonStyle, applyHiddenStyle(isLastStep || hideExit)]}
