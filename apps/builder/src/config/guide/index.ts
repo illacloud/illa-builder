@@ -92,6 +92,8 @@ export const initGuideApp = async (): Promise<CurrentAppResp> => {
         return {
           ...actionData,
           resourceId,
+          // [TODO] remove actionId when test run. @xiaoyu @karminski
+          actionId: "ILAfx4p1C7d0",
         } as ActionItem<ActionContent>
       }),
     )

@@ -15,7 +15,6 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
-import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -131,7 +130,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
 
   useEffect(() => {
     const controller = new AbortController()
-    console.log(isOnline, "isOnline")
     if (isOnline) {
       new Promise<CurrentAppResp>(async (resolve, reject) => {
         setErrorState(false)
