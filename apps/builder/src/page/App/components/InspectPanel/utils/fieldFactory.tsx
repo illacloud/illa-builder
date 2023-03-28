@@ -47,7 +47,7 @@ export const renderGuideModePanelSetter = (
   if (selector === id) {
     if (hideTrigger) {
       return (
-        <div style={{ position: "relative" }}>
+        <div key={`${id}-${displayName}`} style={{ position: "relative" }}>
           <GuidePoint />
           {renderPanelSetter(config, displayName, isInList, parentAttrName)}
         </div>
@@ -56,6 +56,7 @@ export const renderGuideModePanelSetter = (
     return (
       <Trigger
         _css={triggerStyle}
+        key={`${id}-${displayName}`}
         popupVisible={true}
         trigger="hover"
         content={

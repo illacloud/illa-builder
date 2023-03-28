@@ -105,7 +105,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
       >
         <Comp
           {...props}
-          className={`${displayName}-${_finalAttrName}`}
           attrName={_finalAttrName}
           isSetterSingleRow={isSetterSingleRowWrapper}
           value={finalValue}
