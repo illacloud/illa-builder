@@ -1,5 +1,5 @@
 import { Global } from "@emotion/react"
-import { FC, RefObject, useEffect, useState } from "react"
+import { FC, RefObject, useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { useSelector } from "react-redux"
 import { GuideDraggablePopover } from "@/components/Guide/GuideDraggablePopover"
@@ -23,18 +23,18 @@ export const Guide: FC<GuideProps> = (props) => {
   const postgresqlQuery = document.querySelector(".postgresql1-query")
   const currentElement = selector && document.querySelector(selector)
 
-  let timeout: number
+  const timeout = useRef<number>()
 
   useEffect(() => {
     // get first step element
     if (currentStep === 0 && selector) {
-      timeout = window.setTimeout(() => {
+      timeout.current = window.setTimeout(() => {
         const element = document.querySelector(selector)
         setFirstStepElement(element)
       }, 10)
     }
     return () => {
-      window.clearTimeout(timeout)
+      window.clearTimeout(timeout.current)
     }
   }, [currentStep, selector])
 

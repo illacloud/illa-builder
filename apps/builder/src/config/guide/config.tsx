@@ -10,12 +10,6 @@ import { guideActions } from "@/redux/guide/guideSlice"
 import store from "@/store"
 import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
 
-const enum GUIDE_SELECT {
-  "INPUT_WIDGET",
-  "BUTTON_WIDGET",
-  "TABLE_WIDGET",
-}
-
 export const SELECT_WIDGET_ITEM = {
   INPUT_WIDGET: {
     highlightIcon: InputHighlightIcon,
@@ -108,7 +102,6 @@ export const GUIDE_STEP = [
         ".postgresql1-run",
       ) as HTMLButtonElement
       element?.click()
-      store.dispatch(guideActions.updateNextStepReducer())
     },
   },
   {
