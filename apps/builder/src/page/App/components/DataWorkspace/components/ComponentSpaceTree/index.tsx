@@ -60,6 +60,7 @@ export const ComponentSpaceTree: FC = () => {
           level={0}
           handleSelect={handleGeneralComponentSelect}
           isSelected={selectedComponents?.includes(data.displayName)}
+          parentKey={data.displayName}
         />
       )
     })
@@ -79,6 +80,7 @@ export const ComponentSpaceTree: FC = () => {
           level={0}
           handleSelect={handleModalComponentSelect}
           isSelected={selectedComponents?.includes(data.displayName)}
+          parentKey={data.displayName}
         />
       )
     })

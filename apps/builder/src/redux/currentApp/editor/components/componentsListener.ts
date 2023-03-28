@@ -505,6 +505,33 @@ const handleUpdateDisplayNameEffect = (
   )
 }
 
+const handleUpdateGlobalDataDisplayNameEffect = (
+  action: ReturnType<typeof componentsActions.setGlobalStateReducer>,
+  listenerApi: AppListenerEffectAPI,
+) => {
+  const { key, oldKey } = action.payload
+  if (!oldKey) return
+  const rootState = listenerApi.getState()
+  const independenciesMap = getInDependenciesMap(rootState)
+  const seeds = getRawTree(rootState)
+  const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
+    independenciesMap,
+    seeds,
+    oldKey,
+    key,
+    "globalDataKey",
+  )
+
+  listenerApi.dispatch(
+    componentsActions.batchUpdateMultiComponentSlicePropsReducer(
+      updateWidgetSlice,
+    ),
+  )
+  listenerApi.dispatch(
+    actionActions.batchUpdateMultiActionSlicePropsReducer(updateActionSlice),
+  )
+}
+
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -546,6 +573,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateComponentDisplayNameReducer,
       effect: handleUpdateDisplayNameEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.setGlobalStateReducer,
+      effect: handleUpdateGlobalDataDisplayNameEffect,
     }),
   ]
 

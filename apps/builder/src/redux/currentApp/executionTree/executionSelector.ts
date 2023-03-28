@@ -250,11 +250,10 @@ export const getGlobalInfoExecutionResult = createSelector(
   [
     getCurrentUser,
     getBuilderInfo,
-    getGlobalDataExecutionResult,
     getURLParamsExecutionResult,
     getLocalStorageExecutionResult,
   ],
-  (currentUserInfo, builderInfo, globalData, urlParams, localStorage) => {
+  (currentUserInfo, builderInfo, urlParams, localStorage) => {
     const globalInfo: Record<string, any>[] = [
       {
         ...currentUserInfo,
@@ -263,10 +262,6 @@ export const getGlobalInfoExecutionResult = createSelector(
       {
         ...builderInfo,
         displayName: "builderInfo",
-      },
-      {
-        ...globalData,
-        displayName: "globalData",
       },
       {
         ...urlParams,

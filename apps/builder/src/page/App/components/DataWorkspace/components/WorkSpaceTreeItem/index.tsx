@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion"
 import { FC, MouseEvent, memo, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon } from "@illa-design/react"
-import { ReactComponent as OpenWindowIcon } from "@/assets/public/openWindow.svg"
 import { panelBarItemContainerAnimationVariants } from "@/components/PanelBar/style"
 import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -10,18 +9,19 @@ import { WorkSpaceTreeNode } from "./WorkSpaceTreeNode"
 import { WorkSpaceTreeItemProps } from "./interface"
 import {
   applyExpandIconStyle,
-  applyItemContainerStyle,
   applyJsonContentStyle,
-  editIconHotSpotStyle,
-  itemNameDescStyle,
-  itemNameStyle,
+  applyObjectOrArrayContainerStyle,
+  applyTitleAndDescContainerStyle,
+  objectAndArrayDescStyle,
+  objectAndArrayTitleStyle,
 } from "./style"
 
 export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
   (props: WorkSpaceTreeItemProps) => {
-    const { title, data, isSelected, canEdit, level, handleSelect } = props
+    const { title, data, isSelected, level, handleSelect, parentKey } = props
     const expandedKeys = useSelector(getExpandedKeys)
-    const isExpanded = expandedKeys.includes(title)
+    const uniqueKey = parentKey === title ? parentKey : `${parentKey}/${title}`
+    const isExpanded = expandedKeys.includes(uniqueKey)
     const dispatch = useDispatch()
     const keyArr = Object.keys(data).filter((item) => !item.startsWith("$"))
 
@@ -33,38 +33,37 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
           value={data[name]}
           itemKey={title + name}
           level={level}
-          canEdit={canEdit}
+          parentKey={uniqueKey}
         />
       ))
-    }, [keyArr, data, title, level, canEdit])
+    }, [keyArr, data, title, level, uniqueKey])
 
     return (
       <>
         <div
-          css={applyItemContainerStyle(isSelected, level)}
+          css={applyObjectOrArrayContainerStyle(!!isSelected, level)}
           onClick={(e: MouseEvent<HTMLDivElement>) => {
             handleSelect?.([title], e)
             if (isExpanded) {
-              dispatch(configActions.removeExpandedKey(title))
+              dispatch(configActions.removeExpandedKey(uniqueKey))
             } else {
-              dispatch(configActions.setExpandedKey(expandedKeys.concat(title)))
+              dispatch(
+                configActions.setExpandedKey(expandedKeys.concat(uniqueKey)),
+              )
             }
           }}
         >
-          <span css={applyExpandIconStyle(isExpanded, level)}>
+          <span css={applyExpandIconStyle(isExpanded)}>
             <CaretRightIcon />
           </span>
-          <label css={itemNameStyle}>{title}&nbsp;</label>
-          <label css={itemNameDescStyle}>
-            {`{}`}&nbsp;{keyArr.length}
-            {keyArr.length > 1 ? "keys" : "key"}
-          </label>
-
-          {canEdit && level === 1 && (
-            <span css={editIconHotSpotStyle}>
-              <OpenWindowIcon />
-            </span>
-          )}
+          <div css={applyTitleAndDescContainerStyle}>
+            <label css={objectAndArrayTitleStyle}>{title}&nbsp;</label>
+            <label css={objectAndArrayDescStyle}>
+              {`{}`}
+              {keyArr.length}
+              {keyArr.length > 1 ? "keys" : "key"}
+            </label>
+          </div>
         </div>
         <AnimatePresence>
           {isExpanded && (

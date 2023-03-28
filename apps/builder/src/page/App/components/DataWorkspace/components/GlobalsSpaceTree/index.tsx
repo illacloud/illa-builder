@@ -6,14 +6,19 @@ import { PanelBar } from "@/components/PanelBar"
 import { customIconHotpotStyle } from "@/components/PanelBar/style"
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
 import { hiddenFields } from "@/page/App/components/DataWorkspace/constant"
-import { getGlobalInfoExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getGlobalDataExecutionResult,
+  getGlobalInfoExecutionResult,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
+import { GlobalStateTreeNode } from "../WorkSpaceTreeItem/globalStateTreeNode"
 import { CreateGlobalStateModal } from "./createGlobalStateModal"
 
 export const GlobalsSpaceTree: FC = () => {
   const { t } = useTranslation()
 
   const globalInfoList = useSelector(getGlobalInfoExecutionResult)
+  const globalStateList = useSelector(getGlobalDataExecutionResult)
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -33,6 +38,7 @@ export const GlobalsSpaceTree: FC = () => {
           position="right"
           zIndex={10}
           showArrow={false}
+          clickOutsideToClose
           content={
             <CreateGlobalStateModal
               onClose={() => {
@@ -42,6 +48,9 @@ export const GlobalsSpaceTree: FC = () => {
             />
           }
           popupVisible={isOpen}
+          onVisibleChange={(visible) => {
+            setIsOpen(visible)
+          }}
         >
           <div
             css={customIconHotpotStyle}
@@ -62,9 +71,15 @@ export const GlobalsSpaceTree: FC = () => {
           title={data.displayName}
           data={omit(data, hiddenFields)}
           level={0}
-          canEdit={data.displayName === "globalData"}
+          parentKey={data.displayName}
         />
       ))}
+      <GlobalStateTreeNode
+        title="globalData"
+        level={0}
+        data={globalStateList}
+        parentKey="globalData"
+      />
     </PanelBar>
   )
 }

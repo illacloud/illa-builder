@@ -18,7 +18,7 @@ import {
   ComponentsState,
   CopyComponentPayload,
   DeleteComponentNodePayload,
-  DeleteGlobalStateReducer,
+  DeleteGlobalStatePayload,
   DeletePageNodePayload,
   DeleteSectionViewPayload,
   DeleteTargetPageSectionPayload,
@@ -26,7 +26,7 @@ import {
   RootComponentNode,
   RootComponentNodeProps,
   SectionViewShape,
-  SetGlobalStateReducer,
+  SetGlobalStatePayload,
   SortComponentNodeChildrenPayload,
   UpdateComponentDisplayNamePayload,
   UpdateComponentNodeHeightPayload,
@@ -718,11 +718,14 @@ export const batchUpdateComponentStatusInfoReducer: CaseReducer<
 
 export const setGlobalStateReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<SetGlobalStateReducer>
+  PayloadAction<SetGlobalStatePayload>
 > = (state, action) => {
   if (!state) return
-  const { value, key } = action.payload
+  const { value, key, oldKey } = action.payload
   const originGlobalData = state.props?.globalData || {}
+  if (oldKey && originGlobalData[oldKey]) {
+    delete originGlobalData[oldKey]
+  }
   const newProps = {
     ...state.props,
     globalData: {
@@ -738,7 +741,7 @@ export const setGlobalStateReducer: CaseReducer<
 
 export const deleteGlobalStateByKeyReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<DeleteGlobalStateReducer>
+  PayloadAction<DeleteGlobalStatePayload>
 > = (state, action) => {
   if (!state || !state.props) return
   const { key } = action.payload
