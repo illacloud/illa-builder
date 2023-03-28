@@ -1,13 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion"
-import { FC, MouseEvent, memo, useCallback, useState } from "react"
-import { PlusIcon, UpIcon } from "@illa-design/react"
+import { FC, MouseEvent, memo, useCallback, useRef, useState } from "react"
+import { UpIcon } from "@illa-design/react"
 import { PanelBarProps } from "./interface"
 import {
-  addIconHotpotStyle,
   applyPanelBarHeaderStyle,
   applyPanelBarOpenedIconStyle,
   applyPanelBarTitleStyle,
-  panelBarItemAnimation,
+  panelBarItemContainerAnimationVariants,
   panelBarItemContentStyle,
 } from "./style"
 
@@ -16,54 +15,73 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
     title,
     size = "default",
     children,
+    customIcon,
+    destroyChildrenWhenClose = false,
     isOpened = true,
     saveToggleState,
     onIllaFocus,
-    isAddIcon = false,
-    addAction,
   } = props
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  const handleToggle = useCallback(() => {
-    saveToggleState?.(!isOpenedState)
-    setIsOpenedState(!isOpenedState)
-  }, [isOpenedState, saveToggleState])
-
-  const handleClickAddIcon = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
-    addAction?.()
-  }
+  const handleToggle = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement
+      if (containerRef.current?.contains(target)) {
+        saveToggleState?.(!isOpenedState)
+        setIsOpenedState(!isOpenedState)
+      }
+    },
+    [isOpenedState, saveToggleState],
+  )
 
   return (
     <>
-      <div css={applyPanelBarHeaderStyle(size)} onClick={handleToggle}>
+      <div
+        css={applyPanelBarHeaderStyle(size)}
+        onClick={handleToggle}
+        ref={containerRef}
+      >
         <span css={applyPanelBarTitleStyle(size)}>{title}</span>
         <span>
-          {isAddIcon ? (
-            <div css={addIconHotpotStyle} onClick={handleClickAddIcon}>
-              <PlusIcon />
-            </div>
+          {customIcon ? (
+            customIcon
           ) : (
             <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState, size)} />
           )}
         </span>
       </div>
-      <AnimatePresence initial={false}>
-        <motion.div
-          css={panelBarItemContentStyle}
-          role="region"
-          variants={panelBarItemAnimation}
-          transition={{
-            default: { ease: "easeInOut" },
-          }}
-          animate={isOpenedState ? "enter" : "exit"}
-          exit="exit"
-          initial={false}
-          onClick={onIllaFocus}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
+
+      {destroyChildrenWhenClose ? (
+        <AnimatePresence initial={false}>
+          {isOpenedState && (
+            <motion.div
+              css={panelBarItemContentStyle}
+              variants={panelBarItemContainerAnimationVariants}
+              animate={isOpenedState ? "enter" : "exit"}
+              transition={{ duration: 0.2 }}
+              initial="exit"
+              exit="exit"
+              onClick={onIllaFocus}
+            >
+              {children}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      ) : (
+        <AnimatePresence>
+          <motion.div
+            css={panelBarItemContentStyle}
+            variants={panelBarItemContainerAnimationVariants}
+            animate={isOpenedState ? "enter" : "exit"}
+            transition={{ duration: 0.2 }}
+            exit="exit"
+            onClick={onIllaFocus}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      )}
     </>
   )
 })

@@ -56,6 +56,73 @@ export const transformEvents = (
       enabled,
     }
   }
+  if (actionType === "setGlobalState") {
+    const {
+      stateDisplayName,
+      enabled,
+      globalStateMethod,
+      globalStateValue,
+      globalStateKeyPath,
+    } = event
+    switch (globalStateMethod) {
+      case "setIn": {
+        const params = {
+          key: stateDisplayName,
+          path: globalStateKeyPath,
+          value: globalStateValue,
+        }
+
+        return {
+          script: () => {
+            store.dispatch(
+              executionActions.setInGlobalStateInExecutionReducer(params),
+            )
+          },
+          enabled,
+        }
+      }
+      case "setValue": {
+        const params = { key: stateDisplayName, value: globalStateValue }
+
+        return {
+          script: () => {
+            store.dispatch(
+              executionActions.setGlobalStateInExecutionReducer(params),
+            )
+          },
+          enabled,
+        }
+      }
+    }
+  }
+  if (actionType === "setLocalStorage") {
+    const { enabled, localStorageMethod } = event
+    switch (localStorageMethod) {
+      case "clear": {
+        return {
+          script: () => {
+            store.dispatch(
+              executionActions.clearLocalStorageInExecutionReducer(),
+            )
+          },
+          enabled,
+        }
+      }
+      case "setValue": {
+        const { localStorageKey, localStorageValue } = event
+        const params = { key: localStorageKey, value: localStorageValue }
+
+        return {
+          script: () => {
+            store.dispatch(
+              executionActions.setLocalStorageInExecutionReducer(params),
+            )
+          },
+          enabled,
+        }
+      }
+    }
+  }
 
   if (actionType === "copyToClipboard") {
     const { copiedValue, enabled } = event

@@ -40,6 +40,7 @@ import { TabsContainerSelectSetter } from "@/page/App/components/PanelSetters/Ta
 import { TabsDefaultKeySetter } from "@/page/App/components/PanelSetters/TabsSetter/defaultTabKeySetter"
 import { EditableInputWithMeasureSetter } from "./InputSetter/editableInputSetterWithMeasure"
 import { EventTargetViewSelect } from "./SelectSetter/eventBodyViewSelect"
+import { EventtargetStateSelect } from "./SelectSetter/eventTargetStateSelect"
 import { EventTargetPageSelect } from "./SelectSetter/pageSelect"
 
 const SetterTypeMapSetter = {
@@ -86,6 +87,7 @@ const SetterTypeMapSetter = {
   DATA_SOURCE_SELECT_SETTER: DataSourceSetter,
   HEIGHT_MODE_SELECT: HeightModeSelect,
   SHADOW_SELECT_SETTER: ShadowSelect,
+  EVENT_TARGET_STATE_SELECT_SETTER: EventtargetStateSelect,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

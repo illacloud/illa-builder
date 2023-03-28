@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from "framer-motion"
 import { FC, MouseEvent, memo, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon } from "@illa-design/react"
+import { ReactComponent as OpenWindowIcon } from "@/assets/public/openWindow.svg"
+import { panelBarItemContainerAnimationVariants } from "@/components/PanelBar/style"
 import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { WorkSpaceTreeNode } from "./WorkSpaceTreeNode"
@@ -10,13 +12,14 @@ import {
   applyExpandIconStyle,
   applyItemContainerStyle,
   applyJsonContentStyle,
+  editIconHotSpotStyle,
   itemNameDescStyle,
   itemNameStyle,
 } from "./style"
 
 export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
   (props: WorkSpaceTreeItemProps) => {
-    const { title, data, isSelected, handleSelect } = props
+    const { title, data, isSelected, canEdit, level, handleSelect } = props
     const expandedKeys = useSelector(getExpandedKeys)
     const isExpanded = expandedKeys.includes(title)
     const dispatch = useDispatch()
@@ -29,21 +32,17 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
           name={name}
           value={data[name]}
           itemKey={title + name}
-          level={0}
+          level={level}
+          canEdit={canEdit}
         />
       ))
-    }, [data, keyArr, title])
+    }, [keyArr, data, title, level, canEdit])
 
     return (
       <>
         <div
-          css={applyItemContainerStyle(isSelected, 0)}
+          css={applyItemContainerStyle(isSelected, level)}
           onClick={(e: MouseEvent<HTMLDivElement>) => {
-            // maybe need to later
-            // if ((isMAC() && e.metaKey) || (!isMAC() && e.ctrlKey)) {
-            //   handleSelect?.([title], e)
-            //   return
-            // }
             handleSelect?.([title], e)
             if (isExpanded) {
               dispatch(configActions.removeExpandedKey(title))
@@ -52,7 +51,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
             }
           }}
         >
-          <span css={applyExpandIconStyle(isExpanded, 0)}>
+          <span css={applyExpandIconStyle(isExpanded, level)}>
             <CaretRightIcon />
           </span>
           <label css={itemNameStyle}>{title}&nbsp;</label>
@@ -60,16 +59,21 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
             {`{}`}&nbsp;{keyArr.length}
             {keyArr.length > 1 ? "keys" : "key"}
           </label>
+
+          {canEdit && level === 1 && (
+            <span css={editIconHotSpotStyle}>
+              <OpenWindowIcon />
+            </span>
+          )}
         </div>
         <AnimatePresence>
           {isExpanded && (
             <motion.div
               css={applyJsonContentStyle(isSelected)}
-              role="region"
-              animate={{ height: "auto", opacity: 1 }}
-              initial={{ height: 0, opacity: 0 }}
-              exit={{ height: 0, opacity: 0 }}
+              variants={panelBarItemContainerAnimationVariants}
+              animate={isExpanded ? "enter" : "exit"}
               transition={{ duration: 0.2 }}
+              exit="exit"
             >
               {tree}
             </motion.div>

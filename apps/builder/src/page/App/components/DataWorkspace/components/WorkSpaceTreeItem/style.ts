@@ -1,8 +1,7 @@
 import { SerializedStyles, css } from "@emotion/react"
 // import "@fontsource/fira-code"
 import chroma from "chroma-js"
-import { Variants } from "framer-motion"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const itemNameStyle: SerializedStyles = css`
   font-weight: 600;
@@ -32,7 +31,7 @@ export function applyExpandIconStyle(
     cursor: pointer;
     position: absolute;
     left: ${16 + 12 * level}px;
-    top: 8px;
+    top: 6px;
     transform-origin: center;
     transform: rotate(${rotate}deg);
     transition: transform 200ms;
@@ -49,11 +48,13 @@ export function applyItemContainerStyle(
       `
     : css``
   return css`
-    font-size: 12px;
+    font-size: 13px;
     min-height: 24px;
-    line-height: 22px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-family: "Fira Code", monospace;
     position: relative;
-    padding: 1px 16px;
+    padding-right: 16px;
     padding-left: ${28 + 12 * level}px;
     user-select: none;
     ${colorStyle}
@@ -62,15 +63,13 @@ export function applyItemContainerStyle(
 
 export function applyJsonContentStyle(isSelected?: boolean): SerializedStyles {
   return css`
-    ${isSelected
-      ? css`
-          background-color: ${chroma(
-            globalColor(`--${illaPrefix}-techPurple-07`),
-          )
-            .alpha(0.5)
-            .hex()};
-        `
-      : ""}
+    font-family: "Fira Code", monospace;
+    background-color: ${isSelected
+      ? chroma(globalColor(`--${illaPrefix}-techPurple-07`))
+          .alpha(0.5)
+          .hex()
+      : ""};
+    height: 0;
   `
 }
 export const jsonNameStyle: SerializedStyles = css`
@@ -127,3 +126,16 @@ export function applyJsonValueColorStyle(type: any): SerializedStyles {
       `
   }
 }
+
+export const editIconHotSpotStyle = css`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  margin-left: 4px;
+  position: relative;
+  color: ${getColor("grayBlue", "04")};
+`

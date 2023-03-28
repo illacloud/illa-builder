@@ -992,15 +992,15 @@
       "globals_title": "全局变量 ",
       "pages_title": "页面列表",
       "global_data_modal": {
-        "title": "Edit global data",
+        "title": "编辑全局变量",
         "variable_name": {
-          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "tooltips": "变量的名称。 通过{{name}}在此应用程序中使用初始值",
           "label": "变量名",
           "message": "名称必须以字母或“_”开头，且只能包含字母、数字"
         },
         "initial_value": {
-          "label": "Initial value",
-          "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
+          "label": "初期値",
+          "tooltips": "支持对象或原始值。 示例：{ 计数：0 }",
           "placeholder": "{ count: 0 }"
         }
       }
@@ -1388,7 +1388,8 @@
         },
         "action_name": "查询名称",
         "variable": {
-          "path_of_value": "值的路径"
+          "path_of_value": "值的路径",
+          "variable": "全局变量"
         },
         "code": {
           "write_code": "编写代码"
@@ -1671,7 +1672,9 @@
           "fail": "请求失败",
           "download_failed": "下载失败"
         }
-      }
+      },
+      "setGlobalData": "设置全局变量",
+      "setLocalStorage": "设置本地存储数据"
     },
     "tutorial": {
       "panel": {

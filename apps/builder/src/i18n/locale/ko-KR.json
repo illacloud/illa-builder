@@ -992,15 +992,15 @@
       "globals_title": "글로벌 변수",
       "pages_title": "페이지 목록",
       "global_data_modal": {
-        "title": "Edit global data",
+        "title": "전역 데이터 편집",
         "variable_name": {
-          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "tooltips": "변수의 이름입니다. {{name}}을(를) 통해 이 앱의 초기 값을 사용합니다.",
           "label": "변수 이름",
           "message": "이름은 문자 또는 \"_\"로 시작해야 하며 문자, 숫자만 포함할 수 있습니다."
         },
         "initial_value": {
-          "label": "Initial value",
-          "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
+          "label": "초기 값",
+          "tooltips": "개체 또는 기본 값을 지원합니다. 예: { 개수: 0 }",
           "placeholder": "{ count: 0 }"
         }
       }
@@ -1388,7 +1388,8 @@
         },
         "action_name": "액션 이름",
         "variable": {
-          "path_of_value": "값 경로"
+          "path_of_value": "값 경로",
+          "variable": "전역 데이터 편집"
         },
         "code": {
           "write_code": "코드 작성"
@@ -1671,7 +1672,9 @@
           "fail": "요청 실패",
           "download_failed": "불러 오는데 실패했습니다."
         }
-      }
+      },
+      "setGlobalData": "전역 데이터 편집",
+      "setLocalStorage": "로컬 저장소"
     },
     "tutorial": {
       "panel": {
