@@ -355,7 +355,8 @@
           "run": "운영",
           "save": "저장",
           "save_and_run": "저장 및 실행",
-          "save_fail": "저장 실패"
+          "save_fail": "저장 실패",
+          "test_run": "테스트 실행 중"
         },
         "elastic": {
           "action_type": "작업 유형",
