@@ -992,7 +992,7 @@
       "globals_title": "全局变量 ",
       "pages_title": "页面列表",
       "global_data_modal": {
-        "title": "Edit global data",
+        "title": "编辑全局变量",
         "variable_name": {
           "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
           "label": "变量名",
