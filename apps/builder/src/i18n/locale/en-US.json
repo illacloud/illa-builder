@@ -196,7 +196,8 @@
             "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
-            "sheet_id_to_copy": "Sheet ID to copy"
+            "sheet_id_to_copy": "Sheet ID to copy",
+            "sheet_to_copy_to": "Sheet to copy to"
           }
         },
         "placeholder": {
@@ -354,7 +355,8 @@
           "run": "Run",
           "save": "Save",
           "save_and_run": "Save & Run",
-          "save_fail": "Failed to save"
+          "save_fail": "Failed to save",
+          "test_run": "Test run"
         },
         "elastic": {
           "action_type": "Action Type",
@@ -992,8 +994,9 @@
       "global_data_modal": {
         "title": "Edit global data",
         "variable_name": {
-          "tooltips": "Use the initial value in this app via {{variableName}}",
-          "label": "Variable name"
+          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "label": "Name",
+          "message": "The name must start with a letter or \"_\", and can only contain letters, numbers"
         },
         "initial_value": {
           "label": "Initial value",
@@ -1468,6 +1471,22 @@
         "variable": {
           "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
           "the_target_value": "The target value"
+        },
+        "slider": {
+          "default_value": "The initial value of the slider. You can dynamically change the initial value by typing JavaScript in {{}}.",
+          "minimum": "The minimum value of the slider",
+          "maximum": "The maximum value of the slider",
+          "step_size": "The minimum change unit of the slide",
+          "label": "The name of the field displayed to the user",
+          "caption": "A caption used to describe the field in detail",
+          "hide_label": "Set whether to display the label",
+          "allow_wrapping": "Set whether to allow label wrapping",
+          "position": "Set the position of the label relative to the component",
+          "alignment": "Set the alignment of the label",
+          "width": "When the label is on the left side of the component, set the width ratio of the label",
+          "prefix_icon": "The icon displayed in front of the component",
+          "suffix_icon": "The icon displayed after the component",
+          "hide_output": "Set whether to hide the value when sliding"
         }
       },
       "setter_option": {
@@ -1694,15 +1713,15 @@
           "drag_input": "Step 1: Drag an input here",
           "drag_button": "Step 2: Drag a button here",
           "drag_table": "Step 3:  Drag a table here",
-          "exit": "Exit",
+          "exit": "Stop",
           "do_it": "Do it for me",
           "drag_title": "Drag components to the frame",
           "modify_action_title": "Modify the action",
-          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component.",
+          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component. \\nselect * \nfrom users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "Click Save and then click Run",
           "display_data_title": "Display data on table",
           "display_data_description_select": "Select the table on the frame",
-          "display_data_description_modify": "Modify the data source on the right panel. We can use {{postgre1.data}} to get the data.",
+          "display_data_description_modify": "Modify the data source on the right panel. We can use {{postgresql1.data}} to get the data.",
           "event_handler_title": "Click button to trigger action",
           "event_handler_description_1": "Select the button on the frame",
           "event_handler_description_2": "Add an event handler",
@@ -2431,10 +2450,10 @@
           "take": "Take a tutorial"
         },
         "exit_confirm": {
-          "title": "Exit the tutorial?",
+          "title": "Stop the tutorial?",
           "description": "The next time you enter the onboarding app, the guided steps will be replayed ",
           "cancel": "Cancel",
-          "exit": "Exit"
+          "exit": "Stop"
         }
       }
     }
