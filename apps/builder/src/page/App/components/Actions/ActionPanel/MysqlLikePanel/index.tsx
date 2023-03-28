@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, Select, useMessage } from "@illa-design/react"
@@ -20,17 +20,13 @@ import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { ResourcesData } from "@/redux/resource/resourceState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const MysqlLikePanel: FC = (props) => {
+export const MysqlLikePanel: FC = () => {
   const currentAction = useSelector(getCachedAction)!!
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
   const dispatch = useDispatch()
-
   const appInfo = useSelector(getAppInfo)
-
-  const teamInfo = useSelector(getCurrentTeamInfo)
 
   const { t } = useTranslation()
 
@@ -67,6 +63,21 @@ export const MysqlLikePanel: FC = (props) => {
   const [generateLoading, setGenerateLoading] = useState(false)
   const [currentSqlAction, setCurrentSqlAction] = useState(1)
   const message = useMessage()
+
+  const handleQueryChange = useCallback(
+    (value: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...currentAction,
+          content: {
+            ...mysqlContent,
+            query: value,
+          },
+        }),
+      )
+    },
+    [currentAction, dispatch, mysqlContent],
+  )
 
   return (
     <div css={mysqlContainerStyle}>
@@ -175,17 +186,7 @@ export const MysqlLikePanel: FC = (props) => {
             canShowCompleteInfo
             expectValueType={VALIDATION_TYPES.STRING}
             sqlScheme={sqlTable}
-            onChange={(value) => {
-              dispatch(
-                configActions.updateCachedAction({
-                  ...currentAction,
-                  content: {
-                    ...mysqlContent,
-                    query: value,
-                  },
-                }),
-              )
-            }}
+            onChange={handleQueryChange}
           />
         </div>
         <TransformerComponent fullWidth />

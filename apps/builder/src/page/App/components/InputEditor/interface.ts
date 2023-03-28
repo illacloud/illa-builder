@@ -6,7 +6,10 @@ import {
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface ControlledInputProps
-  extends Pick<ICodeMirrorOptions, "sqlScheme"> {
+  extends Pick<
+    ICodeMirrorOptions,
+    "sqlScheme" | "canShowCompleteInfo" | "codeType"
+  > {
   title?: string
   subtitle?: string
   handleSubtitleClick?: () => void
@@ -17,5 +20,6 @@ export interface ControlledInputProps
   tips?: string | ReactNode
   lineNumbers?: boolean
   mode?: CODE_LANG
+  popoverContent?: string
   style?: Record<string, string>
 }
