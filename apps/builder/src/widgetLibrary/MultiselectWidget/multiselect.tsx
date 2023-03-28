@@ -29,8 +29,6 @@ export const WrappedMultiselect: FC<WrappedMultiselectProps> = (props) => {
     colorScheme,
     handleUpdateMultiExecutionResult,
     handleOnChange,
-    handleOnBlur,
-    handleOnFocus,
     getValidateMessage,
     displayName,
   } = props
@@ -74,8 +72,6 @@ export const WrappedMultiselect: FC<WrappedMultiselectProps> = (props) => {
       showSearch={showSearch}
       colorScheme={colorScheme}
       onChange={onChangeSelectValue}
-      onFocus={handleOnFocus}
-      onBlur={handleOnBlur}
     />
   )
 }
@@ -145,7 +141,7 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
-      setValue: (value: any) => {
+      setSelectedValue: (value: any) => {
         handleUpdateDsl({ value })
       },
       clearValue: () => {

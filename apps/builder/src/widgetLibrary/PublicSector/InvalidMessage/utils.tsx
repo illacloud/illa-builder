@@ -47,7 +47,12 @@ export const handleCheckMaxSelectedItems = (
 }
 
 export const handleCheckIsRequired = (value: unknown, required?: boolean) => {
-  if (required && typeof value === "undefined") return true
+  if (
+    required &&
+    (typeof value === "undefined" ||
+      (Array.isArray(value) && value.length === 0))
+  )
+    return true
 }
 
 export const handleCheckMaxLength = (value: unknown, maxLength?: number) => {
@@ -220,6 +225,18 @@ export const handleValidateCheck = (
     return countErrorMessage
   }
 
+  if (handleCheckMinSelectedItems(options.value, options.atLeastNumber)) {
+    return i18n.t("editor.inspect.setter_message.choose_at_least", {
+      min: options.atLeastNumber,
+    })
+  }
+
+  if (handleCheckMaxSelectedItems(options.value, options.upToNumber)) {
+    return i18n.t("editor.inspect.setter_message.choose_up_to", {
+      max: options.upToNumber,
+    })
+  }
+
   if (handleCheckIsRequired(options.value, options.required)) {
     return i18n.t("editor.validate_message.required")
   }
@@ -233,18 +250,6 @@ export const handleValidateCheck = (
   if (handleCheckMinLength(options.value, options.minLength)) {
     return i18n.t("editor.validate_message.min_value", {
       number: options.minLength,
-    })
-  }
-
-  if (handleCheckMinSelectedItems(options.value, options.atLeastNumber)) {
-    return i18n.t("editor.inspect.setter_message.choose_at_least", {
-      min: options.atLeastNumber,
-    })
-  }
-
-  if (handleCheckMaxSelectedItems(options.value, options.upToNumber)) {
-    return i18n.t("editor.inspect.setter_message.choose_up_to", {
-      max: options.upToNumber,
     })
   }
 
