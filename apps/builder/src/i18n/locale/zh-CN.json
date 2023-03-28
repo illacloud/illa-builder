@@ -143,6 +143,9 @@
           },
           "oracle": {
             "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google Sheets"
           }
         },
         "validate": {
@@ -175,6 +178,25 @@
           "restapi": {
             "certificates": "证书",
             "verification_mode": "验证方式"
+          },
+          "gs": {
+            "private_key": "Private key",
+            "action_type": "Action type",
+            "spreadsheet": "Spreadsheet",
+            "sheet_name": "Sheet name",
+            "data_range": "Data range",
+            "limit": "Limit",
+            "offset": "Offset",
+            "a1_notation": "A1 notation",
+            "values_to_append": "Values to append",
+            "filter_by": "Filter by",
+            "update_value": "Update value",
+            "primary_key_column": "Primary key column",
+            "array_of_rows_to_upd": "Array of rows to update",
+            "filters_to_match_row": "Filters to match row",
+            "consider_queries_tha": "Consider queries that delete no rows as successes",
+            "title_of_spreadsheet": "Title of spreadsheet",
+            "sheet_id_to_copy": "Sheet ID to copy"
           }
         },
         "placeholder": {
@@ -200,6 +222,20 @@
           "oracle": {
             "username": "oracle",
             "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "column_name",
+              "value": "value"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "column_name",
+            "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
+            "filters_to_match_row": {
+              "key": "key",
+              "value": "value"
+            }
           }
         },
         "tips": {
@@ -215,6 +251,14 @@
             "verification_mode": {
               "skip_ca_certificate": "您的服务器可能容易受到攻击"
             }
+          },
+          "gs": {
+            "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。",
+            "leave_blank_to_selec": "留空以选择第一张表",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
+            "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它"
           }
         },
         "option": {
@@ -268,11 +312,37 @@
               "verify_ca_certificat": "验证服务端证书",
               "skip_ca_certificate_": "跳过服务端证书验证"
             }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Read data from a spreadsheet",
+              "append_data_to_a_spr": "Append data to a spreadsheet",
+              "update_a_spreadsheet": "Update a spreadsheet",
+              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
+              "delete_a_single_row_": "Delete a single row from a spreadsheet",
+              "create_a_spreadsheet": "Create a spreadsheet",
+              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "list_available_sprea": "List available spreadsheets",
+              "get_spreadsheet_info": "Get spreadsheet info"
+            },
+            "data_range": {
+              "use_a1_notation": "Use A1 notation",
+              "use_limit_and_offset": "Use limit and offset"
+            },
+            "filter_by": {
+              "use_a1_notation": "Use A1 notation",
+              "use_row_filters": "Use row filters"
+            }
           }
         },
         "default": {
           "appwrite": {
             "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Service Account"
           }
         }
       },
@@ -360,8 +430,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
-              "role_to_assume": "Use a <0>different role<0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
+              "role_to_assume": "Use a <0>different role</0> when accessing the API"
             }
           },
           "option": {
@@ -920,7 +990,16 @@
       "globals_title": "全局变量 ",
       "pages_title": "页面列表",
       "global_data_modal": {
-        "title": "Edit global data"
+        "title": "Edit global data",
+        "variable_name": {
+          "tooltips": "Use the initial value in this app via {{variableName}}",
+          "label": "变量名"
+        },
+        "initial_value": {
+          "label": "Initial value",
+          "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
+          "placeholder": "{ count: 0 }"
+        }
       }
     },
     "deploy": {
@@ -1083,7 +1162,7 @@
         "border": "描边",
         "color": "颜色",
         "icon": "图标",
-        "secondary_value": "SECONDARY VALUE"
+        "secondary_value": "次要值"
       },
       "setter_label": {
         "action": "动作",
@@ -1304,12 +1383,22 @@
           "file_name": "带扩展名的文件名",
           "file_type": "文件类型"
         },
-        "action_name": "Action name",
+        "action_name": "查询名称",
         "variable": {
-          "path_of_value": "Path of value"
+          "path_of_value": "值的路径"
         },
         "code": {
           "write_code": "编写代码"
+        },
+        "slider": {
+          "step_size": "步进值",
+          "minimum": "最小值",
+          "maximum": "最大值",
+          "hide_output": "隐藏输出数值"
+        },
+        "range_slider": {
+          "start_value": "起始值",
+          "end_value": "结束值"
         }
       },
       "setter_tooltip": {
@@ -1377,8 +1466,8 @@
           "file_data": "支持Base64编码数据、表格的原始数据或映射数据"
         },
         "variable": {
-          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
-          "the_target_value": "The target value"
+          "available_in_objects": "在对象和数组中可用。 属性在对象中的路径：{{objectName.attributeName}}。 数组中值的索引：{{1}}。 对象中的数组：{{objectName.attributeName.1}}",
+          "the_target_value": "目标值"
         }
       },
       "setter_option": {
@@ -1557,7 +1646,7 @@
         "showPrevious": "显示上一个可见图像"
       },
       "file_download": {
-        "download": "Download",
+        "download": "下载",
         "message": {
           "suc": "开始下载",
           "fail": "请求失败",
@@ -1595,10 +1684,10 @@
             "list": "使用列表组件显示和管理信息"
           },
           "modal": {
-            "title": "新建应用并部署",
+            "title": "复制并部署",
             "placeholder": "应用名称",
             "cancel": "取消",
-            "fork": "新建应用并部署"
+            "fork": "复制并部署"
           }
         },
         "onboarding_app": {
@@ -1625,7 +1714,8 @@
           "test_it_button": "下一步",
           "congratulations_title": "恭喜🎉",
           "congratulations_description": "您刚刚构建了您的第一个应用程序。 如果您在使用过程中有任何疑问，可以通过<0>Discord<0>联系我们",
-          "congratulations_button": "完成"
+          "congratulations_button": "完成",
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     }
@@ -2350,5 +2440,5 @@
     }
   },
   "oauth_redirect_title": "重定向",
-  "oauth_redirect_description": "正在重定向到<0>ILLA Cloud<0>"
+  "oauth_redirect_description": "正在重定向到<0>ILLA Cloud</0>"
 }
