@@ -355,7 +355,8 @@
           "run": "Run",
           "save": "Save",
           "save_and_run": "Save & Run",
-          "save_fail": "Failed to save"
+          "save_fail": "Failed to save",
+          "test_run": "Test run"
         },
         "elastic": {
           "action_type": "Action Type",
