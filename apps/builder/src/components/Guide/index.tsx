@@ -1,5 +1,5 @@
 import { Global } from "@emotion/react"
-import { FC, RefObject, useEffect } from "react"
+import { FC, RefObject, useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { useSelector } from "react-redux"
 import { GuideDraggablePopover } from "@/components/Guide/GuideDraggablePopover"
@@ -17,15 +17,26 @@ export interface GuideProps {
 export const Guide: FC<GuideProps> = (props) => {
   const { canvasRef } = props
   const currentStep = useSelector(getCurrentStep)
+  const [firstStepElement, setFirstStepElement] = useState<Element | null>()
+
   const { selector } = GUIDE_STEP[currentStep]
   const postgresqlQuery = document.querySelector(".postgresql1-query")
   const currentElement = selector && document.querySelector(selector)
 
+  let timeout: number
+
   useEffect(() => {
-    if (currentStep === 1) {
-      createPortal(<div>234234</div>, document.body)
+    // get first step element
+    if (currentStep === 0 && selector) {
+      timeout = window.setTimeout(() => {
+        const element = document.querySelector(selector)
+        setFirstStepElement(element)
+      }, 10)
     }
-  }, [currentStep])
+    return () => {
+      window.clearTimeout(timeout)
+    }
+  }, [currentStep, selector])
 
   return (
     <>
@@ -36,9 +47,9 @@ export const Guide: FC<GuideProps> = (props) => {
           canvasRef.current,
         )}
       {/* widget tip */}
-      {currentStep === 0 && currentElement && (
+      {currentStep === 0 && firstStepElement && (
         <>
-          {createPortal(<GuidePoint />, currentElement)}
+          {createPortal(<GuidePoint />, firstStepElement)}
           <GuideDraggablePopover currentStep={0} position="bottom" />
         </>
       )}
