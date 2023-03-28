@@ -196,7 +196,8 @@
             "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
-            "sheet_id_to_copy": "Sheet ID to copy"
+            "sheet_id_to_copy": "복사할 시트 ID",
+            "sheet_to_copy_to": "복사할 시트"
           }
         },
         "placeholder": {
@@ -321,7 +322,7 @@
               "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
               "delete_a_single_row_": "Delete a single row from a spreadsheet",
               "create_a_spreadsheet": "Create a spreadsheet",
-              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "copy_a_single_sheet_": "단일 시트를 다른 스프레드시트로 복사",
               "list_available_sprea": "List available spreadsheets",
               "get_spreadsheet_info": "Get spreadsheet info"
             },
@@ -354,7 +355,8 @@
           "run": "운영",
           "save": "저장",
           "save_and_run": "저장 및 실행",
-          "save_fail": "저장 실패"
+          "save_fail": "저장 실패",
+          "test_run": "테스트 실행 중"
         },
         "elastic": {
           "action_type": "작업 유형",
@@ -992,8 +994,9 @@
       "global_data_modal": {
         "title": "Edit global data",
         "variable_name": {
-          "tooltips": "Use the initial value in this app via {{variableName}}",
-          "label": "변수 이름"
+          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "label": "변수 이름",
+          "message": "이름은 문자 또는 \"_\"로 시작해야 하며 문자, 숫자만 포함할 수 있습니다."
         },
         "initial_value": {
           "label": "Initial value",
@@ -1468,6 +1471,22 @@
         "variable": {
           "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 객체의 속성 경로: {{objectName.attributeName}}. 배열에 있는 값의 인덱스: {{1}}. 개체의 배열: {{objectName.attributeName.1}}",
           "the_target_value": "목표값"
+        },
+        "slider": {
+          "default_value": "슬라이더의 초기 값입니다. {{}}에 JavaScript를 입력하여 초기 값을 동적으로 변경할 수 있습니다.",
+          "minimum": "슬라이더의 최소값",
+          "maximum": "슬라이더의 최대값",
+          "step_size": "슬라이드의 최소 변경 단위",
+          "label": "사용자에게 표시되는 필드의 이름",
+          "caption": "필드를 자세히 설명하는 데 사용되는 캡션",
+          "hide_label": "레이블 표시 여부 설정",
+          "allow_wrapping": "라벨 포장 허용 여부 설정",
+          "position": "구성 요소를 기준으로 레이블 위치 설정",
+          "alignment": "레이블 정렬 설정",
+          "width": "라벨이 구성 요소의 왼쪽에 있을 때 라벨의 너비 비율을 설정합니다.",
+          "prefix_icon": "구성 요소 앞에 표시되는 아이콘",
+          "suffix_icon": "구성 요소 뒤에 표시되는 아이콘",
+          "hide_output": "슬라이딩 시 값 숨기기 여부 설정"
         }
       },
       "setter_option": {

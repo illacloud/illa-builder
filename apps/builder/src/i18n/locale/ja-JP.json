@@ -196,7 +196,8 @@
             "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
-            "sheet_id_to_copy": "Sheet ID to copy"
+            "sheet_id_to_copy": "コピーするシートID",
+            "sheet_to_copy_to": "コピー先のシート"
           }
         },
         "placeholder": {
@@ -321,7 +322,7 @@
               "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
               "delete_a_single_row_": "Delete a single row from a spreadsheet",
               "create_a_spreadsheet": "Create a spreadsheet",
-              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "copy_a_single_sheet_": "1 つのシートを別のスプレッドシートにコピーする",
               "list_available_sprea": "List available spreadsheets",
               "get_spreadsheet_info": "Get spreadsheet info"
             },
@@ -354,7 +355,8 @@
           "run": "走る",
           "save": "保存",
           "save_and_run": "保存して実行",
-          "save_fail": "保存に失敗しました"
+          "save_fail": "保存に失敗しました",
+          "test_run": "テストの実行"
         },
         "elastic": {
           "action_type": "アクションタイプ",
@@ -992,8 +994,9 @@
       "global_data_modal": {
         "title": "Edit global data",
         "variable_name": {
-          "tooltips": "Use the initial value in this app via {{variableName}}",
-          "label": "変数名"
+          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "label": "変数名",
+          "message": "名前は文字または「_」で始まる必要があり、文字と数字のみを含めることができます"
         },
         "initial_value": {
           "label": "Initial value",
@@ -1468,6 +1471,22 @@
         "variable": {
           "available_in_objects": "オブジェクトと配列で利用できます。 オブジェクトの属性のパス: {{objectName.attributeName}}。 配列内の値のインデックス: {{1}}。 オブジェクトの配列: {{objectName.attributeName.1}}",
           "the_target_value": "目標値"
+        },
+        "slider": {
+          "default_value": "スライダーの初期値。 {{}} に JavaScript を入力すると、初期値を動的に変更できます。",
+          "minimum": "スライダーの最小値",
+          "maximum": "スライダーの最大値",
+          "step_size": "スライドの最小変化単位",
+          "label": "ユーザーに表示されるフィールドの名前",
+          "caption": "フィールドを詳細に説明するために使用されるキャプション",
+          "hide_label": "ラベルを表示するかどうかを設定します",
+          "allow_wrapping": "ラベルのラッピングを許可するかどうかを設定します",
+          "position": "コンポーネントに対するラベルの位置を設定します",
+          "alignment": "ラベルの配置を設定する",
+          "width": "ラベルがコンポーネントの左側にある場合、ラベルの幅の比率を設定します",
+          "prefix_icon": "コンポーネントの前に表示されるアイコン",
+          "suffix_icon": "コンポーネントの後に表示されるアイコン",
+          "hide_output": "スライド時に値を非表示にするかどうかを設定します"
         }
       },
       "setter_option": {

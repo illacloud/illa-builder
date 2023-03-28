@@ -196,7 +196,8 @@
             "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
-            "sheet_id_to_copy": "Sheet ID to copy"
+            "sheet_id_to_copy": "要复制的工作表ID",
+            "sheet_to_copy_to": "要复制到的工作表"
           }
         },
         "placeholder": {
@@ -321,7 +322,7 @@
               "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
               "delete_a_single_row_": "Delete a single row from a spreadsheet",
               "create_a_spreadsheet": "Create a spreadsheet",
-              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "copy_a_single_sheet_": "将单个工作表复制到另一个电子表格",
               "list_available_sprea": "List available spreadsheets",
               "get_spreadsheet_info": "Get spreadsheet info"
             },
@@ -354,7 +355,8 @@
           "run": "运行",
           "save": "保存",
           "save_and_run": "保存 & 运行",
-          "save_fail": "保存失败"
+          "save_fail": "保存失败",
+          "test_run": "测试运行"
         },
         "elastic": {
           "action_type": "Action Type",
@@ -992,8 +994,9 @@
       "global_data_modal": {
         "title": "Edit global data",
         "variable_name": {
-          "tooltips": "Use the initial value in this app via {{variableName}}",
-          "label": "变量名"
+          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "label": "变量名",
+          "message": "名称必须以字母或“_”开头，且只能包含字母、数字"
         },
         "initial_value": {
           "label": "Initial value",
@@ -1468,6 +1471,22 @@
         "variable": {
           "available_in_objects": "在对象和数组中可用。 属性在对象中的路径：{{objectName.attributeName}}。 数组中值的索引：{{1}}。 对象中的数组：{{objectName.attributeName.1}}",
           "the_target_value": "目标值"
+        },
+        "slider": {
+          "default_value": "滑块的初始值。 您可以通过在 {{}} 中键入 JavaScript 来动态更改初始值。",
+          "minimum": "滑块的最小值",
+          "maximum": "滑块的最大值",
+          "step_size": "滑块的最小变化单位",
+          "label": "显示给用户的字段名称",
+          "caption": "用于详细描述字段的标题",
+          "hide_label": "设置是否显示标签",
+          "allow_wrapping": "设置是否允许标签换行",
+          "position": "设置标签相对于组件的位置",
+          "alignment": "设置标签的对齐方式",
+          "width": "当标签在组件左侧时，设置标签的宽度比例",
+          "prefix_icon": "显示在组件前面的图标",
+          "suffix_icon": "组件后显示的图标",
+          "hide_output": "设置滑动时是否隐藏值"
         }
       },
       "setter_option": {
