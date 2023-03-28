@@ -11,6 +11,7 @@ import { getIsOnline } from "@/redux/config/configSelector"
 import { IllaMode } from "@/redux/config/configState"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
+import { guideActions } from "@/redux/guide/guideSlice"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -70,12 +71,14 @@ export const useInitGuideApp = (mode: IllaMode = "template-edit") => {
           })
         })
         .finally(() => {
+          dispatch(guideActions.updateGuideStatusReducer(true))
           setLoadingState(false)
         })
     }
 
     return () => {
       controller.abort()
+      dispatch(guideActions.updateGuideStatusReducer(false))
       dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
     }
   }, [appId, dispatch, isOnline, teamIdentifier, handleCurrentApp])

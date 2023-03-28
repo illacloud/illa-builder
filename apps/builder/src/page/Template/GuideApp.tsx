@@ -1,5 +1,4 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
-import { motion, useAnimation } from "framer-motion"
 import { FC, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -40,7 +39,6 @@ import { setupComponentsListeners } from "@/redux/currentApp/editor/components/c
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
-import { guideActions } from "@/redux/guide/guideSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
@@ -48,7 +46,6 @@ import { Shortcut } from "@/utils/shortcut"
 const GuideApp: FC = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const controls = useAnimation()
 
   const currentUser = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
@@ -86,14 +83,7 @@ const GuideApp: FC = () => {
 
   // init app
   const { loadingState } = useInitGuideApp()
-
   const isOpen = useSelector(getGuideStatus)
-  useEffect(() => {
-    dispatch(guideActions.updateGuideStatusReducer(true))
-    return () => {
-      dispatch(guideActions.updateGuideStatusReducer(false))
-    }
-  }, [])
 
   return (
     <div css={editorContainerStyle}>
