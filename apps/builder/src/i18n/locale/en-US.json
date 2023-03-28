@@ -1001,7 +1001,7 @@
         "initial_value": {
           "label": "Initial value",
           "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
-          "placeholder": "{ count: 0 }"
+          "placeholder": "{{ { count: 0 } }}"
         }
       }
     },
@@ -1388,7 +1388,8 @@
         },
         "action_name": "Action name",
         "variable": {
-          "path_of_value": "Path of value"
+          "path_of_value": "Path of value",
+          "variable": "Global data"
         },
         "code": {
           "write_code": "Write code"
@@ -1671,7 +1672,9 @@
           "fail": "Request failed",
           "download_failed": "Failed to download"
         }
-      }
+      },
+      "setGlobalData": "Set global data",
+      "setLocalStorage": "Set local storage"
     },
     "tutorial": {
       "panel": {
