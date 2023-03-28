@@ -21,7 +21,7 @@ export const bottomStyle = css`
 
 export const guidePopoverStyle = css`
   background-color: ${getColor("techPurple", "01")};
-  padding: 8px 4px 2px;
+  padding: 8px 4px;
   max-width: 264px;
 `
 
@@ -33,10 +33,19 @@ export const titleStyle = css`
 
 export const decsStyle = css`
   margin-top: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`
+
+export const linkStyle = css`
+  color: ${getColor("white", "01")};
+  text-decoration: underline;
 `
 
 export const actionStyle = css`
@@ -57,8 +66,17 @@ export const triggerStyle = css`
   }
 `
 
-export const applyVisibleStyle = (visible?: boolean) => {
+export const applyHiddenStyle = (hide?: boolean) => {
   return css`
-    visibility: ${visible ? "visible" : "hidden"};
+    visibility: ${hide ? "hidden" : "visible"};
   `
 }
+
+export const buttonStyle = css`
+  padding: 0 2px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  color: ${getColor("white", "01")};
+`

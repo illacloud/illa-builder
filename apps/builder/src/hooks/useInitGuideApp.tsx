@@ -12,6 +12,7 @@ import { IllaMode } from "@/redux/config/configState"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { guideActions } from "@/redux/guide/guideSlice"
+import { GuideInitialState } from "@/redux/guide/guideState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -78,7 +79,7 @@ export const useInitGuideApp = (mode: IllaMode = "template-edit") => {
 
     return () => {
       controller.abort()
-      dispatch(guideActions.updateGuideStatusReducer(false))
+      dispatch(guideActions.updateGuideInfoReducer(GuideInitialState))
       dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
     }
   }, [appId, dispatch, isOnline, teamIdentifier, handleCurrentApp])

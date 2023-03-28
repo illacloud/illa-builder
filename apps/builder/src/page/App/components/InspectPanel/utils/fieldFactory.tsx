@@ -43,7 +43,7 @@ export const renderGuideModePanelSetter = (
   const currentStepInfo = GUIDE_STEP[currentStep]
   const { hideTrigger, titleKey, descKey, selector, doItForMe } =
     currentStepInfo
-  // console.log(id, "id")
+
   if (selector === id) {
     if (hideTrigger) {
       return (

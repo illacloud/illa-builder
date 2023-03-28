@@ -1,6 +1,14 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { Guide } from "@/redux/guide/guideState"
 
+export const updateGuideInfoReducer: CaseReducer<
+  Guide,
+  PayloadAction<Guide>
+> = (state, action) => {
+  const { payload } = action
+  return payload
+}
+
 export const updateCurrentStepReducer: CaseReducer<
   Guide,
   PayloadAction<number>
