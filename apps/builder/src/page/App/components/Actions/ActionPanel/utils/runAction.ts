@@ -670,7 +670,7 @@ export const runAction = (
   )
 
   fetchActionResult(
-    action.config.public,
+    action.config?.public || false,
     resourceId || "",
     actionType,
     displayName,

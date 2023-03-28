@@ -21,6 +21,9 @@ export const GUIDE_COMPONENTS = Components as unknown as ComponentNode[]
 export const GUIDE_RESOURCES = Resources as Resource<ResourceContent>[]
 export const GUIDE_ACTIONS = Actions
 
+// [TODO] remove actionId when test run. @xiaoyu @karminski
+export const GUIDE_DEFAULT_ACTION_ID = "ILAfx4p1C7d0"
+
 export const GUIDE_DATA = data as unknown as CurrentAppResp
 
 const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
@@ -92,8 +95,7 @@ export const initGuideApp = async (): Promise<CurrentAppResp> => {
         return {
           ...actionData,
           resourceId,
-          // [TODO] remove actionId when test run. @xiaoyu @karminski
-          actionId: "ILAfx4p1C7d0",
+          actionId: GUIDE_DEFAULT_ACTION_ID,
         } as ActionItem<ActionContent>
       }),
     )
