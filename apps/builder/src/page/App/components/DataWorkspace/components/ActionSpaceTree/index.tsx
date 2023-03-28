@@ -47,6 +47,7 @@ export const ActionSpaceTree: FC = () => {
           handleSelect={handleActionSelect}
           level={0}
           isSelected={selectedAction?.displayName === data.displayName}
+          parentKey={data.displayName}
         />
       ))}
     </PanelBar>

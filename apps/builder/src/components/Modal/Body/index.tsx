@@ -4,10 +4,10 @@ import { applyModalBodyWrapperStyle } from "@/components/Modal/Body/style"
 import { stopDragAndDrop } from "@/components/Modal/utils/stopDragAndDrop"
 
 export const ModalBody: FC<ModalBodyProps> = (props) => {
-  const { children, hasFooterChildren } = props
+  const { children, footerHeight } = props
   return (
     <div
-      css={applyModalBodyWrapperStyle(hasFooterChildren)}
+      css={applyModalBodyWrapperStyle(footerHeight)}
       onMouseDown={stopDragAndDrop}
     >
       {children}

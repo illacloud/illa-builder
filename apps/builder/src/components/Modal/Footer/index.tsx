@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { ForwardedRef, forwardRef } from "react"
 import { ReactComponent as ResizeBarIcon } from "@/assets/public/resize-bar-icon.svg"
 import { ModalFooterProps } from "@/components/Modal/Footer/interface"
 import {
@@ -7,16 +7,22 @@ import {
 } from "@/components/Modal/Footer/style"
 import { stopDragAndDrop } from "@/components/Modal/utils/stopDragAndDrop"
 
-export const ModalFooter: FC<ModalFooterProps> = (props) => {
-  const { children, hasFooterChildren, canMove, footerH } = props
+const ModalFooter = (
+  props: ModalFooterProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
+  const { children, hasFooterChildren, canMove } = props
 
   return (
     <div
-      css={applyModalFooterWrapperStyle(hasFooterChildren, footerH)}
+      css={applyModalFooterWrapperStyle(hasFooterChildren)}
       onMouseDown={stopDragAndDrop}
+      ref={ref}
     >
       {children}
       {canMove && <ResizeBarIcon css={resizeBarIconStyle} />}
     </div>
   )
 }
+
+export default forwardRef<HTMLDivElement, ModalFooterProps>(ModalFooter)

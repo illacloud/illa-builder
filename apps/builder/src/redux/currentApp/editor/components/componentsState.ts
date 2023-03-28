@@ -222,11 +222,12 @@ export interface UpdateComponentNodeHeightPayload {
   oldHeight: number
 }
 
-export interface SetGlobalStateReducer {
+export interface SetGlobalStatePayload {
   key: string
   value: string
+  oldKey?: string
 }
 
-export interface DeleteGlobalStateReducer {
+export interface DeleteGlobalStatePayload {
   key: string
 }

@@ -7,7 +7,6 @@ export interface ModalProps {
   canMove?: boolean
   w?: number
   h?: number
-  footerH?: number
   onClose: () => void
 }
 

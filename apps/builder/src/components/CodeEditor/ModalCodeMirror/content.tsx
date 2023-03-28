@@ -1,4 +1,5 @@
 import { FC, useLayoutEffect, useRef, useState } from "react"
+import useMeasure from "react-use-measure"
 import { getColor } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { ModalBodyContent } from "@/components/CodeEditor/ModalCodeMirror/interface"
@@ -21,27 +22,12 @@ export const ModalContent: FC<ModalBodyContent> = (props) => {
     wrappedCodeFunc,
   } = props
 
-  const descriptionRef = useRef<HTMLParagraphElement | null>(null)
-  const [canRender, setCanRender] = useState(false)
-  const [descriptionHeight, setDescriptionHeight] = useState(0)
-
-  useLayoutEffect(() => {
-    if (descriptionRef.current) {
-      const { height } = descriptionRef.current.getBoundingClientRect()
-      setDescriptionHeight(height)
-    }
-    setCanRender(true)
-    return () => {
-      if (descriptionRef.current) {
-        descriptionRef.current = null
-      }
-    }
-  }, [])
+  const [ref, rect] = useMeasure()
 
   return (
     <div css={contentWrapperStyle}>
       {description && (
-        <div css={descriptionStyle} ref={descriptionRef}>
+        <div css={descriptionStyle} ref={ref}>
           <ILLAMarkdown
             textString={description}
             textColor={getColor("grayBlue", "04")}
@@ -49,25 +35,23 @@ export const ModalContent: FC<ModalBodyContent> = (props) => {
           />
         </div>
       )}
-      {canRender && (
-        <div css={applyCodeMirrorWrapperStyle(descriptionHeight)}>
-          <CodeEditor
-            placeholder={placeholder}
-            showLineNumbers
-            height="100%"
-            minHeight="88px"
-            maxHeight="100%"
-            value={value}
-            lang={lang}
-            canShowCompleteInfo
-            expectValueType={expectValueType}
-            wrapperCss={codeMirrorContainerStyle}
-            onChange={onChange}
-            canExpand={false}
-            wrappedCodeFunc={wrappedCodeFunc}
-          />
-        </div>
-      )}
+      <div css={applyCodeMirrorWrapperStyle(rect.height)}>
+        <CodeEditor
+          placeholder={placeholder}
+          showLineNumbers
+          height="100%"
+          minHeight="88px"
+          maxHeight="100%"
+          value={value}
+          lang={lang}
+          canShowCompleteInfo
+          expectValueType={expectValueType}
+          wrapperCss={codeMirrorContainerStyle}
+          onChange={onChange}
+          canExpand={false}
+          wrappedCodeFunc={wrappedCodeFunc}
+        />
+      </div>
     </div>
   )
 }

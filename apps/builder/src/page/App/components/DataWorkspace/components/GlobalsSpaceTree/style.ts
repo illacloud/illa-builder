@@ -21,4 +21,7 @@ export const footerWrapperStyle = css`
   width: 100%;
   height: 100%;
   padding: 8px 0%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `

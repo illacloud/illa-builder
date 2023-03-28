@@ -1,5 +1,4 @@
 import { SerializedStyles, css } from "@emotion/react"
-// import "@fontsource/fira-code"
 import chroma from "chroma-js"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
@@ -20,46 +19,6 @@ export const itemNameDescStyle: SerializedStyles = css`
   vertical-align: bottom;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
-export function applyExpandIconStyle(
-  expanded?: boolean,
-  level: number = 0,
-): SerializedStyles {
-  const rotate = expanded ? 90 : 0
-  return css`
-    font-size: 8px;
-    line-height: 0;
-    cursor: pointer;
-    position: absolute;
-    left: ${16 + 12 * level}px;
-    top: 6px;
-    transform-origin: center;
-    transform: rotate(${rotate}deg);
-    transition: transform 200ms;
-  `
-}
-
-export function applyItemContainerStyle(
-  isSelected?: boolean,
-  level: number = 0,
-): SerializedStyles {
-  const colorStyle: SerializedStyles = isSelected
-    ? css`
-        background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
-      `
-    : css``
-  return css`
-    font-size: 13px;
-    min-height: 24px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    font-family: "Fira Code", monospace;
-    position: relative;
-    padding-right: 16px;
-    padding-left: ${28 + 12 * level}px;
-    user-select: none;
-    ${colorStyle}
-  `
-}
 
 export function applyJsonContentStyle(isSelected?: boolean): SerializedStyles {
   return css`
@@ -79,6 +38,7 @@ export const jsonNameStyle: SerializedStyles = css`
 
 export const jsonValueStyle: SerializedStyles = css`
   display: inline-block;
+  word-break: break-all;
 `
 
 export const jsonItemStyle: SerializedStyles = css`
@@ -138,4 +98,84 @@ export const editIconHotSpotStyle = css`
   margin-left: 4px;
   position: relative;
   color: ${getColor("grayBlue", "04")};
+`
+
+export const globalStateItemContainerStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`
+
+export const objectAndArrayTitleStyle = css`
+  font-size: 12px;
+  font-weight: 600;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  color: ${getColor("grayBlue", "02")};
+  cursor: pointer;
+`
+
+export const objectAndArrayDescStyle = css`
+  font-size: 12px;
+  color: ${getColor("grayBlue", "04")};
+`
+
+export const globalStateEditIconHotSpotStyle = css`
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`
+
+export const applyObjectOrArrayContainerStyle = (
+  isSelected: boolean,
+  level: number,
+) => css`
+  display: flex;
+  align-items: center;
+  padding-left: ${(level + 1) * 16}px;
+  background-color: ${isSelected ? getColor("techPurple", "07") : ""};
+  min-height: 24px;
+  font-family: "Fira Code", monospace;
+`
+
+export const applySimpleItemContainerStyle = (
+  isSelected: boolean,
+  level: number,
+) => css`
+  display: flex;
+  align-items: center;
+  padding-left: ${(level + 1) * 16}px;
+  background-color: ${isSelected ? getColor("techPurple", "07") : ""};
+  flex-wrap: wrap;
+  margin-top: 4px;
+  font-size: 12px;
+  gap: 4px;
+  :last-child {
+    padding-bottom: 4px;
+  }
+`
+
+export const applyExpandIconStyle = (isExpanded: boolean) => css`
+  font-size: 8px;
+  line-height: 0;
+  cursor: pointer;
+  transform-origin: center;
+  transform: rotate(${isExpanded ? 90 : 0}deg);
+  transition: transform 200ms;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const applyTitleAndDescContainerStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 4px;
 `
