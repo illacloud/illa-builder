@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
   updateCurrentStepReducer,
+  updateGuideInfoReducer,
   updateGuideStatusReducer,
   updateInsideStepReducer,
   updateNextStepReducer,
@@ -11,6 +12,7 @@ const guideSlice = createSlice({
   name: "guide",
   initialState: GuideInitialState,
   reducers: {
+    updateGuideInfoReducer,
     updateCurrentStepReducer,
     updateGuideStatusReducer,
     updateInsideStepReducer,

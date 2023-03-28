@@ -5,6 +5,7 @@ import { Button, useModal } from "@illa-design/react"
 import {
   actionStyle,
   applyVisibleStyle,
+  buttonStyle,
   decsStyle,
   guidePopoverStyle,
   titleStyle,
@@ -42,21 +43,18 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
   }
 
   return (
-    <div css={[guidePopoverStyle]} {...rest}>
+    <div css={guidePopoverStyle} {...rest}>
       <div css={titleStyle}>{t(title)}</div>
       <div css={decsStyle}>{t(description)}</div>
       <div css={actionStyle}>
-        <Button
-          css={applyVisibleStyle(!isLastStep)}
-          variant="fill"
-          colorScheme="techPurple"
+        <span
+          css={[buttonStyle, applyVisibleStyle(!isLastStep)]}
           onClick={handleExitGuide}
         >
           {t("editor.tutorial.panel.onboarding_app.exit")}
-        </Button>
-        <Button
-          variant="fill"
-          colorScheme="techPurple"
+        </span>
+        <span
+          css={[buttonStyle]}
           onClick={() => {
             onClickDoIt?.()
           }}
@@ -64,7 +62,7 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
           {isLastStep
             ? t("editor.tutorial.panel.onboarding_app.congratulations_button")
             : t("editor.tutorial.panel.onboarding_app.do_it")}
-        </Button>
+        </span>
       </div>
     </div>
   )
