@@ -1,6 +1,9 @@
 import { v4 } from "uuid"
 import { Api } from "@/api/base"
 import { CloudApi } from "@/api/cloudApi"
+import { updateUserIsTutorialViewedReducer } from "@/redux/currentUser/currentUserReducer"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import store from "@/store"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 
@@ -84,4 +87,5 @@ export const updateTutorialViewed = async (isTutorialViewed: boolean) => {
       isTutorialViewed,
     },
   })
+  store.dispatch(currentUserActions.updateUserIsTutorialViewedReducer(true))
 }

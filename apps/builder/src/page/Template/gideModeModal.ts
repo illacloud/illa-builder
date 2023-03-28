@@ -5,8 +5,9 @@ import { ILLARoute } from "@/router"
 
 const modal = createModal()
 
-export const openGuideModal = (teamIdentifier: string) => {
+export const openGuideModal = async (teamIdentifier: string) => {
   const { t } = i18n
+  await updateTutorialViewed(true)
   modal.show({
     id: "openGuide",
     title: t("tutorial.modal.tutorial.first_time.title"),
@@ -18,7 +19,6 @@ export const openGuideModal = (teamIdentifier: string) => {
     },
     onOk: () => {
       ILLARoute.navigate(`/${teamIdentifier}/guide`)
-      updateTutorialViewed(true)
     },
   })
 }

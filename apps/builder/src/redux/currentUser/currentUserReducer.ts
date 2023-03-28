@@ -26,3 +26,12 @@ export const updateUserAvatarReducer: CaseReducer<
     avatar: payload,
   }
 }
+
+export const updateUserIsTutorialViewedReducer: CaseReducer<
+  CurrentUser,
+  PayloadAction<boolean>
+> = (state, action) => {
+  if (!state) return
+  const { payload } = action
+  state["isTutorialViewed"] = payload
+}
