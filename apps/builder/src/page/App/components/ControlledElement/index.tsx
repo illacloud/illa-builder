@@ -11,7 +11,7 @@ import {
   TextArea,
   getColor,
 } from "@illa-design/react"
-import { ControlledElementProps } from "./interface"
+import { ControlledElementProps, DefaultValueType } from "./interface"
 import {
   applyConfigItemContainer,
   applyConfigItemLabelText,
@@ -56,10 +56,10 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
     (
       type: string,
       name: string,
-      defaultValue: string | boolean,
+      defaultValue: DefaultValueType,
       placeholder: string,
       rules: RegisterOptions,
-      style: Record<string, string> | undefined = {},
+      style: Record<string, string | number> | undefined = {},
     ) => {
       switch (type) {
         case "input":

@@ -6,7 +6,7 @@ export const actionItemStyle = css`
   flex-direction: row;
   align-items: center;
   min-height: 48px;
-  padding: 8px 16px;
+  padding: 0 16px;
 `
 
 export const checkoutItemStyle = css`
@@ -56,4 +56,20 @@ export const checkoutContentStyle = css`
   align-self: flex-start;
   display: flex;
   align-items: center;
+`
+
+export const checkboxTipsStyle = css`
+  display: inline-block;
+  line-height: 22px;
+  font-size: 14px;
+  text-align: right;
+  color: ${getColor("grayBlue", "04")};
+`
+
+export const checkboxContentContainerStyle = css`
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  align-items: center;
+  width: 100%;
 `

@@ -9,7 +9,7 @@ export const isContainLocalPath = (value: string) => {
 }
 
 export const urlValidate = (value: string) => {
-  return isURL(value)
+  return isURL((value ?? "").trim())
     ? true
     : i18n.t("editor.action.resource.error.invalid_url")
 }

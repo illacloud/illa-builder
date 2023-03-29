@@ -1,14 +1,9 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
-import {
-  codeEditorLabelStyle,
-  s3ItemCodeEditorStyle,
-  s3ItemStyle,
-} from "@/page/App/components/Actions/ActionPanel/S3Panel/style"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -26,94 +21,64 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
     S3Action<S3ActionTypeContent>
   >
   const commandArgs = props.commandArgs as UploadContent
-  const handleValueChange = (value: string, name: string) => {
-    dispatch(
-      configActions.updateCachedAction({
-        ...cachedAction,
-        content: {
-          ...cachedAction.content,
-          commandArgs: {
-            ...commandArgs,
-            [name]: value,
-          } as UploadContent,
-        },
-      }),
-    )
-  }
+  const handleValueChange = useCallback(
+    (name: string) => (value: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...cachedAction.content,
+            commandArgs: {
+              ...commandArgs,
+              [name]: value,
+            } as UploadContent,
+          },
+        }),
+      )
+    },
+    [cachedAction, commandArgs, dispatch],
+  )
 
   return (
     <>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.bucket_name")}
-        </span>
-        <CodeEditor
-          wrapperCss={s3ItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.bucketName}
-          modalTitle={t("editor.action.panel.s3.bucket_name")}
-          onChange={(value) => handleValueChange(value, "bucketName")}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.content_type")}
-        </span>
-        <CodeEditor
-          singleLine
-          wrapperCss={s3ItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.contentType}
-          modalTitle={t("editor.action.panel.s3.content_type")}
-          onChange={(value) => handleValueChange(value, "contentType")}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.upload_object_name")}
-        </span>
-        <CodeEditor
-          singleLine
-          wrapperCss={s3ItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          placeholder={t("editor.action.panel.s3.placeholder.object_name")}
-          value={commandArgs.objectKey}
-          modalTitle={t("editor.action.panel.s3.upload_object_name")}
-          onChange={(value) => handleValueChange(value, "objectKey")}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.upload_data")}
-        </span>
-        <CodeEditor
-          showLineNumbers
-          height="88px"
-          wrapperCss={s3ItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.objectData}
-          modalTitle={t("editor.action.panel.s3.upload_data")}
-          onChange={(value) => handleValueChange(value, "objectData")}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.timeout_upload")}
-        </span>
-        <CodeEditor
-          singleLine
-          wrapperCss={s3ItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.expiry}
-          modalTitle={t("editor.action.panel.s3.timeout_upload")}
-          onChange={(value) => handleValueChange(value, "expiry")}
-          expectValueType={VALIDATION_TYPES.NUMBER}
-        />
-      </div>
+      <InputEditor
+        title={t("editor.action.panel.s3.bucket_name")}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={commandArgs.bucketName}
+        onChange={handleValueChange("bucketName")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
+      <InputEditor
+        title={t("editor.action.panel.s3.content_type")}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={commandArgs.contentType}
+        onChange={handleValueChange("contentType")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
+      <InputEditor
+        title={t("editor.action.panel.s3.upload_object_name")}
+        mode={CODE_LANG.JAVASCRIPT}
+        placeholder={t("editor.action.panel.s3.placeholder.object_name")}
+        value={commandArgs.objectKey}
+        onChange={handleValueChange("objectKey")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
+      <InputEditor
+        title={t("editor.action.panel.s3.upload_data")}
+        lineNumbers
+        style={{ height: "88px" }}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={commandArgs.objectData}
+        onChange={handleValueChange("objectData")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
+      <InputEditor
+        title={t("editor.action.panel.s3.timeout_upload")}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={commandArgs.expiry}
+        onChange={handleValueChange("expiry")}
+        expectedType={VALIDATION_TYPES.NUMBER}
+      />
     </>
   )
 }

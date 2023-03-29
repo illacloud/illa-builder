@@ -1,14 +1,9 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  codeEditorLabelStyle,
-  mongoItemCodeEditorStyle,
-  mongoItemStyle,
-} from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -27,92 +22,53 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
   >
   const typeContent = props.typeContent as UpdateOneContent
 
+  const handleValueChange = useCallback(
+    (name: string) => (value: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...cachedAction.content,
+            typeContent: {
+              ...typeContent,
+              [name]: value,
+            } as UpdateOneContent,
+          },
+        }),
+      )
+    },
+    [cachedAction, dispatch, typeContent],
+  )
+
   return (
     <>
-      <div css={mongoItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mongodb.filter")}
-        </span>
-        <CodeEditor
-          showLineNumbers
-          height="88px"
-          wrapperCss={mongoItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={typeContent.filter}
-          modalTitle={t("editor.action.panel.mongodb.filter")}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  typeContent: {
-                    ...typeContent,
-                    filter: value,
-                  } as UpdateOneContent,
-                },
-              }),
-            )
-          }}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={mongoItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mongodb.update")}
-        </span>
-        <CodeEditor
-          showLineNumbers
-          height="88px"
-          wrapperCss={mongoItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={typeContent.update}
-          modalTitle={t("editor.action.panel.mongodb.update")}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  typeContent: {
-                    ...typeContent,
-                    update: value,
-                  } as UpdateOneContent,
-                },
-              }),
-            )
-          }}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={mongoItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mongodb.options")}
-        </span>
-        <CodeEditor
-          showLineNumbers
-          height="88px"
-          wrapperCss={mongoItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={typeContent.options}
-          modalTitle={t("editor.action.panel.mongodb.options")}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  typeContent: {
-                    ...typeContent,
-                    options: value,
-                  } as UpdateOneContent,
-                },
-              }),
-            )
-          }}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
+      <InputEditor
+        value={typeContent.filter}
+        onChange={handleValueChange("filter")}
+        title={t("editor.action.panel.mongodb.filter")}
+        lineNumbers
+        style={{ height: "88px" }}
+        expectedType={VALIDATION_TYPES.STRING}
+        mode={CODE_LANG.JAVASCRIPT}
+      />
+      <InputEditor
+        lineNumbers
+        style={{ height: "88px" }}
+        value={typeContent.update}
+        onChange={handleValueChange("update")}
+        mode={CODE_LANG.JAVASCRIPT}
+        expectedType={VALIDATION_TYPES.STRING}
+        title={t("editor.action.panel.mongodb.update")}
+      />
+      <InputEditor
+        title={t("editor.action.panel.mongodb.options")}
+        lineNumbers
+        style={{ height: "88px" }}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={typeContent.options}
+        onChange={handleValueChange("options")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
     </>
   )
 }

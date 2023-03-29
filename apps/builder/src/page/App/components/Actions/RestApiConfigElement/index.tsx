@@ -17,6 +17,7 @@ import {
   VerificationModeOptions,
 } from "@/page/App/components/Actions/RestApiConfigElement/values"
 import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
+import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
   container,
   divider,
@@ -33,7 +34,6 @@ import {
 } from "@/redux/resource/restapiResource"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
-import { RestApiConfigElementProps } from "./interface"
 
 const RestApiAuthTypeComponentMap = {
   none: null,
@@ -42,7 +42,7 @@ const RestApiAuthTypeComponentMap = {
   digest: DigestAuthPanel,
 }
 
-export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
+export const RestApiConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, onFinished, resourceId } = props
 
   const { t } = useTranslation()
@@ -119,7 +119,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           name="baseUrl"
           controlledType="input"
           control={control}
-          rules={[{ required: true }]}
+          rules={[{ validate }]}
           placeholders={[
             t("editor.action.resource.restapi.placeholder.base_url"),
           ]}

@@ -1,14 +1,9 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  codeEditorLabelStyle,
-  mongoItemCodeEditorStyle,
-  mongoItemStyle,
-} from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -29,37 +24,34 @@ export const CountPart: FC<MongoDbActionPartProps> = (props) => {
 
   const typeContent = props.typeContent as CountContent
 
+  const handleValueChange = useCallback(
+    (value: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...cachedAction.content,
+            typeContent: {
+              ...typeContent,
+              query: value,
+            } as CountContent,
+          },
+        }),
+      )
+    },
+    [cachedAction, dispatch, typeContent],
+  )
+
   return (
-    <>
-      <div css={mongoItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mongodb.query")}
-        </span>
-        <CodeEditor
-          showLineNumbers
-          height="88px"
-          wrapperCss={mongoItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={typeContent.query}
-          modalTitle={t("editor.action.panel.mongodb.query")}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  typeContent: {
-                    ...typeContent,
-                    query: value,
-                  } as CountContent,
-                },
-              }),
-            )
-          }}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-    </>
+    <InputEditor
+      title={t("editor.action.panel.mongodb.query")}
+      lineNumbers
+      style={{ height: "88px" }}
+      mode={CODE_LANG.JAVASCRIPT}
+      value={typeContent.query}
+      onChange={handleValueChange}
+      expectedType={VALIDATION_TYPES.STRING}
+    />
   )
 }
 

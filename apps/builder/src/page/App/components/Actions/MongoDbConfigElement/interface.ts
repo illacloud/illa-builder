@@ -1,12 +1,7 @@
-import { Control } from "react-hook-form"
-
-export interface MongoDbConfigElementProps {
-  resourceId?: string
-  onBack: () => void
-  onFinished: (resourceId: string) => void
-}
+import { Control, FieldValues, UseFormWatch } from "react-hook-form"
 
 export interface MongoDbConfigModeProps {
   control: Control
+  watch: UseFormWatch<FieldValues>
   resourceId?: string
 }
