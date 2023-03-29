@@ -22,10 +22,11 @@ interface IGlobalStateTreeNodeProps {
   title: string
   level: number
   parentKey: string
+  isChild?: boolean
 }
 
 export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
-  const { title, level = 0, data, parentKey } = props
+  const { title, level = 0, data, parentKey, isChild = false } = props
   const expandedKeys = useSelector(getExpandedKeys)
   const uniqueKey = parentKey === title ? parentKey : `${parentKey}/${title}`
 
@@ -38,7 +39,7 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
   return (
     <>
       <div
-        css={applyObjectOrArrayContainerStyle(false, level)}
+        css={applyObjectOrArrayContainerStyle(false, level, isChild)}
         onClick={() => {
           if (isExpanded) {
             dispatch(configActions.removeExpandedKey(uniqueKey))
@@ -53,14 +54,12 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
           <CaretRightIcon />
         </span>
         <div css={globalStateItemContainerStyle}>
-          <div css={objectAndArrayTitleStyle}>{title}</div>
-          {level !== 1 && (
-            <label css={objectAndArrayDescStyle}>
-              {`{}`}
-              {keyArr.length}
-              {keyArr.length > 1 ? "keys" : "key"}
-            </label>
-          )}
+          <div css={objectAndArrayTitleStyle(isChild)}>{title}</div>
+          <label css={objectAndArrayDescStyle}>
+            {`{}`}
+            {keyArr.length}
+            {keyArr.length > 1 ? "keys" : "key"}
+          </label>
           {level === 1 && (
             <Trigger
               trigger="click"
@@ -68,7 +67,6 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
               withoutPadding
               withoutShadow
               position="right"
-              zIndex={10}
               showArrow={false}
               clickOutsideToClose
               content={
@@ -93,6 +91,7 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
             >
               <div
                 css={globalStateEditIconHotSpotStyle}
+                className="global-state-edit-icon-hot-spot"
                 onClick={(e) => {
                   e.stopPropagation()
                   setIsOpen(true)

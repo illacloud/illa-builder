@@ -994,7 +994,7 @@
       "global_data_modal": {
         "title": "전역 데이터 편집",
         "variable_name": {
-          "tooltips": "변수의 이름입니다. {{name}}을(를) 통해 이 앱의 초기 값을 사용합니다.",
+          "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "변수 이름",
           "message": "이름은 문자 또는 \"_\"로 시작해야 하며 문자, 숫자만 포함할 수 있습니다."
         },
@@ -1398,12 +1398,16 @@
           "step_size": "단계 크기",
           "minimum": "최저한의",
           "maximum": "최고",
-          "hide_output": "출력 숨기기"
+          "hide_output": "출력 숨기기",
+          "prefix_icon": "접두사 아이콘",
+          "suffix_icon": "접미사 아이콘",
+          "allow_wrapping": "자동 포장"
         },
         "range_slider": {
           "start_value": "시작 값",
           "end_value": "종료 값"
-        }
+        },
+        "name": "이름"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1488,6 +1492,11 @@
           "prefix_icon": "구성 요소 앞에 표시되는 아이콘",
           "suffix_icon": "구성 요소 뒤에 표시되는 아이콘",
           "hide_output": "슬라이딩 시 값 숨기기 여부 설정"
+        },
+        "step": {
+          "default_step": "기본 단계",
+          "show_step_number": "단계 번호 표시",
+          "indicate_completed_steps": "완료된 단계 표시"
         }
       },
       "setter_option": {
@@ -2087,6 +2096,9 @@
     },
     "carousel": {
       "name": "회전목마"
+    },
+    "step": {
+      "name": "걸음"
     }
   },
   "page": {

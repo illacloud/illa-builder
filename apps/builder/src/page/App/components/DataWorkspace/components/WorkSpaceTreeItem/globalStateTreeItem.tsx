@@ -41,6 +41,7 @@ export const GlobalStateTreeItem: FC<WorkSpaceTreeNodeProps> = memo(
           data={value}
           level={level + 1}
           parentKey={parentKey}
+          isChild
         />
       )
     } else {
@@ -56,7 +57,6 @@ export const GlobalStateTreeItem: FC<WorkSpaceTreeNodeProps> = memo(
                 withoutPadding
                 withoutShadow
                 position="right"
-                zIndex={10}
                 showArrow={false}
                 clickOutsideToClose
                 content={
@@ -75,6 +75,7 @@ export const GlobalStateTreeItem: FC<WorkSpaceTreeNodeProps> = memo(
               >
                 <div
                   css={globalStateEditIconHotSpotStyle}
+                  className="global-state-edit-icon-hot-spot"
                   onClick={(e) => {
                     e.stopPropagation()
                     setIsOpen(true)

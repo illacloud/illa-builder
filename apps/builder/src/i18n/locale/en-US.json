@@ -1398,12 +1398,16 @@
           "step_size": "Step size",
           "minimum": "Minimum",
           "maximum": "Maximum",
-          "hide_output": "Hide output"
+          "hide_output": "Hide output",
+          "prefix_icon": "Prefix icon",
+          "suffix_icon": "Suffix icon",
+          "allow_wrapping": "Allow wrapping"
         },
         "range_slider": {
           "start_value": "Start value",
           "end_value": "End value"
-        }
+        },
+        "name": "Name"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1488,6 +1492,11 @@
           "prefix_icon": "The icon displayed in front of the component",
           "suffix_icon": "The icon displayed after the component",
           "hide_output": "Set whether to hide the value when sliding"
+        },
+        "step": {
+          "default_step": "Default step",
+          "show_step_number": "Show step numbers",
+          "indicate_completed_steps": "Indicate completed steps"
         }
       },
       "setter_option": {
@@ -2087,6 +2096,9 @@
     },
     "carousel": {
       "name": "Carousel"
+    },
+    "step": {
+      "name": "Steps"
     }
   },
   "page": {

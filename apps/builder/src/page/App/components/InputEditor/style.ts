@@ -20,6 +20,7 @@ export const actionItemCodeEditorStyle = css`
 export const codeEditorLabelStyle = css`
   min-width: 160px;
   width: 160px;
+  line-height: 22px;
   font-size: 14px;
   font-weight: 500;
   text-align: right;
@@ -35,7 +36,9 @@ export const codeEditorLabelStyle = css`
 export const codeEditorSublabelStyle = css`
   color: ${getColor("techPurple", "01")};
   cursor: pointer;
-  margin-top: 5px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
 `
 
 export const actionItemTip = css`
