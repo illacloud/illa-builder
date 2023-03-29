@@ -93,7 +93,6 @@ const getNewAttrUpdatesAndDynamicAttrPaths = (
 }
 
 export const getNewWidgetPropsByUpdateSlice = (
-  displayName: string,
   updateSlice: Record<string, unknown>,
   widgetProps: Record<string, any>,
 ) => {

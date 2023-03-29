@@ -47,7 +47,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
         <BasicContainer
           componentNode={currentViewComponentNode}
           // 8 is the padding of the container , 7 is padding of the wrapper container
-          minHeight={h * UNIT_HEIGHT - 7 - 8}
+          minHeight={h * UNIT_HEIGHT - 8 - 8}
           padding={4}
           safeRowNumber={1}
           addedRowNumber={1}

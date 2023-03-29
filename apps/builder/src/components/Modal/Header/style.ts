@@ -8,20 +8,19 @@ export const headerWrapperStyle = css`
   align-items: center;
   justify-content: space-between;
   flex: none;
-  padding: 0 16px 0 4px;
+  padding: 16px;
+  position: relative;
 `
 
-export const draggableAndTitleStyle = css`
-  display: flex;
+export const applyTitleStyle = (canMove?: boolean) => css`
   font-size: 16px;
-  align-items: center;
-  gap: 8px;
-  color: ${getColor("grayBlue", "04")};
-`
-
-export const titleStyle = css`
   font-weight: 600;
   color: ${getColor("grayBlue", "02")};
+  padding-left: ${canMove ? "8px" : "0px"};
+  display: inline-block;
+  width: calc(100% - 32px);
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 export const closeButtonHotSpotStyle = css`
@@ -32,5 +31,14 @@ export const closeButtonHotSpotStyle = css`
   align-items: center;
   justify-content: center;
   font-size: 12px;
+  position: absolute;
+  right: 16px;
   color: ${getColor("grayBlue", "02")};
+`
+
+export const dragIconStyle = css`
+  position: absolute;
+  left: 4px;
+  color: ${getColor("grayBlue", "04")};
+  font-size: 16px;
 `

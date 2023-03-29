@@ -196,7 +196,8 @@
             "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
-            "sheet_id_to_copy": "Sheet ID to copy"
+            "sheet_id_to_copy": "Sheet ID to copy",
+            "sheet_to_copy_to": "Sheet to copy to"
           }
         },
         "placeholder": {
@@ -241,7 +242,7 @@
         "tips": {
           "acl": "The provided content is a PUBLIC configuration. Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. <0>See Cross-Origin Resource Sharing (CORS).</0>",
           "connect_to_local": {
-            "cloud": "It looks like you're trying to connect to a database that's local to your machine or part of a private network. It might not work in the ILLA Cloud version. Check out our <0>docs<0> for how to the self-host version.",
+            "cloud": "It looks like you're trying to connect to a database that's local to your machine or part of a private network. It might not work in the ILLA Cloud version. Check out our <0>docs</0> for how to the self-host version.",
             "selfhost": "It looks like you're trying to connect to a database that's local to your machine. Please use the local area network IP address of the machine instead of \"localhost\" or \"127.0.0.1\".",
             "title": {
               "tips": "Tips"
@@ -253,11 +254,11 @@
             }
           },
           "gs": {
-            "private_key": "Used to connect to Google Sheets. Click <0>here<0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here<1> for documentation on creating a service account and access key.",
+            "private_key": "Used to connect to Google Sheets. Click <0>here</0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here</1> for documentation on creating a service account and access key.",
             "leave_blank_to_selec": "Leave blank to select the first sheet",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
-            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets"
           }
         },
@@ -354,7 +355,8 @@
           "run": "Run",
           "save": "Save",
           "save_and_run": "Save & Run",
-          "save_fail": "Failed to save"
+          "save_fail": "Failed to save",
+          "test_run": "Test run"
         },
         "elastic": {
           "action_type": "Action Type",
@@ -430,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
-              "role_to_assume": "Use a <0>different role<0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
+              "role_to_assume": "Use a <0>different role</0> when accessing the API"
             }
           },
           "option": {
@@ -990,7 +992,17 @@
       "globals_title": "GLOBALS ",
       "pages_title": "PAGES",
       "global_data_modal": {
-        "title": "Edit global data"
+        "title": "Edit global data",
+        "variable_name": {
+          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "label": "Name",
+          "message": "The name must start with a letter or \"_\", and can only contain letters, numbers"
+        },
+        "initial_value": {
+          "label": "Initial value",
+          "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
       }
     },
     "deploy": {
@@ -1376,7 +1388,8 @@
         },
         "action_name": "Action name",
         "variable": {
-          "path_of_value": "Path of value"
+          "path_of_value": "Path of value",
+          "variable": "Global data"
         },
         "code": {
           "write_code": "Write code"
@@ -1385,12 +1398,16 @@
           "step_size": "Step size",
           "minimum": "Minimum",
           "maximum": "Maximum",
-          "hide_output": "Hide output"
+          "hide_output": "Hide output",
+          "prefix_icon": "Prefix icon",
+          "suffix_icon": "Suffix icon",
+          "allow_wrapping": "Allow wrapping"
         },
         "range_slider": {
           "start_value": "Start value",
           "end_value": "End value"
-        }
+        },
+        "name": "Name"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1459,6 +1476,27 @@
         "variable": {
           "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
           "the_target_value": "The target value"
+        },
+        "slider": {
+          "default_value": "The initial value of the slider. You can dynamically change the initial value by typing JavaScript in {{}}.",
+          "minimum": "The minimum value of the slider",
+          "maximum": "The maximum value of the slider",
+          "step_size": "The minimum change unit of the slide",
+          "label": "The name of the field displayed to the user",
+          "caption": "A caption used to describe the field in detail",
+          "hide_label": "Set whether to display the label",
+          "allow_wrapping": "Set whether to allow label wrapping",
+          "position": "Set the position of the label relative to the component",
+          "alignment": "Set the alignment of the label",
+          "width": "When the label is on the left side of the component, set the width ratio of the label",
+          "prefix_icon": "The icon displayed in front of the component",
+          "suffix_icon": "The icon displayed after the component",
+          "hide_output": "Set whether to hide the value when sliding"
+        },
+        "step": {
+          "default_step": "Default step",
+          "show_step_number": "Show step numbers",
+          "indicate_completed_steps": "Indicate completed steps"
         }
       },
       "setter_option": {
@@ -1643,7 +1681,9 @@
           "fail": "Request failed",
           "download_failed": "Failed to download"
         }
-      }
+      },
+      "setGlobalData": "Set global data",
+      "setLocalStorage": "Set local storage"
     },
     "tutorial": {
       "panel": {
@@ -1685,15 +1725,15 @@
           "drag_input": "Step 1: Drag an input here",
           "drag_button": "Step 2: Drag a button here",
           "drag_table": "Step 3:  Drag a table here",
-          "exit": "Exit",
+          "exit": "Cancel",
           "do_it": "Do it for me",
           "drag_title": "Drag components to the frame",
           "modify_action_title": "Modify the action",
-          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component.",
+          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component. \\nselect * \nfrom users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "Click Save and then click Run",
           "display_data_title": "Display data on table",
           "display_data_description_select": "Select the table on the frame",
-          "display_data_description_modify": "Modify the data source on the right panel. We can use {{postgre1.data}} to get the data.",
+          "display_data_description_modify": "Modify the data source on the right panel. We can use {{postgresql1.data}} to get the data.",
           "event_handler_title": "Click button to trigger action",
           "event_handler_description_1": "Select the button on the frame",
           "event_handler_description_2": "Add an event handler",
@@ -1704,7 +1744,7 @@
           "test_it_description": "Input a user name you want to search for and click the button",
           "test_it_button": "Next",
           "congratulations_title": "Congratulations 🎉",
-          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
+          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord</0>. ",
           "congratulations_button": "Done",
           "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
@@ -2056,6 +2096,9 @@
     },
     "carousel": {
       "name": "Carousel"
+    },
+    "step": {
+      "name": "Steps"
     }
   },
   "page": {
@@ -2422,14 +2465,14 @@
           "take": "Take a tutorial"
         },
         "exit_confirm": {
-          "title": "Exit the tutorial?",
+          "title": "Stop the tutorial?",
           "description": "The next time you enter the onboarding app, the guided steps will be replayed ",
           "cancel": "Cancel",
-          "exit": "Exit"
+          "exit": "Stop it"
         }
       }
     }
   },
   "oauth_redirect_title": "Redirect",
-  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud<0>"
+  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud</0>"
 }

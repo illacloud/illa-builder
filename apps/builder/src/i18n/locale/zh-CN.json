@@ -196,7 +196,8 @@
             "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
-            "sheet_id_to_copy": "Sheet ID to copy"
+            "sheet_id_to_copy": "要复制的工作表ID",
+            "sheet_to_copy_to": "要复制到的工作表"
           }
         },
         "placeholder": {
@@ -255,7 +256,7 @@
           "gs": {
             "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。",
             "leave_blank_to_selec": "留空以选择第一张表",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
             "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它"
@@ -321,7 +322,7 @@
               "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
               "delete_a_single_row_": "Delete a single row from a spreadsheet",
               "create_a_spreadsheet": "Create a spreadsheet",
-              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "copy_a_single_sheet_": "将单个工作表复制到另一个电子表格",
               "list_available_sprea": "List available spreadsheets",
               "get_spreadsheet_info": "Get spreadsheet info"
             },
@@ -354,7 +355,8 @@
           "run": "运行",
           "save": "保存",
           "save_and_run": "保存 & 运行",
-          "save_fail": "保存失败"
+          "save_fail": "保存失败",
+          "test_run": "测试运行"
         },
         "elastic": {
           "action_type": "Action Type",
@@ -430,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
-              "role_to_assume": "Use a <0>different role<0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
+              "role_to_assume": "Use a <0>different role</0> when accessing the API"
             }
           },
           "option": {
@@ -990,7 +992,17 @@
       "globals_title": "全局变量 ",
       "pages_title": "页面列表",
       "global_data_modal": {
-        "title": "Edit global data"
+        "title": "编辑全局变量",
+        "variable_name": {
+          "tooltips": "Use the initial value in this app via {{variableName}}",
+          "label": "变量名",
+          "message": "名称必须以字母或“_”开头，且只能包含字母、数字"
+        },
+        "initial_value": {
+          "label": "初期値",
+          "tooltips": "支持对象或原始值。 示例：{ 计数：0 }",
+          "placeholder": "{ count: 0 }"
+        }
       }
     },
     "deploy": {
@@ -1376,7 +1388,8 @@
         },
         "action_name": "查询名称",
         "variable": {
-          "path_of_value": "值的路径"
+          "path_of_value": "值的路径",
+          "variable": "全局变量"
         },
         "code": {
           "write_code": "编写代码"
@@ -1385,12 +1398,16 @@
           "step_size": "步进值",
           "minimum": "最小值",
           "maximum": "最大值",
-          "hide_output": "隐藏输出数值"
+          "hide_output": "隐藏输出数值",
+          "prefix_icon": "前缀图标",
+          "suffix_icon": "后置图标",
+          "allow_wrapping": "自动换行"
         },
         "range_slider": {
           "start_value": "起始值",
           "end_value": "结束值"
-        }
+        },
+        "name": "名称"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1459,6 +1476,27 @@
         "variable": {
           "available_in_objects": "在对象和数组中可用。 属性在对象中的路径：{{objectName.attributeName}}。 数组中值的索引：{{1}}。 对象中的数组：{{objectName.attributeName.1}}",
           "the_target_value": "目标值"
+        },
+        "slider": {
+          "default_value": "滑块的初始值。 您可以通过在 {{}} 中键入 JavaScript 来动态更改初始值。",
+          "minimum": "滑块的最小值",
+          "maximum": "滑块的最大值",
+          "step_size": "滑块的最小变化单位",
+          "label": "显示给用户的字段名称",
+          "caption": "用于详细描述字段的标题",
+          "hide_label": "设置是否显示标签",
+          "allow_wrapping": "设置是否允许标签换行",
+          "position": "设置标签相对于组件的位置",
+          "alignment": "设置标签的对齐方式",
+          "width": "当标签在组件左侧时，设置标签的宽度比例",
+          "prefix_icon": "显示在组件前面的图标",
+          "suffix_icon": "组件后显示的图标",
+          "hide_output": "设置滑动时是否隐藏值"
+        },
+        "step": {
+          "default_step": "默认步骤",
+          "show_step_number": "显示步骤数值",
+          "indicate_completed_steps": "标明完成步骤"
         }
       },
       "setter_option": {
@@ -1643,7 +1681,9 @@
           "fail": "请求失败",
           "download_failed": "下载失败"
         }
-      }
+      },
+      "setGlobalData": "设置全局变量",
+      "setLocalStorage": "设置本地存储数据"
     },
     "tutorial": {
       "panel": {
@@ -1685,15 +1725,15 @@
           "drag_input": "第 1 步：将输入组件拖到此处",
           "drag_button": "第 2 步：将按钮组件拖到此处",
           "drag_table": "第 3 步：将表格组件拖到此处",
-          "exit": "退出引导",
-          "do_it": "帮我完成该步骤",
+          "exit": "中止",
+          "do_it": "帮我完成",
           "drag_title": "将组件拖到画布中",
           "modify_action_title": "修改ACTION",
-          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。",
+          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "单击保存，然后单击运行",
           "display_data_title": "在表格中显示数据",
           "display_data_description_select": "选择画布中的表格",
-          "display_data_description_modify": "修改右侧面板上的数据源。 我们可以使用 {{postgre1.data}} 来获取数据。",
+          "display_data_description_modify": "修改右侧面板上的数据源。 我们可以使用 {{postgresql1.data}} 来获取数据。",
           "event_handler_title": "点击按钮触发动作",
           "event_handler_description_1": "选择画布里的按钮",
           "event_handler_description_2": "添加事件处理器",
@@ -2056,6 +2096,9 @@
     },
     "carousel": {
       "name": "轮播图"
+    },
+    "step": {
+      "name": "步骤"
     }
   },
   "page": {
@@ -2422,14 +2465,14 @@
           "take": "开始教程"
         },
         "exit_confirm": {
-          "title": "退出教程？",
+          "title": "中止教程？",
           "description": "下次您进入新手引导时，将重新播放引导步骤",
           "cancel": "取消",
-          "exit": "退出"
+          "exit": "中止"
         }
       }
     }
   },
   "oauth_redirect_title": "重定向",
-  "oauth_redirect_description": "正在重定向到<0>ILLA Cloud<0>"
+  "oauth_redirect_description": "正在重定向到<0>ILLA Cloud</0>"
 }

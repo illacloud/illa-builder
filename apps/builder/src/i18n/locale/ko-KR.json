@@ -196,7 +196,8 @@
             "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
-            "sheet_id_to_copy": "Sheet ID to copy"
+            "sheet_id_to_copy": "복사할 시트 ID",
+            "sheet_to_copy_to": "복사할 시트"
           }
         },
         "placeholder": {
@@ -255,7 +256,7 @@
           "gs": {
             "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기<0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기<1>를 참조하세요.",
             "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
             "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오."
@@ -321,7 +322,7 @@
               "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
               "delete_a_single_row_": "Delete a single row from a spreadsheet",
               "create_a_spreadsheet": "Create a spreadsheet",
-              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "copy_a_single_sheet_": "단일 시트를 다른 스프레드시트로 복사",
               "list_available_sprea": "List available spreadsheets",
               "get_spreadsheet_info": "Get spreadsheet info"
             },
@@ -354,7 +355,8 @@
           "run": "운영",
           "save": "저장",
           "save_and_run": "저장 및 실행",
-          "save_fail": "저장 실패"
+          "save_fail": "저장 실패",
+          "test_run": "테스트 실행 중"
         },
         "elastic": {
           "action_type": "작업 유형",
@@ -430,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
-              "role_to_assume": "Use a <0>different role<0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
+              "role_to_assume": "Use a <0>different role</0> when accessing the API"
             }
           },
           "option": {
@@ -990,7 +992,17 @@
       "globals_title": "글로벌 변수",
       "pages_title": "페이지 목록",
       "global_data_modal": {
-        "title": "Edit global data"
+        "title": "전역 데이터 편집",
+        "variable_name": {
+          "tooltips": "Use the initial value in this app via {{variableName}}",
+          "label": "변수 이름",
+          "message": "이름은 문자 또는 \"_\"로 시작해야 하며 문자, 숫자만 포함할 수 있습니다."
+        },
+        "initial_value": {
+          "label": "초기 값",
+          "tooltips": "개체 또는 기본 값을 지원합니다. 예: { 개수: 0 }",
+          "placeholder": "{ count: 0 }"
+        }
       }
     },
     "deploy": {
@@ -1376,7 +1388,8 @@
         },
         "action_name": "액션 이름",
         "variable": {
-          "path_of_value": "값 경로"
+          "path_of_value": "값 경로",
+          "variable": "전역 데이터 편집"
         },
         "code": {
           "write_code": "코드 작성"
@@ -1385,12 +1398,16 @@
           "step_size": "단계 크기",
           "minimum": "최저한의",
           "maximum": "최고",
-          "hide_output": "출력 숨기기"
+          "hide_output": "출력 숨기기",
+          "prefix_icon": "접두사 아이콘",
+          "suffix_icon": "접미사 아이콘",
+          "allow_wrapping": "자동 포장"
         },
         "range_slider": {
           "start_value": "시작 값",
           "end_value": "종료 값"
-        }
+        },
+        "name": "이름"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1459,6 +1476,27 @@
         "variable": {
           "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 객체의 속성 경로: {{objectName.attributeName}}. 배열에 있는 값의 인덱스: {{1}}. 개체의 배열: {{objectName.attributeName.1}}",
           "the_target_value": "목표값"
+        },
+        "slider": {
+          "default_value": "슬라이더의 초기 값입니다. {{}}에 JavaScript를 입력하여 초기 값을 동적으로 변경할 수 있습니다.",
+          "minimum": "슬라이더의 최소값",
+          "maximum": "슬라이더의 최대값",
+          "step_size": "슬라이드의 최소 변경 단위",
+          "label": "사용자에게 표시되는 필드의 이름",
+          "caption": "필드를 자세히 설명하는 데 사용되는 캡션",
+          "hide_label": "레이블 표시 여부 설정",
+          "allow_wrapping": "라벨 포장 허용 여부 설정",
+          "position": "구성 요소를 기준으로 레이블 위치 설정",
+          "alignment": "레이블 정렬 설정",
+          "width": "라벨이 구성 요소의 왼쪽에 있을 때 라벨의 너비 비율을 설정합니다.",
+          "prefix_icon": "구성 요소 앞에 표시되는 아이콘",
+          "suffix_icon": "구성 요소 뒤에 표시되는 아이콘",
+          "hide_output": "슬라이딩 시 값 숨기기 여부 설정"
+        },
+        "step": {
+          "default_step": "기본 단계",
+          "show_step_number": "단계 번호 표시",
+          "indicate_completed_steps": "완료된 단계 표시"
         }
       },
       "setter_option": {
@@ -1643,7 +1681,9 @@
           "fail": "요청 실패",
           "download_failed": "불러 오는데 실패했습니다."
         }
-      }
+      },
+      "setGlobalData": "전역 데이터 편집",
+      "setLocalStorage": "로컬 저장소"
     },
     "tutorial": {
       "panel": {
@@ -1685,15 +1725,15 @@
           "drag_input": "1단계: 입력 구성 요소를 여기로 드래그합니다.",
           "drag_button": "2단계: 버튼 구성요소를 여기로 드래그합니다.",
           "drag_table": "3단계: 표 구성요소를 여기로 드래그",
-          "exit": "종료 부팅",
-          "do_it": "이 단계를 도와주세요",
+          "exit": "종료",
+          "do_it": "자동 완성",
           "drag_title": "구성 요소를 캔버스로 드래그",
           "modify_action_title": "ACTION수정",
-          "modify_action_description_modify": "ACTION을 수정하여 데이터를 가져옵니다. {{input1.value}}를 사용하여 입력 구성 요소에 입력된 데이터를 가져올 수 있습니다.",
+          "modify_action_description_modify": "ACTION을 수정하여 데이터를 가져옵니다. {{input1.value}}를 사용하여 입력 구성 요소에 입력된 데이터를 가져올 수 있습니다. \\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "저장을 클릭한 다음 실행을 클릭합니다.",
           "display_data_title": "테이블에 데이터 표시",
           "display_data_description_select": "캔버스에서 테이블 선택",
-          "display_data_description_modify": "오른쪽 패널에서 데이터 소스를 수정합니다. {{postgre1.data}}를 사용하여 데이터를 가져올 수 있습니다.",
+          "display_data_description_modify": "오른쪽 패널에서 데이터 소스를 수정합니다. {{postgresql1.data}}를 사용하여 데이터를 가져올 수 있습니다.",
           "event_handler_title": "버튼을 클릭하여 작업을 트리거합니다.",
           "event_handler_description_1": "캔버스에서 버튼 선택",
           "event_handler_description_2": "이벤트 핸들러 추가",
@@ -2056,6 +2096,9 @@
     },
     "carousel": {
       "name": "회전목마"
+    },
+    "step": {
+      "name": "걸음"
     }
   },
   "page": {
@@ -2425,11 +2468,11 @@
           "title": "튜토리얼 건너 뛰기？",
           "description": "다음에 온보딩 앱에 들어가면 안내 단계가 재생됩니다.",
           "cancel": "취소",
-          "exit": "종료 부팅"
+          "exit": "종료"
         }
       }
     }
   },
   "oauth_redirect_title": "이동",
-  "oauth_redirect_description": "<0>ILLA Cloud(으)로 리디렉션 중..."
+  "oauth_redirect_description": "<0>ILLA Cloud</0>(으)로 리디렉션 중..."
 }

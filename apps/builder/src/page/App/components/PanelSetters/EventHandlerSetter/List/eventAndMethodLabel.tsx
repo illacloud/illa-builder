@@ -52,7 +52,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)
   }, [])
-  // @ts-ignore
+
   return (
     <Trigger
       withoutPadding

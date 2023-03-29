@@ -114,4 +114,9 @@ export const clearSessionStorage = () => {
   clearStorage("sessionStorage")
 }
 
-export const ILLABuilderStorage = new ILLAStorage("ILLABuilder@2.0.0", 5)
+export const ILLABuilderStorage = new ILLAStorage(
+  `ILLABuilder@${import.meta.env.ILLA_APP_VERSION}`,
+  5,
+)
+
+export const CUSTOM_STORAGE_PREFIX = "ILLABuilderCustomStorage"

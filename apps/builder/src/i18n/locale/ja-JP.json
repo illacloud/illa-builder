@@ -196,7 +196,8 @@
             "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
-            "sheet_id_to_copy": "Sheet ID to copy"
+            "sheet_id_to_copy": "コピーするシートID",
+            "sheet_to_copy_to": "コピー先のシート"
           }
         },
         "placeholder": {
@@ -255,7 +256,7 @@
           "gs": {
             "private_key": "Google スプレッドシートへの接続に使用されます。 <0>ここ<0>をクリックしてプロジェクトを作成し、OAuth 認証情報を取得してください。 サービス アカウント認証では、使用されているサービス アカウントに対応するメール アドレスで共有されたスプレッドシートにのみアクセスできます。 サービス アカウントとアクセス キーの作成に関するドキュメントについては、<1>こちら<1>をご覧ください。",
             "leave_blank_to_selec": "空白のままにして最初のシートを選択します",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
             "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。"
@@ -321,7 +322,7 @@
               "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
               "delete_a_single_row_": "Delete a single row from a spreadsheet",
               "create_a_spreadsheet": "Create a spreadsheet",
-              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "copy_a_single_sheet_": "1 つのシートを別のスプレッドシートにコピーする",
               "list_available_sprea": "List available spreadsheets",
               "get_spreadsheet_info": "Get spreadsheet info"
             },
@@ -354,7 +355,8 @@
           "run": "走る",
           "save": "保存",
           "save_and_run": "保存して実行",
-          "save_fail": "保存に失敗しました"
+          "save_fail": "保存に失敗しました",
+          "test_run": "テストの実行"
         },
         "elastic": {
           "action_type": "アクションタイプ",
@@ -430,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
-              "role_to_assume": "Use a <0>different role<0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
+              "role_to_assume": "Use a <0>different role</0> when accessing the API"
             }
           },
           "option": {
@@ -990,7 +992,17 @@
       "globals_title": "グローバル変数",
       "pages_title": "ページリスト",
       "global_data_modal": {
-        "title": "Edit global data"
+        "title": "グローバル データの編集",
+        "variable_name": {
+          "tooltips": "Use the initial value in this app via {{variableName}}",
+          "label": "変数名",
+          "message": "名前は文字または「_」で始まる必要があり、文字と数字のみを含めることができます"
+        },
+        "initial_value": {
+          "label": "초기 값",
+          "tooltips": "オブジェクトまたはプリミティブ値をサポートします。 例: { カウント: 0 }",
+          "placeholder": "{ count: 0 }"
+        }
       }
     },
     "deploy": {
@@ -1376,7 +1388,8 @@
         },
         "action_name": "アクション名",
         "variable": {
-          "path_of_value": "値のパス"
+          "path_of_value": "値のパス",
+          "variable": "グローバル データ"
         },
         "code": {
           "write_code": "コードを書く"
@@ -1385,12 +1398,16 @@
           "step_size": "刻み幅",
           "minimum": "最小値",
           "maximum": "最大値",
-          "hide_output": "出力を隠す"
+          "hide_output": "出力を隠す",
+          "prefix_icon": "プレフィックス アイコン",
+          "suffix_icon": "サフィックスアイコン",
+          "allow_wrapping": "オートラッピング"
         },
         "range_slider": {
           "start_value": "開始値",
           "end_value": "終了値"
-        }
+        },
+        "name": "名前"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1459,6 +1476,27 @@
         "variable": {
           "available_in_objects": "オブジェクトと配列で利用できます。 オブジェクトの属性のパス: {{objectName.attributeName}}。 配列内の値のインデックス: {{1}}。 オブジェクトの配列: {{objectName.attributeName.1}}",
           "the_target_value": "目標値"
+        },
+        "slider": {
+          "default_value": "スライダーの初期値。 {{}} に JavaScript を入力すると、初期値を動的に変更できます。",
+          "minimum": "スライダーの最小値",
+          "maximum": "スライダーの最大値",
+          "step_size": "スライドの最小変化単位",
+          "label": "ユーザーに表示されるフィールドの名前",
+          "caption": "フィールドを詳細に説明するために使用されるキャプション",
+          "hide_label": "ラベルを表示するかどうかを設定します",
+          "allow_wrapping": "ラベルのラッピングを許可するかどうかを設定します",
+          "position": "コンポーネントに対するラベルの位置を設定します",
+          "alignment": "ラベルの配置を設定する",
+          "width": "ラベルがコンポーネントの左側にある場合、ラベルの幅の比率を設定します",
+          "prefix_icon": "コンポーネントの前に表示されるアイコン",
+          "suffix_icon": "コンポーネントの後に表示されるアイコン",
+          "hide_output": "スライド時に値を非表示にするかどうかを設定します"
+        },
+        "step": {
+          "default_step": "既定のステップ",
+          "show_step_number": "ステップ番号を表示",
+          "indicate_completed_steps": "完了した手順を示す"
         }
       },
       "setter_option": {
@@ -1643,7 +1681,9 @@
           "fail": "失敗しました",
           "download_failed": "ダウンロード失敗"
         }
-      }
+      },
+      "setGlobalData": "グローバル データ",
+      "setLocalStorage": "ローカルストレージ"
     },
     "tutorial": {
       "panel": {
@@ -1685,15 +1725,15 @@
           "drag_input": "ステップ 1: 入力コンポーネントをここにドラッグします",
           "drag_button": "ステップ 2: ボタン コンポーネントをここにドラッグします",
           "drag_table": "ステップ 3: テーブル コンポーネントをここにドラッグします",
-          "exit": "ブートを終了",
-          "do_it": "このステップを手伝ってください",
+          "exit": "終了",
+          "do_it": "自動補完",
           "drag_title": "コンポーネントをキャンバスにドラッグします",
           "modify_action_title": "ACTIONを変更",
-          "modify_action_description_modify": "ACTIONを変更してデータを取得します。 {{input1.value}} を使用して、入力コンポーネントに入力されたデータを取得できます。",
+          "modify_action_description_modify": "ACTIONを変更してデータを取得します。 {{input1.value}} を使用して、入力コンポーネントに入力されたデータを取得できます。\\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "[保存]、[実行] の順にクリックします",
           "display_data_title": "テーブルにデータを表示する",
           "display_data_description_select": "キャンバスでテーブルを選択",
-          "display_data_description_modify": "右側のパネルでデータ ソースを変更します。 {{postgre1.data}} を使用してデータを取得できます。",
+          "display_data_description_modify": "右側のパネルでデータ ソースを変更します。 {{postgresql1.data}} を使用してデータを取得できます。",
           "event_handler_title": "ボタンをクリックしてアクションをトリガーします",
           "event_handler_description_1": "キャンバス上のボタンを選択",
           "event_handler_description_2": "イベント ハンドラーを追加する",
@@ -2056,6 +2096,9 @@
     },
     "carousel": {
       "name": "カルーセル"
+    },
+    "step": {
+      "name": "歩数"
     }
   },
   "page": {
@@ -2431,5 +2474,5 @@
     }
   },
   "oauth_redirect_title": "이동",
-  "oauth_redirect_description": "<0>ILLA Cloud にリダイレクトしています..."
+  "oauth_redirect_description": "<0>ILLA Cloud</0> にリダイレクトしています..."
 }

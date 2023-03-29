@@ -3,11 +3,8 @@ import { createPortal } from "react-dom"
 import { useSelector } from "react-redux"
 import { Rnd } from "react-rnd"
 import { useWindowSize } from "react-use"
-import { ModalBody } from "@/components/MovableModal/Body"
-import { ModalFooter } from "@/components/MovableModal/Footer"
-import { ModalHeader } from "@/components/MovableModal/Header"
-import { MovableModalProps } from "@/components/MovableModal/interface"
-import { movableModalWrapperStyle } from "@/components/MovableModal/style"
+import { BuilderModal } from "@/components/Modal"
+import { MovableModalProps } from "@/components/Modal/interface"
 import { getIsDragging } from "@/redux/config/configSelector"
 
 export const MovableModal: FC<MovableModalProps> = (props) => {
@@ -15,9 +12,6 @@ export const MovableModal: FC<MovableModalProps> = (props) => {
   const { width, height } = useWindowSize()
   const isDraggingInGlobal = useSelector(getIsDragging)
 
-  const hasFooterChildren =
-    (Array.isArray(footerContent) && footerContent.length > 0) ||
-    footerContent != null
   return createPortal(
     <Rnd
       default={{
@@ -35,16 +29,16 @@ export const MovableModal: FC<MovableModalProps> = (props) => {
       minHeight={263}
       bounds="window"
     >
-      <div css={movableModalWrapperStyle}>
-        <ModalHeader title={title} onClose={onClose} />
-        <ModalBody hasFooterChildren={hasFooterChildren}>
-          {bodyContent}
-        </ModalBody>
-        <ModalFooter hasFooterChildren={hasFooterChildren}>
-          {footerContent}
-        </ModalFooter>
-      </div>
+      <BuilderModal
+        title={title}
+        bodyContent={bodyContent}
+        onClose={onClose}
+        footerContent={footerContent}
+        canMove
+      />
     </Rnd>,
     document.body,
   )
 }
+
+MovableModal.displayName = "MovableModal"
