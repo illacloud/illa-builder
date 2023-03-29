@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from "react"
+import { FC, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { DropList, DropListItem, Dropdown } from "@illa-design/react"
 import { ReactComponent as ShadowIcon } from "@/assets/shadow-icon.svg"
@@ -10,15 +10,7 @@ import {
 } from "@/page/App/components/PanelSetters/SelectSetter/style"
 
 export const ShadowSelect: FC<BaseSelectSetterProps> = (props) => {
-  const {
-    isSetterSingleRow,
-    options,
-    attrName,
-    handleUpdateDsl,
-    value,
-    allowClear,
-    onChange,
-  } = props
+  const { options, attrName, handleUpdateDsl, value } = props
 
   const { t } = useTranslation()
 
