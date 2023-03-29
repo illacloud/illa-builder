@@ -8,7 +8,7 @@ export interface WrappedRangeSliderProps
   extends Omit<ValidateMessageOldProps, "value">,
     Pick<
       SliderProps,
-      "value" | "min" | "max" | "step" | "disabled" | "colorScheme" | "isFocus"
+      "value" | "min" | "max" | "step" | "disabled" | "colorScheme"
     > {
   startValue: number
   endValue: number
@@ -28,8 +28,6 @@ export interface WrappedRangeSliderProps
     }[],
   ) => void
   handleOnChange?: () => void
-  handleOnBlur?: () => void
-  handleOnFocus?: () => void
 }
 
 export interface RangeSliderWidgetProps

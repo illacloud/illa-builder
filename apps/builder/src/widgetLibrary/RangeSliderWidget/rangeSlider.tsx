@@ -17,7 +17,7 @@ import {
 export const WrappedRangeSlider = forwardRef<
   HTMLDivElement,
   WrappedRangeSliderProps
->((props) => {
+>((props, ref) => {
   const {
     startValue,
     endValue,
@@ -26,7 +26,6 @@ export const WrappedRangeSlider = forwardRef<
     hideOutput,
     min,
     max,
-    step = 1,
     handleOnChange,
     getValidateMessage,
     handleUpdateMultiExecutionResult,
@@ -76,6 +75,7 @@ export const WrappedRangeSlider = forwardRef<
         showTicks={!hideOutput}
         onChange={onChangeSliderValue}
         isRange={true}
+        ref={ref}
         {...props}
       />
       {currentSuffixIcon && (
@@ -118,8 +118,7 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
     triggerEventHandler,
   } = props
 
-  const sliderRef = useRef<HTMLDivElement>(null)
-  const [isFocus, setIsFocus] = useState<boolean>(false)
+  const rangeSliderRef = useRef<HTMLDivElement>(null)
   const defaultStartValue = useRef<number>(startValue)
   const defaultEndValue = useRef<number>(endValue)
 
@@ -169,11 +168,13 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
       reset: () => {
         handleUpdateDsl({
           startValue: defaultStartValue,
-          endValue: defaultStartValue,
+          endValue: defaultEndValue,
           validateMessage: "",
         })
       },
-      focus: () => setIsFocus(true),
+      focus: () => {
+        rangeSliderRef.current?.focus()
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -218,8 +219,7 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
             {...props}
             startValue={startValue}
             endValue={endValue}
-            ref={sliderRef}
-            isFocus={isFocus}
+            ref={rangeSliderRef}
             getValidateMessage={getValidateMessage}
             handleOnChange={handleOnChange}
           />

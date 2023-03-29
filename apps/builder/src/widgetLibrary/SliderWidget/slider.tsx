@@ -15,12 +15,11 @@ import {
 } from "./style"
 
 export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
-  (props) => {
+  (props, ref) => {
     const {
       prefixIcon,
       suffixIcon,
       hideOutput,
-      handleUpdateDsl,
       handleOnChange,
       getValidateMessage,
       handleUpdateMultiExecutionResult,
@@ -66,12 +65,8 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
         <Slider
           showTicks={!hideOutput}
           onChange={onChangeSliderValue}
-          // onChange={onChange}
-          // onChange={(value) => {
-          //   handleUpdateDsl({ value })
-          //   handleOnChange?.()
-          // }}
           isRange={false}
+          ref={ref}
           {...props}
         />
         {currentSuffixIcon && (
@@ -86,7 +81,7 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
 
 WrappedSlider.displayName = "WrappedSlider"
 
-export const SliderWidget: FC<SliderWidgetProps> = (props) => {
+export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
   const {
     value,
     min,
@@ -115,7 +110,6 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
   } = props
 
   const sliderRef = useRef<HTMLDivElement>(null)
-  const [isFocus, setIsFocus] = useState<boolean>(false)
   const [defaultValue] = useState<number>(value as number)
 
   const getValidateMessage = useCallback(
@@ -146,7 +140,6 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    console.log("-----", value)
     handleUpdateGlobalData?.(displayName, {
       value,
       setValue: (value: number) => {
@@ -166,7 +159,9 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
       reset: () => {
         handleUpdateDsl({ value: defaultValue, validateMessage: "" })
       },
-      focus: () => setIsFocus(true),
+      focus: () => {
+        sliderRef.current?.focus()
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -211,7 +206,6 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
             {...props}
             value={value}
             ref={sliderRef}
-            isFocus={isFocus}
             getValidateMessage={getValidateMessage}
             handleOnChange={handleOnChange}
           />
