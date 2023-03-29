@@ -7,82 +7,92 @@ import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyValidateMessageWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { AllData } from "../IconWidget/utils"
-import { SliderWidgetProps, WrappedSliderProps } from "./interface"
+import { RangeSliderWidgetProps, WrappedRangeSliderProps } from "./interface"
 import {
   applyIcon,
   applyLabelAndComponentWrapperStyle,
   applyWrapperSlider,
 } from "./style"
 
-export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
-  (props) => {
-    const {
-      prefixIcon,
-      suffixIcon,
-      hideOutput,
-      handleOnChange,
-      getValidateMessage,
-      handleUpdateMultiExecutionResult,
-      displayName,
-    } = props
-    const onChangeSliderValue = useCallback(
-      (value: unknown) => {
-        console.log("value", value)
-        new Promise((resolve) => {
-          const message = getValidateMessage(value)
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                value: value || "",
-                validateMessage: message,
-              },
-            },
-          ])
-          resolve(true)
-        }).then(() => {
-          handleOnChange?.()
-        })
-      },
-      [
-        displayName,
-        getValidateMessage,
-        handleOnChange,
-        handleUpdateMultiExecutionResult,
-      ],
-    )
-    const getIcon = (iconName: string) =>
-      (iconName && AllData[iconName]) || null
-    const currentPrefixIcon = getIcon(prefixIcon ?? "")
-    const currentSuffixIcon = getIcon(suffixIcon ?? "")
-    return (
-      <div css={applyWrapperSlider} style={{}}>
-        {currentPrefixIcon && (
-          <span css={applyIcon}>
-            {currentPrefixIcon && currentPrefixIcon({})}
-          </span>
-        )}
-        <Slider
-          showTicks={!hideOutput}
-          onChange={onChangeSliderValue}
-          isRange={false}
-          {...props}
-        />
-        {currentSuffixIcon && (
-          <span css={applyIcon}>
-            {currentSuffixIcon && currentSuffixIcon({})}
-          </span>
-        )}
-      </div>
-    )
-  },
-)
-
-WrappedSlider.displayName = "WrappedSlider"
-
-export const SliderWidget: FC<SliderWidgetProps> = (props) => {
+export const WrappedRangeSlider = forwardRef<
+  HTMLDivElement,
+  WrappedRangeSliderProps
+>((props) => {
   const {
-    value,
+    startValue,
+    endValue,
+    prefixIcon,
+    suffixIcon,
+    hideOutput,
+    min,
+    max,
+    step = 1,
+    handleOnChange,
+    getValidateMessage,
+    handleUpdateMultiExecutionResult,
+    displayName,
+  } = props
+
+  const onChangeSliderValue = useCallback(
+    (value: number | number[]) => {
+      new Promise((resolve) => {
+        const message = getValidateMessage(value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              startValue: (value as number[])[0] ?? min ?? 0,
+              endValue: (value as number[])[1] ?? max ?? 10,
+              validateMessage: message,
+            },
+          },
+        ])
+        resolve(true)
+      }).then(() => {
+        handleOnChange?.()
+      })
+    },
+    [
+      displayName,
+      getValidateMessage,
+      handleOnChange,
+      handleUpdateMultiExecutionResult,
+      max,
+      min,
+    ],
+  )
+  const getIcon = (iconName: string) => (iconName && AllData[iconName]) || null
+  const currentPrefixIcon = getIcon(prefixIcon ?? "")
+  const currentSuffixIcon = getIcon(suffixIcon ?? "")
+  return (
+    <div css={applyWrapperSlider} style={{}}>
+      {currentPrefixIcon && (
+        <span css={applyIcon}>
+          {currentPrefixIcon && currentPrefixIcon({})}
+        </span>
+      )}
+      <Slider
+        value={[startValue, endValue]}
+        showTicks={!hideOutput}
+        onChange={onChangeSliderValue}
+        isRange={true}
+        {...props}
+      />
+      {currentSuffixIcon && (
+        <span css={applyIcon}>
+          {currentSuffixIcon && currentSuffixIcon({})}
+        </span>
+      )}
+    </div>
+  )
+})
+
+WrappedRangeSlider.displayName = "WrappedRangeSlider"
+
+export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
+  const {
+    startValue,
+    endValue,
     min,
     disabled,
     colorScheme,
@@ -110,7 +120,8 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
 
   const sliderRef = useRef<HTMLDivElement>(null)
   const [isFocus, setIsFocus] = useState<boolean>(false)
-  const [defaultValue] = useState<number>(value as number)
+  const defaultStartValue = useRef<number>(startValue)
+  const defaultEndValue = useRef<number>(endValue)
 
   const getValidateMessage = useCallback(
     (value: unknown) => {
@@ -141,14 +152,14 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
-      setValue: (value: number) => {
-        handleUpdateDsl({ value })
+      setStartOfRange: (startValue: number) => {
+        handleUpdateDsl({ startValue })
       },
-      clearValue: () => {
-        handleUpdateDsl({ value: min, validateMessage: "" })
+      setEndOfRange: (endValue: number) => {
+        handleUpdateDsl({ endValue })
       },
       validate: () => {
-        return handleValidate(value)
+        return handleValidate({ startValue, endValue })
       },
       clearValidation: () => {
         handleUpdateDsl({
@@ -156,7 +167,11 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
         })
       },
       reset: () => {
-        handleUpdateDsl({ value: defaultValue, validateMessage: "" })
+        handleUpdateDsl({
+          startValue: defaultStartValue,
+          endValue: defaultStartValue,
+          validateMessage: "",
+        })
       },
       focus: () => setIsFocus(true),
     })
@@ -165,7 +180,8 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
     }
   }, [
     displayName,
-    value,
+    startValue,
+    endValue,
     disabled,
     colorScheme,
     handleUpdateGlobalData,
@@ -173,7 +189,6 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
     handleDeleteGlobalData,
     handleValidate,
     min,
-    defaultValue,
   ])
 
   const handleOnChange = useCallback(() => {
@@ -199,9 +214,10 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedSlider
+          <WrappedRangeSlider
             {...props}
-            value={value}
+            startValue={startValue}
+            endValue={endValue}
             ref={sliderRef}
             isFocus={isFocus}
             getValidateMessage={getValidateMessage}
@@ -221,4 +237,4 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
     </AutoHeightContainer>
   )
 }
-SliderWidget.displayName = "SliderWidget"
+RangeSliderWidget.displayName = "RangeSliderWidget"

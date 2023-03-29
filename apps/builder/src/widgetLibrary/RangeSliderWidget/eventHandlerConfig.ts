@@ -11,8 +11,8 @@ export const RANGE_SLIDER_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     },
   ],
   methods: [
-    "setValue",
-    "clearValue",
+    "setStartOfRange",
+    "setEndOfRange",
     "validate",
     "clearValidation",
     "reset",

@@ -5,7 +5,6 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { SLIDER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SliderWidget/eventHandlerConfig"
 
-// todo: 补充翻译
 const baseWidgetName = "slider"
 export const SLIDER_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -172,7 +171,9 @@ export const SLIDER_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.slider.hide_output"),
         labelDesc: i18n.t("editor.inspect.setter_tips.slider.hide_output"),
         attrName: "hideOutput",
-        setterType: "SWITCH_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
