@@ -11,6 +11,7 @@ import { ReadGoogleSheetsActionOptions } from "@/page/App/components/Actions/Act
 import { InputEditor } from "@/page/App/components/InputEditor"
 import { TextLink } from "@/page/User/components/TextLink"
 import { GoogleSheetsActionReadOpts } from "@/redux/currentApp/action/googleSheetsAction"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   optionLabelContainerStyle,
   optionLabelStyle,
@@ -21,7 +22,6 @@ export const ReadSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   props,
 ) => {
   const { t } = useTranslation()
-
   const { onChange } = props
   const opts = props.opts as GoogleSheetsActionReadOpts
   const { spreadsheet, sheetName } = opts
@@ -32,6 +32,7 @@ export const ReadSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
         spreadsheet={spreadsheet}
         sheetName={sheetName}
         onChange={onChange}
+        isHiddenSheetName={opts.rangeType === "a1"}
       />
       <Divider direction="horizontal" w="unset" />
       <div css={optionLabelContainerStyle}>
@@ -41,8 +42,10 @@ export const ReadSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
         <div css={radioGroupContainerStyle}>
           <RadioGroup
             type="button"
-            value={opts.dataRange}
+            value={opts.rangeType}
+            defaultValue={opts.rangeType}
             options={ReadGoogleSheetsActionOptions}
+            onChange={onChange("rangeType")}
           />
         </div>
       </div>
@@ -52,6 +55,7 @@ export const ReadSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
             value={opts.limit ?? ""}
             onChange={onChange("limit")}
             title={t("editor.action.form.label.gs.limit")}
+            expectedType={VALIDATION_TYPES.NUMBER}
           />
         </div>
         <div css={spreadsheetContainerStyle}>
@@ -59,14 +63,15 @@ export const ReadSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
             value={opts.offset ?? ""}
             onChange={onChange("offset")}
             title={t("editor.action.form.label.gs.offset")}
+            expectedType={VALIDATION_TYPES.NUMBER}
           />
         </div>
       </div>
-      {opts.dataRange === "notation" && (
+      {opts.rangeType === "a1" && (
         <InputEditor
           title={t("editor.action.form.label.gs.a1_notation")}
-          value={opts.notation}
-          onChange={onChange("notation")}
+          value={opts.a1Notation}
+          onChange={onChange("a1Notation")}
           tips={
             <Trans
               i18nKey="editor.action.form.tips.gs.to_select_the_first_"

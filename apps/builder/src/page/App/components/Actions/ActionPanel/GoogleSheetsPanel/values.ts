@@ -27,7 +27,7 @@ export const GoogleSheetsActionTypesOptions: {
     label: i18n.t(
       "editor.action.form.option.gs.action_type.bulk_update_a_spread",
     ),
-    value: "bulk",
+    value: "bulkUpdate",
   },
   {
     label: i18n.t(
@@ -64,12 +64,12 @@ export const GoogleSheetsActionTypesOptions: {
 export const ReadGoogleSheetsActionOptions = [
   {
     label: i18n.t("editor.action.form.option.gs.data_range.use_a1_notation"),
-    value: "notation",
+    value: "a1",
   },
   {
     label: i18n.t(
       "editor.action.form.option.gs.data_range.use_limit_and_offset",
     ),
-    value: "limitAndOffset",
+    value: "limit",
   },
 ]

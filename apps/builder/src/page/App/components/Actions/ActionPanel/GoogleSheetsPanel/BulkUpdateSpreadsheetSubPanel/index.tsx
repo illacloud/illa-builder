@@ -4,6 +4,7 @@ import { BasicSheetConfig } from "@/page/App/components/Actions/ActionPanel/Goog
 import { GoogleSheetsActionSubPanelProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
 import { InputEditor } from "@/page/App/components/InputEditor"
 import { GoogleSheetsActionBulkOpts } from "@/redux/currentApp/action/googleSheetsAction"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const BulkUpdateSpreadsheetSubPanel: FC<
   GoogleSheetsActionSubPanelProps
@@ -24,14 +25,18 @@ export const BulkUpdateSpreadsheetSubPanel: FC<
         onChange={onChange("primaryKey")}
         title={t("editor.action.form.label.gs.primary_key_column")}
         placeholder={t("editor.action.form.placeholder.gs.primary_key_column")}
+        expectedType={VALIDATION_TYPES.STRING}
       />
       <InputEditor
-        value={opts.arrayUpdate}
-        onChange={onChange("arrayUpdate")}
+        value={opts.rowsArray}
+        lineNumbers
+        style={{ height: "88px" }}
+        onChange={onChange("rowsArray")}
         title={t("editor.action.form.label.gs.array_of_rows_to_upd")}
         placeholder={t(
           "editor.action.form.placeholder.gs.array_of_rows_to_upd",
         )}
+        expectedType={VALIDATION_TYPES.ARRAY}
       />
     </>
   )

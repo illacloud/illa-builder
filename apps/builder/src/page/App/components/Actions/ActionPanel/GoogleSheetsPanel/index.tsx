@@ -33,6 +33,7 @@ import {
   GoogleSheetsActionType,
 } from "@/redux/currentApp/action/googleSheetsAction"
 import { getAllResources } from "@/redux/resource/resourceSelector"
+import { Params } from "@/redux/resource/restapiResource"
 
 const SubPanelMap: Record<GoogleSheetsActionType, any> = {
   read: ReadSpreadsheetSubPanel,
@@ -40,7 +41,7 @@ const SubPanelMap: Record<GoogleSheetsActionType, any> = {
   delete: DeleteSpreadsheetSubPanel,
   list: null,
   append: AppendSpreadsheetSubPanel,
-  bulk: BulkUpdateSpreadsheetSubPanel,
+  bulkUpdate: BulkUpdateSpreadsheetSubPanel,
   copy: CopySpreadsheetSubPanel,
   create: CreateSpreadsheetSubPanel,
   get: GetSpreadsheetSubPanel,
@@ -64,10 +65,10 @@ export const GoogleSheetsPanel: FC = () => {
   const handleSelectValueChange = useCallback(
     (value: SelectValue) => {
       const content =
-        selectedContent.actionType === value
+        selectedContent.method === value
           ? selectedContent
           : {
-              actionType: value as GoogleSheetsActionType,
+              method: value as GoogleSheetsActionType,
               opts: GoogleSheetsActionInitialMaps[
                 value as GoogleSheetsActionType
               ],
@@ -83,7 +84,7 @@ export const GoogleSheetsPanel: FC = () => {
   )
 
   const handleValueChange = useCallback(
-    (key: string) => (value: string | boolean) => {
+    (key: string) => (value: string | boolean | Params[]) => {
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
@@ -100,7 +101,7 @@ export const GoogleSheetsPanel: FC = () => {
     [cachedAction, content, dispatch],
   )
 
-  const SubPanel = SubPanelMap[content.actionType]
+  const SubPanel = SubPanelMap[content.method]
 
   return (
     <div css={panelContainerStyle}>
@@ -109,7 +110,7 @@ export const GoogleSheetsPanel: FC = () => {
         <SingleTypeComponent
           title={t("editor.action.form.label.gs.action_type")}
           componentType="select"
-          value={content.actionType}
+          value={content.method}
           options={GoogleSheetsActionTypesOptions}
           onSelectedValueChange={handleSelectValueChange}
         />

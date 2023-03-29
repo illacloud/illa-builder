@@ -2,9 +2,9 @@ import { Params } from "@/redux/resource/restapiResource"
 
 export type GoogleSheetsActionType =
   | "read"
-  | "update"
   | "append"
-  | "bulk"
+  | "update"
+  | "bulkUpdate"
   | "delete"
   | "create"
   | "copy"
@@ -13,59 +13,46 @@ export type GoogleSheetsActionType =
 
 export interface GoogleSheetsActionGetOpts {
   spreadsheet: string
-  sheetName: string
 }
 
 export const GoogleSheetsActionGetOptsInitial: GoogleSheetsActionGetOpts = {
   spreadsheet: "",
-  sheetName: "",
 }
 
 export interface GoogleSheetsActionCopyOpts {
   spreadsheet: string
   sheetName: string
-  copyId: string
-  copyTo: string
-  sheetNameTo: string
+  toSpreadsheet: string
+  toSheet: string
 }
 
 export const GoogleSheetsActionCopyOptsInitial: GoogleSheetsActionCopyOpts = {
   spreadsheet: "",
   sheetName: "",
-  copyId: "",
-  copyTo: "",
-  sheetNameTo: "",
+  toSpreadsheet: "",
+  toSheet: "",
 }
 
 export interface GoogleSheetsActionCreateOpts {
-  spreadsheetTitle: string
+  title: string
 }
 
 export const GoogleSheetsActionCreateOptsInitial: GoogleSheetsActionCreateOpts =
   {
-    spreadsheetTitle: "",
+    title: "",
   }
 
 export interface GoogleSheetsActionDeleteOpts {
   spreadsheet: string
   sheetName: string
-  filters: Params[]
-  compare: boolean
-  consider: boolean
+  index: string
 }
 
 export const GoogleSheetsActionDeleteOptsInitial: GoogleSheetsActionDeleteOpts =
   {
     spreadsheet: "",
     sheetName: "",
-    filters: [
-      {
-        key: "",
-        value: "",
-      },
-    ],
-    compare: false,
-    consider: false,
+    index: "",
   }
 
 export interface GoogleSheetsActionListOpts {}
@@ -76,76 +63,74 @@ export interface GoogleSheetsActionBulkOpts {
   spreadsheet: string
   sheetName: string
   primaryKey: string
-  arrayUpdate: string
+  rowsArray: string
 }
 
 export const GoogleSheetsActionBulkOptsInitial: GoogleSheetsActionBulkOpts = {
   spreadsheet: "",
   sheetName: "",
   primaryKey: "",
-  arrayUpdate: "",
+  rowsArray: "",
 }
 
 export interface GoogleSheetsActionAppendOpts {
   spreadsheet: string
   sheetName: string
-  appendValues: string
+  values: string
 }
 
 export const GoogleSheetsActionAppendOptsInitial: GoogleSheetsActionAppendOpts =
   {
     spreadsheet: "",
     sheetName: "",
-    appendValues: "",
+    values: "",
   }
 
-export type GoogleSheetsActionUpdateType = "notation" | "filters"
+export type GoogleSheetsActionUpdateType = "a1" | "filter"
 
 export interface GoogleSheetsActionUpdateOpts {
   spreadsheet: string
   sheetName: string
-  filterBy: {
-    type: GoogleSheetsActionUpdateType
-    value: string | Params[]
-  }
-  updateValue: string
+  filterType: GoogleSheetsActionUpdateType
+  filters: Params[]
+  a1Notation: string
+  values: string
 }
 
 export const GoogleSheetsActionUpdateOptsInitial: GoogleSheetsActionUpdateOpts =
   {
     spreadsheet: "",
     sheetName: "",
-    filterBy: {
-      type: "filters",
-      value: [
-        {
-          key: "",
-          value: "",
-          operator: "in",
-        },
-      ],
-    },
-    updateValue: "",
+    filterType: "filter",
+    filters: [
+      {
+        key: "",
+        value: "",
+        operator: "in",
+      },
+    ],
+    a1Notation: "",
+    values: "",
   }
 
-export type DataRangeType = "notation" | "limitAndOffset"
+export type DataRangeType = "a1" | "limit"
 
 export interface GoogleSheetsActionReadOpts {
   spreadsheet: string
   sheetName: string
-  dataRange: DataRangeType
+  rangeType: DataRangeType
   limit: string
   offset: string
-  notation: string
+  a1Notation: string
 }
 
 export const GoogleSheetsActionReadOptsInitial: GoogleSheetsActionReadOpts = {
   spreadsheet: "",
   sheetName: "",
-  dataRange: "limitAndOffset",
+  rangeType: "limit",
   limit: "",
   offset: "",
-  notation: "",
+  a1Notation: "",
 }
 
 export type GoogleSheetsActionOpts =
@@ -160,14 +145,14 @@ export type GoogleSheetsActionOpts =
   | GoogleSheetsActionReadOpts
 
 export interface GoogleSheetsAction<T extends GoogleSheetsActionOpts> {
-  actionType: GoogleSheetsActionType
+  method: GoogleSheetsActionType
   opts: T
 }
 
-export const GoogleSheetsActionInitial: GoogleSheetsAction<GoogleSheetsActionUpdateOpts> =
+export const GoogleSheetsActionInitial: GoogleSheetsAction<GoogleSheetsActionOpts> =
   {
-    actionType: "update",
-    opts: GoogleSheetsActionUpdateOptsInitial,
+    method: "read",
+    opts: GoogleSheetsActionReadOptsInitial,
   }
 
 export const GoogleSheetsActionInitialMaps: Record<
@@ -178,7 +163,7 @@ export const GoogleSheetsActionInitialMaps: Record<
   read: GoogleSheetsActionReadOptsInitial,
   update: GoogleSheetsActionUpdateOptsInitial,
   append: GoogleSheetsActionAppendOptsInitial,
-  bulk: GoogleSheetsActionBulkOptsInitial,
+  bulkUpdate: GoogleSheetsActionBulkOptsInitial,
   delete: GoogleSheetsActionDeleteOptsInitial,
   create: GoogleSheetsActionCreateOptsInitial,
   copy: GoogleSheetsActionCopyOptsInitial,

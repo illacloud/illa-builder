@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export function applyRecordEditorContainerStyle(label: string) {
   return css`
@@ -55,10 +55,17 @@ export const recordEditorLabelStyle = css`
   margin-right: 16px;
   height: 48px;
   display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
   font-size: 14px;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
+
+export const subLabelStyle = css`
+  line-height: 20px;
+  color: ${getColor("purple", "01")};
+  font-size: 12px;
+  cursor: pointer;
 `

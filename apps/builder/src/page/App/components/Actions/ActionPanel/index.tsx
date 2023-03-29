@@ -46,9 +46,7 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
         case "mssql":
           return <MicrosoftSqlPanel />
         case "oracle":
-        case "googlesheet":
-          return <GoogleSheetsPanel />
-        // return <OracleDBPanel />
+          return <OracleDBPanel />
         case "restapi":
           return <RestApiPanel />
         case "huggingface":
@@ -69,6 +67,8 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           return <S3Panel />
         case "smtp":
           return <SMTPPanel />
+        case "googlesheet":
+          return <GoogleSheetsPanel />
         case "firebase":
           return <FirebasePanel />
         case "graphql":

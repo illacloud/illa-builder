@@ -2,7 +2,7 @@ import { FC, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
+import { Button, ButtonGroup, PreviousIcon } from "@illa-design/react"
 import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
@@ -52,7 +52,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
         <ResourceDivider type="Service Account" />
         <ControlledElement
           title={t("editor.action.form.label.gs.private_key")}
-          defaultValue={content.privateKey}
+          defaultValue={content.opts.privateKey}
           name="privateKey"
           isRequired
           rules={[

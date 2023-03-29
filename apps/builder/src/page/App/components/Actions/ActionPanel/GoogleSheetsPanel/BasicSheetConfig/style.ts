@@ -10,17 +10,22 @@ export const sheetConfigContainerStyle = css`
 
 export const spreadsheetContainerStyle = css`
   display: flex;
-  position: relative;
-  width: 50%;
+  align-items: center;
+  flex: 1;
 `
 
-export const fxIconStyle = css`
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 16px;
-  right: -16px;
-  color: ${getColor("grayBlue", "04")};
-  cursor: pointer;
-  z-index: 1;
-`
+export const getFxIconStyle = (fullwidth: boolean) => {
+  const hasRightMargin = fullwidth
+    ? css`
+        margin-right: 16px;
+      `
+    : css``
+  return css`
+    width: 16px;
+    height: 16px;
+    color: ${getColor("grayBlue", "04")};
+    cursor: pointer;
+    z-index: 1;
+    ${hasRightMargin};
+  `
+}

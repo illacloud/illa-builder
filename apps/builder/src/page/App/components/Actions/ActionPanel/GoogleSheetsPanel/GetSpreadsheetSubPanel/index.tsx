@@ -11,9 +11,9 @@ export const GetSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
 
   return (
     <BasicSheetConfig
-      sheetName={opts.sheetName}
       spreadsheet={opts.spreadsheet}
       onChange={onChange}
+      isHiddenSheetName={true}
     />
   )
 }

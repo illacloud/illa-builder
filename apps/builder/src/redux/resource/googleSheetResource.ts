@@ -1,7 +1,13 @@
+export type GoogleSheetAuthType = "serviceAccount" | "oauth2"
+
 export interface GoogleSheetResource {
-  privateKey: string
+  authentication: GoogleSheetAuthType
+  opts: { privateKey: string }
 }
 
 export const GoogleSheetResourceInitial: GoogleSheetResource = {
-  privateKey: "",
+  authentication: "serviceAccount",
+  opts: {
+    privateKey: "",
+  },
 }

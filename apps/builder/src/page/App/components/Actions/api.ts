@@ -278,8 +278,12 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         },
       }
     case "googlesheet":
-      const { resourceName: googleSheetName, ...otherGoogleSheetsParams } = data
-      return otherGoogleSheetsParams
+      return {
+        authentication: "serviceAccount",
+        opts: {
+          privateKey: data.privateKey,
+        },
+      }
   }
 }
 

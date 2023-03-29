@@ -1,15 +1,14 @@
 import { GoogleSheetsActionOpts } from "@/redux/currentApp/action/googleSheetsAction"
+import { Params } from "@/redux/resource/restapiResource"
 
 export interface GoogleSheetsActionSubPanelProps {
   opts: GoogleSheetsActionOpts
-  onChange: (key: string) => (value: string | boolean) => void
+  onChange: (key: string) => (value: string | boolean | Params[]) => void
 }
 
 export interface BasicSheetConfigProps {
-  sheetName: string
+  sheetName?: string
   spreadsheet: string
-  copyTo?: string
-  showCopyTo?: boolean
-  showSpreadsheet?: boolean
+  isHiddenSheetName?: boolean
   onChange: (key: string) => (value: string | boolean) => void
 }

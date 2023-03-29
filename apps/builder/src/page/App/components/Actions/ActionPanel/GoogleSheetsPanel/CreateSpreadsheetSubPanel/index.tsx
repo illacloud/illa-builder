@@ -14,8 +14,8 @@ export const CreateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   return (
     <InputEditor
       title={t("editor.action.form.label.gs.title_of_spreadsheet")}
-      value={opts.spreadsheetTitle}
-      onChange={onChange("spreadsheetTitle")}
+      value={opts.title}
+      onChange={onChange("title")}
     />
   )
 }

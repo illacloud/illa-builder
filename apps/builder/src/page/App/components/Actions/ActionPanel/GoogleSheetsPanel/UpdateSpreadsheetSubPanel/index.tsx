@@ -26,7 +26,7 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   const { onChange } = props
   const opts = props.opts as GoogleSheetsActionUpdateOpts
 
-  const isFiltersType = opts.filterBy.type === "filters"
+  const isFiltersType = opts.filterType === "filter"
 
   const handleOnChangeKeyOrValue = useCallback(
     (
@@ -36,38 +36,44 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
       operator: string,
       name?: string,
     ) => {
-      const params = opts.filterBy.value as Params[]
-      // if (!(name && params.hasOwnProperty(name))) {
-      //   return
-      // }
+      const params = opts.filters as Params[]
       let newList = [...params]
       newList[index] = {
         key,
         value,
         operator,
       }
-      // handleValueChange(name)(newList)
+      onChange("filters")(newList)
     },
-    [opts.filterBy.value],
+    [onChange, opts.filters],
   )
 
-  const handleOnAddKeys = useCallback((name?: string) => {
-    // if (name && content.hasOwnProperty(name)) {
-    //   const oldList = content[name as keyof typeof content] as Params[]
-    //   let newList: Params[] = [...oldList, { key: "", value: "" } as Params]
-    // dispatch(
-    //   configActions.updateCachedAction({
-    //     ...cachedAction,
-    //     content: {
-    //       ...content,
-    //       variables: newList,
-    //     },
-    //   }),
-    // )
-    // }
-  }, [])
+  const handleOnAddKeys = useCallback(() => {
+    const params = opts.filters as Params[]
+    let newList: Params[] = [
+      ...params,
+      { key: "", value: "", operator: "" } as Params,
+    ]
+    onChange("filters")(newList)
+  }, [onChange, opts.filters])
 
-  const handleOnDeleteKeys = useCallback(() => {}, [])
+  const handleOnDeleteKeys = useCallback(
+    (index: number) => {
+      const params = opts.filters as Params[]
+      let newList = [...params]
+      newList.splice(index, 1)
+      if (newList.length === 0) {
+        newList = [{ key: "", value: "", operator: "" } as Params]
+      }
+      onChange("filters")(newList)
+    },
+    [onChange, opts.filters],
+  )
+
+  const handleSubLabelClick = useCallback(() => {
+    const updateValue = opts.filterType === "filter" ? "a1" : "filter"
+    onChange("filterType")(updateValue)
+  }, [onChange, opts.filterType])
 
   return (
     <>
@@ -75,94 +81,103 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
         sheetName={opts.sheetName}
         spreadsheet={opts.spreadsheet}
         onChange={onChange}
+        isHiddenSheetName={!isFiltersType}
       />
-      {/*{isFiltersType ? (*/}
-      {/*  <RecordEditor*/}
-      {/*    label={t("editor.action.form.label.gs.filter_by")}*/}
-      {/*    records={(opts.filterBy.value ?? []) as Params[]}*/}
-      {/*    customRender={(record, index) => (*/}
-      {/*      <>*/}
-      {/*        <div css={actionItemRecordEditorStyle}>*/}
-      {/*          <CodeEditor*/}
-      {/*            value={record.key}*/}
-      {/*            singleLine*/}
-      {/*            onChange={(val) => {*/}
-      {/*              handleOnChangeKeyOrValue(*/}
-      {/*                index,*/}
-      {/*                val,*/}
-      {/*                record.value,*/}
-      {/*                record.operator,*/}
-      {/*              )*/}
-      {/*            }}*/}
-      {/*            wrapperCss={codeMirrorWrapperLabelStyle}*/}
-      {/*            expectValueType={VALIDATION_TYPES.STRING}*/}
-      {/*            lang={CODE_LANG.JAVASCRIPT}*/}
-      {/*            codeType={CODE_TYPE.EXPRESSION}*/}
-      {/*            canShowCompleteInfo*/}
-      {/*          />*/}
-      {/*        </div>*/}
-      {/*        <Select*/}
-      {/*          colorScheme="techPurple"*/}
-      {/*          showSearch={true}*/}
-      {/*          defaultValue={record.operator}*/}
-      {/*          value={record.operator}*/}
-      {/*          w="0"*/}
-      {/*          // ml="-0.5px"*/}
-      {/*          // mr="-0.5px"*/}
-      {/*          bdRadius="0"*/}
-      {/*          flexGrow="1"*/}
-      {/*          onChange={(val) =>*/}
-      {/*            handleOnChangeKeyOrValue(*/}
-      {/*              index,*/}
-      {/*              record.key,*/}
-      {/*              record.value,*/}
-      {/*              val as string,*/}
-      {/*            )*/}
-      {/*          }*/}
-      {/*          options={["in", "="]}*/}
-      {/*        />*/}
-      {/*        <div css={actionItemRecordEditorStyle}>*/}
-      {/*          <CodeEditor*/}
-      {/*            singleLine*/}
-      {/*            value={record.value}*/}
-      {/*            onChange={(val) => {*/}
-      {/*              handleOnChangeKeyOrValue(*/}
-      {/*                index,*/}
-      {/*                record.key,*/}
-      {/*                val,*/}
-      {/*                record.operator,*/}
-      {/*              )*/}
-      {/*            }}*/}
-      {/*            wrapperCss={codeMirrorWrapperValueStyle}*/}
-      {/*            expectValueType={VALIDATION_TYPES.STRING}*/}
-      {/*            lang={CODE_LANG.JAVASCRIPT}*/}
-      {/*            codeType={CODE_TYPE.EXPRESSION}*/}
-      {/*            canShowCompleteInfo*/}
-      {/*          />*/}
-      {/*        </div>*/}
-      {/*      </>*/}
-      {/*    )}*/}
-      {/*    name="filter"*/}
-      {/*    onAdd={handleOnAddKeys}*/}
-      {/*    onDelete={handleOnDeleteKeys}*/}
-      {/*    onChangeKey={() => {}}*/}
-      {/*    onChangeValue={() => {}}*/}
-      {/*  />*/}
-      {/*) : (*/}
-      <InputEditor
-        title={t("editor.action.form.label.gs.filter_by")}
-        value={JSON.stringify(opts.filterBy.value)}
-        onChange={() => {}}
-        tips={t("editor.action.form.tips.gs.a1_notation")}
-      />
-      {/*)}*/}
+      {isFiltersType ? (
+        <RecordEditor
+          label={t("editor.action.form.label.gs.filter_by")}
+          subLabel={
+            isFiltersType
+              ? t("editor.action.form.option.gs.filter_by.use_row_filters")
+              : t("editor.action.form.option.gs.filter_by.use_a1_notation")
+          }
+          onSubLabelClick={handleSubLabelClick}
+          records={(opts.filters ?? []) as Params[]}
+          customRender={(record, index) => (
+            <>
+              <div css={actionItemRecordEditorStyle}>
+                <CodeEditor
+                  value={record.key}
+                  singleLine
+                  onChange={(val) => {
+                    handleOnChangeKeyOrValue(
+                      index,
+                      val,
+                      record.value,
+                      record.operator,
+                    )
+                  }}
+                  wrapperCss={codeMirrorWrapperLabelStyle}
+                  expectValueType={VALIDATION_TYPES.STRING}
+                  lang={CODE_LANG.JAVASCRIPT}
+                  codeType={CODE_TYPE.EXPRESSION}
+                  canShowCompleteInfo
+                />
+              </div>
+              <Select
+                colorScheme="techPurple"
+                showSearch={true}
+                defaultValue={record.operator}
+                value={record.operator}
+                w="0"
+                // ml="-0.5px"
+                // mr="-0.5px"
+                bdRadius="0"
+                flexGrow="1"
+                onChange={(val) =>
+                  handleOnChangeKeyOrValue(
+                    index,
+                    record.key,
+                    record.value,
+                    val as string,
+                  )
+                }
+                options={["in", "="]}
+              />
+              <div css={actionItemRecordEditorStyle}>
+                <CodeEditor
+                  singleLine
+                  value={record.value}
+                  onChange={(val) => {
+                    handleOnChangeKeyOrValue(
+                      index,
+                      record.key,
+                      val,
+                      record.operator,
+                    )
+                  }}
+                  wrapperCss={codeMirrorWrapperValueStyle}
+                  expectValueType={VALIDATION_TYPES.STRING}
+                  lang={CODE_LANG.JAVASCRIPT}
+                  codeType={CODE_TYPE.EXPRESSION}
+                  canShowCompleteInfo
+                />
+              </div>
+            </>
+          )}
+          name="filter"
+          onAdd={handleOnAddKeys}
+          onDelete={handleOnDeleteKeys}
+          onChangeKey={() => {}}
+          onChangeValue={() => {}}
+        />
+      ) : (
+        <InputEditor
+          title={t("editor.action.form.label.gs.filter_by")}
+          value={opts.a1Notation}
+          onChange={onChange("a1Notation")}
+          tips={t("editor.action.form.tips.gs.a1_notation")}
+          expectedType={VALIDATION_TYPES.STRING}
+        />
+      )}
       <InputEditor
         title={t("editor.action.form.label.gs.update_value")}
-        value={opts.updateValue}
+        value={opts.values}
         lineNumbers
         style={{ height: "88px" }}
-        onChange={onChange("updateValue")}
+        onChange={onChange("values")}
         placeholder={t("editor.action.form.placeholder.gs.update_value")}
+        expectedType={VALIDATION_TYPES.ARRAY}
       />
     </>
   )
