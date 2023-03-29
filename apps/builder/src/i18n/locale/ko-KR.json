@@ -1497,6 +1497,10 @@
           "default_step": "기본 단계",
           "show_step_number": "단계 번호 표시",
           "indicate_completed_steps": "완료된 단계 표시"
+        },
+        "range_slider": {
+          "start_value": "범위의 최소값 설정",
+          "end_value": "범위의 최대값 설정"
         }
       },
       "setter_option": {
@@ -2099,6 +2103,12 @@
     },
     "step": {
       "name": "걸음"
+    },
+    "slider": {
+      "name": "슬라이더"
+    },
+    "range_slider": {
+      "name": "범위 슬라이더"
     }
   },
   "page": {
