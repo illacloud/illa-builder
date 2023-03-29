@@ -1492,6 +1492,11 @@
           "prefix_icon": "コンポーネントの前に表示されるアイコン",
           "suffix_icon": "コンポーネントの後に表示されるアイコン",
           "hide_output": "スライド時に値を非表示にするかどうかを設定します"
+        },
+        "step": {
+          "default_step": "既定のステップ",
+          "show_step_number": "ステップ番号を表示",
+          "indicate_completed_steps": "完了した手順を示す"
         }
       },
       "setter_option": {
@@ -2091,6 +2096,9 @@
     },
     "carousel": {
       "name": "カルーセル"
+    },
+    "step": {
+      "name": "歩数"
     }
   },
   "page": {

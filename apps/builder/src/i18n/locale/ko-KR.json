@@ -1492,6 +1492,11 @@
           "prefix_icon": "구성 요소 앞에 표시되는 아이콘",
           "suffix_icon": "구성 요소 뒤에 표시되는 아이콘",
           "hide_output": "슬라이딩 시 값 숨기기 여부 설정"
+        },
+        "step": {
+          "default_step": "기본 단계",
+          "show_step_number": "단계 번호 표시",
+          "indicate_completed_steps": "완료된 단계 표시"
         }
       },
       "setter_option": {
@@ -2091,6 +2096,9 @@
     },
     "carousel": {
       "name": "회전목마"
+    },
+    "step": {
+      "name": "걸음"
     }
   },
   "page": {

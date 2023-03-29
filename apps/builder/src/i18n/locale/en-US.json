@@ -1492,6 +1492,11 @@
           "prefix_icon": "The icon displayed in front of the component",
           "suffix_icon": "The icon displayed after the component",
           "hide_output": "Set whether to hide the value when sliding"
+        },
+        "step": {
+          "default_step": "Default step",
+          "show_step_number": "Show step numbers",
+          "indicate_completed_steps": "Indicate completed steps"
         }
       },
       "setter_option": {
@@ -2091,6 +2096,9 @@
     },
     "carousel": {
       "name": "Carousel"
+    },
+    "step": {
+      "name": "Steps"
     }
   },
   "page": {
