@@ -12,3 +12,11 @@ export const spreadsheetContainerStyle = css`
   position: relative;
   width: 50%;
 `
+
+export const updateEditorKeyContainerStyle = css`
+  flex-grow: 2;
+`
+
+export const updateEditorValueContainerStyle = css`
+  flex-grow: 3;
+`

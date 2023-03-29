@@ -1,5 +1,5 @@
 import { FC, useCallback } from "react"
-import { useTranslation } from "react-i18next"
+import { Trans, useTranslation } from "react-i18next"
 import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import {
@@ -13,8 +13,13 @@ import {
 import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { BasicSheetConfig } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BasicSheetConfig"
 import { GoogleSheetsActionSubPanelProps } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/interface"
+import {
+  updateEditorKeyContainerStyle,
+  updateEditorValueContainerStyle,
+} from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/style"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { InputEditor } from "@/page/App/components/InputEditor"
+import { TextLink } from "@/page/User/components/TextLink"
 import { GoogleSheetsActionUpdateOpts } from "@/redux/currentApp/action/googleSheetsAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -90,14 +95,19 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
           label={t("editor.action.form.label.gs.filter_by")}
           subLabel={
             isFiltersType
-              ? t("editor.action.form.option.gs.filter_by.use_row_filters")
-              : t("editor.action.form.option.gs.filter_by.use_a1_notation")
+              ? t("editor.action.form.option.gs.filter_by.use_a1_notation")
+              : t("editor.action.form.option.gs.filter_by.use_row_filters")
           }
           onSubLabelClick={handleSubLabelClick}
           records={(opts.filters ?? []) as Params[]}
           customRender={(record, index) => (
             <>
-              <div css={actionItemRecordEditorStyle}>
+              <div
+                css={[
+                  actionItemRecordEditorStyle,
+                  updateEditorKeyContainerStyle,
+                ]}
+              >
                 <CodeEditor
                   value={record.key}
                   singleLine
@@ -122,8 +132,6 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
                 defaultValue={record.operator}
                 value={record.operator}
                 w="0"
-                // ml="-0.5px"
-                // mr="-0.5px"
                 bdRadius="0"
                 flexGrow="1"
                 onChange={(val) =>
@@ -136,7 +144,12 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
                 }
                 options={["in", "="]}
               />
-              <div css={actionItemRecordEditorStyle}>
+              <div
+                css={[
+                  actionItemRecordEditorStyle,
+                  updateEditorValueContainerStyle,
+                ]}
+              >
                 <CodeEditor
                   singleLine
                   value={record.value}
@@ -168,8 +181,30 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
           title={t("editor.action.form.label.gs.filter_by")}
           value={opts.a1Notation}
           onChange={onChange("a1Notation")}
-          tips={t("editor.action.form.tips.gs.a1_notation")}
+          tips={
+            <Trans
+              i18nKey="editor.action.form.tips.gs.a1_notation"
+              t={t}
+              components={[
+                <TextLink
+                  key="editor.action.form.tips.gs.a1_notation"
+                  onClick={() =>
+                    window.open(
+                      "https://developers.google.com/sheets/api/guides/concepts#a1_notation",
+                      "_blank",
+                    )
+                  }
+                />,
+              ]}
+            />
+          }
           expectedType={VALIDATION_TYPES.STRING}
+          subtitle={
+            isFiltersType
+              ? t("editor.action.form.option.gs.filter_by.use_a1_notation")
+              : t("editor.action.form.option.gs.filter_by.use_row_filters")
+          }
+          handleSubtitleClick={handleSubLabelClick}
         />
       )}
       <InputEditor

@@ -65,7 +65,7 @@ export const recordEditorLabelStyle = css`
 
 export const subLabelStyle = css`
   line-height: 20px;
-  color: ${getColor("purple", "01")};
+  color: ${getColor("techPurple", "01")};
   font-size: 12px;
   cursor: pointer;
 `

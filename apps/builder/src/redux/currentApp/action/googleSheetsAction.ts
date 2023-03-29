@@ -189,4 +189,7 @@ export const GoogleSheetsActionInitialMaps: Record<
 export const GoogleSheetDataTypeTransform = {
   limit: 0,
   offset: 0,
+  rowIndex: 0,
+  rowsArray: [{}],
+  values: [{}],
 }

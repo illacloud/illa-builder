@@ -27,16 +27,18 @@ export const codeEditorLabelStyle = css`
   color: ${getColor("grayBlue", "02")};
   min-height: 48px;
   display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
   align-self: start;
 `
 
 export const codeEditorSublabelStyle = css`
   color: ${getColor("techPurple", "01")};
   cursor: pointer;
-  margin-top: 5px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
 `
 
 export const actionItemTip = css`
