@@ -8,7 +8,7 @@ export function applyUserAvatarStyle(
 ): SerializedStyles {
   const basicStyle = css`
     display: inline-block;
-    background: #${background};
+    background: ${background};
     text-align: center;
     border-radius: 50%;
     cursor: pointer;

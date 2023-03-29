@@ -1,10 +1,8 @@
-import { getPayload } from "@/api/ws/index"
+import { getTextMessagePayload } from "@/api/ws/index"
 import {
   Callback,
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
-  Signal,
-  Target,
 } from "@/api/ws/interface"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -17,11 +15,13 @@ import {
   UPDATE_DISPLAY_NAME,
 } from "@/utils/generators/generateDisplayName"
 import { getLocalStorage } from "@/utils/storage"
+import { Signal, Target } from "./ILLA_PROTO"
 
 const HEARTBEAT_PING_TIMEOUT = 2 * 1000
 const HEARTBEAT_PONG_TIMEOUT = 5 * 1000
 const RECONNECT_TIMEOUT = 5 * 1000
 const REPEAT_LIMIT = 5
+const MESSAGE_QUEUE_MAX_LENGTH = 20
 
 const pingMessage = JSON.stringify({
   signal: 0,
@@ -99,9 +99,9 @@ export class ILLAWebsocket {
         )
 
         this.send(
-          getPayload(
-            Signal.SIGNAL_ENTER,
-            Target.TARGET_NOTHING,
+          getTextMessagePayload(
+            Signal.ENTER,
+            Target.NOTHING,
             false,
             {
               type: "enter",
@@ -223,6 +223,9 @@ export class ILLAWebsocket {
   public send(message: string) {
     if (this.ws?.readyState !== 1) {
       this.messageQueue.push(message)
+      while (this.messageQueue.length > MESSAGE_QUEUE_MAX_LENGTH) {
+        this.messageQueue.shift()
+      }
       return
     }
     try {
