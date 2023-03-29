@@ -8,6 +8,7 @@ import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { guideActions } from "@/redux/guide/guideSlice"
 import store from "@/store"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
 
 export const SELECT_WIDGET_ITEM = {
@@ -48,7 +49,16 @@ export const GUIDE_STEP = [
     selector: `[data-onboarding-element="INPUT_WIDGET"]`,
     reduxAction: "components/addComponentReducer",
     doItForMe: () => {
-      store.dispatch(componentsActions.addComponentReducer(GUIDE_COMPONENTS))
+      store.dispatch(
+        componentsActions.addComponentReducer(
+          // filter already generate component
+          GUIDE_COMPONENTS.filter((componentNode) => {
+            return !DisplayNameGenerator.isAlreadyGenerate(
+              componentNode.displayName,
+            )
+          }),
+        ),
+      )
       store.dispatch(guideActions.updateCurrentStepReducer(3))
     },
   },

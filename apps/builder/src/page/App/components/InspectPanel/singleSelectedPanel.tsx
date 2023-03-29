@@ -9,11 +9,7 @@ import {
 } from "@/page/App/components/InspectPanel/style"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import {
-  getCurrentStep,
-  getGuideInfo,
-  getGuideStatus,
-} from "@/redux/guide/guideSelector"
+import { getGuideInfo } from "@/redux/guide/guideSelector"
 import { isObject } from "@/utils/typeHelper"
 import { panelBuilder } from "@/widgetLibrary/panelBuilder"
 import { fieldFactory } from "./utils/fieldFactory"

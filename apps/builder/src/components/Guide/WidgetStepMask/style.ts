@@ -6,7 +6,6 @@ export const applyStepMaskWrapperStyle = (
   unitWidth: number,
 ) => {
   return css`
-    z-index: 1;
     display: ${visible ? "flex" : "none"};
     flex-direction: column;
     position: absolute;
