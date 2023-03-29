@@ -1,42 +1,41 @@
 import { SerializedStyles, css } from "@emotion/react"
 
-export function applyJsonValueColorStyle(type: any): SerializedStyles {
+export function applyJsonValueColorStyle(
+  type: unknown,
+  canEdit?: boolean,
+): SerializedStyles {
+  let color = "#999"
   switch (type) {
     case "number":
-      return css`
-        color: #164;
-      `
+      color = "#164"
+      break
     case "boolean":
-      return css`
-        color: #219;
-      `
+      color = "#219"
+      break
     case "string":
-      return css`
-        color: #219;
-      `
+      color = "#219"
+      break
     case "undefined":
-      return css`
-        color: #708;
-      `
+      color = "#708"
+      break
     case "function":
-      return css`
-        color: #05a;
-      `
+      color = "#05a"
+      break
     case "symbol":
-      return css`
-        color: #00c;
-      `
+      color = "#00c"
+      break
     case "bigint":
-      return css`
-        color: #170;
-      `
+      color = "#170"
+      break
     case "object":
-      return css`
-        color: #a50;
-      `
+      color = "#a50"
+      break
     default:
-      return css`
-        color: #999;
-      `
+      color = "#999"
+      break
   }
+  return css`
+    color: ${color};
+    padding-right: ${canEdit ? "4px" : "0"};
+  `
 }

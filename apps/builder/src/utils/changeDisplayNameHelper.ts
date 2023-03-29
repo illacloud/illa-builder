@@ -13,12 +13,16 @@ export const changeDisplayNameHelper = (
   seeds: Record<string, any>,
   oldDisplayName: string,
   newDisplayName: string,
+  type: "displayName" | "globalDataKey" = "displayName",
 ) => {
   const updateWidgetSlice: UpdateComponentSlicePropsPayload[] = []
   const updateActionSlice: UpdateActionSlicePropsPayload[] = []
   Object.keys(independenciesMap).forEach((inDepPath) => {
     const paths = toPath(inDepPath)
-    if (oldDisplayName === paths[0]) {
+    if (
+      (type === "displayName" && oldDisplayName === paths[0]) ||
+      (type === "globalDataKey" && oldDisplayName === paths[1])
+    ) {
       const usedPaths = independenciesMap[inDepPath]
       usedPaths.forEach((usedPath) => {
         const usedPathArray = toPath(usedPath)

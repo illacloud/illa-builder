@@ -389,6 +389,7 @@ export class ExecutionTreeFactory {
     )
 
     this.executedTree = this.validateTree(evaluatedTree)
+    this.executedTree.globalData = evaluatedTree.root.globalData
     return {
       dependencyTree: this.dependenciesState,
       evaluatedTree: this.executedTree,
@@ -517,6 +518,7 @@ export class ExecutionTreeFactory {
     this.mergeErrorTree(errorTree, [...updatePaths, ...orderPath])
     this.mergeDebugDataTree(debuggerData, [...updatePaths, ...orderPath])
     this.executedTree = this.validateTree(evaluatedTree)
+
     return {
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,

@@ -7,7 +7,7 @@ export const applyModalFooterWrapperStyle = (hasChildren: boolean) => css`
   position: relative;
   cursor: auto;
   padding: 0 16px;
-  height: ${hasChildren ? "64px" : "16px"};
+  height: ${hasChildren ? "auto" : "16px"};
   flex: none;
 `
 

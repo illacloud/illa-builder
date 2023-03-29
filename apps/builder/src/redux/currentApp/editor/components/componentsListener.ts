@@ -20,7 +20,7 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getExecutionResult,
-  getIndependenciesMap,
+  getInDependenciesMap,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -485,7 +485,7 @@ const handleUpdateDisplayNameEffect = (
 ) => {
   const { displayName, newDisplayName } = action.payload
   const rootState = listenerApi.getState()
-  const independenciesMap = getIndependenciesMap(rootState)
+  const independenciesMap = getInDependenciesMap(rootState)
   const seeds = getRawTree(rootState)
 
   const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
@@ -493,6 +493,33 @@ const handleUpdateDisplayNameEffect = (
     seeds,
     displayName,
     newDisplayName,
+  )
+
+  listenerApi.dispatch(
+    componentsActions.batchUpdateMultiComponentSlicePropsReducer(
+      updateWidgetSlice,
+    ),
+  )
+  listenerApi.dispatch(
+    actionActions.batchUpdateMultiActionSlicePropsReducer(updateActionSlice),
+  )
+}
+
+const handleUpdateGlobalDataDisplayNameEffect = (
+  action: ReturnType<typeof componentsActions.setGlobalStateReducer>,
+  listenerApi: AppListenerEffectAPI,
+) => {
+  const { key, oldKey } = action.payload
+  if (!oldKey) return
+  const rootState = listenerApi.getState()
+  const independenciesMap = getInDependenciesMap(rootState)
+  const seeds = getRawTree(rootState)
+  const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
+    independenciesMap,
+    seeds,
+    oldKey,
+    key,
+    "globalDataKey",
   )
 
   listenerApi.dispatch(
@@ -546,6 +573,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateComponentDisplayNameReducer,
       effect: handleUpdateDisplayNameEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.setGlobalStateReducer,
+      effect: handleUpdateGlobalDataDisplayNameEffect,
     }),
   ]
 
