@@ -1,6 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { applyChange } from "deep-diff"
-import { has } from "lodash"
+import { cloneDeep, has, set } from "lodash"
 import {
   DependenciesState,
   ErrorShape,
@@ -11,8 +11,8 @@ import {
   setExecutionResultPayload,
 } from "@/redux/currentApp/executionTree/executionState"
 import { isWidget } from "@/utils/executionTreeHelper/utils"
-import { CUSTOM_STORAGE_PREFIX } from "../../../utils/storage"
-import { isObject } from "../../../utils/typeHelper"
+import { CUSTOM_STORAGE_PREFIX } from "@/utils/storage"
+import { isObject } from "@/utils/typeHelper"
 
 export const setDependenciesReducer: CaseReducer<
   ExecutionState,
@@ -189,8 +189,11 @@ export const setGlobalStateInExecutionReducer: CaseReducer<
   const result = state.result
   if (!result) return
   const globalState = result.globalData
-  if (!globalState) return
+  const rootNode = result.root
+  const rootGlobalState = rootNode.globalData
+  if (!globalState || !rootGlobalState) return
   globalState[action.payload.key] = action.payload.value
+  rootGlobalState[action.payload.key] = action.payload.value
 }
 
 export const setInGlobalStateInExecutionReducer: CaseReducer<
@@ -204,13 +207,17 @@ export const setInGlobalStateInExecutionReducer: CaseReducer<
   const result = state.result
   if (!result) return
   const globalState = result.globalData
-  if (!isObject(globalState)) return
+  const rootNode = result.root
+  const rootGlobalState = rootNode.globalData
+  if (!isObject(globalState) || !isObject(rootGlobalState)) return
   const targetState = globalState[action.payload.key]
+  const targetRootState = rootGlobalState[action.payload.key]
   if (
     (isObject(targetState) || Array.isArray(targetState)) &&
     has(targetState, action.payload.path)
   ) {
-    targetState[action.payload.path] = action.payload.value
+    set(targetState, action.payload.path, action.payload.value)
+    set(targetRootState, action.payload.path, action.payload.value)
   }
 }
 

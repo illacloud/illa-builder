@@ -104,16 +104,19 @@ export const globalStateItemContainerStyle = css`
   display: flex;
   align-items: center;
   gap: 4px;
+  width: calc(100% - 16px);
 `
 
-export const objectAndArrayTitleStyle = css`
+export const objectAndArrayTitleStyle = (isChild: boolean) => css`
   font-size: 12px;
   font-weight: 600;
-  height: 24px;
-  display: flex;
-  align-items: center;
+  height: ${isChild ? "20px" : "24px"};
+  line-height: ${isChild ? "20px" : "24px"};
   color: ${getColor("grayBlue", "02")};
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `
 
 export const objectAndArrayDescStyle = css`
@@ -129,19 +132,27 @@ export const globalStateEditIconHotSpotStyle = css`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  visibility: hidden;
 `
 
 export const applyObjectOrArrayContainerStyle = (
   isSelected: boolean,
   level: number,
+  isChild: boolean,
 ) => css`
   display: flex;
   align-items: center;
   padding-left: ${(level + 1) * 16}px;
   padding-right: 16px;
   background-color: ${isSelected ? getColor("techPurple", "07") : ""};
-  min-height: 24px;
+  min-height: ${isChild ? "20px" : "24px"};
+  margin-top: ${isChild ? "4px" : "0px"};
   font-family: "Fira Code", monospace;
+  :hover {
+    .global-state-edit-icon-hot-spot {
+      visibility: visible;
+    }
+  }
 `
 
 export const applySimpleItemContainerStyle = (
@@ -157,6 +168,11 @@ export const applySimpleItemContainerStyle = (
   margin-top: 4px;
   font-size: 12px;
   gap: 4px;
+  :hover {
+    .global-state-edit-icon-hot-spot {
+      visibility: visible;
+    }
+  }
   :last-child {
     padding-bottom: 4px;
   }
@@ -174,6 +190,7 @@ export const applyExpandIconStyle = (isExpanded: boolean) => css`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: none;
 `
 
 export const applyTitleAndDescContainerStyle = css`

@@ -29,6 +29,7 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo(
           data={value}
           level={level + 1}
           parentKey={parentKey}
+          isChild
         />
       )
     } else {

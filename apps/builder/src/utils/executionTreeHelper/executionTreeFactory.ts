@@ -518,7 +518,6 @@ export class ExecutionTreeFactory {
     this.mergeErrorTree(errorTree, [...updatePaths, ...orderPath])
     this.mergeDebugDataTree(debuggerData, [...updatePaths, ...orderPath])
     this.executedTree = this.validateTree(evaluatedTree)
-    this.executedTree.globalData = evaluatedTree.root.globalData
 
     return {
       evaluatedTree: this.executedTree,

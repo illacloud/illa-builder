@@ -156,10 +156,13 @@ export const CreateGlobalStateModal: FC<CreateGlobalModalProps> = (props) => {
       })
       return
     }
-    if (hadGlobalDataKeys.includes(currentVariableName)) {
+    if (
+      prevVariableName.current !== currentVariableName &&
+      hadGlobalDataKeys.includes(currentVariableName)
+    ) {
       message.error({
         content: t("editor.display_name.duplicate_error", {
-          displayName: currentValue,
+          displayName: currentVariableName,
         }),
       })
       return

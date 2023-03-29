@@ -994,7 +994,7 @@
       "global_data_modal": {
         "title": "编辑全局变量",
         "variable_name": {
-          "tooltips": "变量的名称。 通过{{name}}在此应用程序中使用初始值",
+          "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "变量名",
           "message": "名称必须以字母或“_”开头，且只能包含字母、数字"
         },
@@ -1398,12 +1398,16 @@
           "step_size": "步进值",
           "minimum": "最小值",
           "maximum": "最大值",
-          "hide_output": "隐藏输出数值"
+          "hide_output": "隐藏输出数值",
+          "prefix_icon": "前缀图标",
+          "suffix_icon": "后置图标",
+          "allow_wrapping": "自动换行"
         },
         "range_slider": {
           "start_value": "起始值",
           "end_value": "结束值"
-        }
+        },
+        "name": "名称"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1488,6 +1492,11 @@
           "prefix_icon": "显示在组件前面的图标",
           "suffix_icon": "组件后显示的图标",
           "hide_output": "设置滑动时是否隐藏值"
+        },
+        "step": {
+          "default_step": "默认步骤",
+          "show_step_number": "显示步骤数值",
+          "indicate_completed_steps": "标明完成步骤"
         }
       },
       "setter_option": {
@@ -2087,6 +2096,9 @@
     },
     "carousel": {
       "name": "轮播图"
+    },
+    "step": {
+      "name": "步骤"
     }
   },
   "page": {
