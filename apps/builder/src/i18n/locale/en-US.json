@@ -1407,7 +1407,10 @@
           "start_value": "Start value",
           "end_value": "End value"
         },
-        "name": "Name"
+        "name": "Name",
+        "audio": {
+          "audio_url": "Audio URL"
+        }
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1501,6 +1504,9 @@
         "range_slider": {
           "start_value": "To set the minimum value of the range",
           "end_value": "To set the maximum value of the range"
+        },
+        "audio": {
+          "audio_url": "Supports direct links to any common audio file type or the links to some audio services"
         }
       },
       "setter_option": {
@@ -1687,7 +1693,10 @@
         }
       },
       "setGlobalData": "Set global data",
-      "setLocalStorage": "Set local storage"
+      "setLocalStorage": "Set local storage",
+      "audio": {
+        "set_audio_url": "Set audio URL"
+      }
     },
     "tutorial": {
       "panel": {
@@ -2109,6 +2118,10 @@
     },
     "range_slider": {
       "name": "Range slider"
+    },
+    "audio": {
+      "name": "Audio",
+      "no_audio": "No audio"
     }
   },
   "page": {
