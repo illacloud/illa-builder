@@ -175,7 +175,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 showArrow={false}
                 autoFitPosition={false}
                 trigger="hover"
-                zIndex={10}
               >
                 <Button
                   colorScheme="white"

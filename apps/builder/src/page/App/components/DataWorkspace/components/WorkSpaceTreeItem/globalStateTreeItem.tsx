@@ -56,7 +56,6 @@ export const GlobalStateTreeItem: FC<WorkSpaceTreeNodeProps> = memo(
                 withoutPadding
                 withoutShadow
                 position="right"
-                zIndex={10}
                 showArrow={false}
                 clickOutsideToClose
                 content={
