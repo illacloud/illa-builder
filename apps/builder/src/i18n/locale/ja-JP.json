@@ -1398,7 +1398,10 @@
           "step_size": "刻み幅",
           "minimum": "最小値",
           "maximum": "最大値",
-          "hide_output": "出力を隠す"
+          "hide_output": "出力を隠す",
+          "prefix_icon": "プレフィックス アイコン",
+          "suffix_icon": "サフィックスアイコン",
+          "allow_wrapping": "オートラッピング"
         },
         "range_slider": {
           "start_value": "開始値",

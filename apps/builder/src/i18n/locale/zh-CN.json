@@ -1398,7 +1398,10 @@
           "step_size": "步进值",
           "minimum": "最小值",
           "maximum": "最大值",
-          "hide_output": "隐藏输出数值"
+          "hide_output": "隐藏输出数值",
+          "prefix_icon": "前缀图标",
+          "suffix_icon": "后置图标",
+          "allow_wrapping": "自动换行"
         },
         "range_slider": {
           "start_value": "起始值",

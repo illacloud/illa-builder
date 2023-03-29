@@ -1398,7 +1398,10 @@
           "step_size": "단계 크기",
           "minimum": "최저한의",
           "maximum": "최고",
-          "hide_output": "출력 숨기기"
+          "hide_output": "출력 숨기기",
+          "prefix_icon": "접두사 아이콘",
+          "suffix_icon": "접미사 아이콘",
+          "allow_wrapping": "자동 포장"
         },
         "range_slider": {
           "start_value": "시작 값",
