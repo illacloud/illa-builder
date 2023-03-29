@@ -1406,7 +1406,8 @@
         "range_slider": {
           "start_value": "Start value",
           "end_value": "End value"
-        }
+        },
+        "name": "Name"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
