@@ -6,6 +6,7 @@ export interface WorkSpaceTreeItemProps {
   isSelected?: boolean
   level: number
   parentKey: string
+  isChild?: boolean
   handleSelect?: (
     selectedKeys: string[],
     event: MouseEvent<HTMLDivElement>,

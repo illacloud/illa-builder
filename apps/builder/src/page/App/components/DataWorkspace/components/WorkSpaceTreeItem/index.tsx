@@ -18,7 +18,15 @@ import {
 
 export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
   (props: WorkSpaceTreeItemProps) => {
-    const { title, data, isSelected, level, handleSelect, parentKey } = props
+    const {
+      title,
+      data,
+      isSelected,
+      level,
+      handleSelect,
+      parentKey,
+      isChild = false,
+    } = props
     const expandedKeys = useSelector(getExpandedKeys)
     const uniqueKey = parentKey === title ? parentKey : `${parentKey}/${title}`
     const isExpanded = expandedKeys.includes(uniqueKey)
@@ -41,7 +49,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
     return (
       <>
         <div
-          css={applyObjectOrArrayContainerStyle(!!isSelected, level)}
+          css={applyObjectOrArrayContainerStyle(!!isSelected, level, isChild)}
           onClick={(e: MouseEvent<HTMLDivElement>) => {
             handleSelect?.([title], e)
             if (isExpanded) {
@@ -57,7 +65,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
             <CaretRightIcon />
           </span>
           <div css={applyTitleAndDescContainerStyle}>
-            <label css={objectAndArrayTitleStyle}>{title}&nbsp;</label>
+            <label css={objectAndArrayTitleStyle(isChild)}>{title}&nbsp;</label>
             <label css={objectAndArrayDescStyle}>
               {`{}`}
               {keyArr.length}

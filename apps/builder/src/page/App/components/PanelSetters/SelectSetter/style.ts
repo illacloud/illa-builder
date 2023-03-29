@@ -1,5 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import { fixedWidthStyle } from "@/page/App/components/PanelSetters/style"
 
 export const applyBaseSelectWrapperStyle = (
@@ -27,9 +27,14 @@ export const dynamicSelectSetterStyle = css`
 export const shadowSelectWrapperStyle = css`
   width: 154px;
   padding: 0 8px;
+  border-radius: 8px;
   height: 40px;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  :hover {
+    background-color: ${getColor("grayBlue", "09")};
+  }
 `
 
 export const shadowSelectStyle = css`
