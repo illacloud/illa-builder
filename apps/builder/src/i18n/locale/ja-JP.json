@@ -1497,6 +1497,10 @@
           "default_step": "既定のステップ",
           "show_step_number": "ステップ番号を表示",
           "indicate_completed_steps": "完了した手順を示す"
+        },
+        "range_slider": {
+          "start_value": "範囲の最小値を設定します",
+          "end_value": "範囲の最大値を設定します"
         }
       },
       "setter_option": {
@@ -2099,6 +2103,12 @@
     },
     "step": {
       "name": "歩数"
+    },
+    "slider": {
+      "name": "スライダー"
+    },
+    "range_slider": {
+      "name": "レンジスライダー"
     }
   },
   "page": {
