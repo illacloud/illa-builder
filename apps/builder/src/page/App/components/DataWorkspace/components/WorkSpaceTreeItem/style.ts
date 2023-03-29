@@ -138,6 +138,7 @@ export const applyObjectOrArrayContainerStyle = (
   display: flex;
   align-items: center;
   padding-left: ${(level + 1) * 16}px;
+  padding-right: 16px;
   background-color: ${isSelected ? getColor("techPurple", "07") : ""};
   min-height: 24px;
   font-family: "Fira Code", monospace;
@@ -150,6 +151,7 @@ export const applySimpleItemContainerStyle = (
   display: flex;
   align-items: center;
   padding-left: ${(level + 1) * 16}px;
+  padding-right: 16px;
   background-color: ${isSelected ? getColor("techPurple", "07") : ""};
   flex-wrap: wrap;
   margin-top: 4px;
