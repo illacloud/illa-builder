@@ -154,6 +154,12 @@ import {
   RadioGroupWidget,
 } from "@/widgetLibrary/RadioGroupWidget"
 import {
+  RANGE_SLIDER_EVENT_HANDLER_CONFIG,
+  RANGE_SLIDER_PANEL_CONFIG,
+  RANGE_SLIDER_WIDGET_CONFIG,
+  RangeSliderWidget,
+} from "@/widgetLibrary/RangeSliderWidget"
+import {
   RATE_EVENT_HANDLER_CONFIG,
   RATE_PANEL_CONFIG,
   RATE_WIDGET_CONFIG,
@@ -365,6 +371,18 @@ export const WidgetConfig: WidgetConfigs = {
     config: UPLOAD_WIDGET_CONFIG,
     panelConfig: UPLOAD_PANEL_CONFIG,
     eventHandlerConfig: UPLOAD_EVENT_HANDLER_CONFIG,
+  },
+  SLIDER_WIDGET: {
+    widget: SliderWidget,
+    config: SLIDER_WIDGET_CONFIG,
+    panelConfig: SLIDER_PANEL_CONFIG,
+    eventHandlerConfig: SLIDER_EVENT_HANDLER_CONFIG,
+  },
+  RANGE_SLIDER_WIDGET: {
+    widget: RangeSliderWidget,
+    config: RANGE_SLIDER_WIDGET_CONFIG,
+    panelConfig: RANGE_SLIDER_PANEL_CONFIG,
+    eventHandlerConfig: RANGE_SLIDER_EVENT_HANDLER_CONFIG,
   },
   CHART: {
     widget: ChartWidget,

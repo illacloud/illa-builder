@@ -1,20 +1,19 @@
-import { ReactComponent as RangeSliderWidgetIcon } from "@/assets/widgetCover/rangeSlider.svg"
+import { ReactComponent as SliderWidgetIcon } from "@/assets/widgetCover/slider.svg"
 import i18n from "@/i18n/config"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
-export const RANGE_SLIDER_WIDGET_CONFIG: WidgetConfig = {
-  type: "RANGE_SLIDER_WIDGET",
-  displayName: "rangeSlider",
-  widgetName: i18n.t("widget.range_slider.name"),
-  icon: <RangeSliderWidgetIcon />,
-  keywords: ["Range Slider", "范围滑动输入条"],
+export const SLIDER_WIDGET_CONFIG: WidgetConfig = {
+  type: "SLIDER_WIDGET",
+  displayName: "slider",
+  widgetName: i18n.t("widget.slider.name"),
+  icon: <SliderWidgetIcon />,
+  keywords: ["Slider", "滑动输入条"],
   sessionType: "INPUTS",
   w: 25,
   h: 10,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
-    startValue: "{{3}}",
-    endValue: "{{7}}",
+    value: "{{2}}",
     min: "{{0}}",
     max: "{{10}}",
     step: "{{1}}",
