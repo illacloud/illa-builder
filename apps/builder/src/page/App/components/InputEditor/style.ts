@@ -26,10 +26,10 @@ export const codeEditorLabelStyle = css`
   color: ${getColor("grayBlue", "02")};
   min-height: 48px;
   display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: center;
-  align-self: start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  align-self: center;
 `
 
 export const codeEditorSublabelStyle = css`

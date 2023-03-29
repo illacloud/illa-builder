@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { RestApiAuthPanelProps } from "@/page/App/components/Actions/RestApiConfigElement/interface"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { BearerAuth } from "@/redux/resource/restapiResource"
+import { validate } from "@/utils/form"
 
 export const BearerAuthPanel: FC<RestApiAuthPanelProps> = (props) => {
   const { control } = props
@@ -19,7 +20,7 @@ export const BearerAuthPanel: FC<RestApiAuthPanelProps> = (props) => {
       isRequired
       rules={[
         {
-          required: true,
+          validate,
         },
       ]}
     />

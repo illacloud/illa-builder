@@ -2,7 +2,7 @@ import { Namespace, TFunction } from "i18next"
 import { FC, useCallback } from "react"
 import { Trans, useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Checkbox, Select, SelectValue } from "@illa-design/react"
+import { Select, SelectValue } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -16,6 +16,7 @@ import {
   bodySelectorStyle,
   codeEditorStyle,
 } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/style"
+import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { InputEditor } from "@/page/App/components/InputEditor"
 import { TextLink } from "@/page/User/components/TextLink"
@@ -38,11 +39,6 @@ import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   actionItemContainer,
-  actionItemLabelStyle,
-  actionItemStyle,
-  checkboxContentContainerStyle,
-  checkboxTipsStyle,
-  checkoutContentStyle,
   restapiPanelContainerStyle,
   textCodeEditorStyle,
 } from "./style"
@@ -184,7 +180,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
   const handleURLClick = (link: string) => window.open(link, "_blank")
 
   const handleValueChange = useCallback(
-    (value: string | boolean, key: string) => {
+    (key: string) => (value: string | boolean) => {
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
@@ -310,7 +306,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
           <InputEditor
             title={t("editor.action.panel.hugging_face.mode_id")}
             value={content.modelID ?? ""}
-            onChange={(value) => handleValueChange(value, "modelID")}
+            onChange={handleValueChange("modelID")}
             expectedType={VALIDATION_TYPES.STRING}
             tips={
               <Trans
@@ -398,42 +394,30 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
 
         {currentParameterType !== "binary" && (
           <>
-            <div css={actionItemStyle}>
-              <span css={actionItemLabelStyle}></span>
-              <div css={checkboxContentContainerStyle}>
-                <div css={checkoutContentStyle}>
-                  <Checkbox
-                    colorScheme="techPurple"
-                    checked={content.withDetailParams ?? false}
-                    ml="16px"
-                    onChange={(value) =>
-                      handleValueChange(value, "withDetailParams")
-                    }
-                  />
-                  <span css={actionItemLabelStyle}>
-                    {t(
-                      "editor.action.panel.hugging_face.use_detail_parameters",
-                    )}
-                  </span>
-                </div>
-                <div css={checkboxTipsStyle}>
-                  <Trans
-                    i18nKey="editor.action.panel.hugging_face.tips.use_detail_parameters"
-                    t={t}
-                    components={[
-                      <TextLink
-                        key="editor.action.panel.hugging_face.tips.use_detail_parameters"
-                        onClick={() => {
-                          handleURLClick(
-                            "https://huggingface.co/docs/api-inference/detailed_parameters",
-                          )
-                        }}
-                      />,
-                    ]}
-                  />
-                </div>
-              </div>
-            </div>
+            <SingleTypeComponent
+              componentType="checkbox"
+              value={content.withDetailParams ?? false}
+              checkoutTitle={t(
+                "editor.action.panel.hugging_face.use_detail_parameters",
+              )}
+              onBooleanValueChange={handleValueChange("withDetailParams")}
+              tips={
+                <Trans
+                  i18nKey="editor.action.panel.hugging_face.tips.use_detail_parameters"
+                  t={t}
+                  components={[
+                    <TextLink
+                      key="editor.action.panel.hugging_face.tips.use_detail_parameters"
+                      onClick={() => {
+                        handleURLClick(
+                          "https://huggingface.co/docs/api-inference/detailed_parameters",
+                        )
+                      }}
+                    />,
+                  ]}
+                />
+              }
+            />
           </>
         )}
         {content.withDetailParams && (

@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import {
@@ -8,15 +8,9 @@ import {
 import { APIKeyAuthPanelProps } from "./interface"
 
 export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
-  const { control, auth } = props
+  const { control, auth, watch } = props
   const { t } = useTranslation()
-  const [addToValue, setAddToValue] = useState<APIKeyAddToValue>(
-    APIKeyAddToValue.HEADER,
-  )
-
-  const handleAddToChange = useCallback((value: string | boolean) => {
-    setAddToValue(String(value) as APIKeyAddToValue)
-  }, [])
+  const addToValue = watch("addTo", APIKeyAddToValue.HEADER)
 
   return (
     <>
@@ -24,7 +18,7 @@ export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
         title={t("editor.action.resource.db.label.key")}
         isRequired
         defaultValue={auth?.key ?? ""}
-        name={"key"}
+        name="key"
         rules={[
           {
             required: true,
@@ -37,7 +31,7 @@ export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
         title={t("editor.action.resource.db.label.value")}
         isRequired
         defaultValue={auth?.value ?? ""}
-        name={"value"}
+        name="value"
         rules={[
           {
             required: true,
@@ -50,14 +44,13 @@ export const APIKeyAuthPanel: FC<APIKeyAuthPanelProps> = (props) => {
         title={t("editor.action.resource.db.label.add_to")}
         isRequired
         defaultValue={auth?.addTo ?? APIKeyAddToValue.HEADER}
-        name={"addTo"}
+        name="addTo"
         rules={[
           {
             required: true,
           },
         ]}
         controlledType={["select"]}
-        onValueChange={handleAddToChange}
         control={control}
         options={APIKeyAddToSelect}
       />

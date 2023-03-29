@@ -1,14 +1,9 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  codeEditorLabelStyle,
-  mongoItemCodeEditorStyle,
-  mongoItemStyle,
-} from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -26,37 +21,35 @@ export const InsertOnePart: FC<MongoDbActionPartProps> = (props) => {
     MongoDbAction<MongoDbActionTypeContent>
   >
   const typeContent = props.typeContent as InsertOneContent
+
+  const handleValueChange = useCallback(
+    (value: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...cachedAction.content,
+            typeContent: {
+              ...typeContent,
+              document: value,
+            } as InsertOneContent,
+          },
+        }),
+      )
+    },
+    [cachedAction, dispatch, typeContent],
+  )
+
   return (
-    <>
-      <div css={mongoItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mongodb.document")}
-        </span>
-        <CodeEditor
-          showLineNumbers
-          height="88px"
-          wrapperCss={mongoItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={typeContent.document}
-          modalTitle={t("editor.action.panel.mongodb.document")}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  typeContent: {
-                    ...typeContent,
-                    document: value,
-                  } as InsertOneContent,
-                },
-              }),
-            )
-          }}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-    </>
+    <InputEditor
+      title={t("editor.action.panel.mongodb.document")}
+      lineNumbers
+      style={{ height: "88px" }}
+      mode={CODE_LANG.JAVASCRIPT}
+      value={typeContent.document}
+      onChange={handleValueChange}
+      expectedType={VALIDATION_TYPES.STRING}
+    />
   )
 }
 

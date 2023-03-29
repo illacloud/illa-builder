@@ -1,14 +1,9 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
-import {
-  codeEditorLabelStyle,
-  s3ItemCodeEditorStyle,
-  s3ItemStyle,
-} from "@/page/App/components/Actions/ActionPanel/S3Panel/style"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -27,51 +22,40 @@ export const DeleteOnePart: FC<S3ActionPartProps> = (props) => {
   >
   const commandArgs = props.commandArgs as DeleteOneContent
 
-  const handleValueChange = (value: string, name: string) => {
-    dispatch(
-      configActions.updateCachedAction({
-        ...cachedAction,
-        content: {
-          ...cachedAction.content,
-          commandArgs: {
-            ...commandArgs,
-            [name]: value,
-          } as DeleteOneContent,
-        },
-      }),
-    )
-  }
+  const handleValueChange = useCallback(
+    (name: string) => (value: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...cachedAction.content,
+            commandArgs: {
+              ...commandArgs,
+              [name]: value,
+            } as DeleteOneContent,
+          },
+        }),
+      )
+    },
+    [cachedAction, commandArgs, dispatch],
+  )
 
   return (
     <>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.bucket_name")}
-        </span>
-        <CodeEditor
-          singleLine
-          wrapperCss={s3ItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.bucketName}
-          modalTitle={t("editor.action.panel.s3.bucket_name")}
-          onChange={(value) => handleValueChange(value, "bucketName")}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.object_key")}
-        </span>
-        <CodeEditor
-          singleLine
-          wrapperCss={s3ItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.objectKey}
-          modalTitle={t("editor.action.panel.s3.object_key")}
-          onChange={(value) => handleValueChange(value, "objectKey")}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
+      <InputEditor
+        title={t("editor.action.panel.s3.bucket_name")}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={commandArgs.bucketName}
+        onChange={handleValueChange("bucketName")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
+      <InputEditor
+        title={t("editor.action.panel.s3.object_key")}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={commandArgs.objectKey}
+        onChange={handleValueChange("objectKey")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
     </>
   )
 }

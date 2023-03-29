@@ -1,17 +1,15 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { BuilderApi } from "@/api/base"
-import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { sqlInputStyle } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import {
   actionItemContainer,
-  redisCodeEditorStyle,
   redisContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { RedisAction } from "@/redux/currentApp/action/redisAction"
@@ -20,7 +18,6 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const RedisPanel: FC = () => {
   const action = useSelector(getCachedAction)!!
-
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
 
   useEffect(() => {
@@ -41,32 +38,36 @@ export const RedisPanel: FC = () => {
   const currentContent = action.content as RedisAction
   const dispatch = useDispatch()
 
+  const handleValueChange = useCallback(
+    (value: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...action,
+          content: {
+            ...currentContent,
+            query: value,
+          },
+        }),
+      )
+    },
+    [action, currentContent, dispatch],
+  )
+
   return (
     <div css={redisContainerStyle}>
       <ResourceChoose />
       <div css={actionItemContainer}>
-        <div css={redisCodeEditorStyle}>
-          <CodeEditor
-            maxHeight="88px"
-            placeholder="SET runoobkey redis"
-            showLineNumbers
-            value={currentContent.query}
-            lang={CODE_LANG.JAVASCRIPT}
-            expectValueType={VALIDATION_TYPES.STRING}
-            sqlScheme={sqlTable}
-            onChange={(value) => {
-              dispatch(
-                configActions.updateCachedAction({
-                  ...action,
-                  content: {
-                    ...currentContent,
-                    query: value,
-                  },
-                }),
-              )
-            }}
-          />
-        </div>
+        <InputEditor
+          style={{ maxHeight: "88px" }}
+          placeholder="SET runoobkey redis"
+          lineNumbers
+          canShowCompleteInfo
+          value={currentContent.query}
+          mode={CODE_LANG.JAVASCRIPT}
+          expectedType={VALIDATION_TYPES.STRING}
+          sqlScheme={sqlTable}
+          onChange={handleValueChange}
+        />
 
         <TransformerComponent fullWidth />
       </div>
