@@ -95,7 +95,7 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         )
       case "smtp":
         return <SMTPConfigElement onBack={handleBack} onFinished={onFinished} />
-      case "googlesheet":
+      case "googlesheets":
         return <GoogleSheetsConfigElement {...generalProps} />
       case "huggingface":
         return <HuggingFaceConfigElement {...generalProps} />

@@ -91,7 +91,7 @@ export const Apis: ActionDataItem[] = [
     isDraft: false,
   },
   {
-    actionType: "googlesheet",
+    actionType: "googlesheets",
     isDraft: false,
   },
   {

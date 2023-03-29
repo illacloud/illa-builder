@@ -69,7 +69,7 @@ export const DashboardResources: FC = () => {
         case "huggingface":
         case "hfendpoint":
         case "couchdb":
-        case "googlesheet":
+        case "googlesheets":
           break
         case "clickhouse":
         case "supabasedb":

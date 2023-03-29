@@ -9,7 +9,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 export const AppendSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   props,
 ) => {
-  const { onChange } = props
+  const { onChange, spreadsheetsOption } = props
   const { t } = useTranslation()
   const opts = props.opts as GoogleSheetsActionAppendOpts
 
@@ -19,6 +19,8 @@ export const AppendSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
         sheetName={opts.sheetName}
         spreadsheet={opts.spreadsheet}
         onChange={onChange}
+        spreadsheetsOption={spreadsheetsOption}
+        fx={opts.fx}
       />
       <InputEditor
         value={opts.values}

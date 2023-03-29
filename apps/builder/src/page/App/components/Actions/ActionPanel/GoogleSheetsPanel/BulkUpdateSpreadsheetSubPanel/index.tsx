@@ -10,7 +10,7 @@ export const BulkUpdateSpreadsheetSubPanel: FC<
   GoogleSheetsActionSubPanelProps
 > = (props) => {
   const { t } = useTranslation()
-  const { onChange } = props
+  const { onChange, spreadsheetsOption } = props
   const opts = props.opts as GoogleSheetsActionBulkOpts
 
   return (
@@ -19,6 +19,8 @@ export const BulkUpdateSpreadsheetSubPanel: FC<
         sheetName={opts.sheetName}
         spreadsheet={opts.spreadsheet}
         onChange={onChange}
+        spreadsheetsOption={spreadsheetsOption}
+        fx={opts.fx}
       />
       <InputEditor
         value={opts.primaryKey}

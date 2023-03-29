@@ -23,7 +23,7 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   props,
 ) => {
   const { t } = useTranslation()
-  const { onChange } = props
+  const { onChange, spreadsheetsOption } = props
   const opts = props.opts as GoogleSheetsActionUpdateOpts
 
   const isFiltersType = opts.filterType === "filter"
@@ -82,6 +82,8 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
         spreadsheet={opts.spreadsheet}
         onChange={onChange}
         isHiddenSheetName={!isFiltersType}
+        spreadsheetsOption={spreadsheetsOption}
+        fx={opts.fx}
       />
       {isFiltersType ? (
         <RecordEditor

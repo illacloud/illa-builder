@@ -41,7 +41,7 @@ export type ResourceType =
   | "mariadb"
   | "tidb"
   | "smtp"
-  | "googlesheet"
+  | "googlesheets"
   | "s3"
   | "clickhouse"
   | "couchdb"

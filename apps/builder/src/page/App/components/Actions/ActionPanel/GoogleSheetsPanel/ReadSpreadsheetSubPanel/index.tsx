@@ -22,9 +22,9 @@ export const ReadSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   props,
 ) => {
   const { t } = useTranslation()
-  const { onChange } = props
+  const { onChange, spreadsheetsOption } = props
   const opts = props.opts as GoogleSheetsActionReadOpts
-  const { spreadsheet, sheetName } = opts
+  const { spreadsheet, sheetName, fx } = opts
 
   return (
     <>
@@ -32,6 +32,8 @@ export const ReadSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
         spreadsheet={spreadsheet}
         sheetName={sheetName}
         onChange={onChange}
+        spreadsheetsOption={spreadsheetsOption}
+        fx={fx}
         isHiddenSheetName={opts.rangeType === "a1"}
       />
       <Divider direction="horizontal" w="unset" />

@@ -44,7 +44,7 @@ export function getIconFromResourceType(
       return <SnowflakeIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
-    case "googlesheet":
+    case "googlesheets":
       return <GoogleSheetIcon size={size} />
     case "hfendpoint":
     case "huggingface":
@@ -98,7 +98,7 @@ export function getIconFromActionType(
       return <SupabaseIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
-    case "googlesheet":
+    case "googlesheets":
       return <GoogleSheetIcon size={size} />
     case "hfendpoint":
     case "huggingface":

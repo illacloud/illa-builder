@@ -277,7 +277,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
           mode,
         },
       }
-    case "googlesheet":
+    case "googlesheets":
       return {
         authentication: "serviceAccount",
         opts: {

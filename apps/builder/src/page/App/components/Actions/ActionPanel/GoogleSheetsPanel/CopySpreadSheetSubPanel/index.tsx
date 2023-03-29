@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { FxIcon } from "@illa-design/react"
 import { BasicSheetConfig } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BasicSheetConfig"
@@ -17,13 +17,12 @@ export const CopySpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   props,
 ) => {
   const { t } = useTranslation()
-  const { onChange } = props
+  const { onChange, spreadsheetsOption } = props
   const opts = props.opts as GoogleSheetsActionCopyOpts
-  const { toSpreadsheet, toSheet, sheetName, spreadsheet } = opts
-  const [showInput, setShowInput] = useState<boolean>(false)
+  const { toSpreadsheet, toSheet, sheetName, spreadsheet, fx, toFx } = opts
 
   const handleOnClick = () => {
-    setShowInput((v) => !v)
+    onChange("toFx")(!toFx)
   }
 
   return (
@@ -32,12 +31,14 @@ export const CopySpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
         sheetName={sheetName}
         spreadsheet={spreadsheet}
         onChange={onChange}
+        spreadsheetsOption={spreadsheetsOption}
+        fx={fx}
       />
       <div css={sheetConfigContainerStyle}>
         <div css={spreadsheetContainerStyle}>
-          {showInput ? (
+          {toFx ? (
             <InputEditor
-              title={t("editor.action.form.label.gs.spreadsheet")}
+              title={t("editor.action.form.label.gs.sheet_to_copy_to")}
               value={toSpreadsheet}
               onChange={onChange("toSpreadsheet")}
               expectedType={VALIDATION_TYPES.STRING}
@@ -48,6 +49,7 @@ export const CopySpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
               componentType="select"
               value={toSpreadsheet}
               onChange={onChange("toSpreadsheet")}
+              options={spreadsheetsOption}
             />
           )}
           <FxIcon onClick={handleOnClick} css={fxIconStyle} />

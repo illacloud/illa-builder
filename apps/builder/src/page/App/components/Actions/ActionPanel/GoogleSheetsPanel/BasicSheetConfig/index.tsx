@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { FxIcon } from "@illa-design/react"
 import {
@@ -12,19 +12,24 @@ import { InputEditor } from "@/page/App/components/InputEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const BasicSheetConfig: FC<BasicSheetConfigProps> = (props) => {
-  const { spreadsheet, sheetName, onChange, isHiddenSheetName = false } = props
+  const {
+    spreadsheet,
+    sheetName,
+    onChange,
+    spreadsheetsOption,
+    isHiddenSheetName = false,
+    fx,
+  } = props
   const { t } = useTranslation()
 
-  const [showInput, setShowInput] = useState<boolean>(false)
-
   const handleOnClick = () => {
-    setShowInput((v) => !v)
+    onChange("fx")(!fx)
   }
 
   return (
     <div css={sheetConfigContainerStyle}>
       <div css={spreadsheetContainerStyle}>
-        {showInput ? (
+        {fx ? (
           <InputEditor
             title={t("editor.action.form.label.gs.spreadsheet")}
             value={spreadsheet}
@@ -37,6 +42,7 @@ export const BasicSheetConfig: FC<BasicSheetConfigProps> = (props) => {
             componentType="select"
             value={spreadsheet}
             onChange={onChange("spreadsheet")}
+            options={spreadsheetsOption}
           />
         )}
         <FxIcon

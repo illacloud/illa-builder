@@ -111,7 +111,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         )
       case "smtp":
         return <SMTPConfigElement {...configElementProps} />
-      case "googlesheet":
+      case "googlesheets":
         return <GoogleSheetsConfigElement {...configElementProps} />
       case "huggingface":
         return <HuggingFaceConfigElement {...configElementProps} />

@@ -13,10 +13,12 @@ export type GoogleSheetsActionType =
 
 export interface GoogleSheetsActionGetOpts {
   spreadsheet: string
+  fx: boolean
 }
 
 export const GoogleSheetsActionGetOptsInitial: GoogleSheetsActionGetOpts = {
   spreadsheet: "",
+  fx: false,
 }
 
 export interface GoogleSheetsActionCopyOpts {
@@ -24,6 +26,8 @@ export interface GoogleSheetsActionCopyOpts {
   sheetName: string
   toSpreadsheet: string
   toSheet: string
+  fx: boolean
+  toFx: boolean
 }
 
 export const GoogleSheetsActionCopyOptsInitial: GoogleSheetsActionCopyOpts = {
@@ -31,6 +35,8 @@ export const GoogleSheetsActionCopyOptsInitial: GoogleSheetsActionCopyOpts = {
   sheetName: "",
   toSpreadsheet: "",
   toSheet: "",
+  fx: false,
+  toFx: false,
 }
 
 export interface GoogleSheetsActionCreateOpts {
@@ -45,14 +51,16 @@ export const GoogleSheetsActionCreateOptsInitial: GoogleSheetsActionCreateOpts =
 export interface GoogleSheetsActionDeleteOpts {
   spreadsheet: string
   sheetName: string
-  index: string
+  rowIndex: string
+  fx: boolean
 }
 
 export const GoogleSheetsActionDeleteOptsInitial: GoogleSheetsActionDeleteOpts =
   {
     spreadsheet: "",
     sheetName: "",
-    index: "",
+    rowIndex: "",
+    fx: false,
   }
 
 export interface GoogleSheetsActionListOpts {}
@@ -64,6 +72,7 @@ export interface GoogleSheetsActionBulkOpts {
   sheetName: string
   primaryKey: string
   rowsArray: string
+  fx: boolean
 }
 
 export const GoogleSheetsActionBulkOptsInitial: GoogleSheetsActionBulkOpts = {
@@ -71,12 +80,14 @@ export const GoogleSheetsActionBulkOptsInitial: GoogleSheetsActionBulkOpts = {
   sheetName: "",
   primaryKey: "",
   rowsArray: "",
+  fx: false,
 }
 
 export interface GoogleSheetsActionAppendOpts {
   spreadsheet: string
   sheetName: string
   values: string
+  fx: boolean
 }
 
 export const GoogleSheetsActionAppendOptsInitial: GoogleSheetsActionAppendOpts =
@@ -84,6 +95,7 @@ export const GoogleSheetsActionAppendOptsInitial: GoogleSheetsActionAppendOpts =
     spreadsheet: "",
     sheetName: "",
     values: "",
+    fx: false,
   }
 
 export type GoogleSheetsActionUpdateType = "a1" | "filter"
@@ -95,6 +107,7 @@ export interface GoogleSheetsActionUpdateOpts {
   filters: Params[]
   a1Notation: string
   values: string
+  fx: boolean
 }
 
 export const GoogleSheetsActionUpdateOptsInitial: GoogleSheetsActionUpdateOpts =
@@ -111,6 +124,7 @@ export const GoogleSheetsActionUpdateOptsInitial: GoogleSheetsActionUpdateOpts =
     ],
     a1Notation: "",
     values: "",
+    fx: false,
   }
 
 export type DataRangeType = "a1" | "limit"
@@ -122,6 +136,7 @@ export interface GoogleSheetsActionReadOpts {
   limit: string
   offset: string
   a1Notation: string
+  fx: boolean
 }
 
 export const GoogleSheetsActionReadOptsInitial: GoogleSheetsActionReadOpts = {
@@ -131,6 +146,7 @@ export const GoogleSheetsActionReadOptsInitial: GoogleSheetsActionReadOpts = {
   limit: "",
   offset: "",
   a1Notation: "",
+  fx: false,
 }
 
 export type GoogleSheetsActionOpts =
@@ -168,4 +184,9 @@ export const GoogleSheetsActionInitialMaps: Record<
   create: GoogleSheetsActionCreateOptsInitial,
   copy: GoogleSheetsActionCopyOptsInitial,
   get: GoogleSheetsActionGetOptsInitial,
+}
+
+export const GoogleSheetDataTypeTransform = {
+  limit: 0,
+  offset: 0,
 }

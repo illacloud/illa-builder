@@ -67,7 +67,7 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           return <S3Panel />
         case "smtp":
           return <SMTPPanel />
-        case "googlesheet":
+        case "googlesheets":
           return <GoogleSheetsPanel />
         case "firebase":
           return <FirebasePanel />

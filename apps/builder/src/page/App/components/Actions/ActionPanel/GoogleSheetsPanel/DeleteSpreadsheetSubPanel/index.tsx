@@ -10,7 +10,7 @@ export const DeleteSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   props,
 ) => {
   const { t } = useTranslation()
-  const { onChange } = props
+  const { onChange, spreadsheetsOption } = props
   const opts = props.opts as GoogleSheetsActionDeleteOpts
 
   return (
@@ -19,10 +19,12 @@ export const DeleteSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
         sheetName={opts.sheetName}
         spreadsheet={opts.spreadsheet}
         onChange={onChange}
+        spreadsheetsOption={spreadsheetsOption}
+        fx={opts.fx}
       />
       <InputEditor
-        value={opts.index}
-        onChange={onChange("index")}
+        value={opts.rowIndex}
+        onChange={onChange("rowIndex")}
         title={t("editor.action.form.label.gs.filters_to_match_row")}
         placeholder="{{ 2 }}"
         expectedType={VALIDATION_TYPES.NUMBER}

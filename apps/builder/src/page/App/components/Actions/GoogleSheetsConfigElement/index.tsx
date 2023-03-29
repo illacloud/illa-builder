@@ -43,7 +43,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
-        "googlesheet",
+        "googlesheets",
         onFinished,
         setSaving,
       )}

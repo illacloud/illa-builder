@@ -1,7 +1,8 @@
-import { FC, useCallback } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { SelectValue } from "@illa-design/react"
+import { SelectOptionObject, SelectValue } from "@illa-design/react"
+import { BuilderApi } from "@/api/base"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { AppendSpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/AppendSpreadsheetSubPanel"
 import { BulkUpdateSpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BulkUpdateSpreadsheetSubPanel"
@@ -32,7 +33,7 @@ import {
   GoogleSheetsActionOpts,
   GoogleSheetsActionType,
 } from "@/redux/currentApp/action/googleSheetsAction"
-import { getAllResources } from "@/redux/resource/resourceSelector"
+import { ResourcesData } from "@/redux/resource/resourceState"
 import { Params } from "@/redux/resource/restapiResource"
 
 const SubPanelMap: Record<GoogleSheetsActionType, any> = {
@@ -51,16 +52,43 @@ export const GoogleSheetsPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const resources = useSelector(getAllResources)
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     GoogleSheetsAction<GoogleSheetsActionOpts>
   >
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
     GoogleSheetsAction<GoogleSheetsActionOpts>
   >
-  // const content = cachedAction?.content ?? GoogleSheetsActionInitial
-  const content = GoogleSheetsActionInitial
+
+  const [spreadsheetsOption, setSpreadsheetsOption] = useState<
+    SelectOptionObject[]
+  >([])
+
+  const content = cachedAction?.content ?? GoogleSheetsActionInitial
   const selectedContent = selectedAction.content
+
+  useEffect(() => {
+    BuilderApi.teamRequest(
+      {
+        url: `/resources/${cachedAction.resourceId}/meta`,
+        method: "GET",
+      },
+      ({ data }: { data: ResourcesData }) => {
+        let tables: { id: string; name: string }[] = []
+        if (data.schema) {
+          tables = (data.schema?.spreadsheets ?? []) as {
+            id: string
+            name: string
+          }[]
+        }
+        setSpreadsheetsOption(
+          tables.map((table) => ({ label: table.name, value: table.id })),
+        )
+      },
+      () => {},
+      () => {},
+      () => {},
+    )
+  }, [cachedAction.resourceId])
 
   const handleSelectValueChange = useCallback(
     (value: SelectValue) => {
@@ -115,7 +143,11 @@ export const GoogleSheetsPanel: FC = () => {
           onSelectedValueChange={handleSelectValueChange}
         />
         {SubPanel && (
-          <SubPanel opts={content.opts} onChange={handleValueChange} />
+          <SubPanel
+            opts={content.opts}
+            onChange={handleValueChange}
+            spreadsheetsOption={spreadsheetsOption}
+          />
         )}
         <TransformerComponent />
       </div>

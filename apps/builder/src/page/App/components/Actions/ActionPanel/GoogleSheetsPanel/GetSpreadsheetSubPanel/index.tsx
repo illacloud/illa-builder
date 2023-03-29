@@ -6,7 +6,7 @@ import { GoogleSheetsActionGetOpts } from "@/redux/currentApp/action/googleSheet
 export const GetSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   props,
 ) => {
-  const { onChange } = props
+  const { onChange, spreadsheetsOption } = props
   const opts = props.opts as GoogleSheetsActionGetOpts
 
   return (
@@ -14,6 +14,8 @@ export const GetSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
       spreadsheet={opts.spreadsheet}
       onChange={onChange}
       isHiddenSheetName={true}
+      spreadsheetsOption={spreadsheetsOption}
+      fx={opts.fx}
     />
   )
 }
