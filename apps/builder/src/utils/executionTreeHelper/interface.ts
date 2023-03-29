@@ -31,4 +31,5 @@ export interface RawTreeSeedShape {
   actions: ActionSeedShape
   builderInfo: BuilderInfoSeedShape
   currentUserInfo: CurrenUserInfoSeedShape
+  globalData: Record<string, unknown>
 }
