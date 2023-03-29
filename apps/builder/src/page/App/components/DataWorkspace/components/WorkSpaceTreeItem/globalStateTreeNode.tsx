@@ -68,7 +68,6 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
               withoutPadding
               withoutShadow
               position="right"
-              zIndex={10}
               showArrow={false}
               clickOutsideToClose
               content={

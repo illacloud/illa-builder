@@ -165,7 +165,9 @@ export const Editor: FC = () => {
             <PageNavBar css={navbarStyle} />
           </TriggerProvider>
           <div css={contentStyle}>
-            {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
+            <TriggerProvider renderInBody zIndex={10}>
+              {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
+            </TriggerProvider>
             <div css={middlePanelStyle}>
               <TriggerProvider renderInBody zIndex={10}>
                 <CanvasPanel css={centerPanelStyle} />
