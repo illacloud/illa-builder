@@ -20,6 +20,7 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
       prefixIcon,
       suffixIcon,
       hideOutput,
+      handleUpdateDsl,
       handleOnChange,
       getValidateMessage,
       handleUpdateMultiExecutionResult,
@@ -65,6 +66,11 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
         <Slider
           showTicks={!hideOutput}
           onChange={onChangeSliderValue}
+          // onChange={onChange}
+          // onChange={(value) => {
+          //   handleUpdateDsl({ value })
+          //   handleOnChange?.()
+          // }}
           isRange={false}
           ref={ref}
           {...props}
@@ -140,6 +146,7 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
   )
 
   useEffect(() => {
+    console.log("-----", value)
     handleUpdateGlobalData?.(displayName, {
       value,
       setValue: (value: number) => {
