@@ -1407,7 +1407,10 @@
           "start_value": "시작 값",
           "end_value": "종료 값"
         },
-        "name": "이름"
+        "name": "이름",
+        "audio": {
+          "audio_url": "오디오 URL"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1501,6 +1504,9 @@
         "range_slider": {
           "start_value": "범위의 최소값 설정",
           "end_value": "범위의 최대값 설정"
+        },
+        "audio": {
+          "audio_url": "일반적인 오디오 파일 유형에 대한 직접 링크 또는 일부 오디오 서비스에 대한 링크를 지원합니다."
         }
       },
       "setter_option": {
@@ -1687,7 +1693,10 @@
         }
       },
       "setGlobalData": "전역 데이터 편집",
-      "setLocalStorage": "로컬 저장소"
+      "setLocalStorage": "로컬 저장소",
+      "audio": {
+        "set_audio_url": "오디오 링크 설정"
+      }
     },
     "tutorial": {
       "panel": {
@@ -2109,6 +2118,10 @@
     },
     "range_slider": {
       "name": "범위 슬라이더"
+    },
+    "audio": {
+      "name": "오디오 플레이어",
+      "no_audio": "오디오 없음"
     }
   },
   "page": {
