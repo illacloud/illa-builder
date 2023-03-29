@@ -994,7 +994,7 @@
       "global_data_modal": {
         "title": "编辑全局变量",
         "variable_name": {
-          "tooltips": "变量的名称。 通过{{name}}在此应用程序中使用初始值",
+          "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "变量名",
           "message": "名称必须以字母或“_”开头，且只能包含字母、数字"
         },
@@ -1406,7 +1406,8 @@
         "range_slider": {
           "start_value": "起始值",
           "end_value": "结束值"
-        }
+        },
+        "name": "名称"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
