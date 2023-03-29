@@ -22,3 +22,14 @@ export const applyHiddenStyle = (hidden: boolean): SerializedStyles => {
     visibility: ${hidden ? "hidden" : "visible"};
   `
 }
+
+export const audioStyle = css`
+  display: flex;
+  gap: 16px;
+  padding: 8px;
+  max-height: 48px;
+  width: 100%;
+  background: ${getColor("white", "01")};
+  border: 1px solid ${getColor("grayBlue", "08")};
+  border-radius: 24px;
+`
