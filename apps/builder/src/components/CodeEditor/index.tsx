@@ -11,6 +11,7 @@ import {
   ILLACodeMirrorWrapperStyle,
   openWindowIconHotspotStyle,
 } from "@/components/CodeEditor/style"
+import i18n from "@/i18n/config"
 import { getExecutionResultToCodeMirror } from "@/redux/currentApp/executionTree/executionSelector"
 import { LIMIT_MEMORY, estimateMemoryUsage } from "@/utils/calculateMemoryUsage"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -52,7 +53,10 @@ const getShowResult = (results: unknown[]) => {
   } else {
     const memorySize = estimateMemoryUsage(results)
     if (LIMIT_MEMORY < memorySize) {
-      return `Memory usage is too large, please reduce the size of the result.(Memory usage: ${memorySize} bytes, Limit: ${LIMIT_MEMORY} bytes))`
+      return i18n.t("editor.global.size_exceed", {
+        current_size: memorySize,
+        limit_size: LIMIT_MEMORY,
+      })
     }
     results.forEach((result) => {
       if (

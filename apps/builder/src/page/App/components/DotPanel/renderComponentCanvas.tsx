@@ -21,6 +21,7 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { DragPreview } from "@/page/App/components/DotPanel/dragPreview"
 import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
+import { useMousePositionAsync } from "@/page/App/components/DotPanel/hooks/useMousePostionAsync"
 import {
   DragInfo,
   DropCollectedInfo,
@@ -66,6 +67,7 @@ import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionCon
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { MousePreview } from "../MousePreview"
 
 export const UNIT_HEIGHT = 8
 
@@ -291,6 +293,13 @@ export const RenderComponentCanvas: FC<{
   const unitWidth = useMemo(() => {
     return bounds.width / blockColumns
   }, [blockColumns, bounds.width])
+
+  const { wrapperRef } = useMousePositionAsync(
+    containerRef,
+    unitWidth,
+    componentNode.displayName,
+    !!sectionName,
+  )
 
   const throttleUpdateComponentPositionByReflow = useMemo(() => {
     return throttle((updateSlice: UpdateComponentNodeLayoutInfoPayload[]) => {
@@ -872,6 +881,7 @@ export const RenderComponentCanvas: FC<{
     <div
       ref={(node) => {
         currentCanvasRef.current = node
+        wrapperRef.current = node
         dropTarget(node)
         canvasRef(node)
       }}
@@ -930,6 +940,7 @@ export const RenderComponentCanvas: FC<{
           <PreviewColumnsChange unitWidth={unitWidth} columns={blockColumns} />
         )}
       </AnimatePresence>
+      <MousePreview unitW={unitWidth} displayName={componentNode.displayName} />
     </div>
   )
 }
