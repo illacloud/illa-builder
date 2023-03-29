@@ -193,7 +193,7 @@
             "update_value": "Update value",
             "primary_key_column": "Primary key column",
             "array_of_rows_to_upd": "Array of rows to update",
-            "filters_to_match_row": "Row index",
+            "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
             "sheet_id_to_copy": "要复制的工作表ID",
@@ -1477,7 +1477,7 @@
           "file_data": "支持Base64编码数据、表格的原始数据或映射数据"
         },
         "variable": {
-          "available_in_objects": "在对象和数组中可用。 属性在对象中的路径：{{objectName.attributeName}}。 数组中值的索引：{{1}}。 对象中的数组：{{objectName.attributeName.1}}",
+          "available_in_objects": "在对象和数组中可用。 要以对象格式设置变量的值，请使用 attributeName。 例如，要更改 {\"a\":1, \"b\":2} 中 \"b\" 的值，路径\n  应该是b。\n\n要以数组格式设置变量的值，请使用 {{index}}。 例如，要将 \"d\" 更改为 \"t\" [\"a\",\"b\",\"c\",\"d\"]，路径应为 {{ 3 }} 或 {{globalData.state1.indexOf(\"d “）}}。",
           "the_target_value": "目标值"
         },
         "slider": {
