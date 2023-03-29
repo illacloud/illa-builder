@@ -5,7 +5,6 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { SLIDER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SliderWidget/eventHandlerConfig"
 
-// todo: 补充翻译
 const baseWidgetName = "rangSlider"
 export const RANGE_SLIDER_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -14,20 +13,20 @@ export const RANGE_SLIDER_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-basic-default-start-value`,
-        labelName: i18n.t("editor.inspect.setter_label.default_start_value"), // todo
+        labelName: i18n.t(
+          "editor.inspect.setter_label.range_slider.start_value",
+        ),
         labelDesc: i18n.t(
-          "editor.inspect.setter_tips.slider.default_start_value",
-        ), // todo
+          "editor.inspect.setter_tips.range_slider.start_value",
+        ),
         attrName: "startValue",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
         id: `${baseWidgetName}-basic-default-value`,
-        labelName: i18n.t("editor.inspect.setter_label.default_end_value"),
-        labelDesc: i18n.t(
-          "editor.inspect.setter_tips.slider.default_end_value",
-        ),
+        labelName: i18n.t("editor.inspect.setter_tips.range_slider.end_value"),
+        labelDesc: i18n.t("editor.inspect.setter_label.range_slider.end_value"),
         attrName: "endValue",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -184,7 +183,9 @@ export const RANGE_SLIDER_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.slider.hide_output"),
         labelDesc: i18n.t("editor.inspect.setter_tips.slider.hide_output"),
         attrName: "hideOutput",
-        setterType: "SWITCH_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
