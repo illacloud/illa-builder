@@ -1407,7 +1407,10 @@
           "start_value": "起始值",
           "end_value": "结束值"
         },
-        "name": "名称"
+        "name": "名称",
+        "audio": {
+          "audio_url": "音频URL"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1501,6 +1504,9 @@
         "range_slider": {
           "start_value": "设置范围的最小值",
           "end_value": "设置范围的最大值"
+        },
+        "audio": {
+          "audio_url": "支持直接链接到任何常见的音频文件类型或链接到某些音频服务"
         }
       },
       "setter_option": {
@@ -1687,7 +1693,10 @@
         }
       },
       "setGlobalData": "设置全局变量",
-      "setLocalStorage": "设置本地存储数据"
+      "setLocalStorage": "设置本地存储数据",
+      "audio": {
+        "set_audio_url": "设置音频链接"
+      }
     },
     "tutorial": {
       "panel": {
@@ -2109,6 +2118,10 @@
     },
     "range_slider": {
       "name": "范围滑块"
+    },
+    "audio": {
+      "name": "音频播放器",
+      "no_audio": "无音频"
     }
   },
   "page": {
