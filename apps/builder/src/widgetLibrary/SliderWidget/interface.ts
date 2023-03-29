@@ -8,7 +8,7 @@ export interface WrappedSliderProps
   extends Omit<ValidateMessageOldProps, "value">,
     Pick<
       SliderProps,
-      "value" | "min" | "max" | "step" | "disabled" | "colorScheme" | "isFocus"
+      "value" | "min" | "max" | "step" | "disabled" | "colorScheme"
     > {
   hideOutput: boolean
   displayName: string
@@ -27,8 +27,6 @@ export interface WrappedSliderProps
     }[],
   ) => void
   handleOnChange?: () => void
-  handleOnBlur?: () => void
-  handleOnFocus?: () => void
 }
 
 export interface SliderWidgetProps
