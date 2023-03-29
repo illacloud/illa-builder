@@ -996,7 +996,7 @@
         "variable_name": {
           "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
           "label": "Name",
-          "message": "The name must start with a letter or \"_\", and can only contain letters, numbers"
+          "message": "Please enter the variable name"
         },
         "initial_value": {
           "label": "Initial value",
