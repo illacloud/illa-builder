@@ -1407,7 +1407,10 @@
           "start_value": "開始値",
           "end_value": "終了値"
         },
-        "name": "名前"
+        "name": "名前",
+        "audio": {
+          "audio_url": "音声 URL"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1501,6 +1504,9 @@
         "range_slider": {
           "start_value": "範囲の最小値を設定します",
           "end_value": "範囲の最大値を設定します"
+        },
+        "audio": {
+          "audio_url": "一般的なオーディオ ファイル タイプへの直接リンク、または一部のオーディオ サービスへのリンクをサポート"
         }
       },
       "setter_option": {
@@ -1687,7 +1693,10 @@
         }
       },
       "setGlobalData": "グローバル データ",
-      "setLocalStorage": "ローカルストレージ"
+      "setLocalStorage": "ローカルストレージ",
+      "audio": {
+        "set_audio_url": "音声リンクを設定"
+      }
     },
     "tutorial": {
       "panel": {
@@ -2109,6 +2118,10 @@
     },
     "range_slider": {
       "name": "レンジスライダー"
+    },
+    "audio": {
+      "name": "音声プレイヤー",
+      "no_audio": "音声なし"
     }
   },
   "page": {
