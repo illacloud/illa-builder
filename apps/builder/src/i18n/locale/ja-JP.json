@@ -193,7 +193,7 @@
             "update_value": "Update value",
             "primary_key_column": "Primary key column",
             "array_of_rows_to_upd": "Array of rows to update",
-            "filters_to_match_row": "Filters to match row",
+            "filters_to_match_row": "Row index",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
             "sheet_id_to_copy": "コピーするシートID",
@@ -996,7 +996,7 @@
         "variable_name": {
           "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "変数名",
-          "message": "名前は文字または「_」で始まる必要があり、文字と数字のみを含めることができます"
+          "message": "変数名を入力してください。"
         },
         "initial_value": {
           "label": "초기 값",
@@ -1407,7 +1407,10 @@
           "start_value": "開始値",
           "end_value": "終了値"
         },
-        "name": "名前"
+        "name": "名前",
+        "audio": {
+          "audio_url": "音声 URL"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1497,6 +1500,13 @@
           "default_step": "既定のステップ",
           "show_step_number": "ステップ番号を表示",
           "indicate_completed_steps": "完了した手順を示す"
+        },
+        "range_slider": {
+          "start_value": "範囲の最小値を設定します",
+          "end_value": "範囲の最大値を設定します"
+        },
+        "audio": {
+          "audio_url": "一般的なオーディオ ファイル タイプへの直接リンク、または一部のオーディオ サービスへのリンクをサポート"
         }
       },
       "setter_option": {
@@ -1683,7 +1693,10 @@
         }
       },
       "setGlobalData": "グローバル データ",
-      "setLocalStorage": "ローカルストレージ"
+      "setLocalStorage": "ローカルストレージ",
+      "audio": {
+        "set_audio_url": "音声リンクを設定"
+      }
     },
     "tutorial": {
       "panel": {
@@ -1729,7 +1742,7 @@
           "do_it": "自動補完",
           "drag_title": "コンポーネントをキャンバスにドラッグします",
           "modify_action_title": "ACTIONを変更",
-          "modify_action_description_modify": "ACTIONを変更してデータを取得します。 {{input1.value}} を使用して、入力コンポーネントに入力されたデータを取得できます。\\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
+          "modify_action_description_modify": "ACTIONを変更してデータを取得します。 {{input1.value}} を使用して、入力コンポーネントに入力されたデータを取得できます。\n\nselect * from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "[保存]、[実行] の順にクリックします",
           "display_data_title": "テーブルにデータを表示する",
           "display_data_description_select": "キャンバスでテーブルを選択",
@@ -2099,6 +2112,16 @@
     },
     "step": {
       "name": "歩数"
+    },
+    "slider": {
+      "name": "スライダー"
+    },
+    "range_slider": {
+      "name": "レンジスライダー"
+    },
+    "audio": {
+      "name": "音声プレイヤー",
+      "no_audio": "音声なし"
     }
   },
   "page": {

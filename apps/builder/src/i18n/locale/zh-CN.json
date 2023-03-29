@@ -193,7 +193,7 @@
             "update_value": "Update value",
             "primary_key_column": "Primary key column",
             "array_of_rows_to_upd": "Array of rows to update",
-            "filters_to_match_row": "Filters to match row",
+            "filters_to_match_row": "Row index",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
             "sheet_id_to_copy": "要复制的工作表ID",
@@ -996,7 +996,7 @@
         "variable_name": {
           "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "变量名",
-          "message": "名称必须以字母或“_”开头，且只能包含字母、数字"
+          "message": "请输入变量名称"
         },
         "initial_value": {
           "label": "初期値",
@@ -1407,7 +1407,10 @@
           "start_value": "起始值",
           "end_value": "结束值"
         },
-        "name": "名称"
+        "name": "名称",
+        "audio": {
+          "audio_url": "音频URL"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1497,6 +1500,13 @@
           "default_step": "默认步骤",
           "show_step_number": "显示步骤数值",
           "indicate_completed_steps": "标明完成步骤"
+        },
+        "range_slider": {
+          "start_value": "设置范围的最小值",
+          "end_value": "设置范围的最大值"
+        },
+        "audio": {
+          "audio_url": "支持直接链接到任何常见的音频文件类型或链接到某些音频服务"
         }
       },
       "setter_option": {
@@ -1683,7 +1693,10 @@
         }
       },
       "setGlobalData": "设置全局变量",
-      "setLocalStorage": "设置本地存储数据"
+      "setLocalStorage": "设置本地存储数据",
+      "audio": {
+        "set_audio_url": "设置音频链接"
+      }
     },
     "tutorial": {
       "panel": {
@@ -1729,7 +1742,7 @@
           "do_it": "帮我完成",
           "drag_title": "将组件拖到画布中",
           "modify_action_title": "修改ACTION",
-          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
+          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\n\nselect * from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "单击保存，然后单击运行",
           "display_data_title": "在表格中显示数据",
           "display_data_description_select": "选择画布中的表格",
@@ -2099,6 +2112,16 @@
     },
     "step": {
       "name": "步骤"
+    },
+    "slider": {
+      "name": "滑块"
+    },
+    "range_slider": {
+      "name": "范围滑块"
+    },
+    "audio": {
+      "name": "音频播放器",
+      "no_audio": "无音频"
     }
   },
   "page": {
