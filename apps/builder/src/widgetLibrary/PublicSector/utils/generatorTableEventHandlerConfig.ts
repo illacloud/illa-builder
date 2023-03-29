@@ -287,9 +287,6 @@ export const generatorTableEventHandlerConfig = (
         labelDesc: i18n.t(
           "editor.inspect.setter_tips.variable.available_in_objects",
         ),
-        placeholder: i18n.t(
-          "editor.inspect.setter_tips.variable.the_target_value",
-        ),
         setterType: "INPUT_SETTER",
         attrName: "globalStateKeyPath",
         bindAttrName: ["globalStateMethod"],
