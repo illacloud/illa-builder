@@ -193,7 +193,7 @@
             "update_value": "Update value",
             "primary_key_column": "Primary key column",
             "array_of_rows_to_upd": "Array of rows to update",
-            "filters_to_match_row": "Row index",
+            "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
             "sheet_id_to_copy": "복사할 시트 ID",
@@ -1477,7 +1477,7 @@
           "file_data": "base64 데이터, 원시 데이터, 테이블의 매핑된 데이터 지원"
         },
         "variable": {
-          "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 객체의 속성 경로: {{objectName.attributeName}}. 배열에 있는 값의 인덱스: {{1}}. 개체의 배열: {{objectName.attributeName.1}}",
+          "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 개체 형식으로 변수 값을 설정하려면 attributeName을 사용합니다. 예를 들어 {\"a\":1, \"b\":2}에서 \"b\" 값을 변경하려면 경로\n  b여야 합니다.\n\n변수의 값을 배열 형식으로 설정하려면 {{index}}를 사용하십시오. 예를 들어 \"d\"를 \"t\" [\"a\",\"b\",\"c\",\"d\"]로 변경하려면 경로는 {{ 3 }} 또는 {{globalData.state1.indexOf(\"d \")}}.",
           "the_target_value": "목표값"
         },
         "slider": {
