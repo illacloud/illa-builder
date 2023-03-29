@@ -83,6 +83,7 @@ importers:
       '@types/codemirror': ^5.60.5
       '@types/deep-diff': ^1.0.1
       '@types/downloadjs': ^1.4.3
+      '@types/fnv-plus': ^1.3.0
       '@types/jshint': ^2.12.1
       '@types/lodash': ^4.14.191
       '@types/mdx': ^2.0.3
@@ -114,6 +115,7 @@ importers:
       downloadjs: ^1.4.7
       e2e: workspace:*
       events: ^3.3.0
+      fnv-plus: ^1.3.1
       framer-motion: ^7.6.12
       hotkeys-js: ^3.10.1
       i18next: ^22.4.9
@@ -123,6 +125,7 @@ importers:
       lottie-react: ^2.4.0
       overlap-area: ^1.1.0
       pdfjs-dist: 2.16.105
+      protobufjs: ^7.2.3
       qs: ^6.11.0
       re-resizable: ^6.9.9
       react-chartjs-2: ^4.3.1
@@ -195,6 +198,7 @@ importers:
       deep-diff: 1.0.2
       downloadjs: 1.4.7
       events: 3.3.0
+      fnv-plus: 1.3.1
       framer-motion: 7.10.3
       hotkeys-js: 3.10.1
       i18next: 22.4.9
@@ -204,6 +208,7 @@ importers:
       lottie-react: 2.4.0
       overlap-area: 1.1.0
       pdfjs-dist: 2.16.105
+      protobufjs: 7.2.3
       qs: 6.11.0
       re-resizable: 6.9.9
       react-chartjs-2: 4.3.1_chart.js@3.9.1
@@ -244,6 +249,7 @@ importers:
       '@types/codemirror': 5.60.7
       '@types/deep-diff': 1.0.2
       '@types/downloadjs': 1.4.3
+      '@types/fnv-plus': 1.3.0
       '@types/jshint': 2.12.1
       '@types/lodash': 4.14.191
       '@types/mdx': 2.0.3
@@ -3107,6 +3113,49 @@ packages:
       tslib: 2.5.0
     dev: true
 
+  /@protobufjs/aspromise/1.1.2:
+    resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
+    dev: false
+
+  /@protobufjs/base64/1.1.2:
+    resolution: {integrity: sha512-AZkcAA5vnN/v4PDqKyMR5lx7hZttPDgClv83E//FMNhR2TMcLUhfRUBHCmSl0oi9zMgDDqRUJkSxO3wm85+XLg==}
+    dev: false
+
+  /@protobufjs/codegen/2.0.4:
+    resolution: {integrity: sha512-YyFaikqM5sH0ziFZCN3xDC7zeGaB/d0IUb9CATugHWbd1FRFwWwt4ld4OYMPWu5a3Xe01mGAULCdqhMlPl29Jg==}
+    dev: false
+
+  /@protobufjs/eventemitter/1.1.0:
+    resolution: {integrity: sha512-j9ednRT81vYJ9OfVuXG6ERSTdEL1xVsNgqpkxMsbIabzSo3goCjDIveeGv5d03om39ML71RdmrGNjG5SReBP/Q==}
+    dev: false
+
+  /@protobufjs/fetch/1.1.0:
+    resolution: {integrity: sha512-lljVXpqXebpsijW71PZaCYeIcE5on1w5DlQy5WH6GLbFryLUrBD4932W/E2BSpfRJWseIL4v/KPgBFxDOIdKpQ==}
+    dependencies:
+      '@protobufjs/aspromise': 1.1.2
+      '@protobufjs/inquire': 1.1.0
+    dev: false
+
+  /@protobufjs/float/1.0.2:
+    resolution: {integrity: sha512-Ddb+kVXlXst9d+R9PfTIxh1EdNkgoRe5tOX6t01f1lYWOvJnSPDBlG241QLzcyPdoNTsblLUdujGSE4RzrTZGQ==}
+    dev: false
+
+  /@protobufjs/inquire/1.1.0:
+    resolution: {integrity: sha512-kdSefcPdruJiFMVSbn801t4vFK7KB/5gd2fYvrxhuJYg8ILrmn9SKSX2tZdV6V+ksulWqS7aXjBcRXl3wHoD9Q==}
+    dev: false
+
+  /@protobufjs/path/1.1.2:
+    resolution: {integrity: sha512-6JOcJ5Tm08dOHAbdR3GrvP+yUUfkjG5ePsHYczMFLq3ZmMkAD98cDgcT2iA1lJ9NVwFd4tH/iSSoe44YWkltEA==}
+    dev: false
+
+  /@protobufjs/pool/1.1.0:
+    resolution: {integrity: sha512-0kELaGSIDBKvcgS4zkjz1PeddatrjYcmMWOlAuAPwAeccUrPHdUqo/J6LiymHHEiJT5NrF1UVwxY14f+fy4WQw==}
+    dev: false
+
+  /@protobufjs/utf8/1.1.0:
+    resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
+    dev: false
+
   /@react-dnd/asap/5.0.2:
     resolution: {integrity: sha512-WLyfoHvxhs0V9U+GTsGilGgf2QsPl6ZZ44fnv0/b8T3nQyvzxidxsg/ZltbWssbsRDlYW8UKSQMTGotuTotZ6A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@react-dnd/asap/-/asap-5.0.2.tgz}
     dev: false
@@ -3625,6 +3674,10 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
+    dev: true
+
+  /@types/fnv-plus/1.3.0:
+    resolution: {integrity: sha512-ijls8MsO6Q9JUSd5w1v4y2ijM6S4D/nmOyI/FwcepvrZfym0wZhLdYGFD5TJID7tga0O3I7SmtK69RzpSJ1Fcw==}
     dev: true
 
   /@types/hast/2.3.4:
@@ -6239,6 +6292,10 @@ packages:
       - encoding
     dev: false
 
+  /fnv-plus/1.3.1:
+    resolution: {integrity: sha512-Gz1EvfOneuFfk4yG458dJ3TLJ7gV19q3OM/vVvvHf7eT02Hm1DleB4edsia6ahbKgAYxO9gvyQ1ioWZR+a00Yw==}
+    dev: false
+
   /focus-lock/0.11.5:
     resolution: {integrity: sha512-1mTr6pl9HBpJ8CqY7hRc38MCrcuTZIeYAkBD1gBTzbx5/to+bRBaBYtJ68iDq7ryTzAAbKrG3dVKjkrWTaaEaw==}
     engines: {node: '>=10'}
@@ -7588,6 +7645,10 @@ packages:
       wrap-ansi: 6.2.0
     dev: true
 
+  /long/5.2.1:
+    resolution: {integrity: sha512-GKSNGeNAtw8IryjjkhZxuKB3JzlcLTwjtiQCHKvqQet81I93kXslhDQruGI/QsddO83mcDToBVy7GqGS/zYf/A==}
+    dev: false
+
   /longest-streak/3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
 
@@ -8833,6 +8894,25 @@ packages:
 
   /property-information/6.2.0:
     resolution: {integrity: sha512-kma4U7AFCTwpqq5twzC1YVIDXSqg6qQK6JN0smOw8fgRy1OkMi0CYSzFmsy6dnqSenamAtj0CyXMUJ1Mf6oROg==}
+
+  /protobufjs/7.2.3:
+    resolution: {integrity: sha512-TtpvOqwB5Gdz/PQmOjgsrGH1nHjAQVCN7JG4A6r1sXRWESL5rNMAiRcBQlCAdKxZcAbstExQePYG8xof/JVRgg==}
+    engines: {node: '>=12.0.0'}
+    requiresBuild: true
+    dependencies:
+      '@protobufjs/aspromise': 1.1.2
+      '@protobufjs/base64': 1.1.2
+      '@protobufjs/codegen': 2.0.4
+      '@protobufjs/eventemitter': 1.1.0
+      '@protobufjs/fetch': 1.1.0
+      '@protobufjs/float': 1.0.2
+      '@protobufjs/inquire': 1.1.0
+      '@protobufjs/path': 1.1.2
+      '@protobufjs/pool': 1.1.0
+      '@protobufjs/utf8': 1.1.0
+      '@types/node': 18.14.5
+      long: 5.2.1
+    dev: false
 
   /proxy-from-env/1.0.0:
     resolution: {integrity: sha512-F2JHgJQ1iqwnHDcQjVBsq3n/uoaFL+iPW/eAeL7kVxy/2RrWaN4WroKjjvbsoRtv0ftelNyC01bjRhn/bhcf4A==}

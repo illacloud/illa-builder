@@ -1,4 +1,3 @@
-import i18n from "@/i18n/config"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
 
