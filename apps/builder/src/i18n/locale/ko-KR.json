@@ -994,7 +994,7 @@
       "global_data_modal": {
         "title": "전역 데이터 편집",
         "variable_name": {
-          "tooltips": "변수의 이름입니다. {{name}}을(를) 통해 이 앱의 초기 값을 사용합니다.",
+          "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "변수 이름",
           "message": "이름은 문자 또는 \"_\"로 시작해야 하며 문자, 숫자만 포함할 수 있습니다."
         },
@@ -1406,7 +1406,8 @@
         "range_slider": {
           "start_value": "시작 값",
           "end_value": "종료 값"
-        }
+        },
+        "name": "이름"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",

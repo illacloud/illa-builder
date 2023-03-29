@@ -994,7 +994,7 @@
       "global_data_modal": {
         "title": "グローバル データの編集",
         "variable_name": {
-          "tooltips": "変数の名前。 {{name}} 経由でこのアプリの初期値を使用します",
+          "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "変数名",
           "message": "名前は文字または「_」で始まる必要があり、文字と数字のみを含めることができます"
         },
@@ -1406,7 +1406,8 @@
         "range_slider": {
           "start_value": "開始値",
           "end_value": "終了値"
-        }
+        },
+        "name": "名前"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
