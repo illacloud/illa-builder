@@ -80,6 +80,12 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
                     "https://cloud.google.com/docs/authentication/getting-started",
                   )}
                 />,
+                <TextLink
+                  key="editor.action.form.tips.gs.private_key.limit"
+                  onClick={handleLinkTo(
+                    "https://developers.google.com/sheets/api/limits",
+                  )}
+                />,
               ]}
             />
           }

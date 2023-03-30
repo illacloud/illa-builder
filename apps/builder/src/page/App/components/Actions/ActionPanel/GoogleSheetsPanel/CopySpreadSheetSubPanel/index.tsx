@@ -59,7 +59,7 @@ export const CopySpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
             title={t("editor.action.form.label.gs.sheet_name")}
             value={toSheet ?? ""}
             onChange={onChange("toSheet")}
-            tips={t("editor.action.form.tips.gs.leave_blank_to_selec")}
+            tips={t("editor.action.form.tips.gs.copy_to_sheet_name")}
             expectedType={VALIDATION_TYPES.STRING}
           />
         </div>
