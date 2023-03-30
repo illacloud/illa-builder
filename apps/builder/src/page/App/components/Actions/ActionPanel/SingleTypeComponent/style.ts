@@ -21,10 +21,12 @@ export const getActionItemStyle = (type: string) => {
   if (["checkbox", "switch"].includes(type)) {
     return css`
       ${checkoutItemStyle};
+      width: 100%;
     `
   }
   return css`
     ${actionItemStyle};
+    width: 100%;
   `
 }
 
