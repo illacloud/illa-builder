@@ -134,6 +134,10 @@ export const getCanvas = (state: RootState) => {
   return state.currentApp.editor.components
 }
 
+export const getAppComponents = (state: RootState) => {
+  return state.currentApp.editor.components?.childrenNode
+}
+
 export const getComponentNodeBySingleSelected = createSelector(
   [getCanvas, getSelectedComponents],
   (rootDsl, selectedComponentDisplayNames) => {

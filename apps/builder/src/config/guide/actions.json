@@ -1,0 +1,18 @@
+[
+  {
+    "displayName": "postgresql1",
+    "actionType": "postgresql",
+    "content": {
+      "mode": "sql",
+      "query": ""
+    },
+    "transformer": {
+      "enable": false,
+      "rawData": ""
+    },
+    "triggerMode": "automate",
+    "config": {
+      "public": false
+    }
+  }
+]

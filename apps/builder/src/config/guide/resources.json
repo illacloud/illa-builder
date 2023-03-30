@@ -1,0 +1,27 @@
+[
+  {
+    "resourceId": "ILAfx4p1C7cn",
+    "uid": "518778b8-7b56-409b-8b57-244abb624d7e",
+    "teamID": "ILAfx4p1C7en",
+    "resourceIndex": 0,
+    "resourceName": "Onboarding DB",
+    "resourceType": "postgresql",
+    "content": {
+      "databaseName": "illa_demo",
+      "databasePassword": "illa2022",
+      "databaseUsername": "illa",
+      "host": "143.198.231.148",
+      "port": "30739",
+      "ssl": {
+        "clientCert": "",
+        "clientKey": "",
+        "serverCert": "",
+        "ssl": false
+      }
+    },
+    "createdAt": "2023-03-14T12:31:02.198393Z",
+    "createdBy": "ILAfx4p1C7eb",
+    "updatedAt": "2023-03-15T11:08:05.864299Z",
+    "updatedBy": "ILAfx4p1C7eb"
+  }
+]

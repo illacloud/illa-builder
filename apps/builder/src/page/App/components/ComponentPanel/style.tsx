@@ -25,6 +25,7 @@ export const sessionContainerStyle = css`
   width: 100%;
   display: inline-flex;
   flex-direction: column;
+
   &:not(:nth-of-type(1)) {
     margin-top: 8px;
   }
@@ -74,6 +75,7 @@ export const iconStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   transition: background-color 200ms ease-in-out;
   padding: 8px;
+
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }

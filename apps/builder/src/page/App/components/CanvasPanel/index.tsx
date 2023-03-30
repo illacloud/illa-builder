@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { forwardRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { LockIcon } from "@illa-design/react"
@@ -15,38 +15,41 @@ import {
   messageWrapperStyle,
 } from "./style"
 
-export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
-  const { ...otherProps } = props
+export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
+  (props, ref) => {
+    const { ...otherProps } = props
 
-  const { t } = useTranslation()
-  const isEditMode = useSelector(getIsILLAEditMode)
-  const isFreeze = useSelector(getFreezeState)
+    const { t } = useTranslation()
+    const isEditMode = useSelector(getIsILLAEditMode)
+    const isFreeze = useSelector(getFreezeState)
 
-  return (
-    <div
-      {...otherProps}
-      css={applyScaleContainerStyle(isEditMode)}
-      onClick={() => {
-        FocusManager.switchFocus("canvas")
-      }}
-    >
-      <DotPanel />
-      {isEditMode && (
-        <>
-          {isFreeze ? (
-            <div css={messageWrapperStyle}>
-              <span css={messageStyle}>
-                <LockIcon />
-                <span style={{ marginLeft: "8px" }}>
-                  {t("freeze_messages")}
+    return (
+      <div
+        {...otherProps}
+        ref={ref}
+        css={applyScaleContainerStyle(isEditMode)}
+        onClick={() => {
+          FocusManager.switchFocus("canvas")
+        }}
+      >
+        <DotPanel />
+        {isEditMode && (
+          <>
+            {isFreeze ? (
+              <div css={messageWrapperStyle}>
+                <span css={messageStyle}>
+                  <LockIcon />
+                  <span style={{ marginLeft: "8px" }}>
+                    {t("freeze_messages")}
+                  </span>
                 </span>
-              </span>
-            </div>
-          ) : null}
-        </>
-      )}
-    </div>
-  )
-}
+              </div>
+            ) : null}
+          </>
+        )}
+      </div>
+    )
+  },
+)
 
 CanvasPanel.displayName = "CanvasPanel"

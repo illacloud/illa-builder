@@ -4,22 +4,22 @@
     "uid": "00000000-0000-0000-0000-000000000000",
     "teamID": "ILAfx4p1C7d0",
     "appName": "Admin panel",
-    "releaseVersion": 2,
-    "mainlineVersion": 2,
+    "releaseVersion": 3,
+    "mainlineVersion": 3,
     "config": {
       "public": true
     },
     "updatedBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-03-15T05:49:16.767665Z",
+    "updatedAt": "2023-03-24T10:49:43.802924Z",
     "appActivity": {
-      "modifier": "Marshall～A",
-      "modifiedAt": "2023-03-15T05:49:16.767665Z"
+      "modifier": "mik",
+      "modifiedAt": "2023-03-24T10:49:43.802924Z"
     }
   },
   "actions": [
     {
-      "actionId": "ILAex4p1C7UB",
-      "uid": "c76d0dc6-be64-4e1d-8c6e-576c927358ba",
+      "actionId": "ILAfx4p1C7tL",
+      "uid": "844f46b6-d3e0-40fa-a242-7c0da2f2edd6",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "add_new",
@@ -65,8 +65,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7UQ",
-      "uid": "4ec4a50b-0bf3-4abd-b97c-a043285865ba",
+      "actionId": "ILAfx4p1C7t0",
+      "uid": "2befb8da-103c-4beb-a2e8-2314df2b1cdf",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "user_order",
@@ -89,8 +89,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7UP",
-      "uid": "3befd2f7-7628-4019-a306-446ae0ab2f77",
+      "actionId": "ILAfx4p1C7tZ",
+      "uid": "06353ff4-32ba-4165-8da2-342330f90393",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "delete_user",
@@ -137,8 +137,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7UO",
-      "uid": "b7fe2ef5-2a0b-4e71-a471-fbe3cc50a2f0",
+      "actionId": "ILAfx4p1C7tY",
+      "uid": "85660f49-e87d-4944-adfd-75160db552c6",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "update_user",
@@ -185,8 +185,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7UN",
-      "uid": "2b6c4ec3-764c-4fcf-91f0-7a0297f7c27b",
+      "actionId": "ILAfx4p1C7tX",
+      "uid": "96aa60a7-7620-46ab-92e7-593a942dd8f3",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "orders",
@@ -209,8 +209,8 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7UM",
-      "uid": "98a4c77d-2c77-4325-a178-95460a0d4c96",
+      "actionId": "ILAfx4p1C7tW",
+      "uid": "16995c67-b356-4257-a9d1-f1536971d745",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "id",
@@ -387,37 +387,6 @@
                                             "panelConfig": null
                                           },
                                           {
-                                            "displayName": "image1",
-                                            "parentNode": "canvas2",
-                                            "showName": "image",
-                                            "error": false,
-                                            "isDragging": true,
-                                            "isResizing": false,
-                                            "childrenNode": null,
-                                            "type": "IMAGE_WIDGET",
-                                            "containerType": "EDITOR_SCALE_SQUARE",
-                                            "verticalResize": false,
-                                            "h": 9,
-                                            "w": 7,
-                                            "minH": 3,
-                                            "minW": 2,
-                                            "unitW": 0,
-                                            "unitH": 8,
-                                            "x": 3,
-                                            "y": 1,
-                                            "z": 0,
-                                            "props": {
-                                              "$dynamicAttrPaths": [
-                                                "imageSrc"
-                                              ],
-                                              "hidden": false,
-                                              "imageSrc": "{{list1.dataSources.map((currentItem) => (currentItem.img))}}",
-                                              "objectFit": "cover",
-                                              "radius": "8px"
-                                            },
-                                            "panelConfig": null
-                                          },
-                                          {
                                             "displayName": "text3",
                                             "parentNode": "canvas2",
                                             "showName": "text",
@@ -435,7 +404,7 @@
                                             "unitW": 11.1962890625,
                                             "unitH": 8,
                                             "x": 3,
-                                            "y": 11,
+                                            "y": 12,
                                             "z": 0,
                                             "props": {
                                               "$dynamicAttrPaths": [
@@ -471,7 +440,7 @@
                                             "unitW": 10.85595703125,
                                             "unitH": 8,
                                             "x": 3,
-                                            "y": 23,
+                                            "y": 24,
                                             "z": 0,
                                             "props": {
                                               "$dynamicAttrPaths": [
@@ -507,7 +476,7 @@
                                             "unitW": 10.85595703125,
                                             "unitH": 8,
                                             "x": 3,
-                                            "y": 17,
+                                            "y": 18,
                                             "z": 0,
                                             "props": {
                                               "$dynamicAttrPaths": [
@@ -522,6 +491,37 @@
                                               "resizeDirection": "ALL",
                                               "value": "{{list1.dataSources.map((currentItem) => ('Feature Flags: ' + currentItem.feature_flag))}}",
                                               "verticalAlign": "center"
+                                            },
+                                            "panelConfig": null
+                                          },
+                                          {
+                                            "displayName": "image1",
+                                            "parentNode": "canvas2",
+                                            "showName": "image",
+                                            "error": false,
+                                            "isDragging": false,
+                                            "isResizing": false,
+                                            "childrenNode": null,
+                                            "type": "IMAGE_WIDGET",
+                                            "containerType": "EDITOR_SCALE_SQUARE",
+                                            "verticalResize": false,
+                                            "h": 10,
+                                            "w": 7,
+                                            "minH": 3,
+                                            "minW": 2,
+                                            "unitW": 10.85595703125,
+                                            "unitH": 8,
+                                            "x": 3,
+                                            "y": 1,
+                                            "z": 0,
+                                            "props": {
+                                              "$dynamicAttrPaths": [
+                                                "imageSrc"
+                                              ],
+                                              "hidden": false,
+                                              "imageSrc": "{{list1.dataSources.map((currentItem) => (currentItem.img))}}",
+                                              "objectFit": "cover",
+                                              "radius": "0px"
                                             },
                                             "panelConfig": null
                                           }
@@ -783,7 +783,7 @@
                                             "z": 0,
                                             "props": {
                                               "$dynamicAttrPaths": [],
-                                              "colorScheme": "orange",
+                                              "colorScheme": "red",
                                               "events": [
                                                 {
                                                   "actionType": "datasource",
