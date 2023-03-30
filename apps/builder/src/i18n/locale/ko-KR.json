@@ -180,22 +180,22 @@
             "verification_mode": "확인 모드"
           },
           "gs": {
-            "private_key": "Private key",
-            "action_type": "Action type",
-            "spreadsheet": "Spreadsheet",
-            "sheet_name": "Sheet name",
-            "data_range": "Data range",
+            "private_key": "개인 키",
+            "action_type": "작업 유형",
+            "spreadsheet": "쉼표 구분자 데이터 파일",
+            "sheet_name": "시트 이름",
+            "data_range": "데이터 범위",
             "limit": "Limit",
             "offset": "Offset",
-            "a1_notation": "A1 notation",
-            "values_to_append": "Values to append",
-            "filter_by": "Filter by",
-            "update_value": "Update value",
-            "primary_key_column": "Primary key column",
-            "array_of_rows_to_upd": "Array of rows to update",
+            "a1_notation": "A1 표기",
+            "values_to_append": "추가할 값",
+            "filter_by": "필터링 기준",
+            "update_value": "업데이트할 값",
+            "primary_key_column": "기본 키 열 이름",
+            "array_of_rows_to_upd": "업데이트할 행의 배열",
             "filters_to_match_row": "Filters to match row",
-            "consider_queries_tha": "Consider queries that delete no rows as successes",
-            "title_of_spreadsheet": "Title of spreadsheet",
+            "consider_queries_tha": "행을 삭제하지 않는 쿼리를 성공으로 간주",
+            "title_of_spreadsheet": "스프레드시트 제목",
             "sheet_id_to_copy": "복사할 시트 ID",
             "sheet_to_copy_to": "복사할 시트"
           }
@@ -228,14 +228,14 @@
             "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
             "row_filter": {
               "column_name": "column_name",
-              "value": "value"
+              "value": "값"
             },
             "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "primary_key_column": "column_name",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
-              "key": "key",
-              "value": "value"
+              "key": "키",
+              "value": "값"
             }
           }
         },
@@ -317,23 +317,23 @@
           },
           "gs": {
             "action_type": {
-              "read_data_from_a_spr": "Read data from a spreadsheet",
-              "append_data_to_a_spr": "Append data to a spreadsheet",
-              "update_a_spreadsheet": "Update a spreadsheet",
-              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
-              "delete_a_single_row_": "Delete a single row from a spreadsheet",
-              "create_a_spreadsheet": "Create a spreadsheet",
+              "read_data_from_a_spr": "스프레드시트에서 데이터 읽기",
+              "append_data_to_a_spr": "스프레드시트에 데이터 추가",
+              "update_a_spreadsheet": "스프레드 시트 업데이트",
+              "bulk_update_a_spread": "기본 키로 스프레드시트 대량 업데이트",
+              "delete_a_single_row_": "스프레드시트 업데이트",
+              "create_a_spreadsheet": "스프레드시트 만들기",
               "copy_a_single_sheet_": "단일 시트를 다른 스프레드시트로 복사",
-              "list_available_sprea": "List available spreadsheets",
-              "get_spreadsheet_info": "Get spreadsheet info"
+              "list_available_sprea": "사용 가능한 스프레드시트 나열",
+              "get_spreadsheet_info": "스프레드시트 정보 가져오기"
             },
             "data_range": {
-              "use_a1_notation": "Use A1 notation",
-              "use_limit_and_offset": "Use limit and offset"
+              "use_a1_notation": "A1 표기법 사용",
+              "use_limit_and_offset": "제한 및 오프셋 사용"
             },
             "filter_by": {
-              "use_a1_notation": "Use A1 notation",
-              "use_row_filters": "Use row filters"
+              "use_a1_notation": "A1 표기법 사용",
+              "use_row_filters": "행 필터 사용"
             }
           }
         },
@@ -344,7 +344,7 @@
         },
         "group": {
           "gs": {
-            "service_account": "Service Account"
+            "service_account": "서비스 계정"
           }
         }
       },
@@ -433,7 +433,7 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "find_instructions_on": "<0>AWS 문서</0>에서 액세스 키를 찾을 수 있는 위치에 대한 지침을 찾아보세요.",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
@@ -2123,6 +2123,9 @@
     "audio": {
       "name": "오디오 플레이어",
       "no_audio": "오디오 없음"
+    },
+    "collaborative": {
+      "no_name": "사용자 이름 없음"
     }
   },
   "page": {
