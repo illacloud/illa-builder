@@ -4,12 +4,15 @@ import { TableProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export const ColumnTypeOption = [
+  { label: "Auto", value: "auto" },
   { label: "Text", value: "text" },
   { label: "Date", value: "date" },
   { label: "Number", value: "number" },
   { label: "Percent", value: "percent" },
   { label: "Link", value: "link" },
   { label: "Button", value: "button" },
+  { label: "Boolean", value: "boolean" },
+  { label: "Image", value: "image" },
 ]
 
 export type ColumnType =
@@ -19,6 +22,8 @@ export type ColumnType =
   | "percent"
   | "link"
   | "button"
+  | "boolean"
+  | "image"
 
 export interface ColumnItemShape
   extends Pick<ColumnDef<object>, "cell" | "id"> {

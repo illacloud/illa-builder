@@ -1,4 +1,5 @@
 import { CellContext } from "@tanstack/table-core"
+import { isBoolean } from "lodash"
 import { FC } from "react"
 import {
   Button,
@@ -136,11 +137,12 @@ const RenderTableButton: FC<{
 
 const getValue = (
   props: CellContext<any, any>,
-  mappedValue?: string,
+  mappedValue?: unknown,
   fromCurrentRow?: Record<string, boolean>,
 ) => {
   const value = props.getValue()
   const index = props.row.index
+  console.log(mappedValue, "CellContext mappedValue")
   if (mappedValue) {
     if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
       return `${mappedValue[index] ?? "-"}`
@@ -189,6 +191,16 @@ export const getCellForType = (
           cell: props,
           mappedValue: value,
         })
+      }
+    case "boolean":
+      return (props: CellContext<any, any>) => {
+        const value = getValue(props, mappedValue, fromCurrentRow)
+        console.log(value, isBoolean(value), "CellContext")
+        if (isBoolean(value)) {
+          // return value.toString()
+          return value
+        }
+        return "-"
       }
     case "number":
       return (props: CellContext<any, any>) => {
