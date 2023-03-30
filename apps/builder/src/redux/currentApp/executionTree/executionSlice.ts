@@ -1,12 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
   batchUpdateWidgetLayoutInfoReducer,
+  clearLocalStorageInExecutionReducer,
   resetExecutionResultReducer,
   setDependenciesReducer,
   setExecutionDebuggerDataReducer,
   setExecutionErrorReducer,
   setExecutionResultReducer,
+  setGlobalStateInExecutionReducer,
+  setInGlobalStateInExecutionReducer,
   setIndependenciesReducer,
+  setLocalStorageInExecutionReducer,
   startExecutionReducer,
   updateExecutionByDisplayNameReducer,
   updateExecutionByMultiDisplayNameReducer,
@@ -31,6 +35,10 @@ const executionSlice = createSlice({
     resetExecutionResultReducer,
     updateWidgetLayoutInfoReducer,
     batchUpdateWidgetLayoutInfoReducer,
+    setGlobalStateInExecutionReducer,
+    setInGlobalStateInExecutionReducer,
+    clearLocalStorageInExecutionReducer,
+    setLocalStorageInExecutionReducer,
   },
 })
 

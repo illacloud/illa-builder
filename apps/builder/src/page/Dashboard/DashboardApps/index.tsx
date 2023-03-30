@@ -1,4 +1,5 @@
 import copy from "copy-to-clipboard"
+import { isBoolean } from "lodash"
 import { FC, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -12,11 +13,7 @@ import {
   ListItemMeta,
   useMessage,
 } from "@illa-design/react"
-import {
-  canManage,
-  canManageApp,
-  isBiggerThanTargetRole,
-} from "@/illa-public-component/UserRoleUtils"
+import { canManage, canManageApp } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -24,10 +21,11 @@ import {
 } from "@/illa-public-component/UserRoleUtils/interface"
 import { CreateNewModal } from "@/page/Dashboard/components/CreateNewModal"
 import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu"
+import { openGuideModal } from "@/page/Template/gideModeModal"
+import { getIsTutorialViewed } from "@/redux/currentUser/currentUserSelector"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { TeamInfo } from "@/redux/team/teamState"
 import { fromNow } from "@/utils/dayjs"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
@@ -45,6 +43,8 @@ export const DashboardApps: FC = () => {
 
   const appsList: DashboardApp[] = useSelector(getDashboardApps)
   const teamInfo = useSelector(getCurrentTeamInfo)
+  const isTutorialViewed = useSelector(getIsTutorialViewed)
+
   const [createNewModalVisible, setCreateNewModalVisible] = useState(false)
 
   const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
@@ -73,6 +73,10 @@ export const DashboardApps: FC = () => {
       return item.mainlineVersion !== 0
     })
   }, [canEditApp, appsList])
+
+  if (isBoolean(isTutorialViewed) && !isTutorialViewed && teamIdentifier) {
+    openGuideModal(teamIdentifier)
+  }
 
   return (
     <>

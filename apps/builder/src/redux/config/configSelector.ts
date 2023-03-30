@@ -1,19 +1,23 @@
 import { RootState } from "@/store"
 
+const isEditMode = (state: RootState) => {
+  return state.config.mode === "edit" || state.config.mode === "template-edit"
+}
+
 export const isOpenLeftPanel = (state: RootState) => {
-  return state.config.openLeftPanel && state.config.mode === "edit"
+  return state.config.openLeftPanel && isEditMode(state)
 }
 
 export const isOpenBottomPanel = (state: RootState) => {
-  return state.config.openBottomPanel && state.config.mode === "edit"
+  return state.config.openBottomPanel && isEditMode(state)
 }
 
 export const isOpenRightPanel = (state: RootState) => {
-  return state.config.openRightPanel && state.config.mode === "edit"
+  return state.config.openRightPanel && isEditMode(state)
 }
 
 export const isOpenDebugger = (state: RootState) => {
-  return state.config.openDebugger && state.config.mode === "edit"
+  return state.config.openDebugger && isEditMode(state)
 }
 
 export const getPreviewEdgeWidth = (state: RootState) => {
@@ -25,7 +29,7 @@ export const getIllaMode = (state: RootState) => {
 }
 
 export const isShowDot = (state: RootState) => {
-  return state.config.showDot && state.config.mode === "edit"
+  return state.config.showDot && isEditMode(state)
 }
 
 export const getScale = (state: RootState) => {
@@ -80,7 +84,11 @@ export const getIsResizing = (state: RootState) => {
 }
 
 export const getIsILLAEditMode = (state: RootState) => {
-  return state.config.mode === "edit"
+  return state.config.mode === "edit" || state.config.mode === "template-edit"
+}
+
+export const getIsILLAGuideMode = (state: RootState) => {
+  return state.config.mode === "template-edit"
 }
 
 export const getIsILLAPreviewMode = (state: RootState) => {

@@ -73,8 +73,9 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
       oldKeyMap[item.accessorKey] = item
       oldKeyOrder.push(item.accessorKey)
     })
-    if (!Array.isArray(finalValue)) return
-    const newColumns = tansDataFromOld(finalValue, oldKeyMap, oldKeyOrder)
+    const data = evaluateDynamicString("", finalValue, actionExecutionResult)
+    if (!Array.isArray(data)) return
+    const newColumns = tansDataFromOld(data, oldKeyMap, oldKeyOrder)
     if (newColumns?.length && !isEqual(newColumns, columns)) {
       handleUpdateMultiAttrDSL?.({ columns: newColumns })
     }

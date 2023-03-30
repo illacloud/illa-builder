@@ -134,6 +134,10 @@ export const getCanvas = (state: RootState) => {
   return state.currentApp.editor.components
 }
 
+export const getAppComponents = (state: RootState) => {
+  return state.currentApp.editor.components?.childrenNode
+}
+
 export const getComponentNodeBySingleSelected = createSelector(
   [getCanvas, getSelectedComponents],
   (rootDsl, selectedComponentDisplayNames) => {
@@ -569,3 +573,7 @@ export const getShowWidgetNameParentMap = createSelector(
     return editorScaleSquareNodeRelationMap
   },
 )
+
+export const getOriginalGlobalData = createSelector([getCanvas], (rootNode) => {
+  return (rootNode?.props?.globalData ?? {}) as Record<string, string>
+})

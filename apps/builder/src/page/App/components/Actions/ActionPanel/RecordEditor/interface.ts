@@ -3,6 +3,8 @@ import { Params } from "@/redux/resource/restapiResource"
 
 export interface RecordEditorProps {
   label: string
+  subLabel?: string
+  onSubLabelClick?: () => void
   name?: string
   records: Params[] | null
   onAdd: (name?: string) => void

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { ModalContent } from "@/components/CodeEditor/ModalCodeMirror/content"
 import { FooterContent } from "@/components/CodeEditor/ModalCodeMirror/footer"
 import { ModalCodeMirrorProps } from "@/components/CodeEditor/ModalCodeMirror/interface"
-import { MovableModal } from "@/components/MovableModal"
+import { MovableModal } from "@/components/Modal/movableModal"
 
 export const ModalCodeMirror: FC<ModalCodeMirrorProps> = (props) => {
   const {

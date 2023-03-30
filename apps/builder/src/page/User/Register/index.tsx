@@ -60,6 +60,7 @@ const UserRegister: FC = () => {
         setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
+            ...res.data,
             userId: res.data.id,
             nickname: res.data.nickname,
             language: res.data.language,

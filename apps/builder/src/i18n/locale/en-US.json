@@ -143,6 +143,9 @@
           },
           "oracle": {
             "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google Sheets"
           }
         },
         "validate": {
@@ -175,6 +178,26 @@
           "restapi": {
             "certificates": "Certificates",
             "verification_mode": "Verification mode"
+          },
+          "gs": {
+            "private_key": "Private key",
+            "action_type": "Action type",
+            "spreadsheet": "Spreadsheet",
+            "sheet_name": "Sheet name",
+            "data_range": "Data range",
+            "limit": "Limit",
+            "offset": "Offset",
+            "a1_notation": "A1 notation",
+            "values_to_append": "Values to append",
+            "filter_by": "Filter by",
+            "update_value": "Update value",
+            "primary_key_column": "Primary key column",
+            "array_of_rows_to_upd": "Array of rows to update",
+            "filters_to_match_row": "Row index",
+            "consider_queries_tha": "Consider queries that delete no rows as successes",
+            "title_of_spreadsheet": "Title of spreadsheet",
+            "sheet_id_to_copy": "Sheet ID to copy",
+            "sheet_to_copy_to": "Sheet to copy to"
           }
         },
         "placeholder": {
@@ -200,12 +223,26 @@
           "oracle": {
             "username": "oracle",
             "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "column_name",
+              "value": "value"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "column_name",
+            "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
+            "filters_to_match_row": {
+              "key": "key",
+              "value": "value"
+            }
           }
         },
         "tips": {
           "acl": "The provided content is a PUBLIC configuration. Leave blank for PRIVATE. Don't forget to configure CORS on your bucket. <0>See Cross-Origin Resource Sharing (CORS).</0>",
           "connect_to_local": {
-            "cloud": "It looks like you're trying to connect to a database that's local to your machine or part of a private network. It might not work in the ILLA Cloud version. Check out our <0>docs<0> for how to the self-host version.",
+            "cloud": "It looks like you're trying to connect to a database that's local to your machine or part of a private network. It might not work in the ILLA Cloud version. Check out our <0>docs</0> for how to the self-host version.",
             "selfhost": "It looks like you're trying to connect to a database that's local to your machine. Please use the local area network IP address of the machine instead of \"localhost\" or \"127.0.0.1\".",
             "title": {
               "tips": "Tips"
@@ -215,6 +252,14 @@
             "verification_mode": {
               "skip_ca_certificate": "Your server may be vulnerable to attacks."
             }
+          },
+          "gs": {
+            "private_key": "Used to connect to Google Sheets. Click <0>here</0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here</1> for documentation on creating a service account and access key.",
+            "leave_blank_to_selec": "Leave blank to select the first sheet",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets"
           }
         },
         "option": {
@@ -268,11 +313,37 @@
               "verify_ca_certificat": "Verify CA Certificate",
               "skip_ca_certificate_": "Skip CA Certificate verification"
             }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Read data from a spreadsheet",
+              "append_data_to_a_spr": "Append data to a spreadsheet",
+              "update_a_spreadsheet": "Update a spreadsheet",
+              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
+              "delete_a_single_row_": "Delete a single row from a spreadsheet",
+              "create_a_spreadsheet": "Create a spreadsheet",
+              "copy_a_single_sheet_": "Copy a single sheet to another spreadsheet",
+              "list_available_sprea": "List available spreadsheets",
+              "get_spreadsheet_info": "Get spreadsheet info"
+            },
+            "data_range": {
+              "use_a1_notation": "Use A1 notation",
+              "use_limit_and_offset": "Use limit and offset"
+            },
+            "filter_by": {
+              "use_a1_notation": "Use A1 notation",
+              "use_row_filters": "Use row filters"
+            }
           }
         },
         "default": {
           "appwrite": {
             "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Service Account"
           }
         }
       },
@@ -284,7 +355,8 @@
           "run": "Run",
           "save": "Save",
           "save_and_run": "Save & Run",
-          "save_fail": "Failed to save"
+          "save_fail": "Failed to save",
+          "test_run": "Test run"
         },
         "elastic": {
           "action_type": "Action Type",
@@ -360,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
-              "role_to_assume": "Use a <0>different role<0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
+              "role_to_assume": "Use a <0>different role</0> when accessing the API"
             }
           },
           "option": {
@@ -920,7 +992,17 @@
       "globals_title": "GLOBALS ",
       "pages_title": "PAGES",
       "global_data_modal": {
-        "title": "Edit global data"
+        "title": "Edit global data",
+        "variable_name": {
+          "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
+          "label": "Name",
+          "message": "Please enter the variable name"
+        },
+        "initial_value": {
+          "label": "Initial value",
+          "tooltips": "Supports objects or primitive values. Example: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
       }
     },
     "deploy": {
@@ -1306,10 +1388,28 @@
         },
         "action_name": "Action name",
         "variable": {
-          "path_of_value": "Path of value"
+          "path_of_value": "Path of value",
+          "variable": "Global data"
         },
         "code": {
           "write_code": "Write code"
+        },
+        "slider": {
+          "step_size": "Step size",
+          "minimum": "Minimum",
+          "maximum": "Maximum",
+          "hide_output": "Hide output",
+          "prefix_icon": "Prefix icon",
+          "suffix_icon": "Suffix icon",
+          "allow_wrapping": "Allow wrapping"
+        },
+        "range_slider": {
+          "start_value": "Start value",
+          "end_value": "End value"
+        },
+        "name": "Name",
+        "audio": {
+          "audio_url": "Audio URL"
         }
       },
       "setter_tooltip": {
@@ -1379,6 +1479,34 @@
         "variable": {
           "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
           "the_target_value": "The target value"
+        },
+        "slider": {
+          "default_value": "The initial value of the slider. You can dynamically change the initial value by typing JavaScript in {{}}.",
+          "minimum": "The minimum value of the slider",
+          "maximum": "The maximum value of the slider",
+          "step_size": "The minimum change unit of the slide",
+          "label": "The name of the field displayed to the user",
+          "caption": "A caption used to describe the field in detail",
+          "hide_label": "Set whether to display the label",
+          "allow_wrapping": "Set whether to allow label wrapping",
+          "position": "Set the position of the label relative to the component",
+          "alignment": "Set the alignment of the label",
+          "width": "When the label is on the left side of the component, set the width ratio of the label",
+          "prefix_icon": "The icon displayed in front of the component",
+          "suffix_icon": "The icon displayed after the component",
+          "hide_output": "Set whether to hide the value when sliding"
+        },
+        "step": {
+          "default_step": "Default step",
+          "show_step_number": "Show step numbers",
+          "indicate_completed_steps": "Indicate completed steps"
+        },
+        "range_slider": {
+          "start_value": "To set the minimum value of the range",
+          "end_value": "To set the maximum value of the range"
+        },
+        "audio": {
+          "audio_url": "Supports direct links to any common audio file type or the links to some audio services"
         }
       },
       "setter_option": {
@@ -1563,6 +1691,11 @@
           "fail": "Request failed",
           "download_failed": "Failed to download"
         }
+      },
+      "setGlobalData": "Set global data",
+      "setLocalStorage": "Set local storage",
+      "audio": {
+        "set_audio_url": "Set audio URL"
       }
     },
     "tutorial": {
@@ -1605,15 +1738,15 @@
           "drag_input": "Step 1: Drag an input here",
           "drag_button": "Step 2: Drag a button here",
           "drag_table": "Step 3:  Drag a table here",
-          "exit": "Exit",
+          "exit": "Cancel",
           "do_it": "Do it for me",
           "drag_title": "Drag components to the frame",
           "modify_action_title": "Modify the action",
-          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component.",
+          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component. \n\nselect * \nfrom users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "Click Save and then click Run",
           "display_data_title": "Display data on table",
           "display_data_description_select": "Select the table on the frame",
-          "display_data_description_modify": "Modify the data source on the right panel. We can use {{postgre1.data}} to get the data.",
+          "display_data_description_modify": "Modify the data source on the right panel. We can use {{postgresql1.data}} to get the data.",
           "event_handler_title": "Click button to trigger action",
           "event_handler_description_1": "Select the button on the frame",
           "event_handler_description_2": "Add an event handler",
@@ -1624,8 +1757,9 @@
           "test_it_description": "Input a user name you want to search for and click the button",
           "test_it_button": "Next",
           "congratulations_title": "Congratulations 🎉",
-          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord<0>. ",
-          "congratulations_button": "Done"
+          "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord</0>. ",
+          "congratulations_button": "Done",
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     }
@@ -1975,6 +2109,19 @@
     },
     "carousel": {
       "name": "Carousel"
+    },
+    "step": {
+      "name": "Steps"
+    },
+    "slider": {
+      "name": "Slider"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Audio",
+      "no_audio": "No audio"
     }
   },
   "page": {
@@ -2341,14 +2488,14 @@
           "take": "Take a tutorial"
         },
         "exit_confirm": {
-          "title": "Exit the tutorial?",
+          "title": "Stop the tutorial?",
           "description": "The next time you enter the onboarding app, the guided steps will be replayed ",
           "cancel": "Cancel",
-          "exit": "Exit"
+          "exit": "Stop it"
         }
       }
     }
   },
   "oauth_redirect_title": "Redirect",
-  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud<0>"
+  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud</0>"
 }

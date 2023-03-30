@@ -14,7 +14,7 @@ import Resources from "@/config/template/resources.json"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
-const handleTemplateData = (currentApp: CurrentAppResp) => {
+export const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
   const currentResources = Resources as Resource<ResourceContent>[]
   const resourceIdList = currentApp.actions.map((action) => action.resourceId)
 
@@ -64,19 +64,19 @@ const handleTemplateData = (currentApp: CurrentAppResp) => {
 export const templateConfig = {
   Table: {
     nameKey: "editor.tutorial.panel.tutorial.templates_name.table",
-    config: handleTemplateData(TABLE_DATA),
+    config: formatAppDataToConfig(TABLE_DATA),
     example:
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74H",
   },
   Form: {
     nameKey: "editor.tutorial.panel.tutorial.templates_name.form",
-    config: handleTemplateData(FORM_DATA),
+    config: formatAppDataToConfig(FORM_DATA),
     example:
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74O",
   },
   List: {
     nameKey: "editor.tutorial.panel.tutorial.templates_name.list",
-    config: handleTemplateData(LIST_DATA),
+    config: formatAppDataToConfig(LIST_DATA),
     example:
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74N",
   },

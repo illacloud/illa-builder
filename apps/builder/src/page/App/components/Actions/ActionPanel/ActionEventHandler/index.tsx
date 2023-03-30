@@ -8,7 +8,7 @@ import {
   actionEventHandlerWrapperStyle,
 } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler/style"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
+import { renderPanelSetter } from "@/page/App/components/InspectPanel/utils/fieldFactory"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionContent } from "@/redux/currentApp/action/actionState"
@@ -28,7 +28,6 @@ export const ActionEventHandler: FC = () => {
         const updateSlice: Record<string, unknown> = { [attrPath]: value }
 
         const result = getNewWidgetPropsByUpdateSlice(
-          action?.displayName ?? "",
           updateSlice,
           newActionContent,
         ) as ActionContent
@@ -76,7 +75,7 @@ export const ActionEventHandler: FC = () => {
             handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
             widgetOrAction="ACTION"
           >
-            {renderFieldAndLabel(
+            {renderPanelSetter(
               generatorEventHandlerConfig(
                 "success-event",
                 [
@@ -95,7 +94,7 @@ export const ActionEventHandler: FC = () => {
               false,
               "",
             )}
-            {renderFieldAndLabel(
+            {renderPanelSetter(
               generatorEventHandlerConfig(
                 "failed-event",
                 [

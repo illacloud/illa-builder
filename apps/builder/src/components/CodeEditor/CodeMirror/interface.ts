@@ -19,5 +19,6 @@ export interface ILLACodeMirrorProps
   editable?: boolean
   readOnly?: boolean
   placeholder?: string
+  className?: string
   tooltipContainer?: RefObject<HTMLElement>
 }

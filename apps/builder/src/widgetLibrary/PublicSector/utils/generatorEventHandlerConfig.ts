@@ -62,6 +62,14 @@ export const generatorEventHandlerConfig = (
             label: i18n.t("editor.method.file_download.download"),
             value: "downloadFile",
           },
+          {
+            label: i18n.t("editor.method.setGlobalData"),
+            value: "setGlobalState",
+          },
+          {
+            label: i18n.t("editor.method.setLocalStorage"),
+            value: "setLocalStorage",
+          },
         ],
       },
       {
@@ -258,6 +266,86 @@ export const generatorEventHandlerConfig = (
         bindAttrName: ["widgetMethod"],
         // expectedType: VALIDATION_TYPES.BOOLEAN,
         shown: (widgetMethod) => widgetMethod === "showControls",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-select-state`,
+        labelName: i18n.t("editor.inspect.setter_label.name"),
+        setterType: "EVENT_TARGET_STATE_SELECT_SETTER",
+        attrName: "stateDisplayName",
+        bindAttrName: ["actionType"],
+        shown: (type) => type === "setGlobalState",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-state-method`,
+        labelName: i18n.t("editor.inspect.setter_label.method"),
+        setterType: "BASE_SELECT_SETTER",
+        attrName: "globalStateMethod",
+        bindAttrName: ["stateDisplayName"],
+        shown: (stateDisplayName) => !!stateDisplayName,
+        options: [
+          {
+            label: "Set In",
+            value: "setIn",
+          },
+          {
+            label: "Set Value",
+            value: "setValue",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-stateKey`,
+        labelName: i18n.t("editor.inspect.setter_label.variable.path_of_value"),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.variable.available_in_objects",
+        ),
+        setterType: "INPUT_SETTER",
+        attrName: "globalStateKeyPath",
+        bindAttrName: ["globalStateMethod"],
+        shown: (globalStateMethod) => globalStateMethod === "setIn",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-stateValue`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        setterType: "INPUT_SETTER",
+        attrName: "globalStateValue",
+        bindAttrName: ["globalStateMethod"],
+        shown: (globalStateMethod) =>
+          globalStateMethod === "setValue" || globalStateMethod === "setIn",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-storage-method`,
+        labelName: i18n.t("editor.inspect.setter_label.method"),
+        setterType: "BASE_SELECT_SETTER",
+        attrName: "localStorageMethod",
+        bindAttrName: ["actionType"],
+        shown: (type) => type === "setLocalStorage",
+        options: [
+          {
+            label: "Clear",
+            value: "clear",
+          },
+          {
+            label: "Set Value",
+            value: "setValue",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-localStorageKey`,
+        labelName: i18n.t("editor.inspect.setter_label.key"),
+        setterType: "INPUT_SETTER",
+        attrName: "localStorageKey",
+        bindAttrName: ["localStorageMethod"],
+        shown: (localStorageMethod) => localStorageMethod === "setValue",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-localStorageValue`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        setterType: "INPUT_SETTER",
+        attrName: "localStorageValue",
+        bindAttrName: ["localStorageMethod"],
+        shown: (localStorageMethod) => localStorageMethod === "setValue",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-disabled`,

@@ -54,6 +54,7 @@ export const MysqlLikePanel: FC = () => {
     }
   }, [currentAction.actionType])
 
+  const displayName = currentAction.displayName
   const mysqlContent = currentAction.content as MysqlLikeAction
   const value = useMemo(() => {
     return (currentAction.content as MysqlLikeAction)?.query || ""
@@ -178,6 +179,7 @@ export const MysqlLikePanel: FC = () => {
         </div>
         <div css={sqlInputStyle}>
           <CodeEditor
+            className={`${displayName}-query`}
             placeholder="select * from users;"
             showLineNumbers
             height="88px"

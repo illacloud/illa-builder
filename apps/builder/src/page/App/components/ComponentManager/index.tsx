@@ -34,6 +34,7 @@ const getRenderBody = (activeKey: string) => {
 export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   props,
 ) => {
+  const { className, onClick, ...rest } = props
   const { t } = useTranslation()
 
   const [activeKey, setActiveKey] = useState("Insert")
@@ -72,9 +73,11 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
 
   return (
     <div
-      className={props.className}
-      onClick={() => {
+      className={className}
+      {...rest}
+      onClick={(e) => {
         FocusManager.switchFocus("components")
+        onClick?.(e)
       }}
     >
       <div css={menuHeaderWrapperStyle} onClick={handleClickChangeTab}>

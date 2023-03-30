@@ -724,5 +724,23 @@ export const componentsAsync = (
       )
       break
     }
+    case "setGlobalStateReducer": {
+      const rootNode = getCanvas(nextRootState)
+      if (!rootNode) break
+      const updateWSPayload =
+        transformComponentReduxPayloadToWsPayload(rootNode)
+      Connection.getRoom("app", currentAppID)?.send(
+        getPayload(
+          Signal.SIGNAL_UPDATE_STATE,
+          Target.TARGET_COMPONENTS,
+          true,
+          action,
+          teamID,
+          uid,
+          updateWSPayload,
+        ),
+      )
+      break
+    }
   }
 }
