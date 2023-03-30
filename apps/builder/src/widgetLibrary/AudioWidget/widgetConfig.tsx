@@ -10,9 +10,9 @@ export const AUDIO_WIDGET_CONFIG: WidgetConfig = {
   icon: <VideoWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 40,
-  h: 10,
+  h: 7,
   defaults: {
-    url: "https://storage.googleapis.com/media-session/elephants-dream/the-wires.mp3",
+    url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     hidden: false,
     autoPlay: false,
     loop: false,
