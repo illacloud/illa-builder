@@ -432,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
-              "role_to_assume": "Use a <0>different role</0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
@@ -1477,7 +1477,7 @@
           "file_data": "base64 데이터, 원시 데이터, 테이블의 매핑된 데이터 지원"
         },
         "variable": {
-          "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 개체 형식으로 변수 값을 설정하려면 attributeName을 사용합니다. 예를 들어 {\"a\":1, \"b\":2}에서 \"b\" 값을 변경하려면 경로\n  b여야 합니다.\n\n변수의 값을 배열 형식으로 설정하려면 {{index}}를 사용하십시오. 예를 들어 \"d\"를 \"t\" [\"a\",\"b\",\"c\",\"d\"]로 변경하려면 경로는 {{ 3 }} 또는 {{globalData.state1.indexOf(\"d \")}}.",
+          "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 객체의 속성 경로: {{objectName.attributeName}}. 배열에 있는 값의 인덱스: {{1}}. 개체의 배열: {{objectName.attributeName.1}}",
           "the_target_value": "목표값"
         },
         "slider": {
