@@ -6,7 +6,7 @@ export const AUDIO_WIDGET_CONFIG: WidgetConfig = {
   type: "AUDIO_WIDGET",
   displayName: "audio",
   widgetName: i18n.t("widget.audio.name"),
-  keywords: ["Audio", "视频"],
+  keywords: ["Audio", "音频"],
   icon: <VideoWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 40,

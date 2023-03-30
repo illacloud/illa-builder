@@ -1,11 +1,16 @@
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import ReactPlayer from "react-player"
-import { fullStyle, loadingStyle } from "@/widgetLibrary/AudioWidget/style"
+import { Loading } from "@illa-design/react"
+import {
+  audioWrapperStyle,
+  fullStyle,
+  loadingStyle,
+} from "@/widgetLibrary/AudioWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { VideoWidgetProps, WrappedVideoProps } from "./interface"
+import { AudioWidgetProps, WrappedAudioProps } from "./interface"
 
-export const WrappedAudio = forwardRef<ReactPlayer, WrappedVideoProps>(
+export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
   (props, ref) => {
     const {
       url,
@@ -26,26 +31,19 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedVideoProps>(
     const [error, setError] = useState(false)
 
     if (url === "") {
-      return <div css={loadingStyle}>{t("widget.video.empty")}</div>
+      return <div css={loadingStyle}>{t("widget.audio.no_audio")}</div>
     }
 
     return (
       <>
-        {/*{loading ? (*/}
-        {/*  <div css={loadingStyle}>*/}
-        {/*    <Loading colorScheme="white" />*/}
-        {/*  </div>*/}
-        {/*) : //   : error ? (*/}
-        {/*//   <div css={loadingStyle}>{t("widget.video.fail")}</div>*/}
-        {/*// )*/}
-        {/*null}*/}
+        {loading ? (
+          <div css={loadingStyle}>
+            <Loading colorScheme="black" />
+          </div>
+        ) : null}
         <ReactPlayer
-          // style={loading || error ? { display: "none" } : undefined}
-          // fallback={
-          //   <div css={loadingStyle}>
-          //     <Loading colorScheme="white" />
-          //   </div>
-          // }
+          css={audioWrapperStyle}
+          style={loading ? { display: "none" } : undefined}
           config={{
             file: {
               forceAudio: true,
@@ -53,7 +51,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedVideoProps>(
           }}
           ref={ref}
           width="100%"
-          height="54px"
+          height="100%"
           url={url}
           volume={volume}
           muted={muted}
@@ -82,7 +80,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedVideoProps>(
 
 WrappedAudio.displayName = "WrappedAudio"
 
-export const AudioWidget: FC<VideoWidgetProps> = (props) => {
+export const AudioWidget: FC<AudioWidgetProps> = (props) => {
   const {
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
@@ -92,10 +90,9 @@ export const AudioWidget: FC<VideoWidgetProps> = (props) => {
     tooltipText,
     triggerEventHandler,
     controls,
-    url,
   } = props
 
-  const videoRef = useRef<ReactPlayer>(null)
+  const audioRef = useRef<ReactPlayer>(null)
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -119,7 +116,7 @@ export const AudioWidget: FC<VideoWidgetProps> = (props) => {
         handleUpdateOriginalDSLMultiAttr({ url })
       },
       seekTo: (time: number, type: "seconds" | "fraction" = "seconds") => {
-        videoRef.current?.seekTo(time, type)
+        audioRef.current?.seekTo(time, type)
       },
       mute: (value: boolean) => {
         handleUpdateMultiExecutionResult([
@@ -197,9 +194,7 @@ export const AudioWidget: FC<VideoWidgetProps> = (props) => {
       <div css={fullStyle}>
         <WrappedAudio
           {...props}
-          // controls change need to reload react-player
-          key={Number(controls)}
-          ref={videoRef}
+          ref={audioRef}
           onReady={onReady}
           onPlay={onPlay}
           onPause={onPause}

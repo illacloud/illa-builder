@@ -5,6 +5,8 @@ export const fullStyle = css`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
 `
 
 export const loadingStyle = css`
@@ -13,8 +15,16 @@ export const loadingStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${getColor("gray", "01")};
-  color: ${getColor("white", "01")};
+  //background-color: ${getColor("gray", "01")};
+  color: ${getColor("black", "01")};
+`
+
+export const audioWrapperStyle = css`
+  & > audio {
+    &::-webkit-media-controls {
+      justify-content: center;
+    }
+  }
 `
 
 export const applyHiddenStyle = (hidden: boolean): SerializedStyles => {
