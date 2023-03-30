@@ -193,7 +193,7 @@
             "update_value": "Update value",
             "primary_key_column": "Primary key column",
             "array_of_rows_to_upd": "Array of rows to update",
-            "filters_to_match_row": "Row index",
+            "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
             "sheet_id_to_copy": "要复制的工作表ID",
@@ -256,7 +256,7 @@
           "gs": {
             "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。",
             "leave_blank_to_selec": "留空以选择第一张表",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
             "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它"
@@ -432,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
-              "role_to_assume": "Use a <0>different role</0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {

@@ -193,7 +193,7 @@
             "update_value": "Update value",
             "primary_key_column": "Primary key column",
             "array_of_rows_to_upd": "Array of rows to update",
-            "filters_to_match_row": "Row index",
+            "filters_to_match_row": "Filters to match row",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
             "sheet_id_to_copy": "복사할 시트 ID",
@@ -256,7 +256,7 @@
           "gs": {
             "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기<0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기<1>를 참조하세요.",
             "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
             "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오."
@@ -432,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
-              "role_to_assume": "Use a <0>different role</0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
