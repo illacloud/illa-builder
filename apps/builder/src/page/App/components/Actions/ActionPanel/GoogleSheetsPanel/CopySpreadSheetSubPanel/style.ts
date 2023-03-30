@@ -20,4 +20,8 @@ export const fxIconStyle = css`
   color: ${getColor("grayBlue", "04")};
   cursor: pointer;
   z-index: 1;
+  :hover {
+    cursor: pointer;
+    color: ${getColor("techPurple", "01")};
+  }
 `
