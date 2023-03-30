@@ -2123,6 +2123,9 @@
     "audio": {
       "name": "Audio",
       "no_audio": "No audio"
+    },
+    "collaborative": {
+      "no_name": "Empty username"
     }
   },
   "page": {
