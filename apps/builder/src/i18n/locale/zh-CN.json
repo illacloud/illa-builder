@@ -254,12 +254,13 @@
             }
           },
           "gs": {
-            "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。",
+            "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。用户可能会遇到不受表格控制的不同处理组件的限制。 详细了解<2>配额限制</2>",
             "leave_blank_to_selec": "留空以选择第一张表",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
-            "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它"
+            "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
+            "copy_to_sheet_name": "必填。重命名复制后的表"
           }
         },
         "option": {
