@@ -28,3 +28,7 @@ export const applyGuideStyle = (currentStep: number) => {
 export const shiftStyle = css`
   top: -15px;
 `
+
+export const actionShiftStyle = css`
+  left: 84px;
+`
