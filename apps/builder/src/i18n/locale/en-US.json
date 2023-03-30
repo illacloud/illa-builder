@@ -1477,7 +1477,7 @@
           "file_data": "Support base64 data, raw data, mapped data of table. "
         },
         "variable": {
-          "available_in_objects": "Available in objects and arrays. To set the value of the variable in object format, use attributeName. For example, to change the value of \"b\" in {\"a\":1, \"b\":2}, the path\n should be b. \n\nTo set the value of the variable in array format, use {{index}}. For example, to change \"d\" to \"t\" [\"a\",\"b\",\"c\",\"d\"], the path should be {{ 3 }} or {{globalData.state1.indexOf(\"d\")}}. ",
+          "available_in_objects": "Available in objects and arrays. The path of the attribute in the object: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
           "the_target_value": "The target value"
         },
         "slider": {
