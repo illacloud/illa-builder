@@ -51,24 +51,26 @@ export const ReadSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
           />
         </div>
       </div>
-      <div css={sheetConfigContainerStyle}>
-        <div css={spreadsheetContainerStyle}>
-          <InputEditor
-            value={opts.limit ?? ""}
-            onChange={onChange("limit")}
-            title={t("editor.action.form.label.gs.limit")}
-            expectedType={VALIDATION_TYPES.NUMBER}
-          />
+      {opts.rangeType === "limit" && (
+        <div css={sheetConfigContainerStyle}>
+          <div css={spreadsheetContainerStyle}>
+            <InputEditor
+              value={opts.limit ?? ""}
+              onChange={onChange("limit")}
+              title={t("editor.action.form.label.gs.limit")}
+              expectedType={VALIDATION_TYPES.NUMBER}
+            />
+          </div>
+          <div css={spreadsheetContainerStyle}>
+            <InputEditor
+              value={opts.offset ?? ""}
+              onChange={onChange("offset")}
+              title={t("editor.action.form.label.gs.offset")}
+              expectedType={VALIDATION_TYPES.NUMBER}
+            />
+          </div>
         </div>
-        <div css={spreadsheetContainerStyle}>
-          <InputEditor
-            value={opts.offset ?? ""}
-            onChange={onChange("offset")}
-            title={t("editor.action.form.label.gs.offset")}
-            expectedType={VALIDATION_TYPES.NUMBER}
-          />
-        </div>
-      </div>
+      )}
       {opts.rangeType === "a1" && (
         <InputEditor
           title={t("editor.action.form.label.gs.a1_notation")}
