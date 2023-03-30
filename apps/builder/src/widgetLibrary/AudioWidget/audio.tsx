@@ -1,7 +1,8 @@
+import { isBoolean } from "lodash"
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import ReactPlayer from "react-player"
-import { Loading, isNumber } from "@illa-design/react"
+import { Loading, isNumber, isString } from "@illa-design/react"
 import {
   audioWrapperStyle,
   fullStyle,
@@ -116,12 +117,24 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
         ])
       },
       setAudioUrl: (url: string) => {
+        if (!isString(url)) {
+          console.error("TypeError: url is not a string")
+          return
+        }
         handleUpdateOriginalDSLMultiAttr({ url })
       },
       seekTo: (time: number, type: "seconds" | "fraction" = "seconds") => {
+        if (!isNumber(time)) {
+          console.error("TypeError: value is not a number")
+          return
+        }
         audioRef.current?.seekTo(time, type)
       },
       mute: (value: boolean) => {
+        if (!isBoolean(value)) {
+          console.error("TypeError: value is not a boolean")
+          return
+        }
         const audio = audioRef.current?.getInternalPlayer() as HTMLAudioElement
         if (audio) {
           // As the player doesn't update internally, it's necessary to modify the DOM directly.
@@ -135,6 +148,10 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
         ])
       },
       setLoop: (value: boolean) => {
+        if (!isBoolean(value)) {
+          console.error("TypeError: value is not a boolean")
+          return
+        }
         const audio = audioRef.current?.getInternalPlayer() as HTMLAudioElement
         if (audio) {
           // As the player doesn't update internally, it's necessary to modify the DOM directly.
@@ -148,23 +165,35 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
         ])
       },
       setSpeed: (value: number) => {
+        if (!isNumber(value)) {
+          console.error("TypeError: value is not a number")
+          return
+        }
+        // playbackRate range [0.0625, 16]
+        const clampedValue = Math.max(0.0625, Math.min(16, value))
         handleUpdateMultiExecutionResult([
           {
             displayName,
-            value: { playbackRate: value },
+            value: { playbackRate: clampedValue },
           },
         ])
       },
       setVolume: (value: number) => {
+        if (!isNumber(value)) {
+          console.error("TypeError: value is not a number")
+          return
+        }
+        // volume range [0, 1]
+        const clampedValue = Math.max(0, Math.min(1, value))
         const audio = audioRef.current?.getInternalPlayer() as HTMLAudioElement
         if (audio) {
           // As the player doesn't update internally, it's necessary to modify the DOM directly.
-          audio.volume = value
+          audio.volume = clampedValue
         }
         handleUpdateMultiExecutionResult([
           {
             displayName,
-            value: { volume: value },
+            value: { volume: clampedValue },
           },
         ])
       },
