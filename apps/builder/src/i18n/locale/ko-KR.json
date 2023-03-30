@@ -254,12 +254,13 @@
             }
           },
           "gs": {
-            "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기<0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기<1>를 참조하세요.",
+            "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기<0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기<1>를 참조하세요. 사용자는 스프레드시트에서 제어하지 않는 다양한 처리 구성요소의 제한을 경험할 수 있습니다. <2>할당량 한도</2>에 대해 자세히 알아보기",
             "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
-            "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오."
+            "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오.",
+            "copy_to_sheet_name": "필수의. 복사된 시트의 이름을 바꿉니다."
           }
         },
         "option": {
