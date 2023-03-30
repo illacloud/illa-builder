@@ -90,6 +90,7 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
     tooltipText,
     triggerEventHandler,
     controls,
+    muted,
   } = props
 
   const audioRef = useRef<ReactPlayer>(null)
@@ -119,6 +120,11 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
         audioRef.current?.seekTo(time, type)
       },
       mute: (value: boolean) => {
+        const audio = audioRef.current?.getInternalPlayer() as HTMLAudioElement
+        if (audio) {
+          // As the player doesn't update internally, it's necessary to modify the DOM directly.
+          audio.muted = value
+        }
         handleUpdateMultiExecutionResult([
           {
             displayName,
@@ -127,6 +133,11 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
         ])
       },
       setLoop: (value: boolean) => {
+        const audio = audioRef.current?.getInternalPlayer() as HTMLAudioElement
+        if (audio) {
+          // As the player doesn't update internally, it's necessary to modify the DOM directly.
+          audio.loop = value
+        }
         handleUpdateMultiExecutionResult([
           {
             displayName,
