@@ -124,6 +124,9 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
                   lang={CODE_LANG.JAVASCRIPT}
                   codeType={CODE_TYPE.EXPRESSION}
                   canShowCompleteInfo
+                  placeholder={t(
+                    "editor.action.form.placeholder.gs.row_filter.column_name",
+                  )}
                 />
               </div>
               <Select
@@ -132,6 +135,7 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
                 defaultValue={record.operator}
                 value={record.operator}
                 w="0"
+                h="32px"
                 bdRadius="0"
                 flexGrow="1"
                 onChange={(val) =>
@@ -142,7 +146,7 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
                     val as string,
                   )
                 }
-                options={["in", "="]}
+                options={["="]}
               />
               <div
                 css={[
@@ -166,6 +170,9 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
                   lang={CODE_LANG.JAVASCRIPT}
                   codeType={CODE_TYPE.EXPRESSION}
                   canShowCompleteInfo
+                  placeholder={t(
+                    "editor.action.form.placeholder.gs.row_filter.value",
+                  )}
                 />
               </div>
             </>

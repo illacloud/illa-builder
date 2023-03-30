@@ -45,7 +45,7 @@ export const CopySpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
             />
           ) : (
             <SingleTypeComponent
-              title={t("editor.action.form.label.gs.spreadsheet")}
+              title={t("editor.action.form.label.gs.sheet_to_copy_to")}
               componentType="select"
               value={toSpreadsheet}
               onChange={onChange("toSpreadsheet")}

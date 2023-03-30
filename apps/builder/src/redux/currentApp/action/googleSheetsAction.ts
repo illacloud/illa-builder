@@ -119,7 +119,7 @@ export const GoogleSheetsActionUpdateOptsInitial: GoogleSheetsActionUpdateOpts =
       {
         key: "",
         value: "",
-        operator: "in",
+        operator: "=",
       },
     ],
     a1Notation: "",
