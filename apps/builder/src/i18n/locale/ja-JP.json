@@ -753,7 +753,7 @@
             "private_key": "秘密鍵",
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL オプション",
-            "username_password": "ユーザー名パスワード",
+            "username_password": "ユーザー名/パスワード",
             "self_signed_certificate": "自己署名証明書を使用",
             "disable_introspection": "Disable Introspection",
             "value": "Value",
@@ -779,7 +779,7 @@
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
             "database": "acme_production",
             "database_index": "デフォルト 0",
-            "hostname": "CPU名",
+            "hostname": "ホスト名",
             "hosturl": "たとえば、https://example.com",
             "mongo_certificate": "-----RSA 秘密鍵の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----END RSA 秘密鍵-----\n -----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----\n",
             "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
@@ -937,7 +937,7 @@
           }
         },
         "button": {
-          "copy_ip": "IPをコピー"
+          "copy_ip": "コピー"
         }
       },
       "resource_choose": {
