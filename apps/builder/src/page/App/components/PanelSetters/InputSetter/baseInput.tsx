@@ -15,6 +15,7 @@ import { applyInputSetterWrapperStyle } from "./style"
 
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
+    className,
     isSetterSingleRow,
     placeholder,
     attrName,
@@ -62,6 +63,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
       <CodeEditor
+        className={className}
         value={finalValue}
         onChange={onChange}
         showLineNumbers={false}

@@ -29,9 +29,6 @@ export const MysqlLikePanel: FC = (props) => {
   const dispatch = useDispatch()
 
   const appInfo = useSelector(getAppInfo)
-
-  const teamInfo = useSelector(getCurrentTeamInfo)
-
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -58,6 +55,7 @@ export const MysqlLikePanel: FC = (props) => {
     }
   }, [currentAction.actionType])
 
+  const displayName = currentAction.displayName
   const mysqlContent = currentAction.content as MysqlLikeAction
   const value = useMemo(() => {
     return (currentAction.content as MysqlLikeAction)?.query || ""
@@ -167,6 +165,7 @@ export const MysqlLikePanel: FC = (props) => {
         </div>
         <div css={sqlInputStyle}>
           <CodeEditor
+            className={`${displayName}-query`}
             placeholder="select * from users;"
             showLineNumbers
             height="88px"

@@ -101,7 +101,7 @@ export interface ActionConfig {
 }
 
 export interface ActionItem<T extends ActionContent> {
-  config: ActionConfig
+  config?: ActionConfig
   actionId: string
   displayName: string
   actionType: ActionType
@@ -125,7 +125,10 @@ export interface UpdateActionSlicePropsPayload {
   }
 }
 
-export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
+export const actionItemInitial: Pick<
+  ActionItem<ActionContent>,
+  "transformer" | "triggerMode"
+> = {
   transformer: TransformerInitial,
   triggerMode: "manually",
 }

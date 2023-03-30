@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -18,8 +17,29 @@ import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppSta
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import store from "@/store"
 import { canAutoRunActionWhenInit } from "@/utils/action/canAutoRunAction"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+
+export const updateCurrentAppInfo = (
+  data: CurrentAppResp,
+  mode: IllaMode,
+  appId: string,
+  teamID: string,
+  uid: string,
+) => {
+  store.dispatch(configActions.updateIllaMode(mode))
+  store.dispatch(appInfoActions.updateAppInfoReducer(data.appInfo))
+  store.dispatch(componentsActions.updateComponentReducer(data.components))
+  store.dispatch(actionActions.updateActionListReducer(data.actions))
+
+  DisplayNameGenerator.initApp(appId, teamID, uid)
+  DisplayNameGenerator.updateDisplayNameList(data.components, data.actions)
+  store.dispatch(executionActions.startExecutionReducer())
+  if (mode === "edit" && data.actions.length > 0) {
+    store.dispatch(configActions.changeSelectedAction(data.actions[0]))
+  }
+}
 
 export const useInitBuilderApp = (mode: IllaMode) => {
   const { appId = "" } = useParams()
@@ -43,25 +63,10 @@ export const useInitBuilderApp = (mode: IllaMode) => {
   useDestroyApp()
 
   const handleCurrentApp = useCallback(
-    (response: AxiosResponse<CurrentAppResp>) => {
-      dispatch(configActions.updateIllaMode(mode))
-      dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
-      dispatch(
-        componentsActions.updateComponentReducer(response.data.components),
-      )
-      dispatch(actionActions.updateActionListReducer(response.data.actions))
-
-      DisplayNameGenerator.initApp(appId, teamID, uid)
-      DisplayNameGenerator.updateDisplayNameList(
-        response.data.components,
-        response.data.actions,
-      )
-      dispatch(executionActions.startExecutionReducer())
-      if (mode === "edit" && response.data.actions.length > 0) {
-        dispatch(configActions.changeSelectedAction(response.data.actions[0]))
-      }
+    (data: CurrentAppResp) => {
+      updateCurrentAppInfo(data, mode, appId, teamID, uid)
     },
-    [appId, dispatch, mode, teamID, uid],
+    [mode, appId, teamID, uid],
   )
 
   const initPublicApp = useCallback(
@@ -98,7 +103,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
             dispatch(resourceActions.updateResourceListReducer(response.data))
           },
         )
-        handleCurrentApp(response)
+        handleCurrentApp(response.data)
         resolve(response.data)
       } catch (e) {
         reject(e)
@@ -142,7 +147,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
         if (mode === "production") {
           try {
             const response = await initPublicApp(controller)
-            handleCurrentApp(response)
+            handleCurrentApp(response.data)
             resolve(response.data)
           } catch (error: any) {
             console.log(error, "error")

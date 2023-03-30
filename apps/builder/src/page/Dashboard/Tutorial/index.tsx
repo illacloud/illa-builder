@@ -39,17 +39,21 @@ const Tutorial: FC = () => {
     ACTION_MANAGE.EDIT_APP,
   )
 
+  const toGuideModeApp = () => {
+    navigate(`/${teamIdentifier}/guide`)
+  }
+
   if (teamInfo && !canEditApp) {
     throw Error(`can not access tutorial view`)
   }
 
   return (
     <Spin css={appsContainerStyle} colorScheme="techPurple" loading={loading}>
-      <div style={{ display: "none" }}>
+      <div>
         <div css={titleStyle}>
           {t("editor.tutorial.panel.tutorial.tab.title")}
         </div>
-        <div css={cardStyle}>
+        <div css={cardStyle} onClick={toGuideModeApp}>
           <CardCover css={cardBgStyle} />
           <div css={cardTitleStyle}>
             {t("editor.tutorial.panel.tutorial.onboarding_app.name")}

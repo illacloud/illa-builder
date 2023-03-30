@@ -9,16 +9,18 @@ import { applyActionEditorStyle, contentContainerStyle } from "./styles"
 const ActionEditorDefaultHeight = 300
 
 export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
+  const { className, ...rest } = props
   const panelRef = useRef<HTMLDivElement | null>(null)
 
   return (
     <div
-      className={props.className}
+      className={className}
       css={applyActionEditorStyle(ActionEditorDefaultHeight)}
       onClick={() => {
         FocusManager.switchFocus("action")
       }}
       ref={panelRef}
+      {...rest}
     >
       <DragBar resizeRef={panelRef} minHeight={ActionEditorDefaultHeight} />
       <Divider direction="horizontal" />
