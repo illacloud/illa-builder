@@ -14,6 +14,7 @@ export interface WrappedAudioProps extends BaseWidgetProps {
   onPause: () => void
   onEnded: () => void
   onReady: () => void
+  onPlaybackRateChange: (rate: number) => void
 }
 
 export interface AudioWidgetProps

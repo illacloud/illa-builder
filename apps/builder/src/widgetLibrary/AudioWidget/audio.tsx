@@ -1,7 +1,7 @@
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import ReactPlayer from "react-player"
-import { Loading } from "@illa-design/react"
+import { Loading, isNumber } from "@illa-design/react"
 import {
   audioWrapperStyle,
   fullStyle,
@@ -25,6 +25,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
       onReady,
       onPause,
       onEnded,
+      onPlaybackRateChange,
     } = props
     const { t } = useTranslation()
     const [loading, setLoading] = useState(true)
@@ -72,6 +73,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
             setLoading(false)
             setError(true)
           }}
+          onPlaybackRateChange={onPlaybackRateChange}
         />
       </>
     )
@@ -154,6 +156,11 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
         ])
       },
       setVolume: (value: number) => {
+        const audio = audioRef.current?.getInternalPlayer() as HTMLAudioElement
+        if (audio) {
+          // As the player doesn't update internally, it's necessary to modify the DOM directly.
+          audio.volume = value
+        }
         handleUpdateMultiExecutionResult([
           {
             displayName,
@@ -201,6 +208,20 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
     triggerEventHandler("ended")
   }, [triggerEventHandler])
 
+  const onPlaybackRateChange = useCallback(
+    (playbackRate: number) => {
+      if (isNumber(playbackRate)) {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { playbackRate },
+          },
+        ])
+      }
+    },
+    [displayName, handleUpdateMultiExecutionResult],
+  )
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={fullStyle}>
@@ -211,6 +232,7 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
           onPlay={onPlay}
           onPause={onPause}
           onEnded={onEnded}
+          onPlaybackRateChange={onPlaybackRateChange}
         />
       </div>
     </TooltipWrapper>
