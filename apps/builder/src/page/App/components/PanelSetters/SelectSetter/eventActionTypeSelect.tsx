@@ -1,10 +1,6 @@
-import { get } from "lodash"
-import { FC, useMemo } from "react"
-import { useSelector } from "react-redux"
+import { FC } from "react"
 import { Select } from "@illa-design/react"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
-import { getCachedAction } from "@/redux/config/configSelector"
-import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
@@ -19,28 +15,12 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
     widgetOrAction,
   } = props
 
-  const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
-  const selectedAction = useSelector(getCachedAction)
+  // const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
+  // const selectedAction = useSelector(getCachedAction)
 
-  const oldEvent = useMemo(() => {
-    if (widgetOrAction === "WIDGET") {
-      return get(
-        widgetDisplayNameMapProps,
-        `${widgetDisplayName}.${parentAttrName}`,
-        {},
-      )
-    } else {
-      return get(selectedAction, `content.${parentAttrName}`, {})
-    }
-  }, [
-    widgetOrAction,
-    widgetDisplayNameMapProps,
-    widgetDisplayName,
-    parentAttrName,
-    selectedAction,
-  ])
+  // console.log("handleUpdateDsl", handleUpdateDsl)
 
-  const _finalAttrPath = parentAttrName ? parentAttrName : attrName
+  const _finalAttrPath = attrName
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
@@ -50,11 +30,7 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
         value={value}
         colorScheme="techPurple"
         onChange={(value) => {
-          handleUpdateDsl(_finalAttrPath, {
-            actionType: value,
-            id: oldEvent?.id,
-            eventType: oldEvent?.eventType,
-          })
+          handleUpdateDsl(_finalAttrPath, value)
         }}
       />
     </div>

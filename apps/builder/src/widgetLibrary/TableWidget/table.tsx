@@ -1,15 +1,16 @@
 import { RowSelectionState } from "@tanstack/table-core"
-import { cloneDeep, isEqual } from "lodash"
-import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import { cloneDeep } from "lodash"
+import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Table, isObject } from "@illa-design/react"
+import { getDataPath } from "@/page/App/components/PanelSetters/TableSetter/tableMappedValueInputSetter"
 import { getIllaMode } from "@/redux/config/configSelector"
 import {
   ColumnItemShape,
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { getCellForType, tansDataFromOld, transTableColumnEvent } from "./utils"
+import { getCellForType, transTableColumnEvent } from "./utils"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -202,17 +203,23 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     }
     return dataSource ? dataSource : []
   }, [dataSource, dataSourceJS, dataSourceMode])
+  const dataPath = getDataPath(dataSourceMode === "dynamic")
 
   const rowEvents = useMemo(() => {
     const res: Record<string, any> = {}
     columns?.forEach((item, index) => {
       const { events } = item as ColumnItemShape
       if (events) {
-        res[index] = transTableColumnEvent(events, realDataSourceArray.length)
+        res[index] = transTableColumnEvent(
+          events,
+          realDataSourceArray.length,
+          displayName,
+          dataPath,
+        )
       }
     })
     return res
-  }, [columns, realDataSourceArray?.length])
+  }, [columns, dataPath, displayName, realDataSourceArray.length])
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {

@@ -4,7 +4,7 @@ interface Injected {
   widgetType: string
   widgetDisplayName: string
   widgetParentDisplayName: string | null
-  widgetProps: Record<string, any>
+  widgetProps: Record<string, any> | undefined
   widgetOrAction: "WIDGET" | "ACTION"
   handleUpdateDsl: (attrPath: string, value: any) => void
   handleUpdateMultiAttrDSL: (updateSlice: Record<string, unknown>) => void
@@ -20,7 +20,7 @@ interface Props {
   widgetType: string
   widgetDisplayName: string
   widgetParentDisplayName: string | null
-  widgetProps: Record<string, any>
+  widgetProps: Record<string, any> | undefined
   handleUpdateDsl: (attrPath: string, value: any) => void
   handleUpdateMultiAttrDSL: (updateSlice: Record<string, unknown>) => void
   handleUpdateOtherMultiAttrDSL: (
