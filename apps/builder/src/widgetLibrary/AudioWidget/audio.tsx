@@ -148,23 +148,27 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
         ])
       },
       setSpeed: (value: number) => {
+        // playbackRate range [0.0625, 16]
+        const clampedValue = Math.max(0.0625, Math.min(16, value))
         handleUpdateMultiExecutionResult([
           {
             displayName,
-            value: { playbackRate: value },
+            value: { playbackRate: clampedValue },
           },
         ])
       },
       setVolume: (value: number) => {
+        // volume range [0, 1]
+        const clampedValue = Math.max(0, Math.min(1, value))
         const audio = audioRef.current?.getInternalPlayer() as HTMLAudioElement
         if (audio) {
           // As the player doesn't update internally, it's necessary to modify the DOM directly.
-          audio.volume = value
+          audio.volume = clampedValue
         }
         handleUpdateMultiExecutionResult([
           {
             displayName,
-            value: { volume: value },
+            value: { volume: clampedValue },
           },
         ])
       },
