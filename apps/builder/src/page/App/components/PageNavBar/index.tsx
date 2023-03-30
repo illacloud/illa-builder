@@ -186,7 +186,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         <AppSizeButtonGroup />
       </div>
       <div css={rightContentStyle}>
-        <CollaboratorsList />
+        {!isGuideMode && <CollaboratorsList />}
         {isEditMode ? (
           <div>
             <ButtonGroup spacing="8px">
