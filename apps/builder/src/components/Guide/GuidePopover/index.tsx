@@ -54,7 +54,13 @@ export const GuidePopover: FC<GuidePopoverProps> = (props) => {
         <Trans
           i18nKey={description}
           t={t}
-          components={[<TextLink css={linkStyle} onClick={openDiscord} />]}
+          components={[
+            <TextLink
+              key="openDiscord"
+              css={linkStyle}
+              onClick={openDiscord}
+            />,
+          ]}
         />
       </div>
       <div css={actionStyle}>
