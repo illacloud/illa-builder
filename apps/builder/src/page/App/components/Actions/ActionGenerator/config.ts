@@ -91,6 +91,10 @@ export const Apis: ActionDataItem[] = [
     isDraft: false,
   },
   {
+    actionType: "googlesheets",
+    isDraft: false,
+  },
+  {
     actionType: "huggingface",
     isDraft: false,
   },

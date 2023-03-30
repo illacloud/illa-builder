@@ -256,7 +256,7 @@
           "gs": {
             "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기<0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기<1>를 참조하세요.",
             "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
             "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오."
@@ -432,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
-              "role_to_assume": "Use a <0>different role</0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
@@ -996,7 +996,7 @@
         "variable_name": {
           "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "변수 이름",
-          "message": "이름은 문자 또는 \"_\"로 시작해야 하며 문자, 숫자만 포함할 수 있습니다."
+          "message": "리스트 이름을 입력하세요."
         },
         "initial_value": {
           "label": "초기 값",
@@ -1407,7 +1407,10 @@
           "start_value": "시작 값",
           "end_value": "종료 값"
         },
-        "name": "이름"
+        "name": "이름",
+        "audio": {
+          "audio_url": "오디오 URL"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1497,6 +1500,13 @@
           "default_step": "기본 단계",
           "show_step_number": "단계 번호 표시",
           "indicate_completed_steps": "완료된 단계 표시"
+        },
+        "range_slider": {
+          "start_value": "범위의 최소값 설정",
+          "end_value": "범위의 최대값 설정"
+        },
+        "audio": {
+          "audio_url": "일반적인 오디오 파일 유형에 대한 직접 링크 또는 일부 오디오 서비스에 대한 링크를 지원합니다."
         }
       },
       "setter_option": {
@@ -1683,7 +1693,10 @@
         }
       },
       "setGlobalData": "전역 데이터 편집",
-      "setLocalStorage": "로컬 저장소"
+      "setLocalStorage": "로컬 저장소",
+      "audio": {
+        "set_audio_url": "오디오 링크 설정"
+      }
     },
     "tutorial": {
       "panel": {
@@ -1729,7 +1742,7 @@
           "do_it": "자동 완성",
           "drag_title": "구성 요소를 캔버스로 드래그",
           "modify_action_title": "ACTION수정",
-          "modify_action_description_modify": "ACTION을 수정하여 데이터를 가져옵니다. {{input1.value}}를 사용하여 입력 구성 요소에 입력된 데이터를 가져올 수 있습니다. \\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
+          "modify_action_description_modify": "ACTION을 수정하여 데이터를 가져옵니다. {{input1.value}}를 사용하여 입력 구성 요소에 입력된 데이터를 가져올 수 있습니다.\n\nselect * from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "저장을 클릭한 다음 실행을 클릭합니다.",
           "display_data_title": "테이블에 데이터 표시",
           "display_data_description_select": "캔버스에서 테이블 선택",
@@ -2099,6 +2112,16 @@
     },
     "step": {
       "name": "걸음"
+    },
+    "slider": {
+      "name": "슬라이더"
+    },
+    "range_slider": {
+      "name": "범위 슬라이더"
+    },
+    "audio": {
+      "name": "오디오 플레이어",
+      "no_audio": "오디오 없음"
     }
   },
   "page": {

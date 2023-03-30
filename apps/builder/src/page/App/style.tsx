@@ -7,6 +7,7 @@ export const editorContainerStyle = css`
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  position: relative;
 `
 
 export const contentStyle = css`

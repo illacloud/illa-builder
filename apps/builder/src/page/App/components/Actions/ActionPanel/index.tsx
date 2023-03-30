@@ -7,6 +7,7 @@ import { CouchDBPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBP
 import { DynamoDBPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
 import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
+import { GoogleSheetsPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel"
 import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
 import { HuggingFaceEndpointPanel } from "@/page/App/components/Actions/ActionPanel/HuggingFaceEndpointPanel"
 import { HuggingFacePanel } from "@/page/App/components/Actions/ActionPanel/HuggingFacePanel"
@@ -66,6 +67,8 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           return <S3Panel />
         case "smtp":
           return <SMTPPanel />
+        case "googlesheets":
+          return <GoogleSheetsPanel />
         case "firebase":
           return <FirebasePanel />
         case "graphql":

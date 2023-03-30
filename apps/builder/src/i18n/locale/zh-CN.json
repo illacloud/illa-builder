@@ -256,7 +256,7 @@
           "gs": {
             "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。",
             "leave_blank_to_selec": "留空以选择第一张表",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
             "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它"
@@ -432,8 +432,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
-              "role_to_assume": "Use a <0>different role</0> when accessing the API"
+              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
@@ -996,7 +996,7 @@
         "variable_name": {
           "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "变量名",
-          "message": "名称必须以字母或“_”开头，且只能包含字母、数字"
+          "message": "请输入变量名称"
         },
         "initial_value": {
           "label": "初期値",
@@ -1407,7 +1407,10 @@
           "start_value": "起始值",
           "end_value": "结束值"
         },
-        "name": "名称"
+        "name": "名称",
+        "audio": {
+          "audio_url": "音频URL"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1497,6 +1500,13 @@
           "default_step": "默认步骤",
           "show_step_number": "显示步骤数值",
           "indicate_completed_steps": "标明完成步骤"
+        },
+        "range_slider": {
+          "start_value": "设置范围的最小值",
+          "end_value": "设置范围的最大值"
+        },
+        "audio": {
+          "audio_url": "支持直接链接到任何常见的音频文件类型或链接到某些音频服务"
         }
       },
       "setter_option": {
@@ -1683,7 +1693,10 @@
         }
       },
       "setGlobalData": "设置全局变量",
-      "setLocalStorage": "设置本地存储数据"
+      "setLocalStorage": "设置本地存储数据",
+      "audio": {
+        "set_audio_url": "设置音频链接"
+      }
     },
     "tutorial": {
       "panel": {
@@ -1729,7 +1742,7 @@
           "do_it": "帮我完成",
           "drag_title": "将组件拖到画布中",
           "modify_action_title": "修改ACTION",
-          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
+          "modify_action_description_modify": "修改ACTION以获取数据。 我们可以使用 {{input1.value}} 来获取输入到输入组件中的数据。\n\nselect * from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "单击保存，然后单击运行",
           "display_data_title": "在表格中显示数据",
           "display_data_description_select": "选择画布中的表格",
@@ -2099,6 +2112,16 @@
     },
     "step": {
       "name": "步骤"
+    },
+    "slider": {
+      "name": "滑块"
+    },
+    "range_slider": {
+      "name": "范围滑块"
+    },
+    "audio": {
+      "name": "音频播放器",
+      "no_audio": "无音频"
     }
   },
   "page": {

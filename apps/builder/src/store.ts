@@ -6,6 +6,7 @@ import {
   createListenerMiddleware,
 } from "@reduxjs/toolkit"
 import { logger } from "redux-logger"
+import { guideAsync } from "@/middleware/guideAsync"
 import { reduxAsync } from "@/middleware/reduxAsync"
 import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
 import configReducer from "@/redux/config/configSlice"
@@ -18,6 +19,7 @@ import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSl
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
+import guideReducer from "@/redux/guide/guideSlice"
 import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import teamReducer from "@/redux/team/teamSlice"
@@ -42,7 +44,7 @@ const dashboardReducer = combineReducers({
   dashboardApps: dashboardAppReducer,
 })
 
-const middlewares = [reduxAsync]
+const middlewares = [reduxAsync, guideAsync]
 
 if (import.meta.env.DEV) {
   middlewares.push(logger)
@@ -57,6 +59,7 @@ const store = configureStore({
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
     team: teamReducer,
+    guide: guideReducer,
   },
   devTools: import.meta.env.DEV,
   middleware: (getDefaultMiddleware) =>

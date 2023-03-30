@@ -7,6 +7,7 @@ import { CouchDBActionInitial } from "@/redux/currentApp/action/couchDBAction"
 import { DynamoDBActionInitial } from "@/redux/currentApp/action/dynamoDBAction"
 import { ElasticSearchActionInitial } from "@/redux/currentApp/action/elasticSearchAction"
 import { FirebaseActionInitial } from "@/redux/currentApp/action/firebaseAction"
+import { GoogleSheetsActionInitial } from "@/redux/currentApp/action/googleSheetsAction"
 import { GraphQLActionInitial } from "@/redux/currentApp/action/graphqlAction"
 import { HuggingFaceActionInitial } from "@/redux/currentApp/action/huggingFaceAction"
 import { MicrosoftSqlActionInitial } from "@/redux/currentApp/action/microsoftSqlAction"
@@ -49,6 +50,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return S3ActionInitial
     case "smtp":
       return SMTPActionInitial
+    case "googlesheets":
+      return GoogleSheetsActionInitial
     case "firebase":
       return FirebaseActionInitial
     case "graphql":

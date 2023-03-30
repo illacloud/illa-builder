@@ -6,6 +6,7 @@ import { CouchDBConfigElement } from "@/page/App/components/Actions/CouchDBConfi
 import { DynamoDBConfigElement } from "@/page/App/components/Actions/DynamoDBConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 import { FirebaseConfigElement } from "@/page/App/components/Actions/FirebaseConfigElement"
+import { GoogleSheetsConfigElement } from "@/page/App/components/Actions/GoogleSheetsConfigElement"
 import { GraphQLConfigElement } from "@/page/App/components/Actions/GraphQLConfigElement"
 import { HuggingFaceConfigElement } from "@/page/App/components/Actions/HuggingFaceConfigElement"
 import { HuggingFaceEndpointConfigElement } from "@/page/App/components/Actions/HuggingFaceEndpointConfigElement"
@@ -94,6 +95,8 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         )
       case "smtp":
         return <SMTPConfigElement onBack={handleBack} onFinished={onFinished} />
+      case "googlesheets":
+        return <GoogleSheetsConfigElement {...generalProps} />
       case "huggingface":
         return <HuggingFaceConfigElement {...generalProps} />
       case "hfendpoint":

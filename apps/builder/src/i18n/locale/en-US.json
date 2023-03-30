@@ -193,7 +193,7 @@
             "update_value": "Update value",
             "primary_key_column": "Primary key column",
             "array_of_rows_to_upd": "Array of rows to update",
-            "filters_to_match_row": "Filters to match row",
+            "filters_to_match_row": "Row index",
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
             "sheet_id_to_copy": "Sheet ID to copy",
@@ -996,7 +996,7 @@
         "variable_name": {
           "tooltips": "Name of the variable. Use the initial value in this app via {{name}}",
           "label": "Name",
-          "message": "The name must start with a letter or \"_\", and can only contain letters, numbers"
+          "message": "Please enter the variable name"
         },
         "initial_value": {
           "label": "Initial value",
@@ -1407,7 +1407,10 @@
           "start_value": "Start value",
           "end_value": "End value"
         },
-        "name": "Name"
+        "name": "Name",
+        "audio": {
+          "audio_url": "Audio URL"
+        }
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1497,6 +1500,13 @@
           "default_step": "Default step",
           "show_step_number": "Show step numbers",
           "indicate_completed_steps": "Indicate completed steps"
+        },
+        "range_slider": {
+          "start_value": "To set the minimum value of the range",
+          "end_value": "To set the maximum value of the range"
+        },
+        "audio": {
+          "audio_url": "Supports direct links to any common audio file type or the links to some audio services"
         }
       },
       "setter_option": {
@@ -1683,7 +1693,10 @@
         }
       },
       "setGlobalData": "Set global data",
-      "setLocalStorage": "Set local storage"
+      "setLocalStorage": "Set local storage",
+      "audio": {
+        "set_audio_url": "Set audio URL"
+      }
     },
     "tutorial": {
       "panel": {
@@ -1729,7 +1742,7 @@
           "do_it": "Do it for me",
           "drag_title": "Drag components to the frame",
           "modify_action_title": "Modify the action",
-          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component. \\nselect * \nfrom users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_modify": "Modify action to get data. We can use {{input1.value}} to get the data entered into the input component. \n\nselect * \nfrom users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "Click Save and then click Run",
           "display_data_title": "Display data on table",
           "display_data_description_select": "Select the table on the frame",
@@ -2099,6 +2112,16 @@
     },
     "step": {
       "name": "Steps"
+    },
+    "slider": {
+      "name": "Slider"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Audio",
+      "no_audio": "No audio"
     }
   },
   "page": {
