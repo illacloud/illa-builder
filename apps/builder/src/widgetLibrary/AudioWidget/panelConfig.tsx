@@ -37,15 +37,6 @@ export const AUDIO_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
-        id: `${baseWidgetName}-basic-controls`,
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        openDynamic: true,
-        labelName: i18n.t("editor.inspect.setter_label.show_controls"),
-        useCustomLayout: true,
-        attrName: "controls",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
-      {
         id: `${baseWidgetName}-basic-mute`,
         setterType: "DYNAMIC_SWITCH_SETTER",
         openDynamic: true,
