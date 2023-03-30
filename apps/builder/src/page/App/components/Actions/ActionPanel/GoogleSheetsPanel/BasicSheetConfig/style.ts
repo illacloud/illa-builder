@@ -27,5 +27,9 @@ export const getFxIconStyle = (fullwidth: boolean) => {
     cursor: pointer;
     z-index: 1;
     ${hasRightMargin};
+    :hover {
+      cursor: pointer;
+      color: ${getColor("techPurple", "01")};
+    }
   `
 }

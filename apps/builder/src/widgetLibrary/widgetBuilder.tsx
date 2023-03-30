@@ -1,4 +1,10 @@
 import {
+  AUDIO_EVENT_HANDLER_CONFIG,
+  AUDIO_PANEL_CONFIG,
+  AUDIO_WIDGET_CONFIG,
+  AudioWidget,
+} from "@/widgetLibrary/AudioWidget"
+import {
   BAR_PROGRESS_EVENT_HANDLER_CONFIG,
   BAR_PROGRESS_PANEL_CONFIG,
   BAR_PROGRESS_WIDGET_CONFIG,
@@ -424,6 +430,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: VIDEO_WIDGET_CONFIG,
     panelConfig: VIDEO_PANEL_CONFIG,
     eventHandlerConfig: VIDEO_EVENT_HANDLER_CONFIG,
+  },
+  AUDIO_WIDGET: {
+    widget: AudioWidget,
+    config: AUDIO_WIDGET_CONFIG,
+    panelConfig: AUDIO_PANEL_CONFIG,
+    eventHandlerConfig: AUDIO_EVENT_HANDLER_CONFIG,
   },
   CAROUSEL_WIDGET: {
     widget: CarouselWidget,

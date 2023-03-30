@@ -192,6 +192,14 @@ export const generatorTableEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setVideoUrl",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-audioUrl`,
+        labelName: i18n.t("editor.inspect.setter_label.audio.audio_url"),
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setAudioUrl",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-speed`,
         labelName: i18n.t("editor.method.speed.speed"),
         placeholder: "{{ 1.5 }}",
