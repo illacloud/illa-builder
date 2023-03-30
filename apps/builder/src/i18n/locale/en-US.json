@@ -232,7 +232,7 @@
             },
             "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "primary_key_column": "column_name",
-            "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
             "filters_to_match_row": {
               "key": "key",
               "value": "value"
