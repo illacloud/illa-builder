@@ -57,7 +57,7 @@ jobs:
             docker tag illa-builder-frontend "illasoft/illa-builder-frontend:${CIRCLE_BRANCH}"
             docker push "illasoft/illa-builder-frontend:${CIRCLE_BRANCH}"
   deploy:
-    machine: # executor type
+    machine:
       image: ubuntu-2004:202010-01
     resource_class: medium
     steps:
