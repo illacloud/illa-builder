@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 
 export const applyStepMaskWrapperStyle = (
   visible: boolean,
@@ -10,8 +11,9 @@ export const applyStepMaskWrapperStyle = (
     flex-direction: column;
     position: absolute;
     top: ${unitWidth * 5}px;
-    left: ${unitWidth * 5}px;
-    gap: ${unitWidth * 3}px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    gap: ${UNIT_HEIGHT * 3}px;
     pointer-events: none;
     font-size: 14px;
   `

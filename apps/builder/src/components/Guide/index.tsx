@@ -6,7 +6,11 @@ import { GuideDraggablePopover } from "@/components/Guide/GuideDraggablePopover"
 import { GuidePoint } from "@/components/Guide/GuidePoint"
 import { GuideSuccess } from "@/components/Guide/GuideSuccess"
 import { WidgetStepMask } from "@/components/Guide/WidgetStepMask"
-import { applyGuideStyle, shiftStyle } from "@/components/Guide/style"
+import {
+  actionShiftStyle,
+  applyGuideStyle,
+  shiftStyle,
+} from "@/components/Guide/style"
 import { GUIDE_STEP } from "@/config/guide/config"
 import { getCurrentStep } from "@/redux/guide/guideSelector"
 
@@ -41,10 +45,10 @@ export const Guide: FC<GuideProps> = (props) => {
   return (
     <>
       <Global styles={applyGuideStyle(currentStep)} />
-      {canvasRef.current &&
+      {canvasRef.current?.children?.[0] &&
         createPortal(
           <WidgetStepMask currentStep={currentStep} />,
-          canvasRef.current,
+          canvasRef.current.children[0],
         )}
       {/* widget tip */}
       {currentStep === 0 && firstStepElement && (
@@ -57,13 +61,13 @@ export const Guide: FC<GuideProps> = (props) => {
       {(currentStep === 3 || currentStep === 4) && postgresqlQuery && (
         <GuideDraggablePopover currentStep={currentStep} position="top" />
       )}
+      {currentStep === 3 &&
+        postgresqlQuery &&
+        createPortal(<GuidePoint css={actionShiftStyle} />, postgresqlQuery)}
       {currentStep === 11 && currentElement && (
         <GuideDraggablePopover currentStep={currentStep} position="right" />
       )}
-      {(currentStep === 3 ||
-        currentStep === 4 ||
-        currentStep === 5 ||
-        currentStep === 7) &&
+      {(currentStep === 4 || currentStep === 5 || currentStep === 7) &&
         currentElement &&
         createPortal(<GuidePoint css={shiftStyle} />, currentElement)}
       {/* success tip */}

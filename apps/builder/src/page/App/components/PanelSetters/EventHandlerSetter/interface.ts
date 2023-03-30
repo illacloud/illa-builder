@@ -10,6 +10,7 @@ export interface NewBaseEventHandlerSetterProps
     PanelLabelProps {
   childrenSetter?: PanelFieldConfig[]
   eventHandlerConfig?: EventHandlerConfig
+  widgetParentDisplayName: string
   // TODO: not use any
   value?: any
 }
