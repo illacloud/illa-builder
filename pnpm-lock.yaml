@@ -1206,6 +1206,27 @@ importers:
       '@rollup/plugin-typescript': 10.0.1
       '@vitejs/plugin-react-swc': 3.1.0
 
+  illa-design/packages/slider:
+    specifiers:
+      '@illa-design/icon': workspace:*
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+      '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
+      framer-motion: ^7.6.12
+      react-use-measure: ^2.1.1
+    dependencies:
+      '@illa-design/icon': link:../icon
+      '@illa-design/system': link:../system
+      '@illa-design/theme': link:../theme
+      '@illa-design/trigger': link:../trigger
+      framer-motion: 7.10.3
+      react-use-measure: 2.1.1
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.1.0
+
   illa-design/packages/space:
     specifiers:
       '@illa-design/divider': workspace:*
