@@ -164,6 +164,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     displayName,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
   ])
 

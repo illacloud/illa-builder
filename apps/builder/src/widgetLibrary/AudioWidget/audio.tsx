@@ -159,6 +159,7 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleUpdateMultiExecutionResult,
+    handleUpdateOriginalDSLMultiAttr,
   ])
 
   const onPlay = useCallback(() => {
