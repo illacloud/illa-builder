@@ -27,6 +27,8 @@ export interface WidgetConfigs {
 export interface DraggableWrapperShape {
   w: number
   h: number
+  minW?: number
+  minH?: number
   x?: number
   y?: number
 }

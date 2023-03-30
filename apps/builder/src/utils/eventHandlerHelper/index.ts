@@ -241,6 +241,7 @@ export const transformEvents = (
         "setSelectedValue",
         "setVolume",
         "setVideoUrl",
+        "setAudioUrl",
         "setImageUrl",
         "setFileUrl",
         "setStartValue",
