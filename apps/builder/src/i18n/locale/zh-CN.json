@@ -180,7 +180,7 @@
             "verification_mode": "验证方式"
           },
           "gs": {
-            "private_key": "Private key",
+            "private_key": "私钥",
             "action_type": "Action type",
             "spreadsheet": "Spreadsheet",
             "sheet_name": "Sheet name",
@@ -254,12 +254,13 @@
             }
           },
           "gs": {
-            "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。",
+            "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。用户可能会遇到不受表格控制的不同处理组件的限制。 详细了解<2>配额限制</2>",
             "leave_blank_to_selec": "留空以选择第一张表",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
-            "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它"
+            "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
+            "copy_to_sheet_name": "必填。重命名复制后的表"
           }
         },
         "option": {
@@ -1477,7 +1478,7 @@
           "file_data": "支持Base64编码数据、表格的原始数据或映射数据"
         },
         "variable": {
-          "available_in_objects": "在对象和数组中可用。 属性在对象中的路径：{{objectName.attributeName}}。 数组中值的索引：{{1}}。 对象中的数组：{{objectName.attributeName.1}}",
+          "available_in_objects": "在对象和数组中可用。 要以对象格式设置变量的值，请使用 attributeName。 例如，要更改 {\"a\":1, \"b\":2} 中 \"b\" 的值，路径\n  应该是b。\n\n要以数组格式设置变量的值，请使用 {{index}}。 例如，要将 \"d\" 更改为 \"t\" [\"a\",\"b\",\"c\",\"d\"]，路径应为 {{ 3 }} 或 {{globalData.state1.indexOf(\"d “）}}。",
           "the_target_value": "目标值"
         },
         "slider": {
