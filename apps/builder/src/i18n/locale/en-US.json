@@ -254,12 +254,13 @@
             }
           },
           "gs": {
-            "private_key": "Used to connect to Google Sheets. Click <0>here</0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here</1> for documentation on creating a service account and access key.",
+            "private_key": "Used to connect to Google Sheets. Click <0>here</0> to create a project and get the OAuth credential. With service account authentication, we will only have access to spreadsheets you share with the email address corresponding to the service account used. See <1>here</1> for documentation on creating a service account and access key.\n\nUsers might experience limits from different processing components not controlled by Sheets. Learn more about the <2>quota limits</2>",
             "leave_blank_to_selec": "Leave blank to select the first sheet",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
-            "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets"
+            "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets",
+            "copy_to_sheet_name": "Required. Rename the copied sheet."
           }
         },
         "option": {
