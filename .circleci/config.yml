@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     working_directory: ~/project
-    machine: # executor type
+    machine:
       image: ubuntu-2004:202010-01
     resource_class: large
     steps:
