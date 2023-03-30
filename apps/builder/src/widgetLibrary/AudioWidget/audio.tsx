@@ -2,11 +2,15 @@ import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import ReactPlayer from "react-player"
 import { Loading } from "@illa-design/react"
+import {
+  audioWrapperStyle,
+  fullStyle,
+  loadingStyle,
+} from "@/widgetLibrary/AudioWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { fullStyle, loadingStyle } from "@/widgetLibrary/VideoWidget/style"
-import { VideoWidgetProps, WrappedVideoProps } from "./interface"
+import { AudioWidgetProps, WrappedAudioProps } from "./interface"
 
-export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
+export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
   (props, ref) => {
     const {
       url,
@@ -27,25 +31,24 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
     const [error, setError] = useState(false)
 
     if (url === "") {
-      return <div css={loadingStyle}>{t("widget.video.empty")}</div>
+      return <div css={loadingStyle}>{t("widget.audio.no_audio")}</div>
     }
 
     return (
       <>
         {loading ? (
           <div css={loadingStyle}>
-            <Loading colorScheme="white" />
+            <Loading colorScheme="black" />
           </div>
-        ) : error ? (
-          <div css={loadingStyle}>{t("widget.video.fail")}</div>
         ) : null}
         <ReactPlayer
-          style={loading || error ? { display: "none" } : undefined}
-          fallback={
-            <div css={loadingStyle}>
-              <Loading colorScheme="white" />
-            </div>
-          }
+          css={audioWrapperStyle}
+          style={loading ? { display: "none" } : undefined}
+          config={{
+            file: {
+              forceAudio: true,
+            },
+          }}
           ref={ref}
           width="100%"
           height="100%"
@@ -57,7 +60,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
           loop={loop}
           playing={autoPlay || playing}
           draggable={false}
-          onReady={() => {
+          onReady={(player) => {
             setLoading(false)
             setError(false)
             onReady()
@@ -75,9 +78,9 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
   },
 )
 
-WrappedVideo.displayName = "WrappedVideo"
+WrappedAudio.displayName = "WrappedAudio"
 
-export const VideoWidget: FC<VideoWidgetProps> = (props) => {
+export const AudioWidget: FC<AudioWidgetProps> = (props) => {
   const {
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
@@ -87,10 +90,9 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     tooltipText,
     triggerEventHandler,
     controls,
-    url,
   } = props
 
-  const videoRef = useRef<ReactPlayer>(null)
+  const audioRef = useRef<ReactPlayer>(null)
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -110,25 +112,17 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
           },
         ])
       },
-      setVideoUrl: (url: string) => {
+      setAudioUrl: (url: string) => {
         handleUpdateOriginalDSLMultiAttr({ url })
       },
       seekTo: (time: number, type: "seconds" | "fraction" = "seconds") => {
-        videoRef.current?.seekTo(time, type)
+        audioRef.current?.seekTo(time, type)
       },
       mute: (value: boolean) => {
         handleUpdateMultiExecutionResult([
           {
             displayName,
             value: { muted: value },
-          },
-        ])
-      },
-      showControls: (value: boolean) => {
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: { controls: value },
           },
         ])
       },
@@ -164,8 +158,8 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     displayName,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
+    handleUpdateOriginalDSLMultiAttr,
   ])
 
   const onPlay = useCallback(() => {
@@ -199,11 +193,9 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={fullStyle}>
-        <WrappedVideo
+        <WrappedAudio
           {...props}
-          // controls change need to reload react-player
-          key={Number(controls)}
-          ref={videoRef}
+          ref={audioRef}
           onReady={onReady}
           onPlay={onPlay}
           onPause={onPause}
@@ -214,4 +206,4 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
   )
 }
 
-VideoWidget.displayName = "VideoWidget"
+AudioWidget.displayName = "AudioWidget"
