@@ -12,7 +12,15 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { RootState } from "@/store"
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
 
-export const tableRealInputValue = (
+function getPath(attrName?: string, widgetDisplayName?: string) {
+  if (attrName && widgetDisplayName) {
+    return `${widgetDisplayName}.${attrName}`
+  } else {
+    return widgetDisplayName
+  }
+}
+
+const realInputValue = (
   attrValue: string | undefined,
   dataPath: string,
   widgetDisplayName: string,
@@ -24,9 +32,6 @@ export const tableRealInputValue = (
   )}`
   return attrValue.includes("currentRow") ? JSToString(value) : attrValue
 }
-
-export const getDataPath = (isDynamic: boolean) =>
-  isDynamic ? "dataSourceJS" : "dataSource"
 
 const getNeedComputedValue = (
   value: string,
@@ -69,20 +74,36 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
     return dataSourceMode === "dynamic"
   }, [targetComponentProps])
 
-  const dataPath = getDataPath(isDynamic)
+  const dataPath = useMemo(() => {
+    if (isDynamic) {
+      return "dataSourceJS"
+    }
+    return "dataSource"
+  }, [isDynamic])
 
   const handleValueChange = useCallback(
     (value: string) => {
-      const output = getNeedComputedValue(value, dataPath, widgetDisplayName)
-
+      const fromCurrentRow = value.includes("currentRow")
+      const output = fromCurrentRow
+        ? getNeedComputedValue(value, dataPath, widgetDisplayName)
+        : value
+      const name = attrName.substring(
+        parentAttrName ? parentAttrName?.length + 1 : 0,
+      )
       handleUpdateDsl(attrName, output)
+      handleUpdateDsl(`${parentAttrName}.fromCurrentRow`, {
+        [name]: fromCurrentRow,
+      })
     },
-    [attrName, dataPath, handleUpdateDsl, widgetDisplayName],
+    [attrName, dataPath, handleUpdateDsl, parentAttrName, widgetDisplayName],
   )
 
   const wrappedCodeFunc = useCallback(
     (code: string) => {
-      const output = getNeedComputedValue(code, dataPath, widgetDisplayName)
+      const fromCurrentRow = code.includes("currentRow")
+      const output = fromCurrentRow
+        ? getNeedComputedValue(code, dataPath, widgetDisplayName)
+        : code
       return output
     },
     [dataPath, widgetDisplayName],
@@ -91,7 +112,7 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
       <CodeEditor
-        value={tableRealInputValue(value, dataPath, widgetDisplayName)}
+        value={realInputValue(value, dataPath, widgetDisplayName)}
         onChange={handleValueChange}
         showLineNumbers={false}
         placeholder={placeholder}

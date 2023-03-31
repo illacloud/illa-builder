@@ -1,5 +1,4 @@
 import { CellContext } from "@tanstack/table-core"
-import { cloneDeep } from "lodash"
 import { FC } from "react"
 import {
   Button,
@@ -9,7 +8,6 @@ import {
   isNumber,
   isObject,
 } from "@illa-design/react"
-import { tableRealInputValue } from "@/page/App/components/PanelSetters/TableSetter/tableMappedValueInputSetter"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
@@ -84,42 +82,14 @@ export const tansTableDataToColumns = (
   return columns
 }
 
-export const transTableColumnEvent = (
-  events: any[],
-  columnLength: number,
-  displayName: string,
-  dataPath: string,
-) => {
+export const transTableColumnEvent = (events: any[], columnLength: number) => {
   let res: Record<string, any> = {}
   for (let i = 0; i < columnLength; i++) {
     res[i] = []
     events.forEach((event) => {
-      const realEvent = cloneDeep(event)
-      Object.keys(event).forEach((key: string) => {
-        const currentValue = event[key]
-
-        if (typeof currentValue !== "string") {
-          realEvent[key] = currentValue
-        } else {
-          const realInput = tableRealInputValue(
-            currentValue,
-            dataPath,
-            displayName,
-          )
-          realEvent[key] = currentValue
-          if (realInput.includes("currentRow")) {
-            realEvent[key] = currentValue
-            const { fromCurrentRow: originFromCurrentRow = {} } = realEvent
-            realEvent.fromCurrentRow = {
-              ...originFromCurrentRow,
-              [key]: true,
-            }
-          }
-        }
-      })
-      const rowEvent: Record<string, any> = { ...realEvent }
-      if (realEvent?.fromCurrentRow) {
-        const keys = Object.keys(realEvent?.fromCurrentRow)
+      const rowEvent: Record<string, any> = { ...event }
+      if (event?.fromCurrentRow) {
+        const keys = Object.keys(event?.fromCurrentRow)
         keys.forEach((key) => {
           rowEvent[key] = event?.[key]?.[i]
         })

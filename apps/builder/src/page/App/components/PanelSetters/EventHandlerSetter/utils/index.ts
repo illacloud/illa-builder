@@ -6,5 +6,8 @@ export const generateNewEventItem = (event: string, targetId?: string) => {
   return {
     id: generateEventItemId(),
     eventType: event,
+    targetId,
+    type: "datasource",
+    method: "trigger",
   }
 }

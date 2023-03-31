@@ -24,6 +24,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     expectedType,
     defaultValue,
     icon,
+    displayName,
     canShowLabel = true,
   } = props
   const Comp = getSetterByType(setterType)
@@ -31,7 +32,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const componentNode = useSelector(getComponentNodeBySingleSelected)
   const {
     widgetProps,
-    widgetParentDisplayName,
     widgetDisplayName,
     widgetType,
     widgetOrAction,
@@ -121,7 +121,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           icon={icon}
           componentNode={componentNode}
           isGuideMode={isGuideMode}
-          widgetParentDisplayName={widgetParentDisplayName}
         />
       </div>
     ) : null
@@ -145,8 +144,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     defaultValue,
     icon,
     componentNode,
-    isGuideMode,
-    widgetParentDisplayName,
   ])
 
   return canRenderSetter ? (
