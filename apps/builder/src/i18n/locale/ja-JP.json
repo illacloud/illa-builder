@@ -353,7 +353,7 @@
           "disable": "閉鎖",
           "enable": "オンにする",
           "new": "追加",
-          "run": "走る",
+          "run": "実行する",
           "save": "保存",
           "save_and_run": "保存して実行",
           "save_fail": "保存に失敗しました",
