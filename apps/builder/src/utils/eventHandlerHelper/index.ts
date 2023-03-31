@@ -247,12 +247,8 @@ export const transformEvents = (
         "setStartValue",
         "setPrimaryValue",
         "setEndValue",
-        "setDisabled",
         "setSpeed",
-        "setLoop",
         "seekTo",
-        "showControls",
-        "mute",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
@@ -261,6 +257,20 @@ export const transformEvents = (
           const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
           if (method) {
             method(widgetTargetValue)
+          }
+        },
+        enabled,
+      }
+    }
+    if (
+      ["setDisabled", "setLoop", "showControls", "mute"].includes(widgetMethod)
+    ) {
+      const { widgetSwitchTargetValue } = event
+      return {
+        script: () => {
+          const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
+          if (method) {
+            method(widgetSwitchTargetValue)
           }
         },
         enabled,
