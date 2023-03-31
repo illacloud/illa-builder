@@ -1070,6 +1070,7 @@ importers:
       '@illa-design/result': workspace:*
       '@illa-design/select': workspace:*
       '@illa-design/skeleton': workspace:*
+      '@illa-design/slider': workspace:*
       '@illa-design/space': workspace:*
       '@illa-design/spin': workspace:*
       '@illa-design/statistic': workspace:*
@@ -1130,6 +1131,7 @@ importers:
       '@illa-design/result': link:../result
       '@illa-design/select': link:../select
       '@illa-design/skeleton': link:../skeleton
+      '@illa-design/slider': link:../slider
       '@illa-design/space': link:../space
       '@illa-design/spin': link:../spin
       '@illa-design/statistic': link:../statistic
