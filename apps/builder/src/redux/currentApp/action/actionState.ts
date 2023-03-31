@@ -14,6 +14,10 @@ import {
   FirebaseAction,
   FirebaseContentType,
 } from "@/redux/currentApp/action/firebaseAction"
+import {
+  GoogleSheetsAction,
+  GoogleSheetsActionOpts,
+} from "@/redux/currentApp/action/googleSheetsAction"
 import { GraphQLAction } from "@/redux/currentApp/action/graphqlAction"
 import {
   HuggingFaceAction,
@@ -90,6 +94,7 @@ export type ActionType =
   | "mariadb"
   | "tidb"
   | "smtp"
+  | "googlesheets"
   | "s3"
   | "transformer"
   | "appwrite"
@@ -101,7 +106,7 @@ export interface ActionConfig {
 }
 
 export interface ActionItem<T extends ActionContent> {
-  config: ActionConfig
+  config?: ActionConfig
   actionId: string
   displayName: string
   actionType: ActionType
@@ -125,7 +130,10 @@ export interface UpdateActionSlicePropsPayload {
   }
 }
 
-export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
+export const actionItemInitial: Pick<
+  ActionItem<ActionContent>,
+  "transformer" | "triggerMode"
+> = {
   transformer: TransformerInitial,
   triggerMode: "manually",
 }
@@ -147,5 +155,6 @@ export type ActionContent =
   | GraphQLAction
   | MongoDbAction<MongoDbActionTypeContent>
   | CouchDBAction<CouchDBOptionsType>
+  | GoogleSheetsAction<GoogleSheetsActionOpts>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

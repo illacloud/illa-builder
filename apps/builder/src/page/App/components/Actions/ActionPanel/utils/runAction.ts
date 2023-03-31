@@ -18,6 +18,7 @@ import {
   FirestoreActionTypeValue,
   ServiceTypeValue,
 } from "@/redux/currentApp/action/firebaseAction"
+import { GoogleSheetDataTypeTransform } from "@/redux/currentApp/action/googleSheetsAction"
 import {
   BooleanTypes,
   BooleanValueMap,
@@ -624,7 +625,26 @@ const transformDataFormat = (
           ...(showData && { data: isObject(data) ? data : {} }),
         },
       }
-      return contents
+    case "googlesheets": {
+      const { opts: googleOpts } = contents
+      const googleSheetsTransformKeys = Object.keys(
+        GoogleSheetDataTypeTransform,
+      )
+      const newGoogleSheetOpts = { ...googleOpts }
+      googleSheetsTransformKeys.forEach((key) => {
+        const value =
+          GoogleSheetDataTypeTransform[
+            key as keyof typeof GoogleSheetDataTypeTransform
+          ]
+        if (newGoogleSheetOpts[key] === "") {
+          newGoogleSheetOpts[key] = value
+        }
+      })
+      return {
+        ...contents,
+        opts: newGoogleSheetOpts,
+      }
+    }
     default:
       return contents
   }
@@ -670,7 +690,7 @@ export const runAction = (
   )
 
   fetchActionResult(
-    action.config.public,
+    action.config?.public || false,
     resourceId || "",
     actionType,
     displayName,

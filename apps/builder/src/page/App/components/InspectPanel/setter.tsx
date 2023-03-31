@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { PanelSetterProps } from "./interface"
 import { PanelLabel } from "./label"
 import { applySetterPublicWrapperStyle, applySetterWrapperStyle } from "./style"
@@ -23,9 +24,11 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     expectedType,
     defaultValue,
     icon,
+    displayName,
     canShowLabel = true,
   } = props
   const Comp = getSetterByType(setterType)
+  const isGuideMode = useSelector(getGuideStatus)
   const componentNode = useSelector(getComponentNodeBySingleSelected)
   const {
     widgetProps,
@@ -117,6 +120,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           defaultValue={defaultValue}
           icon={icon}
           componentNode={componentNode}
+          isGuideMode={isGuideMode}
         />
       </div>
     ) : null

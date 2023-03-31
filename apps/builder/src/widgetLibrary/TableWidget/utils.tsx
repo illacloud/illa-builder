@@ -91,7 +91,12 @@ export const transTableColumnEvent = (events: any[], columnLength: number) => {
       if (event?.fromCurrentRow) {
         const keys = Object.keys(event?.fromCurrentRow)
         keys.forEach((key) => {
-          rowEvent[key] = event?.[key]?.[i]
+          // Determine whether the current key is taken from currentRow, if so, treat it as an array.
+          if (event?.fromCurrentRow?.[key]) {
+            rowEvent[key] = event?.[key]?.[i]
+          } else {
+            rowEvent[key] = event?.[key]
+          }
         })
       }
       res[i].push(rowEvent)

@@ -11,6 +11,7 @@ import {
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getGuideStatus } from "@/redux/guide/guideSelector"
 import store from "@/store"
 import {
   batchMergeLayoutInfoToComponent,
@@ -27,9 +28,10 @@ import {
 
 export const ComponentItem: FC<ComponentItemProps> = memo(
   (props: ComponentItemProps) => {
-    const { widgetName, icon, id, ...partialDragInfo } = props
+    const { widgetName, icon, id, type, ...partialDragInfo } = props
 
     const isEditMode = useSelector(getIsILLAEditMode)
+    const isGuideOpen = useSelector(getGuideStatus)
 
     const [, dragRef, dragPreviewRef] = useDrag<
       DragInfo,
@@ -53,6 +55,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
         item: () => {
           const item = generateComponentNode({
             widgetName,
+            type,
             ...partialDragInfo,
           })
           const rootState = store.getState()
@@ -83,9 +86,18 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
     )
 
     return (
-      <div css={itemContainerStyle} ref={dragRef}>
+      <div
+        css={itemContainerStyle}
+        ref={dragRef}
+        {...(isGuideOpen ? { "data-onboarding-element": type } : {})}
+      >
         <div css={dragPreviewStyle} ref={dragPreviewRef} />
-        <span css={iconStyle}>{icon}</span>
+        <span
+          css={iconStyle}
+          {...(isGuideOpen ? { "data-onboarding-icon": type } : {})}
+        >
+          {icon}
+        </span>
         <span css={nameStyle}>{widgetName}</span>
       </div>
     )

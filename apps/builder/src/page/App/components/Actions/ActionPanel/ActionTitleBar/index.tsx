@@ -24,6 +24,7 @@ import {
 } from "@/page/App/components/Actions/api"
 import {
   getCachedAction,
+  getIsILLAGuideMode,
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -53,7 +54,7 @@ import {
 } from "./style"
 
 const Item = DropListItem
-export type RunMode = "save" | "run" | "save_and_run"
+export type RunMode = "save" | "run" | "test_run" | "save_and_run"
 const FILE_SIZE_LIMIT_TYPE = ["s3", "smtp"]
 
 const getCanRunAction = (cachedAction: ActionItem<ActionContent> | null) => {
@@ -149,6 +150,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const [canRunAction, canNotRunMessage] = getCanRunAction(cachedAction)
 
   const executionResult = useSelector(getExecutionResult)
+  const isGuideOpen = useSelector(getIsILLAGuideMode)
 
   const renderResult =
     executionResult[selectedAction.displayName]?.data !== undefined ||
@@ -157,6 +159,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const runError = executionResult[selectedAction.displayName]?.runResult?.error
 
   let runMode: RunMode = useMemo(() => {
+    if (isGuideOpen) {
+      return "test_run"
+    }
     if (cachedAction != undefined && isChanged) {
       if (cachedAction.triggerMode === "manually") {
         return "save"
@@ -168,13 +173,44 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     } else {
       return "run"
     }
-  }, [isChanged, cachedAction])
+  }, [isChanged, cachedAction, isGuideOpen])
+
+  const runCachedAction = useCallback(
+    (cachedActionValue: ActionItem<ActionContent>) => {
+      if (cachedActionValue) {
+        runAction(cachedActionValue, (data) => {
+          onResultVisibleChange(true)
+          onResultValueChange(data)
+        })
+      }
+    },
+    [onResultVisibleChange, onResultValueChange],
+  )
+
+  const updateAndRunCachedAction = useCallback(
+    (cachedActionValue: ActionItem<ActionContent>) => {
+      if (cachedActionValue) {
+        dispatch(actionActions.updateActionItemReducer(cachedActionValue))
+        runCachedAction(cachedActionValue)
+      }
+    },
+    [dispatch, runCachedAction],
+  )
 
   const handleActionOperation = useCallback(() => {
     let cachedActionValue: ActionItem<ActionContent> =
       getActionFilteredContent(cachedAction)
 
     switch (runMode) {
+      case "test_run":
+        if (!canRunAction) {
+          message.error({
+            content: canNotRunMessage,
+          })
+          return
+        }
+        updateAndRunCachedAction(cachedActionValue)
+        break
       case "run":
         if (!canRunAction) {
           message.error({
@@ -182,12 +218,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           })
           return
         }
-        if (cachedActionValue) {
-          runAction(cachedActionValue, (data) => {
-            onResultVisibleChange(true)
-            onResultValueChange(data)
-          })
-        }
+        runCachedAction(cachedActionValue)
         break
       case "save":
         setSaveLoading(true)
@@ -232,13 +263,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
             data: cachedActionValue,
           },
           () => {
-            if (cachedActionValue) {
-              dispatch(actionActions.updateActionItemReducer(cachedActionValue))
-              runAction(cachedActionValue, (data) => {
-                onResultVisibleChange(true)
-                onResultValueChange(data)
-              })
-            }
+            updateAndRunCachedAction(cachedActionValue)
           },
           () => {
             message.error({
@@ -264,8 +289,8 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     selectedAction.actionId,
     message,
     canNotRunMessage,
-    onResultVisibleChange,
-    onResultValueChange,
+    runCachedAction,
+    updateAndRunCachedAction,
     dispatch,
     t,
   ])
@@ -383,6 +408,8 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       </Dropdown>
       {renderButton && (
         <Button
+          pos="relative"
+          className={`${cachedAction.displayName}-run`}
           ml="8px"
           colorScheme="techPurple"
           variant={isChanged ? "fill" : "light"}

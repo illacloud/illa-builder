@@ -1,6 +1,9 @@
 import { v4 } from "uuid"
 import { Api } from "@/api/base"
 import { CloudApi } from "@/api/cloudApi"
+import { updateUserIsTutorialViewedReducer } from "@/redux/currentUser/currentUserReducer"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import store from "@/store"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 
@@ -74,4 +77,15 @@ export const sendEmail = async (
   const verificationToken = res?.data?.verificationToken
   ILLABuilderStorage.setSessionStorage("verificationToken", verificationToken)
   return verificationToken
+}
+
+export const updateTutorialViewed = async (isTutorialViewed: boolean) => {
+  await CloudApi.asyncRequest({
+    url: "/users/tutorialViewed",
+    method: "PATCH",
+    data: {
+      isTutorialViewed,
+    },
+  })
+  store.dispatch(currentUserActions.updateUserIsTutorialViewedReducer(true))
 }

@@ -27,7 +27,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
     sqlScheme,
   } = props
   return (
-    <>
+    <div style={{ width: "100%" }}>
       <div css={actionItemStyle}>
         {title && (
           <span css={codeEditorLabelStyle}>
@@ -58,7 +58,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
           <span>{tips}</span>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

@@ -6,6 +6,7 @@ import { DataDogIcon } from "@/page/App/components/Icons/datadog"
 import { DynamoIcon } from "@/page/App/components/Icons/dynamo"
 import { ElasticIcon } from "@/page/App/components/Icons/elastic"
 import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
+import { GoogleSheetIcon } from "@/page/App/components/Icons/googlesheets"
 import { GraphQLIcon } from "@/page/App/components/Icons/graphql"
 import { HuggingFaceIcon } from "@/page/App/components/Icons/huggingface"
 import { MariaDbIcon } from "@/page/App/components/Icons/mariadb"
@@ -43,6 +44,8 @@ export function getIconFromResourceType(
       return <SnowflakeIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
+    case "googlesheets":
+      return <GoogleSheetIcon size={size} />
     case "hfendpoint":
     case "huggingface":
       return <HuggingFaceIcon size={size} />
@@ -95,6 +98,8 @@ export function getIconFromActionType(
       return <SupabaseIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
+    case "googlesheets":
+      return <GoogleSheetIcon size={size} />
     case "hfendpoint":
     case "huggingface":
       return <HuggingFaceIcon size={size} />

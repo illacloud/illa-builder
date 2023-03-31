@@ -277,6 +277,13 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
           mode,
         },
       }
+    case "googlesheets":
+      return {
+        authentication: "serviceAccount",
+        opts: {
+          privateKey: data.privateKey,
+        },
+      }
   }
 }
 

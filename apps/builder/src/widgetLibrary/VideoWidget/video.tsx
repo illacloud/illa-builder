@@ -1,7 +1,8 @@
+import { isBoolean } from "lodash"
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import ReactPlayer from "react-player"
-import { Loading } from "@illa-design/react"
+import { Loading, isNumber, isString } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { fullStyle, loadingStyle } from "@/widgetLibrary/VideoWidget/style"
 import { VideoWidgetProps, WrappedVideoProps } from "./interface"
@@ -21,6 +22,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
       onReady,
       onPause,
       onEnded,
+      onPlaybackRateChange,
     } = props
     const { t } = useTranslation()
     const [loading, setLoading] = useState(true)
@@ -69,6 +71,7 @@ export const WrappedVideo = forwardRef<ReactPlayer, WrappedVideoProps>(
             setLoading(false)
             setError(true)
           }}
+          onPlaybackRateChange={onPlaybackRateChange}
         />
       </>
     )
@@ -111,12 +114,24 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
         ])
       },
       setVideoUrl: (url: string) => {
+        if (!isString(url)) {
+          console.error("TypeError: url is not a string")
+          return
+        }
         handleUpdateOriginalDSLMultiAttr({ url })
       },
       seekTo: (time: number, type: "seconds" | "fraction" = "seconds") => {
+        if (!isNumber(time)) {
+          console.error("TypeError: value is not a number")
+          return
+        }
         videoRef.current?.seekTo(time, type)
       },
       mute: (value: boolean) => {
+        if (!isBoolean(value)) {
+          console.error("TypeError: value is not a boolean")
+          return
+        }
         handleUpdateMultiExecutionResult([
           {
             displayName,
@@ -125,6 +140,10 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
         ])
       },
       showControls: (value: boolean) => {
+        if (!isBoolean(value)) {
+          console.error("TypeError: value is not a boolean")
+          return
+        }
         handleUpdateMultiExecutionResult([
           {
             displayName,
@@ -133,6 +152,10 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
         ])
       },
       setLoop: (value: boolean) => {
+        if (!isBoolean(value)) {
+          console.error("TypeError: value is not a boolean")
+          return
+        }
         handleUpdateMultiExecutionResult([
           {
             displayName,
@@ -141,18 +164,30 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
         ])
       },
       setSpeed: (value: number) => {
+        if (!isNumber(value)) {
+          console.error("TypeError: value is not a number")
+          return
+        }
+        // playbackRate range [0.0625, 16]
+        const clampedValue = Math.max(0.0625, Math.min(16, value))
         handleUpdateMultiExecutionResult([
           {
             displayName,
-            value: { playbackRate: value },
+            value: { playbackRate: clampedValue },
           },
         ])
       },
       setVolume: (value: number) => {
+        if (!isNumber(value)) {
+          console.error("TypeError: value is not a number")
+          return
+        }
+        // volume range [0, 1]
+        const clampedValue = Math.max(0, Math.min(1, value))
         handleUpdateMultiExecutionResult([
           {
             displayName,
-            value: { volume: value },
+            value: { volume: clampedValue },
           },
         ])
       },
@@ -164,6 +199,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     displayName,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
   ])
 
@@ -195,6 +231,20 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     triggerEventHandler("ended")
   }, [triggerEventHandler])
 
+  const onPlaybackRateChange = useCallback(
+    (playbackRate: number) => {
+      if (isNumber(playbackRate)) {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { playbackRate },
+          },
+        ])
+      }
+    },
+    [displayName, handleUpdateMultiExecutionResult],
+  )
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={fullStyle}>
@@ -207,6 +257,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
           onPlay={onPlay}
           onPause={onPause}
           onEnded={onEnded}
+          onPlaybackRateChange={onPlaybackRateChange}
         />
       </div>
     </TooltipWrapper>

@@ -497,6 +497,7 @@ export const applyViewportContainerWrapperStyle = (
     background-color: ${getColor("white", "01")};
     overflow: auto;
     margin: 0 auto;
+    position: relative;
     ${borderStyle}
   `
 }

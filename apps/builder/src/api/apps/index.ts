@@ -1,3 +1,4 @@
+import { createAction } from "@/api/actions"
 import { BuilderApi } from "@/api/base"
 import { CloudApi } from "@/api/cloudApi"
 import {
@@ -5,6 +6,8 @@ import {
   inviteByEmailResponse,
 } from "@/illa-public-component/MemberList/interface"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import { getAppComponents } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
@@ -85,4 +88,18 @@ export const createApp = async (
     }),
   )
   return response.data.appId
+}
+
+export const forkCurrentApp = async (appName: string) => {
+  const actions = getActionList(store.getState())
+  const components = getAppComponents(store.getState()) ?? []
+  // fork app
+  const appId = await createApp(appName, components)
+  // fork actions
+  await Promise.all(
+    actions.map((data) => {
+      return createAction(appId, data)
+    }),
+  )
+  return appId
 }

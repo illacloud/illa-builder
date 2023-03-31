@@ -8,6 +8,7 @@ export interface ComponentPanelProps extends HTMLAttributes<HTMLDivElement> {
 
 export type ComponentSessionProps = {
   title: any
+  type: SessionType
   widgetCardInfos: WidgetCardInfo[]
 }
 

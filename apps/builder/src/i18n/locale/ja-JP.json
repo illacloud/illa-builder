@@ -127,7 +127,7 @@
       "form": {
         "btn": {
           "back": "あとずさりする",
-          "save_changes": "資源を節約する",
+          "save_changes": "リソースを保存",
           "test_connection": "テスト接続"
         },
         "required": "これは必須です",
@@ -180,22 +180,22 @@
             "verification_mode": "検証モード"
           },
           "gs": {
-            "private_key": "Private key",
-            "action_type": "Action type",
-            "spreadsheet": "Spreadsheet",
-            "sheet_name": "Sheet name",
-            "data_range": "Data range",
+            "private_key": "秘密鍵",
+            "action_type": "アクションタイプ",
+            "spreadsheet": "スプレッドシート",
+            "sheet_name": "シート名",
+            "data_range": "データ範囲",
             "limit": "Limit",
             "offset": "Offset",
-            "a1_notation": "A1 notation",
-            "values_to_append": "Values to append",
-            "filter_by": "Filter by",
-            "update_value": "Update value",
-            "primary_key_column": "Primary key column",
-            "array_of_rows_to_upd": "Array of rows to update",
-            "filters_to_match_row": "Row index",
-            "consider_queries_tha": "Consider queries that delete no rows as successes",
-            "title_of_spreadsheet": "Title of spreadsheet",
+            "a1_notation": "A1表記",
+            "values_to_append": "追加する値",
+            "filter_by": "フィルタ条件",
+            "update_value": "更新する値",
+            "primary_key_column": "主キー列名",
+            "array_of_rows_to_upd": "更新する行の配列",
+            "filters_to_match_row": "Filters to match row",
+            "consider_queries_tha": "行を削除しないクエリを成功と見なす",
+            "title_of_spreadsheet": "タイトル",
             "sheet_id_to_copy": "コピーするシートID",
             "sheet_to_copy_to": "コピー先のシート"
           }
@@ -228,14 +228,14 @@
             "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
             "row_filter": {
               "column_name": "column_name",
-              "value": "value"
+              "value": "値"
             },
             "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "primary_key_column": "column_name",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
-              "key": "key",
-              "value": "value"
+              "key": "キー値",
+              "value": "値"
             }
           }
         },
@@ -254,12 +254,13 @@
             }
           },
           "gs": {
-            "private_key": "Google スプレッドシートへの接続に使用されます。 <0>ここ<0>をクリックしてプロジェクトを作成し、OAuth 認証情報を取得してください。 サービス アカウント認証では、使用されているサービス アカウントに対応するメール アドレスで共有されたスプレッドシートにのみアクセスできます。 サービス アカウントとアクセス キーの作成に関するドキュメントについては、<1>こちら<1>をご覧ください。",
+            "private_key": "Google スプレッドシートへの接続に使用されます。 <0>ここ</0>をクリックしてプロジェクトを作成し、OAuth 認証情報を取得してください。 サービス アカウント認証では、使用されているサービス アカウントに対応するメール アドレスで共有されたスプレッドシートにのみアクセスできます。 サービス アカウントとアクセス キーの作成に関するドキュメントについては、<1>こちら</1>をご覧ください。ユーザーは、スプレッドシートで制御されていないさまざまな処理コンポーネントの制限を経験する場合があります。 <2>割り当て制限</2>の詳細",
             "leave_blank_to_selec": "空白のままにして最初のシートを選択します",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
-            "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。"
+            "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。",
+            "copy_to_sheet_name": "必要。 コピーしたシートの名前を変更します。"
           }
         },
         "option": {
@@ -316,23 +317,23 @@
           },
           "gs": {
             "action_type": {
-              "read_data_from_a_spr": "Read data from a spreadsheet",
-              "append_data_to_a_spr": "Append data to a spreadsheet",
-              "update_a_spreadsheet": "Update a spreadsheet",
-              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
-              "delete_a_single_row_": "Delete a single row from a spreadsheet",
-              "create_a_spreadsheet": "Create a spreadsheet",
+              "read_data_from_a_spr": "スプレッドシートからデータを読み取る",
+              "append_data_to_a_spr": "スプレッドシートにデータを追加する",
+              "update_a_spreadsheet": "スプレッドシートを更新",
+              "bulk_update_a_spread": "主キーによるスプレッドシートの一括更新",
+              "delete_a_single_row_": "スプレッドシートを更新",
+              "create_a_spreadsheet": "スプレッドシートを作成",
               "copy_a_single_sheet_": "1 つのシートを別のスプレッドシートにコピーする",
-              "list_available_sprea": "List available spreadsheets",
-              "get_spreadsheet_info": "Get spreadsheet info"
+              "list_available_sprea": "利用可能なスプレッドシートを表示",
+              "get_spreadsheet_info": "スプレッドシート情報を取得"
             },
             "data_range": {
-              "use_a1_notation": "Use A1 notation",
-              "use_limit_and_offset": "Use limit and offset"
+              "use_a1_notation": "A1表記を使用",
+              "use_limit_and_offset": "制限とオフセットを使用"
             },
             "filter_by": {
-              "use_a1_notation": "Use A1 notation",
-              "use_row_filters": "Use row filters"
+              "use_a1_notation": "A1表記を使用",
+              "use_row_filters": "行フィルターを使用"
             }
           }
         },
@@ -343,7 +344,7 @@
         },
         "group": {
           "gs": {
-            "service_account": "Service Account"
+            "service_account": "サービスアカウント"
           }
         }
       },
@@ -432,8 +433,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
-              "role_to_assume": "Use a <0>different role</0> when accessing the API"
+              "find_instructions_on": "<0>AWS ドキュメント</0>でアクセス キーの場所に関する説明を見つけてください。",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
@@ -1477,7 +1478,7 @@
           "file_data": "テーブルの base64 データ、生データ、マップされたデータをサポートします"
         },
         "variable": {
-          "available_in_objects": "オブジェクトと配列で利用できます。 オブジェクトの属性のパス: {{objectName.attributeName}}。 配列内の値のインデックス: {{1}}。 オブジェクトの配列: {{objectName.attributeName.1}}",
+          "available_in_objects": "オブジェクトと配列で利用できます。 変数の値をオブジェクト形式で設定するには、attributeName を使用します。 たとえば、{\"a\":1, \"b\":2} の \"b\" の値を変更するには、パス\n  b である必要があります。\n\n変数の値を配列形式で設定するには、{{index}} を使用します。 たとえば、\"d\" を \"t\" [\"a\",\"b\",\"c\",\"d\"] に変更するには、パスは {{ 3 }} または {{globalData.state1.indexOf(\"d \")}}。",
           "the_target_value": "目標値"
         },
         "slider": {
@@ -2122,6 +2123,9 @@
     "audio": {
       "name": "音声プレイヤー",
       "no_audio": "音声なし"
+    },
+    "collaborative": {
+      "no_name": "空のユーザー名"
     }
   },
   "page": {

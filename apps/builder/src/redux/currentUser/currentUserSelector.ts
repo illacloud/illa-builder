@@ -5,6 +5,10 @@ export const getCurrentUser = (state: RootState) => {
   return state.currentUser
 }
 
+export const getIsTutorialViewed = (state: RootState) => {
+  return state.currentUser.isTutorialViewed
+}
+
 export const getCurrentUserIsLogin = (state: RootState) => {
   return state.currentUser.userId !== ""
 }
