@@ -1,27 +1,18 @@
 import { merge } from "chart.js/helpers"
-import { cloneDeep, get, isFunction, isNumber, set } from "lodash"
+import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import {
-  applyEffectMapToComponentNodes,
-  getNearComponentNodes,
-  getReflowResult,
-} from "@/page/App/components/DotPanel/calc"
+import { useDispatch } from "react-redux"
 import {
   BUILDER_CALC_CONTEXT,
   GLOBAL_DATA_CONTEXT,
 } from "@/page/App/context/globalDataProvider"
-import {
-  getCanvas,
-  searchDsl,
-} from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import store, { RootState } from "@/store"
+import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
@@ -144,7 +135,8 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
         dynamicPaths?.forEach((path: string) => {
           const realPath = isFunction(formatPath)
             ? formatPath(path)
-            : path.split(".").slice(1).join(".")
+            : convertPathToString(toPath(path).slice(1))
+
           try {
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {
@@ -173,7 +165,7 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
           path,
         )
         dynamicPaths?.forEach((path: string) => {
-          const realPath = path.split(".").slice(2).join(".")
+          const realPath = convertPathToString(toPath(path).slice(2))
           try {
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {

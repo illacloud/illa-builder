@@ -21,7 +21,8 @@ import { ILLARoute } from "@/router"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { downloadFileFromEventHandler, downloadSingleFile } from "@/utils/file"
+import { downloadFileFromEventHandler } from "@/utils/file"
+import { LIMIT_MEMORY, estimateMemoryUsage } from "../calculateMemoryUsage"
 
 const message = createMessage()
 
@@ -135,6 +136,13 @@ export const transformEvents = (
         ) {
           message.info({
             content: i18n.t("empty_copied_tips"),
+          })
+          return
+        }
+        const memorySize = estimateMemoryUsage(copiedValue)
+        if (LIMIT_MEMORY < memorySize) {
+          message.info({
+            content: `Memory usage is too large, please reduce the size of the result.(Memory usage: ${memorySize} bytes, Limit: ${LIMIT_MEMORY} bytes))`,
           })
           return
         }

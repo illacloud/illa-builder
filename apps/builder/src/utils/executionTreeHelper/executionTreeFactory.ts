@@ -316,7 +316,7 @@ export class ExecutionTreeFactory {
     paths.forEach((path) => {
       if (!walkedPath.has(path)) {
         walkedPath.add(path)
-        const rootPath = path.split(".").slice(0, 2).join(".")
+        const rootPath = convertPathToString(toPath(path).slice(0, 2))
         const value = get(rawTree, rootPath, undefined)
         set(currentExecutionTree, rootPath, value)
       }
