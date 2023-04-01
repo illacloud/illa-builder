@@ -56,11 +56,13 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
 
   const isDrag = type === "dropzone"
   const inputAcceptType = fileType.join(",")
+  const prevFileList = useRef<UploadItem[]>(fileList ?? [])
 
   useEffect(() => {
-    if (!fileList) {
+    if (!fileList || prevFileList.current === fileList) {
       return
     }
+    prevFileList.current = fileList
     new Promise((resolve) => {
       ;(async () => {
         const values = await Promise.allSettled(
