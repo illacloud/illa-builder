@@ -275,3 +275,10 @@ export const getGlobalInfoExecutionResult = createSelector(
     return globalInfo
   },
 )
+
+export const getExecutionWidgetLayoutInfo = createSelector(
+  [getExecution],
+  (execution) => {
+    return execution.widgetsLayoutInfo
+  },
+)

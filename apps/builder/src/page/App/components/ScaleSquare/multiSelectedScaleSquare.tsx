@@ -1,14 +1,10 @@
 import { FC } from "react"
-import { useDragDropManager } from "react-dnd"
 import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import { applyMultiSelectedScaleSquareStyle } from "@/page/App/components/DotPanel/style"
-import {
-  getLargeItemShapeWithNodeScale,
-  getLargeItemSharpe,
-} from "@/page/App/components/DotPanel/utils"
+import { getLargeItemShapeWithNodeScale } from "@/page/App/components/DotPanel/utils"
 import { getSelectedComponents } from "@/redux/config/configSelector"
-import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 
 interface MultiSelectedScaleSquareProps {
   unitW: number
@@ -20,12 +16,12 @@ export const MultiSelectedScaleSquare: FC<MultiSelectedScaleSquareProps> = (
 ) => {
   const { unitW, containerDisplayName } = props
   const selectedComponents = useSelector(getSelectedComponents)
-  const widgetExecutionResult = useSelector(getWidgetExecutionResult)
+  const widgetExecutionResult = useSelector(getExecutionWidgetLayoutInfo)
   const selectedComponentsWithShape = selectedComponents.map(
     (componentDisplayName) => {
       return {
-        ...widgetExecutionResult[componentDisplayName].$layoutInfo,
-        parentNode: widgetExecutionResult[componentDisplayName].$parentNode,
+        ...widgetExecutionResult[componentDisplayName].layoutInfo,
+        parentNode: widgetExecutionResult[componentDisplayName].parentNode,
       }
     },
   )

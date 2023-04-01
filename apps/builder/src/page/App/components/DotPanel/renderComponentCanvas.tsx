@@ -56,11 +56,10 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   IGNORE_WIDGET_TYPES,
+  getExecutionWidgetLayoutInfo,
   getRootNodeExecutionResult,
-  getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import store from "@/store"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
@@ -203,7 +202,7 @@ export const RenderComponentCanvas: FC<{
   const dispatch = useDispatch()
 
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
-  const widgetExecutionResult = useSelector(getWidgetExecutionResult)
+  const widgetExecutionLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const currentDragStartScrollTop = useRef(0)
@@ -644,7 +643,7 @@ export const RenderComponentCanvas: FC<{
 
   const componentTree = useMemo(() => {
     const componentNodes = batchMergeLayoutInfoToComponent(
-      widgetExecutionResult,
+      widgetExecutionLayoutInfo,
       componentNode.childrenNode ?? [],
     )
     return componentNodes
@@ -700,20 +699,20 @@ export const RenderComponentCanvas: FC<{
     rowNumber,
     safeRowNumber,
     unitWidth,
-    widgetExecutionResult,
+    widgetExecutionLayoutInfo,
   ])
 
   const maxY = useMemo(() => {
     let maxY = 0
     const componentNodes = batchMergeLayoutInfoToComponent(
-      widgetExecutionResult,
+      widgetExecutionLayoutInfo,
       componentNode.childrenNode ?? [],
     )
     componentNodes.forEach((node) => {
       maxY = Math.max(maxY, node.y + node.h)
     })
     return maxY
-  }, [componentNode.childrenNode, widgetExecutionResult])
+  }, [componentNode.childrenNode, widgetExecutionLayoutInfo])
 
   const finalRowNumber = useMemo(() => {
     return Math.max(
