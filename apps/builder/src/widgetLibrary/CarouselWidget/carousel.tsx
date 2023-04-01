@@ -122,9 +122,10 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
   const handleOnClickItem = useCallback(
     (index: number) => {
       if (configureMode === "static") {
+        const paths = ["manualData", `${index}`, "events"]
         triggerEventHandler(
           "click",
-          `manualData.${index}.events`,
+          convertPathToString(paths),
           undefined,
           (path) => {
             return convertPathToString(toPath(path).slice(3))

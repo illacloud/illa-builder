@@ -1,6 +1,7 @@
-import { debounce } from "lodash"
-import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
+import { toPath } from "lodash"
+import { FC, forwardRef, useCallback, useEffect } from "react"
 import { Menu, SubMenuProps } from "@illa-design/react"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 
@@ -54,9 +55,15 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
         },
       ])
       if (valuePath.length === 1) {
+        const index = items?.findIndex((i) => i.value === value) ?? 0
+        const pathArray = ["items", `${index}`, "events"]
         triggerEventHandler(
           "clickMenuItem",
-          `items.${items?.findIndex((i) => i.value === value)}.events`,
+          convertPathToString(pathArray),
+          undefined,
+          (path) => {
+            return convertPathToString(toPath(path).slice(3))
+          },
         )
       } else if (valuePath.length === 2) {
         const sub = items?.findIndex((i) => i.value === valuePath[0])
@@ -64,9 +71,20 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
           const subIndex = (items[sub] as SubMenuProps).subItems?.findIndex(
             (i) => i.value === valuePath[1],
           )
+          const pathArray = [
+            "items",
+            `${sub}`,
+            "subItems",
+            `${subIndex}`,
+            "events",
+          ]
           triggerEventHandler(
             "clickMenuItem",
-            `items.${sub}.subItems.${subIndex}.events`,
+            convertPathToString(pathArray),
+            undefined,
+            (path) => {
+              return convertPathToString(toPath(path).slice(5))
+            },
           )
         }
       }
@@ -83,9 +101,15 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
 
   const handleClickSubMenu = useCallback(
     (value: string) => {
+      const index = items?.findIndex((i) => i.value === value) ?? 0
+      const paths = ["items", `${index}`, "events"]
       triggerEventHandler(
         "clickMenuItem",
-        `items.${items?.findIndex((i) => i.value === value)}.events`,
+        convertPathToString(paths),
+        undefined,
+        (path) => {
+          return convertPathToString(toPath(path).slice(3))
+        },
       )
     },
     [items, triggerEventHandler],
