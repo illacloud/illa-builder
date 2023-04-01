@@ -1,5 +1,6 @@
 import { FC, memo, useState } from "react"
 import { PenIcon, Trigger, isArray, isObject } from "@illa-design/react"
+import { MAX_LEN_WITH_SNIPPETS } from "@/components/CodeEditor"
 import { WorkSpaceTreeNodeProps } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem/interface"
 import {
   applySimpleItemContainerStyle,
@@ -16,9 +17,11 @@ export const renderJsonValue = (value: unknown, canEdit: boolean) => {
   switch (type) {
     case "string":
       return (
-        <label
-          css={applyJsonValueColorStyle(type, canEdit)}
-        >{`"${value}"`}</label>
+        <label css={applyJsonValueColorStyle(type)}>{`"${
+          (value as string).length > 1024
+            ? (value as string).slice(0, MAX_LEN_WITH_SNIPPETS) + "..."
+            : value
+        }"`}</label>
       )
     default:
       return (
