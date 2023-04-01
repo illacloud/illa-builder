@@ -8,6 +8,7 @@ import {
   isNumber,
   isObject,
 } from "@illa-design/react"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
@@ -126,10 +127,9 @@ const RenderTableButton: FC<{
   handleOnClickMenuItem?: (path: string) => void
 }> = (props) => {
   const { cell, mappedValue, eventPath, handleOnClickMenuItem } = props
-  const path = `${eventPath}.${cell.row.index}`
-
+  const paths = [eventPath, `${cell.row.index}`]
   const clickEvent = () => {
-    handleOnClickMenuItem?.(path)
+    handleOnClickMenuItem?.(convertPathToString(paths))
   }
 
   return (
