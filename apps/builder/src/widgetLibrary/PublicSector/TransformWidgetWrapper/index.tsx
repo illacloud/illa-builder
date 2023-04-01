@@ -1,4 +1,12 @@
-import { cloneDeep, get, isFunction, isNumber, merge, set } from "lodash"
+import {
+  cloneDeep,
+  get,
+  isFunction,
+  isNumber,
+  merge,
+  set,
+  toPath,
+} from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
@@ -16,6 +24,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import store, { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { MIN_HEIGHT } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/config"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
@@ -182,7 +191,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         dynamicPaths?.forEach((path: string) => {
           const realPath = isFunction(formatPath)
             ? formatPath(path)
-            : path.split(".").slice(1).join(".")
+            : convertPathToString(toPath(path).slice(1))
+
           try {
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {
@@ -211,7 +221,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           path,
         )
         dynamicPaths?.forEach((path: string) => {
-          const realPath = path.split(".").slice(2).join(".")
+          const realPath = convertPathToString(toPath(path).slice(2))
+
           try {
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {

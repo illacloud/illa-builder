@@ -12,6 +12,7 @@ import {
   openWindowIconHotspotStyle,
 } from "@/components/CodeEditor/style"
 import { getExecutionResultToCodeMirror } from "@/redux/currentApp/executionTree/executionSelector"
+import { LIMIT_MEMORY, estimateMemoryUsage } from "@/utils/calculateMemoryUsage"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { getStringSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
@@ -49,6 +50,10 @@ const getShowResult = (results: unknown[]) => {
   if (results.length === 0) {
     return ""
   } else {
+    const memorySize = estimateMemoryUsage(results)
+    if (LIMIT_MEMORY < memorySize) {
+      return `Memory usage is too large, please reduce the size of the result.(Memory usage: ${memorySize} bytes, Limit: ${LIMIT_MEMORY} bytes))`
+    }
     results.forEach((result) => {
       if (
         typeof result === "string" ||
@@ -66,7 +71,7 @@ const getShowResult = (results: unknown[]) => {
   return calcResult
 }
 
-const MAX_LEN_WITH_SNIPPETS = 1024
+export const MAX_LEN_WITH_SNIPPETS = 1024
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
