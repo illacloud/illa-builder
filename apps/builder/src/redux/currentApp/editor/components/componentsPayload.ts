@@ -16,6 +16,8 @@ export interface LayoutInfo {
   z: number
   unitW: number
   unitH: number
+  minW: number
+  minH: number
 }
 
 export interface StatusInfo {

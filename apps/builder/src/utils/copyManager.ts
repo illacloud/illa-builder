@@ -8,8 +8,8 @@ import { searchCurrentPageContainerNode } from "@/redux/currentApp/editor/compon
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
+  getExecutionWidgetLayoutInfo,
   getRootNodeExecutionResult,
-  getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import { FocusManager } from "@/utils/focusManager"
@@ -95,9 +95,9 @@ export class CopyManager {
     offsetX?: number,
     offsetY?: number,
   ): ComponentNode {
-    const executionResult = getWidgetExecutionResult(store.getState())
+    const executionResult = getExecutionWidgetLayoutInfo(store.getState())
     const currentLayoutInfo = executionResult[node.displayName]
-      .$layoutInfo as LayoutInfo
+      .layoutInfo as LayoutInfo
     const newNode = {
       ...node,
       displayName: DisplayNameGenerator.generateDisplayName(
