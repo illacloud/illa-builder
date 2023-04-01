@@ -30,7 +30,8 @@ import { applyRNDWrapperStyle } from "./style"
 import { getEnableResizing, getResizeHandler } from "./utils"
 
 export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
-  const { unitW, unitH, componentNode, children, childrenNode } = props
+  const { unitW, unitH, componentNode, children, childrenNode, isDragging } =
+    props
 
   const { minW, minH } = componentNode
   const dispatch = useDispatch()
@@ -204,7 +205,15 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
         x: x,
         y: y,
       }}
-      css={applyRNDWrapperStyle(hasEditors, isSelected, isLikeProductionMode)}
+      css={applyRNDWrapperStyle(
+        hasEditors,
+        isSelected,
+        isLikeProductionMode,
+        isDragging,
+      )}
+      style={{
+        display: isDragging ? "none" : "inline-block",
+      }}
       disableDragging
       enableResizing={
         isEditMode && isSelected ? getEnableResizing(resizeDirection) : false

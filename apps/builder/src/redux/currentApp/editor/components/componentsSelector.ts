@@ -2,6 +2,7 @@ import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { widgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store, { RootState } from "@/store"
 import {
   BASIC_BLOCK_COLUMNS,
@@ -178,7 +179,31 @@ export const getAllComponentDisplayNameMapProps = createSelector(
         $type: "WIDGET",
         $widgetType: components[key].type,
         $childrenNode: childrenNode,
-        $layoutInfo: {
+      }
+    })
+    return res
+  },
+)
+
+export const getAllComponentDisplayNameMapLayoutInfo = createSelector(
+  [getCanvas],
+  (rootDSL) => {
+    if (rootDSL == null) {
+      return null
+    }
+    const components = flattenDslToMap(rootDSL)
+    if (!components) return
+    const res: Record<string, widgetLayoutInfo> = {}
+    Object.keys(components).forEach((key) => {
+      const childrenNode = Array.isArray(components[key].childrenNode)
+        ? components[key].childrenNode.map((node) => node.displayName)
+        : []
+      res[key] = {
+        displayName: components[key].displayName,
+        parentNode: components[key].parentNode as string,
+        widgetType: components[key].type,
+        childrenNode: childrenNode,
+        layoutInfo: {
           x: components[key].x,
           y: components[key].y,
           z: components[key].z,
@@ -186,6 +211,8 @@ export const getAllComponentDisplayNameMapProps = createSelector(
           h: components[key].h,
           unitW: components[key].unitW,
           unitH: components[key].unitH,
+          minW: components[key].minW,
+          minH: components[key].minH,
         },
       }
     })

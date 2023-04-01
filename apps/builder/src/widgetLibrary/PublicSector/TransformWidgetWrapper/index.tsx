@@ -8,7 +8,10 @@ import {
 } from "@/page/App/context/globalDataProvider"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getExecutionResult,
+  getExecutionWidgetLayoutInfo,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store, { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -66,8 +69,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
         const rootState = store.getState() as RootState
-        const executionResult = getExecutionResult(rootState)
-        const oldH = executionResult[displayName]?.$layoutInfo.h ?? 0
+        const executionResult = getExecutionWidgetLayoutInfo(rootState)
+        const oldH = executionResult[displayName]?.layoutInfo.h ?? 0
         // padding 2px so this is +4
         const newH = Math.max(
           Math.ceil((newHeight + 6) / UNIT_HEIGHT),
