@@ -192,7 +192,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           const realPath = isFunction(formatPath)
             ? formatPath(path)
             : convertPathToString(toPath(path).slice(1))
-
           try {
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {
