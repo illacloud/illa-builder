@@ -1,10 +1,11 @@
-import { get } from "lodash"
+import { get, toPath } from "lodash"
 import { memo, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { PanelSetterProps } from "./interface"
 import { PanelLabel } from "./label"
 import { applySetterPublicWrapperStyle, applySetterWrapperStyle } from "./style"
@@ -67,7 +68,9 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const _finalAttrName = useMemo(() => {
     if (typeof attrName === "string") {
       if (parentAttrName) {
-        return `${parentAttrName}.${attrName}`
+        const parentAttrNamePath = toPath(parentAttrName)
+
+        return convertPathToString([...parentAttrNamePath, attrName])
       }
       return attrName
     }
@@ -144,6 +147,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     defaultValue,
     icon,
     componentNode,
+    isGuideMode,
   ])
 
   return canRenderSetter ? (

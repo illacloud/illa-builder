@@ -21,7 +21,8 @@ import { ILLARoute } from "@/router"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { downloadFileFromEventHandler, downloadSingleFile } from "@/utils/file"
+import { downloadFileFromEventHandler } from "@/utils/file"
+import { LIMIT_MEMORY, estimateMemoryUsage } from "../calculateMemoryUsage"
 
 const message = createMessage()
 
@@ -138,6 +139,13 @@ export const transformEvents = (
           })
           return
         }
+        const memorySize = estimateMemoryUsage(copiedValue)
+        if (LIMIT_MEMORY < memorySize) {
+          message.info({
+            content: `Memory usage is too large, please reduce the size of the result.(Memory usage: ${memorySize} bytes, Limit: ${LIMIT_MEMORY} bytes))`,
+          })
+          return
+        }
         message.success({
           content: i18n.t("copied"),
         })
@@ -247,12 +255,8 @@ export const transformEvents = (
         "setStartValue",
         "setPrimaryValue",
         "setEndValue",
-        "setDisabled",
         "setSpeed",
-        "setLoop",
         "seekTo",
-        "showControls",
-        "mute",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
@@ -261,6 +265,20 @@ export const transformEvents = (
           const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
           if (method) {
             method(widgetTargetValue)
+          }
+        },
+        enabled,
+      }
+    }
+    if (
+      ["setDisabled", "setLoop", "showControls", "mute"].includes(widgetMethod)
+    ) {
+      const { widgetSwitchTargetValue } = event
+      return {
+        script: () => {
+          const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
+          if (method) {
+            method(widgetSwitchTargetValue)
           }
         },
         enabled,

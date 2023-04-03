@@ -14,16 +14,16 @@ export type ControlledType =
   | "radio-group"
   | "none"
 
-type ValueType = string | boolean
+export type DefaultValueType = string | boolean | number
 
 export interface ControlledElementProps {
   title: ReactNode
   isRequired?: boolean
-  defaultValue: ValueType[] | string | boolean
+  defaultValue: DefaultValueType | DefaultValueType[]
   placeholders?: string[]
   contentLabel?: string
   name: string | string[]
-  styles?: Record<string, string>[]
+  styles?: Record<string, string | number>[]
   tips?: string | ReactNode
   error?: boolean
   labelStyle?: SerializedStyles
@@ -33,6 +33,6 @@ export interface ControlledElementProps {
   control: Control
   allowClear?: boolean
   rules?: RegisterOptions[]
-  onValueChange?: (value: ValueType) => void
+  onValueChange?: (value: DefaultValueType) => void
   forceEqualWidth?: boolean
 }

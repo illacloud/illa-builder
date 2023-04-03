@@ -1,16 +1,14 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { RadioGroup } from "@illa-design/react"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { MSSQLGUIMode } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/MSSQLGUIMode"
 import { MSSQLSqlMode } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/MSSQLSqlMode"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import {
   actionItemContainer,
-  actionItemLabelStyle,
-  actionItemStyle,
   panelContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import {
@@ -104,21 +102,15 @@ export const MicrosoftSqlPanel: FC = () => {
     <div css={panelContainerStyle}>
       <ResourceChoose />
       <div css={actionItemContainer}>
-        <div css={actionItemStyle}>
-          <span css={actionItemLabelStyle}>
-            {t("editor.action.panel.mssql.config_type")}
-          </span>
-          <RadioGroup
-            w="100%"
-            colorScheme="gray"
-            ml="16px"
-            type="button"
-            forceEqualWidth={true}
-            onChange={handleValueChange}
-            value={content.mode}
-            options={ConfigTypeOptions}
-          />
-        </div>
+        <SingleTypeComponent
+          componentType="radio-group"
+          type="button"
+          title={t("editor.action.panel.mssql.config_type")}
+          forceEqualWidth={true}
+          onChange={handleValueChange}
+          value={content.mode}
+          radioOptions={ConfigTypeOptions}
+        />
         {content.mode === "sql" ? (
           <MSSQLSqlMode
             modeContent={sqlModeInitial}

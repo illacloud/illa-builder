@@ -613,17 +613,6 @@ export const updateViewportSizeReducer: CaseReducer<
   state.props.viewportSizeType = action.payload.viewportSizeType
 }
 
-export const updateComponentNodeHeightReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<UpdateComponentNodeHeightPayload>
-> = (state, action) => {
-  if (!state) return
-  const { displayName, height } = action.payload
-  const currentNode = searchDsl(state, displayName)
-  if (!currentNode) return
-  currentNode.h = Math.max(height, currentNode.minH)
-}
-
 export const resetComponentsReducer: CaseReducer<
   ComponentsState,
   PayloadAction
@@ -646,6 +635,17 @@ const updateComponentLayoutInfoHelper = (
       ] as number
     },
   )
+}
+
+export const updateComponentNodeHeightReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentNodeHeightPayload>
+> = (state, action) => {
+  if (!state) return
+  const { displayName, height } = action.payload
+  const currentNode = searchDsl(state, displayName)
+  if (!currentNode) return
+  currentNode.h = Math.max(height, currentNode.minH)
 }
 
 export const updateComponentLayoutInfoReducer: CaseReducer<

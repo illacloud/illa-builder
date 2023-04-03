@@ -4,6 +4,7 @@ export const applyRNDWrapperStyle = (
   hasEditors: boolean,
   isSelected: boolean,
   isLikeProductionMode: boolean,
+  isDragging: boolean,
 ) => {
   if (isLikeProductionMode) {
     return css`
@@ -12,6 +13,7 @@ export const applyRNDWrapperStyle = (
   }
 
   return css`
+    pointer-events: ${isDragging ? "none" : "auto"};
     z-index: ${hasEditors || isSelected ? 5 : 1};
     :hover {
       z-index: 6;

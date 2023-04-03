@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get, toPath } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -87,9 +87,8 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
       const output = fromCurrentRow
         ? getNeedComputedValue(value, dataPath, widgetDisplayName)
         : value
-      const name = attrName.substring(
-        parentAttrName ? parentAttrName?.length + 1 : 0,
-      )
+      const paths = toPath(attrName)
+      const name = paths.at(-1) as string
       handleUpdateDsl(attrName, output)
       handleUpdateDsl(`${parentAttrName}.fromCurrentRow`, {
         [name]: fromCurrentRow,

@@ -39,7 +39,7 @@ import {
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { isContainLocalPath, urlValidate } from "@/utils/form"
+import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { ClickhouseConfigElementProps } from "./interface"
 
@@ -49,7 +49,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
-  const { control, handleSubmit, getValues, formState } = useForm({
+  const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
@@ -60,13 +60,13 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     ) as Resource<ClickhouseResource>
   })
 
-  const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
-  const [selfSigned, setSelfSigned] = useState(
-    resource?.content.ssl.selfSigned ?? false,
-  )
   const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+
+  const sslOpen = watch("ssl", resource?.content.ssl.ssl ?? false)
+  const selfSigned =
+    sslOpen && watch("selfSigned", resource?.content.ssl.selfSigned ?? false)
 
   const handleConnectionTest = useCallback(() => {
     const data = getValues()
@@ -84,17 +84,6 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
       setTestLoading,
     )
   }, [setTestLoading, getValues, sslOpen])
-
-  const handleSwitchValueChange = useCallback((open: boolean | string) => {
-    setSSLOpen(!!open)
-    if (!open) {
-      setSelfSigned(!!open)
-    }
-  }, [])
-
-  const handleSelfSignedValueChange = useCallback((open: boolean | string) => {
-    setSelfSigned(!!open)
-  }, [])
 
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
@@ -131,7 +120,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              validate: (value) => value != undefined && value.trim() != "",
+              validate,
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}
@@ -182,10 +171,8 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           tips={
             formState.errors.host && !showAlert ? (
               <div css={errorMsgStyle}>
-                <>
-                  <WarningCircleIcon css={errorIconStyle} />
-                  {formState.errors.host.message}
-                </>
+                <WarningCircleIcon css={errorIconStyle} />
+                <>{formState.errors.host.message}</>
               </div>
             ) : null
           }
@@ -229,7 +216,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           defaultValue={resource?.content.databaseName}
           rules={[
             {
-              required: true,
+              validate,
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.default")]}
@@ -294,7 +281,6 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           control={control}
           defaultValue={resource?.content.ssl.ssl}
           name="ssl"
-          onValueChange={handleSwitchValueChange}
           contentLabel={t("editor.action.resource.db.tip.ssl_options")}
         />
 
@@ -305,7 +291,6 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             control={control}
             defaultValue={resource?.content.ssl.selfSigned}
             name="selfSigned"
-            onValueChange={handleSelfSignedValueChange}
             contentLabel={t(
               "editor.action.resource.db.label.self_signed_certificate",
             )}
@@ -319,7 +304,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
               isRequired
               rules={[
                 {
-                  required: true,
+                  validate,
                 },
               ]}
               control={control}

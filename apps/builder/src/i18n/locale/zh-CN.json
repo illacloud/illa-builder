@@ -180,22 +180,22 @@
             "verification_mode": "验证方式"
           },
           "gs": {
-            "private_key": "Private key",
-            "action_type": "Action type",
-            "spreadsheet": "Spreadsheet",
-            "sheet_name": "Sheet name",
-            "data_range": "Data range",
+            "private_key": "私钥",
+            "action_type": "操作类型",
+            "spreadsheet": "电子表格",
+            "sheet_name": "工作表名称",
+            "data_range": "数据范围",
             "limit": "Limit",
             "offset": "Offset",
-            "a1_notation": "A1 notation",
-            "values_to_append": "Values to append",
-            "filter_by": "Filter by",
-            "update_value": "Update value",
-            "primary_key_column": "Primary key column",
-            "array_of_rows_to_upd": "Array of rows to update",
+            "a1_notation": "A1表示法",
+            "values_to_append": "待新增的值",
+            "filter_by": "筛选条件",
+            "update_value": "待更新的值",
+            "primary_key_column": "主键列名",
+            "array_of_rows_to_upd": "待更新的行数据的数组",
             "filters_to_match_row": "Filters to match row",
-            "consider_queries_tha": "Consider queries that delete no rows as successes",
-            "title_of_spreadsheet": "Title of spreadsheet",
+            "consider_queries_tha": "将不删除任何行的查询视为成功",
+            "title_of_spreadsheet": "电子表格的标题",
             "sheet_id_to_copy": "要复制的工作表ID",
             "sheet_to_copy_to": "要复制到的工作表"
           }
@@ -228,14 +228,14 @@
             "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
             "row_filter": {
               "column_name": "column_name",
-              "value": "value"
+              "value": "值"
             },
             "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "primary_key_column": "column_name",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
-              "key": "key",
-              "value": "value"
+              "key": "键值",
+              "value": "值"
             }
           }
         },
@@ -254,12 +254,13 @@
             }
           },
           "gs": {
-            "private_key": "用于连接到 Google 表格。 单击<0>此处<0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处<1>。",
+            "private_key": "用于连接到 Google 表格。 单击<0>此处</0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处</1>。用户可能会遇到不受表格控制的不同处理组件的限制。 详细了解<2>配额限制</2>",
             "leave_blank_to_selec": "留空以选择第一张表",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
-            "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它"
+            "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
+            "copy_to_sheet_name": "必填。重命名复制后的表"
           }
         },
         "option": {
@@ -316,23 +317,23 @@
           },
           "gs": {
             "action_type": {
-              "read_data_from_a_spr": "Read data from a spreadsheet",
-              "append_data_to_a_spr": "Append data to a spreadsheet",
-              "update_a_spreadsheet": "Update a spreadsheet",
-              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
-              "delete_a_single_row_": "Delete a single row from a spreadsheet",
-              "create_a_spreadsheet": "Create a spreadsheet",
+              "read_data_from_a_spr": "从电子表格中读取数据",
+              "append_data_to_a_spr": "将数据附加到电子表格",
+              "update_a_spreadsheet": "更新电子表格",
+              "bulk_update_a_spread": "通过主键批量更新电子表格",
+              "delete_a_single_row_": "更新电子表格",
+              "create_a_spreadsheet": "创建电子表格",
               "copy_a_single_sheet_": "将单个工作表复制到另一个电子表格",
-              "list_available_sprea": "List available spreadsheets",
-              "get_spreadsheet_info": "Get spreadsheet info"
+              "list_available_sprea": "列出可用电子表格",
+              "get_spreadsheet_info": "获取电子表格信息"
             },
             "data_range": {
-              "use_a1_notation": "Use A1 notation",
-              "use_limit_and_offset": "Use limit and offset"
+              "use_a1_notation": "使用 A1 表示法",
+              "use_limit_and_offset": "使用限制和偏移量"
             },
             "filter_by": {
-              "use_a1_notation": "Use A1 notation",
-              "use_row_filters": "Use row filters"
+              "use_a1_notation": "使用 A1 表示法",
+              "use_row_filters": "使用行过滤器"
             }
           }
         },
@@ -343,7 +344,7 @@
         },
         "group": {
           "gs": {
-            "service_account": "Service Account"
+            "service_account": "服务账户"
           }
         }
       },
@@ -432,7 +433,7 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs<0>.",
+              "find_instructions_on": "<0>在 AWS 文档</0>中找到关于在哪里可以找到访问密钥的说明。",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
@@ -1477,7 +1478,7 @@
           "file_data": "支持Base64编码数据、表格的原始数据或映射数据"
         },
         "variable": {
-          "available_in_objects": "在对象和数组中可用。 属性在对象中的路径：{{objectName.attributeName}}。 数组中值的索引：{{1}}。 对象中的数组：{{objectName.attributeName.1}}",
+          "available_in_objects": "在对象和数组中可用。 要以对象格式设置变量的值，请使用 attributeName。 例如，要更改 {\"a\":1, \"b\":2} 中 \"b\" 的值，路径\n  应该是b。\n\n要以数组格式设置变量的值，请使用 {{index}}。 例如，要将 \"d\" 更改为 \"t\" [\"a\",\"b\",\"c\",\"d\"]，路径应为 {{ 3 }} 或 {{globalData.state1.indexOf(\"d “）}}。",
           "the_target_value": "目标值"
         },
         "slider": {
@@ -2122,6 +2123,9 @@
     "audio": {
       "name": "音频播放器",
       "no_audio": "无音频"
+    },
+    "collaborative": {
+      "no_name": "空用户名"
     }
   },
   "page": {
