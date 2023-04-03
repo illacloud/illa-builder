@@ -1411,6 +1411,17 @@
         "name": "名称",
         "audio": {
           "audio_url": "音频URL"
+        },
+        "map": {
+          "markers": "标记",
+          "initial_location": "初始位置",
+          "default_markers": "默认标记",
+          "latitude_field_name": "纬度字段名称",
+          "longitude_field_name": "经度字段名称",
+          "zoom": "缩放",
+          "enable_add_markers": "允许添加标记",
+          "enable_search_locati": "允许搜索位置",
+          "enable_clustering": "允许点聚集"
         }
       },
       "setter_tooltip": {
@@ -1508,6 +1519,17 @@
         },
         "audio": {
           "audio_url": "支持直接链接到任何常见的音频文件类型或链接到某些音频服务"
+        },
+        "map": {
+          "markers": "在地图上设置标记。 标记应该是与默认标记具有相同属性的对象数组。",
+          "initial_location": "初始化地图时，默认居中显示位置",
+          "default_markers": "初始化地图时显示的默认标记。 您可以使用 {{}} 中的 JavaScript 对其进行动态设置。",
+          "latitude_field_name": "纬度取自初始位置和默认标记对象的哪个属性。",
+          "longitude_field_name": "经度取自初始位置和默认标记对象的哪个属性。",
+          "zoom": "设置地图缩放",
+          "enable_add_markers": "是否允许用户通过点击地图添加标记",
+          "enable_search_locati": "是否允许用户搜索位置",
+          "enable_clustering": "地图缩小时是否允许多个标记聚合"
         }
       },
       "setter_option": {
@@ -1568,7 +1590,10 @@
       },
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
-        "choose_up_to": "Please choose up to {{max}} options."
+        "choose_up_to": "Please choose up to {{max}} options.",
+        "map": {
+          "zoom": "请设置一个介于 1 和 22 之间的值"
+        }
       },
       "setter_description": {
         "code": {
@@ -1697,6 +1722,11 @@
       "setLocalStorage": "设置本地存储数据",
       "audio": {
         "set_audio_url": "设置音频链接"
+      },
+      "map": {
+        "marker_selected": "选择标记",
+        "marker_created": "创建标记",
+        "markers_changed": "更改标记"
       }
     },
     "tutorial": {
