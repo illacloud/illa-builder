@@ -2159,6 +2159,9 @@
     },
     "collaborative": {
       "no_name": "사용자 이름 없음"
+    },
+    "map": {
+      "name": "지도"
     }
   },
   "page": {
