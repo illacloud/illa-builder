@@ -191,7 +191,7 @@ export const getAllComponentDisplayNameMapLayoutInfo = createSelector(
     if (rootDSL == null) {
       return null
     }
-    const components = flattenDslToMap(rootDSL)
+    const components = flattenDslToMapExcludeContainerNode(rootDSL)
     if (!components) return
     const res: Record<string, widgetLayoutInfo> = {}
     Object.keys(components).forEach((key) => {
