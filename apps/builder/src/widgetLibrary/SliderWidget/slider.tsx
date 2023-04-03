@@ -146,7 +146,6 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
   )
 
   useEffect(() => {
-    console.log("-----", value)
     handleUpdateGlobalData?.(displayName, {
       value,
       setValue: (value: number) => {
