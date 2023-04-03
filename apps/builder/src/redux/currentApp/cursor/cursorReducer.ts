@@ -62,6 +62,31 @@ export const removeAnimationEndCursorInfo: CaseReducer<
   }
 }
 
+export const resetCursorReducer: CaseReducer<CursorState> = (state) => {
+  Object.keys(state).forEach((userID) => {
+    delete state[userID]
+  })
+}
+
+export const filterCursorReducer: CaseReducer<
+  CursorState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  action.payload.forEach((displayName) => {
+    Object.keys(state).forEach((userID) => {
+      const targetUserCursorInfo = state[userID]
+      if (
+        Array.isArray(targetUserCursorInfo) &&
+        targetUserCursorInfo.length > 0
+      ) {
+        state[userID] = targetUserCursorInfo.filter(
+          (cursorInfo) => cursorInfo.parentDisplayName !== displayName,
+        )
+      }
+    })
+  })
+}
+
 export const leaveContainerReducer: CaseReducer<
   CursorState,
   PayloadAction<string>

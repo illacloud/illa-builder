@@ -88,12 +88,14 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
         }),
       )
       dispatch(
-        componentsActions.updateComponentStatusInfoReducer({
-          displayName: componentNode.displayName,
-          statusInfo: {
-            isResizing: true,
+        componentsActions.batchUpdateComponentStatusInfoReducer([
+          {
+            displayName: componentNode.displayName,
+            statusInfo: {
+              isResizing: true,
+            },
           },
-        }),
+        ]),
       )
       if (Array.isArray(childrenNode)) {
         const mergedChildrenNode = batchMergeLayoutInfoToComponent(

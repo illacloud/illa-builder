@@ -132,6 +132,19 @@ export const useMousePositionAsync = (
     ],
   )
 
+  const visibilityChangeHandler = useCallback(() => {
+    if (document.hidden) {
+      mouseLeaveHandler()
+    }
+  }, [mouseLeaveHandler])
+
+  const pageHideHandler = useCallback(
+    (e: Event) => {
+      mouseLeaveHandler()
+    },
+    [mouseLeaveHandler],
+  )
+
   useEffect(() => {
     if (wrapperRef.current) {
       wrapperRef.current.addEventListener("mouseenter", mouseEnterHandler)
@@ -163,14 +176,18 @@ export const useMousePositionAsync = (
   useEffect(() => {
     if (isRoot) {
       window.addEventListener("blur", mouseLeaveHandler)
+      window.addEventListener("visibilitychange", visibilityChangeHandler)
+      window.addEventListener("pagehide", pageHideHandler)
     }
 
     return () => {
       if (isRoot) {
         window.removeEventListener("blur", mouseLeaveHandler)
+        window.removeEventListener("visibilitychange", visibilityChangeHandler)
+        window.removeEventListener("pagehide", pageHideHandler)
       }
     }
-  }, [isRoot, mouseLeaveHandler])
+  }, [isRoot, mouseLeaveHandler, pageHideHandler, visibilityChangeHandler])
 
   return { wrapperRef }
 }

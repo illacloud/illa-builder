@@ -154,7 +154,6 @@ export class ILLABinaryWebsocket {
     }
 
     const unit8ArrayMessage = new Uint8Array(message)
-
     const payload = MovingMessageBin.fromBinary(unit8ArrayMessage)
     if (payload.status === 1 || payload.status === -1) {
       const lastUpdateTime = new Date().getTime()
