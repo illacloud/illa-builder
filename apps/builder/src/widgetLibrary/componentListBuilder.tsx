@@ -44,10 +44,10 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
     INPUTS: [],
     SELECT: [],
     CALENDAR: [],
-    PRESENTATION: [],
     DATA: [],
     CONTAINER: [],
     NAVIGATION: [],
+    PRESENTATION: [],
   }
   componentConfigs.forEach((item) => {
     const { sessionType = "COMMON", type, displayName } = item

@@ -3,11 +3,15 @@ import { isEqual } from "lodash"
 import { FC, useContext, useEffect, useState } from "react"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { EmptyBody } from "@/page/App/components/PanelSetters/OptionListSetter/empty"
-import { OptionItemShape } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
+import {
+  ListBodyProps,
+  OptionItemShape,
+} from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
 import { ListItem } from "./listItem"
 
-export const ListBody: FC = () => {
+export const ListBody: FC<ListBodyProps> = (props) => {
+  const { emptyNode } = props
   const { optionItems, handleUpdateDsl, attrPath } = useContext(
     OptionListSetterContext,
   )
@@ -26,7 +30,7 @@ export const ListBody: FC = () => {
   }
 
   if (!optionItems || !Array.isArray(optionItems) || optionItems.length === 0)
-    return <EmptyBody />
+    return emptyNode ? emptyNode : <EmptyBody />
 
   return (
     <AnimatePresence initial={false}>

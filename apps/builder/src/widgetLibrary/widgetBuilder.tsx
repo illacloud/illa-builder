@@ -166,6 +166,12 @@ import {
   StatisticWidget,
 } from "@/widgetLibrary/StatisticsWidget"
 import {
+  STEPS_EVENT_HANDLER_CONFIG,
+  STEPS_PANEL_CONFIG,
+  STEPS_WIDGET_CONFIG,
+  StepsWidget,
+} from "@/widgetLibrary/StepsWidget"
+import {
   SWITCH_EVENT_HANDLER_CONFIG,
   SWITCH_PANEL_CONFIG,
   SWITCH_WIDGET_CONFIG,
@@ -216,29 +222,43 @@ import {
 import { WidgetConfigs } from "./interface"
 
 export const WidgetConfig: WidgetConfigs = {
-  TEXT_WIDGET: {
-    widget: TextWidget,
-    config: TEXT_WIDGET_CONFIG,
-    panelConfig: TEXT_PANEL_CONFIG,
-    eventHandlerConfig: TEXT_EVENT_HANDLER_CONFIG,
+  // inputs
+  INPUT_WIDGET: {
+    widget: InputWidget,
+    config: INPUT_WIDGET_CONFIG,
+    panelConfig: INPUT_PANEL_CONFIG,
+    eventHandlerConfig: INPUT_EVENT_HANDLER_CONFIG,
   },
-  IMAGE_WIDGET: {
-    widget: ImageWidget,
-    config: IMAGE_WIDGET_CONFIG,
-    panelConfig: IMAGE_PANEL_CONFIG,
-    eventHandlerConfig: IMAGE_EVENT_HANDLER_CONFIG,
+  NUMBER_INPUT_WIDGET: {
+    widget: NumberInputWidget,
+    config: NUMBER_INPUT_WIDGET_CONFIG,
+    panelConfig: NUMBER_INPUT_PANEL_CONFIG,
+    eventHandlerConfig: INPUT_NUMBER_EVENT_HANDLER_CONFIG,
   },
+  EDITABLE_TEXT_WIDGET: {
+    widget: EditableTextWidget,
+    config: EDITABLE_TEXT_WIDGET_CONFIG,
+    panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
+    eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
+  },
+  TEXTAREA_INPUT_WIDGET: {
+    widget: TextareaWidget,
+    config: TEXTAREA_WIDGET_CONFIG,
+    panelConfig: TEXTAREA_PANEL_CONFIG,
+    eventHandlerConfig: TEXTAREA_EVENT_HANDLER_CONFIG,
+  },
+  UPLOAD_WIDGET: {
+    widget: UploadWidget,
+    config: UPLOAD_WIDGET_CONFIG,
+    panelConfig: UPLOAD_PANEL_CONFIG,
+    eventHandlerConfig: UPLOAD_EVENT_HANDLER_CONFIG,
+  },
+  // select inputs
   SWITCH_WIDGET: {
     widget: SwitchWidget,
     config: SWITCH_WIDGET_CONFIG,
     panelConfig: SWITCH_PANEL_CONFIG,
     eventHandlerConfig: SWITCH_EVENT_HANDLER_CONFIG,
-  },
-  BUTTON_WIDGET: {
-    widget: ButtonWidget,
-    config: BUTTON_WIDGET_CONFIG,
-    panelConfig: BUTTON_PANEL_CONFIG,
-    eventHandlerConfig: BUTTON_EVENT_HANDLER_CONFIG,
   },
   SELECT_WIDGET: {
     widget: SelectWidget,
@@ -252,30 +272,31 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: MULTISELECT_PANEL_CONFIG,
     eventHandlerConfig: MULTISELECT_EVENT_HANDLER_CONFIG,
   },
+  CHECKBOX_GROUP_WIDGET: {
+    widget: CheckboxWidget,
+    config: CHECKBOX_GROUP_WIDGET_CONFIG,
+    panelConfig: CHECKBOX_GROUP_PANEL_CONFIG,
+    eventHandlerConfig: CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG,
+  },
+  CASCADER_WIDGET: {
+    widget: CascaderWidget,
+    config: CASCADER_WIDGET_CONFIG,
+    panelConfig: CASCADER_PANEL_CONFIG,
+    eventHandlerConfig: CASCADER_EVENT_HANDLER_CONFIG,
+  },
   RADIO_GROUP_WIDGET: {
     widget: RadioGroupWidget,
     config: RADIO_GROUP_WIDGET_CONFIG,
     panelConfig: RADIO_GROUP_PANEL_CONFIG,
     eventHandlerConfig: RADIO_GROUP_EVENT_HANDLER_CONFIG,
   },
-  INPUT_WIDGET: {
-    widget: InputWidget,
-    config: INPUT_WIDGET_CONFIG,
-    panelConfig: INPUT_PANEL_CONFIG,
-    eventHandlerConfig: INPUT_EVENT_HANDLER_CONFIG,
+  RADIO_BUTTON_WIDGET: {
+    widget: RadioButtonWidget,
+    config: RADIO_BUTTON_WIDGET_CONFIG,
+    panelConfig: RADIO_BUTTON_PANEL_CONFIG,
+    eventHandlerConfig: RADIO_BUTTON_EVENT_HANDLER_CONFIG,
   },
-  ICON_WIDGET: {
-    widget: IconWidget,
-    config: ICON_WIDGET_CONFIG,
-    panelConfig: ICON_PANEL_CONFIG,
-    eventHandlerConfig: ICON_EVENT_HANDLER_CONFIG,
-  },
-  STATISTIC_WIDGET: {
-    widget: StatisticWidget,
-    config: STATISTICS_WIDGET_CONFIG,
-    panelConfig: STATISTICS_PANEL_CONFIG,
-    eventHandlerConfig: STATISTICS_EVENT_HANDLER_CONFIG,
-  },
+  // calendar inputs
   DATE_WIDGET: {
     widget: DateWidget,
     config: DATE_WIDGET_CONFIG,
@@ -293,6 +314,93 @@ export const WidgetConfig: WidgetConfigs = {
     config: DATE_TIME_WIDGET_CONFIG,
     panelConfig: DATE_TIME_PANEL_CONFIG,
     eventHandlerConfig: DATE_TIME_EVENT_HANDLER_CONFIG,
+  },
+  // data
+  CHART: {
+    widget: ChartWidget,
+    config: CHART_WIDGET_CONFIG,
+    panelConfig: CHART_PANEL_CONFIG,
+  },
+  TABLE_WIDGET: {
+    widget: TableWidget,
+    config: TABLE_WIDGET_CONFIG,
+    panelConfig: TABLE_PANEL_CONFIG,
+    eventHandlerConfig: TABLE_EVENT_HANDLER_CONFIG,
+  },
+  // container
+  CONTAINER_WIDGET: {
+    widget: ContainerWidget,
+    config: CONTAINER_WIDGET_CONFIG,
+    panelConfig: CONTAINER_PANEL_CONFIG,
+    eventHandlerConfig: CONTAINER_EVENT_HANDLER_CONFIG,
+  },
+  FORM_WIDGET: {
+    widget: FormWidget,
+    config: FORM_WIDGET_CONFIG,
+    panelConfig: FORM_PANEL_CONFIG,
+    eventHandlerConfig: FORM_EVENT_HANDLER_CONFIG,
+  },
+  MODAL_WIDGET: {
+    widget: ModalWidget,
+    config: MODAL_WIDGET_CONFIG,
+    panelConfig: MODAL_PANEL_CONFIG,
+    eventHandlerConfig: MODAL_EVENT_HANDLER_CONFIG,
+  },
+  LIST_WIDGET: {
+    widget: ListWidget,
+    config: LIST_WIDGET_CONFIG,
+    panelConfig: LIST_PANEL_CONFIG,
+    eventHandlerConfig: LIST_EVENT_HANDLER_CONFIG,
+  },
+  // navigation
+  MENU_WIDGET: {
+    widget: MenuWidget,
+    config: MENU_WIDGET_CONFIG,
+    panelConfig: MENU_PANEL_CONFIG,
+    eventHandlerConfig: MENU_EVENT_HANDLER_CONFIG,
+  },
+  TABS_WIDGET: {
+    widget: TabsWidget,
+    config: TABS_WIDGET_CONFIG,
+    panelConfig: TABS_PANEL_CONFIG,
+    eventHandlerConfig: TABS_EVENT_HANDLER_CONFIG,
+  },
+  STEPS_WIDGET: {
+    widget: StepsWidget,
+    config: STEPS_WIDGET_CONFIG,
+    panelConfig: STEPS_PANEL_CONFIG,
+    eventHandlerConfig: STEPS_EVENT_HANDLER_CONFIG,
+  },
+  // presentation
+  TEXT_WIDGET: {
+    widget: TextWidget,
+    config: TEXT_WIDGET_CONFIG,
+    panelConfig: TEXT_PANEL_CONFIG,
+    eventHandlerConfig: TEXT_EVENT_HANDLER_CONFIG,
+  },
+  IMAGE_WIDGET: {
+    widget: ImageWidget,
+    config: IMAGE_WIDGET_CONFIG,
+    panelConfig: IMAGE_PANEL_CONFIG,
+    eventHandlerConfig: IMAGE_EVENT_HANDLER_CONFIG,
+  },
+  BUTTON_WIDGET: {
+    widget: ButtonWidget,
+    config: BUTTON_WIDGET_CONFIG,
+    panelConfig: BUTTON_PANEL_CONFIG,
+    eventHandlerConfig: BUTTON_EVENT_HANDLER_CONFIG,
+  },
+  ICON_WIDGET: {
+    widget: IconWidget,
+    config: ICON_WIDGET_CONFIG,
+    panelConfig: ICON_PANEL_CONFIG,
+    eventHandlerConfig: ICON_EVENT_HANDLER_CONFIG,
+  },
+  STATISTIC_WIDGET: {
+    widget: StatisticWidget,
+    config: STATISTICS_WIDGET_CONFIG,
+    panelConfig: STATISTICS_PANEL_CONFIG,
+    eventHandlerConfig: STATISTICS_EVENT_HANDLER_CONFIG,
   },
   RATE_WIDGET: {
     widget: RateWidget,
@@ -318,100 +426,11 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: TIMELINE_PANEL_CONFIG,
     eventHandlerConfig: TIMELINE_EVENT_HANDLER_CONFIG,
   },
-  NUMBER_INPUT_WIDGET: {
-    widget: NumberInputWidget,
-    config: NUMBER_INPUT_WIDGET_CONFIG,
-    panelConfig: NUMBER_INPUT_PANEL_CONFIG,
-    eventHandlerConfig: INPUT_NUMBER_EVENT_HANDLER_CONFIG,
-  },
-  CHECKBOX_GROUP_WIDGET: {
-    widget: CheckboxWidget,
-    config: CHECKBOX_GROUP_WIDGET_CONFIG,
-    panelConfig: CHECKBOX_GROUP_PANEL_CONFIG,
-    eventHandlerConfig: CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG,
-  },
-  RADIO_BUTTON_WIDGET: {
-    widget: RadioButtonWidget,
-    config: RADIO_BUTTON_WIDGET_CONFIG,
-    panelConfig: RADIO_BUTTON_PANEL_CONFIG,
-    eventHandlerConfig: RADIO_BUTTON_EVENT_HANDLER_CONFIG,
-  },
   DIVIDER_WIDGET: {
     widget: DividerWidget,
     config: DIVIDER_WIDGET_CONFIG,
     panelConfig: DIVIDER_PANEL_CONFIG,
     eventHandlerConfig: DIVIDER_EVENT_HANDLER_CONFIG,
-  },
-  EDITABLE_TEXT_WIDGET: {
-    widget: EditableTextWidget,
-    config: EDITABLE_TEXT_WIDGET_CONFIG,
-    panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
-    eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
-  },
-  TEXTAREA_INPUT_WIDGET: {
-    widget: TextareaWidget,
-    config: TEXTAREA_WIDGET_CONFIG,
-    panelConfig: TEXTAREA_PANEL_CONFIG,
-    eventHandlerConfig: TEXTAREA_EVENT_HANDLER_CONFIG,
-  },
-  UPLOAD_WIDGET: {
-    widget: UploadWidget,
-    config: UPLOAD_WIDGET_CONFIG,
-    panelConfig: UPLOAD_PANEL_CONFIG,
-    eventHandlerConfig: UPLOAD_EVENT_HANDLER_CONFIG,
-  },
-  CHART: {
-    widget: ChartWidget,
-    config: CHART_WIDGET_CONFIG,
-    panelConfig: CHART_PANEL_CONFIG,
-  },
-  TABLE_WIDGET: {
-    widget: TableWidget,
-    config: TABLE_WIDGET_CONFIG,
-    panelConfig: TABLE_PANEL_CONFIG,
-    eventHandlerConfig: TABLE_EVENT_HANDLER_CONFIG,
-  },
-  TABS_WIDGET: {
-    widget: TabsWidget,
-    config: TABS_WIDGET_CONFIG,
-    panelConfig: TABS_PANEL_CONFIG,
-    eventHandlerConfig: TABS_EVENT_HANDLER_CONFIG,
-  },
-  MENU_WIDGET: {
-    widget: MenuWidget,
-    config: MENU_WIDGET_CONFIG,
-    panelConfig: MENU_PANEL_CONFIG,
-    eventHandlerConfig: MENU_EVENT_HANDLER_CONFIG,
-  },
-  CONTAINER_WIDGET: {
-    widget: ContainerWidget,
-    config: CONTAINER_WIDGET_CONFIG,
-    panelConfig: CONTAINER_PANEL_CONFIG,
-    eventHandlerConfig: CONTAINER_EVENT_HANDLER_CONFIG,
-  },
-  FORM_WIDGET: {
-    widget: FormWidget,
-    config: FORM_WIDGET_CONFIG,
-    panelConfig: FORM_PANEL_CONFIG,
-    eventHandlerConfig: FORM_EVENT_HANDLER_CONFIG,
-  },
-  LIST_WIDGET: {
-    widget: ListWidget,
-    config: LIST_WIDGET_CONFIG,
-    panelConfig: LIST_PANEL_CONFIG,
-    eventHandlerConfig: LIST_EVENT_HANDLER_CONFIG,
-  },
-  CASCADER_WIDGET: {
-    widget: CascaderWidget,
-    config: CASCADER_WIDGET_CONFIG,
-    panelConfig: CASCADER_PANEL_CONFIG,
-    eventHandlerConfig: CASCADER_EVENT_HANDLER_CONFIG,
-  },
-  MODAL_WIDGET: {
-    widget: ModalWidget,
-    config: MODAL_WIDGET_CONFIG,
-    panelConfig: MODAL_PANEL_CONFIG,
-    eventHandlerConfig: MODAL_EVENT_HANDLER_CONFIG,
   },
   PDF_WIDGET: {
     widget: PdfWidget,

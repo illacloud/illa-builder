@@ -1,11 +1,17 @@
-import { FC, useCallback, useContext, useState } from "react"
+import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { DragPointIcon, Trigger } from "@illa-design/react"
+import {
+  DragPointIcon,
+  Trigger,
+  WarningCircleIcon,
+  getColor,
+} from "@illa-design/react"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import {
   labelNameAndIconStyle,
   labelNameWrapperStyle,
+  labelWrapperStyle,
   movableIconWrapperStyle,
 } from "@/page/App/components/PanelSetters/OptionListSetter/style"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
@@ -13,15 +19,30 @@ import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Mo
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, label } = props
   const [modalVisible, setModalVisible] = useState(false)
-  const { widgetDisplayName, attrPath, childrenSetter } = useContext(
-    OptionListSetterContext,
-  )
+  const {
+    widgetDisplayName,
+    attrPath,
+    allViewsKeys,
+    childrenSetter,
+    showDuplicationKeyError,
+  } = useContext(OptionListSetterContext)
 
   const { t } = useTranslation()
+
+  const currentKey = allViewsKeys[index] ?? ""
+  const otherViewKeys = useMemo(
+    () => allViewsKeys.filter((key, i) => i != index),
+    [allViewsKeys, index],
+  )
+
+  const isDuplicationKey = useMemo(() => {
+    return otherViewKeys.some((viewKey) => viewKey == currentKey)
+  }, [otherViewKeys, currentKey])
 
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)
   }, [])
+
   return (
     <Trigger
       withoutPadding
@@ -48,10 +69,22 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
         <span css={movableIconWrapperStyle} className="movableIconWrapper">
           <DragPointIcon />
         </span>
-        <span css={labelNameWrapperStyle}>
-          {label ||
-            t("editor.inspect.setter_content.option_list.list_no_label")}
-        </span>
+        <div css={labelWrapperStyle}>
+          <span css={labelNameWrapperStyle}>
+            {label ||
+              t("editor.inspect.setter_content.option_list.list_no_label")}
+          </span>
+          {showDuplicationKeyError && isDuplicationKey && (
+            <Trigger
+              trigger="hover"
+              showArrow={false}
+              position="bottom"
+              content={`${t("widget.container.key_duplicated")}`}
+            >
+              <WarningCircleIcon color={getColor("orange", "03")} size="14px" />
+            </Trigger>
+          )}
+        </div>
       </div>
     </Trigger>
   )
