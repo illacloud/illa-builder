@@ -2159,6 +2159,9 @@
     },
     "collaborative": {
       "no_name": "Empty username"
+    },
+    "map": {
+      "name": "Map"
     }
   },
   "page": {
