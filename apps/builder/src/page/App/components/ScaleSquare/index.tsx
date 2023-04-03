@@ -306,7 +306,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         const mergedItem = childrenNodes.find((node) => {
           return node.displayName === findDisplayName
         })!
-        startDragMultiNodes(draggedSelectedComponents)
+        startDragMultiNodes(draggedSelectedComponents, false)
         return {
           item: mergedItem,
           childrenNodes,

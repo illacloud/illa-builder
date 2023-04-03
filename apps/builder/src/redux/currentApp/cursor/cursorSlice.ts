@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
   deleteCursorReducer,
+  filterCursorReducer,
   leaveContainerReducer,
   removeAnimationEndCursorInfo,
+  resetCursorReducer,
   updateCursorReducer,
 } from "./cursorReducer"
 import { CursorInitialState } from "./cursorState"
@@ -15,6 +17,8 @@ const cursorSlice = createSlice({
     deleteCursorReducer,
     removeAnimationEndCursorInfo,
     leaveContainerReducer,
+    resetCursorReducer,
+    filterCursorReducer,
   },
 })
 

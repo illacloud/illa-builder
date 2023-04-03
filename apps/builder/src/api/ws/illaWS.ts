@@ -118,14 +118,14 @@ export class ILLAWebsocket {
         )
         this.isOnline = true
         this.repeat = 0
-        // this.heartCheck()
+        this.heartCheck()
         while (this.messageQueue.length > 0) {
           this.send(this.messageQueue.shift() as string)
         }
       }
       this.ws.onmessage = (event) => {
         this.onMessage(event)
-        // this.heartCheck()
+        this.heartCheck()
       }
     }
   }

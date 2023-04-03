@@ -67,7 +67,7 @@ export function searchDsl(
   return null
 }
 
-export function flattenDslToMap(rootNode: ComponentNode): {
+export function flattenDslToMapExcludeContainerNode(rootNode: ComponentNode): {
   [key: string]: ComponentNode
 } {
   const queue = [rootNode]
@@ -150,7 +150,7 @@ export const getDisplayNameMapComponent = createSelector(
     if (rootDSL == null) {
       return {}
     }
-    return flattenDslToMap(rootDSL)
+    return flattenDslToMapExcludeContainerNode(rootDSL)
   },
 )
 
@@ -160,7 +160,7 @@ export const getAllComponentDisplayNameMapProps = createSelector(
     if (rootDSL == null) {
       return null
     }
-    const components = flattenDslToMap(rootDSL)
+    const components = flattenDslToMapExcludeContainerNode(rootDSL)
     if (!components) return
     const res: Record<string, any> = {}
     Object.keys(components).forEach((key) => {
@@ -193,7 +193,7 @@ export const getAllContainerWidget = createSelector([getCanvas], (rootDSL) => {
   if (rootDSL == null) {
     return null
   }
-  const components = flattenDslToMap(rootDSL)
+  const components = flattenDslToMapExcludeContainerNode(rootDSL)
   if (!components) return
   const res: Record<string, any> = {}
   Object.keys(components).forEach((key) => {
