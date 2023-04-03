@@ -2159,6 +2159,9 @@
     },
     "collaborative": {
       "no_name": "空のユーザー名"
+    },
+    "map": {
+      "name": "地図"
     }
   },
   "page": {
