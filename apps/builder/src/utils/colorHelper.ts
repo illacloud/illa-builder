@@ -27,3 +27,8 @@ export const getColorIndexByString = (str: string) => {
   const dec = hash64.dec()
   return parseInt(dec)
 }
+
+export const getColorByString = (str: string) => {
+  const index = getColorIndexByString(str)
+  return getColorByIndex(index)
+}

@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit"
-import { Connection, getPayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/interface"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { RootState } from "@/store"
 
 export const dragShadowAsync = (
@@ -15,10 +15,10 @@ export const dragShadowAsync = (
   const { payload } = action
   switch (reduxAction) {
     case "addOrUpdateDragShadowReducer": {
-      Connection.getRoom("app", currentAppID)?.send(
-        getPayload(
-          Signal.SIGNAL_ONLY_BROADCAST,
-          Target.TARGET_DRAG_SHADOW,
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.BROADCAST_ONLY,
+          Target.DRAG_SHADOW,
           true,
           action,
           teamID,
@@ -29,10 +29,10 @@ export const dragShadowAsync = (
       break
     }
     case "removeDragShadowReducer": {
-      Connection.getRoom("app", currentAppID)?.send(
-        getPayload(
-          Signal.SIGNAL_ONLY_BROADCAST,
-          Target.TARGET_DRAG_SHADOW,
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.BROADCAST_ONLY,
+          Target.DRAG_SHADOW,
           true,
           action,
           teamID,

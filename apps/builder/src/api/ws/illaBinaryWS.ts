@@ -1,4 +1,3 @@
-import { getTextMessagePayload } from "@/api/ws/index"
 import {
   Callback,
   ILLA_WEBSOCKET_CONTEXT,
@@ -6,22 +5,14 @@ import {
 } from "@/api/ws/interface"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
-import {
-  ADD_DISPLAY_NAME,
-  DisplayNameGenerator,
-  REMOVE_DISPLAY_NAME,
-  UPDATE_DISPLAY_NAME,
-} from "@/utils/generators/generateDisplayName"
-import { getLocalStorage } from "@/utils/storage"
-import { Signal, Target } from "./ILLA_PROTO"
+import { cursorActions } from "../../redux/currentApp/cursor/cursorSlice"
+import { MovingMessageBin } from "./ILLA_PROTO"
 
 const HEARTBEAT_PING_TIMEOUT = 2 * 1000
 const HEARTBEAT_PONG_TIMEOUT = 5 * 1000
 const RECONNECT_TIMEOUT = 5 * 1000
 const REPEAT_LIMIT = 5
-const MESSAGE_QUEUE_MAX_LENGTH = 20
 
 const pingMessage = JSON.stringify({
   signal: 0,
@@ -31,7 +22,7 @@ const pingMessage = JSON.stringify({
   broadcast: null,
 })
 
-export class ILLAWebsocket {
+export class ILLABinaryWebsocket {
   url: string
   ws: WebSocket | null = null
   repeat: number = 0
@@ -40,7 +31,7 @@ export class ILLAWebsocket {
   pingTimeoutId: number = -1
   pongTimeoutId: number = -1
   isOnline: boolean = getIsOnline(store.getState())
-  messageQueue: string[] = []
+  // messageQueue: Uint8Array[] = []
   status: ILLA_WEBSOCKET_STATUS = ILLA_WEBSOCKET_STATUS.INIT
   context: ILLA_WEBSOCKET_CONTEXT = ILLA_WEBSOCKET_CONTEXT.DASHBOARD
 
@@ -59,6 +50,8 @@ export class ILLAWebsocket {
         }),
       )
       this.ws = new WebSocket(this.url)
+      this.ws.binaryType = "arraybuffer"
+
       this.initEventHandle()
     } catch (e) {
       this.reconnect()
@@ -88,8 +81,7 @@ export class ILLAWebsocket {
       }
       this.ws.onopen = () => {
         console.log(`[WS OPENED](${this.url}) connection succeeded`)
-        const { id: teamID = "", uid = "" } =
-          getCurrentTeamInfo(store.getState()) ?? {}
+
         store.dispatch(configActions.updateDevicesOnlineStatusReducer(true))
         store.dispatch(
           configActions.updateWSStatusReducer({
@@ -97,31 +89,12 @@ export class ILLAWebsocket {
             wsStatus: ILLA_WEBSOCKET_STATUS.CONNECTED,
           }),
         )
-
-        this.send(
-          getTextMessagePayload(
-            Signal.ENTER,
-            Target.NOTHING,
-            false,
-            {
-              type: "enter",
-              payload: [],
-            },
-            teamID,
-            uid,
-            [
-              {
-                authToken: getLocalStorage("token"),
-              },
-            ],
-          ),
-        )
         this.isOnline = true
         this.repeat = 0
         // this.heartCheck()
-        while (this.messageQueue.length > 0) {
-          this.send(this.messageQueue.shift() as string)
-        }
+        // while (this.messageQueue.length > 0) {
+        //   this.send(this.messageQueue.shift() as Uint8Array)
+        // }
       }
       this.ws.onmessage = (event) => {
         this.onMessage(event)
@@ -146,86 +119,62 @@ export class ILLAWebsocket {
     }, RECONNECT_TIMEOUT)
   }
 
-  private heartCheck() {
-    this.heartReset()
-    this.heartStart()
-  }
+  // private heartCheck() {
+  //   this.heartReset()
+  //   this.heartStart()
+  // }
 
-  private heartStart() {
-    if (this.forbidReconnect) return
-    this.pingTimeoutId = window.setTimeout(() => {
-      this.ws?.send(pingMessage)
-      this.pongTimeoutId = window.setTimeout(() => {
-        if (this.isOnline) {
-          store.dispatch(configActions.updateDevicesOnlineStatusReducer(false))
-          this.isOnline = false
-        }
-        this.ws?.close()
-      }, HEARTBEAT_PONG_TIMEOUT)
-    }, HEARTBEAT_PING_TIMEOUT)
-  }
+  // private heartStart() {
+  //   if (this.forbidReconnect) return
+  //   this.pingTimeoutId = window.setTimeout(() => {
+  //     this.ws?.send(pingMessage)
+  //     this.pongTimeoutId = window.setTimeout(() => {
+  //       if (this.isOnline) {
+  //         store.dispatch(configActions.updateDevicesOnlineStatusReducer(false))
+  //         this.isOnline = false
+  //       }
+  //       this.ws?.close()
+  //     }, HEARTBEAT_PONG_TIMEOUT)
+  //   }, HEARTBEAT_PING_TIMEOUT)
+  // }
 
-  private heartReset() {
-    clearTimeout(this.pingTimeoutId)
-    clearTimeout(this.pongTimeoutId)
-  }
+  // private heartReset() {
+  //   clearTimeout(this.pingTimeoutId)
+  //   clearTimeout(this.pongTimeoutId)
+  // }
   public close() {
     this.forbidReconnect = true
-    this.heartReset()
+    // this.heartReset()
     this.ws?.close()
   }
   public onMessage(event: MessageEvent) {
     const message = event.data
-    if (typeof message !== "string") {
+    if (!(message instanceof ArrayBuffer)) {
       return
     }
 
-    const dataList = message.split("\n")
-    dataList.forEach((data: string) => {
-      let callback: Callback<unknown> = JSON.parse(data)
-      if (callback.errorCode === 0) {
-        if (callback.broadcast != null) {
-          let broadcast = callback.broadcast
-          let type = broadcast.type
-          let payload = broadcast.payload
-          switch (type) {
-            case `${ADD_DISPLAY_NAME}/remote`: {
-              ;(payload as string[]).forEach((name) => {
-                DisplayNameGenerator.displayNameList.add(name)
-              })
-              break
-            }
-            case `${REMOVE_DISPLAY_NAME}/remote`: {
-              ;(payload as string[]).forEach((name) => {
-                DisplayNameGenerator.displayNameList.delete(name)
-              })
-              break
-            }
-            case `${UPDATE_DISPLAY_NAME}/remote`: {
-              DisplayNameGenerator.displayNameList.delete(payload[0])
-              DisplayNameGenerator.displayNameList.add(payload[1])
-              break
-            }
-            default: {
-              try {
-                store.dispatch({
-                  type,
-                  payload,
-                })
-              } catch (ignore) {}
-            }
-          }
-        }
-      }
-    })
+    const unit8ArrayMessage = new Uint8Array(message)
+
+    const payload = MovingMessageBin.fromBinary(unit8ArrayMessage)
+    if (payload.displayNames == "") {
+      const lastUpdateTime = new Date().getTime()
+      store.dispatch(
+        cursorActions.updateCursorReducer({
+          userID: payload.userID,
+          nickname: payload.nickname,
+          x: payload.x,
+          y: payload.y,
+          w: payload.w,
+          h: payload.h,
+          lastUpdateTime,
+        }),
+      )
+    }
   }
 
-  public send(message: string) {
+  public send(message: Uint8Array) {
     if (this.ws?.readyState !== 1) {
-      this.messageQueue.push(message)
-      while (this.messageQueue.length > MESSAGE_QUEUE_MAX_LENGTH) {
-        this.messageQueue.shift()
-      }
+      // this.messageQueue.push(message)
       return
     }
     try {

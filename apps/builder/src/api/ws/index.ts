@@ -1,18 +1,17 @@
-import { AxiosRequestConfig } from "axios"
 import { BuilderApi } from "@/api/base"
 import { ILLAWebsocket } from "@/api/ws/illaWS"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
 import { isCloudVersion } from "@/utils/typeHelper"
+import { MovingMessageBin, Signal, Target } from "./ILLA_PROTO"
+import { ILLABinaryWebsocket } from "./illaBinaryWS"
 import {
   Broadcast,
   ILLAWebSocketComponentPayload,
   ILLA_WEBSOCKET_CONTEXT,
   Room,
   RoomType,
-  Signal,
-  Target,
 } from "./interface"
 
 export function transformComponentReduxPayloadToWsPayload(
@@ -39,7 +38,7 @@ export function transformComponentReduxPayloadToWsPayload(
   ]
 }
 
-export function getPayload<T>(
+export function getTextMessagePayload<T>(
   signal: Signal,
   target: Target,
   broadcast: boolean,
@@ -59,8 +58,42 @@ export function getPayload<T>(
   })
 }
 
+export const getBinaryMessagePayload = (
+  signal: Signal,
+  target: Target,
+  needBroadcast: boolean,
+  userID: string,
+  nickName: string,
+  status: number,
+  parentDisplayName: string,
+  displayNames: string,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+) => {
+  let binaryMessage: MovingMessageBin = {
+    signal,
+    target,
+    needBroadcast,
+    clientID: "",
+    userID,
+    nickname: "",
+    status,
+    parentDisplayName,
+    displayNames,
+    x,
+    y,
+    w,
+    h,
+  }
+
+  const bytes = MovingMessageBin.toBinary(binaryMessage)
+  return bytes
+}
+
 export class Connection {
-  static roomMap: Map<string, ILLAWebsocket> = new Map()
+  static roomMap: Map<string, ILLAWebsocket | ILLABinaryWebsocket> = new Map()
 
   static enterRoom(
     type: RoomType,
@@ -68,62 +101,97 @@ export class Connection {
     loading: (loading: boolean) => void,
     errorState: (errorState: boolean) => void,
   ) {
-    let config: AxiosRequestConfig
     let wsContext = ILLA_WEBSOCKET_CONTEXT.DASHBOARD
+    const wsProtocol = location.protocol === "https:" ? "wss://" : "ws://"
+    const wsPREFIX = `${wsProtocol}${location.host}`
     switch (type) {
-      case "dashboard":
-        config = {
-          url: `/room/websocketConnection/dashboard`,
-          method: "GET",
-        }
+      case "dashboard": {
         wsContext = ILLA_WEBSOCKET_CONTEXT.DASHBOARD
+        BuilderApi.teamRequest<Room>(
+          {
+            url: `/room/websocketConnection/dashboard`,
+            method: "GET",
+          },
+          (response) => {
+            let wsURL = response.data.wsURL
+            if (!isCloudVersion) {
+              wsURL = `${wsPREFIX}${wsURL}`.replace("/builder-ws", "")
+            }
+            let ws = generateTextMessageWs(wsURL, wsContext)
+            this.roomMap.set(type + roomId, ws)
+          },
+          (error) => {},
+          () => {},
+          loading,
+          errorState,
+        )
         break
+      }
       case "app":
-        config = {
-          url: `/room/websocketConnection/app/${roomId}`,
-          method: "GET",
-        }
         wsContext = ILLA_WEBSOCKET_CONTEXT.APP
-
-        break
-      default:
-        config = {}
+        BuilderApi.teamRequest<Room>(
+          {
+            url: `/room/websocketConnection/app/${roomId}`,
+            method: "GET",
+          },
+          (response) => {
+            let wsURL = response.data.wsURL
+            if (!isCloudVersion) {
+              wsURL = `${wsPREFIX}${wsURL}`.replace("/builder-ws", "")
+            }
+            let ws = generateTextMessageWs(wsURL, wsContext)
+            this.roomMap.set(type + roomId, ws)
+          },
+          (error) => {},
+          () => {},
+          loading,
+          errorState,
+        )
+        BuilderApi.teamRequest<Room>(
+          {
+            url: `/room/binaryWebsocketConnection/app/${roomId}`,
+            method: "GET",
+          },
+          (response) => {
+            let wsURL = response.data.wsURL
+            if (!isCloudVersion) {
+              wsURL = `${wsPREFIX}${wsURL}`.replace("/builder-ws", "")
+            }
+            let ws = generateBinaryMessageWs(wsURL)
+            this.roomMap.set(type + roomId + "/binary", ws)
+          },
+          (error) => {},
+          () => {},
+          loading,
+          errorState,
+        )
         break
     }
-
-    BuilderApi.teamRequest<Room>(
-      config,
-      (response) => {
-        let wsURL = response.data.wsURL
-        if (!isCloudVersion) {
-          wsURL =
-            location.protocol === "https:"
-              ? `wss://${location.host}${wsURL}`
-              : `ws://${location.host}${wsURL}`
-        }
-        let ws = generateNewWs(wsURL, wsContext)
-        this.roomMap.set(type + roomId, ws)
-      },
-      (error) => {},
-      () => {},
-      loading,
-      errorState,
-    )
   }
 
-  static getRoom(type: RoomType, roomId: string): ILLAWebsocket | undefined {
-    return this.roomMap.get(type + roomId)
+  static getTextRoom(
+    type: RoomType,
+    roomId: string,
+  ): ILLAWebsocket | undefined {
+    return this.roomMap.get(type + roomId) as ILLAWebsocket
+  }
+
+  static getBinaryRoom(
+    type: RoomType,
+    roomId: string,
+  ): ILLABinaryWebsocket | undefined {
+    return this.roomMap.get(type + roomId + "/binary") as ILLABinaryWebsocket
   }
 
   static leaveRoom(type: RoomType, roomId: string) {
     const { id: teamID = "", uid = "" } =
       getCurrentTeamInfo(store.getState()) ?? {}
-    let ws = this.roomMap.get(type + roomId)
+    let ws = this.roomMap.get(type + roomId) as ILLAWebsocket
     if (ws != undefined) {
       ws.send(
-        getPayload(
-          Signal.SIGNAL_LEAVE,
-          Target.TARGET_NOTHING,
+        getTextMessagePayload(
+          Signal.LEAVE,
+          Target.NOTHING,
           false,
           {
             type: "leave",
@@ -139,6 +207,13 @@ export class Connection {
   }
 }
 
-export function generateNewWs(url: string, context: ILLA_WEBSOCKET_CONTEXT) {
+export function generateTextMessageWs(
+  url: string,
+  context: ILLA_WEBSOCKET_CONTEXT,
+) {
   return new ILLAWebsocket(url, context)
+}
+
+export function generateBinaryMessageWs(url: string) {
+  return new ILLABinaryWebsocket(url, ILLA_WEBSOCKET_CONTEXT.APP_BINARY)
 }
