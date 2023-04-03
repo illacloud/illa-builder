@@ -1,17 +1,12 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
 import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  codeEditorLabelStyle,
-  mongoItemCodeEditorStyle,
-  mongoItemStyle,
-} from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -28,68 +23,47 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     MongoDbAction<MongoDbActionTypeContent>
   >
-
   const typeContent = props.typeContent as AggregateContent
+
+  const handleValueChange = useCallback(
+    (name: string) => (value: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...cachedAction.content,
+            typeContent: {
+              ...typeContent,
+              [name]: value,
+            } as AggregateContent,
+          },
+        }),
+      )
+    },
+    [cachedAction, dispatch, typeContent],
+  )
 
   return (
     <>
-      <div css={mongoItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mongodb.aggregation")}
-        </span>
-        <CodeEditor
-          value={typeContent.aggregation}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  typeContent: {
-                    ...typeContent,
-                    aggregation: value,
-                  } as AggregateContent,
-                },
-              }),
-            )
-          }}
-          modalTitle={t("editor.action.panel.mongodb.aggregation")}
-          height="88px"
-          wrapperCss={mongoItemCodeEditorStyle}
-          expectValueType={VALIDATION_TYPES.STRING}
-          lang={CODE_LANG.JAVASCRIPT}
-          codeType={CODE_TYPE.EXPRESSION}
-          canShowCompleteInfo
-          showLineNumbers
-        />
-      </div>
-      <div css={mongoItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mongodb.options")}
-        </span>
-        <CodeEditor
-          showLineNumbers
-          wrapperCss={mongoItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={typeContent.options}
-          modalTitle={t("editor.action.panel.mongodb.options")}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  typeContent: {
-                    ...typeContent,
-                    options: value,
-                  } as AggregateContent,
-                },
-              }),
-            )
-          }}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
+      <InputEditor
+        title={t("editor.action.panel.mongodb.aggregation")}
+        value={typeContent.aggregation}
+        onChange={handleValueChange("aggregation")}
+        style={{ height: "88px" }}
+        expectedType={VALIDATION_TYPES.STRING}
+        mode={CODE_LANG.JAVASCRIPT}
+        codeType={CODE_TYPE.EXPRESSION}
+        canShowCompleteInfo
+        lineNumbers
+      />
+      <InputEditor
+        title={t("editor.action.panel.mongodb.options")}
+        lineNumbers
+        mode={CODE_LANG.JAVASCRIPT}
+        value={typeContent.options}
+        onChange={handleValueChange("options")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
     </>
   )
 }

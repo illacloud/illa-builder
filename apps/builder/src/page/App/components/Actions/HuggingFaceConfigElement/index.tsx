@@ -8,7 +8,6 @@ import {
   FileDefaultIcon,
   PreviousIcon,
 } from "@illa-design/react"
-import { HuggingFaceConfigElementProps } from "@/page/App/components/Actions/HuggingFaceConfigElement/interface"
 import {
   container,
   docContainerStyle,
@@ -20,15 +19,15 @@ import {
   tipsStyle,
 } from "@/page/App/components/Actions/HuggingFaceConfigElement/style"
 import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
+import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { TextLink } from "@/page/User/components/TextLink"
 import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
+import { validate } from "@/utils/form"
 
-export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
-  props,
-) => {
+export const HuggingFaceConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, onFinished, resourceId } = props
   const { t } = useTranslation()
 
@@ -91,7 +90,7 @@ export const HuggingFaceConfigElement: FC<HuggingFaceConfigElementProps> = (
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              validate: (value) => value != undefined && value.trim() != "",
+              validate,
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}

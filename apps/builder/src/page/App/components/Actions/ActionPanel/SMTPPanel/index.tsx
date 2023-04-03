@@ -1,12 +1,12 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Checkbox } from "@illa-design/react"
-import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
+import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -15,17 +15,7 @@ import {
   SMTPActionContenType,
 } from "@/redux/currentApp/action/smtpAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import {
-  actionItemContainer,
-  checkboxItemStyle,
-  checkoutContentStyle,
-  checkoutItemStyle,
-  smtpBodyTypeStyle,
-  smtpContainerStyle,
-  smtpItemCodeEditorStyle,
-  smtpItemLabelStyle,
-  smtpItemStyle,
-} from "./style"
+import { actionItemContainer, smtpContainerStyle } from "./style"
 
 export const SMTPPanel: FC = () => {
   const { t } = useTranslation()
@@ -35,7 +25,7 @@ export const SMTPPanel: FC = () => {
   const dispatch = useDispatch()
 
   const handleValueChange = useCallback(
-    (value: string | boolean, name: string) => {
+    (name: string) => (value: string | boolean) => {
       dispatch(
         configActions.updateCachedAction({
           ...cachedAction,
@@ -51,7 +41,7 @@ export const SMTPPanel: FC = () => {
 
   const handleShowReplyToEmail = useCallback(
     (show: boolean) => {
-      handleValueChange(show, "setReplyTo")
+      handleValueChange("setReplyTo")(show)
     },
     [handleValueChange],
   )
@@ -60,153 +50,89 @@ export const SMTPPanel: FC = () => {
     const contentType = isHTML
       ? SMTPActionContenType.PLAIN
       : SMTPActionContenType.HTML
-    handleValueChange(contentType, "contentType")
+    handleValueChange("contentType")(contentType)
   }, [handleValueChange, isHTML])
 
   return (
     <div css={smtpContainerStyle}>
       <ResourceChoose />
       <div css={actionItemContainer}>
-        <div css={smtpItemStyle}>
-          <span css={smtpItemLabelStyle}>
-            {t("editor.action.panel.smtp.from_email")}
-          </span>
-          <CodeEditor
-            singleLine
-            wrapperCss={smtpItemCodeEditorStyle}
-            lang={CODE_LANG.JAVASCRIPT}
-            value={content.from}
-            modalTitle={t("editor.action.panel.smtp.from_email")}
-            onChange={(value) => handleValueChange(value, "from")}
-            expectValueType={VALIDATION_TYPES.STRING}
-          />
-        </div>
-        <div css={checkoutItemStyle}>
-          <span css={smtpItemLabelStyle}></span>
-          <div css={checkoutContentStyle}>
-            <Checkbox
-              colorScheme="techPurple"
-              checked={content.setReplyTo}
-              ml="16px"
-              onChange={handleShowReplyToEmail}
-            />
-            <span css={checkboxItemStyle}>
-              {t("editor.action.panel.smtp.set_replay_email")}
-            </span>
-          </div>
-        </div>
+        <InputEditor
+          title={t("editor.action.panel.smtp.from_email")}
+          mode={CODE_LANG.JAVASCRIPT}
+          value={content.from}
+          onChange={handleValueChange("from")}
+          expectedType={VALIDATION_TYPES.STRING}
+        />
+        <SingleTypeComponent
+          componentType="checkbox"
+          value={content.setReplyTo}
+          onChange={handleShowReplyToEmail}
+          checkoutTitle={t("editor.action.panel.smtp.set_replay_email")}
+        />
         {content.setReplyTo && (
-          <div css={smtpItemStyle}>
-            <span css={smtpItemLabelStyle}>
-              {t("editor.action.panel.smtp.replay_email")}
-            </span>
-            <CodeEditor
-              singleLine
-              wrapperCss={smtpItemCodeEditorStyle}
-              lang={CODE_LANG.JAVASCRIPT}
-              value={content.replyTo}
-              modalTitle={t("editor.action.panel.smtp.replay_email")}
-              onChange={(value) => handleValueChange(value, "replyTo")}
-              expectValueType={VALIDATION_TYPES.STRING}
-            />
-          </div>
+          <InputEditor
+            title={t("editor.action.panel.smtp.replay_email")}
+            mode={CODE_LANG.JAVASCRIPT}
+            value={content.replyTo}
+            onChange={handleValueChange("replyTo")}
+            expectedType={VALIDATION_TYPES.STRING}
+          />
         )}
-        <div css={smtpItemStyle}>
-          <span css={smtpItemLabelStyle}>
-            {t("editor.action.panel.smtp.to_email")}
-          </span>
-          <CodeEditor
-            singleLine
-            wrapperCss={smtpItemCodeEditorStyle}
-            lang={CODE_LANG.JAVASCRIPT}
-            value={content.to}
-            modalTitle={t("editor.action.panel.smtp.to_email")}
-            placeholder={t("editor.action.panel.smtp.placeholder.emails")}
-            onChange={(value) => handleValueChange(value, "to")}
-            expectValueType={VALIDATION_TYPES.ARRAY}
-          />
-        </div>
-        <div css={smtpItemStyle}>
-          <span css={smtpItemLabelStyle}>
-            {t("editor.action.panel.smtp.bcc_email")}
-          </span>
-          <CodeEditor
-            singleLine
-            wrapperCss={smtpItemCodeEditorStyle}
-            lang={CODE_LANG.JAVASCRIPT}
-            placeholder={t("editor.action.panel.smtp.placeholder.emails")}
-            value={content.bcc}
-            modalTitle={t("editor.action.panel.smtp.bcc_email")}
-            onChange={(value) => handleValueChange(value, "bcc")}
-            expectValueType={VALIDATION_TYPES.ARRAY}
-          />
-        </div>
-
-        <div css={smtpItemStyle}>
-          <span css={smtpItemLabelStyle}>
-            {t("editor.action.panel.smtp.cc_email")}
-          </span>
-          <CodeEditor
-            singleLine
-            wrapperCss={smtpItemCodeEditorStyle}
-            lang={CODE_LANG.JAVASCRIPT}
-            value={content.cc}
-            modalTitle={t("editor.action.panel.smtp.cc_email")}
-            placeholder={t("editor.action.panel.smtp.placeholder.emails")}
-            onChange={(value) => handleValueChange(value, "cc")}
-            expectValueType={VALIDATION_TYPES.ARRAY}
-          />
-        </div>
-
-        <div css={smtpItemStyle}>
-          <span css={smtpItemLabelStyle}>
-            {t("editor.action.panel.smtp.subject")}
-          </span>
-          <CodeEditor
-            singleLine
-            wrapperCss={smtpItemCodeEditorStyle}
-            lang={CODE_LANG.JAVASCRIPT}
-            value={content.subject}
-            modalTitle={t("editor.action.panel.smtp.subject")}
-            onChange={(value) => handleValueChange(value, "subject")}
-            expectValueType={VALIDATION_TYPES.STRING}
-          />
-        </div>
-        <div css={smtpItemStyle}>
-          <span css={smtpItemLabelStyle}>
-            <span>{t("editor.action.panel.smtp.body")}</span>
-            <span css={smtpBodyTypeStyle} onClick={handleBodyTypeChange}>
-              {isHTML
-                ? t("editor.action.panel.smtp.use_raw")
-                : t("editor.action.panel.smtp.use_html")}
-            </span>
-          </span>
-          <CodeEditor
-            showLineNumbers
-            height="88px"
-            wrapperCss={smtpItemCodeEditorStyle}
-            lang={isHTML ? CODE_LANG.HTML : CODE_LANG.JAVASCRIPT}
-            value={content.body}
-            modalTitle={t("editor.action.panel.smtp.body")}
-            onChange={(value) => handleValueChange(value, "body")}
-            expectValueType={VALIDATION_TYPES.STRING}
-          />
-        </div>
-        <div css={smtpItemStyle}>
-          <span css={smtpItemLabelStyle}>
-            {t("editor.action.panel.smtp.attachment")}
-          </span>
-          <CodeEditor
-            singleLine
-            wrapperCss={smtpItemCodeEditorStyle}
-            lang={CODE_LANG.JAVASCRIPT}
-            value={content.attachment}
-            modalTitle={t("editor.action.panel.smtp.attachment")}
-            placeholder={t("editor.action.panel.smtp.placeholder.attachment")}
-            onChange={(value) => handleValueChange(value, "attachment")}
-            expectValueType={VALIDATION_TYPES.ARRAY}
-          />
-        </div>
+        <InputEditor
+          title={t("editor.action.panel.smtp.to_email")}
+          mode={CODE_LANG.JAVASCRIPT}
+          value={content.to ?? ""}
+          placeholder={t("editor.action.panel.smtp.placeholder.emails")}
+          onChange={handleValueChange("to")}
+          expectedType={VALIDATION_TYPES.ARRAY}
+        />
+        <InputEditor
+          title={t("editor.action.panel.smtp.bcc_email")}
+          mode={CODE_LANG.JAVASCRIPT}
+          placeholder={t("editor.action.panel.smtp.placeholder.emails")}
+          value={content.bcc ?? ""}
+          onChange={handleValueChange("bcc")}
+          expectedType={VALIDATION_TYPES.ARRAY}
+        />
+        <InputEditor
+          title={t("editor.action.panel.smtp.cc_email")}
+          mode={CODE_LANG.JAVASCRIPT}
+          value={content.cc ?? ""}
+          placeholder={t("editor.action.panel.smtp.placeholder.emails")}
+          onChange={handleValueChange("cc")}
+          expectedType={VALIDATION_TYPES.ARRAY}
+        />
+        <InputEditor
+          title={t("editor.action.panel.smtp.subject")}
+          mode={CODE_LANG.JAVASCRIPT}
+          value={content.subject}
+          onChange={handleValueChange("subject")}
+          expectedType={VALIDATION_TYPES.STRING}
+        />
+        <InputEditor
+          title={t("editor.action.panel.smtp.body")}
+          subtitle={
+            isHTML
+              ? t("editor.action.panel.smtp.use_raw")
+              : t("editor.action.panel.smtp.use_html")
+          }
+          handleSubtitleClick={handleBodyTypeChange}
+          lineNumbers
+          style={{ height: "88px" }}
+          mode={isHTML ? CODE_LANG.HTML : CODE_LANG.JAVASCRIPT}
+          value={content.body}
+          onChange={handleValueChange("body")}
+          expectedType={VALIDATION_TYPES.STRING}
+        />
+        <InputEditor
+          title={t("editor.action.panel.smtp.attachment")}
+          mode={CODE_LANG.JAVASCRIPT}
+          value={content.attachment ?? ""}
+          placeholder={t("editor.action.panel.smtp.placeholder.attachment")}
+          onChange={handleValueChange("attachment")}
+          expectedType={VALIDATION_TYPES.ARRAY}
+        />
         <TransformerComponent />
       </div>
       <ActionEventHandler />

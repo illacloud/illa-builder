@@ -17,17 +17,17 @@ import { APIKeyAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElem
 import { BasicAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/BasicAuthPanel"
 import { BearerAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/BearerAuthPanel"
 import {
-  container,
-  divider,
-  footerStyle,
-} from "@/page/App/components/Actions/GraphQLConfigElement/style"
-import {
   generateGraphQLAuthContent,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
-import { optionLabelStyle } from "@/page/App/components/Actions/styles"
+import {
+  container,
+  divider,
+  footerStyle,
+  optionLabelStyle,
+} from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import {
@@ -41,13 +41,13 @@ import {
 } from "@/redux/resource/graphqlResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { isURL } from "@/utils/typeHelper"
+import { urlValidate, validate } from "@/utils/form"
 
 export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, onFinished, resourceId } = props
 
   const { t } = useTranslation()
-  const { control, handleSubmit, formState, getValues } = useForm({
+  const { control, handleSubmit, formState, getValues, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
@@ -76,36 +76,19 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
   ]
 
   const [saving, setSaving] = useState(false)
-  const [authType, setAuthType] = useState<GraphQLAuthValue>(
+  const [testLoading, setTestLoading] = useState(false)
+
+  const authType = watch(
+    "authentication",
     resource?.content.authentication ?? GraphQLAuthValue.NONE,
   )
-  const [testLoading, setTestLoading] = useState(false)
-  const [disableIntrospection, setDisableIntrospection] =
-    useState<boolean>(false)
-
-  const handleURLValidate = useCallback(
-    (value: string) =>
-      isURL(value) ? true : t("editor.action.resource.error.invalid_url"),
-    [t],
-  )
-
-  const handleDisableIntrospectionChange = useCallback(
-    (value: string | boolean) => {
-      setDisableIntrospection(!!value)
-    },
-    [],
-  )
-
-  const handleAuthenticationChange = useCallback((value: string | boolean) => {
-    setAuthType(String(value) as GraphQLAuthValue)
-  }, [])
 
   const handleConnectionTest = useCallback(() => {
     const data = getValues()
     onActionConfigElementTest(
       data,
       {
-        baseUrl: data.baseUrl,
+        baseUrl: data.baseUrl.trim(),
         urlParams: data.urlParams,
         headers: data.headers,
         cookies: data.cookies,
@@ -138,7 +121,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
           defaultValue={resource?.resourceName ?? ""}
           rules={[
             {
-              validate: (value) => value != undefined && value.trim() != "",
+              validate,
             },
           ]}
           placeholders={[t("editor.action.resource.db.placeholder.name")]}
@@ -167,21 +150,19 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
           rules={[
             {
               required: t("editor.action.resource.error.invalid_url"),
-              validate: handleURLValidate,
+              validate: urlValidate,
             },
           ]}
           placeholders={[
             t("editor.action.resource.restapi.placeholder.base_url"),
           ]}
           tips={
-            formState.errors.baseUrl ? (
+            formState.errors.baseUrl && (
               <div css={errorMsgStyle}>
-                <>
-                  <WarningCircleIcon css={errorIconStyle} />
-                  {formState.errors.baseUrl.message}
-                </>
+                <WarningCircleIcon css={errorIconStyle} />
+                <>{formState.errors.baseUrl.message}</>
               </div>
-            ) : null
+            )
           }
         />
         {InputRecord.map(({ name, title, defaultValue }) => (
@@ -229,8 +210,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
         <ControlledElement
           title={t("editor.action.resource.restapi.label.authentication")}
           defaultValue={resource?.content.authentication ?? "none"}
-          name={"authentication"}
-          onValueChange={handleAuthenticationChange}
+          name="authentication"
           controlledType={["select"]}
           control={control}
           options={GraphQLAuthTypeSelect}
@@ -250,6 +230,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
         )}
         {authType === GraphQLAuthValue.APIKEY && (
           <APIKeyAuthPanel
+            watch={watch}
             control={control}
             auth={resource?.content.authContent as ApiKeyAuth}
           />
@@ -271,9 +252,8 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
             "editor.action.resource.db.label.disable_introspection",
           )}
           defaultValue={resource?.content.disableIntrospection ?? false}
-          name={"disableIntrospection"}
+          name="disableIntrospection"
           controlledType={["switch"]}
-          onValueChange={handleDisableIntrospectionChange}
           control={control}
           tips={t("editor.action.resource.db.tip.introspection")}
         />

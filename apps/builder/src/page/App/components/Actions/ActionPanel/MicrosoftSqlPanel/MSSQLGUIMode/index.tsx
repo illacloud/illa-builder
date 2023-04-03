@@ -1,13 +1,10 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Select, createMessage } from "@illa-design/react"
+import { createMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
 import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/interface"
+import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { InputEditor } from "@/page/App/components/InputEditor"
-import {
-  actionItemStyle,
-  codeEditorLabelStyle,
-} from "@/page/App/components/InputEditor/style"
 import { MicrosoftSqlActionGUIMode } from "@/redux/currentApp/action/microsoftSqlAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -36,7 +33,7 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
     }
     BuilderApi.teamRequest(
       {
-        url: `resources/${resourceId}/meta`,
+        url: `/resources/${resourceId}/meta`,
         method: "GET",
       },
       ({ data }: { data: ResourcesData }) => {
@@ -59,24 +56,19 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
 
   return (
     <>
-      <div css={actionItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mssql.table")}
-        </span>
-        <Select
-          colorScheme="techPurple"
-          showSearch={true}
-          defaultValue={newModeContent.table}
-          value={newModeContent.table}
-          ml="16px"
-          w="100%"
-          loading={loading}
-          error={error}
-          placeholder={t("editor.action.panel.mssql.placeholder.table")}
-          onChange={(value) => onChange((value || "") as string, "table")}
-          options={collectionSelect}
-        />
-      </div>
+      <SingleTypeComponent
+        componentType="select"
+        placeholder={t("editor.action.panel.mssql.placeholder.table")}
+        onSelectedValueChange={(value) =>
+          onChange((value || "") as string, "table")
+        }
+        options={collectionSelect}
+        value={newModeContent.table}
+        showSearch={true}
+        title={t("editor.action.panel.mssql.table")}
+        loading={loading}
+        error={error}
+      />
       <InputEditor
         style={{ height: "88px" }}
         title={t("editor.action.panel.mssql.insert_record")}

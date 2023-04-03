@@ -147,6 +147,49 @@ export const generateRestAPIAuthContent = (data: {
 
 function getActionContentByType(data: FieldValues, type: ResourceType) {
   switch (type) {
+    case "mongodb":
+      return {
+        configType: data.configType,
+        ssl: {
+          open: data.open,
+          client: data.client,
+          ca: data.ca,
+        },
+        configContent:
+          data.configType === "gui"
+            ? {
+                host: data.host,
+                port:
+                  data.connectionFormat === "standard"
+                    ? data.port.toString()
+                    : "",
+                connectionFormat: data.connectionFormat,
+                databaseName: data.databaseName,
+                databaseUsername: data.databaseUsername,
+                databasePassword: data.databasePassword,
+              }
+            : {
+                uri: data.uri,
+              },
+      }
+    case "mysql":
+      return {
+        host: data.host,
+        port: data.port.toString(),
+        databaseName: data.databaseName,
+        databaseUsername: data.databaseUsername,
+        databasePassword: data.databasePassword,
+        ssl: generateSSLConfig(data.ssl, data),
+      }
+    case "redis":
+      return {
+        host: data.host,
+        port: data.port.toString(),
+        databaseIndex: data.databaseIndex ?? 0,
+        databaseUsername: data.databaseUsername,
+        databasePassword: data.databasePassword,
+        ssl: data.ssl,
+      }
     case "firebase":
       return {
         databaseUrl: data.databaseUrl,
@@ -253,7 +296,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "appwrite":
       const { host, projectID, databaseID, apiKey } = data
       return {
-        host,
+        host: host.trim(),
         projectID,
         databaseID,
         apiKey,

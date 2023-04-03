@@ -1,7 +1,15 @@
-import { SelectProps, SelectValue } from "@illa-design/react"
+import { ReactNode } from "react"
+import { RadioGroupProps, SelectProps, SelectValue } from "@illa-design/react"
 
-export type SingleComponentType = "select" | "checkbox" | "switch"
-export interface SingleComponentProps extends Pick<SelectProps, "options"> {
+export type SingleComponentType =
+  | "select"
+  | "checkbox"
+  | "switch"
+  | "radio-group"
+
+export interface SingleComponentProps
+  extends Pick<SelectProps, "options" | "showSearch" | "loading" | "error">,
+    Pick<RadioGroupProps<any>, "forceEqualWidth" | "type"> {
   componentType: SingleComponentType
   title?: string
   onChange?: (value: any) => void
@@ -11,4 +19,7 @@ export interface SingleComponentProps extends Pick<SelectProps, "options"> {
   checkoutTitle?: string
   switchContent?: string
   placeholder?: string
+  tips?: ReactNode
+  style?: Record<string, string | number>
+  radioOptions?: RadioGroupProps<any>["options"]
 }

@@ -29,8 +29,8 @@ export const codeEditorLabelStyle = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
-  align-self: start;
+  align-items: flex-end;
+  align-self: center;
 `
 
 export const codeEditorSublabelStyle = css`
