@@ -181,7 +181,7 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setImageUrl",
       },
       {
-        id: `${baseWidgetName}-interaction-event-handler-setImage`,
+        id: `${baseWidgetName}-interaction-event-handler-copiedValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "INPUT_SETTER",
         attrName: "copiedValue",

@@ -3,6 +3,8 @@ import { isBoolean } from "lodash"
 import { FC } from "react"
 import {
   Button,
+  Image,
+  ImageProps,
   Link,
   dayjsPro,
   isFunction,
@@ -10,7 +12,10 @@ import {
   isObject,
 } from "@illa-design/react"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import {
+  ColumnItemShape,
+  defaultColumnItem,
+} from "@/widgetLibrary/TableWidget/interface"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
@@ -41,13 +46,10 @@ export const tansDataFromOld = (
         })
       } else {
         reOrderColumns.push({
+          ...defaultColumnItem,
           id: key,
           header: key,
           accessorKey: key,
-          enableSorting: true,
-          type: "text",
-          visible: true,
-          format: "YYYY-MM-DD",
           columnIndex: index,
         })
       }
@@ -70,13 +72,10 @@ export const tansTableDataToColumns = (
         cur += 1
       }
       columns.push({
+        ...defaultColumnItem,
         id: key,
         header: key,
         accessorKey: key,
-        enableSorting: true,
-        type: "text",
-        visible: true,
-        format: "YYYY-MM-DD",
         columnIndex,
       } as ColumnItemShape)
     })
@@ -109,10 +108,10 @@ export const transTableColumnEvent = (events: any[], columnLength: number) => {
 
 const RenderTableLink: FC<{
   cell: CellContext<any, any>
-  mappedValue?: string
+  value?: string
 }> = (props) => {
-  const { cell, mappedValue } = props
-  const cellValue = mappedValue ? mappedValue : cell.getValue()
+  const { cell, value } = props
+  const cellValue = value ?? cell.getValue()
 
   return cellValue ? (
     <Link href={cellValue} target="_blank">{`${cellValue}`}</Link>
@@ -121,23 +120,58 @@ const RenderTableLink: FC<{
   )
 }
 
+const RenderTableImage: FC<{
+  cell: CellContext<any, any>
+  value?: string
+  objectFit?: ImageProps["objectFit"]
+}> = (props) => {
+  const { cell, value, objectFit } = props
+
+  return <Image src={value} objectFit={objectFit} draggable={false} />
+}
+
 const RenderTableButton: FC<{
   cell: CellContext<any, any>
+  value?: string
+  disabled?: boolean
+  colorScheme?: string
   eventPath: string
-  mappedValue?: string
   handleOnClickMenuItem?: (path: string) => void
 }> = (props) => {
-  const { cell, mappedValue, eventPath, handleOnClickMenuItem } = props
+  const {
+    disabled,
+    value,
+    colorScheme,
+    cell,
+    eventPath,
+    handleOnClickMenuItem,
+  } = props
   const paths = [eventPath, `${cell.row.index}`]
   const clickEvent = () => {
     handleOnClickMenuItem?.(convertPathToString(paths))
   }
 
   return (
-    <Button w={"100%"} onClick={clickEvent}>{`${
-      mappedValue ? mappedValue : cell.getValue() ?? "-"
-    }`}</Button>
+    <Button
+      w={"100%"}
+      disabled={disabled}
+      colorScheme={colorScheme}
+      onClick={clickEvent}
+    >{`${value ?? "-"}`}</Button>
   )
+}
+
+const getConfigFromColumnShapeData = <K extends keyof ColumnItemShape>(
+  itemKey: K,
+  data: ColumnItemShape,
+  rowIndex: number,
+  fromCurrentRow?: Record<K, boolean>,
+): ColumnItemShape[K] => {
+  const value = data[itemKey]
+  if (fromCurrentRow?.[itemKey] && Array.isArray(value)) {
+    return value[rowIndex]
+  }
+  return value
 }
 
 const getCurrentValue = (
@@ -212,7 +246,23 @@ export const getCellForType = (
         const value = getValueAndToString(props, mappedValue, fromCurrentRow)
         return RenderTableLink({
           cell: props,
-          mappedValue: value,
+          value,
+        })
+      }
+    case "image":
+      return (props: CellContext<any, any>) => {
+        const rowIndex = props.row.index
+        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
+        const objectFit = getConfigFromColumnShapeData(
+          "objectFit",
+          data,
+          rowIndex,
+          fromCurrentRow,
+        )
+        return RenderTableImage({
+          cell: props,
+          value,
+          objectFit,
         })
       }
     case "boolean":
@@ -245,10 +295,26 @@ export const getCellForType = (
       }
     case "button":
       return (props: CellContext<any, any>) => {
+        const rowIndex = props.row.index
         const value = getValueAndToString(props, mappedValue, fromCurrentRow)
+        const disabled = getConfigFromColumnShapeData(
+          "disabled",
+          data,
+          rowIndex,
+          fromCurrentRow,
+        )
+        const colorScheme = getConfigFromColumnShapeData(
+          "colorScheme",
+          data,
+          rowIndex,
+          fromCurrentRow,
+        )
+
         return RenderTableButton({
           cell: props,
-          mappedValue: value,
+          value,
+          disabled,
+          colorScheme,
           eventPath,
           handleOnClickMenuItem,
         })

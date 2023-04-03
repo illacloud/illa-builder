@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { HTMLAttributes } from "react"
-import { TableProps } from "@illa-design/react"
+import { ButtonColorScheme, ImageProps, TableProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export const ColumnTypeOption = [
@@ -14,6 +14,16 @@ export const ColumnTypeOption = [
   { label: "Boolean", value: "boolean" },
   { label: "Image", value: "image" },
 ]
+
+export const defaultColumnItem: Partial<ColumnItemShape> = {
+  enableSorting: true,
+  type: "text",
+  visible: true,
+  custom: true,
+  format: "YYYY-MM-DD",
+  colorScheme: "blue",
+  objectFit: "scale-down",
+}
 
 export type ColumnType =
   | "text"
@@ -31,8 +41,10 @@ export interface ColumnItemShape
   header: string
   value?: string
   label?: string
-  disabled?: string
   type?: ColumnType
+  disabled?: boolean
+  colorScheme?: ButtonColorScheme
+  objectFit?: ImageProps["objectFit"]
   enableSorting?: boolean
   visible?: boolean
   decimalPlaces?: number
