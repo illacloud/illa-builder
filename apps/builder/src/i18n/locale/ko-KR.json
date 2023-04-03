@@ -1763,6 +1763,9 @@
           "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
+    },
+    "global": {
+      "size_exceed": "데이터 크기가 한도를 초과합니다(현재 크기: {{currentSize}}바이트, 한도: 10485760바이트)."
     }
   },
   "exit_preview": "미리보기 종료",
