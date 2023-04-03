@@ -1,6 +1,6 @@
 // string for component
-import { Connection, getPayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/interface"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import {
   ActionContent,
   ActionItem,
@@ -40,10 +40,10 @@ export class DisplayNameGenerator {
       name = `${showName || type}${index}`
     }
     this.displayNameList.add(name)
-    Connection.getRoom("app", this.appId)?.send(
-      getPayload(
-        Signal.SIGNAL_ONLY_BROADCAST,
-        Target.TARGET_DISPLAY_NAME,
+    Connection.getTextRoom("app", this.appId)?.send(
+      getTextMessagePayload(
+        Signal.BROADCAST_ONLY,
+        Target.DISPLAY_NAME,
         true,
         { type: ADD_DISPLAY_NAME, payload: [name] },
         this.teamID,
@@ -83,10 +83,10 @@ export class DisplayNameGenerator {
       this.removeDisplayName(oldDisplayName)
     }
     this.displayNameList.add(displayName)
-    Connection.getRoom("app", this.appId)?.send(
-      getPayload(
-        Signal.SIGNAL_ONLY_BROADCAST,
-        Target.TARGET_DISPLAY_NAME,
+    Connection.getTextRoom("app", this.appId)?.send(
+      getTextMessagePayload(
+        Signal.BROADCAST_ONLY,
+        Target.DISPLAY_NAME,
         true,
         { type: UPDATE_DISPLAY_NAME, payload: [oldDisplayName, displayName] },
         this.teamID,
@@ -98,10 +98,10 @@ export class DisplayNameGenerator {
 
   static removeDisplayName(displayName: string) {
     this.displayNameList.delete(displayName)
-    Connection.getRoom("app", this.appId)?.send(
-      getPayload(
-        Signal.SIGNAL_ONLY_BROADCAST,
-        Target.TARGET_DISPLAY_NAME,
+    Connection.getTextRoom("app", this.appId)?.send(
+      getTextMessagePayload(
+        Signal.BROADCAST_ONLY,
+        Target.DISPLAY_NAME,
         true,
         { type: REMOVE_DISPLAY_NAME, payload: [displayName] },
         this.teamID,
@@ -115,10 +115,10 @@ export class DisplayNameGenerator {
     displayNames.forEach((displayName) => {
       this.displayNameList.delete(displayName)
     })
-    Connection.getRoom("app", this.appId)?.send(
-      getPayload(
-        Signal.SIGNAL_ONLY_BROADCAST,
-        Target.TARGET_DISPLAY_NAME,
+    Connection.getTextRoom("app", this.appId)?.send(
+      getTextMessagePayload(
+        Signal.BROADCAST_ONLY,
+        Target.DISPLAY_NAME,
         true,
         { type: REMOVE_DISPLAY_NAME, payload: displayNames },
         this.teamID,
