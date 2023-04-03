@@ -12,7 +12,7 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.form.name"),
   keywords: ["form", "表单"],
   icon: <FormWidgetIcon />,
-  sessionType: "PRESENTATION",
+  sessionType: "CONTAINER",
   w: 32,
   h: 40,
   childrenNode: [
