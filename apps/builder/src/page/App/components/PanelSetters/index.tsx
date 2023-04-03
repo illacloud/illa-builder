@@ -17,6 +17,7 @@ import { MappedOptionSetter } from "@/page/App/components/PanelSetters/MappedOpt
 import { MenuOptionSetter } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter"
 import { OptionListSetter } from "@/page/App/components/PanelSetters/OptionListSetter"
 import { CarouselListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/CarouselListSetter"
+import { StepsListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/StepsListSetter"
 import { BaseRadioGroupSetter } from "@/page/App/components/PanelSetters/RadioGroupSetter/baseRadioGroup"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
@@ -55,6 +56,7 @@ const SetterTypeMapSetter = {
   BASE_SELECT_SETTER: BaseSelectSetter,
   COLOR_PICKER_SETTER: ColorPickerSetter,
   OPTION_LIST_SETTER: OptionListSetter,
+  STEPS_LIST_SETTER: StepsListSetter,
   CAROUSEL_LIST_SETTER: CarouselListSetter,
   COLUMN_SETTER: ColumnSetter,
   COLUMNS_SELECT_SETTER: ColumnsSelectSetter,
