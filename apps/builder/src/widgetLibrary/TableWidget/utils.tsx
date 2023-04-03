@@ -140,7 +140,25 @@ const RenderTableButton: FC<{
   )
 }
 
-const getValue = (
+const getCurrentValue = (
+  props: CellContext<any, any>,
+  mappedValue: unknown,
+  fromCurrentRow?: Record<string, boolean>,
+) => {
+  const value = props.getValue()
+  const index = props.row.index
+
+  if (mappedValue !== undefined && mappedValue !== null) {
+    if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
+      return mappedValue[index] ?? "-"
+    }
+    return mappedValue
+  }
+
+  return value ?? "-"
+}
+
+const getValueAndToString = (
   props: CellContext<any, any>,
   mappedValue?: unknown,
   fromCurrentRow?: Record<string, boolean>,
@@ -187,11 +205,11 @@ export const getCellForType = (
       }
     case "text":
       return (props: CellContext<any, any>) => {
-        return getValue(props, mappedValue, fromCurrentRow)
+        return getValueAndToString(props, mappedValue, fromCurrentRow)
       }
     case "link":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
         return RenderTableLink({
           cell: props,
           mappedValue: value,
@@ -199,23 +217,21 @@ export const getCellForType = (
       }
     case "boolean":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
-        console.log(value, isBoolean(value), "CellContext")
+        const value = getCurrentValue(props, mappedValue, fromCurrentRow)
         if (isBoolean(value)) {
-          // return value.toString()
-          return value
+          return value.toString()
         }
         return "-"
       }
     case "number":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
         return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
       }
     case "percent":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
         return isNumber(formatVal)
           ? `${(formatVal * 100).toFixed(decimalPlaces)}%`
@@ -223,13 +239,13 @@ export const getCellForType = (
       }
     case "date":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
         const formatVal = dayjsPro(value).format(format)
         return formatVal ? formatVal : "-"
       }
     case "button":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
         return RenderTableButton({
           cell: props,
           mappedValue: value,
