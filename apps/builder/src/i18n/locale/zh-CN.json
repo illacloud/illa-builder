@@ -2159,6 +2159,9 @@
     },
     "collaborative": {
       "no_name": "空用户名"
+    },
+    "map": {
+      "name": "地图"
     }
   },
   "page": {
