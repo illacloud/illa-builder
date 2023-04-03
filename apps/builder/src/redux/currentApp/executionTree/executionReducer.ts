@@ -11,8 +11,8 @@ import {
   setExecutionResultPayload,
 } from "@/redux/currentApp/executionTree/executionState"
 import { isWidget } from "@/utils/executionTreeHelper/utils"
-import { CUSTOM_STORAGE_PREFIX } from "../../../utils/storage"
-import { isObject } from "../../../utils/typeHelper"
+import { CUSTOM_STORAGE_PREFIX } from "@/utils/storage"
+import { isObject } from "@/utils/typeHelper"
 
 export const setDependenciesReducer: CaseReducer<
   ExecutionState,

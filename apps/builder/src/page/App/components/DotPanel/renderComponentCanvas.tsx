@@ -41,6 +41,7 @@ import {
 } from "@/page/App/components/DotPanel/utils"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { MultiSelectedScaleSquare } from "@/page/App/components/ScaleSquare/multiSelectedScaleSquare"
+import { useMousePositionAsync } from "@/page/App/useMousePostionAsync"
 import {
   getFreezeState,
   getIsILLAEditMode,
@@ -60,14 +61,12 @@ import {
   getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import store from "@/store"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import { useMousePositionAsync } from "../../useMousePostionAsync"
 import { MousePreview } from "../MousePreview"
 
 export const UNIT_HEIGHT = 8
@@ -295,7 +294,12 @@ export const RenderComponentCanvas: FC<{
     return bounds.width / blockColumns
   }, [blockColumns, bounds.width])
 
-  const { wrapperRef } = useMousePositionAsync(containerRef, unitWidth)
+  const { wrapperRef } = useMousePositionAsync(
+    containerRef,
+    unitWidth,
+    componentNode.displayName,
+    !!sectionName,
+  )
 
   const throttleUpdateComponentPositionByReflow = useMemo(() => {
     return throttle((updateSlice: UpdateComponentNodeLayoutInfoPayload[]) => {
