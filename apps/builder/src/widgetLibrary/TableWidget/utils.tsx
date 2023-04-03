@@ -1,21 +1,21 @@
 import { CellContext } from "@tanstack/table-core"
 import { isBoolean } from "lodash"
-import { FC } from "react"
 import {
-  Button,
-  Image,
-  ImageProps,
-  Link,
   dayjsPro,
   isFunction,
   isNumber,
   isObject,
+  isString,
 } from "@illa-design/react"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import {
   ColumnItemShape,
   defaultColumnItem,
 } from "@/widgetLibrary/TableWidget/interface"
+import {
+  RenderTableButton,
+  RenderTableImage,
+  RenderTableLink,
+} from "@/widgetLibrary/TableWidget/renderTableCell"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
@@ -106,62 +106,7 @@ export const transTableColumnEvent = (events: any[], columnLength: number) => {
   return res
 }
 
-const RenderTableLink: FC<{
-  cell: CellContext<any, any>
-  value?: string
-}> = (props) => {
-  const { cell, value } = props
-  const cellValue = value ?? cell.getValue()
-
-  return cellValue ? (
-    <Link href={cellValue} target="_blank">{`${cellValue}`}</Link>
-  ) : (
-    <span>{"-"}</span>
-  )
-}
-
-const RenderTableImage: FC<{
-  cell: CellContext<any, any>
-  value?: string
-  objectFit?: ImageProps["objectFit"]
-}> = (props) => {
-  const { cell, value, objectFit } = props
-
-  return <Image src={value} objectFit={objectFit} draggable={false} />
-}
-
-const RenderTableButton: FC<{
-  cell: CellContext<any, any>
-  value?: string
-  disabled?: boolean
-  colorScheme?: string
-  eventPath: string
-  handleOnClickMenuItem?: (path: string) => void
-}> = (props) => {
-  const {
-    disabled,
-    value,
-    colorScheme,
-    cell,
-    eventPath,
-    handleOnClickMenuItem,
-  } = props
-  const paths = [eventPath, `${cell.row.index}`]
-  const clickEvent = () => {
-    handleOnClickMenuItem?.(convertPathToString(paths))
-  }
-
-  return (
-    <Button
-      w={"100%"}
-      disabled={disabled}
-      colorScheme={colorScheme}
-      onClick={clickEvent}
-    >{`${value ?? "-"}`}</Button>
-  )
-}
-
-const getConfigFromColumnShapeData = <K extends keyof ColumnItemShape>(
+export const getConfigFromColumnShapeData = <K extends keyof ColumnItemShape>(
   itemKey: K,
   data: ColumnItemShape,
   rowIndex: number,
@@ -174,7 +119,7 @@ const getConfigFromColumnShapeData = <K extends keyof ColumnItemShape>(
   return value
 }
 
-const getCurrentValue = (
+const getPropertyValue = (
   props: CellContext<any, any>,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
@@ -192,14 +137,14 @@ const getCurrentValue = (
   return value ?? "-"
 }
 
-const getValueAndToString = (
+const getStringPropertyValue = (
   props: CellContext<any, any>,
   mappedValue?: unknown,
   fromCurrentRow?: Record<string, boolean>,
 ) => {
   const value = props.getValue()
   const index = props.row.index
-  console.log(mappedValue, "CellContext mappedValue")
+
   if (mappedValue) {
     if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
       return `${mappedValue[index] ?? "-"}`
@@ -215,6 +160,18 @@ const getValueAndToString = (
   return `${value ?? "-"}`
 }
 
+const isImageUrl = (str: unknown) => {
+  if (!isString(str)) return false
+  return (
+    str.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/g) !== null
+  )
+}
+
+// 判断字符串是否是日期格式
+const isDate = (str: string) => {
+  return dayjsPro(str).isValid()
+}
+
 export const getCellForType = (
   data: ColumnItemShape,
   eventPath: string,
@@ -228,22 +185,16 @@ export const getCellForType = (
     fromCurrentRow,
   } = data
 
+  const renderLinkCell = () => {}
+
   switch (type) {
-    default:
-      return (props: CellContext<any, any>) => {
-        const value = props.getValue()
-        if (isObject(value)) {
-          return `${JSON.stringify(value)}`
-        }
-        return `${value ?? "-"}`
-      }
     case "text":
       return (props: CellContext<any, any>) => {
-        return getValueAndToString(props, mappedValue, fromCurrentRow)
+        return getStringPropertyValue(props, mappedValue, fromCurrentRow)
       }
     case "link":
       return (props: CellContext<any, any>) => {
-        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         return RenderTableLink({
           cell: props,
           value,
@@ -251,37 +202,27 @@ export const getCellForType = (
       }
     case "image":
       return (props: CellContext<any, any>) => {
-        const rowIndex = props.row.index
-        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
-        const objectFit = getConfigFromColumnShapeData(
-          "objectFit",
-          data,
-          rowIndex,
-          fromCurrentRow,
-        )
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         return RenderTableImage({
           cell: props,
           value,
-          objectFit,
+          data,
         })
       }
     case "boolean":
       return (props: CellContext<any, any>) => {
-        const value = getCurrentValue(props, mappedValue, fromCurrentRow)
-        if (isBoolean(value)) {
-          return value.toString()
-        }
-        return "-"
+        const value = getPropertyValue(props, mappedValue, fromCurrentRow)
+        return isBoolean(value) ? value.toString() : "-"
       }
     case "number":
       return (props: CellContext<any, any>) => {
-        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
         return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
       }
     case "percent":
       return (props: CellContext<any, any>) => {
-        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
         return isNumber(formatVal)
           ? `${(formatVal * 100).toFixed(decimalPlaces)}%`
@@ -289,35 +230,47 @@ export const getCellForType = (
       }
     case "date":
       return (props: CellContext<any, any>) => {
-        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = dayjsPro(value).format(format)
         return formatVal ? formatVal : "-"
       }
     case "button":
       return (props: CellContext<any, any>) => {
-        const rowIndex = props.row.index
-        const value = getValueAndToString(props, mappedValue, fromCurrentRow)
-        const disabled = getConfigFromColumnShapeData(
-          "disabled",
-          data,
-          rowIndex,
-          fromCurrentRow,
-        )
-        const colorScheme = getConfigFromColumnShapeData(
-          "colorScheme",
-          data,
-          rowIndex,
-          fromCurrentRow,
-        )
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
 
         return RenderTableButton({
           cell: props,
           value,
-          disabled,
-          colorScheme,
+          data,
           eventPath,
           handleOnClickMenuItem,
         })
+      }
+    default:
+      return (props: CellContext<any, any>) => {
+        const value = getPropertyValue(props, mappedValue, fromCurrentRow)
+        if (isBoolean(value)) {
+          return value.toString()
+        } else if (isNumber(value)) {
+          return value.toFixed(decimalPlaces)
+        } else if (!isNaN(Number(value))) {
+          return Number(value).toFixed(decimalPlaces)
+        } else if (dayjsPro(value).isValid()) {
+          return dayjsPro(value).format(format)
+        } else if (isImageUrl(value)) {
+          const stringValue = getStringPropertyValue(
+            props,
+            mappedValue,
+            fromCurrentRow,
+          )
+          return RenderTableImage({
+            cell: props,
+            value: stringValue,
+            data,
+          })
+        } else {
+          return getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        }
       }
   }
 }
