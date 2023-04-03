@@ -1,6 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
-  CursorInfo,
   CursorState,
   UpdateCursorPayload,
 } from "@/redux/currentApp/cursor/cursorState"
@@ -9,24 +8,36 @@ export const updateCursorReducer: CaseReducer<
   CursorState,
   PayloadAction<UpdateCursorPayload>
 > = (state, action) => {
-  const { userID, nickname, x, y, w, h, lastUpdateTime } = action.payload
+  const {
+    userID,
+    nickname,
+    parentDisplayName,
+    x,
+    y,
+    w,
+    h,
+    status,
+    lastUpdateTime,
+  } = action.payload
   const hasUser = !!state[userID]
-  if (hasUser) {
-    state[userID].lastUpdateTime = lastUpdateTime
-    state[userID].x = x
-    state[userID].y = y
-    state[userID].w = w
-    state[userID].h = h
+  if (!hasUser) {
+    state[userID] = []
+  }
+  const cursorInfo = {
+    userID,
+    nickname,
+    parentDisplayName,
+    status,
+    x,
+    y,
+    w,
+    h,
+    lastUpdateTime,
+  }
+  if (state[userID].length === 1) {
+    state[userID].splice(0, 1, cursorInfo)
   } else {
-    state[userID] = {
-      userID,
-      nickname,
-      x,
-      y,
-      w,
-      h,
-      lastUpdateTime,
-    }
+    state[userID].push(cursorInfo)
   }
 }
 
@@ -38,5 +49,26 @@ export const deleteCursorReducer: CaseReducer<
   const hasUser = !!state[userID]
   if (hasUser) {
     delete state[userID]
+  }
+}
+
+export const removeAnimationEndCursorInfo: CaseReducer<
+  CursorState,
+  PayloadAction<string>
+> = (state, action) => {
+  const targetUserCursorInfo = state[action.payload]
+  if (targetUserCursorInfo.length > 1) {
+    targetUserCursorInfo.shift()
+  }
+}
+
+export const leaveContainerReducer: CaseReducer<
+  CursorState,
+  PayloadAction<string>
+> = (state, action) => {
+  const targetUserCursorInfo = state[action.payload]
+
+  if (targetUserCursorInfo.length > 0) {
+    targetUserCursorInfo.shift()
   }
 }

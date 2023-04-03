@@ -1,5 +1,5 @@
-import { floor, throttle } from "lodash"
-import { RefObject, useEffect, useRef } from "react"
+import { throttle } from "lodash"
+import { RefObject, useCallback, useContext, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useWindowSize } from "react-use"
@@ -7,11 +7,13 @@ import { Connection } from "@/api/ws"
 import { MovingMessageBin, Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getMousePositionWithIllaUnit } from "./components/DotPanel/calcMouse"
+import { MouseMoveContext } from "./components/DotPanel/context/mouseMoveContext"
 
 const sendMousePosition = (
   appId: string,
   userID: string,
   nickname: string,
+  parentDisplayName: string,
   x: number,
   y: number,
   w: number,
@@ -26,8 +28,8 @@ const sendMousePosition = (
     needBroadcast: true,
     userID,
     nickname,
-    status: isLeave ? -1 : 0,
-    parentDisplayName: "",
+    status: isLeave ? -1 : 1,
+    parentDisplayName: parentDisplayName,
     displayNames: "",
     x,
     y,
@@ -42,21 +44,57 @@ const sendMousePosition = (
 export const useMousePositionAsync = (
   containerRef: RefObject<HTMLDivElement>,
   unitWidth: number,
+  displayName: string,
+  isRoot: boolean = false,
 ) => {
   const params = useParams()
   const userInfo = useSelector(getCurrentUser)
   const { width, height } = useWindowSize()
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const sendMessageHandlerRef = useRef(
-    throttle(sendMousePosition, 500, {
+    throttle(sendMousePosition, 50, {
       leading: true,
       trailing: true,
     }),
   )
 
-  useEffect(() => {
-    const mouseAsyncHandler = (e: MouseEvent) => {
+  const mouseMoveContext = useContext(MouseMoveContext)
+  const mouseEnterHandler = useCallback(() => {
+    mouseMoveContext.addHoverWidget(displayName)
+  }, [displayName, mouseMoveContext])
+
+  const mouseLeaveHandler = useCallback(() => {
+    mouseMoveContext.deleteHoverWidget(displayName)
+    if (isRoot) {
+      sendMessageHandlerRef.current(
+        params.appId ?? "",
+        userInfo.userId,
+        userInfo.nickname,
+        displayName,
+        0,
+        0,
+        0,
+        0,
+        true,
+      )
+    }
+  }, [
+    displayName,
+    isRoot,
+    mouseMoveContext,
+    params.appId,
+    userInfo.nickname,
+    userInfo.userId,
+  ])
+
+  const mouseMoveAsyncHandler = useCallback(
+    (e: MouseEvent) => {
       const { clientX, clientY } = e
+      if (
+        mouseMoveContext.hoveredWidgets.length === 0 ||
+        mouseMoveContext.hoveredWidgets.at(-1) !== displayName
+      )
+        return
       const containerRect = containerRef.current?.getBoundingClientRect()
       const containerPosition = {
         x: containerRect?.left ?? 0,
@@ -76,22 +114,45 @@ export const useMousePositionAsync = (
         params.appId ?? "",
         userInfo.userId,
         userInfo.nickname,
+        displayName,
         x,
         y,
         w,
         h,
       )
-    }
+    },
+    [
+      containerRef,
+      displayName,
+      mouseMoveContext.hoveredWidgets,
+      params.appId,
+      unitWidth,
+      userInfo.nickname,
+      userInfo.userId,
+    ],
+  )
+
+  useEffect(() => {
     if (wrapperRef.current) {
-      wrapperRef.current?.addEventListener("mousemove", mouseAsyncHandler)
+      wrapperRef.current.addEventListener("mouseenter", mouseEnterHandler)
+      wrapperRef.current?.addEventListener("mousemove", mouseMoveAsyncHandler)
+      wrapperRef.current?.addEventListener("mouseleave", mouseLeaveHandler)
     }
     return () => {
       if (wrapperRef.current)
-        wrapperRef.current?.removeEventListener("mousemove", mouseAsyncHandler)
+        wrapperRef.current.removeEventListener("mouseenter", mouseEnterHandler)
+      wrapperRef.current?.removeEventListener(
+        "mousemove",
+        mouseMoveAsyncHandler,
+      )
+      wrapperRef.current?.removeEventListener("mouseleave", mouseLeaveHandler)
     }
   }, [
     containerRef,
     height,
+    mouseEnterHandler,
+    mouseLeaveHandler,
+    mouseMoveAsyncHandler,
     params.appId,
     unitWidth,
     userInfo.nickname,
@@ -99,10 +160,17 @@ export const useMousePositionAsync = (
     width,
   ])
 
-  // useEffect(() => {
-  //   const removeCurrentUser = () => {}
-  //   document.addEventListener("blur")
-  // }, [])
+  useEffect(() => {
+    if (isRoot) {
+      window.addEventListener("blur", mouseLeaveHandler)
+    }
+
+    return () => {
+      if (isRoot) {
+        window.removeEventListener("blur", mouseLeaveHandler)
+      }
+    }
+  }, [isRoot, mouseLeaveHandler])
 
   return { wrapperRef }
 }

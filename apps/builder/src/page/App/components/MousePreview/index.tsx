@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useSelector } from "react-redux"
-import { getCursorArray } from "../../../../redux/currentApp/cursor/cursorSelector"
+import { getCursorArray } from "@/redux/currentApp/cursor/cursorSelector"
 import { Cursor } from "./Cursor"
 import { MousePreviewProps } from "./interface"
 
@@ -11,18 +11,24 @@ export const MousePreview: FC<MousePreviewProps> = (props) => {
 
   return (
     <>
-      {cursorArray.map((item) => (
-        <Cursor
-          key={item.userID}
-          nickName={item.nickname}
-          userID={item.userID}
-          decimalPartX={item.x}
-          decimalPartY={item.y}
-          integerPartX={item.w}
-          integerPartY={item.h}
-          unitW={unitW}
-        />
-      ))}
+      {cursorArray.map((item) => {
+        const currentItem = item[0]
+        return (
+          currentItem?.parentDisplayName === displayName && (
+            <Cursor
+              key={currentItem.userID}
+              nickName={currentItem.nickname}
+              userID={currentItem.userID}
+              decimalPartX={currentItem.x}
+              decimalPartY={currentItem.y}
+              integerPartX={currentItem.w}
+              integerPartY={currentItem.h}
+              status={currentItem.status}
+              unitW={unitW}
+            />
+          )
+        )
+      })}
     </>
   )
 }

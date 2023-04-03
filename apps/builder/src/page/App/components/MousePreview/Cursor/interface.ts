@@ -10,5 +10,6 @@ export interface CursorProps {
   integerPartY: number
   decimalPartX: number
   decimalPartY: number
+  status: number
   unitW: number
 }

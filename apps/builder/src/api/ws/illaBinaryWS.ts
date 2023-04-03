@@ -5,8 +5,8 @@ import {
 } from "@/api/ws/interface"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
 import store from "@/store"
-import { cursorActions } from "../../redux/currentApp/cursor/cursorSlice"
 import { MovingMessageBin } from "./ILLA_PROTO"
 
 const HEARTBEAT_PING_TIMEOUT = 2 * 1000
@@ -156,12 +156,14 @@ export class ILLABinaryWebsocket {
     const unit8ArrayMessage = new Uint8Array(message)
 
     const payload = MovingMessageBin.fromBinary(unit8ArrayMessage)
-    if (payload.displayNames == "") {
+    if (payload.status === 1 || payload.status === -1) {
       const lastUpdateTime = new Date().getTime()
       store.dispatch(
         cursorActions.updateCursorReducer({
           userID: payload.userID,
           nickname: payload.nickname,
+          parentDisplayName: payload.parentDisplayName,
+          status: payload.status,
           x: payload.x,
           y: payload.y,
           w: payload.w,
