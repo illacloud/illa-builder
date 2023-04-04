@@ -1,6 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { applyChange } from "deep-diff"
-import { cloneDeep, has, set } from "lodash"
+import { has, set } from "lodash"
 import {
   DependenciesState,
   ErrorShape,
@@ -10,7 +10,6 @@ import {
   executionInitialState,
   setExecutionResultPayload,
 } from "@/redux/currentApp/executionTree/executionState"
-import { isWidget } from "@/utils/executionTreeHelper/utils"
 import { CUSTOM_STORAGE_PREFIX } from "@/utils/storage"
 import { isObject } from "@/utils/typeHelper"
 
@@ -174,6 +173,18 @@ export const batchUpdateWidgetLayoutInfoReducer: CaseReducer<
       ...layoutInfo,
     }
   })
+}
+
+export const updateWidgetLayoutInfoWhenChangeDisplayNameReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<{ oldDisplayName: string; newDisplayName: string }>
+> = (state, action) => {
+  const { oldDisplayName, newDisplayName } = action.payload
+  const widgetsLayoutInfo = state.widgetsLayoutInfo
+  const currentWidget = widgetsLayoutInfo[oldDisplayName]
+  if (!currentWidget) return
+  delete widgetsLayoutInfo[oldDisplayName]
+  widgetsLayoutInfo[newDisplayName] = currentWidget
 }
 
 export const setGlobalStateInExecutionReducer: CaseReducer<
