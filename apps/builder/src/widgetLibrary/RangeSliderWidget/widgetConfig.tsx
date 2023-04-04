@@ -9,7 +9,7 @@ export const RANGE_SLIDER_WIDGET_CONFIG: WidgetConfig = {
   icon: <RangeSliderWidgetIcon />,
   keywords: ["Range Slider", "范围滑动输入条"],
   sessionType: "INPUTS",
-  w: 25,
+  w: 23,
   h: 10,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

@@ -11,7 +11,7 @@ export const SLIDER_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     },
   ],
   methods: [
-    "satValue",
+    "setValue",
     "validate",
     "clearValue",
     "clearValidation",

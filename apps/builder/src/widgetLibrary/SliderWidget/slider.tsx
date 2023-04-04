@@ -64,13 +64,8 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
           </span>
         )}
         <Slider
-          showTicks={!hideOutput}
+          hideValue={hideOutput}
           onChange={onChangeSliderValue}
-          // onChange={onChange}
-          // onChange={(value) => {
-          //   handleUpdateDsl({ value })
-          //   handleOnChange?.()
-          // }}
           isRange={false}
           ref={ref}
           {...props}
@@ -146,7 +141,6 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
   )
 
   useEffect(() => {
-    console.log("-----", value)
     handleUpdateGlobalData?.(displayName, {
       value,
       setValue: (value: number) => {
@@ -218,15 +212,17 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
           />
         </div>
       </TooltipWrapper>
-      <div
-        css={applyValidateMessageWrapperStyle(
-          labelWidth,
-          labelPosition,
-          labelHidden || !label,
-        )}
-      >
-        <InvalidMessage validateMessage={validateMessage} />
-      </div>
+      {hideValidationMessage && (
+        <div
+          css={applyValidateMessageWrapperStyle(
+            labelWidth,
+            labelPosition,
+            labelHidden || !label,
+          )}
+        >
+          <InvalidMessage validateMessage={validateMessage} />
+        </div>
+      )}
     </AutoHeightContainer>
   )
 }
