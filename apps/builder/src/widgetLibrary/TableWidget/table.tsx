@@ -1,3 +1,4 @@
+import { PaginationState } from "@tanstack/react-table"
 import { RowSelectionState } from "@tanstack/table-core"
 import { cloneDeep, isEqual } from "lodash"
 import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
@@ -46,16 +47,19 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
     const onRowSelectionChange = useCallback(
       (value?: RowSelectionState) => {
         let selectedRow: unknown[] = []
+        let selectedRowIndex: unknown[] = []
         if (isObject(value)) {
           Object.keys(value)?.map((key) => {
             const index = Number(key)
             if (formatData[index]) {
               selectedRow.push(formatData[index])
+              selectedRowIndex.push(index)
             }
           })
         }
         const updateValue = {
-          selectedRow: selectedRow,
+          selectedRowIndex,
+          selectedRow,
           rowSelection: value,
         }
         if (mode === "edit") {
@@ -101,8 +105,30 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         columnVisibility={columnVisibility}
         multiRowSelection={multiRowSelection}
         onSortingChange={handleOnSortingChange}
-        onPaginationChange={handleOnPaginationChange}
-        onColumnFiltersChange={handleOnColumnFiltersChange}
+        onPaginationChange={(paginationState) => {
+          console.log(paginationState, "paginationState")
+          const { pageIndex, pageSize } = paginationState
+          const paginationOffset = pageIndex > 0 ? pageIndex * pageSize : 0
+          const updateValue = {
+            pageIndex,
+            paginationOffset,
+          }
+          if (mode === "edit") {
+            handleUpdateOriginalDSLMultiAttr(updateValue)
+          } else {
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: updateValue,
+              },
+            ])
+          }
+          handleOnPaginationChange?.()
+        }}
+        onColumnFiltersChange={(filterState) => {
+          console.log(filterState, "filterState")
+          handleOnColumnFiltersChange?.()
+        }}
         onRowSelectionChange={onRowSelectionChange}
       />
     )
