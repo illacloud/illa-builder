@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit"
-import { Connection, getPayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/interface"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { RootState } from "@/store"
 
 export const resourcesAsync = (
@@ -16,10 +16,10 @@ export const resourcesAsync = (
   switch (reduxAction) {
     case "addResourceItemReducer": {
       if (currentAppID) {
-        Connection.getRoom("app", currentAppID)?.send(
-          getPayload(
-            Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
-            Target.TARGET_RESOURCE,
+        Connection.getTextRoom("app", currentAppID)?.send(
+          getTextMessagePayload(
+            Signal.GLOBAL_BROADCAST_ONLY,
+            Target.RESOURCE,
             true,
             action,
             teamID,
@@ -28,10 +28,10 @@ export const resourcesAsync = (
           ),
         )
       } else {
-        Connection.getRoom("dashboard", "")?.send(
-          getPayload(
-            Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
-            Target.TARGET_RESOURCE,
+        Connection.getTextRoom("dashboard", "")?.send(
+          getTextMessagePayload(
+            Signal.GLOBAL_BROADCAST_ONLY,
+            Target.RESOURCE,
             true,
             action,
             teamID,
@@ -44,10 +44,10 @@ export const resourcesAsync = (
     }
     case "updateResourceItemReducer": {
       if (currentAppID) {
-        Connection.getRoom("app", currentAppID)?.send(
-          getPayload(
-            Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
-            Target.TARGET_RESOURCE,
+        Connection.getTextRoom("app", currentAppID)?.send(
+          getTextMessagePayload(
+            Signal.GLOBAL_BROADCAST_ONLY,
+            Target.RESOURCE,
             true,
             action,
             teamID,
@@ -56,10 +56,10 @@ export const resourcesAsync = (
           ),
         )
       } else {
-        Connection.getRoom("dashboard", "")?.send(
-          getPayload(
-            Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
-            Target.TARGET_RESOURCE,
+        Connection.getTextRoom("dashboard", "")?.send(
+          getTextMessagePayload(
+            Signal.GLOBAL_BROADCAST_ONLY,
+            Target.RESOURCE,
             true,
             action,
             teamID,
@@ -73,10 +73,10 @@ export const resourcesAsync = (
     }
     case "removeResourceItemReducer": {
       if (currentAppID) {
-        Connection.getRoom("app", currentAppID)?.send(
-          getPayload(
-            Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
-            Target.TARGET_RESOURCE,
+        Connection.getTextRoom("app", currentAppID)?.send(
+          getTextMessagePayload(
+            Signal.GLOBAL_BROADCAST_ONLY,
+            Target.RESOURCE,
             true,
             action,
             teamID,
@@ -85,10 +85,10 @@ export const resourcesAsync = (
           ),
         )
       } else {
-        Connection.getRoom("dashboard", "")?.send(
-          getPayload(
-            Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
-            Target.TARGET_RESOURCE,
+        Connection.getTextRoom("dashboard", "")?.send(
+          getTextMessagePayload(
+            Signal.GLOBAL_BROADCAST_ONLY,
+            Target.RESOURCE,
             true,
             action,
             teamID,

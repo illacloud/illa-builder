@@ -201,7 +201,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               "raw",
               "binary",
             ]}
-            bdRadius={bodyType === "raw" ? " 8px 0 0 8px" : "8px"}
+            bdRadius={bodyType === "raw" ? "8px 0 0 8px" : "8px"}
             onChange={(v) => handleActionTypeChange(v as string)}
           />
           {bodyType === "raw" && (

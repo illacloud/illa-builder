@@ -12,16 +12,20 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
-  errorIconStyle,
-  errorMsgStyle,
-} from "@/page/App/components/Actions/ClickhouseConfigElement/style"
-import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
+  applyConfigItemLabelText,
+  configItemTip,
   connectType,
   connectTypeStyle,
+  container,
+  divider,
+  errorIconStyle,
+  errorMsgStyle,
+  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
@@ -33,22 +37,12 @@ import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { MicrosoftSqlConfigElementProps } from "./interface"
-import {
-  applyConfigItemLabelText,
-  configItemTip,
-  container,
-  divider,
-  footerStyle,
-} from "./style"
 
-export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
-  props,
-) => {
+export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
   const { t } = useTranslation()
 
-  const { control, handleSubmit, getValues, formState } = useForm({
+  const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
@@ -59,14 +53,11 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
     ) as Resource<MicrosoftSqlResource>
   })
 
-  const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
-  const handleSwitchValueChange = useCallback((open: boolean | string) => {
-    setSSLOpen(!!open)
-  }, [])
+  const sslOpen = watch("ssl", resource?.content.ssl.ssl ?? false)
 
   const handleConnectionTest = useCallback(() => {
     const data = getValues()
@@ -332,7 +323,6 @@ export const MicrosoftSqlConfigElement: FC<MicrosoftSqlConfigElementProps> = (
           control={control}
           defaultValue={resource?.content.ssl.ssl}
           name="ssl"
-          onValueChange={handleSwitchValueChange}
           contentLabel={t("editor.action.resource.db.tip.ssl_options")}
         />
 

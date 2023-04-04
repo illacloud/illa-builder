@@ -119,14 +119,12 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
           ]}
           name="host"
           tips={
-            formState.errors.host ? (
+            formState.errors.host && (
               <div css={errorMsgStyle}>
-                <>
-                  <WarningCircleIcon css={errorIconStyle} />
-                  {formState.errors.host.message}
-                </>
+                <WarningCircleIcon css={errorIconStyle} />
+                <>{formState.errors.host.message}</>
               </div>
-            ) : null
+            )
           }
         />
         <ControlledElement

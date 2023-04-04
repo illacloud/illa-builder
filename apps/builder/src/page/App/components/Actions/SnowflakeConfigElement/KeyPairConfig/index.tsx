@@ -3,6 +3,7 @@ import { Control } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { SnowflakeKeyAuthenticationType } from "@/redux/resource/snowflakeResource"
+import { validate } from "@/utils/form"
 
 export const KeyPairConfig: FC<
   SnowflakeKeyAuthenticationType & {
@@ -20,7 +21,7 @@ export const KeyPairConfig: FC<
         isRequired
         rules={[
           {
-            required: true,
+            validate,
           },
         ]}
         title={t("editor.action.resource.db.label.username")}
@@ -36,7 +37,7 @@ export const KeyPairConfig: FC<
         isRequired
         rules={[
           {
-            required: true,
+            validate,
           },
         ]}
         title={t("editor.action.resource.db.label.private_key")}

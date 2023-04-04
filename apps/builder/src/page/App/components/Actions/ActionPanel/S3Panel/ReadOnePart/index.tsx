@@ -1,15 +1,10 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Select } from "@illa-design/react"
-import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
-import {
-  codeEditorLabelStyle,
-  s3ItemCodeEditorStyle,
-  s3ItemStyle,
-} from "@/page/App/components/Actions/ActionPanel/S3Panel/style"
+import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -30,85 +25,61 @@ export const ReadOnePart: FC<S3ActionPartProps> = (props) => {
   const commandArgs = props.commandArgs as ReadOneContent
   const isShowSignedURL = commandArgs.signedURL
 
-  const handleValueChange = (value: string | boolean, name: string) => {
-    dispatch(
-      configActions.updateCachedAction({
-        ...cachedAction,
-        content: {
-          ...cachedAction.content,
-          commandArgs: {
-            ...commandArgs,
-            [name]: value,
-          } as ReadOneContent,
-        },
-      }),
-    )
-  }
+  const handleValueChange = useCallback(
+    (name: string) => (value: string | boolean) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...cachedAction.content,
+            commandArgs: {
+              ...commandArgs,
+              [name]: value,
+            } as ReadOneContent,
+          },
+        }),
+      )
+    },
+    [cachedAction, commandArgs, dispatch],
+  )
 
   return (
     <>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.bucket_name")}
-        </span>
-        <CodeEditor
-          singleLine
-          wrapperCss={s3ItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.bucketName}
-          modalTitle={t("editor.action.panel.s3.bucket_name")}
-          onChange={(value) => handleValueChange(value, "bucketName")}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.object_key")}
-        </span>
-        <CodeEditor
-          singleLine
-          wrapperCss={s3ItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={commandArgs.objectKey}
-          modalTitle={t("editor.action.panel.s3.object_key")}
-          onChange={(value) => handleValueChange(value, "objectKey")}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.generate_signed_url")}
-        </span>
-        <Select
-          key="read"
-          colorScheme="techPurple"
-          showSearch={true}
-          value={+commandArgs.signedURL}
-          ml="16px"
-          w="100%"
-          onChange={(value) => handleValueChange(!!value, "signedURL")}
-          options={SelectOption}
-          z="0"
-        />
-      </div>
+      <InputEditor
+        title={t("editor.action.panel.s3.bucket_name")}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={commandArgs.bucketName}
+        onChange={handleValueChange("bucketName")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
+      <InputEditor
+        title={t("editor.action.panel.s3.object_key")}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={commandArgs.objectKey}
+        onChange={handleValueChange("objectKey")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
+      <SingleTypeComponent
+        showSearch={true}
+        componentType="select"
+        onChange={(value) => handleValueChange("signedURL")(!!value)}
+        options={SelectOption}
+        value={+commandArgs.signedURL}
+        title={t("editor.action.panel.s3.generate_signed_url")}
+        style={{
+          position: "relative",
+          zIndex: 0,
+        }}
+      />
       {isShowSignedURL && (
-        <div css={s3ItemStyle}>
-          <span css={codeEditorLabelStyle}>
-            {t("editor.action.panel.s3.generate_signed_url")}
-          </span>
-          <CodeEditor
-            key="read"
-            singleLine
-            wrapperCss={s3ItemCodeEditorStyle}
-            lang={CODE_LANG.JAVASCRIPT}
-            value={String(commandArgs.expiry)}
-            modalTitle={t(
-              "editor.action.panel.s3.expiry_duration_of_signed_url",
-            )}
-            onChange={(value) => handleValueChange(value, "expiry")}
-            expectValueType={VALIDATION_TYPES.NUMBER}
-          />
-        </div>
+        <InputEditor
+          title={t("editor.action.panel.s3.generate_signed_url")}
+          key="read"
+          mode={CODE_LANG.JAVASCRIPT}
+          value={String(commandArgs.expiry)}
+          onChange={handleValueChange("expiry")}
+          expectedType={VALIDATION_TYPES.NUMBER}
+        />
       )}
     </>
   )

@@ -1411,6 +1411,17 @@
         "name": "Name",
         "audio": {
           "audio_url": "Audio URL"
+        },
+        "map": {
+          "markers": "Markers",
+          "initial_location": "Initial location",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Latitude field name",
+          "longitude_field_name": "Longitude field name",
+          "zoom": "Zoom",
+          "enable_add_markers": "Enable add markers",
+          "enable_search_locati": "Enable search location",
+          "enable_clustering": "Enable clustering"
         }
       },
       "setter_tooltip": {
@@ -1508,6 +1519,17 @@
         },
         "audio": {
           "audio_url": "Supports direct links to any common audio file type or the links to some audio services"
+        },
+        "map": {
+          "markers": "To set markers on the map. The markers should be an array of objects with the same properties as the Default markers.",
+          "initial_location": "When initializing the map, the default centered display position",
+          "default_markers": "The default markers displayed when initializing the map. You can set it dynamically with the JavaScript in {{}}. ",
+          "latitude_field_name": "The latitude is taken from which property of the Initial location and Default markers objects.",
+          "longitude_field_name": "The longitude is taken from which property of the Initial location and Default markers objects.",
+          "zoom": "To set the map zoom",
+          "enable_add_markers": "Whether to allow users to add markers by clicking on the map",
+          "enable_search_locati": "Whether to allow users to search for location",
+          "enable_clustering": "Whether to allow multiple markers to aggregate when the map is zoomed out"
         }
       },
       "setter_option": {
@@ -1568,7 +1590,10 @@
       },
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
-        "choose_up_to": "Please choose up to {{max}} options."
+        "choose_up_to": "Please choose up to {{max}} options.",
+        "map": {
+          "zoom": "Please set a value between 1 and 22"
+        }
       },
       "setter_description": {
         "code": {
@@ -1697,6 +1722,11 @@
       "setLocalStorage": "Set local storage",
       "audio": {
         "set_audio_url": "Set audio URL"
+      },
+      "map": {
+        "marker_selected": "Marker selected",
+        "marker_created": "Marker created",
+        "markers_changed": "Markers changed"
       }
     },
     "tutorial": {
@@ -1763,6 +1793,9 @@
           "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
+    },
+    "global": {
+      "size_exceed": "Data size exceeds limit (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)"
     }
   },
   "exit_preview": "Exit Preview",
@@ -2125,7 +2158,10 @@
       "no_audio": "No audio"
     },
     "collaborative": {
-      "no_name": "Empty username"
+      "no_name": "No name"
+    },
+    "map": {
+      "name": "Map"
     }
   },
   "page": {

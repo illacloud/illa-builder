@@ -62,7 +62,6 @@ const getMethod = (actionType: ActionType) => {
 
 export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
-
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     RestApiAction<BodyContent>
   >
@@ -70,7 +69,6 @@ export const RestApiPanel: FC = () => {
     RestApiAction<BodyContent>
   >
   const isHuggingFace = cachedAction.actionType === "huggingface"
-
   const content = cachedAction.content as RestApiAction<BodyContent>
   const dispatch = useDispatch()
 
@@ -174,7 +172,6 @@ export const RestApiPanel: FC = () => {
             }}
           />
         </div>
-
         <RecordEditor
           records={content.urlParams}
           label={t("editor.action.resource.restapi.label.url_parameters")}

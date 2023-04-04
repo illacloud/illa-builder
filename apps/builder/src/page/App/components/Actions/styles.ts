@@ -120,3 +120,11 @@ export const errorIconStyle: SerializedStyles = css`
   top: 3px;
   left: 0;
 `
+
+export const privateKeyItem = css`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding-top: 8px;
+  padding-left: 24px;
+`

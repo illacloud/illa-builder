@@ -70,4 +70,5 @@ export const hostInputContainer = css`
   flex-direction: row;
   width: 100%;
   align-items: center;
+  gap: 8px;
 `
