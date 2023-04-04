@@ -7,6 +7,7 @@ export const applyLabelAndComponentWrapperStyle = (
     return css`
       display: flex;
       align-items: center;
+      justify-content: space-between;
     `
   }
   if (labelPosition === "right") {
@@ -14,6 +15,7 @@ export const applyLabelAndComponentWrapperStyle = (
       display: flex;
       flex-direction: row-reverse;
       align-items: center;
+      justify-content: space-between;
     `
   }
   return css``

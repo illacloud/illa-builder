@@ -72,7 +72,7 @@ export const WrappedRangeSlider = forwardRef<
       )}
       <Slider
         value={[startValue, endValue]}
-        showTicks={!hideOutput}
+        hideValue={hideOutput}
         onChange={onChangeSliderValue}
         isRange={true}
         ref={ref}
@@ -225,15 +225,17 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
           />
         </div>
       </TooltipWrapper>
-      <div
-        css={applyValidateMessageWrapperStyle(
-          labelWidth,
-          labelPosition,
-          labelHidden || !label,
-        )}
-      >
-        <InvalidMessage validateMessage={validateMessage} />
-      </div>
+      {hideValidationMessage && (
+        <div
+          css={applyValidateMessageWrapperStyle(
+            labelWidth,
+            labelPosition,
+            labelHidden || !label,
+          )}
+        >
+          <InvalidMessage validateMessage={validateMessage} />
+        </div>
+      )}
     </AutoHeightContainer>
   )
 }
