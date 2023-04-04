@@ -10,4 +10,5 @@ export interface BasicContainerProps {
   safeRowNumber?: number
   addedRowNumber: number
   blockColumns?: number
+  displayNamePrefix?: string
 }
