@@ -257,6 +257,8 @@ export const transformEvents = (
         "setEndValue",
         "setSpeed",
         "seekTo",
+        "setStartTime",
+        "setEndTime",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
