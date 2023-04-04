@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit"
-import { Connection, getPayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/interface"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { RootState } from "@/store"
 
 export const actionsAsync = (
@@ -15,10 +15,10 @@ export const actionsAsync = (
   const { payload } = action
   switch (reduxAction) {
     case "addActionItemReducer": {
-      Connection.getRoom("app", currentAppID)?.send(
-        getPayload(
-          Signal.SIGNAL_ONLY_BROADCAST,
-          Target.TARGET_ACTION,
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.BROADCAST_ONLY,
+          Target.ACTION,
           true,
           action,
           teamID,
@@ -29,10 +29,10 @@ export const actionsAsync = (
       break
     }
     case "removeActionItemReducer": {
-      Connection.getRoom("app", currentAppID)?.send(
-        getPayload(
-          Signal.SIGNAL_ONLY_BROADCAST,
-          Target.TARGET_ACTION,
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.BROADCAST_ONLY,
+          Target.ACTION,
           true,
           action,
           teamID,
@@ -43,10 +43,10 @@ export const actionsAsync = (
       break
     }
     case "updateActionItemReducer": {
-      Connection.getRoom("app", currentAppID)?.send(
-        getPayload(
-          Signal.SIGNAL_ONLY_BROADCAST,
-          Target.TARGET_ACTION,
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.BROADCAST_ONLY,
+          Target.ACTION,
           true,
           action,
           teamID,
@@ -57,10 +57,10 @@ export const actionsAsync = (
       break
     }
     case "updateActionDisplayNameReducer": {
-      Connection.getRoom("app", currentAppID)?.send(
-        getPayload(
-          Signal.SIGNAL_ONLY_BROADCAST,
-          Target.TARGET_ACTION,
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.BROADCAST_ONLY,
+          Target.ACTION,
           true,
           action,
           teamID,
@@ -71,10 +71,10 @@ export const actionsAsync = (
       break
     }
     case "batchUpdateMultiActionSlicePropsReducer": {
-      Connection.getRoom("app", currentAppID)?.send(
-        getPayload(
-          Signal.SIGNAL_ONLY_BROADCAST,
-          Target.TARGET_ACTION,
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.BROADCAST_ONLY,
+          Target.ACTION,
           true,
           action,
           teamID,

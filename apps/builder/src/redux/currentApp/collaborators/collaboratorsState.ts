@@ -1,5 +1,5 @@
 export interface CollaboratorsInfo {
-  id: string | number
+  id: string
   nickname: string
   avatar: string
 }

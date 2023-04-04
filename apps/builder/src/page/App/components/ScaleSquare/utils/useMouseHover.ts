@@ -1,23 +1,21 @@
-import { MouseEvent, useCallback, useEffect } from "react"
+import { MouseEvent, useCallback, useContext, useEffect } from "react"
 import { useDragDropManager } from "react-dnd"
 import { useDispatch } from "react-redux"
-import { getHoveredComponents } from "@/redux/config/configSelector"
+import { MouseHoverContext } from "@/page/App/components/DotPanel/context/mouseHoverContext"
 import { configActions } from "@/redux/config/configSlice"
-import store from "@/store"
 
 export const useMouseHover = () => {
   const dragDropManager = useDragDropManager()
   const isDragging = dragDropManager.getMonitor().isDragging()
   const dispatch = useDispatch()
+  const hoverContext = useContext(MouseHoverContext)
 
   useEffect(() => {
     if (isDragging) {
-      dispatch(configActions.updateHoveredComponent([]))
+      hoverContext.hoveredWidgets.length > 0 &&
+        dispatch(configActions.updateHoveredComponent([]))
     }
-    return () => {
-      dispatch(configActions.updateHoveredComponent([]))
-    }
-  }, [dispatch, isDragging])
+  }, [dispatch, hoverContext.hoveredWidgets.length, isDragging])
 
   const handleMouseEnter = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -25,15 +23,9 @@ export const useMouseHover = () => {
       const currentDisplayName =
         e.currentTarget.getAttribute("data-displayname")
       if (!currentDisplayName) return
-      const rootState = store.getState()
-      const hoveredComponents = getHoveredComponents(rootState)
-
-      const newHoveredComponents = Array.from(
-        new Set([...hoveredComponents, currentDisplayName]),
-      )
-      dispatch(configActions.updateHoveredComponent(newHoveredComponents))
+      hoverContext.addHoverWidget(currentDisplayName)
     },
-    [dispatch, isDragging],
+    [hoverContext, isDragging],
   )
 
   const handleMouseLeave = useCallback(
@@ -41,14 +33,9 @@ export const useMouseHover = () => {
       const currentDisplayName =
         e.currentTarget.getAttribute("data-displayname")
       if (!currentDisplayName) return
-      const rootState = store.getState()
-      const hoveredComponents = getHoveredComponents(rootState)
-      const newHoveredComponents = hoveredComponents.filter(
-        (hDisplayName) => hDisplayName !== currentDisplayName,
-      )
-      dispatch(configActions.updateHoveredComponent(newHoveredComponents))
+      hoverContext.deleteHoverWidget(currentDisplayName)
     },
-    [dispatch],
+    [hoverContext],
   )
 
   return {
