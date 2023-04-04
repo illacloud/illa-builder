@@ -8,7 +8,7 @@ interface ItemPosition {
   y: number
 }
 
-interface CanvasPosition {
+export interface CanvasPosition {
   x: number
   y: number
 }

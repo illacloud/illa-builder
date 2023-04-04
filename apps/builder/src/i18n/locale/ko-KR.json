@@ -353,7 +353,7 @@
           "disable": "폐쇄",
           "enable": "켜다",
           "new": "추가하다",
-          "run": "운영",
+          "run": "실행하다",
           "save": "저장",
           "save_and_run": "저장 및 실행",
           "save_fail": "저장 실패",
@@ -753,7 +753,7 @@
             "private_key": "개인 키",
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL 옵션",
-            "username_password": "사용자 이름 비밀번호",
+            "username_password": "사용자 이름/비밀번호",
             "self_signed_certificate": "자가 서명 인증서 사용",
             "disable_introspection": "Disable Introspection",
             "value": "Value",
@@ -779,7 +779,7 @@
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
             "database": "acme_production",
             "database_index": "기본값 0",
-            "hostname": "CPU 이름",
+            "hostname": "호스트 이름",
             "hosturl": "예를 들어 https://example.com",
             "mongo_certificate": "-----RSA 개인 키 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----RSA 개인 키 종료-----\n -----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----\n",
             "name": "ie \"Users DB(읽기전용)\" 또는 \"Internal Admin API\"",
@@ -1411,6 +1411,17 @@
         "name": "이름",
         "audio": {
           "audio_url": "오디오 URL"
+        },
+        "map": {
+          "markers": "마커",
+          "initial_location": "초기 위치",
+          "default_markers": "기본 마커",
+          "latitude_field_name": "위도 필드 이름",
+          "longitude_field_name": "경도 필드 이름",
+          "zoom": "줌",
+          "enable_add_markers": "마커 추가 활성화",
+          "enable_search_locati": "검색 위치 활성화",
+          "enable_clustering": "클러스터링 활성화"
         }
       },
       "setter_tooltip": {
@@ -1508,6 +1519,17 @@
         },
         "audio": {
           "audio_url": "일반적인 오디오 파일 유형에 대한 직접 링크 또는 일부 오디오 서비스에 대한 링크를 지원합니다."
+        },
+        "map": {
+          "markers": "지도에 마커를 설정합니다. 마커는 기본 마커와 동일한 속성을 가진 객체의 배열이어야 합니다.",
+          "initial_location": "지도 초기화 시 기본 중앙 표시 위치",
+          "default_markers": "지도를 초기화할 때 표시되는 기본 마커입니다. {{}}에서 자바스크립트를 사용하여 동적으로 설정할 수 있습니다.",
+          "latitude_field_name": "위도는 초기 위치 및 기본 마커 개체의 속성에서 가져옵니다.",
+          "longitude_field_name": "경도는 초기 위치 및 기본 마커 개체의 속성에서 가져옵니다.",
+          "zoom": "지도 줌을 설정하려면",
+          "enable_add_markers": "사용자가 지도를 클릭하여 마커를 추가하도록 허용할지 여부",
+          "enable_search_locati": "사용자가 위치를 검색하도록 허용할지 여부",
+          "enable_clustering": "지도가 축소될 때 여러 마커가 집계되도록 허용할지 여부"
         }
       },
       "setter_option": {
@@ -1568,7 +1590,10 @@
       },
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
-        "choose_up_to": "Please choose up to {{max}} options."
+        "choose_up_to": "Please choose up to {{max}} options.",
+        "map": {
+          "zoom": "1에서 22 사이의 값을 설정하십시오."
+        }
       },
       "setter_description": {
         "code": {
@@ -1697,6 +1722,11 @@
       "setLocalStorage": "로컬 저장소",
       "audio": {
         "set_audio_url": "오디오 링크 설정"
+      },
+      "map": {
+        "marker_selected": "선택된 마커",
+        "marker_created": "마커 생성됨",
+        "markers_changed": "마커가 변경됨"
       }
     },
     "tutorial": {
@@ -1763,6 +1793,9 @@
           "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
+    },
+    "global": {
+      "size_exceed": "데이터 크기가 한도를 초과합니다(현재 크기: {{current_size}} 바이트, 한도: {{limit_size}} 바이트)."
     }
   },
   "exit_preview": "미리보기 종료",
@@ -2125,7 +2158,10 @@
       "no_audio": "오디오 없음"
     },
     "collaborative": {
-      "no_name": "사용자 이름 없음"
+      "no_name": "이름 없음"
+    },
+    "map": {
+      "name": "지도"
     }
   },
   "page": {

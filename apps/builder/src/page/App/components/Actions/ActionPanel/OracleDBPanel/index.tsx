@@ -1,6 +1,8 @@
-import { FC, useCallback } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { BuilderApi } from "@/api/base"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
@@ -18,6 +20,8 @@ import {
   OracleDBActionSQLMode,
   OracleDBActionType,
 } from "@/redux/currentApp/action/oracleDBAction"
+import { ResourcesData } from "@/redux/resource/resourceState"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const OracleDBPanel: FC = () => {
   const { t } = useTranslation()
@@ -25,7 +29,24 @@ export const OracleDBPanel: FC = () => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     OracleDBAction<OracleDBActionType>
   >
+  const currentAction = useSelector(getCachedAction)!!
+  const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
   const content = cachedAction.content ?? OracleDBActionInitial
+
+  useEffect(() => {
+    BuilderApi.teamRequest(
+      {
+        url: `/resources/${currentAction.resourceId}/meta`,
+        method: "GET",
+      },
+      ({ data }: { data: ResourcesData }) => {
+        setSqlTable(data?.schema ?? {})
+      },
+      () => {},
+      () => {},
+      () => {},
+    )
+  }, [currentAction.resourceId])
 
   const handleValueChange = useCallback(
     (name: string) => (value: string) => {
@@ -52,9 +73,13 @@ export const OracleDBPanel: FC = () => {
         <InputEditor
           style={{ height: "88px" }}
           placeholder={t("editor.action.panel.mssql.placeholder.query")}
-          lineNumbers={true}
+          lineNumbers
+          mode={CODE_LANG.SQL}
+          canShowCompleteInfo
+          expectedType={VALIDATION_TYPES.STRING}
           value={(content.opts as OracleDBActionSQLMode).raw}
           onChange={handleValueChange("raw")}
+          sqlScheme={sqlTable}
         />
         <TransformerComponent fullWidth />
       </div>

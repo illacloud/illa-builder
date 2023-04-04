@@ -353,7 +353,7 @@
           "disable": "閉鎖",
           "enable": "オンにする",
           "new": "追加",
-          "run": "走る",
+          "run": "実行する",
           "save": "保存",
           "save_and_run": "保存して実行",
           "save_fail": "保存に失敗しました",
@@ -753,7 +753,7 @@
             "private_key": "秘密鍵",
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL オプション",
-            "username_password": "ユーザー名パスワード",
+            "username_password": "ユーザー名/パスワード",
             "self_signed_certificate": "自己署名証明書を使用",
             "disable_introspection": "Disable Introspection",
             "value": "Value",
@@ -779,7 +779,7 @@
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
             "database": "acme_production",
             "database_index": "デフォルト 0",
-            "hostname": "CPU名",
+            "hostname": "ホスト名",
             "hosturl": "たとえば、https://example.com",
             "mongo_certificate": "-----RSA 秘密鍵の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----END RSA 秘密鍵-----\n -----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----\n",
             "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
@@ -937,7 +937,7 @@
           }
         },
         "button": {
-          "copy_ip": "IPをコピー"
+          "copy_ip": "コピー"
         }
       },
       "resource_choose": {
@@ -1411,6 +1411,17 @@
         "name": "名前",
         "audio": {
           "audio_url": "音声 URL"
+        },
+        "map": {
+          "markers": "マーカー",
+          "initial_location": "初期位置",
+          "default_markers": "デフォルトのマーカー",
+          "latitude_field_name": "緯度フィールド名",
+          "longitude_field_name": "経度フィールド名",
+          "zoom": "ズーム",
+          "enable_add_markers": "マーカーの追加を有効にする",
+          "enable_search_locati": "検索場所を有効にする",
+          "enable_clustering": "クラスタリングを有効にする"
         }
       },
       "setter_tooltip": {
@@ -1508,6 +1519,17 @@
         },
         "audio": {
           "audio_url": "一般的なオーディオ ファイル タイプへの直接リンク、または一部のオーディオ サービスへのリンクをサポート"
+        },
+        "map": {
+          "markers": "地図上にマーカーを設定します。 マーカーは、デフォルト マーカーと同じプロパティを持つオブジェクトの配列である必要があります。",
+          "initial_location": "地図を初期化するとき、デフォルトの中央表示位置",
+          "default_markers": "マップの初期化時に表示されるデフォルトのマーカー。 {{}} の JavaScript で動的に設定できます。",
+          "latitude_field_name": "緯度は、初期位置およびデフォルト マーカー オブジェクトのどのプロパティから取得されます。",
+          "longitude_field_name": "経度は、初期位置およびデフォルト マーカー オブジェクトのどのプロパティから取得されます。",
+          "zoom": "マップのズームを設定するには",
+          "enable_add_markers": "ユーザーが地図をクリックしてマーカーを追加できるようにするかどうか",
+          "enable_search_locati": "ユーザーが場所を検索できるようにするかどうか",
+          "enable_clustering": "マップが縮小されたときに複数のマーカーを集約できるようにするかどうか"
         }
       },
       "setter_option": {
@@ -1568,7 +1590,10 @@
       },
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
-        "choose_up_to": "Please choose up to {{max}} options."
+        "choose_up_to": "Please choose up to {{max}} options.",
+        "map": {
+          "zoom": "1 から 22 までの値を設定してください"
+        }
       },
       "setter_description": {
         "code": {
@@ -1697,6 +1722,11 @@
       "setLocalStorage": "ローカルストレージ",
       "audio": {
         "set_audio_url": "音声リンクを設定"
+      },
+      "map": {
+        "marker_selected": "マーカーが選択されました",
+        "marker_created": "マーカーが作成されました",
+        "markers_changed": "マーカーが変更されました"
       }
     },
     "tutorial": {
@@ -1763,6 +1793,9 @@
           "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
+    },
+    "global": {
+      "size_exceed": "データサイズが制限を超えています (現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)"
     }
   },
   "exit_preview": "プレビューを終了",
@@ -2125,7 +2158,10 @@
       "no_audio": "音声なし"
     },
     "collaborative": {
-      "no_name": "空のユーザー名"
+      "no_name": "ノーネーム"
+    },
+    "map": {
+      "name": "地図"
     }
   },
   "page": {

@@ -1,5 +1,5 @@
-import { Connection, getPayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/interface"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -20,10 +20,10 @@ export const updateSelectedComponentUsersHandler = (payload: string[]) => {
   const currentAppID = store.getState().currentApp.appInfo.appId ?? ""
   const { id: teamID = "", uid = "" } =
     getCurrentTeamInfo(store.getState()) ?? {}
-  Connection.getRoom("app", currentAppID)?.send(
-    getPayload(
-      Signal.SIGNAL_COOPERATE_ATTACH,
-      Target.TARGET_COMPONENTS,
+  Connection.getTextRoom("app", currentAppID)?.send(
+    getTextMessagePayload(
+      Signal.COOPERATE_ATTACH,
+      Target.COMPONENTS,
       true,
       {
         type: "attachComponent",
@@ -40,10 +40,10 @@ export const clearComponentAttachedUsersHandler = (payload: string[]) => {
   const currentAppID = store.getState().currentApp.appInfo.appId ?? ""
   const { id: teamID = "", uid = "" } =
     getCurrentTeamInfo(store.getState()) ?? {}
-  Connection.getRoom("app", currentAppID)?.send(
-    getPayload(
-      Signal.SIGNAL_COOPERATE_DISATTACH,
-      Target.TARGET_COMPONENTS,
+  Connection.getTextRoom("app", currentAppID)?.send(
+    getTextMessagePayload(
+      Signal.COOPERATE_DISATTACH,
+      Target.COMPONENTS,
       true,
       {
         type: "attachComponent",

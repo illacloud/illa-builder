@@ -1,48 +1,42 @@
 import { FC, useCallback, useState } from "react"
-import { Controller, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import {
   Alert,
   Button,
   ButtonGroup,
   Divider,
-  Input,
-  InputNumber,
-  Password,
   PreviousIcon,
-  Switch,
-  TextArea,
   getColor,
-  useMessage,
 } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import {
-  configItem,
+  onActionConfigElementSubmit,
+  onActionConfigElementTest,
+} from "@/page/App/components/Actions/api"
+import {
+  applyConfigItemLabelText,
   configItemTip,
   connectType,
   connectTypeStyle,
+  container,
+  divider,
+  footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { TextLink } from "@/page/User/components/TextLink"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
+import {
+  DbSSL,
+  Resource,
+  generateSSLConfig,
+} from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
-import {
-  applyConfigItemLabelText,
-  container,
-  divider,
-  footerStyle,
-  hostInputContainer,
-  sslItem,
-  sslStyle,
-} from "./style"
 
 /**
  * include mariadb or tidb
@@ -71,164 +65,71 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   const { onBack, resourceType, resourceId, onFinished } = props
 
   const { t } = useTranslation()
-
-  const dispatch = useDispatch()
-
-  const { control, handleSubmit, getValues, formState } = useForm({
+  const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
-
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
       (r) => r.resourceId === resourceId,
     ) as Resource<MysqlLikeResource>
   })
 
-  const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
-  const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-  const message = useMessage()
 
-  const handleSwitchValueChange = useCallback((open: boolean | string) => {
-    setSSLOpen(!!open)
-  }, [])
-
-  const handleHostValueChange = useCallback(
-    (value: string | boolean) => {
-      const isShow = isContainLocalPath((value as string) ?? "")
-      if (isShow !== showAlert) {
-        setShowAlert(isShow)
-      }
-    },
-    [showAlert],
-  )
+  const hostValue = watch("host")
+  const showAlert = isContainLocalPath(hostValue ?? "")
+  const sslOpenWatch = watch("ssl", resource?.content.ssl.ssl ?? false)
 
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
   }
 
+  const handleConnectionTest = useCallback(() => {
+    const data = getValues()
+    onActionConfigElementTest(
+      data,
+      {
+        host: data.host,
+        port: data.port.toString(),
+        databaseName: data.databaseName,
+        databaseUsername: data.databaseUsername,
+        databasePassword: data.databasePassword,
+        ssl: generateSSLConfig(sslOpenWatch, data) as DbSSL,
+      },
+      "mysql",
+      setTestLoading,
+    )
+  }, [getValues, sslOpenWatch])
+
   return (
     <form
-      onSubmit={handleSubmit((data, event) => {
-        if (resourceId != undefined) {
-          BuilderApi.teamRequest<Resource<MysqlLikeResource>>(
-            {
-              method: "PUT",
-              url: `/resources/${resourceId}`,
-              data: {
-                resourceId: data.resourceId,
-                resourceName: data.resourceName,
-                resourceType: resource.resourceType,
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseName: data.databaseName,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                  ssl: generateSSLConfig(sslOpen, data),
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.updateResourceItemReducer(response.data))
-              message.success({
-                content: t("dashboard.resource.save_success"),
-              })
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              message.error({
-                content: error.data.errorMessage,
-              })
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        } else {
-          BuilderApi.teamRequest<Resource<MysqlLikeResource>>(
-            {
-              method: "POST",
-              url: `/resources`,
-              data: {
-                resourceName: data.resourceName,
-                resourceType,
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseName: data.databaseName,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                  ssl: generateSSLConfig(sslOpen, data),
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.addResourceItemReducer(response.data))
-              message.success({
-                content: t("dashboard.resource.save_success"),
-              })
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              message.error({
-                content: error.data.errorMessage,
-              })
-            },
-            () => {
-              message.error({
-                content: t("dashboard.resource.save_fail"),
-              })
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        }
-      })}
+      onSubmit={onActionConfigElementSubmit(
+        handleSubmit,
+        resourceId,
+        "mysql",
+        onFinished,
+        setSaving,
+      )}
     >
       <div css={container}>
         <div css={divider} />
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.name")}
-            </span>
-          </div>
-          <Controller
-            control={control}
-            defaultValue={resource?.resourceName ?? ""}
-            rules={{
-              validate: (value) => value != undefined && value.trim() != "",
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                colorScheme="techPurple"
-                placeholder={t("editor.action.resource.db.placeholder.name")}
-              />
-            )}
-            name="resourceName"
-          />
-        </div>
-        <div css={configItemTip}>
-          {t("editor.action.resource.restapi.tip.name")}
-        </div>
+        <ControlledElement
+          controlledType="input"
+          isRequired
+          title={t("editor.action.resource.db.label.name")}
+          control={control}
+          defaultValue={resource?.resourceName ?? ""}
+          rules={[
+            {
+              validate,
+            },
+          ]}
+          placeholders={[t("editor.action.resource.db.placeholder.name")]}
+          name="resourceName"
+          tips={t("editor.action.resource.restapi.tip.name")}
+        />
         <Divider
           direction="horizontal"
           ml="24px"
@@ -240,61 +141,33 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.general_option")}
         </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.hostname_port")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={resource?.content.host}
-              control={control}
-              rules={{
-                validate,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={(value, e) => {
-                    onChange(value, e)
-                    handleHostValueChange(value)
-                  }}
-                  value={value}
-                  colorScheme="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.hostname",
-                  )}
-                />
-              )}
-              name="host"
-            />
-            <Controller
-              defaultValue={resource?.content.port}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <InputNumber
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  w="142px"
-                  ml="8px"
-                  placeholder={getResourceDefaultPort(resourceType)}
-                />
-              )}
-              name="port"
-            />
-          </div>
-        </div>
-
+        <ControlledElement
+          title={t("editor.action.resource.db.label.hostname_port")}
+          defaultValue={[resource?.content.host, resource?.content.port]}
+          name={["host", "port"]}
+          controlledType={["input", "number"]}
+          control={control}
+          rules={[
+            {
+              validate,
+            },
+            {
+              required: true,
+            },
+          ]}
+          styles={[
+            {
+              flex: 4,
+            },
+            {
+              flex: 1,
+            },
+          ]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.hostname"),
+            getResourceDefaultPort(resourceType),
+          ]}
+        />
         {showAlert && (
           <ControlledElement
             defaultValue=""
@@ -326,91 +199,43 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             }
           />
         )}
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.database")}
-            </span>
-          </div>
-          <Controller
-            defaultValue={resource?.content.databaseName}
-            control={control}
-            rules={{
+        <ControlledElement
+          title={t("editor.action.resource.db.label.database")}
+          defaultValue={resource?.content.databaseName}
+          name="databaseName"
+          controlledType="input"
+          control={control}
+          isRequired
+          rules={[
+            {
+              validate,
+            },
+          ]}
+          placeholders={[t("editor.action.resource.db.placeholder.database")]}
+        />
+        <ControlledElement
+          title={t("editor.action.resource.db.label.username_password")}
+          defaultValue={[
+            resource?.content.databaseUsername,
+            resource?.content.databasePassword,
+          ]}
+          name={["databaseUsername", "databasePassword"]}
+          controlledType={["input", "password"]}
+          control={control}
+          isRequired
+          rules={[
+            {
+              validate,
+            },
+            {
               required: true,
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                colorScheme="techPurple"
-                placeholder={t(
-                  "editor.action.resource.db.placeholder.database",
-                )}
-              />
-            )}
-            name="databaseName"
-          />
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.username_password")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={resource?.content.databaseUsername}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  colorScheme="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.username",
-                  )}
-                />
-              )}
-              name="databaseUsername"
-            />
-            <Controller
-              control={control}
-              defaultValue={resource?.content.databasePassword}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Password
-                  colorScheme="techPurple"
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  ml="8px"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.password",
-                  )}
-                />
-              )}
-              name="databasePassword"
-            />
-          </div>
-        </div>
+            },
+          ]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.username"),
+            t("editor.action.resource.db.placeholder.password"),
+          ]}
+        />
         {isCloudVersion && (
           <>
             <div css={configItemTip}>
@@ -441,18 +266,15 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.advanced_option")}
         </div>
-
         <ControlledElement
           controlledType={["switch"]}
           title={t("editor.action.resource.db.label.ssl_options")}
           control={control}
           defaultValue={resource?.content.ssl.ssl}
           name="ssl"
-          onValueChange={handleSwitchValueChange}
           contentLabel={t("editor.action.resource.db.tip.ssl_options")}
         />
-
-        {sslOpen && (
+        {sslOpenWatch && (
           <>
             <ControlledElement
               controlledType={["textarea"]}
@@ -460,7 +282,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               isRequired
               rules={[
                 {
-                  required: true,
+                  validate,
                 },
               ]}
               control={control}
@@ -470,7 +292,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                 t("editor.action.resource.db.placeholder.certificate"),
               ]}
             />
-
             <ControlledElement
               controlledType={["textarea"]}
               title={t("editor.action.resource.db.label.client_key")}
@@ -481,7 +302,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                 t("editor.action.resource.db.placeholder.certificate"),
               ]}
             />
-
             <ControlledElement
               controlledType={["textarea"]}
               title={t("editor.action.resource.db.label.client_certificate")}
@@ -501,9 +321,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
           variant="text"
           colorScheme="gray"
           type="button"
-          onClick={() => {
-            onBack()
-          }}
+          onClick={onBack}
         >
           {t("back")}
         </Button>
@@ -513,46 +331,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             loading={testLoading}
             disabled={!formState.isValid}
             type="button"
-            onClick={() => {
-              const data = getValues()
-              BuilderApi.teamRequest<Resource<MysqlLikeResource>>(
-                {
-                  method: "POST",
-                  url: `/resources/testConnection`,
-                  data: {
-                    resourceId: data.resourceId,
-                    resourceName: data.resourceName,
-                    resourceType,
-                    content: {
-                      host: data.host,
-                      port: data.port.toString(),
-                      databaseName: data.databaseName,
-                      databaseUsername: data.databaseUsername,
-                      databasePassword: data.databasePassword,
-                      ssl: generateSSLConfig(sslOpen, data),
-                    },
-                  },
-                },
-                (response) => {
-                  message.success({
-                    content: t("dashboard.resource.test_success"),
-                  })
-                },
-                (error) => {
-                  message.error({
-                    content: error.data.errorMessage,
-                  })
-                },
-                () => {
-                  message.error({
-                    content: t("dashboard.resource.test_fail"),
-                  })
-                },
-                (loading) => {
-                  setTestLoading(loading)
-                },
-              )
-            }}
+            onClick={handleConnectionTest}
           >
             {t("editor.action.form.btn.test_connection")}
           </Button>

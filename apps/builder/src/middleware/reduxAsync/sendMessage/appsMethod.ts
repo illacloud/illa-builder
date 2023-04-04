@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit"
-import { Connection, getPayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/interface"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { RootState } from "@/store"
 
 export const appsAsync = (
@@ -15,10 +15,10 @@ export const appsAsync = (
   const { payload } = action
   switch (reduxAction) {
     case "addDashboardAppReducer":
-      Connection.getRoom("dashboard", "")?.send(
-        getPayload(
-          Signal.SIGNAL_CREATE_STATE,
-          Target.TARGET_APPS,
+      Connection.getTextRoom("dashboard", "")?.send(
+        getTextMessagePayload(
+          Signal.CREATE_STATE,
+          Target.APPS,
           true,
           action,
           teamID,
@@ -28,10 +28,10 @@ export const appsAsync = (
       )
       break
     case "removeDashboardAppReducer":
-      Connection.getRoom("dashboard", "")?.send(
-        getPayload(
-          Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
-          Target.TARGET_APPS,
+      Connection.getTextRoom("dashboard", "")?.send(
+        getTextMessagePayload(
+          Signal.GLOBAL_BROADCAST_ONLY,
+          Target.APPS,
           true,
           action,
           teamID,
@@ -41,10 +41,10 @@ export const appsAsync = (
       )
       break
     case "renameDashboardAppReducer":
-      Connection.getRoom("dashboard", "")?.send(
-        getPayload(
-          Signal.SIGNAL_UPDATE_STATE,
-          Target.TARGET_APPS,
+      Connection.getTextRoom("dashboard", "")?.send(
+        getTextMessagePayload(
+          Signal.UPDATE_STATE,
+          Target.APPS,
           true,
           action,
           teamID,
@@ -54,10 +54,10 @@ export const appsAsync = (
       )
       break
     case "modifyConfigDashboardAppReducer":
-      Connection.getRoom("dashboard", "")?.send(
-        getPayload(
-          Signal.SIGNAL_UPDATE_STATE,
-          Target.TARGET_APPS,
+      Connection.getTextRoom("dashboard", "")?.send(
+        getTextMessagePayload(
+          Signal.UPDATE_STATE,
+          Target.APPS,
           true,
           action,
           teamID,

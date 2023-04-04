@@ -1,14 +1,9 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  codeEditorLabelStyle,
-  mongoItemCodeEditorStyle,
-  mongoItemStyle,
-} from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
+import { InputEditor } from "@/page/App/components/InputEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -25,67 +20,45 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     MongoDbAction<MongoDbActionTypeContent>
   >
-
   const typeContent = props.typeContent as BulkWriteContent
+
+  const handleValueChange = useCallback(
+    (name: string) => (value: string) => {
+      dispatch(
+        configActions.updateCachedAction({
+          ...cachedAction,
+          content: {
+            ...cachedAction.content,
+            typeContent: {
+              ...typeContent,
+              [name]: value,
+            } as BulkWriteContent,
+          },
+        }),
+      )
+    },
+    [cachedAction, dispatch, typeContent],
+  )
 
   return (
     <>
-      <div css={mongoItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mongodb.operations")}
-        </span>
-
-        <CodeEditor
-          showLineNumbers
-          height="88px"
-          wrapperCss={mongoItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={typeContent.operations}
-          modalTitle={t("editor.action.panel.mongodb.operations")}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  typeContent: {
-                    ...typeContent,
-                    operations: value,
-                  } as BulkWriteContent,
-                },
-              }),
-            )
-          }}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
-      <div css={mongoItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.mongodb.options")}
-        </span>
-        <CodeEditor
-          showLineNumbers
-          wrapperCss={mongoItemCodeEditorStyle}
-          lang={CODE_LANG.JAVASCRIPT}
-          value={typeContent.options}
-          modalTitle={t("editor.action.panel.mongodb.options")}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  typeContent: {
-                    ...typeContent,
-                    options: value,
-                  } as BulkWriteContent,
-                },
-              }),
-            )
-          }}
-          expectValueType={VALIDATION_TYPES.STRING}
-        />
-      </div>
+      <InputEditor
+        title={t("editor.action.panel.mongodb.operations")}
+        lineNumbers
+        style={{ height: "88px" }}
+        mode={CODE_LANG.JAVASCRIPT}
+        value={typeContent.operations}
+        onChange={handleValueChange("operations")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
+      <InputEditor
+        title={t("editor.action.panel.mongodb.options")}
+        lineNumbers
+        mode={CODE_LANG.JAVASCRIPT}
+        value={typeContent.options}
+        onChange={handleValueChange("options")}
+        expectedType={VALIDATION_TYPES.STRING}
+      />
     </>
   )
 }
