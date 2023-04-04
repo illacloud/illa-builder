@@ -410,13 +410,11 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   // cancel show dot
   useEffect(() => {
     if (isEditMode) {
-      document.addEventListener("visibilitychange", changeShadowHidden)
       window.addEventListener("blur", changeShadowHidden)
     }
 
     return () => {
       if (isEditMode) {
-        document.removeEventListener("visibilitychange", changeShadowHidden)
         window.removeEventListener("blur", changeShadowHidden)
       }
     }

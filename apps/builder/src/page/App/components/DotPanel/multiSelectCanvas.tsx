@@ -154,7 +154,11 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
   }
 
   const onDragEndHandler = (e: SelectoEvents["dragEnd"]) => {
-    if (!prevSelectorStatus.current && !isProductionMode) {
+    if (
+      !prevSelectorStatus.current &&
+      !isProductionMode &&
+      selectedComponents.length > 0
+    ) {
       dispatch(configActions.updateSelectedComponent([]))
     }
     prevSelectorStatus.current = false

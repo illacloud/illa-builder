@@ -23,6 +23,7 @@ import guideReducer from "@/redux/guide/guideSlice"
 import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import teamReducer from "@/redux/team/teamSlice"
+import cursorSlice from "./redux/currentApp/cursor/cursorSlice"
 
 const listenerMiddleware = createListenerMiddleware()
 
@@ -38,6 +39,7 @@ const appReducer = combineReducers({
   appInfo: appInfoReducer,
   collaborators: collaboratorsReducer,
   execution: executionReducer,
+  cursor: cursorSlice,
 })
 
 const dashboardReducer = combineReducers({

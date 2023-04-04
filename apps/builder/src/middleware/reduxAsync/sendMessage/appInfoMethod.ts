@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit"
-import { Connection, getPayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/interface"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { RootState } from "@/store"
 
 export const appInfoAsync = (
@@ -15,10 +15,10 @@ export const appInfoAsync = (
   const { payload } = action
   switch (reduxAction) {
     case "updateAppNameReducer": {
-      Connection.getRoom("app", currentAppID)?.send(
-        getPayload(
-          Signal.SIGNAL_UPDATE_STATE,
-          Target.TARGET_APPS,
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.UPDATE_STATE,
+          Target.APPS,
           true,
           action,
           teamID,

@@ -125,7 +125,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       setForkModalVisible(false)
       deployApp(appId)
     },
-    [deployApp, t],
+    [deployApp, message, t],
   )
 
   const handleClickDeploy = useCallback(() => {
@@ -161,7 +161,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const handleLogoClick = useCallback(() => {
     window.location.href = `/${teamIdentifier}/dashboard/apps`
-  }, [])
+  }, [teamIdentifier])
 
   return (
     <div className={className} css={navBarStyle}>
