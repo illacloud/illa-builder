@@ -15,6 +15,7 @@ import {
   RootComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { MouseHoverProvider } from "./context/mouseHoverContext"
 import { MouseMoveProvider } from "./context/mouseMoveContext"
 import { RenderPage } from "./renderPage"
 
@@ -63,21 +64,23 @@ export const DotPanel: FC = () => {
   if (currentChildrenNode == undefined) return null
 
   return (
-    <MouseMoveProvider>
-      <div
-        css={applyViewportContainerWrapperStyle(
-          mode,
-          viewportSize.viewportWidth,
-          viewportSize.viewportHeight,
-        )}
-      >
-        <RenderPage
-          key={currentDisplayName}
-          pageNode={currentChildrenNode as PageNode}
-          currentPageDisplayName={currentDisplayName}
-        />
-      </div>
-    </MouseMoveProvider>
+    <MouseHoverProvider>
+      <MouseMoveProvider>
+        <div
+          css={applyViewportContainerWrapperStyle(
+            mode,
+            viewportSize.viewportWidth,
+            viewportSize.viewportHeight,
+          )}
+        >
+          <RenderPage
+            key={currentDisplayName}
+            pageNode={currentChildrenNode as PageNode}
+            currentPageDisplayName={currentDisplayName}
+          />
+        </div>
+      </MouseMoveProvider>
+    </MouseHoverProvider>
   )
 }
 
