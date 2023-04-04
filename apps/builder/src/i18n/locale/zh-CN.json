@@ -261,6 +261,9 @@
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
             "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
             "copy_to_sheet_name": "必填。重命名复制后的表"
+          },
+          "tidb": {
+            "ca_certificate": "我们默认填写用于与无服务器层的TLS连接的证书。如需与专用层的TLS连接，<0>点击这里</0>查看配置方法"
           }
         },
         "option": {
