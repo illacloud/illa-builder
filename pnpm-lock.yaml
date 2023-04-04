@@ -74,6 +74,9 @@ importers:
       '@illa-design/react': workspace:*
       '@illa-fe-utils/storage': ^0.0.3
       '@mdx-js/rollup': ^2.3.0
+      '@protobuf-ts/plugin': ^2.8.3
+      '@protobuf-ts/runtime': ^2.8.3
+      '@react-google-maps/api': ^2.18.1
       '@reduxjs/toolkit': ^1.8.1
       '@sentry/react': ^7.17.3
       '@sentry/tracing': ^7.17.3
@@ -83,6 +86,8 @@ importers:
       '@types/codemirror': ^5.60.5
       '@types/deep-diff': ^1.0.1
       '@types/downloadjs': ^1.4.3
+      '@types/fnv-plus': ^1.3.0
+      '@types/google.maps': ^3.52.4
       '@types/jshint': ^2.12.1
       '@types/lodash': ^4.14.191
       '@types/mdx': ^2.0.3
@@ -114,6 +119,7 @@ importers:
       downloadjs: ^1.4.7
       e2e: workspace:*
       events: ^3.3.0
+      fnv-plus: ^1.3.1
       framer-motion: ^7.6.12
       hotkeys-js: ^3.10.1
       i18next: ^22.4.9
@@ -176,11 +182,15 @@ importers:
       '@fontsource/fira-code': 4.5.13
       '@illa-design/react': link:../../illa-design/packages/react
       '@illa-fe-utils/storage': 0.0.3
+      '@protobuf-ts/plugin': 2.8.3
+      '@protobuf-ts/runtime': 2.8.3
+      '@react-google-maps/api': 2.18.1
       '@reduxjs/toolkit': 1.9.2_react-redux@8.0.5
       '@sentry/react': 7.37.0
       '@sentry/tracing': 7.37.0
       '@tanstack/react-table': 8.7.9
       '@tanstack/table-core': 8.7.9
+      '@types/google.maps': 3.52.4
       '@uiw/codemirror-theme-github': 4.19.8_isohugnrbrhzg62i2ejp6vhyvy
       '@uiw/react-color': 1.1.1
       '@uiw/react-color-sketch': 1.1.1
@@ -195,6 +205,7 @@ importers:
       deep-diff: 1.0.2
       downloadjs: 1.4.7
       events: 3.3.0
+      fnv-plus: 1.3.1
       framer-motion: 7.10.3
       hotkeys-js: 3.10.1
       i18next: 22.4.9
@@ -244,6 +255,7 @@ importers:
       '@types/codemirror': 5.60.7
       '@types/deep-diff': 1.0.2
       '@types/downloadjs': 1.4.3
+      '@types/fnv-plus': 1.3.0
       '@types/jshint': 2.12.1
       '@types/lodash': 4.14.191
       '@types/mdx': 2.0.3
@@ -1070,6 +1082,7 @@ importers:
       '@illa-design/result': workspace:*
       '@illa-design/select': workspace:*
       '@illa-design/skeleton': workspace:*
+      '@illa-design/slider': workspace:*
       '@illa-design/space': workspace:*
       '@illa-design/spin': workspace:*
       '@illa-design/statistic': workspace:*
@@ -1130,6 +1143,7 @@ importers:
       '@illa-design/result': link:../result
       '@illa-design/select': link:../select
       '@illa-design/skeleton': link:../skeleton
+      '@illa-design/slider': link:../slider
       '@illa-design/space': link:../space
       '@illa-design/spin': link:../spin
       '@illa-design/statistic': link:../statistic
@@ -1202,6 +1216,27 @@ importers:
     dependencies:
       '@illa-design/system': link:../system
       '@illa-design/theme': link:../theme
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1
+      '@vitejs/plugin-react-swc': 3.1.0
+
+  illa-design/packages/slider:
+    specifiers:
+      '@illa-design/icon': workspace:*
+      '@illa-design/system': workspace:*
+      '@illa-design/theme': workspace:*
+      '@illa-design/trigger': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@vitejs/plugin-react-swc': ^3.0.1
+      framer-motion: ^7.6.12
+      react-use-measure: ^2.1.1
+    dependencies:
+      '@illa-design/icon': link:../icon
+      '@illa-design/system': link:../system
+      '@illa-design/theme': link:../theme
+      '@illa-design/trigger': link:../trigger
+      framer-motion: 7.10.3
+      react-use-measure: 2.1.1
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
       '@vitejs/plugin-react-swc': 3.1.0
@@ -2812,6 +2847,19 @@ packages:
     resolution: {integrity: sha512-T1IG6/2AXSwEKwlrEm3kyIL3RQTMblPyj68HgnBGl0IBGFxgS5LZ7StRdDo/QimJ4Tz6FQGHuy1Y/ShNxaUefA==}
     dev: false
 
+  /@googlemaps/js-api-loader/1.15.1:
+    resolution: {integrity: sha512-AsnEgNsB7S/VdrHGEQUaUM2e5tmjFGKBAfzR/AqO8O7TPq/jQGvoRw5liPBw4EMF38RDsHmKDV89q/X+qiUREQ==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+    dev: false
+
+  /@googlemaps/markerclusterer/2.0.15:
+    resolution: {integrity: sha512-/I6Esi5FtyeVHsezN9Kut8zRJoqe7KkTIJXGVqpKFf6BjC7qQ1xRajLMkOz0s8XKgLevbr+KdYjuvmj+LohOGg==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+      supercluster: 7.1.5
+    dev: false
+
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
     engines: {node: '>=10.10.0'}
@@ -3086,6 +3134,39 @@ packages:
       tslib: 2.5.0
     dev: true
 
+  /@protobuf-ts/plugin-framework/2.8.3:
+    resolution: {integrity: sha512-VfQP5Cfipaf7XASz+VRdKshN8EuDDvbfp+c5RTS6c3utUn6KhylDQWKSR/J1+hS5bQ2rHqYTqf6zya8Wn/2o3w==}
+    dependencies:
+      '@protobuf-ts/runtime': 2.8.3
+      typescript: 3.9.10
+    dev: false
+
+  /@protobuf-ts/plugin/2.8.3:
+    resolution: {integrity: sha512-MZG6up/AJKPviHLCH6p3jBDte4FMP08f01AvgmRjgZen4jRfIql59cptBCs4gaw+4icLb8AWtGY6O04D/hNHSw==}
+    hasBin: true
+    dependencies:
+      '@protobuf-ts/plugin-framework': 2.8.3
+      '@protobuf-ts/protoc': 2.8.3
+      '@protobuf-ts/runtime': 2.8.3
+      '@protobuf-ts/runtime-rpc': 2.8.3
+      typescript: 3.9.10
+    dev: false
+
+  /@protobuf-ts/protoc/2.8.3:
+    resolution: {integrity: sha512-j5REioDr7KT/cyfBD6k+FNkQFzkqv38PuUw+BsQ0dcIFJqaP8PnilbwtPn6kAJtI5QxFWPkoAr3fsWtjK7k6tQ==}
+    hasBin: true
+    dev: false
+
+  /@protobuf-ts/runtime-rpc/2.8.3:
+    resolution: {integrity: sha512-Tb6nuevgezjGNnT8WF+aveGWeI5xeAbNpySd/nzknKx6ynepXdlNz5cN0xIADeOgDJHo/05Ka+vZ5ZI33tz2Og==}
+    dependencies:
+      '@protobuf-ts/runtime': 2.8.3
+    dev: false
+
+  /@protobuf-ts/runtime/2.8.3:
+    resolution: {integrity: sha512-nVL1s5wWpF6U+wtWTEWfUPD9Ockckj+fHqhzgm41CKV4Oma3D/2M6tzqOQ+wrm4GZu1bt+s6f43feNnar6fhjA==}
+    dev: false
+
   /@react-dnd/asap/5.0.2:
     resolution: {integrity: sha512-WLyfoHvxhs0V9U+GTsGilGgf2QsPl6ZZ44fnv0/b8T3nQyvzxidxsg/ZltbWssbsRDlYW8UKSQMTGotuTotZ6A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/@react-dnd/asap/-/asap-5.0.2.tgz}
     dev: false
@@ -3096,6 +3177,28 @@ packages:
 
   /@react-dnd/shallowequal/4.0.2:
     resolution: {integrity: sha512-/RVXdLvJxLg4QKvMoM5WlwNR9ViO9z8B/qPcc+C0Sa/teJY7QG7kJ441DwzOjMYEY7GmU4dj5EcGHIkKZiQZCA==}
+    dev: false
+
+  /@react-google-maps/api/2.18.1:
+    resolution: {integrity: sha512-KVlUO/Shh+0g/3egWaKmY0sz6+0QOnYkBGvrBMJbz23519LauA+iJFc4NDCmWNHqD5Vhb/Bkg0kSJgq0Stz3Iw==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18
+      react-dom: ^16.8 || ^17 || ^18
+    dependencies:
+      '@googlemaps/js-api-loader': 1.15.1
+      '@googlemaps/markerclusterer': 2.0.15
+      '@react-google-maps/infobox': 2.16.0
+      '@react-google-maps/marker-clusterer': 2.16.1
+      '@types/google.maps': 3.50.5
+      invariant: 2.2.4
+    dev: false
+
+  /@react-google-maps/infobox/2.16.0:
+    resolution: {integrity: sha512-ZojiMS25388RcUHQPycUAerSqdHDom+3dHczVcXHdT/i8fka3O8InkHxXwMhvBoM143ips7mv2BPaYOAJ5f4Nw==}
+    dev: false
+
+  /@react-google-maps/marker-clusterer/2.16.1:
+    resolution: {integrity: sha512-jOuyqzWLeXvQcoAu6TCVWHAuko+sDt0JjawNHBGqUNLywMtTCvYP0L0PiqJZOUCUeRYGdUy0AKxQ+30vAkvwag==}
     dev: false
 
   /@reduxjs/toolkit/1.9.2_react-redux@8.0.5:
@@ -3605,6 +3708,17 @@ packages:
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
+
+  /@types/fnv-plus/1.3.0:
+    resolution: {integrity: sha512-ijls8MsO6Q9JUSd5w1v4y2ijM6S4D/nmOyI/FwcepvrZfym0wZhLdYGFD5TJID7tga0O3I7SmtK69RzpSJ1Fcw==}
+    dev: true
+  /@types/google.maps/3.50.5:
+    resolution: {integrity: sha512-RuZf1MJtctGlpW+Gd4a/eGtAufUDjMf+eyN1l+B3fbe2YLScJbg8KEljJfb+6vnSPFAeM1/48geVIEg3vqOkxw==}
+    dev: false
+
+  /@types/google.maps/3.52.4:
+    resolution: {integrity: sha512-FXtZsLDX7fbxJ03zbze3MdUjaH4Y/zRmW8O65LNIWEHJ7RqddrabusRm/U3zF1ifmqe8y4oPqBvs+vBG8kv0yQ==}
+    dev: false
 
   /@types/hast/2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
@@ -6218,6 +6332,10 @@ packages:
       - encoding
     dev: false
 
+  /fnv-plus/1.3.1:
+    resolution: {integrity: sha512-Gz1EvfOneuFfk4yG458dJ3TLJ7gV19q3OM/vVvvHf7eT02Hm1DleB4edsia6ahbKgAYxO9gvyQ1ioWZR+a00Yw==}
+    dev: false
+
   /focus-lock/0.11.5:
     resolution: {integrity: sha512-1mTr6pl9HBpJ8CqY7hRc38MCrcuTZIeYAkBD1gBTzbx5/to+bRBaBYtJ68iDq7ryTzAAbKrG3dVKjkrWTaaEaw==}
     engines: {node: '>=10'}
@@ -7330,6 +7448,10 @@ packages:
       array-includes: 3.1.6
       object.assign: 4.1.4
     dev: true
+
+  /kdbush/3.0.0:
+    resolution: {integrity: sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew==}
+    dev: false
 
   /keycode/2.2.1:
     resolution: {integrity: sha512-Rdgz9Hl9Iv4QKi8b0OlCRQEzp4AgVxyCtz5S/+VIHezDmrDhkp2N2TqBWOLz0/gbeREXOOiI9/4b8BY9uw2vFg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.yarnpkg.com/keycode/-/keycode-2.2.1.tgz}
@@ -10136,6 +10258,12 @@ packages:
     resolution: {integrity: sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA==}
     dev: false
 
+  /supercluster/7.1.5:
+    resolution: {integrity: sha512-EulshI3pGUM66o6ZdH3ReiFcvHpM3vAigyK+vcxdjpJyEbIIrtbmBdY23mGgnI24uXiGFvrGq9Gkum/8U7vJWg==}
+    dependencies:
+      kdbush: 3.0.0
+    dev: false
+
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
@@ -10520,6 +10648,12 @@ packages:
     dependencies:
       is-typedarray: 1.0.0
     dev: true
+
+  /typescript/3.9.10:
+    resolution: {integrity: sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: false
 
   /typescript/4.9.5:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}

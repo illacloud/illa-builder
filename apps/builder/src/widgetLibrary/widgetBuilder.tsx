@@ -1,4 +1,10 @@
 import {
+  AUDIO_EVENT_HANDLER_CONFIG,
+  AUDIO_PANEL_CONFIG,
+  AUDIO_WIDGET_CONFIG,
+  AudioWidget,
+} from "@/widgetLibrary/AudioWidget"
+import {
   BAR_PROGRESS_EVENT_HANDLER_CONFIG,
   BAR_PROGRESS_PANEL_CONFIG,
   BAR_PROGRESS_WIDGET_CONFIG,
@@ -106,6 +112,12 @@ import {
   ListWidget,
 } from "@/widgetLibrary/ListWidget"
 import {
+  MAP_EVENT_HANDLER_CONFIG,
+  MAP_PANEL_CONFIG,
+  MAP_WIDGET_CONFIG,
+  MapWidget,
+} from "@/widgetLibrary/MapBoxWidget"
+import {
   MENU_EVENT_HANDLER_CONFIG,
   MENU_PANEL_CONFIG,
   MENU_WIDGET_CONFIG,
@@ -148,6 +160,12 @@ import {
   RadioGroupWidget,
 } from "@/widgetLibrary/RadioGroupWidget"
 import {
+  RANGE_SLIDER_EVENT_HANDLER_CONFIG,
+  RANGE_SLIDER_PANEL_CONFIG,
+  RANGE_SLIDER_WIDGET_CONFIG,
+  RangeSliderWidget,
+} from "@/widgetLibrary/RangeSliderWidget"
+import {
   RATE_EVENT_HANDLER_CONFIG,
   RATE_PANEL_CONFIG,
   RATE_WIDGET_CONFIG,
@@ -159,6 +177,12 @@ import {
   SELECT_WIDGET_CONFIG,
   SelectWidget,
 } from "@/widgetLibrary/SelectWidget"
+import {
+  SLIDER_EVENT_HANDLER_CONFIG,
+  SLIDER_PANEL_CONFIG,
+  SLIDER_WIDGET_CONFIG,
+  SliderWidget,
+} from "@/widgetLibrary/SliderWidget"
 import {
   STATISTICS_EVENT_HANDLER_CONFIG,
   STATISTICS_PANEL_CONFIG,
@@ -360,6 +384,18 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: UPLOAD_PANEL_CONFIG,
     eventHandlerConfig: UPLOAD_EVENT_HANDLER_CONFIG,
   },
+  SLIDER_WIDGET: {
+    widget: SliderWidget,
+    config: SLIDER_WIDGET_CONFIG,
+    panelConfig: SLIDER_PANEL_CONFIG,
+    eventHandlerConfig: SLIDER_EVENT_HANDLER_CONFIG,
+  },
+  RANGE_SLIDER_WIDGET: {
+    widget: RangeSliderWidget,
+    config: RANGE_SLIDER_WIDGET_CONFIG,
+    panelConfig: RANGE_SLIDER_PANEL_CONFIG,
+    eventHandlerConfig: RANGE_SLIDER_EVENT_HANDLER_CONFIG,
+  },
   CHART: {
     widget: ChartWidget,
     config: CHART_WIDGET_CONFIG,
@@ -425,11 +461,23 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: VIDEO_PANEL_CONFIG,
     eventHandlerConfig: VIDEO_EVENT_HANDLER_CONFIG,
   },
+  AUDIO_WIDGET: {
+    widget: AudioWidget,
+    config: AUDIO_WIDGET_CONFIG,
+    panelConfig: AUDIO_PANEL_CONFIG,
+    eventHandlerConfig: AUDIO_EVENT_HANDLER_CONFIG,
+  },
   CAROUSEL_WIDGET: {
     widget: CarouselWidget,
     config: CAROUSEL_WIDGET_CONFIG,
     panelConfig: CAROUSEL_PANEL_CONFIG,
     eventHandlerConfig: CAROUSEL_EVENT_HANDLER_CONFIG,
+  },
+  MAP_WIDGET: {
+    widget: MapWidget,
+    config: MAP_WIDGET_CONFIG,
+    panelConfig: MAP_PANEL_CONFIG,
+    eventHandlerConfig: MAP_EVENT_HANDLER_CONFIG,
   },
 }
 

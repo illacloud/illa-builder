@@ -122,7 +122,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
           title={t("editor.action.resource.db.label.config_type")}
           defaultValue={content.configType}
           name="configType"
-          controlledType="switch"
+          controlledType="radio-group"
           control={control}
           forceEqualWidth
           options={[

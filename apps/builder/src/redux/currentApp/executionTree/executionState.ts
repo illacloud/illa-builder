@@ -16,12 +16,21 @@ export interface ErrorShape {
 }
 export type DependenciesState = Record<string, string[]>
 
+export interface widgetLayoutInfo {
+  displayName: string
+  widgetType: string
+  layoutInfo: LayoutInfo
+  parentNode: string
+  childrenNode: string[]
+}
+
 export interface ExecutionState {
   dependencies: DependenciesState
   result: Record<string, any>
   error: Record<string, ErrorShape[]>
   debuggerData: Record<string, ErrorShape[]>
   independencies: DependenciesState
+  widgetsLayoutInfo: Record<string, widgetLayoutInfo>
 }
 
 export const executionInitialState: ExecutionState = {
@@ -30,6 +39,7 @@ export const executionInitialState: ExecutionState = {
   error: {},
   debuggerData: {},
   independencies: {},
+  widgetsLayoutInfo: {},
 }
 
 export interface setExecutionResultPayload {

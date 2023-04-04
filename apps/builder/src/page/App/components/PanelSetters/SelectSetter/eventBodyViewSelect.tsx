@@ -1,4 +1,4 @@
-import { get } from "lodash"
+import { get, toPath } from "lodash"
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
@@ -9,6 +9,7 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { PageNode } from "@/redux/currentApp/editor/components/componentsState"
 import { RootState } from "@/store"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
@@ -20,9 +21,9 @@ export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
     componentNode,
     placeholder,
   } = props
-  let parentAttrNameArray = attrName.split(".")
+  let parentAttrNameArray = toPath(attrName)
   parentAttrNameArray.splice(-1, 1)
-  let finalParentPath = `props.${parentAttrNameArray.join(".")}`
+  let finalParentPath = `props.${convertPathToString(parentAttrNameArray)}`
   const parentAttr = get(componentNode, finalParentPath)
   const pagePath = get(parentAttr, "pagePath")
   const pageComponent = useSelector<RootState>((state) => {

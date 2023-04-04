@@ -38,6 +38,7 @@ export interface RenderCopyContainerProps {
   templateComponentNodes: ComponentNode
   templateContainerHeight: number
   blockColumns: number
+  displayNamePrefix: string
 }
 
 export interface ListWidgetPropsWithChildrenNodes extends ListWidgetProps {

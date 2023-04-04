@@ -6,18 +6,8 @@ import {
   jsonNameStyle,
   jsonValueStyle,
 } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem/style"
-import { applyJsonValueColorStyle } from "@/page/App/components/DataWorkspace/style"
 import { WorkSpaceTreeItem } from "."
-
-export const renderJsonValue = (value: any) => {
-  const type = typeof value
-  switch (type) {
-    case "string":
-      return <label css={applyJsonValueColorStyle(type)}>{`"${value}"`}</label>
-    default:
-      return <label css={applyJsonValueColorStyle(type)}>{`${value}`}</label>
-  }
-}
+import { renderJsonValue } from "./globalStateTreeItem"
 
 export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo(
   (props: WorkSpaceTreeNodeProps) => {
@@ -36,7 +26,7 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo(
       return (
         <div css={applySimpleItemContainerStyle(false, level + 1)}>
           <label css={jsonNameStyle}>{name}&nbsp;</label>
-          <label css={jsonValueStyle}>{renderJsonValue(value)}</label>
+          <label css={jsonValueStyle}>{renderJsonValue(value, false)}</label>
         </div>
       )
     }

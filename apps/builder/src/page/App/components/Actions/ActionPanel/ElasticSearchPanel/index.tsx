@@ -132,6 +132,7 @@ export const ElasticSearchPanel: FC = () => {
             expectedType={VALIDATION_TYPES.STRING}
             mode={CODE_LANG.JAVASCRIPT}
             codeType={CODE_TYPE.EXPRESSION}
+            canShowCompleteInfo
           />
         )}
         {isQueryContent && (
@@ -151,7 +152,6 @@ export const ElasticSearchPanel: FC = () => {
           value={content.index}
           onChange={handleValueChange("index")}
           title={t("editor.action.panel.elastic.index")}
-          lineNumbers={false}
           expectedType={VALIDATION_TYPES.STRING}
           mode={CODE_LANG.JAVASCRIPT}
           codeType={CODE_TYPE.EXPRESSION}
@@ -161,7 +161,6 @@ export const ElasticSearchPanel: FC = () => {
             value={content.id ?? ""}
             onChange={handleValueChange("id")}
             title={t("editor.action.panel.elastic.id")}
-            lineNumbers={false}
             expectedType={VALIDATION_TYPES.STRING}
             mode={CODE_LANG.JAVASCRIPT}
             codeType={CODE_TYPE.EXPRESSION}

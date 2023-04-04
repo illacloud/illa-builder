@@ -33,7 +33,7 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
     }
     BuilderApi.teamRequest(
       {
-        url: `resources/${resourceId}/meta`,
+        url: `/resources/${resourceId}/meta`,
         method: "GET",
       },
       ({ data }: { data: ResourcesData }) => {

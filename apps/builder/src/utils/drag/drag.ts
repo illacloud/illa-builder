@@ -2,6 +2,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { widgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
@@ -79,13 +80,13 @@ export const mergeLayoutInfoToComponent = (
 }
 
 export const batchMergeLayoutInfoToComponent = (
-  executionResult: Record<string, any>,
+  executionResult: Record<string, widgetLayoutInfo>,
   originComponentNodes: ComponentNode[],
 ) => {
   return originComponentNodes.map((componentNode) => {
     if (!executionResult[componentNode.displayName]) return componentNode
     return mergeLayoutInfoToComponent(
-      executionResult[componentNode.displayName].$layoutInfo,
+      executionResult[componentNode.displayName].layoutInfo,
       componentNode,
     )
   })

@@ -29,6 +29,7 @@ module.exports = {
     },
     ecmaVersion: 2020,
   },
+  ignorePatterns: ["ILLA_PROTO.ts"],
   rules: {
     "react/react-in-jsx-scope": "off",
     "import/default": "off",

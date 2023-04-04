@@ -15,8 +15,14 @@ export const spreadsheetContainerStyle = css`
 
 export const updateEditorKeyContainerStyle = css`
   flex-grow: 2;
+  .cm-editor {
+    height: 32px;
+  }
 `
 
 export const updateEditorValueContainerStyle = css`
   flex-grow: 3;
+  .cm-editor {
+    height: 32px;
+  }
 `

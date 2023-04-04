@@ -11,7 +11,9 @@ import {
   ILLACodeMirrorWrapperStyle,
   openWindowIconHotspotStyle,
 } from "@/components/CodeEditor/style"
+import i18n from "@/i18n/config"
 import { getExecutionResultToCodeMirror } from "@/redux/currentApp/executionTree/executionSelector"
+import { LIMIT_MEMORY, estimateMemoryUsage } from "@/utils/calculateMemoryUsage"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { getStringSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
@@ -49,6 +51,13 @@ const getShowResult = (results: unknown[]) => {
   if (results.length === 0) {
     return ""
   } else {
+    const memorySize = estimateMemoryUsage(results)
+    if (LIMIT_MEMORY < memorySize) {
+      return i18n.t("editor.global.size_exceed", {
+        current_size: memorySize,
+        limit_size: LIMIT_MEMORY,
+      })
+    }
     results.forEach((result) => {
       if (
         typeof result === "string" ||
@@ -66,7 +75,7 @@ const getShowResult = (results: unknown[]) => {
   return calcResult
 }
 
-const MAX_LEN_WITH_SNIPPETS = 1024
+export const MAX_LEN_WITH_SNIPPETS = 1024
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {

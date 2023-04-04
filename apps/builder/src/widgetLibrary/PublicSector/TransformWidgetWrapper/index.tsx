@@ -1,4 +1,12 @@
-import { cloneDeep, get, isFunction, isNumber, merge, set } from "lodash"
+import {
+  cloneDeep,
+  get,
+  isFunction,
+  isNumber,
+  merge,
+  set,
+  toPath,
+} from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
@@ -8,11 +16,15 @@ import {
 } from "@/page/App/context/globalDataProvider"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getExecutionResult,
+  getExecutionWidgetLayoutInfo,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store, { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { MIN_HEIGHT } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/config"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
@@ -66,8 +78,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
         const rootState = store.getState() as RootState
-        const executionResult = getExecutionResult(rootState)
-        const oldH = executionResult[displayName]?.$layoutInfo.h ?? 0
+        const executionResult = getExecutionWidgetLayoutInfo(rootState)
+        const oldH = executionResult[displayName]?.layoutInfo.h ?? 0
         // padding 2px so this is +4
         const newH = Math.max(
           Math.ceil((newHeight + 6) / UNIT_HEIGHT),
@@ -179,7 +191,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         dynamicPaths?.forEach((path: string) => {
           const realPath = isFunction(formatPath)
             ? formatPath(path)
-            : path.split(".").slice(1).join(".")
+            : convertPathToString(toPath(path).slice(1))
           try {
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {
@@ -208,7 +220,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           path,
         )
         dynamicPaths?.forEach((path: string) => {
-          const realPath = path.split(".").slice(2).join(".")
+          const realPath = convertPathToString(toPath(path).slice(2))
+
           try {
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {

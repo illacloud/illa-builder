@@ -49,16 +49,16 @@ export const GUIDE_STEP = [
     selector: `[data-onboarding-element="INPUT_WIDGET"]`,
     reduxAction: "components/addComponentReducer",
     doItForMe: () => {
-      store.dispatch(
-        componentsActions.addComponentReducer(
-          // filter already generate component
-          GUIDE_COMPONENTS.filter((componentNode) => {
-            return !DisplayNameGenerator.isAlreadyGenerate(
-              componentNode.displayName,
-            )
-          }),
-        ),
-      )
+      // filter already generate component
+      const Components = GUIDE_COMPONENTS.filter((componentNode) => {
+        return !DisplayNameGenerator.isAlreadyGenerate(
+          componentNode.displayName,
+        )
+      })
+      Components?.forEach((componentNode) => {
+        DisplayNameGenerator.addComponentDisplayName(componentNode)
+      })
+      store.dispatch(componentsActions.addComponentReducer(Components))
       store.dispatch(guideActions.updateCurrentStepReducer(3))
     },
   },

@@ -127,7 +127,7 @@
       "form": {
         "btn": {
           "back": "あとずさりする",
-          "save_changes": "資源を節約する",
+          "save_changes": "リソースを保存",
           "test_connection": "テスト接続"
         },
         "required": "これは必須です",
@@ -180,22 +180,22 @@
             "verification_mode": "検証モード"
           },
           "gs": {
-            "private_key": "Private key",
-            "action_type": "Action type",
-            "spreadsheet": "Spreadsheet",
-            "sheet_name": "Sheet name",
-            "data_range": "Data range",
+            "private_key": "秘密鍵",
+            "action_type": "アクションタイプ",
+            "spreadsheet": "スプレッドシート",
+            "sheet_name": "シート名",
+            "data_range": "データ範囲",
             "limit": "Limit",
             "offset": "Offset",
-            "a1_notation": "A1 notation",
-            "values_to_append": "Values to append",
-            "filter_by": "Filter by",
-            "update_value": "Update value",
-            "primary_key_column": "Primary key column",
-            "array_of_rows_to_upd": "Array of rows to update",
+            "a1_notation": "A1表記",
+            "values_to_append": "追加する値",
+            "filter_by": "フィルタ条件",
+            "update_value": "更新する値",
+            "primary_key_column": "主キー列名",
+            "array_of_rows_to_upd": "更新する行の配列",
             "filters_to_match_row": "Filters to match row",
-            "consider_queries_tha": "Consider queries that delete no rows as successes",
-            "title_of_spreadsheet": "Title of spreadsheet",
+            "consider_queries_tha": "行を削除しないクエリを成功と見なす",
+            "title_of_spreadsheet": "タイトル",
             "sheet_id_to_copy": "コピーするシートID",
             "sheet_to_copy_to": "コピー先のシート"
           }
@@ -228,14 +228,14 @@
             "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
             "row_filter": {
               "column_name": "column_name",
-              "value": "value"
+              "value": "値"
             },
             "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "primary_key_column": "column_name",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
-              "key": "key",
-              "value": "value"
+              "key": "キー値",
+              "value": "値"
             }
           }
         },
@@ -254,12 +254,13 @@
             }
           },
           "gs": {
-            "private_key": "Google スプレッドシートへの接続に使用されます。 <0>ここ<0>をクリックしてプロジェクトを作成し、OAuth 認証情報を取得してください。 サービス アカウント認証では、使用されているサービス アカウントに対応するメール アドレスで共有されたスプレッドシートにのみアクセスできます。 サービス アカウントとアクセス キーの作成に関するドキュメントについては、<1>こちら<1>をご覧ください。",
+            "private_key": "Google スプレッドシートへの接続に使用されます。 <0>ここ</0>をクリックしてプロジェクトを作成し、OAuth 認証情報を取得してください。 サービス アカウント認証では、使用されているサービス アカウントに対応するメール アドレスで共有されたスプレッドシートにのみアクセスできます。 サービス アカウントとアクセス キーの作成に関するドキュメントについては、<1>こちら</1>をご覧ください。ユーザーは、スプレッドシートで制御されていないさまざまな処理コンポーネントの制限を経験する場合があります。 <2>割り当て制限</2>の詳細",
             "leave_blank_to_selec": "空白のままにして最初のシートを選択します",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
-            "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。"
+            "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。",
+            "copy_to_sheet_name": "必要。 コピーしたシートの名前を変更します。"
           }
         },
         "option": {
@@ -316,23 +317,23 @@
           },
           "gs": {
             "action_type": {
-              "read_data_from_a_spr": "Read data from a spreadsheet",
-              "append_data_to_a_spr": "Append data to a spreadsheet",
-              "update_a_spreadsheet": "Update a spreadsheet",
-              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
-              "delete_a_single_row_": "Delete a single row from a spreadsheet",
-              "create_a_spreadsheet": "Create a spreadsheet",
+              "read_data_from_a_spr": "スプレッドシートからデータを読み取る",
+              "append_data_to_a_spr": "スプレッドシートにデータを追加する",
+              "update_a_spreadsheet": "スプレッドシートを更新",
+              "bulk_update_a_spread": "主キーによるスプレッドシートの一括更新",
+              "delete_a_single_row_": "スプレッドシートを更新",
+              "create_a_spreadsheet": "スプレッドシートを作成",
               "copy_a_single_sheet_": "1 つのシートを別のスプレッドシートにコピーする",
-              "list_available_sprea": "List available spreadsheets",
-              "get_spreadsheet_info": "Get spreadsheet info"
+              "list_available_sprea": "利用可能なスプレッドシートを表示",
+              "get_spreadsheet_info": "スプレッドシート情報を取得"
             },
             "data_range": {
-              "use_a1_notation": "Use A1 notation",
-              "use_limit_and_offset": "Use limit and offset"
+              "use_a1_notation": "A1表記を使用",
+              "use_limit_and_offset": "制限とオフセットを使用"
             },
             "filter_by": {
-              "use_a1_notation": "Use A1 notation",
-              "use_row_filters": "Use row filters"
+              "use_a1_notation": "A1表記を使用",
+              "use_row_filters": "行フィルターを使用"
             }
           }
         },
@@ -343,7 +344,7 @@
         },
         "group": {
           "gs": {
-            "service_account": "Service Account"
+            "service_account": "サービスアカウント"
           }
         }
       },
@@ -352,7 +353,7 @@
           "disable": "閉鎖",
           "enable": "オンにする",
           "new": "追加",
-          "run": "走る",
+          "run": "実行する",
           "save": "保存",
           "save_and_run": "保存して実行",
           "save_fail": "保存に失敗しました",
@@ -432,8 +433,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
-              "role_to_assume": "Use a <0>different role</0> when accessing the API"
+              "find_instructions_on": "<0>AWS ドキュメント</0>でアクセス キーの場所に関する説明を見つけてください。",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
@@ -752,7 +753,7 @@
             "private_key": "秘密鍵",
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL オプション",
-            "username_password": "ユーザー名パスワード",
+            "username_password": "ユーザー名/パスワード",
             "self_signed_certificate": "自己署名証明書を使用",
             "disable_introspection": "Disable Introspection",
             "value": "Value",
@@ -778,7 +779,7 @@
             "certificate": "-----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----",
             "database": "acme_production",
             "database_index": "デフォルト 0",
-            "hostname": "CPU名",
+            "hostname": "ホスト名",
             "hosturl": "たとえば、https://example.com",
             "mongo_certificate": "-----RSA 秘密鍵の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----END RSA 秘密鍵-----\n -----証明書の開始-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n ---エンド証明書-----\n",
             "name": "つまり、「Users DB(readonly)」または「Internal Admin API」",
@@ -936,7 +937,7 @@
           }
         },
         "button": {
-          "copy_ip": "IPをコピー"
+          "copy_ip": "コピー"
         }
       },
       "resource_choose": {
@@ -996,7 +997,7 @@
         "variable_name": {
           "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "変数名",
-          "message": "名前は文字または「_」で始まる必要があり、文字と数字のみを含めることができます"
+          "message": "変数名を入力してください。"
         },
         "initial_value": {
           "label": "초기 값",
@@ -1407,7 +1408,21 @@
           "start_value": "開始値",
           "end_value": "終了値"
         },
-        "name": "名前"
+        "name": "名前",
+        "audio": {
+          "audio_url": "音声 URL"
+        },
+        "map": {
+          "markers": "マーカー",
+          "initial_location": "初期位置",
+          "default_markers": "デフォルトのマーカー",
+          "latitude_field_name": "緯度フィールド名",
+          "longitude_field_name": "経度フィールド名",
+          "zoom": "ズーム",
+          "enable_add_markers": "マーカーの追加を有効にする",
+          "enable_search_locati": "検索場所を有効にする",
+          "enable_clustering": "クラスタリングを有効にする"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1474,7 +1489,7 @@
           "file_data": "テーブルの base64 データ、生データ、マップされたデータをサポートします"
         },
         "variable": {
-          "available_in_objects": "オブジェクトと配列で利用できます。 オブジェクトの属性のパス: {{objectName.attributeName}}。 配列内の値のインデックス: {{1}}。 オブジェクトの配列: {{objectName.attributeName.1}}",
+          "available_in_objects": "オブジェクトと配列で利用できます。 変数の値をオブジェクト形式で設定するには、attributeName を使用します。 たとえば、{\"a\":1, \"b\":2} の \"b\" の値を変更するには、パス\n  b である必要があります。\n\n変数の値を配列形式で設定するには、{{index}} を使用します。 たとえば、\"d\" を \"t\" [\"a\",\"b\",\"c\",\"d\"] に変更するには、パスは {{ 3 }} または {{globalData.state1.indexOf(\"d \")}}。",
           "the_target_value": "目標値"
         },
         "slider": {
@@ -1497,6 +1512,24 @@
           "default_step": "既定のステップ",
           "show_step_number": "ステップ番号を表示",
           "indicate_completed_steps": "完了した手順を示す"
+        },
+        "range_slider": {
+          "start_value": "範囲の最小値を設定します",
+          "end_value": "範囲の最大値を設定します"
+        },
+        "audio": {
+          "audio_url": "一般的なオーディオ ファイル タイプへの直接リンク、または一部のオーディオ サービスへのリンクをサポート"
+        },
+        "map": {
+          "markers": "地図上にマーカーを設定します。 マーカーは、デフォルト マーカーと同じプロパティを持つオブジェクトの配列である必要があります。",
+          "initial_location": "地図を初期化するとき、デフォルトの中央表示位置",
+          "default_markers": "マップの初期化時に表示されるデフォルトのマーカー。 {{}} の JavaScript で動的に設定できます。",
+          "latitude_field_name": "緯度は、初期位置およびデフォルト マーカー オブジェクトのどのプロパティから取得されます。",
+          "longitude_field_name": "経度は、初期位置およびデフォルト マーカー オブジェクトのどのプロパティから取得されます。",
+          "zoom": "マップのズームを設定するには",
+          "enable_add_markers": "ユーザーが地図をクリックしてマーカーを追加できるようにするかどうか",
+          "enable_search_locati": "ユーザーが場所を検索できるようにするかどうか",
+          "enable_clustering": "マップが縮小されたときに複数のマーカーを集約できるようにするかどうか"
         }
       },
       "setter_option": {
@@ -1557,7 +1590,10 @@
       },
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
-        "choose_up_to": "Please choose up to {{max}} options."
+        "choose_up_to": "Please choose up to {{max}} options.",
+        "map": {
+          "zoom": "1 から 22 までの値を設定してください"
+        }
       },
       "setter_description": {
         "code": {
@@ -1683,7 +1719,15 @@
         }
       },
       "setGlobalData": "グローバル データ",
-      "setLocalStorage": "ローカルストレージ"
+      "setLocalStorage": "ローカルストレージ",
+      "audio": {
+        "set_audio_url": "音声リンクを設定"
+      },
+      "map": {
+        "marker_selected": "マーカーが選択されました",
+        "marker_created": "マーカーが作成されました",
+        "markers_changed": "マーカーが変更されました"
+      }
     },
     "tutorial": {
       "panel": {
@@ -1729,7 +1773,7 @@
           "do_it": "自動補完",
           "drag_title": "コンポーネントをキャンバスにドラッグします",
           "modify_action_title": "ACTIONを変更",
-          "modify_action_description_modify": "ACTIONを変更してデータを取得します。 {{input1.value}} を使用して、入力コンポーネントに入力されたデータを取得できます。\\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
+          "modify_action_description_modify": "ACTIONを変更してデータを取得します。 {{input1.value}} を使用して、入力コンポーネントに入力されたデータを取得できます。\n\nselect * from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "[保存]、[実行] の順にクリックします",
           "display_data_title": "テーブルにデータを表示する",
           "display_data_description_select": "キャンバスでテーブルを選択",
@@ -1749,6 +1793,9 @@
           "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
+    },
+    "global": {
+      "size_exceed": "データサイズが制限を超えています (現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)"
     }
   },
   "exit_preview": "プレビューを終了",
@@ -2099,6 +2146,22 @@
     },
     "step": {
       "name": "歩数"
+    },
+    "slider": {
+      "name": "スライダー"
+    },
+    "range_slider": {
+      "name": "レンジスライダー"
+    },
+    "audio": {
+      "name": "音声プレイヤー",
+      "no_audio": "音声なし"
+    },
+    "collaborative": {
+      "no_name": "ノーネーム"
+    },
+    "map": {
+      "name": "地図"
     }
   },
   "page": {

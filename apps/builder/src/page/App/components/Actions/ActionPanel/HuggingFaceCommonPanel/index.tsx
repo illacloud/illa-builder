@@ -391,34 +391,31 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
             )}
           </div>
         </div>
-
         {currentParameterType !== "binary" && (
-          <>
-            <SingleTypeComponent
-              componentType="checkbox"
-              value={content.withDetailParams ?? false}
-              checkoutTitle={t(
-                "editor.action.panel.hugging_face.use_detail_parameters",
-              )}
-              onBooleanValueChange={handleValueChange("withDetailParams")}
-              tips={
-                <Trans
-                  i18nKey="editor.action.panel.hugging_face.tips.use_detail_parameters"
-                  t={t}
-                  components={[
-                    <TextLink
-                      key="editor.action.panel.hugging_face.tips.use_detail_parameters"
-                      onClick={() => {
-                        handleURLClick(
-                          "https://huggingface.co/docs/api-inference/detailed_parameters",
-                        )
-                      }}
-                    />,
-                  ]}
-                />
-              }
-            />
-          </>
+          <SingleTypeComponent
+            componentType="checkbox"
+            value={content.withDetailParams ?? false}
+            checkoutTitle={t(
+              "editor.action.panel.hugging_face.use_detail_parameters",
+            )}
+            onBooleanValueChange={handleValueChange("withDetailParams")}
+            tips={
+              <Trans
+                i18nKey="editor.action.panel.hugging_face.tips.use_detail_parameters"
+                t={t}
+                components={[
+                  <TextLink
+                    key="editor.action.panel.hugging_face.tips.use_detail_parameters"
+                    onClick={() => {
+                      handleURLClick(
+                        "https://huggingface.co/docs/api-inference/detailed_parameters",
+                      )
+                    }}
+                  />,
+                ]}
+              />
+            }
+          />
         )}
         {content.withDetailParams && (
           <>

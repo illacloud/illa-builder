@@ -44,6 +44,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import {
   getExecutionError,
   getExecutionResult,
+  getExecutionWidgetLayoutInfo,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import store, { RootState } from "@/store"
@@ -103,6 +104,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const { w, y, h } = getRealShapeAndPosition(componentNode, unitH, unitW)
 
   const executionResult = useSelector(getExecutionResult)
+  const widgetExecutionLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
   const isDraggingStateInGlobal = useSelector(getIsDragging)
   const isResizingStateInGlobal = useSelector(getIsResizing)
   const isShowCanvasDot = useSelector(isShowDot)
@@ -185,24 +187,25 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         )
         if (currentSelectedDisplayName.length > 1) {
           const firstParentNode =
-            executionResult[currentSelectedDisplayName[0]].$parentNode
+            widgetExecutionLayoutInfo[currentSelectedDisplayName[0]].parentNode
           const isSameParentNode = currentSelectedDisplayName.every(
             (displayName) => {
-              const parentNode = executionResult[displayName].$parentNode
+              const parentNode =
+                widgetExecutionLayoutInfo[displayName].parentNode
               return parentNode === firstParentNode
             },
           )
           if (!isSameParentNode) {
             const lastParentNode =
-              executionResult[
+              widgetExecutionLayoutInfo[
                 currentSelectedDisplayName[
                   currentSelectedDisplayName.length - 1
                 ]
-              ].$parentNode
+              ].parentNode
             currentSelectedDisplayName = currentSelectedDisplayName.filter(
               (displayName) => {
                 const currentParentNode =
-                  executionResult[displayName].$parentNode
+                  widgetExecutionLayoutInfo[displayName].parentNode
                 return lastParentNode === currentParentNode
               },
             )
@@ -225,10 +228,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       componentNode.displayName,
       dispatch,
       displayNameMapDepth,
-      executionResult,
       isEditMode,
       selectedComponents,
       widgetDisplayNameRelationMap,
+      widgetExecutionLayoutInfo,
     ],
   )
 
@@ -267,7 +270,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       item: () => {
         const rootState = store.getState()
         const allComponentNodes = getFlattenArrayComponentNodes(rootState)
-        const executionResult = getExecutionResult(rootState)
+        const executionResult = getExecutionWidgetLayoutInfo(rootState)
         let childrenNodes = allComponentNodes
           ? cloneDeep(allComponentNodes)
           : []
@@ -306,7 +309,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         const mergedItem = childrenNodes.find((node) => {
           return node.displayName === findDisplayName
         })!
-        startDragMultiNodes(draggedSelectedComponents)
+        startDragMultiNodes(draggedSelectedComponents, false)
         return {
           item: mergedItem,
           childrenNodes,
@@ -342,12 +345,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const hasEditors = !!filteredComponentAttachedUserList.length
 
-  return componentNode.isDragging ? null : (
+  return (
     <ResizingContainer
       unitW={unitW}
       unitH={unitH}
       componentNode={componentNode}
       childrenNode={childrenNode}
+      isDragging={componentNode.isDragging}
     >
       <div
         css={hoverHotspotStyle}

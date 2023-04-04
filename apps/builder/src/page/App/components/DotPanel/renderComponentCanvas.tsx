@@ -21,6 +21,7 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { DragPreview } from "@/page/App/components/DotPanel/dragPreview"
 import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
+import { useMousePositionAsync } from "@/page/App/components/DotPanel/hooks/useMousePostionAsync"
 import {
   DragInfo,
   DropCollectedInfo,
@@ -56,17 +57,17 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   IGNORE_WIDGET_TYPES,
+  getExecutionWidgetLayoutInfo,
   getRootNodeExecutionResult,
-  getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import store from "@/store"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { MousePreview } from "../MousePreview"
 
 export const UNIT_HEIGHT = 8
 
@@ -203,7 +204,7 @@ export const RenderComponentCanvas: FC<{
   const dispatch = useDispatch()
 
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
-  const widgetExecutionResult = useSelector(getWidgetExecutionResult)
+  const widgetExecutionLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
   const { currentPageIndex, pageSortedKey } = rootNodeProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const currentDragStartScrollTop = useRef(0)
@@ -292,6 +293,13 @@ export const RenderComponentCanvas: FC<{
   const unitWidth = useMemo(() => {
     return bounds.width / blockColumns
   }, [blockColumns, bounds.width])
+
+  const { wrapperRef } = useMousePositionAsync(
+    containerRef,
+    unitWidth,
+    componentNode.displayName,
+    !!sectionName,
+  )
 
   const throttleUpdateComponentPositionByReflow = useMemo(() => {
     return throttle((updateSlice: UpdateComponentNodeLayoutInfoPayload[]) => {
@@ -644,7 +652,7 @@ export const RenderComponentCanvas: FC<{
 
   const componentTree = useMemo(() => {
     const componentNodes = batchMergeLayoutInfoToComponent(
-      widgetExecutionResult,
+      widgetExecutionLayoutInfo,
       componentNode.childrenNode ?? [],
     )
     return componentNodes
@@ -700,20 +708,20 @@ export const RenderComponentCanvas: FC<{
     rowNumber,
     safeRowNumber,
     unitWidth,
-    widgetExecutionResult,
+    widgetExecutionLayoutInfo,
   ])
 
   const maxY = useMemo(() => {
     let maxY = 0
     const componentNodes = batchMergeLayoutInfoToComponent(
-      widgetExecutionResult,
+      widgetExecutionLayoutInfo,
       componentNode.childrenNode ?? [],
     )
     componentNodes.forEach((node) => {
       maxY = Math.max(maxY, node.y + node.h)
     })
     return maxY
-  }, [componentNode.childrenNode, widgetExecutionResult])
+  }, [componentNode.childrenNode, widgetExecutionLayoutInfo])
 
   const finalRowNumber = useMemo(() => {
     return Math.max(
@@ -873,6 +881,7 @@ export const RenderComponentCanvas: FC<{
     <div
       ref={(node) => {
         currentCanvasRef.current = node
+        wrapperRef.current = node
         dropTarget(node)
         canvasRef(node)
       }}
@@ -892,6 +901,7 @@ export const RenderComponentCanvas: FC<{
         selectoSelectionStyle,
       ]}
     >
+      <MousePreview unitW={unitWidth} displayName={componentNode.displayName} />
       {componentTree}
       {isActive && dragInfo && (
         <DragPreview

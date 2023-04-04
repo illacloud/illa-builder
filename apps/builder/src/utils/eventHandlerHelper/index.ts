@@ -21,7 +21,8 @@ import { ILLARoute } from "@/router"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { downloadFileFromEventHandler, downloadSingleFile } from "@/utils/file"
+import { downloadFileFromEventHandler } from "@/utils/file"
+import { LIMIT_MEMORY, estimateMemoryUsage } from "../calculateMemoryUsage"
 
 const message = createMessage()
 
@@ -138,6 +139,16 @@ export const transformEvents = (
           })
           return
         }
+        const memorySize = estimateMemoryUsage(copiedValue)
+        if (LIMIT_MEMORY < memorySize) {
+          message.info({
+            content: i18n.t("editor.global.size_exceed", {
+              current_size: memorySize,
+              limit_size: LIMIT_MEMORY,
+            }),
+          })
+          return
+        }
         message.success({
           content: i18n.t("copied"),
         })
@@ -241,17 +252,19 @@ export const transformEvents = (
         "setSelectedValue",
         "setVolume",
         "setVideoUrl",
+        "setAudioUrl",
         "setImageUrl",
         "setFileUrl",
         "setStartValue",
         "setPrimaryValue",
         "setEndValue",
-        "setDisabled",
         "setSpeed",
-        "setLoop",
         "seekTo",
         "showControls",
         "mute",
+        "setStartOfRange",
+        "setEndOfRange",
+        "setMarkers",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
@@ -260,6 +273,20 @@ export const transformEvents = (
           const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
           if (method) {
             method(widgetTargetValue)
+          }
+        },
+        enabled,
+      }
+    }
+    if (
+      ["setDisabled", "setLoop", "showControls", "mute"].includes(widgetMethod)
+    ) {
+      const { widgetSwitchTargetValue } = event
+      return {
+        script: () => {
+          const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
+          if (method) {
+            method(widgetSwitchTargetValue)
           }
         },
         enabled,
@@ -276,7 +303,7 @@ export const transformEvents = (
       widgetMethod === "rowSelect" ||
       widgetMethod === "resetPrimaryValue" ||
       widgetMethod === "slickNext" ||
-      widgetMethod === "slickPrevious"
+      widgetMethod === "resetMarkers"
     ) {
       return {
         script: `{{${widgetID}.${widgetMethod}()}}`,

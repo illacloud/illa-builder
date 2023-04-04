@@ -1,6 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { applyChange } from "deep-diff"
-import { cloneDeep, has, set } from "lodash"
+import { has, set } from "lodash"
 import {
   DependenciesState,
   ErrorShape,
@@ -10,7 +10,6 @@ import {
   executionInitialState,
   setExecutionResultPayload,
 } from "@/redux/currentApp/executionTree/executionState"
-import { isWidget } from "@/utils/executionTreeHelper/utils"
 import { CUSTOM_STORAGE_PREFIX } from "@/utils/storage"
 import { isObject } from "@/utils/typeHelper"
 
@@ -133,24 +132,26 @@ export const resetExecutionResultReducer: CaseReducer<
   return executionInitialState
 }
 
+export const setWidgetLayoutInfoReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<ExecutionState["widgetsLayoutInfo"]>
+> = (state, action) => {
+  state.widgetsLayoutInfo = action.payload
+}
+
 export const updateWidgetLayoutInfoReducer: CaseReducer<
   ExecutionState,
   PayloadAction<UpdateWidgetLayoutInfoPayload>
 > = (state, action) => {
   if (!state) return
   const { displayName, layoutInfo } = action.payload
-  const result = state.result
-  const currentWidget = result[displayName]
-  if (
-    !currentWidget ||
-    !layoutInfo ||
-    Object.keys(layoutInfo).length === 0 ||
-    !isWidget(currentWidget)
-  ) {
+  const widgetsLayoutInfo = state.widgetsLayoutInfo
+  const currentWidget = widgetsLayoutInfo[displayName]
+  if (!currentWidget || !layoutInfo || Object.keys(layoutInfo).length === 0) {
     return
   }
-  currentWidget.$layoutInfo = {
-    ...currentWidget.$layoutInfo,
+  currentWidget.layoutInfo = {
+    ...currentWidget.layoutInfo,
     ...layoutInfo,
   }
 }
@@ -162,21 +163,28 @@ export const batchUpdateWidgetLayoutInfoReducer: CaseReducer<
   if (!state) return
   action.payload.forEach((updateSlice) => {
     const { displayName, layoutInfo } = updateSlice
-    const result = state.result
-    const currentWidget = result[displayName]
-    if (
-      !currentWidget ||
-      !layoutInfo ||
-      Object.keys(layoutInfo).length === 0 ||
-      !isWidget(currentWidget)
-    ) {
+    const widgetsLayoutInfo = state.widgetsLayoutInfo
+    const currentWidget = widgetsLayoutInfo[displayName]
+    if (!currentWidget || !layoutInfo || Object.keys(layoutInfo).length === 0) {
       return
     }
-    currentWidget.$layoutInfo = {
-      ...currentWidget.$layoutInfo,
+    currentWidget.layoutInfo = {
+      ...currentWidget.layoutInfo,
       ...layoutInfo,
     }
   })
+}
+
+export const updateWidgetLayoutInfoWhenChangeDisplayNameReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<{ oldDisplayName: string; newDisplayName: string }>
+> = (state, action) => {
+  const { oldDisplayName, newDisplayName } = action.payload
+  const widgetsLayoutInfo = state.widgetsLayoutInfo
+  const currentWidget = widgetsLayoutInfo[oldDisplayName]
+  if (!currentWidget) return
+  delete widgetsLayoutInfo[oldDisplayName]
+  widgetsLayoutInfo[newDisplayName] = currentWidget
 }
 
 export const setGlobalStateInExecutionReducer: CaseReducer<

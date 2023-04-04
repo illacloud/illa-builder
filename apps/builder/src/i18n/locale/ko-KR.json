@@ -180,22 +180,22 @@
             "verification_mode": "확인 모드"
           },
           "gs": {
-            "private_key": "Private key",
-            "action_type": "Action type",
-            "spreadsheet": "Spreadsheet",
-            "sheet_name": "Sheet name",
-            "data_range": "Data range",
+            "private_key": "개인 키",
+            "action_type": "작업 유형",
+            "spreadsheet": "쉼표 구분자 데이터 파일",
+            "sheet_name": "시트 이름",
+            "data_range": "데이터 범위",
             "limit": "Limit",
             "offset": "Offset",
-            "a1_notation": "A1 notation",
-            "values_to_append": "Values to append",
-            "filter_by": "Filter by",
-            "update_value": "Update value",
-            "primary_key_column": "Primary key column",
-            "array_of_rows_to_upd": "Array of rows to update",
+            "a1_notation": "A1 표기",
+            "values_to_append": "추가할 값",
+            "filter_by": "필터링 기준",
+            "update_value": "업데이트할 값",
+            "primary_key_column": "기본 키 열 이름",
+            "array_of_rows_to_upd": "업데이트할 행의 배열",
             "filters_to_match_row": "Filters to match row",
-            "consider_queries_tha": "Consider queries that delete no rows as successes",
-            "title_of_spreadsheet": "Title of spreadsheet",
+            "consider_queries_tha": "행을 삭제하지 않는 쿼리를 성공으로 간주",
+            "title_of_spreadsheet": "스프레드시트 제목",
             "sheet_id_to_copy": "복사할 시트 ID",
             "sheet_to_copy_to": "복사할 시트"
           }
@@ -228,14 +228,14 @@
             "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
             "row_filter": {
               "column_name": "column_name",
-              "value": "value"
+              "value": "값"
             },
             "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "primary_key_column": "column_name",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
-              "key": "key",
-              "value": "value"
+              "key": "키",
+              "value": "값"
             }
           }
         },
@@ -254,12 +254,13 @@
             }
           },
           "gs": {
-            "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기<0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기<1>를 참조하세요.",
+            "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기</0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기</1>를 참조하세요. 사용자는 스프레드시트에서 제어하지 않는 다양한 처리 구성요소의 제한을 경험할 수 있습니다. <2>할당량 한도</2>에 대해 자세히 알아보기",
             "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
+            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
-            "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오."
+            "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오.",
+            "copy_to_sheet_name": "필수의. 복사된 시트의 이름을 바꿉니다."
           }
         },
         "option": {
@@ -316,23 +317,23 @@
           },
           "gs": {
             "action_type": {
-              "read_data_from_a_spr": "Read data from a spreadsheet",
-              "append_data_to_a_spr": "Append data to a spreadsheet",
-              "update_a_spreadsheet": "Update a spreadsheet",
-              "bulk_update_a_spread": "Bulk update a spreadsheet by primary key",
-              "delete_a_single_row_": "Delete a single row from a spreadsheet",
-              "create_a_spreadsheet": "Create a spreadsheet",
+              "read_data_from_a_spr": "스프레드시트에서 데이터 읽기",
+              "append_data_to_a_spr": "스프레드시트에 데이터 추가",
+              "update_a_spreadsheet": "스프레드 시트 업데이트",
+              "bulk_update_a_spread": "기본 키로 스프레드시트 대량 업데이트",
+              "delete_a_single_row_": "스프레드시트 업데이트",
+              "create_a_spreadsheet": "스프레드시트 만들기",
               "copy_a_single_sheet_": "단일 시트를 다른 스프레드시트로 복사",
-              "list_available_sprea": "List available spreadsheets",
-              "get_spreadsheet_info": "Get spreadsheet info"
+              "list_available_sprea": "사용 가능한 스프레드시트 나열",
+              "get_spreadsheet_info": "스프레드시트 정보 가져오기"
             },
             "data_range": {
-              "use_a1_notation": "Use A1 notation",
-              "use_limit_and_offset": "Use limit and offset"
+              "use_a1_notation": "A1 표기법 사용",
+              "use_limit_and_offset": "제한 및 오프셋 사용"
             },
             "filter_by": {
-              "use_a1_notation": "Use A1 notation",
-              "use_row_filters": "Use row filters"
+              "use_a1_notation": "A1 표기법 사용",
+              "use_row_filters": "행 필터 사용"
             }
           }
         },
@@ -343,7 +344,7 @@
         },
         "group": {
           "gs": {
-            "service_account": "Service Account"
+            "service_account": "서비스 계정"
           }
         }
       },
@@ -352,7 +353,7 @@
           "disable": "폐쇄",
           "enable": "켜다",
           "new": "추가하다",
-          "run": "운영",
+          "run": "실행하다",
           "save": "저장",
           "save_and_run": "저장 및 실행",
           "save_fail": "저장 실패",
@@ -432,8 +433,8 @@
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
-              "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
-              "role_to_assume": "Use a <0>different role</0> when accessing the API"
+              "find_instructions_on": "<0>AWS 문서</0>에서 액세스 키를 찾을 수 있는 위치에 대한 지침을 찾아보세요.",
+              "role_to_assume": "Use a <0>different role<0> when accessing the API"
             }
           },
           "option": {
@@ -752,7 +753,7 @@
             "private_key": "개인 키",
             "private_key_hover": "The private key is associated with a Service Account with Firebase privileges.",
             "ssl_options": "SSL 옵션",
-            "username_password": "사용자 이름 비밀번호",
+            "username_password": "사용자 이름/비밀번호",
             "self_signed_certificate": "자가 서명 인증서 사용",
             "disable_introspection": "Disable Introspection",
             "value": "Value",
@@ -778,7 +779,7 @@
             "certificate": "-----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----",
             "database": "acme_production",
             "database_index": "기본값 0",
-            "hostname": "CPU 이름",
+            "hostname": "호스트 이름",
             "hosturl": "예를 들어 https://example.com",
             "mongo_certificate": "-----RSA 개인 키 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----RSA 개인 키 종료-----\n -----인증서 시작-----\n MIIEMDCCapigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n DTE5MDQwoDAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n ...\n -----인증서 종료-----\n",
             "name": "ie \"Users DB(읽기전용)\" 또는 \"Internal Admin API\"",
@@ -996,7 +997,7 @@
         "variable_name": {
           "tooltips": "Use the initial value in this app via {{variableName}}",
           "label": "변수 이름",
-          "message": "이름은 문자 또는 \"_\"로 시작해야 하며 문자, 숫자만 포함할 수 있습니다."
+          "message": "리스트 이름을 입력하세요."
         },
         "initial_value": {
           "label": "초기 값",
@@ -1407,7 +1408,21 @@
           "start_value": "시작 값",
           "end_value": "종료 값"
         },
-        "name": "이름"
+        "name": "이름",
+        "audio": {
+          "audio_url": "오디오 URL"
+        },
+        "map": {
+          "markers": "마커",
+          "initial_location": "초기 위치",
+          "default_markers": "기본 마커",
+          "latitude_field_name": "위도 필드 이름",
+          "longitude_field_name": "경도 필드 이름",
+          "zoom": "줌",
+          "enable_add_markers": "마커 추가 활성화",
+          "enable_search_locati": "검색 위치 활성화",
+          "enable_clustering": "클러스터링 활성화"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1474,7 +1489,7 @@
           "file_data": "base64 데이터, 원시 데이터, 테이블의 매핑된 데이터 지원"
         },
         "variable": {
-          "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 객체의 속성 경로: {{objectName.attributeName}}. 배열에 있는 값의 인덱스: {{1}}. 개체의 배열: {{objectName.attributeName.1}}",
+          "available_in_objects": "개체 및 배열에서 사용할 수 있습니다. 개체 형식으로 변수 값을 설정하려면 attributeName을 사용합니다. 예를 들어 {\"a\":1, \"b\":2}에서 \"b\" 값을 변경하려면 경로\n  b여야 합니다.\n\n변수의 값을 배열 형식으로 설정하려면 {{index}}를 사용하십시오. 예를 들어 \"d\"를 \"t\" [\"a\",\"b\",\"c\",\"d\"]로 변경하려면 경로는 {{ 3 }} 또는 {{globalData.state1.indexOf(\"d \")}}.",
           "the_target_value": "목표값"
         },
         "slider": {
@@ -1497,6 +1512,24 @@
           "default_step": "기본 단계",
           "show_step_number": "단계 번호 표시",
           "indicate_completed_steps": "완료된 단계 표시"
+        },
+        "range_slider": {
+          "start_value": "범위의 최소값 설정",
+          "end_value": "범위의 최대값 설정"
+        },
+        "audio": {
+          "audio_url": "일반적인 오디오 파일 유형에 대한 직접 링크 또는 일부 오디오 서비스에 대한 링크를 지원합니다."
+        },
+        "map": {
+          "markers": "지도에 마커를 설정합니다. 마커는 기본 마커와 동일한 속성을 가진 객체의 배열이어야 합니다.",
+          "initial_location": "지도 초기화 시 기본 중앙 표시 위치",
+          "default_markers": "지도를 초기화할 때 표시되는 기본 마커입니다. {{}}에서 자바스크립트를 사용하여 동적으로 설정할 수 있습니다.",
+          "latitude_field_name": "위도는 초기 위치 및 기본 마커 개체의 속성에서 가져옵니다.",
+          "longitude_field_name": "경도는 초기 위치 및 기본 마커 개체의 속성에서 가져옵니다.",
+          "zoom": "지도 줌을 설정하려면",
+          "enable_add_markers": "사용자가 지도를 클릭하여 마커를 추가하도록 허용할지 여부",
+          "enable_search_locati": "사용자가 위치를 검색하도록 허용할지 여부",
+          "enable_clustering": "지도가 축소될 때 여러 마커가 집계되도록 허용할지 여부"
         }
       },
       "setter_option": {
@@ -1557,7 +1590,10 @@
       },
       "setter_message": {
         "choose_at_least": "Please choose at lease {{ min }} options.",
-        "choose_up_to": "Please choose up to {{max}} options."
+        "choose_up_to": "Please choose up to {{max}} options.",
+        "map": {
+          "zoom": "1에서 22 사이의 값을 설정하십시오."
+        }
       },
       "setter_description": {
         "code": {
@@ -1683,7 +1719,15 @@
         }
       },
       "setGlobalData": "전역 데이터 편집",
-      "setLocalStorage": "로컬 저장소"
+      "setLocalStorage": "로컬 저장소",
+      "audio": {
+        "set_audio_url": "오디오 링크 설정"
+      },
+      "map": {
+        "marker_selected": "선택된 마커",
+        "marker_created": "마커 생성됨",
+        "markers_changed": "마커가 변경됨"
+      }
     },
     "tutorial": {
       "panel": {
@@ -1729,7 +1773,7 @@
           "do_it": "자동 완성",
           "drag_title": "구성 요소를 캔버스로 드래그",
           "modify_action_title": "ACTION수정",
-          "modify_action_description_modify": "ACTION을 수정하여 데이터를 가져옵니다. {{input1.value}}를 사용하여 입력 구성 요소에 입력된 데이터를 가져올 수 있습니다. \\nselect * from users join orders on users.id = orders.id where {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
+          "modify_action_description_modify": "ACTION을 수정하여 데이터를 가져옵니다. {{input1.value}}를 사용하여 입력 구성 요소에 입력된 데이터를 가져올 수 있습니다.\n\nselect * from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '% {{input1.value.toLowerCase()}}%'",
           "modify_action_description_click": "저장을 클릭한 다음 실행을 클릭합니다.",
           "display_data_title": "테이블에 데이터 표시",
           "display_data_description_select": "캔버스에서 테이블 선택",
@@ -1749,6 +1793,9 @@
           "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
+    },
+    "global": {
+      "size_exceed": "데이터 크기가 한도를 초과합니다(현재 크기: {{current_size}} 바이트, 한도: {{limit_size}} 바이트)."
     }
   },
   "exit_preview": "미리보기 종료",
@@ -2099,6 +2146,22 @@
     },
     "step": {
       "name": "걸음"
+    },
+    "slider": {
+      "name": "슬라이더"
+    },
+    "range_slider": {
+      "name": "범위 슬라이더"
+    },
+    "audio": {
+      "name": "오디오 플레이어",
+      "no_audio": "오디오 없음"
+    },
+    "collaborative": {
+      "no_name": "이름 없음"
+    },
+    "map": {
+      "name": "지도"
     }
   },
   "page": {

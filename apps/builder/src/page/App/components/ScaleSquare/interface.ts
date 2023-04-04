@@ -24,6 +24,7 @@ export interface ScaleSquarePropsWithJSON {
   unitW: number
   unitH: number
   blockColumns: number
+  displayNamePrefix?: string
 }
 
 export interface MoveBarProps {

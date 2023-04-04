@@ -8,6 +8,7 @@ import {
   isNumber,
   isObject,
 } from "@illa-design/react"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
@@ -91,7 +92,12 @@ export const transTableColumnEvent = (events: any[], columnLength: number) => {
       if (event?.fromCurrentRow) {
         const keys = Object.keys(event?.fromCurrentRow)
         keys.forEach((key) => {
-          rowEvent[key] = event?.[key]?.[i]
+          // Determine whether the current key is taken from currentRow, if so, treat it as an array.
+          if (event?.fromCurrentRow?.[key]) {
+            rowEvent[key] = event?.[key]?.[i]
+          } else {
+            rowEvent[key] = event?.[key]
+          }
         })
       }
       res[i].push(rowEvent)
@@ -121,10 +127,9 @@ const RenderTableButton: FC<{
   handleOnClickMenuItem?: (path: string) => void
 }> = (props) => {
   const { cell, mappedValue, eventPath, handleOnClickMenuItem } = props
-  const path = `${eventPath}.${cell.row.index}`
-
+  const paths = [eventPath, `${cell.row.index}`]
   const clickEvent = () => {
-    handleOnClickMenuItem?.(path)
+    handleOnClickMenuItem?.(convertPathToString(paths))
   }
 
   return (
