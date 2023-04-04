@@ -7,8 +7,14 @@ import { getRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
 
 export const ScaleSquareWithJSON = memo<ScaleSquarePropsWithJSON>(
   (props: ScaleSquarePropsWithJSON) => {
-    const { componentNode, unitW, unitH, blockColumns } = props
-    const { x, y, w, h } = getRealShapeAndPosition(componentNode, unitH, unitW)
+    const { componentNode, unitW, unitH, blockColumns, displayNamePrefix } =
+      props
+    const { x, y, w, h } = getRealShapeAndPosition(
+      componentNode,
+      unitH,
+      unitW,
+      displayNamePrefix,
+    )
 
     return (
       <Rnd
