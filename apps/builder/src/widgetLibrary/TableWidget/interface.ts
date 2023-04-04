@@ -17,7 +17,7 @@ export const ColumnTypeOption = [
 
 export const defaultColumnItem: Partial<ColumnItemShape> = {
   enableSorting: true,
-  type: "text",
+  type: "auto",
   visible: true,
   custom: true,
   format: "YYYY-MM-DD",
@@ -26,6 +26,7 @@ export const defaultColumnItem: Partial<ColumnItemShape> = {
 }
 
 export type ColumnType =
+  | "auto"
   | "text"
   | "date"
   | "number"

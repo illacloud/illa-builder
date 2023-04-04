@@ -167,11 +167,6 @@ const isImageUrl = (str: unknown) => {
   )
 }
 
-// 判断字符串是否是日期格式
-const isDate = (str: string) => {
-  return dayjsPro(str).isValid()
-}
-
 export const getCellForType = (
   data: ColumnItemShape,
   eventPath: string,
@@ -184,8 +179,6 @@ export const getCellForType = (
     mappedValue,
     fromCurrentRow,
   } = data
-
-  const renderLinkCell = () => {}
 
   switch (type) {
     case "text":
