@@ -261,6 +261,9 @@
             "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets",
             "copy_to_sheet_name": "Required. Rename the copied sheet."
+          },
+          "tidb": {
+            "ca_certificate": "We fill in the CA Certificate used for TLS Connections to Serverless Tier by default. If you need TLS Connections to Dedicated Tier, <0>Click here</0> to view the configuration method."
           }
         },
         "option": {
