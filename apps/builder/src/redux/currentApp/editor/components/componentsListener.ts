@@ -498,6 +498,13 @@ const handleUpdateDisplayNameEffect = (
   )
 
   listenerApi.dispatch(
+    executionActions.updateWidgetLayoutInfoWhenChangeDisplayNameReducer({
+      oldDisplayName: displayName,
+      newDisplayName,
+    }),
+  )
+
+  listenerApi.dispatch(
     componentsActions.batchUpdateMultiComponentSlicePropsReducer(
       updateWidgetSlice,
     ),
