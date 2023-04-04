@@ -3712,6 +3712,7 @@ packages:
   /@types/fnv-plus/1.3.0:
     resolution: {integrity: sha512-ijls8MsO6Q9JUSd5w1v4y2ijM6S4D/nmOyI/FwcepvrZfym0wZhLdYGFD5TJID7tga0O3I7SmtK69RzpSJ1Fcw==}
     dev: true
+
   /@types/google.maps/3.50.5:
     resolution: {integrity: sha512-RuZf1MJtctGlpW+Gd4a/eGtAufUDjMf+eyN1l+B3fbe2YLScJbg8KEljJfb+6vnSPFAeM1/48geVIEg3vqOkxw==}
     dev: false
