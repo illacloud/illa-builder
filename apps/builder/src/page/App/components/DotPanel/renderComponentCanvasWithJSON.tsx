@@ -26,6 +26,7 @@ export const RenderComponentCanvasWithJson: FC<{
   blockColumns?: number
   addedRowNumber: number
   canAutoScroll?: boolean
+  displayNamePrefix?: string
 }> = (props) => {
   const {
     componentNode,
@@ -34,6 +35,7 @@ export const RenderComponentCanvasWithJson: FC<{
     safeRowNumber,
     blockColumns = BASIC_BLOCK_COLUMNS,
     addedRowNumber,
+    displayNamePrefix,
   } = props
 
   const [canvasRef, bounds] = useMeasure()
@@ -80,6 +82,7 @@ export const RenderComponentCanvasWithJson: FC<{
               unitW={unitWidth}
               unitH={UNIT_HEIGHT}
               blockColumns={blockColumns}
+              displayNamePrefix={displayNamePrefix}
             />
           )
         default:
@@ -91,6 +94,7 @@ export const RenderComponentCanvasWithJson: FC<{
     blockColumns,
     canResizeY,
     componentNode.childrenNode,
+    displayNamePrefix,
     minHeight,
     safeRowNumber,
     unitWidth,

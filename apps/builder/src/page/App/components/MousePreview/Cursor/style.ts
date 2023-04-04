@@ -17,7 +17,7 @@ export const nickNameContainerStyle = (bgColor: string) => css`
 
 export const applyCursorContainerStyle = (color: string) => css`
   color: ${color};
-  z-index: 100;
+  z-index: 10;
   position: absolute;
   user-select: none;
   pointer-events: none;

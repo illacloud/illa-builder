@@ -50,6 +50,7 @@ export const BasicContainerWithJSON: FC<BasicContainerProps> = (props) => {
     safeRowNumber = 8,
     addedRowNumber = 8,
     blockColumns,
+    displayNamePrefix,
   } = props
   const containerRef: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement>(null)
@@ -70,6 +71,7 @@ export const BasicContainerWithJSON: FC<BasicContainerProps> = (props) => {
           safeRowNumber={safeRowNumber}
           addedRowNumber={addedRowNumber}
           blockColumns={blockColumns}
+          displayNamePrefix={displayNamePrefix}
         />
       )}
     </div>
