@@ -901,6 +901,7 @@ export const RenderComponentCanvas: FC<{
         selectoSelectionStyle,
       ]}
     >
+      <MousePreview unitW={unitWidth} displayName={componentNode.displayName} />
       {componentTree}
       {isActive && dragInfo && (
         <DragPreview
@@ -940,7 +941,6 @@ export const RenderComponentCanvas: FC<{
           <PreviewColumnsChange unitWidth={unitWidth} columns={blockColumns} />
         )}
       </AnimatePresence>
-      <MousePreview unitW={unitWidth} displayName={componentNode.displayName} />
     </div>
   )
 }
