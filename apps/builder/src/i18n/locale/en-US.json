@@ -1098,7 +1098,9 @@
           "pause": "Pause",
           "ended": "Ended",
           "loaded": "Loaded",
-          "rowSelect": "Row select"
+          "rowSelect": "Row select",
+          "markerSelected": "markerSelected",
+          "markerCreated": "markerCreated"
         },
         "image_list": {
           "title": "Images",
