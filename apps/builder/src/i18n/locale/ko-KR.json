@@ -1145,6 +1145,13 @@
         "size_type": {
           "kb": "KB",
           "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "시간을 선택하세요."
+        },
+        "time_range": {
+          "start_placeholder": "시작 시간",
+          "end_placeholder": "종료 시간"
         }
       },
       "setter_group": {
@@ -1427,6 +1434,10 @@
           "enable_add_markers": "마커 추가 활성화",
           "enable_search_locati": "검색 위치 활성화",
           "enable_clustering": "클러스터링 활성화"
+        },
+        "time_range": {
+          "start_time": "시작 시간",
+          "end_time": "시작 시간"
         }
       },
       "setter_tooltip": {
@@ -1535,6 +1546,17 @@
           "enable_add_markers": "사용자가 지도를 클릭하여 마커를 추가하도록 허용할지 여부",
           "enable_search_locati": "사용자가 위치를 검색하도록 허용할지 여부",
           "enable_clustering": "지도가 축소될 때 여러 마커가 집계되도록 허용할지 여부"
+        },
+        "time_picker": {
+          "format": "유효한 시간 형식 문자열입니다. 형식에 대한 자세한 정보: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "값의 범위(분)",
+          "show_a_clear_button_": "마우스가 구성 요소 위에 있을 때 지우기 버튼을 표시합니다."
+        },
+        "time_range": {
+          "start_time": "구성 요소가 초기화될 때 채워지는 시작 시간",
+          "end_time": "구성 요소가 초기화될 때 채워지는 종료 시간",
+          "start_placeholder": "시작 시간을 입력하지 않았을 때 표시되는 정보입니다.",
+          "end_placeholder": "종료 시간을 입력하지 않은 경우 표시되는 정보입니다."
         }
       },
       "setter_option": {
@@ -1738,6 +1760,10 @@
         "marker_selected": "선택된 마커",
         "marker_created": "마커 생성됨",
         "markers_changed": "마커가 변경됨"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
       }
     },
     "tutorial": {
@@ -2173,6 +2199,12 @@
     },
     "map": {
       "name": "지도"
+    },
+    "time_picker": {
+      "name": "시간 선택기"
+    },
+    "time_range": {
+      "name": "시간 범위"
     }
   },
   "page": {
