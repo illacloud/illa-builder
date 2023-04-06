@@ -67,7 +67,9 @@ import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionCon
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { DragShadowPreview } from "../DragShadowPreview"
 import { MousePreview } from "../MousePreview"
+import { sendShadowMessageHandler } from "./utils/sendBinaryMessage"
 
 export const UNIT_HEIGHT = 8
 
@@ -376,6 +378,20 @@ export const RenderComponentCanvas: FC<{
             containerPadding,
             isFreezeCanvas,
             currentDragStartScrollTop.current,
+          )
+          const { draggedSelectedComponents } = dragInfo
+          const displayNames = draggedSelectedComponents.map(
+            (node) => node.displayName,
+          )
+          const { ladingRelativePosition } = dragResult
+          sendShadowMessageHandler(
+            2,
+            componentNode.displayName,
+            displayNames,
+            ladingRelativePosition.x,
+            ladingRelativePosition.y,
+            scaleItem.w,
+            scaleItem.h,
           )
           moveEffect(
             dragResult,
@@ -901,6 +917,10 @@ export const RenderComponentCanvas: FC<{
         selectoSelectionStyle,
       ]}
     >
+      <DragShadowPreview
+        unitW={unitWidth}
+        parentDisplayName={componentNode.displayName}
+      />
       <MousePreview unitW={unitWidth} displayName={componentNode.displayName} />
       {componentTree}
       {isActive && dragInfo && (

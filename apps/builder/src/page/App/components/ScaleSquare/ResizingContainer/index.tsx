@@ -1,5 +1,5 @@
 import { cloneDeep, throttle } from "lodash"
-import { FC, useCallback, useMemo, useRef } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
@@ -23,6 +23,7 @@ import { RootState } from "@/store"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { illaSnapshot } from "../../DotPanel/constant/snapshot"
 import { getRealShapeAndPosition } from "../utils/getRealShapeAndPosition"
 import { useScaleStateSelector } from "../utils/useScaleStateSelector"
 import { ResizingContainerProps } from "./interface"
@@ -54,8 +55,6 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
   })
 
   const { x, y, w, h } = getRealShapeAndPosition(componentNode, unitH, unitW)
-
-  const childNodesRef = useRef<ComponentNode[]>([])
 
   const resizeDirection = useMemo(() => {
     const direction =
@@ -97,15 +96,15 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
           },
         ]),
       )
+      let mergedChildrenNode: ComponentNode[] = []
       if (Array.isArray(childrenNode)) {
-        const mergedChildrenNode = batchMergeLayoutInfoToComponent(
+        mergedChildrenNode = batchMergeLayoutInfoToComponent(
           executionResult,
           childrenNode,
         )
-        childNodesRef.current = cloneDeep(mergedChildrenNode)
-      } else {
-        childNodesRef.current = []
       }
+      illaSnapshot.setSnapshot(mergedChildrenNode)
+
       dispatch(configActions.updateShowDot(true))
     },
     [childrenNode, componentNode.displayName, dispatch, executionResult],
@@ -126,10 +125,11 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
         w: finalWidth,
         h: finalHeight,
       }
-      const indexOfChildren = childNodesRef.current.findIndex(
+      const snapshot = illaSnapshot.getSnapshot()
+      const indexOfChildren = snapshot.findIndex(
         (node) => node.displayName === newItem.displayName,
       )
-      const allChildrenNodes = [...childNodesRef.current]
+      const allChildrenNodes = [...snapshot]
       allChildrenNodes.splice(indexOfChildren, 1, newItem)
       const { finalState } = getReflowResult(newItem, allChildrenNodes)
       const updateSlice = finalState.map((componentNode) => {

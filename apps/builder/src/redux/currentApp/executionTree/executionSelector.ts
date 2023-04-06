@@ -4,10 +4,12 @@ import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import {
   getAllComponentDisplayNameMapProps,
+  getFlattenArrayComponentNodes,
   getOriginalGlobalData,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
+import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
 import { isObject } from "@/utils/typeHelper"
 
@@ -280,5 +282,43 @@ export const getExecutionWidgetLayoutInfo = createSelector(
   [getExecution],
   (execution) => {
     return execution.widgetsLayoutInfo
+  },
+)
+
+// export const getAllComponentsWithRealShapeSelectorOnlyUseInWSAsync = (
+//   state: RootState,
+// ) => {
+//   const canvas = state.currentApp.editor.components
+//   if (!canvas) return []
+//   const allComponents = flattenDslToArray(canvas)
+//   const widgetsLayoutInfo = state.currentApp.execution.widgetsLayoutInfo
+
+//   let childrenNodes = allComponents ? cloneDeep(allComponents) : []
+//   if (Array.isArray(childrenNodes)) {
+//     const mergedChildrenNode = batchMergeLayoutInfoToComponent(
+//       widgetsLayoutInfo,
+//       childrenNodes,
+//     )
+//     childrenNodes = cloneDeep(mergedChildrenNode)
+//   } else {
+//     childrenNodes = []
+//   }
+//   return childrenNodes
+// }
+
+export const getAllComponentsWithRealShapeSelector = createSelector(
+  [getFlattenArrayComponentNodes, getExecutionWidgetLayoutInfo],
+  (allComponentNodes, widgetsLayoutInfo) => {
+    let childrenNodes = allComponentNodes ? cloneDeep(allComponentNodes) : []
+    if (Array.isArray(childrenNodes)) {
+      const mergedChildrenNode = batchMergeLayoutInfoToComponent(
+        widgetsLayoutInfo,
+        childrenNodes,
+      )
+      childrenNodes = cloneDeep(mergedChildrenNode)
+    } else {
+      childrenNodes = []
+    }
+    return childrenNodes
   },
 )

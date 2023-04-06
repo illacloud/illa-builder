@@ -1,44 +1,11 @@
-import { throttle } from "lodash"
 import { RefObject, useCallback, useContext, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useWindowSize } from "react-use"
-import { Connection } from "@/api/ws"
-import { MovingMessageBin, Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getMousePositionWithIllaUnit } from "../calcMouse"
 import { MouseMoveContext } from "../context/mouseMoveContext"
-
-const sendMousePosition = (
-  appId: string,
-  userID: string,
-  nickname: string,
-  parentDisplayName: string,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  isLeave: boolean = false,
-) => {
-  const ws = Connection.getBinaryRoom("app", appId ?? "")
-  const payloadObject: MovingMessageBin = {
-    signal: Signal.MOVE_CURSOR,
-    target: Target.CURSOR,
-    clientID: "",
-    needBroadcast: true,
-    userID,
-    nickname,
-    status: isLeave ? -1 : 1,
-    parentDisplayName: parentDisplayName,
-    displayNames: "",
-    x,
-    y,
-    w,
-    h,
-  }
-  const binMessage = MovingMessageBin.toBinary(payloadObject)
-  ws?.send(binMessage)
-}
+import { sendMousePositionHandler } from "../utils/sendBinaryMessage"
 
 export const useMousePositionAsync = (
   containerRef: RefObject<HTMLDivElement>,
@@ -50,12 +17,6 @@ export const useMousePositionAsync = (
   const userInfo = useSelector(getCurrentUser)
   const { width, height } = useWindowSize()
   const wrapperRef = useRef<HTMLDivElement | null>(null)
-  const sendMessageHandlerRef = useRef(
-    throttle(sendMousePosition, 50, {
-      leading: true,
-      trailing: true,
-    }),
-  )
 
   const mouseMoveContext = useContext(MouseMoveContext)
   const mouseEnterHandler = useCallback(() => {
@@ -65,26 +26,9 @@ export const useMousePositionAsync = (
   const mouseLeaveHandler = useCallback(() => {
     mouseMoveContext.deleteHoverWidget(displayName)
     if (isRoot) {
-      sendMessageHandlerRef.current(
-        params.appId ?? "",
-        userInfo.userId,
-        userInfo.nickname,
-        displayName,
-        0,
-        0,
-        0,
-        0,
-        true,
-      )
+      sendMousePositionHandler(displayName, 0, 0, 0, 0, true)
     }
-  }, [
-    displayName,
-    isRoot,
-    mouseMoveContext,
-    params.appId,
-    userInfo.nickname,
-    userInfo.userId,
-  ])
+  }, [displayName, isRoot, mouseMoveContext])
 
   const mouseMoveAsyncHandler = useCallback(
     (e: MouseEvent) => {
@@ -115,27 +59,10 @@ export const useMousePositionAsync = (
         !Number.isNaN(w) &&
         !Number.isNaN(h)
       ) {
-        sendMessageHandlerRef.current(
-          params.appId ?? "",
-          userInfo.userId,
-          userInfo.nickname,
-          displayName,
-          x,
-          y,
-          w,
-          h,
-        )
+        sendMousePositionHandler(displayName, x, y, w, h)
       }
     },
-    [
-      containerRef,
-      displayName,
-      mouseMoveContext.hoveredWidgets,
-      params.appId,
-      unitWidth,
-      userInfo.nickname,
-      userInfo.userId,
-    ],
+    [containerRef, displayName, mouseMoveContext.hoveredWidgets, unitWidth],
   )
 
   const visibilityChangeHandler = useCallback(() => {
