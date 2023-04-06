@@ -296,7 +296,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   ])
 
   const renderButton = useMemo(() => {
-    return runMode === "run" ? cachedAction?.actionType !== "transformer" : true
+    return runMode === "run" || runMode === "test_run"
+      ? cachedAction?.actionType !== "transformer"
+      : true
   }, [cachedAction?.actionType, runMode])
 
   if (cachedAction === undefined) {

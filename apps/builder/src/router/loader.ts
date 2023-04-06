@@ -21,8 +21,8 @@ export const getUserInfo = async (token?: string) => {
         : `${location.origin}${CLOUD}`,
       headers: token
         ? {
-          Authorization: token,
-        }
+            Authorization: token,
+          }
         : {},
     })
     store.dispatch(

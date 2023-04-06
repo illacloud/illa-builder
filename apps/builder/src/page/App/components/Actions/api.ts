@@ -1,7 +1,9 @@
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 import { createMessage, omit } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
+import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import i18n from "@/i18n/config"
+import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
@@ -30,14 +32,27 @@ function getBaseActionUrl() {
 const message = createMessage()
 
 export function onCopyActionItem(action: ActionItem<ActionContent>) {
+  const isGuideMode = getIsILLAGuideMode(store.getState())
   const baseActionUrl = getBaseActionUrl()
   const newAction = omit(action, ["displayName", "actionId"])
   const displayName = DisplayNameGenerator.generateDisplayName(
     action.actionType,
   )
-  const data: Partial<ActionItem<ActionContent>> = {
+  const data: Omit<ActionItem<ActionContent>, "actionId"> = {
     ...newAction,
     displayName,
+  }
+  if (isGuideMode) {
+    const createActionData: ActionItem<ActionContent> = {
+      ...data,
+      actionId: GUIDE_DEFAULT_ACTION_ID,
+    }
+    store.dispatch(actionActions.addActionItemReducer(createActionData))
+    store.dispatch(configActions.changeSelectedAction(createActionData))
+    message.success({
+      content: i18n.t("editor.action.action_list.message.success_created"),
+    })
+    return
   }
   BuilderApi.teamRequest(
     {
@@ -66,8 +81,18 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
 }
 
 export function onDeleteActionItem(action: ActionItem<ActionContent>) {
+  const isGuideMode = getIsILLAGuideMode(store.getState())
   const baseActionUrl = getBaseActionUrl()
   const { actionId, displayName } = action
+
+  if (isGuideMode) {
+    DisplayNameGenerator.removeDisplayName(displayName)
+    store.dispatch(actionActions.removeActionItemReducer(displayName))
+    message.success({
+      content: i18n.t("editor.action.action_list.message.success_deleted"),
+    })
+    return
+  }
 
   BuilderApi.teamRequest(
     {
