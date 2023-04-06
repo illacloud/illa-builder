@@ -1145,6 +1145,13 @@
         "size_type": {
           "kb": "KB",
           "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "時間を選択"
+        },
+        "time_range": {
+          "start_placeholder": "始まる時間",
+          "end_placeholder": "終了時間"
         }
       },
       "setter_group": {
@@ -1427,6 +1434,10 @@
           "enable_add_markers": "マーカーの追加を有効にする",
           "enable_search_locati": "検索場所を有効にする",
           "enable_clustering": "クラスタリングを有効にする"
+        },
+        "time_range": {
+          "start_time": "始まる時間",
+          "end_time": "終了時間"
         }
       },
       "setter_tooltip": {
@@ -1535,6 +1546,17 @@
           "enable_add_markers": "ユーザーが地図をクリックしてマーカーを追加できるようにするかどうか",
           "enable_search_locati": "ユーザーが場所を検索できるようにするかどうか",
           "enable_clustering": "マップが縮小されたときに複数のマーカーを集約できるようにするかどうか"
+        },
+        "time_picker": {
+          "format": "有効な時刻形式文字列。 フォーマットの詳細: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "分単位での値のスパン数",
+          "show_a_clear_button_": "マウスがコンポーネント上にあるときにクリア ボタンを表示します。"
+        },
+        "time_range": {
+          "start_time": "コンポーネントの初期化時に入力される開始時刻",
+          "end_time": "コンポーネントの初期化時に入力される終了時刻",
+          "start_placeholder": "開始時刻が入力されていない場合に表示される情報。",
+          "end_placeholder": "終了時刻が入力されていない場合に表示される情報。"
         }
       },
       "setter_option": {
@@ -1738,6 +1760,10 @@
         "marker_selected": "マーカーが選択されました",
         "marker_created": "マーカーが作成されました",
         "markers_changed": "マーカーが変更されました"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
       }
     },
     "tutorial": {
@@ -2173,6 +2199,12 @@
     },
     "map": {
       "name": "地図"
+    },
+    "time_picker": {
+      "name": "タイムピッカー"
+    },
+    "time_range": {
+      "name": "時間範囲"
     }
   },
   "page": {
