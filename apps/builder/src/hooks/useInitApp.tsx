@@ -72,7 +72,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
   const checkAppStatus = useCallback(
     (controller: AbortController) => {
       // don't use asyncTeamRequest here, because we need to mock the team info
-      return BuilderApi.asyncTeamIdentifierRequest<{ public: boolean }>({
+      return BuilderApi.asyncTeamIdentifierRequest<{ isPublic: boolean }>({
         url: `/publicApps/${appId}/isPublic`,
         method: "GET",
         signal: controller.signal,
@@ -158,7 +158,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
         setLoadingState(true)
         if (mode === "production") {
           const publicState = await checkAppStatus(controller)
-          if (publicState.data.public) {
+          if (publicState.data.isPublic) {
             const response = await initPublicApp(controller)
             handleCurrentApp(response.data)
             resolve(response.data)
