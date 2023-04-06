@@ -260,6 +260,8 @@ export const transformEvents = (
         "setEndValue",
         "setSpeed",
         "seekTo",
+        "setStartOfRange",
+        "setEndOfRange",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
