@@ -10,6 +10,7 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -59,7 +60,7 @@ export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
   const handleConnectionTest = useCallback(() => {
     const data = getValues()
     const content = {
-      host: data.host,
+      host: filterWhitespace(data.host),
       port: +data.port,
       username: data.username,
       password: data.password,

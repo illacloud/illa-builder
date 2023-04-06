@@ -6,6 +6,7 @@ import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
 import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
 import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
 import {
+  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -64,7 +65,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
       configContent:
         configTypeWatch === "gui"
           ? {
-              host: data.host,
+              host: filterWhitespace(data.host),
               port:
                 data.connectionFormat === "standard"
                   ? data.port.toString()
@@ -74,7 +75,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
               databaseUsername: data.databaseUsername,
               databasePassword: data.databasePassword,
             }
-          : { uri: data.uri },
+          : { uri: filterWhitespace(data.uri) },
     }
 
     onActionConfigElementTest(data, content, "mongodb", setTestLoading)
