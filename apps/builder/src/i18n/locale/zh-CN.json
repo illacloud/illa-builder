@@ -1350,7 +1350,7 @@
         "max_size": "最大文件大小",
         "min_size": "最小文件大小",
         "text_overflow": "文本溢出",
-        "file_url": "文件URL",
+        "file_url": "PDF数据源",
         "show_tool_bar": "显示工具栏",
         "scale": "缩放页面",
         "scroll": "快速滚动到每一页",
@@ -1415,7 +1415,7 @@
         },
         "name": "名称",
         "audio": {
-          "audio_url": "音频URL"
+          "audio_url": "音频数据源"
         },
         "map": {
           "markers": "标记",
@@ -1523,7 +1523,7 @@
           "end_value": "设置范围的最大值"
         },
         "audio": {
-          "audio_url": "支持直接链接到任何常见的音频文件类型或链接到某些音频服务"
+          "audio_url": "支持直接链接到任何常见的音频文件类型或链接到某些音频服务或音频文件的 base64 编码数据。 例如：{{ data:audio/mp3;base64,exampleDate}}"
         },
         "map": {
           "markers": "在地图上设置标记。 标记应该是与默认标记具有相同属性的对象数组。",
@@ -1681,7 +1681,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL",
+      "set_file_url": "Set PDF source",
       "play": "播放",
       "pause": "暂停",
       "seek_to": {
@@ -1732,7 +1732,7 @@
       "setGlobalData": "设置全局变量",
       "setLocalStorage": "设置本地存储数据",
       "audio": {
-        "set_audio_url": "设置音频链接"
+        "set_audio_url": "设置音频数据源"
       },
       "map": {
         "marker_selected": "选择标记",
