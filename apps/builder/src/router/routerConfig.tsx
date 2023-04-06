@@ -11,6 +11,8 @@ import { Page403 } from "@/page/status/403"
 import { Page404 } from "@/page/status/404"
 import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
+import { getUserInfo } from "@/router/loader"
+import { getAuthToken } from "@/utils/auth"
 import { setLocalStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 
@@ -25,6 +27,10 @@ export const cloudRedirect = `${cloudUrl}?redirectUrl=${encodeURIComponent(
 const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
   const { request } = args
   const url = new URL(request.url)
+  const authToken = getAuthToken()
+  if (authToken) {
+    await getUserInfo(authToken)
+  }
   const token = url?.searchParams?.get("token")
   if (!token) return null
   setLocalStorage("token", token, -1)
