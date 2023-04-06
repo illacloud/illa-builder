@@ -64,3 +64,42 @@ export const NickNameContainer: FC<NickNameContainerProps> = (props) => {
   const { nickName, bgColor } = props
   return <div css={nickNameContainerStyle(bgColor)}>{nickName}</div>
 }
+
+export const FixedCursor: FC<CursorProps> = (props) => {
+  const {
+    userID,
+    nickName,
+    integerPartX,
+    integerPartY,
+    decimalPartX,
+    decimalPartY,
+    unitW,
+    status,
+  } = props
+
+  const realX = (integerPartX + decimalPartX) * unitW
+  const realY = integerPartY + decimalPartY
+  const color = getColorByString(userID)
+  const { t } = useTranslation()
+
+  return (
+    <AnimatePresence>
+      <motion.span
+        css={applyCursorContainerStyle(color)}
+        initial={{ x: realX, y: realY }}
+        animate={{ x: realX, y: realY }}
+        transition={{ duration: 0.16 }}
+      >
+        <CursorIcon />
+        <NickNameContainer
+          nickName={
+            nickName?.trim() !== ""
+              ? nickName
+              : t("widget.collaborative.no_name")
+          }
+          bgColor={color}
+        />
+      </motion.span>
+    </AnimatePresence>
+  )
+}

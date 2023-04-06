@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useSelector } from "react-redux"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { applyMultiSelectedScaleSquareStyle } from "@/page/App/components/DotPanel/style"
 import { getLargeItemShapeWithNodeScale } from "@/page/App/components/DotPanel/utils"
 import { getSelectedComponents } from "@/redux/config/configSelector"

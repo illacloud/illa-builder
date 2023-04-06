@@ -39,7 +39,7 @@ export interface MovingMessageBin {
   /**
    * @generated from protobuf field: string nickname = 6;
    */
-  nickname: string // message sender user ID
+  nickname: string // message sender nickname
   /**
    * @generated from protobuf field: int32 status = 7;
    */
@@ -53,21 +53,37 @@ export interface MovingMessageBin {
    */
   displayNames: string // message affected component display names, separate with comma ","
   /**
-   * @generated from protobuf field: float x = 10;
+   * @generated from protobuf field: uint32 cursorXInteger = 10;
    */
-  x: number // instance x, by illa ubilder canvas dot
+  cursorXInteger: number //  cursor's position with dot number
   /**
-   * @generated from protobuf field: float y = 11;
+   * @generated from protobuf field: uint32 cursorYInteger = 11;
    */
-  y: number // instance y, by illa ubilder canvas dot
+  cursorYInteger: number //  cursor's position with dot number
   /**
-   * @generated from protobuf field: uint32 w = 12;
+   * @generated from protobuf field: float cursorXMod = 12;
    */
-  w: number // instance w, by illa ubilder canvas dot
+  cursorXMod: number //  cursor's position with dot number
   /**
-   * @generated from protobuf field: uint32 h = 13;
+   * @generated from protobuf field: float cursorYMod = 13;
    */
-  h: number // instance h, by illa ubilder canvas dot
+  cursorYMod: number //  cursor's position with dot number
+  /**
+   * @generated from protobuf field: uint32 widgetX = 14;
+   */
+  widgetX: number //  widget'position with dot number
+  /**
+   * @generated from protobuf field: uint32 widgetY = 15;
+   */
+  widgetY: number //  widget'position with dot number
+  /**
+   * @generated from protobuf field: uint32 widgetW = 16;
+   */
+  widgetW: number //  widget'shape with dot number
+  /**
+   * @generated from protobuf field: uint32 widgetH = 17;
+   */
+  widgetH: number //  widget'shape with dot number
 }
 /**
  * @generated from protobuf enum tutorial.Signal
@@ -233,10 +249,24 @@ class MovingMessageBin$Type extends MessageType<MovingMessageBin> {
         kind: "scalar",
         T: 9 /*ScalarType.STRING*/,
       },
-      { no: 10, name: "x", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-      { no: 11, name: "y", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-      { no: 12, name: "w", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-      { no: 13, name: "h", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+      {
+        no: 10,
+        name: "cursorXInteger",
+        kind: "scalar",
+        T: 13 /*ScalarType.UINT32*/,
+      },
+      {
+        no: 11,
+        name: "cursorYInteger",
+        kind: "scalar",
+        T: 13 /*ScalarType.UINT32*/,
+      },
+      { no: 12, name: "cursorXMod", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
+      { no: 13, name: "cursorYMod", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
+      { no: 14, name: "widgetX", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+      { no: 15, name: "widgetY", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+      { no: 16, name: "widgetW", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+      { no: 17, name: "widgetH", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
     ])
   }
   create(value?: PartialMessage<MovingMessageBin>): MovingMessageBin {
@@ -250,10 +280,14 @@ class MovingMessageBin$Type extends MessageType<MovingMessageBin> {
       status: 0,
       parentDisplayName: "",
       displayNames: "",
-      x: 0,
-      y: 0,
-      w: 0,
-      h: 0,
+      cursorXInteger: 0,
+      cursorYInteger: 0,
+      cursorXMod: 0,
+      cursorYMod: 0,
+      widgetX: 0,
+      widgetY: 0,
+      widgetW: 0,
+      widgetH: 0,
     }
     globalThis.Object.defineProperty(message, MESSAGE_TYPE, {
       enumerable: false,
@@ -301,17 +335,29 @@ class MovingMessageBin$Type extends MessageType<MovingMessageBin> {
         case /* string displayNames */ 9:
           message.displayNames = reader.string()
           break
-        case /* float x */ 10:
-          message.x = reader.float()
+        case /* uint32 cursorXInteger */ 10:
+          message.cursorXInteger = reader.uint32()
           break
-        case /* float y */ 11:
-          message.y = reader.float()
+        case /* uint32 cursorYInteger */ 11:
+          message.cursorYInteger = reader.uint32()
           break
-        case /* uint32 w */ 12:
-          message.w = reader.uint32()
+        case /* float cursorXMod */ 12:
+          message.cursorXMod = reader.float()
           break
-        case /* uint32 h */ 13:
-          message.h = reader.uint32()
+        case /* float cursorYMod */ 13:
+          message.cursorYMod = reader.float()
+          break
+        case /* uint32 widgetX */ 14:
+          message.widgetX = reader.uint32()
+          break
+        case /* uint32 widgetY */ 15:
+          message.widgetY = reader.uint32()
+          break
+        case /* uint32 widgetW */ 16:
+          message.widgetW = reader.uint32()
+          break
+        case /* uint32 widgetH */ 17:
+          message.widgetH = reader.uint32()
           break
         default:
           let u = options.readUnknownField
@@ -364,14 +410,30 @@ class MovingMessageBin$Type extends MessageType<MovingMessageBin> {
     /* string displayNames = 9; */
     if (message.displayNames !== "")
       writer.tag(9, WireType.LengthDelimited).string(message.displayNames)
-    /* float x = 10; */
-    if (message.x !== 0) writer.tag(10, WireType.Bit32).float(message.x)
-    /* float y = 11; */
-    if (message.y !== 0) writer.tag(11, WireType.Bit32).float(message.y)
-    /* uint32 w = 12; */
-    if (message.w !== 0) writer.tag(12, WireType.Varint).uint32(message.w)
-    /* uint32 h = 13; */
-    if (message.h !== 0) writer.tag(13, WireType.Varint).uint32(message.h)
+    /* uint32 cursorXInteger = 10; */
+    if (message.cursorXInteger !== 0)
+      writer.tag(10, WireType.Varint).uint32(message.cursorXInteger)
+    /* uint32 cursorYInteger = 11; */
+    if (message.cursorYInteger !== 0)
+      writer.tag(11, WireType.Varint).uint32(message.cursorYInteger)
+    /* float cursorXMod = 12; */
+    if (message.cursorXMod !== 0)
+      writer.tag(12, WireType.Bit32).float(message.cursorXMod)
+    /* float cursorYMod = 13; */
+    if (message.cursorYMod !== 0)
+      writer.tag(13, WireType.Bit32).float(message.cursorYMod)
+    /* uint32 widgetX = 14; */
+    if (message.widgetX !== 0)
+      writer.tag(14, WireType.Varint).uint32(message.widgetX)
+    /* uint32 widgetY = 15; */
+    if (message.widgetY !== 0)
+      writer.tag(15, WireType.Varint).uint32(message.widgetY)
+    /* uint32 widgetW = 16; */
+    if (message.widgetW !== 0)
+      writer.tag(16, WireType.Varint).uint32(message.widgetW)
+    /* uint32 widgetH = 17; */
+    if (message.widgetH !== 0)
+      writer.tag(17, WireType.Varint).uint32(message.widgetH)
     let u = options.writeUnknownFields
     if (u !== false)
       (u == true ? UnknownFieldHandler.onWrite : u)(

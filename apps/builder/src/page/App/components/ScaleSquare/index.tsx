@@ -56,7 +56,10 @@ import { isMAC } from "@/utils/userAgent"
 import { AutoHeightWithLimitedContainer } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { illaSnapshot } from "../DotPanel/constant/snapshot"
-import { sendShadowMessageHandler } from "../DotPanel/utils/sendBinaryMessage"
+import {
+  sendMousePositionHandler,
+  sendShadowMessageHandler,
+} from "../DotPanel/utils/sendBinaryMessage"
 import { ResizingContainer } from "./ResizingContainer"
 import { getRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
 import { useDisplayNameInMoveBarSelector } from "./utils/useGetDisplayNameInMoveBar"
@@ -257,11 +260,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       type: "components",
       canDrag: isEditMode && !isResizingStateInGlobal,
       end: (draggedItem, monitor) => {
+        sendShadowMessageHandler(-1, "", [], 0, 0, 0, 0, 0, 0, 0, 0)
         const dropResultInfo = monitor.getDropResult()
         const { draggedSelectedComponents } = draggedItem
-        if (dropResultInfo?.isDropOnCanvas ?? false) {
-          sendShadowMessageHandler(-1, "", [], 0, 0, 0, 0)
-        }
         endDragMultiNodes(
           draggedSelectedComponents,
           dropResultInfo?.isDropOnCanvas ?? false,
@@ -299,6 +300,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           return node.displayName === findDisplayName
         })!
         startDragMultiNodes(draggedSelectedComponents, false)
+        sendMousePositionHandler(componentNode.parentNode!, 0, 0, 0, 0, true)
+
         return {
           item: mergedItem,
           draggedSelectedComponents,

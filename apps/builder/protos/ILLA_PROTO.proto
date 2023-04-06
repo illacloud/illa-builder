@@ -37,12 +37,16 @@ message MovingMessageBin {
   string  clientID          = 3;  // message sender client ID
   bool    needBroadcast     = 4;
   string  userID            = 5;  // message sender user ID
-  string  nickname          = 6;  // message sender user ID
+  string  nickname          = 6;  // message sender nickname
   int32   status            = 7;  // set instance to status, 0 for empty status
   string  parentDisplayName = 8;  // parent component displayname
   string  displayNames      = 9;  // message affected component display names, separate with comma ","
-  float  x                 = 10;  // instance x, by illa ubilder canvas dot
-  float  y                 = 11; // instance y, by illa ubilder canvas dot
-  uint32  w                 = 12; // instance w, by illa ubilder canvas dot
-  uint32  h                 = 13; // instance h, by illa ubilder canvas dot
+  uint32  cursorXInteger    = 10; //  cursor's position with dot number
+  uint32  cursorYInteger    = 11; //  cursor's position with dot number
+  float   cursorXMod        = 12; //  cursor's position with dot number
+  float   cursorYMod        = 13; //  cursor's position with dot number
+  uint32  widgetX           = 14; //  widget'position with dot number
+  uint32  widgetY           = 15; //  widget'position with dot number
+  uint32  widgetW           = 16; //  widget'shape with dot number
+  uint32  widgetH           = 17; //  widget'shape with dot number
 }

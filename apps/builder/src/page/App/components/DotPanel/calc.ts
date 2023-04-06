@@ -1,6 +1,6 @@
 import { cloneDeep } from "lodash"
 import { XYCoord } from "react-dnd"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 interface ItemPosition {
@@ -363,11 +363,19 @@ interface LadingRelativePosition {
   isOverstep: boolean
 }
 
+interface MouseOffset {
+  mouseXOffsetDec: number
+  mouseXOffsetInt: number
+  mouseYOffsetDec: number
+  mouseYOffsetInt: number
+}
+
 export interface MoveDragResult {
   ladingPosition: Omit<LandingPosition, "relativeLandingX" | "relativeLandingY">
   rectPosition: RectShape
   rectCenterPosition: CenterPointPosition
   ladingRelativePosition: LadingRelativePosition
+  mouseOffset: MouseOffset
 }
 
 const getDragResultWhenAdd = (
@@ -405,6 +413,12 @@ const getDragResultWhenAdd = (
     canvasHeight,
     canResizeY,
   )
+  const mouseXOffsetInt = Math.floor(realNodeWidthAndHeight.w / 2 / unitWidth)
+  const mouseXOffsetDec =
+    realNodeWidthAndHeight.w / 2 / unitWidth - mouseXOffsetInt
+  const mouseYOffsetInt = Math.floor(realNodeWidthAndHeight.h / 2 / UNIT_HEIGHT)
+  const mouseYOffsetDec =
+    realNodeWidthAndHeight.h / 2 / UNIT_HEIGHT - mouseYOffsetInt
 
   return {
     ladingPosition: {
@@ -418,6 +432,12 @@ const getDragResultWhenAdd = (
       x: ladingPosition.relativeLandingX,
       y: ladingPosition.relativeLandingY,
       isOverstep: ladingPosition.isOverstep,
+    },
+    mouseOffset: {
+      mouseXOffsetDec,
+      mouseXOffsetInt,
+      mouseYOffsetDec,
+      mouseYOffsetInt,
     },
   }
 }
@@ -448,6 +468,18 @@ const getDragResultWhenUpdate = (
     containerTopPadding
   let renderX = relativeX - initialClientOffset!.x + leftTopPosition.x
   let renderY = relativeY - initialClientOffset!.y + leftTopPosition.y
+  const mouseXOffsetInt = Math.floor(
+    (initialClientOffset!.x - initialSourceClientOffSet.x) / unitWidth,
+  )
+  const mouseXOffsetDec =
+    (initialClientOffset!.x - initialSourceClientOffSet.x) / unitWidth -
+    mouseXOffsetInt
+  const mouseYOffsetInt = Math.floor(
+    (initialClientOffset!.y - initialSourceClientOffSet.y) / unitWidth,
+  )
+  const mouseYOffsetDec =
+    (initialClientOffset!.y - initialSourceClientOffSet.y) / UNIT_HEIGHT -
+    mouseYOffsetInt
 
   const relativeLandingX = Math.round(renderX / unitWidth)
   const relativeLandingY = Math.round(renderY / UNIT_HEIGHT)
@@ -502,6 +534,12 @@ const getDragResultWhenUpdate = (
       x: relativeLandingX,
       y: relativeLandingY,
       isOverstep,
+    },
+    mouseOffset: {
+      mouseXOffsetDec,
+      mouseXOffsetInt,
+      mouseYOffsetDec,
+      mouseYOffsetInt,
     },
   }
 }

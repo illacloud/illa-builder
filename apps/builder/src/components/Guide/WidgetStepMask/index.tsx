@@ -11,7 +11,7 @@ import {
 } from "@/components/Guide/WidgetStepMask/style"
 import { ReactComponent as MoveIcon } from "@/components/Guide/assets/move.svg"
 import { GUIDE_SELECT_WIDGET } from "@/config/guide/config"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCanvasShape } from "@/redux/config/configSelector"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"

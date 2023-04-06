@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
