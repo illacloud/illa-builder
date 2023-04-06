@@ -1596,6 +1596,12 @@
         "choose_up_to": "Please choose up to {{max}} options.",
         "map": {
           "zoom": "Please set a value between 1 and 22"
+        },
+        "upload": {
+          "size_exceed": "Files over 500MB may fail to parse.",
+          "single_file": "Only a single file is allowed.",
+          "file": "Only files are allowed. Please don't upload a directory.",
+          "directory": "Only directories are allowed."
         }
       },
       "setter_description": {
