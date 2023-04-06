@@ -2,8 +2,10 @@ import { AxiosError, AxiosResponse } from "axios"
 import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isNumber, isString } from "@illa-design/react"
 import { Api, ApiError, BuilderApi } from "@/api/base"
+import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
+import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import {
   ActionContent,
   ActionItem,
@@ -667,6 +669,7 @@ export const runAction = (
   const rootState = store.getState()
   const appId = getAppId(rootState)
   const executionResult = getExecutionResult(rootState)
+  const isGuideMode = getIsILLAGuideMode(rootState)
   if (actionType === "transformer") {
     runActionTransformer(action as ActionItem<TransformerAction>)
     return
@@ -688,6 +691,8 @@ export const runAction = (
       },
     }),
   )
+  //
+  const currentActionId = isGuideMode ? GUIDE_DEFAULT_ACTION_ID : actionId
 
   fetchActionResult(
     action.config?.public || false,
@@ -695,7 +700,7 @@ export const runAction = (
     actionType,
     displayName,
     appId,
-    actionId,
+    currentActionId,
     actionContent,
     successEvent,
     failedEvent,
