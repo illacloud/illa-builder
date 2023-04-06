@@ -5,7 +5,7 @@ export interface DragShadowInfo {
   nickname: MovingMessageBin["nickname"]
   parentDisplayName: MovingMessageBin["parentDisplayName"]
   displayNames: MovingMessageBin["displayNames"]
-  status: MovingMessageBin["status"] // 1 is Dragging move,-1 is dragging end
+  status: MovingMessageBin["status"] // 1 is Dragging move, 2 is resize,-1 is dragging end
   xInteger: MovingMessageBin["cursorXInteger"]
   yInteger: MovingMessageBin["cursorYInteger"]
   xMod: MovingMessageBin["cursorXMod"]

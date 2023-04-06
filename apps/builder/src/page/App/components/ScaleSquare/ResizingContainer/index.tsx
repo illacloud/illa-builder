@@ -13,6 +13,7 @@ import {
   getComponentAttachUsers,
   getTargetCurrentUsersExpendMe,
 } from "@/redux/currentApp/collaborators/collaboratorsSelector"
+import { getFirstDragShadowInfo } from "@/redux/currentApp/dragShadow/dragShadowSelector"
 import { UpdateComponentNodeLayoutInfoPayload } from "@/redux/currentApp/editor/components/componentsPayload"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -24,6 +25,7 @@ import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { illaSnapshot } from "../../DotPanel/constant/snapshot"
+import { sendShadowMessageHandler } from "../../DotPanel/utils/sendBinaryMessage"
 import { getRealShapeAndPosition } from "../utils/getRealShapeAndPosition"
 import { useScaleStateSelector } from "../utils/useScaleStateSelector"
 import { ResizingContainerProps } from "./interface"
@@ -36,6 +38,12 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
 
   const { minW, minH } = componentNode
   const dispatch = useDispatch()
+
+  const firstDragShadow = useSelector(getFirstDragShadowInfo)
+
+  const isResizingWithOthers = firstDragShadow.some((dragShadow) => {
+    return dragShadow?.displayNames?.includes(componentNode.displayName)
+  })
 
   const isEditMode = useSelector(getIsILLAEditMode)
   const isLikeProductionMode = useSelector(getIsLikeProductMode)
@@ -104,7 +112,6 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
         )
       }
       illaSnapshot.setSnapshot(mergedChildrenNode)
-
       dispatch(configActions.updateShowDot(true))
     },
     [childrenNode, componentNode.displayName, dispatch, executionResult],
@@ -143,6 +150,19 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
           },
         }
       })
+      sendShadowMessageHandler(
+        2,
+        componentNode.parentNode!,
+        [componentNode.displayName],
+        0,
+        0,
+        0,
+        0,
+        newItem.x,
+        newItem.y,
+        newItem.w,
+        newItem.h,
+      )
       throttleUpdateComponentPositionByReflow(updateSlice)
     },
     [
@@ -168,6 +188,8 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
         finalWidth < componentNode.minW ? componentNode.minW : finalWidth
       finalHeight =
         finalHeight < componentNode.minH ? componentNode.minH : finalHeight
+
+      sendShadowMessageHandler(-1, "", [], 0, 0, 0, 0, 0, 0, 0, 0)
 
       dispatch(
         componentsActions.updateComponentLayoutInfoReducer({
@@ -218,7 +240,9 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       }}
       disableDragging
       enableResizing={
-        isEditMode && isSelected ? getEnableResizing(resizeDirection) : false
+        isEditMode && isSelected && !isResizingWithOthers
+          ? getEnableResizing(resizeDirection)
+          : false
       }
       minWidth={minW * unitW}
       minHeight={minH * unitH}
@@ -231,7 +255,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       onResize={handleResize}
       onResizeStop={handleOnResizeStop}
     >
-      {children}
+      {!isResizingWithOthers && children}
     </Rnd>
   )
 }

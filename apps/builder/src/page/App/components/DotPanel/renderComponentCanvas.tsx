@@ -306,33 +306,6 @@ export const RenderComponentCanvas: FC<{
     !!sectionName,
   )
 
-  const sendDragShadowHandlerRef = useCallback(
-    (
-      parentDisplayName: string,
-      displayNames: string[],
-      widgetX: number,
-      widgetY: number,
-      widgetW: number,
-      widgetH: number,
-    ) => {
-      const cursorPosition = cursorPositionRef.current
-      sendShadowMessageHandler(
-        2,
-        parentDisplayName,
-        displayNames,
-        cursorPosition.xInteger,
-        cursorPosition.yInteger,
-        cursorPosition.xMod,
-        cursorPosition.yMod,
-        widgetX,
-        widgetY,
-        widgetW,
-        widgetH,
-      )
-    },
-    [cursorPositionRef],
-  )
-
   const throttleUpdateComponentPositionByReflow = useMemo(() => {
     return throttle((updateSlice: UpdateComponentNodeLayoutInfoPayload[]) => {
       dispatch(executionActions.batchUpdateWidgetLayoutInfoReducer(updateSlice))
@@ -423,7 +396,7 @@ export const RenderComponentCanvas: FC<{
           )
 
           sendShadowMessageHandler(
-            2,
+            1,
             componentNode.displayName,
             displayNames,
             mouseOffset.mouseXOffsetInt,
