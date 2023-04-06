@@ -12,7 +12,7 @@ export const MODAL_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.modal.name"),
   keywords: ["modal", "对话框"],
   icon: <ModalWidgetIcon />,
-  sessionType: "PRESENTATION",
+  sessionType: "CONTAINER",
   w: 32,
   h: 40,
   childrenNode: [

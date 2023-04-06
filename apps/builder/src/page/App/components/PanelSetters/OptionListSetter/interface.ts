@@ -1,3 +1,4 @@
+import { ReactElement } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 
@@ -29,6 +30,10 @@ export interface MoreProps {
 export interface OptionListSetterProps extends BaseSetter {
   value: OptionItemShape[]
   childrenSetter?: PanelFieldConfig[]
+  headerName?: string
+  itemName?: string
+  emptyNode?: ReactElement
+  showDuplicationKeyError?: boolean
 }
 
 export interface DragItem {
@@ -40,4 +45,8 @@ export interface DragItem {
 export interface ActionMenuProps {
   index: number
   handleCloseMode: () => void
+}
+
+export interface ListBodyProps {
+  emptyNode?: ReactElement
 }

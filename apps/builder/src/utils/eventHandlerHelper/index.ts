@@ -303,7 +303,8 @@ export const transformEvents = (
       widgetMethod === "rowSelect" ||
       widgetMethod === "resetPrimaryValue" ||
       widgetMethod === "slickNext" ||
-      widgetMethod === "resetMarkers"
+      widgetMethod === "resetMarkers" ||
+      widgetMethod === "resetValue"
     ) {
       return {
         script: `{{${widgetID}.${widgetMethod}()}}`,

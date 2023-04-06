@@ -16,7 +16,7 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.container.name"),
   keywords: ["container", "容器"],
   icon: <ContainerWidgetIcon />,
-  sessionType: "PRESENTATION",
+  sessionType: "CONTAINER",
   w: 20,
   h: 40,
   childrenNode: [
