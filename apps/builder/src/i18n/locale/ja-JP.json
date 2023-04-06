@@ -1098,7 +1098,9 @@
           "pause": "一時停止",
           "ended": "終了済み",
           "loaded": "ロード済み",
-          "rowSelect": "行を選択"
+          "rowSelect": "行を選択",
+          "markerSelected": "マーカーを選択",
+          "markerCreated": "マーカーを作成"
         },
         "image_list": {
           "title": "イメージ",
