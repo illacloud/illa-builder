@@ -19,7 +19,6 @@ export const defaultColumnItem: Partial<ColumnItemShape> = {
   enableSorting: true,
   type: "auto",
   visible: true,
-  custom: true,
   format: "YYYY-MM-DD",
   colorScheme: "blue",
   objectFit: "scale-down",
@@ -71,6 +70,7 @@ export interface WrappedTableProps
       | "rowSelection"
       | "columnVisibility"
       | "multiRowSelection"
+      | "columnSizing"
       | "data"
     >,
     Omit<BaseWidgetProps, "triggerEventHandler"> {

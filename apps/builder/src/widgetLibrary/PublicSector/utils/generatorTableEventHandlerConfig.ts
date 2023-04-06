@@ -543,8 +543,8 @@ export const generatorTableEventHandlerConfig = (
         placeholder: i18n.t(
           "editor.inspect.setter_placeholder.file_download.file_name",
         ),
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        // expectedType: VALIDATION_TYPES.STRING,
         attrName: "fileName",
         bindAttrName: ["actionType"],
         shown: (type) => type === "downloadFile",
@@ -558,8 +558,8 @@ export const generatorTableEventHandlerConfig = (
         placeholder: i18n.t(
           "editor.inspect.setter_placeholder.file_download.file_data",
         ),
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        // expectedType: VALIDATION_TYPES.STRING,
         attrName: "fileData",
         bindAttrName: ["actionType"],
         shown: (type) => type === "downloadFile",
