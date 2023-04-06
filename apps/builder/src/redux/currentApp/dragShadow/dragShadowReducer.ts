@@ -5,40 +5,15 @@ export const updateDragShadowInfoReducer: CaseReducer<
   DragShadowState,
   PayloadAction<UpdateCursorPayload>
 > = (state, action) => {
-  const {
-    userID,
-    nickname,
-    displayNames,
-    parentDisplayName,
-    rectX,
-    rectY,
-    rectH,
-    rectW,
-    status,
-    canDrop,
-    lastUpdateTime,
-  } = action.payload
+  const { userID } = action.payload
   const hasUser = !!state[userID]
   if (!hasUser) {
     state[userID] = []
   }
-  const cursorInfo = {
-    userID,
-    nickname,
-    parentDisplayName,
-    status,
-    rectX,
-    rectY,
-    rectH,
-    rectW,
-    canDrop,
-    displayNames,
-    lastUpdateTime,
-  }
   if (state[userID].length === 1) {
-    state[userID].splice(0, 1, cursorInfo)
+    state[userID].splice(0, 1, action.payload)
   } else {
-    state[userID].push(cursorInfo)
+    state[userID].push(action.payload)
   }
 }
 

@@ -5,12 +5,15 @@ export interface DragShadowInfo {
   nickname: MovingMessageBin["nickname"]
   parentDisplayName: MovingMessageBin["parentDisplayName"]
   displayNames: MovingMessageBin["displayNames"]
-  status: MovingMessageBin["status"] // 2 is dragging move,-1 is drop end
-  rectX: MovingMessageBin["x"]
-  rectY: MovingMessageBin["y"]
-  rectW: MovingMessageBin["w"]
-  rectH: MovingMessageBin["h"]
-  canDrop: boolean
+  status: MovingMessageBin["status"] // 1 is Dragging move,-1 is dragging end
+  xInteger: MovingMessageBin["cursorXInteger"]
+  yInteger: MovingMessageBin["cursorYInteger"]
+  xMod: MovingMessageBin["cursorXMod"]
+  yMod: MovingMessageBin["cursorYMod"]
+  rectX: MovingMessageBin["widgetX"]
+  rectY: MovingMessageBin["widgetY"]
+  rectW: MovingMessageBin["widgetW"]
+  rectH: MovingMessageBin["widgetH"]
   lastUpdateTime: number
 }
 

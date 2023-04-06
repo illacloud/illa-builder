@@ -5,7 +5,7 @@ import { ShadowPreview } from "./Shadow"
 import { DragShadowPreviewProps } from "./interface"
 
 export const DragShadowPreview: FC<DragShadowPreviewProps> = (props) => {
-  const { unitW, parentDisplayName } = props
+  const { unitW, parentDisplayName, columns } = props
 
   const dragShadowInfoArray = useSelector(getDragShadowInfoArray)
 
@@ -26,6 +26,12 @@ export const DragShadowPreview: FC<DragShadowPreviewProps> = (props) => {
               userID={currentItem.userID}
               status={currentItem.status}
               parentDisplayName={currentItem.parentDisplayName}
+              columns={columns}
+              integerPartX={currentItem.xInteger}
+              integerPartY={currentItem.yInteger}
+              decimalPartX={currentItem.xMod}
+              decimalPartY={currentItem.yMod}
+              nickname={currentItem.nickname}
             />
           )
         )

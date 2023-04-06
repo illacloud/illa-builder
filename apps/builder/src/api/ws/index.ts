@@ -67,10 +67,14 @@ export const getBinaryMessagePayload = (
   status: number,
   parentDisplayName: string,
   displayNames: string,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
+  cursorXInteger: number,
+  cursorYInteger: number,
+  cursorXMod: number,
+  cursorYMod: number,
+  widgetX: number,
+  widgetY: number,
+  widgetW: number,
+  widgetH: number,
 ) => {
   const payloadObject: MovingMessageBin = {
     signal,
@@ -82,10 +86,14 @@ export const getBinaryMessagePayload = (
     status,
     parentDisplayName,
     displayNames,
-    x,
-    y,
-    w,
-    h,
+    cursorXInteger,
+    cursorYInteger,
+    cursorXMod,
+    cursorYMod,
+    widgetX,
+    widgetY,
+    widgetW,
+    widgetH,
   }
   const binMessage = MovingMessageBin.toBinary(payloadObject)
   return binMessage

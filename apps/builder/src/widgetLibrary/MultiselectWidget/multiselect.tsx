@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   MultiselectWidgetProps,
   WrappedMultiselectProps,

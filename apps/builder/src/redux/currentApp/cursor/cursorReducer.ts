@@ -8,36 +8,15 @@ export const updateCursorReducer: CaseReducer<
   CursorState,
   PayloadAction<UpdateCursorPayload>
 > = (state, action) => {
-  const {
-    userID,
-    nickname,
-    parentDisplayName,
-    x,
-    y,
-    w,
-    h,
-    status,
-    lastUpdateTime,
-  } = action.payload
+  const { userID } = action.payload
   const hasUser = !!state[userID]
   if (!hasUser) {
     state[userID] = []
   }
-  const cursorInfo = {
-    userID,
-    nickname,
-    parentDisplayName,
-    status,
-    x,
-    y,
-    w,
-    h,
-    lastUpdateTime,
-  }
   if (state[userID].length === 1) {
-    state[userID].splice(0, 1, cursorInfo)
+    state[userID].splice(0, 1, action.payload)
   } else {
-    state[userID].push(cursorInfo)
+    state[userID].push(action.payload)
   }
 }
 

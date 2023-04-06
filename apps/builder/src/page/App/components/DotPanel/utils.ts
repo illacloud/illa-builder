@@ -5,11 +5,11 @@ import {
   getReflowResult,
   isAddAction,
 } from "@/page/App/components/DotPanel/calc"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   DragInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import { UpdateComponentNodeLayoutInfoPayload } from "@/redux/currentApp/editor/components/componentsPayload"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { illaSnapshot } from "./constant/snapshot"

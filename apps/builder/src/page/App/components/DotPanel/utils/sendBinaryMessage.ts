@@ -7,10 +7,10 @@ import store from "@/store"
 
 export const sendMousePosition = (
   parentDisplayName: string,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
+  cursorXInteger: number,
+  cursorYInteger: number,
+  cursorXMod: number,
+  cursorYMod: number,
   isLeave: boolean = false,
 ) => {
   const appID = ILLARoute.state.matches[0].params.appId
@@ -27,10 +27,14 @@ export const sendMousePosition = (
     isLeave ? -1 : 1,
     parentDisplayName,
     "",
-    x,
-    y,
-    w,
-    h,
+    cursorXInteger,
+    cursorYInteger,
+    cursorXMod,
+    cursorYMod,
+    0,
+    0,
+    0,
+    0,
   )
   ws?.send(binMessage)
 }
@@ -44,10 +48,14 @@ export const sendShadowPosition = (
   status: number,
   parentDisplayName: string,
   displayNames: string[],
-  x: number,
-  y: number,
-  w: number,
-  h: number,
+  cursorXInteger: number,
+  cursorYInteger: number,
+  cursorXMod: number,
+  cursorYMod: number,
+  widgetX: number,
+  widgetY: number,
+  widgetW: number,
+  widgetH: number,
 ) => {
   const appID = ILLARoute.state.matches[0].params.appId
   const rootState = store.getState()
@@ -63,10 +71,14 @@ export const sendShadowPosition = (
     status,
     parentDisplayName,
     displayNames.join(","),
-    x,
-    y,
-    w,
-    h,
+    cursorXInteger,
+    cursorYInteger,
+    cursorXMod,
+    cursorYMod,
+    widgetX,
+    widgetY,
+    widgetW,
+    widgetH,
   )
   ws?.send(binMessage)
 }

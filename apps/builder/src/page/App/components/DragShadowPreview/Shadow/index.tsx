@@ -1,9 +1,11 @@
 import { motion } from "framer-motion"
 import { FC, useCallback } from "react"
 import { useDispatch } from "react-redux"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
+import { FixedCursor } from "@/page/App/components/MousePreview/Cursor"
 import { dragShadowActions } from "@/redux/currentApp/dragShadow/dragShadowSlice"
-import { UNIT_HEIGHT } from "../../DotPanel/renderComponentCanvas"
 import { applyDotLintRectangleStyle, rectangleStyle } from "./style"
+import { fixedPosition } from "./utils"
 
 interface DragShadowPreviewProps {
   x: number
@@ -15,6 +17,12 @@ interface DragShadowPreviewProps {
   parentDisplayName: string
   displayNames: string
   userID: string
+  columns: number
+  nickname: string
+  integerPartX: number
+  integerPartY: number
+  decimalPartX: number
+  decimalPartY: number
 }
 
 export const ShadowPreview: FC<DragShadowPreviewProps> = (props) => {
@@ -28,6 +36,12 @@ export const ShadowPreview: FC<DragShadowPreviewProps> = (props) => {
     unitW,
     displayNames,
     parentDisplayName,
+    columns,
+    nickname,
+    integerPartX,
+    integerPartY,
+    decimalPartX,
+    decimalPartY,
   } = props
 
   const dispatch = useDispatch()
@@ -42,6 +56,8 @@ export const ShadowPreview: FC<DragShadowPreviewProps> = (props) => {
     }
   }, [dispatch, status, userID])
 
+  const fixedXAndY = fixedPosition(x, y, landingX, columns)
+
   return (
     <>
       <motion.div
@@ -50,12 +66,22 @@ export const ShadowPreview: FC<DragShadowPreviewProps> = (props) => {
           landingY * UNIT_HEIGHT,
           true,
         )}
-        initial={{ x: x * unitW, y: y * UNIT_HEIGHT }}
-        animate={{ x: x * unitW, y: y * UNIT_HEIGHT }}
+        initial={{ x: fixedXAndY.x * unitW, y: fixedXAndY.y * UNIT_HEIGHT }}
+        animate={{ x: fixedXAndY.x * unitW, y: fixedXAndY.y * UNIT_HEIGHT }}
         transition={{ duration: 0.16 }}
         onAnimationComplete={onAnimationComplete}
       >
         <div css={rectangleStyle} />
+        <FixedCursor
+          userID={userID}
+          nickName={nickname}
+          integerPartX={integerPartX}
+          integerPartY={integerPartY}
+          decimalPartX={decimalPartX}
+          decimalPartY={decimalPartY}
+          status={status}
+          unitW={unitW}
+        />
       </motion.div>
     </>
   )
