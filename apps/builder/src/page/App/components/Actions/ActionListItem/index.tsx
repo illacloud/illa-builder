@@ -16,6 +16,7 @@ import { ActionListItemProps } from "@/page/App/components/Actions/ActionListIte
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import {
   getCachedAction,
+  getIsILLAGuideMode,
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -55,7 +56,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     })
 
     const currentApp = useSelector(getAppInfo)
-
+    const isGuideMode = useSelector(getIsILLAGuideMode)
     const executionResult = useSelector(getExecutionResult)
 
     const startRunningTime: number =
@@ -122,6 +123,17 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           ...action,
           displayName: newName,
         }
+        if (isGuideMode) {
+          dispatch(
+            actionActions.updateActionDisplayNameReducer({
+              newDisplayName: newName,
+              oldDisplayName: action.displayName,
+              actionID: newAction.actionId,
+            }),
+          )
+          setEditName(false)
+          return
+        }
         BuilderApi.teamRequest(
           {
             method: "PUT",
@@ -155,7 +167,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           },
         )
       },
-      [action, currentApp.appId, dispatch, message, t],
+      [action, currentApp.appId, isGuideMode, dispatch, message, t],
     )
 
     const calcTimeString = useCallback(

@@ -1,9 +1,9 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { v4 } from "uuid"
 import { Modal, useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
-import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
@@ -103,7 +103,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {
           ...data,
-          actionId: GUIDE_DEFAULT_ACTION_ID,
+          actionId: v4(),
         }
         dispatch(actionActions.addActionItemReducer(createActionData))
         dispatch(configActions.changeSelectedAction(createActionData))
