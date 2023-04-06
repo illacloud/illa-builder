@@ -1596,6 +1596,12 @@
         "choose_up_to": "Please choose up to {{max}} options.",
         "map": {
           "zoom": "1 から 22 までの値を設定してください"
+        },
+        "upload": {
+          "size_exceed": "500MB を超えるファイルは解析に失敗する場合があります。",
+          "single_file": "許可されるファイルは 1 つだけです。",
+          "file": "ファイルのみが許可されます。 ディレクトリをアップロードしないでください。",
+          "directory": "ディレクトリのみが許可されます。"
         }
       },
       "setter_description": {
