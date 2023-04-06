@@ -1703,7 +1703,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set PDF source",
+      "set_file_url": "Set file URL",
       "play": "播放",
       "pause": "暂停",
       "seek_to": {
