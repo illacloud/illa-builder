@@ -64,7 +64,7 @@ export const WrappedRangeSlider = forwardRef<
   const currentPrefixIcon = getIcon(prefixIcon ?? "")
   const currentSuffixIcon = getIcon(suffixIcon ?? "")
   return (
-    <div css={applyWrapperSlider} style={{}}>
+    <div css={applyWrapperSlider}>
       {currentPrefixIcon && (
         <span css={applyIcon}>
           {currentPrefixIcon && currentPrefixIcon({})}
@@ -72,7 +72,7 @@ export const WrappedRangeSlider = forwardRef<
       )}
       <Slider
         value={[startValue, endValue]}
-        hideValue={hideOutput}
+        tooltipVisible={!hideOutput}
         onChange={onChangeSliderValue}
         isRange={true}
         ref={ref}
@@ -225,7 +225,7 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
           />
         </div>
       </TooltipWrapper>
-      {hideValidationMessage && (
+      {!hideValidationMessage && (
         <div
           css={applyValidateMessageWrapperStyle(
             labelWidth,
