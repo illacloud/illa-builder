@@ -1098,7 +1098,9 @@
           "pause": "정지시키다",
           "ended": "종료",
           "loaded": "짐을 실은",
-          "rowSelect": "행 선택"
+          "rowSelect": "행 선택",
+          "markerSelected": "마커 선택",
+          "markerCreated": "마커 만들기"
         },
         "image_list": {
           "title": "이미지",
