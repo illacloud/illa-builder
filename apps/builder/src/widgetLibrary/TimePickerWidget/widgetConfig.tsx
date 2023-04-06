@@ -9,7 +9,7 @@ export const TIME_PICKER_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Time Picker", "时间选择器"],
   icon: <TimePickerWidgetIcon />,
   sessionType: "CALENDAR",
-  w: 20,
+  w: 12,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
