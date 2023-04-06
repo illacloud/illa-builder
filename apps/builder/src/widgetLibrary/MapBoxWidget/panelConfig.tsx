@@ -15,6 +15,7 @@ export const MAP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.map.initial_location"),
         labelDesc: i18n.t("editor.inspect.setter_tips.map.initial_location"),
         attrName: "center",
+        isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.OBJECT,
         setterType: "INPUT_SETTER",
       },
@@ -23,6 +24,7 @@ export const MAP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.map.default_markers"),
         labelDesc: i18n.t("editor.inspect.setter_tips.map.default_markers"),
         attrName: "markers",
+        isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.ARRAY,
         setterType: "INPUT_SETTER",
       },
@@ -31,9 +33,8 @@ export const MAP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t(
           "editor.inspect.setter_label.map.latitude_field_name",
         ),
-        labelDesc: i18n.t(
-          "editor.inspect.setter_tips.map.latitude_field_name",
-        ),
+        labelDesc: i18n.t("editor.inspect.setter_tips.map.latitude_field_name"),
+        isSetterSingleRow: true,
         attrName: "latitudeFieldName",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -46,6 +47,7 @@ export const MAP_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t(
           "editor.inspect.setter_tips.map.longitude_field_name",
         ),
+        isSetterSingleRow: true,
         attrName: "longitudeFieldName",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -97,8 +99,12 @@ export const MAP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-interaction-enableSearch`,
-        labelName: i18n.t("editor.inspect.setter_label.map.enable_search_locati"),
-        labelDesc: i18n.t("editor.inspect.setter_tips.map.enable_search_locati"),
+        labelName: i18n.t(
+          "editor.inspect.setter_label.map.enable_search_locati",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.map.enable_search_locati",
+        ),
         attrName: "enableSearch",
         placeholder: "{{true}}",
         useCustomLayout: true,

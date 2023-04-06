@@ -95,7 +95,9 @@ export const MapBox: FC<MapProps> = ({
                         key={`${i}${lat}${lng}`}
                         position={{ lat, lng }}
                         clusterer={clusterer}
-                        onClick={onMarkerSelected}
+                        onClick={() => {
+                          onMarkerSelected && onMarkerSelected({ lat, lng })
+                        }}
                       />
                     ),
                 )}
@@ -112,7 +114,9 @@ export const MapBox: FC<MapProps> = ({
               <Marker
                 key={`${i}${lat}${lng}`}
                 position={{ lat, lng }}
-                onClick={onMarkerSelected}
+                onClick={() => {
+                  onMarkerSelected && onMarkerSelected({ lat, lng })
+                }}
               />
             ),
         )}

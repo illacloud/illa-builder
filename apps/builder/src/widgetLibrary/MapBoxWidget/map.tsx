@@ -1,10 +1,10 @@
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { Loading } from "@illa-design/react"
 import { MapBox } from "@/widgetLibrary/MapBoxWidget/mapBox"
+import { InvalidMessage } from "../PublicSector/InvalidMessage"
 import { DefaultMarkers, DefaultZoom } from "./content"
 import { MapWidgetProps, MarkersType, WrappedMapProps } from "./interface"
 import { ApplyLoadingStyle, applyMapContainer, applyValidStyle } from "./style"
-import { InvalidMessage } from "../PublicSector/InvalidMessage"
 
 export const WrapperMap = forwardRef<HTMLDivElement, WrappedMapProps>(
   (props, ref) => {
@@ -15,7 +15,6 @@ export const WrapperMap = forwardRef<HTMLDivElement, WrappedMapProps>(
       loading,
       handleUpdateMultiExecutionResult,
       handleOnMarkerCreated,
-      handleOnMarkersChanged,
       handleOnMarkerSelect,
     } = props
     const onMarkersChanged = useCallback(
@@ -30,14 +29,31 @@ export const WrapperMap = forwardRef<HTMLDivElement, WrappedMapProps>(
             },
           ])
           resolve(true)
-        }).then(() => {
-          handleOnMarkersChanged?.()
         })
       },
-      [displayName, handleOnMarkersChanged, handleUpdateMultiExecutionResult],
+      [displayName, handleUpdateMultiExecutionResult],
+    )
+
+    const onMarkerSelect = useCallback(
+      (selectMarker: unknown) => {
+        new Promise((resolve) => {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectMarker: selectMarker || "",
+              },
+            },
+          ])
+          resolve(true)
+        }).then(() => {
+          handleOnMarkerSelect?.()
+        })
+      },
+      [displayName, handleOnMarkerSelect, handleUpdateMultiExecutionResult],
     )
     return (
-      <>
+      <div css={applyMapContainer}>
         {loading ? (
           <div css={ApplyLoadingStyle}>
             <Loading colorScheme="techPurple" />
@@ -47,12 +63,12 @@ export const WrapperMap = forwardRef<HTMLDivElement, WrappedMapProps>(
             {...props}
             markers={JSON.stringify(markers)}
             center={JSON.stringify(center)}
-            onMarkerSelected={handleOnMarkerSelect}
+            onMarkerSelected={onMarkerSelect}
             onMarkerCreated={handleOnMarkerCreated}
             onMarkersChanged={onMarkersChanged}
           />
         )}
-      </>
+      </div>
     )
   },
 )
@@ -74,15 +90,15 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
     ...rest
   } = props
 
-  const [message, setValidateMessage] = useState('')
+  const [message, setValidateMessage] = useState("")
 
   const checkZoom = useCallback((zoom: number) => {
-    if(zoom > 22) {
-      setValidateMessage('Need to be less than 22')
-    } else if(zoom < 1) {
-      setValidateMessage('Need to be greater than 1')
+    if (zoom > 22) {
+      setValidateMessage("Need to be less than 22")
+    } else if (zoom < 1) {
+      setValidateMessage("Need to be greater than 1")
     } else {
-      setValidateMessage('')
+      setValidateMessage("")
     }
   }, [])
 
@@ -98,22 +114,26 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [displayName, handleUpdateGlobalData, handleDeleteGlobalData, handleUpdateDsl, markers, center, handleUpdateMultiExecutionResult])
+  }, [
+    displayName,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+    handleUpdateDsl,
+    markers,
+    center,
+    handleUpdateMultiExecutionResult,
+  ])
 
   useEffect(() => {
     checkZoom(zoom)
   }, [checkZoom, zoom])
 
   const handleOnMarkerSelect = useCallback(() => {
-    triggerEventHandler("markerSelect")
+    triggerEventHandler("markerSelected")
   }, [triggerEventHandler])
 
   const handleOnMarkerCreated = useCallback(() => {
     triggerEventHandler("markerCreated")
-  }, [triggerEventHandler])
-
-  const handleOnMarkersChanged = useCallback(() => {
-    triggerEventHandler("markersChanged")
   }, [triggerEventHandler])
 
   return (
@@ -128,12 +148,9 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
         handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
         handleOnMarkerSelect={handleOnMarkerSelect}
         handleOnMarkerCreated={handleOnMarkerCreated}
-        handleOnMarkersChanged={handleOnMarkersChanged}
         {...rest}
       />
-      <div
-      css={applyValidStyle}
-      >
+      <div css={applyValidStyle}>
         <InvalidMessage validateMessage={message} />
       </div>
     </div>
