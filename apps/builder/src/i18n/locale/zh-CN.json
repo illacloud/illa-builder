@@ -1596,6 +1596,12 @@
         "choose_up_to": "Please choose up to {{max}} options.",
         "map": {
           "zoom": "请设置一个介于 1 和 22 之间的值"
+        },
+        "upload": {
+          "size_exceed": "超过 500MB 的文件可能无法解析。",
+          "single_file": "只允许一个文件。",
+          "file": "只允许文件。 请不要上传目录。",
+          "directory": "只允许目录。"
         }
       },
       "setter_description": {
