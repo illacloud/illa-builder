@@ -1145,6 +1145,13 @@
         "size_type": {
           "kb": "KB",
           "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "Select time"
+        },
+        "time_range": {
+          "start_placeholder": "Start time",
+          "end_placeholder": "End time"
         }
       },
       "setter_group": {
@@ -1427,6 +1434,10 @@
           "enable_add_markers": "Enable add markers",
           "enable_search_locati": "Enable search location",
           "enable_clustering": "Enable clustering"
+        },
+        "time_range": {
+          "start_time": "Start time",
+          "end_time": "End time"
         }
       },
       "setter_tooltip": {
@@ -1535,6 +1546,17 @@
           "enable_add_markers": "Whether to allow users to add markers by clicking on the map",
           "enable_search_locati": "Whether to allow users to search for location",
           "enable_clustering": "Whether to allow multiple markers to aggregate when the map is zoomed out"
+        },
+        "time_picker": {
+          "format": "A valid time format string. For more information of the format: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "The span of the value in minutes",
+          "show_a_clear_button_": "Show a clear button when the mouse is over the component. "
+        },
+        "time_range": {
+          "start_time": "The initial start time of the component. ",
+          "end_time": "The initial end time of the component. ",
+          "start_placeholder": "The value will be shown when the start time field is empty.",
+          "end_placeholder": "The value will be shown when the end time field is empty."
         }
       },
       "setter_option": {
@@ -1738,6 +1760,10 @@
         "marker_selected": "Marker selected",
         "marker_created": "Marker created",
         "markers_changed": "Markers changed"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
       }
     },
     "tutorial": {
@@ -2173,6 +2199,12 @@
     },
     "map": {
       "name": "Map"
+    },
+    "time_picker": {
+      "name": "Time picker"
+    },
+    "time_range": {
+      "name": "Time range"
     }
   },
   "page": {
