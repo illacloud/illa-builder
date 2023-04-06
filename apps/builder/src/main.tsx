@@ -22,6 +22,21 @@ if (
   })
 }
 
+if (import.meta.env.PROD && import.meta.env.VITE_INSTANCE_ID === "CLOUD") {
+  const firstScript = document.createElement("script")
+  const sendScript = document.createElement("script")
+  sendScript.innerHTML = `    window.dataLayer = window.dataLayer || []
+    function gtag() {
+      dataLayer.push(arguments)
+    }
+    gtag("js", new Date())
+    gtag("config", "FQ9MQWP2B6")`
+  firstScript.async = true
+  firstScript.src = "https://www.googletagmanager.com/gtag/js?id=G-FQ9MQWP2B6"
+  document.body.append(firstScript)
+  document.body.append(sendScript)
+}
+
 const root = createRoot(document.getElementById("root")!!)
 
 root.render(

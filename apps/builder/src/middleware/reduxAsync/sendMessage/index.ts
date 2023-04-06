@@ -15,7 +15,7 @@ export const sendMessage = (
   action: PayloadAction<any>,
 ) => {
   const currentAppID = nextRootState.currentApp.appInfo.appId ?? ""
-  const { id: teamID = "", uid = "" } = getCurrentTeamInfo(nextRootState) ?? {}
+  const { id: teamID = "", id = "" } = getCurrentTeamInfo(nextRootState) ?? {}
   const { type } = action
   const typeList = type.split("/")
   const reduxType = typeList[0]
@@ -27,7 +27,7 @@ export const sendMessage = (
         currentAppID,
         action,
         teamID,
-        uid,
+        id,
         prevRootState,
         nextRootState,
       )
@@ -40,7 +40,7 @@ export const sendMessage = (
         currentAppID,
         action,
         teamID,
-        uid,
+        id,
         prevRootState,
         nextRootState,
       )
@@ -52,7 +52,7 @@ export const sendMessage = (
         currentAppID,
         action,
         teamID,
-        uid,
+        id,
         prevRootState,
         nextRootState,
       )
@@ -64,7 +64,7 @@ export const sendMessage = (
         currentAppID,
         action,
         teamID,
-        uid,
+        id,
         prevRootState,
         nextRootState,
       )
@@ -76,7 +76,7 @@ export const sendMessage = (
         currentAppID,
         action,
         teamID,
-        uid,
+        id,
         prevRootState,
         nextRootState,
       )
@@ -88,7 +88,7 @@ export const sendMessage = (
         currentAppID,
         action,
         teamID,
-        uid,
+        id,
         prevRootState,
         nextRootState,
       )
@@ -100,7 +100,7 @@ export const sendMessage = (
         currentAppID,
         action,
         teamID,
-        uid,
+        id,
         prevRootState,
         nextRootState,
       )

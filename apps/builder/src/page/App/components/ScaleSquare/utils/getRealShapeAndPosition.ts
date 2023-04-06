@@ -7,14 +7,15 @@ export const getRealShapeAndPosition = (
   componentNode: ComponentNode,
   unitH: number,
   unitW: number,
+  displayNamePrefix?: string,
 ) => {
   const rootState = store.getState()
   const executionResult = getExecutionWidgetLayoutInfo(rootState)
-  const widgetLayoutInfo = get(
-    executionResult,
-    componentNode.displayName,
-    undefined,
-  )
+  let realDisplayName = componentNode.displayName
+  if (displayNamePrefix) {
+    realDisplayName = realDisplayName.replace(displayNamePrefix, "")
+  }
+  const widgetLayoutInfo = get(executionResult, realDisplayName, undefined)
   if (!widgetLayoutInfo)
     return {
       x: -1,

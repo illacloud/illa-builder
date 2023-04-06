@@ -151,15 +151,15 @@ export const Editor: FC = () => {
     [controls],
   )
 
-  const combinLoadingState =
+  const combineLoadingState =
     loadingState ||
     wsStatus === ILLA_WEBSOCKET_STATUS.INIT ||
     wsStatus === ILLA_WEBSOCKET_STATUS.CONNECTING
 
   return (
     <div css={editorContainerStyle}>
-      {combinLoadingState && <AppLoading />}
-      {!combinLoadingState && (
+      {combineLoadingState && <AppLoading />}
+      {!combineLoadingState && (
         <Shortcut>
           <TriggerProvider renderInBody zIndex={10}>
             <PageNavBar css={navbarStyle} />

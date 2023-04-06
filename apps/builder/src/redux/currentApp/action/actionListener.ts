@@ -1,5 +1,6 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { BuilderApi } from "@/api/base"
+import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
@@ -103,7 +104,8 @@ const handleUpdateAsyncEffect = (
       allChangedActions.push(currentAction)
     }
   }
-  if (allChangedActions.length) {
+  const isGuideMode = getIsILLAGuideMode(rootState)
+  if (allChangedActions.length && !isGuideMode) {
     // TODO: it's vary hack,need BE provide new API
     allChangedActions.forEach((action) => {
       BuilderApi.teamRequest({

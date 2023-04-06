@@ -142,7 +142,10 @@ export const transformEvents = (
         const memorySize = estimateMemoryUsage(copiedValue)
         if (LIMIT_MEMORY < memorySize) {
           message.info({
-            content: `Memory usage is too large, please reduce the size of the result.(Memory usage: ${memorySize} bytes, Limit: ${LIMIT_MEMORY} bytes))`,
+            content: i18n.t("editor.global.size_exceed", {
+              current_size: memorySize,
+              limit_size: LIMIT_MEMORY,
+            }),
           })
           return
         }
@@ -257,6 +260,8 @@ export const transformEvents = (
         "setEndValue",
         "setSpeed",
         "seekTo",
+        "setStartOfRange",
+        "setEndOfRange",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event

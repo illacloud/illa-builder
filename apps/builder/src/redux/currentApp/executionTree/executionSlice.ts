@@ -17,6 +17,7 @@ import {
   updateExecutionByMultiDisplayNameReducer,
   updateModalDisplayReducer,
   updateWidgetLayoutInfoReducer,
+  updateWidgetLayoutInfoWhenChangeDisplayNameReducer,
 } from "@/redux/currentApp/executionTree/executionReducer"
 import { executionInitialState } from "@/redux/currentApp/executionTree/executionState"
 
@@ -41,6 +42,7 @@ const executionSlice = createSlice({
     setInGlobalStateInExecutionReducer,
     clearLocalStorageInExecutionReducer,
     setLocalStorageInExecutionReducer,
+    updateWidgetLayoutInfoWhenChangeDisplayNameReducer,
   },
 })
 

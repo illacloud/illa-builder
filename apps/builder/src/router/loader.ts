@@ -50,7 +50,7 @@ export const requireAuth = async (
   teamIdentifier?: string,
 ) => {
   const userInfo = getCurrentUser(store.getState())
-  const token = getAuthToken() || pathToken
+  const token = pathToken || getAuthToken()
   if (userInfo.userId) {
     return null
   }

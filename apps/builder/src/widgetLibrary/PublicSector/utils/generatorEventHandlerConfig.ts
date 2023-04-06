@@ -114,6 +114,24 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setValue",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-start-value`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.range_slider.start_value",
+        ),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setStartOfRange",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-end-value`,
+        labelName: i18n.t("editor.inspect.setter_label.range_slider.end_value"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setEndOfRange",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-selectValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         placeholder: i18n.t(
