@@ -1350,7 +1350,7 @@
         "max_size": "최대 크기",
         "min_size": "최소 크기",
         "text_overflow": "텍스트 오버플로",
-        "file_url": "파일 URL",
+        "file_url": "PDF 소스",
         "show_tool_bar": "도구 모음 표시",
         "scale": "줌 페이지",
         "scroll": "각 페이지에 스냅 스크롤",
@@ -1415,7 +1415,7 @@
         },
         "name": "이름",
         "audio": {
-          "audio_url": "오디오 URL"
+          "audio_url": "오디오 소스"
         },
         "map": {
           "markers": "마커",
@@ -1681,7 +1681,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL",
+      "set_file_url": "Set PDF source",
       "play": "Play",
       "pause": "Pause",
       "seek_to": {
@@ -1732,7 +1732,7 @@
       "setGlobalData": "전역 데이터 편집",
       "setLocalStorage": "로컬 저장소",
       "audio": {
-        "set_audio_url": "오디오 링크 설정"
+        "set_audio_url": "오디오 소스 설정"
       },
       "map": {
         "marker_selected": "선택된 마커",
