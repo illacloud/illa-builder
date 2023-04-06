@@ -261,6 +261,9 @@
             "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets",
             "copy_to_sheet_name": "Required. Rename the copied sheet."
+          },
+          "tidb": {
+            "ca_certificate": "We fill in the CA Certificate used for TLS Connections to Serverless Tier by default. If you need TLS Connections to Dedicated Tier, <0>Click here</0> to view the configuration method."
           }
         },
         "option": {
@@ -1095,7 +1098,9 @@
           "pause": "Pause",
           "ended": "Ended",
           "loaded": "Loaded",
-          "rowSelect": "Row select"
+          "rowSelect": "Row select",
+          "markerSelected": "markerSelected",
+          "markerCreated": "markerCreated"
         },
         "image_list": {
           "title": "Images",
@@ -1140,6 +1145,13 @@
         "size_type": {
           "kb": "KB",
           "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "Select time"
+        },
+        "time_range": {
+          "start_placeholder": "Start time",
+          "end_placeholder": "End time"
         }
       },
       "setter_group": {
@@ -1345,12 +1357,12 @@
         "max_size": "Max size",
         "min_size": "Min size",
         "text_overflow": "Overflow",
-        "file_url": "File URL",
+        "file_url": "PDF Source",
         "show_tool_bar": "Show tool bar",
         "scale": "Scale page to",
         "scroll": "Snap scroll to each page",
         "min_max_size": "Min size ～ Max size",
-        "video_url": "Video URL",
+        "video_url": "Video source",
         "autoplay": "Autoplay",
         "loop": "Loop",
         "volume": "Volume",
@@ -1410,7 +1422,7 @@
         },
         "name": "Name",
         "audio": {
-          "audio_url": "Audio URL"
+          "audio_url": "Audio source"
         },
         "map": {
           "markers": "Markers",
@@ -1422,6 +1434,10 @@
           "enable_add_markers": "Enable add markers",
           "enable_search_locati": "Enable search location",
           "enable_clustering": "Enable clustering"
+        },
+        "time_range": {
+          "start_time": "Start time",
+          "end_time": "End time"
         }
       },
       "setter_tooltip": {
@@ -1462,7 +1478,7 @@
         "file_url": "Supports PDF URLs on the web, or base64 encoded data of pdf files. For example: \n{{ data:application/pdf;base64, example-data }}",
         "scale": "Scale each page to fill the width or height of the component.",
         "scroll": "Automatically locate to the beginning of each page when scrolling.",
-        "video_url": "Supports most video services or a direct link to any common video file type.",
+        "video_url": "Supports most video services or a direct link to any common video file type or the base64 encoded data of video files. For example: {{ data:audio/mp4;base64,exampleDate}}",
         "collapse": {
           "type": "Collapsible list: list, all items will automatically copy the style of the first item. You can specify the component data in each item via {{ currentItem.columnName }}. Collapsible panel: each panel is independent, you can specify the component style and data of each item separately.",
           "items": "Number of items",
@@ -1518,7 +1534,7 @@
           "end_value": "To set the maximum value of the range"
         },
         "audio": {
-          "audio_url": "Supports direct links to any common audio file type or the links to some audio services"
+          "audio_url": "Supports direct links to any common audio file type or the links to some audio services or the base64 encoded data of audio files. For example: {{ data:audio/mp3;base64,exampleDate}}"
         },
         "map": {
           "markers": "To set markers on the map. The markers should be an array of objects with the same properties as the Default markers.",
@@ -1530,6 +1546,17 @@
           "enable_add_markers": "Whether to allow users to add markers by clicking on the map",
           "enable_search_locati": "Whether to allow users to search for location",
           "enable_clustering": "Whether to allow multiple markers to aggregate when the map is zoomed out"
+        },
+        "time_picker": {
+          "format": "A valid time format string. For more information of the format: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "The span of the value in minutes",
+          "show_a_clear_button_": "Show a clear button when the mouse is over the component. "
+        },
+        "time_range": {
+          "start_time": "The initial start time of the component. ",
+          "end_time": "The initial end time of the component. ",
+          "start_placeholder": "The value will be shown when the start time field is empty.",
+          "end_placeholder": "The value will be shown when the end time field is empty."
         }
       },
       "setter_option": {
@@ -1593,6 +1620,12 @@
         "choose_up_to": "Please choose up to {{max}} options.",
         "map": {
           "zoom": "Please set a value between 1 and 22"
+        },
+        "upload": {
+          "size_exceed": "Files over 500MB may fail to parse.",
+          "single_file": "Only a single file is allowed.",
+          "file": "Unsupported file types are removed",
+          "directory": "Only directories are allowed."
         }
       },
       "setter_description": {
@@ -1670,7 +1703,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL",
+      "set_file_url": "Set PDF source",
       "play": "Play",
       "pause": "Pause",
       "seek_to": {
@@ -1678,7 +1711,7 @@
         "unit": "(s)"
       },
       "set_video_url": {
-        "video": "Video URL"
+        "video": "Video source"
       },
       "speed": {
         "speed": "Speed",
@@ -1721,12 +1754,16 @@
       "setGlobalData": "Set global data",
       "setLocalStorage": "Set local storage",
       "audio": {
-        "set_audio_url": "Set audio URL"
+        "set_audio_url": "Set audio source"
       },
       "map": {
         "marker_selected": "Marker selected",
         "marker_created": "Marker created",
         "markers_changed": "Markers changed"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
       }
     },
     "tutorial": {
@@ -2162,6 +2199,12 @@
     },
     "map": {
       "name": "Map"
+    },
+    "time_picker": {
+      "name": "Time picker"
+    },
+    "time_range": {
+      "name": "Time range"
     }
   },
   "page": {
