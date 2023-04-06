@@ -1,7 +1,7 @@
-import { cloneDeep } from "lodash"
 import { FC, memo } from "react"
 import { useDrag } from "react-dnd"
 import { useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 import { ComponentItemProps } from "@/page/App/components/ComponentPanel/interface"
 import {
   DragCollectedInfo,
@@ -9,16 +9,14 @@ import {
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getAllComponentsWithRealShapeSelector } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import store from "@/store"
-import {
-  batchMergeLayoutInfoToComponent,
-  endDragMultiNodes,
-  startDragMultiNodes,
-} from "@/utils/drag/drag"
+import { endDragMultiNodes, startDragMultiNodes } from "@/utils/drag/drag"
 import { generateComponentNode } from "@/utils/generators/generateComponentNode"
+import { illaSnapshot } from "../DotPanel/constant/snapshot"
+import { sendShadowMessageHandler } from "../DotPanel/utils/sendBinaryMessage"
 import {
   dragPreviewStyle,
   iconStyle,
@@ -32,6 +30,8 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
 
     const isEditMode = useSelector(getIsILLAEditMode)
     const isGuideOpen = useSelector(getGuideStatus)
+    const params = useParams()
+    const userInfo = useSelector(getCurrentUser)
 
     const [, dragRef, dragPreviewRef] = useDrag<
       DragInfo,
@@ -46,6 +46,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
         end: (draggedItem, monitor) => {
           const dropResultInfo = monitor.getDropResult()
           const { draggedSelectedComponents } = draggedItem
+          sendShadowMessageHandler(-1, "", [], 0, 0, 0, 0)
           endDragMultiNodes(
             draggedSelectedComponents,
             dropResultInfo?.isDropOnCanvas ?? false,
@@ -59,24 +60,11 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
             ...partialDragInfo,
           })
           const rootState = store.getState()
-          const allComponentNodes = getFlattenArrayComponentNodes(rootState)
-          const executionResult = getExecutionResult(rootState)
-          let childrenNodes = allComponentNodes
-            ? cloneDeep(allComponentNodes)
-            : []
-          if (Array.isArray(childrenNodes)) {
-            const mergedChildrenNode = batchMergeLayoutInfoToComponent(
-              executionResult,
-              childrenNodes,
-            )
-            childrenNodes = cloneDeep(mergedChildrenNode)
-          } else {
-            childrenNodes = []
-          }
+          let childrenNodes = getAllComponentsWithRealShapeSelector(rootState)
+          illaSnapshot.setSnapshot(childrenNodes)
           startDragMultiNodes([item], true)
           return {
             item,
-            childrenNodes,
             draggedSelectedComponents: [item],
             currentColumnNumber: 64,
           }

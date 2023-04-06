@@ -75,7 +75,10 @@ export interface LandingPosition {
   isOverstep: boolean
   landingX: number
   landingY: number
+  relativeLandingX: number
+  relativeLandingY: number
 }
+
 export function calcLadingPosition(
   rectPosition: RectShape,
   unitWidth: number,
@@ -85,8 +88,10 @@ export function calcLadingPosition(
   canResizeY: boolean,
 ): LandingPosition {
   const { rectLeft, rectTop, rectRight, rectBottom } = rectPosition
-  let landingX = Math.round(rectLeft / unitWidth) * unitWidth
-  let landingY = Math.round(rectTop / unitHeight) * unitHeight
+  const relativeLandingX = Math.round(rectLeft / unitWidth)
+  const relativeLandingY = Math.round(rectTop / unitHeight)
+  let landingX = relativeLandingX * unitWidth
+  let landingY = relativeLandingY * unitHeight
   let isOverstep = true
   if (rectTop < 0) {
     landingY = 0
@@ -112,6 +117,8 @@ export function calcLadingPosition(
     isOverstep,
     landingX,
     landingY,
+    relativeLandingX,
+    relativeLandingY,
   }
 }
 
@@ -350,10 +357,17 @@ export const getNodeWidthAndHeight = (
   }
 }
 
+interface LadingRelativePosition {
+  x: number
+  y: number
+  isOverstep: boolean
+}
+
 export interface MoveDragResult {
-  ladingPosition: LandingPosition
+  ladingPosition: Omit<LandingPosition, "relativeLandingX" | "relativeLandingY">
   rectPosition: RectShape
   rectCenterPosition: CenterPointPosition
+  ladingRelativePosition: LadingRelativePosition
 }
 
 const getDragResultWhenAdd = (
@@ -368,7 +382,7 @@ const getDragResultWhenAdd = (
   canvasWidth: number,
   canvasHeight: number,
   canResizeY: boolean,
-) => {
+): MoveDragResult => {
   const itemPosition = getItemPosition(clientOffset!, containerScrollTop)
   const realNodeWidthAndHeight = {
     w: nodeWidthAndHeight.w * unitWidth,
@@ -393,9 +407,18 @@ const getDragResultWhenAdd = (
   )
 
   return {
-    ladingPosition,
+    ladingPosition: {
+      landingX: ladingPosition.landingX,
+      landingY: ladingPosition.landingY,
+      isOverstep: ladingPosition.isOverstep,
+    },
     rectPosition,
     rectCenterPosition,
+    ladingRelativePosition: {
+      x: ladingPosition.relativeLandingX,
+      y: ladingPosition.relativeLandingY,
+      isOverstep: ladingPosition.isOverstep,
+    },
   }
 }
 
@@ -426,8 +449,10 @@ const getDragResultWhenUpdate = (
   let renderX = relativeX - initialClientOffset!.x + leftTopPosition.x
   let renderY = relativeY - initialClientOffset!.y + leftTopPosition.y
 
-  let squareX = Math.round(renderX / unitWidth) * unitWidth
-  let squareY = Math.round(renderY / UNIT_HEIGHT) * UNIT_HEIGHT
+  const relativeLandingX = Math.round(renderX / unitWidth)
+  const relativeLandingY = Math.round(renderY / UNIT_HEIGHT)
+  let squareX = relativeLandingX * unitWidth
+  let squareY = relativeLandingY * UNIT_HEIGHT
   let isOverstep = true
   const rectTop = relativeY
   const rectBottom = renderY + item.h * UNIT_HEIGHT
@@ -472,6 +497,11 @@ const getDragResultWhenUpdate = (
     rectCenterPosition: {
       x: renderX,
       y: renderY,
+    },
+    ladingRelativePosition: {
+      x: relativeLandingX,
+      y: relativeLandingY,
+      isOverstep,
     },
   }
 }

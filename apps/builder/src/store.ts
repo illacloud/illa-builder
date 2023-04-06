@@ -13,9 +13,9 @@ import configReducer from "@/redux/config/configSlice"
 import actionReducer from "@/redux/currentApp/action/actionSlice"
 import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
 import collaboratorsReducer from "@/redux/currentApp/collaborators/collaboratorsSlice"
+import dragShadowReducer from "@/redux/currentApp/dragShadow/dragShadowSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
-import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -29,7 +29,6 @@ const listenerMiddleware = createListenerMiddleware()
 
 const editorReducer = combineReducers({
   components: componentsReducer,
-  dragShadow: dragShadowReducer,
   dottedLineSquare: dottedLineSquareReducer,
 })
 
@@ -40,6 +39,7 @@ const appReducer = combineReducers({
   collaborators: collaboratorsReducer,
   execution: executionReducer,
   cursor: cursorSlice,
+  dragShadow: dragShadowReducer,
 })
 
 const dashboardReducer = combineReducers({

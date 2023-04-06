@@ -1,5 +1,8 @@
 import { cloneDeep } from "lodash"
 import * as Redux from "redux"
+import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshot"
+import { getAllComponentsWithRealShapeSelector } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
 import { receiveMessage } from "./receiveMessages"
 import { sendMessage } from "./sendMessage"
 
@@ -10,7 +13,14 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const currentAppID = store.getState().currentApp.appInfo.appId ?? ""
   if (isRemoteAction) {
     receiveMessage(action, currentAppID)
-    return next(action)
+    const resp = next(action) as RootState
+    if (typeList[0] === "components") {
+      const nextRootState = cloneDeep(store.getState())
+      const snapShot = getAllComponentsWithRealShapeSelector(nextRootState)
+      illaSnapshot.setSnapshot(snapShot)
+    }
+
+    return resp
   }
   const prevRootState = cloneDeep(store.getState())
   const resp = next(action)

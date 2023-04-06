@@ -36,12 +36,12 @@ import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaborator
 import {
   RelationMap,
   getComponentDisplayNameMapDepth,
-  getFlattenArrayComponentNodes,
   getShowWidgetNameParentMap,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
+  getAllComponentsWithRealShapeSelector,
   getExecutionError,
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
@@ -49,16 +49,14 @@ import {
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import store, { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
-import {
-  batchMergeLayoutInfoToComponent,
-  endDragMultiNodes,
-  startDragMultiNodes,
-} from "@/utils/drag/drag"
+import { endDragMultiNodes, startDragMultiNodes } from "@/utils/drag/drag"
 import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { isMAC } from "@/utils/userAgent"
 import { AutoHeightWithLimitedContainer } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
+import { illaSnapshot } from "../DotPanel/constant/snapshot"
+import { sendShadowMessageHandler } from "../DotPanel/utils/sendBinaryMessage"
 import { ResizingContainer } from "./ResizingContainer"
 import { getRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
 import { useDisplayNameInMoveBarSelector } from "./utils/useGetDisplayNameInMoveBar"
@@ -261,6 +259,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       end: (draggedItem, monitor) => {
         const dropResultInfo = monitor.getDropResult()
         const { draggedSelectedComponents } = draggedItem
+        if (dropResultInfo?.isDropOnCanvas ?? false) {
+          sendShadowMessageHandler(-1, "", [], 0, 0, 0, 0)
+        }
         endDragMultiNodes(
           draggedSelectedComponents,
           dropResultInfo?.isDropOnCanvas ?? false,
@@ -269,20 +270,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       },
       item: () => {
         const rootState = store.getState()
-        const allComponentNodes = getFlattenArrayComponentNodes(rootState)
-        const executionResult = getExecutionWidgetLayoutInfo(rootState)
-        let childrenNodes = allComponentNodes
-          ? cloneDeep(allComponentNodes)
-          : []
-        if (Array.isArray(childrenNodes)) {
-          const mergedChildrenNode = batchMergeLayoutInfoToComponent(
-            executionResult,
-            childrenNodes,
-          )
-          childrenNodes = cloneDeep(mergedChildrenNode)
-        } else {
-          childrenNodes = []
-        }
+        let childrenNodes = getAllComponentsWithRealShapeSelector(rootState)
+        illaSnapshot.setSnapshot(childrenNodes)
         let draggedSelectedComponents: ComponentNode[]
         const relativeRelation = getRelativeRelation(
           selectedComponents,
@@ -312,7 +301,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         startDragMultiNodes(draggedSelectedComponents, false)
         return {
           item: mergedItem,
-          childrenNodes,
           draggedSelectedComponents,
           currentColumnNumber: blockColumns,
         }
