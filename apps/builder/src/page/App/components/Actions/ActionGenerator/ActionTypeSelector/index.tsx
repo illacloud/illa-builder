@@ -1,10 +1,12 @@
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { v4 } from "uuid"
 import { Spin, useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
 import { WhiteList } from "@/components/WhiteList"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
+import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
@@ -27,7 +29,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const message = useMessage()
-
+  const isGuideMode = useSelector(getIsILLAGuideMode)
   return (
     <Spin css={containerStyle} colorScheme="techPurple" loading={loading}>
       {ActionTypeList.map(({ title, item, category }) => (
@@ -42,11 +44,25 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                     const displayName =
                       DisplayNameGenerator.generateDisplayName(item)
                     const initialContent = getInitialContent(item)
-                    const data: Partial<ActionItem<ActionContent>> = {
+                    const data: Omit<ActionItem<ActionContent>, "actionId"> = {
                       actionType: item,
                       displayName,
                       content: initialContent,
                       ...actionItemInitial,
+                    }
+                    if (isGuideMode) {
+                      const createActionData: ActionItem<ActionContent> = {
+                        ...data,
+                        actionId: v4(),
+                      }
+                      dispatch(
+                        actionActions.addActionItemReducer(createActionData),
+                      )
+                      dispatch(
+                        configActions.changeSelectedAction(createActionData),
+                      )
+                      onSelect(item)
+                      return
                     }
                     BuilderApi.teamRequest(
                       {

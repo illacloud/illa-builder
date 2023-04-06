@@ -62,7 +62,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
     onActionConfigElementTest(
       data,
       {
-        host: data.host,
+        host: data.host.trim(),
         projectID: data.projectID,
         databaseID: data.databaseID,
         apiKey: data.apiKey,

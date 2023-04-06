@@ -261,6 +261,9 @@
             "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
             "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。",
             "copy_to_sheet_name": "必要。 コピーしたシートの名前を変更します。"
+          },
+          "tidb": {
+            "ca_certificate": "デフォルトで、サーバーレス層への TLS 接続に使用される CA 証明書を入力します。 Dedicated Tier への TLS 接続が必要な場合は、<0>ここをクリック</0>して構成方法を表示してください。"
           }
         },
         "option": {
@@ -1095,7 +1098,9 @@
           "pause": "一時停止",
           "ended": "終了済み",
           "loaded": "ロード済み",
-          "rowSelect": "行を選択"
+          "rowSelect": "行を選択",
+          "markerSelected": "マーカーを選択",
+          "markerCreated": "マーカーを作成"
         },
         "image_list": {
           "title": "イメージ",
@@ -1140,6 +1145,13 @@
         "size_type": {
           "kb": "KB",
           "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "時間を選択"
+        },
+        "time_range": {
+          "start_placeholder": "始まる時間",
+          "end_placeholder": "終了時間"
         }
       },
       "setter_group": {
@@ -1345,12 +1357,12 @@
         "max_size": "最大サイズ",
         "min_size": "最小サイズ",
         "text_overflow": "オーバーフロー",
-        "file_url": "ファイル の URL",
+        "file_url": "PDFソース",
         "show_tool_bar": "ツールバーを表示",
         "scale": "ズームページ",
         "scroll": "各ページへのスナップスクロール",
         "min_max_size": "最小～最大のサイズ",
-        "video_url": "ビデオ URL",
+        "video_url": "ビデオソース",
         "autoplay": "自動再生",
         "loop": "ループ",
         "volume": "音量",
@@ -1410,7 +1422,7 @@
         },
         "name": "名前",
         "audio": {
-          "audio_url": "音声 URL"
+          "audio_url": "音声ソース"
         },
         "map": {
           "markers": "マーカー",
@@ -1422,6 +1434,10 @@
           "enable_add_markers": "マーカーの追加を有効にする",
           "enable_search_locati": "検索場所を有効にする",
           "enable_clustering": "クラスタリングを有効にする"
+        },
+        "time_range": {
+          "start_time": "始まる時間",
+          "end_time": "終了時間"
         }
       },
       "setter_tooltip": {
@@ -1462,7 +1478,7 @@
         "file_url": "Web 上の PDF URL、または PDF ファイルの base64 エンコード データをサポートします。 例: {{ data:application/pdf;base64, example-data }}",
         "scale": "各ページをスケーリングして、コンポーネントの幅または高さを埋めます。",
         "scroll": "スクロール時に各ページの先頭に自動的にロケートします。",
-        "video_url": "ほとんどのビデオ サービスまたは一般的なビデオ ファイル タイプへの直接リンクをサポートします。",
+        "video_url": "ほとんどのビデオ サービスまたは一般的なビデオ ファイル タイプへの直接リンクをサポートします、または動画ファイルの base64 エンコード データ。 例: {{ data:audio/mp4;base64,exampleDate}}",
         "collapse": {
           "type": "折りたたみ可能なリスト: リスト、すべてのアイテムは最初のアイテムのスタイルを自動的にコピーします。 {{ currentItem.columnName }} を使用して、各アイテムのコンポーネント データを指定できます。 折りたたみ可能なパネル: 各パネルは独立しており、各アイテムのコンポーネント スタイルとデータを個別に指定できます。",
           "items": "アイテムの数",
@@ -1518,7 +1534,7 @@
           "end_value": "範囲の最大値を設定します"
         },
         "audio": {
-          "audio_url": "一般的なオーディオ ファイル タイプへの直接リンク、または一部のオーディオ サービスへのリンクをサポート"
+          "audio_url": "一般的なオーディオ ファイル タイプへの直接リンク、または一部のオーディオ サービスへのリンクをサポート、またbase64 でエンコードされたオーディオ ファイルのデータ。 例: {{ data:audio/mp3;base64,exampleDate}}"
         },
         "map": {
           "markers": "地図上にマーカーを設定します。 マーカーは、デフォルト マーカーと同じプロパティを持つオブジェクトの配列である必要があります。",
@@ -1530,6 +1546,17 @@
           "enable_add_markers": "ユーザーが地図をクリックしてマーカーを追加できるようにするかどうか",
           "enable_search_locati": "ユーザーが場所を検索できるようにするかどうか",
           "enable_clustering": "マップが縮小されたときに複数のマーカーを集約できるようにするかどうか"
+        },
+        "time_picker": {
+          "format": "有効な時刻形式文字列。 フォーマットの詳細: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "分単位での値のスパン数",
+          "show_a_clear_button_": "マウスがコンポーネント上にあるときにクリア ボタンを表示します。"
+        },
+        "time_range": {
+          "start_time": "コンポーネントの初期化時に入力される開始時刻",
+          "end_time": "コンポーネントの初期化時に入力される終了時刻",
+          "start_placeholder": "開始時刻が入力されていない場合に表示される情報。",
+          "end_placeholder": "終了時刻が入力されていない場合に表示される情報。"
         }
       },
       "setter_option": {
@@ -1593,6 +1620,12 @@
         "choose_up_to": "Please choose up to {{max}} options.",
         "map": {
           "zoom": "1 から 22 までの値を設定してください"
+        },
+        "upload": {
+          "size_exceed": "500MB を超えるファイルは解析に失敗する場合があります。",
+          "single_file": "許可されるファイルは 1 つだけです。",
+          "file": "ファイルのみが許可されます。 ディレクトリをアップロードしないでください。",
+          "directory": "ディレクトリのみが許可されます。"
         }
       },
       "setter_description": {
@@ -1670,7 +1703,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL",
+      "set_file_url": "Set PDF source",
       "play": "Play",
       "pause": "Pause",
       "seek_to": {
@@ -1678,7 +1711,7 @@
         "unit": "(s)"
       },
       "set_video_url": {
-        "video": "ビデオ URL"
+        "video": "ビデオソース"
       },
       "speed": {
         "speed": "再生速度",
@@ -1721,12 +1754,16 @@
       "setGlobalData": "グローバル データ",
       "setLocalStorage": "ローカルストレージ",
       "audio": {
-        "set_audio_url": "音声リンクを設定"
+        "set_audio_url": "音声ソースを設定"
       },
       "map": {
         "marker_selected": "マーカーが選択されました",
         "marker_created": "マーカーが作成されました",
         "markers_changed": "マーカーが変更されました"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
       }
     },
     "tutorial": {
@@ -2162,6 +2199,12 @@
     },
     "map": {
       "name": "地図"
+    },
+    "time_picker": {
+      "name": "タイムピッカー"
+    },
+    "time_range": {
+      "name": "時間範囲"
     }
   },
   "page": {

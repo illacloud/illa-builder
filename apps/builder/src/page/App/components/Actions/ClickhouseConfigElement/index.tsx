@@ -73,7 +73,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     onActionConfigElementTest(
       data,
       {
-        host: data.host,
+        host: data.host.trim(),
         port: +data.port,
         username: data.username,
         password: data.password,
