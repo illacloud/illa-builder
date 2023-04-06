@@ -1350,7 +1350,7 @@
         "max_size": "最大サイズ",
         "min_size": "最小サイズ",
         "text_overflow": "オーバーフロー",
-        "file_url": "ファイル の URL",
+        "file_url": "PDFソース",
         "show_tool_bar": "ツールバーを表示",
         "scale": "ズームページ",
         "scroll": "各ページへのスナップスクロール",
@@ -1415,7 +1415,7 @@
         },
         "name": "名前",
         "audio": {
-          "audio_url": "音声 URL"
+          "audio_url": "音声ソース"
         },
         "map": {
           "markers": "マーカー",
@@ -1681,7 +1681,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL",
+      "set_file_url": "Set PDF source",
       "play": "Play",
       "pause": "Pause",
       "seek_to": {
@@ -1732,7 +1732,7 @@
       "setGlobalData": "グローバル データ",
       "setLocalStorage": "ローカルストレージ",
       "audio": {
-        "set_audio_url": "音声リンクを設定"
+        "set_audio_url": "音声ソースを設定"
       },
       "map": {
         "marker_selected": "マーカーが選択されました",
