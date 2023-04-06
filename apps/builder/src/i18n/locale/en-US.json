@@ -1350,7 +1350,7 @@
         "max_size": "Max size",
         "min_size": "Min size",
         "text_overflow": "Overflow",
-        "file_url": "File URL",
+        "file_url": "PDF Source",
         "show_tool_bar": "Show tool bar",
         "scale": "Scale page to",
         "scroll": "Snap scroll to each page",
@@ -1415,7 +1415,7 @@
         },
         "name": "Name",
         "audio": {
-          "audio_url": "Audio URL"
+          "audio_url": "Audio source"
         },
         "map": {
           "markers": "Markers",
@@ -1523,7 +1523,7 @@
           "end_value": "To set the maximum value of the range"
         },
         "audio": {
-          "audio_url": "Supports direct links to any common audio file type or the links to some audio services"
+          "audio_url": "Supports direct links to any common audio file type or the links to some audio services or the base64 encoded data of audio files. For example: {{ data:audio/mp3;base64,exampleDate}}"
         },
         "map": {
           "markers": "To set markers on the map. The markers should be an array of objects with the same properties as the Default markers.",
@@ -1681,7 +1681,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL",
+      "set_file_url": "Set PDF source",
       "play": "Play",
       "pause": "Pause",
       "seek_to": {
@@ -1732,7 +1732,7 @@
       "setGlobalData": "Set global data",
       "setLocalStorage": "Set local storage",
       "audio": {
-        "set_audio_url": "Set audio URL"
+        "set_audio_url": "Set audio source"
       },
       "map": {
         "marker_selected": "Marker selected",
