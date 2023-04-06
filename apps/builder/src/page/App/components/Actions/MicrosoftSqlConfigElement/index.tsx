@@ -64,7 +64,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
     onActionConfigElementTest(
       data,
       {
-        host: data.host,
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseName: data.databaseName,
         username: data.username,

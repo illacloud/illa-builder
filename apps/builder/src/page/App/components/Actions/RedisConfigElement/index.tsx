@@ -81,7 +81,7 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
     onActionConfigElementTest(
       data,
       {
-        host: data.host,
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseIndex: data.databaseIndex ?? 0,
         databaseUsername: data.databaseUsername,

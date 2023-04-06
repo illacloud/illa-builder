@@ -59,7 +59,7 @@ export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
   const handleConnectionTest = useCallback(() => {
     const data = getValues()
     const content = {
-      host: data.host,
+      host: data.host.trim(),
       port: +data.port,
       username: data.username,
       password: data.password,

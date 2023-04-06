@@ -67,7 +67,7 @@ export const ElasticSearchConfigElement: FC<ConfigElementProps> = (props) => {
     onActionConfigElementTest(
       data,
       {
-        host: data.host,
+        host: data.host.trim(),
         port: data.port.toString(),
         username: data.username,
         password: data.password,
