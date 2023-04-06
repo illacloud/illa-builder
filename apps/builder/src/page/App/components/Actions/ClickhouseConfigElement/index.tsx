@@ -20,7 +20,6 @@ import {
   footerStyle,
 } from "@/page/App/components/Actions/ClickhouseConfigElement/style"
 import {
-  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -74,7 +73,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     onActionConfigElementTest(
       data,
       {
-        host: filterWhitespace(data.host),
+        host: data.host.trim(),
         port: +data.port,
         username: data.username,
         password: data.password,

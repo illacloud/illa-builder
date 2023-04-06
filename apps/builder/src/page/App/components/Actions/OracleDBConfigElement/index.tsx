@@ -12,7 +12,6 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
-  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -63,7 +62,7 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
     const { resourceName, host, ...otherParams } = data
     onActionConfigElementTest(
       data,
-      { ...otherParams, host: filterWhitespace(host) } as OracleResource,
+      { ...otherParams, host: host.trim() } as OracleResource,
       "oracle",
       setTestLoading,
     )
