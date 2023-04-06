@@ -11,7 +11,6 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
-  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -70,7 +69,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
       bucketName: data.bucketName,
       region: data.region,
       endpoint: data.endpoint,
-      baseURL: filterWhitespace(data.baseURL),
+      baseURL: data.baseURL.trim(),
       accessKeyID: data.accessKeyID,
       secretAccessKey: data.secretAccessKey,
       acl:

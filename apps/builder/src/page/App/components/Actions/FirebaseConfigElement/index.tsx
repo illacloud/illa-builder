@@ -15,7 +15,6 @@ import {
   useMessage,
 } from "@illa-design/react"
 import {
-  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -75,7 +74,7 @@ export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
     const data = getValues()
     try {
       const content = {
-        databaseUrl: filterWhitespace(data.databaseUrl),
+        databaseUrl: data.databaseUrl.trim(),
         projectID: data.projectID,
         privateKey: JSON.parse(data.privateKey),
       }
