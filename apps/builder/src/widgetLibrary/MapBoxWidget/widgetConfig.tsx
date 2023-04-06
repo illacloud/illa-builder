@@ -1,4 +1,4 @@
-import { ReactComponent as PdfWidgetIcon } from "@/assets/widgetCover/pdf.svg"
+import { ReactComponent as MapWidgetIcon } from "@/assets/widgetCover/map.svg"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import { DefaultCenter, DefaultMarkers } from "./content"
@@ -6,8 +6,8 @@ import { DefaultCenter, DefaultMarkers } from "./content"
 export const MAP_WIDGET_CONFIG: WidgetConfig = {
   type: "MAP_WIDGET",
   displayName: "map",
-  widgetName: i18n.t("widget.map.name"), // TODO
-  icon: <PdfWidgetIcon />,
+  widgetName: i18n.t("widget.map.name"),
+  icon: <MapWidgetIcon />,
   keywords: ["MAP", "地图"],
   sessionType: "PRESENTATION",
   w: 40,
@@ -23,5 +23,6 @@ export const MAP_WIDGET_CONFIG: WidgetConfig = {
     enableAddMark: "{{true}}",
     enableSearch: "{{true}}",
     enableClustering: false,
+    selectMarker: "{{{}}}",
   },
 }

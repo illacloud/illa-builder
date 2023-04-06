@@ -14,7 +14,7 @@ export interface MapProps {
   enableAddMark?: boolean
   enableSearch?: boolean
   enableClustering?: boolean
-  onMarkerSelected?: (e: google.maps.MapMouseEvent) => void
+  onMarkerSelected?: (latLng: LatLng) => void
   onMarkerCreated?: (latLng: LatLng) => void
   onMarkersChanged?: (marks: LatLng[]) => void
 }
@@ -34,7 +34,6 @@ export interface WrappedMapProps
   ) => void
   handleOnMarkerCreated?: () => void
   handleOnMarkerSelect?: () => void
-  handleOnMarkersChanged?: () => void
 }
 
 export interface MapWidgetProps

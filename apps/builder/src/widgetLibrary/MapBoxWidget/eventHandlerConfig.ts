@@ -5,21 +5,15 @@ export const MAP_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
   events: [
     {
       label: i18n.t(
-        "editor.method.map.marker_selected",
+        "editor.inspect.setter_content.widget_action_type_name.markerSelected",
       ),
-      value: "markerSelect",
+      value: "markerSelected",
     },
     {
       label: i18n.t(
-        "editor.method.map.marker_created",
+        "editor.inspect.setter_content.widget_action_type_name.markerCreated",
       ),
       value: "markerCreated",
-    },
-    {
-      label: i18n.t(
-        "editor.method.map.marker_created",
-      ),
-      value: "markerChanged",
     },
   ],
   methods: ["setMarkers", "resetMarkers"],

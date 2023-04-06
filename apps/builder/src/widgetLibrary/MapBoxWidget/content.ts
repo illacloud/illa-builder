@@ -12,5 +12,5 @@ export const GoogleContext = {
 }
 export const ContainerStyle = {
   width: "100%",
-  height: "390px",
+  height: "100%",
 }
