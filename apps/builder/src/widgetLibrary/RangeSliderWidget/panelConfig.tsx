@@ -172,7 +172,7 @@ export const RANGE_SLIDER_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-adornments-suffix-icon`,
-        labelName: i18n.t("editor.inspect.setter_label.slider.prefix_icon"),
+        labelName: i18n.t("editor.inspect.setter_label.slider.suffix_icon"),
         labelDesc: i18n.t("editor.inspect.setter_tips.slider.suffix_icon"),
         attrName: "suffixIcon",
         expectedType: VALIDATION_TYPES.STRING,
