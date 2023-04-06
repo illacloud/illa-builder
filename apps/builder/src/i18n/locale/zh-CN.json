@@ -1145,6 +1145,13 @@
         "size_type": {
           "kb": "KB",
           "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "请选择时间"
+        },
+        "time_range": {
+          "start_placeholder": "开始时间",
+          "end_placeholder": "时间结束"
         }
       },
       "setter_group": {
@@ -1427,6 +1434,10 @@
           "enable_add_markers": "允许添加标记",
           "enable_search_locati": "允许搜索位置",
           "enable_clustering": "允许点聚集"
+        },
+        "time_range": {
+          "start_time": "开始时间",
+          "end_time": "结束时间"
         }
       },
       "setter_tooltip": {
@@ -1535,6 +1546,17 @@
           "enable_add_markers": "是否允许用户通过点击地图添加标记",
           "enable_search_locati": "是否允许用户搜索位置",
           "enable_clustering": "地图缩小时是否允许多个标记聚合"
+        },
+        "time_picker": {
+          "format": "一个有效的时间格式字符串。 有关格式的更多信息：[dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "分钟的跨度",
+          "show_a_clear_button_": "当鼠标悬停在组件上时显示一个清除按钮。"
+        },
+        "time_range": {
+          "start_time": "组件初始化时填入的开始时间",
+          "end_time": "组件初始化时填入的结束时间",
+          "start_placeholder": "当没有输入开始时间时，展示的信息。",
+          "end_placeholder": "当没有输入结束时间时，展示的信息。"
         }
       },
       "setter_option": {
@@ -1738,6 +1760,10 @@
         "marker_selected": "选择标记",
         "marker_created": "创建标记",
         "markers_changed": "更改标记"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
       }
     },
     "tutorial": {
@@ -2173,6 +2199,12 @@
     },
     "map": {
       "name": "地图"
+    },
+    "time_picker": {
+      "name": "时间选择器"
+    },
+    "time_range": {
+      "name": "时间范围选择器"
     }
   },
   "page": {
