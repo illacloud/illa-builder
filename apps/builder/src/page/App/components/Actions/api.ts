@@ -160,7 +160,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         configContent:
           data.configType === "gui"
             ? {
-                host: filterWhitespace(data.host),
+                host: data.host.trim(),
                 port:
                   data.connectionFormat === "standard"
                     ? data.port.toString()
@@ -171,7 +171,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
                 databasePassword: data.databasePassword,
               }
             : {
-                uri: filterWhitespace(data.uri),
+                uri: data.uri.trim(),
               },
       }
     case "supabasedb":
@@ -180,7 +180,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "mysql":
     case "postgresql":
       return {
-        host: filterWhitespace(data.host),
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseName: data.databaseName,
         databaseUsername: data.databaseUsername,
@@ -189,7 +189,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "redis":
       return {
-        host: filterWhitespace(data.host),
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseIndex: data.databaseIndex ?? 0,
         databaseUsername: data.databaseUsername,
@@ -198,13 +198,13 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "firebase":
       return {
-        databaseUrl: data.databaseUrl,
+        databaseUrl: data.databaseUrl.trim(),
         projectID: data.projectID,
         privateKey: JSON.parse(data.privateKey),
       }
     case "elasticsearch":
       return {
-        host: filterWhitespace(data.host),
+        host: data.host.trim(),
         port: data.port.toString(),
         username: data.username,
         password: data.password,
@@ -214,7 +214,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         bucketName: data.bucketName,
         region: data.region,
         endpoint: data.endpoint,
-        baseURL: filterWhitespace(data.baseURL),
+        baseURL: data.baseURL.trim(),
         accessKeyID: data.accessKeyID,
         secretAccessKey: data.secretAccessKey,
         acl:
@@ -224,14 +224,14 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "smtp":
       return {
-        host: filterWhitespace(data.host),
+        host: data.host.trim(),
         port: +data.port,
         username: data.username,
         password: data.password,
       }
     case "clickhouse":
       return {
-        host: filterWhitespace(data.host),
+        host: data.host.trim(),
         port: +data.port,
         username: data.username,
         password: data.password,
@@ -240,7 +240,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "graphql":
       return {
-        baseUrl: filterWhitespace(data.baseUrl),
+        baseUrl: data.baseUrl.trim(),
         urlParams: data.urlParams,
         headers: data.headers,
         cookies: data.cookies,
@@ -250,7 +250,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "mssql":
       return {
-        host: filterWhitespace(data.host),
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseName: data.databaseName,
         username: data.username,
@@ -262,7 +262,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       const { resourceName, host, ...otherParams } = data
       return {
         ...otherParams,
-        host: filterWhitespace(host),
+        host: host,
       }
     }
     case "huggingface":
@@ -302,12 +302,12 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "couchdb": {
       const { resourceName: couchDBResName, host, ...otherCouchDBParams } = data
-      return { ...otherCouchDBParams, host: filterWhitespace(host) }
+      return { ...otherCouchDBParams, host: host.trim() }
     }
     case "appwrite":
       const { host, projectID, databaseID, apiKey } = data
       return {
-        host: filterWhitespace(host),
+        host: host,
         projectID,
         databaseID,
         apiKey,
@@ -324,7 +324,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       } = data
       return {
         ...otherRestApiParams,
-        baseUrl: filterWhitespace(baseUrl),
+        baseUrl: baseUrl.trim(),
         authContent: generateRestAPIAuthContent(data),
         certs: {
           caCert,

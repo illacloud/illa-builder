@@ -12,7 +12,6 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
-  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -65,7 +64,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
     onActionConfigElementTest(
       data,
       {
-        host: filterWhitespace(data.host),
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseName: data.databaseName,
         username: data.username,
