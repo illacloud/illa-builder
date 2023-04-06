@@ -27,11 +27,11 @@ export const cloudRedirect = `${cloudUrl}?redirectUrl=${encodeURIComponent(
 const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
   const { request } = args
   const url = new URL(request.url)
-  const authToken = getAuthToken()
+  const token = url?.searchParams?.get("token")
+  const authToken = token ?? getAuthToken()
   if (authToken) {
     await getUserInfo(authToken)
   }
-  const token = url?.searchParams?.get("token")
   if (!token) return null
   setLocalStorage("token", token, -1)
   window.history.replaceState({}, "", window.location.pathname)
