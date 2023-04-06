@@ -1600,7 +1600,7 @@
         "upload": {
           "size_exceed": "Files over 500MB may fail to parse.",
           "single_file": "Only a single file is allowed.",
-          "file": "Only files are allowed. Please don't upload a directory.",
+          "file": "Unsupported file types are removed",
           "directory": "Only directories are allowed."
         }
       },
