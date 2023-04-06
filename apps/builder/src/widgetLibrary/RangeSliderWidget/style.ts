@@ -23,6 +23,7 @@ export const applyLabelAndComponentWrapperStyle = (
 
 export const applyWrapperSlider = (): SerializedStyles => {
   return css`
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 8px;

@@ -57,14 +57,14 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
     const currentPrefixIcon = getIcon(prefixIcon ?? "")
     const currentSuffixIcon = getIcon(suffixIcon ?? "")
     return (
-      <div css={applyWrapperSlider} style={{}}>
+      <div css={applyWrapperSlider}>
         {currentPrefixIcon && (
           <span css={applyIcon}>
             {currentPrefixIcon && currentPrefixIcon({})}
           </span>
         )}
         <Slider
-          hideValue={hideOutput}
+          tooltipVisible={!hideOutput}
           onChange={onChangeSliderValue}
           isRange={false}
           ref={ref}
@@ -212,7 +212,7 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
           />
         </div>
       </TooltipWrapper>
-      {hideValidationMessage && (
+      {!hideValidationMessage && (
         <div
           css={applyValidateMessageWrapperStyle(
             labelWidth,
