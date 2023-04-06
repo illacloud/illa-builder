@@ -11,6 +11,7 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -67,7 +68,7 @@ export const ElasticSearchConfigElement: FC<ConfigElementProps> = (props) => {
     onActionConfigElementTest(
       data,
       {
-        host: data.host,
+        host: filterWhitespace(data.host),
         port: data.port.toString(),
         username: data.username,
         password: data.password,

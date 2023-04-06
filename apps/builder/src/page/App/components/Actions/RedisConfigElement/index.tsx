@@ -11,6 +11,7 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -81,7 +82,7 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
     onActionConfigElementTest(
       data,
       {
-        host: data.host,
+        host: filterWhitespace(data.host),
         port: data.port.toString(),
         databaseIndex: data.databaseIndex ?? 0,
         databaseUsername: data.databaseUsername,

@@ -11,6 +11,7 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  filterWhitespace,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -91,24 +92,24 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
     onActionConfigElementTest(
       data,
       {
-        host: data.host,
+        host: filterWhitespace(data.host),
         port: data.port.toString(),
         databaseName: data.databaseName,
         databaseUsername: data.databaseUsername,
         databasePassword: data.databasePassword,
         ssl: generateSSLConfig(sslOpenWatch, data) as DbSSL,
       },
-      "mysql",
+      resourceType,
       setTestLoading,
     )
-  }, [getValues, sslOpenWatch])
+  }, [getValues, resourceType, sslOpenWatch])
 
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
-        "mysql",
+        resourceType,
         onFinished,
         setSaving,
       )}
@@ -147,6 +148,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
           name={["host", "port"]}
           controlledType={["input", "number"]}
           control={control}
+          isRequired
           rules={[
             {
               validate,

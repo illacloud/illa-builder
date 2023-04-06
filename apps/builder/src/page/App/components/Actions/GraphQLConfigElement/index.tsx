@@ -17,6 +17,7 @@ import { APIKeyAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElem
 import { BasicAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/BasicAuthPanel"
 import { BearerAuthPanel } from "@/page/App/components/Actions/GraphQLConfigElement/BearerAuthPanel"
 import {
+  filterWhitespace,
   generateGraphQLAuthContent,
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -88,7 +89,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
     onActionConfigElementTest(
       data,
       {
-        baseUrl: data.baseUrl.trim(),
+        baseUrl: filterWhitespace(data.baseUrl),
         urlParams: data.urlParams,
         headers: data.headers,
         cookies: data.cookies,
