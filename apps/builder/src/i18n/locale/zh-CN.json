@@ -1355,7 +1355,7 @@
         "scale": "缩放页面",
         "scroll": "快速滚动到每一页",
         "min_max_size": "最小～最大文件大小",
-        "video_url": "视频 URL",
+        "video_url": "视频数据源",
         "autoplay": "自动播放",
         "loop": "循环播放",
         "volume": "音量",
@@ -1467,7 +1467,7 @@
         "file_url": "支持网络上的 PDF URL，或 pdf 文件的 base64 编码数据。 例如：{{ data:application/pdf;base64, example-data }}",
         "scale": "缩放每个页面以填充组件的宽度或高度。",
         "scroll": "滚动时自动定位到每页的开头。",
-        "video_url": "支持大多数视频服务或任何常见视频文件类型的直接链接。",
+        "video_url": "支持大多数视频服务或任何常见视频文件类型的直接链接或视频文件的base64编码数据。 例如：{{ data:audio/mp4;base64,exampleDate}}",
         "collapse": {
           "type": "折叠面板列表：列表模式，每项的组件样式一致，可通过{{ currentItem.columnName }}指定每个项中组件的数据；折叠面板：各个面板独立，可分别指定每项的组件样式和数据。",
           "items": "项目数量",
@@ -1689,7 +1689,7 @@
         "unit": "(s)"
       },
       "set_video_url": {
-        "video": "视频 URL"
+        "video": "视频数据源"
       },
       "speed": {
         "speed": "倍速",
