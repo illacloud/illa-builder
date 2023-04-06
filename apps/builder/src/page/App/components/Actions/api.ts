@@ -260,7 +260,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       const { resourceName, host, ...otherParams } = data
       return {
         ...otherParams,
-        host: host,
+        host: host.trim(),
       }
     }
     case "huggingface":
@@ -305,7 +305,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "appwrite":
       const { host, projectID, databaseID, apiKey } = data
       return {
-        host: host,
+        host: host.trim(),
         projectID,
         databaseID,
         apiKey,
