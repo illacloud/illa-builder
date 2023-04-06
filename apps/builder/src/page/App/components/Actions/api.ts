@@ -1,7 +1,7 @@
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
+import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
-import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import i18n from "@/i18n/config"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -45,7 +45,7 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
   if (isGuideMode) {
     const createActionData: ActionItem<ActionContent> = {
       ...data,
-      actionId: GUIDE_DEFAULT_ACTION_ID,
+      actionId: v4(),
     }
     store.dispatch(actionActions.addActionItemReducer(createActionData))
     store.dispatch(configActions.changeSelectedAction(createActionData))

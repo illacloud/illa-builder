@@ -1,10 +1,10 @@
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { v4 } from "uuid"
 import { Spin, useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
 import { WhiteList } from "@/components/WhiteList"
-import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -53,7 +53,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                     if (isGuideMode) {
                       const createActionData: ActionItem<ActionContent> = {
                         ...data,
-                        actionId: GUIDE_DEFAULT_ACTION_ID,
+                        actionId: v4(),
                       }
                       dispatch(
                         actionActions.addActionItemReducer(createActionData),
