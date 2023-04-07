@@ -69,6 +69,18 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     [mode, appId, teamID, uid],
   )
 
+  const checkAppStatus = useCallback(
+    (controller: AbortController) => {
+      // don't use asyncTeamRequest here, because we need to mock the team info
+      return BuilderApi.asyncTeamIdentifierRequest<{ isPublic: boolean }>({
+        url: `/publicApps/${appId}/isPublic`,
+        method: "GET",
+        signal: controller.signal,
+      })
+    },
+    [appId],
+  )
+
   const initPublicApp = useCallback(
     (controller: AbortController) => {
       // don't use asyncTeamRequest here, because we need to mock the team info
@@ -145,12 +157,12 @@ export const useInitBuilderApp = (mode: IllaMode) => {
         setErrorState(false)
         setLoadingState(true)
         if (mode === "production") {
-          try {
+          const publicState = await checkAppStatus(controller)
+          if (publicState.data.isPublic) {
             const response = await initPublicApp(controller)
             handleCurrentApp(response.data)
             resolve(response.data)
-          } catch (error: any) {
-            console.log(error, "error")
+          } else {
             await handleUnPublicApps(controller, resolve, reject)
           }
         } else {
@@ -181,6 +193,8 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     handleCurrentApp,
     handleUnPublicApps,
     initApp,
+    checkAppStatus,
+    initPublicApp,
   ])
 
   return { loadingState, errorState }

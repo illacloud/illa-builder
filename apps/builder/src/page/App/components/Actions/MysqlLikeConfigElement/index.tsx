@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -27,7 +27,10 @@ import {
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { TextLink } from "@/page/User/components/TextLink"
-import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import {
+  MysqlLikeResource,
+  tiDBServertCertDefaultValue,
+} from "@/redux/resource/mysqlLikeResource"
 import {
   DbSSL,
   Resource,
@@ -35,6 +38,7 @@ import {
 } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
+import { handleLinkOpen } from "@/utils/navigate"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
 
@@ -78,37 +82,62 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
 
+  const sslDefaultValue = resource?.content.ssl.ssl ?? resourceType === "tidb"
+  const serverCertDefaultValue =
+    resource?.content.ssl.serverCert ??
+    (resourceType === "tidb" ? tiDBServertCertDefaultValue : "")
+
+  const serverCertTip = useMemo(() => {
+    return resourceType === "tidb" ? (
+      <Trans
+        i18nKey="editor.action.form.tips.tidb.ca_certificate"
+        t={t}
+        components={[
+          <TextLink
+            key="ca-link"
+            onClick={() =>
+              handleLinkOpen(
+                "https://docs.pingcap.com/tidbcloud/tidb-cloud-tls-connect-to-dedicated-tier",
+              )
+            }
+          />,
+        ]}
+      />
+    ) : (
+      ""
+    )
+  }, [resourceType, t])
+
   const hostValue = watch("host")
   const showAlert = isContainLocalPath(hostValue ?? "")
-  const sslOpenWatch = watch("ssl", resource?.content.ssl.ssl ?? false)
+  const sslOpenWatch = watch("ssl", sslDefaultValue)
 
-  const handleDocLinkClick = () => {
-    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
-  }
+  const handleDocLinkClick = () =>
+    handleLinkOpen("https://www.illacloud.com/docs/illa-cli")
 
   const handleConnectionTest = useCallback(() => {
     const data = getValues()
     onActionConfigElementTest(
       data,
       {
-        host: data.host,
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseName: data.databaseName,
         databaseUsername: data.databaseUsername,
         databasePassword: data.databasePassword,
         ssl: generateSSLConfig(sslOpenWatch, data) as DbSSL,
       },
-      "mysql",
+      resourceType,
       setTestLoading,
     )
-  }, [getValues, sslOpenWatch])
+  }, [getValues, resourceType, sslOpenWatch])
 
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
-        "mysql",
+        resourceType,
         onFinished,
         setSaving,
       )}
@@ -147,6 +176,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
           name={["host", "port"]}
           controlledType={["input", "number"]}
           control={control}
+          isRequired
           rules={[
             {
               validate,
@@ -270,7 +300,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
           controlledType={["switch"]}
           title={t("editor.action.resource.db.label.ssl_options")}
           control={control}
-          defaultValue={resource?.content.ssl.ssl}
+          defaultValue={sslDefaultValue}
           name="ssl"
           contentLabel={t("editor.action.resource.db.tip.ssl_options")}
         />
@@ -286,11 +316,12 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                 },
               ]}
               control={control}
-              defaultValue={resource?.content.ssl.serverCert}
+              defaultValue={serverCertDefaultValue}
               name="serverCert"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),
               ]}
+              tips={serverCertTip}
             />
             <ControlledElement
               controlledType={["textarea"]}

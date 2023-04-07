@@ -1,4 +1,5 @@
 import { isEqual } from "lodash"
+import { v4 } from "uuid"
 import { createResource } from "@/api/actions"
 import Actions from "@/config/guide/actions.json"
 import Components from "@/config/guide/components.json"
@@ -95,7 +96,7 @@ export const initGuideApp = async (): Promise<CurrentAppResp> => {
         return {
           ...actionData,
           resourceId,
-          actionId: GUIDE_DEFAULT_ACTION_ID,
+          actionId: v4(),
         } as ActionItem<ActionContent>
       }),
     )

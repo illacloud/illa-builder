@@ -1,7 +1,9 @@
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
+import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
+import { ActionApi, BuilderApi } from "@/api/base"
 import i18n from "@/i18n/config"
+import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
@@ -30,14 +32,27 @@ function getBaseActionUrl() {
 const message = createMessage()
 
 export function onCopyActionItem(action: ActionItem<ActionContent>) {
+  const isGuideMode = getIsILLAGuideMode(store.getState())
   const baseActionUrl = getBaseActionUrl()
   const newAction = omit(action, ["displayName", "actionId"])
   const displayName = DisplayNameGenerator.generateDisplayName(
     action.actionType,
   )
-  const data: Partial<ActionItem<ActionContent>> = {
+  const data: Omit<ActionItem<ActionContent>, "actionId"> = {
     ...newAction,
     displayName,
+  }
+  if (isGuideMode) {
+    const createActionData: ActionItem<ActionContent> = {
+      ...data,
+      actionId: v4(),
+    }
+    store.dispatch(actionActions.addActionItemReducer(createActionData))
+    store.dispatch(configActions.changeSelectedAction(createActionData))
+    message.success({
+      content: i18n.t("editor.action.action_list.message.success_created"),
+    })
+    return
   }
   BuilderApi.teamRequest(
     {
@@ -66,8 +81,18 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
 }
 
 export function onDeleteActionItem(action: ActionItem<ActionContent>) {
+  const isGuideMode = getIsILLAGuideMode(store.getState())
   const baseActionUrl = getBaseActionUrl()
   const { actionId, displayName } = action
+
+  if (isGuideMode) {
+    DisplayNameGenerator.removeDisplayName(displayName)
+    store.dispatch(actionActions.removeActionItemReducer(displayName))
+    message.success({
+      content: i18n.t("editor.action.action_list.message.success_deleted"),
+    })
+    return
+  }
 
   BuilderApi.teamRequest(
     {
@@ -158,7 +183,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         configContent:
           data.configType === "gui"
             ? {
-                host: data.host,
+                host: data.host.trim(),
                 port:
                   data.connectionFormat === "standard"
                     ? data.port.toString()
@@ -169,12 +194,16 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
                 databasePassword: data.databasePassword,
               }
             : {
-                uri: data.uri,
+                uri: data.uri.trim(),
               },
       }
+    case "supabasedb":
+    case "tidb":
+    case "mariadb":
     case "mysql":
+    case "postgresql":
       return {
-        host: data.host,
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseName: data.databaseName,
         databaseUsername: data.databaseUsername,
@@ -183,7 +212,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "redis":
       return {
-        host: data.host,
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseIndex: data.databaseIndex ?? 0,
         databaseUsername: data.databaseUsername,
@@ -192,13 +221,13 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "firebase":
       return {
-        databaseUrl: data.databaseUrl,
+        databaseUrl: data.databaseUrl.trim(),
         projectID: data.projectID,
         privateKey: JSON.parse(data.privateKey),
       }
     case "elasticsearch":
       return {
-        host: data.host,
+        host: data.host.trim(),
         port: data.port.toString(),
         username: data.username,
         password: data.password,
@@ -208,7 +237,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         bucketName: data.bucketName,
         region: data.region,
         endpoint: data.endpoint,
-        baseURL: data.baseURL,
+        baseURL: data.baseURL.trim(),
         accessKeyID: data.accessKeyID,
         secretAccessKey: data.secretAccessKey,
         acl:
@@ -218,14 +247,14 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "smtp":
       return {
-        host: data.host,
+        host: data.host.trim(),
         port: +data.port,
         username: data.username,
         password: data.password,
       }
     case "clickhouse":
       return {
-        host: data.host,
+        host: data.host.trim(),
         port: +data.port,
         username: data.username,
         password: data.password,
@@ -234,7 +263,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "graphql":
       return {
-        baseUrl: data.baseUrl,
+        baseUrl: data.baseUrl.trim(),
         urlParams: data.urlParams,
         headers: data.headers,
         cookies: data.cookies,
@@ -244,7 +273,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "mssql":
       return {
-        host: data.host,
+        host: data.host.trim(),
         port: data.port.toString(),
         databaseName: data.databaseName,
         username: data.username,
@@ -252,9 +281,13 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         connectionOpts: data.connectionOpts,
         ssl: generateSSLConfig(!!data.ssl, data, "mssql"),
       }
-    case "oracle":
-      const { resourceName, ...otherParams } = data
-      return otherParams
+    case "oracle": {
+      const { resourceName, host, ...otherParams } = data
+      return {
+        ...otherParams,
+        host: host.trim(),
+      }
+    }
     case "huggingface":
       return {
         token: data.token,
@@ -262,7 +295,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "hfendpoint":
       return {
         token: data.token,
-        endpoint: data.endpoint,
+        endpoint: data.endpoint.trim(),
       }
     case "snowflake":
       return {
@@ -290,9 +323,10 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         accessKeyID,
         secretAccessKey,
       }
-    case "couchdb":
-      const { resourceName: couchDBResName, ...otherCouchDBParams } = data
-      return otherCouchDBParams
+    case "couchdb": {
+      const { resourceName: couchDBResName, host, ...otherCouchDBParams } = data
+      return { ...otherCouchDBParams, host: host.trim() }
+    }
     case "appwrite":
       const { host, projectID, databaseID, apiKey } = data
       return {
@@ -304,6 +338,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "restapi":
       const {
         resourceName: restApiResName,
+        baseUrl,
         caCert = "",
         clientKey = "",
         clientCert = "",
@@ -312,6 +347,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       } = data
       return {
         ...otherRestApiParams,
+        baseUrl: baseUrl.trim(),
         authContent: generateRestAPIAuthContent(data),
         certs: {
           caCert,
@@ -399,7 +435,7 @@ export function onActionConfigElementTest(
   resourceType: ResourceType,
   loadingHandler: (value: boolean) => void,
 ) {
-  return BuilderApi.teamRequest<Resource<ResourceContent>>(
+  return ActionApi.teamRequest<Resource<ResourceContent>>(
     {
       method: "POST",
       url: `/resources/testConnection`,

@@ -160,6 +160,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   let runMode: RunMode = useMemo(() => {
     if (isGuideOpen) {
+      if (isChanged) {
+        return "save"
+      }
       return "test_run"
     }
     if (cachedAction != undefined && isChanged) {
@@ -221,6 +224,11 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         runCachedAction(cachedActionValue)
         break
       case "save":
+        if (isGuideOpen) {
+          cachedActionValue &&
+            dispatch(actionActions.updateActionItemReducer(cachedActionValue))
+          return
+        }
         setSaveLoading(true)
         BuilderApi.teamRequest(
           {
@@ -282,6 +290,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         break
     }
   }, [
+    isGuideOpen,
     cachedAction,
     runMode,
     canRunAction,
@@ -296,7 +305,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   ])
 
   const renderButton = useMemo(() => {
-    return runMode === "run" ? cachedAction?.actionType !== "transformer" : true
+    return runMode === "run" || runMode === "test_run"
+      ? cachedAction?.actionType !== "transformer"
+      : true
   }, [cachedAction?.actionType, runMode])
 
   if (cachedAction === undefined) {
@@ -343,6 +354,16 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
             const newAction = {
               ...selectedAction,
               displayName: value,
+            }
+            if (isGuideOpen) {
+              dispatch(
+                actionActions.updateActionDisplayNameReducer({
+                  newDisplayName: value,
+                  oldDisplayName: selectedAction.displayName,
+                  actionID: newAction.actionId,
+                }),
+              )
+              return
             }
             setSaveLoading(true)
             BuilderApi.teamRequest(

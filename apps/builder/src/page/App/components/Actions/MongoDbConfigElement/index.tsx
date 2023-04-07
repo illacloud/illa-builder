@@ -64,7 +64,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
       configContent:
         configTypeWatch === "gui"
           ? {
-              host: data.host,
+              host: data.host.trim(),
               port:
                 data.connectionFormat === "standard"
                   ? data.port.toString()
@@ -74,7 +74,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
               databaseUsername: data.databaseUsername,
               databasePassword: data.databasePassword,
             }
-          : { uri: data.uri },
+          : { uri: data.uri.trim() },
     }
 
     onActionConfigElementTest(data, content, "mongodb", setTestLoading)
