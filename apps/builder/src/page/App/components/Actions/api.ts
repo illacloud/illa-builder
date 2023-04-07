@@ -1,7 +1,7 @@
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
+import { ActionApi, BuilderApi } from "@/api/base"
 import i18n from "@/i18n/config"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -287,7 +287,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       const { resourceName, host, ...otherParams } = data
       return {
         ...otherParams,
-        host: host,
+        host: host.trim(),
       }
     }
     case "huggingface":
@@ -297,7 +297,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "hfendpoint":
       return {
         token: data.token,
-        endpoint: data.endpoint,
+        endpoint: data.endpoint.trim(),
       }
     case "snowflake":
       return {
@@ -332,7 +332,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "appwrite":
       const { host, projectID, databaseID, apiKey } = data
       return {
-        host: host,
+        host: host.trim(),
         projectID,
         databaseID,
         apiKey,
@@ -437,7 +437,7 @@ export function onActionConfigElementTest(
   resourceType: ResourceType,
   loadingHandler: (value: boolean) => void,
 ) {
-  return BuilderApi.teamRequest<Resource<ResourceContent>>(
+  return ActionApi.teamRequest<Resource<ResourceContent>>(
     {
       method: "POST",
       url: `/resources/testConnection`,

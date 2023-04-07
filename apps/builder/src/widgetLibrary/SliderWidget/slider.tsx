@@ -20,7 +20,6 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
       prefixIcon,
       suffixIcon,
       hideOutput,
-      handleUpdateDsl,
       handleOnChange,
       getValidateMessage,
       handleUpdateMultiExecutionResult,
@@ -89,7 +88,7 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
     disabled,
     colorScheme,
     displayName,
-    handleUpdateDsl,
+    handleUpdateMultiExecutionResult,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     labelPosition,
@@ -132,33 +131,58 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
   const handleValidate = useCallback(
     (value: unknown) => {
       const message = getValidateMessage(value)
-      handleUpdateDsl({
-        validateMessage: message,
-      })
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            validateMessage: message,
+          },
+        },
+      ])
       return message
     },
-    [getValidateMessage, handleUpdateDsl],
+    [displayName, getValidateMessage, handleUpdateMultiExecutionResult],
   )
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       value,
       setValue: (value: number) => {
-        handleUpdateDsl({ value })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { value },
+          },
+        ])
       },
       clearValue: () => {
-        handleUpdateDsl({ value: min, validateMessage: "" })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { value: min, validateMessage: "" },
+          },
+        ])
       },
       validate: () => {
         return handleValidate(value)
       },
       clearValidation: () => {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              validateMessage: "",
+            },
+          },
+        ])
       },
       reset: () => {
-        handleUpdateDsl({ value: defaultValue, validateMessage: "" })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { value: defaultValue, validateMessage: "" },
+          },
+        ])
       },
       focus: () => {
         sliderRef.current?.focus()
@@ -173,7 +197,7 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
     disabled,
     colorScheme,
     handleUpdateGlobalData,
-    handleUpdateDsl,
+    handleUpdateMultiExecutionResult,
     handleDeleteGlobalData,
     handleValidate,
     min,

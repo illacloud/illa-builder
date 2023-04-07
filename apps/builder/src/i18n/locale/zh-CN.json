@@ -261,6 +261,9 @@
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
             "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
             "copy_to_sheet_name": "必填。重命名复制后的表"
+          },
+          "tidb": {
+            "ca_certificate": "我们默认填写用于与无服务器层的TLS连接的证书。如需与专用层的TLS连接，<0>点击这里</0>查看配置方法"
           }
         },
         "option": {
@@ -1095,7 +1098,9 @@
           "pause": "暂停",
           "ended": "已结束",
           "loaded": "已载入",
-          "rowSelect": "选择行"
+          "rowSelect": "选择行",
+          "markerSelected": "选中点",
+          "markerCreated": "创建点"
         },
         "image_list": {
           "title": "图片",
@@ -1140,6 +1145,13 @@
         "size_type": {
           "kb": "KB",
           "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "请选择时间"
+        },
+        "time_range": {
+          "start_placeholder": "开始时间",
+          "end_placeholder": "时间结束"
         }
       },
       "setter_group": {
@@ -1345,12 +1357,12 @@
         "max_size": "最大文件大小",
         "min_size": "最小文件大小",
         "text_overflow": "文本溢出",
-        "file_url": "文件URL",
+        "file_url": "PDF数据源",
         "show_tool_bar": "显示工具栏",
         "scale": "缩放页面",
         "scroll": "快速滚动到每一页",
         "min_max_size": "最小～最大文件大小",
-        "video_url": "视频 URL",
+        "video_url": "视频数据源",
         "autoplay": "自动播放",
         "loop": "循环播放",
         "volume": "音量",
@@ -1410,7 +1422,7 @@
         },
         "name": "名称",
         "audio": {
-          "audio_url": "音频URL"
+          "audio_url": "音频数据源"
         },
         "map": {
           "markers": "标记",
@@ -1422,6 +1434,10 @@
           "enable_add_markers": "允许添加标记",
           "enable_search_locati": "允许搜索位置",
           "enable_clustering": "允许点聚集"
+        },
+        "time_range": {
+          "start_time": "开始时间",
+          "end_time": "结束时间"
         }
       },
       "setter_tooltip": {
@@ -1462,7 +1478,7 @@
         "file_url": "支持网络上的 PDF URL，或 pdf 文件的 base64 编码数据。 例如：{{ data:application/pdf;base64, example-data }}",
         "scale": "缩放每个页面以填充组件的宽度或高度。",
         "scroll": "滚动时自动定位到每页的开头。",
-        "video_url": "支持大多数视频服务或任何常见视频文件类型的直接链接。",
+        "video_url": "支持大多数视频服务或任何常见视频文件类型的直接链接或视频文件的base64编码数据。 例如：{{ data:audio/mp4;base64,exampleDate}}",
         "collapse": {
           "type": "折叠面板列表：列表模式，每项的组件样式一致，可通过{{ currentItem.columnName }}指定每个项中组件的数据；折叠面板：各个面板独立，可分别指定每项的组件样式和数据。",
           "items": "项目数量",
@@ -1518,7 +1534,7 @@
           "end_value": "设置范围的最大值"
         },
         "audio": {
-          "audio_url": "支持直接链接到任何常见的音频文件类型或链接到某些音频服务"
+          "audio_url": "支持直接链接到任何常见的音频文件类型或链接到某些音频服务或音频文件的 base64 编码数据。 例如：{{ data:audio/mp3;base64,exampleDate}}"
         },
         "map": {
           "markers": "在地图上设置标记。 标记应该是与默认标记具有相同属性的对象数组。",
@@ -1530,6 +1546,17 @@
           "enable_add_markers": "是否允许用户通过点击地图添加标记",
           "enable_search_locati": "是否允许用户搜索位置",
           "enable_clustering": "地图缩小时是否允许多个标记聚合"
+        },
+        "time_picker": {
+          "format": "一个有效的时间格式字符串。 有关格式的更多信息：[dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "分钟的跨度",
+          "show_a_clear_button_": "当鼠标悬停在组件上时显示一个清除按钮。"
+        },
+        "time_range": {
+          "start_time": "组件初始化时填入的开始时间",
+          "end_time": "组件初始化时填入的结束时间",
+          "start_placeholder": "当没有输入开始时间时，展示的信息。",
+          "end_placeholder": "当没有输入结束时间时，展示的信息。"
         }
       },
       "setter_option": {
@@ -1593,6 +1620,12 @@
         "choose_up_to": "Please choose up to {{max}} options.",
         "map": {
           "zoom": "请设置一个介于 1 和 22 之间的值"
+        },
+        "upload": {
+          "size_exceed": "超过 500MB 的文件可能无法解析。",
+          "single_file": "只允许一个文件。",
+          "file": "サポートされていないファイル タイプは削除されます",
+          "directory": "只允许目录。"
         }
       },
       "setter_description": {
@@ -1670,7 +1703,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set file URL",
+      "set_file_url": "Set PDF source",
       "play": "播放",
       "pause": "暂停",
       "seek_to": {
@@ -1678,7 +1711,7 @@
         "unit": "(s)"
       },
       "set_video_url": {
-        "video": "视频 URL"
+        "video": "视频数据源"
       },
       "speed": {
         "speed": "倍速",
@@ -1721,12 +1754,16 @@
       "setGlobalData": "设置全局变量",
       "setLocalStorage": "设置本地存储数据",
       "audio": {
-        "set_audio_url": "设置音频链接"
+        "set_audio_url": "设置音频数据源"
       },
       "map": {
         "marker_selected": "选择标记",
         "marker_created": "创建标记",
         "markers_changed": "更改标记"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
       }
     },
     "tutorial": {
@@ -2162,6 +2199,12 @@
     },
     "map": {
       "name": "地图"
+    },
+    "time_picker": {
+      "name": "时间选择器"
+    },
+    "time_range": {
+      "name": "时间范围选择器"
     }
   },
   "page": {
