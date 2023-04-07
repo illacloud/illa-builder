@@ -25,7 +25,7 @@ const axios = Axios.create({
   baseURL: isCloudVersion
     ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}`
     : `${location.origin}`,
-  timeout: 60000,
+  timeout: 600000,
   headers: {
     "Content-Encoding": "gzip",
     "Content-Type": "application/json",
@@ -37,7 +37,7 @@ axios.interceptors.request.use(authInterceptor)
 axios.interceptors.response.use(fullFillInterceptor, axiosErrorInterceptor)
 
 const customAxios = Axios.create({
-  timeout: 60000,
+  timeout: 600000,
 })
 
 export class Api {
@@ -54,7 +54,7 @@ export class Api {
     axios
       .request<RespData, AxiosResponse<RespData>, RequestBody>({
         ...config,
-        timeout: 60000,
+        timeout: 600000,
       })
       .then((response) => {
         loading?.(false)
