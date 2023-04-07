@@ -4,11 +4,7 @@ import { useDispatch } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { FixedCursor } from "@/page/App/components/MousePreview/Cursor"
 import { dragShadowActions } from "@/redux/currentApp/dragShadow/dragShadowSlice"
-import {
-  applyDotLintRectangleStyle,
-  applyResizingDotLintRectangleStyle,
-  rectangleStyle,
-} from "./style"
+import { applyDotLintRectangleStyle, rectangleStyle } from "./style"
 import { fixedPosition } from "./utils"
 
 interface DragShadowPreviewProps {
@@ -64,26 +60,29 @@ export const ShadowPreview: FC<DragShadowPreviewProps> = (props) => {
 
   return (
     <>
-      {status !== 2 ? (
-        <motion.div
-          css={applyDotLintRectangleStyle(
-            landingX * unitW,
-            landingY * UNIT_HEIGHT,
-            true,
-          )}
-          initial={{
-            x: fixedXAndY.x * unitW,
-            y: fixedXAndY.y * UNIT_HEIGHT,
-          }}
-          animate={{
-            x: fixedXAndY.x * unitW,
-            y: fixedXAndY.y * UNIT_HEIGHT,
-          }}
-          transition={{ duration: 0.16 }}
-          onAnimationComplete={onAnimationComplete}
-        >
-          <div css={rectangleStyle} />
-          (
+      <motion.div
+        css={applyDotLintRectangleStyle(
+          landingX * unitW,
+          landingY * UNIT_HEIGHT,
+          true,
+        )}
+        initial={{
+          x: fixedXAndY.x * unitW,
+          y: fixedXAndY.y * UNIT_HEIGHT,
+          width: landingX * unitW,
+          height: landingY * UNIT_HEIGHT,
+        }}
+        animate={{
+          x: fixedXAndY.x * unitW,
+          y: fixedXAndY.y * UNIT_HEIGHT,
+          width: landingX * unitW,
+          height: landingY * UNIT_HEIGHT,
+        }}
+        transition={{ duration: 0.16 }}
+        onAnimationComplete={onAnimationComplete}
+      >
+        <div css={rectangleStyle} />
+        {status !== 2 && (
           <FixedCursor
             userID={userID}
             nickName={nickname}
@@ -94,20 +93,8 @@ export const ShadowPreview: FC<DragShadowPreviewProps> = (props) => {
             status={status}
             unitW={unitW}
           />
-          )
-        </motion.div>
-      ) : (
-        <div
-          css={applyResizingDotLintRectangleStyle(
-            landingX * unitW,
-            landingY * UNIT_HEIGHT,
-            fixedXAndY.x * unitW,
-            fixedXAndY.y * UNIT_HEIGHT,
-          )}
-        >
-          <div css={rectangleStyle} />
-        </div>
-      )}
+        )}
+      </motion.div>
     </>
   )
 }

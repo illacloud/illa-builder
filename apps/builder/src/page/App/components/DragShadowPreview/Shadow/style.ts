@@ -7,8 +7,6 @@ export const applyDotLintRectangleStyle = (
   canDrop: boolean,
 ) => {
   return css`
-    width: ${w}px;
-    height: ${h}px;
     border: 1px dashed ${getColor("techPurple", "01")};
     position: absolute;
     z-index: 6;

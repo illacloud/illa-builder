@@ -475,7 +475,7 @@ const getDragResultWhenUpdate = (
     (initialClientOffset!.x - initialSourceClientOffSet.x) / unitWidth -
     mouseXOffsetInt
   const mouseYOffsetInt = Math.floor(
-    (initialClientOffset!.y - initialSourceClientOffSet.y) / unitWidth,
+    (initialClientOffset!.y - initialSourceClientOffSet.y) / UNIT_HEIGHT,
   )
   const mouseYOffsetDec =
     (initialClientOffset!.y - initialSourceClientOffSet.y) / UNIT_HEIGHT -
