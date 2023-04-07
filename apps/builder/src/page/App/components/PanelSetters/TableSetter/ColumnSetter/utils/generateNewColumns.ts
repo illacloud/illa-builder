@@ -10,6 +10,7 @@ export const generateNewColumnItem = (number: number): ColumnItemShape => {
   const id = generateColumnItemId()
   return {
     ...defaultColumnItem,
+    custom: true,
     header: `Column ${number}`,
     id,
     accessorKey: id,

@@ -32,7 +32,15 @@ export const RenderTableImage: FC<{
     cell.row.index,
     fromCurrentRow,
   )
-  return <Image src={value} objectFit={objectFit} draggable={false} />
+  return (
+    <Image
+      width={"unset"}
+      height={"42px"}
+      src={value}
+      objectFit={objectFit}
+      draggable={false}
+    />
+  )
 }
 
 export const RenderTableButton: FC<{
