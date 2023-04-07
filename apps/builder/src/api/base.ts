@@ -152,6 +152,8 @@ export class BuilderApi {
 /*
  * Action API
  * usage: test resource and run action
+ * DO NOT CREATE NEW API THIS WAY!
+ * TODO: @aruseito
  */
 export class ActionApi {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
