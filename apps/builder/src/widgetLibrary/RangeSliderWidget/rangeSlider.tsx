@@ -97,7 +97,7 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
     disabled,
     colorScheme,
     displayName,
-    handleUpdateDsl,
+    handleUpdateMultiExecutionResult,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     labelPosition,
@@ -141,36 +141,66 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
   const handleValidate = useCallback(
     (value: unknown) => {
       const message = getValidateMessage(value)
-      handleUpdateDsl({
-        validateMessage: message,
-      })
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            validateMessage: message || "",
+          },
+        },
+      ])
       return message
     },
-    [getValidateMessage, handleUpdateDsl],
+    [displayName, getValidateMessage, handleUpdateMultiExecutionResult],
   )
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       setStartOfRange: (startValue: number) => {
-        handleUpdateDsl({ startValue })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { startValue },
+          },
+        ])
       },
       setEndOfRange: (endValue: number) => {
-        handleUpdateDsl({ endValue })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { endValue },
+          },
+        ])
       },
       validate: () => {
-        return handleValidate({ startValue, endValue })
+        return handleValidate([
+          {
+            displayName,
+            value: { startValue, endValue },
+          },
+        ])
       },
       clearValidation: () => {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              validateMessage: "",
+            },
+          },
+        ])
       },
       reset: () => {
-        handleUpdateDsl({
-          startValue: defaultStartValue,
-          endValue: defaultEndValue,
-          validateMessage: "",
-        })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              startValue: defaultStartValue,
+              endValue: defaultEndValue,
+              validateMessage: "",
+            },
+          },
+        ])
       },
       focus: () => {
         rangeSliderRef.current?.focus()
@@ -186,7 +216,7 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
     disabled,
     colorScheme,
     handleUpdateGlobalData,
-    handleUpdateDsl,
+    handleUpdateMultiExecutionResult,
     handleDeleteGlobalData,
     handleValidate,
     min,
