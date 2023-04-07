@@ -1,9 +1,9 @@
 import { FC, RefObject, memo } from "react"
 import { useDragDropManager } from "react-dnd"
 import { getDragResult, isAddAction } from "@/page/App/components/DotPanel/calc"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { DragInfo } from "@/page/App/components/DotPanel/interface"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
 import {
   getLargeItemSharpe,
   getScaleItem,

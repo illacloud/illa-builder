@@ -39,9 +39,9 @@ export const getMousePositionWithIllaUnit = (
   const integerPartY = Math.floor(relativePosition.y)
   const decimalPartY = relativePosition.y - integerPartY
   return {
-    x: decimalPartX,
-    y: decimalPartY,
-    w: integerPartX,
-    h: integerPartY,
+    xMod: decimalPartX,
+    yMod: decimalPartY,
+    xInteger: integerPartX,
+    yInteger: integerPartY,
   }
 }

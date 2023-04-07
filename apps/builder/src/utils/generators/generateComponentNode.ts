@@ -1,6 +1,6 @@
 import { cloneDeep, get, set } from "lodash"
 import { isObject } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   CONTAINER_TYPE,
   ComponentNode,

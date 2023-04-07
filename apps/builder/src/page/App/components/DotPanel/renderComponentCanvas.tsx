@@ -19,6 +19,7 @@ import {
   getDragResult,
   isAddAction,
 } from "@/page/App/components/DotPanel/calc"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { DragPreview } from "@/page/App/components/DotPanel/dragPreview"
 import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
 import { useMousePositionAsync } from "@/page/App/components/DotPanel/hooks/useMousePostionAsync"
@@ -67,9 +68,13 @@ import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionCon
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { DragShadowPreview } from "../DragShadowPreview"
+import { fixedPosition } from "../DragShadowPreview/Shadow/utils"
 import { MousePreview } from "../MousePreview"
-
-export const UNIT_HEIGHT = 8
+import {
+  sendMousePositionHandler,
+  sendShadowMessageHandler,
+} from "./utils/sendBinaryMessage"
 
 function buildDisplayNameMapComponentNode(
   componentNode: ComponentNode,
@@ -294,7 +299,7 @@ export const RenderComponentCanvas: FC<{
     return bounds.width / blockColumns
   }, [blockColumns, bounds.width])
 
-  const { wrapperRef } = useMousePositionAsync(
+  const { wrapperRef, cursorPositionRef } = useMousePositionAsync(
     containerRef,
     unitWidth,
     componentNode.displayName,
@@ -377,6 +382,33 @@ export const RenderComponentCanvas: FC<{
             isFreezeCanvas,
             currentDragStartScrollTop.current,
           )
+          const { draggedSelectedComponents } = dragInfo
+          const displayNames = draggedSelectedComponents.map(
+            (node) => node.displayName,
+          )
+          const { ladingRelativePosition, mouseOffset } = dragResult
+
+          const fixPosition = fixedPosition(
+            ladingRelativePosition.x,
+            ladingRelativePosition.y,
+            scaleItem.w,
+            blockColumns,
+          )
+
+          sendShadowMessageHandler(
+            1,
+            componentNode.displayName,
+            displayNames,
+            mouseOffset.mouseXOffsetInt,
+            mouseOffset.mouseYOffsetInt,
+            mouseOffset.mouseXOffsetDec,
+            mouseOffset.mouseYOffsetDec,
+            fixPosition.x,
+            fixPosition.y,
+            scaleItem.w,
+            scaleItem.h,
+          )
+
           moveEffect(
             dragResult,
             reflowUpdateSlice,
@@ -616,6 +648,14 @@ export const RenderComponentCanvas: FC<{
               }),
             )
           }
+          const mousePosition = cursorPositionRef.current
+          sendMousePositionHandler(
+            componentNode.displayName,
+            mousePosition.xInteger,
+            mousePosition.yInteger,
+            mousePosition.xMod,
+            mousePosition.yMod,
+          )
           setCollisionEffect(new Map())
           canSetCurrentScrollTop.current = true
           return {
@@ -867,16 +907,6 @@ export const RenderComponentCanvas: FC<{
     }
   }, [containerRef, isActive])
 
-  if (
-    isEditMode &&
-    componentNode.type === "CANVAS" &&
-    (!Array.isArray(componentNode.childrenNode) ||
-      componentNode.childrenNode.length === 0) &&
-    !isShowCanvasDot
-  ) {
-    return <ContainerEmptyState minHeight={minHeight} />
-  }
-
   return (
     <div
       ref={(node) => {
@@ -901,8 +931,20 @@ export const RenderComponentCanvas: FC<{
         selectoSelectionStyle,
       ]}
     >
+      <DragShadowPreview
+        unitW={unitWidth}
+        parentDisplayName={componentNode.displayName}
+        columns={blockColumns}
+      />
       <MousePreview unitW={unitWidth} displayName={componentNode.displayName} />
-      {componentTree}
+      {isEditMode &&
+        componentNode.type === "CANVAS" &&
+        (!Array.isArray(componentNode.childrenNode) ||
+          componentNode.childrenNode.length === 0) &&
+        !isShowCanvasDot && <ContainerEmptyState minHeight={minHeight} />}
+      {Array.isArray(componentNode.childrenNode) &&
+        componentNode.childrenNode.length > 0 &&
+        componentTree}
       {isActive && dragInfo && (
         <DragPreview
           containerRef={containerRef}

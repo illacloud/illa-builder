@@ -203,7 +203,13 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       })
       dispatch(configActions.updateResizingStateReducer(false))
     },
-    [handleUpdateOriginalDSLMultiAttr, headerHeight, headerMaxHeight, unitH],
+    [
+      dispatch,
+      handleUpdateOriginalDSLMultiAttr,
+      headerHeight,
+      headerMaxHeight,
+      unitH,
+    ],
   )
 
   const handleOnResizeBottomStop: ResizeCallback = useCallback(
@@ -218,7 +224,13 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       })
       dispatch(configActions.updateResizingStateReducer(false))
     },
-    [footerHeight, footerMaxHeight, handleUpdateOriginalDSLMultiAttr, unitH],
+    [
+      dispatch,
+      footerHeight,
+      footerMaxHeight,
+      handleUpdateOriginalDSLMultiAttr,
+      unitH,
+    ],
   )
 
   const [{ isDraggingActive }, dropRef] = useDrop<
