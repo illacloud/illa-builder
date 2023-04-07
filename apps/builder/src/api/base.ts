@@ -20,6 +20,8 @@ export interface ApiError {
 export const BUILDER = "/builder/api/v1"
 export const CLOUD = "/supervisor/api/v1"
 
+export const ACTION = "/action/api/v1"
+
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
   baseURL: isCloudVersion
@@ -113,23 +115,6 @@ export class BuilderApi {
     return Api.asyncRequest<RespData, RequestBody, ErrorResp>(config)
   }
 
-  static teamIdentifierRequest<
-    RespData,
-    RequestBody = any,
-    ErrorResp = ApiError,
-  >(
-    config: AxiosRequestConfig<RequestBody>,
-    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
-    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
-    crash?: (e: AxiosError) => void,
-    loading?: (loading: boolean) => void,
-    errorState?: (errorState: boolean) => void,
-  ) {
-    const teamIdentifier = getCurrentPageTeamIdentifier()
-    config.url = `/teams/byIdentifier/${teamIdentifier}` + config.url
-    this.request(config, success, failure, crash, loading, errorState)
-  }
-
   static asyncTeamIdentifierRequest<
     RespData,
     RequestBody = any,
@@ -161,5 +146,58 @@ export class BuilderApi {
     config.url = `/teams/${teamId}` + config.url
 
     return this.asyncRequest<RespData, RequestBody, ErrorResp>(config)
+  }
+}
+
+/*
+ * Action API
+ * usage: test resource and run action
+ * DO NOT CREATE NEW API THIS WAY!
+ * TODO: @aruseito
+ */
+export class ActionApi {
+  static request<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
+    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
+    crash?: (e: AxiosError) => void,
+    loading?: (loading: boolean) => void,
+    errorState?: (errorState: boolean) => void,
+  ) {
+    config.baseURL = isCloudVersion
+      ? `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}${ACTION}`
+      : `${location.origin}${ACTION}`
+    Api.request(config, success, failure, crash, loading, errorState)
+  }
+
+  static teamRequest<RespData, RequestBody = any, ErrorResp = ApiError>(
+    config: AxiosRequestConfig<RequestBody>,
+    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
+    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
+    crash?: (e: AxiosError) => void,
+    loading?: (loading: boolean) => void,
+    errorState?: (errorState: boolean) => void,
+  ) {
+    const teamId = getTeamID()
+    config.url = `/teams/${teamId}` + config.url
+
+    this.request(config, success, failure, crash, loading, errorState)
+  }
+
+  static teamIdentifierRequest<
+    RespData,
+    RequestBody = any,
+    ErrorResp = ApiError,
+  >(
+    config: AxiosRequestConfig<RequestBody>,
+    success?: (response: AxiosResponse<RespData, RequestBody>) => void,
+    failure?: (response: AxiosResponse<ErrorResp, RequestBody>) => void,
+    crash?: (e: AxiosError) => void,
+    loading?: (loading: boolean) => void,
+    errorState?: (errorState: boolean) => void,
+  ) {
+    const teamIdentifier = getCurrentPageTeamIdentifier()
+    config.url = `/teams/byIdentifier/${teamIdentifier}` + config.url
+    this.request(config, success, failure, crash, loading, errorState)
   }
 }
