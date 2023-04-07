@@ -16,13 +16,14 @@ export const getRealShapeAndPosition = (
     realDisplayName = realDisplayName.replace(displayNamePrefix, "")
   }
   const widgetLayoutInfo = get(executionResult, realDisplayName, undefined)
-  if (!widgetLayoutInfo)
+  if (!widgetLayoutInfo) {
     return {
       x: -1,
       y: -1,
       w: -1,
       h: -1,
     }
+  }
   const layoutInfo = widgetLayoutInfo.layoutInfo
   const {
     x: propsPositionX,

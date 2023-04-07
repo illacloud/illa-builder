@@ -125,6 +125,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       const finalHeight = Math.round((h + height) / unitH)
       const positionX = Math.round(position.x / unitW)
       const positionY = Math.round(position.y / unitH)
+
       const newItem = {
         ...item,
         x: positionX,
@@ -150,6 +151,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
           },
         }
       })
+
       sendShadowMessageHandler(
         2,
         componentNode.parentNode!,
@@ -167,11 +169,11 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
     },
     [
       componentNode,
-      throttleUpdateComponentPositionByReflow,
+      w,
+      unitW,
       h,
       unitH,
-      unitW,
-      w,
+      throttleUpdateComponentPositionByReflow,
     ],
   )
 

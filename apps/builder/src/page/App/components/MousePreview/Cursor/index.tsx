@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import { ReactComponent as CursorIcon } from "@/assets/public/cursor.svg"
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
 import { getColorByString } from "@/utils/colorHelper"
+import { UNIT_HEIGHT } from "../../DotPanel/constant/canvas"
 import { CursorProps, NickNameContainerProps } from "./interface"
 import { applyCursorContainerStyle, nickNameContainerStyle } from "./style"
 
@@ -78,7 +79,7 @@ export const FixedCursor: FC<CursorProps> = (props) => {
   } = props
 
   const realX = (integerPartX + decimalPartX) * unitW
-  const realY = integerPartY + decimalPartY
+  const realY = (integerPartY + decimalPartY) * UNIT_HEIGHT
   const color = getColorByString(userID)
   const { t } = useTranslation()
 

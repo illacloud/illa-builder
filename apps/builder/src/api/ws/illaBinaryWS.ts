@@ -97,18 +97,25 @@ export class ILLABinaryWebsocket {
   }
 
   private split(byteBuf: Uint8Array) {
+    const result = []
     let start = 0
-    const result: Uint8Array[] = []
+
     for (let i = 0; i < byteBuf.length; i++) {
-      if (byteBuf[i] === 30) {
-        const current = byteBuf.slice(start, i)
-        result.push(current)
-        start = i + 1
-        continue
+      if (
+        byteBuf[i] === 30 &&
+        byteBuf[i + 1] === 30 &&
+        byteBuf[i + 2] === 30 &&
+        byteBuf[i + 3] === 30
+      ) {
+        result.push(byteBuf.slice(start, i))
+        start = i + 4
       }
     }
-    const current = byteBuf.slice(start)
-    result.push(current)
+
+    if (start < byteBuf.length) {
+      result.push(byteBuf.slice(start))
+    }
+
     return result
   }
 
