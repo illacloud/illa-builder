@@ -1,12 +1,14 @@
+import { MovingMessageBin } from "@/api/ws/ILLA_PROTO"
+
 export interface CursorInfo {
-  userID: string
-  nickname: string
-  parentDisplayName: string
-  status: number // -1 is is Leave,1 is moving, 0 is stop
-  x: number
-  y: number
-  w: number
-  h: number
+  userID: MovingMessageBin["userID"]
+  nickname: MovingMessageBin["nickname"]
+  parentDisplayName: MovingMessageBin["parentDisplayName"]
+  status: MovingMessageBin["status"] // -1 is is Leave,1 is moving, 0 is empty
+  xInteger: MovingMessageBin["cursorXInteger"]
+  yInteger: MovingMessageBin["cursorYInteger"]
+  xMod: MovingMessageBin["cursorXMod"]
+  yMod: MovingMessageBin["cursorYMod"]
   lastUpdateTime: number
 }
 

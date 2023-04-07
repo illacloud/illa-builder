@@ -1,7 +1,7 @@
 import { AxiosError, AxiosResponse } from "axios"
 import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isNumber, isString } from "@illa-design/react"
-import { Api, ApiError, BuilderApi } from "@/api/base"
+import { ActionApi, Api, ApiError } from "@/api/base"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
@@ -413,7 +413,7 @@ const fetchActionResult = (
   }
 
   if (isPublic) {
-    BuilderApi.teamIdentifierRequest(
+    ActionApi.teamIdentifierRequest(
       {
         method: "POST",
         url: `/apps/${appId}/publicActions/${actionId}/run`,
@@ -429,7 +429,7 @@ const fetchActionResult = (
       crash,
     )
   } else {
-    BuilderApi.teamRequest(
+    ActionApi.teamRequest(
       {
         method: "POST",
         url: `/apps/${appId}/actions/${actionId}/run`,
@@ -691,7 +691,6 @@ export const runAction = (
       },
     }),
   )
-  //
   const currentActionId = isGuideMode ? GUIDE_DEFAULT_ACTION_ID : actionId
 
   fetchActionResult(

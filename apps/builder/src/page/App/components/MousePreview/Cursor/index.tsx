@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import { ReactComponent as CursorIcon } from "@/assets/public/cursor.svg"
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
 import { getColorByString } from "@/utils/colorHelper"
+import { UNIT_HEIGHT } from "../../DotPanel/constant/canvas"
 import { CursorProps, NickNameContainerProps } from "./interface"
 import { applyCursorContainerStyle, nickNameContainerStyle } from "./style"
 
@@ -63,4 +64,43 @@ export const Cursor: FC<CursorProps> = (props) => {
 export const NickNameContainer: FC<NickNameContainerProps> = (props) => {
   const { nickName, bgColor } = props
   return <div css={nickNameContainerStyle(bgColor)}>{nickName}</div>
+}
+
+export const FixedCursor: FC<CursorProps> = (props) => {
+  const {
+    userID,
+    nickName,
+    integerPartX,
+    integerPartY,
+    decimalPartX,
+    decimalPartY,
+    unitW,
+    status,
+  } = props
+
+  const realX = (integerPartX + decimalPartX) * unitW
+  const realY = (integerPartY + decimalPartY) * UNIT_HEIGHT
+  const color = getColorByString(userID)
+  const { t } = useTranslation()
+
+  return (
+    <AnimatePresence>
+      <motion.span
+        css={applyCursorContainerStyle(color)}
+        initial={{ x: realX, y: realY }}
+        animate={{ x: realX, y: realY }}
+        transition={{ duration: 0.16 }}
+      >
+        <CursorIcon />
+        <NickNameContainer
+          nickName={
+            nickName?.trim() !== ""
+              ? nickName
+              : t("widget.collaborative.no_name")
+          }
+          bgColor={color}
+        />
+      </motion.span>
+    </AnimatePresence>
+  )
 }

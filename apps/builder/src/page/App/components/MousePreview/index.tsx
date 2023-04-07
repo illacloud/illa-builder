@@ -19,10 +19,10 @@ export const MousePreview: FC<MousePreviewProps> = (props) => {
               key={currentItem.userID}
               nickName={currentItem.nickname}
               userID={currentItem.userID}
-              decimalPartX={currentItem.x}
-              decimalPartY={currentItem.y}
-              integerPartX={currentItem.w}
-              integerPartY={currentItem.h}
+              decimalPartX={currentItem.xMod}
+              decimalPartY={currentItem.yMod}
+              integerPartX={currentItem.xInteger}
+              integerPartY={currentItem.yInteger}
               status={currentItem.status}
               unitW={unitW}
             />

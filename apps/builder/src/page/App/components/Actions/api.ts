@@ -1,7 +1,7 @@
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
+import { ActionApi, BuilderApi } from "@/api/base"
 import i18n from "@/i18n/config"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -435,7 +435,7 @@ export function onActionConfigElementTest(
   resourceType: ResourceType,
   loadingHandler: (value: boolean) => void,
 ) {
-  return BuilderApi.teamRequest<Resource<ResourceContent>>(
+  return ActionApi.teamRequest<Resource<ResourceContent>>(
     {
       method: "POST",
       url: `/resources/testConnection`,

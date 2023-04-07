@@ -86,6 +86,13 @@ export const handleClearSelectedComponentExecution = (
   action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
   listenerApi: AppListenerEffectAPI,
 ) => {
+  let currentSelected = listenerApi.getState().config.selectedComponents
+  if (Array.isArray(currentSelected) && currentSelected.length > 0) {
+    currentSelected = currentSelected.filter(
+      (item) => !action.payload.displayNames.includes(item),
+    )
+  }
+  listenerApi.dispatch(configActions.updateSelectedComponent(currentSelected))
   clearComponentAttachedUsersHandler(action.payload.displayNames)
 }
 

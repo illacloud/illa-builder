@@ -1,43 +1,18 @@
-import { throttle } from "lodash"
 import { RefObject, useCallback, useContext, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useWindowSize } from "react-use"
-import { Connection } from "@/api/ws"
-import { MovingMessageBin, Signal, Target } from "@/api/ws/ILLA_PROTO"
+import { getIsDragging } from "@/redux/config/configSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getMousePositionWithIllaUnit } from "../calcMouse"
 import { MouseMoveContext } from "../context/mouseMoveContext"
+import { sendMousePositionHandler } from "../utils/sendBinaryMessage"
 
-const sendMousePosition = (
-  appId: string,
-  userID: string,
-  nickname: string,
-  parentDisplayName: string,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  isLeave: boolean = false,
-) => {
-  const ws = Connection.getBinaryRoom("app", appId ?? "")
-  const payloadObject: MovingMessageBin = {
-    signal: Signal.MOVE_CURSOR,
-    target: Target.CURSOR,
-    clientID: "",
-    needBroadcast: true,
-    userID,
-    nickname,
-    status: isLeave ? -1 : 1,
-    parentDisplayName: parentDisplayName,
-    displayNames: "",
-    x,
-    y,
-    w,
-    h,
-  }
-  const binMessage = MovingMessageBin.toBinary(payloadObject)
-  ws?.send(binMessage)
+interface CursorPosition {
+  xMod: number
+  yMod: number
+  xInteger: number
+  yInteger: number
 }
 
 export const useMousePositionAsync = (
@@ -50,12 +25,13 @@ export const useMousePositionAsync = (
   const userInfo = useSelector(getCurrentUser)
   const { width, height } = useWindowSize()
   const wrapperRef = useRef<HTMLDivElement | null>(null)
-  const sendMessageHandlerRef = useRef(
-    throttle(sendMousePosition, 50, {
-      leading: true,
-      trailing: true,
-    }),
-  )
+  const cursorPositionRef = useRef<CursorPosition>({
+    xInteger: 0,
+    yInteger: 0,
+    xMod: 0,
+    yMod: 0,
+  })
+  const isDragging = useSelector(getIsDragging)
 
   const mouseMoveContext = useContext(MouseMoveContext)
   const mouseEnterHandler = useCallback(() => {
@@ -64,27 +40,10 @@ export const useMousePositionAsync = (
 
   const mouseLeaveHandler = useCallback(() => {
     mouseMoveContext.deleteHoverWidget(displayName)
-    if (isRoot) {
-      sendMessageHandlerRef.current(
-        params.appId ?? "",
-        userInfo.userId,
-        userInfo.nickname,
-        displayName,
-        0,
-        0,
-        0,
-        0,
-        true,
-      )
+    if (isRoot && !isDragging) {
+      sendMousePositionHandler(displayName, 0, 0, 0, 0, true)
     }
-  }, [
-    displayName,
-    isRoot,
-    mouseMoveContext,
-    params.appId,
-    userInfo.nickname,
-    userInfo.userId,
-  ])
+  }, [displayName, isDragging, isRoot, mouseMoveContext])
 
   const mouseMoveAsyncHandler = useCallback(
     (e: MouseEvent) => {
@@ -103,38 +62,34 @@ export const useMousePositionAsync = (
         x: clientX,
         y: clientY,
       }
-      const { x, y, w, h } = getMousePositionWithIllaUnit(
+      const { xInteger, xMod, yInteger, yMod } = getMousePositionWithIllaUnit(
         unitWidth,
         containerPosition,
         mousePosition,
         containerRef.current?.scrollTop,
       )
+      cursorPositionRef.current = {
+        xInteger,
+        yInteger,
+        xMod,
+        yMod,
+      }
       if (
-        Number.isInteger(w) &&
-        Number.isInteger(h) &&
-        !Number.isNaN(w) &&
-        !Number.isNaN(h)
+        Number.isInteger(xInteger) &&
+        Number.isInteger(yInteger) &&
+        !Number.isNaN(xMod) &&
+        !Number.isNaN(yMod) &&
+        !isDragging
       ) {
-        sendMessageHandlerRef.current(
-          params.appId ?? "",
-          userInfo.userId,
-          userInfo.nickname,
-          displayName,
-          x,
-          y,
-          w,
-          h,
-        )
+        sendMousePositionHandler(displayName, xInteger, yInteger, xMod, yMod)
       }
     },
     [
       containerRef,
       displayName,
+      isDragging,
       mouseMoveContext.hoveredWidgets,
-      params.appId,
       unitWidth,
-      userInfo.nickname,
-      userInfo.userId,
     ],
   )
 
@@ -194,5 +149,5 @@ export const useMousePositionAsync = (
     }
   }, [isRoot, mouseLeaveHandler, pageHideHandler, visibilityChangeHandler])
 
-  return { wrapperRef }
+  return { wrapperRef, cursorPositionRef }
 }

@@ -1,6 +1,6 @@
 import { cloneDeep } from "lodash"
 import { XYCoord } from "react-dnd"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 interface ItemPosition {
@@ -75,7 +75,10 @@ export interface LandingPosition {
   isOverstep: boolean
   landingX: number
   landingY: number
+  relativeLandingX: number
+  relativeLandingY: number
 }
+
 export function calcLadingPosition(
   rectPosition: RectShape,
   unitWidth: number,
@@ -85,8 +88,10 @@ export function calcLadingPosition(
   canResizeY: boolean,
 ): LandingPosition {
   const { rectLeft, rectTop, rectRight, rectBottom } = rectPosition
-  let landingX = Math.round(rectLeft / unitWidth) * unitWidth
-  let landingY = Math.round(rectTop / unitHeight) * unitHeight
+  const relativeLandingX = Math.round(rectLeft / unitWidth)
+  const relativeLandingY = Math.round(rectTop / unitHeight)
+  let landingX = relativeLandingX * unitWidth
+  let landingY = relativeLandingY * unitHeight
   let isOverstep = true
   if (rectTop < 0) {
     landingY = 0
@@ -112,6 +117,8 @@ export function calcLadingPosition(
     isOverstep,
     landingX,
     landingY,
+    relativeLandingX,
+    relativeLandingY,
   }
 }
 
@@ -350,10 +357,25 @@ export const getNodeWidthAndHeight = (
   }
 }
 
+interface LadingRelativePosition {
+  x: number
+  y: number
+  isOverstep: boolean
+}
+
+interface MouseOffset {
+  mouseXOffsetDec: number
+  mouseXOffsetInt: number
+  mouseYOffsetDec: number
+  mouseYOffsetInt: number
+}
+
 export interface MoveDragResult {
-  ladingPosition: LandingPosition
+  ladingPosition: Omit<LandingPosition, "relativeLandingX" | "relativeLandingY">
   rectPosition: RectShape
   rectCenterPosition: CenterPointPosition
+  ladingRelativePosition: LadingRelativePosition
+  mouseOffset: MouseOffset
 }
 
 const getDragResultWhenAdd = (
@@ -368,7 +390,7 @@ const getDragResultWhenAdd = (
   canvasWidth: number,
   canvasHeight: number,
   canResizeY: boolean,
-) => {
+): MoveDragResult => {
   const itemPosition = getItemPosition(clientOffset!, containerScrollTop)
   const realNodeWidthAndHeight = {
     w: nodeWidthAndHeight.w * unitWidth,
@@ -391,11 +413,32 @@ const getDragResultWhenAdd = (
     canvasHeight,
     canResizeY,
   )
+  const mouseXOffsetInt = Math.floor(realNodeWidthAndHeight.w / 2 / unitWidth)
+  const mouseXOffsetDec =
+    realNodeWidthAndHeight.w / 2 / unitWidth - mouseXOffsetInt
+  const mouseYOffsetInt = Math.floor(realNodeWidthAndHeight.h / 2 / UNIT_HEIGHT)
+  const mouseYOffsetDec =
+    realNodeWidthAndHeight.h / 2 / UNIT_HEIGHT - mouseYOffsetInt
 
   return {
-    ladingPosition,
+    ladingPosition: {
+      landingX: ladingPosition.landingX,
+      landingY: ladingPosition.landingY,
+      isOverstep: ladingPosition.isOverstep,
+    },
     rectPosition,
     rectCenterPosition,
+    ladingRelativePosition: {
+      x: ladingPosition.relativeLandingX,
+      y: ladingPosition.relativeLandingY,
+      isOverstep: ladingPosition.isOverstep,
+    },
+    mouseOffset: {
+      mouseXOffsetDec,
+      mouseXOffsetInt,
+      mouseYOffsetDec,
+      mouseYOffsetInt,
+    },
   }
 }
 
@@ -425,9 +468,23 @@ const getDragResultWhenUpdate = (
     containerTopPadding
   let renderX = relativeX - initialClientOffset!.x + leftTopPosition.x
   let renderY = relativeY - initialClientOffset!.y + leftTopPosition.y
+  const mouseXOffsetInt = Math.floor(
+    (initialClientOffset!.x - initialSourceClientOffSet.x) / unitWidth,
+  )
+  const mouseXOffsetDec =
+    (initialClientOffset!.x - initialSourceClientOffSet.x) / unitWidth -
+    mouseXOffsetInt
+  const mouseYOffsetInt = Math.floor(
+    (initialClientOffset!.y - initialSourceClientOffSet.y) / UNIT_HEIGHT,
+  )
+  const mouseYOffsetDec =
+    (initialClientOffset!.y - initialSourceClientOffSet.y) / UNIT_HEIGHT -
+    mouseYOffsetInt
 
-  let squareX = Math.round(renderX / unitWidth) * unitWidth
-  let squareY = Math.round(renderY / UNIT_HEIGHT) * UNIT_HEIGHT
+  const relativeLandingX = Math.round(renderX / unitWidth)
+  const relativeLandingY = Math.round(renderY / UNIT_HEIGHT)
+  let squareX = relativeLandingX * unitWidth
+  let squareY = relativeLandingY * UNIT_HEIGHT
   let isOverstep = true
   const rectTop = relativeY
   const rectBottom = renderY + item.h * UNIT_HEIGHT
@@ -472,6 +529,17 @@ const getDragResultWhenUpdate = (
     rectCenterPosition: {
       x: renderX,
       y: renderY,
+    },
+    ladingRelativePosition: {
+      x: relativeLandingX,
+      y: relativeLandingY,
+      isOverstep,
+    },
+    mouseOffset: {
+      mouseXOffsetDec,
+      mouseXOffsetInt,
+      mouseYOffsetDec,
+      mouseYOffsetInt,
     },
   }
 }

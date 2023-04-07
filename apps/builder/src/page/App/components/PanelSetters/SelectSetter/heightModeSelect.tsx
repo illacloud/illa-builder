@@ -1,6 +1,6 @@
 import { FC, useCallback } from "react"
 import { useSelector } from "react-redux"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { HeightModeSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
 import {

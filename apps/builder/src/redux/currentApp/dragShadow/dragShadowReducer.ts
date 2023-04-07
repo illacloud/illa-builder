@@ -1,11 +1,8 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import {
-  CursorState,
-  UpdateCursorPayload,
-} from "@/redux/currentApp/cursor/cursorState"
+import { DragShadowState, UpdateCursorPayload } from "./dragShadowState"
 
-export const updateCursorReducer: CaseReducer<
-  CursorState,
+export const updateDragShadowInfoReducer: CaseReducer<
+  DragShadowState,
   PayloadAction<UpdateCursorPayload>
 > = (state, action) => {
   const { userID } = action.payload
@@ -20,8 +17,8 @@ export const updateCursorReducer: CaseReducer<
   }
 }
 
-export const deleteCursorReducer: CaseReducer<
-  CursorState,
+export const deleteDragShadowInfoReducer: CaseReducer<
+  DragShadowState,
   PayloadAction<string>
 > = (state, action) => {
   const userID = action.payload
@@ -31,8 +28,8 @@ export const deleteCursorReducer: CaseReducer<
   }
 }
 
-export const removeAnimationEndCursorInfo: CaseReducer<
-  CursorState,
+export const removeAnimationEndDragShadowInfoReducer: CaseReducer<
+  DragShadowState,
   PayloadAction<string>
 > = (state, action) => {
   const targetUserCursorInfo = state[action.payload]
@@ -41,14 +38,16 @@ export const removeAnimationEndCursorInfo: CaseReducer<
   }
 }
 
-export const resetCursorReducer: CaseReducer<CursorState> = (state) => {
+export const resetDragShadowInfoReducer: CaseReducer<DragShadowState> = (
+  state,
+) => {
   Object.keys(state).forEach((userID) => {
     delete state[userID]
   })
 }
 
-export const filterCursorReducer: CaseReducer<
-  CursorState,
+export const filterDragShadowInfoReducer: CaseReducer<
+  DragShadowState,
   PayloadAction<string[]>
 > = (state, action) => {
   action.payload.forEach((displayName) => {
@@ -66,8 +65,8 @@ export const filterCursorReducer: CaseReducer<
   })
 }
 
-export const leaveContainerReducer: CaseReducer<
-  CursorState,
+export const leaveContainerDragShadowInfoReducer: CaseReducer<
+  DragShadowState,
   PayloadAction<string>
 > = (state, action) => {
   const targetUserCursorInfo = state[action.payload]
