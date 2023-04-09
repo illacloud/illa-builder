@@ -14,8 +14,15 @@ export interface ContainerProps extends BaseWidgetProps {
   componentNode: ComponentNode
   viewList: viewListItemShaper[]
   tooltipText?: string
-  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
+  handleUpdateOriginalDSLAttrshandleUpdateOriginalDSLMultiAttr: (
+    updateSlice: Record<string, any>,
+  ) => void
+  handleUpdateOriginalDSLOtherMultiAttr: (
+    displayName: string,
+    updateSlice: Record<string, any>,
+  ) => void
   h: number
+  linkWidgetDisplayName?: string
   unitH: number
   blockColumns: number
   dynamicHeight: "auto" | "fixed" | "limited"
