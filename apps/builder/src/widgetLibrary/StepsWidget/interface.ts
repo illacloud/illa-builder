@@ -7,13 +7,11 @@ export interface WrappedStepsProps
     Pick<StepsProps, "direction" | "items" | "current"> {
   handleUpdateDsl: (value: any) => void
   getValidateMessage: (value?: unknown) => string
-  handleUpdateMultiExecutionResult: (
-    updateSlice: {
-      displayName: string
-      value: Record<string, any>
-    }[],
+  handleUpdateOriginalDSLOtherMultiAttr: (
+    displayName: string,
+    updateSlice: Record<string, any>,
   ) => void
-  linkContainer?: boolean
+  linkContainer: boolean
   linkWidgetDisplayName?: string
   viewList?: any[]
   currentKey?: any

@@ -1,9 +1,10 @@
-import { FC, useCallback, useEffect, useMemo } from "react"
+import { get } from "lodash"
+import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { useSelector } from "react-redux"
 import { Steps } from "@illa-design/react"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import {
-  StepsMappedOptionType,
-  StepsOptionsType,
   StepsWidgetProps,
   WrappedStepsProps,
 } from "@/widgetLibrary/StepsWidget/interface"
@@ -34,19 +35,19 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     displayName,
     linkContainer,
     viewList,
-    currentKey,
-    current,
+    currentIndex,
     linkWidgetDisplayName,
     defaultStep,
     updateComponentHeight,
-    handleUpdateMultiExecutionResult,
+    handleUpdateOriginalDSLOtherMultiAttr,
     optionConfigureMode,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleUpdateDsl,
   } = props
 
-  const isMappedOption = optionConfigureMode === "dynamic"
+  const preLinkContainer = useRef<boolean>(false)
+  const executionResult = useSelector(getExecutionResult)
 
   const transformedContainerList = useMemo(() => {
     return (viewList ?? [])
@@ -66,33 +67,6 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
       optionConfigureMode === "static" ? manualOptions : mappedOption,
     )
   }, [manualOptions, mappedOption, optionConfigureMode])
-
-  const currentStepIndex = useMemo(() => {
-    if (linkContainer) {
-      return transformedContainerList.findIndex(
-        (item) => item.value === currentKey,
-      )
-    }
-    if (current !== undefined) {
-      return current
-    }
-    if (isMappedOption) {
-      return (formatOptionConfigData as StepsMappedOptionType).values.findIndex(
-        (item) => item?.value === defaultStep,
-      )
-    }
-    return (formatOptionConfigData as StepsOptionsType[]).findIndex(
-      (item) => item?.value === defaultStep,
-    )
-  }, [
-    current,
-    currentKey,
-    defaultStep,
-    formatOptionConfigData,
-    isMappedOption,
-    linkContainer,
-    transformedContainerList,
-  ])
 
   /*
    * items: StepItem[]
@@ -123,21 +97,15 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
 
   const handleUpdateMultiExecutionResults = useCallback(
     (updateSliceItem: Record<string, any>) => {
-      let items = [
-        {
-          displayName,
-          value: updateSliceItem,
-        },
-      ]
       if (linkWidgetDisplayName) {
-        items.push({
-          displayName: linkWidgetDisplayName,
-          value: updateSliceItem,
-        })
+        handleUpdateOriginalDSLOtherMultiAttr(
+          linkWidgetDisplayName,
+          updateSliceItem,
+        )
       }
-      handleUpdateMultiExecutionResult(items)
+      handleUpdateOriginalDSLOtherMultiAttr(displayName, updateSliceItem)
     },
-    [displayName, handleUpdateMultiExecutionResult, linkWidgetDisplayName],
+    [displayName, handleUpdateOriginalDSLOtherMultiAttr, linkWidgetDisplayName],
   )
 
   const handleStepsChange = useCallback(
@@ -149,9 +117,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
       if (linkContainer && linkWidgetDisplayName) {
         handleUpdateMultiExecutionResults(value)
       } else {
-        handleUpdateDsl({
-          current,
-        })
+        handleUpdateDsl(value)
       }
     },
     [
@@ -166,14 +132,14 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
   const handleSetStepsValue = useCallback(
     (value: any) => {
       const index = uniqueOptions?.findIndex((item) => item === value)
+      const updateValue = {
+        currentKey: uniqueOptions[index],
+        currentIndex: index,
+      }
       if (linkContainer && linkWidgetDisplayName) {
-        const updateValue = {
-          currentKey: uniqueOptions[index],
-          currentIndex: index,
-        }
         handleUpdateMultiExecutionResults(updateValue)
       } else {
-        handleUpdateDsl({ current: index })
+        handleUpdateDsl(updateValue)
       }
     },
     [
@@ -190,9 +156,55 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
       return
     }
     handleUpdateDsl({
-      current: uniqueOptions?.findIndex((item) => item === defaultStep),
+      currentIndex: uniqueOptions?.findIndex((item) => item === defaultStep),
+      currentKey: defaultStep,
     })
   }, [defaultStep, handleUpdateDsl, linkContainer, uniqueOptions])
+
+  useEffect(() => {
+    if (preLinkContainer.current !== linkContainer) {
+      preLinkContainer.current = linkContainer
+      if (linkContainer) {
+        const defaultIndex = get(
+          executionResult,
+          `${linkWidgetDisplayName}.currentIndex`,
+        )
+        const defaultKey = get(
+          executionResult,
+          `${linkWidgetDisplayName}.currentKey`,
+        )
+        handleUpdateDsl({
+          currentIndex: defaultIndex,
+          currentKey: defaultKey,
+        })
+      } else {
+        const defaultStepIndex = uniqueOptions?.findIndex(
+          (item) => item === defaultStep,
+        )
+        handleUpdateDsl({
+          currentIndex: defaultStepIndex < 0 ? 0 : defaultStepIndex,
+          currentKey: defaultStep,
+        })
+        if (linkWidgetDisplayName) {
+          handleUpdateOriginalDSLOtherMultiAttr(linkWidgetDisplayName, {
+            linkWidgetDisplayName: undefined,
+          })
+        }
+        handleUpdateOriginalDSLOtherMultiAttr(displayName, {
+          linkWidgetDisplayName: undefined,
+        })
+      }
+    }
+  }, [
+    defaultStep,
+    displayName,
+    executionResult,
+    handleUpdateDsl,
+    handleUpdateOriginalDSLOtherMultiAttr,
+    linkContainer,
+    linkWidgetDisplayName,
+    uniqueOptions,
+  ])
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -222,7 +234,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
       <WrappedSteps
         {...props}
         items={items}
-        current={currentStepIndex}
+        current={currentIndex}
         handleStepsChange={handleStepsChange}
       />
     </AutoHeightContainer>

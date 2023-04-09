@@ -13,6 +13,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLOtherMultiAttr,
     displayName,
     viewList,
     tooltipText,
@@ -21,6 +22,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     dynamicHeight = "fixed",
     triggerEventHandler,
     updateComponentHeight,
+    linkWidgetDisplayName,
     dynamicMaxHeight,
     dynamicMinHeight,
     h,
@@ -74,10 +76,17 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
         const numberIndex = parseInt(index)
         const view = viewList[numberIndex]
         if (!view) return
-        handleUpdateOriginalDSLMultiAttr({
+        const updateSlice = {
           currentIndex: numberIndex,
           currentKey: view.key,
-        })
+        }
+        handleUpdateOriginalDSLMultiAttr(updateSlice)
+        if (linkWidgetDisplayName) {
+          handleUpdateOriginalDSLOtherMultiAttr?.(
+            linkWidgetDisplayName,
+            updateSlice,
+          )
+        }
       },
       showNextView: (loop: boolean) => {
         let newCurrentIndex = currentIndex + 1
@@ -86,10 +95,17 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           newCurrentIndex = 0
         }
         const currentView = viewList[newCurrentIndex]
-        handleUpdateOriginalDSLMultiAttr({
+        const updateSlice = {
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
-        })
+        }
+        handleUpdateOriginalDSLMultiAttr(updateSlice)
+        if (linkWidgetDisplayName) {
+          handleUpdateOriginalDSLOtherMultiAttr?.(
+            linkWidgetDisplayName,
+            updateSlice,
+          )
+        }
       },
       showNextVisibleView: (loop: boolean) => {
         let newCurrentIndex = currentIndex + 1
@@ -106,10 +122,17 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
             newCurrentIndex = 0
           }
         }
-        handleUpdateOriginalDSLMultiAttr({
+        const updateSlice = {
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
-        })
+        }
+        handleUpdateOriginalDSLMultiAttr(updateSlice)
+        if (linkWidgetDisplayName) {
+          handleUpdateOriginalDSLOtherMultiAttr?.(
+            linkWidgetDisplayName,
+            updateSlice,
+          )
+        }
       },
       showPreviousView: (loop: boolean) => {
         let newCurrentIndex = currentIndex - 1
@@ -119,10 +142,17 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           newCurrentIndex = viewList.length - 1
         }
         const currentView = viewList[newCurrentIndex]
-        handleUpdateOriginalDSLMultiAttr({
+        const updateSlice = {
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
-        })
+        }
+        handleUpdateOriginalDSLMultiAttr(updateSlice)
+        if (linkWidgetDisplayName) {
+          handleUpdateOriginalDSLOtherMultiAttr?.(
+            linkWidgetDisplayName,
+            updateSlice,
+          )
+        }
       },
       showPreviousVisibleView: (loop: boolean) => {
         let newCurrentIndex = currentIndex - 1
@@ -141,10 +171,17 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           }
         }
 
-        handleUpdateOriginalDSLMultiAttr({
+        const updateSlice = {
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
-        })
+        }
+        handleUpdateOriginalDSLMultiAttr(updateSlice)
+        if (linkWidgetDisplayName) {
+          handleUpdateOriginalDSLOtherMultiAttr?.(
+            linkWidgetDisplayName,
+            updateSlice,
+          )
+        }
       },
     })
     return () => {
@@ -156,6 +193,8 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     handleDeleteGlobalData,
     handleUpdateGlobalData,
     handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLOtherMultiAttr,
+    linkWidgetDisplayName,
     viewList,
   ])
 

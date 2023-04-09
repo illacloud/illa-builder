@@ -219,7 +219,7 @@ export const STEPS_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-layout-direction`,
-        labelName: "Orientation",
+        labelName: i18n.t("editor.inspect.setter_label.direction"),
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
         options: [
