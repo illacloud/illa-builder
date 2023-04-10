@@ -166,7 +166,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
           ...file,
           originFile: !base64
             ? new File([""], info.name, info)
-            : dataURLtoFile(`data:${info.type};base64,${base64}`, info.name),
+            : dataURLtoFile(base64, info.type, info.name),
         }
       }) as UploadItem[]
       setFileList(shownList)

@@ -47,6 +47,7 @@
     "acorn": "^8.7.1",
     "acorn-walk": "^8.2.0",
     "axios": "^0.26.1",
+    "base64-js": "^1.5.1",
     "chart.js": "^3.9.1",
     "chroma-js": "^2.4.2",
     "copy-to-clipboard": "^3.3.2",
