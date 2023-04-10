@@ -8,7 +8,7 @@ export const StepsListSetter: FC<StepsListSetterProps> = (props) => {
   return (
     <OptionListSetter
       headerName={i18n.t("widget.step.name")}
-      itemName={i18n.t("widget.step.name")}
+      itemName="Step"
       emptyNode={<div css={emptyEmptyBodyStyle}>No Steps</div>}
       showDuplicationKeyError={true}
       {...props}
