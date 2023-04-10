@@ -39,6 +39,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     linkWidgetDisplayName,
     defaultStep,
     updateComponentHeight,
+    handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLOtherMultiAttr,
     optionConfigureMode,
     handleUpdateGlobalData,
@@ -48,6 +49,11 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
 
   const preLinkContainer = useRef<boolean>(false)
   const executionResult = useSelector(getExecutionResult)
+
+  const isLinkedContainer = useMemo(
+    () => linkContainer && !!linkWidgetDisplayName,
+    [linkContainer, linkWidgetDisplayName],
+  )
 
   const transformedContainerList = useMemo(() => {
     return (viewList ?? [])
@@ -73,7 +79,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
    * uniqueOptions: array of value that with hidden option filtered
    */
   const { items, uniqueOptions } = useMemo(() => {
-    if (!linkContainer) {
+    if (!isLinkedContainer) {
       return formatStepsData(optionConfigureMode, formatOptionConfigData)
     }
     const results = transformedContainerList.map((item, index) => {
@@ -89,7 +95,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
       uniqueOptions: transformedContainerList.map((item) => item.value),
     }
   }, [
-    linkContainer,
+    isLinkedContainer,
     transformedContainerList,
     optionConfigureMode,
     formatOptionConfigData,
@@ -114,7 +120,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
         currentKey: uniqueOptions?.[current],
         currentIndex: current,
       }
-      if (linkContainer && linkWidgetDisplayName) {
+      if (isLinkedContainer) {
         handleUpdateMultiExecutionResults(value)
       } else {
         handleUpdateDsl(value)
@@ -123,8 +129,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     [
       handleUpdateDsl,
       handleUpdateMultiExecutionResults,
-      linkContainer,
-      linkWidgetDisplayName,
+      isLinkedContainer,
       uniqueOptions,
     ],
   )
@@ -136,7 +141,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
         currentKey: uniqueOptions[index],
         currentIndex: index,
       }
-      if (linkContainer && linkWidgetDisplayName) {
+      if (isLinkedContainer) {
         handleUpdateMultiExecutionResults(updateValue)
       } else {
         handleUpdateDsl(updateValue)
@@ -145,8 +150,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     [
       handleUpdateDsl,
       handleUpdateMultiExecutionResults,
-      linkContainer,
-      linkWidgetDisplayName,
+      isLinkedContainer,
       uniqueOptions,
     ],
   )
@@ -162,7 +166,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
   }, [defaultStep, handleUpdateDsl, linkContainer, uniqueOptions])
 
   useEffect(() => {
-    if (preLinkContainer.current !== linkContainer) {
+    if (preLinkContainer.current !== linkContainer && linkWidgetDisplayName) {
       preLinkContainer.current = linkContainer
       if (linkContainer) {
         const defaultIndex = get(
@@ -173,18 +177,28 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
           executionResult,
           `${linkWidgetDisplayName}.currentKey`,
         )
-        handleUpdateDsl({
-          currentIndex: defaultIndex,
-          currentKey: defaultKey,
-        })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              currentIndex: defaultIndex,
+              currentKey: defaultKey,
+            },
+          },
+        ])
       } else {
         const defaultStepIndex = uniqueOptions?.findIndex(
           (item) => item === defaultStep,
         )
-        handleUpdateDsl({
-          currentIndex: defaultStepIndex < 0 ? 0 : defaultStepIndex,
-          currentKey: defaultStep,
-        })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              currentIndex: defaultStepIndex < 0 ? 0 : defaultStepIndex,
+              currentKey: defaultStep,
+            },
+          },
+        ])
         if (linkWidgetDisplayName) {
           handleUpdateOriginalDSLOtherMultiAttr(linkWidgetDisplayName, {
             linkWidgetDisplayName: undefined,
@@ -199,7 +213,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     defaultStep,
     displayName,
     executionResult,
-    handleUpdateDsl,
+    handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLOtherMultiAttr,
     linkContainer,
     linkWidgetDisplayName,

@@ -11,6 +11,12 @@ export interface WrappedStepsProps
     displayName: string,
     updateSlice: Record<string, any>,
   ) => void
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
   linkContainer: boolean
   linkWidgetDisplayName?: string
   viewList?: any[]
