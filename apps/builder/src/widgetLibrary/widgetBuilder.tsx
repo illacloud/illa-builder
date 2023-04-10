@@ -338,6 +338,12 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: RADIO_GROUP_PANEL_CONFIG,
     eventHandlerConfig: RADIO_GROUP_EVENT_HANDLER_CONFIG,
   },
+  RADIO_BUTTON_WIDGET: {
+    widget: RadioButtonWidget,
+    config: RADIO_BUTTON_WIDGET_CONFIG,
+    panelConfig: RADIO_BUTTON_PANEL_CONFIG,
+    eventHandlerConfig: RADIO_BUTTON_EVENT_HANDLER_CONFIG,
+  },
   // calendar inputs
   DATE_WIDGET: {
     widget: DateWidget,
@@ -479,12 +485,6 @@ export const WidgetConfig: WidgetConfigs = {
     config: TIMELINE_WIDGET_CONFIG,
     panelConfig: TIMELINE_PANEL_CONFIG,
     eventHandlerConfig: TIMELINE_EVENT_HANDLER_CONFIG,
-  },
-  RADIO_BUTTON_WIDGET: {
-    widget: RadioButtonWidget,
-    config: RADIO_BUTTON_WIDGET_CONFIG,
-    panelConfig: RADIO_BUTTON_PANEL_CONFIG,
-    eventHandlerConfig: RADIO_BUTTON_EVENT_HANDLER_CONFIG,
   },
   DIVIDER_WIDGET: {
     widget: DividerWidget,

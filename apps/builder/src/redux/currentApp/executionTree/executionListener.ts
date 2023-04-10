@@ -87,6 +87,7 @@ async function handleStartExecution(
   if (!rawTree) return
   mergeActionResult(rawTree)
   const oldExecutionTree = getExecutionResult(rootState)
+  console.table([rawTree, rootState, oldExecutionTree, executionTree])
   if (!executionTree) {
     executionTree = new ExecutionTreeFactory()
     const executionResult = executionTree.initTree(rawTree)

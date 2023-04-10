@@ -343,9 +343,9 @@ export class ExecutionTreeFactory {
         independencyTree: this.inDependencyTree,
       }
     }
-
     const differences: Diff<RawTreeShape, RawTreeShape>[] =
       diff(this.oldRawTree, currentRawTree) || []
+
     if (differences.length === 0) {
       return {
         dependencyTree: this.dependenciesState,
