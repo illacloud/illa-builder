@@ -1,9 +1,9 @@
+import { toByteArray } from "base64-js"
 import { read, utils } from "xlsx"
 import { UploadItem, createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 
-const MAX_SIZE = 1024 * 1024 * 500
-const MIDDLE_SIZE = 1024 * 1024 * 10
+const MAX_SIZE = 400000000
 
 type ValueType = Array<{ status: string; value: any }>
 
@@ -56,55 +56,23 @@ const parseSmallFile = (file: File) =>
     }
     const reader = new FileReader()
     reader.onload = () => resolve(reader.result)
-    reader.onerror = (error) => resolve(undefined)
+    reader.onerror = (error) => reject(error)
     reader.readAsDataURL(file)
   })
 
-const parseLargeFile = async (file: File) =>
-  new Promise((resolve, reject) => {
-    const chunkSize = 1024 * 1024
-    const reader = new FileReader()
-    let currentPosition = 0
-    let totalSize = file.size
-    let chunks: string[] = []
-    reader.onerror = () => {
-      reader.abort()
-      resolve(undefined)
-    }
-    reader.onload = () => {
-      const chunk = reader.result
-      chunks.push(chunk as string)
-      currentPosition += ((chunk ?? "") as string).length
-
-      if (currentPosition < totalSize) {
-        readNextChunk()
-      } else {
-        const result = chunks.join("")
-        const contentType = file.type ?? "application/octet-stream"
-        const base64Data = result.split(",")[1]
-        const newBase64String = `data:${contentType};base64,${base64Data}`
-        resolve(newBase64String)
-      }
-    }
-    function readNextChunk() {
-      const slice = file.slice(currentPosition, currentPosition + chunkSize)
-      reader.readAsDataURL(slice)
-    }
-    readNextChunk()
-  })
-
-export const toBase64 = (file: UploadItem) => {
+export const toBase64 = async (file: UploadItem) => {
   if (!file?.originFile) {
     return undefined
   }
-  const { size } = file.originFile
-  if (size > MAX_SIZE) {
+  try {
+    const { size } = file.originFile
+    if (size > MAX_SIZE) {
+      return undefined
+    }
+    return parseSmallFile(file.originFile)
+  } catch (error) {
     return undefined
   }
-  if (size < MIDDLE_SIZE) {
-    return parseSmallFile(file.originFile)
-  }
-  return parseLargeFile(file.originFile)
 }
 
 export const getFilteredValue = (values?: ValueType, type?: string) => {
@@ -120,17 +88,12 @@ export const getFilteredValue = (values?: ValueType, type?: string) => {
   )
 }
 
-export const dataURLtoFile = (dataurl: string, filename: string) => {
-  const arr = dataurl.split(",")
-  const mime = arr[0].match(/:(.*?);/)?.[1]
-  const bstr = atob(arr[1])
-  let n = bstr.length
-  const u8arr = new Uint8Array(n)
-
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n)
-  }
-  return new File([u8arr], filename, { type: mime })
+export const dataURLtoFile = (
+  dataUrl: string,
+  filetype: string,
+  filename: string,
+) => {
+  return new File([toByteArray(dataUrl)], filename, { type: filetype })
 }
 
 export const getCurrentList = (fileList: UploadItem[]) => {
