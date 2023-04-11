@@ -242,6 +242,8 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       case "run":
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
           element: "action_edit_run",
+          parameter1: cachedAction.actionType,
+          parameter2: cachedAction,
         })
         if (!canRunAction) {
           message.error({
@@ -259,6 +261,8 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         }
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
           element: "action_edit_save",
+          parameter1: cachedAction.actionType,
+          parameter2: cachedAction,
         })
         setSaveLoading(true)
         BuilderApi.teamRequest(
@@ -290,6 +294,8 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       case "save_and_run":
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
           element: "action_edit_save_run",
+          parameter1: cachedAction.actionType,
+          parameter2: cachedAction,
         })
         if (!canRunAction) {
           message.error({

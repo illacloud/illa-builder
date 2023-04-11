@@ -258,13 +258,20 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
   const [isInSection, setIsInSection] = useState(false)
 
   const onMouseEnter = useCallback(() => {
-    if (mode === "edit" && !isResizeActive) {
+    if (
+      mode === "edit" &&
+      !isResizeActive &&
+      (leftPosition === SECTION_POSITION.TOP ||
+        leftPosition === SECTION_POSITION.FULL ||
+        rightPosition === SECTION_POSITION.TOP ||
+        rightPosition === SECTION_POSITION.FULL)
+    ) {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.HOVER, {
         element: "page_arrow",
       })
     }
     setIsInSection(true)
-  }, [isResizeActive, mode])
+  }, [isResizeActive, leftPosition, mode, rightPosition])
 
   const onMouseLeave = useCallback(() => {
     setIsInSection(false)
@@ -523,14 +530,21 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
   const [isInSection, setIsInSection] = useState(false)
 
   const onMouseEnter = useCallback(() => {
-    if (mode === "edit" && !isResizeActive) {
+    if (
+      mode === "edit" &&
+      !isResizeActive &&
+      (leftPosition === SECTION_POSITION.BOTTOM ||
+        leftPosition === SECTION_POSITION.FULL ||
+        rightPosition === SECTION_POSITION.BOTTOM ||
+        rightPosition === SECTION_POSITION.FULL)
+    ) {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.HOVER, {
         element: "page_arrow",
       })
     }
 
     setIsInSection(true)
-  }, [isResizeActive, mode])
+  }, [isResizeActive, leftPosition, mode, rightPosition])
 
   const onMouseLeave = useCallback(() => {
     setIsInSection(false)
@@ -809,13 +823,19 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
   ])
 
   const onMouseEnter = useCallback(() => {
-    if (mode === "edit" && !isResizeActive) {
+    if (
+      mode === "edit" &&
+      !isResizeActive &&
+      (leftPosition === SECTION_POSITION.BOTTOM ||
+        leftPosition === SECTION_POSITION.CENTER ||
+        leftPosition === SECTION_POSITION.TOP)
+    ) {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.HOVER, {
         element: "page_arrow",
       })
     }
     setIsInSection(true)
-  }, [isResizeActive, mode])
+  }, [isResizeActive, leftPosition, mode])
 
   const onMouseLeave = useCallback(() => {
     setIsInSection(false)
@@ -1131,13 +1151,19 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
   ])
 
   const onMouseEnter = useCallback(() => {
-    if (mode === "edit" && !isResizeActive) {
+    if (
+      mode === "edit" &&
+      !isResizeActive &&
+      (rightPosition === SECTION_POSITION.BOTTOM ||
+        rightPosition === SECTION_POSITION.CENTER ||
+        rightPosition === SECTION_POSITION.TOP)
+    ) {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.HOVER, {
         element: "page_arrow",
       })
     }
     setIsInSection(true)
-  }, [isResizeActive, mode])
+  }, [isResizeActive, mode, rightPosition])
 
   const onMouseLeave = useCallback(() => {
     setIsInSection(false)
