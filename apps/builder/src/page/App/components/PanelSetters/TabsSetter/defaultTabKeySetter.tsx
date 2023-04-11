@@ -8,7 +8,15 @@ import { RootState } from "@/store"
 import { TabsDefaultKeySetterProps } from "./interface"
 
 export const TabsDefaultKeySetter: FC<TabsDefaultKeySetterProps> = (props) => {
-  const { handleUpdateMultiAttrDSL, widgetDisplayName } = props
+  const {
+    attrName,
+    handleUpdateMultiAttrDSL,
+    expectedType,
+    widgetDisplayName,
+    widgetType,
+    widgetOrAction,
+    value,
+  } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
     (rootState) => {
@@ -36,7 +44,17 @@ export const TabsDefaultKeySetter: FC<TabsDefaultKeySetterProps> = (props) => {
     [handleUpdateMultiAttrDSL, tabList],
   )
 
-  return <BaseInput {...props} handleUpdateDsl={handleUpdateDefaultTab} />
+  return (
+    <BaseInput
+      attrName={attrName}
+      handleUpdateDsl={handleUpdateDefaultTab}
+      expectedType={expectedType}
+      widgetDisplayName={widgetDisplayName}
+      widgetType={widgetType}
+      widgetOrAction={widgetOrAction}
+      value={value}
+    />
+  )
 }
 
 TabsDefaultKeySetter.displayName = "TabsDefaultKeySetter"

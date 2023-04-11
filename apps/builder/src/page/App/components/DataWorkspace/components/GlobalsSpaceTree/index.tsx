@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import { PlusIcon, Trigger, omit } from "@illa-design/react"
 import { PanelBar } from "@/components/PanelBar"
 import { customIconHotpotStyle } from "@/components/PanelBar/style"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
 import { hiddenFields } from "@/page/App/components/DataWorkspace/constant"
 import {
@@ -12,7 +11,6 @@ import {
   getGlobalInfoExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { GlobalStateTreeNode } from "../WorkSpaceTreeItem/globalStateTreeNode"
 import { CreateGlobalStateModal } from "./createGlobalStateModal"
 
@@ -50,12 +48,6 @@ export const GlobalsSpaceTree: FC = () => {
           }
           popupVisible={isOpen}
           onVisibleChange={(visible) => {
-            if (visible) {
-              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-                element: "global_modal",
-                parameter3: "add",
-              })
-            }
             setIsOpen(visible)
           }}
         >
@@ -64,9 +56,6 @@ export const GlobalsSpaceTree: FC = () => {
             onClick={(e) => {
               e.stopPropagation()
               setIsOpen(true)
-              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                element: "global_add",
-              })
             }}
           >
             <PlusIcon />

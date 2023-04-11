@@ -8,9 +8,7 @@ import { ReactComponent as PresetBIcon } from "@/assets/rightPagePanel/layout/pr
 import { ReactComponent as PresetCIcon } from "@/assets/rightPagePanel/layout/preset-c.svg"
 import { ReactComponent as PresetDIcon } from "@/assets/rightPagePanel/layout/preset-d.svg"
 import { ReactComponent as PresetEIcon } from "@/assets/rightPagePanel/layout/preset-e.svg"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   LayoutOptionItemProps,
   LayoutOptionsPanelProps,
@@ -51,9 +49,6 @@ export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
 
   const handleChangeLayout = useCallback(() => {
     if (selectedValue === value || !currentPageName) return
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
-      element: "preset_selection",
-    })
     modal.show({
       w: "496px",
       children: t("editor.page.model_tips.change_layout_message"),
@@ -64,9 +59,6 @@ export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
       },
       closable: false,
       onOk: () => {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-          element: "preset_confirm",
-        })
         dispatch(
           componentsActions.updateTargetPageLayoutReducer({
             pageName: currentPageName,
@@ -132,13 +124,6 @@ export const LayoutSelect: FC<LayoutSelectProps> = (props) => {
       colorScheme="white"
       withoutPadding
       closeOnInnerClick
-      onVisibleChange={(visible) => {
-        if (visible) {
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-            element: "preset_selection",
-          })
-        }
-      }}
     >
       <div css={layoutSelectWrapperStyle}>
         <span>{findLayoutOptionItem(value)}</span>

@@ -12,7 +12,6 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import {
@@ -25,7 +24,6 @@ import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isObject, isValidDisplayName } from "@/utils/typeHelper"
 import {
   actionIconContainer,
@@ -204,11 +202,6 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               value={"rename"}
               title={t("editor.action.action_list.contextMenu.rename")}
               onClick={() => {
-                trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.RENAME, {
-                  element: "action_rename",
-                  parameter1: selectedAction.actionType,
-                  parameter2: "manage",
-                })
                 setEditName(true)
               }}
             />
@@ -217,10 +210,6 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               value={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
               onClick={() => {
-                trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DUPLICATE, {
-                  element: "action_duplicate",
-                  parameter1: selectedAction.actionType,
-                })
                 onCopyItem(action)
               }}
             />
@@ -230,10 +219,6 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               title={t("editor.action.action_list.contextMenu.delete")}
               deleted
               onClick={() => {
-                trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DELETE, {
-                  element: "action_delete",
-                  parameter1: selectedAction.actionType,
-                })
                 onDeleteItem(action)
               }}
             />
