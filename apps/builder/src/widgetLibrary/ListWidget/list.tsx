@@ -4,7 +4,7 @@ import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { Pagination } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   applyBarHandlerStyle,
   applyBarPointerStyle,

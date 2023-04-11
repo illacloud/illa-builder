@@ -347,10 +347,6 @@ export function setupExecutionListeners(
       effect: handleUpdateReflowEffect,
     }),
     startListening({
-      actionCreator: executionActions.batchUpdateWidgetLayoutInfoReducer,
-      effect: handleUpdateExecutedTree,
-    }),
-    startListening({
       matcher: isAnyOf(
         componentsActions.addComponentReducer,
         componentsActions.copyComponentReducer,
@@ -364,6 +360,7 @@ export function setupExecutionListeners(
         componentsActions.updateComponentLayoutInfoReducer,
         componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer,
         componentsActions.updateComponentContainerReducer,
+        componentsActions.batchUpdateComponentLayoutInfoReducer,
         executionActions.startExecutionReducer,
       ),
       effect: handleUpdateWidgetPositionInExecutionLayoutInfo,

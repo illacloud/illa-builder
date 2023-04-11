@@ -1,6 +1,6 @@
 import { FC, forwardRef, useEffect, useMemo } from "react"
 import { Timeline, TimelineItem } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import {
   TimelineWidgetProps,

@@ -9,7 +9,7 @@ import {
 } from "lodash"
 import { FC, memo, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   BUILDER_CALC_CONTEXT,
   GLOBAL_DATA_CONTEXT,

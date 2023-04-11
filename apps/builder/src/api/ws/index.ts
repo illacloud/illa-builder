@@ -58,6 +58,47 @@ export function getTextMessagePayload<T>(
   })
 }
 
+export const getBinaryMessagePayload = (
+  signal: Signal,
+  target: Target,
+  needBroadcast: boolean,
+  userID: string,
+  nickname: string,
+  status: number,
+  parentDisplayName: string,
+  displayNames: string,
+  cursorXInteger: number,
+  cursorYInteger: number,
+  cursorXMod: number,
+  cursorYMod: number,
+  widgetX: number,
+  widgetY: number,
+  widgetW: number,
+  widgetH: number,
+) => {
+  const payloadObject: MovingMessageBin = {
+    signal,
+    target,
+    clientID: "",
+    needBroadcast,
+    userID,
+    nickname,
+    status,
+    parentDisplayName,
+    displayNames,
+    cursorXInteger,
+    cursorYInteger,
+    cursorXMod,
+    cursorYMod,
+    widgetX,
+    widgetY,
+    widgetW,
+    widgetH,
+  }
+  const binMessage = MovingMessageBin.toBinary(payloadObject)
+  return binMessage
+}
+
 export class Connection {
   static roomMap: Map<string, ILLAWebsocket | ILLABinaryWebsocket> = new Map()
 

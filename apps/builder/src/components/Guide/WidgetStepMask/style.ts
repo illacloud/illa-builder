@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const applyStepMaskWrapperStyle = (
   visible: boolean,

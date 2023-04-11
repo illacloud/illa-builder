@@ -21,4 +21,6 @@ export const applyCursorContainerStyle = (color: string) => css`
   position: absolute;
   user-select: none;
   pointer-events: none;
+  top: 0;
+  left: 0;
 `

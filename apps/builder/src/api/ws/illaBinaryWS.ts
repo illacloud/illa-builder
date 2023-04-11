@@ -6,8 +6,9 @@ import {
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
+import { dragShadowActions } from "@/redux/currentApp/dragShadow/dragShadowSlice"
 import store from "@/store"
-import { MovingMessageBin } from "./ILLA_PROTO"
+import { MovingMessageBin, Signal } from "./ILLA_PROTO"
 
 const HEARTBEAT_PING_TIMEOUT = 2 * 1000
 const HEARTBEAT_PONG_TIMEOUT = 5 * 1000
@@ -96,18 +97,25 @@ export class ILLABinaryWebsocket {
   }
 
   private split(byteBuf: Uint8Array) {
+    const result = []
     let start = 0
-    const result: Uint8Array[] = []
+
     for (let i = 0; i < byteBuf.length; i++) {
-      if (byteBuf[i] === 10) {
-        const current = byteBuf.slice(start, i)
-        result.push(current)
-        start = i + 1
-        continue
+      if (
+        byteBuf[i] === 30 &&
+        byteBuf[i + 1] === 30 &&
+        byteBuf[i + 2] === 30 &&
+        byteBuf[i + 3] === 30
+      ) {
+        result.push(byteBuf.slice(start, i))
+        start = i + 4
       }
     }
-    const current = byteBuf.slice(start)
-    result.push(current)
+
+    if (start < byteBuf.length) {
+      result.push(byteBuf.slice(start))
+    }
+
     return result
   }
 
@@ -162,28 +170,53 @@ export class ILLABinaryWebsocket {
     }
 
     const unit8ArrayMessage = new Uint8Array(message)
+    const updateDate = new Date()
+    const lastUpdateTime = updateDate.getTime()
     const groupUnit8ArrayMessage = this.split(unit8ArrayMessage)
     groupUnit8ArrayMessage.forEach((message) => {
       try {
-        const payload = MovingMessageBin.fromBinary(unit8ArrayMessage)
-        if (payload.status === 1 || payload.status === -1) {
-          const lastUpdateTime = new Date().getTime()
-          store.dispatch(
-            cursorActions.updateCursorReducer({
-              userID: payload.userID,
-              nickname: payload.nickname,
-              parentDisplayName: payload.parentDisplayName,
-              status: payload.status,
-              x: payload.x,
-              y: payload.y,
-              w: payload.w,
-              h: payload.h,
-              lastUpdateTime,
-            }),
-          )
+        const payload = MovingMessageBin.fromBinary(message)
+        switch (payload.signal) {
+          case Signal.MOVE_CURSOR: {
+            store.dispatch(
+              cursorActions.updateCursorReducer({
+                userID: payload.userID,
+                nickname: payload.nickname,
+                parentDisplayName: payload.parentDisplayName,
+                status: payload.status,
+                xInteger: payload.cursorXInteger,
+                yInteger: payload.cursorYInteger,
+                xMod: payload.cursorXMod,
+                yMod: payload.cursorYMod,
+                lastUpdateTime,
+              }),
+            )
+            break
+          }
+          case Signal.MOVE_STATE: {
+            const lastUpdateTime = new Date().getTime()
+            store.dispatch(
+              dragShadowActions.updateDragShadowInfoReducer({
+                userID: payload.userID,
+                nickname: payload.nickname,
+                displayNames: payload.displayNames,
+                parentDisplayName: payload.parentDisplayName,
+                status: payload.status,
+                xInteger: payload.cursorXInteger,
+                yInteger: payload.cursorYInteger,
+                xMod: payload.cursorXMod,
+                yMod: payload.cursorYMod,
+                rectX: payload.widgetX,
+                rectY: payload.widgetY,
+                rectW: payload.widgetW,
+                rectH: payload.widgetH,
+                lastUpdateTime,
+              }),
+            )
+          }
         }
       } catch (e) {
-        console.debug("[debug] message is not a MovingMessageBin")
+        console.debug("[debug] message is not a MovingMessageBin", e)
       }
     })
   }

@@ -4,8 +4,8 @@
   </a>
 </div>
 
-<h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder (Beta)</a></h1>
-<h3 align="center"> ⚠ 注: このバージョンは試用版です ⚠</h3>
+<h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder</a></h1>
+
 <p align="center">ILLA は、開発者が内部ツールを構築するための堅牢なオープン ソースのローコード プラットフォームです。 コンポーネントとアクションのILLAのライブラリを使用することで、開発者はツールの構築にかかる時間を大幅に節約できます。 </p>
 
 <div align="center">
@@ -29,14 +29,14 @@
 
 
 ## 🚀始めましょう
-ILLAを試すためには、現在ベータテスト中の [ILLA Cloud](https://cloud.illacloud.com/) にサインアップしてログインするのが最も便利です。ベータテスターの招待コードを入手するには、この [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) に記入し、できるだけ多くの情報を提供してください。ご提出いただいた内容は、最大2営業日以内にレビューし、できるだけ早くご連絡いたします。
+[ILLA Cloud](https://cloud.illacloud.com/) にサインアップしてログインするのが最も便利です。招待コードを入手するには、この [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) に記入し、できるだけ多くの情報を提供してください。ご提出いただいた内容は、最大2営業日以内にレビューし、できるだけ早くご連絡いたします。
 レビュープロセスを迅速化するために、[Discordコミュニティ](https://discord.gg/illacloud) に参加して、より迅速に招待コードを入手できるようにすることもできます。
 
 また、ILLAユーティリティを手動で（Docker、docker-compose、k8s）展開および自己ホストすることもできます。
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
-  <a href="https://cloud.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/ILLACLOUD.png" height=120 />
+  <a href="https://cloud.illacloud.com/"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 
 
@@ -92,7 +92,6 @@ GUI データ コネクタを介して MySQL または REST API に接続しま�
   </a>
 </p>
 
-**❗ ILLA Cloudはまだベータテスト段階です。何か問題があれば、遠慮なくお問い合わせください。私たちは迅速に調査し、対応いたします。**
 
 ## 💬 コミュニティ
 

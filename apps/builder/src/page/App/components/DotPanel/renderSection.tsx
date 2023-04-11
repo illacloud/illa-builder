@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom"
 import useMeasure from "react-use-measure"
 import { NextIcon, PreviousIcon } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { ScaleSquareOnlyHasResize } from "@/page/App/components/ScaleSquare/scaleSquareOnlyHasResize"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
@@ -40,7 +41,7 @@ import {
   RenderRightSectionProps,
   RenderSectionProps,
 } from "./interface"
-import { RenderComponentCanvas, UNIT_HEIGHT } from "./renderComponentCanvas"
+import { RenderComponentCanvas } from "./renderComponentCanvas"
 import {
   applyContainerWrapperStyle,
   applyFooterSectionWrapperStyle,
