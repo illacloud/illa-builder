@@ -1,7 +1,8 @@
 import { hexToHsva } from "@uiw/react-color"
 import { debounce } from "lodash"
-import { FC } from "react"
+import { FC, useRef } from "react"
 import { Trigger, globalColor, illaPrefix } from "@illa-design/react"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ColorPicker } from "@/page/App/components/ColorPicker"
 import {
   ButtonContentWrapperStyle,
@@ -10,10 +11,12 @@ import {
   colorContentStyle,
   inListSetterWrapperStyle,
 } from "@/page/App/components/PanelSetters/ColorPickerSetter/style"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 
 export const ColorPickerSetter: FC<any> = (props) => {
-  const { attrName, handleUpdateDsl, value } = props
+  const { attrName, handleUpdateDsl, value, widgetType } = props
+  const currentColor = useRef<string>(value)
   const debounceOnChange = debounce(handleUpdateDsl, 300)
 
   let c = value
@@ -31,10 +34,27 @@ export const ColorPickerSetter: FC<any> = (props) => {
         <ColorPicker
           selectedColor={value}
           onChange={(color) => {
+            currentColor.current = color
             debounceOnChange(attrName, color)
           }}
         />
       }
+      onVisibleChange={(visible) => {
+        if (visible) {
+          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+            element: "component_inspect_color_select",
+            parameter1: widgetType,
+            parameter2: attrName,
+          })
+        } else {
+          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
+            element: "component_inspect_color_select",
+            parameter1: widgetType,
+            parameter2: attrName,
+            parameter3: currentColor.current,
+          })
+        }
+      }}
     >
       <div css={inListSetterWrapperStyle}>
         <div css={ButtonContentWrapperStyle}>

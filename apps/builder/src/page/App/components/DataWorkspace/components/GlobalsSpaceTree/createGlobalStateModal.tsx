@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, useMessage } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { BuilderModal } from "@/components/Modal"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { getOriginalGlobalData } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { CreateGlobalModalProps } from "./interface"
 import {
   codeEditorWrapperStyle,
@@ -174,6 +176,14 @@ export const CreateGlobalStateModal: FC<CreateGlobalModalProps> = (props) => {
     ) {
       return
     }
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "global_modal_save",
+      parameter2: actionType === "ADD" ? "add" : "edit",
+      parameter3: {
+        name: formatLabel,
+        variable: currentValue,
+      },
+    })
     dispatch(
       componentsActions.setGlobalStateReducer({
         key: formatLabel,
@@ -186,6 +196,7 @@ export const CreateGlobalStateModal: FC<CreateGlobalModalProps> = (props) => {
     hadGlobalDataKeys,
     onClose,
     currentValue,
+    actionType,
     dispatch,
     message,
     t,
@@ -193,6 +204,9 @@ export const CreateGlobalStateModal: FC<CreateGlobalModalProps> = (props) => {
 
   const onClickDelete = useCallback(() => {
     if (!variableName) return
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "global_modal_delete",
+    })
     dispatch(
       componentsActions.deleteGlobalStateByKeyReducer({
         key: variableName,

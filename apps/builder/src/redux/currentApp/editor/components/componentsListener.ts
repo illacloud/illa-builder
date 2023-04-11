@@ -347,7 +347,7 @@ const updateComponentReflowComponentsAdapter = (
       ] as ComponentNode[]
     }
     case "components/copyComponentReducer": {
-      return action.payload.map((slice) => {
+      return action.payload.copyComponents.map((slice) => {
         return slice.newComponentNode
       })
     }

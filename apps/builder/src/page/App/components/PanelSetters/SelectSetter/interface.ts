@@ -8,9 +8,10 @@ export interface BaseSelectSetterProps extends BaseSetter {
   onChange?: (value: any) => void
   placeholder?: string
   value: string
+  showSearch?: boolean
 }
 
-export interface BaseDynamicSelectSetterProps extends PanelLabelProps {
+export interface BaseDynamicSelectSetterProps extends BaseSetter {
   isDynamic: boolean
   onClickFxButton: () => void
   onChangeInput: (value: string) => void

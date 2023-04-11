@@ -11,14 +11,7 @@ import { applyInputSetterWrapperStyle } from "@/page/App/components/PanelSetters
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
-
-function getPath(attrName?: string, widgetDisplayName?: string) {
-  if (attrName && widgetDisplayName) {
-    return `${widgetDisplayName}.${attrName}`
-  } else {
-    return widgetDisplayName
-  }
-}
+import { BaseInput } from "../InputSetter/baseInput"
 
 const realInputValue = (
   attrValue: string | undefined,
@@ -82,7 +75,7 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
   }, [isDynamic])
 
   const handleValueChange = useCallback(
-    (value: string) => {
+    (attrName: string, value: string) => {
       const fromCurrentRow = value.includes("currentRow")
       const output = fromCurrentRow
         ? getNeedComputedValue(value, dataPath, widgetDisplayName)
@@ -94,7 +87,7 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
         [name]: fromCurrentRow,
       })
     },
-    [attrName, dataPath, handleUpdateDsl, parentAttrName, widgetDisplayName],
+    [dataPath, handleUpdateDsl, parentAttrName, widgetDisplayName],
   )
 
   const wrappedCodeFunc = useCallback(
@@ -109,23 +102,12 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
   )
 
   return (
-    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
-      <CodeEditor
-        value={realInputValue(value, dataPath, widgetDisplayName)}
-        onChange={handleValueChange}
-        showLineNumbers={false}
-        placeholder={placeholder}
-        expectValueType={expectedType}
-        lang={CODE_LANG.JAVASCRIPT}
-        maxHeight="208px"
-        minHeight="30px"
-        maxWidth="100%"
-        codeType={CODE_TYPE.EXPRESSION}
-        wrappedCodeFunc={wrappedCodeFunc}
-        modalTitle={labelName}
-        modalDescription={detailedDescription || labelDesc}
-      />
-    </div>
+    <BaseInput
+      {...props}
+      value={realInputValue(value, dataPath, widgetDisplayName)}
+      wrappedCodeFunc={wrappedCodeFunc}
+      handleUpdateDsl={handleValueChange}
+    />
   )
 }
 
