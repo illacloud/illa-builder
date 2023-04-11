@@ -12,6 +12,7 @@ import { ReactComponent as FrameFixedIcon } from "@/assets/rightPagePanel/frame-
 import { ReactComponent as FrameResponsiveIcon } from "@/assets/rightPagePanel/frame-responsive.svg"
 import { PanelBar } from "@/components/PanelBar"
 import i18n from "@/i18n/config"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   BODY_MIN_HEIGHT,
   BODY_MIN_WIDTH,
@@ -43,6 +44,7 @@ import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
 } from "@/utils/generators/generatePageOrSectionConfig"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { groupWrapperStyle } from "./style"
 
 const getDefaultColumns = (attrName: string, value?: number) => {
@@ -534,6 +536,11 @@ export const PageFrame: FC = () => {
           }),
         )
       }
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
+        element: "page_width",
+        parameter2: "fixed",
+        parameter3: canvasWidth,
+      })
     } else {
       const originalWidth = canvasShape.canvasWidth / (finalCanvasWidth / 100)
       const currentWidth = originalWidth * (canvasWidth / 100)
@@ -555,6 +562,11 @@ export const PageFrame: FC = () => {
           }),
         )
       }
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
+        element: "page_width",
+        parameter2: "auto",
+        parameter3: canvasWidth,
+      })
     }
   }, [
     canvasShape.canvasWidth,
@@ -626,6 +638,11 @@ export const PageFrame: FC = () => {
             isFixed={isLeftFixed}
             hasPanel={hasLeft}
             deletePanelAction={() => {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "panel_show",
+                parameter2: "left",
+                parameter3: "hidden",
+              })
               handleDeleteSection("leftSection", {
                 hasLeft: false,
                 leftWidth: 0,
@@ -634,6 +651,11 @@ export const PageFrame: FC = () => {
               })
             }}
             addPanelAction={() => {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "panel_show",
+                parameter2: "left",
+                parameter3: "show",
+              })
               handleAddSection("leftSection", {
                 hasLeft: true,
                 leftWidth: 20,
@@ -654,6 +676,13 @@ export const PageFrame: FC = () => {
                   colorScheme="techPurple"
                   onChange={handleUpdateLeftPanelWidth}
                   step={1}
+                  onBlur={(e) => {
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                      element: "panel_width",
+                      parameter2: "left",
+                      parameter3: e.target.value,
+                    })
+                  }}
                 />
               </SetterPadding>
             </LeftAndRightLayout>
@@ -673,6 +702,11 @@ export const PageFrame: FC = () => {
                 <Switch
                   checked={showLeftFoldIcon}
                   onChange={(value) => {
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                      element: "panel_fold",
+                      parameter2: "left",
+                      parameter3: value ? "show" : "hidden",
+                    })
                     handleUpdateShowFoldIcon(value, "leftSection")
                   }}
                   colorScheme="techPurple"
@@ -693,6 +727,11 @@ export const PageFrame: FC = () => {
             isFixed={isRightFixed}
             hasPanel={hasRight}
             deletePanelAction={() => {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "panel_show",
+                parameter2: "right",
+                parameter3: "hidden",
+              })
               handleDeleteSection("rightSection", {
                 hasRight: false,
                 rightWidth: 0,
@@ -701,6 +740,11 @@ export const PageFrame: FC = () => {
               })
             }}
             addPanelAction={() => {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "panel_show",
+                parameter2: "right",
+                parameter3: "show",
+              })
               handleAddSection("rightSection", {
                 hasRight: true,
                 rightWidth: 20,
@@ -721,6 +765,13 @@ export const PageFrame: FC = () => {
                   colorScheme="techPurple"
                   onChange={handleUpdateRightPanelWidth}
                   step={1}
+                  onBlur={(e) => {
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                      element: "panel_width",
+                      parameter2: "left",
+                      parameter3: e.target.value,
+                    })
+                  }}
                 />
               </SetterPadding>
             </LeftAndRightLayout>
@@ -740,6 +791,11 @@ export const PageFrame: FC = () => {
                 <Switch
                   checked={showRightFoldIcon}
                   onChange={(value) => {
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                      element: "panel_fold",
+                      parameter2: "right",
+                      parameter3: value ? "show" : "hidden",
+                    })
                     handleUpdateShowFoldIcon(value, "rightSection")
                   }}
                   colorScheme="techPurple"
@@ -786,6 +842,11 @@ export const PageFrame: FC = () => {
             isFixed={isHeaderFixed}
             hasPanel={hasHeader}
             deletePanelAction={() => {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "panel_show",
+                parameter2: "header",
+                parameter3: "hidden",
+              })
               handleDeleteSection("headerSection", {
                 hasHeader: false,
                 topHeight: 0,
@@ -793,6 +854,11 @@ export const PageFrame: FC = () => {
               })
             }}
             addPanelAction={() => {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "panel_show",
+                parameter2: "header",
+                parameter3: "show",
+              })
               handleAddSection("headerSection", {
                 hasHeader: true,
                 topHeight: 96,
@@ -815,6 +881,13 @@ export const PageFrame: FC = () => {
                   colorScheme="techPurple"
                   onChange={handleUpdateHeaderPanelWidth}
                   step={1}
+                  onBlur={(e) => {
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
+                      element: "panel_height",
+                      parameter2: "header",
+                      parameter3: e.target.value,
+                    })
+                  }}
                 />
               </SetterPadding>
             </LeftAndRightLayout>
@@ -838,6 +911,11 @@ export const PageFrame: FC = () => {
             isFixed={isFooterFixed}
             hasPanel={hasFooter}
             deletePanelAction={() => {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "panel_show",
+                parameter2: "footer",
+                parameter3: "hidden",
+              })
               handleDeleteSection("footerSection", {
                 hasFooter: false,
                 bottomHeight: 0,
@@ -845,6 +923,11 @@ export const PageFrame: FC = () => {
               })
             }}
             addPanelAction={() => {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "panel_show",
+                parameter2: "footer",
+                parameter3: "show",
+              })
               handleAddSection("footerSection", {
                 hasFooter: true,
                 bottomHeight: 96,
@@ -867,6 +950,13 @@ export const PageFrame: FC = () => {
                   colorScheme="techPurple"
                   onChange={handleUpdateFooterPanelWidth}
                   step={1}
+                  onBlur={(e) => {
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
+                      element: "panel_height",
+                      parameter2: "header",
+                      parameter3: e.target.value,
+                    })
+                  }}
                 />
               </SetterPadding>
             </LeftAndRightLayout>
