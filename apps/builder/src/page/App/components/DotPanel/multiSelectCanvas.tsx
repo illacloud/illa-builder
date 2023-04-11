@@ -2,13 +2,11 @@ import { getOverlapPoints } from "overlap-area"
 import { FC, RefObject, useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Selecto, { OnDragStart, SelectoEvents } from "react-selecto"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   getIsILLAProductMode,
   getSelectedComponents,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 
 interface MultiSelectCanvasProps {
   containerRef: RefObject<HTMLDivElement>
@@ -162,11 +160,6 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
       selectedComponents.length > 0
     ) {
       dispatch(configActions.updateSelectedComponent([]))
-    } else {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
-        element: "component",
-        parameter1: "drag",
-      })
     }
     prevSelectorStatus.current = false
     prevContainerScrollTop.current = undefined

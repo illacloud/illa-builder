@@ -12,7 +12,6 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
@@ -28,7 +27,6 @@ import {
   getResourceNameFromResourceType,
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   createNewStyle,
   itemContainer,
@@ -138,11 +136,6 @@ export const ResourceChoose: FC = () => {
                   triggerMode: value as ActionTriggerMode,
                 }),
               )
-            }}
-            onClick={() => {
-              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                element: "action_edit_auto_run",
-              })
             }}
           >
             <Option value="manually" key="manually">

@@ -93,12 +93,9 @@ export const componentsAsync = (
       break
     }
     case "copyComponentReducer":
-      const copyComponentPayload = (
-        payload as {
-          copyComponents: CopyComponentPayload[]
-          sources: "keyboard" | "duplicate"
-        }
-      ).copyComponents.map((copyShape) => copyShape.newComponentNode)
+      const copyComponentPayload = (payload as CopyComponentPayload[]).map(
+        (copyShape) => copyShape.newComponentNode,
+      )
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
           Signal.CREATE_STATE,

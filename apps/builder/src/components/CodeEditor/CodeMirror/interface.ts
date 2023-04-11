@@ -10,8 +10,6 @@ export interface ILLACodeMirrorProps
   extensions?: Extension[]
   value?: string
   onChange?: (value: string) => void
-  onFocus?: () => void
-  onBlur?: (value: string) => void
   height?: string
   minHeight?: string
   maxHeight?: string

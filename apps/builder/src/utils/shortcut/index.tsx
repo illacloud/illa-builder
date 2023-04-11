@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Key } from "ts-key-enum"
 import { createModal, useMessage } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   getFreezeState,
   getIsILLAEditMode,
@@ -25,7 +24,6 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { isMAC } from "@/utils/userAgent"
 
@@ -122,9 +120,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
           setAlreadyShowDeleteDialog(false)
           modal.update(id, { visible: false })
           if (type === "page") {
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-              element: "delete_page_modal_delete",
-            })
             dispatch(
               componentsActions.deletePageNodeReducer({
                 displayName: displayName[0],
@@ -136,23 +131,9 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
           dispatch(
             componentsActions.deleteComponentNodeReducer({
               displayNames: displayName,
-              source: options?.source || "left_delete",
             }),
           )
           dispatch(configActions.clearSelectedComponent())
-        },
-        afterOpen: () => {
-          if (type === "page") {
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-              element: "delete_page_modal",
-            })
-          }
-          if (type === "widget") {
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-              element: "component_delete_modal",
-              parameter3: options?.source || "",
-            })
-          }
         },
       })
     }
@@ -165,8 +146,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
         currentSelectedComponent.map((displayName) => {
           return displayName
         }),
-        "widget",
-        { source: "keyboard" },
       )
     },
     {
@@ -179,16 +158,8 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     "d,k",
     (keyboardEvent) => {
       if (keyboardEvent.type === "keydown" && freezeState === false) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.KEYDOWN, {
-          element: "lock_icon",
-          parameter2: "lock",
-        })
         dispatch(configActions.updateFreezeStateReducer(true))
       } else if (keyboardEvent.type === "keyup" && freezeState === true) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.KEYUP, {
-          element: "lock_icon",
-          parameter2: "unlock",
-        })
         dispatch(configActions.updateFreezeStateReducer(false))
       }
     },
@@ -235,10 +206,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
             (node) => node.displayName,
           )
 
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
-            element: "component",
-            parameter1: "keyboard",
-          })
           dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
         }
       }
@@ -325,7 +292,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   useHotkeys(
     `${Key.Meta}+v`,
     () => {
-      CopyManager.paste("keyboard")
+      CopyManager.paste()
     },
     {
       preventDefault: true,
@@ -337,7 +304,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   useHotkeys(
     `${Key.Control}+v`,
     () => {
-      CopyManager.paste("keyboard")
+      CopyManager.paste()
     },
     { preventDefault: true, enabled: isEditMode && !isMAC() },
     [copySomethingHandler],
@@ -367,7 +334,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       case "components":
         break
     }
-    CopyManager.paste("keyboard")
+    CopyManager.paste()
   }, [
     currentSelectedAction,
     currentSelectedComponent,

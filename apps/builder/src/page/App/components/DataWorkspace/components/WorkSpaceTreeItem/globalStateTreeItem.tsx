@@ -1,7 +1,6 @@
 import { FC, memo, useState } from "react"
 import { PenIcon, Trigger, isArray, isObject } from "@illa-design/react"
 import { MAX_LEN_WITH_SNIPPETS } from "@/components/CodeEditor"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { WorkSpaceTreeNodeProps } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem/interface"
 import {
   applySimpleItemContainerStyle,
@@ -10,7 +9,6 @@ import {
   jsonValueStyle,
 } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem/style"
 import { applyJsonValueColorStyle } from "@/page/App/components/DataWorkspace/style"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { CreateGlobalStateModal } from "../GlobalsSpaceTree/createGlobalStateModal"
 import { GlobalStateTreeNode } from "./globalStateTreeNode"
 
@@ -75,12 +73,6 @@ export const GlobalStateTreeItem: FC<WorkSpaceTreeNodeProps> = memo(
                 }
                 popupVisible={isOpen}
                 onVisibleChange={(visible) => {
-                  if (visible) {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-                      element: "global_modal",
-                      parameter1: "edit",
-                    })
-                  }
                   setIsOpen(visible)
                 }}
               >

@@ -1,13 +1,16 @@
-import { FC, useCallback, useContext, useEffect } from "react"
+import { FC, useCallback, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { DropList, DropListItem } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import {
+  DropList,
+  DropListItem,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { defaultPageProps } from "@/utils/generators/generatePageOrSectionConfig"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { PanelHeaderActionProps } from "./interface"
 
@@ -19,12 +22,6 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
 
   const shortcut = useContext(ShortCutContext)
 
-  useEffect(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-      element: "manage_page",
-    })
-  }, [])
-
   const handleClickDropListItem = useCallback(() => {
     if (!pageDisplayName) return
     const targetNode = searchDSLByDisplayName(pageDisplayName) as ComponentNode
@@ -34,9 +31,6 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         ...defaultPageProps,
       },
     }
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "reset_page",
-    })
     dispatch(componentsActions.resetComponentPropsReducer(newComponentNode))
   }, [dispatch, pageDisplayName])
 
@@ -56,9 +50,6 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
             if (pageKeys.length === 1) {
               return
             }
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-              element: "delete_page",
-            })
             shortcut.showDeleteDialog([pageDisplayName], "page", {
               originPageSortedKey: pageKeys,
             })

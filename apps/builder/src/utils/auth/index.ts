@@ -1,9 +1,9 @@
-import { ILLABuilderStorage } from "@/utils/storage"
+import { getLocalStorage, removeLocalStorage } from "@/utils/storage"
 
 export const getAuthToken = () => {
-  return ILLABuilderStorage.getLocalStorage("token") as string
+  return getLocalStorage("token")
 }
 
 export const removeAuthToken = () => {
-  return ILLABuilderStorage.removeLocalStorage("token")
+  return removeLocalStorage("token")
 }

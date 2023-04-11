@@ -1,14 +1,16 @@
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { AddIcon, Link } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { AddIcon, Button, Link, PlusIcon } from "@illa-design/react"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
 import { generateSectionContainerConfig } from "@/utils/generators/generatePageOrSectionConfig"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { HeaderProps } from "./interface"
-import { headerLabelStyle, viewsListHeaderWrapperStyle } from "./style"
+import {
+  headerAddIconStyle,
+  headerLabelStyle,
+  viewsListHeaderWrapperStyle,
+} from "./style"
 import { generateNewViewItem } from "./utils"
 
 export const ViewListHeader: FC<HeaderProps> = (props) => {
@@ -18,10 +20,6 @@ export const ViewListHeader: FC<HeaderProps> = (props) => {
 
   const handleClickAddButton = useCallback(() => {
     const { displayName, sectionViewConfigs } = sectionNodeExecutionResult
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "add_view",
-      parameter2: sectionName.slice(0, -7),
-    })
     const config = generateSectionContainerConfig(
       displayName,
       `${sectionName}Container`,

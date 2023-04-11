@@ -1,11 +1,10 @@
 import { get } from "lodash"
-import { FC, useCallback, useMemo } from "react"
+import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { BaseSelectSetter } from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
@@ -42,23 +41,23 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   ])
 
   const _finalAttrPath = parentAttrName ? parentAttrName : attrName
-  const handleUpdateDSLInner = useCallback(
-    (attrPath: string, value: unknown) => {
-      handleUpdateDsl(attrPath, {
-        actionType: value,
-        id: oldEvent?.id,
-        eventType: oldEvent?.eventType,
-      })
-    },
-    [handleUpdateDsl, oldEvent?.eventType, oldEvent?.id],
-  )
 
   return (
-    <BaseSelectSetter
-      {...props}
-      attrName={_finalAttrPath}
-      handleUpdateDsl={handleUpdateDSLInner}
-    />
+    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
+      <Select
+        options={options}
+        size="medium"
+        value={value}
+        colorScheme="techPurple"
+        onChange={(value) => {
+          handleUpdateDsl(_finalAttrPath, {
+            actionType: value,
+            id: oldEvent?.id,
+            eventType: oldEvent?.eventType,
+          })
+        }}
+      />
+    </div>
   )
 }
 EventActionTypeSelect.displayName = "EventActionTypeSelect"

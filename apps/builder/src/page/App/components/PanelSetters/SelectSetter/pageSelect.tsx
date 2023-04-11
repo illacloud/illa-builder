@@ -1,11 +1,13 @@
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { Select } from "@illa-design/react"
+import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getPageExecutionResultArray } from "@/redux/currentApp/executionTree/executionSelector"
-import { BaseSelectSetter } from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
-  const { value } = props
+  const { isSetterSingleRow, attrName, handleUpdateDsl, value, placeholder } =
+    props
   const pageArray = useSelector(getPageExecutionResultArray)
 
   const finalOptions = useMemo(() => {
@@ -28,10 +30,17 @@ export const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
   }, [finalOptions, value])
 
   return (
-    <BaseSelectSetter
-      {...props}
-      value={finalValue as string}
-      options={finalOptions}
-    />
+    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
+      <Select
+        options={finalOptions}
+        size="medium"
+        colorScheme="techPurple"
+        value={finalValue}
+        onChange={(value) => {
+          handleUpdateDsl(attrName, value)
+        }}
+        placeholder={placeholder}
+      />
+    </div>
   )
 }

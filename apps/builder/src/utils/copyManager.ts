@@ -37,7 +37,7 @@ export class CopyManager {
     this.currentCopyComponentNodes = node
   }
 
-  static paste(sources: "keyboard" | "duplicate") {
+  static paste() {
     switch (FocusManager.getFocus()) {
       case "dataWorkspace_action":
       case "action":
@@ -55,14 +55,13 @@ export class CopyManager {
             this.currentPageSortedKey === pageSortedKey
           ) {
             store.dispatch(
-              componentsActions.copyComponentReducer({
-                copyComponents: this.currentCopyComponentNodes.map((node) => {
+              componentsActions.copyComponentReducer(
+                this.currentCopyComponentNodes.map((node) => {
                   return {
                     newComponentNode: this.copyComponent(node),
                   }
                 }),
-                sources: sources,
-              }),
+              ),
             )
           } else {
             const containerNode = searchCurrentPageContainerNode(
@@ -71,14 +70,13 @@ export class CopyManager {
             )
             if (containerNode) {
               store.dispatch(
-                componentsActions.copyComponentReducer({
-                  copyComponents: this.currentCopyComponentNodes.map((node) => {
+                componentsActions.copyComponentReducer(
+                  this.currentCopyComponentNodes.map((node) => {
                     return {
                       newComponentNode: this.copyComponent(node, containerNode),
                     }
                   }),
-                  sources: sources,
-                }),
+                ),
               )
             }
           }
