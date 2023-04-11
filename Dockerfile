@@ -10,6 +10,8 @@ RUN pwd
 COPY ./ ./
 ARG BUILDER_ENV=production
 ENV ILLA_BUILDER_ENV ${BUILDER_ENV}
+ARG MIXPANEL_API_KEY=0
+ENV ILLA_MIXPANEL_API_KEY ${MIXPANEL_API_KEY}
 RUN npm install -g pnpm
 RUN whereis pnpm
 RUN whereis node
