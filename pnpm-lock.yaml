@@ -85,12 +85,14 @@ importers:
       '@types/chroma-js': ^2.1.4
       '@types/codemirror': ^5.60.5
       '@types/deep-diff': ^1.0.1
+      '@types/device-uuid': ^1.0.0
       '@types/downloadjs': ^1.4.3
       '@types/fnv-plus': ^1.3.0
       '@types/google.maps': ^3.52.4
       '@types/jshint': ^2.12.1
       '@types/lodash': ^4.14.191
       '@types/mdx': ^2.0.3
+      '@types/mixpanel-browser': ^2.38.1
       '@types/node': ^18.14.4
       '@types/qs': ^6.9.7
       '@types/react-pdf': ^6.2.0
@@ -117,6 +119,7 @@ importers:
       cross-env: ^7.0.3
       dayjs: ^1.11.7
       deep-diff: ^1.0.2
+      device-uuid: ^1.0.4
       downloadjs: ^1.4.7
       e2e: workspace:*
       events: ^3.3.0
@@ -128,6 +131,7 @@ importers:
       jshint: ^2.13.6
       lodash: ^4.17.21
       lottie-react: ^2.4.0
+      mixpanel-browser: ^2.46.0
       overlap-area: ^1.1.0
       pdfjs-dist: 2.16.105
       qs: ^6.11.0
@@ -192,6 +196,7 @@ importers:
       '@tanstack/react-table': 8.7.9
       '@tanstack/table-core': 8.7.9
       '@types/google.maps': 3.52.4
+      '@types/device-uuid': 1.0.0
       '@uiw/codemirror-theme-github': 4.19.8_isohugnrbrhzg62i2ejp6vhyvy
       '@uiw/react-color': 1.1.1
       '@uiw/react-color-sketch': 1.1.1
@@ -205,6 +210,7 @@ importers:
       copy-to-clipboard: 3.3.3
       dayjs: 1.11.7
       deep-diff: 1.0.2
+      device-uuid: 1.0.4
       downloadjs: 1.4.7
       events: 3.3.0
       fnv-plus: 1.3.1
@@ -215,6 +221,7 @@ importers:
       jshint: 2.13.6
       lodash: 4.17.21
       lottie-react: 2.4.0
+      mixpanel-browser: 2.46.0
       overlap-area: 1.1.0
       pdfjs-dist: 2.16.105
       qs: 6.11.0
@@ -261,6 +268,7 @@ importers:
       '@types/jshint': 2.12.1
       '@types/lodash': 4.14.191
       '@types/mdx': 2.0.3
+      '@types/mixpanel-browser': 2.38.1
       '@types/node': 18.14.5
       '@types/qs': 6.9.7
       '@types/react-pdf': 6.2.0
@@ -3697,6 +3705,10 @@ packages:
     resolution: {integrity: sha512-WD2O611C7Oz7RSwKbSls8LaznKfWfXh39CHY9Amd8FhQz+NJRe20nUHhYpOopVq9M2oqDZd4L6AzqJIXQycxiA==}
     dev: true
 
+  /@types/device-uuid/1.0.0:
+    resolution: {integrity: sha512-bDhW4mvW9JYuAYV1cj6tNke/2vHSmPfJswXv7hU2RddnBvHRnl3sKGG5UQqWTNc/rRv90ZETo/fX1BnUIZK4wQ==}
+    dev: false
+
   /@types/downloadjs/1.4.3:
     resolution: {integrity: sha512-MjJepFle/tLtT2/jmDNth6ZnwWzEhm40L+olE5HKR70ISUCfgT55eqreeHldAzFLY2HDUGsn8zgyto8KygN0CA==}
     dev: true
@@ -3778,6 +3790,10 @@ packages:
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+    dev: true
+
+  /@types/mixpanel-browser/2.38.1:
+    resolution: {integrity: sha512-XzQbwgiOPsFXUQnjz3vSwcwrvJDbQ35bCiwa/1VXGrHvU1ti9+eqO1GY91DShzkEzKkkEEkxfNshS5dbBZqd7w==}
     dev: true
 
   /@types/ms/0.7.31:
@@ -5421,6 +5437,11 @@ packages:
 
   /detect-node-es/1.1.0:
     resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}
+    dev: false
+
+  /device-uuid/1.0.4:
+    resolution: {integrity: sha512-nNbUKlCuXZ1BV4zKFr9z8VxypL1PCNExRoNtRx/mNKFcOEDWUdT3E1B4vw7LBWftBmixkrjQIjpdLov3EmEJjA==}
+    engines: {node: '>=0.8'}
     dev: false
 
   /diff/4.0.2:
@@ -8402,6 +8423,10 @@ packages:
     resolution: {integrity: sha512-/6IupbRx32s7jjEwHcycXikJwFD5UujbVNuJFkeKLYje+92OvtuPniF6JhnFm5JCTDUhS+kYK3W/4BWYQYXz7w==}
     engines: {node: '>= 8.0.0'}
     dev: true
+
+  /mixpanel-browser/2.46.0:
+    resolution: {integrity: sha512-qPFhAFMf5YzzGPd/sgoEl7G0N/ypJ6IaZmjkMYEPiW60i1Muo+v2Zl/dqRcCXwYfF5GvC5175muS1ZuaaYGXAQ==}
+    dev: false
 
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}

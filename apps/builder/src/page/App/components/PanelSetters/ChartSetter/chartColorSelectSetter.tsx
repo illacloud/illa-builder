@@ -1,16 +1,15 @@
 import { get } from "lodash"
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { Select } from "@illa-design/react"
 import {
   CHART_COLOR_TYPE_CONFIG,
   CHART_COLOR_TYPE_CONFIG_KEYS,
   ColorArea,
 } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import { chartColorLabelStyle } from "@/page/App/components/PanelSetters/ChartSetter/style"
-import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
+import { BaseSelectSetter } from "../SelectSetter/baseSelect"
 import { ChartColorSelectSetterProps } from "./interface"
 
 interface CHartColorLabelProps {
@@ -30,13 +29,7 @@ export const ChartColorLabel: FC<CHartColorLabelProps> = (props) => {
 export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = (
   props,
 ) => {
-  const {
-    isSetterSingleRow,
-    attrName,
-    handleUpdateDsl,
-    value,
-    widgetDisplayName,
-  } = props
+  const { widgetDisplayName } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
     (rootState) => {
@@ -70,19 +63,7 @@ export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = (
     })
   }, [chartType, isCanGroupBy])
 
-  return (
-    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
-      <Select
-        options={options}
-        size="medium"
-        value={value}
-        colorScheme="techPurple"
-        onChange={(value) => {
-          handleUpdateDsl(attrName, value)
-        }}
-      />
-    </div>
-  )
+  return <BaseSelectSetter {...props} options={options} />
 }
 
 ChartColorSelectSetter.displayName = "BaseSelect"
