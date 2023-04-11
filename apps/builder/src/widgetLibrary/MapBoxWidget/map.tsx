@@ -104,7 +104,10 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
-      setMarkers: (markers: MarkersType) => {
+      setMarkers: (markers: unknown) => {
+        if(!Array.isArray(markers)) {
+          return
+        }
         handleUpdateDsl({ markers })
       },
       resetMarkers: () => {
