@@ -4,6 +4,7 @@ import { Select } from "@illa-design/react"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { BaseSelectSetter } from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
@@ -56,16 +57,10 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
     widgetOrAction === "WIDGET" ? widgetFinalValue : actionFinalValue
 
   return (
-    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
-      <Select
-        options={finalOptions}
-        size="medium"
-        colorScheme="techPurple"
-        value={finalValue}
-        onChange={(value) => {
-          handleUpdateDsl(attrName, value)
-        }}
-      />
-    </div>
+    <BaseSelectSetter
+      {...props}
+      value={finalValue as string}
+      options={finalOptions}
+    />
   )
 }

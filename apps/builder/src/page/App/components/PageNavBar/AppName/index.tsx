@@ -1,7 +1,9 @@
 import { FC, useState } from "react"
 import { PenIcon, Trigger } from "@illa-design/react"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { AppNameEditModal } from "@/page/App/components/PageNavBar/AppNameEditModal"
 import { AppNameProps } from "@/page/App/components/PageNavBar/interface"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { nameContainerStyle, nameStyle, triggerStyle } from "./style"
 
 export const AppName: FC<AppNameProps> = (props) => {
@@ -11,6 +13,12 @@ export const AppName: FC<AppNameProps> = (props) => {
 
   const handleOnSuccess = () => {
     setPopContentVisible(false)
+  }
+
+  const trackHoverOnAppName = () => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+      element: "app_rename",
+    })
   }
 
   return (
@@ -25,7 +33,7 @@ export const AppName: FC<AppNameProps> = (props) => {
       withoutPadding
       colorScheme="white"
     >
-      <div css={nameContainerStyle}>
+      <div css={nameContainerStyle} onMouseEnter={trackHoverOnAppName}>
         <span css={nameStyle}>{appName}</span>
         <PenIcon size="16px" />
       </div>
