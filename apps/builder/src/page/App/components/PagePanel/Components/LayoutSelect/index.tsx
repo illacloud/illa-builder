@@ -53,6 +53,7 @@ export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
     if (selectedValue === value || !currentPageName) return
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
       element: "preset_selection",
+      parameter3: value,
     })
     modal.show({
       w: "496px",
@@ -66,6 +67,7 @@ export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
       onOk: () => {
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
           element: "preset_confirm",
+          parameter3: value,
         })
         dispatch(
           componentsActions.updateTargetPageLayoutReducer({

@@ -677,7 +677,7 @@ export const PageFrame: FC = () => {
                   onChange={handleUpdateLeftPanelWidth}
                   step={1}
                   onBlur={(e) => {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
                       element: "panel_width",
                       parameter2: "left",
                       parameter3: e.target.value,
@@ -766,7 +766,7 @@ export const PageFrame: FC = () => {
                   onChange={handleUpdateRightPanelWidth}
                   step={1}
                   onBlur={(e) => {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
                       element: "panel_width",
                       parameter2: "left",
                       parameter3: e.target.value,
@@ -953,7 +953,7 @@ export const PageFrame: FC = () => {
                   onBlur={(e) => {
                     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
                       element: "panel_height",
-                      parameter2: "header",
+                      parameter2: "footer",
                       parameter3: e.target.value,
                     })
                   }}

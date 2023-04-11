@@ -43,7 +43,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
         element: "fx",
         parameter1: widgetType,
         parameter2: attrName,
-        parameter3: false,
+        parameter3: "off",
       })
     } else {
       handleUpdateMultiAttrDSL?.({
@@ -54,7 +54,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
         element: "fx",
         parameter1: widgetType,
         parameter2: attrName,
-        parameter3: true,
+        parameter3: "on",
       })
     }
   }, [attrName, customSelected, handleUpdateMultiAttrDSL, widgetType])
