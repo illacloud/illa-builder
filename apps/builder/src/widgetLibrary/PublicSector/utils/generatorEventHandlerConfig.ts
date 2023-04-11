@@ -148,7 +148,6 @@ export const generatorEventHandlerConfig = (
         labelDesc: i18n.t("editor.inspect.setter_tips.map.markers"),
         setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "widgetTargetValue",
-        expectedType: VALIDATION_TYPES.ARRAY,
         bindAttrName: ["widgetMethod"],
         shown: (widgetMethod) => widgetMethod === "setMarkers",
       },
