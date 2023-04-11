@@ -1,9 +1,10 @@
-import { toByteArray } from "base64-js"
+import { fromByteArray, toByteArray } from "base64-js"
 import { read, utils } from "xlsx"
 import { UploadItem, createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 
-const MAX_SIZE = 400000000
+const MAX_SIZE = 500 * 1024 * 1024
+const EDGE_SIZE = 20 * 1024 * 1024
 
 type ValueType = Array<{ status: string; value: any }>
 
@@ -49,6 +50,22 @@ export const getFileParsedValue = (file: UploadItem) =>
     }
   })
 
+function readAndConvertFileToBase64(file: File) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    const contentType = file.type
+    reader.onload = (event) => {
+      const data = new Uint8Array(event.target?.result as ArrayBuffer)
+      const base64Str = fromByteArray(data)
+      resolve(`data:${contentType};base64,${base64Str}`)
+    }
+    reader.onerror = (event) => {
+      reject(event)
+    }
+    reader.readAsArrayBuffer(file)
+  })
+}
+
 const parseSmallFile = (file: File) =>
   new Promise((resolve, reject) => {
     if (!file) {
@@ -68,6 +85,9 @@ export const toBase64 = async (file: UploadItem) => {
     const { size } = file.originFile
     if (size > MAX_SIZE) {
       return undefined
+    }
+    if (size > EDGE_SIZE) {
+      return readAndConvertFileToBase64(file.originFile)
     }
     return parseSmallFile(file.originFile)
   } catch (error) {
