@@ -9,6 +9,7 @@ import { getIsILLAPreviewMode } from "@/redux/config/configSelector"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getGuideInfo } from "@/redux/guide/guideSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { ILLARoute } from "@/router"
@@ -139,6 +140,12 @@ const getAppIsPublic = () => {
   return appInfo.config.public
 }
 
+const getUserID = () => {
+  const rootState = store.getState()
+  const userInfo = getCurrentUser(rootState)
+  return userInfo?.userId || ""
+}
+
 export const track = (
   event: ILLA_MIXPANEL_EVENT_TYPE,
   pageName: ILLA_PAGE_NAME,
@@ -149,9 +156,11 @@ export const track = (
 ) => {
   const { appId, teamIdentifier } = getInfoFromUrl()
   const { role } = getTeamInfo()
+  const userID = getUserID()
   ILLAMixpanel.track(event, {
     ...properties,
     page: pageName,
+    user_id: userID,
     parameter5: appId,
     parameter11: role,
     team_id: teamIdentifier,
@@ -171,6 +180,7 @@ export const trackInEditor = (
     | "parameter11"
     | "team_id"
     | "page"
+    | "user_id"
   > = {},
 ) => {
   const previewInfo = getPreviewInfo()
