@@ -1,6 +1,7 @@
-import { FC, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { applyViewportContainerWrapperStyle } from "@/page/App/components/DotPanel/style"
 import {
   getIllaMode,
@@ -15,6 +16,7 @@ import {
   RootComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { MouseHoverProvider } from "./context/mouseHoverContext"
 import { MouseMoveProvider } from "./context/mouseMoveContext"
 import { RenderPage } from "./renderPage"
@@ -47,6 +49,13 @@ export const DotPanel: FC = () => {
     pageName,
     pageSortedKey,
   ])
+  const canRenders = !!rootExecutionProps
+
+  useEffect(() => {
+    if (canRenders) {
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.INITIALIZE)
+    }
+  }, [canRenders])
 
   if (
     !canvasTree ||
@@ -62,7 +71,6 @@ export const DotPanel: FC = () => {
   })
 
   if (currentChildrenNode == undefined) return null
-
   return (
     <MouseHoverProvider>
       <MouseMoveProvider>

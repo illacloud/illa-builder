@@ -1,7 +1,7 @@
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import {
   Badge,
   BugIcon,
@@ -20,6 +20,7 @@ import { forkCurrentApp } from "@/api/apps"
 import { BuilderApi } from "@/api/base"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
@@ -36,8 +37,10 @@ import {
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import { fromNow } from "@/utils/dayjs"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   descriptionStyle,
   informationStyle,
@@ -54,6 +57,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const message = useMessage()
+  const navigate = useNavigate()
+
   const { teamIdentifier } = useParams()
 
   const appInfo = useSelector(getAppInfo)
@@ -61,6 +66,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const isFreezeCanvas = useSelector(getFreezeState)
   const isOnline = useSelector(getIsOnline)
   const debuggerData = useSelector(getExecutionDebuggerData)
+  const debugMessageNumber = debuggerData ? Object.keys(debuggerData).length : 0
   const isEditMode = useSelector(getIsILLAEditMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
 
@@ -72,11 +78,26 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     : t("exit_preview")
 
   const handleClickDebuggerIcon = useCallback(() => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "debug",
+      parameter2: debugMessageNumber,
+    })
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
-  }, [debuggerVisible, dispatch])
+  }, [debugMessageNumber, debuggerVisible, dispatch])
   const handleClickFreezeIcon = useCallback(() => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "lock_icon",
+      parameter2: !isFreezeCanvas ? "lock" : "unlock",
+    })
     dispatch(configActions.updateFreezeStateReducer(!isFreezeCanvas))
   }, [dispatch, isFreezeCanvas])
+
+  useEffect(() => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+      element: "debug",
+      parameter2: debugMessageNumber,
+    })
+  }, [debugMessageNumber])
 
   const deployApp = useCallback(
     (appId: string) => {
@@ -85,7 +106,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           url: `/apps/${appId}/deploy`,
           method: "POST",
         },
-        () => {
+        (res) => {
           window.open(
             window.location.protocol +
               "//" +
@@ -93,6 +114,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               `/${teamIdentifier}/deploy/app/${appId}`,
             "_blank",
           )
+          const version = res.data.version
+          dispatch(appInfoActions.updateAppVersionReducer(version))
         },
         () => {
           message.error({
@@ -109,7 +132,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         },
       )
     },
-    [teamIdentifier, message, t],
+    [teamIdentifier, dispatch, message, t],
   )
 
   const forkGuideAppAndDeploy = useCallback(
@@ -132,14 +155,23 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     if (isGuideMode) {
       setForkModalVisible(true)
     } else {
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+        element: "deploy",
+      })
       deployApp(appInfo.appId)
     }
   }, [appInfo.appId, isGuideMode, deployApp])
 
   const handlePreviewButtonClick = useCallback(() => {
     if (isEditMode) {
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+        element: "preview",
+      })
       dispatch(configActions.updateIllaMode("preview"))
     } else {
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+        element: "exit_preview",
+      })
       dispatch(configActions.updateIllaMode("edit"))
     }
   }, [dispatch, isEditMode])
@@ -160,8 +192,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   )
 
   const handleLogoClick = useCallback(() => {
-    window.location.href = `/${teamIdentifier}/dashboard/apps`
-  }, [teamIdentifier])
+    navigate(`/${teamIdentifier}/dashboard/apps`)
+  }, [navigate, teamIdentifier])
 
   return (
     <div className={className} css={navBarStyle}>

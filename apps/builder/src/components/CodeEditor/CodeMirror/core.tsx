@@ -48,6 +48,8 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     sqlScheme = {},
     singleLine,
     onChange,
+    onBlur,
+    onFocus,
     tooltipContainer,
   } = props
 
@@ -99,6 +101,13 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     return EditorView.updateListener.of((viewUpdate) => {
       if (viewUpdate.focusChanged) {
         setIsFocus(viewUpdate.view.hasFocus)
+        const currentString = viewUpdate.state.doc.toString()
+
+        if (viewUpdate.view.hasFocus) {
+          onFocus?.()
+        } else {
+          onBlur?.(currentString)
+        }
         if (!viewUpdate.view.hasFocus) {
           setTimeout(() => {
             closeCompletion(viewUpdate.view)
@@ -106,7 +115,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
         }
       }
     })
-  }, [])
+  }, [onBlur, onFocus])
 
   const changeUpdateListener: Extension = useMemo(() => {
     return EditorView.updateListener.of((viewUpdate) => {
