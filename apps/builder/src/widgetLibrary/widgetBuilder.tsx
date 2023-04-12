@@ -519,7 +519,7 @@ export const WidgetConfig: WidgetConfigs = {
   },
 }
 
-if (isCloudVersion) {
+if (isCloudVersion && import.meta.env.ILLA_GOOGLE_MAP_KEY) {
   WidgetConfig["MAP_WIDGET"] = {
     widget: MapWidget,
     config: MAP_WIDGET_CONFIG,

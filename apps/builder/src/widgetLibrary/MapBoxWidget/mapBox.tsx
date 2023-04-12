@@ -11,7 +11,6 @@ import {
   DefaultCenter,
   DefaultMarkers,
   DefaultZoom,
-  GoogleContext,
   LatitudeFieldName,
   Libraries,
   LongitudeFieldName,
@@ -57,8 +56,8 @@ export const MapBox: FC<MapProps> = ({
     }
   }
   const { isLoaded } = useJsApiLoader({
-    id: GoogleContext.id,
-    googleMapsApiKey: GoogleContext.key,
+    id: "google-map-script",
+    googleMapsApiKey: import.meta.env.ILLA_GOOGLE_MAP_KEY,
     libraries: Libraries,
   })
 
@@ -69,7 +68,7 @@ export const MapBox: FC<MapProps> = ({
 
   useEffect(() => {
     onMarkersChanged && onMarkersChanged(currentMarks)
-  }, [currentMarks])
+  }, [currentMarks, onMarkersChanged])
 
   if (!isLoaded) return null
   return (
