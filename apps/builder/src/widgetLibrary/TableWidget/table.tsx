@@ -4,8 +4,8 @@ import {
   Table as ReactTable,
   RowSelectionState,
 } from "@tanstack/table-core"
-import { cloneDeep, debounce, isEqual } from "lodash"
-import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import { cloneDeep, debounce } from "lodash"
+import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Table, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
