@@ -6,10 +6,6 @@ export const DefaultZoom = 3
 export const Libraries: "places"[] = ["places"]
 export const LatitudeFieldName = "lat"
 export const LongitudeFieldName = "lng"
-export const GoogleContext = {
-  key: import.meta.env.ILLA_GOOGLE_MAP_KEY,
-  id: "google-map-script",
-}
 export const ContainerStyle = {
   width: "100%",
   height: "100%",
