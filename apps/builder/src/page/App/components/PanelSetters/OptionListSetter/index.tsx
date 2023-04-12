@@ -1,30 +1,49 @@
-import { FC, useCallback } from "react"
+import { get } from "lodash"
+import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { OptionListSetterProvider } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import {
   generateNewOptionItem,
   generateOptionItemId,
 } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { ListBody } from "./body"
 import { OptionListHeader } from "./header"
-import { OptionListSetterProps } from "./interface"
+import { OptionItemShape, OptionListSetterProps } from "./interface"
 import { ListStyle } from "./style"
 
 export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
   const {
     attrName,
+    headerName,
+    itemName,
+    emptyNode,
+    showDuplicationKeyError,
     handleUpdateDsl,
     value = [],
     childrenSetter,
     widgetDisplayName,
   } = props
   const { t } = useTranslation()
+  const executionResult = useSelector(getExecutionResult)
+
+  const allViews = useMemo(() => {
+    return get(
+      executionResult,
+      `${widgetDisplayName}.${attrName}`,
+      [],
+    ) as OptionItemShape[]
+  }, [attrName, executionResult, widgetDisplayName])
+
+  const allViewsKeys = useMemo(() => {
+    return allViews.map((view) => view?.value || "")
+  }, [allViews])
 
   const handleAddOption = useCallback(() => {
-    const num = value.length + 1
-    const newItem = generateNewOptionItem(num)
+    const newItem = generateNewOptionItem(allViewsKeys, itemName)
     handleUpdateDsl(attrName, [...value, newItem])
-  }, [value, attrName, handleUpdateDsl])
+  }, [value, itemName, handleUpdateDsl, attrName])
 
   if (!Array.isArray(childrenSetter) || childrenSetter.length === 0) {
     return null
@@ -35,16 +54,21 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
       childrenSetter={childrenSetter}
       widgetDisplayName={widgetDisplayName}
       optionItems={value}
+      itemName={itemName}
       attrPath={attrName}
+      allViewsKeys={allViewsKeys}
       handleUpdateDsl={handleUpdateDsl}
       generateItemId={generateOptionItemId}
+      showDuplicationKeyError={showDuplicationKeyError}
     >
       <div css={ListStyle}>
         <OptionListHeader
-          labelName={t("editor.inspect.setter_content.option_list.title")}
+          labelName={
+            headerName ?? t("editor.inspect.setter_content.option_list.title")
+          }
           handleAddOption={handleAddOption}
         />
-        <ListBody />
+        <ListBody emptyNode={emptyNode} />
       </div>
     </OptionListSetterProvider>
   )

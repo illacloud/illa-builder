@@ -17,7 +17,7 @@ export const TABS_WIDGET_CONFIG: WidgetConfig = {
   type: "TABS_WIDGET",
   icon: <TabsWidgetIcon />,
   keywords: ["Tabs", "选项卡"],
-  sessionType: "PRESENTATION",
+  sessionType: "NAVIGATION",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     tabList: defaultTabList,
