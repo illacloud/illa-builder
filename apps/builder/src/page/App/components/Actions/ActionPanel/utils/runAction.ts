@@ -3,7 +3,6 @@ import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isNumber, isString } from "@illa-design/react"
 import { ActionApi, Api, ApiError } from "@/api/base"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
-import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import {
@@ -670,10 +669,6 @@ export const runAction = (
   const appId = getAppId(rootState)
   const executionResult = getExecutionResult(rootState)
   const isGuideMode = getIsILLAGuideMode(rootState)
-  if (actionType === "transformer") {
-    runActionTransformer(action as ActionItem<TransformerAction>)
-    return
-  }
   const { successEvent, failedEvent, ...restContent } = content
   const realContent: Record<string, any> = isTrigger
     ? restContent

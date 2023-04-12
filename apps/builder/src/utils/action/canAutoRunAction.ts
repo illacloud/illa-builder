@@ -9,9 +9,5 @@ export const canAutoRunActionWhenInit = (action: ActionItem<ActionContent>) => {
   const dynamicAttrPaths: string[] = []
   generateDynamicAttrPaths(action, dynamicAttrPaths)
   hasDynamicPath = dynamicAttrPaths.length > 0
-  return (
-    (action.triggerMode === "automate" ||
-      action.actionType === "transformer") &&
-    !hasDynamicPath
-  )
+  return action.triggerMode === "automate" && !hasDynamicPath
 }
