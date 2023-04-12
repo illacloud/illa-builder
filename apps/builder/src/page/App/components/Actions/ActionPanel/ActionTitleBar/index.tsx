@@ -191,14 +191,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       }
       case "run": {
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-          element: "action_edit_save_run",
+          element: "action_edit_run",
           parameter1: cachedAction.actionType,
         })
         break
       }
       case "save_and_run": {
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-          element: "action_edit_run",
+          element: "action_edit_save_run",
           parameter1: cachedAction.actionType,
         })
         break
