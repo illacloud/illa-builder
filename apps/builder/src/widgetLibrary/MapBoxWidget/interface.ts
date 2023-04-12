@@ -25,7 +25,6 @@ export interface WrappedMapProps
   displayName: string
   markers?: MarkersType
   loading?: boolean
-  handleUpdateDsl: (value: any) => void
   handleUpdateMultiExecutionResult: (
     updateSlice: {
       displayName: string

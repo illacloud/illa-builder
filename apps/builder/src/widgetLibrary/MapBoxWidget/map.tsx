@@ -105,13 +105,24 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       setMarkers: (markers: unknown) => {
-        if(!Array.isArray(markers)) {
+        if (!Array.isArray(markers)) {
+          console.error("TypeError: value is not a boolean")
           return
         }
-        handleUpdateDsl({ markers })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { markers },
+          },
+        ])
       },
       resetMarkers: () => {
-        handleUpdateDsl({ markers: JSON.parse(DefaultMarkers || "{}") })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { markers: JSON.parse(DefaultMarkers || "{}") },
+          },
+        ])
       },
     })
     return () => {
@@ -121,7 +132,6 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
     displayName,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    handleUpdateDsl,
     markers,
     center,
     handleUpdateMultiExecutionResult,
@@ -147,7 +157,6 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
         loading={loading}
         zoom={zoom}
         displayName={displayName}
-        handleUpdateDsl={handleUpdateDsl}
         handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
         handleOnMarkerSelect={handleOnMarkerSelect}
         handleOnMarkerCreated={handleOnMarkerCreated}
