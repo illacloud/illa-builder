@@ -5,7 +5,11 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   ILLA_PAGE_NAME,
 } from "@/illa-public-component/MixpanelUtils/interface"
-import { getIsILLAPreviewMode } from "@/redux/config/configSelector"
+import {
+  getIllaMode,
+  getIsILLAPreviewMode,
+  getIsILLAProductMode,
+} from "@/redux/config/configSelector"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -33,13 +37,17 @@ const getIsPreviewMode = () => {
 const getPreviewInfo = () => {
   const rootState = store.getState()
   const rootNode = getCanvas(rootState)
-
+  const isProduction = getIsILLAProductMode(rootState)
   const rootProps = rootNode?.props
-  if (!rootProps) return {}
-  const { viewportWidth, viewportHeight } = rootProps
+  if (!rootProps)
+    return {
+      w: "auto",
+      h: "auto",
+    }
+  const { viewportWidth = "auto", viewportHeight = "auto" } = rootProps
   return {
-    w: viewportWidth,
-    h: viewportHeight,
+    w: isProduction ? "auto" : viewportWidth,
+    h: isProduction ? "auto" : viewportHeight,
   }
 }
 
@@ -48,7 +56,6 @@ const getPageInfo = () => {
   const executionResult = getExecutionResult(rootState)
   const rootExecutionProps = executionResult.root
   let result: Record<string, unknown>[] = []
-
   if (!rootExecutionProps) return result
   const { pageSortedKey, homepageDisplayName } = rootExecutionProps
   if (!Array.isArray(pageSortedKey) || pageSortedKey.length === 0) return result
@@ -146,6 +153,30 @@ const getUserID = () => {
   return userInfo?.userId || ""
 }
 
+const getAPPMode = () => {
+  const rootState = store.getState()
+  const appMode = getIllaMode(rootState)
+  return appMode
+}
+
+const getPageName = () => {
+  const appMode = getAPPMode()
+  switch (appMode) {
+    case "edit": {
+      return ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR
+    }
+    case "preview": {
+      return ILLA_MIXPANEL_BUILDER_PAGE_NAME.PREVIEW
+    }
+    case "production": {
+      return ILLA_MIXPANEL_BUILDER_PAGE_NAME.DEPLOY
+    }
+    default: {
+      return ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR
+    }
+  }
+}
+
 export const track = (
   event: ILLA_MIXPANEL_EVENT_TYPE,
   pageName: ILLA_PAGE_NAME,
@@ -188,21 +219,15 @@ export const trackInEditor = (
   const appType = getAppType()
   const isPublish = getAppIsPublish()
   const isPublic = getAppIsPublic()
-  const isPreviewMode = getIsPreviewMode()
-  track(
-    event,
-    isPreviewMode
-      ? ILLA_MIXPANEL_BUILDER_PAGE_NAME.PREVIEW
-      : ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
-    {
-      ...properties,
-      parameter6: previewInfo,
-      parameter7: pageInfo,
-      parameter8: appType,
-      parameter9: isPublish,
-      parameter10: isPublic,
-    },
-  )
+  const pageName = getPageName()
+  track(event, pageName, {
+    ...properties,
+    parameter6: previewInfo,
+    parameter7: pageInfo,
+    parameter8: appType,
+    parameter9: isPublish,
+    parameter10: isPublic,
+  })
 }
 
 export const trackPageDurationStart = () => {

@@ -53,7 +53,7 @@ export const GlobalsSpaceTree: FC = () => {
             if (visible) {
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
                 element: "global_modal",
-                parameter3: "add",
+                parameter2: "add",
               })
             }
             setIsOpen(visible)

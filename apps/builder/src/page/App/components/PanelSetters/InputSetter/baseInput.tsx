@@ -57,16 +57,12 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const onChange = useCallback(
     (value: string) => {
       let output = value
-      if (wrappedCodeFunc) {
-        handleUpdateDsl(attrName, wrappedCodeFunc(output))
-        return
-      }
       if (currentListDisplayName) {
         output = getNeedComputedValueWithList(value, currentListDisplayName)
       }
       handleUpdateDsl(attrName, output)
     },
-    [attrName, currentListDisplayName, handleUpdateDsl, wrappedCodeFunc],
+    [attrName, currentListDisplayName, handleUpdateDsl],
   )
 
   const onFocus = useCallback(() => {
