@@ -1,10 +1,9 @@
 import { CellContext } from "@tanstack/table-core"
 import { FC } from "react"
-import { Button, Image, Link } from "@illa-design/react"
+import { Button, Image, ImageProps, Link } from "@illa-design/react"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
-import { overFlowStyle } from "@/widgetLibrary/TableWidget/style"
 
 export const RenderTableLink: FC<{
   cell: CellContext<any, any>
@@ -35,8 +34,7 @@ export const RenderTableImage: FC<{
   )
   return (
     <Image
-      w={"100%"}
-      width={"100%"}
+      width={"unset"}
       height={"42px"}
       src={value}
       objectFit={objectFit}
@@ -74,13 +72,10 @@ export const RenderTableButton: FC<{
 
   return (
     <Button
-      css={overFlowStyle}
-      fullWidth
+      w={"100%"}
       disabled={disabled}
       colorScheme={colorScheme}
       onClick={clickEvent}
-    >
-      {`${value ?? "-"}`}
-    </Button>
+    >{`${value ?? "-"}`}</Button>
   )
 }
