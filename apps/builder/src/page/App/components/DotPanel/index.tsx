@@ -15,7 +15,10 @@ import {
   PageNode,
   RootComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
-import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getExecutionResult,
+  getRootNodeExecutionResult,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { MouseHoverProvider } from "./context/mouseHoverContext"
 import { MouseMoveProvider } from "./context/mouseMoveContext"
@@ -24,6 +27,7 @@ import { RenderPage } from "./renderPage"
 export const DotPanel: FC = () => {
   const canvasTree = useSelector(getCanvas) as RootComponentNode
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
+  const executionResult = useSelector(getExecutionResult)
   const mode = useSelector(getIllaMode)
   const isProductionMode = useSelector(getIsILLAProductMode)
   const viewportSize = useSelector(getViewportSizeSelector)
@@ -49,7 +53,7 @@ export const DotPanel: FC = () => {
     pageName,
     pageSortedKey,
   ])
-  const canRenders = !!rootExecutionProps
+  const canRenders = !!executionResult.root
 
   useEffect(() => {
     if (canRenders) {

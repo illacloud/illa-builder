@@ -78,7 +78,7 @@ export const GlobalStateTreeItem: FC<WorkSpaceTreeNodeProps> = memo(
                   if (visible) {
                     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
                       element: "global_modal",
-                      parameter1: "edit",
+                      parameter2: "edit",
                     })
                   }
                   setIsOpen(visible)

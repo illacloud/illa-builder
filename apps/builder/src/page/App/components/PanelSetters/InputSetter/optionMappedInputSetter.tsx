@@ -29,7 +29,7 @@ export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
     <BaseInput
       {...props}
       value={realInputValue(value, widgetDisplayName)}
-      // handleUpdateDsl={handleValueChange}
+      handleUpdateDsl={handleValueChange}
       wrappedCodeFunc={wrappedCodeFunc}
     />
   )

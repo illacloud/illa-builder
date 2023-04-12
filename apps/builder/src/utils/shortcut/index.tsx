@@ -135,6 +135,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
           }
           trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
             element: "component_delete_modal_delete",
+            parameter3: options?.source || "left_delete",
           })
           dispatch(
             componentsActions.deleteComponentNodeReducer({
