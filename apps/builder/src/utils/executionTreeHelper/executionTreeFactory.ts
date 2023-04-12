@@ -4,7 +4,6 @@ import toposort from "toposort"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
-import { runActionTransformer } from "@/page/App/components/Actions/ActionPanel/utils/runActionTransformerHelper"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DependenciesState,
@@ -648,17 +647,6 @@ export class ExecutionTreeFactory {
               if (currentDynamicString.includes(widgetOrAction.displayName)) {
                 return current
               }
-            }
-            if (
-              widgetOrAction.actionType === "transformer" &&
-              !reduxActionType?.isUpdateActionReduxAction
-            ) {
-              let calcResult = runActionTransformer(
-                widgetOrAction,
-                current,
-                false,
-              )
-              set(current, `${widgetOrAction.displayName}.value`, calcResult)
             }
             if (
               widgetOrAction.actionType !== "transformer" &&

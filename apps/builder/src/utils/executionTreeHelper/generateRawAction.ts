@@ -4,6 +4,7 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 import { isObject } from "@/utils/typeHelper"
+import { TransformerAction } from "../../redux/currentApp/action/transformerAction"
 
 interface RawAction {
   [key: string]: any
@@ -56,18 +57,25 @@ export const generateRawAction = (
     config,
     triggerMode,
   } = action
-  generateDynamicAttrPaths(action, $dynamicAttrPaths)
-  return {
+  const modifiedAction: RawAction = {
     $actionId: actionId,
     $resourceId: resourceId,
     displayName,
     actionType,
-    triggerMode,
-    transformer,
-    config,
-    content,
     $type: "ACTION",
-    $dynamicAttrPaths,
-    [actionType === "transformer" ? "value" : "data"]: undefined,
+    $dynamicAttrPaths: [],
   }
+  if (actionType === "transformer") {
+    modifiedAction.value = (content as TransformerAction).transformerString
+  } else {
+    modifiedAction.data = undefined
+    modifiedAction.content = content
+    modifiedAction.config = config
+    modifiedAction.triggerMode = triggerMode
+    modifiedAction.transformer = transformer
+  }
+  generateDynamicAttrPaths(modifiedAction, $dynamicAttrPaths)
+  modifiedAction.$dynamicAttrPaths = $dynamicAttrPaths
+
+  return modifiedAction
 }
