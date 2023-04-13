@@ -10,6 +10,8 @@ RUN pwd
 COPY ./ ./
 ARG BUILDER_ENV=production
 ENV ILLA_BUILDER_ENV ${BUILDER_ENV}
+ARG GOOGLE_MAP_KEY=key
+ENV ILLA_GOOGLE_MAP_KEY ${GOOGLE_MAP_KEY}
 RUN npm install -g pnpm
 RUN whereis pnpm
 RUN whereis node

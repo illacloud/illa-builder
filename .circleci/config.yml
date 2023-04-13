@@ -40,7 +40,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker build --cache-from=illa-builder-frontend -f Dockerfile -t illa-builder-frontend --build-arg BUILDER_ENV=${ILLA_BUILDER_ENV} .
+            docker build --cache-from=illa-builder-frontend -f Dockerfile -t illa-builder-frontend --build-arg BUILDER_ENV=${ILLA_BUILDER_ENV} --build-arg GOOGLE_MAP_KEY=$ILLA_GOOGLE_MAP_KEY .
       - run:
           name: Save Docker image layer cache
           command: |
