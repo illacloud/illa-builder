@@ -5,7 +5,6 @@ import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { overFlowStyle } from "@/widgetLibrary/TableWidget/style"
 import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
-import { overFlowStyle } from "@/widgetLibrary/TableWidget/style"
 
 export const RenderTableLink: FC<{
   cell: CellContext<any, any>
