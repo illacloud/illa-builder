@@ -1,24 +1,39 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { HTMLAttributes } from "react"
-import { TableProps } from "@illa-design/react"
+import { ButtonColorScheme, ImageProps, TableProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export const ColumnTypeOption = [
+  { label: "Auto", value: "auto" },
   { label: "Text", value: "text" },
   { label: "Date", value: "date" },
   { label: "Number", value: "number" },
   { label: "Percent", value: "percent" },
   { label: "Link", value: "link" },
   { label: "Button", value: "button" },
+  { label: "Boolean", value: "boolean" },
+  { label: "Image", value: "image" },
 ]
 
+export const defaultColumnItem: Partial<ColumnItemShape> = {
+  enableSorting: true,
+  type: "auto",
+  visible: true,
+  format: "YYYY-MM-DD",
+  colorScheme: "blue",
+  objectFit: "scale-down",
+}
+
 export type ColumnType =
+  | "auto"
   | "text"
   | "date"
   | "number"
   | "percent"
   | "link"
   | "button"
+  | "boolean"
+  | "image"
 
 export interface ColumnItemShape
   extends Pick<ColumnDef<object>, "cell" | "id"> {
@@ -26,8 +41,10 @@ export interface ColumnItemShape
   header: string
   value?: string
   label?: string
-  disabled?: string
   type?: ColumnType
+  disabled?: boolean
+  colorScheme?: ButtonColorScheme
+  objectFit?: ImageProps["objectFit"]
   enableSorting?: boolean
   visible?: boolean
   decimalPlaces?: number
@@ -53,6 +70,7 @@ export interface WrappedTableProps
       | "rowSelection"
       | "columnVisibility"
       | "multiRowSelection"
+      | "columnSizing"
       | "data"
     >,
     Omit<BaseWidgetProps, "triggerEventHandler"> {

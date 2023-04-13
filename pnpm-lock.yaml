@@ -1346,8 +1346,10 @@ importers:
       '@tanstack/match-sorter-utils': ^8.1.1
       '@tanstack/react-table': ^8.5.11
       '@types/chroma-js': ^2.1.4
+      '@types/lodash.debounce': ^4.0.7
       '@vitejs/plugin-react-swc': ^3.0.1
       chroma-js: ^2.1.2
+      lodash.debounce: ^4.0.8
       react-fast-compare: ^3.2.0
       react-use: ^17.4.0
     dependencies:
@@ -1365,11 +1367,13 @@ importers:
       '@tanstack/match-sorter-utils': 8.7.6
       '@tanstack/react-table': 8.7.9
       chroma-js: 2.4.2
+      lodash.debounce: 4.0.8
       react-fast-compare: 3.2.0
       react-use: 17.4.0
     devDependencies:
       '@rollup/plugin-typescript': 10.0.1
       '@types/chroma-js': 2.1.5
+      '@types/lodash.debounce': 4.0.7
       '@vitejs/plugin-react-swc': 3.1.0
 
   illa-design/packages/tabs:
