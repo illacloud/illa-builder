@@ -1,15 +1,21 @@
 import { CellContext } from "@tanstack/table-core"
-import { FC } from "react"
+import { isBoolean } from "lodash"
 import {
-  Button,
-  Link,
   dayjsPro,
   isFunction,
   isNumber,
   isObject,
+  isString,
 } from "@illa-design/react"
-import { convertPathToString } from "@/utils/executionTreeHelper/utils"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import {
+  ColumnItemShape,
+  defaultColumnItem,
+} from "@/widgetLibrary/TableWidget/interface"
+import {
+  RenderTableButton,
+  RenderTableImage,
+  RenderTableLink,
+} from "@/widgetLibrary/TableWidget/renderTableCell"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
@@ -40,13 +46,10 @@ export const tansDataFromOld = (
         })
       } else {
         reOrderColumns.push({
+          ...defaultColumnItem,
           id: key,
           header: key,
           accessorKey: key,
-          enableSorting: true,
-          type: "text",
-          visible: true,
-          format: "YYYY-MM-DD",
           columnIndex: index,
         })
       }
@@ -69,13 +72,10 @@ export const tansTableDataToColumns = (
         cur += 1
       }
       columns.push({
+        ...defaultColumnItem,
         id: key,
         header: key,
         accessorKey: key,
-        enableSorting: true,
-        type: "text",
-        visible: true,
-        format: "YYYY-MM-DD",
         columnIndex,
       } as ColumnItemShape)
     })
@@ -106,46 +106,45 @@ export const transTableColumnEvent = (events: any[], columnLength: number) => {
   return res
 }
 
-const RenderTableLink: FC<{
-  cell: CellContext<any, any>
-  mappedValue?: string
-}> = (props) => {
-  const { cell, mappedValue } = props
-  const cellValue = mappedValue ? mappedValue : cell.getValue()
-
-  return cellValue ? (
-    <Link href={cellValue} target="_blank">{`${cellValue}`}</Link>
-  ) : (
-    <span>{"-"}</span>
-  )
-}
-
-const RenderTableButton: FC<{
-  cell: CellContext<any, any>
-  eventPath: string
-  mappedValue?: string
-  handleOnClickMenuItem?: (path: string) => void
-}> = (props) => {
-  const { cell, mappedValue, eventPath, handleOnClickMenuItem } = props
-  const paths = [eventPath, `${cell.row.index}`]
-  const clickEvent = () => {
-    handleOnClickMenuItem?.(convertPathToString(paths))
+export const getConfigFromColumnShapeData = <K extends keyof ColumnItemShape>(
+  itemKey: K,
+  data: ColumnItemShape,
+  rowIndex: number,
+  fromCurrentRow?: Record<K, boolean>,
+): ColumnItemShape[K] => {
+  const value = data[itemKey]
+  if (fromCurrentRow?.[itemKey] && Array.isArray(value)) {
+    return value[rowIndex]
   }
-
-  return (
-    <Button w={"100%"} onClick={clickEvent}>{`${
-      mappedValue ? mappedValue : cell.getValue() ?? "-"
-    }`}</Button>
-  )
+  return value
 }
 
-const getValue = (
+const getPropertyValue = (
   props: CellContext<any, any>,
-  mappedValue?: string,
+  mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
 ) => {
   const value = props.getValue()
   const index = props.row.index
+
+  if (mappedValue !== undefined && mappedValue !== null) {
+    if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
+      return mappedValue[index] ?? "-"
+    }
+    return mappedValue
+  }
+
+  return value ?? "-"
+}
+
+const getStringPropertyValue = (
+  props: CellContext<any, any>,
+  mappedValue?: unknown,
+  fromCurrentRow?: Record<string, boolean>,
+) => {
+  const value = props.getValue()
+  const index = props.row.index
+
   if (mappedValue) {
     if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
       return `${mappedValue[index] ?? "-"}`
@@ -159,6 +158,27 @@ const getValue = (
     return "-"
   }
   return `${value ?? "-"}`
+}
+
+const isImageUrl = (str: unknown) => {
+  if (!isString(str)) return false
+  return (
+    str.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/g) !== null
+  )
+}
+
+const isValidUrl = (str: unknown) => {
+  if (!isString(str)) return false
+  const pattern = new RegExp(
+    "^(https?:\\/\\/)?" + // protocol
+    "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+    "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+    "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+    "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+    "(\\#[-a-z\\d_]*)?$",
+    "i",
+  )
+  return pattern.test(str)
 }
 
 export const getCellForType = (
@@ -175,35 +195,41 @@ export const getCellForType = (
   } = data
 
   switch (type) {
-    default:
-      return (props: CellContext<any, any>) => {
-        const value = props.getValue()
-        if (isObject(value)) {
-          return `${JSON.stringify(value)}`
-        }
-        return `${value ?? "-"}`
-      }
     case "text":
       return (props: CellContext<any, any>) => {
-        return getValue(props, mappedValue, fromCurrentRow)
+        return getStringPropertyValue(props, mappedValue, fromCurrentRow)
       }
     case "link":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         return RenderTableLink({
           cell: props,
-          mappedValue: value,
+          value,
         })
+      }
+    case "image":
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        return RenderTableImage({
+          cell: props,
+          value,
+          data,
+        })
+      }
+    case "boolean":
+      return (props: CellContext<any, any>) => {
+        const value = getPropertyValue(props, mappedValue, fromCurrentRow)
+        return isBoolean(value) ? value.toString() : "-"
       }
     case "number":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
         return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
       }
     case "percent":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
         return isNumber(formatVal)
           ? `${(formatVal * 100).toFixed(decimalPlaces)}%`
@@ -211,19 +237,53 @@ export const getCellForType = (
       }
     case "date":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = dayjsPro(value).format(format)
         return formatVal ? formatVal : "-"
       }
     case "button":
       return (props: CellContext<any, any>) => {
-        const value = getValue(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+
         return RenderTableButton({
           cell: props,
-          mappedValue: value,
+          value,
+          data,
           eventPath,
           handleOnClickMenuItem,
         })
+      }
+    default:
+      return (props: CellContext<any, any>) => {
+        const value = getPropertyValue(props, mappedValue, fromCurrentRow)
+        if (isBoolean(value)) {
+          return value.toString()
+        } else if (isNumber(value)) {
+          return value.toFixed(decimalPlaces)
+        } else if (!isNaN(Number(value))) {
+          return Number(value).toFixed(decimalPlaces)
+        } else if (dayjsPro(value).isValid()) {
+          return dayjsPro(value).format(format)
+        } else if (isImageUrl(value)) {
+          const stringValue = getStringPropertyValue(
+            props,
+            mappedValue,
+            fromCurrentRow,
+          )
+          return RenderTableImage({
+            cell: props,
+            value: stringValue,
+            data,
+          })
+        } else if (isValidUrl(value)) {
+          const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+          return RenderTableLink({
+            cell: props,
+            value,
+          })
+        } else {
+          return getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        }
       }
   }
 }

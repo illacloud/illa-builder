@@ -50,6 +50,10 @@ export const generatorTableEventHandlerConfig = (
             value: "showNotification",
           },
           {
+            label: i18n.t("editor.inspect.setter_label.copy_to_clipboard"),
+            value: "copyToClipboard",
+          },
+          {
             label: i18n.t("editor.inspect.setter_label.set_router"),
             value: "setRouter",
           },
@@ -159,7 +163,7 @@ export const generatorTableEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-setPrimaryValue`,
-        labelName: "setPrimaryValue",
+        labelName: i18n.t("editor.method.statistics.primary_value"),
         setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
@@ -174,6 +178,14 @@ export const generatorTableEventHandlerConfig = (
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
         shown: (widgetMethod) => widgetMethod === "setImageUrl",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-copiedValue`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        attrName: "copiedValue",
+        bindAttrName: ["actionType"],
+        shown: (widgetMethod) => widgetMethod === "copyToClipboard",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-fileUrl`,
@@ -295,7 +307,7 @@ export const generatorTableEventHandlerConfig = (
         labelDesc: i18n.t(
           "editor.inspect.setter_tips.variable.available_in_objects",
         ),
-        setterType: "INPUT_SETTER",
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "globalStateKeyPath",
         bindAttrName: ["globalStateMethod"],
         shown: (globalStateMethod) => globalStateMethod === "setIn",
@@ -303,7 +315,7 @@ export const generatorTableEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-stateValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
-        setterType: "INPUT_SETTER",
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "globalStateValue",
         bindAttrName: ["globalStateMethod"],
         shown: (globalStateMethod) =>
@@ -330,7 +342,7 @@ export const generatorTableEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-localStorageKey`,
         labelName: i18n.t("editor.inspect.setter_label.key"),
-        setterType: "INPUT_SETTER",
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "localStorageKey",
         bindAttrName: ["localStorageMethod"],
         shown: (localStorageMethod) => localStorageMethod === "setValue",
@@ -338,7 +350,7 @@ export const generatorTableEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-localStorageValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
-        setterType: "INPUT_SETTER",
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "localStorageValue",
         bindAttrName: ["localStorageMethod"],
         shown: (localStorageMethod) => localStorageMethod === "setValue",
@@ -531,8 +543,8 @@ export const generatorTableEventHandlerConfig = (
         placeholder: i18n.t(
           "editor.inspect.setter_placeholder.file_download.file_name",
         ),
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        // expectedType: VALIDATION_TYPES.STRING,
         attrName: "fileName",
         bindAttrName: ["actionType"],
         shown: (type) => type === "downloadFile",
@@ -546,8 +558,8 @@ export const generatorTableEventHandlerConfig = (
         placeholder: i18n.t(
           "editor.inspect.setter_placeholder.file_download.file_data",
         ),
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        // expectedType: VALIDATION_TYPES.STRING,
         attrName: "fileData",
         bindAttrName: ["actionType"],
         shown: (type) => type === "downloadFile",
