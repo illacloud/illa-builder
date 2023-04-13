@@ -1,9 +1,13 @@
-import { FC, useCallback } from "react"
+import { get } from "lodash"
+import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { OptionListSetterProvider } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { OptionListHeader } from "@/page/App/components/PanelSetters/OptionListSetter/header"
+import { OptionItemShape } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { ListStyle } from "@/page/App/components/PanelSetters/OptionListSetter/style"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { CarouselSettings } from "@/widgetLibrary/CarouselWidget/interface"
 import { CAROUSEL_DEFAULT_IMAGE } from "@/widgetLibrary/CarouselWidget/widgetConfig"
 import { ListBody } from "./body"
@@ -26,6 +30,19 @@ export const CarouselListSetter: FC<CarouselListSetterProps> = (props) => {
     widgetDisplayName,
   } = props
   const { t } = useTranslation()
+  const executionResult = useSelector(getExecutionResult)
+
+  const allViews = useMemo(() => {
+    return get(
+      executionResult,
+      `${widgetDisplayName}.${attrName}`,
+      [],
+    ) as OptionItemShape[]
+  }, [attrName, executionResult, widgetDisplayName])
+
+  const allViewsKeys = useMemo(() => {
+    return allViews.map((view) => view?.value || "")
+  }, [allViews])
 
   const handleAddOption = useCallback(() => {
     const num = value.length + 1
@@ -43,6 +60,7 @@ export const CarouselListSetter: FC<CarouselListSetterProps> = (props) => {
       widgetDisplayName={widgetDisplayName}
       optionItems={value}
       attrPath={attrName}
+      allViewsKeys={allViewsKeys}
       handleUpdateDsl={handleUpdateDsl}
       generateItemId={generateItemId}
     >

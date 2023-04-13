@@ -53,7 +53,7 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
   type: "MENU_WIDGET",
   icon: <MenuWidgetIcon />,
   keywords: ["Menu", "菜单"],
-  sessionType: "PRESENTATION",
+  sessionType: "NAVIGATION",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     items,

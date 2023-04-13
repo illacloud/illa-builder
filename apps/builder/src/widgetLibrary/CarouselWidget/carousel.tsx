@@ -20,6 +20,14 @@ import { formatData } from "@/widgetLibrary/CarouselWidget/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { CarouselProps, CarouselWidgetProps } from "./interface"
 
+const PrevArrow = () => {
+  return <PreviousIcon />
+}
+
+const NextArrow = () => {
+  return <NextIcon />
+}
+
 export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
   const {
     onClickItem,
@@ -47,8 +55,8 @@ export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
       arrows={showArrows}
       autoplay={autoPlay}
       autoplaySpeed={interval}
-      prevArrow={<PreviousIcon />}
-      nextArrow={<NextIcon />}
+      prevArrow={<PrevArrow />}
+      nextArrow={<NextArrow />}
       lazyLoad={"anticipated"}
       afterChange={onChange}
     >

@@ -262,6 +262,7 @@ export const transformEvents = (
         "seekTo",
         "setStartOfRange",
         "setEndOfRange",
+        "setMarkers",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
@@ -300,7 +301,9 @@ export const transformEvents = (
       widgetMethod === "rowSelect" ||
       widgetMethod === "resetPrimaryValue" ||
       widgetMethod === "slickNext" ||
-      widgetMethod === "slickPrevious"
+      widgetMethod === "slickPrevious" ||
+      widgetMethod === "resetValue" ||
+      widgetMethod === "resetMarkers"
     ) {
       return {
         script: `{{${widgetID}.${widgetMethod}()}}`,

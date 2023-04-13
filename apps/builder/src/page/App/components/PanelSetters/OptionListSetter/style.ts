@@ -59,6 +59,10 @@ export const labelNameAndIconStyle = css`
 export const labelNameWrapperStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 export const movableIconWrapperStyle = css`
@@ -76,4 +80,16 @@ export const emptyEmptyBodyStyle = css`
   width: 100%;
   height: 40px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+`
+
+export const labelWrapperStyle = css`
+  display: flex;
+  gap: 8px;
+  max-width: calc(100% - 14px);
+  align-items: center;
+  white-space: nowrap;
+  & svg {
+    width: 14px;
+    height: 14px;
+  }
 `

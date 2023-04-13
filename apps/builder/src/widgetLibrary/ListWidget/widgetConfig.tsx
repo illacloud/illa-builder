@@ -14,7 +14,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.list.name"),
   keywords: ["list", "列表"],
   icon: <ListWidgetIcon />,
-  sessionType: "PRESENTATION",
+  sessionType: "CONTAINER",
   w: 32,
   h: 38,
   childrenNode: [

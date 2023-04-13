@@ -143,6 +143,15 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setSelectedValue",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-markers`,
+        labelName: i18n.t("editor.inspect.setter_label.map.markers"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.map.markers"),
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setMarkers",
+      },
+      {
         // TODO: follow-up support @mengcheng
         id: `${baseWidgetName}-interaction-event-handler-setHidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
@@ -199,7 +208,7 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setImageUrl",
       },
       {
-        id: `${baseWidgetName}-interaction-event-handler-setImage`,
+        id: `${baseWidgetName}-interaction-event-handler-copiedValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "INPUT_SETTER",
         attrName: "copiedValue",

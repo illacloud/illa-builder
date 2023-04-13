@@ -13,6 +13,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLOtherMultiAttr,
     displayName,
     viewList,
     tooltipText,
@@ -21,6 +22,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     dynamicHeight = "fixed",
     triggerEventHandler,
     updateComponentHeight,
+    linkWidgetDisplayName,
     dynamicMaxHeight,
     dynamicMinHeight,
     h,
@@ -58,6 +60,23 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     return <ContainerEmptyState />
   }, [blockColumns, childrenNode, currentIndex, h])
 
+  const handleUpdateOriginalDSLAttrs = useCallback(
+    (updateSlice: Record<string, any>) => {
+      handleUpdateOriginalDSLMultiAttr(updateSlice)
+      if (linkWidgetDisplayName) {
+        handleUpdateOriginalDSLOtherMultiAttr?.(
+          linkWidgetDisplayName,
+          updateSlice,
+        )
+      }
+    },
+    [
+      handleUpdateOriginalDSLMultiAttr,
+      handleUpdateOriginalDSLOtherMultiAttr,
+      linkWidgetDisplayName,
+    ],
+  )
+
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       currentIndex,
@@ -65,7 +84,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       setCurrentViewKey: (key: string) => {
         const index = viewList.findIndex((viewItem) => viewItem.key === key)
         if (index === -1) return
-        handleUpdateOriginalDSLMultiAttr({
+        handleUpdateOriginalDSLAttrs({
           currentIndex: index,
           currentKey: key,
         })
@@ -74,7 +93,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
         const numberIndex = parseInt(index)
         const view = viewList[numberIndex]
         if (!view) return
-        handleUpdateOriginalDSLMultiAttr({
+        handleUpdateOriginalDSLAttrs({
           currentIndex: numberIndex,
           currentKey: view.key,
         })
@@ -86,7 +105,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           newCurrentIndex = 0
         }
         const currentView = viewList[newCurrentIndex]
-        handleUpdateOriginalDSLMultiAttr({
+        handleUpdateOriginalDSLAttrs({
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
         })
@@ -106,7 +125,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
             newCurrentIndex = 0
           }
         }
-        handleUpdateOriginalDSLMultiAttr({
+        handleUpdateOriginalDSLAttrs({
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
         })
@@ -119,7 +138,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           newCurrentIndex = viewList.length - 1
         }
         const currentView = viewList[newCurrentIndex]
-        handleUpdateOriginalDSLMultiAttr({
+        handleUpdateOriginalDSLAttrs({
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
         })
@@ -140,8 +159,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
             newCurrentIndex = viewList.length - 1
           }
         }
-
-        handleUpdateOriginalDSLMultiAttr({
+        handleUpdateOriginalDSLAttrs({
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
         })
@@ -155,7 +173,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     displayName,
     handleDeleteGlobalData,
     handleUpdateGlobalData,
-    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLAttrs,
     viewList,
   ])
 
