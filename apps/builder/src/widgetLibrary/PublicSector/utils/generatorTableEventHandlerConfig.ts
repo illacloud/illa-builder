@@ -307,7 +307,7 @@ export const generatorTableEventHandlerConfig = (
         labelDesc: i18n.t(
           "editor.inspect.setter_tips.variable.available_in_objects",
         ),
-        setterType: "INPUT_SETTER",
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "globalStateKeyPath",
         bindAttrName: ["globalStateMethod"],
         shown: (globalStateMethod) => globalStateMethod === "setIn",
@@ -315,7 +315,7 @@ export const generatorTableEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-stateValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
-        setterType: "INPUT_SETTER",
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "globalStateValue",
         bindAttrName: ["globalStateMethod"],
         shown: (globalStateMethod) =>
@@ -342,7 +342,7 @@ export const generatorTableEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-localStorageKey`,
         labelName: i18n.t("editor.inspect.setter_label.key"),
-        setterType: "INPUT_SETTER",
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "localStorageKey",
         bindAttrName: ["localStorageMethod"],
         shown: (localStorageMethod) => localStorageMethod === "setValue",
@@ -350,7 +350,7 @@ export const generatorTableEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-localStorageValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
-        setterType: "INPUT_SETTER",
+        setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
         attrName: "localStorageValue",
         bindAttrName: ["localStorageMethod"],
         shown: (localStorageMethod) => localStorageMethod === "setValue",

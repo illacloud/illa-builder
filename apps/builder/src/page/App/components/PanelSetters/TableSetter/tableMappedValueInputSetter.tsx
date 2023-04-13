@@ -76,7 +76,11 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
   }, [targetComponentProps])
 
   const fromCurrentRow = useMemo(() => {
-    return get(targetComponentProps, `${parentAttrName}.fromCurrentRow`, {}) as Record<string, boolean>
+    return get(
+      targetComponentProps,
+      `${parentAttrName}.fromCurrentRow`,
+      {},
+    ) as Record<string, boolean>
   }, [targetComponentProps, parentAttrName])
 
   const dataPath = useMemo(() => {
@@ -100,7 +104,14 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
         [name]: isFromCurrentRow,
       })
     },
-    [attrName, dataPath, handleUpdateDsl, parentAttrName, widgetDisplayName, fromCurrentRow],
+    [
+      attrName,
+      dataPath,
+      handleUpdateDsl,
+      parentAttrName,
+      widgetDisplayName,
+      fromCurrentRow,
+    ],
   )
 
   const wrappedCodeFunc = useCallback(

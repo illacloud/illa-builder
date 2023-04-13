@@ -3,8 +3,8 @@ import { FC } from "react"
 import { Button, Image, Link } from "@illa-design/react"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
-import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
 import { overFlowStyle } from "@/widgetLibrary/TableWidget/style"
+import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
 
 export const RenderTableLink: FC<{
   cell: CellContext<any, any>
