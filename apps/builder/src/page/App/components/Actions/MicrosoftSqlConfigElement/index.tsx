@@ -12,6 +12,10 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -36,6 +40,7 @@ import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
@@ -60,6 +65,15 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
   const sslOpen = watch("ssl", resource?.content.ssl.ssl ?? false)
 
   const handleConnectionTest = useCallback(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element: "resource_configure_back",
+        parameter1: resourceId ? "resource_edit" : "resource_new",
+        parameter5: resource.resourceType,
+      },
+    )
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -75,7 +89,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
       "mssql",
       setTestLoading,
     )
-  }, [setTestLoading, getValues, sslOpen])
+  }, [resourceId, resource.resourceType, getValues, sslOpen])
 
   const handleHostValidate = useCallback(
     (value: string) => {

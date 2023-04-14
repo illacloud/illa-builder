@@ -12,6 +12,10 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import {
   applyConfigItemLabelText,
   container,
   divider,
@@ -40,6 +44,7 @@ import {
 } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
 import { ClickhouseConfigElementProps } from "./interface"
 
@@ -69,6 +74,15 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     sslOpen && watch("selfSigned", resource?.content.ssl.selfSigned ?? false)
 
   const handleConnectionTest = useCallback(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element: "resource_configure_back",
+        parameter1: resourceId ? "resource_edit" : "resource_new",
+        parameter5: "clickhouse",
+      },
+    )
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -83,7 +97,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
       "clickhouse",
       setTestLoading,
     )
-  }, [setTestLoading, getValues, sslOpen])
+  }, [resourceId, getValues, sslOpen])
 
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")

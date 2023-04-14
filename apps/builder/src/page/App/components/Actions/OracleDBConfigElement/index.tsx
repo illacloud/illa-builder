@@ -12,6 +12,10 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -38,6 +42,7 @@ import {
 } from "@/redux/resource/oracleResource"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
@@ -58,6 +63,15 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
   const content = (resource?.content as OracleResource) ?? OracleResourceInitial
 
   const handleConnectionTest = useCallback(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element: "resource_configure_back",
+        parameter1: resourceId ? "resource_edit" : "resource_new",
+        parameter5: resource?.resourceType || "",
+      },
+    )
     const data = getValues()
     const { resourceName, host, ...otherParams } = data
     onActionConfigElementTest(
@@ -66,7 +80,7 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
       "oracle",
       setTestLoading,
     )
-  }, [setTestLoading, getValues])
+  }, [resourceId, resource?.resourceType, getValues])
 
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
