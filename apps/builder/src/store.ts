@@ -23,9 +23,7 @@ import guideReducer from "@/redux/guide/guideSlice"
 import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import teamReducer from "@/redux/team/teamSlice"
-import { mixpanelReport } from "./middleware/mixpanelReport"
 import cursorSlice from "./redux/currentApp/cursor/cursorSlice"
-import { isCloudVersion } from "./utils/typeHelper"
 
 const listenerMiddleware = createListenerMiddleware()
 
@@ -53,11 +51,6 @@ const middlewares = [reduxAsync, guideAsync]
 if (import.meta.env.DEV) {
   middlewares.push(logger)
 }
-
-if (isCloudVersion) {
-  middlewares.unshift(mixpanelReport)
-}
-
 const store = configureStore({
   reducer: {
     config: configReducer,

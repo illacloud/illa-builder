@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import useMeasure from "react-use-measure"
 import { NextIcon, PreviousIcon } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { ScaleSquareOnlyHasResize } from "@/page/App/components/ScaleSquare/scaleSquareOnlyHasResize"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -25,7 +24,6 @@ import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
 } from "@/utils/generators/generatePageOrSectionConfig"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   ChangeLayoutBottomBar,
   ChangeLayoutLeftBar,
@@ -234,11 +232,6 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
     }
 
     const mouseUpListener = () => {
-      if (isResizeActive) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DRAG, {
-          element: "page_bar",
-        })
-      }
       setIsResizeActive(false)
     }
     document.addEventListener("mousemove", mouseMoveListener)
@@ -258,20 +251,8 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
   const [isInSection, setIsInSection] = useState(false)
 
   const onMouseEnter = useCallback(() => {
-    if (
-      mode === "edit" &&
-      !isResizeActive &&
-      (leftPosition === SECTION_POSITION.TOP ||
-        leftPosition === SECTION_POSITION.FULL ||
-        rightPosition === SECTION_POSITION.TOP ||
-        rightPosition === SECTION_POSITION.FULL)
-    ) {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.HOVER, {
-        element: "page_arrow",
-      })
-    }
     setIsInSection(true)
-  }, [isResizeActive, leftPosition, mode, rightPosition])
+  }, [])
 
   const onMouseLeave = useCallback(() => {
     setIsInSection(false)
@@ -279,9 +260,6 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
 
   const handleUpdateLayout = useCallback(
     (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-        element: "page_arrow",
-      })
       if (sectionName === "leftSection") {
         switch (leftPosition) {
           case SECTION_POSITION.TOP: {
@@ -505,11 +483,6 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
     }
 
     const mouseUpListener = () => {
-      if (isResizeActive) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DRAG, {
-          element: "page_bar",
-        })
-      }
       setIsResizeActive(false)
     }
     document.addEventListener("mousemove", mouseMoveListener)
@@ -530,21 +503,8 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
   const [isInSection, setIsInSection] = useState(false)
 
   const onMouseEnter = useCallback(() => {
-    if (
-      mode === "edit" &&
-      !isResizeActive &&
-      (leftPosition === SECTION_POSITION.BOTTOM ||
-        leftPosition === SECTION_POSITION.FULL ||
-        rightPosition === SECTION_POSITION.BOTTOM ||
-        rightPosition === SECTION_POSITION.FULL)
-    ) {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.HOVER, {
-        element: "page_arrow",
-      })
-    }
-
     setIsInSection(true)
-  }, [isResizeActive, leftPosition, mode, rightPosition])
+  }, [])
 
   const onMouseLeave = useCallback(() => {
     setIsInSection(false)
@@ -552,9 +512,6 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
 
   const handleUpdateLayout = useCallback(
     (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-        element: "page_arrow",
-      })
       if (sectionName === "leftSection") {
         switch (leftPosition) {
           case SECTION_POSITION.BOTTOM: {
@@ -799,11 +756,6 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
     }
 
     const mouseUpListener = () => {
-      if (isResizeActive) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DRAG, {
-          element: "page_bar",
-        })
-      }
       setIsResizeActive(false)
     }
     document.addEventListener("mousemove", mouseMoveListener)
@@ -823,19 +775,8 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
   ])
 
   const onMouseEnter = useCallback(() => {
-    if (
-      mode === "edit" &&
-      !isResizeActive &&
-      (leftPosition === SECTION_POSITION.BOTTOM ||
-        leftPosition === SECTION_POSITION.CENTER ||
-        leftPosition === SECTION_POSITION.TOP)
-    ) {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.HOVER, {
-        element: "page_arrow",
-      })
-    }
     setIsInSection(true)
-  }, [isResizeActive, leftPosition, mode])
+  }, [])
 
   const onMouseLeave = useCallback(() => {
     setIsInSection(false)
@@ -843,9 +784,6 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
 
   const handleUpdateLayout = useCallback(
     (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-        element: "page_arrow",
-      })
       if (sectionName === "leftSection") {
         switch (leftPosition) {
           case SECTION_POSITION.TOP:
@@ -1127,11 +1065,6 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
     }
 
     const mouseUpListener = () => {
-      if (isResizeActive) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DRAG, {
-          element: "page_bar",
-        })
-      }
       setIsResizeActive(false)
     }
     document.addEventListener("mousemove", mouseMoveListener)
@@ -1151,19 +1084,8 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
   ])
 
   const onMouseEnter = useCallback(() => {
-    if (
-      mode === "edit" &&
-      !isResizeActive &&
-      (rightPosition === SECTION_POSITION.BOTTOM ||
-        rightPosition === SECTION_POSITION.CENTER ||
-        rightPosition === SECTION_POSITION.TOP)
-    ) {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.HOVER, {
-        element: "page_arrow",
-      })
-    }
     setIsInSection(true)
-  }, [isResizeActive, mode, rightPosition])
+  }, [])
 
   const onMouseLeave = useCallback(() => {
     setIsInSection(false)
@@ -1171,9 +1093,6 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
 
   const handleUpdateLayout = useCallback(
     (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-        element: "page_arrow",
-      })
       if (sectionName === "rightSection") {
         switch (rightPosition) {
           case SECTION_POSITION.TOP:

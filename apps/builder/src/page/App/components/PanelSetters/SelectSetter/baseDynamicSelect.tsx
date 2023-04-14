@@ -1,11 +1,10 @@
-import { FC, useCallback } from "react"
+import { FC } from "react"
 import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { DynamicIcon } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon"
 import { BaseDynamicSelectSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
@@ -13,7 +12,6 @@ import {
   dynamicSelectHeaderStyle,
   dynamicSelectSetterStyle,
 } from "@/page/App/components/PanelSetters/SelectSetter/style"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 
 export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
   const {
@@ -29,51 +27,8 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
     selectPlaceholder,
     inputPlaceholder,
     isError,
-    widgetType,
-    attrName,
     detailedDescription,
   } = props
-
-  const onChangeSelectInner = useCallback(
-    (value: any) => {
-      onChangeSelect(value)
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CHANGE, {
-        element: "component_inspect_select",
-        parameter1: widgetType,
-        parameter2: attrName,
-        parameter3: value,
-      })
-    },
-    [attrName, onChangeSelect, widgetType],
-  )
-
-  const onFocus = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.FOCUS, {
-      element: "component_inspect_code_mirror",
-      parameter1: widgetType,
-      parameter2: attrName,
-    })
-  }, [attrName, widgetType])
-
-  const onBlur = useCallback(
-    (value: string) => {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
-        element: "component_inspect_code_mirror",
-        parameter1: widgetType,
-        parameter2: attrName,
-        parameter3: value.length,
-      })
-    },
-    [attrName, widgetType],
-  )
-
-  const onClick = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "component_inspect_select",
-      parameter1: widgetType,
-      parameter2: attrName,
-    })
-  }, [attrName, widgetType])
 
   return (
     <>
@@ -100,8 +55,6 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
             codeType={CODE_TYPE.EXPRESSION}
             modalTitle={labelName}
             modalDescription={labelDesc ?? detailedDescription}
-            onFocus={onFocus}
-            onBlur={onBlur}
           />
         ) : (
           <Select
@@ -109,8 +62,7 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
             placeholder={selectPlaceholder}
             options={options}
             value={value}
-            onChange={onChangeSelectInner}
-            onClick={onClick}
+            onChange={onChangeSelect}
             showSearch
             allowClear
             error={isError}

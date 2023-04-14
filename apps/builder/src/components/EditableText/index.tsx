@@ -7,14 +7,7 @@ import { EditableTextProps } from "./interface"
 import { EditableTextWrapperStyle, textStyle } from "./style"
 
 export const EditableText: FC<EditableTextProps> = (props) => {
-  const {
-    displayName,
-    updateDisplayNameByBlur,
-    onMouseEnter,
-    onClick,
-    onBlur,
-    onValidate,
-  } = props
+  const { displayName, updateDisplayNameByBlur } = props
   const [inputValue, setInputValue] = useState(displayName)
   const [isFocusInput, setIsFocusInput] = useState(false)
   const { t } = useTranslation()
@@ -27,7 +20,6 @@ export const EditableText: FC<EditableTextProps> = (props) => {
 
   const handleClickOnSpan = () => {
     setIsFocusInput(true)
-    onClick?.()
     setTimeout(() => {
       inputRef.current?.focus()
     }, 100)
@@ -40,14 +32,12 @@ export const EditableText: FC<EditableTextProps> = (props) => {
     if (displayName === inputValue) {
       return
     }
-    onBlur?.(inputValue)
     if (!isValidDisplayName(inputValue)) {
       message.error({
         content: t("editor.display_name.validate_error", {
           displayName: inputValue,
         }),
       })
-      onValidate?.("failed")
       setInputValue(displayName)
       return
     }
@@ -57,24 +47,14 @@ export const EditableText: FC<EditableTextProps> = (props) => {
           displayName: inputValue,
         }),
       })
-      onValidate?.("failed")
       setInputValue(displayName)
       return
     }
-    onValidate?.("suc")
     DisplayNameGenerator.updateDisplayName(inputValue, displayName)
     updateDisplayNameByBlur(inputValue)
-  }, [
-    displayName,
-    inputValue,
-    message,
-    onBlur,
-    onValidate,
-    t,
-    updateDisplayNameByBlur,
-  ])
+  }, [displayName, inputValue, message, t, updateDisplayNameByBlur])
   return (
-    <div css={EditableTextWrapperStyle} onMouseEnter={onMouseEnter}>
+    <div css={EditableTextWrapperStyle}>
       {isFocusInput ? (
         <Input
           colorScheme="techPurple"

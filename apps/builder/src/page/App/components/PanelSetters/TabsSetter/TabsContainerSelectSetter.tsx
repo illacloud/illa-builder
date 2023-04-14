@@ -74,9 +74,17 @@ export const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (
 
   return (
     <BaseSelectSetter
-      {...props}
       options={selectedOptions}
+      expectedType={expectedType}
+      value={value}
+      allowClear={allowClear}
+      attrName={attrName}
+      componentNode={componentNode}
       handleUpdateDsl={handleUpdateDsl}
+      isSetterSingleRow={isSetterSingleRow}
+      widgetDisplayName={widgetDisplayName}
+      widgetOrAction={widgetOrAction}
+      widgetType={widgetType}
     />
   )
 }

@@ -5,14 +5,12 @@ import { Dropdown, PlusIcon } from "@illa-design/react"
 import { ReactComponent as HomepageIcon } from "@/assets/dataWorkspace/homepage.svg"
 import { PanelBar } from "@/components/PanelBar"
 import { customIconHotpotStyle } from "@/components/PanelBar/style"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionMenu } from "@/page/App/components/PagePanel/Components/PanelHeader/actionMenu"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { RootComponentNodeProps } from "@/redux/currentApp/editor/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { generatePageConfig } from "@/utils/generators/generatePageOrSectionConfig"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { PageItemProps } from "./interface"
 import {
   homePageIconHotSpot,
@@ -62,9 +60,6 @@ export const PageSpaceTree: FC = () => {
   const handleClickAddButton = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
       e.stopPropagation()
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-        element: "add_page",
-      })
       const newPageConfig = generatePageConfig()
       dispatch(
         componentsActions.addPageNodeWithSortOrderReducer([newPageConfig]),

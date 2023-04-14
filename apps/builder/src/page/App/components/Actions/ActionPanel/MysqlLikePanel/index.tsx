@@ -6,7 +6,6 @@ import { BuilderApi } from "@/api/base"
 import { ReactComponent as OpenAIIcon } from "@/assets/openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
   actionItemContainer,
@@ -21,7 +20,6 @@ import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { ResourcesData } from "@/redux/resource/resourceState"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const MysqlLikePanel: FC = () => {
@@ -82,21 +80,6 @@ export const MysqlLikePanel: FC = () => {
     [currentAction, dispatch, mysqlContent],
   )
 
-  useEffect(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-      element: "sql_generation",
-      parameter1: currentAction.actionType,
-    })
-  }, [currentAction.actionType])
-
-  const onBlurOnCodeMirror = useCallback((value: string) => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
-      element: "action_edit_code_mirror",
-      parameter2: "content.query",
-      parameter3: value.length,
-    })
-  }, [])
-
   return (
     <div css={mysqlContainerStyle}>
       <ResourceChoose />
@@ -155,14 +138,6 @@ export const MysqlLikePanel: FC = () => {
             leftIcon={<OpenAIIcon />}
             onClick={() => {
               setGenerateLoading(true)
-              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                element: "sql_generation",
-                parameter1: currentAction.actionType,
-                parameter4: {
-                  type: currentSqlAction,
-                  content: inputRef.current?.value,
-                },
-              })
               BuilderApi.teamRequest<{ payload: string }>(
                 {
                   url: `/apps/${appInfo.appId}/internalActions/generateSQL`,
@@ -214,7 +189,6 @@ export const MysqlLikePanel: FC = () => {
             expectValueType={VALIDATION_TYPES.STRING}
             sqlScheme={sqlTable}
             onChange={handleQueryChange}
-            onBlur={onBlurOnCodeMirror}
           />
         </div>
         <TransformerComponent fullWidth />

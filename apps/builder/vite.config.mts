@@ -40,9 +40,6 @@ export default defineConfig((props) => {
       "import.meta.env.ILLA_GOOGLE_MAP_KEY": JSON.stringify(
         env.ILLA_GOOGLE_MAP_KEY,
       ),
-      "import.meta.env.ILLA_MIXPANEL_API_KEY": JSON.stringify(
-        env.ILLA_MIXPANEL_API_KEY,
-      ),
     },
     build: {
       sourcemap: true,

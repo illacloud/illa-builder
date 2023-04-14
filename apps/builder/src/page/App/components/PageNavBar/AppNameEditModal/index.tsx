@@ -1,13 +1,11 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { AppNameEditorModalProps } from "@/page/App/components/PageNavBar/interface"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   appNameEditorSaveButtonWrapperStyle,
   appNameEditorWrapperStyle,
@@ -26,27 +24,13 @@ export const AppNameEditModal: FC<AppNameEditorModalProps> = (props) => {
   const [appNewName, setAppNewName] = useState<string>(appInfo.appName)
   const [saveLoading, setSaveLoading] = useState<boolean>(false)
 
-  useEffect(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-      element: "rename_modal",
-    })
-  }, [])
-
   const handleClickSaveButton = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "rename_modal_save",
-    })
     if (appNewName === "" || appNewName.trim() === "") {
       message.error({
         content: t("dashboard.app.name_empty"),
       })
       return
     }
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.VALIDATE, {
-      element: "rename_modal_save",
-      parameter2: "suc",
-      parameter3: appNewName.length,
-    })
     BuilderApi.teamRequest(
       {
         url: `/apps/${appInfo.appId}`,

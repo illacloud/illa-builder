@@ -13,7 +13,7 @@ import { Page500 } from "@/page/status/500"
 import { RoutesObjectPro } from "@/router/interface"
 import { getUserInfo } from "@/router/loader"
 import { getAuthToken } from "@/utils/auth"
-import { ILLABuilderStorage } from "@/utils/storage"
+import { setLocalStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const cloudUrl = `${location.protocol}//${
@@ -33,7 +33,7 @@ const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
     await getUserInfo(authToken)
   }
   if (!token) return null
-  ILLABuilderStorage.setLocalStorage("token", token, -1)
+  setLocalStorage("token", token, -1)
   window.history.replaceState({}, "", window.location.pathname)
   return null
 }

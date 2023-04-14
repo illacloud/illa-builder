@@ -8,7 +8,6 @@ export interface BaseInputSetterProps extends BaseSetter {
   placeholder?: string
   expectedType?: VALIDATION_TYPES
   value?: string
-  wrappedCodeFunc?: (code: string) => string
 }
 
 export interface EditableInputSetterProps extends BaseInputSetterProps {

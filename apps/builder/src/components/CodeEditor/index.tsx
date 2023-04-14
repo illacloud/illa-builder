@@ -103,8 +103,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     singleLine,
     canExpand = true,
     wrappedCodeFunc,
-    onBlur = () => {},
-    onFocus = () => {},
     className,
   } = props
   const [result, setResult] = useState<string>("")
@@ -246,8 +244,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         sqlScheme={sqlScheme}
         singleLine={singleLine}
         tooltipContainer={popupContainerRef ?? undefined}
-        onBlur={onBlur}
-        onFocus={onFocus}
       />
       {canExpand && (
         <div
@@ -269,8 +265,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           description={modalDescription}
           placeholder={placeholder}
           wrappedCodeFunc={wrappedCodeFunc}
-          onBlur={onBlur}
-          onFocus={onFocus}
         />
       )}
     </div>

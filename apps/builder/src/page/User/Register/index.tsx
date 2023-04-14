@@ -11,12 +11,16 @@ import { formatLanguage } from "@/i18n/config"
 import RegisterPage from "@/illa-public-component/User/register"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { mobileAdaptationStyle } from "@/style"
-import { ILLABuilderStorage } from "@/utils/storage"
+import {
+  ILLABuilderStorage,
+  getLocalStorage,
+  setLocalStorage,
+} from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { RegisterFields, RegisterResult } from "./interface"
 
 export function getLocalLanguage(): string {
-  const lang = window.localStorage.getItem("i18nextLng") || "en-US"
+  const lang = getLocalStorage("i18nextLng")
   const finalLang = formatLanguage(lang)
   return finalLang
 }
@@ -53,7 +57,7 @@ const UserRegister: FC = () => {
         })
         const token = res.headers["illa-token"]
         if (!token) return
-        ILLABuilderStorage.setLocalStorage("token", token, -1)
+        setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             ...res.data,

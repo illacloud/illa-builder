@@ -5,14 +5,12 @@ import {
   WindowLeftIcon,
   WindowRightIcon,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { lineStyle, windowIconBodyStyle, windowIconStyle } from "./style"
 
 export const WindowIcons = () => {
@@ -23,27 +21,12 @@ export const WindowIcons = () => {
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
 
   const handleClickLeftWindowIcon = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "panel_show",
-      parameter2: "left",
-      parameter3: !leftPanelVisible ? "show" : "hidden",
-    })
     dispatch(configActions.updateLeftPanel(!leftPanelVisible))
   }, [dispatch, leftPanelVisible])
   const handleClickRightWindowIcon = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "panel_show",
-      parameter2: "right",
-      parameter3: !rightPanelVisible ? "show" : "hidden",
-    })
     dispatch(configActions.updateRightPanel(!rightPanelVisible))
   }, [dispatch, rightPanelVisible])
   const handleClickBottomWindowIcon = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "panel_show",
-      parameter2: "bottom",
-      parameter3: !bottomPanelVisible ? "show" : "hidden",
-    })
     dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
   }, [bottomPanelVisible, dispatch])
 

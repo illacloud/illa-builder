@@ -1,7 +1,6 @@
 import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
@@ -9,20 +8,12 @@ import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = (
   props,
 ) => {
-  const {
-    handleUpdateDsl,
-    widgetDisplayName,
-    labelName,
-    labelDesc,
-    widgetType,
-    attrName,
-  } = props
+  const { handleUpdateDsl, widgetDisplayName, labelName, labelDesc } = props
   const actions = useSelector(getActionList)
   const isError = useSelector<RootState, boolean>((state) => {
     const errors = getExecutionError(state)
@@ -61,37 +52,18 @@ export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = (
     )
     if (isDynamic) {
       handleUpdateDsl("dataSourceMode", "select")
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-        element: "fx",
-        parameter1: widgetType,
-        parameter2: attrName,
-        parameter3: "off",
-      })
       if (!isInOption) {
         handleUpdateDsl("dataSource", "")
       } else {
         handleUpdateDsl("dataSource", finalValue)
       }
     } else {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-        element: "fx",
-        parameter1: widgetType,
-        parameter2: attrName,
-        parameter3: "on",
-      })
       handleUpdateDsl("dataSourceMode", "dynamic")
       if (isInOption) {
         handleUpdateDsl("dataSourceJS", finalValue)
       }
     }
-  }, [
-    selectedOptions,
-    isDynamic,
-    finalValue,
-    handleUpdateDsl,
-    widgetType,
-    attrName,
-  ])
+  }, [handleUpdateDsl, isDynamic, selectedOptions, finalValue])
 
   const handleChangeInput = useCallback(
     (value: string) => {
@@ -110,7 +82,6 @@ export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = (
   return (
     <div css={publicPaddingStyle}>
       <BaseDynamicSelect
-        {...props}
         isDynamic={isDynamic}
         onClickFxButton={handleClickFxButton}
         selectPlaceholder="Select a query or transformer"

@@ -1,5 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import { fixedWidthStyle } from "@/page/App/components/PanelSetters/style"
 
 export const applyBaseSelectWrapperStyle = (

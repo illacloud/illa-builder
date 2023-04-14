@@ -1,12 +1,15 @@
 import { FC, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { Select } from "@illa-design/react"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { BaseSelectSetter } from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
+  const { isSetterSingleRow, attrName, handleUpdateDsl, value } = props
+
   const actionList = useSelector(getActionList)
 
   const selectedContext = useContext(SelectedPanelContext)
@@ -28,5 +31,17 @@ export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
     return []
   }, [actionList, selectedAction?.displayName, selectedContext.widgetOrAction])
 
-  return <BaseSelectSetter {...props} options={actionOptions} />
+  return (
+    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
+      <Select
+        options={actionOptions}
+        size="medium"
+        colorScheme="techPurple"
+        value={value}
+        onChange={(value) => {
+          handleUpdateDsl(attrName, value)
+        }}
+      />
+    </div>
+  )
 }

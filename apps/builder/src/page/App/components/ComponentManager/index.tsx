@@ -8,14 +8,12 @@ import {
 } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ComponentPanel } from "@/page/App/components/ComponentPanel"
 import { ConfigPanel } from "@/page/App/components/ConfigPanel"
 import { PagePanel } from "@/page/App/components/PagePanel"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { applyTabItemStyle, menuHeaderWrapperStyle } from "./style"
 
 const getRenderBody = (activeKey: string) => {
@@ -69,10 +67,6 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
     const activeKey = (e.target as HTMLSpanElement)?.dataset?.key
     if (activeKey) {
       isClickChange.current = true
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-        element: "right_tab",
-        parameter2: activeKey,
-      })
       setActiveKey(activeKey)
     }
   }

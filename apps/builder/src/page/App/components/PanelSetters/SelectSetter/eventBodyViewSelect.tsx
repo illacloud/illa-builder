@@ -1,6 +1,8 @@
 import { get, toPath } from "lodash"
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { Select } from "@illa-design/react"
+import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import {
   getCanvas,
   searchDsl,
@@ -8,17 +10,20 @@ import {
 import { PageNode } from "@/redux/currentApp/editor/components/componentsState"
 import { RootState } from "@/store"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
-import { BaseSelectSetter } from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
-  const { attrName, value, componentNode } = props
-
+  const {
+    isSetterSingleRow,
+    attrName,
+    handleUpdateDsl,
+    value,
+    componentNode,
+    placeholder,
+  } = props
   let parentAttrNameArray = toPath(attrName)
   parentAttrNameArray.splice(-1, 1)
-
   let finalParentPath = `props.${convertPathToString(parentAttrNameArray)}`
-
   const parentAttr = get(componentNode, finalParentPath)
   const pagePath = get(parentAttr, "pagePath")
   const pageComponent = useSelector<RootState>((state) => {
@@ -58,5 +63,18 @@ export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
     return undefined
   }, [finalOptions, value])
 
-  return <BaseSelectSetter {...props} value={finalValue as string} />
+  return (
+    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
+      <Select
+        options={finalOptions}
+        size="medium"
+        colorScheme="techPurple"
+        value={finalValue}
+        onChange={(value) => {
+          handleUpdateDsl(attrName, value)
+        }}
+        placeholder={placeholder}
+      />
+    </div>
+  )
 }
