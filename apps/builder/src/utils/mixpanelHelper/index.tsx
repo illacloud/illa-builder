@@ -180,19 +180,15 @@ const getPageName = () => {
 export const track = (
   event: ILLA_MIXPANEL_EVENT_TYPE,
   pageName: ILLA_PAGE_NAME,
-  properties: Omit<
-    ILLAProperties,
-    "parameter5" | "parameter11" | "team_id" | "page"
-  > = {},
+  properties: Omit<ILLAProperties, "parameter11" | "team_id" | "page"> = {},
 ) => {
-  const { appId, teamIdentifier } = getInfoFromUrl()
+  const { teamIdentifier } = getInfoFromUrl()
   const { role } = getTeamInfo()
   const userID = getUserID()
   ILLAMixpanel.track(event, {
     ...properties,
     page: pageName,
     user_id: userID,
-    parameter5: appId,
     parameter11: role,
     team_id: teamIdentifier,
   })
@@ -220,8 +216,10 @@ export const trackInEditor = (
   const isPublish = getAppIsPublish()
   const isPublic = getAppIsPublic()
   const pageName = getPageName()
+  const { appId } = getInfoFromUrl()
   track(event, pageName, {
     ...properties,
+    parameter5: appId,
     parameter6: previewInfo,
     parameter7: pageInfo,
     parameter8: appType,
