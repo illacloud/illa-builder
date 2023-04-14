@@ -3,9 +3,6 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 
 export function applyTableTextStyle(highlight: boolean): SerializedStyles {
   return css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     font-family: "Helvetica Neue", sans-serif;
     font-size: 14px;
     color: ${highlight
@@ -16,13 +13,14 @@ export function applyTableTextStyle(highlight: boolean): SerializedStyles {
 
 export const resourceNameStyle = css`
   max-width: 312px;
-`
-export const dataBaseTextStyle = css`
-  max-width: 488px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 export const hoverStyle = css`
   overflow: auto;
+  min-height: 150px;
 
   &::-webkit-scrollbar {
     display: none;
