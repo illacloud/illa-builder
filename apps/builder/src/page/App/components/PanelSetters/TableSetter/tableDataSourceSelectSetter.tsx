@@ -165,7 +165,6 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
   return (
     <div css={publicPaddingStyle}>
       <BaseDynamicSelect
-        {...props}
         isDynamic={isDynamic}
         onClickFxButton={handleClickFxButton}
         selectPlaceholder="Select a query or transformer"

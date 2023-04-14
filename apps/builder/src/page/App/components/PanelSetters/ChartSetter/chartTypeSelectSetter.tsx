@@ -71,7 +71,15 @@ const typeOptions = [
 export const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = (
   props,
 ) => {
-  const { widgetDisplayName, handleUpdateMultiAttrDSL } = props
+  const {
+    attrName,
+    expectedType,
+    widgetDisplayName,
+    widgetType,
+    widgetOrAction,
+    handleUpdateMultiAttrDSL,
+    value,
+  } = props
 
   const insertValues = useSelector<RootState, Record<string, any>>(
     (rootState) => {
@@ -129,9 +137,14 @@ export const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = (
 
   return (
     <BaseSelectSetter
-      {...props}
+      attrName={attrName}
       handleUpdateDsl={handleUpdateDsl}
+      expectedType={expectedType}
+      widgetDisplayName={widgetDisplayName}
+      widgetType={widgetType}
+      widgetOrAction={widgetOrAction}
       options={typeOptions}
+      value={value}
     />
   )
 }

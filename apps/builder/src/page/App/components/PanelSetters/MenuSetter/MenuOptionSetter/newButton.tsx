@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { AddIcon, Button } from "@illa-design/react"
 import { NewButtonProps } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/interface"
+import { optionSubItemStyle } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/style"
 
 export const NewButton: FC<NewButtonProps> = (props) => {
   const { title, ...otherProps } = props

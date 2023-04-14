@@ -17,9 +17,7 @@ export const MultiSelectedPanel: FC = () => {
   const shortcut = useContext(ShortCutContext)
 
   const handleClickDeleteButton = useCallback(() => {
-    shortcut.showDeleteDialog(selectedComponents, "widget", {
-      source: "left_multi_delete",
-    })
+    shortcut.showDeleteDialog(selectedComponents)
   }, [selectedComponents, shortcut])
   return (
     <div css={multiSelectedPanelWrapper}>
