@@ -9,6 +9,7 @@ interface ProviderProps {
   attrPath: string
   handleUpdateDsl: (attrPath: string, value: any) => void
   children: ReactNode
+  widgetType: string
 }
 
 interface Inject extends Omit<ProviderProps, "children"> {

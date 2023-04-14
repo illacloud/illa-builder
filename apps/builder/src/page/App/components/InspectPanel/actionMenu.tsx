@@ -56,7 +56,9 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         title={t("editor.inspect.header.action_menu.delete")}
         deleted
         onClick={() => {
-          shortcut.showDeleteDialog([widgetDisplayName])
+          shortcut.showDeleteDialog([widgetDisplayName], "widget", {
+            source: "left_delete",
+          })
         }}
       />
     </DropList>

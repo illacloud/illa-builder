@@ -14,3 +14,11 @@ export const updateAppNameReducer: CaseReducer<
 > = (state, action) => {
   return action.payload
 }
+
+export const updateAppVersionReducer: CaseReducer<
+  DashboardApp,
+  PayloadAction<number>
+> = (state, action) => {
+  state.mainlineVersion = action.payload
+  state.releaseVersion = action.payload
+}
