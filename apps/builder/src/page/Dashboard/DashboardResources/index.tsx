@@ -18,7 +18,6 @@ import {
 import { ResourceTableData } from "@/page/Dashboard/DashboardResources/interface"
 import {
   applyTableTextStyle,
-  dataBaseTextStyle,
   hoverStyle,
   resourceNameStyle,
 } from "@/page/Dashboard/DashboardResources/style"
@@ -135,6 +134,8 @@ export const DashboardResources: FC = () => {
             </Space>
           )
         },
+        size: 250,
+        minSize: 100,
       },
       {
         header: t("dashboard.resource.resource_type"),
@@ -142,20 +143,17 @@ export const DashboardResources: FC = () => {
         cell: (props: CellContext<ResourceTableData, string>) => (
           <span css={applyTableTextStyle(false)}>{props.getValue()}</span>
         ),
+        minSize: 120,
       },
       {
         header: t("dashboard.resource.dbname"),
         accessorKey: "databaseName",
         cell: (props: CellContext<ResourceTableData, string>) => (
-          <span
-            css={[
-              applyTableTextStyle(props.getValue() !== "Null"),
-              dataBaseTextStyle,
-            ]}
-          >
+          <span css={applyTableTextStyle(props.getValue() !== "Null")}>
             {props.getValue()}
           </span>
         ),
+        size: 220,
       },
       {
         header: t("dashboard.resource.created"),
@@ -207,6 +205,7 @@ export const DashboardResources: FC = () => {
             pinedHeader
             striped
             hoverable
+            enableColumnResizing
             clickOutsideToResetRowSelect
             size="large"
             data={resourceData}
