@@ -1622,7 +1622,7 @@
           "zoom": "请设置一个介于 1 和 22 之间的值"
         },
         "upload": {
-          "size_exceed": "超过 400MB 的文件可能无法解析。",
+          "size_exceed": "Files over 500MB may fail to parse.",
           "single_file": "只允许一个文件。",
           "file": "サポートされていないファイル タイプは削除されます",
           "directory": "只允许目录。"
