@@ -1,10 +1,14 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { forkTemplateApp } from "@/api/actions"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { TemplateName, TemplateSetting } from "@/config/template/interface"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { TemplateListProps } from "@/page/Dashboard/Tutorial/TemplateList/interface"
 import {
   contentStyle,
@@ -16,6 +20,7 @@ import {
   templateStyle,
   titleStyle,
 } from "@/page/Dashboard/Tutorial/TemplateList/style"
+import { track } from "@/utils/mixpanelHelper"
 
 export const TemplateList: FC<TemplateListProps> = (props) => {
   const { data, loading, setLoading } = props
@@ -45,6 +50,18 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
     setLoading(false)
   }
 
+  useEffect(() => {
+    if (data) {
+      data.forEach(() => {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL,
+          { element: "tutorial_template" },
+        )
+      })
+    }
+  }, [data])
+
   return (
     <div css={templateStyle}>
       {data.map((item) => {
@@ -54,6 +71,11 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
             css={itemStyle}
             onClick={() => {
               navigate(`/${teamIdentifier}/template/${item.type}`)
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL,
+                { parameter5: item.nameKey, element: "tutorial_template" },
+              )
             }}
           >
             <img css={iconStyle} src={item.icon} />
@@ -66,6 +88,14 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
               onClick={async (e) => {
                 e.stopPropagation()
                 handleForkApp(item.type, t(`${item.nameKey}`))
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL,
+                  {
+                    parameter5: item.nameKey,
+                    element: "tutorial_template_fork",
+                  },
+                )
               }}
             >
               <ForkIcon css={forkIconStyle} />
