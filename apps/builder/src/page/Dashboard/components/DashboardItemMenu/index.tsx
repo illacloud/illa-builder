@@ -30,6 +30,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import {
   DashboardItemMenuProps,
@@ -43,7 +44,7 @@ import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
 import { MemberInfo } from "@/redux/team/teamState"
 import { RootState } from "@/store"
-import { track } from "@/utils/mixpanelHelper"
+import { track, trackInDashboard } from "@/utils/mixpanelHelper"
 import { eventReportCallback } from "@/utils/mixpanelHelper/eventReport2Public"
 import { isCloudVersion } from "@/utils/typeHelper"
 
@@ -407,26 +408,31 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           </Dropdown>
         ) : null}
       </Space>
-      <InviteModal
-        hasApp
-        isCloudVersion={isCloudVersion}
-        appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
-        isAppPublic={app?.config?.public}
-        fetchInviteLink={fetchShareLink}
-        renewInviteLink={renewShareLink}
-        configInviteLink={setInviteLinkEnabled}
-        allowInviteByLink={inviteLinkEnabled}
-        allowEditorManageTeamMember={allowEditorManageTeamMember}
-        allowViewerManageTeamMember={allowViewerManageTeamMember}
-        userListData={members}
-        currentUserRole={currentUserRole}
-        inviteByEmail={handleInviteByEmail}
-        changeTeamMembersRole={handleChangeTeamMembersRole}
-        updateAppPublicConfig={updateAppConfig}
-        visible={shareVisible}
-        handleCloseModal={closeInviteModal}
-        eventReportCallback={isCloudVersion ? eventReport : {}}
-      />
+      <MixpanelTrackProvider
+        basicTrack={trackInDashboard}
+        pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
+      >
+        <InviteModal
+          hasApp
+          isCloudVersion={isCloudVersion}
+          appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
+          isAppPublic={app?.config?.public}
+          fetchInviteLink={fetchShareLink}
+          renewInviteLink={renewShareLink}
+          configInviteLink={setInviteLinkEnabled}
+          allowInviteByLink={inviteLinkEnabled}
+          allowEditorManageTeamMember={allowEditorManageTeamMember}
+          allowViewerManageTeamMember={allowViewerManageTeamMember}
+          userListData={members}
+          currentUserRole={currentUserRole}
+          inviteByEmail={handleInviteByEmail}
+          changeTeamMembersRole={handleChangeTeamMembersRole}
+          updateAppPublicConfig={updateAppConfig}
+          visible={shareVisible}
+          handleCloseModal={closeInviteModal}
+          appID={app.appId}
+        />
+      </MixpanelTrackProvider>
       <RenameModal
         appId={app.appId}
         visible={renameVisible}

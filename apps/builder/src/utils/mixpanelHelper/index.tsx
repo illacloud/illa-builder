@@ -238,29 +238,12 @@ export const trackPageDurationEnd = (pageName: ILLA_PAGE_NAME) => {
   ILLAMixpanel.trackTimeEvent(pageName, teamIdentifier ?? "-1")
 }
 
-// export const trackInIndex = (
-//   event: ILLA_MIXPANEL_EVENT_TYPE,
-//   page: ILLA_PAGE_NAME,
-//   element?: string,
-//   properties?: Omit<ILLAProperties, "page" | "element">,
-// ) => {
-//   const { teamIdentifier } = getInfoFromUrl()
-//   const { role } = getTeamInfo()
-//   const params = {...properties, parameter11: getStrRol(role), team_id:  teamIdentifier ?? '-1'}
-//   ILLAMixpanel.track(event, {
-//     page,
-//     element,
-//     ...params
-//   })
-// }
-
-// export const trackInIndexWithId = (
-//   event: ILLA_MIXPANEL_EVENT_TYPE,
-//   page: ILLA_PAGE_NAME,
-//   element: string,
-//   parameter5: string,
-//   properties?: Omit<ILLAProperties, "parameter5" | "page" | "element">,
-// ) => {
-//   const params = {...properties, parameter5}
-//   trackInIndex(event, page, element, params)
-// }
+export const trackInDashboard = (
+  event: ILLA_MIXPANEL_EVENT_TYPE,
+  pageName: ILLA_PAGE_NAME,
+  properties: Omit<ILLAProperties, "page">,
+) => {
+  track(event, pageName, {
+    ...properties,
+  })
+}
