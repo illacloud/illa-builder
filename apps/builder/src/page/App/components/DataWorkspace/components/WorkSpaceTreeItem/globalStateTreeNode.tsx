@@ -3,8 +3,10 @@ import { FC, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CaretRightIcon, PenIcon, Trigger } from "@illa-design/react"
 import { panelBarItemContainerAnimationVariants } from "@/components/PanelBar/style"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { CreateGlobalStateModal } from "../GlobalsSpaceTree/createGlobalStateModal"
 import { GlobalStateTreeItem } from "./globalStateTreeItem"
 import {
@@ -49,6 +51,11 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
             )
           }
         }}
+        onMouseEnter={() => {
+          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.HOVER, {
+            element: "global_edit",
+          })
+        }}
       >
         <span css={applyExpandIconStyle(isExpanded)}>
           <CaretRightIcon />
@@ -86,6 +93,12 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
               }
               popupVisible={isOpen}
               onVisibleChange={(visible) => {
+                if (visible) {
+                  trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+                    element: "global_modal",
+                    parameter2: "edit",
+                  })
+                }
                 setIsOpen(visible)
               }}
             >
