@@ -46,7 +46,7 @@ import { ClickhouseConfigElementProps } from "./interface"
 export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   props,
 ) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished, onTestConnectReport } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -69,6 +69,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     sslOpen && watch("selfSigned", resource?.content.ssl.selfSigned ?? false)
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("clickhouse")
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -83,7 +84,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
       "clickhouse",
       setTestLoading,
     )
-  }, [setTestLoading, getValues, sslOpen])
+  }, [onTestConnectReport, getValues, sslOpen])
 
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")

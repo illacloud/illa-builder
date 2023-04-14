@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -15,6 +15,10 @@ import {
   useModal,
 } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
@@ -23,6 +27,7 @@ import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
+import { track } from "@/utils/mixpanelHelper"
 
 const Item = DropListItem
 
@@ -40,8 +45,42 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
     return state.resource.find((item) => item.resourceId === resourceId)!!
   })
 
+  const closeResourceEditor = (element: string) => {
+    setResourceEditorVisible(false)
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element,
+        parameter1: "resource_edit",
+        parameter5: resource.resourceType,
+      },
+    )
+  }
+
   const message = useMessage()
   const modal = useModal()
+
+  useEffect(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      { element: "resource_more", parameter5: resourceId },
+    )
+  }, [resourceId])
+
+  useEffect(() => {
+    resourceEditorVisible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+        {
+          element: "resource_configure_modal",
+          parameter1: "resource_edit",
+          parameter5: resource.resourceType,
+        },
+      )
+  }, [resource.resourceType, resourceEditorVisible])
 
   return (
     <>
@@ -52,6 +91,11 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           colorScheme="techPurple"
           onClick={() => {
             setResourceEditorVisible(true)
+            track(
+              ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+              ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+              { element: "resource_more_click", parameter5: resourceId },
+            )
           }}
         >
           {t("edit")}
@@ -68,6 +112,11 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                 title={t("edit")}
                 onClick={() => {
                   setResourceEditorVisible(true)
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                    { element: "resource_more_edit", parameter5: resourceId },
+                  )
                 }}
               />
               <Item
@@ -76,6 +125,19 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                 title={t("dashboard.common.delete")}
                 deleted
                 onClick={() => {
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                    { element: "resource_more_delete", parameter5: resourceId },
+                  )
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                    {
+                      element: "resource_more_delete_modal",
+                      parameter5: resourceId,
+                    },
+                  )
                   const modalId = modal.show({
                     blockOkHide: true,
                     title: t("dashboard.common.delete_title"),
@@ -87,6 +149,14 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                     },
                     closable: false,
                     onOk: () => {
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                        {
+                          element: "resource_more_delete_modal_delete",
+                          parameter5: resourceId,
+                        },
+                      )
                       BuilderApi.teamRequest<Resource<ResourceContent>>(
                         {
                           url: `/resources/${resourceId}`,
@@ -120,6 +190,16 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                         },
                       )
                     },
+                    onCancel: () => {
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                        {
+                          element: "resource_more_delete_modal_close",
+                          parameter5: resourceId,
+                        },
+                      )
+                    },
                   })
                 }}
               />
@@ -143,17 +223,37 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
         withoutPadding
         title={getResourceNameFromResourceType(resource.resourceType)}
         onCancel={() => {
-          setResourceEditorVisible(false)
+          closeResourceEditor("resource_configure_close")
         }}
       >
         <div css={modalContentStyle}>
           <ResourceCreator
             resourceId={resourceId}
             onBack={() => {
-              setResourceEditorVisible(false)
+              closeResourceEditor("resource_configure_back")
             }}
             onFinished={() => {
               setResourceEditorVisible(false)
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                {
+                  element: "resource_configure_save",
+                  parameter1: "resource_edit",
+                  parameter5: resource.resourceType,
+                },
+              )
+            }}
+            onTestConnectReport={(resourceType: string) => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                {
+                  element: "resource_configure_test",
+                  parameter1: "resource_edit",
+                  parameter5: resourceType,
+                },
+              )
             }}
           />
         </div>

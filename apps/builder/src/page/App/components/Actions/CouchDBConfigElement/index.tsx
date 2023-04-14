@@ -38,7 +38,7 @@ import { urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onFinished, onBack } = props
+  const { resourceId, onFinished, onBack, onTestConnectReport } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -56,6 +56,7 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleResourceTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("couchdb")
     const data = getValues()
     const { resourceName, ...otherParams } = data
     onActionConfigElementTest(
@@ -64,7 +65,7 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
       "couchdb",
       setTestLoading,
     )
-  }, [getValues])
+  }, [getValues, onTestConnectReport])
 
   return (
     <form

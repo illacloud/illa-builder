@@ -66,7 +66,8 @@ const getResourceDefaultPort = (resourceType: string) => {
 export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   props,
 ) => {
-  const { onBack, resourceType, resourceId, onFinished } = props
+  const { onBack, resourceType, resourceId, onFinished, onTestConnectReport } =
+    props
 
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -116,6 +117,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
     handleLinkOpen("https://www.illacloud.com/docs/illa-cli")
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport(resourceType)
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -130,7 +132,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
       resourceType,
       setTestLoading,
     )
-  }, [getValues, resourceType, sslOpenWatch])
+  }, [getValues, onTestConnectReport, resourceType, sslOpenWatch])
 
   return (
     <form

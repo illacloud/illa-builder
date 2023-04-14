@@ -38,7 +38,7 @@ import { isContainLocalPath, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished, onTestConnectReport } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
@@ -77,6 +77,7 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
   }
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("redis")
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -91,7 +92,7 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
       "redis",
       setTestLoading,
     )
-  }, [getValues, sslOpenWatch])
+  }, [getValues, onTestConnectReport, sslOpenWatch])
 
   return (
     <form

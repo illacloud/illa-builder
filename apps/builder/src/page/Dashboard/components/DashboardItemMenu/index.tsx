@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react"
+import { FC, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -26,6 +26,11 @@ import {
   updateMembers,
 } from "@/api/team"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import {
   DashboardItemMenuProps,
@@ -39,6 +44,7 @@ import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
 import { MemberInfo } from "@/redux/team/teamState"
 import { RootState } from "@/store"
+import { track, trackInDashboard } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
@@ -116,6 +122,33 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     return res
   }
 
+  // const eventReport = useMemo(() => eventReportCallback(appId), [appId])
+
+  useEffect(() => {
+    if (canEditApp || (isDeploy && canManageApp)) {
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "app_more", parameter5: appId },
+      )
+    }
+  }, [canEditApp, isDeploy, canManageApp, appId])
+
+  useEffect(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.SHOW, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app",
+    })
+  }, [])
+
+  useEffect(() => {
+    shareVisible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "invite_modal", parameter5: appId },
+      )
+  }, [appId, shareVisible])
+
   return (
     <>
       <Space
@@ -131,6 +164,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             className="dashboardAppLaunchButton"
             colorScheme="techPurple"
             onClick={() => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                { element: "app_launch", parameter5: appId },
+              )
               navigate(`/${teamIdentifier}/deploy/app/${app.appId}`)
             }}
           >
@@ -144,6 +182,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
               className="dashboardAppEditButton"
               colorScheme="techPurple"
               onClick={() => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  { element: "app_edit", parameter5: appId },
+                )
                 navigate(`/${teamIdentifier}/app/${app.appId}`)
               }}
             >
@@ -153,6 +196,36 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
               position="bottom-end"
               trigger="click"
               triggerProps={{ closeDelay: 0, openDelay: 0 }}
+              onVisibleChange={(visible) => {
+                if (visible) {
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                    { element: "app_more", parameter5: appId },
+                  )
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                    { element: "app_rename", parameter5: appId },
+                  )
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                    { element: "app_duplicate", parameter5: appId },
+                  )
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                    { element: "app_delete", parameter5: appId },
+                  )
+                  isDeploy &&
+                    track(
+                      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                      { element: "app_share", parameter5: appId },
+                    )
+                }
+              }}
               dropList={
                 <DropList w={"184px"}>
                   <DropListItem
@@ -161,6 +234,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                     title={t("rename")}
                     onClick={() => {
                       setRenameVisible(true)
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                        { element: "app_rename", parameter5: appId },
+                      )
                     }}
                   />
                   {isDeploy && (
@@ -170,6 +248,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                       title={t("share")}
                       onClick={() => {
                         setShareVisible(true)
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                          { element: "app_share", parameter5: appId },
+                        )
                       }}
                     />
                   )}
@@ -179,6 +262,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                     title={t("duplicate")}
                     onClick={() => {
                       setDuplicateVisible(true)
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                        { element: "app_duplicate", parameter5: appId },
+                      )
                     }}
                   />
                   <DropListItem
@@ -187,6 +275,16 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                     title={t("dashboard.common.delete")}
                     deleted
                     onClick={() => {
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                        { element: "app_delete", parameter5: appId },
+                      )
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                        { element: "app_delete_modal", parameter5: appId },
+                      )
                       const modalId = modal.show({
                         w: "496px",
                         blockOkHide: true,
@@ -199,6 +297,14 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                         },
                         closable: false,
                         onOk: () => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                            {
+                              element: "app_delete_modal_delete",
+                              parameter5: appId,
+                            },
+                          )
                           BuilderApi.teamRequest<DeleteDashboardAppResponse>(
                             {
                               url: `/apps/${appId}`,
@@ -232,6 +338,16 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                             },
                           )
                         },
+                        onCancel: () => {
+                          track(
+                            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                            {
+                              element: "app_delete_modal_close",
+                              parameter5: appId,
+                            },
+                          )
+                        },
                       })
                     }}
                   />
@@ -251,6 +367,20 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             position="bottom-end"
             trigger="click"
             triggerProps={{ closeDelay: 0, openDelay: 0 }}
+            onVisibleChange={(visible) => {
+              if (visible) {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  { element: "app_more", parameter5: appId },
+                )
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  { element: "app_share", parameter5: appId },
+                )
+              }
+            }}
             dropList={
               <DropList w={"184px"}>
                 <DropListItem
@@ -259,6 +389,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                   title={t("share")}
                   onClick={() => {
                     setShareVisible(true)
+                    track(
+                      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                      { element: "app_share", parameter5: appId },
+                    )
                   }}
                 />
               </DropList>
@@ -272,30 +407,42 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           </Dropdown>
         ) : null}
       </Space>
-      <InviteModal
-        hasApp
-        isCloudVersion={isCloudVersion}
-        appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
-        isAppPublic={app?.config?.public}
-        fetchInviteLink={fetchShareLink}
-        renewInviteLink={renewShareLink}
-        configInviteLink={setInviteLinkEnabled}
-        allowInviteByLink={inviteLinkEnabled}
-        allowEditorManageTeamMember={allowEditorManageTeamMember}
-        allowViewerManageTeamMember={allowViewerManageTeamMember}
-        userListData={members}
-        currentUserRole={currentUserRole}
-        inviteByEmail={handleInviteByEmail}
-        changeTeamMembersRole={handleChangeTeamMembersRole}
-        updateAppPublicConfig={updateAppConfig}
-        visible={shareVisible}
-        handleCloseModal={closeInviteModal}
-      />
+      <MixpanelTrackProvider
+        basicTrack={trackInDashboard}
+        pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
+      >
+        <InviteModal
+          hasApp
+          isCloudVersion={isCloudVersion}
+          appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
+          isAppPublic={app?.config?.public}
+          fetchInviteLink={fetchShareLink}
+          renewInviteLink={renewShareLink}
+          configInviteLink={setInviteLinkEnabled}
+          allowInviteByLink={inviteLinkEnabled}
+          allowEditorManageTeamMember={allowEditorManageTeamMember}
+          allowViewerManageTeamMember={allowViewerManageTeamMember}
+          userListData={members}
+          currentUserRole={currentUserRole}
+          inviteByEmail={handleInviteByEmail}
+          changeTeamMembersRole={handleChangeTeamMembersRole}
+          updateAppPublicConfig={updateAppConfig}
+          visible={shareVisible}
+          handleCloseModal={closeInviteModal}
+          appID={app.appId}
+        />
+      </MixpanelTrackProvider>
       <RenameModal
         appId={app.appId}
         visible={renameVisible}
         onVisibleChange={(visible) => {
           setRenameVisible(visible)
+          visible &&
+            track(
+              ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+              ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+              { element: "rename_modal", parameter5: appId },
+            )
         }}
       />
       <DuplicateModal
@@ -303,6 +450,12 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         visible={duplicateVisible}
         onVisibleChange={(visible) => {
           setDuplicateVisible(visible)
+          visible &&
+            track(
+              ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+              ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+              { element: "duplicate_modal", parameter5: appId },
+            )
         }}
       />
     </>

@@ -45,7 +45,7 @@ import { urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished, onTestConnectReport } = props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -71,6 +71,7 @@ export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("firebase")
     const data = getValues()
     try {
       const content = {
@@ -84,7 +85,7 @@ export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
         content: t("editor.action.resource.db.invalid_private.key"),
       })
     }
-  }, [getValues, message, t])
+  }, [getValues, message, onTestConnectReport, t])
 
   return (
     <form

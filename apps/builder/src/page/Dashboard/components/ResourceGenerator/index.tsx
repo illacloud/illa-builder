@@ -1,6 +1,10 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Modal } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
 import { ResourceTypeSelector } from "@/page/Dashboard/components/ResourceGenerator/ResourceTypeSelector"
 import {
@@ -9,6 +13,7 @@ import {
 } from "@/page/Dashboard/components/ResourceGenerator/interface"
 import { ResourceType } from "@/redux/resource/resourceState"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
+import { track } from "@/utils/mixpanelHelper"
 import { modalContentStyle } from "./style"
 
 export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
@@ -34,6 +39,19 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
       }
       break
   }
+  useEffect(() => {
+    visible &&
+      currentStep === "createResource" &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+        {
+          element: "resource_configure_modal",
+          parameter1: "resource_new",
+          parameter5: currentResource,
+        },
+      )
+  }, [visible, currentStep, currentResource])
 
   const isMaskCloseable = currentStep === "select"
 
@@ -59,6 +77,14 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
             onSelect={(resourceType) => {
               setCurrentStep("createResource")
               setCurrentResource(resourceType)
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                {
+                  element: "resource_type_modal_resource",
+                  parameter5: resourceType,
+                },
+              )
             }}
           />
         )}
@@ -67,11 +93,40 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
             onBack={() => {
               setCurrentStep("select")
               setCurrentResource(null)
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                {
+                  element: "resource_configure_back",
+                  parameter1: "resource_new",
+                  parameter5: currentResource,
+                },
+              )
             }}
             onFinished={() => {
               setCurrentStep("select")
               setCurrentResource(null)
               onClose()
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                {
+                  element: "resource_configure_save",
+                  parameter1: "resource_new",
+                  parameter5: currentResource,
+                },
+              )
+            }}
+            onTestConnectReport={(resourceType: string) => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                {
+                  element: "resource_configure_test",
+                  parameter1: "resource_new",
+                  parameter5: resourceType,
+                },
+              )
             }}
             resourceType={currentResource}
           />

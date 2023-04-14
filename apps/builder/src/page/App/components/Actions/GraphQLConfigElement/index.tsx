@@ -44,7 +44,7 @@ import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 
 export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, onFinished, resourceId } = props
+  const { onBack, onFinished, resourceId, onTestConnectReport } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, formState, getValues, watch } = useForm({
@@ -84,6 +84,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
   )
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("graphql")
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -99,7 +100,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
       "graphql",
       setTestLoading,
     )
-  }, [setTestLoading, getValues])
+  }, [onTestConnectReport, getValues])
 
   return (
     <form

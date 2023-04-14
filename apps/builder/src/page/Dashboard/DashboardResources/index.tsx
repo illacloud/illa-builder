@@ -1,8 +1,12 @@
 import { CellContext, ColumnDef } from "@tanstack/react-table"
-import { FC, useMemo, useState } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, Empty, Space, Table } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { canAccess } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_ACCESS,
@@ -46,6 +50,7 @@ import {
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
+import { track } from "@/utils/mixpanelHelper"
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
@@ -181,6 +186,22 @@ export const DashboardResources: FC = () => {
     ACTION_ACCESS.VIEW,
   )
 
+  useEffect(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.VISIT,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+    )
+  }, [])
+
+  useEffect(() => {
+    newResourceVisible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+        { element: "resource_type_modal" },
+      )
+  }, [newResourceVisible])
+
   if (teamInfo && !canAccessResourcesView) {
     throw Error(`can not access resources view`)
   }
@@ -194,6 +215,11 @@ export const DashboardResources: FC = () => {
             colorScheme="techPurple"
             onClick={() => {
               setNewResourceVisible(true)
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                { element: "create_new_resource" },
+              )
             }}
           >
             {t("dashboard.resource.create_resource")}
@@ -218,6 +244,11 @@ export const DashboardResources: FC = () => {
         visible={newResourceVisible}
         onClose={() => {
           setNewResourceVisible(false)
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+            { element: "resource_type_modal_close" },
+          )
         }}
       />
     </>

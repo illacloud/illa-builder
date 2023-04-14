@@ -38,7 +38,7 @@ import { urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const ElasticSearchConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished, onTestConnectReport } = props
 
   const { t } = useTranslation()
 
@@ -63,6 +63,7 @@ export const ElasticSearchConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleResourceTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("elasticsearch")
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -75,7 +76,7 @@ export const ElasticSearchConfigElement: FC<ConfigElementProps> = (props) => {
       "elasticsearch",
       setTestLoading,
     )
-  }, [getValues])
+  }, [getValues, onTestConnectReport])
 
   return (
     <form

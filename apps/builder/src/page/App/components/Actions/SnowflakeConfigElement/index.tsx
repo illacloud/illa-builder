@@ -31,7 +31,7 @@ import { validate } from "@/utils/form"
 type SnowflakeType = SnowflakeResource<SnowflakeAuthenticationType>
 
 export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished, onTestConnectReport } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
@@ -49,6 +49,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("snowflake")
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -73,7 +74,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
       "snowflake",
       setTestLoading,
     )
-  }, [getValues])
+  }, [getValues, onTestConnectReport])
 
   return (
     <form

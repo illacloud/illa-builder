@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios"
 import copy from "copy-to-clipboard"
-import { useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import {
   Card,
@@ -23,9 +23,14 @@ import {
   whiteListTitleStyle,
 } from "./style"
 
-export const WhiteList = () => {
+interface IWhiteList {
+  onCopyIpReport?: () => void
+}
+
+export const WhiteList: FC<IWhiteList> = (props) => {
   const { t } = useTranslation()
   const message = useMessage()
+  const { onCopyIpReport } = props
 
   const [showIPList, setShowIPList] = useState<boolean>(false)
   const [ipList, setIPList] = useState<string[]>([])
@@ -51,6 +56,7 @@ export const WhiteList = () => {
   }
 
   const handleCopyClick = useCallback(() => {
+    onCopyIpReport && onCopyIpReport()
     const copyResult = copy(ipList.join("\n"))
     if (copyResult) {
       message.success({
@@ -76,7 +82,10 @@ export const WhiteList = () => {
         </div>
         {isCloudVersion && (
           <div css={whiteListButtonContainerStyle}>
-            <div css={whiteListButtonStyle} onClick={handleCopyClick}>
+            <div
+              css={whiteListButtonStyle}
+              onClick={handleCopyClick}
+            >
               <CopyIcon />
               <span>{t("editor.action.resource.button.copy_ip")}</span>
             </div>
