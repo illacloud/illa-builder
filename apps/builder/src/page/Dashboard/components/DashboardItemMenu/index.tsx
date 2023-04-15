@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from "react"
+import { FC, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -123,7 +123,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     return res
   }
 
-  const eventReport = useMemo(() => eventReportCallback(appId), [appId])
+  // const eventReport = useMemo(() => eventReportCallback(appId), [appId])
 
   useEffect(() => {
     if (canEditApp || (isDeploy && canManageApp)) {
@@ -165,12 +165,12 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             className="dashboardAppLaunchButton"
             colorScheme="techPurple"
             onClick={() => {
-              navigate(`/${teamIdentifier}/deploy/app/${app.appId}`)
               track(
                 ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                 ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
                 { element: "app_launch", parameter5: appId },
               )
+              navigate(`/${teamIdentifier}/deploy/app/${app.appId}`)
             }}
           >
             {t("launch")}
@@ -183,12 +183,12 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
               className="dashboardAppEditButton"
               colorScheme="techPurple"
               onClick={() => {
-                navigate(`/${teamIdentifier}/app/${app.appId}`)
                 track(
                   ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                   ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
                   { element: "app_edit", parameter5: appId },
                 )
+                navigate(`/${teamIdentifier}/app/${app.appId}`)
               }}
             >
               {t("edit")}

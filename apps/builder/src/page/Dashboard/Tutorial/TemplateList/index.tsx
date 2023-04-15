@@ -70,12 +70,12 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
             key={item.type}
             css={itemStyle}
             onClick={() => {
-              navigate(`/${teamIdentifier}/template/${item.type}`)
               track(
                 ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                 ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL,
                 { parameter5: item.nameKey, element: "tutorial_template" },
               )
+              navigate(`/${teamIdentifier}/template/${item.type}`)
             }}
           >
             <img css={iconStyle} src={item.icon} />

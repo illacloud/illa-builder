@@ -159,7 +159,13 @@ export const DashboardApps: FC = () => {
               return (
                 <ListItem
                   css={hoverStyle}
-                  onMouseEnter={() => {
+                  data-element="listItem"
+                  onMouseEnter={(e) => {
+                    if (
+                      (e.target as HTMLDivElement).dataset?.element !==
+                      "listItem"
+                    )
+                      return
                     canEditApp &&
                       track(
                         ILLA_MIXPANEL_EVENT_TYPE.SHOW,
