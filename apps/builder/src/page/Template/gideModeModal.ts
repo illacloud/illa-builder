@@ -1,7 +1,12 @@
 import { createModal } from "@illa-design/react"
 import { updateTutorialViewed } from "@/api/users"
 import i18n from "@/i18n/config"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { ILLARoute } from "@/router"
+import { track } from "@/utils/mixpanelHelper"
 
 const modal = createModal()
 
@@ -18,7 +23,26 @@ export const openGuideModal = async (teamIdentifier: string) => {
       colorScheme: "techPurple",
     },
     onOk: () => {
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "before_onboarding_modal_confirm" },
+      )
       ILLARoute.navigate(`/${teamIdentifier}/guide`)
+    },
+    onCancel: () => {
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "before_onboarding_modal_close" },
+      )
+    },
+    afterOpen: () => {
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "before_onboarding_modal" },
+      )
     },
   })
 }

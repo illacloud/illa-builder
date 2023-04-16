@@ -11,6 +11,10 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -38,6 +42,7 @@ import {
 } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { handleLinkOpen } from "@/utils/navigate"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
@@ -116,6 +121,15 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
     handleLinkOpen("https://www.illacloud.com/docs/illa-cli")
 
   const handleConnectionTest = useCallback(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element: "resource_configure_back",
+        parameter1: resourceId ? "resource_edit" : "resource_new",
+        parameter5: resourceType,
+      },
+    )
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -130,7 +144,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
       resourceType,
       setTestLoading,
     )
-  }, [getValues, resourceType, sslOpenWatch])
+  }, [getValues, resourceId, resourceType, sslOpenWatch])
 
   return (
     <form

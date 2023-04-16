@@ -3,11 +3,16 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, Modal, useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { DuplicateModalProps } from "@/page/Dashboard/components/DuplicateModal/interface"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { RootState } from "@/store"
+import { track } from "@/utils/mixpanelHelper"
 
 export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
   const { appId, visible, onVisibleChange } = props
@@ -42,20 +47,59 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
       okLoading={loading}
       onCancel={() => {
         onVisibleChange(false)
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          {
+            element: "duplicate_modal_save",
+            parameter3: name?.length ?? 0,
+            parameter5: appId,
+          },
+        )
       }}
       onOk={() => {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "duplicate_modal_save", parameter5: appId },
+        )
         if (name === undefined || name === "") {
           message.error({
             content: t("dashboard.app.name_empty"),
           })
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            {
+              element: "duplicate_modal_save",
+              parameter2: "failed",
+              parameter3: t("dashboard.app.name_empty"),
+              parameter5: appId,
+            },
+          )
           return
         }
         if (appList.some((item) => item.appName === name)) {
           message.error({
             content: t("dashboard.app.name_existed"),
           })
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            {
+              element: "duplicate_modal_save",
+              parameter2: "failed",
+              parameter3: t("dashboard.app.name_existed"),
+              parameter5: appId,
+            },
+          )
           return
         }
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "duplicate_modal_save", parameter2: "suc" },
+        )
         BuilderApi.teamRequest<DashboardApp>(
           {
             url: `/apps/${app.appId}/duplication`,
