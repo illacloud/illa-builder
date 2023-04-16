@@ -80,6 +80,7 @@ export const DataSourceSetter: FC<ChartDataSourceSetterProps> = (props) => {
   return (
     <div css={publicPaddingStyle}>
       <BaseDynamicSelect
+        {...props}
         isDynamic={isDynamic}
         onClickFxButton={handleClickFxButton}
         selectPlaceholder="Select a query or transformer"

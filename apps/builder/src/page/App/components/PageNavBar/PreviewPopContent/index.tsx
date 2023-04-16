@@ -2,6 +2,7 @@ import { useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CloseIcon, InputNumber, useMessage } from "@illa-design/react"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   BODY_MIN_HEIGHT,
   BODY_MIN_WIDTH,
@@ -17,6 +18,7 @@ import {
 } from "@/page/App/components/PageNavBar/style"
 import { getViewportSizeSelector } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 
 const validateHeight = (currentHeight: number | undefined) => {
   return !(
@@ -64,6 +66,11 @@ export const PreviewPopContent = () => {
 
   const handleOnBlurInputHeight = useCallback(() => {
     const isValidate = validateHeight(inputHeight)
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
+      element: "custom_size_input",
+      parameter2: "h",
+      parameter3: inputHeight,
+    })
     if (!isValidate) {
       message.error({
         content: t("frame_size.invalid_tips", {
@@ -77,6 +84,11 @@ export const PreviewPopContent = () => {
 
   const handleOnBlurInputWidth = useCallback(() => {
     const isValidate = validateWidth(inputWidth)
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
+      element: "custom_size_input",
+      parameter2: "w",
+      parameter3: inputWidth,
+    })
     if (!isValidate) {
       message.error({
         content: t("frame_size.invalid_tips", {
@@ -87,6 +99,20 @@ export const PreviewPopContent = () => {
     }
     saveNewViewportSize()
   }, [inputWidth, message, saveNewViewportSize, t])
+
+  const handleOnFocusOnWidth = useCallback(() => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.FOCUS, {
+      element: "custom_size_input",
+      parameter2: "w",
+    })
+  }, [])
+
+  const handleOnFocusOnHeight = useCallback(() => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.FOCUS, {
+      element: "custom_size_input",
+      parameter2: "h",
+    })
+  }, [])
 
   return (
     <div css={inputAreaWrapperStyle}>
@@ -103,6 +129,7 @@ export const PreviewPopContent = () => {
           placeholder="--"
           onChange={handleUpdateInputWidth}
           onBlur={handleOnBlurInputWidth}
+          onFocus={handleOnFocusOnWidth}
           min={BODY_MIN_WIDTH + LEFT_MIN_WIDTH + RIGHT_MIN_WIDTH}
           suffix="px"
           hideControl
@@ -117,6 +144,7 @@ export const PreviewPopContent = () => {
           hideControl
           onChange={handleUpdateInputHeight}
           onBlur={handleOnBlurInputHeight}
+          onFocus={handleOnFocusOnHeight}
           min={BODY_MIN_HEIGHT + HEADER_MIN_HEIGHT + FOOTER_MIN_HEIGHT}
         />
       </div>

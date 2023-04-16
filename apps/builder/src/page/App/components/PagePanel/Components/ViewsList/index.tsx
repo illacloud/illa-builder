@@ -38,7 +38,10 @@ export const ViewList: FC<ViewListProps> = (props) => {
         sectionName={sectionName}
         sectionNodeExecutionResult={sectionNodeExecutionResult}
       />
-      <ListBody sectionNodeExecutionResult={sectionNodeExecutionResult} />
+      <ListBody
+        sectionNodeExecutionResult={sectionNodeExecutionResult}
+        sectionName={sectionName}
+      />
     </div>
   )
 }

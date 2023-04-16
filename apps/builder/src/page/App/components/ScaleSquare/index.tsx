@@ -4,6 +4,7 @@ import { useDrag } from "react-dnd"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { DropList, DropListItem, Dropdown } from "@illa-design/react"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
 import {
   DragCollectedInfo,
@@ -51,6 +52,7 @@ import store, { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { endDragMultiNodes, startDragMultiNodes } from "@/utils/drag/drag"
 import { FocusManager } from "@/utils/focusManager"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { isMAC } from "@/utils/userAgent"
 import { AutoHeightWithLimitedContainer } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
@@ -219,6 +221,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         dispatch(
           configActions.updateSelectedComponent(currentSelectedDisplayName),
         )
+        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
+          element: "component",
+          parameter1: "click",
+        })
         return
       }
       dispatch(
@@ -263,6 +269,11 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         sendShadowMessageHandler(-1, "", [], 0, 0, 0, 0, 0, 0, 0, 0)
         const dropResultInfo = monitor.getDropResult()
         const { draggedSelectedComponents } = draggedItem
+        const widgetTypes = draggedSelectedComponents.map((node) => node.type)
+        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DRAG, {
+          element: "component",
+          parameter1: widgetTypes,
+        })
         endDragMultiNodes(
           draggedSelectedComponents,
           dropResultInfo?.isDropOnCanvas ?? false,
@@ -362,7 +373,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
                 title={t("editor.context_menu.duplicate")}
                 onClick={() => {
                   CopyManager.copyComponentNode([componentNode])
-                  CopyManager.paste()
+                  CopyManager.paste("duplicate")
                 }}
               />
               <DropListItem
@@ -370,11 +381,25 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
                 value="delete"
                 title={t("editor.context_menu.delete")}
                 onClick={() => {
-                  shortcut.showDeleteDialog([componentNode.displayName])
+                  shortcut.showDeleteDialog(
+                    [componentNode.displayName],
+                    "widget",
+                    {
+                      source: "manage_delete",
+                    },
+                  )
                 }}
               />
             </DropList>
           }
+          onVisibleChange={(visible) => {
+            if (visible) {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+                element: "component_management_canvas",
+                parameter1: componentNode.type,
+              })
+            }
+          }}
         >
           <div
             className="wrapperPending"

@@ -1,6 +1,6 @@
 import copy from "copy-to-clipboard"
 import { isBoolean } from "lodash"
-import { FC, useMemo, useState } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -13,6 +13,11 @@ import {
   ListItemMeta,
   useMessage,
 } from "@illa-design/react"
+import { ILLAMixpanel } from "@/illa-public-component/MixpanelUtils"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { canManage, canManageApp } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
@@ -77,6 +82,12 @@ export const DashboardApps: FC = () => {
   if (isBoolean(isTutorialViewed) && !isTutorialViewed && teamIdentifier) {
     openGuideModal(teamIdentifier)
   }
+
+  useEffect(() => {
+    ILLAMixpanel.track(ILLA_MIXPANEL_EVENT_TYPE.VISIT, {
+      page: ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+    })
+  }, [])
 
   return (
     <>
