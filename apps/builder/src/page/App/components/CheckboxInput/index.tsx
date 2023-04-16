@@ -21,6 +21,7 @@ export const CheckboxInput: FC<CheckboxInputProps> = (props) => {
     inputPlaceholder,
     inputTips,
     showInputEditor = true,
+    hasExpectedType = true,
     expectedType = VALIDATION_TYPES.STRING,
   } = props
   return (
@@ -42,6 +43,7 @@ export const CheckboxInput: FC<CheckboxInputProps> = (props) => {
           title={inputTitle}
           value={inputValue}
           onChange={onValueChange}
+          hasExpectedType={hasExpectedType}
           expectedType={expectedType}
           tips={inputTips}
           placeholder={inputPlaceholder}
