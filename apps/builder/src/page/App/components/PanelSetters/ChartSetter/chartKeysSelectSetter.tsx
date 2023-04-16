@@ -1,4 +1,3 @@
-import { ChartType } from "chart.js"
 import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
@@ -121,16 +120,9 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (
 
   return (
     <BaseSelectSetter
-      isSetterSingleRow={isSetterSingleRow}
+      {...props}
       options={selectedOptions}
-      attrName={attrName}
       handleUpdateDsl={handleUpdateDsl}
-      value={value}
-      expectedType={expectedType}
-      widgetDisplayName={widgetDisplayName}
-      widgetOrAction={widgetOrAction}
-      widgetType={widgetType}
-      allowClear={allowClear}
     />
   )
 }

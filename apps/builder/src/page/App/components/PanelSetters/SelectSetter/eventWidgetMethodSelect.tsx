@@ -1,11 +1,12 @@
 import { get } from "lodash"
-import { FC, useEffect, useMemo } from "react"
+import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { BaseSelectSetter } from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
@@ -59,17 +60,11 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   }, [finalOptions, value, selectedWidgetType])
 
   return (
-    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
-      <Select
-        options={finalOptions}
-        size="medium"
-        value={finalValue}
-        colorScheme="techPurple"
-        onChange={(value) => {
-          handleUpdateDsl(attrName, value)
-        }}
-      />
-    </div>
+    <BaseSelectSetter
+      {...props}
+      value={finalValue as string}
+      options={finalOptions}
+    />
   )
 }
 EventWidgetMethodSelect.displayName = "EventWidgetMethodSelect"
