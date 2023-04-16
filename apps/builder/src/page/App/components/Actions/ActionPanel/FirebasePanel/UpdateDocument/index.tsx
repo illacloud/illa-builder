@@ -31,7 +31,7 @@ export const UpdateDocumentPart: FC<FirebaseActionPartProps> = (props) => {
         title={t("editor.action.panel.firebase.value")}
         value={options.value}
         onChange={(value) => handleValueChange(value, "value")}
-        expectedType={VALIDATION_TYPES.STRING}
+        expectedType={VALIDATION_TYPES.OBJECT}
       />
     </>
   )
