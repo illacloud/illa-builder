@@ -126,7 +126,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       default:
         return null
     }
-  }, [finalResourceType, onFinished, resourceId, handleBack])
+  }, [resourceId, handleBack, onFinished, finalResourceType])
 
   return <>{element}</>
 }

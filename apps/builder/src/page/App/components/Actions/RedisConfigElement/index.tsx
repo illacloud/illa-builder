@@ -11,6 +11,10 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -35,6 +39,7 @@ import {
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
@@ -77,6 +82,15 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
   }
 
   const handleConnectionTest = useCallback(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element: "resource_configure_back",
+        parameter1: resourceId ? "resource_edit" : "resource_new",
+        parameter5: "redis",
+      },
+    )
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -91,7 +105,7 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
       "redis",
       setTestLoading,
     )
-  }, [getValues, sslOpenWatch])
+  }, [getValues, resourceId, sslOpenWatch])
 
   return (
     <form

@@ -10,6 +10,10 @@ import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { getTemplateConfig } from "@/config/template"
 import { TemplateName } from "@/config/template/interface"
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import {
   informationStyle,
   logoCursorStyle,
   nameStyle,
@@ -23,6 +27,7 @@ import { Page404 } from "@/page/status/404"
 import { configActions } from "@/redux/config/configSlice"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { track } from "@/utils/mixpanelHelper"
 
 const Template: FC = () => {
   const dispatch = useDispatch()
@@ -103,7 +108,14 @@ const Template: FC = () => {
             loading={loading}
             colorScheme="techPurple"
             leftIcon={<ForkIcon css={forkIconStyle} />}
-            onClick={handleForkApp}
+            onClick={() => {
+              handleForkApp()
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.BUILDER_TUTORIAL_PREVIEW,
+                { element: "tutorial_template_fork", parameter5: nameKey },
+              )
+            }}
           >
             {t("editor.tutorial.panel.tutorial.templates_action.fork")}
           </Button>

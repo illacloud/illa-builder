@@ -11,6 +11,10 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -38,6 +42,7 @@ import {
 } from "@/redux/resource/s3Resource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
@@ -64,6 +69,15 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
   const baseURLOpen = watch("endpoint", content.endpoint)
 
   const handleConnectionTest = () => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element: "resource_configure_back",
+        parameter1: resourceId ? "resource_edit" : "resource_new",
+        parameter5: "s3",
+      },
+    )
     const data = getValues()
     const content = {
       bucketName: data.bucketName,
