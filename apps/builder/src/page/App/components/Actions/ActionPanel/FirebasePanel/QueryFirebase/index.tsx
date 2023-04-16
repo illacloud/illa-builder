@@ -33,7 +33,7 @@ export const QueryFirebasePart: FC<FirebaseActionPartProps> = (props) => {
         title={t("editor.action.panel.firebase.limit")}
         value={options.limit}
         onChange={(value) => handleValueChange(value, "limit")}
-        expectedType={VALIDATION_TYPES.STRING}
+        expectedType={VALIDATION_TYPES.NUMBER}
       />
       <InputEditor
         title={t("editor.action.panel.firebase.order_by")}
@@ -73,6 +73,7 @@ export const QueryFirebasePart: FC<FirebaseActionPartProps> = (props) => {
               "startAt",
             )
           }
+          hasExpectedType={false}
         />
         <CheckboxInput
           checkboxTitle={t("editor.action.panel.firebase.use_end_at")}
@@ -97,6 +98,7 @@ export const QueryFirebasePart: FC<FirebaseActionPartProps> = (props) => {
               "endAt",
             )
           }
+          hasExpectedType={false}
         />
       </div>
     </>

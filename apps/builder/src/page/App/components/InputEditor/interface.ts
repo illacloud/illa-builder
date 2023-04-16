@@ -20,6 +20,7 @@ export interface ControlledInputProps
   tips?: string | ReactNode
   lineNumbers?: boolean
   mode?: CODE_LANG
+  hasExpectedType?: boolean
   popoverContent?: string
   style?: Record<string, string>
 }
