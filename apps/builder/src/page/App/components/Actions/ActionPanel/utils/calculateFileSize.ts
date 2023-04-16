@@ -13,11 +13,7 @@ export const getFileValue = (data: string) => {
   if (isDynamicString(data)) {
     try {
       value = evaluateDynamicString("", data, BUILDER_CALC_CONTEXT)
-    } catch (e) {
-      message.error({
-        content: `maybe run error`,
-      })
-    }
+    } catch (ignore) {}
   }
   return value
 }
