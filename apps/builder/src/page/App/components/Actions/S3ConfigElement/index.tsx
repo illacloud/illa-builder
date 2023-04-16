@@ -41,7 +41,7 @@ import { urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished, onTestConnectReport } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
@@ -64,6 +64,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
   const baseURLOpen = watch("endpoint", content.endpoint)
 
   const handleConnectionTest = () => {
+    onTestConnectReport && onTestConnectReport("s3")
     const data = getValues()
     const content = {
       bucketName: data.bucketName,

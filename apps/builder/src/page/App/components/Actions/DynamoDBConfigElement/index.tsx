@@ -36,7 +36,7 @@ import { validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onFinished, onBack } = props
+  const { resourceId, onFinished, onBack, onTestConnectReport } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -59,6 +59,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleResourceTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("dynamodb")
     const data = getValues()
     const { region, accessKeyID, secretAccessKey } = data
     onActionConfigElementTest(
@@ -71,7 +72,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
       "dynamodb",
       setTestLoading,
     )
-  }, [getValues])
+  }, [getValues, onTestConnectReport])
 
   return (
     <form

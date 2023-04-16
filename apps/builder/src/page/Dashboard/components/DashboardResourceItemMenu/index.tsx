@@ -244,6 +244,17 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                 },
               )
             }}
+            onTestConnectReport={(resourceType: string) => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                {
+                  element: "resource_configure_test",
+                  parameter1: "resource_edit",
+                  parameter5: resourceType,
+                },
+              )
+            }}
           />
         </div>
       </Modal>

@@ -39,7 +39,7 @@ import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished, onTestConnectReport } = props
   const { t } = useTranslation()
 
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -60,6 +60,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
   const sslOpen = watch("ssl", resource?.content.ssl.ssl ?? false)
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport(resource.resourceType)
     const data = getValues()
     onActionConfigElementTest(
       data,

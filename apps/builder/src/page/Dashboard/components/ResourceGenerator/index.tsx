@@ -117,6 +117,17 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
                 },
               )
             }}
+            onTestConnectReport={(resourceType: string) => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                {
+                  element: "resource_configure_test",
+                  parameter1: "resource_new",
+                  parameter5: resourceType,
+                },
+              )
+            }}
             resourceType={currentResource}
           />
         )}

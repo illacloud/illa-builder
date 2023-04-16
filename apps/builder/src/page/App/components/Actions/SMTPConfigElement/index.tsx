@@ -36,7 +36,7 @@ import { validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished, onTestConnectReport } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -57,6 +57,7 @@ export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("smtp")
     const data = getValues()
     const content = {
       host: data.host.trim(),
@@ -65,7 +66,7 @@ export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
       password: data.password,
     }
     onActionConfigElementTest(data, content, "smtp", setTestLoading)
-  }, [getValues])
+  }, [getValues, onTestConnectReport])
 
   return (
     <form

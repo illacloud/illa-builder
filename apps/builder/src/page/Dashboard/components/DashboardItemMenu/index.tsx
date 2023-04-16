@@ -45,7 +45,6 @@ import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
 import { MemberInfo } from "@/redux/team/teamState"
 import { RootState } from "@/store"
 import { track, trackInDashboard } from "@/utils/mixpanelHelper"
-import { eventReportCallback } from "@/utils/mixpanelHelper/eventReport2Public"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {

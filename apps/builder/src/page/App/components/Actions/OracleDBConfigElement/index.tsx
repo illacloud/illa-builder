@@ -41,7 +41,7 @@ import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onBack, onFinished } = props
+  const { resourceId, onBack, onFinished, onTestConnectReport } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -58,6 +58,7 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
   const content = (resource?.content as OracleResource) ?? OracleResourceInitial
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport(resource?.resourceType || "")
     const data = getValues()
     const { resourceName, host, ...otherParams } = data
     onActionConfigElementTest(
@@ -66,7 +67,7 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
       "oracle",
       setTestLoading,
     )
-  }, [setTestLoading, getValues])
+  }, [onTestConnectReport, resource?.resourceType, getValues])
 
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")

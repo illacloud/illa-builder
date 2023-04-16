@@ -27,7 +27,7 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 
 export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceId, onFinished, onTestConnectReport } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -53,6 +53,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
   const openSSLWatch = watch("open", content.ssl.open ?? false)
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("mongodb")
     const data = getValues()
     const content = {
       configType: data.configType,
@@ -78,7 +79,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
     }
 
     onActionConfigElementTest(data, content, "mongodb", setTestLoading)
-  }, [configTypeWatch, getValues, openSSLWatch])
+  }, [configTypeWatch, getValues, onTestConnectReport, openSSLWatch])
 
   return (
     <form

@@ -23,7 +23,8 @@ import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenera
 import { RootState } from "@/store"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
-  const { resourceType, resourceId, onBack, onFinished } = props
+  const { resourceType, resourceId, onBack, onFinished, onTestConnectReport } =
+    props
   const resource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
   })
@@ -36,6 +37,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       resourceId,
       onBack: handleBack,
       onFinished,
+      onTestConnectReport,
     }
     switch (finalResourceType) {
       case "supabasedb":
@@ -49,6 +51,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}
+            onTestConnectReport={onTestConnectReport}
           />
         )
       case "mssql":
@@ -69,6 +72,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}
+            onTestConnectReport={onTestConnectReport}
           />
         )
       case "redis":
@@ -77,6 +81,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}
+            onTestConnectReport={onTestConnectReport}
           />
         )
       case "elasticsearch":
@@ -85,6 +90,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}
+            onTestConnectReport={onTestConnectReport}
           />
         )
       case "dynamodb":
@@ -97,6 +103,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}
+            onTestConnectReport={onTestConnectReport}
           />
         )
       case "graphql":
@@ -107,6 +114,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}
+            onTestConnectReport={onTestConnectReport}
           />
         )
       case "smtp":
@@ -126,7 +134,13 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       default:
         return null
     }
-  }, [finalResourceType, onFinished, resourceId, handleBack])
+  }, [
+    resourceId,
+    handleBack,
+    onFinished,
+    onTestConnectReport,
+    finalResourceType,
+  ])
 
   return <>{element}</>
 }

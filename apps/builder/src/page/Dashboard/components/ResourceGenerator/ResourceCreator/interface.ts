@@ -6,4 +6,5 @@ export interface ResourceCreatorProps {
   resourceType?: ResourceType
   onBack: (page: ResourceCreatorPage) => void
   onFinished: (resourceId: string) => void
+  onTestConnectReport?: (resourceType: string) => void
 }

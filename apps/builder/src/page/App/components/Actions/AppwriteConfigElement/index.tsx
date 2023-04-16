@@ -38,7 +38,7 @@ import { urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onBack, onFinished } = props
+  const { resourceId, onBack, onFinished, onTestConnectReport } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -58,6 +58,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleConnectionTest = useCallback(() => {
+    onTestConnectReport && onTestConnectReport("appwrite")
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -70,7 +71,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
       "appwrite",
       setTestLoading,
     )
-  }, [getValues])
+  }, [getValues, onTestConnectReport])
 
   const inputValueValidate = {
     validate,
