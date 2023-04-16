@@ -255,7 +255,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
               title={t("editor.context_menu.duplicate")}
               onClick={() => {
                 CopyManager.copyComponentNode([componentNode])
-                CopyManager.paste()
+                CopyManager.paste("duplicate")
               }}
             />
             <DropListItem
@@ -263,7 +263,13 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
               value="delete"
               title={t("editor.context_menu.delete")}
               onClick={() => {
-                shortcut.showDeleteDialog([componentNode.displayName])
+                shortcut.showDeleteDialog(
+                  [componentNode.displayName],
+                  "widget",
+                  {
+                    source: "manage_delete",
+                  },
+                )
               }}
             />
           </DropList>

@@ -3,8 +3,10 @@ import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Trigger } from "@illa-design/react"
 import i18n from "@/i18n/config"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { EventAndMethodLabelProps } from "./interface"
 import {
   eventAndMethodWrapperStyle,
@@ -44,8 +46,13 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
   const { index } = props
   const { t } = useTranslation()
   const [modalVisible, setModalVisible] = useState(false)
-  const { widgetDisplayName, attrPath, childrenSetter, eventItems } =
-    useContext(BaseEventHandlerContext)
+  const {
+    widgetDisplayName,
+    attrPath,
+    childrenSetter,
+    eventItems,
+    widgetType,
+  } = useContext(BaseEventHandlerContext)
 
   const event = get(eventItems, index)
   const { eventType, widgetID, queryID, widgetMethod, actionType } = event
@@ -72,6 +79,12 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       position="left-start"
       clickOutsideToClose
       onVisibleChange={(visible) => {
+        if (visible) {
+          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+            element: "event_handler_editor",
+            parameter1: widgetType,
+          })
+        }
         setModalVisible(visible)
       }}
     >

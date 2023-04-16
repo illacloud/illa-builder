@@ -1,12 +1,11 @@
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { Select } from "@illa-design/react"
-import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getGlobalDataExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { BaseSelectSetter } from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventtargetStateSelect: FC<BaseSelectSetterProps> = (props) => {
-  const { isSetterSingleRow, attrName, handleUpdateDsl, value } = props
+  const { value } = props
 
   const globalDataResult = useSelector(getGlobalDataExecutionResult)
 
@@ -26,16 +25,10 @@ export const EventtargetStateSelect: FC<BaseSelectSetterProps> = (props) => {
   }, [finalOptions, value])
 
   return (
-    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
-      <Select
-        options={finalOptions}
-        size="medium"
-        colorScheme="techPurple"
-        value={finalValue}
-        onChange={(value) => {
-          handleUpdateDsl(attrName, value)
-        }}
-      />
-    </div>
+    <BaseSelectSetter
+      {...props}
+      value={finalValue as string}
+      options={finalOptions}
+    />
   )
 }

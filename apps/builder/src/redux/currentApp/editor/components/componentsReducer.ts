@@ -113,9 +113,12 @@ export const addModalComponentReducer: CaseReducer<
 
 export const copyComponentReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<CopyComponentPayload[]>
+  PayloadAction<{
+    copyComponents: CopyComponentPayload[]
+    sources: "keyboard" | "duplicate"
+  }>
 > = (state, action) => {
-  action.payload.forEach((copyShape) => {
+  action.payload.copyComponents.forEach((copyShape) => {
     const { newComponentNode } = copyShape
     if (state == null || newComponentNode.parentNode == null) {
       return state

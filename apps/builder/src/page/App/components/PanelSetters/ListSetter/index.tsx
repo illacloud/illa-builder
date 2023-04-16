@@ -22,7 +22,6 @@ export const ListSetter: FC<ListSetterProps> = memo(
       handleUpdateDsl,
       widgetDisplayName,
       panelConfig,
-      isGuideMode,
     } = props
 
     const { t } = useTranslation()

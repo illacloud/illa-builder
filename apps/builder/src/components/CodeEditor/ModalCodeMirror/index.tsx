@@ -17,6 +17,8 @@ export const ModalCodeMirror: FC<ModalCodeMirrorProps> = (props) => {
     onClose,
     placeholder,
     wrappedCodeFunc,
+    onBlur,
+    onFocus,
   } = props
   const { t } = useTranslation()
 
@@ -35,6 +37,8 @@ export const ModalCodeMirror: FC<ModalCodeMirrorProps> = (props) => {
           onChange={onChange}
           placeholder={placeholder}
           wrappedCodeFunc={wrappedCodeFunc}
+          onBlur={onBlur}
+          onFocus={onFocus}
         />
       }
       footerContent={

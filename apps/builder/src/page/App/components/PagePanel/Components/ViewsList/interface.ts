@@ -11,6 +11,7 @@ export interface ViewListProps {
 
 export interface BodyProps {
   sectionNodeExecutionResult: Record<string, any>
+  sectionName: string
 }
 
 export interface ItemProps extends Omit<SectionViewShape, "id" | "key"> {

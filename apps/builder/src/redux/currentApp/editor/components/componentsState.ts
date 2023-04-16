@@ -131,6 +131,7 @@ export const ComponentsInitialState: ComponentsState = null
 
 export interface DeleteComponentNodePayload {
   displayNames: string[]
+  source?: "keyboard" | "manage_delete" | "left_delete" | "left_multi_delete"
 }
 
 export interface DeletePageNodePayload {

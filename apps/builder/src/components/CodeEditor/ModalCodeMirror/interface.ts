@@ -8,6 +8,8 @@ export interface ModalBodyContent {
   expectValueType?: CodeEditorProps["expectValueType"]
   onChange?: CodeEditorProps["onChange"]
   wrappedCodeFunc?: CodeEditorProps["wrappedCodeFunc"]
+  onFocus?: CodeEditorProps["onFocus"]
+  onBlur?: CodeEditorProps["onBlur"]
   value: string
 }
 
