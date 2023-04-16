@@ -11,6 +11,10 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -35,6 +39,7 @@ import {
 } from "@/redux/resource/appWriteResource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
@@ -58,6 +63,15 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleConnectionTest = useCallback(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element: "resource_configure_back",
+        parameter1: resourceId ? "resource_edit" : "resource_new",
+        parameter5: "appwrite",
+      },
+    )
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -70,7 +84,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
       "appwrite",
       setTestLoading,
     )
-  }, [getValues])
+  }, [getValues, resourceId])
 
   const inputValueValidate = {
     validate,

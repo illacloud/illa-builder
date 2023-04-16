@@ -13,7 +13,6 @@ import {
   ListItemMeta,
   useMessage,
 } from "@illa-design/react"
-import { ILLAMixpanel } from "@/illa-public-component/MixpanelUtils"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -32,6 +31,7 @@ import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fromNow } from "@/utils/dayjs"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
   appsContainerStyle,
@@ -84,10 +84,35 @@ export const DashboardApps: FC = () => {
   }
 
   useEffect(() => {
-    ILLAMixpanel.track(ILLA_MIXPANEL_EVENT_TYPE.VISIT, {
-      page: ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-    })
+    track(ILLA_MIXPANEL_EVENT_TYPE.VISIT, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP)
   }, [])
+
+  useEffect(() => {
+    canCreateApp &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "create_new_app" },
+      )
+  }, [canCreateApp])
+
+  useEffect(() => {
+    if (finalAppsList.length) {
+      finalAppsList.forEach(({ appId }) => {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "app" },
+        )
+        canEditApp &&
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            { element: "app_more", parameter5: appId },
+          )
+      })
+    }
+  }, [finalAppsList, canEditApp])
 
   return (
     <>
@@ -111,6 +136,11 @@ export const DashboardApps: FC = () => {
               colorScheme="techPurple"
               onClick={() => {
                 setCreateNewModalVisible(true)
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  { element: "create_new_app" },
+                )
               }}
             >
               {t("create_new_app")}
@@ -129,6 +159,26 @@ export const DashboardApps: FC = () => {
               return (
                 <ListItem
                   css={hoverStyle}
+                  data-element="listItem"
+                  onMouseEnter={(e) => {
+                    if (
+                      (e.target as HTMLDivElement).dataset?.element !==
+                      "listItem"
+                    )
+                      return
+                    canEditApp &&
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                        { element: "app_edit", parameter5: item.appId },
+                      )
+                    item.mainlineVersion !== 0 &&
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                        { element: "app_launch", parameter5: item.appId },
+                      )
+                  }}
                   extra={
                     <DashboardItemMenu
                       appId={item.appId}
