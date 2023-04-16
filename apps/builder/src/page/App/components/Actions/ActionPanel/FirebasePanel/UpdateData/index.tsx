@@ -22,7 +22,7 @@ export const UpdateDataPart: FC<FirebaseActionPartProps> = (props) => {
         title={t("editor.action.panel.firebase.object_to_set")}
         value={options.object}
         onChange={(value) => handleValueChange(value, "object")}
-        expectedType={VALIDATION_TYPES.STRING}
+        expectedType={VALIDATION_TYPES.OBJECT}
       />
     </>
   )
