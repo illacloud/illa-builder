@@ -1,9 +1,8 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, Switch } from "@illa-design/react"
 import { PanelBar } from "@/components/PanelBar"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { ViewList } from "@/page/App/components/PagePanel/Components/ViewsList"
 import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
@@ -20,41 +19,14 @@ import {
 } from "@/redux/currentApp/editor/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 
 export const PageBasic: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
-  const homepageControlRef = useRef<HTMLButtonElement>(null)
-  const isReportFlag = useRef<boolean>(false)
 
-  const intersectionObserver = useRef<IntersectionObserver | null>(
-    new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (isReportFlag.current) return
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-            element: "homepage_switch",
-          })
-          isReportFlag.current = true
-        }
-      })
-    }),
-  )
   const { currentPageIndex, pageSortedKey, homepageDisplayName } =
     rootExecutionProps
-
-  useEffect(() => {
-    if (!homepageControlRef.current) return
-    intersectionObserver.current?.observe(homepageControlRef.current)
-    return () => {
-      if (!homepageControlRef.current) return
-      intersectionObserver.current?.unobserve(homepageControlRef.current)
-      isReportFlag.current = false
-    }
-  }, [currentPageIndex])
-
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const pageProps = useSelector<RootState>((state) => {
     const canvas = getCanvas(state)
@@ -82,9 +54,6 @@ export const PageBasic: FC = () => {
             homepageDisplayName: currentPageDisplayName,
           }),
         )
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-          element: "homepage_switch",
-        })
       }
     },
     [currentPageDisplayName, dispatch, homepageDisplayName],
@@ -120,7 +89,6 @@ export const PageBasic: FC = () => {
     },
     [dispatch, sectionNodes],
   )
-
   return (
     <PanelBar title={t("editor.page.panel_bar_title.basic")}>
       <LeftAndRightLayout>
@@ -133,7 +101,6 @@ export const PageBasic: FC = () => {
             checked={isHomepage}
             onChange={handleChangeIsHomePage}
             colorScheme="techPurple"
-            ref={homepageControlRef}
           />
         </SetterPadding>
       </LeftAndRightLayout>

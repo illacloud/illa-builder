@@ -69,7 +69,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
       bucketName: data.bucketName,
       region: data.region,
       endpoint: data.endpoint,
-      baseURL: data.baseURL.trim(),
+      baseURL: data.baseURL && data.baseURL.trim(),
       accessKeyID: data.accessKeyID,
       secretAccessKey: data.secretAccessKey,
       acl:

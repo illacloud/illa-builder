@@ -10,7 +10,6 @@ import {
   useModal,
 } from "@illa-design/react"
 import { ReactComponent as ActionListEmptyState } from "@/assets/action-list-empty-state.svg"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
 import { ActionListItem } from "@/page/App/components/Actions/ActionListItem"
 import { SearchHeader } from "@/page/App/components/Actions/SearchHeader"
@@ -24,7 +23,6 @@ import {
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   actionListEmptyStyle,
   addNewActionButtonStyle,
@@ -67,12 +65,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
         mr="16px"
         mb="8px"
         css={addNewActionButtonStyle}
-        onClick={() => {
-          setGeneratorVisible(true)
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-            element: "action_add",
-          })
-        }}
+        onClick={() => setGeneratorVisible(true)}
       >
         <Space size="4px" direction="horizontal" alignItems="center">
           <AddIcon size="14px" />

@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -16,7 +16,6 @@ import {
 import { BuilderApi } from "@/api/base"
 import { EditableText } from "@/components/EditableText"
 import i18n from "@/i18n/config"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import {
@@ -43,7 +42,6 @@ import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ActionTitleBarProps } from "./interface"
 import {
   actionFailBlockStyle,
@@ -180,32 +178,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     }
   }, [isChanged, cachedAction, isGuideOpen])
 
-  useEffect(() => {
-    switch (runMode) {
-      case "save": {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-          element: "action_edit_save",
-          parameter1: cachedAction.actionType,
-        })
-        break
-      }
-      case "run": {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-          element: "action_edit_run",
-          parameter1: cachedAction.actionType,
-        })
-        break
-      }
-      case "save_and_run": {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-          element: "action_edit_save_run",
-          parameter1: cachedAction.actionType,
-        })
-        break
-      }
-    }
-  }, [cachedAction.actionType, runMode])
-
   const runCachedAction = useCallback(
     (cachedActionValue: ActionItem<ActionContent>) => {
       if (cachedActionValue) {
@@ -243,11 +215,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         updateAndRunCachedAction(cachedActionValue)
         break
       case "run":
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-          element: "action_edit_run",
-          parameter1: cachedAction.actionType,
-          parameter2: cachedAction,
-        })
         if (!canRunAction) {
           message.error({
             content: canNotRunMessage,
@@ -262,11 +229,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
             dispatch(actionActions.updateActionItemReducer(cachedActionValue))
           return
         }
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-          element: "action_edit_save",
-          parameter1: cachedAction.actionType,
-          parameter2: cachedAction,
-        })
         setSaveLoading(true)
         BuilderApi.teamRequest(
           {
@@ -295,11 +257,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         )
         break
       case "save_and_run":
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-          element: "action_edit_save_run",
-          parameter1: cachedAction.actionType,
-          parameter2: cachedAction,
-        })
         if (!canRunAction) {
           message.error({
             content: canNotRunMessage,
@@ -438,13 +395,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 setSaveLoading(loading)
               },
             )
-          }}
-          onClick={() => {
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.RENAME, {
-              element: "action_rename",
-              parameter1: selectedAction.actionType,
-              parameter2: "hover",
-            })
           }}
         />
       </div>

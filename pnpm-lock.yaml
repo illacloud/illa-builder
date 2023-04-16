@@ -70,7 +70,6 @@ importers:
       '@codemirror/state': ^6.2.0
       '@codemirror/view': ^6.7.2
       '@emotion/cache': ^11.10.5
-      '@fingerprintjs/fingerprintjs': ^3.4.0
       '@fontsource/fira-code': ^4.5.10
       '@illa-design/react': workspace:*
       '@illa-fe-utils/storage': ^0.0.3
@@ -92,7 +91,6 @@ importers:
       '@types/jshint': ^2.12.1
       '@types/lodash': ^4.14.191
       '@types/mdx': ^2.0.3
-      '@types/mixpanel-browser': ^2.38.1
       '@types/node': ^18.14.4
       '@types/qs': ^6.9.7
       '@types/react-pdf': ^6.2.0
@@ -130,7 +128,6 @@ importers:
       jshint: ^2.13.6
       lodash: ^4.17.21
       lottie-react: ^2.4.0
-      mixpanel-browser: ^2.46.0
       overlap-area: ^1.1.0
       pdfjs-dist: 2.16.105
       qs: ^6.11.0
@@ -183,7 +180,6 @@ importers:
       '@codemirror/state': 6.2.0
       '@codemirror/view': 6.8.1
       '@emotion/cache': 11.10.5
-      '@fingerprintjs/fingerprintjs': 3.4.0
       '@fontsource/fira-code': 4.5.13
       '@illa-design/react': link:../../illa-design/packages/react
       '@illa-fe-utils/storage': 0.0.3
@@ -219,7 +215,6 @@ importers:
       jshint: 2.13.6
       lodash: 4.17.21
       lottie-react: 2.4.0
-      mixpanel-browser: 2.46.0
       overlap-area: 1.1.0
       pdfjs-dist: 2.16.105
       qs: 6.11.0
@@ -266,7 +261,6 @@ importers:
       '@types/jshint': 2.12.1
       '@types/lodash': 4.14.191
       '@types/mdx': 2.0.3
-      '@types/mixpanel-browser': 2.38.1
       '@types/node': 18.14.5
       '@types/qs': 6.9.7
       '@types/react-pdf': 6.2.0
@@ -2823,12 +2817,6 @@ packages:
       - supports-color
     dev: true
 
-  /@fingerprintjs/fingerprintjs/3.4.0:
-    resolution: {integrity: sha512-B+Eaoo5onQnFI0eYrAZ9WNHr/AjfTKqAF/h9wkWC9W0+ZCr6s/jTJRE8RdJGFyzapBniDsi0NvgualYq+1Ui5w==}
-    dependencies:
-      tslib: 2.5.0
-    dev: false
-
   /@floating-ui/core/1.2.0:
     resolution: {integrity: sha512-GHUXPEhMEmTpnpIfesFA2KAoMJPb1SPQw964tToQwt+BbGXdhqTCWT1rOb0VURGylsxsYxiGMnseJ3IlclVpVA==}
     dev: false
@@ -3078,7 +3066,7 @@ packages:
       '@motionone/easing': 10.15.1
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
-      tslib: 2.5.0
+      tslib: 2.4.0
     dev: false
 
   /@motionone/dom/10.15.5:
@@ -3089,14 +3077,14 @@ packages:
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
       hey-listen: 1.0.8
-      tslib: 2.5.0
+      tslib: 2.4.0
     dev: false
 
   /@motionone/easing/10.15.1:
     resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==}
     dependencies:
       '@motionone/utils': 10.15.1
-      tslib: 2.5.0
+      tslib: 2.4.0
     dev: false
 
   /@motionone/generators/10.15.1:
@@ -3104,7 +3092,7 @@ packages:
     dependencies:
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
-      tslib: 2.5.0
+      tslib: 2.4.0
     dev: false
 
   /@motionone/types/10.15.1:
@@ -3116,7 +3104,7 @@ packages:
     dependencies:
       '@motionone/types': 10.15.1
       hey-listen: 1.0.8
-      tslib: 2.5.0
+      tslib: 2.4.0
     dev: false
 
   /@nodelib/fs.scandir/2.1.5:
@@ -3794,10 +3782,6 @@ packages:
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
-    dev: true
-
-  /@types/mixpanel-browser/2.38.1:
-    resolution: {integrity: sha512-XzQbwgiOPsFXUQnjz3vSwcwrvJDbQ35bCiwa/1VXGrHvU1ti9+eqO1GY91DShzkEzKkkEEkxfNshS5dbBZqd7w==}
     dev: true
 
   /@types/ms/0.7.31:
@@ -8422,10 +8406,6 @@ packages:
     resolution: {integrity: sha512-/6IupbRx32s7jjEwHcycXikJwFD5UujbVNuJFkeKLYje+92OvtuPniF6JhnFm5JCTDUhS+kYK3W/4BWYQYXz7w==}
     engines: {node: '>= 8.0.0'}
     dev: true
-
-  /mixpanel-browser/2.46.0:
-    resolution: {integrity: sha512-qPFhAFMf5YzzGPd/sgoEl7G0N/ypJ6IaZmjkMYEPiW60i1Muo+v2Zl/dqRcCXwYfF5GvC5175muS1ZuaaYGXAQ==}
-    dev: false
 
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}

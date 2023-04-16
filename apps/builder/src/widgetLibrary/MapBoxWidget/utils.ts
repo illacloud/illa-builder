@@ -32,7 +32,7 @@ export const getCenter = (
 }
 
 export const getSafeZoom = (zoom: number) => {
-  if(zoom > 22) {
+  if (zoom > 22) {
     return 22
   } else if (zoom < 1) {
     return 1

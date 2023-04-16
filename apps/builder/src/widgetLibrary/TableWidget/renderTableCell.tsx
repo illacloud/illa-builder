@@ -35,9 +35,9 @@ export const RenderTableImage: FC<{
   )
   return (
     <Image
-      w={"100%"}
-      width={"100%"}
-      height={"42px"}
+      w="100%"
+      width="100%"
+      height="42px"
       src={value}
       objectFit={objectFit}
       draggable={false}

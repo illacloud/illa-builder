@@ -5,13 +5,11 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   getNeedComputedValueWithList,
   realInputValueWithList,
 } from "@/page/App/components/PanelSetters/InputSetter/util"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
-import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
 
@@ -29,8 +27,6 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     labelName,
     detailedDescription,
     labelDesc,
-    widgetType,
-    wrappedCodeFunc,
   } = props
 
   const listWidgets = useSelector(
@@ -64,26 +60,6 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     },
     [attrName, currentListDisplayName, handleUpdateDsl],
   )
-
-  const onFocus = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.FOCUS, {
-      element: "component_inspect_code_mirror",
-      parameter1: widgetType,
-      parameter2: attrName,
-    })
-  }, [attrName, widgetType])
-
-  const onBlur = useCallback(
-    (value: string) => {
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
-        element: "component_inspect_code_mirror",
-        parameter1: widgetType,
-        parameter2: attrName,
-        parameter3: value.length,
-      })
-    },
-    [attrName, widgetType],
-  )
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
       <CodeEditor
@@ -99,9 +75,6 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         codeType={CODE_TYPE.EXPRESSION}
         modalTitle={labelName}
         modalDescription={detailedDescription ?? labelDesc}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        wrappedCodeFunc={wrappedCodeFunc}
       />
     </div>
   )

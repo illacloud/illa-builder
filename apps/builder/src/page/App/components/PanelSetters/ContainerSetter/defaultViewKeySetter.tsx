@@ -11,9 +11,17 @@ export const ContainerDefaultViewKeySetter: FC<
   ContainerDefaultViewKeySetterProps
 > = (props) => {
   const {
+    attrName,
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
+    expectedType,
     widgetDisplayName,
+    widgetType,
+    widgetOrAction,
+    value,
+    labelName,
+    labelDesc,
+    detailedDescription,
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -60,7 +68,20 @@ export const ContainerDefaultViewKeySetter: FC<
     ],
   )
 
-  return <BaseInput {...props} handleUpdateDsl={handleUpdateDefaultView} />
+  return (
+    <BaseInput
+      attrName={attrName}
+      handleUpdateDsl={handleUpdateDefaultView}
+      expectedType={expectedType}
+      widgetDisplayName={widgetDisplayName}
+      widgetType={widgetType}
+      widgetOrAction={widgetOrAction}
+      value={value}
+      labelName={labelName}
+      labelDesc={labelDesc}
+      detailedDescription={detailedDescription}
+    />
+  )
 }
 
 ContainerDefaultViewKeySetter.displayName = "ContainerDefaultViewKeySetter"

@@ -60,6 +60,23 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     return <ContainerEmptyState />
   }, [blockColumns, childrenNode, currentIndex, h])
 
+  const handleUpdateOriginalDSLAttrs = useCallback(
+    (updateSlice: Record<string, any>) => {
+      handleUpdateOriginalDSLMultiAttr(updateSlice)
+      if (linkWidgetDisplayName) {
+        handleUpdateOriginalDSLOtherMultiAttr?.(
+          linkWidgetDisplayName,
+          updateSlice,
+        )
+      }
+    },
+    [
+      handleUpdateOriginalDSLMultiAttr,
+      handleUpdateOriginalDSLOtherMultiAttr,
+      linkWidgetDisplayName,
+    ],
+  )
+
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       currentIndex,
@@ -67,7 +84,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       setCurrentViewKey: (key: string) => {
         const index = viewList.findIndex((viewItem) => viewItem.key === key)
         if (index === -1) return
-        handleUpdateOriginalDSLMultiAttr({
+        handleUpdateOriginalDSLAttrs({
           currentIndex: index,
           currentKey: key,
         })
@@ -76,17 +93,10 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
         const numberIndex = parseInt(index)
         const view = viewList[numberIndex]
         if (!view) return
-        const updateSlice = {
+        handleUpdateOriginalDSLAttrs({
           currentIndex: numberIndex,
           currentKey: view.key,
-        }
-        handleUpdateOriginalDSLMultiAttr(updateSlice)
-        if (linkWidgetDisplayName) {
-          handleUpdateOriginalDSLOtherMultiAttr?.(
-            linkWidgetDisplayName,
-            updateSlice,
-          )
-        }
+        })
       },
       showNextView: (loop: boolean) => {
         let newCurrentIndex = currentIndex + 1
@@ -95,17 +105,10 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           newCurrentIndex = 0
         }
         const currentView = viewList[newCurrentIndex]
-        const updateSlice = {
+        handleUpdateOriginalDSLAttrs({
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
-        }
-        handleUpdateOriginalDSLMultiAttr(updateSlice)
-        if (linkWidgetDisplayName) {
-          handleUpdateOriginalDSLOtherMultiAttr?.(
-            linkWidgetDisplayName,
-            updateSlice,
-          )
-        }
+        })
       },
       showNextVisibleView: (loop: boolean) => {
         let newCurrentIndex = currentIndex + 1
@@ -122,17 +125,10 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
             newCurrentIndex = 0
           }
         }
-        const updateSlice = {
+        handleUpdateOriginalDSLAttrs({
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
-        }
-        handleUpdateOriginalDSLMultiAttr(updateSlice)
-        if (linkWidgetDisplayName) {
-          handleUpdateOriginalDSLOtherMultiAttr?.(
-            linkWidgetDisplayName,
-            updateSlice,
-          )
-        }
+        })
       },
       showPreviousView: (loop: boolean) => {
         let newCurrentIndex = currentIndex - 1
@@ -142,17 +138,10 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           newCurrentIndex = viewList.length - 1
         }
         const currentView = viewList[newCurrentIndex]
-        const updateSlice = {
+        handleUpdateOriginalDSLAttrs({
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
-        }
-        handleUpdateOriginalDSLMultiAttr(updateSlice)
-        if (linkWidgetDisplayName) {
-          handleUpdateOriginalDSLOtherMultiAttr?.(
-            linkWidgetDisplayName,
-            updateSlice,
-          )
-        }
+        })
       },
       showPreviousVisibleView: (loop: boolean) => {
         let newCurrentIndex = currentIndex - 1
@@ -170,18 +159,10 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
             newCurrentIndex = viewList.length - 1
           }
         }
-
-        const updateSlice = {
+        handleUpdateOriginalDSLAttrs({
           currentIndex: newCurrentIndex,
           currentKey: currentView.key,
-        }
-        handleUpdateOriginalDSLMultiAttr(updateSlice)
-        if (linkWidgetDisplayName) {
-          handleUpdateOriginalDSLOtherMultiAttr?.(
-            linkWidgetDisplayName,
-            updateSlice,
-          )
-        }
+        })
       },
     })
     return () => {
@@ -192,9 +173,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     displayName,
     handleDeleteGlobalData,
     handleUpdateGlobalData,
-    handleUpdateOriginalDSLMultiAttr,
-    handleUpdateOriginalDSLOtherMultiAttr,
-    linkWidgetDisplayName,
+    handleUpdateOriginalDSLAttrs,
     viewList,
   ])
 
