@@ -12,10 +12,12 @@ export const CreateOneUserPart: FC<FirebaseActionPartProps> = (props) => {
 
   return (
     <InputEditor
+      lineNumbers
+      style={{ height: "88px" }}
       title={t("editor.action.panel.firebase.user_object")}
       value={options.object}
       onChange={(value) => handleValueChange(value, "object")}
-      expectedType={VALIDATION_TYPES.STRING}
+      expectedType={VALIDATION_TYPES.OBJECT}
     />
   )
 }

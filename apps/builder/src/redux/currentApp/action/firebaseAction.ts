@@ -293,7 +293,7 @@ export interface Params {
 
 export interface CheckboxParams {
   trigger: boolean
-  value: string
+  value: any
 }
 
 export interface FirestoreQuery {

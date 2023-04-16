@@ -16,7 +16,7 @@ export const ListUsersPart: FC<FirebaseActionPartProps> = (props) => {
         title={t("editor.action.panel.firebase.len_of_list")}
         value={options.number}
         onChange={(value) => handleValueChange(value, "number")}
-        expectedType={VALIDATION_TYPES.STRING}
+        expectedType={VALIDATION_TYPES.NUMBER}
         placeholder={"{{1000}}"}
       />
       <InputEditor
