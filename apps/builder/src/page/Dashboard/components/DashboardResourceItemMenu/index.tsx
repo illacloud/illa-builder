@@ -19,6 +19,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
@@ -27,7 +28,7 @@ import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
-import { track } from "@/utils/mixpanelHelper"
+import { resourceContextHelper, track } from "@/utils/mixpanelHelper"
 
 const Item = DropListItem
 
@@ -227,24 +228,29 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
         }}
       >
         <div css={modalContentStyle}>
-          <ResourceCreator
-            resourceId={resourceId}
-            onBack={() => {
-              closeResourceEditor("resource_configure_back")
-            }}
-            onFinished={() => {
-              setResourceEditorVisible(false)
-              track(
-                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-                {
-                  element: "resource_configure_save",
-                  parameter1: "resource_edit",
-                  parameter5: resource.resourceType,
-                },
-              )
-            }}
-          />
+          <MixpanelTrackProvider
+            pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE}
+            basicTrack={resourceContextHelper("resource_edit")}
+          >
+            <ResourceCreator
+              resourceId={resourceId}
+              onBack={() => {
+                closeResourceEditor("resource_configure_back")
+              }}
+              onFinished={() => {
+                setResourceEditorVisible(false)
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+                  {
+                    element: "resource_configure_save",
+                    parameter1: "resource_edit",
+                    parameter5: resource.resourceType,
+                  },
+                )
+              }}
+            />
+          </MixpanelTrackProvider>
         </div>
       </Modal>
     </>
