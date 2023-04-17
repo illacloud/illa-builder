@@ -7,6 +7,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { canAccess } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_ACCESS,
@@ -50,7 +51,7 @@ import {
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
-import { track } from "@/utils/mixpanelHelper"
+import { resourceContextHelper, track } from "@/utils/mixpanelHelper"
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
@@ -193,15 +194,6 @@ export const DashboardResources: FC = () => {
     )
   }, [])
 
-  useEffect(() => {
-    newResourceVisible &&
-      track(
-        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-        ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-        { element: "resource_type_modal" },
-      )
-  }, [newResourceVisible])
-
   if (teamInfo && !canAccessResourcesView) {
     throw Error(`can not access resources view`)
   }
@@ -240,17 +232,17 @@ export const DashboardResources: FC = () => {
         ) : null}
         {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
       </div>
-      <ResourceGenerator
-        visible={newResourceVisible}
-        onClose={() => {
-          setNewResourceVisible(false)
-          track(
-            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-            ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-            { element: "resource_type_modal_close" },
-          )
-        }}
-      />
+      <MixpanelTrackProvider
+        basicTrack={resourceContextHelper("resource_new")}
+        pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE}
+      >
+        <ResourceGenerator
+          visible={newResourceVisible}
+          onClose={() => {
+            setNewResourceVisible(false)
+          }}
+        />
+      </MixpanelTrackProvider>
     </>
   )
 }

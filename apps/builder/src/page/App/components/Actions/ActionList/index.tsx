@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useState } from "react"
+import { FC, HTMLAttributes, useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -10,7 +10,10 @@ import {
   useModal,
 } from "@illa-design/react"
 import { ReactComponent as ActionListEmptyState } from "@/assets/action-list-empty-state.svg"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
 import { ActionListItem } from "@/page/App/components/Actions/ActionListItem"
 import { SearchHeader } from "@/page/App/components/Actions/SearchHeader"
