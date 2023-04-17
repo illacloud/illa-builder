@@ -62,6 +62,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const baseURLOpen = watch("endpoint", content.endpoint)
+  const aclDefaultValue = content.acl || t("editor.action.acl.option.blank")
 
   const handleConnectionTest = () => {
     const data = getValues()
@@ -74,7 +75,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
       secretAccessKey: data.secretAccessKey,
       acl:
         !data.acl || data.acl === t("editor.action.acl.option.blank")
-          ? t("editor.action.acl.option.blank")
+          ? ""
           : data.acl,
     }
     onActionConfigElementTest(data, content, "s3", setTestLoading)
@@ -127,7 +128,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
         />
         <ControlledElement
           title={t("editor.action.form.label.acl")}
-          defaultValue={content.acl}
+          defaultValue={aclDefaultValue}
           name="acl"
           allowClear={true}
           controlledType="select"

@@ -29,6 +29,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
     canShowCompleteInfo,
     popoverContent,
     codeType,
+    hasExpectedType = true,
   } = props
 
   const titleNode = useMemo(
@@ -74,7 +75,7 @@ export const InputEditor: FC<ControlledInputProps> = (props) => {
           value={value}
           sqlScheme={sqlScheme}
           onChange={onChange}
-          expectValueType={expectedType}
+          expectValueType={hasExpectedType ? expectedType : undefined}
           placeholder={placeholder}
           modalTitle={title}
           codeType={codeType}

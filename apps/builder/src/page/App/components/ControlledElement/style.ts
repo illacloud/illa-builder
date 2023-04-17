@@ -28,7 +28,6 @@ export const sslStyle = css`
 
 export const configItemTip = css`
   font-size: 14px;
-  white-space: pre-line;
   color: ${getColor("grayBlue", "04")};
   font-weight: 400;
   margin-left: 192px;
