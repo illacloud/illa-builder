@@ -14,9 +14,6 @@ import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { track } from "@/utils/mixpanelHelper"
 import { CreateNewModalProps } from "./interface"
 
-const { SHOW, CLICK } = ILLA_MIXPANEL_EVENT_TYPE
-const { APP } = ILLA_MIXPANEL_BUILDER_PAGE_NAME
-
 export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
   const { visible, onVisibleChange, onCreateSuccess } = props
 
@@ -30,7 +27,12 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
   const [name, setName] = useState<string>()
 
   useEffect(() => {
-    visible && track(SHOW, APP, { element: "create_new_app_modal" })
+    visible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "create_new_app_modal" },
+      )
   }, [visible])
 
   return (
@@ -46,30 +48,46 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
       okLoading={loading}
       onCancel={() => {
         onVisibleChange(false)
-        track(CLICK, APP, {
-          element: "create_new_app_modal_close",
-          parameter3: name?.length ?? 0,
-        })
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          {
+            element: "create_new_app_modal_close",
+            parameter3: name?.length ?? 0,
+          },
+        )
       }}
       cancelText={t("dashboard.common.cancel")}
       onOk={() => {
-        track(CLICK, APP, { element: "create_new_app_modal_save" })
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "create_new_app_modal_save" },
+        )
         if (name === undefined || name === "" || name.trim() === "") {
           message.error({
             content: t("dashboard.app.name_empty"),
           })
-          track(CLICK, APP, {
-            element: "create_new_app_modal_save",
-            parameter2: "failed",
-            parameter3: t("dashboard.app.name_empty"),
-          })
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            {
+              element: "create_new_app_modal_save",
+              parameter2: "failed",
+              parameter3: t("dashboard.app.name_empty"),
+            },
+          )
           return
         }
-        track(CLICK, APP, {
-          element: "create_new_app_modal_save",
-          parameter2: "suc",
-          parameter3: name.length,
-        })
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          {
+            element: "create_new_app_modal_save",
+            parameter2: "suc",
+            parameter3: name.length,
+          },
+        )
         BuilderApi.teamRequest<DashboardApp>(
           {
             url: "/apps",
