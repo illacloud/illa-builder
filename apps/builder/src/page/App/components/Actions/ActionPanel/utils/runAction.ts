@@ -3,6 +3,8 @@ import { cloneDeep, get, merge } from "lodash"
 import { createMessage, isNumber, isString } from "@illa-design/react"
 import { ActionApi, Api, ApiError } from "@/api/base"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
+import i18n from "@/i18n/config"
+import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import {
@@ -35,7 +37,7 @@ import {
   S3ActionRequestType,
   S3ActionTypeContent,
 } from "@/redux/currentApp/action/s3Action"
-import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
+import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -302,6 +304,23 @@ const fetchS3ClientResult = async (
   }
 }
 
+const checkCanSendRequest = (
+  actionType: ActionType,
+  actionContent: ActionContent,
+) => {
+  if (actionType !== "smtp") {
+    return true
+  }
+  const { attachment } = actionContent as SMPTAction
+  const result = !!attachment && isFileOversize(attachment, "smtp")
+  if (result) {
+    message.error({
+      content: i18n.t("editor.action.panel.error.max_file"),
+    })
+  }
+  return !result
+}
+
 const fetchActionResult = (
   isPublic: boolean,
   resourceId: string,
@@ -409,6 +428,11 @@ const fetchActionResult = (
         },
       }),
     )
+  }
+
+  const canSendRequest = checkCanSendRequest(actionType, actionContent)
+  if (!canSendRequest) {
+    return
   }
 
   if (isPublic) {
