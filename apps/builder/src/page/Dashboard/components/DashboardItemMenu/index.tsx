@@ -147,6 +147,24 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
       )
   }, [appId, shareVisible])
 
+  useEffect(() => {
+    renameVisible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "rename_modal", parameter5: appId },
+      )
+  }, [renameVisible, appId])
+
+  useEffect(() => {
+    duplicateVisible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "duplicate_modal", parameter5: appId },
+      )
+  }, [appId, duplicateVisible])
+
   return (
     <>
       <Space
@@ -435,12 +453,6 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         visible={renameVisible}
         onVisibleChange={(visible) => {
           setRenameVisible(visible)
-          visible &&
-            track(
-              ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-              ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-              { element: "rename_modal", parameter5: appId },
-            )
         }}
       />
       <DuplicateModal
@@ -448,12 +460,6 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         visible={duplicateVisible}
         onVisibleChange={(visible) => {
           setDuplicateVisible(visible)
-          visible &&
-            track(
-              ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-              ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-              { element: "duplicate_modal", parameter5: appId },
-            )
         }}
       />
     </>
