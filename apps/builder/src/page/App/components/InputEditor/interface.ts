@@ -22,5 +22,12 @@ export interface ControlledInputProps
   mode?: CODE_LANG
   hasExpectedType?: boolean
   popoverContent?: string
-  style?: Record<string, string>
+  style?: {
+    height?: string
+    minHeight?: string
+    maxHeight?: string
+    width?: string
+    mixWidth?: string
+    maxWidth?: string
+  }
 }
