@@ -71,8 +71,8 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
     mappedOption,
     handleUpdateDsl,
     displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -122,15 +122,7 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      disabled,
-      direction,
-      colorScheme,
-      optionConfigureMode,
-      manualOptions,
-      mappedOption,
-      options: finalOptions,
+    updateComponentRuntimeProps({
       setValue: (value: any) => {
         handleUpdateDsl({ value })
       },
@@ -143,22 +135,14 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
       clearValidation: () => {},
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    value,
-    disabled,
-    direction,
-    colorScheme,
-    optionConfigureMode,
-    manualOptions,
-    mappedOption,
-    finalOptions,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
     handleValidate,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

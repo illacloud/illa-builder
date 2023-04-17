@@ -1,19 +1,7 @@
-import {
-  cloneDeep,
-  get,
-  isFunction,
-  isNumber,
-  merge,
-  set,
-  toPath,
-} from "lodash"
-import { FC, memo, useCallback, useContext, useMemo } from "react"
+import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
+import { FC, memo, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
-import {
-  BUILDER_CALC_CONTEXT,
-  GLOBAL_DATA_CONTEXT,
-} from "@/page/App/context/globalDataProvider"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
@@ -24,6 +12,10 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import store, { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
+import {
+  ILLAEditorRuntimePropsCollectorInstance,
+  RuntimeProp,
+} from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { MIN_HEIGHT } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/config"
@@ -42,8 +34,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       () => displayNameMapProps[displayName] ?? {},
       [displayName, displayNameMapProps],
     )
-    const { handleUpdateGlobalData, handleDeleteGlobalData } =
-      useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
 
     const containerListMapChildName = useSelector(
@@ -74,6 +64,20 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       displayNameMapProps,
       realProps?.disabled,
     ])
+
+    const updateComponentRuntimeProps = useCallback(
+      (runtimeProp: RuntimeProp) => {
+        ILLAEditorRuntimePropsCollectorInstance.addRuntimeProp(
+          displayName,
+          runtimeProp,
+        )
+      },
+      [displayName],
+    )
+
+    const deleteComponentRuntimeProps = useCallback(() => {
+      ILLAEditorRuntimePropsCollectorInstance.deleteRuntimeProp(displayName)
+    }, [displayName])
 
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
@@ -160,13 +164,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         const needRunEvents = cloneDeep(originEvents).filter((originEvent) => {
           return originEvent.eventType === eventType
         })
-        const rootState = store.getState()
-        const calcContext = getExecutionResult(rootState)
-        const finalContext = merge(
-          cloneDeep(BUILDER_CALC_CONTEXT),
-          calcContext,
-          otherCalcContext,
-        )
+        const finalContext =
+          ILLAEditorRuntimePropsCollectorInstance.getCalcContext(
+            otherCalcContext,
+          )
         return {
           dynamicPaths,
           needRunEvents,
@@ -283,8 +284,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           unitW={unitW}
           unitH={unitH}
           blockColumns={blockColumns}
-          handleUpdateGlobalData={handleUpdateGlobalData}
-          handleDeleteGlobalData={handleDeleteGlobalData}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
           handleUpdateOriginalDSLOtherMultiAttr={
             handleUpdateOriginalDSLOtherMultiAttr
@@ -298,6 +297,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           disabled={listContainerDisabled}
           triggerEventHandler={triggerEventHandler}
           triggerMappedEventHandler={triggerMappedEventHandler}
+          updateComponentRuntimeProps={updateComponentRuntimeProps}
+          deleteComponentRuntimeProps={deleteComponentRuntimeProps}
         />
       </div>
     )

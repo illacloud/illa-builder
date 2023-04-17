@@ -87,19 +87,17 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
   const {
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
     displayName,
     tooltipText,
     triggerEventHandler,
-    controls,
-    muted,
+    deleteComponentRuntimeProps,
+    updateComponentRuntimeProps,
   } = props
 
   const audioRef = useRef<ReactPlayer>(null)
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
+    updateComponentRuntimeProps({
       play: () => {
         handleUpdateMultiExecutionResult([
           {
@@ -199,14 +197,14 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
     displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
     handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLMultiAttr,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
   ])
 
   const onPlay = useCallback(() => {

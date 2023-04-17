@@ -32,8 +32,8 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
     disabled,
     colorScheme,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     displayName,
     labelPosition,
     labelFull,
@@ -50,10 +50,7 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      value,
-      disabled,
-      colorScheme,
+    updateComponentRuntimeProps({
       setValue: (value: boolean) => {
         handleUpdateDsl({ value })
       },
@@ -65,16 +62,13 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    value,
-    disabled,
-    colorScheme,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

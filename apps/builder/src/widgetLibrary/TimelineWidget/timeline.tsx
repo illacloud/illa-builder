@@ -49,16 +49,13 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     dynamicMinHeight,
     dynamicMaxHeight,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     updateComponentHeight,
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      items,
-      direction,
-      pending,
+    updateComponentRuntimeProps({
       setValue: (value: string) => {
         handleUpdateDsl({ items: value.split(",") })
       },
@@ -68,16 +65,16 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
     items,
     direction,
     pending,
     displayName,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
   ])
 
   const enableAutoHeight = useMemo(() => {

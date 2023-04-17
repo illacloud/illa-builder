@@ -98,8 +98,8 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     colorScheme,
     displayName,
     readOnly,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
     labelPosition,
     labelFull,
@@ -150,17 +150,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      format,
-      placeholder,
-      showClear,
-      minDate,
-      disabled,
-      maxDate,
-      minuteStep,
-      colorScheme,
-      readOnly,
+    updateComponentRuntimeProps({
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -172,24 +162,14 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    value,
-    format,
-    placeholder,
-    showClear,
-    minDate,
-    disabled,
-    maxDate,
-    minuteStep,
-    colorScheme,
-    readOnly,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
     handleValidate,
+    updateComponentRuntimeProps,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

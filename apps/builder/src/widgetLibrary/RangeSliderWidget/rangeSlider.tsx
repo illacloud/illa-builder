@@ -98,8 +98,8 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
     colorScheme,
     displayName,
     handleUpdateMultiExecutionResult,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     labelWrapping,
@@ -155,7 +155,7 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
+    updateComponentRuntimeProps({
       setStartOfRange: (startValue: number) => {
         handleUpdateMultiExecutionResult([
           {
@@ -207,19 +207,16 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
+    deleteComponentRuntimeProps,
     displayName,
-    startValue,
     endValue,
-    disabled,
-    colorScheme,
-    handleUpdateGlobalData,
     handleUpdateMultiExecutionResult,
-    handleDeleteGlobalData,
     handleValidate,
-    min,
+    startValue,
+    updateComponentRuntimeProps,
   ])
 
   const handleOnChange = useCallback(() => {

@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { Rate } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -49,8 +49,8 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     maxCount,
     handleUpdateDsl,
     displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -66,14 +66,7 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      allowClear,
-      disabled,
-      icon,
-      readOnly,
-      allowHalf,
-      maxCount,
+    updateComponentRuntimeProps({
       setValue: (value: number) => {
         handleUpdateDsl({ value })
       },
@@ -84,20 +77,12 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
       clearValidation: () => {},
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    value,
-    allowClear,
-    disabled,
-    icon,
-    readOnly,
-    allowHalf,
-    maxCount,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
   ])
 
   const handleOnChange = useCallback(() => {

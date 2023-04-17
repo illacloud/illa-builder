@@ -1,17 +1,14 @@
-import { merge } from "chart.js/helpers"
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
-import { FC, memo, useCallback, useContext, useMemo } from "react"
+import { FC, memo, useCallback, useMemo } from "react"
 import { useDispatch } from "react-redux"
-import {
-  BUILDER_CALC_CONTEXT,
-  GLOBAL_DATA_CONTEXT,
-} from "@/page/App/context/globalDataProvider"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
+import {
+  ILLAEditorRuntimePropsCollectorInstance,
+  RuntimeProp,
+} from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
@@ -40,9 +37,21 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
       props: nodeProps,
     } = componentNode
 
-    const { handleUpdateGlobalData, handleDeleteGlobalData } =
-      useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
+
+    const updateComponentRuntimeProps = useCallback(
+      (runtimeProp: RuntimeProp) => {
+        ILLAEditorRuntimePropsCollectorInstance.addRuntimeProp(
+          displayName,
+          runtimeProp,
+        )
+      },
+      [displayName],
+    )
+
+    const deleteComponentRuntimeProps = useCallback(() => {
+      ILLAEditorRuntimePropsCollectorInstance.deleteRuntimeProp(displayName)
+    }, [displayName])
 
     const realProps = useMemo(() => nodeProps ?? {}, [nodeProps])
 
@@ -104,13 +113,10 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
         const needRunEvents = cloneDeep(originEvents).filter((originEvent) => {
           return originEvent.eventType === eventType
         })
-        const rootState = store.getState()
-        const calcContext = getExecutionResult(rootState)
-        const finalContext = merge(
-          cloneDeep(BUILDER_CALC_CONTEXT),
-          calcContext,
-          otherCalcContext,
-        )
+        const finalContext =
+          ILLAEditorRuntimePropsCollectorInstance.getCalcContext(
+            otherCalcContext,
+          )
         return {
           dynamicPaths,
           needRunEvents,
@@ -227,8 +233,8 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
           h={h}
           unitW={unitW}
           unitH={unitH}
-          handleUpdateGlobalData={handleUpdateGlobalData}
-          handleDeleteGlobalData={handleDeleteGlobalData}
+          updateComponentRuntimeProps={updateComponentRuntimeProps}
+          deleteComponentRuntimeProps={deleteComponentRuntimeProps}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
           handleUpdateOriginalDSLOtherMultiAttr={
             handleUpdateOriginalDSLOtherMultiAttr

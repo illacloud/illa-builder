@@ -101,8 +101,8 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     disabled,
     maxDate,
     colorScheme,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     displayName,
     handleUpdateDsl,
     labelPosition,
@@ -151,18 +151,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      startValue,
-      endValue,
-      dateFormat,
-      startPlaceholder,
-      endPlaceholder,
-      showClear,
-      minDate,
-      disabled,
-      maxDate,
-      colorScheme,
-      readOnly,
+    updateComponentRuntimeProps({
       setStartValue: (startValue: string) => {
         handleUpdateDsl({ startValue })
       },
@@ -184,25 +173,16 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    startValue,
-    endValue,
-    dateFormat,
-    startPlaceholder,
+    deleteComponentRuntimeProps,
     endPlaceholder,
-    showClear,
-    minDate,
-    disabled,
-    maxDate,
-    colorScheme,
-    readOnly,
-    handleUpdateGlobalData,
+    endValue,
     handleUpdateDsl,
-    handleDeleteGlobalData,
     handleValidate,
+    startValue,
+    updateComponentRuntimeProps,
   ])
 
   const handleOnChange = useCallback(() => {

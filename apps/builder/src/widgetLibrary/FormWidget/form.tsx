@@ -22,13 +22,13 @@ import {
   applyDashedLineStyle,
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isObject } from "@/utils/typeHelper"
 import { BasicContainer } from "../BasicContainer/BasicContainer"
 import { FormWidgetProps } from "./interface"
@@ -111,8 +111,8 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     blockColumns,
     formData: propsFormData,
     handleUpdateOriginalDSLMultiAttr,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
   } = props
@@ -229,12 +229,14 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   const handleOnValidate = useCallback(() => {
+    const finalContext =
+      ILLAEditorRuntimePropsCollectorInstance.getCalcContext()
     allLikeInputChildrenNode.forEach((node) => {
       try {
         return evaluateDynamicString(
           "events",
           `{{${node.displayName}.validate()}}`,
-          BUILDER_CALC_CONTEXT,
+          finalContext,
         )
       } catch (e) {
         message.error({
@@ -289,10 +291,12 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   const handleOnSubmit = useCallback(() => {
     if (disabledSubmit || disabled) return
     if (validateInputsOnSubmit) {
+      const finalContext =
+        ILLAEditorRuntimePropsCollectorInstance.getCalcContext()
       const validateResult = allLikeInputChildrenNode.every((node) => {
         try {
           const validateFunc = get(
-            BUILDER_CALC_CONTEXT,
+            finalContext,
             `${node.displayName}.validate`,
           ) as unknown
           if (typeof validateFunc === "function") {
@@ -328,7 +332,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   ])
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
+    updateComponentRuntimeProps({
       submit: handleOnSubmit,
       invalid: handleOnInvalid,
       reset: handleOnReset,
@@ -340,17 +344,16 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       validate: handleOnValidate,
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    handleDeleteGlobalData,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
+    handleOnInvalid,
     handleOnReset,
+    handleOnSubmit,
     handleOnValidate,
     handleSetValue,
-    handleOnSubmit,
-    handleOnInvalid,
+    updateComponentRuntimeProps,
   ])
 
   const headerMinHeight = useMemo(
