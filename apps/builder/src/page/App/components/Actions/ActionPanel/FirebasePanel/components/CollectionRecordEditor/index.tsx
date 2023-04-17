@@ -121,7 +121,6 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
                       )
                     }}
                     wrapperCss={codeMirrorWrapperValueStyle}
-                    expectValueType={VALIDATION_TYPES.STRING}
                     lang={CODE_LANG.JAVASCRIPT}
                     codeType={CODE_TYPE.EXPRESSION}
                     canShowCompleteInfo
