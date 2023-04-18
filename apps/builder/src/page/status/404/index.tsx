@@ -1,13 +1,27 @@
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { Button, Result404Icon } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { ErrorPage } from "@/page/status/errorPage"
 import { buttonStyle, iconStyle } from "@/page/status/style"
+import { track } from "@/utils/mixpanelHelper"
 
 export const Page404: FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
+  useEffect(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.VISIT,
+      ILLA_MIXPANEL_PUBLIC_PAGE_NAME.ERROR_PAGE,
+      {
+        parameter3: "403",
+      },
+    )
+  }, [])
   return (
     <ErrorPage
       title="404"
@@ -23,3 +37,5 @@ export const Page404: FC = () => {
     </ErrorPage>
   )
 }
+
+export default Page404
