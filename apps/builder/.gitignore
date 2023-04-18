@@ -114,3 +114,5 @@ cypress/videos
 cypress/screenshots
 
 stats.html
+
+public/appInfo.json
