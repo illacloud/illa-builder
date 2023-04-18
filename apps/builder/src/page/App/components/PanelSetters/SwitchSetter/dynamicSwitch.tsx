@@ -23,9 +23,6 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     handleUpdateDsl,
     handleUpdateMultiAttrDSL,
     value,
-    widgetDisplayName,
-    expectedType,
-    widgetOrAction,
     openDynamic,
     detailedDescription,
     widgetType,
@@ -90,16 +87,9 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
       {customSelected && (
         <div css={dynamicSwitchInputStyle}>
           <BaseInput
-            attrName={attrName}
+            {...props}
             value={value as string}
-            handleUpdateDsl={handleUpdateDsl}
-            panelConfig={panelConfig}
-            expectedType={expectedType}
             isSetterSingleRow
-            widgetDisplayName={widgetDisplayName}
-            widgetType={widgetType}
-            widgetOrAction={widgetOrAction}
-            labelName={labelName}
             detailedDescription={detailedDescription ?? labelDesc}
           />
         </div>

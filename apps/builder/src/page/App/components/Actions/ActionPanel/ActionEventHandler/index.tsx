@@ -13,6 +13,7 @@ import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionContent } from "@/redux/currentApp/action/actionState"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
+import { isObject } from "@/utils/typeHelper"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 export const ActionEventHandler: FC = () => {
@@ -42,12 +43,22 @@ export const ActionEventHandler: FC = () => {
     [action, dispatch],
   )
 
-  // keep empty
   const handleUpdateMultiAttrDSL = useCallback(
     (updateSlice: Record<string, unknown>) => {
-      return
+      if (!isObject(updateSlice) || action == undefined) return
+      const newActionContent = cloneDeep(action.content || {})
+      const result = getNewWidgetPropsByUpdateSlice(
+        updateSlice,
+        newActionContent,
+      ) as ActionContent
+      dispatch(
+        configActions.updateCachedAction({
+          ...action,
+          content: result,
+        }),
+      )
     },
-    [],
+    [action, dispatch],
   )
 
   // keep empty
