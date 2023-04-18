@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -7,6 +7,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
 import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
 import {
@@ -29,7 +30,6 @@ import {
 } from "@/redux/resource/mongodbResource"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
-import { track } from "@/utils/mixpanelHelper"
 
 export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -42,6 +42,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const { track } = useContext(MixpanelTrackContext)
 
   const findResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
@@ -58,15 +59,10 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
   const openSSLWatch = watch("open", content.ssl.open ?? false)
 
   const handleConnectionTest = useCallback(() => {
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-      {
-        element: "resource_configure_back",
-        parameter1: resourceId ? "resource_edit" : "resource_new",
-        parameter5: "mongodb",
-      },
-    )
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "mongodb",
+    })
     const data = getValues()
     const content = {
       configType: data.configType,
@@ -92,7 +88,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
     }
 
     onActionConfigElementTest(data, content, "mongodb", setTestLoading)
-  }, [configTypeWatch, getValues, openSSLWatch, resourceId])
+  }, [configTypeWatch, getValues, openSSLWatch, track])
 
   return (
     <form

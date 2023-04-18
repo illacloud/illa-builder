@@ -67,7 +67,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
             content: t("dashboard.app.name_empty"),
           })
           track(
-            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
             ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
             {
               element: "rename_modal_save",
@@ -83,7 +83,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
             content: t("dashboard.app.name_existed"),
           })
           track(
-            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
             ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
             {
               element: "rename_modal_save",
@@ -95,7 +95,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
           return
         }
         track(
-          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           {
             element: "rename_modal_save",

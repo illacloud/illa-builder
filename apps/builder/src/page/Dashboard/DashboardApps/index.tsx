@@ -96,24 +96,6 @@ export const DashboardApps: FC = () => {
       )
   }, [canCreateApp])
 
-  useEffect(() => {
-    if (finalAppsList.length) {
-      finalAppsList.forEach(({ appId }) => {
-        track(
-          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-          { element: "app" },
-        )
-        canEditApp &&
-          track(
-            ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-            { element: "app_more", parameter5: appId },
-          )
-      })
-    }
-  }, [finalAppsList, canEditApp])
-
   return (
     <>
       <div css={appsContainerStyle}>

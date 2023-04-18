@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -18,6 +18,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -46,7 +47,6 @@ import {
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
@@ -54,6 +54,7 @@ export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
 
   const { t } = useTranslation()
   const message = useMessage()
+  const { track } = useContext(MixpanelTrackContext)
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -76,15 +77,10 @@ export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleConnectionTest = useCallback(() => {
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-      {
-        element: "resource_configure_back",
-        parameter1: resourceId ? "resource_edit" : "resource_new",
-        parameter5: "firebase",
-      },
-    )
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "firebase",
+    })
     const data = getValues()
     try {
       const content = {
@@ -98,7 +94,7 @@ export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
         content: t("editor.action.resource.db.invalid_private.key"),
       })
     }
-  }, [getValues, message, resourceId, t])
+  }, [getValues, message, t, track])
 
   return (
     <form
