@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -10,10 +10,8 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -39,7 +37,6 @@ import {
 } from "@/redux/resource/couchdbResource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
@@ -59,17 +56,13 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const { track } = useContext(MixpanelTrackContext)
 
   const handleResourceTest = useCallback(() => {
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-      {
-        element: "resource_configure_back",
-        parameter1: resourceId ? "resource_edit" : "resource_new",
-        parameter5: "couchdb",
-      },
-    )
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "couchdb",
+    })
     const data = getValues()
     const { resourceName, ...otherParams } = data
     onActionConfigElementTest(
@@ -78,7 +71,7 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
       "couchdb",
       setTestLoading,
     )
-  }, [getValues, resourceId])
+  }, [getValues, track])
 
   return (
     <form
