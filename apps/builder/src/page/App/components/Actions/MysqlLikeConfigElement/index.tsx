@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -14,6 +14,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -42,7 +43,6 @@ import {
 } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
-import { track } from "@/utils/mixpanelHelper"
 import { handleLinkOpen } from "@/utils/navigate"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
@@ -86,6 +86,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const { track } = useContext(MixpanelTrackContext)
 
   const sslDefaultValue = resource?.content.ssl.ssl ?? resourceType === "tidb"
   const serverCertDefaultValue =
@@ -121,15 +122,10 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
     handleLinkOpen("https://www.illacloud.com/docs/illa-cli")
 
   const handleConnectionTest = useCallback(() => {
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-      {
-        element: "resource_configure_back",
-        parameter1: resourceId ? "resource_edit" : "resource_new",
-        parameter5: resourceType,
-      },
-    )
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: resourceType,
+    })
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -144,7 +140,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
       resourceType,
       setTestLoading,
     )
-  }, [getValues, resourceId, resourceType, sslOpenWatch])
+  }, [getValues, resourceType, sslOpenWatch, track])
 
   return (
     <form

@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -146,6 +146,24 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         { element: "invite_modal", parameter5: appId },
       )
   }, [appId, shareVisible])
+
+  useEffect(() => {
+    renameVisible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "rename_modal", parameter5: appId },
+      )
+  }, [renameVisible, appId])
+
+  useEffect(() => {
+    duplicateVisible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "duplicate_modal", parameter5: appId },
+      )
+  }, [appId, duplicateVisible])
 
   return (
     <>
@@ -435,12 +453,6 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         visible={renameVisible}
         onVisibleChange={(visible) => {
           setRenameVisible(visible)
-          visible &&
-            track(
-              ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-              ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-              { element: "rename_modal", parameter5: appId },
-            )
         }}
       />
       <DuplicateModal
@@ -448,12 +460,6 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         visible={duplicateVisible}
         onVisibleChange={(visible) => {
           setDuplicateVisible(visible)
-          visible &&
-            track(
-              ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-              ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-              { element: "duplicate_modal", parameter5: appId },
-            )
         }}
       />
     </>

@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -14,6 +14,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -52,6 +53,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
     mode: "onChange",
     shouldUnregister: true,
   })
+  const { track } = useContext(MixpanelTrackContext)
 
   const findResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
@@ -69,15 +71,10 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
   const baseURLOpen = watch("endpoint", content.endpoint)
 
   const handleConnectionTest = () => {
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-      {
-        element: "resource_configure_back",
-        parameter1: resourceId ? "resource_edit" : "resource_new",
-        parameter5: "s3",
-      },
-    )
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "s3",
+    })
     const data = getValues()
     const content = {
       bucketName: data.bucketName,
