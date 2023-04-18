@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { useBeforeUnload, useNavigate, useParams } from "react-router-dom"
 import { NextIcon, Spin, useMessage } from "@illa-design/react"
 import { ReactComponent as CardCover } from "@/assets/tutorial/card-cover.svg"
 import { Templates } from "@/config/template"
@@ -26,7 +26,11 @@ import {
   titleStyle,
 } from "@/page/Dashboard/Tutorial/style"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { track } from "@/utils/mixpanelHelper"
+import {
+  track,
+  trackPageDurationEnd,
+  trackPageDurationStart,
+} from "@/utils/mixpanelHelper"
 
 const Tutorial: FC = () => {
   const { t } = useTranslation()
@@ -53,7 +57,15 @@ const Tutorial: FC = () => {
       ILLA_MIXPANEL_EVENT_TYPE.VISIT,
       ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL,
     )
+    trackPageDurationStart()
+    return () => {
+      trackPageDurationEnd(ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL)
+    }
   }, [])
+
+  useBeforeUnload(() => {
+    trackPageDurationEnd(ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL)
+  })
 
   if (teamInfo && !canEditApp) {
     throw Error(`can not access tutorial view`)
