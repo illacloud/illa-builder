@@ -34,3 +34,5 @@ export const MobileForbidden: FC = () => {
 }
 
 MobileForbidden.displayName = "MobileForbidden"
+
+export default MobileForbidden

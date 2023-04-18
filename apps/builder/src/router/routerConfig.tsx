@@ -51,39 +51,39 @@ export const commonRouter: RoutesObjectPro[] = [
     path: "/:teamIdentifier/app/:appId",
     element: layLoad(lazy(() => import("@/page/App"))),
     needLogin: true,
-    errorElement: <Page404 />,
+    errorElement: layLoad(lazy(() => import("@/page/status/404"))),
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId",
     element: layLoad(lazy(() => import("@/page/Deploy"))),
-    errorElement: <Page404 />,
+    errorElement: layLoad(lazy(() => import("@/page/status/404"))),
     accessByMobile: true,
     loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName",
     element: layLoad(lazy(() => import("@/page/Deploy"))),
-    errorElement: <Page404 />,
+    errorElement: layLoad(lazy(() => import("@/page/status/404"))),
     accessByMobile: true,
     loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName/:viewPath",
     element: layLoad(lazy(() => import("@/page/Deploy"))),
-    errorElement: <Page404 />,
+    errorElement: layLoad(lazy(() => import("@/page/status/404"))),
     accessByMobile: true,
     loader: handleRemoveUrlToken,
   },
   {
     path: "/:teamIdentifier/template/:templateName",
     element: layLoad(lazy(() => import("@/page/Template"))),
-    errorElement: <Page404 />,
+    errorElement: layLoad(lazy(() => import("@/page/status/404"))),
     needLogin: true,
   },
   {
     path: "/:teamIdentifier/guide",
     element: layLoad(lazy(() => import("@/page/Template/GuideApp"))),
-    errorElement: <Page404 />,
+    errorElement: layLoad(lazy(() => import("@/page/status/404"))),
     needLogin: true,
   },
   {
@@ -141,7 +141,7 @@ export const cloudRouter: RoutesObjectPro[] = [
       {
         path: "/:teamIdentifier/dashboard/resources",
         element: <DashboardResources />,
-        errorElement: <Page404 />,
+        errorElement: layLoad(lazy(() => import("@/page/status/404"))),
       },
       {
         path: "/:teamIdentifier/dashboard/tutorial",
@@ -171,7 +171,7 @@ export const selfRouter: RoutesObjectPro[] = [
       {
         path: "/:teamIdentifier/dashboard/apps",
         element: <DashboardApps />,
-        errorElement: <Page404 />,
+        errorElement: layLoad(lazy(() => import("@/page/status/404"))),
       },
       {
         path: "/:teamIdentifier/dashboard/resources",
