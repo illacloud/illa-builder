@@ -51,7 +51,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
           ILLA_MIXPANEL_EVENT_TYPE.CLICK,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           {
-            element: "duplicate_modal_save",
+            element: "duplicate_modal_close",
             parameter3: name?.length ?? 0,
             parameter5: appId,
           },
@@ -68,7 +68,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
             content: t("dashboard.app.name_empty"),
           })
           track(
-            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
             ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
             {
               element: "duplicate_modal_save",
@@ -84,7 +84,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
             content: t("dashboard.app.name_existed"),
           })
           track(
-            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
             ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
             {
               element: "duplicate_modal_save",
@@ -96,7 +96,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
           return
         }
         track(
-          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           { element: "duplicate_modal_save", parameter2: "suc" },
         )
