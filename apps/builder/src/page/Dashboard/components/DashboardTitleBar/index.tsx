@@ -22,7 +22,7 @@ import { Avatar } from "@/page/App/components/Avatar"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { ILLARoute } from "@/router"
-import { clearLocalStorage } from "@/utils/storage"
+import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
   containerStyle,
@@ -63,7 +63,7 @@ const SettingTrigger: FC = () => {
         <div
           css={settingItemStyle}
           onClick={() => {
-            clearLocalStorage()
+            ILLABuilderStorage.clearLocalStorage()
             ILLARoute.navigate("/login", {
               replace: true,
             })

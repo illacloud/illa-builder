@@ -16,7 +16,7 @@ if (
   Sentry.init({
     dsn: import.meta.env.VITE_SENTRY_SERVER_API,
     integrations: [new BrowserTracing()],
-    environment: import.meta.env.ILLA_BUILDER_ENV,
+    environment: import.meta.env.ILLA_APP_ENV,
     tracesSampleRate: 1.0,
     release: `illa-builder@${import.meta.env.ILLA_APP_VERSION}`,
   })

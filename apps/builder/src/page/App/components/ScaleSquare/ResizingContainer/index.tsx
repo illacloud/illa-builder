@@ -2,6 +2,7 @@ import { cloneDeep, throttle } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import {
   getIsILLAEditMode,
@@ -22,6 +23,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { illaSnapshot } from "../../DotPanel/constant/snapshot"
@@ -216,6 +218,10 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
         }),
       )
       dispatch(configActions.updateShowDot(false))
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DRAG, {
+        element: "component",
+        parameter1: componentNode.type,
+      })
     },
     [componentNode, dispatch, h, unitH, unitW, w],
   )

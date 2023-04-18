@@ -27,20 +27,20 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" = "main" ]; then
               echo "Building for main branch"
-              echo "export ILLA_BUILDER_ENV=production" >> "$BASH_ENV"
+              echo "export ILLA_APP_ENV=production" >> "$BASH_ENV"
             elif [ "${CIRCLE_BRANCH}" = "beta" ]; then
               echo "Building for beta branch"
-              echo "export ILLA_BUILDER_ENV=beta" >> "$BASH_ENV"
+              echo "export ILLA_APP_ENV=beta" >> "$BASH_ENV"
             elif [ "${CIRCLE_BRANCH}" = "develop" ]; then
               echo "Building for develop branch"
-              echo "export ILLA_BUILDER_ENV=test" >> "$BASH_ENV"
+              echo "export ILLA_APP_ENV=test" >> "$BASH_ENV"
             else
               echo "Not a buildable branch"
             fi
       - run:
           name: Build application Docker image
           command: |
-            docker build --cache-from=illa-builder-frontend -f Dockerfile -t illa-builder-frontend --build-arg BUILDER_ENV=${ILLA_BUILDER_ENV} --build-arg GOOGLE_MAP_KEY=$ILLA_GOOGLE_MAP_KEY .
+            docker build --cache-from=illa-builder-frontend -f Dockerfile -t illa-builder-frontend --build-arg BUILDER_ENV=${ILLA_APP_ENV} --build-arg MIXPANEL_API_KEY=$ILLA_MIXPANEL_API_KEY --build-arg GOOGLE_MAP_KEY=$ILLA_GOOGLE_MAP_KEY .
       - run:
           name: Save Docker image layer cache
           command: |

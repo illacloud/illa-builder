@@ -1,6 +1,6 @@
 import copy from "copy-to-clipboard"
 import { isBoolean } from "lodash"
-import { FC, useMemo, useState } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -13,6 +13,10 @@ import {
   ListItemMeta,
   useMessage,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { canManage, canManageApp } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
@@ -27,6 +31,7 @@ import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fromNow } from "@/utils/dayjs"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
   appsContainerStyle,
@@ -78,6 +83,19 @@ export const DashboardApps: FC = () => {
     openGuideModal(teamIdentifier)
   }
 
+  useEffect(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.VISIT, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP)
+  }, [])
+
+  useEffect(() => {
+    canCreateApp &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "create_new_app" },
+      )
+  }, [canCreateApp])
+
   return (
     <>
       <div css={appsContainerStyle}>
@@ -100,6 +118,11 @@ export const DashboardApps: FC = () => {
               colorScheme="techPurple"
               onClick={() => {
                 setCreateNewModalVisible(true)
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  { element: "create_new_app" },
+                )
               }}
             >
               {t("create_new_app")}
@@ -118,6 +141,26 @@ export const DashboardApps: FC = () => {
               return (
                 <ListItem
                   css={hoverStyle}
+                  data-element="listItem"
+                  onMouseEnter={(e) => {
+                    if (
+                      (e.target as HTMLDivElement).dataset?.element !==
+                      "listItem"
+                    )
+                      return
+                    canEditApp &&
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                        { element: "app_edit", parameter5: item.appId },
+                      )
+                    item.mainlineVersion !== 0 &&
+                      track(
+                        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                        { element: "app_launch", parameter5: item.appId },
+                      )
+                  }}
                   extra={
                     <DashboardItemMenu
                       appId={item.appId}

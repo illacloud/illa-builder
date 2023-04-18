@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -11,6 +11,11 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -38,6 +43,7 @@ import {
 } from "@/redux/resource/oracleResource"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
@@ -47,6 +53,7 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
     mode: "onChange",
     shouldUnregister: true,
   })
+  const { track } = useContext(MixpanelTrackContext)
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -58,6 +65,10 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
   const content = (resource?.content as OracleResource) ?? OracleResourceInitial
 
   const handleConnectionTest = useCallback(() => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "oracle",
+    })
     const data = getValues()
     const { resourceName, host, ...otherParams } = data
     onActionConfigElementTest(
@@ -66,7 +77,7 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
       "oracle",
       setTestLoading,
     )
-  }, [setTestLoading, getValues])
+  }, [track, getValues])
 
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")

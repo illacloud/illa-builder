@@ -409,21 +409,22 @@ export class ExecutionTreeFactory {
       if (!Array.isArray(d.path) || d.path.length === 0) continue
       const subPaths = cloneDeep(d.path)
       let current = ""
+      const originalPathLength = subPaths.length
       while (subPaths.length > 1) {
         current = convertPathToString(subPaths)
         updatePaths.push(current)
         subPaths.pop()
       }
-      if (subPaths.length === 1 && d.kind === "N") {
+      if (originalPathLength === 1 && d.kind === "N") {
         const rhs = d.rhs
         if (rhs && typeof rhs === "object") {
           const keys = Object.keys(rhs)
           keys.forEach((key) => {
-            updatePaths.push(`${subPaths[0]}.${key}`)
+            updatePaths.push(`${convertPathToString([subPaths[0], key])}`)
           })
         }
       }
-      if (subPaths.length === 1 && d.kind === "D") {
+      if (originalPathLength === 1 && d.kind === "D") {
         updatePaths.push(`${subPaths[0]}`)
       }
     }

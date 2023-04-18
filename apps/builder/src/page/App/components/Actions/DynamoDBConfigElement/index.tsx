@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -9,6 +9,8 @@ import {
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -57,8 +59,13 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const { track } = useContext(MixpanelTrackContext)
 
   const handleResourceTest = useCallback(() => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "dynamodb",
+    })
     const data = getValues()
     const { region, accessKeyID, secretAccessKey } = data
     onActionConfigElementTest(
@@ -71,7 +78,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
       "dynamodb",
       setTestLoading,
     )
-  }, [getValues])
+  }, [getValues, track])
 
   return (
     <form

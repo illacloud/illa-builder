@@ -3,7 +3,7 @@ import { motion, useAnimation } from "framer-motion"
 import { FC, MouseEvent, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useBeforeUnload, useParams } from "react-router-dom"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
 import { Connection } from "@/api/ws"
 import {
@@ -11,6 +11,10 @@ import {
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
@@ -38,6 +42,11 @@ import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execut
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
+import {
+  track,
+  trackPageDurationEnd,
+  trackPageDurationStart,
+} from "@/utils/mixpanelHelper"
 import { Shortcut } from "@/utils/shortcut"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { PageNavBar } from "./components/PageNavBar"
@@ -58,7 +67,7 @@ import {
 export const Editor: FC = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  let { appId } = useParams()
+  let { appId, teamIdentifier } = useParams()
   const controls = useAnimation()
 
   const currentUser = useSelector(getCurrentUser)
@@ -150,6 +159,21 @@ export const Editor: FC = () => {
     },
     [controls],
   )
+
+  useEffect(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.VISIT,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+    )
+    trackPageDurationStart()
+    return () => {
+      trackPageDurationEnd(ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR)
+    }
+  }, [])
+
+  useBeforeUnload(() => {
+    trackPageDurationEnd(ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR)
+  })
 
   const combineLoadingState =
     loadingState ||

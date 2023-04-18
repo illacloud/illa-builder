@@ -8,7 +8,7 @@ import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
 import { cloudRedirect } from "@/router/routerConfig"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
-import { setLocalStorage } from "@/utils/storage"
+import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 const CLOUD = "/supervisor/api/v1"
@@ -55,7 +55,7 @@ export const requireAuth = async (
     return null
   }
   if (pathToken) {
-    setLocalStorage("token", pathToken, -1)
+    ILLABuilderStorage.setLocalStorage("token", pathToken, -1)
     // remove url params form location
     const url = removeUrlParams(window.location.href, ["token"])
     window.history.replaceState(

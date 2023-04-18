@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
@@ -8,10 +8,15 @@ import {
   List,
   PreviousIcon,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
+import { track } from "@/utils/mixpanelHelper"
 import { ActionResourceSelectorProps } from "./interface"
 import {
   applyResourceItemStyle,
@@ -53,7 +58,26 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
       () => onCreateAction?.(actionType, selectedResourceId),
       setLoading,
     )
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+      {
+        element: "resource_list_create_action",
+        parameter1: actionType,
+      },
+    )
   }, [actionType, handleCreateAction, onCreateAction, selectedResourceId])
+
+  useEffect(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+      {
+        element: "resource_list_show",
+        parameter1: actionType,
+      },
+    )
+  }, [actionType])
 
   return (
     <div css={containerStyle}>
@@ -98,6 +122,14 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
             leftIcon={<AddIcon />}
             colorScheme="gray"
             onClick={() => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+                {
+                  element: "resource_list_new",
+                  parameter1: actionType,
+                },
+              )
               onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
             }}
           >

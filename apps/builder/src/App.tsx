@@ -23,7 +23,12 @@ import {
 } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
 import { px2Rem } from "@/utils/stylis-plugin/px2rem"
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
+} from "./illa-public-component/MixpanelUtils/interface"
 import { globalStyle } from "./style"
+import { track } from "./utils/mixpanelHelper"
 
 const dragOptions = {
   enableTouchEvents: true,
@@ -41,6 +46,13 @@ function App() {
       i18n.changeLanguage(currentUserLanguage)
     }
   }, [currentUserLanguage, i18n])
+
+  useEffect(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.ILLA_ACTIVE,
+      ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER,
+    )
+  }, [])
 
   let cache = createCache({
     key: "css",

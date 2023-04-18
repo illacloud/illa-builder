@@ -1,5 +1,4 @@
 import { ChartColorSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartColorSelectSetter"
-import { ChartDataSourceSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSource"
 import { ChartDatasetsSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter"
 import { ChartKeysSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartKeysSelectSetter"
 import { ChartTypeSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartTypeSelectSetter"
@@ -9,7 +8,6 @@ import { ContainerDefaultViewKeySetter } from "@/page/App/components/PanelSetter
 import { EventHandlerSetter } from "@/page/App/components/PanelSetters/EventHandlerSetter"
 import { IconSelector } from "@/page/App/components/PanelSetters/IconSetter/IconSelector"
 import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
-import { EditableInputSetter } from "@/page/App/components/PanelSetters/InputSetter/editableInputSetter"
 import { InputWithSelectSetter } from "@/page/App/components/PanelSetters/InputSetter/inputWithSelect"
 import { OptionMappedInputSetter } from "@/page/App/components/PanelSetters/InputSetter/optionMappedInputSetter"
 import { ListSetter } from "@/page/App/components/PanelSetters/ListSetter"
@@ -33,7 +31,6 @@ import { BaseSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSette
 import { DynamicSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/dynamicSwitch"
 import { ColumnSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter"
 import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
-import { TableDataInputSetter } from "@/page/App/components/PanelSetters/TableSetter/tableDataInputSetter"
 import { TableDataSourceSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/tableDataSourceSelectSetter"
 import { TableMappedValueInputSetter } from "@/page/App/components/PanelSetters/TableSetter/tableMappedValueInputSetter"
 import { TabListSetter } from "@/page/App/components/PanelSetters/TabsSetter/TabListSetter"
@@ -63,7 +60,6 @@ const SetterTypeMapSetter = {
   TABS_LIST_SETTER: TabListSetter,
   TABS_DEFAULT_KEY_SETTER: TabsDefaultKeySetter,
   TABS_CONTAINER_SELECT_SETTER: TabsContainerSelectSetter,
-  TABLE_DATA_INPUT_SETTER: TableDataInputSetter,
   TABLE_MAPPED_VALUE_INPUT_SETTER: TableMappedValueInputSetter,
   TABLE_DATASOURCE_SELECT_SETTER: TableDataSourceSelectSetter,
   OPTION_MAPPED_SETTER: MappedOptionSetter,
@@ -75,10 +71,8 @@ const SetterTypeMapSetter = {
   OPTION_MAPPED_INPUT_SETTER: OptionMappedInputSetter,
   EVENT_WIDGET_METHOD_SELECT_SETTER: EventWidgetMethodSelect,
   EVENT_ACTION_SELECT_SETTER: EventActionTypeSelect,
-  EDITABLE_INPUT_SETTER: EditableInputSetter,
   EDITABLE_INPUT_WITH_MEASURE_SETTER: EditableInputWithMeasureSetter,
   BASE_DYNAMIC_SELECT_SETTER: BaseDynamicSelect,
-  CHART_DATASOURCE_SELECT_SETTER: ChartDataSourceSetter,
   CHART_KEYS_SELECT_SETTER: ChartKeysSelectSetter,
   CHART_DATASETS_SETTER: ChartDatasetsSetter,
   CHART_COLOR_SELECT_SETTER: ChartColorSelectSetter,

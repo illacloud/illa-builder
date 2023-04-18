@@ -1,14 +1,16 @@
 import { Variants, motion } from "framer-motion"
-import { FC, MouseEvent, useCallback } from "react"
+import { FC, MouseEvent, useCallback, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { ReactComponent as DesktopIcon } from "@/assets/appSize/desktop.svg"
 import { ReactComponent as CustomIcon } from "@/assets/appSize/filter.svg"
 import { ReactComponent as FluidIcon } from "@/assets/appSize/fluid.svg"
 import { ReactComponent as TabletIcon } from "@/assets/appSize/tablet.svg"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { PreviewPopContent } from "@/page/App/components/PageNavBar/PreviewPopContent"
 import { getViewportSizeSelector } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ViewportSizeType } from "@/redux/currentApp/editor/components/componentsState"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   appSizeContainerStyle,
   appSizeIconContainerStyle,
@@ -77,6 +79,13 @@ export const AppSizeButtonGroup: FC = () => {
   const showCustomInputs = viewportSizeType === "custom"
   const currentSizeType = viewportSizeType ?? "fluid"
 
+  useEffect(() => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
+      element: "preview_size",
+      parameter2: currentSizeType,
+    })
+  }, [currentSizeType])
+
   const updateAppSize = useCallback(
     ({
       viewportWidth,
@@ -108,6 +117,10 @@ export const AppSizeButtonGroup: FC = () => {
               viewportHeight,
               viewportWidth,
             }
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+        element: "preview_size",
+        parameter2: newType,
+      })
       updateAppSize({
         ...sizeObj,
         viewportSizeType: newType,

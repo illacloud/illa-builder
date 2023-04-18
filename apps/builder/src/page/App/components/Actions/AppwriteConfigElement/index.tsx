@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -10,6 +10,11 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -44,6 +49,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
     mode: "onChange",
     shouldUnregister: true,
   })
+  const { track } = useContext(MixpanelTrackContext)
   const resource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
   })
@@ -58,6 +64,10 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleConnectionTest = useCallback(() => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "appwrite",
+    })
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -70,7 +80,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
       "appwrite",
       setTestLoading,
     )
-  }, [getValues])
+  }, [getValues, track])
 
   const inputValueValidate = {
     validate,
