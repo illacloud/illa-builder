@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -9,6 +9,11 @@ import {
   PreviousIcon,
   WarningCircleIcon,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   errorIconStyle,
   errorMsgStyle,
@@ -77,6 +82,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
 
   const [saving, setSaving] = useState(false)
   const [testLoading, setTestLoading] = useState(false)
+  const { track } = useContext(MixpanelTrackContext)
 
   const authType = watch(
     "authentication",
@@ -84,6 +90,10 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
   )
 
   const handleConnectionTest = useCallback(() => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "graphql",
+    })
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -99,7 +109,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
       "graphql",
       setTestLoading,
     )
-  }, [setTestLoading, getValues])
+  }, [track, getValues])
 
   return (
     <form

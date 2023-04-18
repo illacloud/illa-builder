@@ -34,6 +34,25 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
     detailedDescription,
   } = props
 
+  const handleClickFxButton = useCallback(() => {
+    if (isDynamic) {
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+        element: "fx",
+        parameter1: widgetType,
+        parameter2: attrName,
+        parameter3: "off",
+      })
+    } else {
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+        element: "fx",
+        parameter1: widgetType,
+        parameter2: attrName,
+        parameter3: "on",
+      })
+    }
+    onClickFxButton?.()
+  }, [attrName, isDynamic, onClickFxButton, widgetType])
+
   const onChangeSelectInner = useCallback(
     (value: any) => {
       onChangeSelect(value)
@@ -81,7 +100,7 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
         <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         <DynamicIcon
           isDynamic={isDynamic}
-          onClick={onClickFxButton}
+          onClick={handleClickFxButton}
           hasRightContent={false}
         />
       </div>

@@ -1,10 +1,14 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { NextIcon, Spin, useMessage } from "@illa-design/react"
 import { ReactComponent as CardCover } from "@/assets/tutorial/card-cover.svg"
 import { Templates } from "@/config/template"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
@@ -22,6 +26,7 @@ import {
   titleStyle,
 } from "@/page/Dashboard/Tutorial/style"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { track } from "@/utils/mixpanelHelper"
 
 const Tutorial: FC = () => {
   const { t } = useTranslation()
@@ -43,6 +48,13 @@ const Tutorial: FC = () => {
     navigate(`/${teamIdentifier}/guide`)
   }
 
+  useEffect(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.VISIT,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL,
+    )
+  }, [])
+
   if (teamInfo && !canEditApp) {
     throw Error(`can not access tutorial view`)
   }
@@ -53,7 +65,17 @@ const Tutorial: FC = () => {
         <div css={titleStyle}>
           {t("editor.tutorial.panel.tutorial.tab.title")}
         </div>
-        <div css={cardStyle} onClick={toGuideModeApp}>
+        <div
+          css={cardStyle}
+          onClick={() => {
+            track(
+              ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+              ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL,
+              { element: "tutorial_onboarding_app" },
+            )
+            toGuideModeApp()
+          }}
+        >
           <CardCover css={cardBgStyle} />
           <div css={cardTitleStyle}>
             {t("editor.tutorial.panel.tutorial.onboarding_app.name")}

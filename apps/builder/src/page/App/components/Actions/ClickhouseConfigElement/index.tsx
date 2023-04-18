@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -11,6 +11,11 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   applyConfigItemLabelText,
   container,
@@ -63,12 +68,17 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const { track } = useContext(MixpanelTrackContext)
 
   const sslOpen = watch("ssl", resource?.content.ssl.ssl ?? false)
   const selfSigned =
     sslOpen && watch("selfSigned", resource?.content.ssl.selfSigned ?? false)
 
   const handleConnectionTest = useCallback(() => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "clickhouse",
+    })
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -83,7 +93,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
       "clickhouse",
       setTestLoading,
     )
-  }, [setTestLoading, getValues, sslOpen])
+  }, [track, getValues, sslOpen])
 
   const handleDocLinkClick = () => {
     window.open("https://www.illacloud.com/docs/illa-cli", "_blank")

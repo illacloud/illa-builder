@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -10,6 +10,11 @@ import {
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -81,6 +86,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const { track } = useContext(MixpanelTrackContext)
 
   const sslDefaultValue = resource?.content.ssl.ssl ?? resourceType === "tidb"
   const serverCertDefaultValue =
@@ -116,6 +122,10 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
     handleLinkOpen("https://www.illacloud.com/docs/illa-cli")
 
   const handleConnectionTest = useCallback(() => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: resourceType,
+    })
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -130,7 +140,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
       resourceType,
       setTestLoading,
     )
-  }, [getValues, resourceType, sslOpenWatch])
+  }, [getValues, resourceType, sslOpenWatch, track])
 
   return (
     <form

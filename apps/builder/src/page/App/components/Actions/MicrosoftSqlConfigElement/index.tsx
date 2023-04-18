@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -11,6 +11,11 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -41,6 +46,7 @@ import { isCloudVersion } from "@/utils/typeHelper"
 export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
   const { t } = useTranslation()
+  const { track } = useContext(MixpanelTrackContext)
 
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
@@ -60,6 +66,10 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
   const sslOpen = watch("ssl", resource?.content.ssl.ssl ?? false)
 
   const handleConnectionTest = useCallback(() => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "mssql",
+    })
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -75,7 +85,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
       "mssql",
       setTestLoading,
     )
-  }, [setTestLoading, getValues, sslOpen])
+  }, [track, getValues, sslOpen])
 
   const handleHostValidate = useCallback(
     (value: string) => {
