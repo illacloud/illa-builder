@@ -18,7 +18,7 @@ export const Page404: FC = () => {
       ILLA_MIXPANEL_EVENT_TYPE.VISIT,
       ILLA_MIXPANEL_PUBLIC_PAGE_NAME.ERROR_PAGE,
       {
-        parameter3: "403",
+        parameter3: "404",
       },
     )
   }, [])
