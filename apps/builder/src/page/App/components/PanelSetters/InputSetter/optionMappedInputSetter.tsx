@@ -10,12 +10,11 @@ export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
   const { attrName, handleUpdateDsl, value, widgetDisplayName } = props
 
   const handleValueChange = useCallback(
-    (value: string) => {
+    (attrName: string, value: string) => {
       const output = getNeedComputedValue(value, widgetDisplayName)
-
       handleUpdateDsl(attrName, output)
     },
-    [attrName, handleUpdateDsl, widgetDisplayName],
+    [handleUpdateDsl, widgetDisplayName],
   )
 
   const wrappedCodeFunc = useCallback(

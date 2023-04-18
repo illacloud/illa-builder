@@ -5,6 +5,10 @@ import { v4 } from "uuid"
 import { Spin, useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
 import { WhiteList } from "@/components/WhiteList"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -17,6 +21,7 @@ import {
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { track } from "@/utils/mixpanelHelper"
 import { ActionCard } from "../ActionCard"
 import { ActionTypeSelectorProps } from "./interface"
 import { categoryStyle, containerStyle, resourceListStyle } from "./style"
@@ -105,7 +110,15 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
           </div>
         </div>
       ))}
-      <WhiteList />
+      <WhiteList
+        onCopyIpReport={() => {
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+            { element: "resource_type_modal_copy" },
+          )
+        }}
+      />
     </Spin>
   )
 }
