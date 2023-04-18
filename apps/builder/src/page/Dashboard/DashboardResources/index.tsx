@@ -2,6 +2,7 @@ import { CellContext, ColumnDef } from "@tanstack/react-table"
 import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
+import { useBeforeUnload } from "react-router-dom"
 import { Button, Empty, Space, Table } from "@illa-design/react"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
@@ -51,7 +52,12 @@ import {
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
-import { resourceContextHelper, track } from "@/utils/mixpanelHelper"
+import {
+  resourceContextHelper,
+  track,
+  trackPageDurationEnd,
+  trackPageDurationStart,
+} from "@/utils/mixpanelHelper"
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
@@ -192,7 +198,15 @@ export const DashboardResources: FC = () => {
       ILLA_MIXPANEL_EVENT_TYPE.VISIT,
       ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
     )
+    trackPageDurationStart()
+    return () => {
+      trackPageDurationEnd(ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE)
+    }
   }, [])
+
+  useBeforeUnload(() => {
+    trackPageDurationEnd(ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE)
+  })
 
   if (teamInfo && !canAccessResourcesView) {
     throw Error(`can not access resources view`)

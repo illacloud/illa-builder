@@ -3,7 +3,7 @@ import { isBoolean } from "lodash"
 import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { useBeforeUnload, useNavigate, useParams } from "react-router-dom"
 import {
   Button,
   Divider,
@@ -31,7 +31,11 @@ import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fromNow } from "@/utils/dayjs"
-import { track } from "@/utils/mixpanelHelper"
+import {
+  track,
+  trackPageDurationEnd,
+  trackPageDurationStart,
+} from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
   appsContainerStyle,
@@ -85,7 +89,15 @@ export const DashboardApps: FC = () => {
 
   useEffect(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.VISIT, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP)
+    trackPageDurationStart()
+    return () => {
+      trackPageDurationEnd(ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP)
+    }
   }, [])
+
+  useBeforeUnload(() => {
+    trackPageDurationEnd(ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP)
+  })
 
   useEffect(() => {
     canCreateApp &&
