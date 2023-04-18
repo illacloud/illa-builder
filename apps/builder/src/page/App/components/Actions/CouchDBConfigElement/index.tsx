@@ -11,6 +11,10 @@ import {
   getColor,
 } from "@illa-design/react"
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
@@ -35,6 +39,7 @@ import {
 } from "@/redux/resource/couchdbResource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
@@ -56,6 +61,15 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleResourceTest = useCallback(() => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element: "resource_configure_back",
+        parameter1: resourceId ? "resource_edit" : "resource_new",
+        parameter5: "couchdb",
+      },
+    )
     const data = getValues()
     const { resourceName, ...otherParams } = data
     onActionConfigElementTest(
@@ -64,7 +78,7 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
       "couchdb",
       setTestLoading,
     )
-  }, [getValues])
+  }, [getValues, resourceId])
 
   return (
     <form

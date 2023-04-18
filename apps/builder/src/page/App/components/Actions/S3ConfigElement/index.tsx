@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -10,6 +10,11 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -38,6 +43,7 @@ import {
 } from "@/redux/resource/s3Resource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
@@ -47,6 +53,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
     mode: "onChange",
     shouldUnregister: true,
   })
+  const { track } = useContext(MixpanelTrackContext)
 
   const findResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
@@ -65,6 +72,10 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
   const aclDefaultValue = content.acl || t("editor.action.acl.option.blank")
 
   const handleConnectionTest = () => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "s3",
+    })
     const data = getValues()
     const content = {
       bucketName: data.bucketName,

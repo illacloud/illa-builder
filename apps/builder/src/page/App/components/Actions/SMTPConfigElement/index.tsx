@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -9,6 +9,11 @@ import {
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -45,6 +50,7 @@ export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
   const findResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
   })
+  const { track } = useContext(MixpanelTrackContext)
 
   let content: SMTPResource
   if (findResource === undefined) {
@@ -57,6 +63,10 @@ export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   const handleConnectionTest = useCallback(() => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "smtp",
+    })
     const data = getValues()
     const content = {
       host: data.host.trim(),
@@ -65,7 +75,7 @@ export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
       password: data.password,
     }
     onActionConfigElementTest(data, content, "smtp", setTestLoading)
-  }, [getValues])
+  }, [getValues, track])
 
   return (
     <form

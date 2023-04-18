@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -10,6 +10,11 @@ import {
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -58,6 +63,7 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
   const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
+  const { track } = useContext(MixpanelTrackContext)
 
   const sslOpenWatch = watch("ssl", content.ssl ?? false)
 
@@ -77,6 +83,10 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
   }
 
   const handleConnectionTest = useCallback(() => {
+    track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "resource_configure_test",
+      parameter5: "redis",
+    })
     const data = getValues()
     onActionConfigElementTest(
       data,
@@ -91,7 +101,7 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
       "redis",
       setTestLoading,
     )
-  }, [getValues, sslOpenWatch])
+  }, [getValues, sslOpenWatch, track])
 
   return (
     <form

@@ -1,9 +1,11 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useContext, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Modal, useMessage } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
@@ -42,6 +44,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   const allResource = useSelector(getAllResources)
   const isGuideMode = useSelector(getIsILLAGuideMode)
+  const { track } = useContext(MixpanelTrackContext)
 
   let title
   switch (currentStep) {
@@ -141,15 +144,38 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
     [appInfo.appId, currentActionType, dispatch, message, t, isGuideMode],
   )
 
-  const handleBack = useCallback((page: ActionCreatorPage) => {
-    setCurrentStep(page)
-  }, [])
+  const handleBack = useCallback(
+    (page: ActionCreatorPage) => {
+      track?.(
+        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+        {
+          element: "resource_configure_back",
+          parameter5: transformResource,
+        },
+        "both",
+      )
+      setCurrentStep(page)
+    },
+    [track, transformResource],
+  )
 
   const handleCancelModal = useCallback(() => {
+    const element =
+      currentStep === "createResource"
+        ? "resource_configure_close"
+        : "resource_type_modal"
+    track?.(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      {
+        element,
+        parameter5: transformResource,
+      },
+      "both",
+    )
     onClose()
     setCurrentStep("select")
     setCurrentActionType(null)
-  }, [onClose])
+  }, [currentStep, onClose, track, transformResource])
 
   const handleActionTypeSelect = useCallback(
     (actionType: ActionType) => {
@@ -178,13 +204,46 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   const handleFinishCreateNewResource = useCallback(
     (resourceId: string) => {
+      track?.(
+        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+        {
+          element: "resource_configure_save",
+          parameter5: transformResource,
+        },
+        "both",
+      )
       handleDirectCreateAction(resourceId, () => {
         setCurrentStep("select")
         onClose()
       })
     },
-    [handleDirectCreateAction, onClose],
+    [handleDirectCreateAction, onClose, track, transformResource],
   )
+  useEffect(() => {
+    if (currentStep === "createResource" && transformResource && visible) {
+      track?.(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        {
+          element: "resource_configure_modal",
+          parameter5: transformResource,
+        },
+        "both",
+      )
+    }
+  }, [currentStep, track, transformResource, visible])
+
+  useEffect(() => {
+    if (currentStep === "select" && visible) {
+      track?.(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        {
+          element: "resource_type_modal",
+          parameter5: transformResource,
+        },
+        "both",
+      )
+    }
+  }, [currentStep, track, currentActionType, visible, transformResource])
 
   const isMaskClosable = currentStep !== "createResource"
 

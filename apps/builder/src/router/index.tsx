@@ -1,9 +1,9 @@
+import { lazy } from "react"
 import { createBrowserRouter } from "react-router-dom"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
-import { Page404 } from "@/page/status/404"
 import { RoutesObjectPro } from "@/router/interface"
 import { requireAuth } from "@/router/loader"
-import { routerConfig } from "@/router/routerConfig"
+import { layLoad, routerConfig } from "@/router/routerConfig"
 import { requireSelfAuth } from "@/router/selfLoader"
 import { isCloudVersion } from "@/utils/typeHelper"
 
@@ -18,7 +18,9 @@ const wrappedRouter = (
     }
     if (needLogin && !isChildren) {
       if (isCloudVersion) {
-        newRouteItem.errorElement = <Page404 />
+        newRouteItem.errorElement = layLoad(
+          lazy(() => import("@/page/status/404")),
+        )
         newRouteItem.loader = async ({ params, request }) => {
           const url = new URL(request.url)
           const token = url?.searchParams?.get("token")
