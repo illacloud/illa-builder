@@ -179,6 +179,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   const handleActionTypeSelect = useCallback(
     (actionType: ActionType) => {
+      track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+        element: "resource_type_modal_resource",
+        parameter5: actionType,
+      })
       if (actionType == "transformer") {
         onClose()
       } else {
