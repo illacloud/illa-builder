@@ -21,7 +21,6 @@ import {
 import { BuilderApi } from "@/api/base"
 import {
   changeTeamMembersRole,
-  inviteByEmail,
   setInviteLinkEnabled,
   updateMembers,
 } from "@/api/team"
@@ -40,11 +39,9 @@ import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourc
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
-import { MemberInfo } from "@/redux/team/teamState"
 import { RootState } from "@/store"
-import { track, trackInDashboard } from "@/utils/mixpanelHelper"
+import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
@@ -424,7 +421,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         ) : null}
       </Space>
       <MixpanelTrackProvider
-        basicTrack={trackInDashboard}
+        basicTrack={track}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
       >
         <InviteModal
