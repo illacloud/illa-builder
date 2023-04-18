@@ -83,6 +83,12 @@ import {
   EditableTextWidget,
 } from "@/widgetLibrary/EditableWidget"
 import {
+  EVENT_CALENDAR_EVENT_HANDLER_CONFIG,
+  EVENT_CALENDAR_PANEL_CONFIG,
+  EVENT_CALENDAR_WIDGET_CONFIG,
+  EventCalendarWidget,
+} from "@/widgetLibrary/EventCalendarWidget"
+import {
   FORM_EVENT_HANDLER_CONFIG,
   FORM_PANEL_CONFIG,
   FORM_WIDGET_CONFIG,
@@ -334,6 +340,12 @@ export const WidgetConfig: WidgetConfigs = {
     eventHandlerConfig: RADIO_BUTTON_EVENT_HANDLER_CONFIG,
   },
   // calendar inputs
+  EVENT_CALENDAR_WIDGET: {
+    widget: EventCalendarWidget,
+    config: EVENT_CALENDAR_WIDGET_CONFIG,
+    panelConfig: EVENT_CALENDAR_PANEL_CONFIG,
+    eventHandlerConfig: EVENT_CALENDAR_EVENT_HANDLER_CONFIG,
+  },
   DATE_WIDGET: {
     widget: DateWidget,
     config: DATE_WIDGET_CONFIG,
