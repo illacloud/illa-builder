@@ -4,7 +4,7 @@ interface ImportMetaEnv {
   readonly VITE_SENTRY_ENV: string
   readonly VITE_SENTRY_SERVER_API: string
   readonly ILLA_APP_VERSION: string
-  readonly ILLA_BUILDER_ENV: string
+  readonly ILLA_APP_ENV: string
   readonly ILLA_GOOGLE_MAP_KEY: string
 }
 
