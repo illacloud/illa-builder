@@ -1,17 +1,19 @@
 import { Reorder } from "framer-motion"
-import { clone, cloneDeep, isEqual, set } from "lodash"
+import { cloneDeep, isEqual, set } from "lodash"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BodyProps } from "./interface"
 import { Item } from "./item"
 import { viewsListBodyWrapperStyle } from "./style"
 
 export const ListBody: FC<BodyProps> = (props) => {
-  const { sectionNodeExecutionResult } = props
+  const { sectionNodeExecutionResult, sectionName } = props
   const dispatch = useDispatch()
   const { sectionViewConfigs, currentViewIndex, viewSortedKey, displayName } =
     sectionNodeExecutionResult
@@ -22,6 +24,7 @@ export const ListBody: FC<BodyProps> = (props) => {
     if (!isEqual(sectionViewConfigs, items)) {
       setItems(sectionViewConfigs)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sectionViewConfigs])
 
   const updateItem = (values: unknown) => {
@@ -59,6 +62,10 @@ export const ListBody: FC<BodyProps> = (props) => {
   const handleDeleteSectionView = useCallback(
     (index: number) => {
       if (index > sectionViewConfigs.length) return
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+        element: "delete_view",
+        parameter2: sectionName.slice(0, -7),
+      })
       const config = sectionViewConfigs[index] as SectionViewShape
       const viewDisplayName = config.viewDisplayName
       dispatch(
@@ -69,7 +76,7 @@ export const ListBody: FC<BodyProps> = (props) => {
         }),
       )
     },
-    [dispatch, displayName, sectionViewConfigs, viewSortedKey],
+    [dispatch, displayName, sectionName, sectionViewConfigs, viewSortedKey],
   )
 
   const handleUpdateSectionOrder = useCallback(

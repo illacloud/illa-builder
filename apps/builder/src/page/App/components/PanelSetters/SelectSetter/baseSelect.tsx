@@ -1,6 +1,8 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { Select } from "@illa-design/react"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseSelectSetterProps } from "./interface"
 
 export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
@@ -13,7 +15,17 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
     allowClear,
     defaultValue,
     onChange,
+    widgetType,
+    showSearch,
   } = props
+
+  const onClick = useCallback(() => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "component_inspect_select",
+      parameter1: widgetType,
+      parameter2: attrName,
+    })
+  }, [attrName, widgetType])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
@@ -26,8 +38,16 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
           onChange?.(value)
+          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CHANGE, {
+            element: "component_inspect_select",
+            parameter1: widgetType,
+            parameter2: attrName,
+            parameter3: value,
+          })
         }}
         allowClear={allowClear}
+        showSearch={showSearch}
+        onClick={onClick}
       />
     </div>
   )

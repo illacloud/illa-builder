@@ -10,7 +10,7 @@ import LoginPage from "@/illa-public-component/User/login"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
 import { mobileAdaptationStyle } from "@/style"
-import { setLocalStorage } from "@/utils/storage"
+import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { LoginFields } from "./interface"
 
@@ -32,7 +32,7 @@ const UserLogin: FC = () => {
       (res) => {
         const token = res.headers["illa-token"]
         if (!token) return
-        setLocalStorage("token", token, -1)
+        ILLABuilderStorage.setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.id,
