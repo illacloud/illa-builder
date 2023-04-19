@@ -438,6 +438,9 @@
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
               "find_instructions_on": "<0>AWS ドキュメント</0>でアクセス キーの場所に関する説明を見つけてください。",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "ページを選択"
             }
           },
           "option": {
@@ -539,8 +542,9 @@
             "page_load_delay": "ページ読み込み遅延時間 (ms)",
             "run_this_action_peri": "このアクションを定期的に実行します",
             "interval": "インターバル (s)",
-            "ms": "ms",
-            "s": "s"
+            "actions_running_when": "ページの読み込み時に実行される",
+            "pages": "ページ",
+            "periodically_run": "定期的に実行"
           }
         },
         "menu": {
