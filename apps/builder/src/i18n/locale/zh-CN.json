@@ -491,6 +491,10 @@
                 "query_parameters": "Query Parameters",
                 "header_authorization": "Header Authorization"
               }
+            },
+            "advanced": {
+              "trigger_this_action_": "页面加载时触发此操作",
+              "show_a_loading_page_": "在页面加载时显示加载页面"
             }
           },
           "restapi": {
@@ -523,7 +527,20 @@
               "body_type": {
                 "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
               }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "这个页面加载时不会触发任何操作。 您可以将Action设置为手动触发，并在高级设置中启用“页面加载时触发此操作”。"
             }
+          },
+          "advanced": {
+            "advanced": "高级配置",
+            "page_trigger": "页面触发",
+            "loading_page": "加载页",
+            "page_load_delay": "页面加载延迟时间 (ms)",
+            "run_this_action_peri": "定期运行此Action",
+            "interval": "间隔时间 (s)",
+            "ms": "ms",
+            "s": "s"
           }
         },
         "menu": {
