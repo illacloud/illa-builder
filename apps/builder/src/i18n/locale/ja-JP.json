@@ -491,6 +491,10 @@
                 "query_parameters": "Query Parameters",
                 "header_authorization": "Header Authorization"
               }
+            },
+            "advanced": {
+              "trigger_this_action_": "ページの読み込み時にこのアクションを実行します",
+              "show_a_loading_page_": "ページの読み込み時にローディングページを表示します"
             }
           },
           "restapi": {
@@ -523,7 +527,20 @@
               "body_type": {
                 "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
               }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "このページの読み込み時には何のアクションも実行されません。アクションを手動でトリガーに設定し、「ページの読み込み時に実行する」を高度な設定で有効にしてください。"
             }
+          },
+          "advanced": {
+            "advanced": "高度な設定",
+            "page_trigger": "ページトリガー",
+            "loading_page": "ローディングページ",
+            "page_load_delay": "ページ読み込み遅延時間 (ms)",
+            "run_this_action_peri": "このアクションを定期的に実行します",
+            "interval": "インターバル (s)",
+            "ms": "ms",
+            "s": "s"
           }
         },
         "menu": {
