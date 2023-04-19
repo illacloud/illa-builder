@@ -1459,6 +1459,13 @@
         "time_range": {
           "start_time": "Start time",
           "end_time": "End time"
+        },
+        "eventCalendar": {
+          "event_value": "Event value",
+          "event_id": "Event id",
+          "title": "Title",
+          "description": "Description",
+          "start": "Start"
         }
       },
       "setter_tooltip": {
@@ -1785,6 +1792,10 @@
       "time_range": {
         "setstarttime": "setStartTime",
         "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
       }
     },
     "tutorial": {
@@ -2226,6 +2237,11 @@
     },
     "time_range": {
       "name": "Time range"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Event calendar"
+      }
     }
   },
   "page": {
