@@ -438,6 +438,9 @@
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
               "find_instructions_on": "<0>AWS 문서</0>에서 액세스 키를 찾을 수 있는 위치에 대한 지침을 찾아보세요.",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "페이지 선택"
             }
           },
           "option": {
@@ -539,8 +542,9 @@
             "page_load_delay": "페이지 로딩 지연 (ms)",
             "run_this_action_peri": "이 작업을 주기적으로 실행합니다",
             "interval": "주기 간격 (s)",
-            "ms": "ms",
-            "s": "s"
+            "actions_running_when": "페이지가 로드될 때 실행되는 작업",
+            "pages": "페이지",
+            "periodically_run": "주기적으로 실행"
           }
         },
         "menu": {
