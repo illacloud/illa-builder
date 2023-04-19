@@ -491,6 +491,10 @@
                 "query_parameters": "Query Parameters",
                 "header_authorization": "Header Authorization"
               }
+            },
+            "advanced": {
+              "trigger_this_action_": "페이지 로딩시 이 작업을 트리거합니다",
+              "show_a_loading_page_": "페이지 로딩시 로딩 페이지를 보여줍니다"
             }
           },
           "restapi": {
@@ -523,7 +527,20 @@
               "body_type": {
                 "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
               }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "이 페이지 로딩시에는 작업이 실행되지 않습니다. 이 작업을 수동으로 실행하고 고급 설정에서 '페이지 로딩시 이 작업을 트리거합니다'를 활성화할 수 있습니다."
             }
+          },
+          "advanced": {
+            "advanced": "고급 설정",
+            "page_trigger": "페이지 트리거",
+            "loading_page": "로딩 페이지",
+            "page_load_delay": "페이지 로딩 지연 (ms)",
+            "run_this_action_peri": "이 작업을 주기적으로 실행합니다",
+            "interval": "주기 간격 (s)",
+            "ms": "ms",
+            "s": "s"
           }
         },
         "menu": {
