@@ -7,11 +7,21 @@ import {
   navBarStyle,
   navBarTabStyle,
 } from "@/page/Setting/style"
+import { useSelector } from "react-redux"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { canManage } from "@/illa-public-component/UserRoleUtils"
+import { ACTION_MANAGE, ATTRIBUTE_GROUP, USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 
 export const SettingNavBar: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { teamIdentifier } = useParams()
+  const teamInfo = useSelector(getCurrentTeamInfo)
+  const { teamIdentifier = teamInfo?.identifier } = useParams()
+  const canEditApp = canManage(
+    teamInfo?.myRole ?? USER_ROLE.VIEWER,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.EDIT_APP,
+  )
 
   return (
     <div css={navBarStyle}>
@@ -22,18 +32,28 @@ export const SettingNavBar: FC = () => {
       >
         {t("apps")}
       </span>
-      <span
-        css={navBarTabStyle}
-        onClick={() => navigate(`/${teamIdentifier}/dashboard/resources`)}
-      >
+      {canEditApp && (
+        <span
+          css={navBarTabStyle}
+          onClick={() => navigate(`/${teamIdentifier}/dashboard/resources`)}
+        >
         {t("resources")}
       </span>
+      )}
       <span
         css={navBarTabStyle}
         onClick={() => navigate(`/${teamIdentifier}/dashboard/members`)}
       >
         {t("members")}
       </span>
+      {canEditApp && (
+        <span
+          css={navBarTabStyle}
+          onClick={() => navigate(`/${teamIdentifier}/dashboard/tutorial`)}
+        >
+        {t("editor.tutorial.panel.tutorial.tab.title")}
+      </span>
+      )}
     </div>
   )
 }
