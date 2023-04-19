@@ -1,5 +1,8 @@
 import { merge } from "lodash"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getExecutionResult,
+  getExecutionResultToCurrentPageCodeMirror,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 
 export type RuntimeProp = Record<string, Function>
@@ -33,9 +36,15 @@ class ILLAEditorRuntimePropsCollector {
     return this._runtimeProps
   }
 
-  public getCalcContext(otherContext?: Record<string, unknown>) {
+  public getGlobalCalcContext(otherContext?: Record<string, unknown>) {
     const rootState = store.getState()
     const executionResult = getExecutionResult(rootState)
+    return merge({}, this._runtimeProps, executionResult, otherContext)
+  }
+
+  public getCurrentPageCalcContext(otherContext?: Record<string, unknown>) {
+    const rootState = store.getState()
+    const executionResult = getExecutionResultToCurrentPageCodeMirror(rootState)
     return merge({}, this._runtimeProps, executionResult, otherContext)
   }
 }

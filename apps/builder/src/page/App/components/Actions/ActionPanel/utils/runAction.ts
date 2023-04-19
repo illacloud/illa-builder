@@ -97,9 +97,10 @@ function runTransformer(transformer: Transformer, rawData: any) {
   if (transformer?.enable) {
     const evaluateTransform = wrapFunctionCode(transformer.rawData)
     const canEvalString = `{{${evaluateTransform}()}}`
-    const finalContext = ILLAEditorRuntimePropsCollectorInstance.getCalcContext(
-      { data: rawData },
-    )
+    const finalContext =
+      ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext({
+        data: rawData,
+      })
     try {
       calcResult = evaluateDynamicString("events", canEvalString, finalContext)
     } catch (e) {
@@ -156,7 +157,8 @@ const calculateFetchResultDisplayName = (
 }
 
 const runAllEventHandler = (events: any[] = []) => {
-  const finalContext = ILLAEditorRuntimePropsCollectorInstance.getCalcContext()
+  const finalContext =
+    ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext()
   events.forEach((scriptObj) => {
     runEventHandler(scriptObj, finalContext)
   })

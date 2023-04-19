@@ -165,7 +165,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           return originEvent.eventType === eventType
         })
         const finalContext =
-          ILLAEditorRuntimePropsCollectorInstance.getCalcContext(
+          ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext(
             otherCalcContext,
           )
         return {

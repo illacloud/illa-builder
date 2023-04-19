@@ -230,7 +230,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
 
   const handleOnValidate = useCallback(() => {
     const finalContext =
-      ILLAEditorRuntimePropsCollectorInstance.getCalcContext()
+      ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext()
     allLikeInputChildrenNode.forEach((node) => {
       try {
         return evaluateDynamicString(
@@ -292,7 +292,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     if (disabledSubmit || disabled) return
     if (validateInputsOnSubmit) {
       const finalContext =
-        ILLAEditorRuntimePropsCollectorInstance.getCalcContext()
+        ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext()
       const validateResult = allLikeInputChildrenNode.every((node) => {
         try {
           const validateFunc = get(
