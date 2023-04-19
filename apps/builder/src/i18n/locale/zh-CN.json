@@ -438,6 +438,9 @@
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
               "find_instructions_on": "<0>在 AWS 文档</0>中找到关于在哪里可以找到访问密钥的说明。",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "选择页面"
             }
           },
           "option": {
@@ -539,8 +542,9 @@
             "page_load_delay": "页面加载延迟时间 (ms)",
             "run_this_action_peri": "定期运行此Action",
             "interval": "间隔时间 (s)",
-            "ms": "ms",
-            "s": "s"
+            "actions_running_when": "页面加载时运行的操作",
+            "pages": "页面",
+            "periodically_run": "定期运行"
           }
         },
         "menu": {
