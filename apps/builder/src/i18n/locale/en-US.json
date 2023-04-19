@@ -438,6 +438,9 @@
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
               "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
               "role_to_assume": "Use a <0>different role</0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "Select pages"
             }
           },
           "option": {
@@ -539,8 +542,9 @@
             "page_load_delay": "Page load delay (ms)",
             "run_this_action_peri": "Run this action periodically",
             "interval": "Interval (s)",
-            "ms": "ms",
-            "s": "s"
+            "actions_running_when": "Actions running when the page loads",
+            "pages": "Pages",
+            "periodically_run": "Periodically run"
           }
         },
         "menu": {
