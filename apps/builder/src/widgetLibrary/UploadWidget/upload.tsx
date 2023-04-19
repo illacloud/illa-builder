@@ -179,8 +179,8 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     hideValidationMessage,
     updateComponentHeight,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
   } = props
 
   const fileListRef = useRef<UploadItem[]>([])
@@ -320,27 +320,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      type,
-      buttonText,
-      dropText,
-      fileType,
-      selectionType,
-      appendFiles,
-      showFileList,
-      parseValue,
-      displayName,
-      customRule,
-      tooltipText,
-      required,
-      minFiles,
-      maxFiles,
-      maxSize,
-      minSize,
-      hideValidationMessage,
-      currentList,
-      value,
-      files,
+    updateComponentRuntimeProps({
       clearValue: () => {
         handleUpdateDsl({ value: [] })
         setFileList([])
@@ -360,34 +340,14 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    type,
-    buttonText,
-    dropText,
-    fileType,
-    selectionType,
-    appendFiles,
-    showFileList,
-    parseValue,
-    displayName,
-    customRule,
-    tooltipText,
-    required,
-    minFiles,
-    maxFiles,
-    maxSize,
-    minSize,
-    currentList,
-    value,
-    files,
-    hideValidationMessage,
-    handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    handleValidate,
     currentFileList,
+    deleteComponentRuntimeProps,
+    handleUpdateDsl,
+    handleValidate,
+    updateComponentRuntimeProps,
   ])
 
   return (

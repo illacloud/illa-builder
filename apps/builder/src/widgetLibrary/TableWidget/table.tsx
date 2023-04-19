@@ -190,8 +190,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     multiRowSelection,
     columnSizing,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
@@ -276,31 +276,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   }, [columns, realDataSourceArray?.length])
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      defaultSort,
-      columns,
-      selectedRow,
-      rowSelection,
-      dataSourceJS: dataSourceJS ?? [],
-      dataSource: dataSource ?? [],
-    })
-    return () => {
-      handleDeleteGlobalData(displayName)
-    }
-  }, [
-    displayName,
-    defaultSort,
-    columns,
-    selectedRow,
-    rowSelection,
-    handleUpdateGlobalData,
-    handleUpdateDsl,
-    handleDeleteGlobalData,
-    dataSourceJS,
-    dataSource,
-  ])
-
-  useEffect(() => {
     handleUpdateOriginalDSLMultiAttr({
       rowEvents,
     })
@@ -323,8 +298,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       columnVisibility={columnVisibility}
       defaultSort={defaultSort}
       multiRowSelection={multiRowSelection}
-      handleUpdateGlobalData={handleUpdateGlobalData}
-      handleDeleteGlobalData={handleDeleteGlobalData}
+      updateComponentRuntimeProps={updateComponentRuntimeProps}
+      deleteComponentRuntimeProps={deleteComponentRuntimeProps}
       handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
       handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
       handleUpdateDsl={handleUpdateDsl}

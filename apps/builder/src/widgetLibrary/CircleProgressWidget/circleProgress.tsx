@@ -52,20 +52,15 @@ export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
     trailColor,
     strokeWidth,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     displayName,
     alignment,
     tooltipText,
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      showText,
-      color,
-      trailColor,
-      strokeWidth,
+    updateComponentRuntimeProps({
       setValue: (value: number) => {
         handleUpdateDsl({ value })
       },
@@ -75,18 +70,12 @@ export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    value,
-    showText,
-    color,
-    trailColor,
-    strokeWidth,
-    displayName,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
   ])
 
   const [wrapperRef, bounds] = useMeasure()

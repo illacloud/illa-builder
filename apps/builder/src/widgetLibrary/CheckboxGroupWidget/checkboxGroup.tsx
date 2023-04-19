@@ -70,8 +70,8 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     manualOptions,
     mappedOption,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     displayName,
     labelPosition,
     labelFull,
@@ -122,15 +122,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      disabled,
-      direction,
-      colorScheme,
-      optionConfigureMode,
-      manualOptions,
-      mappedOption,
-      options: finalOptions,
+    updateComponentRuntimeProps({
       setValue: (value: any) => {
         handleUpdateDsl({ value })
       },
@@ -143,22 +135,14 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
       clearValidation: () => {},
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    value,
-    disabled,
-    direction,
-    colorScheme,
-    optionConfigureMode,
-    manualOptions,
-    mappedOption,
-    displayName,
-    finalOptions,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
     handleValidate,
+    updateComponentRuntimeProps,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

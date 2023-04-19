@@ -82,8 +82,8 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
     value,
     displayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -140,7 +140,7 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
+    updateComponentRuntimeProps({
       setSelectedValue: (value: any) => {
         handleUpdateDsl({ value })
       },
@@ -157,14 +157,13 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleUpdateGlobalData,
     handleValidate,
+    updateComponentRuntimeProps,
     value,
   ])
 

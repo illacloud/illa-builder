@@ -84,8 +84,8 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
   const {
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     displayName,
     tooltipText,
     triggerEventHandler,
@@ -96,7 +96,7 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
   const videoRef = useRef<ReactPlayer>(null)
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
+    updateComponentRuntimeProps({
       play: () => {
         handleUpdateMultiExecutionResult([
           {
@@ -193,14 +193,14 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
+    displayName,
   ])
 
   const onPlay = useCallback(() => {

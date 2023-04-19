@@ -1,41 +1,63 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { Select } from "@illa-design/react"
-import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
-import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getCurrentPageWidgetExecutionResultArray,
+  getWidgetExecutionResult,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { BaseSelectSetter } from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
-  const {
-    isSetterSingleRow,
-    attrName,
-    widgetDisplayName,
-    handleUpdateDsl,
-    value,
-    widgetOrAction,
-  } = props
+  const { widgetDisplayName, value, widgetOrAction } = props
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
+  const currentPageWidgetDisplayNameMapProps = useSelector(
+    getCurrentPageWidgetExecutionResultArray,
+  )
 
   const finalOptions = useMemo(() => {
     const tmpOptions: { label: string; value: string }[] = []
-    Object.keys(widgetDisplayNameMapProps).forEach((key) => {
-      if (key !== widgetDisplayName) {
-        const widgetType = widgetDisplayNameMapProps[key].$widgetType
-        const widgetMethod =
-          widgetBuilder(widgetType)?.eventHandlerConfig?.methods ?? []
-        if (widgetMethod.length > 0) {
-          tmpOptions.push({
-            label: key,
-            value: key,
-          })
+    if (widgetOrAction === "ACTION") {
+      Object.keys(widgetDisplayNameMapProps).forEach((key) => {
+        if (key !== widgetDisplayName) {
+          const widgetType = widgetDisplayNameMapProps[key].$widgetType
+          const widgetMethod =
+            widgetBuilder(widgetType)?.eventHandlerConfig?.methods ?? []
+          if (widgetMethod.length > 0) {
+            tmpOptions.push({
+              label: key,
+              value: key,
+            })
+          }
         }
-      }
-    })
+      })
+    }
+
+    if (widgetOrAction === "WIDGET") {
+      currentPageWidgetDisplayNameMapProps.forEach((node) => {
+        const key = node.displayName
+        if (key !== widgetDisplayName) {
+          const widgetType = node.$widgetType
+          const widgetMethod =
+            widgetBuilder(widgetType)?.eventHandlerConfig?.methods ?? []
+          if (widgetMethod.length > 0) {
+            tmpOptions.push({
+              label: key,
+              value: key,
+            })
+          }
+        }
+      })
+    }
+
     return tmpOptions
-  }, [widgetDisplayName, widgetDisplayNameMapProps])
+  }, [
+    currentPageWidgetDisplayNameMapProps,
+    widgetDisplayName,
+    widgetDisplayNameMapProps,
+    widgetOrAction,
+  ])
 
   const actionFinalValue = useMemo(() => {
     const index = finalOptions.findIndex((option) => {

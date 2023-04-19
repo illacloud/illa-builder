@@ -91,8 +91,8 @@ Carousel.displayName = "Carousel"
 
 export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
   const {
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
     triggerMappedEventHandler,
@@ -163,7 +163,7 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
+    updateComponentRuntimeProps({
       slickNext: () => {
         carouselRef.current?.slickNext()
       },
@@ -172,9 +172,9 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
-  }, [displayName, handleUpdateGlobalData, handleDeleteGlobalData])
+  }, [displayName, updateComponentRuntimeProps, deleteComponentRuntimeProps])
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

@@ -82,8 +82,8 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
     markers,
     center,
     zoom = DefaultZoom,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
@@ -103,7 +103,7 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
   }, [])
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
+    updateComponentRuntimeProps({
       setMarkers: (markers: unknown) => {
         if (!Array.isArray(markers)) {
           console.error("TypeError: value is not a boolean")
@@ -126,15 +126,13 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    markers,
-    center,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateMultiExecutionResult,
+    displayName,
   ])
 
   useEffect(() => {

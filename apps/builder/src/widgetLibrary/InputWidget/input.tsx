@@ -84,20 +84,8 @@ WrappedInput.displayName = "WrappedInput"
 export const InputWidget: FC<InputWidgetProps> = (props) => {
   const {
     value,
-    placeholder,
-    disabled,
-    readOnly,
-    prefixIcon,
-    prefixText,
-    suffixIcon,
-    suffixText,
-    showCharacterCount,
-    colorScheme,
     displayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    allowClear,
     minLength,
     maxLength,
     labelPosition,
@@ -117,6 +105,8 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     updateComponentHeight,
     validateMessage,
     triggerEventHandler,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -160,20 +150,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     [getValidateMessage, handleUpdateDsl],
   )
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      value,
-      placeholder,
-      disabled,
-      readOnly,
-      prefixIcon,
-      prefixText,
-      suffixIcon,
-      suffixText,
-      showCharacterCount,
-      colorScheme,
-      allowClear,
-      minLength,
-      maxLength,
+    updateComponentRuntimeProps({
       focus: () => {
         inputRef.current?.focus()
       },
@@ -192,28 +169,16 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
         })
       },
     })
+
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    value,
-    placeholder,
-    disabled,
-    readOnly,
-    prefixIcon,
-    prefixText,
-    suffixIcon,
-    suffixText,
-    showCharacterCount,
-    colorScheme,
-    displayName,
-    allowClear,
-    minLength,
-    maxLength,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
     handleValidate,
+    updateComponentRuntimeProps,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

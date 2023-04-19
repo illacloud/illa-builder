@@ -10,11 +10,10 @@ import { containerWrapperStyle } from "./style"
 export const ContainerWidget: FC<ContainerProps> = (props) => {
   const {
     currentIndex,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateOriginalDSLOtherMultiAttr,
-    displayName,
     viewList,
     tooltipText,
     childrenNode,
@@ -78,9 +77,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      currentIndex,
-      viewList,
+    updateComponentRuntimeProps?.({
       setCurrentViewKey: (key: string) => {
         const index = viewList.findIndex((viewItem) => viewItem.key === key)
         if (index === -1) return
@@ -166,15 +163,14 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    currentIndex,
-    displayName,
-    handleDeleteGlobalData,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
+    updateComponentRuntimeProps,
     handleUpdateOriginalDSLAttrs,
     viewList,
+    currentIndex,
   ])
 
   const enableAutoHeight = useMemo(() => {
