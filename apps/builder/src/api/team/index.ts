@@ -149,7 +149,6 @@ export const changeTeamMembersRole = async (
       userRole,
     },
   })
-  updateMembers()
   return true
 }
 

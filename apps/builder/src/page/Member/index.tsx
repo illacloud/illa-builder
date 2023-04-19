@@ -1,5 +1,4 @@
-import { FC, useEffect, useState } from "react"
-import { useTranslation } from "react-i18next"
+import { FC, useEffect, useState, useCallback } from "react"
 import { useSelector } from "react-redux"
 import { BuilderApi } from "@/api/base"
 import {
@@ -11,15 +10,18 @@ import {
   renewInviteLink,
   setInviteLinkEnabled,
   updateMembers,
-  updateTeamPermissionConfig,
+  updateTeamPermissionConfig, updateTeamsInfo,
 } from "@/api/team"
 import { MemberList } from "@/illa-public-component/MemberList"
 import { BuilderCardInfo, MemberProps } from "@/page/Member/interface"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
 import { isCloudVersion } from "@/utils/typeHelper"
+import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
+import { useParams } from "react-router-dom"
 
 export const Member: FC<MemberProps> = (props) => {
+  const { teamIdentifier } = useParams()
   const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
   const members = useSelector(getMemberList) ?? []
@@ -61,6 +63,19 @@ export const Member: FC<MemberProps> = (props) => {
     }
   }
 
+  const handleChangeTeamMembersRole = useCallback(
+    (teamMemberID: string, userRole: USER_ROLE) => {
+      return changeTeamMembersRole(teamMemberID, userRole).then((res) => {
+        if (userRole === USER_ROLE.OWNER) {
+          updateTeamsInfo(teamIdentifier)
+        }
+        updateMemberList()
+        return res
+      })
+    },
+    [updateMemberList, teamIdentifier],
+  )
+
   useEffect(() => {
     if (teamId) {
       updateMemberList()
@@ -89,7 +104,7 @@ export const Member: FC<MemberProps> = (props) => {
       allowViewerManageTeamMember={allowViewerManageTeamMember}
       inviteByEmail={inviteByEmail}
       removeTeamMembers={handleRemoveTeamMembers}
-      changeTeamMembersRole={changeTeamMembersRole}
+      changeTeamMembersRole={handleChangeTeamMembersRole}
       updateTeamPermissionConfig={updateTeamPermissionConfig}
     />
   )
