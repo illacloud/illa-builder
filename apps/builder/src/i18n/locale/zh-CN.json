@@ -1459,6 +1459,13 @@
         "time_range": {
           "start_time": "开始时间",
           "end_time": "结束时间"
+        },
+        "eventCalendar": {
+          "event_value": "Event value",
+          "event_id": "Event id",
+          "title": "Title",
+          "description": "Description",
+          "start": "Start"
         }
       },
       "setter_tooltip": {
@@ -1785,6 +1792,10 @@
       "time_range": {
         "setstarttime": "setStartTime",
         "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
       }
     },
     "tutorial": {
@@ -2226,6 +2237,11 @@
     },
     "time_range": {
       "name": "时间范围选择器"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Event calendar"
+      }
     }
   },
   "page": {
