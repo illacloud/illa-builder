@@ -491,6 +491,10 @@
                 "query_parameters": "Query Parameters",
                 "header_authorization": "Header Authorization"
               }
+            },
+            "advanced": {
+              "trigger_this_action_": "Trigger this action when page loads",
+              "show_a_loading_page_": "Show a loading page on page load"
             }
           },
           "restapi": {
@@ -523,7 +527,20 @@
               "body_type": {
                 "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
               }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "No actions will be triggered when the page loads. You can manually trigger the action and enable \"Trigger this action when page loads\" in the advanced settings."
             }
+          },
+          "advanced": {
+            "advanced": "Advanced",
+            "page_trigger": "Page trigger",
+            "loading_page": "Loading page",
+            "page_load_delay": "Page load delay (ms)",
+            "run_this_action_peri": "Run this action periodically",
+            "interval": "Interval (s)",
+            "ms": "ms",
+            "s": "s"
           }
         },
         "menu": {
