@@ -1459,6 +1459,13 @@
         "time_range": {
           "start_time": "시작 시간",
           "end_time": "시작 시간"
+        },
+        "eventCalendar": {
+          "event_value": "Event value",
+          "event_id": "Event id",
+          "title": "Title",
+          "description": "Description",
+          "start": "Start"
         }
       },
       "setter_tooltip": {
@@ -1785,6 +1792,10 @@
       "time_range": {
         "setstarttime": "setStartTime",
         "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
       }
     },
     "tutorial": {
@@ -2226,6 +2237,11 @@
     },
     "time_range": {
       "name": "시간 범위"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Event calendar"
+      }
     }
   },
   "page": {
