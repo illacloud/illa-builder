@@ -60,16 +60,12 @@ WrappedRadioGroup.displayName = "WrappedRadioGroup"
 export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   const {
     value,
-    disabled,
-    direction,
-    colorScheme,
     optionConfigureMode,
     manualOptions,
     mappedOption,
-    displayName,
-    handleUpdateGlobalData,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -120,15 +116,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      disabled,
-      direction,
-      colorScheme,
-      optionConfigureMode,
-      manualOptions,
-      mappedOption,
-      options: finalOptions,
+    updateComponentRuntimeProps({
       setValue: (value: any) => {
         handleUpdateDsl({ value })
       },
@@ -141,22 +129,14 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
       clearValidation: () => {},
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    finalOptions,
-    value,
-    disabled,
-    direction,
-    colorScheme,
-    optionConfigureMode,
-    manualOptions,
-    mappedOption,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
     handleValidate,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

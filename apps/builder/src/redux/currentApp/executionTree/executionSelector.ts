@@ -6,6 +6,7 @@ import {
   getAllComponentDisplayNameMapProps,
   getFlattenArrayComponentNodes,
   getOriginalGlobalData,
+  getPageNameMapDescendantNodeDisplayNames,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
@@ -68,37 +69,6 @@ export const getWidgetExecutionResult = createSelector(
       }
     })
     return widgetExecutionResult
-  },
-)
-
-export const getGeneralWidgetExecutionResultArray = createSelector(
-  [getWidgetExecutionResult],
-  (widgetExecutionResult) => {
-    const widgetExecutionResultArray: Record<string, any>[] = []
-    Object.keys(widgetExecutionResult).forEach((key) => {
-      if (!IGNORE_WIDGET_TYPES.has(widgetExecutionResult[key].$widgetType)) {
-        widgetExecutionResultArray.push({
-          ...widgetExecutionResult[key],
-          displayName: key,
-        })
-      }
-    })
-    return widgetExecutionResultArray
-  },
-)
-export const getModalWidgetExecutionResultArray = createSelector(
-  [getWidgetExecutionResult],
-  (widgetExecutionResult) => {
-    const widgetExecutionResultArray: Record<string, any>[] = []
-    Object.keys(widgetExecutionResult).forEach((key) => {
-      if (widgetExecutionResult[key].$widgetType === "MODAL_WIDGET") {
-        widgetExecutionResultArray.push({
-          ...widgetExecutionResult[key],
-          displayName: key,
-        })
-      }
-    })
-    return widgetExecutionResultArray
   },
 )
 
@@ -191,7 +161,7 @@ export const getCurrentPageDisplayName = createSelector(
   },
 )
 
-export const getExecutionResultToCodeMirror = createSelector(
+export const getExecutionResultToGlobalCodeMirror = createSelector(
   [getExecutionResult],
   (executionResult) => {
     const result: Record<string, unknown> = {}
@@ -200,6 +170,50 @@ export const getExecutionResultToCodeMirror = createSelector(
         !IGNORE_WIDGET_TYPES.has(executionResult[key]?.$widgetType) &&
         executionResult[key] != undefined
       ) {
+        result[key] = cloneDeep(executionResult[key])
+      }
+    })
+    Object.keys(result).forEach((key) => {
+      const componentOrAction = result[key]
+      if (isObject(componentOrAction)) {
+        Object.keys(componentOrAction as Record<string, unknown>).forEach(
+          (key) => {
+            if (key.startsWith("$")) {
+              delete (componentOrAction as Record<string, unknown>)[key]
+            }
+          },
+        )
+      }
+    })
+    return result
+  },
+)
+
+export const getExecutionResultToCurrentPageCodeMirror = createSelector(
+  [
+    getCurrentPageDisplayName,
+    getPageNameMapDescendantNodeDisplayNames,
+    getExecutionResult,
+  ],
+  (
+    currentPageDisplayName,
+    pageNameMapDescendantNodeDisplayNames,
+    executionResult,
+  ) => {
+    const currentPageWidgets =
+      pageNameMapDescendantNodeDisplayNames[currentPageDisplayName]
+    const result: Record<string, unknown> = {}
+    Object.keys(executionResult).forEach((key) => {
+      const currentSeed = executionResult[key]
+      if (
+        currentSeed != undefined &&
+        currentSeed.$type === "WIDGET" &&
+        !IGNORE_WIDGET_TYPES.has(executionResult[key]?.$widgetType) &&
+        currentPageWidgets.includes(key)
+      ) {
+        result[key] = cloneDeep(executionResult[key])
+      }
+      if (currentSeed && currentSeed.$type !== "WIDGET") {
         result[key] = cloneDeep(executionResult[key])
       }
     })
@@ -285,27 +299,6 @@ export const getExecutionWidgetLayoutInfo = createSelector(
   },
 )
 
-// export const getAllComponentsWithRealShapeSelectorOnlyUseInWSAsync = (
-//   state: RootState,
-// ) => {
-//   const canvas = state.currentApp.editor.components
-//   if (!canvas) return []
-//   const allComponents = flattenDslToArray(canvas)
-//   const widgetsLayoutInfo = state.currentApp.execution.widgetsLayoutInfo
-
-//   let childrenNodes = allComponents ? cloneDeep(allComponents) : []
-//   if (Array.isArray(childrenNodes)) {
-//     const mergedChildrenNode = batchMergeLayoutInfoToComponent(
-//       widgetsLayoutInfo,
-//       childrenNodes,
-//     )
-//     childrenNodes = cloneDeep(mergedChildrenNode)
-//   } else {
-//     childrenNodes = []
-//   }
-//   return childrenNodes
-// }
-
 export const getAllComponentsWithRealShapeSelector = createSelector(
   [getFlattenArrayComponentNodes, getExecutionWidgetLayoutInfo],
   (allComponentNodes, widgetsLayoutInfo) => {
@@ -320,5 +313,57 @@ export const getAllComponentsWithRealShapeSelector = createSelector(
       childrenNodes = []
     }
     return childrenNodes
+  },
+)
+
+export const getCurrentPageWidgetExecutionResultArray = createSelector(
+  [
+    getCurrentPageDisplayName,
+    getPageNameMapDescendantNodeDisplayNames,
+    getWidgetExecutionResult,
+  ],
+  (
+    currentPageDisplayName,
+    pageNameMapDescendantNodeDisplayNames,
+    widgetExecutionResult,
+  ) => {
+    const descendantNodeDisplayNames =
+      pageNameMapDescendantNodeDisplayNames[currentPageDisplayName]
+    if (!Array.isArray(descendantNodeDisplayNames)) return []
+    const widgetExecutionResultArray: Record<string, any>[] = []
+    descendantNodeDisplayNames.forEach((displayName) => {
+      if (!widgetExecutionResult[displayName]) return
+      widgetExecutionResultArray.push({
+        ...widgetExecutionResult[displayName],
+        displayName,
+      })
+    })
+    return widgetExecutionResultArray
+  },
+)
+
+export const getCurrentPageGeneralWidgetExecutionResultArray = createSelector(
+  [getCurrentPageWidgetExecutionResultArray],
+  (currentPageWidgetExecutionResult) => {
+    const widgetExecutionResultArray: Record<string, any>[] = []
+    currentPageWidgetExecutionResult.forEach((widget) => {
+      if (!IGNORE_WIDGET_TYPES.has(widget.$widgetType)) {
+        widgetExecutionResultArray.push(widget)
+      }
+    })
+    return widgetExecutionResultArray
+  },
+)
+
+export const getCurrentPageModalWidgetExecutionResultArray = createSelector(
+  [getCurrentPageWidgetExecutionResultArray],
+  (currentPageWidgetExecutionResult) => {
+    const widgetExecutionResultArray: Record<string, any>[] = []
+    currentPageWidgetExecutionResult.forEach((widget) => {
+      if (widget.$widgetType === "MODAL_WIDGET") {
+        widgetExecutionResultArray.push(widget)
+      }
+    })
+    return widgetExecutionResultArray
   },
 )

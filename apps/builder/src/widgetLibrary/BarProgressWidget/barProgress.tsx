@@ -39,8 +39,8 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
     trailColor,
     displayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -55,12 +55,7 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      showText,
-      strokeWidth,
-      color,
-      trailColor,
+    updateComponentRuntimeProps({
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -70,18 +65,13 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    value,
-    showText,
-    strokeWidth,
-    color,
-    trailColor,
+    deleteComponentRuntimeProps,
     displayName,
-    handleUpdateGlobalData,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
   ])
 
   return (

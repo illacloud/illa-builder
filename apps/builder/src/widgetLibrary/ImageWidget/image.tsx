@@ -31,37 +31,28 @@ WrappedImage.displayName = "WrappedImage"
 export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   const {
     imageSrc,
-    altText,
     radius,
     objectFit,
     handleUpdateDsl,
-    handleDeleteGlobalData,
-    handleUpdateGlobalData,
-    displayName,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     tooltipText,
     triggerEventHandler,
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      imageSrc,
-      altText,
-      radius,
+    updateComponentRuntimeProps({
       setImageUrl: (url: string) => {
         handleUpdateDsl({ imageSrc: url })
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    imageSrc,
-    altText,
-    radius,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
   ])
 
   const finalSrc = useMemo(() => {

@@ -22,15 +22,12 @@ export const DividerWidget: FC<DividerWidgetProps> = (props) => {
     textAlign,
     displayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      text,
-      fs,
-      textAlign,
+    updateComponentRuntimeProps({
       setValue: (value: string) => {
         handleUpdateDsl({ text: value })
       },
@@ -40,16 +37,16 @@ export const DividerWidget: FC<DividerWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
     text,
     fs,
     textAlign,
     displayName,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
   ])
 
   return (

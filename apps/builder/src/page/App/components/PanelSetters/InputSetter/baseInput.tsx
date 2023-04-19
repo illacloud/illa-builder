@@ -87,6 +87,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
       <CodeEditor
+        scopeOfAutoComplete="page"
         className={className}
         value={finalValue}
         onChange={onChange}

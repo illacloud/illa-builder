@@ -36,46 +36,7 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
 WrappedButton.displayName = "WrappedButton"
 
 export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
-  const {
-    text,
-    variant,
-    leftIcon,
-    rightIcon,
-    disabled,
-    loading,
-    colorScheme,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    displayName,
-    tooltipText,
-    triggerEventHandler,
-  } = props
-
-  useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      text,
-      variant,
-      leftIcon,
-      rightIcon,
-      disabled,
-      loading,
-      colorScheme,
-    })
-    return () => {
-      handleDeleteGlobalData(displayName)
-    }
-  }, [
-    text,
-    variant,
-    leftIcon,
-    rightIcon,
-    disabled,
-    loading,
-    colorScheme,
-    handleUpdateGlobalData,
-    displayName,
-    handleDeleteGlobalData,
-  ])
+  const { tooltipText, triggerEventHandler } = props
 
   const handleOnClick = useCallback(() => {
     triggerEventHandler("click")

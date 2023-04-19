@@ -1,11 +1,10 @@
 import { AxiosError, AxiosResponse } from "axios"
-import { cloneDeep, get, merge } from "lodash"
+import { get } from "lodash"
 import { createMessage, isNumber, isString } from "@illa-design/react"
 import { ActionApi, Api, ApiError } from "@/api/base"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import i18n from "@/i18n/config"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
-import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import {
   ActionContent,
@@ -49,6 +48,7 @@ import {
   wrapFunctionCode,
 } from "@/utils/evaluateDynamicString/utils"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
+import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { downloadSingleFile } from "@/utils/file"
 import { isObject } from "@/utils/typeHelper"
 
@@ -100,11 +100,12 @@ function runTransformer(transformer: Transformer, rawData: any) {
   if (transformer?.enable) {
     const evaluateTransform = wrapFunctionCode(transformer.rawData)
     const canEvalString = `{{${evaluateTransform}()}}`
-    try {
-      calcResult = evaluateDynamicString("events", canEvalString, {
-        ...BUILDER_CALC_CONTEXT,
+    const finalContext =
+      ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext({
         data: rawData,
       })
+    try {
+      calcResult = evaluateDynamicString("events", canEvalString, finalContext)
     } catch (e) {
       console.log(e)
     }
@@ -159,9 +160,8 @@ const calculateFetchResultDisplayName = (
 }
 
 const runAllEventHandler = (events: any[] = []) => {
-  const rootState = store.getState()
-  const executionResult = getExecutionResult(rootState)
-  const finalContext = merge(cloneDeep(BUILDER_CALC_CONTEXT), executionResult)
+  const finalContext =
+    ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext()
   events.forEach((scriptObj) => {
     runEventHandler(scriptObj, finalContext)
   })

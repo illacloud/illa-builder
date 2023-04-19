@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
@@ -88,8 +88,8 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     manualOptions,
     displayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -140,20 +140,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      showClear,
-      value,
-      placeholder,
-      disabled,
-      loading,
-      readOnly,
-      showSearch,
-      colorScheme,
-      optionConfigureMode,
-      mappedOption,
-      manualOptions,
-      options: finalOptions,
-      dataSources,
+    updateComponentRuntimeProps({
       setValue: (value: any) => {
         handleUpdateDsl({ value })
       },
@@ -166,27 +153,14 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
       clearValidation: () => {},
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    finalOptions,
-    showClear,
-    value,
-    placeholder,
-    disabled,
-    loading,
-    readOnly,
-    showSearch,
-    colorScheme,
-    optionConfigureMode,
-    mappedOption,
-    manualOptions,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
     handleValidate,
-    dataSources,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

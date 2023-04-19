@@ -9,8 +9,8 @@ import { hiddenFields } from "@/page/App/components/DataWorkspace/constant"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
-  getGeneralWidgetExecutionResultArray,
-  getModalWidgetExecutionResultArray,
+  getCurrentPageGeneralWidgetExecutionResultArray,
+  getCurrentPageModalWidgetExecutionResultArray,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { FocusManager } from "@/utils/focusManager"
@@ -20,10 +20,10 @@ export const ComponentSpaceTree: FC = () => {
   const dispatch = useDispatch()
 
   const generalWidgetExecutionArray = useSelector(
-    getGeneralWidgetExecutionResultArray,
+    getCurrentPageGeneralWidgetExecutionResultArray,
   )
   const modalWidgetExecutionArray = useSelector(
-    getModalWidgetExecutionResultArray,
+    getCurrentPageModalWidgetExecutionResultArray,
   )
   const selectedComponents = useSelector(getSelectedComponents)
 

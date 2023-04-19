@@ -1,5 +1,5 @@
 import { toPath } from "lodash"
-import { FC, forwardRef, useCallback, useEffect } from "react"
+import { FC, forwardRef, useCallback } from "react"
 import { Menu, SubMenuProps } from "@illa-design/react"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
@@ -38,8 +38,6 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     items,
     displayName,
     handleUpdateMultiExecutionResult,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
     updateComponentHeight,
     triggerEventHandler,
   } = props
@@ -91,13 +89,6 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     },
     [displayName, handleUpdateMultiExecutionResult, items, triggerEventHandler],
   )
-
-  useEffect(() => {
-    handleUpdateGlobalData(displayName, {})
-    return () => {
-      handleDeleteGlobalData(displayName)
-    }
-  }, [displayName, handleUpdateGlobalData, handleDeleteGlobalData])
 
   const handleClickSubMenu = useCallback(
     (value: string) => {

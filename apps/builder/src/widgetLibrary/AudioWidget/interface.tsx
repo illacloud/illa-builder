@@ -1,6 +1,7 @@
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
+// todo: @echoxyc error
 export interface WrappedAudioProps extends BaseWidgetProps {
   url?: string
   controls?: boolean

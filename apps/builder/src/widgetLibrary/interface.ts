@@ -5,6 +5,7 @@ import {
   ComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { WidgetType } from "@/widgetLibrary/widgetBuilder"
+import { RuntimeProp } from "../utils/executionTreeHelper/runtimePropsCollector"
 import { SessionType } from "./componentListBuilder"
 
 export interface EventHandlerConfig {
@@ -69,8 +70,6 @@ export interface EventsInProps {
 export interface BaseWidgetProps {
   displayName: string
   childrenNode: ComponentNode[]
-  handleUpdateGlobalData: (key: string, value: any) => void
-  handleDeleteGlobalData: (key: string) => void
   handleUpdateDsl: (value: any) => void
   handleUpdateMultiExecutionResult: (
     updateSlice: {
@@ -95,6 +94,8 @@ export interface BaseWidgetProps {
   h: number
   unitW: number
   unitH: number
+  updateComponentRuntimeProps: (runtimeProps: RuntimeProp) => void
+  deleteComponentRuntimeProps: () => void
 }
 
 export interface BaseComponentNodeProps {
