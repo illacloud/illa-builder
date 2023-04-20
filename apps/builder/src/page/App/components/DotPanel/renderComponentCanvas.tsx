@@ -46,6 +46,7 @@ import { MultiSelectedScaleSquare } from "@/page/App/components/ScaleSquare/mult
 import {
   getFreezeState,
   getIsILLAEditMode,
+  getIsLikeProductMode,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -205,6 +206,7 @@ export const RenderComponentCanvas: FC<{
 
   const isShowCanvasDot = useSelector(isShowDot)
   const isEditMode = useSelector(getIsILLAEditMode)
+  const isLikeProductMode = useSelector(getIsLikeProductMode)
   const isFreezeCanvas = useSelector(getFreezeState)
   const dispatch = useDispatch()
 
@@ -959,11 +961,13 @@ export const RenderComponentCanvas: FC<{
           currentDragStartScrollTop={currentDragStartScrollTop.current}
         />
       )}
-      <MultiSelectCanvas
-        currentCanvasRef={currentCanvasRef}
-        containerRef={containerRef}
-        canvasNodeDisplayName={componentNode.displayName}
-      />
+      {!isLikeProductMode && (
+        <MultiSelectCanvas
+          currentCanvasRef={currentCanvasRef}
+          containerRef={containerRef}
+          canvasNodeDisplayName={componentNode.displayName}
+        />
+      )}
       {!dragDropManager.getMonitor().isDragging() && (
         <MultiSelectedScaleSquare
           unitW={unitWidth}
