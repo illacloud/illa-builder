@@ -138,7 +138,7 @@ export const DashboardTitleBar: FC = () => {
             <Dropdown
               position="bottom-end"
               trigger="click"
-              triggerProps={{ closeDelay: 0, openDelay: 0 }}
+              triggerProps={{ closeDelay: 0, openDelay: 0, zIndex: 2 }}
               dropList={<SettingTrigger />}
             >
               <div>
