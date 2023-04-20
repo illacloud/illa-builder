@@ -1199,7 +1199,8 @@
         "border": "Border",
         "color": "Color",
         "icon": "Icon",
-        "secondary_value": "SECONDARY VALUE"
+        "secondary_value": "SECONDARY VALUE",
+        "resource": "RESOURCE"
       },
       "setter_label": {
         "action": "Action",
