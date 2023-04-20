@@ -16,6 +16,7 @@ import {
   RenderTableImage,
   RenderTableLink,
 } from "@/widgetLibrary/TableWidget/renderTableCell"
+import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
@@ -192,6 +193,7 @@ export const getCellForType = (
     format = "YYYY-MM-DD",
     mappedValue,
     fromCurrentRow,
+    iconName,
   } = data
 
   switch (type) {
@@ -240,6 +242,11 @@ export const getCellForType = (
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = dayjsPro(value).format(format)
         return formatVal ? formatVal : "-"
+      }
+      case "icon":
+      return (props: CellContext<any, any>) => {
+        const Icon = getIcon(iconName)
+        return Icon ? <Icon /> : "-"
       }
     case "button":
       return (props: CellContext<any, any>) => {

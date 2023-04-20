@@ -3,17 +3,32 @@ import { HTMLAttributes } from "react"
 import { ButtonColorScheme, ImageProps, TableProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
-export const ColumnTypeOption = [
-  { label: "Auto", value: "auto" },
-  { label: "Text", value: "text" },
-  { label: "Date", value: "date" },
-  { label: "Number", value: "number" },
-  { label: "Percent", value: "percent" },
-  { label: "Link", value: "link" },
-  { label: "Button", value: "button" },
-  { label: "Boolean", value: "boolean" },
-  { label: "Image", value: "image" },
-]
+enum Columns {
+  Auto = "auto",
+  Text = "text",
+  Date = "date",
+  Time = "time",
+  DateTime = "datetime",
+  Number = "number",
+  Percent = "percent",
+  Link = "link",
+  Button = "button",
+  Boolean = "boolean",
+  Image = "image",
+  Icon = "icon",
+  Rating = "rating",
+  Markdown = "markdown",
+  HTML = "html",
+}
+
+export type ColumnType = Lowercase<keyof typeof Columns>
+
+export const ColumnTypeOption = Object.entries(Columns).map(([key, value]) => {
+  return {
+    label: key as ColumnType,
+    value: value,
+  }
+})
 
 export const defaultColumnItem: Partial<ColumnItemShape> = {
   enableSorting: true,
@@ -23,17 +38,6 @@ export const defaultColumnItem: Partial<ColumnItemShape> = {
   colorScheme: "blue",
   objectFit: "scale-down",
 }
-
-export type ColumnType =
-  | "auto"
-  | "text"
-  | "date"
-  | "number"
-  | "percent"
-  | "link"
-  | "button"
-  | "boolean"
-  | "image"
 
 export interface ColumnItemShape
   extends Pick<ColumnDef<object>, "cell" | "id"> {
@@ -54,6 +58,8 @@ export interface ColumnItemShape
   fromCurrentRow?: Record<string, boolean>
   events?: any[]
   columnIndex?: number
+  // icon type
+  iconName?: string
 }
 
 export interface WrappedTableProps
