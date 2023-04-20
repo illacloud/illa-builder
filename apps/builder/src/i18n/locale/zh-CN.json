@@ -438,6 +438,9 @@
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
               "find_instructions_on": "<0>在 AWS 文档</0>中找到关于在哪里可以找到访问密钥的说明。",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "选择页面"
             }
           },
           "option": {
@@ -491,6 +494,10 @@
                 "query_parameters": "Query Parameters",
                 "header_authorization": "Header Authorization"
               }
+            },
+            "advanced": {
+              "trigger_this_action_": "页面加载时触发此操作",
+              "show_a_loading_page_": "在页面加载时显示加载页面"
             }
           },
           "restapi": {
@@ -523,7 +530,21 @@
               "body_type": {
                 "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
               }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "这个页面加载时不会触发任何操作。 您可以将Action设置为手动触发，并在高级设置中启用“页面加载时触发此操作”。"
             }
+          },
+          "advanced": {
+            "advanced": "高级配置",
+            "page_trigger": "页面触发",
+            "loading_page": "加载页",
+            "page_load_delay": "页面加载延迟时间 (ms)",
+            "run_this_action_peri": "定期运行此Action",
+            "interval": "间隔时间 (s)",
+            "actions_running_when": "页面加载时运行的操作",
+            "pages": "页面",
+            "periodically_run": "定期运行"
           }
         },
         "menu": {
@@ -1438,6 +1459,13 @@
         "time_range": {
           "start_time": "开始时间",
           "end_time": "结束时间"
+        },
+        "eventCalendar": {
+          "event_value": "Event value",
+          "event_id": "Event id",
+          "title": "Title",
+          "description": "Description",
+          "start": "Start"
         }
       },
       "setter_tooltip": {
@@ -1622,7 +1650,7 @@
           "zoom": "请设置一个介于 1 和 22 之间的值"
         },
         "upload": {
-          "size_exceed": "超过 500MB 的文件可能无法解析。",
+          "size_exceed": "Files over 500MB may fail to parse.",
           "single_file": "只允许一个文件。",
           "file": "サポートされていないファイル タイプは削除されます",
           "directory": "只允许目录。"
@@ -1703,7 +1731,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set PDF source",
+      "set_file_url": "Set file URL",
       "play": "播放",
       "pause": "暂停",
       "seek_to": {
@@ -1764,6 +1792,10 @@
       "time_range": {
         "setstarttime": "setStartTime",
         "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
       }
     },
     "tutorial": {
@@ -2205,6 +2237,11 @@
     },
     "time_range": {
       "name": "时间范围选择器"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Event calendar"
+      }
     }
   },
   "page": {
