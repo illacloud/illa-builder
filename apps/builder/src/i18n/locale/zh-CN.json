@@ -1199,7 +1199,8 @@
         "border": "描边",
         "color": "颜色",
         "icon": "图标",
-        "secondary_value": "次要值"
+        "secondary_value": "次要值",
+        "resource": "RESOURCE"
       },
       "setter_label": {
         "action": "动作",
