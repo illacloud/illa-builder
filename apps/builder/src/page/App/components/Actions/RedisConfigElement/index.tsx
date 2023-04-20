@@ -199,7 +199,7 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
           placeholders={[
             t("editor.action.resource.db.placeholder.database_index"),
           ]}
-          controlledType="input"
+          controlledType="number"
           control={control}
         />
         <ControlledElement

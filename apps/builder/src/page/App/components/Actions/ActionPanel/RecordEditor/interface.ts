@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import { Params } from "@/redux/resource/restapiResource"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface RecordEditorProps {
   label: string
@@ -22,4 +23,5 @@ export interface RecordEditorProps {
     value: string,
     name?: string,
   ) => void
+  valueInputType?: VALIDATION_TYPES | "any"
 }
