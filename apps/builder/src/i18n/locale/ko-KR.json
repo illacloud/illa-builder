@@ -1199,7 +1199,8 @@
         "border": "뇌졸중",
         "color": "색깔",
         "icon": "상",
-        "secondary_value": "SECONDARY VALUE"
+        "secondary_value": "SECONDARY VALUE",
+        "resource": "RESOURCE"
       },
       "setter_label": {
         "action": "동작",
