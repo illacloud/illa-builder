@@ -438,6 +438,9 @@
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
               "find_instructions_on": "Find instructions on where to find access keys <0>in the AWS docs</0>.",
               "role_to_assume": "Use a <0>different role</0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "Select pages"
             }
           },
           "option": {
@@ -491,6 +494,10 @@
                 "query_parameters": "Query Parameters",
                 "header_authorization": "Header Authorization"
               }
+            },
+            "advanced": {
+              "trigger_this_action_": "Trigger this action when page loads",
+              "show_a_loading_page_": "Show a loading page on page load"
             }
           },
           "restapi": {
@@ -523,7 +530,21 @@
               "body_type": {
                 "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
               }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "No actions will be triggered when the page loads. You can manually trigger the action and enable \"Trigger this action when page loads\" in the advanced settings."
             }
+          },
+          "advanced": {
+            "advanced": "Advanced",
+            "page_trigger": "Page trigger",
+            "loading_page": "Loading page",
+            "page_load_delay": "Page load delay (ms)",
+            "run_this_action_peri": "Run this action periodically",
+            "interval": "Interval (s)",
+            "actions_running_when": "Actions running when the page loads",
+            "pages": "Pages",
+            "periodically_run": "Periodically run"
           }
         },
         "menu": {
@@ -905,7 +926,7 @@
             "region": "us-west-1"
           },
           "tip": {
-            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces\n or Wasabi."
+            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces or Wasabi."
           }
         },
         "transformer": {
@@ -1438,6 +1459,13 @@
         "time_range": {
           "start_time": "Start time",
           "end_time": "End time"
+        },
+        "eventCalendar": {
+          "event_value": "Event value",
+          "event_id": "Event id",
+          "title": "Title",
+          "description": "Description",
+          "start": "Start"
         }
       },
       "setter_tooltip": {
@@ -1764,6 +1792,10 @@
       "time_range": {
         "setstarttime": "setStartTime",
         "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
       }
     },
     "tutorial": {
@@ -2205,6 +2237,11 @@
     },
     "time_range": {
       "name": "Time range"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Event calendar"
+      }
     }
   },
   "page": {
