@@ -1134,7 +1134,9 @@
         },
         "image_setter": {
           "new": "追加"
-        }
+        },
+        "Change": "Change",
+        "Select": "Select"
       },
       "setter_default_value": {
         "fill": "充填",
@@ -1466,7 +1468,19 @@
           "event_id": "Event id",
           "title": "Title",
           "description": "Description",
-          "start": "Start"
+          "start": "Start",
+          "end": "End",
+          "resource_id": "Resource id",
+          "resource_title": "Resource title",
+          "all_day": "All day",
+          "color": "Color",
+          "data_source": "Data source",
+          "default_date": "Default date",
+          "resource_grid": "Resource grid",
+          "default_view": "Default view",
+          "start_week_on": "Start week on",
+          "show_current_time": "Show current time",
+          "background": "Background"
         }
       },
       "setter_tooltip": {
@@ -1586,6 +1600,9 @@
           "end_time": "コンポーネントの初期化時に入力される終了時刻",
           "start_placeholder": "開始時刻が入力されていない場合に表示される情報。",
           "end_placeholder": "終了時刻が入力されていない場合に表示される情報。"
+        },
+        "eventCalendar": {
+          "event_value": "Use Object enclosed in {{ to set the event value. For example, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}"
         }
       },
       "setter_option": {
@@ -1616,6 +1633,15 @@
           "large": "大型",
           "medium": "中型",
           "small": "小型"
+        },
+        "eventCalendar": {
+          "sunday": "Sunday",
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday"
         }
       },
       "setter_placeholder": {
