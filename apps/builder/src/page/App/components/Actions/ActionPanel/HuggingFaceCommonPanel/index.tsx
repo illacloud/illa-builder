@@ -355,6 +355,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
                 onChangeValue={handleOnChangeValue}
                 onDelete={handleOnDeleteKey}
                 onAdd={handleOnAddKeys}
+                valueInputType="any"
               />
             )}
             {(currentParameterType === "binary" ||
