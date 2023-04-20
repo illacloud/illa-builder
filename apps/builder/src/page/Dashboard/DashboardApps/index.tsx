@@ -83,7 +83,12 @@ export const DashboardApps: FC = () => {
     })
   }, [canEditApp, appsList])
 
-  if (isBoolean(isTutorialViewed) && !isTutorialViewed && teamIdentifier) {
+  if (
+    isBoolean(isTutorialViewed) &&
+    !isTutorialViewed &&
+    teamIdentifier &&
+    canEditApp
+  ) {
     openGuideModal(teamIdentifier)
   }
 
