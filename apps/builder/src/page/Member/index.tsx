@@ -1,5 +1,6 @@
-import { FC, useEffect, useState, useCallback } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 import { BuilderApi } from "@/api/base"
 import {
   changeTeamMembersRole,
@@ -10,15 +11,15 @@ import {
   renewInviteLink,
   setInviteLinkEnabled,
   updateMembers,
-  updateTeamPermissionConfig, updateTeamsInfo,
+  updateTeamPermissionConfig,
+  updateTeamsInfo,
 } from "@/api/team"
 import { MemberList } from "@/illa-public-component/MemberList"
+import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { BuilderCardInfo, MemberProps } from "@/page/Member/interface"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import { useParams } from "react-router-dom"
 
 export const Member: FC<MemberProps> = (props) => {
   const { teamIdentifier } = useParams()
