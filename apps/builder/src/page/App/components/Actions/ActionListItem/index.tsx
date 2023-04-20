@@ -206,7 +206,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               onClick={() => {
                 trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.RENAME, {
                   element: "action_rename",
-                  parameter1: selectedAction.actionType,
+                  parameter1: action.actionType,
                   parameter2: "manage",
                 })
                 setEditName(true)
@@ -219,7 +219,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               onClick={() => {
                 trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DUPLICATE, {
                   element: "action_duplicate",
-                  parameter1: selectedAction.actionType,
+                  parameter1: action.actionType,
                 })
                 onCopyItem(action)
               }}
@@ -232,7 +232,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               onClick={() => {
                 trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DELETE, {
                   element: "action_delete",
-                  parameter1: selectedAction.actionType,
+                  parameter1: action.actionType,
                 })
                 onDeleteItem(action)
               }}
