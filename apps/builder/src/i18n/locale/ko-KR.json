@@ -1134,7 +1134,9 @@
         },
         "image_setter": {
           "new": "새로운 빌드"
-        }
+        },
+        "Change": "Change",
+        "Select": "Select"
       },
       "setter_default_value": {
         "fill": "충전재",
@@ -1466,7 +1468,19 @@
           "event_id": "Event id",
           "title": "Title",
           "description": "Description",
-          "start": "Start"
+          "start": "Start",
+          "end": "End",
+          "resource_id": "Resource id",
+          "resource_title": "Resource title",
+          "all_day": "All day",
+          "color": "Color",
+          "data_source": "Data source",
+          "default_date": "Default date",
+          "resource_grid": "Resource grid",
+          "default_view": "Default view",
+          "start_week_on": "Start week on",
+          "show_current_time": "Show current time",
+          "background": "Background"
         }
       },
       "setter_tooltip": {
@@ -1586,6 +1600,9 @@
           "end_time": "구성 요소가 초기화될 때 채워지는 종료 시간",
           "start_placeholder": "시작 시간을 입력하지 않았을 때 표시되는 정보입니다.",
           "end_placeholder": "종료 시간을 입력하지 않은 경우 표시되는 정보입니다."
+        },
+        "eventCalendar": {
+          "event_value": "Use Object enclosed in {{ to set the event value. For example, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}"
         }
       },
       "setter_option": {
@@ -1616,6 +1633,15 @@
           "large": "크게",
           "medium": "보통",
           "small": "작음"
+        },
+        "eventCalendar": {
+          "sunday": "Sunday",
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday"
         }
       },
       "setter_placeholder": {
