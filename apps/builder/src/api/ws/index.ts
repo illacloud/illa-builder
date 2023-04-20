@@ -193,9 +193,10 @@ export class Connection {
   static leaveRoom(type: RoomType, roomId: string) {
     const { id: teamID = "", uid = "" } =
       getCurrentTeamInfo(store.getState()) ?? {}
-    let ws = this.roomMap.get(type + roomId) as ILLAWebsocket
-    if (ws != undefined) {
-      ws.send(
+    let textWS = this.roomMap.get(type + roomId) as ILLAWebsocket
+    let binaryWS = this.roomMap.get(type + roomId + "/binary")
+    if (textWS != undefined) {
+      textWS.send(
         getTextMessagePayload(
           Signal.LEAVE,
           Target.NOTHING,
@@ -209,7 +210,8 @@ export class Connection {
           [],
         ),
       )
-      ws.close()
+      binaryWS?.close()
+      textWS.close()
     }
   }
 }
