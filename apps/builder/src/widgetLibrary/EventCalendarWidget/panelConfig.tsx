@@ -1,0 +1,509 @@
+import i18n from "@/i18n/config"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { EVENT_CALENDAR_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/EventCalendarWidget/eventHandlerConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+
+const baseWidgetName = "eventCalendar"
+export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
+  {
+    id: `${baseWidgetName}-options-event`,
+    groupName: i18n.t("editor.inspect.setter_group.event"),
+    children: [
+      {
+        id: `${baseWidgetName}-options-mode-event`,
+        attrName: "eventConfigureMode",
+        setterType: "RADIO_GROUP_SETTER",
+        options: [
+          {
+            label: i18n.t("widget.public.select_options.manual"),
+            value: "static",
+          },
+          {
+            label: i18n.t("widget.public.select_options.mapped"),
+            value: "dynamic",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-basic-options-event`,
+        useCustomLayout: true,
+        attrName: "manualOptions",
+        setterType: "OPTION_LIST_SETTER",
+        bindAttrName: ["eventConfigureMode"],
+        shown: (value) => !value || value === "static",
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-options-event-id`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.event_id",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.event_id",
+            ),
+            attrName: "id",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-event-title`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.title",
+            ),
+            labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.title"),
+            attrName: "title",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-event-description`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.description",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.description",
+            ),
+            attrName: "description",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-event-start`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.start",
+            ),
+            labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.start"),
+            attrName: "start",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-event-end`,
+            labelName: i18n.t("editor.inspect.setter_label.eventCalendar.end"),
+            labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.end"),
+            attrName: "end",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-event-resourceId`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.resource_id",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.resource_id",
+            ),
+            attrName: "resourceId",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-event-allDay`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.all_day",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.all_day",
+            ),
+            attrName: "allDay",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.BOOLEAN,
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-option-data-sources-event`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.eventCalendar.data_source",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.eventCalendar.data_source",
+        ),
+        attrName: "dataSources",
+        setterType: "INPUT_SETTER",
+        bindAttrName: ["eventConfigureMode"],
+        expectedType: VALIDATION_TYPES.ARRAY,
+        shown: (value) => value === "dynamic",
+        isSetterSingleRow: true,
+      },
+      {
+        id: `${baseWidgetName}-option-mapped-event`,
+        labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.map_data_option"),
+        useCustomLayout: true,
+        attrName: "mappedOption",
+        setterType: "OPTION_MAPPED_SETTER",
+        bindAttrName: ["eventConfigureMode"],
+        shown: (value) => value === "dynamic",
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-mappedOption-event-id`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.event_id",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.event_id",
+            ),
+            attrName: "ids",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-event-title`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.title",
+            ),
+            labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.title"),
+            attrName: "titles",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-event-description`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.description",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.description",
+            ),
+            attrName: "descriptions",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-event-start`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.start",
+            ),
+            labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.start"),
+            attrName: "starts",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-event-end`,
+            labelName: i18n.t("editor.inspect.setter_label.eventCalendar.end"),
+            labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.end"),
+            attrName: "ends",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-event-resourceId`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.resource_id",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.resource_id",
+            ),
+            attrName: "resourceIds",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-event-allDay`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.all_day",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.all_day",
+            ),
+            attrName: "allDays",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.BOOLEAN,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-options-resource`,
+    groupName: i18n.t("editor.inspect.setter_group.event"),
+    children: [
+      {
+        id: `${baseWidgetName}-options-mode-resource`,
+        attrName: "resourceConfigureMode",
+        setterType: "RADIO_GROUP_SETTER",
+        options: [
+          {
+            label: i18n.t("widget.public.select_options.manual"),
+            value: "static",
+          },
+          {
+            label: i18n.t("widget.public.select_options.mapped"),
+            value: "dynamic",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-basic-resource-options`,
+        useCustomLayout: true,
+        attrName: "resourceMapList",
+        setterType: "OPTION_LIST_SETTER",
+        bindAttrName: ["resourceConfigureMode"],
+        shown: (value) => !value || value === "static",
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-options-resource-resourceId`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.resource_id",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.resource_id",
+            ),
+            attrName: "resourceId",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-resource-resourceTitle`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.resource_title",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.resource_title",
+            ),
+            attrName: "resourceTitle",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-option-resource-data-sources`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.eventCalendar.data_source",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.eventCalendar.data_source",
+        ),
+        attrName: "resourceDataSources",
+        setterType: "INPUT_SETTER",
+        bindAttrName: ["resourceConfigureMode"],
+        expectedType: VALIDATION_TYPES.ARRAY,
+        shown: (value) => value === "dynamic",
+        isSetterSingleRow: true,
+      },
+      {
+        id: `${baseWidgetName}-option-mapped-resource`,
+        labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.map_data_option"),
+        useCustomLayout: true,
+        attrName: "resourceMappedOption",
+        setterType: "OPTION_MAPPED_SETTER",
+        bindAttrName: ["resourceConfigureMode"],
+        shown: (value) => value === "dynamic",
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-mappedOption-resource-resourceId`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.resource_id",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.resource_id",
+            ),
+            attrName: "resourceIds",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-resource-resourceTitle`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.resource_title",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.resource_title",
+            ),
+            attrName: "resourceTitles",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-basic`,
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
+    children: [
+      {
+        id: `${baseWidgetName}-basic-default-date`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.eventCalendar.default_date",
+        ),
+        labelDesc: i18n.t(
+          "ditor.inspect.setter_tips.eventCalendar.default_date",
+        ),
+        attrName: "defaultDate",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        placeholder: "2032-01-01",
+      },
+      {
+        id: `${baseWidgetName}-basic-default-showResource`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.eventCalendar.resource_grid",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.eventCalendar.resource_grid",
+        ),
+        attrName: "showResource",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        placeholder: "false",
+        defaultValue: false,
+        useCustomLayout: true,
+        openDynamic: true,
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+      {
+        id: `${baseWidgetName}-basic-default-view`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.eventCalendar.default_view",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.eventCalendar.default_view",
+        ),
+        attrName: "defaultView",
+        expectedType: VALIDATION_TYPES.STRING,
+        isSetterSingleRow: true,
+        setterType: "BASE_SELECT_SETTER",
+        options: [
+          {
+            label: "Month",
+            value: "month",
+          },
+          {
+            label: "Week",
+            value: "week",
+          },
+          {
+            label: "Day",
+            value: "day",
+          },
+          {
+            label: "List",
+            value: "agenda",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
+    children: [
+      {
+        ...generatorEventHandlerConfig(
+          baseWidgetName,
+          EVENT_CALENDAR_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-layout`,
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
+    children: [
+      {
+        id: `${baseWidgetName}-layout-hidden`,
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        attrName: "hidden",
+        placeholder: "false",
+        defaultValue: false,
+        useCustomLayout: true,
+        openDynamic: true,
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+      {
+        id: `${baseWidgetName}-layout-showCurrentTime`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.eventCalendar.show_current_time",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.eventCalendar.show_current_time",
+        ),
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        attrName: "showCurrentTime",
+        placeholder: "true",
+        useCustomLayout: true,
+        defaultValue: true,
+        openDynamic: true,
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-style`,
+    groupName: i18n.t("editor.inspect.setter_group.style"),
+    children: [
+      {
+        id: `${baseWidgetName}-style-Calendar`,
+        setterType: "LIST_SETTER",
+        labelName: "Calendar",
+        attrName: "calendar",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-style-bg`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.calendar_background",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.calendar_background",
+            ),
+            attrName: "slotBackground",
+            setterType: "COLOR_PICKER_SETTER",
+            defaultValue: "white",
+          },
+          {
+            id: `${baseWidgetName}-style-cal-text`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.calendar_text",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.calendar_text",
+            ),
+            attrName: "titleColor",
+            setterType: "COLOR_PICKER_SETTER",
+            defaultValue: "gray",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-style-color`,
+        setterType: "LIST_SETTER",
+        labelName: "Event",
+        attrName: "event",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-style-event-bg`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.event_background",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.event_background",
+            ),
+            attrName: "eventBackground",
+            setterType: "COLOR_PICKER_SETTER",
+            defaultValue: "blue",
+          },
+          {
+            id: `${baseWidgetName}-style-event-text`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.event_text",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.event_text",
+            ),
+            attrName: "eventTextColor",
+            setterType: "COLOR_PICKER_SETTER",
+            defaultValue: "blue",
+          },
+        ],
+      },
+    ],
+  },
+]
