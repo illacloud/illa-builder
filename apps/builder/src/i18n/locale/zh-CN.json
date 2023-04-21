@@ -1121,7 +1121,8 @@
           "loaded": "已载入",
           "rowSelect": "选择行",
           "markerSelected": "选中点",
-          "markerCreated": "创建点"
+          "markerCreated": "创建点",
+          "select": "select"
         },
         "image_list": {
           "title": "图片",
@@ -1202,7 +1203,11 @@
         "color": "颜色",
         "icon": "图标",
         "secondary_value": "次要值",
-        "resource": "RESOURCE"
+        "resource": "RESOURCE",
+        "eventCalendar": {
+          "calendar": "Calendar",
+          "event": "Event"
+        }
       },
       "setter_label": {
         "action": "动作",
@@ -1480,7 +1485,12 @@
           "default_view": "Default view",
           "start_week_on": "Start week on",
           "show_current_time": "Show current time",
-          "background": "Background"
+          "background": "Background",
+          "calendar_background": "Background",
+          "calendar_border": "Border",
+          "calendar_text": "Text",
+          "event_background": "Background",
+          "event_text": "Text"
         }
       },
       "setter_tooltip": {
@@ -1602,7 +1612,25 @@
           "end_placeholder": "当没有输入结束时间时，展示的信息。"
         },
         "eventCalendar": {
-          "event_value": "Use Object enclosed in {{ to set the event value. For example, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}"
+          "event_value": "Use Object enclosed in {{ to set the event value. For example, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "A unique ID used to identify the event",
+          "title": "The title of the event",
+          "description": "The description of the event",
+          "start": "Start time of the event",
+          "end": "End time of the event",
+          "resource_id": "The resource could be a person, a meeting room, etc. You can set a resource id and connect it to the event. ",
+          "resource_title": "The resource name displayed in the resource view",
+          "all_day": "Whether an all-day event",
+          "data_source": "Data source of the events. A data source should be an array of objects. Every object is an event. For example, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "The default date when launch the app",
+          "resource_grid": "Whether to show a resource grid",
+          "default_view": "The default view when launch the app",
+          "show_current_time": "Set whether to show the current time line",
+          "calendar_background": "Set the background of the calendar",
+          "calendar_border": "Set color of the border",
+          "calendar_text": "Set color of the text",
+          "event_background": "Set the background of event card",
+          "event_text": "Set the text color of event card"
         }
       },
       "setter_option": {
