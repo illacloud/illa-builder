@@ -263,6 +263,8 @@ export const transformEvents = (
         "setStartOfRange",
         "setEndOfRange",
         "setMarkers",
+        "addEvent",
+        "deleteEvent",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
