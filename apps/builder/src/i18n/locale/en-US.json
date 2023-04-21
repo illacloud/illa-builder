@@ -1121,7 +1121,8 @@
           "loaded": "Loaded",
           "rowSelect": "Row select",
           "markerSelected": "markerSelected",
-          "markerCreated": "markerCreated"
+          "markerCreated": "markerCreated",
+          "select": "select"
         },
         "image_list": {
           "title": "Images",
@@ -1134,7 +1135,9 @@
         },
         "image_setter": {
           "new": "New"
-        }
+        },
+        "Change": "Change",
+        "Select": "Select"
       },
       "setter_default_value": {
         "fill": "Fill",
@@ -1199,7 +1202,12 @@
         "border": "Border",
         "color": "Color",
         "icon": "Icon",
-        "secondary_value": "SECONDARY VALUE"
+        "secondary_value": "SECONDARY VALUE",
+        "resource": "RESOURCE",
+        "eventCalendar": {
+          "calendar": "Calendar",
+          "event": "Event"
+        }
       },
       "setter_label": {
         "action": "Action",
@@ -1465,7 +1473,22 @@
           "event_id": "Event id",
           "title": "Title",
           "description": "Description",
-          "start": "Start"
+          "start": "Start",
+          "end": "End",
+          "resource_id": "Resource id",
+          "resource_title": "Resource title",
+          "all_day": "All day",
+          "data_source": "Data source",
+          "default_date": "Default date",
+          "resource_grid": "Resource grid",
+          "default_view": "Default view",
+          "show_current_time": "Show current time",
+          "background": "Background",
+          "calendar_background": "Background",
+          "calendar_border": "Border",
+          "calendar_text": "Text",
+          "event_background": "Background",
+          "event_text": "Text"
         }
       },
       "setter_tooltip": {
@@ -1585,6 +1608,27 @@
           "end_time": "The initial end time of the component. ",
           "start_placeholder": "The value will be shown when the start time field is empty.",
           "end_placeholder": "The value will be shown when the end time field is empty."
+        },
+        "eventCalendar": {
+          "event_value": "Use Object enclosed in {{ to set the event value. For example, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "A unique ID used to identify the event",
+          "title": "The title of the event",
+          "description": "The description of the event",
+          "start": "Start time of the event",
+          "end": "End time of the event",
+          "resource_id": "The resource could be a person, a meeting room, etc. You can set a resource id and connect it to the event. ",
+          "resource_title": "The resource name displayed in the resource view",
+          "all_day": "Whether an all-day event",
+          "data_source": "Data source of the events. A data source should be an array of objects. Every object is an event. For example, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "The default date when launch the app",
+          "resource_grid": "Whether to show a resource grid",
+          "default_view": "The default view when launch the app",
+          "show_current_time": "Set whether to show the current time line",
+          "calendar_background": "Set the background of the calendar",
+          "calendar_border": "Set color of the border",
+          "calendar_text": "Set color of the text",
+          "event_background": "Set the background of event card",
+          "event_text": "Set the text color of event card"
         }
       },
       "setter_option": {
@@ -1615,6 +1659,15 @@
           "large": "Large",
           "medium": "Medium",
           "small": "Small"
+        },
+        "eventCalendar": {
+          "sunday": "Sunday",
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday"
         }
       },
       "setter_placeholder": {
