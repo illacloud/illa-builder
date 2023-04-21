@@ -15,7 +15,7 @@ export interface WorkSpaceTreeItemProps {
 
 export interface WorkSpaceTreeNodeProps {
   name: string
-  value: any
+  value: Record<string, unknown>
   itemKey: string
   parentKey: string
   level?: number

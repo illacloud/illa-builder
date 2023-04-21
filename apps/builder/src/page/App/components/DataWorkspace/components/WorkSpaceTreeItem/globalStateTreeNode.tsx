@@ -129,7 +129,7 @@ export const GlobalStateTreeNode: FC<IGlobalStateTreeNodeProps> = (props) => {
               <GlobalStateTreeItem
                 key={name}
                 name={name}
-                value={data[name]}
+                value={data[name] as Record<string, unknown>}
                 itemKey={title + name}
                 level={level}
                 parentKey={uniqueKey}
