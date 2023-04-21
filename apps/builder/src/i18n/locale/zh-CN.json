@@ -2294,7 +2294,8 @@
     "eventCalendar": {
       "name": {
         "event_calendar": "事件日历"
-      }
+      },
+      "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
     }
   },
   "page": {
