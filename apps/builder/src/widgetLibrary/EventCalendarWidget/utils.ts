@@ -2,18 +2,17 @@ import dayjs from "dayjs"
 import { View } from "react-big-calendar"
 import {
   Event,
-  EventInteractionArgs,
   Pluralize,
   ResourceMap,
 } from "@/widgetLibrary/EventCalendarWidget/interface"
 
 export const isInWeekOrDay = (view: View) => view === "week" || view === "day"
-export const formatDateTime = "YYYY-MM-DD HH:mm:ss"
+export const formatDateTime = "YYYY-MM-DD HH:mm"
 
 export const formatEventOptions = (
   optionConfigureMode: "dynamic" | "static" = "static",
-  manualOptions: Event[] = [],
-  mappedOption: Pluralize<Event> = {
+  manualOptions: (Event & ResourceMap)[] = [],
+  mappedOption: Pluralize<Event & ResourceMap> = {
     labels: [],
     ids: [],
     titles: [],
@@ -21,6 +20,7 @@ export const formatEventOptions = (
     ends: [],
     resourceIds: [],
     descriptions: [],
+    resourceTitles: [],
     allDays: [],
   },
 ) => {
@@ -32,6 +32,7 @@ export const formatEventOptions = (
     const end = mappedOption.ends ?? []
     const resourceId = mappedOption.resourceIds ?? []
     const description = mappedOption.descriptions ?? []
+    const resourceTitle = mappedOption.resourceTitles ?? []
     const allDay = mappedOption.allDays ?? []
     const maxLength = Math.max(
       label.length,
@@ -41,9 +42,11 @@ export const formatEventOptions = (
       end.length,
       resourceId.length,
       description.length,
+      resourceTitle.length,
       allDay.length,
     )
-    const options: Event[] = []
+    const eventList: Event[] = []
+    const resourceMap = new Map()
     for (let i = 0; i < maxLength; i++) {
       let labelItem = label[i] || `Event-${i + 1}`
       const idItem = id[i] || `Event-${i + 1}`
@@ -51,29 +54,42 @@ export const formatEventOptions = (
       const startItem = start[i] || undefined
       const endItem = end[i] || undefined
       const resourceIdItem = resourceId[i] || `Resource-${i + 1}`
+      const resourceIdTitleItem = resourceTitle[i]
       const descriptionItem = description[i] || `Resource-${i + 1}`
       const allDayItem = allDay[i] ?? false
       if (typeof labelItem === "object") {
         labelItem = `Event-${i + 1}`
       }
+      resourceMap.set(
+        safeNodeValue(resourceIdItem),
+        safeNodeValue(resourceIdTitleItem),
+      )
       idItem &&
-        options.push({
+        eventList.push({
           label: labelItem,
-          id: idItem,
-          title: titleItem,
+          id: safeNodeValue(idItem),
+          title: safeNodeValue(titleItem),
           start: startItem ? new Date(startItem) : new Date(),
           end: endItem ? new Date(endItem) : new Date(),
-          resourceId: resourceIdItem,
-          description: descriptionItem,
+          resourceId: safeNodeValue(resourceIdItem),
+          resourceTitle: safeNodeValue(resourceIdTitleItem),
+          description: safeNodeValue(descriptionItem),
           allDay: allDayItem,
         })
     }
-    return options
+    return [
+      eventList,
+      Array.from(resourceMap, ([resourceId, resourceTitle]) => ({
+        resourceId,
+        resourceTitle,
+      })),
+    ]
   } else {
     if (!Array.isArray(manualOptions)) {
       return []
     }
-    const options: Event[] = []
+    const eventList: Event[] = []
+    const resourceMap = new Map()
     manualOptions.forEach((option, i) => {
       let labelItem = option.label || `Event-${i + 1}`
       const idItem = option.id || `Event-${i + 1}`
@@ -82,78 +98,35 @@ export const formatEventOptions = (
       const endItem = option.end || undefined
       const resourceIdItem = option.resourceId || `Resource-${i + 1}`
       const descriptionItem = option.description || `Resource-${i + 1}`
+      const resourceIdTitleItem = option.resourceTitle || `Resource-${i + 1}`
       const allDayItem = option.allDay ?? false
       if (typeof labelItem === "object") {
         labelItem = `Event-${i + 1}`
       }
+      resourceMap.set(
+        safeNodeValue(resourceIdItem),
+        safeNodeValue(resourceIdTitleItem),
+      )
       idItem &&
-        options.push({
+        eventList.push({
           label: labelItem,
-          id: idItem,
-          title: titleItem,
+          id: safeNodeValue(idItem),
+          title: safeNodeValue(titleItem),
           start: startItem ? new Date(startItem) : new Date(),
           end: endItem ? new Date(endItem) : new Date(),
-          resourceId: resourceIdItem,
-          description: descriptionItem,
+          resourceId: safeNodeValue(resourceIdItem),
+          resourceTitle: safeNodeValue(resourceIdTitleItem),
+          description: safeNodeValue(descriptionItem),
           allDay: allDayItem,
         })
     })
-    return options
-  }
-}
-
-export const formatResourceOptions = (
-  optionConfigureMode: "dynamic" | "static" = "static",
-  manualOptions: ResourceMap[] = [],
-  mappedOption: Pluralize<ResourceMap> = {
-    labels: [],
-    resourceTitles: [],
-    resourceIds: [],
-  },
-) => {
-  if (optionConfigureMode === "dynamic") {
-    const label = mappedOption.labels ?? []
-    const resourceId = mappedOption.resourceIds ?? []
-    const resourceTitle = mappedOption.resourceTitles ?? []
-    const maxLength = Math.max(
-      label.length,
-      resourceId.length,
-      resourceTitle.length,
-    )
-    const options: Event[] = []
-    for (let i = 0; i < maxLength; i++) {
-      let labelItem = label[i] || `Resource-${i + 1}`
-      const resourceIdItem = resourceId[i] || `Resource-${i + 1}`
-      const resourceTitleItem = resourceTitle[i] || `Resource-${i + 1}`
-      if (typeof labelItem === "object") {
-        labelItem = `Event-${i + 1}`
-      }
-      options.push({
-        label: labelItem,
-        resourceId: resourceIdItem,
-        resourceTitle: resourceTitleItem,
-      })
-    }
-    return options
-  } else {
-    if (!Array.isArray(manualOptions)) {
-      return []
-    }
-    const options: ResourceMap[] = []
-    manualOptions.forEach((option, i) => {
-      let labelItem = option.label || `Resource-${i + 1}`
-      const resourceIdItem = option.resourceId || `Resource-${i + 1}`
-      const resourceTitleItem = option.resourceTitle || `Resource-${i + 1}`
-      if (typeof labelItem === "object") {
-        labelItem = `Event-${i + 1}`
-      }
-      options.push({
-        label: labelItem,
-        resourceId: resourceIdItem,
-        resourceTitle: resourceTitleItem,
-      })
-    })
-    return options
+    return [
+      eventList,
+      Array.from(resourceMap, ([resourceId, resourceTitle]) => ({
+        resourceId,
+        resourceTitle,
+      })),
+    ]
   }
 }
 
@@ -210,4 +183,8 @@ export const isLightColor = (color: string): boolean => {
   } else {
     return false
   }
+}
+
+const safeNodeValue = (value: unknown) => {
+  return typeof value === "string" ? value : ""
 }

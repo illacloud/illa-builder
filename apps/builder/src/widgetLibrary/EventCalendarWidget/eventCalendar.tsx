@@ -2,7 +2,6 @@ import dayjs from "dayjs"
 import {
   FC,
   ReactElement,
-  forwardRef,
   useCallback,
   useEffect,
   useMemo,
@@ -28,7 +27,6 @@ import {
   format2EventList,
   formatDateTime,
   formatEventOptions,
-  formatResourceOptions,
 } from "@/widgetLibrary/EventCalendarWidget/utils"
 
 const DragAndDropCalendar = withDragAndDrop(Calendar)
@@ -44,10 +42,7 @@ const CustomEvent: FC<EventProps<Event>> = ({ event }) => {
   )
 }
 
-export const WrappedEventCalendar = forwardRef<
-  ReactElement,
-  WrappedEventCalendarProps
->((props, ref) => {
+export const WrappedEventCalendar: FC<WrappedEventCalendarProps> = (props) => {
   const {
     eventList,
     resourceMapList,
@@ -65,9 +60,8 @@ export const WrappedEventCalendar = forwardRef<
   } = props
 
   const [view, setView] = useState<View>(defaultView)
-  const { indicatorTop, contentWidth, currentTime, isLight } = useElementSize(
+  const { indicatorTop, currentTime, isLight } = useElementSize(
     view,
-    showResource,
     slotBackground,
   )
 
@@ -83,7 +77,9 @@ export const WrappedEventCalendar = forwardRef<
         onEventResize={resizeEvent}
         resizable
         resourceIdAccessor={(resource: Event) => resource.resourceId}
-        resources={showResource ? resourceMapList : undefined}
+        resources={
+          showResource && resourceMapList?.length ? resourceMapList : undefined
+        }
         resourceTitleAccessor={(resource: Event) => resource.resourceTitle}
         selectable
         onSelectEvent={(ev) => selectEvent(ev)}
@@ -92,52 +88,40 @@ export const WrappedEventCalendar = forwardRef<
         css={ApplyCustomStyle(
           dayjs(currentTime).format("HH:mm"),
           indicatorTop,
-          contentWidth,
           showCurrentTime,
           slotBackground,
           titleColor,
           eventBackground,
           eventTextColor,
-          showResource,
           isLight,
         )}
       />
     </div>
   )
-})
+}
 
 WrappedEventCalendar.displayName = "WrappedEventCalendar"
 
 export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
   const {
     eventConfigureMode,
-    resourceConfigureMode,
     manualOptions,
     eventList,
     defaultDate = new Date(),
     mappedOption,
     resourceMapList,
-    resourceMappedOption,
     handleUpdateMultiExecutionResult,
-    deleteComponentRuntimeProps,
-    updateComponentRuntimeProps,
     displayName,
     triggerEventHandler,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
   } = props
 
   const currentDefaultDate = useMemo(() => new Date(defaultDate), [defaultDate])
 
-  const finalEventOptions = useMemo(() => {
+  const [finalEventOptions, finalResourceOptions] = useMemo(() => {
     return formatEventOptions(eventConfigureMode, manualOptions, mappedOption)
   }, [eventConfigureMode, manualOptions, mappedOption])
-
-  const finalResourceOptions = useMemo(() => {
-    return formatResourceOptions(
-      resourceConfigureMode,
-      resourceMapList,
-      resourceMappedOption,
-    )
-  }, [resourceConfigureMode, resourceMapList, resourceMappedOption])
 
   useEffect(() => {
     updateComponentRuntimeProps?.({
@@ -181,11 +165,11 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
       deleteComponentRuntimeProps()
     }
   }, [
+    deleteComponentRuntimeProps,
     displayName,
     eventList,
     handleUpdateMultiExecutionResult,
     updateComponentRuntimeProps,
-    deleteComponentRuntimeProps,
   ])
 
   useEffect(() => {
@@ -194,10 +178,16 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
         displayName,
         value: {
           eventList: format2EventList(finalEventOptions),
+          resourceMapList: finalResourceOptions,
         },
       },
     ])
-  }, [displayName, finalEventOptions, handleUpdateMultiExecutionResult])
+  }, [
+    displayName,
+    finalEventOptions,
+    finalResourceOptions,
+    handleUpdateMultiExecutionResult,
+  ])
 
   const moveEvent = useCallback(
     ({
@@ -305,7 +295,7 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
     <WrappedEventCalendar
       {...props}
       eventList={eventList}
-      resourceMapList={finalResourceOptions}
+      resourceMapList={resourceMapList}
       moveEvent={moveEvent}
       selectEvent={selectEvent}
       resizeEvent={resizeEvent}
