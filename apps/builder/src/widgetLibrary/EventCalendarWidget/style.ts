@@ -32,7 +32,7 @@ const applyEventCardStyle = (
       flex-direction: column;
       align-items: center;
       gap: 4px;
-      background: ${getColor(eventBackground, "07")};
+      background-color: ${getColor(eventBackground, "07")};
       border-left: 2px solid ${getColor(eventBackground, "03")}!important;
       border-radius: 4px;
       color: ${getColor(eventTextColor, "01")};
@@ -58,6 +58,7 @@ const applyTimeView = (date: string, indicatorTop: number) => {
       width: 100%;
       content: " ${date}";
       top: ${indicatorTop}px;
+      visibility: ${indicatorTop ? "visible" : "hidden"};
       color: ${getColor("red", "03")};
       transform: translateY(-50%);
       text-align: right;
@@ -105,7 +106,9 @@ const applyMonthView = (titleColor: string, eventTextColor: string) => {
       }
       .rbc-show-more {
         ${applyCalendarFont}
-        &:focus, &:hover {
+        background-color: transparent !important;
+        &:focus,
+        &:hover {
           color: ${getColor(eventTextColor, "03")};
         }
       }
@@ -122,35 +125,22 @@ const applyAgenda = css`
   }
 `
 
-const applyIndicatorStyle = (
-  timeContentWidth: number,
-  indicatorTop: number,
-  showResource: boolean,
-) => {
-  let width
-  if (showResource) {
-    width = css`
-      width: ${timeContentWidth}px;
-    `
-  } else {
-    width = css`
-      width: 100%;
-    `
-  }
+const applyIndicatorStyle = (indicatorTop: number) => {
   return css`
     .rbc-current-time-indicator {
-      background: red;
+      background-color: red;
     }
     .rbc-current-time-indicator {
       display: none;
     }
-    .rbc-time-content::before {
+    .rbc-day-slot::before {
       position: absolute;
       z-index: 3;
       content: "";
       height: 1px;
-      ${width}
+      width: 100%;
       top: ${indicatorTop}px;
+      visibility: ${indicatorTop ? "visible" : "hidden"};
       background-color: ${getColor("red", "03")};
     }
   `
@@ -162,29 +152,29 @@ const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
   `
   return css`
     .rbc-btn-group {
-      background: transparent !important;
+      background-color: transparent !important;
       ${color}
       button {
-        background: transparent !important;
+        background-color: transparent !important;
         ${color}
         &:active,
         &:hover,
         &:focus {
-          background: transparent !important;
+          background-color: transparent !important;
           ${color}
           box-shadow: none!important;
         }
       }
       .rbc-active {
         box-shadow: none !important;
-        background: ${isLight
+        background-color: ${isLight
           ? getColor("blackAlpha", "09")
           : getColor("white", "09")}!important;
         ${color}
         &:focus,
         &:active {
           ${color}
-          background: ${isLight
+          background-color: ${isLight
             ? getColor("blackAlpha", "09")
             : getColor("white", "09")}!important;
         }
@@ -254,13 +244,11 @@ export const applyTitleColor = (titleColor: string) => {
 export const ApplyCustomStyle = (
   date: string,
   indicatorTop: number,
-  timeContentWidth: number,
   showCurrentTime: boolean,
   slotBackground: string,
   titleColor: string,
   eventBackground: string,
   eventTextColor: string,
-  showResource: boolean,
   isLight: boolean,
 ) => {
   return css`
@@ -271,7 +259,7 @@ export const ApplyCustomStyle = (
       border-bottom: none;
     }
     .rbc-selected {
-      background: ${getColor(eventBackground, "07")};
+      background-color: ${getColor(eventBackground, "07")};
     }
     .rbc-addons-dnd-resize-ew-anchor {
       top: 50%;
@@ -302,7 +290,7 @@ export const ApplyCustomStyle = (
       gap: 4px;
     }
     ${applyTimeView(date, indicatorTop)}
-    ${applyIndicatorStyle(timeContentWidth, indicatorTop, showResource)}
+    ${applyIndicatorStyle(indicatorTop)}
     ${applyMonthView(titleColor, eventTextColor)}
     ${applyAgenda}
     ${buttonGroupStyle(titleColor, isLight)}
