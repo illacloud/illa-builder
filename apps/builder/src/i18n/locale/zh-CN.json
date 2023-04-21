@@ -1205,8 +1205,8 @@
         "secondary_value": "次要值",
         "resource": "RESOURCE",
         "eventCalendar": {
-          "calendar": "Calendar",
-          "event": "Event"
+          "calendar": "日历",
+          "event": "事件"
         }
       },
       "setter_label": {
@@ -1469,28 +1469,26 @@
           "end_time": "结束时间"
         },
         "eventCalendar": {
-          "event_value": "Event value",
-          "event_id": "Event id",
-          "title": "Title",
-          "description": "Description",
-          "start": "Start",
-          "end": "End",
-          "resource_id": "Resource id",
-          "resource_title": "Resource title",
-          "all_day": "All day",
-          "color": "Color",
-          "data_source": "Data source",
-          "default_date": "Default date",
-          "resource_grid": "Resource grid",
-          "default_view": "Default view",
-          "start_week_on": "Start week on",
-          "show_current_time": "Show current time",
-          "background": "Background",
-          "calendar_background": "Background",
-          "calendar_border": "Border",
-          "calendar_text": "Text",
-          "event_background": "Background",
-          "event_text": "Text"
+          "event_value": "事件值",
+          "event_id": "事件ID",
+          "title": "标题",
+          "description": "描述",
+          "start": "开始时间",
+          "end": "结束时间",
+          "resource_id": "资源ID",
+          "resource_title": "资源标题",
+          "all_day": "全天事件",
+          "data_source": "数据源",
+          "default_date": "默认日期",
+          "resource_grid": "资源网格",
+          "default_view": "默认视图",
+          "show_current_time": "显示当前时间",
+          "background": "背景",
+          "calendar_background": "背景",
+          "calendar_border": "边框",
+          "calendar_text": "文本",
+          "event_background": "背景",
+          "event_text": "文本"
         }
       },
       "setter_tooltip": {
@@ -1612,25 +1610,25 @@
           "end_placeholder": "当没有输入结束时间时，展示的信息。"
         },
         "eventCalendar": {
-          "event_value": "Use Object enclosed in {{ to set the event value. For example, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
-          "event_id": "A unique ID used to identify the event",
-          "title": "The title of the event",
-          "description": "The description of the event",
-          "start": "Start time of the event",
-          "end": "End time of the event",
-          "resource_id": "The resource could be a person, a meeting room, etc. You can set a resource id and connect it to the event. ",
-          "resource_title": "The resource name displayed in the resource view",
-          "all_day": "Whether an all-day event",
-          "data_source": "Data source of the events. A data source should be an array of objects. Every object is an event. For example, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
-          "default_date": "The default date when launch the app",
-          "resource_grid": "Whether to show a resource grid",
-          "default_view": "The default view when launch the app",
-          "show_current_time": "Set whether to show the current time line",
-          "calendar_background": "Set the background of the calendar",
-          "calendar_border": "Set color of the border",
-          "calendar_text": "Set color of the text",
-          "event_background": "Set the background of event card",
-          "event_text": "Set the text color of event card"
+          "event_value": "使用包含在 {{ 中的对象来设置事件值。 例如，{{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "用于标识事件的唯一 ID",
+          "title": "活动名称",
+          "description": "事件描述",
+          "start": "活动开始时间",
+          "end": "活动结束时间",
+          "resource_id": "资源可以是人、会议室等。您可以设置资源 ID 并将其连接到事件。",
+          "resource_title": "资源网格中显示的资源名称",
+          "all_day": "是否全天活动",
+          "data_source": "事件的数据源。 数据源应该是一个对象数组, 每个对象都是一个事件。 例如，{{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description “：“描述”} ]}}",
+          "default_date": "启动应用程序时显示的默认日期",
+          "resource_grid": "是否显示资源网格",
+          "default_view": "启动应用程序时的默认视图",
+          "show_current_time": "设置是否显示当前时间线",
+          "calendar_background": "设置日历的背景色",
+          "calendar_border": "设置边框颜色",
+          "calendar_text": "设置文字颜色",
+          "event_background": "设置事件卡片的背景",
+          "event_text": "设置事件卡片的文字颜色"
         }
       },
       "setter_option": {
@@ -1663,13 +1661,13 @@
           "small": "小"
         },
         "eventCalendar": {
-          "sunday": "Sunday",
-          "monday": "Monday",
-          "tuesday": "Tuesday",
-          "wednesday": "Wednesday",
-          "thursday": "Thursday",
-          "friday": "Friday",
-          "saturday": "Saturday"
+          "sunday": "周日",
+          "monday": "周一",
+          "tuesday": "周二",
+          "wednesday": "周三",
+          "thursday": "周四",
+          "friday": "周五",
+          "saturday": "周六"
         }
       },
       "setter_placeholder": {
@@ -2295,7 +2293,7 @@
     },
     "eventCalendar": {
       "name": {
-        "event_calendar": "Event calendar"
+        "event_calendar": "事件日历"
       }
     }
   },
