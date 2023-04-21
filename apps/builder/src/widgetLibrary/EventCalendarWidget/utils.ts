@@ -45,27 +45,28 @@ export const formatEventOptions = (
     )
     const options: Event[] = []
     for (let i = 0; i < maxLength; i++) {
-      let labelItem = label[i] || `Event-${i}`
-      const idItem = id[i] || `Event-${i}`
-      const titleItem = title[i] || `Event-${i}`
+      let labelItem = label[i] || `Event-${i + 1}`
+      const idItem = id[i] || `Event-${i + 1}`
+      const titleItem = title[i] || `Event-${i + 1}`
       const startItem = start[i] || undefined
       const endItem = end[i] || undefined
-      const resourceIdItem = resourceId[i] || `Resource-${i}`
-      const descriptionItem = description[i] || `Resource-${i}`
+      const resourceIdItem = resourceId[i] || `Resource-${i + 1}`
+      const descriptionItem = description[i] || `Resource-${i + 1}`
       const allDayItem = allDay[i] ?? false
       if (typeof labelItem === "object") {
-        labelItem = `Event-${i}`
+        labelItem = `Event-${i + 1}`
       }
-      options.push({
-        label: labelItem,
-        id: idItem,
-        title: titleItem,
-        start: startItem ? new Date(startItem) : new Date(),
-        end: endItem ? new Date(endItem) : new Date(),
-        resourceId: resourceIdItem,
-        description: descriptionItem,
-        allDay: allDayItem,
-      })
+      idItem &&
+        options.push({
+          label: labelItem,
+          id: idItem,
+          title: titleItem,
+          start: startItem ? new Date(startItem) : new Date(),
+          end: endItem ? new Date(endItem) : new Date(),
+          resourceId: resourceIdItem,
+          description: descriptionItem,
+          allDay: allDayItem,
+        })
     }
     return options
   } else {
@@ -74,27 +75,28 @@ export const formatEventOptions = (
     }
     const options: Event[] = []
     manualOptions.forEach((option, i) => {
-      let labelItem = option.label || `Event-${i}`
-      const idItem = option.id || `Event-${i}`
-      const titleItem = option.title || `Event-${i}`
+      let labelItem = option.label || `Event-${i + 1}`
+      const idItem = option.id || `Event-${i + 1}`
+      const titleItem = option.title || `Event-${i + 1}`
       const startItem = option.start || undefined
       const endItem = option.end || undefined
-      const resourceIdItem = option.resourceId || `Resource-${i}`
-      const descriptionItem = option.description || `Resource-${i}`
+      const resourceIdItem = option.resourceId || `Resource-${i + 1}`
+      const descriptionItem = option.description || `Resource-${i + 1}`
       const allDayItem = option.allDay ?? false
       if (typeof labelItem === "object") {
-        labelItem = `Event-${i}`
+        labelItem = `Event-${i + 1}`
       }
-      options.push({
-        label: labelItem,
-        id: idItem,
-        title: titleItem,
-        start: startItem ? new Date(startItem) : new Date(),
-        end: endItem ? new Date(endItem) : new Date(),
-        resourceId: resourceIdItem,
-        description: descriptionItem,
-        allDay: allDayItem,
-      })
+      idItem &&
+        options.push({
+          label: labelItem,
+          id: idItem,
+          title: titleItem,
+          start: startItem ? new Date(startItem) : new Date(),
+          end: endItem ? new Date(endItem) : new Date(),
+          resourceId: resourceIdItem,
+          description: descriptionItem,
+          allDay: allDayItem,
+        })
     })
     return options
   }
@@ -120,11 +122,11 @@ export const formatResourceOptions = (
     )
     const options: Event[] = []
     for (let i = 0; i < maxLength; i++) {
-      let labelItem = label[i] || `Resource-${i}`
-      const resourceIdItem = resourceId[i] || `Resource-${i}`
-      const resourceTitleItem = resourceTitle[i] || `Resource-${i}`
+      let labelItem = label[i] || `Resource-${i + 1}`
+      const resourceIdItem = resourceId[i] || `Resource-${i + 1}`
+      const resourceTitleItem = resourceTitle[i] || `Resource-${i + 1}`
       if (typeof labelItem === "object") {
-        labelItem = `Event-${i}`
+        labelItem = `Event-${i + 1}`
       }
       options.push({
         label: labelItem,
@@ -139,11 +141,11 @@ export const formatResourceOptions = (
     }
     const options: ResourceMap[] = []
     manualOptions.forEach((option, i) => {
-      let labelItem = option.label || `Resource-${i}`
-      const resourceIdItem = option.resourceId || `Resource-${i}`
-      const resourceTitleItem = option.resourceTitle || `Resource-${i}`
+      let labelItem = option.label || `Resource-${i + 1}`
+      const resourceIdItem = option.resourceId || `Resource-${i + 1}`
+      const resourceTitleItem = option.resourceTitle || `Resource-${i + 1}`
       if (typeof labelItem === "object") {
-        labelItem = `Event-${i}`
+        labelItem = `Event-${i + 1}`
       }
       options.push({
         label: labelItem,
@@ -156,6 +158,7 @@ export const formatResourceOptions = (
 }
 
 export const format2EventList = (eventList: Event[]) => {
+  if (!eventList) return []
   return eventList.map((item) => {
     return {
       ...item,
@@ -163,4 +166,41 @@ export const format2EventList = (eventList: Event[]) => {
       end: dayjs(item.end).format(formatDateTime),
     }
   })
+}
+
+export const eventList2Date = (eventList: Event[]) => {
+  if (!eventList) return []
+  return eventList.map((item) => {
+    return {
+      ...item,
+      start: item.start ? new Date(item.start) : new Date(),
+      end: item.end ? new Date(item.end) : new Date(),
+    }
+  })
+}
+
+export const isLightColor = (color: string): boolean => {
+  const hexRegex = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})([0-9a-fA-F]{2})?$/
+  const hslRegex =
+    /^hsla?\(\s*(-?\d+%?)\s*,\s*(-?\d+%?)\s*,\s*(-?\d+%?)\s*(,\s*(0?\.\d+|[01]))?\s*\)$/i
+  const hexMatch = color.match(hexRegex)
+  const hslMatch = color.match(hslRegex)
+
+  if (hexMatch) {
+    const hex = hexMatch[1]
+    const r = parseInt(hex.length === 3 ? hex[0] + hex[0] : hex.slice(0, 2), 16)
+    const g = parseInt(hex.length === 3 ? hex[1] + hex[1] : hex.slice(2, 4), 16)
+    const b = parseInt(hex.length === 3 ? hex[2] + hex[2] : hex.slice(4, 6), 16)
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+    return luminance >= 0.5
+  } else if (hslMatch) {
+    const h = parseInt(hslMatch[1])
+    const s = parseInt(hslMatch[2].slice(0, -1)) / 100
+    const l = parseInt(hslMatch[3].slice(0, -1)) / 100
+    const a = hslMatch[4] ? parseFloat(hslMatch[5]) : 1
+    const luminance = (0.299 * s + 0.587 * l + (0.114 * h) / 360) * a + (1 - a)
+    return luminance >= 0.5
+  } else {
+    return false
+  }
 }

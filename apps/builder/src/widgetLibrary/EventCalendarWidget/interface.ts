@@ -32,16 +32,10 @@ export interface EventInteractionArgs {
   resourceId?: number | string
 }
 
-export interface WrappedEventCalendarProps extends BaseWidgetProps {
+export interface WrappedEventCalendarProps {
   eventList: Event[]
   resourceMapList: ResourceMap[]
-  eventConfigureMode?: "dynamic" | "static"
-  manualOptions?: Event[]
-  mappedOption?: Pluralize<Event>
-  resourceConfigureMode?: "dynamic" | "static"
-  resourceManualOptions?: ResourceMap[]
-  resourceMappedOption?: Pluralize<ResourceMap>
-  defaultDate?: string
+  defaultDate?: Date
   showResource?: boolean
   showCurrentTime?: boolean
   defaultView?: View
@@ -49,23 +43,18 @@ export interface WrappedEventCalendarProps extends BaseWidgetProps {
   titleColor?: string
   eventBackground?: string
   eventTextColor?: string
-  borderColor?: string
-  handleOnChange: () => void
-  handleOnSelect: () => void
-  handleUpdateMultiExecutionResult: (
-    updateSlice: {
-      displayName: string
-      value: Record<string, any>
-    }[],
-  ) => void
+  moveEvent: (args: EventInteractionArgs) => void
+  resizeEvent: (args: EventInteractionArgs) => void
+  selectEvent: (args: Event) => void
 }
 
-export interface EventCalendarWidgetProps extends WrappedEventCalendarProps {
-  // handleUpdateDsl: (value: Record<string, boolean | undefined>) => void
-  handleUpdateMultiExecutionResult: (
-    updateSlice: {
-      displayName: string
-      value: Record<string, any>
-    }[],
-  ) => void
+export interface EventCalendarWidgetProps
+  extends WrappedEventCalendarProps,
+    BaseWidgetProps {
+  eventConfigureMode?: "dynamic" | "static"
+  manualOptions?: Event[]
+  mappedOption?: Pluralize<Event>
+  resourceConfigureMode?: "dynamic" | "static"
+  resourceManualOptions?: ResourceMap[]
+  resourceMappedOption?: Pluralize<ResourceMap>
 }

@@ -9,7 +9,17 @@ const date = new Date(),
   month = date.getMonth(),
   day = date.getDate(),
   hour = date.getHours(),
-  minus = date.getMinutes()
+  minus = date.getMinutes(),
+  emptyEvent = {
+    label: "",
+    id: "",
+    title: "",
+    description: "",
+    start: "",
+    end: "",
+    resourceId: "",
+    allDay: false,
+  }
 
 export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
   displayName: "eventCalendar",
@@ -23,7 +33,7 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
   resizeDirection: RESIZE_DIRECTION.ALL,
   defaults: {
     eventConfigureMode: "static",
-    eventList: [
+    manualOptions: [
       {
         label: "Event-1",
         id: "Event-1",
@@ -98,9 +108,10 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
     titleColor: "gray",
     eventBackground: "blue",
     eventTextColor: "blue",
+    borderColor: "gray",
     hidden: false,
-    addEventValue: "{{{}}}",
-    deleteEventValue: "{{{}}}",
-    selectEventValue: "{{{}}}",
+    addEventValue: emptyEvent,
+    deleteEventValue: emptyEvent,
+    selectEventValue: emptyEvent,
   },
 }

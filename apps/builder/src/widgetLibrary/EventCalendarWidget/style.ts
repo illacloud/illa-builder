@@ -5,7 +5,6 @@ const applyCalendarFont = css`
   font-family: "Inter";
   font-style: normal;
   font-size: 14px;
-  // color: ${getColor("blue", "03")}; //TODO
   font-weight: 400;
 `
 
@@ -22,19 +21,24 @@ export const applyEventStyle = css`
   }
 `
 
-const applyEventCardStyle = css`
-  .rbc-event {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    background: ${getColor("blue", "07")};
-    border-left: 2px solid ${getColor("blue", "03")};
-    border-radius: 4px;
-    color: ${getColor("blue", "03")};
-  }
-`
+const applyEventCardStyle = (
+  eventBackground: string,
+  eventTextColor: string,
+) => {
+  return css`
+    .rbc-event {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: ${getColor(eventBackground, "07")};
+      border-left: 2px solid ${getColor(eventBackground, "03")}!important;
+      border-radius: 4px;
+      color: ${getColor(eventTextColor, "01")};
+    }
+  `
+}
 const applyTimeView = (date: string, indicatorTop: number) => {
   let needHiddenLabel = -1
   if (date) {
@@ -81,40 +85,35 @@ const applyTimeView = (date: string, indicatorTop: number) => {
     .rbc-timeslot-group:first-of-type .rbc-label {
       visibility: hidden;
     }
-    ${applyEventCardStyle}
   }
 }
 `
 }
-const applyMonthView = (titleColor: string) => {
+const applyMonthView = (titleColor: string, eventTextColor: string) => {
   return css`
-  .rbc-month-view {
-    color: ${getColor(titleColor, "02")};
-    font-weight: 600;
-    .rbc-off-range {
-      color: ${getColor(titleColor, "06")};
+    .rbc-month-view {
+      color: ${getColor(titleColor, "01")};
+      font-weight: 600;
+      .rbc-off-range {
+        color: ${getColor(titleColor, "05")}!important;
+      }
+      .rbc-off-range-bg {
+        background: none;
+      }
+      .rbc-addons-dnd-resizable span {
+        display: none;
+      }
+      .rbc-show-more {
+        ${applyCalendarFont}
+        &:focus, &:hover {
+          color: ${getColor(eventTextColor, "03")};
+        }
+      }
     }
-    .rbc-off-range-bg {
-      background: none;
-    }
-    .rbc-addons-dnd-resizable span {
-      display: none;
-    }
-    .rbc-show-more {
-      ${applyCalendarFont}
-    }
-    .
-    ${applyEventCardStyle}
-  }
-`
+  `
 }
-const applyWeekView = css`
-  ${applyEventCardStyle}
-`
 const applyAgenda = css`
   .rbc-agenda-view {
-    // color: ${getColor("grey", "03")}!important;得到的是一个计算值
-    color: #1f1f1f;
     font-size: 14px;
     font-weight: 400;
     .rbc-agenda-date-cell {
@@ -157,30 +156,37 @@ const applyIndicatorStyle = (
   `
 }
 
-const buttonGroupStyle = (slotBackground: string, titleColor: string) => {
+const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
+  const color = css`
+    color: ${getColor(titleColor, "01")}!important;
+  `
   return css`
     .rbc-btn-group {
-      background: ${getColor(slotBackground, "01")};
-      color: ${getColor(titleColor, "02")};
+      background: transparent !important;
+      ${color}
       button {
-        background: none;
-        color: ${getColor(titleColor, "02")};
+        background: transparent !important;
+        ${color}
         &:active,
         &:hover,
         &:focus {
-          background: ${getColor(slotBackground, "03")}!important;
-          color: ${getColor(titleColor, "02")};
-          box-shadow: none !important;
+          background: transparent !important;
+          ${color}
+          box-shadow: none!important;
         }
       }
       .rbc-active {
         box-shadow: none !important;
-        background: ${getColor(slotBackground, "03")}!important;
-        color: ${getColor(titleColor, "02")}!important;
+        background: ${isLight
+          ? getColor("blackAlpha", "09")
+          : getColor("white", "09")}!important;
+        ${color}
         &:focus,
         &:active {
-          color: ${getColor(titleColor, "02")};
-          background: ${getColor(slotBackground, "03")};
+          ${color}
+          background: ${isLight
+            ? getColor("blackAlpha", "09")
+            : getColor("white", "09")}!important;
         }
       }
     }
@@ -193,20 +199,40 @@ const applyCalendarBg = (slotBackground: string) => {
     .rbc-label,
     .rbc-time-gutter,
     .rbc-day-slot,
+    .rbc-calendar,
     tbody {
       background-color: ${getColor(slotBackground, "01")}!important;
     }
   `
 }
-const applyBorderStyle = (borderColor: string) => {
+const applyBorderStyle = (isLight: boolean) => {
   return css`
-    .rbc-header,
+    .rbc-time-view,
+    .rbc-agenda-view,
+    .rbc-time-view div,
+    .rbc-time-view button,
+    .rbc-time-header.rbc-overflowing {
+      border-color: ${isLight
+        ? getColor("blackAlpha", "08")
+        : getColor("white", "08")};
+    }
     .rbc-btn-group button,
     .rbc-day-bg,
     .rbc-month-row,
-    .rbc-time-view div,
-    .rbc-time-view button {
-      border-color: ${getColor(borderColor, "05")}!important;
+    .rbc-month-view,
+    .rbc-agenda-view,
+    .rbc-header,
+    .rbc-toolbar,
+    tbody,
+    tr,
+    thead,
+    table,
+    .rbc-agenda-date-cell,
+    .rbc-agenda-event-cell,
+    .rbc-time-gutter {
+      border-color: ${isLight
+        ? getColor("blackAlpha", "08")
+        : getColor("white", "08")}!important;
     }
   `
 }
@@ -217,7 +243,10 @@ export const applyTitleColor = (titleColor: string) => {
     .rbc-button-link,
     .rbc-time-gutter .rbc-timeslot-group,
     tbody {
-      color: ${getColor(titleColor, "02")}!important;
+      color: ${getColor(titleColor, "01")};
+    }
+    .rbc-off-range .rbc-button-link {
+      color: ${getColor(titleColor, "05")}!important;
     }
   `
 }
@@ -228,9 +257,11 @@ export const ApplyCustomStyle = (
   timeContentWidth: number,
   showCurrentTime: boolean,
   slotBackground: string,
-  borderColor: string,
   titleColor: string,
+  eventBackground: string,
+  eventTextColor: string,
   showResource: boolean,
+  isLight: boolean,
 ) => {
   return css`
     height: 100%;
@@ -240,7 +271,7 @@ export const ApplyCustomStyle = (
       border-bottom: none;
     }
     .rbc-selected {
-      background-color: ${getColor("blue", "06")};
+      background: ${getColor(eventBackground, "07")};
     }
     .rbc-addons-dnd-resize-ew-anchor {
       top: 50%;
@@ -259,20 +290,25 @@ export const ApplyCustomStyle = (
       background: none;
     }
     .rbc-toolbar-label {
-      color: ${getColor(titleColor, "02")};
+      color: ${getColor(titleColor, "01")};
       visibility: ${showCurrentTime ? "visible" : "hidden"};
     }
     .rbc-day-slot .rbc-time-slot {
       border: none;
     }
+    .rbc-addons-dnd-resizable {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
     ${applyTimeView(date, indicatorTop)}
     ${applyIndicatorStyle(timeContentWidth, indicatorTop, showResource)}
-    ${applyMonthView(titleColor)}
-    ${applyWeekView}
+    ${applyMonthView(titleColor, eventTextColor)}
     ${applyAgenda}
-    ${buttonGroupStyle(slotBackground, titleColor)}
+    ${buttonGroupStyle(titleColor, isLight)}
     ${applyCalendarBg(slotBackground)}
-    ${applyBorderStyle(borderColor)}
     ${applyTitleColor(titleColor)}
+    ${applyEventCardStyle(eventBackground, eventTextColor)}
+    ${applyBorderStyle(isLight)}
   `
 }

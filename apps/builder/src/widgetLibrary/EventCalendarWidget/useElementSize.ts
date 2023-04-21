@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react"
 import { View } from "react-big-calendar"
-import { isInWeekOrDay } from "@/widgetLibrary/EventCalendarWidget/utils"
+import { getColor } from "@illa-design/react"
+import {
+  isInWeekOrDay,
+  isLightColor,
+} from "@/widgetLibrary/EventCalendarWidget/utils"
 
-export const useElementSize = (view: View, isResource: boolean) => {
+export const useElementSize = (
+  view: View,
+  isResource: boolean,
+  slotBackground: string,
+) => {
   const [slotHeight, setSlotHeight] = useState(39)
   const [indicatorTop, setIndicatorTop] = useState(0)
   const [contentWidth, setContentWidth] = useState(0)
   const [currentTime, setCurrentTime] = useState<Date>()
+  const [isLight, setIsLight] = useState(true)
 
   useEffect(() => {
     if (!isInWeekOrDay(view)) {
@@ -32,7 +41,6 @@ export const useElementSize = (view: View, isResource: boolean) => {
   useEffect(() => {
     let timeContent = document.querySelector(".rbc-time-content"),
       observer: ResizeObserver | null
-    console.log("isResource", isResource)
     if (!isResource || (isResource && view === "day")) {
       let timeContent = document.querySelector(".rbc-time-content")
       timeContent && setContentWidth(timeContent?.getBoundingClientRect().width)
@@ -71,7 +79,7 @@ export const useElementSize = (view: View, isResource: boolean) => {
       setCurrentTime(date)
     }
     setIndicator()
-    const intervalId = window.setInterval(setIndicator, 6000)
+    const intervalId = window.setInterval(setIndicator, 60000)
     return () => {
       if (isInWeekOrDay(view)) {
         clearInterval(intervalId)
@@ -79,10 +87,18 @@ export const useElementSize = (view: View, isResource: boolean) => {
     }
   }, [slotHeight, view])
 
+  useEffect(() => {
+    if (slotBackground) {
+      const formatColor = getColor(slotBackground, "01")
+      setIsLight(isLightColor(formatColor))
+    }
+  }, [slotBackground])
+
   return {
     slotHeight,
     indicatorTop,
     contentWidth,
     currentTime,
+    isLight,
   }
 }

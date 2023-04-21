@@ -4,12 +4,16 @@ import { EventHandlerConfig } from "@/widgetLibrary/interface"
 export const EVENT_CALENDAR_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
   events: [
     {
-      label: i18n.t("editor.inspect.setter_content.Change"),
-      value: "Change",
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.change",
+      ),
+      value: "change",
     },
     {
-      label: i18n.t("editor.inspect.setter_content.Select"),
-      value: "Select",
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.select",
+      ),
+      value: "select",
     },
   ],
   methods: ["addEvent", "deleteEvent"],

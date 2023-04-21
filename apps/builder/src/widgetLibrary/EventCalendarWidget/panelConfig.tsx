@@ -1,10 +1,8 @@
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { EVENT_CALENDAR_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/EventCalendarWidget/eventHandlerConfig"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { SWITCH_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SwitchWidget/eventHandlerConfig"
-import { EVENT_CALENDAR_EVENT_HANDLER_CONFIG } from "./eventHandlerConfig"
 
 const baseWidgetName = "eventCalendar"
 export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
@@ -30,7 +28,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-options-event`,
         useCustomLayout: true,
-        attrName: "eventList",
+        attrName: "manualOptions",
         setterType: "OPTION_LIST_SETTER",
         bindAttrName: ["eventConfigureMode"],
         shown: (value) => !value || value === "static",
@@ -367,6 +365,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
         ),
         attrName: "defaultView",
         expectedType: VALIDATION_TYPES.STRING,
+        isSetterSingleRow: true,
         setterType: "BASE_SELECT_SETTER",
         options: [
           {
@@ -457,18 +456,6 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             attrName: "slotBackground",
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "white",
-          },
-          {
-            id: `${baseWidgetName}-style-border`,
-            labelName: i18n.t(
-              "editor.inspect.setter_label.eventCalendar.calendar_background",
-            ),
-            labelDesc: i18n.t(
-              "editor.inspect.setter_tips.eventCalendar.calendar_background",
-            ),
-            attrName: "borderColor",
-            setterType: "COLOR_PICKER_SETTER",
-            defaultValue: "gray",
           },
           {
             id: `${baseWidgetName}-style-cal-text`,
