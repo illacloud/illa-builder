@@ -142,6 +142,15 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
   useEffect(() => {
     updateComponentRuntimeProps?.({
       addEvent: (event: Event) => {
+        if (
+          !event ||
+          typeof event !== "object" ||
+          !event.title ||
+          !event.start ||
+          !event.end ||
+          !event.id
+        )
+          return
         const eventItems = eventList.filter((item) => item.id !== event.id)
         handleUpdateMultiExecutionResult([
           {
@@ -154,8 +163,9 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
         ])
       },
       deleteEvent: (eventId: string | number) => {
-        const eventItems = eventList.filter((item) => item.id !== eventId),
-          deleteEventValue = eventList.find((item) => item.id === eventId)
+        const deleteEventValue = eventList.find((item) => item.id === eventId)
+        if (!deleteEventValue) return
+        const eventItems = eventList.filter((item) => item.id !== eventId)
         handleUpdateMultiExecutionResult([
           {
             displayName,
