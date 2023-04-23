@@ -145,6 +145,7 @@ export enum Signal {
    * @generated from protobuf enum value: SIGNAL_MOVE_CURSOR = 13;
    */
   MOVE_CURSOR = 13,
+  SUPER_POWER = 100,
 }
 /**
  * @generated from protobuf enum tutorial.Target

@@ -10,7 +10,11 @@ import {
   CaretRightIcon,
   ExitIcon,
   FullScreenIcon,
+  List,
+  ListItem,
+  ListItemMeta,
   LockIcon,
+  TextArea,
   Trigger,
   UnlockIcon,
   getColor,
@@ -18,6 +22,8 @@ import {
 } from "@illa-design/react"
 import { forkCurrentApp } from "@/api/apps"
 import { BuilderApi } from "@/api/base"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
@@ -39,10 +45,12 @@ import { configActions } from "@/redux/config/configSlice"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   descriptionStyle,
+  floatingMessageModalStyle,
   informationStyle,
   logoCursorStyle,
   navBarStyle,
@@ -61,6 +69,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const { teamIdentifier } = useParams()
 
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
+
   const appInfo = useSelector(getAppInfo)
   const debuggerVisible = useSelector(isOpenDebugger)
   const isFreezeCanvas = useSelector(getFreezeState)
@@ -72,6 +82,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const [forkModalVisible, setForkModalVisible] = useState(false)
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
+
+  const [messageList, setMessageList] = useState<string[]>([])
+  const [showMessage, setShowMessage] = useState(false)
+  const [textAreaValue, setTextAreaValue] = useState("")
 
   const previewButtonText = isEditMode
     ? t("preview.button_text")
@@ -195,95 +209,162 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     navigate(`/${teamIdentifier}/dashboard/apps`)
   }, [navigate, teamIdentifier])
 
+  const sendMessage = useCallback(() => {
+    setMessageList([textAreaValue, ...messageList])
+    setTextAreaValue("")
+    Connection.getTextRoom("app", appInfo.appId)?.send(
+      getTextMessagePayload(
+        Signal.SUPER_POWER,
+        Target.NOTHING,
+        false,
+        null,
+        teamInfo.id,
+        teamInfo.uid,
+        [textAreaValue],
+      ),
+    )
+  }, [messageList, textAreaValue])
+
   return (
-    <div className={className} css={navBarStyle}>
-      <div css={rowCenter}>
-        <Logo width="34px" onClick={handleLogoClick} css={logoCursorStyle} />
-        <div css={informationStyle}>
-          <AppName appName={appInfo.appName} />
-          {isOnline ? (
-            <div css={descriptionStyle}>
-              {t("edit_at") + " " + fromNow(appInfo?.updatedAt)}
+    <>
+      <div className={className} css={navBarStyle}>
+        <div css={rowCenter}>
+          <Logo width="34px" onClick={handleLogoClick} css={logoCursorStyle} />
+          <div css={informationStyle}>
+            <AppName appName={appInfo.appName} />
+            {isOnline ? (
+              <div css={descriptionStyle}>
+                {t("edit_at") + " " + fromNow(appInfo?.updatedAt)}
+              </div>
+            ) : (
+              <div css={saveFailedTipStyle}>
+                <SnowIcon />
+                <span> {t("edit_failed")}</span>
+              </div>
+            )}
+          </div>
+          <Button
+            ml="16px"
+            onClick={() => {
+              setShowMessage(!showMessage)
+            }}
+          >
+            chat generate( Demo )
+          </Button>
+        </div>
+        <div css={viewControlStyle}>
+          {isEditMode && <WindowIcons />}
+          <AppSizeButtonGroup />
+        </div>
+        <div css={rightContentStyle}>
+          {!isGuideMode && <CollaboratorsList />}
+          {isEditMode ? (
+            <div>
+              <ButtonGroup spacing="8px">
+                <Badge count={debuggerData && Object.keys(debuggerData).length}>
+                  <Button
+                    colorScheme="white"
+                    size="medium"
+                    leftIcon={
+                      <BugIcon color={getColor("grayBlue", "02")} size="14px" />
+                    }
+                    onClick={handleClickDebuggerIcon}
+                  />
+                </Badge>
+                <Trigger
+                  content={
+                    isFreezeCanvas ? t("freeze_tips") : t("unfreeze_tips")
+                  }
+                  colorScheme="grayBlue"
+                  position="bottom"
+                  showArrow={false}
+                  autoFitPosition={false}
+                  trigger="hover"
+                >
+                  <Button
+                    colorScheme="white"
+                    size="medium"
+                    leftIcon={
+                      isFreezeCanvas ? (
+                        <LockIcon
+                          size="14px"
+                          color={getColor("grayBlue", "02")}
+                        />
+                      ) : (
+                        <UnlockIcon
+                          size="14px"
+                          color={getColor("grayBlue", "02")}
+                        />
+                      )
+                    }
+                    onClick={handleClickFreezeIcon}
+                  />
+                </Trigger>
+                {PreviewButton}
+                <Button
+                  loading={deployLoading}
+                  colorScheme="techPurple"
+                  size="medium"
+                  leftIcon={<CaretRightIcon />}
+                  onClick={handleClickDeploy}
+                >
+                  {isGuideMode
+                    ? t("editor.tutorial.panel.tutorial.modal.fork")
+                    : t("deploy")}
+                </Button>
+              </ButtonGroup>
             </div>
           ) : (
-            <div css={saveFailedTipStyle}>
-              <SnowIcon />
-              <span> {t("edit_failed")}</span>
-            </div>
+            <>{PreviewButton}</>
           )}
         </div>
+        <ForkAndDeployModal
+          visible={forkModalVisible}
+          okLoading={deployLoading}
+          onOk={forkGuideAppAndDeploy}
+          onVisibleChange={setForkModalVisible}
+        />
       </div>
-      <div css={viewControlStyle}>
-        {isEditMode && <WindowIcons />}
-        <AppSizeButtonGroup />
-      </div>
-      <div css={rightContentStyle}>
-        {!isGuideMode && <CollaboratorsList />}
-        {isEditMode ? (
-          <div>
-            <ButtonGroup spacing="8px">
-              <Badge count={debuggerData && Object.keys(debuggerData).length}>
-                <Button
-                  colorScheme="white"
-                  size="medium"
-                  leftIcon={
-                    <BugIcon color={getColor("grayBlue", "02")} size="14px" />
-                  }
-                  onClick={handleClickDebuggerIcon}
-                />
-              </Badge>
-              <Trigger
-                content={isFreezeCanvas ? t("freeze_tips") : t("unfreeze_tips")}
-                colorScheme="grayBlue"
-                position="bottom"
-                showArrow={false}
-                autoFitPosition={false}
-                trigger="hover"
-              >
-                <Button
-                  colorScheme="white"
-                  size="medium"
-                  leftIcon={
-                    isFreezeCanvas ? (
-                      <LockIcon
-                        size="14px"
-                        color={getColor("grayBlue", "02")}
-                      />
-                    ) : (
-                      <UnlockIcon
-                        size="14px"
-                        color={getColor("grayBlue", "02")}
-                      />
-                    )
-                  }
-                  onClick={handleClickFreezeIcon}
-                />
-              </Trigger>
-              {PreviewButton}
-              <Button
-                loading={deployLoading}
-                colorScheme="techPurple"
-                size="medium"
-                leftIcon={<CaretRightIcon />}
-                onClick={handleClickDeploy}
-              >
-                {isGuideMode
-                  ? t("editor.tutorial.panel.tutorial.modal.fork")
-                  : t("deploy")}
-              </Button>
-            </ButtonGroup>
-          </div>
-        ) : (
-          <>{PreviewButton}</>
-        )}
-      </div>
-      <ForkAndDeployModal
-        visible={forkModalVisible}
-        okLoading={deployLoading}
-        onOk={forkGuideAppAndDeploy}
-        onVisibleChange={setForkModalVisible}
-      />
-    </div>
+      {showMessage && (
+        <div css={floatingMessageModalStyle}>
+          <TextArea
+            onPressEnter={() => {
+              sendMessage()
+            }}
+            h="100px"
+            autoSize={false}
+            bdRadius="8px 8px"
+            value={textAreaValue}
+            onChange={(v) => {
+              setTextAreaValue(v)
+            }}
+          />
+          <Button
+            bdRadius="0"
+            onClick={() => {
+              sendMessage()
+            }}
+          >
+            Send
+          </Button>
+          {messageList && messageList.length > 0 && (
+            <List
+              data={messageList}
+              render={(data, index) => {
+                return (
+                  <ListItem>
+                    <ListItemMeta title={data} />
+                  </ListItem>
+                )
+              }}
+              renderKey={(data, index) => {
+                return index.toString()
+              }}
+            />
+          )}
+        </div>
+      )}
+    </>
   )
 }
 
