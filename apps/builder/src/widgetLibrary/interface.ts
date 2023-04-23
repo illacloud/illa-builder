@@ -5,7 +5,6 @@ import {
   ComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { WidgetType } from "@/widgetLibrary/widgetBuilder"
-import { RuntimeProp } from "../utils/executionTreeHelper/runtimePropsCollector"
 import { SessionType } from "./componentListBuilder"
 
 export interface EventHandlerConfig {
@@ -94,7 +93,7 @@ export interface BaseWidgetProps {
   h: number
   unitW: number
   unitH: number
-  updateComponentRuntimeProps: (runtimeProps: RuntimeProp) => void
+  updateComponentRuntimeProps: (runtimeProps: unknown) => void
   deleteComponentRuntimeProps: () => void
 }
 

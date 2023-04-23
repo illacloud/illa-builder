@@ -1,3 +1,5 @@
+import { merge } from "lodash"
+import { ILLAEditorRuntimePropsCollectorInstance } from "../executionTreeHelper/runtimePropsCollector"
 import { evalScript } from "./codeSandbox"
 import { EVALUATION_TYPE } from "./interface"
 import { isDynamicString } from "./utils"
@@ -68,10 +70,15 @@ export const getDynamicValue = (
   isTriggerBased: boolean = false,
 ) => {
   const { jsSnippets, stringSnippets } = getSnippets(dynamicString)
+  const calcContext = merge(
+    {},
+    dataTree,
+    ILLAEditorRuntimePropsCollectorInstance.getRuntimeProps(),
+  )
   if (stringSnippets.length) {
     const values = jsSnippets.map((jsSnippet, index) => {
       if (jsSnippet) {
-        return evalScript(jsSnippet, dataTree, isTriggerBased)
+        return evalScript(jsSnippet, calcContext, isTriggerBased)
       } else {
         return stringSnippets[index]
       }

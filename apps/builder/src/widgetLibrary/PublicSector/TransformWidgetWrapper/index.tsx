@@ -12,10 +12,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import store, { RootState } from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
-import {
-  ILLAEditorRuntimePropsCollectorInstance,
-  RuntimeProp,
-} from "@/utils/executionTreeHelper/runtimePropsCollector"
+import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { MIN_HEIGHT } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/config"
@@ -66,7 +63,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     ])
 
     const updateComponentRuntimeProps = useCallback(
-      (runtimeProp: RuntimeProp) => {
+      (runtimeProp: unknown) => {
         ILLAEditorRuntimePropsCollectorInstance.addRuntimeProp(
           displayName,
           runtimeProp,

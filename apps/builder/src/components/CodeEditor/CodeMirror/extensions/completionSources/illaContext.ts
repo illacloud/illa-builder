@@ -9,11 +9,7 @@ import {
   checkCursorInDynamicFlag,
 } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/TernServer"
 import { CODE_TYPE } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import {
-  getExecutionResultToCurrentPageCodeMirror,
-  getExecutionResultToGlobalCodeMirror,
-} from "@/redux/currentApp/executionTree/executionSelector"
-import store from "@/store"
+import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isFunction, isObject } from "@/utils/typeHelper"
 
 const formatUtils = (data: unknown) => {
@@ -101,11 +97,10 @@ export const buildIllaContextCompletionSource = (
   context: CompletionContext,
 ) => CompletionResult | Promise<CompletionResult | null> | null) => {
   const isFunction = codeType === CODE_TYPE.FUNCTION
-  const rootState = store.getState()
   const executionResult =
     scopeOfAutoComplete === "global"
-      ? getExecutionResultToGlobalCodeMirror(rootState)
-      : getExecutionResultToCurrentPageCodeMirror(rootState)
+      ? ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContextWithLimit()
+      : ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext()
   return (context: CompletionContext) => {
     const isCursorInDynamicFlag = checkCursorInDynamicFlag(context, isFunction)
     if (!isCursorInDynamicFlag) {
