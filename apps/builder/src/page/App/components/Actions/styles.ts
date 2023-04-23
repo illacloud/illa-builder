@@ -49,13 +49,11 @@ export const connectType = css`
   display: flex;
   height: 38px;
   align-items: center;
-  flex-direction: row;
   padding-left: 24px;
 `
 
 export const labelContainer = css`
   display: flex;
-  flex-direction: row;
   justify-content: end;
   min-width: 176px;
 `
@@ -124,7 +122,7 @@ export const errorIconStyle: SerializedStyles = css`
 export const privateKeyItem = css`
   display: flex;
   width: 100%;
-  flex-direction: row;
   padding-top: 8px;
   padding-left: 24px;
+  align-items: flex-start;
 `
