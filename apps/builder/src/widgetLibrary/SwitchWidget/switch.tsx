@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { Switch } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -29,12 +29,9 @@ WrappedSwitch.displayName = "WrappedSwitch"
 export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
   const {
     value,
-    disabled,
-    colorScheme,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    displayName,
     labelPosition,
     labelFull,
     label,

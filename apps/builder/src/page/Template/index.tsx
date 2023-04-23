@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, useMessage } from "@illa-design/react"
 import { forkTemplateApp } from "@/api/actions"
-import { BuilderApi } from "@/api/base"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { getTemplateConfig } from "@/config/template"
@@ -26,7 +25,7 @@ import { forkIconStyle, forkTextStyle, frameStyle } from "@/page/Template/style"
 import { Page404 } from "@/page/status/404"
 import { configActions } from "@/redux/config/configSlice"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { fetchResources } from "@/services/resource"
 import { track } from "@/utils/mixpanelHelper"
 
 const Template: FC = () => {
@@ -66,20 +65,13 @@ const Template: FC = () => {
     // initTemplate
     const controller = new AbortController()
     dispatch(configActions.updateIllaMode("preview"))
-    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
-      {
-        url: "/resources",
-        method: "GET",
-        signal: controller.signal,
-      },
-      (response) => {
-        dispatch(resourceActions.updateResourceListReducer(response.data))
-      },
-    )
+    fetchResources(controller.signal).then((response) => {
+      dispatch(resourceActions.updateResourceListReducer(response.data))
+    })
     return () => {
       controller.abort()
     }
-  }, [])
+  }, [dispatch])
 
   if (!example || !templateName) return <Page404 />
 

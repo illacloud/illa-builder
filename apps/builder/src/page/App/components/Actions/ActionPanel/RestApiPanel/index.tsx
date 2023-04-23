@@ -201,7 +201,7 @@ export const RestApiPanel: FC = () => {
               }),
             )
           }}
-          onDelete={(index, record) => {
+          onDelete={(index, _record) => {
             let newList: Params[] = [...content.urlParams]
             newList.splice(index, 1)
             if (newList.length === 0) {
@@ -262,7 +262,7 @@ export const RestApiPanel: FC = () => {
               }),
             )
           }}
-          onDelete={(index, record) => {
+          onDelete={(index) => {
             let newList: Params[] = [...content.headers]
             newList.splice(index, 1)
             if (newList.length === 0) {
@@ -323,7 +323,7 @@ export const RestApiPanel: FC = () => {
               }),
             )
           }}
-          onDelete={(index, record) => {
+          onDelete={(index) => {
             let newList: Params[] = [...content.cookies]
             newList.splice(index, 1)
             if (newList.length === 0) {

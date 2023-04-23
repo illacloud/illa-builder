@@ -104,7 +104,7 @@ export const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = (
           }
         })
       } else {
-        return datasets.map((dataset, index) => {
+        return datasets.map((dataset) => {
           return {
             ...dataset,
             type: chartType,

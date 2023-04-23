@@ -23,6 +23,12 @@ export default defineConfig((props) => {
       mdx(),
       checker({
         typescript: true,
+        eslint: {
+          lintCommand: 'eslint "./src/**/**.{ts,tsx}" --config ".eslintrc.js"',
+          dev: {
+            logLevel: ["error", "warning"],
+          },
+        },
       }),
       basicSsl(),
       visualizer(),

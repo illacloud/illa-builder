@@ -7,7 +7,6 @@ import {
 } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   getIllaMode,
-  getIsILLAPreviewMode,
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
@@ -27,11 +26,6 @@ const getInfoFromUrl = () => {
     appId: match.appId,
     teamIdentifier: match.teamIdentifier,
   }
-}
-
-const getIsPreviewMode = () => {
-  const rootState = store.getState()
-  return getIsILLAPreviewMode(rootState)
 }
 
 const getPreviewInfo = () => {

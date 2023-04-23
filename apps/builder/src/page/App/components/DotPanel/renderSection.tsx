@@ -278,7 +278,7 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
   }, [])
 
   const handleUpdateLayout = useCallback(
-    (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
+    (sectionName: string) => {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "page_arrow",
       })
@@ -551,7 +551,7 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
   }, [])
 
   const handleUpdateLayout = useCallback(
-    (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
+    (sectionName: string) => {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "page_arrow",
       })

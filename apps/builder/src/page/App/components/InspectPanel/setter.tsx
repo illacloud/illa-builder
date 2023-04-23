@@ -25,7 +25,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     expectedType,
     defaultValue,
     icon,
-    displayName,
     canShowLabel = true,
   } = props
   const Comp = getSetterByType(setterType)
@@ -155,7 +154,6 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
       css={applySetterWrapperStyle(
         isSetterSingleRow,
         isInList,
-        isSetterSingleRowWrapper,
         useCustomLayout,
       )}
     >

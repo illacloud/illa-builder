@@ -9,8 +9,8 @@ export const resourcesAsync = (
   action: PayloadAction<any>,
   teamID: string,
   uid: string,
-  prevRootState: RootState,
-  nextRootState: RootState,
+  _prevRootState: RootState,
+  _nextRootState: RootState,
 ) => {
   const { payload } = action
   switch (reduxAction) {

@@ -64,7 +64,7 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
       parameter5: "couchdb",
     })
     const data = getValues()
-    const { resourceName, ...otherParams } = data
+    const { resourceName: _resourceName, ...otherParams } = data
     onActionConfigElementTest(
       data,
       otherParams as CouchdbResource,

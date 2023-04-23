@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from "react"
+import { FC, useCallback } from "react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { BaseEventHandlerProvider } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
@@ -12,10 +12,10 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
   props,
 ) => {
   const {
+    widgetType,
     value,
     childrenSetter,
     handleUpdateDsl,
-    widgetType,
     attrName,
     widgetDisplayName,
     labelName,

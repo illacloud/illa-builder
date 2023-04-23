@@ -6,7 +6,7 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { RateWidgetProps, WrappedRateProps } from "./interface"
 
-export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
+export const WrappedRate: FC<WrappedRateProps> = (props) => {
   const {
     value,
     allowClear,
@@ -40,15 +40,7 @@ WrappedRate.displayName = "WrappedRate"
 
 export const RateWidget: FC<RateWidgetProps> = (props) => {
   const {
-    value,
-    allowClear,
-    disabled,
-    icon,
-    readOnly,
-    allowHalf,
-    maxCount,
     handleUpdateDsl,
-    displayName,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
     labelPosition,

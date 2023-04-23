@@ -1,8 +1,6 @@
 import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { Select } from "@illa-design/react"
-import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseSelectSetter } from "./baseSelect"
@@ -10,13 +8,10 @@ import { BaseSelectSetterProps } from "./interface"
 
 export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   const {
-    isSetterSingleRow,
     attrName,
     parentAttrName,
     handleUpdateDsl,
-    value,
     widgetDisplayName,
-    options,
     widgetOrAction,
   } = props
 

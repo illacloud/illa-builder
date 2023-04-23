@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
@@ -63,14 +63,10 @@ WrappedRadioButton.displayName = "WrappedRadioButton"
 export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
   const {
     value,
-    disabled,
-    direction,
-    colorScheme,
     optionConfigureMode,
     manualOptions,
     mappedOption,
     handleUpdateDsl,
-    displayName,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
     labelPosition,

@@ -619,7 +619,7 @@ export const updateViewportSizeReducer: CaseReducer<
 export const resetComponentsReducer: CaseReducer<
   ComponentsState,
   PayloadAction
-> = (state, action) => {
+> = () => {
   return ComponentsInitialState
 }
 

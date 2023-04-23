@@ -37,12 +37,12 @@ export const Text: FC<TextProps> = (props) => {
           css={applyMarkdownStyle(horizontalAlign)}
           remarkPlugins={[remarkGfm]}
           components={{
-            a: ({ node, ...props }) => (
-              <Link href={props.href} colorScheme={colorScheme} target="_blank">
-                {props.children}
+            a: ({ href, children }) => (
+              <Link href={href} colorScheme={colorScheme} target="_blank">
+                {children}
               </Link>
             ),
-            p: ({ children, ...props }) => (
+            p: ({ children }) => (
               <Paragraph colorScheme={colorScheme} fs={fs}>
                 {children}
               </Paragraph>
@@ -63,7 +63,6 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     value,
     horizontalAlign,
     verticalAlign = "start",
-    displayName,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,

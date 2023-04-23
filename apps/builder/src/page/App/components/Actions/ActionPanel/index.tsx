@@ -1,10 +1,4 @@
-import {
-  HTMLAttributes,
-  forwardRef,
-  useCallback,
-  useMemo,
-  useState,
-} from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import {
   ILLAProperties,
@@ -41,135 +35,130 @@ import { getCachedAction } from "@/redux/config/configSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { AdvancedPanel } from "../AdvancedPanel"
 
-export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
-  (props, ref) => {
-    const cachedAction = useSelector(getCachedAction)
+export const ActionPanel: FC = () => {
+  const cachedAction = useSelector(getCachedAction)
 
-    const [resultVisible, setResultVisible] = useState(false)
-    const [shownResult, setShownResult] = useState<unknown>("")
-    const [activeKey, setActiveKey] = useState("general")
+  const [resultVisible, setResultVisible] = useState(false)
+  const [shownResult, setShownResult] = useState<unknown>("")
+  const [activeKey, setActiveKey] = useState("general")
 
-    const handleClickChangeTab = useCallback(
-      (activeKey: string) => {
-        setActiveKey(activeKey)
-        if (activeKey === "advanced") {
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-            element: "advanced_tab",
-            parameter1: cachedAction?.actionType,
-            parameter2: cachedAction,
-          })
-        }
-        if (activeKey === "general") {
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-            element: "general_tab",
-            parameter1: cachedAction?.actionType,
-          })
-        }
-      },
-      [cachedAction],
-    )
-
-    const panel = useMemo(() => {
-      switch (cachedAction?.actionType) {
-        case "clickhouse":
-        case "supabasedb":
-        case "mysql":
-        case "tidb":
-        case "mariadb":
-        case "postgresql":
-        case "snowflake":
-          return <MysqlLikePanel />
-        case "mssql":
-          return <MicrosoftSqlPanel />
-        case "oracle":
-          return <OracleDBPanel />
-        case "restapi":
-          return <RestApiPanel />
-        case "huggingface":
-          return <HuggingFacePanel />
-        case "hfendpoint":
-          return <HuggingFaceEndpointPanel />
-        case "redis":
-          return <RedisPanel />
-        case "mongodb":
-          return <MongoDbPanel />
-        case "transformer":
-          return <TransformerPanel />
-        case "elasticsearch":
-          return <ElasticSearchPanel />
-        case "dynamodb":
-          return <DynamoDBPanel />
-        case "s3":
-          return <S3Panel />
-        case "smtp":
-          return <SMTPPanel />
-        case "googlesheets":
-          return <GoogleSheetsPanel />
-        case "firebase":
-          return <FirebasePanel />
-        case "graphql":
-          return <GraphQLPanel />
-        case "appwrite":
-          return <AppwritePanel />
-        case "couchdb":
-          return <CouchDBPanel />
-        default:
-          return <></>
-      }
-    }, [cachedAction])
-    const basicTrack = useCallback(() => {
-      return (
-        event: ILLA_MIXPANEL_EVENT_TYPE,
-        pageName: ILLA_PAGE_NAME,
-        properties: Omit<ILLAProperties, "page">,
-        extendProperty?: "userRole" | "team_id" | "both",
-      ) => {
-        trackInEditor(event, {
+  const handleClickChangeTab = useCallback(
+    (activeKey: string) => {
+      setActiveKey(activeKey)
+      if (activeKey === "advanced") {
+        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+          element: "advanced_tab",
           parameter1: cachedAction?.actionType,
           parameter2: cachedAction,
-          ...properties,
         })
       }
-    }, [cachedAction])
-
-    if (cachedAction === null || cachedAction === undefined) {
-      return <></>
-    }
-
-    const handleResultValueChange = (value: unknown) => {
-      setShownResult(value)
-    }
-
+      if (activeKey === "general") {
+        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+          element: "general_tab",
+          parameter1: cachedAction?.actionType,
+        })
+      }
+    },
+    [cachedAction],
+  )
+  const basicTrack = useCallback(() => {
     return (
-      <div css={actionPanelStyle}>
-        <ActionTitleBar
-          onResultVisibleChange={(visible) => {
-            setResultVisible(visible)
-          }}
-          onResultValueChange={handleResultValueChange}
-          openState={resultVisible}
-          activeTab={activeKey}
-          handleChangeTab={handleClickChangeTab}
-        />
-        {activeKey === "general" && <div css={actionContentStyle}>{panel}</div>}
-        {activeKey === "advanced" && (
-          <MixpanelTrackProvider
-            basicTrack={basicTrack}
-            pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER}
-          >
-            <AdvancedPanel />
-          </MixpanelTrackProvider>
-        )}
-        <ActionResult
-          visible={resultVisible}
-          results={shownResult}
-          onClose={() => {
-            setResultVisible(false)
-          }}
-        />
-      </div>
-    )
-  },
-)
+      event: ILLA_MIXPANEL_EVENT_TYPE,
+      pageName: ILLA_PAGE_NAME,
+      properties: Omit<ILLAProperties, "page">,
+    ) => {
+      trackInEditor(event, {
+        parameter1: cachedAction?.actionType,
+        parameter2: cachedAction,
+        ...properties,
+      })
+    }
+  }, [cachedAction])
+  const panel = useMemo(() => {
+    switch (cachedAction?.actionType) {
+      case "clickhouse":
+      case "supabasedb":
+      case "mysql":
+      case "tidb":
+      case "mariadb":
+      case "postgresql":
+      case "snowflake":
+        return <MysqlLikePanel />
+      case "mssql":
+        return <MicrosoftSqlPanel />
+      case "oracle":
+        return <OracleDBPanel />
+      case "restapi":
+        return <RestApiPanel />
+      case "huggingface":
+        return <HuggingFacePanel />
+      case "hfendpoint":
+        return <HuggingFaceEndpointPanel />
+      case "redis":
+        return <RedisPanel />
+      case "mongodb":
+        return <MongoDbPanel />
+      case "transformer":
+        return <TransformerPanel />
+      case "elasticsearch":
+        return <ElasticSearchPanel />
+      case "dynamodb":
+        return <DynamoDBPanel />
+      case "s3":
+        return <S3Panel />
+      case "smtp":
+        return <SMTPPanel />
+      case "googlesheets":
+        return <GoogleSheetsPanel />
+      case "firebase":
+        return <FirebasePanel />
+      case "graphql":
+        return <GraphQLPanel />
+      case "appwrite":
+        return <AppwritePanel />
+      case "couchdb":
+        return <CouchDBPanel />
+      default:
+        return <></>
+    }
+  }, [cachedAction])
+
+  if (cachedAction === null || cachedAction === undefined) {
+    return <></>
+  }
+  const handleResultValueChange = (value: unknown) => {
+    setShownResult(value)
+  }
+
+  return (
+    <div css={actionPanelStyle}>
+      <ActionTitleBar
+        onResultVisibleChange={(visible) => {
+          setResultVisible(visible)
+        }}
+        onResultValueChange={handleResultValueChange}
+        openState={resultVisible}
+        activeTab={activeKey}
+        handleChangeTab={handleClickChangeTab}
+      />
+      {activeKey === "general" && <div css={actionContentStyle}>{panel}</div>}
+      {activeKey === "advanced" && (
+        <MixpanelTrackProvider
+          basicTrack={basicTrack}
+          pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER}
+        >
+          <AdvancedPanel />
+        </MixpanelTrackProvider>
+      )}
+      <ActionResult
+        visible={resultVisible}
+        results={shownResult}
+        onClose={() => {
+          setResultVisible(false)
+        }}
+      />
+    </div>
+  )
+}
 
 ActionPanel.displayName = "ActionPanel"

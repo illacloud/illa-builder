@@ -35,7 +35,6 @@ export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
     showDots,
     autoPlay,
     data,
-    disabled,
     interval,
     draggable,
     radius,
@@ -61,7 +60,7 @@ export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {
       afterChange={onChange}
     >
       {data.map((item, index) => {
-        const { id, label, url, alt, hidden, disabled } = item
+        const { id, url, alt, hidden, disabled } = item
         if (hidden) return null
         return (
           <div

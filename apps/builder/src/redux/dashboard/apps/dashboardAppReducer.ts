@@ -32,7 +32,7 @@ export const removeDashboardAppReducer: CaseReducer<
   DashboardAppsState,
   PayloadAction<string>
 > = (state, action) => {
-  let index = state.list.findIndex((element, index) => {
+  let index = state.list.findIndex((element) => {
     return element.appId == action.payload
   })
   if (index != -1) {
@@ -44,7 +44,7 @@ export const renameDashboardAppReducer: CaseReducer<
   DashboardAppsState,
   PayloadAction<RenameDashboardAppPayload>
 > = (state, action) => {
-  let index = state.list.findIndex((element, index) => {
+  let index = state.list.findIndex((element) => {
     return element.appId == action.payload.appId
   })
   if (index != -1) {
@@ -59,7 +59,7 @@ export const modifyConfigDashboardAppReducer: CaseReducer<
   DashboardAppsState,
   PayloadAction<ModifyConfigDashboardAppPayload>
 > = (state, action) => {
-  let index = state.list.findIndex((element, index) => {
+  let index = state.list.findIndex((element) => {
     return element.appId == action.payload.appId
   })
   if (index != -1) {

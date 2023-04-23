@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from "react"
+import { FC, useCallback } from "react"
 import { Button } from "@illa-design/react"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"

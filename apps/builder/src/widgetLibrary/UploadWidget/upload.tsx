@@ -19,7 +19,7 @@ const getCurrentList = (fileList: UploadItem[]) =>
     if (!file) {
       return
     }
-    const { originFile, ...others } = file
+    const { originFile: _originFile, ...others } = file
     return others
   }) || []
 
@@ -154,15 +154,7 @@ WrappedUpload.displayName = "WrappedUpload"
 
 export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   const {
-    type,
-    buttonText,
-    dropText,
-    fileType,
-    selectionType,
     appendFiles,
-    showFileList,
-    parseValue,
-    displayName,
     customRule,
     tooltipText,
     required,
@@ -219,7 +211,7 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     return currentFilesKeys.indexOf(file.uid || file.name)
   }, [])
 
-  const handleOnRemove = (file: UploadItem, fileList: UploadItem[]) => {
+  const handleOnRemove = (file: UploadItem) => {
     const currentFiles =
       previousValueRef.current.length > 0
         ? [...previousValueRef.current]

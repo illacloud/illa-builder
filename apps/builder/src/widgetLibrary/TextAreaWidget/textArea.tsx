@@ -45,7 +45,7 @@ export const WrappedTextarea = forwardRef<
   const handleClear = () => handleUpdateDsl({ value: "" })
 
   const handleChange = useCallback(
-    (value: string, e: any) => {
+    (value: string) => {
       new Promise((resolve) => {
         const message = getValidateMessage(value)
         handleUpdateMultiExecutionResult([
@@ -112,16 +112,9 @@ WrappedTextarea.displayName = "WrappedTextarea"
 export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   const {
     value,
-    placeholder,
-    disabled,
-    readOnly,
-    showCharacterCount,
-    colorScheme,
-    displayName,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    allowClear,
     minLength,
     maxLength,
     labelPosition,

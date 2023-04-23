@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from "react"
+import { FC, useCallback } from "react"
 import { useMeasure } from "react-use"
 import { IconWidgetProps } from "@/widgetLibrary/IconWidget/interface"
 import { getIconContainerStyle } from "@/widgetLibrary/IconWidget/style"

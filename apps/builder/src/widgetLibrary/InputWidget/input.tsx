@@ -84,7 +84,6 @@ WrappedInput.displayName = "WrappedInput"
 export const InputWidget: FC<InputWidgetProps> = (props) => {
   const {
     value,
-    displayName,
     handleUpdateDsl,
     minLength,
     maxLength,

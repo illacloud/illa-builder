@@ -1,34 +1,32 @@
 import { toPath } from "lodash"
-import { FC, forwardRef, useCallback } from "react"
+import { FC, useCallback } from "react"
 import { Menu, SubMenuProps } from "@illa-design/react"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 
-export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
-  (props, ref) => {
-    const {
-      mode,
-      horizontalAlign,
-      selectedValues,
-      items,
-      onClickSubMenu,
-      onClickMenuItem,
-    } = props
+export const WrappedMenu: FC<WrappedMenuProps> = (props) => {
+  const {
+    mode,
+    horizontalAlign,
+    selectedValues,
+    items,
+    onClickSubMenu,
+    onClickMenuItem,
+  } = props
 
-    return (
-      <Menu
-        w="100%"
-        mode={mode}
-        selectedValues={selectedValues}
-        onClickSubMenu={onClickSubMenu}
-        horizontalAlign={horizontalAlign}
-        onClickMenuItem={onClickMenuItem}
-        items={items}
-      />
-    )
-  },
-)
+  return (
+    <Menu
+      w="100%"
+      mode={mode}
+      selectedValues={selectedValues}
+      onClickSubMenu={onClickSubMenu}
+      horizontalAlign={horizontalAlign}
+      onClickMenuItem={onClickMenuItem}
+      items={items}
+    />
+  )
+}
 
 export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   const {

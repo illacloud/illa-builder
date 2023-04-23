@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { CheckboxGroup, CheckboxOption } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
@@ -63,16 +63,12 @@ WrappedCheckbox.displayName = "WrappedCheckbox"
 export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
   const {
     value,
-    disabled,
-    direction,
-    colorScheme,
     optionConfigureMode,
     manualOptions,
     mappedOption,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    displayName,
     labelPosition,
     labelFull,
     label,

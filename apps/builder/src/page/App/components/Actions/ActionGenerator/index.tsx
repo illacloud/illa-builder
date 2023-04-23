@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Modal, useMessage } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
@@ -19,8 +18,8 @@ import {
   actionItemInitial,
 } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getAllResources } from "@/redux/resource/resourceSelector"
+import { fetchCreateAction } from "@/services/action"
 import {
   getResourceNameFromResourceType,
   getResourceTypeFromActionType,
@@ -41,7 +40,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { t } = useTranslation()
   const message = useMessage()
   const dispatch = useDispatch()
-  const appInfo = useSelector(getAppInfo)
 
   const allResource = useSelector(getAllResources)
   const isGuideMode = useSelector(getIsILLAGuideMode)
@@ -86,7 +84,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   }, [currentStep, currentActionType, allResource])
 
   const handleDirectCreateAction = useCallback(
-    (
+    async (
       resourceId: string,
       successCallback?: () => void,
       loadingCallback?: (loading: boolean) => void,
@@ -120,35 +118,24 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         successCallback?.()
         return
       }
-      BuilderApi.teamRequest(
-        {
-          url: `/apps/${appInfo.appId}/actions`,
-          method: "POST",
-          data,
-        },
-        ({ data }: { data: ActionItem<ActionContent> }) => {
-          message.success({
-            content: t("editor.action.action_list.message.success_created"),
-          })
-          dispatch(actionActions.addActionItemReducer(data))
-          dispatch(configActions.changeSelectedAction(data))
-          successCallback?.()
-        },
-        () => {
-          message.error({
-            content: t("editor.action.action_list.message.failed"),
-          })
-          DisplayNameGenerator.removeDisplayName(displayName)
-        },
-        () => {
-          DisplayNameGenerator.removeDisplayName(displayName)
-        },
-        (loading) => {
-          loadingCallback?.(loading)
-        },
-      )
+      loadingCallback?.(true)
+      try {
+        const { data: responseData } = await fetchCreateAction(data)
+        message.success({
+          content: t("editor.action.action_list.message.success_created"),
+        })
+        dispatch(actionActions.addActionItemReducer(responseData))
+        dispatch(configActions.changeSelectedAction(responseData))
+        successCallback?.()
+      } catch (_e) {
+        message.error({
+          content: t("editor.action.action_list.message.failed"),
+        })
+        DisplayNameGenerator.removeDisplayName(displayName)
+      }
+      loadingCallback?.(false)
     },
-    [appInfo.appId, currentActionType, dispatch, message, t, isGuideMode],
+    [currentActionType, dispatch, message, t, isGuideMode],
   )
 
   const handleBack = useCallback(
@@ -197,7 +184,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         setCurrentActionType(actionType)
       }
     },
-    [onClose],
+    [onClose, track],
   )
 
   const handleCreateResource = useCallback((actionType: ActionType) => {
@@ -205,13 +192,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
     setCurrentStep("createResource")
   }, [])
 
-  const handleCreateAction = useCallback(
-    (actionType: ActionType, resourceId?: string) => {
-      setCurrentStep("select")
-      onClose()
-    },
-    [onClose],
-  )
+  const handleCreateAction = useCallback(() => {
+    setCurrentStep("select")
+    onClose()
+  }, [onClose])
 
   const handleFinishCreateNewResource = useCallback(
     (resourceId: string) => {

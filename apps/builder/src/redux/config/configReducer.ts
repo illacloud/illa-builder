@@ -29,10 +29,7 @@ export const updateIllaMode: CaseReducer<
   state.mode = action.payload
 }
 
-export const resetConfig: CaseReducer<ConfigState, PayloadAction> = (
-  state,
-  action,
-) => {
+export const resetConfig: CaseReducer<ConfigState, PayloadAction> = () => {
   return ConfigInitialState
 }
 
@@ -109,14 +106,12 @@ export const updateShowDot: CaseReducer<ConfigState, PayloadAction<boolean>> = (
 
 export const plusScale: CaseReducer<ConfigState, PayloadAction<void>> = (
   state,
-  action,
 ) => {
   state.scale = state.scale + 10
 }
 
 export const minusScale: CaseReducer<ConfigState, PayloadAction<void>> = (
   state,
-  action,
 ) => {
   state.scale = state.scale - 10
 }
@@ -124,7 +119,7 @@ export const minusScale: CaseReducer<ConfigState, PayloadAction<void>> = (
 export const clearSelectedComponent: CaseReducer<
   ConfigState,
   PayloadAction<void>
-> = (state, action) => {
+> = (state) => {
   state.selectedComponents = []
 }
 

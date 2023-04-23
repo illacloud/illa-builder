@@ -2,7 +2,6 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { SelectOptionObject, SelectValue } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { AppendSpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/AppendSpreadsheetSubPanel"
 import { BulkUpdateSpreadsheetSubPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BulkUpdateSpreadsheetSubPanel"
@@ -35,6 +34,7 @@ import {
 } from "@/redux/currentApp/action/googleSheetsAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { Params } from "@/redux/resource/restapiResource"
+import { fetchResourceMeta } from "@/services/resource"
 
 const SubPanelMap: Record<GoogleSheetsActionType, any> = {
   read: ReadSpreadsheetSubPanel,
@@ -67,11 +67,8 @@ export const GoogleSheetsPanel: FC = () => {
   const selectedContent = selectedAction.content
 
   useEffect(() => {
-    BuilderApi.teamRequest(
-      {
-        url: `/resources/${cachedAction.resourceId}/meta`,
-        method: "GET",
-      },
+    if (cachedAction.resourceId == undefined) return
+    fetchResourceMeta(cachedAction.resourceId).then(
       ({ data }: { data: ResourcesData }) => {
         let tables: { id: string; name: string }[] = []
         if (data.schema) {
@@ -84,9 +81,6 @@ export const GoogleSheetsPanel: FC = () => {
           tables.map((table) => ({ label: table.name, value: table.id })),
         )
       },
-      () => {},
-      () => {},
-      () => {},
     )
   }, [cachedAction.resourceId])
 

@@ -24,7 +24,7 @@ import {
 
 export const ComponentItem: FC<ComponentItemProps> = memo(
   (props: ComponentItemProps) => {
-    const { widgetName, icon, id, type, ...partialDragInfo } = props
+    const { widgetName, icon, id: _id, type, ...partialDragInfo } = props
 
     const isEditMode = useSelector(getIsILLAEditMode)
     const isGuideOpen = useSelector(getGuideStatus)

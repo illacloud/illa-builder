@@ -1,5 +1,4 @@
 import {
-  Callback,
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
@@ -10,8 +9,8 @@ import { dragShadowActions } from "@/redux/currentApp/dragShadow/dragShadowSlice
 import store from "@/store"
 import { MovingMessageBin, Signal } from "./ILLA_PROTO"
 
-const HEARTBEAT_PING_TIMEOUT = 2 * 1000
-const HEARTBEAT_PONG_TIMEOUT = 5 * 1000
+// const HEARTBEAT_PING_TIMEOUT = 2 * 1000
+// const HEARTBEAT_PONG_TIMEOUT = 5 * 1000
 const RECONNECT_TIMEOUT = 5 * 1000
 const REPEAT_LIMIT = 5
 

@@ -1,9 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import {
-  applyBarHandlerStyle,
-  applyBarPointerShapeStyle,
-} from "@/page/App/components/ScaleSquare/style"
+import { applyBarPointerShapeStyle } from "@/page/App/components/ScaleSquare/style"
 
 export const containerStyle = css`
   height: 100%;

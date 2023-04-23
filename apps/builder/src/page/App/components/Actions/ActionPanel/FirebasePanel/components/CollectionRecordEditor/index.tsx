@@ -10,7 +10,6 @@ import {
 import {
   codeMirrorWrapperLabelStyle,
   codeMirrorWrapperValueStyle,
-  selectContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor/style"
 import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
@@ -132,7 +131,7 @@ export const CollectionRecordEditor: FC<CollectionRecordEditorProps> = (
             onAdd={() => {
               onChange([...value, { field: "", value: "", condition: "" }])
             }}
-            onDelete={(index, record) => {
+            onDelete={(index, _record) => {
               let newRecords = [...value]
               newRecords.splice(index, 1)
               if (newRecords.length === 0) {

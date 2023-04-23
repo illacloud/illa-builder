@@ -2,12 +2,10 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, Select } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
-import { CloudApi } from "@/api/cloudApi"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import { fetchChangeLanguage } from "@/services/setting"
 
 const options = [
   {
@@ -47,25 +45,16 @@ export const SettingOthers: FC = () => {
 
   const isButtonDisabled = languageValue === userLanguage
 
-  const handleClickSubmit = useCallback(() => {
-    CloudApi.request<CurrentUser>(
-      {
-        url: "/users/language",
-        method: "PATCH",
-        data: {
-          language: languageValue,
-        },
-      },
-      (response) => {
-        localStorage.setItem("i18nextLng", languageValue)
-        window.location.reload()
-      },
-      (failure) => {},
-      (crash) => {},
-      (loading) => {
-        setIsLoading(loading)
-      },
-    )
+  const handleClickSubmit = useCallback(async () => {
+    setIsLoading(true)
+    try {
+      await fetchChangeLanguage(languageValue)
+      localStorage.setItem("i18nextLng", languageValue)
+      window.location.reload()
+    } catch (e) {
+      console.error(e)
+    }
+    setIsLoading(false)
   }, [languageValue])
 
   return (

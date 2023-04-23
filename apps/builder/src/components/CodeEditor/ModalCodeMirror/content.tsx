@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect, useRef, useState } from "react"
+import { FC } from "react"
 import useMeasure from "react-use-measure"
 import { getColor } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"

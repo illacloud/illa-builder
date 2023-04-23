@@ -270,7 +270,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
   )
 
   const handleOnDeleteKey = useCallback(
-    (index: number, record: Params) => {
+    (index: number, _record: Params) => {
       let newList: Params[] = [
         ...((content.inputs.content as Params[]) ?? [{ key: "", value: "" }]),
       ]

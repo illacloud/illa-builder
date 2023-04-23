@@ -5,7 +5,7 @@ import store, { AppListenerEffectAPI, AppStartListening } from "@/store"
 
 async function handleChangeSelectedActionExecution(
   action: ReturnType<typeof configActions.changeSelectedAction>,
-  listenerApi: AppListenerEffectAPI,
+  _listenerApi: AppListenerEffectAPI,
 ) {
   store.dispatch(configActions.updateCachedAction(action.payload))
 }
