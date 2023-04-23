@@ -45,18 +45,18 @@ export const useInitGuideApp = (mode: IllaMode = "template-edit") => {
       new Promise<CurrentAppResp>(async (resolve) => {
         setErrorState(false)
         setLoadingState(true)
-        fetchResources(controller.signal)
-          .then((response) => {
-            dispatch(resourceActions.updateResourceListReducer(response.data))
-            initGuideApp().then((data) => {
+        fetchResources(controller.signal).then((response) => {
+          dispatch(resourceActions.updateResourceListReducer(response.data))
+          initGuideApp()
+            .then((data) => {
               handleCurrentApp(data)
               resolve(data)
             })
-          })
-          .finally(() => {
-            dispatch(guideActions.updateGuideStatusReducer(true))
-            setLoadingState(false)
-          })
+            .finally(() => {
+              dispatch(guideActions.updateGuideStatusReducer(true))
+              setLoadingState(false)
+            })
+        })
       })
     }
 
