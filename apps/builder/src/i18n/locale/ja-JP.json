@@ -497,7 +497,10 @@
             },
             "advanced": {
               "trigger_this_action_": "ページの読み込み時にこのアクションを実行します",
-              "show_a_loading_page_": "ページの読み込み時にローディングページを表示します"
+              "show_a_loading_page_": "ページの読み込み時にローディングページを表示します",
+              "on_page_loading": "On page loading",
+              "on_app_loading": "On APP loaded",
+              "none": "None"
             }
           },
           "restapi": {
@@ -537,7 +540,7 @@
           },
           "advanced": {
             "advanced": "高度な設定",
-            "page_trigger": "ページトリガー",
+            "page_trigger": "トリガータイミング",
             "loading_page": "ローディングページ",
             "page_load_delay": "ページ読み込み遅延時間 (ms)",
             "run_this_action_peri": "このアクションを定期的に実行します",
