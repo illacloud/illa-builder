@@ -341,6 +341,15 @@ export const getAppLoadedActions = createSelector(
   },
 )
 
+export const getIntervalActions = createSelector(
+  [getActionExecutionResultArray],
+  (actions) => {
+    return actions.filter(
+      (action) => action?.config?.advancedConfig.isPeriodically,
+    )
+  },
+)
+
 export const getCurrentPageWidgetExecutionResultArray = createSelector(
   [
     getCurrentPageDisplayName,

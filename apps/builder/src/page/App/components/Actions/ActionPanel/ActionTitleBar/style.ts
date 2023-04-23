@@ -3,7 +3,6 @@ import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const actionTitleBarStyle = css`
   display: flex;
-  min-width: 700px;
   flex-direction: row;
   align-items: center;
   padding: 0 16px;

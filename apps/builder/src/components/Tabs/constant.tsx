@@ -20,10 +20,10 @@ export const ACTION_LIST_TABS: SimpleTabsItem[] = [
     key: "actionList",
     title: i18n.t("editor.action.action_list.title"),
   },
-  {
-    key: "pageTrigger",
-    title: i18n.t("editor.action.panel.label.advanced.page_trigger"),
-  },
+  // {
+  //   key: "pageTrigger",
+  //   title: i18n.t("editor.action.panel.label.advanced.page_trigger"),
+  // },
 ]
 
 export const COMPONENT_MANAGER_TABS: SimpleTabsItem[] = [
