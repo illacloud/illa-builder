@@ -1140,7 +1140,10 @@
           "new": "새로운 빌드"
         },
         "Change": "Change",
-        "Select": "Select"
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "제목 없음"
+        }
       },
       "setter_default_value": {
         "fill": "충전재",
