@@ -169,7 +169,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "Treat Database name as SID/Service Name",
+            "sid": "データベース名",
             "ssl": "SSL"
           },
           "couchdb": {
