@@ -497,7 +497,10 @@
             },
             "advanced": {
               "trigger_this_action_": "ページの読み込み時にこのアクションを実行します",
-              "show_a_loading_page_": "ページの読み込み時にローディングページを表示します"
+              "show_a_loading_page_": "ページの読み込み時にローディングページを表示します",
+              "on_page_loading": "On page loading",
+              "on_app_loading": "On APP loaded",
+              "none": "None"
             }
           },
           "restapi": {
@@ -537,7 +540,7 @@
           },
           "advanced": {
             "advanced": "高度な設定",
-            "page_trigger": "ページトリガー",
+            "page_trigger": "トリガータイミング",
             "loading_page": "ローディングページ",
             "page_load_delay": "ページ読み込み遅延時間 (ms)",
             "run_this_action_peri": "このアクションを定期的に実行します",
@@ -1121,7 +1124,8 @@
           "loaded": "ロード済み",
           "rowSelect": "行を選択",
           "markerSelected": "マーカーを選択",
-          "markerCreated": "マーカーを作成"
+          "markerCreated": "マーカーを作成",
+          "select": "select"
         },
         "image_list": {
           "title": "イメージ",
@@ -1134,7 +1138,9 @@
         },
         "image_setter": {
           "new": "追加"
-        }
+        },
+        "Change": "Change",
+        "Select": "Select"
       },
       "setter_default_value": {
         "fill": "充填",
@@ -1199,7 +1205,12 @@
         "border": "フレーム",
         "color": "色",
         "icon": "アイコン",
-        "secondary_value": "SECONDARY VALUE"
+        "secondary_value": "SECONDARY VALUE",
+        "resource": "RESOURCE",
+        "eventCalendar": {
+          "calendar": "カレンダー",
+          "event": "イベント"
+        }
       },
       "setter_label": {
         "action": "アクション",
@@ -1461,11 +1472,26 @@
           "end_time": "終了時間"
         },
         "eventCalendar": {
-          "event_value": "Event value",
-          "event_id": "Event id",
-          "title": "Title",
-          "description": "Description",
-          "start": "Start"
+          "event_value": "イベント値",
+          "event_id": "イベントID",
+          "title": "タイトル",
+          "description": "説明",
+          "start": "開始時間",
+          "end": "終了時間",
+          "resource_id": "リソース ID",
+          "resource_title": "リソースのタイトル",
+          "all_day": "終日イベント",
+          "data_source": "データ元",
+          "default_date": "デフォルトの日付",
+          "resource_grid": "リソース グリッド",
+          "default_view": "デフォルトビュー",
+          "show_current_time": "現在の時刻を表示",
+          "background": "バックグラウンド",
+          "calendar_background": "バックグラウンド",
+          "calendar_border": "フレーム",
+          "calendar_text": "テクストヤン",
+          "event_background": "バックグラウンド",
+          "event_text": "テクストヤン"
         }
       },
       "setter_tooltip": {
@@ -1585,6 +1611,27 @@
           "end_time": "コンポーネントの初期化時に入力される終了時刻",
           "start_placeholder": "開始時刻が入力されていない場合に表示される情報。",
           "end_placeholder": "終了時刻が入力されていない場合に表示される情報。"
+        },
+        "eventCalendar": {
+          "event_value": "{{で囲まれたオブジェクトを使用して、イベント値を設定します。 たとえば、{{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "イベントを識別するために使用される一意の ID",
+          "title": "イベントのタイトル",
+          "description": "イベントの説明",
+          "start": "イベント開始時間",
+          "end": "イベント終了時間",
+          "resource_id": "リソースは、人、会議室などです。リソース ID を設定して、イベントに関連付けることができます。",
+          "resource_title": "リソース ビューに表示されるリソース名",
+          "all_day": "終日イベントかどうか",
+          "data_source": "イベントのデータ ソース。 データ ソースは、オブジェクトの配列である必要があります。 すべてのオブジェクトはイベントです。 たとえば、{{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description \"：\"説明\"} ]}}",
+          "default_date": "アプリ起動時のデフォルトの日付",
+          "resource_grid": "リソース グリッドを表示するかどうか",
+          "default_view": "アプリ起動時のデフォルトビュー",
+          "show_current_time": "現在のタイムラインを表示するかどうかを設定します",
+          "calendar_background": "カレンダーの背景を設定する",
+          "calendar_border": "ボーダーの色を設定する",
+          "calendar_text": "テキストの色を設定する",
+          "event_background": "イベントカードの背景を設定する",
+          "event_text": "イベントカードの文字色を設定"
         }
       },
       "setter_option": {
@@ -1615,6 +1662,15 @@
           "large": "大型",
           "medium": "中型",
           "small": "小型"
+        },
+        "eventCalendar": {
+          "sunday": "日曜日",
+          "monday": "月曜日",
+          "tuesday": "火曜日",
+          "wednesday": "水曜日",
+          "thursday": "木曜日",
+          "friday": "金曜日",
+          "saturday": "土曜日"
         }
       },
       "setter_placeholder": {
@@ -2240,8 +2296,9 @@
     },
     "eventCalendar": {
       "name": {
-        "event_calendar": "Event calendar"
-      }
+        "event_calendar": "イベントカレンダー"
+      },
+      "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
     }
   },
   "page": {

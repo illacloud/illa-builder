@@ -112,6 +112,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const [resultType, setResultType] = useState(VALIDATION_TYPES.STRING)
   const [isExpanded, setIsExpanded] = useState(false)
   const popupContainerRef = useRef<HTMLDivElement>(null)
+  const innerCanExpand = canExpand && !readOnly && editable
 
   const stringSnippets = useMemo(() => {
     const realInput = wrappedCodeFunc ? wrappedCodeFunc(value) : value
@@ -249,7 +250,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         onBlur={onBlur}
         onFocus={onFocus}
       />
-      {canExpand && (
+      {innerCanExpand && (
         <div
           css={openWindowIconHotspotStyle}
           className="open-window-icon-hotspot"

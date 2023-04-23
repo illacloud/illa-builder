@@ -26,6 +26,7 @@ import {
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { INIT_ACTION_ADVANCED_CONFIG } from "../AdvancedPanel/constant"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 
@@ -102,6 +103,12 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         resourceId,
         content: initialContent,
         ...actionItemInitial,
+      }
+      if (data.actionType !== "transformer") {
+        data.config = {
+          public: false,
+          advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+        }
       }
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {

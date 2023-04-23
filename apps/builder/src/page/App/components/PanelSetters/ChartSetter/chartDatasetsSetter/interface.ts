@@ -4,7 +4,7 @@ import {
   PanelLabelProps,
 } from "@/page/App/components/InspectPanel/interface"
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
-import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/Chart"
+import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/ChartWidget"
 
 export interface ListItemProps {
   color: string

@@ -5,7 +5,6 @@ import { BuilderApi } from "@/api/base"
 import { initGuideApp } from "@/config/guide"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
 import { updateCurrentAppInfo } from "@/hooks/useInitApp"
-import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { IllaMode } from "@/redux/config/configState"
@@ -16,7 +15,6 @@ import { GuideInitialState } from "@/redux/guide/guideState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { canAutoRunActionWhenInit } from "@/utils/action/canAutoRunAction"
 
 export const useInitGuideApp = (mode: IllaMode = "template-edit") => {
   const { appId = "" } = useParams()
@@ -62,19 +60,10 @@ export const useInitGuideApp = (mode: IllaMode = "template-edit") => {
             })
           },
         )
+      }).finally(() => {
+        dispatch(guideActions.updateGuideStatusReducer(true))
+        setLoadingState(false)
       })
-        .then((value) => {
-          const autoRunAction = value.actions.filter((action) => {
-            return canAutoRunActionWhenInit(action)
-          })
-          autoRunAction.forEach((action) => {
-            runAction(action)
-          })
-        })
-        .finally(() => {
-          dispatch(guideActions.updateGuideStatusReducer(true))
-          setLoadingState(false)
-        })
     }
 
     return () => {

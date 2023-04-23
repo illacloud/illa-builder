@@ -101,8 +101,24 @@ export type ActionType =
 
 export type ActionTriggerMode = "manually" | "automate"
 
+export enum ACTION_RUN_TIME {
+  APP_LOADED = "appLoaded",
+  PAGE_LOADING = "pageLoading",
+  NONE = "none",
+}
+
+export interface IAdvancedConfig {
+  runtime: ACTION_RUN_TIME
+  pages: string[]
+  delayWhenLoaded: string
+  displayLoadingPage: boolean
+  isPeriodically: boolean
+  periodInterval: string
+}
+
 export interface ActionConfig {
   public: boolean
+  advancedConfig?: IAdvancedConfig
 }
 
 export interface ActionItem<T extends ActionContent> {

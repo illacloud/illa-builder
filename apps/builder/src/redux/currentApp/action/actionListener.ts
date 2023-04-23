@@ -6,10 +6,12 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
+  getActionExecutionResult,
   getInDependenciesMap,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import { registerActionPeriod } from "@/utils/action/runAction"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import {
   ActionContent,
@@ -37,6 +39,23 @@ async function handleUpdateActionItem(
     listenerApi.getState().config.selectedAction?.actionId
   ) {
     listenerApi.dispatch(configActions.changeSelectedAction(action.payload))
+  }
+
+  const displayName = action.payload.displayName
+
+  const actionExecutionResult = getActionExecutionResult(listenerApi.getState())
+  const currentAction = actionExecutionResult[displayName]
+  if (
+    currentAction &&
+    currentAction.config.advancedConfig.isPeriodically &&
+    currentAction.config.advancedConfig.periodInterval
+  ) {
+    const mergedAction = {
+      ...currentAction,
+      resourceId: currentAction.$resourceId,
+      actionId: currentAction.$actionId,
+    }
+    registerActionPeriod(mergedAction)
   }
 }
 

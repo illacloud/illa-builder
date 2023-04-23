@@ -152,6 +152,11 @@ export const getActionExecutionResultArray = createSelector(
   },
 )
 
+export const getCurrentPageIndex = createSelector(
+  [getRootNodeExecutionResult],
+  (rootNode) => rootNode.currentPageIndex as number,
+)
+
 export const getCurrentPageDisplayName = createSelector(
   [getRootNodeExecutionResult],
   (rootNode) => {
@@ -313,6 +318,26 @@ export const getAllComponentsWithRealShapeSelector = createSelector(
       childrenNodes = []
     }
     return childrenNodes
+  },
+)
+
+export const getCurrentPageRunPages = createSelector(
+  [getCurrentPageDisplayName, getActionExecutionResultArray],
+  (currentPageDisplayName, actionResult) => {
+    return actionResult.filter(
+      (action) =>
+        action.config?.advancedConfig.runtime === "pageLoading" &&
+        action.config?.advancedConfig.pages.includes(currentPageDisplayName),
+    )
+  },
+)
+
+export const getAppLoadedActions = createSelector(
+  [getActionExecutionResultArray],
+  (actions) => {
+    return actions.filter(
+      (action) => action.config?.advancedConfig.runtime === "appLoaded",
+    )
   },
 )
 

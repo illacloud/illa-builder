@@ -15,6 +15,18 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
   defaults: initChartWidgetDefaultProps,
 }
 
+export const CHART_WIDGET_V2_CONFIG: WidgetConfig = {
+  type: "CHART_WIDGET",
+  displayName: "chart",
+  widgetName: i18n.t("widget.chart.name"),
+  keywords: ["Chart", "图表"],
+  icon: <ChartWidgetIcon />,
+  sessionType: "DATA",
+  w: 20,
+  h: 40,
+  defaults: initChartWidgetDefaultProps,
+}
+
 export function initChartWidgetDefaultProps() {
   return {
     dataSourceJS: `{{[

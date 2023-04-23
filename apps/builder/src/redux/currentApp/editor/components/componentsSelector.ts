@@ -177,6 +177,22 @@ const getAllDescendantNodeDisplayNames = (node: ComponentNode) => {
   return res
 }
 
+export const getCurrentAppPageNames = createSelector(
+  [getCanvas],
+  (rootNode) => {
+    if (!rootNode || !rootNode.props || !rootNode.props.pageSortedKey)
+      return [] as string[]
+    const pageDisplayNames = rootNode.props.pageSortedKey as string[]
+    const passCheckedDisplayNames: string[] = []
+    pageDisplayNames.forEach((pageDisplayName) => {
+      const pageNode = searchDsl(rootNode, pageDisplayName)
+      if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
+      passCheckedDisplayNames.push(pageNode.displayName)
+    })
+    return passCheckedDisplayNames
+  },
+)
+
 export const getPageNameMapDescendantNodeDisplayNames = createSelector(
   [getCanvas],
   (rootNode) => {

@@ -106,7 +106,7 @@ export class ExecutionTreeFactory {
   validateTree(tree: RawTreeShape) {
     return Object.keys(tree).reduce((current: RawTreeShape, displayName) => {
       const widgetOrAction = current[displayName]
-      if (!isWidget(widgetOrAction)) {
+      if (!isWidget(widgetOrAction) && !isAction(widgetOrAction)) {
         return current
       }
       const validationPaths = widgetOrAction.$validationPaths

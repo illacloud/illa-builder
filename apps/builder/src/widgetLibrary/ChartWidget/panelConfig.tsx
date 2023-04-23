@@ -8,7 +8,7 @@ import {
   chartTypeStringCss,
 } from "@/page/App/components/PanelSetters/ChartSetter/style"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/Chart/interface"
+import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/ChartWidget/interface"
 
 const datasetsTypeOption = [
   {

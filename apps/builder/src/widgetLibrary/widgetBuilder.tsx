@@ -32,8 +32,9 @@ import { CASCADER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/CascaderWidget/ev
 import {
   CHART_PANEL_CONFIG,
   CHART_WIDGET_CONFIG,
+  CHART_WIDGET_V2_CONFIG,
   ChartWidget,
-} from "@/widgetLibrary/Chart"
+} from "@/widgetLibrary/ChartWidget"
 import {
   CHECKBOX_GROUP_PANEL_CONFIG,
   CHECKBOX_GROUP_WIDGET_CONFIG,
@@ -365,6 +366,11 @@ export const WidgetConfig: WidgetConfigs = {
     eventHandlerConfig: DATE_TIME_EVENT_HANDLER_CONFIG,
   },
   // data
+  CHART_WIDGET: {
+    widget: ChartWidget,
+    config: CHART_WIDGET_V2_CONFIG,
+    panelConfig: CHART_PANEL_CONFIG,
+  },
   CHART: {
     widget: ChartWidget,
     config: CHART_WIDGET_CONFIG,

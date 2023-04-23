@@ -1,4 +1,11 @@
-import { FC, useLayoutEffect, useMemo, useRef, useState } from "react"
+import {
+  FC,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
@@ -8,11 +15,22 @@ import {
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
+import {
   ModalSectionNode,
   PageNode,
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { getCurrentPageRunPages } from "@/redux/currentApp/executionTree/executionSelector"
+import store from "@/store"
+import {
+  runActionWithDelay,
+  runActionWithExecutionResult,
+} from "@/utils/action/runAction"
+import { PageLoading } from "./PageLoading/pageLoading"
 import { RenderPageProps } from "./interface"
 import {
   LEFT_MIN_WIDTH,
@@ -324,6 +342,33 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     rightWidth,
     topHeight,
   ])
+
+  const currentPageActions = useSelector(getCurrentPageRunPages)
+
+  const isPageLoading = useMemo(() => {
+    return currentPageActions.some((action) => action.isRunning)
+  }, [currentPageActions])
+
+  useEffect(() => {
+    const rootState = store.getState()
+    const currentPageActions = getCurrentPageRunPages(rootState)
+    currentPageActions.forEach((action) => {
+      const mergedAction = {
+        ...action,
+        resourceId: action.$resourceId,
+        actionId: action.$actionId,
+      }
+      if (action.config.advancedConfig.delayWhenLoaded > 0) {
+        runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+      } else {
+        runActionWithExecutionResult(mergedAction as ActionItem<ActionContent>)
+      }
+    })
+  }, [])
+
+  if (isPageLoading) {
+    return <PageLoading />
+  }
 
   const headerSection = showNameMapSectionNode.get("headerSection") as
     | SectionNode

@@ -49,7 +49,7 @@ export const JsonView: FC<JsonViewProps> = (props) => {
             <JsonView
               key={name}
               name={name}
-              value={value[name]}
+              value={value[name] as Record<string, unknown>}
               level={level + 1}
             />
           ))}

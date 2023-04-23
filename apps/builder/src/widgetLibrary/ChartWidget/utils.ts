@@ -1,5 +1,5 @@
 import { get, max, mean, min, sum } from "lodash"
-import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/Chart/interface"
+import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/ChartWidget/interface"
 
 export const formatDataWithSum = (
   originData: Record<string, unknown[]>,

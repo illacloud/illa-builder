@@ -8,7 +8,7 @@ import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadd
 import { ColumnsControlProps } from "@/page/App/components/PagePanel/Modules/Frame/Components/ColumnsControl/interface"
 import { getCurrentPageSectionColumns } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
+import { ILLAEventBus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
@@ -32,32 +32,32 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
   const showColumns = useCallback(() => {
     switch (attrName) {
       case "rightColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_RIGHT_SECTION`,
         )
         break
       }
 
       case "leftColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_LEFT_SECTION`,
         )
         break
       }
       case "bodyColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_BODY_SECTION`,
         )
         break
       }
       case "footerColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_FOOTER_SECTION`,
         )
         break
       }
       case "headerColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_HEADER_SECTION`,
         )
         break
@@ -75,32 +75,32 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
   const hideColumns = useCallback(() => {
     switch (attrName) {
       case "rightColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_RIGHT_SECTION`,
         )
         break
       }
 
       case "leftColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_LEFT_SECTION`,
         )
         break
       }
       case "bodyColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_BODY_SECTION`,
         )
         break
       }
       case "footerColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_FOOTER_SECTION`,
         )
         break
       }
       case "headerColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_HEADER_SECTION`,
         )
         break
@@ -114,32 +114,32 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
   const showColumnsChange = useCallback(() => {
     switch (attrName) {
       case "rightColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_RIGHT_SECTION`,
         )
         break
       }
 
       case "leftColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_LEFT_SECTION`,
         )
         break
       }
       case "bodyColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_BODY_SECTION`,
         )
         break
       }
       case "footerColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_FOOTER_SECTION`,
         )
         break
       }
       case "headerColumns": {
-        ILLAEventbus.emit(
+        ILLAEventBus.emit(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_HEADER_SECTION`,
         )
         break

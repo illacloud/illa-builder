@@ -15,6 +15,8 @@ import {
 } from "@illa-design/react"
 import { BuilderApi } from "@/api/base"
 import { EditableText } from "@/components/EditableText"
+import { SimpleTabs } from "@/components/Tabs"
+import { ACTION_PANEL_TABS } from "@/components/Tabs/constant"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import {
@@ -47,10 +49,11 @@ import {
   actionFailBlockStyle,
   actionSuccessBlockStyle,
   actionTextStyle,
-  actionTitleBarSpaceStyle,
   actionTitleBarStyle,
   applyOpenStateStyle,
   editableTitleBarWrapperStyle,
+  runResultAndRunContainerStyle,
+  tabsContainerStyle,
 } from "./style"
 
 const Item = DropListItem
@@ -108,10 +111,17 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
 }
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const { onResultVisibleChange, openState, onResultValueChange } = props
+  const {
+    onResultVisibleChange,
+    openState,
+    onResultValueChange,
+    activeTab,
+    handleChangeTab,
+  } = props
 
   const message = useMessage()
   const [saveLoading, setSaveLoading] = useState(false)
+
   const selectedAction = useSelector(getSelectedAction)!
   const cachedAction = useSelector(getCachedAction)!
   const selectedActionExecutionResult = useSelector<
@@ -157,6 +167,19 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       return "run"
     }
   }, [isChanged, cachedAction, isGuideOpen])
+
+  const innerTabItems = useMemo(() => {
+    if (selectedAction.actionType === "transformer") {
+      return [ACTION_PANEL_TABS[0]]
+    }
+    return ACTION_PANEL_TABS
+  }, [selectedAction.actionType])
+
+  useEffect(() => {
+    if (selectedAction.actionType === "transformer") {
+      handleChangeTab("general")
+    }
+  }, [handleChangeTab, selectedAction.actionType])
 
   useEffect(() => {
     switch (runMode) {
@@ -347,6 +370,12 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   return (
     <div css={actionTitleBarStyle}>
+      <SimpleTabs
+        items={innerTabItems}
+        activeKey={activeTab}
+        handleClickChangeTab={handleChangeTab}
+        containerStyle={tabsContainerStyle}
+      />
       <div css={editableTitleBarWrapperStyle}>
         <EditableText
           key={selectedAction.displayName}
@@ -406,50 +435,51 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           }}
         />
       </div>
-      <div css={actionTitleBarSpaceStyle} />
-      {renderResult && (runError ? failBlock : successBlock)}
-      <Dropdown
-        position="bottom-end"
-        trigger="click"
-        dropList={
-          <DropList w="184px">
-            <Item
-              value="duplicate"
-              key="duplicate"
-              title={t("editor.action.action_list.contextMenu.duplicate")}
-              onClick={() => {
-                onCopyActionItem(selectedAction)
-              }}
-            />
-            <Item
-              key="delete"
-              value="delete"
-              title={t("editor.action.action_list.contextMenu.delete")}
-              deleted
-              onClick={() => {
-                onDeleteActionItem(selectedAction)
-              }}
-            />
-          </DropList>
-        }
-      >
-        <Button colorScheme="grayBlue" leftIcon={<MoreIcon size="14px" />} />
-      </Dropdown>
-      {renderButton && (
-        <Button
-          pos="relative"
-          className={`${cachedAction.displayName}-run`}
-          ml="8px"
-          colorScheme="techPurple"
-          variant={isChanged ? "fill" : "light"}
-          size="medium"
-          loading={isRunning || saveLoading}
-          leftIcon={<CaretRightIcon />}
-          onClick={handleActionOperation}
+      <div css={runResultAndRunContainerStyle}>
+        {renderResult && (runError ? failBlock : successBlock)}
+        <Dropdown
+          position="bottom-end"
+          trigger="click"
+          dropList={
+            <DropList w="184px">
+              <Item
+                value="duplicate"
+                key="duplicate"
+                title={t("editor.action.action_list.contextMenu.duplicate")}
+                onClick={() => {
+                  onCopyActionItem(selectedAction)
+                }}
+              />
+              <Item
+                key="delete"
+                value="delete"
+                title={t("editor.action.action_list.contextMenu.delete")}
+                deleted
+                onClick={() => {
+                  onDeleteActionItem(selectedAction)
+                }}
+              />
+            </DropList>
+          }
         >
-          {t(`editor.action.panel.btn.${runMode}`)}
-        </Button>
-      )}
+          <Button colorScheme="grayBlue" leftIcon={<MoreIcon size="14px" />} />
+        </Dropdown>
+        {renderButton && (
+          <Button
+            pos="relative"
+            className={`${cachedAction.displayName}-run`}
+            ml="8px"
+            colorScheme="techPurple"
+            variant={isChanged ? "fill" : "light"}
+            size="medium"
+            loading={isRunning || saveLoading}
+            leftIcon={<CaretRightIcon />}
+            onClick={handleActionOperation}
+          >
+            {t(`editor.action.panel.btn.${runMode}`)}
+          </Button>
+        )}
+      </div>
     </div>
   )
 }
