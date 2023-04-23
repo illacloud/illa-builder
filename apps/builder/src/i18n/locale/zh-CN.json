@@ -1631,7 +1631,8 @@
           "calendar_border": "设置边框颜色",
           "calendar_text": "设置文字颜色",
           "event_background": "设置事件卡片的背景",
-          "event_text": "设置事件卡片的文字颜色"
+          "event_text": "设置事件卡片的文字颜色",
+          "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。"
         }
       },
       "setter_option": {
