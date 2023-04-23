@@ -169,7 +169,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "Treat Database name as SID/Service Name",
+            "sid": "データベース名",
             "ssl": "SSL"
           },
           "couchdb": {
@@ -498,9 +498,9 @@
             "advanced": {
               "trigger_this_action_": "ページの読み込み時にこのアクションを実行します",
               "show_a_loading_page_": "ページの読み込み時にローディングページを表示します",
-              "on_page_loading": "On page loading",
-              "on_app_loading": "On APP loaded",
-              "none": "None"
+              "on_page_loading": "ページの読み込み時",
+              "on_app_loading": "APP搭載後",
+              "none": "なし"
             }
           },
           "restapi": {
@@ -1670,7 +1670,11 @@
           "wednesday": "水曜日",
           "thursday": "木曜日",
           "friday": "金曜日",
-          "saturday": "土曜日"
+          "saturday": "土曜日",
+          "month": "月",
+          "week": "週",
+          "day": "日",
+          "agenda": "議題"
         }
       },
       "setter_placeholder": {
