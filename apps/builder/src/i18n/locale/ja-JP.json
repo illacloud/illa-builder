@@ -1671,10 +1671,10 @@
           "thursday": "木曜日",
           "friday": "金曜日",
           "saturday": "土曜日",
-          "month": "Month",
-          "week": "Week",
-          "day": "Day",
-          "agenda": "Agenda"
+          "month": "月",
+          "week": "週",
+          "day": "日",
+          "agenda": "議題"
         }
       },
       "setter_placeholder": {
