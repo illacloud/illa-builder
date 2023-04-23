@@ -1631,7 +1631,8 @@
           "calendar_border": "Set color of the border",
           "calendar_text": "Set color of the text",
           "event_background": "Set the background of event card",
-          "event_text": "Set the text color of event card"
+          "event_text": "Set the text color of event card",
+          "couldnot_drag": "If you wish to drag to adjust the time range, please proceed to the preview page for the operation."
         }
       },
       "setter_option": {
