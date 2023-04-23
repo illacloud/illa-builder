@@ -542,7 +542,7 @@
             "advanced": "高度な設定",
             "page_trigger": "トリガータイミング",
             "loading_page": "ローディングページ",
-            "page_load_delay": "ページ読み込み遅延時間 (ms)",
+            "page_load_delay": "遅延時間 (ms)",
             "run_this_action_peri": "このアクションを定期的に実行します",
             "interval": "インターバル (s)",
             "actions_running_when": "ページの読み込み時に実行される",
