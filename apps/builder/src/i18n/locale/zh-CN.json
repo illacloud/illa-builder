@@ -542,7 +542,7 @@
             "advanced": "高级配置",
             "page_trigger": "触发时机",
             "loading_page": "加载页",
-            "page_load_delay": "页面加载延迟时间 (ms)",
+            "page_load_delay": "延迟时间 (ms)",
             "run_this_action_peri": "定期运行此Action",
             "interval": "间隔时间 (s)",
             "actions_running_when": "页面加载时运行的操作",
