@@ -498,9 +498,9 @@
             "advanced": {
               "trigger_this_action_": "ページの読み込み時にこのアクションを実行します",
               "show_a_loading_page_": "ページの読み込み時にローディングページを表示します",
-              "on_page_loading": "On page loading",
-              "on_app_loading": "On APP loaded",
-              "none": "None"
+              "on_page_loading": "ページの読み込み時",
+              "on_app_loading": "APP搭載後",
+              "none": "なし"
             }
           },
           "restapi": {
