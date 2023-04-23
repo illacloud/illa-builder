@@ -336,11 +336,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                                   message.success({
                                     content: t("dashboard.app.trash_failure"),
                                   })
-                                  return
+                                } else {
+                                  message.error({
+                                    content: t("network_error"),
+                                  })
                                 }
-                                message.error({
-                                  content: t("network_error"),
-                                })
                               },
                             )
                             .finally(() => {

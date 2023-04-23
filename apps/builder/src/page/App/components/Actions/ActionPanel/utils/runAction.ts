@@ -408,9 +408,6 @@ const fetchActionResult = (
       ? failedEvent || []
       : getRealEventHandler(failedEvent)
     runAllEventHandler(realSuccessEvent)
-    message.error({
-      content: "not online",
-    })
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,

@@ -96,8 +96,7 @@ export const getBinaryMessagePayload = (
     widgetW,
     widgetH,
   }
-  const binMessage = MovingMessageBin.toBinary(payloadObject)
-  return binMessage
+  return MovingMessageBin.toBinary(payloadObject)
 }
 
 export class Connection {

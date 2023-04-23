@@ -198,20 +198,6 @@ export const deletePageNodeReducer: CaseReducer<
   )
   if (indexOfSortedKey === -1) return
   parentNode.props.pageSortedKey.splice(indexOfSortedKey, 1)
-  if (
-    indexOfSortedKey !== 0 &&
-    parentNode.props.pageSortedKey[parentNode.props.currentPageIndex] ===
-      displayName
-  ) {
-    parentNode.props.currentPageIndex = 0
-  }
-
-  if (
-    parentNode.props.homepageDisplayName === displayName ||
-    !parentNode.props.homepageDisplayName
-  ) {
-    parentNode.props.homepageDisplayName = parentNode.props.pageSortedKey[0]
-  }
   DisplayNameGenerator.removeDisplayName(displayName)
 }
 

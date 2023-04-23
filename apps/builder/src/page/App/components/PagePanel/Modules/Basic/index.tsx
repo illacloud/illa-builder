@@ -81,13 +81,14 @@ export const PageBasic: FC = () => {
       dispatch(
         componentsActions.updateRootNodePropsReducer({
           homepageDisplayName: currentPageDisplayName,
+          currentPageIndex: currentPageIndex,
         }),
       )
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "homepage_switch",
       })
     }
-  }, [currentPageDisplayName, dispatch, homepageDisplayName])
+  }, [currentPageDisplayName, currentPageIndex, dispatch, homepageDisplayName])
 
   const targetDefaultViewValue = useCallback(
     (showName: string) => {
