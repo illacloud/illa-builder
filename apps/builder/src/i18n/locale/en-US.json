@@ -1140,7 +1140,10 @@
           "new": "New"
         },
         "Change": "Change",
-        "Select": "Select"
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "No title"
+        }
       },
       "setter_default_value": {
         "fill": "Fill",
