@@ -1,7 +1,5 @@
 import { FC, useCallback, useEffect, useState } from "react"
-import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { BuilderApi } from "@/api/base"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { DocumentSubPanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/DocumentSubPanel"
 import { ListDocumentsSubPanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel/ListDocuments"
@@ -27,6 +25,7 @@ import {
   ListDocumentsInitial,
 } from "@/redux/currentApp/action/appwriteAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { fetchResourceMeta } from "@/services/resource"
 
 const AppwriteSubComponentMap = {
   get: DocumentSubPanel,
@@ -37,7 +36,6 @@ const AppwriteSubComponentMap = {
 }
 
 export const AppwritePanel: FC = () => {
-  const { t } = useTranslation()
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     AppwriteAction<AppwriteActionTypes>
   >
@@ -50,20 +48,14 @@ export const AppwritePanel: FC = () => {
   const [collectionIds, setCollectionIds] = useState<string[]>([])
 
   useEffect(() => {
-    BuilderApi.teamRequest(
-      {
-        url: `/resources/${cachedAction.resourceId}/meta`,
-        method: "GET",
-      },
+    if (cachedAction.resourceId == undefined) return
+    fetchResourceMeta(cachedAction.resourceId).then(
       ({ data }: { data: ResourcesData }) => {
         const ids = ((data.schema.collections as []) ?? []).map(
           (item: { id: string }) => item.id,
         )
         setCollectionIds(ids)
       },
-      () => {},
-      () => {},
-      () => {},
     )
   }, [cachedAction.resourceId])
 

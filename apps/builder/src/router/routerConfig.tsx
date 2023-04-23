@@ -30,7 +30,7 @@ const handleRemoveUrlToken = async (args: LoaderFunctionArgs) => {
   const token = url?.searchParams?.get("token")
   const authToken = token ?? getAuthToken()
   if (authToken) {
-    await getUserInfo(authToken)
+    await getUserInfo()
   }
   if (!token) return null
   ILLABuilderStorage.setLocalStorage("token", token, -1)

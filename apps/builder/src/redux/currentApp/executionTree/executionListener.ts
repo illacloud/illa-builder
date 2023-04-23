@@ -267,19 +267,6 @@ function handleUpdateModalEffect(
   )
 }
 
-function handleUpdateExecutedTree(
-  action: ReturnType<
-    typeof executionActions.batchUpdateWidgetLayoutInfoReducer
-  >,
-  listenerApi: AppListenerEffectAPI,
-) {
-  if (executionTree) {
-    const rootState = listenerApi.getState()
-    const executedTree = getExecutionResult(rootState)
-    executionTree.setEvaluatedTree(executedTree)
-  }
-}
-
 function handleUpdateWidgetPositionInExecutionLayoutInfo(
   action: AnyAction,
   listenerApi: AppListenerEffectAPI,

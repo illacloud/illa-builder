@@ -1,32 +1,10 @@
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import {
-  addRequestPendingPool,
-  removeRequestPendingPool,
-} from "@/api/helpers/axiosPendingPool"
+import { AxiosError } from "axios"
 import { ILLARoute } from "@/router"
 import { cloudRedirect } from "@/router/routerConfig"
-import { getAuthToken, removeAuthToken } from "@/utils/auth"
+import { removeAuthToken } from "@/utils/auth"
 import { isCloudVersion } from "@/utils/typeHelper"
 
-export const authInterceptor = (config: AxiosRequestConfig) => {
-  addRequestPendingPool(config)
-  const token = getAuthToken()
-  if (typeof token === "string") {
-    config.headers = {
-      Authorization: token,
-      ...(config.headers ?? {}),
-    }
-  }
-  return config
-}
-
-export const fullFillInterceptor = (response: AxiosResponse) => {
-  const { config } = response
-  removeRequestPendingPool(config)
-  return response
-}
-
-export const axiosErrorInterceptor = (error: AxiosError) => {
+export const errorHandlerInterceptor = (error: AxiosError) => {
   const { response } = error
   if (!response) return Promise.reject(error)
   const { pathname, href } = location

@@ -42,13 +42,6 @@ export const showNotification = (params: {
   })
 }
 
-const runScript = (script: string) => {
-  try {
-    // TODO: @WeiChen wait use parser
-    const result = eval(script)
-  } catch (ignore) {}
-}
-
 // {{goToURL("https://www.baidu.com",true)}}
 export const goToURL = (params: { url: string; newTab?: boolean }) => {
   const { url, newTab } = params
@@ -66,7 +59,6 @@ export const goToURL = (params: { url: string; newTab?: boolean }) => {
 
 const initState = {
   showNotification,
-  runScript,
   goToURL,
 }
 

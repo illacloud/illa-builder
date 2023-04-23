@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs"
-import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { SingleDatePicker } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
@@ -12,76 +12,72 @@ import {
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { DateTimeWidgetProps, WrappedDateTimeProps } from "./interface"
 
-export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
-  (props, ref) => {
-    const {
-      value,
-      format,
-      placeholder,
-      showClear,
-      minDate,
-      disabled,
-      maxDate,
-      minuteStep,
-      colorScheme,
-      handleOnChange,
-      getValidateMessage,
-      handleUpdateMultiExecutionResult,
-      displayName,
-      readOnly,
-    } = props
+export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
+  const {
+    value,
+    format,
+    placeholder,
+    showClear,
+    minDate,
+    disabled,
+    maxDate,
+    minuteStep,
+    colorScheme,
+    handleOnChange,
+    getValidateMessage,
+    handleUpdateMultiExecutionResult,
+    displayName,
+    readOnly,
+  } = props
 
-    const changeValue = (value?: unknown) => {
-      new Promise((resolve) => {
-        const message = getValidateMessage(value)
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              value: value || "",
-              validateMessage: message,
-            },
+  const changeValue = (value?: unknown) => {
+    new Promise((resolve) => {
+      const message = getValidateMessage(value)
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            value: value || "",
+            validateMessage: message,
           },
-        ])
-        resolve(true)
-      }).then(() => {
-        handleOnChange?.()
-      })
-    }
+        },
+      ])
+      resolve(true)
+    }).then(() => {
+      handleOnChange?.()
+    })
+  }
 
-    const checkRange = useCallback(
-      (current?: Dayjs) => {
-        const beforeMinDate = minDate
-          ? !!current?.isBefore(dayjs(minDate))
-          : false
-        const afterMaxDate = maxDate
-          ? !!current?.isAfter(dayjs(maxDate))
-          : false
-        return beforeMinDate || afterMaxDate
-      },
-      [minDate, maxDate],
-    )
+  const checkRange = useCallback(
+    (current?: Dayjs) => {
+      const beforeMinDate = minDate
+        ? !!current?.isBefore(dayjs(minDate))
+        : false
+      const afterMaxDate = maxDate ? !!current?.isAfter(dayjs(maxDate)) : false
+      return beforeMinDate || afterMaxDate
+    },
+    [minDate, maxDate],
+  )
 
-    return (
-      <SingleDatePicker
-        w="100%"
-        showTime={{ step: { minute: minuteStep }, format }}
-        colorScheme={colorScheme}
-        format={format}
-        value={value}
-        disabled={disabled}
-        placeholder={placeholder}
-        allowClear={showClear}
-        disabledDate={checkRange}
-        onClear={() => {
-          changeValue("")
-        }}
-        onChange={changeValue}
-        editable={!readOnly}
-      />
-    )
-  },
-)
+  return (
+    <SingleDatePicker
+      w="100%"
+      showTime={{ step: { minute: minuteStep }, format }}
+      colorScheme={colorScheme}
+      format={format}
+      value={value}
+      disabled={disabled}
+      placeholder={placeholder}
+      allowClear={showClear}
+      disabledDate={checkRange}
+      onClear={() => {
+        changeValue("")
+      }}
+      onChange={changeValue}
+      editable={!readOnly}
+    />
+  )
+}
 
 WrappedDateTime.displayName = "WrappedDateTime"
 

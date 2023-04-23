@@ -1,14 +1,13 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
-import { BuilderApi } from "@/api/base"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getInDependenciesMap,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { fetchUpdateAction } from "@/services/action"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import {
@@ -70,7 +69,6 @@ const handleUpdateAsyncEffect = (
 ) => {
   const rootState = listenerApi.getState()
   const currentSelectedID = rootState.config.selectedAction?.actionId
-  const currentAppID = getAppId(rootState)
   const allChangedActions: ActionItem<ActionContent>[] = []
   if (Array.isArray(action.payload)) {
     const currentActionUpdateSlice: UpdateActionSlicePropsPayload =
@@ -108,11 +106,7 @@ const handleUpdateAsyncEffect = (
   if (allChangedActions.length && !isGuideMode) {
     // TODO: it's vary hack,need BE provide new API
     allChangedActions.forEach((action) => {
-      BuilderApi.teamRequest({
-        method: "PUT",
-        url: `/apps/${currentAppID}/actions/${action.actionId}`,
-        data: action,
-      })
+      fetchUpdateAction(action)
     })
   }
 }

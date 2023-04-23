@@ -10,12 +10,12 @@ export const ILLAMarkdown: FC<ILLAMarkdownProps> = (props) => {
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
-        a: ({ node, ...aProps }) => (
+        a: ({ ...aProps }) => (
           <Link href={aProps.href} colorScheme={urlColor} target="_blank">
             {aProps.children}
           </Link>
         ),
-        p: ({ children, ...pProps }) => (
+        p: ({ children }) => (
           <Text colorScheme={textColor} fs="14px">
             {children}
           </Text>

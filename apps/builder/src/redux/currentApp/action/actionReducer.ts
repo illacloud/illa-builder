@@ -88,6 +88,6 @@ export const removeActionItemReducer: CaseReducer<
 export const resetActionReducer: CaseReducer<
   ActionItem<ActionContent>[],
   PayloadAction
-> = (state, action) => {
+> = () => {
   return actionInitialState
 }

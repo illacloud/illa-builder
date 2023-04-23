@@ -1,9 +1,10 @@
-import { BuilderApi } from "@/api/base"
 import { ILLAWebsocket } from "@/api/ws/illaWS"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
 import { isCloudVersion } from "@/utils/typeHelper"
+import { builderRequest } from "../http"
+import { HTTP_REQUEST_PUBLIC_BASE_URL } from "../http/constant"
 import { MovingMessageBin, Signal, Target } from "./ILLA_PROTO"
 import { ILLABinaryWebsocket } from "./illaBinaryWS"
 import {
@@ -102,76 +103,73 @@ export const getBinaryMessagePayload = (
 export class Connection {
   static roomMap: Map<string, ILLAWebsocket | ILLABinaryWebsocket> = new Map()
 
-  static enterRoom(
-    type: RoomType,
-    roomId: string,
-    loading: (loading: boolean) => void,
-    errorState: (errorState: boolean) => void,
-  ) {
+  static async enterRoom(type: RoomType, roomId: string) {
     let wsContext = ILLA_WEBSOCKET_CONTEXT.DASHBOARD
-    const wsProtocol = location.protocol === "https:" ? "wss://" : "ws://"
-    const wsPREFIX = `${wsProtocol}${location.host}`
+    const protocol = isCloudVersion
+      ? location.protocol
+      : new URL(HTTP_REQUEST_PUBLIC_BASE_URL).protocol
+    const wsProtocol = protocol === "https:" ? "wss://" : "ws://"
+    const wsPREFIX = `${wsProtocol}${
+      isCloudVersion
+        ? location.host
+        : new URL(HTTP_REQUEST_PUBLIC_BASE_URL).host
+    }`
     switch (type) {
       case "dashboard": {
         wsContext = ILLA_WEBSOCKET_CONTEXT.DASHBOARD
-        BuilderApi.teamRequest<Room>(
-          {
-            url: `/room/websocketConnection/dashboard`,
-            method: "GET",
-          },
-          (response) => {
-            let wsURL = response.data.wsURL
-            if (!isCloudVersion) {
-              wsURL = `${wsPREFIX}${wsURL}`
-            }
-            let ws = generateTextMessageWs(wsURL, wsContext)
-            this.roomMap.set(type + roomId, ws)
-          },
-          (error) => {},
-          () => {},
-          loading,
-          errorState,
-        )
+        try {
+          const response = await builderRequest<Room>(
+            {
+              url: `/room/websocketConnection/dashboard`,
+              method: "GET",
+            },
+            {
+              needTeamID: true,
+            },
+          )
+          let wsURL = response.data.wsURL
+          if (!isCloudVersion) {
+            wsURL = `${wsPREFIX}${wsURL}`
+          }
+          let ws = generateTextMessageWs(wsURL, wsContext)
+          this.roomMap.set(type + roomId, ws)
+        } catch (_e) {}
         break
       }
       case "app":
         wsContext = ILLA_WEBSOCKET_CONTEXT.APP
-        BuilderApi.teamRequest<Room>(
-          {
-            url: `/room/websocketConnection/app/${roomId}`,
-            method: "GET",
-          },
-          (response) => {
-            let wsURL = response.data.wsURL
-            if (!isCloudVersion) {
-              wsURL = `${wsPREFIX}${wsURL}`
-            }
-            let ws = generateTextMessageWs(wsURL, wsContext)
-            this.roomMap.set(type + roomId, ws)
-          },
-          (error) => {},
-          () => {},
-          loading,
-          errorState,
-        )
-        BuilderApi.teamRequest<Room>(
-          {
-            url: `/room/binaryWebsocketConnection/app/${roomId}`,
-            method: "GET",
-          },
-          (response) => {
-            let wsURL = response.data.wsURL
-            if (!isCloudVersion) {
-              wsURL = `${wsPREFIX}${wsURL}`
-            }
-            let ws = generateBinaryMessageWs(wsURL)
-            this.roomMap.set(type + roomId + "/binary", ws)
-          },
-          (error) => {},
-          () => {},
-          loading,
-          errorState,
-        )
+
+        try {
+          const textResponse = await builderRequest<Room>(
+            {
+              url: `/room/websocketConnection/app/${roomId}`,
+              method: "GET",
+            },
+            {
+              needTeamID: true,
+            },
+          )
+          const binaryResponse = await builderRequest<Room>(
+            {
+              url: `/room/binaryWebsocketConnection/app/${roomId}`,
+              method: "GET",
+            },
+            {
+              needTeamID: true,
+            },
+          )
+          let wsURL = textResponse.data.wsURL
+          let binaryWSURL = binaryResponse.data.wsURL
+          if (!isCloudVersion) {
+            wsURL = `${wsPREFIX}${wsURL}`
+            binaryWSURL = `${wsPREFIX}${binaryWSURL}`
+          }
+          let ws = generateTextMessageWs(wsURL, wsContext)
+          let bindaryWS = generateBinaryMessageWs(binaryWSURL)
+          this.roomMap.set(type + roomId, ws)
+          this.roomMap.set(type + roomId + "/binary", bindaryWS)
+        } catch (_e) {}
+
         break
     }
   }

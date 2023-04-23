@@ -1,77 +1,75 @@
-import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { Loading } from "@illa-design/react"
 import { MapBox } from "@/widgetLibrary/MapBoxWidget/mapBox"
 import { InvalidMessage } from "../PublicSector/InvalidMessage"
 import { DefaultMarkers, DefaultZoom } from "./content"
-import { MapWidgetProps, MarkersType, WrappedMapProps } from "./interface"
+import { MapWidgetProps, WrappedMapProps } from "./interface"
 import { ApplyLoadingStyle, applyMapContainer, applyValidStyle } from "./style"
 
-export const WrapperMap = forwardRef<HTMLDivElement, WrappedMapProps>(
-  (props, ref) => {
-    const {
-      displayName,
-      center,
-      markers,
-      loading,
-      handleUpdateMultiExecutionResult,
-      handleOnMarkerCreated,
-      handleOnMarkerSelect,
-    } = props
-    const onMarkersChanged = useCallback(
-      (markers: unknown) => {
-        new Promise((resolve) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                markers: markers || DefaultMarkers,
-              },
+export const WrapperMap: FC<WrappedMapProps> = (props) => {
+  const {
+    displayName,
+    center,
+    markers,
+    loading,
+    handleUpdateMultiExecutionResult,
+    handleOnMarkerCreated,
+    handleOnMarkerSelect,
+  } = props
+  const onMarkersChanged = useCallback(
+    (markers: unknown) => {
+      new Promise((resolve) => {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              markers: markers || DefaultMarkers,
             },
-          ])
-          resolve(true)
-        })
-      },
-      [displayName, handleUpdateMultiExecutionResult],
-    )
+          },
+        ])
+        resolve(true)
+      })
+    },
+    [displayName, handleUpdateMultiExecutionResult],
+  )
 
-    const onMarkerSelect = useCallback(
-      (selectMarker: unknown) => {
-        new Promise((resolve) => {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value: {
-                selectMarker: selectMarker || "",
-              },
+  const onMarkerSelect = useCallback(
+    (selectMarker: unknown) => {
+      new Promise((resolve) => {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              selectMarker: selectMarker || "",
             },
-          ])
-          resolve(true)
-        }).then(() => {
-          handleOnMarkerSelect?.()
-        })
-      },
-      [displayName, handleOnMarkerSelect, handleUpdateMultiExecutionResult],
-    )
-    return (
-      <div style={{ width: "100%", height: "100%" }}>
-        {loading ? (
-          <div css={ApplyLoadingStyle}>
-            <Loading colorScheme="techPurple" />
-          </div>
-        ) : (
-          <MapBox
-            {...props}
-            markers={JSON.stringify(markers)}
-            center={JSON.stringify(center)}
-            onMarkerSelected={onMarkerSelect}
-            onMarkerCreated={handleOnMarkerCreated}
-            onMarkersChanged={onMarkersChanged}
-          />
-        )}
-      </div>
-    )
-  },
-)
+          },
+        ])
+        resolve(true)
+      }).then(() => {
+        handleOnMarkerSelect?.()
+      })
+    },
+    [displayName, handleOnMarkerSelect, handleUpdateMultiExecutionResult],
+  )
+  return (
+    <div style={{ width: "100%", height: "100%" }}>
+      {loading ? (
+        <div css={ApplyLoadingStyle}>
+          <Loading colorScheme="techPurple" />
+        </div>
+      ) : (
+        <MapBox
+          {...props}
+          markers={JSON.stringify(markers)}
+          center={JSON.stringify(center)}
+          onMarkerSelected={onMarkerSelect}
+          onMarkerCreated={handleOnMarkerCreated}
+          onMarkersChanged={onMarkersChanged}
+        />
+      )}
+    </div>
+  )
+}
 
 WrapperMap.displayName = "WrapperMap"
 
@@ -84,7 +82,6 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
     zoom = DefaultZoom,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    handleUpdateDsl,
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
     ...rest

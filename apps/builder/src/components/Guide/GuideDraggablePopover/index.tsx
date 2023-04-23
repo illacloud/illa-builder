@@ -1,4 +1,4 @@
-import { motion, useAnimation } from "framer-motion"
+import { motion } from "framer-motion"
 import { FC, useMemo } from "react"
 import { createPortal } from "react-dom"
 import { applyPopoverStyle } from "@/components/Guide/GuideDraggablePopover/style"
@@ -26,7 +26,7 @@ export const GuideDraggablePopover: FC<GuideCurrentMaskProps> = (props) => {
       const element = document.querySelector(selector)
       return element?.getBoundingClientRect()
     }
-  }, [currentStep, selector])
+  }, [selector])
 
   return createPortal(
     <motion.div

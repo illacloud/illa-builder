@@ -22,6 +22,7 @@ export const ListBody: FC<ListBodyProps> = (props) => {
     if (!isEqual(optionItems, items)) {
       setItems(optionItems)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [optionItems])
 
   const updateItem = (values: OptionItemShape[]) => {

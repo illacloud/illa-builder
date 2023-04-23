@@ -58,7 +58,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
   const transformedContainerList = useMemo(() => {
     return (viewList ?? [])
       .map((item) => {
-        const { key, ...others } = item
+        const { key: _key, ...others } = item
         return {
           value: item.key,
           ...others,

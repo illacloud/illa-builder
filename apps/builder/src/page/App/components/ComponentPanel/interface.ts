@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes } from "react"
 import { SessionType } from "@/widgetLibrary/componentListBuilder"
 import { WidgetCardInfo } from "@/widgetLibrary/interface"
 

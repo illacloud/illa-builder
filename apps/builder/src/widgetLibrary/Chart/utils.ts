@@ -92,10 +92,7 @@ export const formatDataWithMedian = (
   return data
 }
 
-export const formatDataWithCount = (
-  originData: Record<string, unknown[]>,
-  datasetValues: string,
-) => {
+export const formatDataWithCount = (originData: Record<string, unknown[]>) => {
   const data: number[] = []
   Object.keys(originData).forEach((x) => {
     const v = originData[x]
@@ -117,7 +114,7 @@ export const formatData = (
       return formatDataWithAverage(formatDataSources, datasetValues)
     }
     case CHART_DATASET_AGGREGATION_METHOD.COUNT: {
-      return formatDataWithCount(formatDataSources, datasetValues)
+      return formatDataWithCount(formatDataSources)
     }
     case CHART_DATASET_AGGREGATION_METHOD.MAX: {
       return formatDataWithMax(formatDataSources, datasetValues)

@@ -15,7 +15,7 @@ export const FreezePlaceholder: FC<FreezePlaceholderProps> = ({
 }) => {
   const componentNodesArray = useMemo(() => {
     let res: ComponentNode[] = []
-    effectMap.forEach((value, key) => {
+    effectMap.forEach((value) => {
       res.push(value)
     })
     return res

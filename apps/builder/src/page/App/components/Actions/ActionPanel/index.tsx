@@ -1,4 +1,4 @@
-import { HTMLAttributes, forwardRef, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
@@ -26,90 +26,88 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
 
-export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
-  (props, ref) => {
-    const cachedAction = useSelector(getCachedAction)
+export const ActionPanel: FC = () => {
+  const cachedAction = useSelector(getCachedAction)
 
-    const [resultVisible, setResultVisible] = useState(false)
-    const [shownResult, setShownResult] = useState<unknown>("")
+  const [resultVisible, setResultVisible] = useState(false)
+  const [shownResult, setShownResult] = useState<unknown>("")
 
-    const panel = useMemo(() => {
-      switch (cachedAction?.actionType) {
-        case "clickhouse":
-        case "supabasedb":
-        case "mysql":
-        case "tidb":
-        case "mariadb":
-        case "postgresql":
-        case "snowflake":
-          return <MysqlLikePanel />
-        case "mssql":
-          return <MicrosoftSqlPanel />
-        case "oracle":
-          return <OracleDBPanel />
-        case "restapi":
-          return <RestApiPanel />
-        case "huggingface":
-          return <HuggingFacePanel />
-        case "hfendpoint":
-          return <HuggingFaceEndpointPanel />
-        case "redis":
-          return <RedisPanel />
-        case "mongodb":
-          return <MongoDbPanel />
-        case "transformer":
-          return <TransformerPanel />
-        case "elasticsearch":
-          return <ElasticSearchPanel />
-        case "dynamodb":
-          return <DynamoDBPanel />
-        case "s3":
-          return <S3Panel />
-        case "smtp":
-          return <SMTPPanel />
-        case "googlesheets":
-          return <GoogleSheetsPanel />
-        case "firebase":
-          return <FirebasePanel />
-        case "graphql":
-          return <GraphQLPanel />
-        case "appwrite":
-          return <AppwritePanel />
-        case "couchdb":
-          return <CouchDBPanel />
-        default:
-          return <></>
-      }
-    }, [cachedAction])
-
-    if (cachedAction === null || cachedAction === undefined) {
-      return <></>
+  const panel = useMemo(() => {
+    switch (cachedAction?.actionType) {
+      case "clickhouse":
+      case "supabasedb":
+      case "mysql":
+      case "tidb":
+      case "mariadb":
+      case "postgresql":
+      case "snowflake":
+        return <MysqlLikePanel />
+      case "mssql":
+        return <MicrosoftSqlPanel />
+      case "oracle":
+        return <OracleDBPanel />
+      case "restapi":
+        return <RestApiPanel />
+      case "huggingface":
+        return <HuggingFacePanel />
+      case "hfendpoint":
+        return <HuggingFaceEndpointPanel />
+      case "redis":
+        return <RedisPanel />
+      case "mongodb":
+        return <MongoDbPanel />
+      case "transformer":
+        return <TransformerPanel />
+      case "elasticsearch":
+        return <ElasticSearchPanel />
+      case "dynamodb":
+        return <DynamoDBPanel />
+      case "s3":
+        return <S3Panel />
+      case "smtp":
+        return <SMTPPanel />
+      case "googlesheets":
+        return <GoogleSheetsPanel />
+      case "firebase":
+        return <FirebasePanel />
+      case "graphql":
+        return <GraphQLPanel />
+      case "appwrite":
+        return <AppwritePanel />
+      case "couchdb":
+        return <CouchDBPanel />
+      default:
+        return <></>
     }
+  }, [cachedAction])
 
-    const handleResultValueChange = (value: unknown) => {
-      setShownResult(value)
-    }
+  if (cachedAction === null || cachedAction === undefined) {
+    return <></>
+  }
 
-    return (
-      <div css={actionPanelStyle}>
-        <ActionTitleBar
-          onResultVisibleChange={(visible) => {
-            setResultVisible(visible)
-          }}
-          onResultValueChange={handleResultValueChange}
-          openState={resultVisible}
-        />
-        <div css={actionContentStyle}>{panel}</div>
-        <ActionResult
-          visible={resultVisible}
-          results={shownResult}
-          onClose={() => {
-            setResultVisible(false)
-          }}
-        />
-      </div>
-    )
-  },
-)
+  const handleResultValueChange = (value: unknown) => {
+    setShownResult(value)
+  }
+
+  return (
+    <div css={actionPanelStyle}>
+      <ActionTitleBar
+        onResultVisibleChange={(visible) => {
+          setResultVisible(visible)
+        }}
+        onResultValueChange={handleResultValueChange}
+        openState={resultVisible}
+      />
+      <div css={actionContentStyle}>{panel}</div>
+      <ActionResult
+        visible={resultVisible}
+        results={shownResult}
+        onClose={() => {
+          setResultVisible(false)
+        }}
+      />
+    </div>
+  )
+}
 
 ActionPanel.displayName = "ActionPanel"

@@ -1,4 +1,4 @@
-import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
+import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { Slider } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"

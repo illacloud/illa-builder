@@ -1,4 +1,4 @@
-import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
 import { Image } from "@illa-design/react"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { ImageWrapperStyle } from "@/widgetLibrary/ImageWidget/style"

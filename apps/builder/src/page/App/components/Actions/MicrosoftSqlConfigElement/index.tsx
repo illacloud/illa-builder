@@ -11,10 +11,7 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
@@ -294,14 +291,14 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
               },
             ]
           }
-          render={({ field: { value, onChange, onBlur } }) => (
+          render={({ field: { value, onChange } }) => (
             <InputRecordEditor
               label={t("editor.action.resource.db.label.connection_options")}
               records={value}
               onAdd={() => {
                 onChange([...value, { key: "", value: "" }])
               }}
-              onDelete={(index, record) => {
+              onDelete={(index) => {
                 let newRecords = [...value]
                 newRecords.splice(index, 1)
                 if (newRecords.length === 0) {

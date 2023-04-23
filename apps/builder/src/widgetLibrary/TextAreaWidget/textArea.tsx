@@ -45,7 +45,7 @@ export const WrappedTextarea = forwardRef<
   const handleClear = () => handleUpdateDsl({ value: "" })
 
   const handleChange = useCallback(
-    (value: string, e: any) => {
+    (value: string) => {
       new Promise((resolve) => {
         const message = getValidateMessage(value)
         handleUpdateMultiExecutionResult([

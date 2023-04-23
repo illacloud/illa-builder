@@ -25,12 +25,7 @@ import {
   QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import {
-  actionItemContainer,
-  esContainerStyle,
-  esItemLabelStyle,
-  esItemStyle,
-} from "./style"
+import { actionItemContainer, esContainerStyle } from "./style"
 
 export const ElasticSearchPanel: FC = () => {
   const { t } = useTranslation()

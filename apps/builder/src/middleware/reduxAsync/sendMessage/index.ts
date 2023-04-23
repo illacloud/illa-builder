@@ -5,8 +5,6 @@ import { actionsAsync } from "./actionMethod"
 import { appInfoAsync } from "./appInfoMethod"
 import { appsAsync } from "./appsMethod"
 import { componentsAsync } from "./componentsMethod"
-import { dottedLineSquareAsync } from "./dottedLineSquareMethod"
-import { dragShadowAsync } from "./dragShadowMethod"
 import { resourcesAsync } from "./resourceMethod"
 
 export const sendMessage = (
@@ -23,31 +21,6 @@ export const sendMessage = (
   switch (reduxType) {
     case "components": {
       componentsAsync(
-        reduxAction,
-        currentAppID,
-        action,
-        teamID,
-        id,
-        prevRootState,
-        nextRootState,
-      )
-      break
-    }
-
-    case "dragShadow": {
-      dragShadowAsync(
-        reduxAction,
-        currentAppID,
-        action,
-        teamID,
-        id,
-        prevRootState,
-        nextRootState,
-      )
-      break
-    }
-    case "dottedLineSquare": {
-      dottedLineSquareAsync(
         reduxAction,
         currentAppID,
         action,

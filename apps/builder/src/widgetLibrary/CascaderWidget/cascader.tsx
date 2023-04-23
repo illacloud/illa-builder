@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { Cascader } from "@illa-design/react"
 import {
   CascaderWidgetProps,

@@ -18,13 +18,6 @@ interface NodeWidthAndHeight {
   h: number
 }
 
-interface NodePosition {
-  x: number
-  y: number
-}
-
-type NodeShape = NodeWidthAndHeight & NodePosition
-
 interface CenterPointPosition {
   x: number
   y: number

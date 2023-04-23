@@ -155,7 +155,7 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
     }
   }
 
-  const onDragEndHandler = (e: SelectoEvents["dragEnd"]) => {
+  const onDragEndHandler = () => {
     if (
       !prevSelectorStatus.current &&
       !isProductionMode &&
@@ -174,17 +174,17 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
   }
 
   useEffect(() => {
-    if (!containerRef.current || !selectoRef.current) return
+    const containerRefValue = containerRef.current
+    if (!containerRefValue || !selectoRef.current) return
 
-    const scrollHandler = (e: Event) => {
+    const scrollHandler = () => {
       if (!prevSelectorStatus.current) return
       selectoRef.current?.checkScroll()
     }
-    containerRef.current.addEventListener("scroll", scrollHandler)
+    containerRefValue.addEventListener("scroll", scrollHandler)
 
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      containerRef.current?.removeEventListener("scroll", scrollHandler)
+      containerRefValue?.removeEventListener("scroll", scrollHandler)
     }
   }, [
     containerClientRect?.x,

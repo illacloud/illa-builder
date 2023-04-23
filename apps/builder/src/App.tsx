@@ -13,7 +13,6 @@ import {
   ModalGroup,
   NotificationGroup,
 } from "@illa-design/react"
-import "@/api/base"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"

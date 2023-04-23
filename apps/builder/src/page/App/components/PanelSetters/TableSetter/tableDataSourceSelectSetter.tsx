@@ -7,7 +7,6 @@ import { TableDataSourceSetterProps } from "@/page/App/components/PanelSetters/T
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
-  getActionExecutionResult,
   getExecutionError,
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
@@ -24,7 +23,6 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
   props,
 ) => {
   const {
-    value,
     widgetDisplayName,
     labelName,
     labelDesc,

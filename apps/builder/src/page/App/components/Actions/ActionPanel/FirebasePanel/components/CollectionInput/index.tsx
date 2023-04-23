@@ -2,7 +2,6 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { CodeEditor } from "@/components/CodeEditor"
 import {
   CODE_LANG,
@@ -18,6 +17,7 @@ import {
 import { getCachedAction } from "@/redux/config/configSelector"
 import { CollectionType } from "@/redux/currentApp/action/firebaseAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const CollectionInput: FC<CollectionInputProps> = (props) => {
@@ -38,11 +38,8 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
   const handleChange = (value: string) => handleValueChange(value, "collection")
 
   useEffect(() => {
-    BuilderApi.teamRequest(
-      {
-        url: `/resources/${action.resourceId}/meta`,
-        method: "GET",
-      },
+    if (action.resourceId == undefined) return
+    fetchResourceMeta(action.resourceId).then(
       ({ data }: { data: ResourcesData }) => {
         let tables: string[] = []
         if (data.schema) {
@@ -50,9 +47,6 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
         }
         setCollectionSelect(tables)
       },
-      () => {},
-      () => {},
-      () => {},
     )
   }, [action.resourceId])
 

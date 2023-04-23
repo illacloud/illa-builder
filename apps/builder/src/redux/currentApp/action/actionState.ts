@@ -46,12 +46,8 @@ export interface Transformer {
 }
 
 export interface ActionRunResult {
-  data: {
-    Rows: Record<string, any>[]
-    Extra?: Record<string, any> | null
-  }
-  headers?: Record<string, any>
-  status?: number
+  Rows: Record<string, any>[]
+  Extra?: Record<string, any> | null
 }
 
 export const TransformerInitial: Transformer = {

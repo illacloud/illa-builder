@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { Rate } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -6,7 +6,7 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { RateWidgetProps, WrappedRateProps } from "./interface"
 
-export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
+export const WrappedRate: FC<WrappedRateProps> = (props) => {
   const {
     value,
     allowClear,
