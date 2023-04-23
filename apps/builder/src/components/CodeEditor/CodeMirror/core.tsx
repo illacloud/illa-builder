@@ -40,7 +40,6 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     lang = CODE_LANG.JAVASCRIPT,
     codeType = CODE_TYPE.EXPRESSION,
     expressions = [],
-    executionResult = {},
     result = "",
     hasError = false,
     resultType = VALIDATION_TYPES.STRING,
@@ -51,6 +50,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     onBlur,
     onFocus,
     tooltipContainer,
+    scopeOfAutoComplete,
   } = props
 
   const [isFocus, setIsFocus] = useState(false)
@@ -65,18 +65,18 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       lang,
       codeType,
       expressions,
-      executionResult,
       canShowCompleteInfo,
       sqlScheme,
+      scopeOfAutoComplete,
     }
   }, [
     canShowCompleteInfo,
     codeType,
-    executionResult,
     expressions,
     lang,
     showLineNumbers,
     sqlScheme,
+    scopeOfAutoComplete,
   ])
 
   const basicExtensions = useBasicSetup(extensionOptions)

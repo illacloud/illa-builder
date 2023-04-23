@@ -28,8 +28,8 @@ export interface ICodeMirrorOptions {
   lang?: CODE_LANG
   codeType?: CODE_TYPE
   expressions?: IExpressionShape[]
-  executionResult?: Record<string, unknown>
   canShowCompleteInfo?: boolean
   sqlScheme?: Record<string, unknown>
   singleLine?: boolean
+  scopeOfAutoComplete?: "global" | "page"
 }

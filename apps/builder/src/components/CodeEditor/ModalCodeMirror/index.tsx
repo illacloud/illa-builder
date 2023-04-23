@@ -16,6 +16,7 @@ export const ModalCodeMirror: FC<ModalCodeMirrorProps> = (props) => {
     onClickSaveButton,
     onClose,
     placeholder,
+    scopeOfAutoComplete,
     wrappedCodeFunc,
     onBlur,
     onFocus,
@@ -39,6 +40,7 @@ export const ModalCodeMirror: FC<ModalCodeMirrorProps> = (props) => {
           wrappedCodeFunc={wrappedCodeFunc}
           onBlur={onBlur}
           onFocus={onFocus}
+          scopeOfAutoComplete={scopeOfAutoComplete}
         />
       }
       footerContent={

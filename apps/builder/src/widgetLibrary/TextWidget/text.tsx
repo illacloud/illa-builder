@@ -65,8 +65,8 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     verticalAlign = "start",
     displayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     updateComponentHeight,
     disableMarkdown,
     tooltipText,
@@ -79,10 +79,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      horizontalAlign,
-      verticalAlign,
+    updateComponentRuntimeProps({
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -92,16 +89,12 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    value,
-    horizontalAlign,
-    verticalAlign,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
   ])
 
   const enableAutoHeight = useMemo(() => {

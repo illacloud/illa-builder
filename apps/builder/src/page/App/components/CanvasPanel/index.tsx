@@ -7,6 +7,7 @@ import {
   getFreezeState,
   getIsILLAEditMode,
 } from "@/redux/config/configSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { CanvasPanelProps } from "./interface"
 import {
@@ -22,6 +23,11 @@ export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
     const { t } = useTranslation()
     const isEditMode = useSelector(getIsILLAEditMode)
     const isFreeze = useSelector(getFreezeState)
+    const executionResult = useSelector(getExecutionResult)
+
+    if (!executionResult || !executionResult.root) {
+      return null
+    }
 
     return (
       <div

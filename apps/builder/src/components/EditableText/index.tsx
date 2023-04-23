@@ -4,7 +4,7 @@ import { Input, PenIcon, useMessage } from "@illa-design/react"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { isValidDisplayName } from "@/utils/typeHelper"
 import { EditableTextProps } from "./interface"
-import { EditableTextWrapperStyle, textStyle } from "./style"
+import { editableTextWrapperStyle, innerTextStyle, textStyle } from "./style"
 
 export const EditableText: FC<EditableTextProps> = (props) => {
   const {
@@ -26,6 +26,7 @@ export const EditableText: FC<EditableTextProps> = (props) => {
   }
 
   const handleClickOnSpan = () => {
+    if (isFocusInput) return
     setIsFocusInput(true)
     onClick?.()
     setTimeout(() => {
@@ -74,7 +75,12 @@ export const EditableText: FC<EditableTextProps> = (props) => {
     updateDisplayNameByBlur,
   ])
   return (
-    <div css={EditableTextWrapperStyle} onMouseEnter={onMouseEnter}>
+    <div
+      css={editableTextWrapperStyle}
+      onMouseEnter={onMouseEnter}
+      className="editable-text-container"
+      onClick={handleClickOnSpan}
+    >
       {isFocusInput ? (
         <Input
           colorScheme="techPurple"
@@ -83,11 +89,14 @@ export const EditableText: FC<EditableTextProps> = (props) => {
           onBlur={handleBlurInput}
           onPressEnter={handleBlurInput}
           inputRef={inputRef}
+          className="input-container"
         />
       ) : (
-        <span css={textStyle} onClick={handleClickOnSpan}>
-          {inputValue}
-          <PenIcon />
+        <span css={textStyle} className="text-container">
+          <span css={innerTextStyle}>
+            {inputValue}
+            <PenIcon />
+          </span>
         </span>
       )}
     </div>

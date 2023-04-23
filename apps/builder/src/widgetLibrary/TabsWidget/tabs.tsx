@@ -62,8 +62,8 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     displayName,
     linkWidgetDisplayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateMultiExecutionResult,
     tooltipText,
     colorScheme,
@@ -72,8 +72,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
+    updateComponentRuntimeProps({
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -83,14 +82,14 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
     displayName,
     value,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
   ])
 
   const list = useMemo(() => {

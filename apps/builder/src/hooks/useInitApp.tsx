@@ -1,10 +1,11 @@
+import { cloneDeep } from "lodash"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { BuilderApi } from "@/api/base"
 import { getTeamsInfo } from "@/api/team"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
-import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { INIT_ACTION_ADVANCED_CONFIG } from "@/page/App/components/Actions/AdvancedPanel/constant"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -18,8 +19,9 @@ import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
-import { canAutoRunActionWhenInit } from "@/utils/action/canAutoRunAction"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { fixedActionToNewAction } from "./utils/fixedAction"
+import { fixedComponentsToNewComponents } from "./utils/fixedComponents"
 
 export const updateCurrentAppInfo = (
   data: CurrentAppResp,
@@ -30,14 +32,16 @@ export const updateCurrentAppInfo = (
 ) => {
   store.dispatch(configActions.updateIllaMode(mode))
   store.dispatch(appInfoActions.updateAppInfoReducer(data.appInfo))
-  store.dispatch(componentsActions.updateComponentReducer(data.components))
-  store.dispatch(actionActions.updateActionListReducer(data.actions))
+  const fixedComponents = fixedComponentsToNewComponents(data.components)
+  store.dispatch(componentsActions.updateComponentReducer(fixedComponents))
+  const fixedActions = fixedActionToNewAction(data.actions)
+  store.dispatch(actionActions.updateActionListReducer(fixedActions))
 
   DisplayNameGenerator.initApp(appId, teamID, uid)
-  DisplayNameGenerator.updateDisplayNameList(data.components, data.actions)
+  DisplayNameGenerator.updateDisplayNameList(data.components, fixedActions)
   store.dispatch(executionActions.startExecutionReducer())
-  if (mode === "edit" && data.actions.length > 0) {
-    store.dispatch(configActions.changeSelectedAction(data.actions[0]))
+  if (mode === "edit" && fixedActions.length > 0) {
+    store.dispatch(configActions.changeSelectedAction(fixedActions[0]))
   }
 }
 
@@ -169,13 +173,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           await initApp(controller, resolve, reject)
         }
         setLoadingState(false)
-      }).then((value) => {
-        const autoRunAction = value.actions.filter((action) => {
-          return canAutoRunActionWhenInit(action)
-        })
-        autoRunAction.forEach((action) => {
-          runAction(action)
-        })
       })
     }
 

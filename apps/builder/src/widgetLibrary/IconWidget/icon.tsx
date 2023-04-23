@@ -6,36 +6,9 @@ import { AllData } from "@/widgetLibrary/IconWidget/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const IconWidget: FC<IconWidgetProps> = (props) => {
-  const {
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    tooltipText,
-    iconName,
-    colorScheme,
-    displayName,
-    triggerEventHandler,
-  } = props
+  const { tooltipText, iconName, colorScheme, triggerEventHandler } = props
 
   const [containerRef, containerBounds] = useMeasure<HTMLDivElement>()
-
-  useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      tooltipText,
-      iconName,
-      colorScheme,
-      displayName,
-    })
-    return () => {
-      handleDeleteGlobalData(displayName)
-    }
-  }, [
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    tooltipText,
-    iconName,
-    colorScheme,
-    displayName,
-  ])
 
   const getIcon = (iconName && AllData[iconName]) || null
 

@@ -3,10 +3,6 @@ import { get } from "lodash"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
-import {
-  goToURL,
-  showNotification,
-} from "@/page/App/context/globalDataProvider"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
 import {
@@ -21,6 +17,10 @@ import { ILLARoute } from "@/router"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import {
+  goToURL,
+  showNotification,
+} from "@/utils/executionTreeHelper/ILLAUtils/"
 import { downloadFileFromEventHandler } from "@/utils/file"
 import { LIMIT_MEMORY, estimateMemoryUsage } from "../calculateMemoryUsage"
 

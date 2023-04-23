@@ -1,5 +1,18 @@
-import { HTMLAttributes, forwardRef, useMemo, useState } from "react"
+import {
+  HTMLAttributes,
+  forwardRef,
+  useCallback,
+  useMemo,
+  useState,
+} from "react"
 import { useSelector } from "react-redux"
+import {
+  ILLAProperties,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
+  ILLA_PAGE_NAME,
+} from "@/illa-public-component/MixpanelUtils/interface"
+import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
 import { AppwritePanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel"
@@ -25,6 +38,8 @@ import {
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
+import { trackInEditor } from "@/utils/mixpanelHelper"
+import { AdvancedPanel } from "../AdvancedPanel"
 
 export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
   (props, ref) => {
@@ -32,6 +47,27 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
 
     const [resultVisible, setResultVisible] = useState(false)
     const [shownResult, setShownResult] = useState<unknown>("")
+    const [activeKey, setActiveKey] = useState("general")
+
+    const handleClickChangeTab = useCallback(
+      (activeKey: string) => {
+        setActiveKey(activeKey)
+        if (activeKey === "advanced") {
+          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+            element: "advanced_tab",
+            parameter1: cachedAction?.actionType,
+            parameter2: cachedAction,
+          })
+        }
+        if (activeKey === "general") {
+          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+            element: "general_tab",
+            parameter1: cachedAction?.actionType,
+          })
+        }
+      },
+      [cachedAction],
+    )
 
     const panel = useMemo(() => {
       switch (cachedAction?.actionType) {
@@ -81,6 +117,20 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           return <></>
       }
     }, [cachedAction])
+    const basicTrack = useCallback(() => {
+      return (
+        event: ILLA_MIXPANEL_EVENT_TYPE,
+        pageName: ILLA_PAGE_NAME,
+        properties: Omit<ILLAProperties, "page">,
+        extendProperty?: "userRole" | "team_id" | "both",
+      ) => {
+        trackInEditor(event, {
+          parameter1: cachedAction?.actionType,
+          parameter2: cachedAction,
+          ...properties,
+        })
+      }
+    }, [cachedAction])
 
     if (cachedAction === null || cachedAction === undefined) {
       return <></>
@@ -98,8 +148,18 @@ export const ActionPanel = forwardRef<HTMLAttributes<HTMLDivElement>>(
           }}
           onResultValueChange={handleResultValueChange}
           openState={resultVisible}
+          activeTab={activeKey}
+          handleChangeTab={handleClickChangeTab}
         />
-        <div css={actionContentStyle}>{panel}</div>
+        {activeKey === "general" && <div css={actionContentStyle}>{panel}</div>}
+        {activeKey === "advanced" && (
+          <MixpanelTrackProvider
+            basicTrack={basicTrack}
+            pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER}
+          >
+            <AdvancedPanel />
+          </MixpanelTrackProvider>
+        )}
         <ActionResult
           visible={resultVisible}
           results={shownResult}

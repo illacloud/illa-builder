@@ -26,8 +26,11 @@ import { formatDataAsObject } from "@/utils/formatData"
 import {
   ChartWidgetProps,
   WrappedChartProps,
-} from "@/widgetLibrary/Chart/interface"
-import { formatData, rotateGroupByData } from "@/widgetLibrary/Chart/utils"
+} from "@/widgetLibrary/ChartWidget/interface"
+import {
+  formatData,
+  rotateGroupByData,
+} from "@/widgetLibrary/ChartWidget/utils"
 
 ChartJS.register(
   /** Bar chart**/
