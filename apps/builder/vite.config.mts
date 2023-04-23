@@ -1,4 +1,5 @@
 import mdx from "@mdx-js/rollup"
+import { sentryVitePlugin } from "@sentry/vite-plugin"
 import basicSsl from "@vitejs/plugin-basic-ssl"
 import react from "@vitejs/plugin-react-swc"
 import { writeFileSync } from "fs"
@@ -10,29 +11,48 @@ import svgr from "vite-plugin-svgr"
 import pkg from "./package.json"
 
 // https://vitejs.dev/config/
-export default defineConfig((props) => {
-  const env = loadEnv(props.mode, process.cwd(), "")
-  const version = pkg.version
-  writeFileSync("./public/appInfo.json", `{"version":${version}}`)
-  return {
-    plugins: [
-      react({
-        jsxImportSource: "@emotion/react",
-      }),
-      svgr(),
-      mdx(),
-      checker({
-        typescript: true,
-        eslint: {
-          lintCommand: 'eslint "./src/**/**.{ts,tsx}" --config ".eslintrc.js"',
-          dev: {
-            logLevel: ["error", "warning"],
-          },
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd(), "")
+  const BASIC_PLUGIN = [
+    react({
+      jsxImportSource: "@emotion/react",
+    }),
+    svgr(),
+    mdx(),
+    checker({
+      typescript: true,
+      eslint: {
+        lintCommand: 'eslint "./src/**/**.{ts,tsx}" --config ".eslintrc.js"',
+        dev: {
+          logLevel: ["error", "warning"],
+        },
+      },
+    }),
+    visualizer(),
+  ]
+
+  const DEVELOPMENT_PLUGIN = [basicSsl()]
+  const plugin = BASIC_PLUGIN
+  if (command === "serve") {
+    plugin.push(...DEVELOPMENT_PLUGIN)
+  } else {
+    plugin.push(
+      sentryVitePlugin({
+        org: "sentry",
+        project: "illa-builder",
+        url: "http://sentry.illasoft.com/",
+        authToken: env.ILLA_SENTRY_AUTH_TOKEN,
+        sourcemaps: {
+          assets: "./dist/assets/**",
         },
       }),
-      basicSsl(),
-      visualizer(),
-    ],
+    )
+  }
+  const version = pkg.version
+  writeFileSync("./public/appInfo.json", `{"version":${version}}`)
+
+  return {
+    plugins: plugin,
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },
     },
