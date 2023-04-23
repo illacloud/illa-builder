@@ -155,11 +155,11 @@ export const SettingPassword: FC = () => {
             content: error.data.errorMessage,
           })
         }
-        return
+      } else {
+        message.error({
+          content: t("network_error"),
+        })
       }
-      message.error({
-        content: t("network_error"),
-      })
     }
     setIsLoading(false)
   }, [currentPassword, newPassword, confirmPassword, message, t])

@@ -98,11 +98,11 @@ export const SettingAccount: FC = () => {
         message.error({
           content: "fail!",
         })
-        return
+      } else {
+        message.error({
+          content: t("network_error"),
+        })
       }
-      message.error({
-        content: t("network_error"),
-      })
     }
 
     setIsLoading(false)

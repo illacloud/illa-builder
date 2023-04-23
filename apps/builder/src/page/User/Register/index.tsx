@@ -88,11 +88,11 @@ const UserRegister: FC = () => {
             break
           default:
         }
-        return
+      } else {
+        message.warning({
+          content: t("network_error"),
+        })
       }
-      message.warning({
-        content: t("network_error"),
-      })
     }
     setSubmitLoading(false)
   }

@@ -24,7 +24,7 @@ import {
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
-import { getCurrentPageRunPages } from "@/redux/currentApp/executionTree/executionSelector"
+import { getPageLoadingActions } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import {
   runActionWithDelay,
@@ -339,28 +339,37 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     topHeight,
   ])
 
-  const currentPageActions = useSelector(getCurrentPageRunPages)
-
-  const isPageLoading = useMemo(() => {
-    return currentPageActions.some((action) => action.isRunning)
-  }, [currentPageActions])
-
+  const [isPageLoading, setIsPageLoading] = useState(false)
   useEffect(() => {
     const rootState = store.getState()
-    const currentPageActions = getCurrentPageRunPages(rootState)
-    currentPageActions.forEach((action) => {
+    const pageLoadingActions = getPageLoadingActions(rootState)
+    const currentPageActions = pageLoadingActions.filter((action) =>
+      action.config?.advancedConfig.pages.includes(currentPageDisplayName),
+    )
+    const canShowPageActions = currentPageActions.filter(
+      (action) => action?.config.advancedConfig.displayLoadingPage,
+    )
+    if (canShowPageActions.length > 0) {
+      setIsPageLoading(true)
+    }
+    const requests = currentPageActions.map((action) => {
       const mergedAction = {
         ...action,
         resourceId: action.$resourceId,
         actionId: action.$actionId,
       }
       if (action.config.advancedConfig.delayWhenLoaded > 0) {
-        runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+        return runActionWithDelay(mergedAction as ActionItem<ActionContent>)
       } else {
-        runActionWithExecutionResult(mergedAction as ActionItem<ActionContent>)
+        return runActionWithExecutionResult(
+          mergedAction as ActionItem<ActionContent>,
+        )
       }
     })
-  }, [])
+    Promise.all(requests).finally(() => {
+      setIsPageLoading(false)
+    })
+  }, [currentPageDisplayName])
 
   if (isPageLoading) {
     return <PageLoading />

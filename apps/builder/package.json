@@ -109,6 +109,7 @@
     "@changesets/changelog-github": "^0.4.2",
     "@changesets/cli": "^2.18.1",
     "@mdx-js/rollup": "^2.3.0",
+    "@sentry/vite-plugin": "^0.7.2",
     "@types/chroma-js": "^2.1.4",
     "@types/codemirror": "^5.60.5",
     "@types/deep-diff": "^1.0.1",

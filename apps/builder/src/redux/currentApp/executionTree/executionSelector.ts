@@ -321,13 +321,11 @@ export const getAllComponentsWithRealShapeSelector = createSelector(
   },
 )
 
-export const getCurrentPageRunPages = createSelector(
-  [getCurrentPageDisplayName, getActionExecutionResultArray],
-  (currentPageDisplayName, actionResult) => {
+export const getPageLoadingActions = createSelector(
+  [getActionExecutionResultArray],
+  (actionResult) => {
     return actionResult.filter(
-      (action) =>
-        action.config?.advancedConfig.runtime === "pageLoading" &&
-        action.config?.advancedConfig.pages.includes(currentPageDisplayName),
+      (action) => action.config?.advancedConfig.runtime === "pageLoading",
     )
   },
 )
@@ -337,6 +335,15 @@ export const getAppLoadedActions = createSelector(
   (actions) => {
     return actions.filter(
       (action) => action.config?.advancedConfig.runtime === "appLoaded",
+    )
+  },
+)
+
+export const getIntervalActions = createSelector(
+  [getActionExecutionResultArray],
+  (actions) => {
+    return actions.filter(
+      (action) => action?.config?.advancedConfig.isPeriodically,
     )
   },
 )
