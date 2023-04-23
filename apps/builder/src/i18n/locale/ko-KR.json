@@ -1671,10 +1671,10 @@
           "thursday": "목요일",
           "friday": "금요일",
           "saturday": "토요일",
-          "month": "Month",
-          "week": "Week",
-          "day": "Day",
-          "agenda": "Agenda"
+          "month": "월",
+          "week": "주",
+          "day": "낮",
+          "agenda": "의제"
         }
       },
       "setter_placeholder": {
