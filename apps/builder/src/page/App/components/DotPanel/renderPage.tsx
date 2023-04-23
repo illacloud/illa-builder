@@ -345,7 +345,11 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   useEffect(() => {
     const rootState = store.getState()
     const currentPageActions = getCurrentPageRunPages(rootState)
-    if (currentPageActions.length > 0) {
+    if (
+      currentPageActions.filter(
+        (action) => action?.config?.advancedConfig?.displayLoadingPage,
+      ).length > 0
+    ) {
       setIsPageLoading(true)
       canChangeLoadingRef.current = false
     }
@@ -370,7 +374,9 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
 
   useEffect(() => {
     if (canChangeLoadingRef.current) {
-      const isLoading = currentPageActions.some((action) => action.isRunning)
+      const isLoading = currentPageActions
+        .filter((action) => action?.config?.advancedConfig?.displayLoadingPage)
+        .some((action) => action.isRunning)
       setIsPageLoading(isLoading)
       canChangeLoadingRef.current = true
     }
