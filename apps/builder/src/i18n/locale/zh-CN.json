@@ -498,9 +498,9 @@
             "advanced": {
               "trigger_this_action_": "页面加载时触发此操作",
               "show_a_loading_page_": "在页面加载时显示加载页面",
-              "on_page_loading": "On page loading",
-              "on_app_loading": "On APP loaded",
-              "none": "None"
+              "on_page_loading": "页面加载时",
+              "on_app_loading": "APP加载后",
+              "none": "无"
             }
           },
           "restapi": {
