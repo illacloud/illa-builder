@@ -1140,7 +1140,10 @@
           "new": "追加"
         },
         "Change": "Change",
-        "Select": "Select"
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "タイトルなし"
+        }
       },
       "setter_default_value": {
         "fill": "充填",
