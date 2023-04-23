@@ -1,7 +1,4 @@
-import {
-  CollectionType,
-  Params,
-} from "@/redux/currentApp/action/firebaseAction"
+import { CollectionType } from "@/redux/currentApp/action/firebaseAction"
 
 export interface CollectionInputProps {
   handleValueChange: (value: string, name: string) => void

@@ -248,7 +248,7 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
         height: wrapperRef.current.offsetHeight,
       })
     }
-  }, [w, h, handleUpdateOriginalDSLMultiAttr])
+  }, [w, h, handleUpdateOriginalDSLMultiAttr, width, height])
 
   return (
     <div css={pdfWrapperStyle} ref={wrapperRef}>

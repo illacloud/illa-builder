@@ -57,32 +57,6 @@ export const panelHeaderIconWrapperStyle = css`
   cursor: pointer;
 `
 
-export function applySetterWrapperStyle(
-  isSetterSingleRow: boolean = false,
-  isInList: boolean = false,
-  isSetterSingleRowWrapper: boolean = false,
-  useCustomLayout: boolean = false,
-): SerializedStyles {
-  if (useCustomLayout) {
-    return css``
-  }
-  if (isSetterSingleRow) {
-    return css`
-      ${publicPaddingStyle}
-    `
-  }
-
-  const basicStyle = css`
-    display: flex;
-    align-items: ${isInList ? "center" : "baseline"};
-    justify-content: space-between;
-  `
-  return css`
-    ${isInList ? "padding: 0 12px;" : "padding: 0 16px;"};
-    ${basicStyle};
-  `
-}
-
 export const unselectedTipWrapperStyle = css`
   width: 100%;
   height: 319px;

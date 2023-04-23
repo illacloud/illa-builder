@@ -15,9 +15,6 @@ export const guideUpdate = (
   action: PayloadAction<any>,
 ) => {
   const { type, payload } = action
-  const typeList = type.split("/")
-  const reduxType = typeList[0]
-  const reduxAction = typeList[1]
   const currentStep = getCurrentStep(rootState)
 
   const handleNext = (goNext: boolean) => {

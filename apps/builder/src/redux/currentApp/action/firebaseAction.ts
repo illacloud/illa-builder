@@ -1,5 +1,3 @@
-import i18n from "@/i18n/config"
-
 export enum ServiceTypeLabel {
   AUTH = "Firebase Auth",
   FIRESTORE = "Firestore",

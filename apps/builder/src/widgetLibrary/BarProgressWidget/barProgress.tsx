@@ -1,4 +1,4 @@
-import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { Progress } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -6,27 +6,25 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { BarProgressWidgetProps, WrappedBarProgressProps } from "./interface"
 
-export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
-  (props, ref) => {
-    const { value, showText, strokeWidth, color, trailColor } = props
+export const WrappedBarProgress: FC<WrappedBarProgressProps> = (props) => {
+  const { value, showText, strokeWidth, color, trailColor } = props
 
-    const _strokeWidth = useMemo(() => {
-      return !isNaN(Number(strokeWidth)) ? strokeWidth + "px" : strokeWidth
-    }, [strokeWidth])
+  const _strokeWidth = useMemo(() => {
+    return !isNaN(Number(strokeWidth)) ? strokeWidth + "px" : strokeWidth
+  }, [strokeWidth])
 
-    return (
-      <Progress
-        type="line"
-        percent={value}
-        showText={showText}
-        color={color}
-        w="100%"
-        trailColor={trailColor}
-        strokeWidth={_strokeWidth}
-      />
-    )
-  },
-)
+  return (
+    <Progress
+      type="line"
+      percent={value}
+      showText={showText}
+      color={color}
+      w="100%"
+      trailColor={trailColor}
+      strokeWidth={_strokeWidth}
+    />
+  )
+}
 
 WrappedBarProgress.displayName = "WrappedBarProgress"
 

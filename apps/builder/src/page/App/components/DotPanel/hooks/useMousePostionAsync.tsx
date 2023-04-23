@@ -99,12 +99,9 @@ export const useMousePositionAsync = (
     }
   }, [mouseLeaveHandler])
 
-  const pageHideHandler = useCallback(
-    (e: Event) => {
-      mouseLeaveHandler()
-    },
-    [mouseLeaveHandler],
-  )
+  const pageHideHandler = useCallback(() => {
+    mouseLeaveHandler()
+  }, [mouseLeaveHandler])
 
   useEffect(() => {
     const wrapperNode = wrapperRef.current

@@ -138,7 +138,7 @@ export const buildIllaContextCompletionSource = (
         boost: 1,
       }
       if (canShowCompleteInfo) {
-        result.info = (complete: Completion) => {
+        result.info = () => {
           let dom = document.createElement("span")
           dom.innerHTML = `<div class="completionInfoCardTitle">
         <span class="cardTitle">${key}</span>

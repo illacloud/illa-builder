@@ -1,11 +1,7 @@
 import { PaginationState } from "@tanstack/react-table"
-import {
-  ColumnSizingState,
-  Table as ReactTable,
-  RowSelectionState,
-} from "@tanstack/table-core"
+import { Table as ReactTable, RowSelectionState } from "@tanstack/table-core"
 import { cloneDeep, debounce } from "lodash"
-import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Table, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
@@ -16,162 +12,151 @@ import {
 } from "./interface"
 import { getCellForType, transTableColumnEvent } from "./utils"
 
-export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
-  (props, ref) => {
-    const {
-      displayName,
-      data,
-      loading,
-      emptyState,
-      columns,
-      columnSizing,
-      filter,
-      download,
-      overFlow,
-      pageSize,
-      rowSelection,
-      selectedRow,
-      defaultSort,
-      columnVisibility,
-      multiRowSelection,
-      handleOnSortingChange,
-      handleOnPaginationChange,
-      handleOnColumnFiltersChange,
-      handleUpdateMultiExecutionResult,
-      handleUpdateOriginalDSLMultiAttr,
-    } = props
+export const WrappedTable: FC<WrappedTableProps> = (props) => {
+  const {
+    displayName,
+    data,
+    loading,
+    emptyState,
+    columns,
+    columnSizing,
+    filter,
+    download,
+    overFlow,
+    pageSize,
+    rowSelection,
+    defaultSort,
+    columnVisibility,
+    multiRowSelection,
+    handleOnSortingChange,
+    handleOnPaginationChange,
+    handleOnColumnFiltersChange,
+    handleUpdateMultiExecutionResult,
+    handleUpdateOriginalDSLMultiAttr,
+  } = props
 
-    const mode = useSelector(getIllaMode)
+  const mode = useSelector(getIllaMode)
 
-    const formatData = useMemo(() => {
-      if (Array.isArray(data)) {
-        return data
-      }
-      return []
-    }, [data])
+  const formatData = useMemo(() => {
+    if (Array.isArray(data)) {
+      return data
+    }
+    return []
+  }, [data])
 
-    const handleUpdateMulti = useCallback(
-      (value: Record<string, any>) => {
-        if (mode === "edit") {
-          handleUpdateOriginalDSLMultiAttr(value)
-        } else {
-          handleUpdateMultiExecutionResult([
-            {
-              displayName,
-              value,
-            },
-          ])
-        }
-      },
-      [
-        mode,
-        handleUpdateMultiExecutionResult,
-        handleUpdateOriginalDSLMultiAttr,
-        displayName,
-      ],
-    )
-
-    const onRowSelectionChange = useCallback(
-      (value?: RowSelectionState) => {
-        let selectedRow: unknown[] = []
-        let selectedRowIndex: unknown[] = []
-        if (isObject(value)) {
-          Object.keys(value)?.map((key) => {
-            const index = Number(key)
-            if (formatData[index]) {
-              selectedRow.push(formatData[index])
-              selectedRowIndex.push(index)
-            }
-          })
-        }
-        const updateValue = {
-          selectedRowIndex,
-          selectedRow,
-          rowSelection: value,
-        }
-        handleUpdateMulti(updateValue)
-      },
-      [formatData, handleUpdateMulti],
-    )
-
-    const onColumnSizingChange = useCallback(
-      debounce((columnSizing: ColumnSizingState) => {
-        handleUpdateMulti({ columnSizing })
-      }, 100),
-      [],
-    )
-
-    const onPaginationChange = useCallback(
-      (paginationState: PaginationState, table: ReactTable<any>) => {
-        const data = table.getSortedRowModel().rows
-        const displayedData = data?.map((item) => {
-          const dataRecord: Record<string, unknown> = {}
-          item.getVisibleCells().forEach((cell) => {
-            dataRecord[cell.column.id] = cell.getValue()
-          })
-          return dataRecord
-        })
-        const displayedDataIndices = data?.map((item, index) => {
-          return item.index
-        })
-        const { pageIndex, pageSize } = paginationState
-        const paginationOffset = pageIndex > 0 ? pageIndex * pageSize : 0
-        const updateValue = {
-          pageIndex,
-          paginationOffset,
-          displayedData,
-          displayedDataIndices,
-        }
-        // only update execution result
+  const handleUpdateMulti = useCallback(
+    (value: Record<string, any>) => {
+      if (mode === "edit") {
+        handleUpdateOriginalDSLMultiAttr(value)
+      } else {
         handleUpdateMultiExecutionResult([
           {
             displayName,
-            value: updateValue,
+            value,
           },
         ])
-        handleOnPaginationChange?.()
-      },
-      [displayName, handleUpdateMultiExecutionResult, handleOnPaginationChange],
-    )
+      }
+    },
+    [
+      mode,
+      handleUpdateMultiExecutionResult,
+      handleUpdateOriginalDSLMultiAttr,
+      displayName,
+    ],
+  )
 
-    return (
-      <Table
-        bordered
-        striped
-        borderedCell
-        pinedHeader
-        w="100%"
-        h="100%"
-        enableColumnResizing={mode === "edit"}
-        colorScheme={"techPurple"}
-        rowSelection={rowSelection}
-        data={formatData}
-        columns={columns}
-        columnSizing={columnSizing}
-        filter={filter}
-        loading={loading}
-        download={download}
-        overFlow={overFlow}
-        pagination={{ pageSize }}
-        emptyProps={{ description: emptyState }}
-        defaultSort={defaultSort}
-        columnVisibility={columnVisibility}
-        multiRowSelection={multiRowSelection}
-        onSortingChange={handleOnSortingChange}
-        onPaginationChange={onPaginationChange}
-        onColumnFiltersChange={handleOnColumnFiltersChange}
-        onColumnSizingChange={debounce((columnSizing) => {
-          handleUpdateMulti({ columnSizing })
-        }, 100)}
-        onRowSelectionChange={onRowSelectionChange}
-      />
-    )
-  },
-)
+  const onRowSelectionChange = useCallback(
+    (value?: RowSelectionState) => {
+      let selectedRow: unknown[] = []
+      let selectedRowIndex: unknown[] = []
+      if (isObject(value)) {
+        Object.keys(value)?.map((key) => {
+          const index = Number(key)
+          if (formatData[index]) {
+            selectedRow.push(formatData[index])
+            selectedRowIndex.push(index)
+          }
+        })
+      }
+      const updateValue = {
+        selectedRowIndex,
+        selectedRow,
+        rowSelection: value,
+      }
+      handleUpdateMulti(updateValue)
+    },
+    [formatData, handleUpdateMulti],
+  )
+
+  const onPaginationChange = useCallback(
+    (paginationState: PaginationState, table: ReactTable<any>) => {
+      const data = table.getSortedRowModel().rows
+      const displayedData = data?.map((item) => {
+        const dataRecord: Record<string, unknown> = {}
+        item.getVisibleCells().forEach((cell) => {
+          dataRecord[cell.column.id] = cell.getValue()
+        })
+        return dataRecord
+      })
+      const displayedDataIndices = data?.map((item) => {
+        return item.index
+      })
+      const { pageIndex, pageSize } = paginationState
+      const paginationOffset = pageIndex > 0 ? pageIndex * pageSize : 0
+      const updateValue = {
+        pageIndex,
+        paginationOffset,
+        displayedData,
+        displayedDataIndices,
+      }
+      // only update execution result
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: updateValue,
+        },
+      ])
+      handleOnPaginationChange?.()
+    },
+    [displayName, handleUpdateMultiExecutionResult, handleOnPaginationChange],
+  )
+
+  return (
+    <Table
+      bordered
+      striped
+      borderedCell
+      pinedHeader
+      w="100%"
+      h="100%"
+      enableColumnResizing={mode === "edit"}
+      colorScheme={"techPurple"}
+      rowSelection={rowSelection}
+      data={formatData}
+      columns={columns}
+      columnSizing={columnSizing}
+      filter={filter}
+      loading={loading}
+      download={download}
+      overFlow={overFlow}
+      pagination={{ pageSize }}
+      emptyProps={{ description: emptyState }}
+      defaultSort={defaultSort}
+      columnVisibility={columnVisibility}
+      multiRowSelection={multiRowSelection}
+      onSortingChange={handleOnSortingChange}
+      onPaginationChange={onPaginationChange}
+      onColumnFiltersChange={handleOnColumnFiltersChange}
+      onColumnSizingChange={debounce((columnSizing) => {
+        handleUpdateMulti({ columnSizing })
+      }, 100)}
+      onRowSelectionChange={onRowSelectionChange}
+    />
+  )
+}
 
 export const TableWidget: FC<TableWidgetProps> = (props) => {
   const {
-    data,
     emptyState,
     selectedRow,
     rowSelection,

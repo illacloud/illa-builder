@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useCallback, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { omit } from "@illa-design/react"
@@ -28,14 +28,14 @@ export const ComponentSpaceTree: FC = () => {
   const selectedComponents = useSelector(getSelectedComponents)
 
   const handleGeneralComponentSelect = useCallback(
-    (selectedKeys: string[], e: MouseEvent<HTMLDivElement>) => {
+    (selectedKeys: string[]) => {
       dispatch(configActions.updateSelectedComponent(selectedKeys))
     },
     [dispatch],
   )
 
   const handleModalComponentSelect = useCallback(
-    (selectedKeys: string[], e: MouseEvent<HTMLDivElement>) => {
+    (selectedKeys: string[]) => {
       dispatch(
         executionActions.updateModalDisplayReducer({
           displayName: selectedKeys[0],

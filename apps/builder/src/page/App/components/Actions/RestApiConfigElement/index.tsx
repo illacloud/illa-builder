@@ -134,7 +134,7 @@ export const RestApiConfigElement: FC<ConfigElementProps> = (props) => {
               onAdd={() => {
                 onChange([...value, { key: "", value: "" }])
               }}
-              onDelete={(index, record) => {
+              onDelete={(index) => {
                 let newRecords = [...value]
                 newRecords.splice(index, 1)
                 if (newRecords.length === 0) {
@@ -166,7 +166,7 @@ export const RestApiConfigElement: FC<ConfigElementProps> = (props) => {
               onAdd={() => {
                 onChange([...value, { key: "", value: "" }])
               }}
-              onDelete={(index, record) => {
+              onDelete={(index) => {
                 let newRecords = [...value]
                 newRecords.splice(index, 1)
                 if (newRecords.length === 0) {
@@ -198,7 +198,7 @@ export const RestApiConfigElement: FC<ConfigElementProps> = (props) => {
               onAdd={() => {
                 onChange([...value, { key: "", value: "" }])
               }}
-              onDelete={(index, record) => {
+              onDelete={(index) => {
                 let newRecords = [...value]
                 newRecords.splice(index, 1)
                 if (newRecords.length === 0) {

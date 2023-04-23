@@ -13,7 +13,6 @@ import {
   WarningCircleIcon,
   useMessage,
 } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { EditableText } from "@/components/EditableText"
 import { SimpleTabs } from "@/components/Tabs"
 import { ACTION_PANEL_TABS } from "@/components/Tabs/constant"
@@ -40,8 +39,8 @@ import {
   QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ActionTitleBarProps } from "./interface"
@@ -68,7 +67,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
     case "elasticsearch":
       let content = cachedAction.content as ElasticSearchAction
       if (!IDEditorType.includes(content.operation)) {
-        const { id = "", ...otherContent } = content
+        const { id: _id = "", ...otherContent } = content
         cachedActionValue = {
           ...cachedAction,
           content: { ...otherContent },
@@ -76,7 +75,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
         content = otherContent
       }
       if (!BodyContentType.includes(content.operation)) {
-        const { body = "", ...otherContent } = content
+        const { body: _body = "", ...otherContent } = content
         cachedActionValue = {
           ...cachedActionValue,
           content: { ...otherContent },
@@ -84,7 +83,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
         content = otherContent
       }
       if (!QueryContentType.includes(content.operation)) {
-        const { query = "", ...otherContent } = content
+        const { query: _query = "", ...otherContent } = content
         cachedActionValue = {
           ...cachedActionValue,
           content: { ...otherContent },
@@ -135,7 +134,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   const isChanged =
     JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
-  const currentApp = useSelector(getAppInfo)
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -229,7 +227,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     [dispatch, runCachedAction],
   )
 
-  const handleActionOperation = useCallback(() => {
+  const handleActionOperation = useCallback(async () => {
     let cachedActionValue: ActionItem<ActionContent> =
       getActionFilteredContent(cachedAction)
 
@@ -257,31 +255,18 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           parameter2: cachedAction,
         })
         setSaveLoading(true)
-        BuilderApi.teamRequest(
-          {
-            method: "PUT",
-            url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
-            data: cachedActionValue,
-          },
-          () => {
-            if (cachedActionValue) {
-              dispatch(actionActions.updateActionItemReducer(cachedActionValue))
-            }
-          },
-          () => {
-            message.error({
-              content: t("create_fail"),
-            })
-          },
-          () => {
-            message.error({
-              content: t("create_fail"),
-            })
-          },
-          (loading) => {
-            setSaveLoading(loading)
-          },
-        )
+        try {
+          await fetchUpdateAction(cachedActionValue)
+          if (cachedActionValue) {
+            dispatch(actionActions.updateActionItemReducer(cachedActionValue))
+          }
+        } catch (e) {
+          message.error({
+            content: t("create_fail"),
+          })
+        }
+        setSaveLoading(false)
+
         break
       case "save_and_run":
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -290,42 +275,26 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           parameter2: cachedAction,
         })
         setSaveLoading(true)
-        BuilderApi.teamRequest(
-          {
-            method: "PUT",
-            url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
-            data: cachedActionValue,
-          },
-          () => {
-            updateAndRunCachedAction(cachedActionValue)
-          },
-          () => {
-            message.error({
-              content: t("editor.action.panel.btn.save_fail"),
-            })
-          },
-          () => {
-            message.error({
-              content: t("editor.action.panel.btn.save_fail"),
-            })
-          },
-          (loading) => {
-            setSaveLoading(loading)
-          },
-        )
+        try {
+          await fetchUpdateAction(cachedActionValue)
+          updateAndRunCachedAction(cachedActionValue)
+        } catch (e) {
+          message.error({
+            content: t("editor.action.panel.btn.save_fail"),
+          })
+        }
+        setSaveLoading(false)
         break
     }
   }, [
-    isGuideOpen,
     cachedAction,
-    runMode,
-    currentApp.appId,
-    selectedAction.actionId,
+    dispatch,
+    isGuideOpen,
     message,
     runCachedAction,
-    updateAndRunCachedAction,
-    dispatch,
+    runMode,
     t,
+    updateAndRunCachedAction,
   ])
 
   const renderButton = useMemo(() => {
@@ -380,7 +349,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         <EditableText
           key={selectedAction.displayName}
           displayName={selectedAction.displayName}
-          updateDisplayNameByBlur={(value) => {
+          updateDisplayNameByBlur={async (value) => {
             const newAction = {
               ...selectedAction,
               displayName: value,
@@ -396,35 +365,21 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               return
             }
             setSaveLoading(true)
-            BuilderApi.teamRequest(
-              {
-                method: "PUT",
-                url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
-                data: newAction,
-              },
-              () => {
-                dispatch(
-                  actionActions.updateActionDisplayNameReducer({
-                    newDisplayName: value,
-                    oldDisplayName: selectedAction.displayName,
-                    actionID: newAction.actionId,
-                  }),
-                )
-              },
-              () => {
-                message.error({
-                  content: t("change_fail"),
-                })
-              },
-              () => {
-                message.error({
-                  content: t("change_fail"),
-                })
-              },
-              (loading) => {
-                setSaveLoading(loading)
-              },
-            )
+            try {
+              await fetchUpdateAction(newAction)
+              dispatch(
+                actionActions.updateActionDisplayNameReducer({
+                  newDisplayName: value,
+                  oldDisplayName: selectedAction.displayName,
+                  actionID: newAction.actionId,
+                }),
+              )
+            } catch (e) {
+              message.error({
+                content: t("change_fail"),
+              })
+            }
+            setSaveLoading(false)
           }}
           onClick={() => {
             trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.RENAME, {

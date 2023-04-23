@@ -17,6 +17,7 @@ export const ListBody: FC = () => {
     if (!isEqual(columnItems, items)) {
       setItems(columnItems)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columnItems])
 
   const updateItem = (values: ColumnItemShape[]) => {
@@ -37,8 +38,7 @@ export const ListBody: FC = () => {
         css={removeNativeStyle}
       >
         {items.map((item, index) => {
-          const { label, value, header, accessorKey, visible, custom, id } =
-            item
+          const { value, header, accessorKey, visible, custom, id } = item
           return (
             <Reorder.Item
               initial={false}

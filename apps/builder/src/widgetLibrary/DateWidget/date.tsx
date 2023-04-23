@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs"
-import { FC, useCallback, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { SingleDatePicker } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"

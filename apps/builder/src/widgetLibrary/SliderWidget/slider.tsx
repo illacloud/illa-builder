@@ -81,7 +81,7 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
 
 WrappedSlider.displayName = "WrappedSlider"
 
-export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
+export const SliderWidget: FC<SliderWidgetProps> = (props) => {
   const {
     value,
     min,

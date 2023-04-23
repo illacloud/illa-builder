@@ -128,7 +128,7 @@ export const updateModalDisplayReducer: CaseReducer<
 export const resetExecutionResultReducer: CaseReducer<
   ExecutionState,
   PayloadAction
-> = (state, action) => {
+> = () => {
   return executionInitialState
 }
 
@@ -232,7 +232,7 @@ export const setInGlobalStateInExecutionReducer: CaseReducer<
 export const clearLocalStorageInExecutionReducer: CaseReducer<
   ExecutionState,
   PayloadAction
-> = (state, action) => {
+> = (state) => {
   state.result.localStorage = {}
 }
 

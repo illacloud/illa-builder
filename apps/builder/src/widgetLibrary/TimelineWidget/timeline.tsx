@@ -1,4 +1,4 @@
-import { FC, forwardRef, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { Timeline, TimelineItem } from "@illa-design/react"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
@@ -7,34 +7,30 @@ import {
   WrappedTimelineProps,
 } from "@/widgetLibrary/TimelineWidget/interface"
 
-export const WrappedTimeline = forwardRef<any, WrappedTimelineProps>(
-  (props, ref) => {
-    const {
-      items = [
-        "The first milestone",
-        "The second milestone",
-        "The third milestone",
-      ],
-      direction,
-      pending,
-    } = props
+export const WrappedTimeline: FC<WrappedTimelineProps> = (props) => {
+  const {
+    items = [
+      "The first milestone",
+      "The second milestone",
+      "The third milestone",
+    ],
+    direction,
+    pending,
+  } = props
 
-    const timelineItems = useMemo(() => {
-      if (Array.isArray(items)) {
-        return items.map((item) => (
-          <TimelineItem key={item}>{item}</TimelineItem>
-        ))
-      }
-      return null
-    }, [items])
+  const timelineItems = useMemo(() => {
+    if (Array.isArray(items)) {
+      return items.map((item) => <TimelineItem key={item}>{item}</TimelineItem>)
+    }
+    return null
+  }, [items])
 
-    return (
-      <Timeline direction={direction} pending={pending} h="100%" w="100%">
-        {timelineItems}
-      </Timeline>
-    )
-  },
-)
+  return (
+    <Timeline direction={direction} pending={pending} h="100%" w="100%">
+      {timelineItems}
+    </Timeline>
+  )
+}
 
 WrappedTimeline.displayName = "WrappedTimeline"
 

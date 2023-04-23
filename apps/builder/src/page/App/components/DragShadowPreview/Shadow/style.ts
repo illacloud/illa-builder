@@ -1,18 +1,12 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const applyDotLintRectangleStyle = (
-  w: number,
-  h: number,
-  canDrop: boolean,
-) => {
-  return css`
-    border: 1px dashed ${getColor("techPurple", "01")};
-    position: absolute;
-    z-index: 6;
-    pointer-events: none;
-  `
-}
+export const dotLintRectangleStyle = css`
+  border: 1px dashed ${getColor("techPurple", "01")};
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+`
 
 export const applyResizingDotLintRectangleStyle = (
   w: number,

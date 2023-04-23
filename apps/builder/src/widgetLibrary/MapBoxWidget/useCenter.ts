@@ -40,7 +40,7 @@ export const useCenter = (
     [defaultCenter],
   )
 
-  const handleUnmount = useCallback((map: google.maps.Map) => {
+  const handleUnmount = useCallback(() => {
     zoomChangedRef.current?.remove()
     centerChangedRef.current?.remove()
   }, [])

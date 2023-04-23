@@ -90,7 +90,6 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
     tooltipText,
     triggerEventHandler,
     controls,
-    url,
   } = props
 
   const videoRef = useRef<ReactPlayer>(null)

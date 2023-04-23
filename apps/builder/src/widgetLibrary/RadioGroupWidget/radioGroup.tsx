@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
@@ -12,7 +12,7 @@ import {
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 import { RadioGroupWidgetProps, WrappedRadioGroupProps } from "./interface"
 
-export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
+export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props) => {
   const {
     value,
     disabled,
@@ -77,7 +77,6 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     labelHidden,
     tooltipText,
     updateComponentHeight,
-    w,
     customRule,
     hideValidationMessage,
     validateMessage,
