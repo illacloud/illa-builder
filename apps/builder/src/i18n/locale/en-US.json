@@ -1670,7 +1670,11 @@
           "wednesday": "Wednesday",
           "thursday": "Thursday",
           "friday": "Friday",
-          "saturday": "Saturday"
+          "saturday": "Saturday",
+          "month": "Month",
+          "week": "Week",
+          "day": "Day",
+          "agenda": "Agenda"
         }
       },
       "setter_placeholder": {
