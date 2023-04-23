@@ -1,18 +1,38 @@
+import dayjs from "dayjs"
 import { merge } from "lodash"
+import _ from "lodash"
+import numbro from "numbro"
+import Papa from "papaparse"
+import { NIL, parse, stringify, v1, v3, v4, v5, validate, version } from "uuid"
 import {
   getExecutionResult,
   getExecutionResultToCurrentPageCodeMirror,
+  getExecutionResultToGlobalCodeMirror,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 
-export type RuntimeProp = Record<string, Function>
-
 class ILLAEditorRuntimePropsCollector {
-  private _runtimeProps: Record<string, RuntimeProp> = {}
+  private _runtimeProps: Record<string, unknown> = {}
   private static instance: ILLAEditorRuntimePropsCollector | null = null
 
   constructor() {
-    this._runtimeProps = {}
+    this._runtimeProps = {
+      _,
+      uuid: {
+        NIL,
+        parse,
+        stringify,
+        v1,
+        v3,
+        v4,
+        v5,
+        validate,
+        version,
+      },
+      dayjs,
+      numbro,
+      Papa,
+    }
   }
 
   public static getInstance(): ILLAEditorRuntimePropsCollector {
@@ -23,7 +43,7 @@ class ILLAEditorRuntimePropsCollector {
     return ILLAEditorRuntimePropsCollector.instance
   }
 
-  public addRuntimeProp(displayName: string, runtimeProp: RuntimeProp) {
+  public addRuntimeProp(displayName: string, runtimeProp: unknown) {
     this._runtimeProps[displayName] = runtimeProp
   }
 
@@ -45,6 +65,12 @@ class ILLAEditorRuntimePropsCollector {
   public getCurrentPageCalcContext(otherContext?: Record<string, unknown>) {
     const rootState = store.getState()
     const executionResult = getExecutionResultToCurrentPageCodeMirror(rootState)
+    return merge({}, this._runtimeProps, executionResult, otherContext)
+  }
+
+  public getGlobalCalcContextWithLimit(otherContext?: Record<string, unknown>) {
+    const rootState = store.getState()
+    const executionResult = getExecutionResultToGlobalCodeMirror(rootState)
     return merge({}, this._runtimeProps, executionResult, otherContext)
   }
 }

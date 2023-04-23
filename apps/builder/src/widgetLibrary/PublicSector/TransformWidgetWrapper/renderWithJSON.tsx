@@ -5,10 +5,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
-import {
-  ILLAEditorRuntimePropsCollectorInstance,
-  RuntimeProp,
-} from "@/utils/executionTreeHelper/runtimePropsCollector"
+import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
@@ -40,7 +37,7 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
     const dispatch = useDispatch()
 
     const updateComponentRuntimeProps = useCallback(
-      (runtimeProp: RuntimeProp) => {
+      (runtimeProp: unknown) => {
         ILLAEditorRuntimePropsCollectorInstance.addRuntimeProp(
           displayName,
           runtimeProp,
