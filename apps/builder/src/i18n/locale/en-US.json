@@ -497,7 +497,10 @@
             },
             "advanced": {
               "trigger_this_action_": "Trigger this action when page loads",
-              "show_a_loading_page_": "Show a loading page on page load"
+              "show_a_loading_page_": "Show a loading page on page load",
+              "on_page_loading": "On page loading",
+              "on_app_loading": "On APP loaded",
+              "none": "None"
             }
           },
           "restapi": {
@@ -537,7 +540,7 @@
           },
           "advanced": {
             "advanced": "Advanced",
-            "page_trigger": "Page trigger",
+            "page_trigger": "Trigger timing",
             "loading_page": "Loading page",
             "page_load_delay": "Page load delay (ms)",
             "run_this_action_peri": "Run this action periodically",
