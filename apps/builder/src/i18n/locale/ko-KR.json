@@ -498,9 +498,9 @@
             "advanced": {
               "trigger_this_action_": "페이지 로딩시 이 작업을 트리거합니다",
               "show_a_loading_page_": "페이지 로딩시 로딩 페이지를 보여줍니다",
-              "on_page_loading": "On page loading",
-              "on_app_loading": "On APP loaded",
-              "none": "None"
+              "on_page_loading": "페이지 로딩 중",
+              "on_app_loading": "앱에 로드됨",
+              "none": "없음"
             }
           },
           "restapi": {
