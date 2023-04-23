@@ -14,7 +14,7 @@ ARG GOOGLE_MAP_KEY=key
 ENV ILLA_GOOGLE_MAP_KEY ${GOOGLE_MAP_KEY}
 ARG MIXPANEL_API_KEY=0
 ENV ILLA_MIXPANEL_API_KEY ${MIXPANEL_API_KEY}
-RUN npm install -g pnpm
+RUN npm install -g pnpm@8.3.1
 RUN whereis pnpm
 RUN whereis node
 
