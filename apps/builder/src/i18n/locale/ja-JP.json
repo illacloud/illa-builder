@@ -1631,7 +1631,8 @@
           "calendar_border": "ボーダーの色を設定する",
           "calendar_text": "テキストの色を設定する",
           "event_background": "イベントカードの背景を設定する",
-          "event_text": "イベントカードの文字色を設定"
+          "event_text": "イベントカードの文字色を設定",
+          "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。"
         }
       },
       "setter_option": {
