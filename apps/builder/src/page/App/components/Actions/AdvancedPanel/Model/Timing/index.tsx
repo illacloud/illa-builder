@@ -147,6 +147,18 @@ export const TimingSetting: FC = () => {
         />
       </AdvancedPanelControl>
       <AdvancedPanelControl
+        title={t("editor.action.panel.label.advanced.page_load_delay")}
+        disabled={runtime === "none"}
+      >
+        <CodeEditor
+          value={delayWhenLoaded}
+          onChange={handleUpdateAdvancedConfig("delayWhenLoaded")}
+          expectValueType={VALIDATION_TYPES.NUMBER}
+          onFocus={handleCodeMirrorFocus("delayWhenLoaded")}
+          onBlur={handleCodeMirrorBlur("delayWhenLoaded")}
+        />
+      </AdvancedPanelControl>
+      <AdvancedPanelControl
         title={t("editor.action.panel.label.advanced.pages")}
         disabled={runtime !== "pageLoading"}
       >
@@ -161,18 +173,6 @@ export const TimingSetting: FC = () => {
           )}
           onVisibleChange={handleSelectPopupVisibleChange}
           onClick={handleOnClickSelect("pages")}
-        />
-      </AdvancedPanelControl>
-      <AdvancedPanelControl
-        title={t("editor.action.panel.label.advanced.page_load_delay")}
-        disabled={runtime === "none"}
-      >
-        <CodeEditor
-          value={delayWhenLoaded}
-          onChange={handleUpdateAdvancedConfig("delayWhenLoaded")}
-          expectValueType={VALIDATION_TYPES.NUMBER}
-          onFocus={handleCodeMirrorFocus("delayWhenLoaded")}
-          onBlur={handleCodeMirrorBlur("delayWhenLoaded")}
         />
       </AdvancedPanelControl>
       <AdvancedPanelControl

@@ -349,9 +349,6 @@ const fetchActionResult = (
     resultCallback?.(res, true)
     const realSuccessEvent: any[] = failedEvent || []
     runAllEventHandler(realSuccessEvent)
-    message.error({
-      content: "not online",
-    })
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,

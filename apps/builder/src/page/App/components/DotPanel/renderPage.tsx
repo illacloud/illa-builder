@@ -339,15 +339,16 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     topHeight,
   ])
 
-  const currentPageActions = useSelector(getCurrentPageRunPages)
-
-  const isPageLoading = useMemo(() => {
-    return currentPageActions.some((action) => action.isRunning)
-  }, [currentPageActions])
+  const [isPageLoading, setIsPageLoading] = useState(false)
+  const canChangeLoadingRef = useRef(true)
 
   useEffect(() => {
     const rootState = store.getState()
     const currentPageActions = getCurrentPageRunPages(rootState)
+    if (currentPageActions.length > 0) {
+      setIsPageLoading(true)
+      canChangeLoadingRef.current = false
+    }
     currentPageActions.forEach((action) => {
       const mergedAction = {
         ...action,
@@ -360,7 +361,20 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
         runActionWithExecutionResult(mergedAction as ActionItem<ActionContent>)
       }
     })
+    return () => {
+      canChangeLoadingRef.current = true
+    }
   }, [])
+
+  const currentPageActions = useSelector(getCurrentPageRunPages)
+
+  useEffect(() => {
+    if (canChangeLoadingRef.current) {
+      const isLoading = currentPageActions.some((action) => action.isRunning)
+      setIsPageLoading(isLoading)
+      canChangeLoadingRef.current = true
+    }
+  }, [currentPageActions])
 
   if (isPageLoading) {
     return <PageLoading />

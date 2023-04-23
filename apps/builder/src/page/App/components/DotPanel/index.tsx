@@ -25,7 +25,10 @@ import {
   getRootNodeExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
-import { runActionWithExecutionResult } from "@/utils/action/runAction"
+import {
+  runActionWithDelay,
+  runActionWithExecutionResult,
+} from "@/utils/action/runAction"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { MouseHoverProvider } from "./context/mouseHoverContext"
 import { MouseMoveProvider } from "./context/mouseMoveContext"
@@ -79,7 +82,13 @@ export const DotPanel: FC = () => {
           resourceId: action.$resourceId,
           actionId: action.$actionId,
         }
-        runActionWithExecutionResult(mergedAction as ActionItem<ActionContent>)
+        if (action.config.advancedConfig.delayWhenLoaded > 0) {
+          runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+        } else {
+          runActionWithExecutionResult(
+            mergedAction as ActionItem<ActionContent>,
+          )
+        }
       })
   }, [])
 
