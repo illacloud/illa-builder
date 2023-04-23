@@ -1,5 +1,6 @@
 import dayjs from "dayjs"
 import { View } from "react-big-calendar"
+import i18n from "@/i18n/config"
 import {
   Event,
   Pluralize,
@@ -13,9 +14,8 @@ export const formatEventOptions = (
   optionConfigureMode: "dynamic" | "static" = "static",
   manualOptions: (Event & ResourceMap)[] = [],
   mappedOption: Pluralize<Event & ResourceMap> = {
-    labels: [],
-    ids: [],
     titles: [],
+    ids: [],
     starts: [],
     ends: [],
     resourceIds: [],
@@ -25,9 +25,8 @@ export const formatEventOptions = (
   },
 ) => {
   if (optionConfigureMode === "dynamic") {
-    const label = mappedOption.labels ?? []
-    const id = mappedOption.ids ?? []
     const title = mappedOption.titles ?? []
+    const id = mappedOption.values ?? []
     const start = mappedOption.starts ?? []
     const end = mappedOption.ends ?? []
     const resourceId = mappedOption.resourceIds ?? []
@@ -35,9 +34,8 @@ export const formatEventOptions = (
     const resourceTitle = mappedOption.resourceTitles ?? []
     const allDay = mappedOption.allDays ?? []
     const maxLength = Math.max(
-      label.length,
-      id.length,
       title.length,
+      id.length,
       start.length,
       end.length,
       resourceId.length,
@@ -48,27 +46,26 @@ export const formatEventOptions = (
     const eventList: Event[] = []
     const resourceMap = new Map()
     for (let i = 0; i < maxLength; i++) {
-      let labelItem = label[i] || `Event-${i + 1}`
       const idItem = id[i] || `Event-${i + 1}`
-      const titleItem = title[i] || `Event-${i + 1}`
+      const titleItem =
+        title[i] ||
+        i18n.t("editor.inspect.setter_content.eventCalendar.no_title")
       const startItem = start[i] || undefined
       const endItem = end[i] || undefined
-      const resourceIdItem = resourceId[i] || `Resource-${i + 1}`
+      const resourceIdItem = resourceId[i] || ""
       const resourceIdTitleItem = resourceTitle[i]
-      const descriptionItem = description[i] || `Resource-${i + 1}`
+      const descriptionItem = description[i] || ""
       const allDayItem = allDay[i] ?? false
-      if (typeof labelItem === "object") {
-        labelItem = `Event-${i + 1}`
-      }
-      resourceMap.set(
-        safeNodeValue(resourceIdItem),
-        safeNodeValue(resourceIdTitleItem),
-      )
+      resourceIdTitleItem &&
+        resourceMap.set(
+          safeNodeValue(resourceIdItem),
+          safeNodeValue(resourceIdTitleItem),
+        )
       idItem &&
         eventList.push({
-          label: labelItem,
-          id: safeNodeValue(idItem),
+          label: safeNodeValue(titleItem),
           title: safeNodeValue(titleItem),
+          id: safeNodeValue(idItem),
           start: startItem ? new Date(startItem) : new Date(),
           end: endItem ? new Date(endItem) : new Date(),
           resourceId: safeNodeValue(resourceIdItem),
@@ -91,27 +88,26 @@ export const formatEventOptions = (
     const eventList: Event[] = []
     const resourceMap = new Map()
     manualOptions.forEach((option, i) => {
-      let labelItem = option.label || `Event-${i + 1}`
-      const idItem = option.id || `Event-${i + 1}`
-      const titleItem = option.title || `Event-${i + 1}`
+      const idItem = option.value || `Event-${i + 1}`
+      const titleItem =
+        option.title ||
+        i18n.t("editor.inspect.setter_content.eventCalendar.no_title")
       const startItem = option.start || undefined
       const endItem = option.end || undefined
       const resourceIdItem = option.resourceId || `Resource-${i + 1}`
-      const descriptionItem = option.description || `Resource-${i + 1}`
+      const descriptionItem = option.description || `Event-${i + 1}`
       const resourceIdTitleItem = option.resourceTitle || `Resource-${i + 1}`
       const allDayItem = option.allDay ?? false
-      if (typeof labelItem === "object") {
-        labelItem = `Event-${i + 1}`
-      }
-      resourceMap.set(
-        safeNodeValue(resourceIdItem),
-        safeNodeValue(resourceIdTitleItem),
-      )
+      resourceIdTitleItem &&
+        resourceMap.set(
+          safeNodeValue(resourceIdItem),
+          safeNodeValue(resourceIdTitleItem),
+        )
       idItem &&
         eventList.push({
-          label: labelItem,
-          id: safeNodeValue(idItem),
+          label: safeNodeValue(titleItem),
           title: safeNodeValue(titleItem),
+          id: safeNodeValue(idItem),
           start: startItem ? new Date(startItem) : new Date(),
           end: endItem ? new Date(endItem) : new Date(),
           resourceId: safeNodeValue(resourceIdItem),

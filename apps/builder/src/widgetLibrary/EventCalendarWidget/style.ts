@@ -90,7 +90,10 @@ const applyTimeView = (date: string, indicatorTop: number) => {
 }
 `
 }
-const applyMonthView = (titleColor: string, eventTextColor: string) => {
+const applyMonthView = (
+  titleColor: string,
+  eventTextColor: string,
+) => {
   return css`
     .rbc-month-view {
       color: ${getColor(titleColor, "01")};
@@ -146,7 +149,10 @@ const applyIndicatorStyle = (indicatorTop: number) => {
   `
 }
 
-const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
+const buttonGroupStyle = (
+  titleColor: string,
+  isLight: boolean,
+) => {
   const color = css`
     color: ${getColor(titleColor, "01")}!important;
   `
@@ -184,14 +190,15 @@ const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
 }
 const applyCalendarBg = (slotBackground: string) => {
   return css`
-    .rbc-header,
-    .rbc-row-bg,
-    .rbc-label,
-    .rbc-time-gutter,
-    .rbc-day-slot,
-    .rbc-calendar,
-    tbody {
       background-color: ${getColor(slotBackground, "01")}!important;
+      .rbc-header,
+      .rbc-row-bg,
+      .rbc-label,
+      .rbc-time-gutter,
+      .rbc-day-slot,
+      .rbc-calendar,
+      tbody {
+        background-color: ${getColor(slotBackground, "01")}!important;
     }
   `
 }
@@ -241,62 +248,79 @@ export const applyTitleColor = (titleColor: string) => {
   `
 }
 
+const hiddenToolBarStyle = (showResource: boolean) => {
+  return css`
+    .rbc-toolbar .rbc-btn-group:last-of-type {
+      button:first-of-type,
+      button:last-of-type {
+        display: ${!showResource ? "inline-block" : "none"};
+      }
+    }
+  `
+}
+
 export const ApplyCustomStyle = (
   date: string,
   indicatorTop: number,
-  showCurrentTime: boolean,
+  showCurrentTime: boolean | undefined,
   slotBackground: string,
   titleColor: string,
   eventBackground: string,
   eventTextColor: string,
   isLight: boolean,
+  displayName: string,
+  showResource: boolean,
 ) => {
   return css`
-    height: 100%;
-    .rbc-event {
-      border-right: none;
-      border-top: none;
-      border-bottom: none;
-    }
-    .rbc-selected {
-      background-color: ${getColor(eventBackground, "07")};
-    }
-    .rbc-addons-dnd-resize-ew-anchor {
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .rbc-addons-dnd-resize-ew-icon {
-      width: 100% !important;
-      height: 100% !important;
-    }
-    .rbc-header {
-      font-weight: 400;
-      font-size: 14px;
-      line-light: 22px;
-    }
     .rbc-today {
-      background: none;
+      background: none !important;
     }
-    .rbc-toolbar-label {
-      color: ${getColor(titleColor, "01")};
-      visibility: ${showCurrentTime ? "visible" : "hidden"};
-    }
-    .rbc-day-slot .rbc-time-slot {
-      border: none;
+    height: 100%;
+    width: 100%;
+    [data-target="${displayName}"] {
+      color: ${getColor(titleColor, "01")} !important;
+      visibility: ${showCurrentTime ? "visible" : "hidden"} !important;
     }
     .rbc-addons-dnd-resizable {
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
-    ${applyTimeView(date, indicatorTop)}
-    ${applyIndicatorStyle(indicatorTop)}
-    ${applyMonthView(titleColor, eventTextColor)}
-    ${applyAgenda}
-    ${buttonGroupStyle(titleColor, isLight)}
-    ${applyCalendarBg(slotBackground)}
-    ${applyTitleColor(titleColor)}
-    ${applyEventCardStyle(eventBackground, eventTextColor)}
-    ${applyBorderStyle(isLight)}
+    .${displayName} {
+      .rbc-event {
+        border-right: none;
+        border-top: none;
+        border-bottom: none;
+      }
+      .rbc-selected {
+        background-color: ${getColor(eventBackground, "07")};
+      }
+      .rbc-addons-dnd-resize-ew-anchor {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .rbc-addons-dnd-resize-ew-icon {
+        width: 100% !important;
+        height: 100% !important;
+      }
+      .rbc-header {
+        font-weight: 400;
+        font-size: 14px;
+        line-light: 22px;
+      }
+      .rbc-day-slot .rbc-time-slot {
+        border: none;
+      }
+      ${applyTimeView(date, indicatorTop)}
+      ${applyIndicatorStyle(indicatorTop)}
+      ${applyMonthView(titleColor, eventTextColor)}
+      ${applyCalendarBg(slotBackground)}
+      ${applyAgenda}
+      ${buttonGroupStyle(titleColor, isLight)}
+      ${applyTitleColor(titleColor)}
+      ${applyEventCardStyle(eventBackground, eventTextColor)}
+      ${applyBorderStyle(isLight)}
+      ${hiddenToolBarStyle(showResource)}
+    }
   `
 }

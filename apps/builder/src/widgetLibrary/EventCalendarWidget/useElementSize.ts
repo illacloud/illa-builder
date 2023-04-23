@@ -6,7 +6,11 @@ import {
   isLightColor,
 } from "@/widgetLibrary/EventCalendarWidget/utils"
 
-export const useElementSize = (view: View, slotBackground: string) => {
+export const useElementSize = (
+  view: View,
+  slotBackground: string,
+  displayName: string,
+) => {
   const [slotHeight, setSlotHeight] = useState(39)
   const [indicatorTop, setIndicatorTop] = useState(0)
   const [currentTime, setCurrentTime] = useState<Date>()
@@ -59,6 +63,11 @@ export const useElementSize = (view: View, slotBackground: string) => {
       setIsLight(isLightColor(formatColor))
     }
   }, [slotBackground])
+
+  useEffect(() => {
+    const toolBar = document.querySelector(".rbc-toolbar-label")
+    toolBar && toolBar.setAttribute("data-target", displayName)
+  }, [displayName])
 
   return {
     slotHeight,
