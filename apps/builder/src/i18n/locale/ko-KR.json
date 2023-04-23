@@ -169,7 +169,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "Treat Database name as SID/Service Name",
+            "sid": "데이터베이스 이름",
             "ssl": "SSL"
           },
           "couchdb": {
