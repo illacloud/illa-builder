@@ -36,17 +36,19 @@ export default defineConfig(({ command, mode }) => {
   if (command === "serve") {
     plugin.push(...DEVELOPMENT_PLUGIN)
   } else {
-    plugin.push(
-      sentryVitePlugin({
-        org: "sentry",
-        project: "illa-builder",
-        url: "http://sentry.illasoft.com/",
-        authToken: env.ILLA_SENTRY_AUTH_TOKEN,
-        sourcemaps: {
-          assets: "./dist/assets/**",
-        },
-      }),
-    )
+    if (env.VITE_INSTANCE_ID === "CLOUD") {
+      plugin.push(
+        sentryVitePlugin({
+          org: "sentry",
+          project: "illa-builder",
+          url: "http://sentry.illasoft.com/",
+          authToken: env.ILLA_SENTRY_AUTH_TOKEN,
+          sourcemaps: {
+            assets: "./dist/assets/**",
+          },
+        }),
+      )
+    }
   }
   const version = pkg.version
   writeFileSync("./public/appInfo.json", `{"version":${version}}`)
