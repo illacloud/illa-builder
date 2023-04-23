@@ -134,10 +134,8 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           tips={
             formState.errors.host ? (
               <div css={errorMsgStyle}>
-                <>
-                  <WarningCircleIcon css={errorIconStyle} />
-                  {formState.errors.host.message}
-                </>
+                <WarningCircleIcon css={errorIconStyle} />
+                <>{formState.errors.host.message}</>
               </div>
             ) : null
           }
