@@ -497,7 +497,10 @@
             },
             "advanced": {
               "trigger_this_action_": "页面加载时触发此操作",
-              "show_a_loading_page_": "在页面加载时显示加载页面"
+              "show_a_loading_page_": "在页面加载时显示加载页面",
+              "on_page_loading": "On page loading",
+              "on_app_loading": "On APP loaded",
+              "none": "None"
             }
           },
           "restapi": {
@@ -537,7 +540,7 @@
           },
           "advanced": {
             "advanced": "高级配置",
-            "page_trigger": "页面触发",
+            "page_trigger": "触发时机",
             "loading_page": "加载页",
             "page_load_delay": "页面加载延迟时间 (ms)",
             "run_this_action_peri": "定期运行此Action",
@@ -2294,7 +2297,8 @@
     "eventCalendar": {
       "name": {
         "event_calendar": "事件日历"
-      }
+      },
+      "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
     }
   },
   "page": {
