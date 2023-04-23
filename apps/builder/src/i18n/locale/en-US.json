@@ -539,7 +539,7 @@
             }
           },
           "advanced": {
-            "advanced": "Advanced",
+            "advanced": "ADVANCED",
             "page_trigger": "Trigger timing",
             "loading_page": "Loading page",
             "page_load_delay": "Page load delay (ms)",
