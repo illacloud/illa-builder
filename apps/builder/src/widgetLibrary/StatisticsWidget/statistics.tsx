@@ -178,7 +178,6 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
     primaryValue,
     triggerEventHandler,
     handleUpdateDsl,
-    displayName,
     tooltipText,
     updateComponentHeight,
     updateComponentRuntimeProps,

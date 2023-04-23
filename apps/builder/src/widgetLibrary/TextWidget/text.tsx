@@ -63,7 +63,6 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     value,
     horizontalAlign,
     verticalAlign = "start",
-    displayName,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,

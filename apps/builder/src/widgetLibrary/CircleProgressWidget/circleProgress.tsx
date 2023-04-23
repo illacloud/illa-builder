@@ -45,15 +45,9 @@ WrappedCircleProgress.displayName = "WrappedCircleProgress"
 
 export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
   const {
-    value,
-    showText,
-    color,
-    trailColor,
-    strokeWidth,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    displayName,
     alignment,
     tooltipText,
   } = props

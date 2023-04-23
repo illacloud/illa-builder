@@ -85,8 +85,6 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
   const {
     value,
     min,
-    disabled,
-    colorScheme,
     displayName,
     handleUpdateMultiExecutionResult,
     updateComponentRuntimeProps,

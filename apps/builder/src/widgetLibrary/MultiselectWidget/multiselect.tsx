@@ -80,7 +80,6 @@ WrappedMultiselect.displayName = "WrappedMultiselect"
 export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
   const {
     value,
-    displayName,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,

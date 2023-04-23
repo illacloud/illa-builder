@@ -40,15 +40,7 @@ WrappedRate.displayName = "WrappedRate"
 
 export const RateWidget: FC<RateWidgetProps> = (props) => {
   const {
-    value,
-    allowClear,
-    disabled,
-    icon,
-    readOnly,
-    allowHalf,
-    maxCount,
     handleUpdateDsl,
-    displayName,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
     labelPosition,

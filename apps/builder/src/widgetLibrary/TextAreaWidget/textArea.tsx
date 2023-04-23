@@ -112,16 +112,9 @@ WrappedTextarea.displayName = "WrappedTextarea"
 export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   const {
     value,
-    placeholder,
-    disabled,
-    readOnly,
-    showCharacterCount,
-    colorScheme,
-    displayName,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    allowClear,
     minLength,
     maxLength,
     labelPosition,

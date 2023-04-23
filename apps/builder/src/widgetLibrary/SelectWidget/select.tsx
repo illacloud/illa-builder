@@ -75,18 +75,10 @@ WrappedSelect.displayName = "WrappedSelect"
 
 export const SelectWidget: FC<SelectWidgetProps> = (props) => {
   const {
-    showClear,
     value,
-    placeholder,
-    disabled,
-    loading,
-    readOnly,
-    showSearch,
-    colorScheme,
     optionConfigureMode,
     mappedOption,
     manualOptions,
-    displayName,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
@@ -103,7 +95,6 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     validateMessage,
-    dataSources,
     updateComponentHeight,
     triggerEventHandler,
   } = props

@@ -93,9 +93,6 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
   const {
     startValue,
     endValue,
-    min,
-    disabled,
-    colorScheme,
     displayName,
     handleUpdateMultiExecutionResult,
     updateComponentRuntimeProps,

@@ -154,15 +154,7 @@ WrappedUpload.displayName = "WrappedUpload"
 
 export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   const {
-    type,
-    buttonText,
-    dropText,
-    fileType,
-    selectionType,
     appendFiles,
-    showFileList,
-    parseValue,
-    displayName,
     customRule,
     tooltipText,
     required,

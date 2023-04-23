@@ -29,12 +29,9 @@ WrappedSwitch.displayName = "WrappedSwitch"
 export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
   const {
     value,
-    disabled,
-    colorScheme,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    displayName,
     labelPosition,
     labelFull,
     label,

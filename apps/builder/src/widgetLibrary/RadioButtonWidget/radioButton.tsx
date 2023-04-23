@@ -63,14 +63,10 @@ WrappedRadioButton.displayName = "WrappedRadioButton"
 export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
   const {
     value,
-    disabled,
-    direction,
-    colorScheme,
     optionConfigureMode,
     manualOptions,
     mappedOption,
     handleUpdateDsl,
-    displayName,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
     labelPosition,

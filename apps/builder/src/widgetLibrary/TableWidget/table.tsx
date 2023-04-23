@@ -159,7 +159,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   const {
     emptyState,
     selectedRow,
-    rowSelection,
     loading,
     columns,
     filter,

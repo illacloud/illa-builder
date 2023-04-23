@@ -63,16 +63,12 @@ WrappedCheckbox.displayName = "WrappedCheckbox"
 export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
   const {
     value,
-    disabled,
-    direction,
-    colorScheme,
     optionConfigureMode,
     manualOptions,
     mappedOption,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    displayName,
     labelPosition,
     labelFull,
     label,

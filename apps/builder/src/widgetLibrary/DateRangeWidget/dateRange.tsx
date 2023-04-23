@@ -93,17 +93,9 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   const {
     startValue,
     endValue,
-    dateFormat,
-    startPlaceholder,
     endPlaceholder,
-    showClear,
-    minDate,
-    disabled,
-    maxDate,
-    colorScheme,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    displayName,
     handleUpdateDsl,
     labelPosition,
     labelFull,
@@ -119,7 +111,6 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     validateMessage,
     customRule,
     hideValidationMessage,
-    readOnly,
     triggerEventHandler,
   } = props
 

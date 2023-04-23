@@ -84,16 +84,6 @@ WrappedDateTime.displayName = "WrappedDateTime"
 export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   const {
     value,
-    format,
-    placeholder,
-    showClear,
-    minDate,
-    disabled,
-    maxDate,
-    minuteStep,
-    colorScheme,
-    displayName,
-    readOnly,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
     handleUpdateDsl,

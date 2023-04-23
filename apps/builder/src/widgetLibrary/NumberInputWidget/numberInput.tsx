@@ -93,22 +93,10 @@ export const WrappedInputNumber = forwardRef<
 WrappedInputNumber.displayName = "WrappedInputNumber"
 export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   const {
-    openThousandSeparator,
-    max,
-    min,
-    placeholder,
     value,
-    precision,
-    disabled,
-    readOnly,
-    prefix,
-    suffix,
-    loading,
-    colorScheme,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    displayName,
     labelPosition,
     labelFull,
     label,

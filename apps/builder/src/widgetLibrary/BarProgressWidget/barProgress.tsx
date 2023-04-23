@@ -30,11 +30,6 @@ WrappedBarProgress.displayName = "WrappedBarProgress"
 
 export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
   const {
-    value,
-    showText,
-    strokeWidth,
-    color,
-    trailColor,
     displayName,
     handleUpdateDsl,
     updateComponentRuntimeProps,
