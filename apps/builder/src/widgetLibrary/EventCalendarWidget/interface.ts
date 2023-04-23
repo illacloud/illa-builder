@@ -1,8 +1,4 @@
 import { View, stringOrDate } from "react-big-calendar"
-import { SwitchProps } from "@illa-design/react"
-import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
-import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export type Pluralize<T> = {
@@ -54,7 +50,4 @@ export interface EventCalendarWidgetProps
   eventConfigureMode?: "dynamic" | "static"
   manualOptions?: Event[]
   mappedOption?: Pluralize<Event>
-  resourceConfigureMode?: "dynamic" | "static"
-  resourceManualOptions?: ResourceMap[]
-  resourceMappedOption?: Pluralize<ResourceMap>
 }

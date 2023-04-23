@@ -98,6 +98,18 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
+            id: `${baseWidgetName}-options-resource-resourceTitle`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.resource_title",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.resource_title",
+            ),
+            attrName: "resourceTitle",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
             id: `${baseWidgetName}-options-event-allDay`,
             labelName: i18n.t(
               "editor.inspect.setter_label.eventCalendar.all_day",
@@ -145,8 +157,8 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
               "editor.inspect.setter_tips.eventCalendar.event_id",
             ),
             attrName: "ids",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
             id: `${baseWidgetName}-mappedOption-event-title`,
@@ -155,8 +167,8 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             ),
             labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.title"),
             attrName: "titles",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
             id: `${baseWidgetName}-mappedOption-event-description`,
@@ -167,8 +179,8 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
               "editor.inspect.setter_tips.eventCalendar.description",
             ),
             attrName: "descriptions",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
             id: `${baseWidgetName}-mappedOption-event-start`,
@@ -177,16 +189,16 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             ),
             labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.start"),
             attrName: "starts",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
             id: `${baseWidgetName}-mappedOption-event-end`,
             labelName: i18n.t("editor.inspect.setter_label.eventCalendar.end"),
             labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.end"),
             attrName: "ends",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
             id: `${baseWidgetName}-mappedOption-event-resourceId`,
@@ -197,114 +209,8 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
               "editor.inspect.setter_tips.eventCalendar.resource_id",
             ),
             attrName: "resourceIds",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
-          },
-          {
-            id: `${baseWidgetName}-mappedOption-event-allDay`,
-            labelName: i18n.t(
-              "editor.inspect.setter_label.eventCalendar.all_day",
-            ),
-            labelDesc: i18n.t(
-              "editor.inspect.setter_tips.eventCalendar.all_day",
-            ),
-            attrName: "allDays",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.BOOLEAN,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: `${baseWidgetName}-options-resource`,
-    groupName: i18n.t("editor.inspect.setter_group.event"),
-    children: [
-      {
-        id: `${baseWidgetName}-options-mode-resource`,
-        attrName: "resourceConfigureMode",
-        setterType: "RADIO_GROUP_SETTER",
-        options: [
-          {
-            label: i18n.t("widget.public.select_options.manual"),
-            value: "static",
-          },
-          {
-            label: i18n.t("widget.public.select_options.mapped"),
-            value: "dynamic",
-          },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-basic-resource-options`,
-        useCustomLayout: true,
-        attrName: "resourceMapList",
-        setterType: "OPTION_LIST_SETTER",
-        bindAttrName: ["resourceConfigureMode"],
-        shown: (value) => !value || value === "static",
-        childrenSetter: [
-          {
-            id: `${baseWidgetName}-options-resource-resourceId`,
-            labelName: i18n.t(
-              "editor.inspect.setter_label.eventCalendar.resource_id",
-            ),
-            labelDesc: i18n.t(
-              "editor.inspect.setter_tips.eventCalendar.resource_id",
-            ),
-            attrName: "resourceId",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
-          },
-          {
-            id: `${baseWidgetName}-options-resource-resourceTitle`,
-            labelName: i18n.t(
-              "editor.inspect.setter_label.eventCalendar.resource_title",
-            ),
-            labelDesc: i18n.t(
-              "editor.inspect.setter_tips.eventCalendar.resource_title",
-            ),
-            attrName: "resourceTitle",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
-          },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-option-resource-data-sources`,
-        labelName: i18n.t(
-          "editor.inspect.setter_label.eventCalendar.data_source",
-        ),
-        labelDesc: i18n.t(
-          "editor.inspect.setter_tips.eventCalendar.data_source",
-        ),
-        attrName: "resourceDataSources",
-        setterType: "INPUT_SETTER",
-        bindAttrName: ["resourceConfigureMode"],
-        expectedType: VALIDATION_TYPES.ARRAY,
-        shown: (value) => value === "dynamic",
-        isSetterSingleRow: true,
-      },
-      {
-        id: `${baseWidgetName}-option-mapped-resource`,
-        labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.map_data_option"),
-        useCustomLayout: true,
-        attrName: "resourceMappedOption",
-        setterType: "OPTION_MAPPED_SETTER",
-        bindAttrName: ["resourceConfigureMode"],
-        shown: (value) => value === "dynamic",
-        childrenSetter: [
-          {
-            id: `${baseWidgetName}-mappedOption-resource-resourceId`,
-            labelName: i18n.t(
-              "editor.inspect.setter_label.eventCalendar.resource_id",
-            ),
-            labelDesc: i18n.t(
-              "editor.inspect.setter_tips.eventCalendar.resource_id",
-            ),
-            attrName: "resourceIds",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
             id: `${baseWidgetName}-mappedOption-resource-resourceTitle`,
@@ -315,8 +221,20 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
               "editor.inspect.setter_tips.eventCalendar.resource_title",
             ),
             attrName: "resourceTitles",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            id: `${baseWidgetName}-mappedOption-event-allDay`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.eventCalendar.all_day",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.eventCalendar.all_day",
+            ),
+            attrName: "allDays",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
           },
         ],
       },
