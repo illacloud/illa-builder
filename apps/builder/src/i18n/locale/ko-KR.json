@@ -1631,7 +1631,8 @@
           "calendar_border": "테두리 색상 설정",
           "calendar_text": "텍스트 색상 설정",
           "event_background": "이벤트 카드 배경 설정",
-          "event_text": "이벤트 카드의 텍스트 색상 설정"
+          "event_text": "이벤트 카드의 텍스트 색상 설정",
+          "couldnot_drag": "드래그하여 시간 범위를 조정하려면 작업 미리보기 페이지로 이동하십시오."
         }
       },
       "setter_option": {
