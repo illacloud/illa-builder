@@ -58,5 +58,11 @@ export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
     return undefined
   }, [finalOptions, value])
 
-  return <BaseSelectSetter {...props} value={finalValue as string} />
+  return (
+    <BaseSelectSetter
+      {...props}
+      value={finalValue as string}
+      options={finalOptions}
+    />
+  )
 }

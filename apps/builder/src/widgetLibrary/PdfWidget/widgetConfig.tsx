@@ -1,5 +1,4 @@
 import { ReactComponent as PdfWidgetIcon } from "@/assets/widgetCover/pdf.svg"
-import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const PDF_WIDGET_CONFIG: WidgetConfig = {

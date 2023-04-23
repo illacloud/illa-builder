@@ -2,9 +2,10 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
+import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 import { isObject } from "@/utils/typeHelper"
-import { TransformerAction } from "../../redux/currentApp/action/transformerAction"
+import { VALIDATION_TYPES } from "../validationFactory"
 
 interface RawAction {
   [key: string]: any
@@ -43,6 +44,13 @@ export const generateDynamicAttrPaths = (
   }
 }
 
+export const generateActionValidatePaths = () => {
+  return {
+    "config.advancedConfig.delayWhenLoaded": VALIDATION_TYPES.NUMBER,
+    "config.advancedConfig.periodInterval": VALIDATION_TYPES.NUMBER,
+  }
+}
+
 export const generateRawAction = (
   action: ActionItem<ActionContent>,
 ): RawAction => {
@@ -73,6 +81,7 @@ export const generateRawAction = (
     modifiedAction.config = config
     modifiedAction.triggerMode = triggerMode
     modifiedAction.transformer = transformer
+    modifiedAction.$validationPaths = generateActionValidatePaths()
   }
   generateDynamicAttrPaths(modifiedAction, $dynamicAttrPaths)
   modifiedAction.$dynamicAttrPaths = $dynamicAttrPaths

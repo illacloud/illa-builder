@@ -9,20 +9,13 @@ module.exports = {
     react: {
       version: "detect",
     },
-    "import/resolver": {
-      typescript: {
-        project: "apps/*/tsconfig.json",
-      },
-    },
   },
   extends: [
-    "plugin:import/recommended",
-    "plugin:import/typescript",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "prettier",
   ],
-  plugins: ["@typescript-eslint/eslint-plugin", "import"],
+  plugins: ["@typescript-eslint/eslint-plugin", "unused-imports"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -34,5 +27,12 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "import/default": "off",
     "react/no-unknown-property": ["error", { ignore: ["css"] }],
+    "react-hooks/exhaustive-deps": ['error'],
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+    ]
   },
 }

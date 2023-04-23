@@ -2,7 +2,7 @@ name: "Merge Test"
 
 on:
   pull_request:
-    branches: [ develop ]
+    branches: [develop]
 
 env:
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 16.x ]
+        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -48,6 +48,3 @@ jobs:
       - name: Install Dependencies
         if: steps.cache-builder-node-modules.outputs.cache-hit != 'true'
         run: pnpm install
-
-
-

@@ -1,6 +1,6 @@
-type eventbusCallback = (...args: unknown[]) => unknown
+type eventBusCallback = (...args: unknown[]) => unknown
 class EventBus {
-  private readonly events: Record<string, eventbusCallback[]>
+  private readonly events: Record<string, eventBusCallback[]>
   constructor() {
     this.events = {}
   }
@@ -14,7 +14,7 @@ class EventBus {
     return this
   }
 
-  on(eventName: string, cb: eventbusCallback) {
+  on(eventName: string, cb: eventBusCallback) {
     if (!this.events[eventName]) {
       this.events[eventName] = []
     }
@@ -22,7 +22,7 @@ class EventBus {
     return this
   }
 
-  onOnce(eventName: string, cb: eventbusCallback) {
+  onOnce(eventName: string, cb: eventBusCallback) {
     const func = (...args: unknown[]) => {
       this.off(eventName, func)
       cb.apply(this, args)
@@ -30,7 +30,7 @@ class EventBus {
     this.on(eventName, func)
   }
 
-  off(eventName: string, cb: eventbusCallback) {
+  off(eventName: string, cb: eventBusCallback) {
     if (!cb) {
       return this
     } else {
@@ -45,6 +45,7 @@ class EventBus {
     return this
   }
 }
-export const ILLAEventbus = new EventBus()
+export const ILLAEventBus = new EventBus()
 
 export const PAGE_EDITOR_EVENT_PREFIX = "PAGE_EDITOR"
+export const ACTION_PAGE_RUNNING_EVENT_PREFIX = "ACTION_PAGE_RUNNING"

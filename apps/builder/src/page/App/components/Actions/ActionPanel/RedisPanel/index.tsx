@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { BuilderApi } from "@/api/base"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
@@ -14,6 +13,7 @@ import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { RedisAction } from "@/redux/currentApp/action/redisAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const RedisPanel: FC = () => {
@@ -21,17 +21,11 @@ export const RedisPanel: FC = () => {
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
 
   useEffect(() => {
-    BuilderApi.teamRequest(
-      {
-        url: `/resources/${action.resourceId}/meta`,
-        method: "GET",
-      },
+    if (action.resourceId == undefined) return
+    fetchResourceMeta(action.resourceId).then(
       ({ data }: { data: ResourcesData }) => {
         setSqlTable(data?.schema ?? {})
       },
-      () => {},
-      () => {},
-      () => {},
     )
   }, [action.resourceId])
 

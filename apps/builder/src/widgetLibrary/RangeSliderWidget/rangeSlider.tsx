@@ -1,4 +1,4 @@
-import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
+import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { Slider } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
@@ -93,13 +93,10 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
   const {
     startValue,
     endValue,
-    min,
-    disabled,
-    colorScheme,
     displayName,
     handleUpdateMultiExecutionResult,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     labelWrapping,
@@ -155,7 +152,7 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
+    updateComponentRuntimeProps({
       setStartOfRange: (startValue: number) => {
         handleUpdateMultiExecutionResult([
           {
@@ -207,19 +204,16 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
+    deleteComponentRuntimeProps,
     displayName,
-    startValue,
     endValue,
-    disabled,
-    colorScheme,
-    handleUpdateGlobalData,
     handleUpdateMultiExecutionResult,
-    handleDeleteGlobalData,
     handleValidate,
-    min,
+    startValue,
+    updateComponentRuntimeProps,
   ])
 
   const handleOnChange = useCallback(() => {

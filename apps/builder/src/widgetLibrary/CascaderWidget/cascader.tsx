@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { Cascader } from "@illa-design/react"
 import {
   CascaderWidgetProps,
@@ -104,8 +104,8 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
     allowClear,
     disabled,
     readOnly,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
     triggerEventHandler,
   } = props
@@ -115,13 +115,7 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
   }, [dataSource, dataSourceJS, dataSourceMode])
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      showClear: allowClear,
-      value,
-      placeholder,
-      disabled,
-      readOnly,
-      options: finalOptions,
+    updateComponentRuntimeProps({
       setValue: (value: any) => {
         handleUpdateDsl({
           value: Array.isArray(value) ? value : [],
@@ -134,19 +128,12 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    finalOptions,
-    value,
-    placeholder,
-    disabled,
-    readOnly,
-    allowClear,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
   ])
 
   const handleOnChange = useCallback(() => {

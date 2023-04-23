@@ -93,22 +93,10 @@ export const WrappedInputNumber = forwardRef<
 WrappedInputNumber.displayName = "WrappedInputNumber"
 export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   const {
-    openThousandSeparator,
-    max,
-    min,
-    placeholder,
     value,
-    precision,
-    disabled,
-    readOnly,
-    prefix,
-    suffix,
-    loading,
-    colorScheme,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    displayName,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -159,19 +147,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      openThousandSeparator,
-      max,
-      min,
-      placeholder,
-      value,
-      precision,
-      disabled,
-      readOnly,
-      prefix,
-      suffix,
-      loading,
-      colorScheme,
+    updateComponentRuntimeProps({
       focus: () => {
         numberInputRef.current?.focus()
       },
@@ -192,26 +168,14 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    openThousandSeparator,
-    max,
-    min,
-    placeholder,
-    value,
-    precision,
-    disabled,
-    readOnly,
-    prefix,
-    suffix,
-    loading,
-    colorScheme,
-    displayName,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
     handleValidate,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

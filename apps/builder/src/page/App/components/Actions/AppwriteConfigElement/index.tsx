@@ -10,10 +10,7 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
@@ -137,10 +134,8 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
           tips={
             formState.errors.host ? (
               <div css={errorMsgStyle}>
-                <>
-                  <WarningCircleIcon css={errorIconStyle} />
-                  {formState.errors.host.message}
-                </>
+                <WarningCircleIcon css={errorIconStyle} />
+                <>{formState.errors.host.message}</>
               </div>
             ) : null
           }

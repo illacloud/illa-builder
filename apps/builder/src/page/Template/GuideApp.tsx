@@ -1,7 +1,6 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { FC, useEffect, useRef } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { TriggerProvider } from "@illa-design/react"
 import { Guide } from "@/components/Guide"
 import { useInitGuideApp } from "@/hooks/useInitGuideApp"
@@ -37,15 +36,12 @@ import {
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
 
 const GuideApp: FC = () => {
-  const { t } = useTranslation()
-
   const teamInfo = useSelector(getCurrentTeamInfo)
 
   const canvasRef = useRef<HTMLDivElement>(null)

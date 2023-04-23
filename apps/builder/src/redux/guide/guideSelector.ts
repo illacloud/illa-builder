@@ -1,6 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit"
 import { GUIDE_STEP } from "@/config/guide/config"
-import { getCurrentId, getTeamItems } from "@/redux/team/teamSelector"
 import { RootState } from "@/store"
 
 export const getGuideInfo = (state: RootState) => {

@@ -1,4 +1,7 @@
+import { createSelector } from "@reduxjs/toolkit"
+import { INIT_ACTION_ADVANCED_CONFIG } from "@/page/App/components/Actions/AdvancedPanel/constant"
 import { RootState } from "@/store"
+import { ACTION_RUN_TIME } from "../currentApp/action/actionState"
 
 const isEditMode = (state: RootState) => {
   return state.config.mode === "edit" || state.config.mode === "template-edit"
@@ -118,3 +121,21 @@ export const getAppWSStatus = (state: RootState) => {
 export const getHoveredComponents = (state: RootState) => {
   return state.config.hoveredComponents
 }
+
+export const getCachedActionAdvancedConfig = createSelector(
+  [getCachedAction],
+  (cachedAction) => {
+    if (
+      !cachedAction ||
+      !cachedAction?.config ||
+      !cachedAction?.config?.advancedConfig
+    ) {
+      const initAdvancedConfig = INIT_ACTION_ADVANCED_CONFIG
+      if (cachedAction?.triggerMode === "automate") {
+        initAdvancedConfig.runtime = ACTION_RUN_TIME.APP_LOADED
+      }
+      return initAdvancedConfig
+    }
+    return cachedAction.config.advancedConfig
+  },
+)

@@ -20,8 +20,6 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { forkCurrentApp } from "@/api/apps"
-import { BuilderApi } from "@/api/base"
 import { Connection, getTextMessagePayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
@@ -33,7 +31,6 @@ import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButt
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
-import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import {
   getFreezeState,
   getIsILLAEditMode,
@@ -43,9 +40,9 @@ import {
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { fetchDeployApp, forkCurrentApp } from "@/services/apps"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
@@ -115,38 +112,29 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const deployApp = useCallback(
     (appId: string) => {
-      BuilderApi.teamRequest<DeployResp>(
-        {
-          url: `/apps/${appId}/deploy`,
-          method: "POST",
-        },
-        (res) => {
-          window.open(
-            window.location.protocol +
-              "//" +
-              window.location.host +
-              `/${teamIdentifier}/deploy/app/${appId}`,
-            "_blank",
-          )
-          const version = res.data.version
-          dispatch(appInfoActions.updateAppVersionReducer(version))
-        },
-        () => {
-          message.error({
-            content: t("editor.deploy.fail"),
-          })
-        },
-        () => {
-          message.error({
-            content: t("editor.deploy.fail"),
-          })
-        },
-        (loading) => {
-          setDeployLoading(loading)
-        },
-      )
+      setDeployLoading(true)
+      fetchDeployApp(appId)
+        .then(
+          () => {
+            window.open(
+              window.location.protocol +
+                "//" +
+                window.location.host +
+                `/${teamIdentifier}/deploy/app/${appId}`,
+              "_blank",
+            )
+          },
+          () => {
+            message.error({
+              content: t("editor.deploy.fail"),
+            })
+          },
+        )
+        .finally(() => {
+          setDeployLoading(false)
+        })
     },
-    [teamIdentifier, dispatch, message, t],
+    [teamIdentifier, message, t],
   )
 
   const forkGuideAppAndDeploy = useCallback(
@@ -223,7 +211,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         [textAreaValue],
       ),
     )
-  }, [messageList, textAreaValue])
+  }, [messageList, textAreaValue, teamInfo.id, teamInfo.uid, appInfo.appId])
 
   return (
     <>
@@ -350,7 +338,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           {messageList && messageList.length > 0 && (
             <List
               data={messageList}
-              render={(data, index) => {
+              render={(data) => {
                 return (
                   <ListItem>
                     <ListItemMeta title={data} />

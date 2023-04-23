@@ -4,6 +4,7 @@ import {
   BaseWidgetProps,
 } from "@/widgetLibrary/interface"
 
+// todo: @echoxyc error extends.Refactor.
 export interface WrappedPdfProps
   extends Omit<BaseWidgetProps, "w" | "h" | "unitH" | "unitW"> {
   width?: number

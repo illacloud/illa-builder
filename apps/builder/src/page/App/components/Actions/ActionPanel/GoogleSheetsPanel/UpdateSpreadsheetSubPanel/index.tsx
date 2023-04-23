@@ -39,7 +39,7 @@ export const UpdateSpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
       key: string,
       value: string,
       operator: string,
-      name?: string,
+      _name?: string,
     ) => {
       const params = opts.filters as Params[]
       let newList = [...params]

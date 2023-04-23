@@ -8,6 +8,10 @@ import {
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
 import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
+import {
   getCanvas,
   getViewportSizeSelector,
 } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -16,9 +20,15 @@ import {
   RootComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import {
+  getAppLoadedActions,
   getExecutionResult,
   getRootNodeExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import store from "@/store"
+import {
+  runActionWithDelay,
+  runActionWithExecutionResult,
+} from "@/utils/action/runAction"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { MouseHoverProvider } from "./context/mouseHoverContext"
 import { MouseMoveProvider } from "./context/mouseMoveContext"
@@ -60,6 +70,27 @@ export const DotPanel: FC = () => {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.INITIALIZE)
     }
   }, [canRenders])
+
+  useEffect(() => {
+    const rootState = store.getState()
+    const appLoadedAction = getAppLoadedActions(rootState)
+    appLoadedAction
+      .filter((action) => !action.isRunning)
+      .forEach((action) => {
+        const mergedAction = {
+          ...action,
+          resourceId: action.$resourceId,
+          actionId: action.$actionId,
+        }
+        if (action.config.advancedConfig.delayWhenLoaded > 0) {
+          runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+        } else {
+          runActionWithExecutionResult(
+            mergedAction as ActionItem<ActionContent>,
+          )
+        }
+      })
+  }, [])
 
   if (
     !canvasTree ||

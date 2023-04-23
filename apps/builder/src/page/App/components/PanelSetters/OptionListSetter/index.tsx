@@ -43,7 +43,7 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
   const handleAddOption = useCallback(() => {
     const newItem = generateNewOptionItem(allViewsKeys, itemName)
     handleUpdateDsl(attrName, [...value, newItem])
-  }, [value, itemName, handleUpdateDsl, attrName])
+  }, [allViewsKeys, itemName, handleUpdateDsl, attrName, value])
 
   if (!Array.isArray(childrenSetter) || childrenSetter.length === 0) {
     return null

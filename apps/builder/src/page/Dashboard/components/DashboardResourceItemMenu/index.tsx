@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -9,12 +9,9 @@ import {
   Modal,
   MoreIcon,
   Space,
-  globalColor,
-  illaPrefix,
   useMessage,
   useModal,
 } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -25,10 +22,11 @@ import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourc
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { fetchDeleteResource } from "@/services/resource"
 import { RootState } from "@/store"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { resourceContextHelper, track } from "@/utils/mixpanelHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 
 const Item = DropListItem
 
@@ -82,6 +80,78 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
         },
       )
   }, [resource.resourceType, resourceEditorVisible])
+  const handleClickOkOnDeleteModal = useCallback(async () => {
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      { element: "resource_more_delete", parameter5: resourceId },
+    )
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+      {
+        element: "resource_more_delete_modal",
+        parameter5: resourceId,
+      },
+    )
+    const modalId = modal.show({
+      blockOkHide: true,
+      title: t("dashboard.common.delete_title"),
+      children: t("dashboard.common.delete_content"),
+      cancelText: t("dashboard.common.delete_cancel_text"),
+      okText: t("dashboard.common.delete_ok_text"),
+      okButtonProps: {
+        colorScheme: "red",
+      },
+      closable: false,
+      onOk: async () => {
+        modal.update(modalId, {
+          okLoading: true,
+        })
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+          {
+            element: "resource_more_delete_modal_delete",
+            parameter5: resourceId,
+          },
+        )
+        try {
+          const response = await fetchDeleteResource(resourceId)
+          dispatch(
+            resourceActions.removeResourceItemReducer(response.data.resourceId),
+          )
+          message.success({
+            content: t("dashboard.resource.delete_success"),
+          })
+          modal.close(modalId)
+        } catch (e) {
+          if (isILLAAPiError(e)) {
+            message.error({
+              content: t("dashboard.resource.delete_fail"),
+            })
+            return
+          }
+          message.error({
+            content: t("network_error"),
+          })
+        }
+        modal.update(modalId, {
+          okLoading: false,
+        })
+      },
+      onCancel: () => {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
+          {
+            element: "resource_more_delete_modal_close",
+            parameter5: resourceId,
+          },
+        )
+      },
+    })
+  }, [dispatch, message, modal, resourceId, t])
 
   return (
     <>
@@ -125,84 +195,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                 key={"delete"}
                 title={t("dashboard.common.delete")}
                 deleted
-                onClick={() => {
-                  track(
-                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-                    { element: "resource_more_delete", parameter5: resourceId },
-                  )
-                  track(
-                    ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-                    {
-                      element: "resource_more_delete_modal",
-                      parameter5: resourceId,
-                    },
-                  )
-                  const modalId = modal.show({
-                    blockOkHide: true,
-                    title: t("dashboard.common.delete_title"),
-                    children: t("dashboard.common.delete_content"),
-                    cancelText: t("dashboard.common.delete_cancel_text"),
-                    okText: t("dashboard.common.delete_ok_text"),
-                    okButtonProps: {
-                      colorScheme: "red",
-                    },
-                    closable: false,
-                    onOk: () => {
-                      track(
-                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-                        {
-                          element: "resource_more_delete_modal_delete",
-                          parameter5: resourceId,
-                        },
-                      )
-                      BuilderApi.teamRequest<Resource<ResourceContent>>(
-                        {
-                          url: `/resources/${resourceId}`,
-                          method: "DELETE",
-                        },
-                        (response) => {
-                          dispatch(
-                            resourceActions.removeResourceItemReducer(
-                              response.data.resourceId,
-                            ),
-                          )
-                          message.success({
-                            content: t("dashboard.resource.delete_success"),
-                          })
-                          modal.close(modalId)
-                        },
-                        (failure) => {
-                          message.error({
-                            content: t("dashboard.resource.delete_fail"),
-                          })
-                        },
-                        (crash) => {
-                          message.error({
-                            content: t("network_error"),
-                          })
-                        },
-                        (loading) => {
-                          modal.update(modalId, {
-                            okLoading: loading,
-                          })
-                        },
-                      )
-                    },
-                    onCancel: () => {
-                      track(
-                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-                        {
-                          element: "resource_more_delete_modal_close",
-                          parameter5: resourceId,
-                        },
-                      )
-                    },
-                  })
-                }}
+                onClick={handleClickOkOnDeleteModal}
               />
             </DropList>
           }

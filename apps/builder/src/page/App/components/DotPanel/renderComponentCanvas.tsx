@@ -64,7 +64,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
-import { ILLAEventbus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
+import { ILLAEventBus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
@@ -251,15 +251,15 @@ export const RenderComponentCanvas: FC<{
 
   useEffect(() => {
     if (sectionName) {
-      ILLAEventbus.on(
+      ILLAEventBus.on(
         `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_${sectionName}`,
         showColumnsPreview,
       )
-      ILLAEventbus.on(
+      ILLAEventBus.on(
         `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_${sectionName}`,
         hideColumnsPreview,
       )
-      ILLAEventbus.on(
+      ILLAEventBus.on(
         `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_${sectionName}`,
         showColumnsChangePreview,
       )
@@ -267,15 +267,15 @@ export const RenderComponentCanvas: FC<{
 
     return () => {
       if (sectionName) {
-        ILLAEventbus.off(
+        ILLAEventBus.off(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_PREVIEW_${sectionName}`,
           showColumnsPreview,
         )
-        ILLAEventbus.off(
+        ILLAEventBus.off(
           `${PAGE_EDITOR_EVENT_PREFIX}/HIDE_COLUMNS_PREVIEW_${sectionName}`,
           hideColumnsPreview,
         )
-        ILLAEventbus.off(
+        ILLAEventBus.off(
           `${PAGE_EDITOR_EVENT_PREFIX}/SHOW_COLUMNS_CHANGE_PREVIEW_${sectionName}`,
           showColumnsChangePreview,
         )

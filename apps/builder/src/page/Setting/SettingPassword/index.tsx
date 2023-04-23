@@ -1,9 +1,10 @@
-import { ChangeEvent, FC, useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Button, Password, useMessage } from "@illa-design/react"
-import { CloudApi } from "@/api/cloudApi"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
+import { fetchChangePassword } from "@/services/setting"
+import { isILLAAPiError } from "@/utils/typeHelper"
 
 const validatePasswordEmpty = (password: string) => {
   return !password
@@ -129,7 +130,7 @@ export const SettingPassword: FC = () => {
     [t],
   )
 
-  const onClickSubmitButton = useCallback(() => {
+  const onClickSubmitButton = useCallback(async () => {
     if (
       currentPassword === "" ||
       newPassword === "" ||
@@ -137,41 +138,30 @@ export const SettingPassword: FC = () => {
     ) {
       return
     }
-    CloudApi.request(
-      {
-        url: "/users/password",
-        method: "PATCH",
-        data: {
-          currentPassword,
-          newPassword,
-        },
-      },
-      () => {
-        setCurrentPassword("")
-        setNewPassword("")
-        setConfirmPassword("")
-        message.success({
-          content: t("edit_success"),
-        })
-      },
-      (failure) => {
-        //  TODO: need error code unique,to show error message
-        const { data } = failure
+    setIsLoading(true)
+    try {
+      fetchChangePassword(currentPassword, newPassword)
+      setCurrentPassword("")
+      setNewPassword("")
+      setConfirmPassword("")
+      message.success({
+        content: t("edit_success"),
+      })
+    } catch (error) {
+      if (isILLAAPiError(error)) {
+        const { data } = error
         if (data?.errorCode === 400) {
           message.error({
-            content: failure.data.errorMessage,
+            content: error.data.errorMessage,
           })
         }
-      },
-      () => {
-        message.error({
-          content: t("network_error"),
-        })
-      },
-      (loading) => {
-        setIsLoading(loading)
-      },
-    )
+        return
+      }
+      message.error({
+        content: t("network_error"),
+      })
+    }
+    setIsLoading(false)
   }, [currentPassword, newPassword, confirmPassword, message, t])
 
   return (

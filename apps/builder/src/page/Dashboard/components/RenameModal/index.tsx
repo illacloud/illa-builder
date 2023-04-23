@@ -2,7 +2,6 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, Modal, useMessage } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -10,6 +9,7 @@ import {
 import { RenameModalProps } from "@/page/Dashboard/components/RenameModal/interface"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { fetchChangeAppName } from "@/services/apps"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
 
@@ -103,41 +103,30 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
             parameter5: appId,
           },
         )
-
-        BuilderApi.teamRequest(
-          {
-            url: `/apps/${app.appId}`,
-            method: "PUT",
-            data: {
-              appName: name,
+        setLoading(true)
+        fetchChangeAppName(app.appId, name)
+          .then(
+            () => {
+              dispatch(
+                dashboardAppActions.renameDashboardAppReducer({
+                  appId: app.appId,
+                  newName: name,
+                }),
+              )
+              message.success({
+                content: t("dashboard.app.rename_success"),
+              })
+              onVisibleChange(false)
             },
-          },
-          (response) => {
-            dispatch(
-              dashboardAppActions.renameDashboardAppReducer({
-                appId: app.appId,
-                newName: name,
-              }),
-            )
-            message.success({
-              content: t("dashboard.app.rename_success"),
-            })
-            onVisibleChange(false)
-          },
-          (failure) => {
-            message.error({
-              content: t("dashboard.app.rename_fail"),
-            })
-          },
-          (crash) => {
-            message.error({
-              content: t("network_error"),
-            })
-          },
-          (loading) => {
-            setLoading(loading)
-          },
-        )
+            () => {
+              message.error({
+                content: t("dashboard.app.rename_fail"),
+              })
+            },
+          )
+          .finally(() => {
+            setLoading(false)
+          })
       }}
     >
       <Input

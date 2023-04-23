@@ -152,6 +152,32 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setMarkers",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-add-event`,
+        labelName: i18n.t("editor.method.eventCalendar.addevent"),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.eventCalendar.event_value",
+        ),
+        placeholder: i18n.t(
+          "editor.inspect.setter_label.eventCalendar.event_value",
+        ),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "addEvent",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-delete-event`,
+        labelName: i18n.t("editor.method.eventCalendar.deleteevent"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.eventCalendar.event_id"),
+        placeholder: i18n.t(
+          "editor.inspect.setter_label.eventCalendar.event_id",
+        ),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "deleteEvent",
+      },
+      {
         // TODO: follow-up support @mengcheng
         id: `${baseWidgetName}-interaction-event-handler-setHidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),

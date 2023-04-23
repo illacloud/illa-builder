@@ -1,4 +1,11 @@
-import { FC, useLayoutEffect, useMemo, useRef, useState } from "react"
+import {
+  FC,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
@@ -8,11 +15,22 @@ import {
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
+import {
   ModalSectionNode,
   PageNode,
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { getCurrentPageRunPages } from "@/redux/currentApp/executionTree/executionSelector"
+import store from "@/store"
+import {
+  runActionWithDelay,
+  runActionWithExecutionResult,
+} from "@/utils/action/runAction"
+import { PageLoading } from "./PageLoading/pageLoading"
 import { RenderPageProps } from "./interface"
 import {
   LEFT_MIN_WIDTH,
@@ -75,10 +93,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     rightWidth,
     topHeight,
     bottomHeight,
-    isFooterFixed,
-    isHeaderFixed,
-    isLeftFixed,
-    isRightFixed,
     showLeftFoldIcon,
     showRightFoldIcon,
     leftColumns,
@@ -324,6 +338,53 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     rightWidth,
     topHeight,
   ])
+
+  const [isPageLoading, setIsPageLoading] = useState(false)
+  const canChangeLoadingRef = useRef(true)
+
+  useEffect(() => {
+    const rootState = store.getState()
+    const currentPageActions = getCurrentPageRunPages(rootState)
+    if (
+      currentPageActions.filter(
+        (action) => action?.config?.advancedConfig?.displayLoadingPage,
+      ).length > 0
+    ) {
+      setIsPageLoading(true)
+      canChangeLoadingRef.current = false
+    }
+    currentPageActions.forEach((action) => {
+      const mergedAction = {
+        ...action,
+        resourceId: action.$resourceId,
+        actionId: action.$actionId,
+      }
+      if (action.config.advancedConfig.delayWhenLoaded > 0) {
+        runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+      } else {
+        runActionWithExecutionResult(mergedAction as ActionItem<ActionContent>)
+      }
+    })
+    return () => {
+      canChangeLoadingRef.current = true
+    }
+  }, [])
+
+  const currentPageActions = useSelector(getCurrentPageRunPages)
+
+  useEffect(() => {
+    if (canChangeLoadingRef.current) {
+      const isLoading = currentPageActions
+        .filter((action) => action?.config?.advancedConfig?.displayLoadingPage)
+        .some((action) => action.isRunning)
+      setIsPageLoading(isLoading)
+      canChangeLoadingRef.current = true
+    }
+  }, [currentPageActions])
+
+  if (isPageLoading) {
+    return <PageLoading />
+  }
 
   const headerSection = showNameMapSectionNode.get("headerSection") as
     | SectionNode

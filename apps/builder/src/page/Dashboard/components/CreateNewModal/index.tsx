@@ -3,14 +3,13 @@ import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Input, Modal, useMessage } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { fetchCreateApp } from "@/services/apps"
 import { track } from "@/utils/mixpanelHelper"
 import { CreateNewModalProps } from "./interface"
 
@@ -88,35 +87,29 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
             parameter3: name.length,
           },
         )
-        BuilderApi.teamRequest<DashboardApp>(
-          {
-            url: "/apps",
-            method: "POST",
-            data: {
-              appName: name,
-              initScheme: BASIC_APP_CONFIG,
+        setLoading(true)
+        const requestData = {
+          appName: name,
+          initScheme: BASIC_APP_CONFIG,
+        }
+        fetchCreateApp(requestData)
+          .then(
+            (response) => {
+              onCreateSuccess()
+              dispatch(
+                dashboardAppActions.addDashboardAppReducer({
+                  app: response.data,
+                }),
+              )
+              navigate(`/${teamIdentifier}/app/${response.data.appId}`)
             },
-          },
-          (response) => {
-            onCreateSuccess()
-            dispatch(
-              dashboardAppActions.addDashboardAppReducer({
-                app: response.data,
-              }),
-            )
-            navigate(`/${teamIdentifier}/app/${response.data.appId}`)
-          },
-          (failure) => {},
-          (error) => {},
-          (loading) => {
-            setLoading(loading)
-          },
-          (errorState) => {
-            if (errorState) {
+            () => {
               message.error({ content: t("create_fail") })
-            }
-          },
-        )
+            },
+          )
+          .finally(() => {
+            setLoading(false)
+          })
       }}
       title={t("dashboard.app.create_app")}
       okText={t("save")}

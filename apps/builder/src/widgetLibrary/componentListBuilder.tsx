@@ -67,7 +67,9 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
 }
 
 const buildSessionTypeMapComponentConfig = (): NewTypeMapComponent => {
-  const componentConfigs = WidgetTypeList.map((item) => {
+  const componentConfigs = WidgetTypeList.filter(
+    (type) => type !== "CHART",
+  ).map((item) => {
     return getListItemConfig(item) as WidgetConfig
   }) as WidgetConfig[]
   return translateChildren(componentConfigs)

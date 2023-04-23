@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { LockIcon, MinusIcon, PlusIcon, UnlockIcon } from "@illa-design/react"
+import { MinusIcon, PlusIcon } from "@illa-design/react"
 import { PanelActionBarProps } from "./interface"
 import {
   baseIconStyle,
@@ -8,7 +8,7 @@ import {
 } from "./style"
 
 export const PanelActionBar: FC<PanelActionBarProps> = (props) => {
-  const { isFixed, hasPanel, addPanelAction, deletePanelAction } = props
+  const { hasPanel, addPanelAction, deletePanelAction } = props
   return (
     <div css={panelActionBarWrapperStyle}>
       {/* {hasPanel ? (

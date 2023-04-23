@@ -2,7 +2,6 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { SelectValue } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { CreateRecordSubPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/CreateRecordSubPanel"
 import { DeleteRecordSubPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel/DeleteRecordSubPanel"
@@ -34,6 +33,7 @@ import {
   CouchDBOptionsType,
 } from "@/redux/currentApp/action/couchDBAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { fetchResourceMeta } from "@/services/resource"
 import { updateActionContent } from "@/utils/action/calculateNewAction"
 
 type CouchDBPanelType = ActionItem<CouchDBAction<CouchDBOptionsType>>
@@ -58,18 +58,12 @@ export const CouchDBPanel: FC = () => {
   const [selectOptions, setSelectOptions] = useState<string[]>([])
 
   useEffect(() => {
-    BuilderApi.teamRequest(
-      {
-        url: `/resources/${cachedAction.resourceId}/meta`,
-        method: "GET",
-      },
+    if (cachedAction.resourceId == undefined) return
+    fetchResourceMeta(cachedAction.resourceId).then(
       ({ data }: { data: ResourcesData }) => {
         const { schema } = data
         setSelectOptions(schema.databases as string[])
       },
-      () => {},
-      () => {},
-      () => {},
     )
   }, [cachedAction.resourceId])
 

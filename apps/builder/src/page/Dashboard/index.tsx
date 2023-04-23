@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { Outlet } from "react-router-dom"
 import { Button, CloseIcon, Loading } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { Connection } from "@/api/ws"
 import {
   ILLA_WEBSOCKET_CONTEXT,
@@ -13,9 +12,9 @@ import {
 import { DashboardTitleBar } from "@/page/Dashboard/components/DashboardTitleBar"
 import { configActions } from "@/redux/config/configSlice"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { fetchAppList } from "@/services/apps"
+import { fetchResources } from "@/services/resource"
 import {
   containerStyle,
   errorBodyStyle,
@@ -31,56 +30,36 @@ function requestData(
   controller: AbortController,
   onError: () => void,
   onSuccess: () => void,
-  onLoading: (loading: boolean) => void,
+  onLoading: () => void,
 ) {
-  onLoading(true)
+  onLoading()
   const appList = new Promise((resolve) => {
-    BuilderApi.teamRequest<DashboardApp[]>(
-      {
-        url: "/apps",
-        method: "GET",
-        signal: controller.signal,
-      },
+    fetchAppList(controller.signal).then(
       (response) => {
         dispatch(
           dashboardAppActions.updateDashboardAppListReducer(response.data),
         )
         resolve("success")
       },
-      (failure) => {},
-      (crash) => {},
-      (loading) => {},
-      (errorState) => {
-        if (errorState) {
-          resolve("error")
-        }
+      () => {
+        resolve("error")
       },
     )
   })
 
   const resourceList = new Promise((resolve) => {
-    BuilderApi.teamRequest<Resource<ResourceContent>[]>(
-      {
-        url: "/resources",
-        method: "GET",
-        signal: controller.signal,
-      },
+    fetchResources(controller.signal).then(
       (response) => {
         dispatch(resourceActions.updateResourceListReducer(response.data))
         resolve("success")
       },
-      (failure) => {},
-      (crash) => {},
-      (loading) => {},
-      (errorState) => {
-        if (errorState) {
-          resolve("error")
-        }
+      () => {
+        resolve("error")
       },
     )
   })
   Promise.all([appList, resourceList]).then((result) => {
-    onLoading(false)
+    onLoading()
     if (result.includes("error")) {
       onError()
     } else {
@@ -106,7 +85,7 @@ export const IllaApp: FC = () => {
       () => {
         setPageState("success")
       },
-      (loading) => {
+      () => {
         setPageState("loading")
       },
     )
@@ -116,12 +95,7 @@ export const IllaApp: FC = () => {
   }, [dispatch])
 
   useEffect(() => {
-    Connection.enterRoom(
-      "dashboard",
-      "",
-      (loading) => {},
-      (errorState) => {},
-    )
+    Connection.enterRoom("dashboard", "")
     return () => {
       Connection.leaveRoom("dashboard", "")
       dispatch(
@@ -160,7 +134,7 @@ export const IllaApp: FC = () => {
                 () => {
                   setPageState("success")
                 },
-                (loading) => {
+                () => {
                   setPageState("loading")
                 },
               )

@@ -5,7 +5,6 @@ import { SetterSubMenuProps } from "@/page/App/components/PanelSetters/MenuSette
 import { NewButton } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/newButton"
 import {
   deleteButtonContainer,
-  setterDivStyle,
   setterSubMenuContainerStyle,
   setterSubMenuLabelStyle,
 } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/style"

@@ -10,10 +10,7 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
@@ -43,7 +40,6 @@ import {
 } from "@/redux/resource/s3Resource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
