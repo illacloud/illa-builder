@@ -540,9 +540,9 @@
           },
           "advanced": {
             "advanced": "ADVANCED",
-            "page_trigger": "Trigger timing",
+            "page_trigger": "Trigger Timing",
             "loading_page": "Loading page",
-            "page_load_delay": "Page load delay (ms)",
+            "page_load_delay": "Delay (ms)",
             "run_this_action_peri": "Run this action periodically",
             "interval": "Interval (s)",
             "actions_running_when": "Actions running when the page loads",
