@@ -497,7 +497,10 @@
             },
             "advanced": {
               "trigger_this_action_": "페이지 로딩시 이 작업을 트리거합니다",
-              "show_a_loading_page_": "페이지 로딩시 로딩 페이지를 보여줍니다"
+              "show_a_loading_page_": "페이지 로딩시 로딩 페이지를 보여줍니다",
+              "on_page_loading": "On page loading",
+              "on_app_loading": "On APP loaded",
+              "none": "None"
             }
           },
           "restapi": {
@@ -537,7 +540,7 @@
           },
           "advanced": {
             "advanced": "고급 설정",
-            "page_trigger": "페이지 트리거",
+            "page_trigger": "트리거 타이밍",
             "loading_page": "로딩 페이지",
             "page_load_delay": "페이지 로딩 지연 (ms)",
             "run_this_action_peri": "이 작업을 주기적으로 실행합니다",
