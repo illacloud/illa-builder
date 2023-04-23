@@ -1670,7 +1670,11 @@
           "wednesday": "水曜日",
           "thursday": "木曜日",
           "friday": "金曜日",
-          "saturday": "土曜日"
+          "saturday": "土曜日",
+          "month": "Month",
+          "week": "Week",
+          "day": "Day",
+          "agenda": "Agenda"
         }
       },
       "setter_placeholder": {
