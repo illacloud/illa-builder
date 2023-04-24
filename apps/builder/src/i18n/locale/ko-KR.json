@@ -730,8 +730,8 @@
           }
         },
         "status": {
-          "ran_failed": "실행하지 못했습니다",
-          "ran_successfully": "성공적으로 실행"
+          "ran_failed": "실패하다",
+          "ran_successfully": "실행 성공"
         },
         "result": {
           "restapi": {

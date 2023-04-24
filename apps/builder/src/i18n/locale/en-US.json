@@ -730,8 +730,8 @@
           }
         },
         "status": {
-          "ran_failed": "Action failed to run",
-          "ran_successfully": "Action ran successfully"
+          "ran_failed": "Failed",
+          "ran_successfully": "Success"
         },
         "result": {
           "restapi": {
@@ -976,7 +976,7 @@
           "error": "Query ran fail",
           "json": "JSON",
           "response": "Response",
-          "success": "Query ran successfully",
+          "success": "Success",
           "table": "Table"
         }
       },
