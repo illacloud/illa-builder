@@ -542,7 +542,7 @@
             "advanced": "고급 설정",
             "page_trigger": "트리거 타이밍",
             "loading_page": "로딩 페이지",
-            "page_load_delay": "페이지 로딩 지연 (ms)",
+            "page_load_delay": "지연(ms)",
             "run_this_action_peri": "이 작업을 주기적으로 실행합니다",
             "interval": "주기 간격 (s)",
             "actions_running_when": "페이지가 로드될 때 실행되는 작업",
@@ -1140,7 +1140,10 @@
           "new": "새로운 빌드"
         },
         "Change": "Change",
-        "Select": "Select"
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "제목 없음"
+        }
       },
       "setter_default_value": {
         "fill": "충전재",
@@ -1631,7 +1634,8 @@
           "calendar_border": "테두리 색상 설정",
           "calendar_text": "텍스트 색상 설정",
           "event_background": "이벤트 카드 배경 설정",
-          "event_text": "이벤트 카드의 텍스트 색상 설정"
+          "event_text": "이벤트 카드의 텍스트 색상 설정",
+          "couldnot_drag": "드래그하여 시간 범위를 조정하려면 작업 미리보기 페이지로 이동하십시오."
         }
       },
       "setter_option": {

@@ -542,7 +542,7 @@
             "advanced": "高度な設定",
             "page_trigger": "トリガータイミング",
             "loading_page": "ローディングページ",
-            "page_load_delay": "ページ読み込み遅延時間 (ms)",
+            "page_load_delay": "遅延時間 (ms)",
             "run_this_action_peri": "このアクションを定期的に実行します",
             "interval": "インターバル (s)",
             "actions_running_when": "ページの読み込み時に実行される",
@@ -1140,7 +1140,10 @@
           "new": "追加"
         },
         "Change": "Change",
-        "Select": "Select"
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "タイトルなし"
+        }
       },
       "setter_default_value": {
         "fill": "充填",
@@ -1631,7 +1634,8 @@
           "calendar_border": "ボーダーの色を設定する",
           "calendar_text": "テキストの色を設定する",
           "event_background": "イベントカードの背景を設定する",
-          "event_text": "イベントカードの文字色を設定"
+          "event_text": "イベントカードの文字色を設定",
+          "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。"
         }
       },
       "setter_option": {

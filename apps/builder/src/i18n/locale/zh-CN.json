@@ -542,7 +542,7 @@
             "advanced": "高级配置",
             "page_trigger": "触发时机",
             "loading_page": "加载页",
-            "page_load_delay": "页面加载延迟时间 (ms)",
+            "page_load_delay": "延迟时间 (ms)",
             "run_this_action_peri": "定期运行此Action",
             "interval": "间隔时间 (s)",
             "actions_running_when": "页面加载时运行的操作",
@@ -1140,7 +1140,10 @@
           "new": "新增"
         },
         "Change": "Change",
-        "Select": "Select"
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "无标题"
+        }
       },
       "setter_default_value": {
         "fill": "填充",
@@ -1631,7 +1634,8 @@
           "calendar_border": "设置边框颜色",
           "calendar_text": "设置文字颜色",
           "event_background": "设置事件卡片的背景",
-          "event_text": "设置事件卡片的文字颜色"
+          "event_text": "设置事件卡片的文字颜色",
+          "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。"
         }
       },
       "setter_option": {
