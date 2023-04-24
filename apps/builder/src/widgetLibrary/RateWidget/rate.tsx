@@ -12,7 +12,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
     allowClear,
     disabled,
     icon,
-    readOnly,
+    readonly,
     allowHalf,
     maxCount,
     handleUpdateDsl,
@@ -25,7 +25,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
       allowHalf={allowHalf}
       heart={icon === "heart"}
       disabled={disabled}
-      readonly={readOnly}
+      readonly={readonly}
       allowClear={allowClear}
       value={value}
       onChange={(value) => {
@@ -44,7 +44,7 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     allowClear,
     disabled,
     icon,
-    readOnly,
+    readonly,
     allowHalf,
     maxCount,
     handleUpdateDsl,
@@ -71,7 +71,7 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
       allowClear,
       disabled,
       icon,
-      readOnly,
+      readonly,
       allowHalf,
       maxCount,
       setValue: (value: number) => {
@@ -92,7 +92,7 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     allowClear,
     disabled,
     icon,
-    readOnly,
+    readonly,
     allowHalf,
     maxCount,
     handleUpdateGlobalData,
