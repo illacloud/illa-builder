@@ -123,9 +123,7 @@ export const MysqlLikePanel: FC = () => {
         message.error({
           content: e.data.errorMessage,
         })
-        return
       }
-      console.error(e)
     }
     setGenerateLoading(false)
   }, [

@@ -46,6 +46,7 @@ export default defineConfig(({ command, mode }) => {
           sourcemaps: {
             assets: "./dist/assets/**",
           },
+          ignore: ["vite.config.mts"],
         }),
       )
     }

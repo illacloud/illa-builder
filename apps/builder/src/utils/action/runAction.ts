@@ -1,4 +1,4 @@
-import { AxiosError, AxiosResponse } from "axios"
+import { AxiosResponse } from "axios"
 import { createMessage, isNumber, isString } from "@illa-design/react"
 import { ILLAApiError } from "@/api/http"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
@@ -12,6 +12,7 @@ import {
   ActionType,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
+import { Events } from "@/redux/currentApp/action/actionState"
 import { CouchDBActionStructParamsDataTransferType } from "@/redux/currentApp/action/couchDBAction"
 import { DynamoActionStructParamsDataTransferType } from "@/redux/currentApp/action/dynamoDBAction"
 import {
@@ -89,18 +90,11 @@ const calculateFetchResultDisplayName = (
   displayName: string,
   rawData: any,
   transformer: Transformer,
-  resultCallback?: (data: unknown, error: boolean) => void,
-  _actionCommand?: string,
 ) => {
   const isRestApi = actionType === "restapi"
   const realData = isRestApi ? rawData?.data : rawData
   const transRawData = transformRawData(realData, actionType)
   let calcResult = runTransformer(transformer, transRawData)
-  let data = calcResult
-  if (isRestApi) {
-    data = { result: calcResult, extraData: rawData?.extraData }
-  }
-  resultCallback?.(data, false)
   actionDisplayNameMapFetchResult[displayName] = calcResult
   store.dispatch(
     executionActions.updateExecutionByDisplayNameReducer({
@@ -125,14 +119,12 @@ const runAllEventHandler = (events: any[] = []) => {
 
 const fetchS3ClientResult = async (
   presignData: Record<string, any>[],
-  resourceId: string,
   actionType: ActionType,
   displayName: string,
   actionContent: Record<string, any>,
   successEvent: any[] = [],
   failedEvent: any[] = [],
   transformer: Transformer,
-  resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
   const urlInfos = presignData as { key: string; url: string; acl?: string }[]
   try {
@@ -229,14 +221,11 @@ const fetchS3ClientResult = async (
       displayName,
       result,
       transformer,
-      resultCallback,
-      commands,
     )
     const realSuccessEvent: any[] = successEvent || []
 
     runAllEventHandler(realSuccessEvent)
   } catch (e) {
-    resultCallback?.(e, true)
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,
@@ -268,7 +257,7 @@ const checkCanSendRequest = (
   return !result
 }
 
-const fetchActionResult = (
+const fetchActionResult = async (
   isPublic: boolean,
   resourceId: string,
   actionType: ActionType,
@@ -276,98 +265,10 @@ const fetchActionResult = (
   appId: string,
   actionId: string,
   actionContent: ActionContent,
-  successEvent: any[] = [],
-  failedEvent: any[] = [],
-  transformer: Transformer,
-  resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
-  const success = (data: AxiosResponse<ActionRunResult>) => {
-    const isS3ActionType = actionType === "s3"
-    const isClientS3 =
-      isS3ActionType &&
-      ClientS3.includes(
-        (actionContent as S3Action<S3ActionTypeContent>).commands,
-      )
-    if (isClientS3) {
-      fetchS3ClientResult(
-        data.data.Rows,
-        resourceId || "",
-        actionType,
-        displayName,
-        actionContent,
-        successEvent,
-        failedEvent,
-        transformer,
-        resultCallback,
-      )
-      return
-    }
-    // @ts-ignore
-    //TODO: @aruseito not use any
-    const rawData = data.data.Rows
-    const { headers, status } = data
-    const isRestApi = actionType === "restapi"
-    const paramsData = !isRestApi
-      ? rawData
-      : {
-          data: !rawData.length ? data.data?.Extra?.body : rawData,
-          extraData: { headers, status },
-        }
-
-    calculateFetchResultDisplayName(
-      actionType,
-      displayName,
-      paramsData,
-      transformer,
-      resultCallback,
-    )
-    const realSuccessEvent: any[] = successEvent || []
-
-    runAllEventHandler(realSuccessEvent)
-  }
-  const failure = (res: AxiosResponse<ILLAApiError>) => {
-    let runResult = {
-      error: true,
-      message: res?.data?.errorMessage || "An unknown error",
-    }
-    resultCallback?.(res.data, true)
-    const realSuccessEvent: any[] = failedEvent || []
-    runAllEventHandler(realSuccessEvent)
-    store.dispatch(
-      executionActions.updateExecutionByDisplayNameReducer({
-        displayName: displayName,
-        value: {
-          data: undefined,
-          runResult: runResult,
-          isRunning: false,
-          endTime: new Date().getTime(),
-        },
-      }),
-    )
-  }
-  const crash = (res: AxiosError) => {
-    resultCallback?.(res, true)
-    const realSuccessEvent: any[] = failedEvent || []
-    runAllEventHandler(realSuccessEvent)
-    store.dispatch(
-      executionActions.updateExecutionByDisplayNameReducer({
-        displayName: displayName,
-        value: {
-          data: undefined,
-          runResult: {
-            error: true,
-            message: "An unknown error",
-          },
-          isRunning: false,
-          endTime: new Date().getTime(),
-        },
-      }),
-    )
-  }
-
   const canSendRequest = checkCanSendRequest(actionType, actionContent)
   if (!canSendRequest) {
-    return
+    return Promise.reject(false)
   }
 
   const requestBody = {
@@ -376,18 +277,7 @@ const fetchActionResult = (
     displayName,
     content: actionContent,
   }
-  fetchActionRunResult(appId, actionId, requestBody, isPublic).then(
-    (response) => {
-      success(response)
-    },
-    (error) => {
-      if (isILLAAPiError(error)) {
-        failure(error)
-      } else {
-        crash(error)
-      }
-    },
-  )
+  return await fetchActionRunResult(appId, actionId, requestBody, isPublic)
 }
 
 const getAppwriteFilterValue = (value: string) => {
@@ -586,26 +476,105 @@ const transformDataFormat = (
   }
 }
 
-// need refactor & apps/builder/src/page/App/components/Actions/ActionPanel/utils/runAction.ts also need refactor
-export const runActionWithExecutionResult = (
-  action: ActionItem<ActionContent>,
-  resultCallback?: (data: unknown, error: boolean) => void,
+const successHandler = (
+  actionType: ActionType,
+  displayName: string,
+  actionContent: ActionContent,
+  data: AxiosResponse<ActionRunResult>,
+  successEvent: any[],
+  failedEvent: any[],
+  transformer: any,
 ) => {
-  const {
-    content,
-    actionId,
-    resourceId,
-    displayName,
+  const isS3ActionType = actionType === "s3"
+  const isClientS3 =
+    isS3ActionType &&
+    ClientS3.includes((actionContent as S3Action<S3ActionTypeContent>).commands)
+  if (isClientS3) {
+    fetchS3ClientResult(
+      data.data.Rows,
+      actionType,
+      displayName,
+      actionContent,
+      successEvent,
+      failedEvent,
+      transformer,
+    )
+    return
+  }
+  // @ts-ignore
+  //TODO: @aruseito not use any
+  const rawData = data.data.Rows
+  const { headers, status } = data
+  const isRestApi = actionType === "restapi"
+  const paramsData = !isRestApi
+    ? rawData
+    : {
+        data: !rawData.length ? data.data?.Extra?.body : rawData,
+        extraData: { headers, status },
+      }
+
+  calculateFetchResultDisplayName(
     actionType,
+    displayName,
+    paramsData,
     transformer,
-  } = action as ActionItem<MysqlLikeAction | RestApiAction<BodyContent>>
-  if (!content) return
+  )
+  const realSuccessEvent: any[] = successEvent || []
+
+  runAllEventHandler(realSuccessEvent)
+}
+const failureHandler = (
+  displayName: string,
+  failedEvent: any[],
+  res?: AxiosResponse<ILLAApiError>,
+) => {
+  let runResult = {
+    error: true,
+    message: res?.data?.errorMessage || "An unknown error",
+  }
+  const realSuccessEvent: any[] = failedEvent || []
+  runAllEventHandler(realSuccessEvent)
+  store.dispatch(
+    executionActions.updateExecutionByDisplayNameReducer({
+      displayName: displayName,
+      value: {
+        data: undefined,
+        runResult: runResult,
+        isRunning: false,
+        endTime: new Date().getTime(),
+      },
+    }),
+  )
+}
+
+interface IExecutionActions extends ActionItem<ActionContent> {
+  $actionId: string
+  $resourceId: string
+}
+
+// need refactor & apps/builder/src/page/App/components/Actions/ActionPanel/utils/runAction.ts also need refactor
+export const runActionWithExecutionResult = async (
+  action: ActionItem<ActionContent>,
+) => {
+  const { displayName } = action as ActionItem<
+    MysqlLikeAction | RestApiAction<BodyContent>
+  >
+  const finalContext =
+    ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext()
+  const realAction = finalContext[displayName] as IExecutionActions
+  const { content, $actionId, $resourceId, actionType, transformer } =
+    realAction
+  if (!content) return Promise.reject(false)
   const rootState = store.getState()
   const appId = getAppId(rootState)
   const isGuideMode = getIsILLAGuideMode(rootState)
-  const { successEvent, failedEvent, ...restContent } = content
+  const {
+    successEvent = [],
+    failedEvent = [],
+    ...restContent
+  } = content as ActionContent & Events
   const actionContent = transformDataFormat(
-    actionType,
+    actionType as ActionType,
     restContent,
   ) as ActionContent
   store.dispatch(
@@ -617,38 +586,59 @@ export const runActionWithExecutionResult = (
       },
     }),
   )
-  const currentActionId = isGuideMode ? GUIDE_DEFAULT_ACTION_ID : actionId
+  const currentActionId = (
+    isGuideMode ? GUIDE_DEFAULT_ACTION_ID : $actionId
+  ) as string
 
-  fetchActionResult(
-    action.config?.public || false,
-    resourceId || "",
-    actionType,
-    displayName,
-    appId,
-    currentActionId,
-    actionContent,
-    successEvent,
-    failedEvent,
-    transformer,
-    resultCallback,
-  )
+  try {
+    const response = await fetchActionResult(
+      action.config?.public || false,
+      ($resourceId as string) || "",
+      actionType as ActionType,
+      displayName,
+      appId,
+      currentActionId,
+      actionContent,
+    )
+    successHandler(
+      actionType,
+      displayName,
+      actionContent,
+      response,
+      successEvent,
+      failedEvent,
+      transformer,
+    )
+    return Promise.resolve(true)
+  } catch (e) {
+    if (isILLAAPiError(e)) {
+      failureHandler(displayName, failedEvent, e)
+      return Promise.reject(false)
+    }
+    failureHandler(displayName, failedEvent)
+    return Promise.reject(false)
+  }
 }
 
-export const runActionWithDelay = (
-  action: ActionItem<ActionContent>,
-  resultCallback?: (data: unknown, error: boolean) => void,
-) => {
+export const runActionWithDelay = (action: ActionItem<ActionContent>) => {
   const { config } = action
   if (!config || !config.advancedConfig) {
-    runActionWithExecutionResult(action, resultCallback)
+    runActionWithExecutionResult(action)
     return
   }
   const { advancedConfig } = config
   const { delayWhenLoaded } = advancedConfig
-  const timeoutID = window.setTimeout(() => {
-    runActionWithExecutionResult(action, resultCallback)
-    window.clearTimeout(timeoutID)
-  }, delayWhenLoaded as unknown as number)
+  return new Promise((resolve, reject) => {
+    const timeoutID = window.setTimeout(async () => {
+      const result = await runActionWithExecutionResult(action)
+      window.clearTimeout(timeoutID)
+      if (result) {
+        resolve(result)
+      } else {
+        reject(result)
+      }
+    }, delayWhenLoaded as unknown as number)
+  })
 }
 
 const actionIDMapTimerID: Record<string, number> = {}

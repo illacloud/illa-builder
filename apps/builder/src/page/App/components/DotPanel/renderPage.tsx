@@ -340,47 +340,29 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   ])
 
   const [isPageLoading, setIsPageLoading] = useState(false)
-  const canChangeLoadingRef = useRef(true)
 
   useEffect(() => {
     const rootState = store.getState()
     const currentPageActions = getCurrentPageRunPages(rootState)
-    if (
-      currentPageActions.filter(
-        (action) => action?.config?.advancedConfig?.displayLoadingPage,
-      ).length > 0
-    ) {
-      setIsPageLoading(true)
-      canChangeLoadingRef.current = false
-    }
-    currentPageActions.forEach((action) => {
+    setIsPageLoading(true)
+    const requests = currentPageActions.map((action) => {
       const mergedAction = {
         ...action,
         resourceId: action.$resourceId,
         actionId: action.$actionId,
       }
       if (action.config.advancedConfig.delayWhenLoaded > 0) {
-        runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+        return runActionWithDelay(mergedAction as ActionItem<ActionContent>)
       } else {
-        runActionWithExecutionResult(mergedAction as ActionItem<ActionContent>)
+        return runActionWithExecutionResult(
+          mergedAction as ActionItem<ActionContent>,
+        )
       }
     })
-    return () => {
-      canChangeLoadingRef.current = true
-    }
+    Promise.all(requests).finally(() => {
+      setIsPageLoading(false)
+    })
   }, [])
-
-  const currentPageActions = useSelector(getCurrentPageRunPages)
-
-  useEffect(() => {
-    if (canChangeLoadingRef.current) {
-      const isLoading = currentPageActions
-        .filter((action) => action?.config?.advancedConfig?.displayLoadingPage)
-        .some((action) => action.isRunning)
-      setIsPageLoading(isLoading)
-      canChangeLoadingRef.current = true
-    }
-  }, [currentPageActions])
 
   if (isPageLoading) {
     return <PageLoading />

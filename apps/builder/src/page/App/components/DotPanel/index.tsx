@@ -22,10 +22,13 @@ import {
 import {
   getAppLoadedActions,
   getExecutionResult,
+  getIntervalActions,
   getRootNodeExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import {
+  registerActionPeriod,
+  removeAllActionPeriod,
   runActionWithDelay,
   runActionWithExecutionResult,
 } from "@/utils/action/runAction"
@@ -74,23 +77,36 @@ export const DotPanel: FC = () => {
   useEffect(() => {
     const rootState = store.getState()
     const appLoadedAction = getAppLoadedActions(rootState)
-    appLoadedAction
+    const request = appLoadedAction
       .filter((action) => !action.isRunning)
-      .forEach((action) => {
+      .map((action) => {
         const mergedAction = {
           ...action,
           resourceId: action.$resourceId,
           actionId: action.$actionId,
         }
         if (action.config.advancedConfig.delayWhenLoaded > 0) {
-          runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+          return runActionWithDelay(mergedAction as ActionItem<ActionContent>)
         } else {
-          runActionWithExecutionResult(
+          return runActionWithExecutionResult(
             mergedAction as ActionItem<ActionContent>,
           )
         }
       })
+    Promise.all(request)
   }, [])
+
+  useEffect(() => {
+    const rootState = store.getState()
+    const appLoadedAction = getIntervalActions(rootState)
+    appLoadedAction.forEach((action) => {
+      registerActionPeriod(action as ActionItem<ActionContent>)
+    })
+
+    return () => {
+      removeAllActionPeriod()
+    }
+  })
 
   if (
     !canvasTree ||
