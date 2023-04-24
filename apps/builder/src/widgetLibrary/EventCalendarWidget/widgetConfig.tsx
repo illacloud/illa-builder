@@ -1,4 +1,5 @@
 import dayjs from "dayjs"
+import { v4 } from "uuid"
 import { ReactComponent as SwitchWidgetIcon } from "@/assets/widgetCover/switch.svg"
 import i18n from "@/i18n/config"
 import { formatDateTime } from "@/widgetLibrary/EventCalendarWidget/utils"
@@ -11,7 +12,6 @@ const date = new Date(),
   hour = date.getHours(),
   minus = date.getMinutes(),
   emptyEvent = {
-    label: "",
     id: "",
     title: "",
     description: "",
@@ -36,9 +36,10 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
     eventConfigureMode: "static",
     manualOptions: [
       {
-        label: "Event-1",
-        id: "Event-1",
-        title: "Event-1",
+        id: `event-${v4()}`,
+        label: "Event 1",
+        title: "Event 1",
+        value: "Event 1",
         description: "",
         start: dayjs(new Date(fullYear, month, day - 1, hour, minus)).format(
           formatDateTime,
@@ -46,14 +47,15 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
         end: dayjs(new Date(fullYear, month, day - 1, hour + 2, minus)).format(
           formatDateTime,
         ),
-        resourceId: "Resource-1",
-        resourceTitle: "Resource-1",
+        resourceId: "Resource 1",
+        resourceTitle: "Resource 1",
         allDay: undefined,
       },
       {
-        label: "Event-2",
-        id: "Event-2",
-        title: "Event-2",
+        id: `event-${v4()}`,
+        title: "Event 2",
+        label: "Event 2",
+        value: "Event 2",
         description: "",
         start: dayjs(new Date(fullYear, month, day, hour, minus)).format(
           formatDateTime,
@@ -61,14 +63,15 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
         end: dayjs(new Date(fullYear, month, day, hour + 2, minus)).format(
           formatDateTime,
         ),
-        resourceId: "Resource-2",
-        resourceTitle: "Resource-2",
+        resourceId: "Resource 2",
+        resourceTitle: "Resource 2",
         allDay: undefined,
       },
       {
-        label: "Event-3",
-        id: "Event-3",
-        title: "Event-3",
+        id: `event-${v4()}`,
+        title: "Event 3",
+        label: "Event 3",
+        value: "Event 3",
         description: "",
         start: dayjs(new Date(fullYear, month, day + 1, hour, minus)).format(
           formatDateTime,
@@ -76,28 +79,28 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
         end: dayjs(new Date(fullYear, month, day + 1, hour + 2, minus)).format(
           formatDateTime,
         ),
-        resourceId: "Resource-3",
-        resourceTitle: "Resource-3",
+        resourceId: "Resource 3",
+        resourceTitle: "Resource 3",
         allDay: undefined,
       },
     ],
     resourceMapList: [
       {
-        resourceId: "Resource-1",
-        resourceTitle: "Resource-1",
+        resourceId: "Resource 1",
+        resourceTitle: "Resource 1",
       },
       {
-        resourceId: "Resource-2",
-        resourceTitle: "Resource-2",
+        resourceId: "Resource 2",
+        resourceTitle: "Resource 2",
       },
       {
-        resourceId: "Resource-3",
-        resourceTitle: "Resource-3",
+        resourceId: "Resource 3",
+        resourceTitle: "Resource 3",
       },
     ],
     dataSources: "{{[]}}",
     defaultView: "month",
-    defaultDate: dayjs(date).format(formatDateTime),
+    defaultDate: dayjs(date).format("YYYY-MM-DD"),
     showResource: false,
     showCurrentTime: "{{true}}",
     slotBackground: "white",
@@ -109,5 +112,6 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
     addEventValue: emptyEvent,
     deleteEventValue: emptyEvent,
     selectEventValue: emptyEvent,
+    changeEventValue: emptyEvent,
   },
 }

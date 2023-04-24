@@ -6,8 +6,9 @@ export type Pluralize<T> = {
 }
 export interface Event {
   label?: string
-  id?: number | string
   title?: string
+  id?: number | string
+  value?: string
   start?: Date
   end?: Date
   resourceId?: number | string
@@ -16,7 +17,6 @@ export interface Event {
   resourceTitle?: string
 }
 export interface ResourceMap {
-  label?: string
   resourceTitle?: string
   resourceId?: number | string
 }
@@ -39,9 +39,12 @@ export interface WrappedEventCalendarProps {
   titleColor?: string
   eventBackground?: string
   eventTextColor?: string
+  displayName: string
+  isInEdit: boolean
   moveEvent: (args: EventInteractionArgs) => void
   resizeEvent: (args: EventInteractionArgs) => void
   selectEvent: (args: Event) => void
+  onDragStart: () => void
 }
 
 export interface EventCalendarWidgetProps
@@ -50,4 +53,13 @@ export interface EventCalendarWidgetProps
   eventConfigureMode?: "dynamic" | "static"
   manualOptions?: Event[]
   mappedOption?: Pluralize<Event>
+}
+
+export interface CalendarEventOptionsType extends Event {
+  id: string
+  key?: string
+  label?: string
+  caption?: string
+  tooltip?: string
+  hidden?: boolean
 }
