@@ -6,6 +6,7 @@ import {
   isNumber,
   isObject,
   isString,
+  Rate,
 } from "@illa-design/react"
 import {
   ColumnItemShape,
@@ -172,11 +173,11 @@ const isValidUrl = (str: unknown) => {
   if (!isString(str)) return false
   const pattern = new RegExp(
     "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
+    "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+    "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+    "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+    "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+    "(\\#[-a-z\\d_]*)?$",
     "i",
   )
   return pattern.test(str)
@@ -243,10 +244,21 @@ export const getCellForType = (
         const formatVal = dayjsPro(value).format(format)
         return formatVal ? formatVal : "-"
       }
-      case "icon":
+    case "icon":
       return (props: CellContext<any, any>) => {
         const Icon = getIcon(iconName)
         return Icon ? <Icon /> : "-"
+      }
+    case "rating":
+      return (props: CellContext<any, any>) => {
+        const value = getPropertyValue(props, mappedValue, fromCurrentRow)
+        const maxCount = 5
+
+        return <Rate
+          count={maxCount}
+          readonly
+          value={Number(value) || 0}
+        />
       }
     case "button":
       return (props: CellContext<any, any>) => {
