@@ -30,7 +30,7 @@ export const createResource = async (
       needTeamID: true,
     },
   )
-  store.dispatch(resourceActions.updateResourceItemReducer(response.data))
+  store.dispatch(resourceActions.addResourceItemReducer(response.data))
   return response.data.resourceId
 }
 
