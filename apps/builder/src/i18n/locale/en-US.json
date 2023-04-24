@@ -539,10 +539,10 @@
             }
           },
           "advanced": {
-            "advanced": "Advanced",
-            "page_trigger": "Trigger timing",
+            "advanced": "ADVANCED",
+            "page_trigger": "Trigger Timing",
             "loading_page": "Loading page",
-            "page_load_delay": "Page load delay (ms)",
+            "page_load_delay": "Delay (ms)",
             "run_this_action_peri": "Run this action periodically",
             "interval": "Interval (s)",
             "actions_running_when": "Actions running when the page loads",
@@ -1140,7 +1140,10 @@
           "new": "New"
         },
         "Change": "Change",
-        "Select": "Select"
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "No title"
+        }
       },
       "setter_default_value": {
         "fill": "Fill",
@@ -1631,7 +1634,8 @@
           "calendar_border": "Set color of the border",
           "calendar_text": "Set color of the text",
           "event_background": "Set the background of event card",
-          "event_text": "Set the text color of event card"
+          "event_text": "Set the text color of event card",
+          "couldnot_drag": "If you wish to drag to adjust the time range, please proceed to the preview page for the operation."
         }
       },
       "setter_option": {
@@ -1670,7 +1674,11 @@
           "wednesday": "Wednesday",
           "thursday": "Thursday",
           "friday": "Friday",
-          "saturday": "Saturday"
+          "saturday": "Saturday",
+          "month": "Month",
+          "week": "Week",
+          "day": "Day",
+          "agenda": "Agenda"
         }
       },
       "setter_placeholder": {
