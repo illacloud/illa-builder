@@ -18,6 +18,7 @@ import {
   RenderTableLink,
 } from "@/widgetLibrary/TableWidget/renderTableCell"
 import { getIcon } from "@/widgetLibrary/IconWidget/utils"
+import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
@@ -248,6 +249,11 @@ export const getCellForType = (
       return (props: CellContext<any, any>) => {
         const Icon = getIcon(iconName)
         return Icon ? <Icon /> : "-"
+      }
+    case "markdown":
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        return value ? <ILLAMarkdown textString={value} /> : "-"
       }
     case "rating":
       return (props: CellContext<any, any>) => {
