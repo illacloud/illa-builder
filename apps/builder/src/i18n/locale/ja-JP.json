@@ -730,7 +730,7 @@
           }
         },
         "status": {
-          "ran_failed": "実行に失敗しました",
+          "ran_failed": "実行に失敗",
           "ran_successfully": "実行成功"
         },
         "result": {
