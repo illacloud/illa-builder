@@ -190,6 +190,22 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setEndValue",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-startTime`,
+        labelName: i18n.t("editor.inspect.setter_label.time_range.start_time"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setStartTime",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-endTime`,
+        labelName: i18n.t("editor.inspect.setter_label.time_range.end_time"),
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setEndTime",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-setPrimaryValue`,
         labelName: i18n.t("editor.method.statistics.primary_value"),
         setterType: "INPUT_SETTER",

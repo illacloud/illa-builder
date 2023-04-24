@@ -227,6 +227,18 @@ import {
   TextWidget,
 } from "@/widgetLibrary/TextWidget"
 import {
+  TIME_PICKER_EVENT_HANDLER_CONFIG,
+  TIME_PICKER_PANEL_CONFIG,
+  TIME_PICKER_WIDGET_CONFIG,
+  TimePickerWidget,
+} from "@/widgetLibrary/TimePickerWidget"
+import {
+  TIME_RANGE_EVENT_HANDLER_CONFIG,
+  TIME_RANGE_PANEL_CONFIG,
+  TIME_RANGE_WIDGET_CONFIG,
+  TimeRangeWidget,
+} from "@/widgetLibrary/TimeRangeWidget"
+import {
   TIMELINE_EVENT_HANDLER_CONFIG,
   TIMELINE_PANEL_CONFIG,
   TIMELINE_WIDGET_CONFIG,
@@ -438,6 +450,18 @@ export const WidgetConfig: WidgetConfigs = {
     config: STATISTICS_WIDGET_CONFIG,
     panelConfig: STATISTICS_PANEL_CONFIG,
     eventHandlerConfig: STATISTICS_EVENT_HANDLER_CONFIG,
+  },
+  TIME_PICKER_WIDGET: {
+    widget: TimePickerWidget,
+    config: TIME_PICKER_WIDGET_CONFIG,
+    panelConfig: TIME_PICKER_PANEL_CONFIG,
+    eventHandlerConfig: TIME_PICKER_EVENT_HANDLER_CONFIG,
+  },
+  TIME_RANGE_WIDGET: {
+    widget: TimeRangeWidget,
+    config: TIME_RANGE_WIDGET_CONFIG,
+    panelConfig: TIME_RANGE_PANEL_CONFIG,
+    eventHandlerConfig: TIME_RANGE_EVENT_HANDLER_CONFIG,
   },
   RATE_WIDGET: {
     widget: RateWidget,
