@@ -1223,9 +1223,9 @@
         "secondary_value": "SECONDARY VALUE",
         "resource": "RESOURCE",
         "eventCalendar": {
-          "calendar": "カレンダー",
-          "event": "イベント"
-        }
+          "calendar": "カレンダー"
+        },
+        "event": "イベント"
       },
       "setter_label": {
         "action": "アクション",
