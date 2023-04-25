@@ -1223,9 +1223,9 @@
         "secondary_value": "次要值",
         "resource": "RESOURCE",
         "eventCalendar": {
-          "calendar": "日历",
-          "event": "事件"
-        }
+          "calendar": "日历"
+        },
+        "event": "事件"
       },
       "setter_label": {
         "action": "动作",
