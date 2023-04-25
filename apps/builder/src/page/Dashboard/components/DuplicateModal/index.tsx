@@ -116,10 +116,11 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
                 message.error({
                   content: t("dashboard.app.duplicate_fail"),
                 })
+              } else {
+                message.error({
+                  content: t("network_error"),
+                })
               }
-              message.error({
-                content: t("network_error"),
-              })
             },
           )
           .finally(() => {

@@ -24,7 +24,7 @@ import {
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
-import { getCurrentPageRunPages } from "@/redux/currentApp/executionTree/executionSelector"
+import { getPageLoadingActions } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import {
   runActionWithDelay,
@@ -340,10 +340,12 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   ])
 
   const [isPageLoading, setIsPageLoading] = useState(false)
-
   useEffect(() => {
     const rootState = store.getState()
-    const currentPageActions = getCurrentPageRunPages(rootState)
+    const pageLoadingActions = getPageLoadingActions(rootState)
+    const currentPageActions = pageLoadingActions.filter((action) =>
+      action.config?.advancedConfig.pages.includes(currentPageDisplayName),
+    )
     const canShowPageActions = currentPageActions.filter(
       (action) => action?.config.advancedConfig.displayLoadingPage,
     )
@@ -367,7 +369,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     Promise.all(requests).finally(() => {
       setIsPageLoading(false)
     })
-  }, [])
+  }, [currentPageDisplayName])
 
   if (isPageLoading) {
     return <PageLoading />

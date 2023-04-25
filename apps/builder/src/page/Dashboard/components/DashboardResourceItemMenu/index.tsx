@@ -130,11 +130,11 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
             message.error({
               content: t("dashboard.resource.delete_fail"),
             })
-            return
+          } else {
+            message.error({
+              content: t("network_error"),
+            })
           }
-          message.error({
-            content: t("network_error"),
-          })
         }
         modal.update(modalId, {
           okLoading: false,

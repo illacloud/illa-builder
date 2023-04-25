@@ -13,6 +13,7 @@ export const sendMousePosition = (
   cursorYMod: number,
   isLeave: boolean = false,
 ) => {
+  if (cursorXInteger < 0 || cursorYInteger < 0) return
   const appID = ILLARoute.state.matches[0].params.appId
   const rootState = store.getState()
   const currentUserInfo = getCurrentUser(rootState)
@@ -57,6 +58,15 @@ export const sendShadowPosition = (
   widgetW: number,
   widgetH: number,
 ) => {
+  if (
+    cursorXInteger < 0 ||
+    cursorYInteger < 0 ||
+    widgetX < 0 ||
+    widgetY < 0 ||
+    widgetW < 0 ||
+    widgetH < 0
+  )
+    return
   const appID = ILLARoute.state.matches[0].params.appId
   const rootState = store.getState()
   const currentUserInfo = getCurrentUser(rootState)
