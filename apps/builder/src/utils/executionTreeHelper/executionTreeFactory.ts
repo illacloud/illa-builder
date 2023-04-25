@@ -106,7 +106,7 @@ export class ExecutionTreeFactory {
   validateTree(tree: RawTreeShape) {
     return Object.keys(tree).reduce((current: RawTreeShape, displayName) => {
       const widgetOrAction = current[displayName]
-      if (!isWidget(widgetOrAction)) {
+      if (!isWidget(widgetOrAction) && !isAction(widgetOrAction)) {
         return current
       }
       const validationPaths = widgetOrAction.$validationPaths
@@ -537,7 +537,16 @@ export class ExecutionTreeFactory {
             return []
           }
         }),
-      )
+      ).filter((path) => {
+        const [currentDisplayName, ..._currentPaths] = toPath(key)
+        const [targetDisplayName, ..._targetPaths] = toPath(path)
+        const currentNode = rawTree[currentDisplayName]
+        const targetNode = rawTree[targetDisplayName]
+        if (!currentNode || !targetNode) return path
+        if (currentNode.$type === "WIDGET" && targetNode.$type === "WIDGET")
+          return currentNode.$parentPageName === targetNode.$parentPageName
+        return path
+      })
     })
 
     return dependenciesMap

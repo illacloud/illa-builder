@@ -63,7 +63,7 @@ export const ActionEventHandler: FC = () => {
 
   // keep empty
   const handleUpdateOtherMultiAttrDSL = useCallback(
-    (displayName: string, updateSlice: Record<string, unknown>) => {
+    (_displayName: string, _updateSlice: Record<string, unknown>) => {
       return
     },
     [],

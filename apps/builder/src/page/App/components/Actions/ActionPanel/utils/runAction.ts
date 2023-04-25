@@ -1,9 +1,10 @@
-import { AxiosError, AxiosResponse } from "axios"
-import { cloneDeep, get, merge } from "lodash"
+import { AxiosResponse } from "axios"
+import { get } from "lodash"
 import { createMessage, isNumber, isString } from "@illa-design/react"
-import { ActionApi, Api, ApiError } from "@/api/base"
+import { ILLAApiError } from "@/api/http"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
-import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
+import i18n from "@/i18n/config"
+import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import {
   ActionContent,
@@ -35,11 +36,12 @@ import {
   S3ActionRequestType,
   S3ActionTypeContent,
 } from "@/redux/currentApp/action/s3Action"
-import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
+import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { Params } from "@/redux/resource/restapiResource"
+import { fetchActionRunResult, fetchS3ActionRunResult } from "@/services/action"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import {
@@ -47,8 +49,9 @@ import {
   wrapFunctionCode,
 } from "@/utils/evaluateDynamicString/utils"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
+import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { downloadSingleFile } from "@/utils/file"
-import { isObject } from "@/utils/typeHelper"
+import { isILLAAPiError, isObject } from "@/utils/typeHelper"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
@@ -98,11 +101,12 @@ function runTransformer(transformer: Transformer, rawData: any) {
   if (transformer?.enable) {
     const evaluateTransform = wrapFunctionCode(transformer.rawData)
     const canEvalString = `{{${evaluateTransform}()}}`
-    try {
-      calcResult = evaluateDynamicString("events", canEvalString, {
-        ...BUILDER_CALC_CONTEXT,
+    const finalContext =
+      ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext({
         data: rawData,
       })
+    try {
+      calcResult = evaluateDynamicString("events", canEvalString, finalContext)
     } catch (e) {
       console.log(e)
     }
@@ -131,7 +135,7 @@ const calculateFetchResultDisplayName = (
   rawData: any,
   transformer: Transformer,
   resultCallback?: (data: unknown, error: boolean) => void,
-  actionCommand?: string,
+  _actionCommand?: string,
 ) => {
   const isRestApi = actionType === "restapi"
   const realData = isRestApi ? rawData?.data : rawData
@@ -157,9 +161,8 @@ const calculateFetchResultDisplayName = (
 }
 
 const runAllEventHandler = (events: any[] = []) => {
-  const rootState = store.getState()
-  const executionResult = getExecutionResult(rootState)
-  const finalContext = merge(cloneDeep(BUILDER_CALC_CONTEXT), executionResult)
+  const finalContext =
+    ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext()
   events.forEach((scriptObj) => {
     runEventHandler(scriptObj, finalContext)
   })
@@ -191,12 +194,8 @@ const fetchS3ClientResult = async (
     switch (commands) {
       case S3ActionRequestType.READ_ONE:
         const readURL = urlInfos[0].url
-        const response = await Api.asyncRequest({
-          url: readURL,
-          method: "GET",
-          headers,
-        })
-        const { request: readReq, config: readConf, ...readRes } = response
+        const response = await fetchS3ActionRunResult(readURL, "GET", headers)
+        const { request: _readReq, config: _readConf, ...readRes } = response
         result = {
           ...readRes,
         }
@@ -204,21 +203,22 @@ const fetchS3ClientResult = async (
       case S3ActionRequestType.DOWNLOAD_ONE:
         const url = urlInfos[0].url
         let downloadCommandArgs = actionContent.commandArgs
-        const downloadResponse = await Api.asyncRequest<string>({
+        const downloadResponse = await fetchS3ActionRunResult(
           url,
-          method: "GET",
+          "GET",
           headers,
-        })
+        )
         const contentType =
           downloadResponse.headers["content-type"].split(";")[0] ?? ""
+        console.log("downloadResponse", downloadResponse.data)
         downloadSingleFile(
           contentType,
           downloadCommandArgs.objectKey,
           downloadResponse.data || "",
         )
         const {
-          request: downloadReq,
-          config: downloadConf,
+          request: _downloadReq,
+          config: _downloadConf,
           ...downloadRes
         } = downloadResponse
         result = {
@@ -228,18 +228,19 @@ const fetchS3ClientResult = async (
       case S3ActionRequestType.UPLOAD:
         let uploadCommandArgs = actionContent.commandArgs
         const uploadUrl = urlInfos[0].url
-        const uploadResponse = await Api.asyncRequest({
-          url: uploadUrl,
-          method: "PUT",
-          data: uploadCommandArgs.objectData,
-          headers: {
+        const uploadResponse = await fetchS3ActionRunResult(
+          uploadUrl,
+          "PUT",
+          {
             ...headers,
             "x-amz-acl": urlInfos[0].acl ?? "public-read",
           },
-        })
+          uploadCommandArgs.objectData,
+        )
+
         const {
-          request: uploadReq,
-          config: uploadConf,
+          request: _uploadReq,
+          config: _uploadConf,
           ...uploadRes
         } = uploadResponse
         result = {
@@ -252,20 +253,20 @@ const fetchS3ClientResult = async (
         let requests: any[] = []
         urlInfos.forEach((data, index) => {
           requests.push(
-            Api.asyncRequest({
-              url: data.url,
-              method: "PUT",
-              data: objectDataList[index],
-              headers: {
+            fetchS3ActionRunResult(
+              data.url,
+              "PUT",
+              {
                 ...headers,
                 "x-amz-acl": data.acl ?? "public-read",
               },
-            }),
+              objectDataList[index],
+            ),
           )
         })
         const res = await Promise.all(requests)
         result = res.map((response) => {
-          const { request, config, ...others } = response
+          const { request: _request, config: _config, ...others } = response
           return others
         })
         break
@@ -302,6 +303,23 @@ const fetchS3ClientResult = async (
   }
 }
 
+const checkCanSendRequest = (
+  actionType: ActionType,
+  actionContent: ActionContent,
+) => {
+  if (actionType !== "smtp") {
+    return true
+  }
+  const { attachment } = actionContent as SMPTAction
+  const result = !!attachment && isFileOversize(attachment, "smtp")
+  if (result) {
+    message.error({
+      content: i18n.t("editor.action.panel.error.max_file"),
+    })
+  }
+  return !result
+}
+
 const fetchActionResult = (
   isPublic: boolean,
   resourceId: string,
@@ -316,7 +334,7 @@ const fetchActionResult = (
   isTrigger: boolean,
   resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
-  const success = (data: ActionRunResult) => {
+  const success = (response: AxiosResponse<ActionRunResult>) => {
     const isS3ActionType = actionType === "s3"
     const isClientS3 =
       isS3ActionType &&
@@ -325,7 +343,7 @@ const fetchActionResult = (
       )
     if (isClientS3) {
       fetchS3ClientResult(
-        data.data.Rows,
+        response.data.Rows,
         resourceId || "",
         actionType,
         displayName,
@@ -338,15 +356,13 @@ const fetchActionResult = (
       )
       return
     }
-    // @ts-ignore
-    //TODO: @aruseito not use any
-    const rawData = data.data.Rows
-    const { headers, status } = data
+    const rawData = response.data.Rows
+    const { headers, status } = response
     const isRestApi = actionType === "restapi"
     const paramsData = !isRestApi
       ? rawData
       : {
-          data: !rawData.length ? data.data?.Extra?.body : rawData,
+          data: !rawData.length ? response.data?.Extra?.body : rawData,
           extraData: { headers, status },
         }
 
@@ -364,10 +380,10 @@ const fetchActionResult = (
 
     runAllEventHandler(realSuccessEvent)
   }
-  const failure = (res: AxiosResponse<ApiError>) => {
+  const failure = (res: AxiosResponse<ILLAApiError>) => {
     let runResult = {
       error: true,
-      message: res?.data?.errorMessage || "An unknown error",
+      message: res.data.errorMessage || "An unknown error",
     }
     resultCallback?.(res.data, true)
     const realSuccessEvent: any[] = isTrigger
@@ -386,15 +402,12 @@ const fetchActionResult = (
       }),
     )
   }
-  const crash = (res: AxiosError) => {
+  const crash = (res: Error) => {
     resultCallback?.(res, true)
     const realSuccessEvent: any[] = isTrigger
       ? failedEvent || []
       : getRealEventHandler(failedEvent)
     runAllEventHandler(realSuccessEvent)
-    message.error({
-      content: "not online",
-    })
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,
@@ -410,40 +423,29 @@ const fetchActionResult = (
       }),
     )
   }
-
-  if (isPublic) {
-    ActionApi.teamIdentifierRequest(
-      {
-        method: "POST",
-        url: `/apps/${appId}/publicActions/${actionId}/run`,
-        data: {
-          resourceId,
-          actionType,
-          displayName,
-          content: actionContent,
-        },
-      },
-      success,
-      failure,
-      crash,
-    )
-  } else {
-    ActionApi.teamRequest(
-      {
-        method: "POST",
-        url: `/apps/${appId}/actions/${actionId}/run`,
-        data: {
-          resourceId,
-          actionType,
-          displayName,
-          content: actionContent,
-        },
-      },
-      success,
-      failure,
-      crash,
-    )
+  const canSendRequest = checkCanSendRequest(actionType, actionContent)
+  if (!canSendRequest) {
+    return
   }
+
+  const requestBody = {
+    resourceId,
+    actionType,
+    displayName,
+    content: actionContent,
+  }
+  fetchActionRunResult(appId, actionId, requestBody, isPublic).then(
+    (response) => {
+      success(response)
+    },
+    (error) => {
+      if (isILLAAPiError(error)) {
+        failure(error)
+      } else {
+        crash(error)
+      }
+    },
+  )
 }
 
 function getRealEventHandler(eventHandler?: any[]) {

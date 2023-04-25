@@ -15,12 +15,10 @@ import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
 import collaboratorsReducer from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import dragShadowReducer from "@/redux/currentApp/dragShadow/dragShadowSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
-import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
 import guideReducer from "@/redux/guide/guideSlice"
-import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import teamReducer from "@/redux/team/teamSlice"
 import { mixpanelReport } from "./middleware/mixpanelReport"
@@ -31,7 +29,6 @@ const listenerMiddleware = createListenerMiddleware()
 
 const editorReducer = combineReducers({
   components: componentsReducer,
-  dottedLineSquare: dottedLineSquareReducer,
 })
 
 const appReducer = combineReducers({
@@ -64,7 +61,6 @@ const store = configureStore({
     currentApp: appReducer,
     dashboard: dashboardReducer,
     currentUser: currentUserReducer,
-    liveFamily: liveFamilyReducer,
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
     team: teamReducer,

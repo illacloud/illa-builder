@@ -75,7 +75,6 @@ export const FixedCursor: FC<CursorProps> = (props) => {
     decimalPartX,
     decimalPartY,
     unitW,
-    status,
   } = props
 
   const realX = (integerPartX + decimalPartX) * unitW

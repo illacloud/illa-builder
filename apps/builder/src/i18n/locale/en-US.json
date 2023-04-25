@@ -197,7 +197,11 @@
             "consider_queries_tha": "Consider queries that delete no rows as successes",
             "title_of_spreadsheet": "Title of spreadsheet",
             "sheet_id_to_copy": "Sheet ID to copy",
-            "sheet_to_copy_to": "Sheet to copy to"
+            "sheet_to_copy_to": "Sheet to copy to",
+            "authentication": "Authentication",
+            "connect_with_oauth": "Connect with OAuth & Save",
+            "reconnect_with_oauth": "Reconnect with OAuth",
+            "access_type": "Access type"
           }
         },
         "placeholder": {
@@ -260,7 +264,9 @@
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. </0>",
             "sheet_id_to_copy": "Find this by looking at the ?gid=123123 in the URL of your Google sheets",
-            "copy_to_sheet_name": "Required. Rename the copied sheet."
+            "copy_to_sheet_name": "Required. Rename the copied sheet.",
+            "successfully_authent": "Successfully authenticated",
+            "failed_to_authentica": "Failed to authenticate"
           },
           "tidb": {
             "ca_certificate": "We fill in the CA Certificate used for TLS Connections to Serverless Tier by default. If you need TLS Connections to Dedicated Tier, <0>Click here</0> to view the configuration method."
@@ -337,7 +343,13 @@
             "filter_by": {
               "use_a1_notation": "Use A1 notation",
               "use_row_filters": "Use row filters"
-            }
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Service account",
+            "read_and_write": "Read and write",
+            "read_only": "Read-only"
           }
         },
         "default": {

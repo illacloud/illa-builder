@@ -204,8 +204,8 @@ Pdf.displayName = "Pdf"
 export const PdfWidget: FC<PdfWidgetProps> = (props) => {
   const {
     displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateOriginalDSLMultiAttr,
     tooltipText,
     width,
@@ -221,18 +221,17 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
+    updateComponentRuntimeProps({
       setFileUrl: (url: string) => {
         handleUpdateOriginalDSLMultiAttr({ url })
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateOriginalDSLMultiAttr,
   ])
 
@@ -249,14 +248,14 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
         height: wrapperRef.current.offsetHeight,
       })
     }
-  }, [w, h, handleUpdateOriginalDSLMultiAttr])
+  }, [w, h, handleUpdateOriginalDSLMultiAttr, width, height])
 
   return (
     <div css={pdfWrapperStyle} ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <Pdf
-          handleUpdateGlobalData={handleUpdateGlobalData}
-          handleDeleteGlobalData={handleDeleteGlobalData}
+          updateComponentRuntimeProps={updateComponentRuntimeProps}
+          deleteComponentRuntimeProps={deleteComponentRuntimeProps}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
           displayName={displayName}
           width={width}

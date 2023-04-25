@@ -128,10 +128,8 @@ export const HuggingFaceEndpointConfigElement: FC<ConfigElementProps> = (
           tips={
             formState.errors.endpoint ? (
               <div css={errorMsgStyle}>
-                <>
-                  <WarningCircleIcon css={errorIconStyle} />
-                  {formState.errors.endpoint.message}
-                </>
+                <WarningCircleIcon css={errorIconStyle} />
+                <>{formState.errors.endpoint.message}</>
               </div>
             ) : (
               <Trans

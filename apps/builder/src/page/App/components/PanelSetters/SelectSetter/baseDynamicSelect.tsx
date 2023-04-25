@@ -121,6 +121,7 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
             modalDescription={labelDesc ?? detailedDescription}
             onFocus={onFocus}
             onBlur={onBlur}
+            scopeOfAutoComplete="page"
           />
         ) : (
           <Select

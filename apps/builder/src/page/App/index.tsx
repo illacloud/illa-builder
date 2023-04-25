@@ -67,7 +67,7 @@ import {
 export const Editor: FC = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  let { appId, teamIdentifier } = useParams()
+  let { appId } = useParams()
   const controls = useAnimation()
 
   const currentUser = useSelector(getCurrentUser)
@@ -94,12 +94,7 @@ export const Editor: FC = () => {
 
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {
-      Connection.enterRoom(
-        "app",
-        appId ?? "",
-        (loading) => {},
-        (errorState) => {},
-      )
+      Connection.enterRoom("app", appId ?? "")
       window.addEventListener("beforeunload", handleLeaveRoom)
     }
     return () => {

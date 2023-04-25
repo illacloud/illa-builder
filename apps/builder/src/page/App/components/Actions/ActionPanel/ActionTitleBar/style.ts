@@ -3,29 +3,30 @@ import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const actionTitleBarStyle = css`
   display: flex;
-  min-width: 700px;
   flex-direction: row;
   align-items: center;
   padding: 0 16px;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   min-height: 48px;
-`
-
-export const actionTitleBarDisplayNameStyle = css`
-  width: 280px;
-`
-
-export const actionTitleBarSpaceStyle = css`
-  flex-grow: 1;
-  min-width: 8px;
-`
-
-export const actionTitleBarRunStyle = css`
-  margin-left: 8px;
+  justify-content: space-between;
+  position: relative;
 `
 
 export const editableTitleBarWrapperStyle = css`
   width: 280px;
+  position: absolute;
+  left: calc(50% - 140px);
+  .editable-text-container {
+    justify-content: center;
+    :hover {
+      .text-container {
+        padding-left: 0;
+      }
+    }
+  }
+  .input-container {
+    text-align: center;
+  }
 `
 
 export const actionSuccessBlockStyle = css`
@@ -77,3 +78,13 @@ export function applyOpenStateStyle(openState: boolean): SerializedStyles {
     ${transform};
   `
 }
+
+export const tabsContainerStyle = css`
+  width: auto;
+  padding-left: 0;
+  padding-right: 0;
+`
+
+export const runResultAndRunContainerStyle = css`
+  display: flex;
+`

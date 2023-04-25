@@ -460,8 +460,6 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
 export const ListWidget: FC<ListWidgetProps> = (props) => {
   const {
     overflowMethod,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
     displayName,
     dataSources,
     childrenNode,
@@ -482,14 +480,6 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
       propsRef.current = props
     }
   }, [props])
-
-  useEffect(() => {
-    handleUpdateGlobalData?.(displayName, { ...props })
-
-    return () => {
-      handleDeleteGlobalData?.(displayName)
-    }
-  }, [displayName, handleDeleteGlobalData, handleUpdateGlobalData, props])
 
   const updateTemplateContainerNodesProps = useCallback(
     (childrenNodes: ComponentNode[]) => {
@@ -598,7 +588,6 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
             selectedIndex: index,
           }
         }
-        handleUpdateGlobalData?.(displayName, value)
         handleUpdateMultiExecutionResult([
           {
             displayName,
@@ -614,7 +603,6 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
       dataSources,
       disabled,
       displayName,
-      handleUpdateGlobalData,
       handleUpdateMultiExecutionResult,
       triggerEventHandler,
     ],

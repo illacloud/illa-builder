@@ -23,7 +23,7 @@ export const CollaboratorsList: FC<{
   currentState: string
   containerWidth: number
   nameChanging?: boolean
-}> = ({ users, disableMargin, currentState, containerWidth, nameChanging }) => {
+}> = ({ users, disableMargin, currentState, containerWidth }) => {
   const [listShow, setListShow] = useState(false)
   const [listContainerRef, bounds] = useMeasure()
   const { t } = useTranslation()

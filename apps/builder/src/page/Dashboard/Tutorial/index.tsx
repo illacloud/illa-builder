@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useBeforeUnload, useNavigate, useParams } from "react-router-dom"
-import { NextIcon, Spin, useMessage } from "@illa-design/react"
+import { NextIcon, Spin } from "@illa-design/react"
 import { ReactComponent as CardCover } from "@/assets/tutorial/card-cover.svg"
 import { Templates } from "@/config/template"
 import {
@@ -36,7 +36,6 @@ const Tutorial: FC = () => {
   const { t } = useTranslation()
   let navigate = useNavigate()
   const { teamIdentifier } = useParams()
-  const message = useMessage()
   const [loading, setLoading] = useState(false)
 
   const teamInfo = useSelector(getCurrentTeamInfo)

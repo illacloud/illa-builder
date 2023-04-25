@@ -20,6 +20,7 @@ export const useAutoUpdateHeight = (
   }, [])
 
   useLayoutEffect(() => {
+    const containerRefValue = containerRef.current
     const observerRef = new ResizeObserver((entries) => {
       if (!isMounted.current || !handleUpdateHeight) return
       const height = entries[0].contentRect.height
@@ -41,14 +42,14 @@ export const useAutoUpdateHeight = (
       }
       handleUpdateHeight?.(height)
     })
-    if (observerRef && containerRef.current && enable) {
-      observerRef.unobserve(containerRef.current)
-      observerRef.observe(containerRef.current)
+    if (observerRef && containerRefValue && enable) {
+      observerRef.unobserve(containerRefValue)
+      observerRef.observe(containerRefValue)
     }
 
     return () => {
-      if (containerRef.current && enable) {
-        observerRef.unobserve(containerRef.current)
+      if (containerRefValue && enable) {
+        observerRef.unobserve(containerRefValue)
       }
     }
   }, [dynamicOptions, enable, handleUpdateHeight])

@@ -2,8 +2,6 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, useMessage } from "@illa-design/react"
-import { CloudApi } from "@/api/cloudApi"
-import { updateUserAvatar, uploadUserAvatar } from "@/api/users"
 import { AvatarUpload } from "@/illa-public-component/Cropper"
 import { Avatar } from "@/page/App/components/Avatar"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
@@ -16,12 +14,13 @@ import {
 } from "@/page/Setting/SettingAccount/style"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
+import { fetchChangeNickname } from "@/services/setting"
+import { updateUserAvatar, uploadUserAvatar } from "@/services/users"
+import { isILLAAPiError } from "@/utils/typeHelper"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
-
   const dispatch = useDispatch()
   const [nickNameValue, setNickNameValue] = useState<string>(
     userInfo.nickname ?? "",
@@ -78,6 +77,37 @@ export const SettingAccount: FC = () => {
     return false
   }
 
+  const handleChangeNickname = useCallback(async () => {
+    if (!!errorMessage) {
+      return
+    }
+    setIsLoading(true)
+    try {
+      const response = await fetchChangeNickname(nickNameValue)
+      dispatch(
+        currentUserActions.updateCurrentUserReducer({
+          ...response.data,
+          userId: response.data.id,
+        }),
+      )
+      message.success({
+        content: "success!",
+      })
+    } catch (e) {
+      if (isILLAAPiError(e)) {
+        message.error({
+          content: "fail!",
+        })
+      } else {
+        message.error({
+          content: t("network_error"),
+        })
+      }
+    }
+
+    setIsLoading(false)
+  }, [dispatch, errorMessage, message, nickNameValue, t])
+
   return (
     <div css={settingAccountStyle}>
       <AvatarUpload onOk={handleUpdateAvatar}>
@@ -119,44 +149,7 @@ export const SettingAccount: FC = () => {
             fullWidth
             disabled={!!errorMessage}
             loading={isLoading}
-            onClick={() => {
-              if (!!errorMessage) {
-                return
-              }
-              CloudApi.request<UserInfoResponse>(
-                {
-                  url: "/users/nickname",
-                  method: "PATCH",
-                  data: {
-                    nickname: nickNameValue,
-                  },
-                },
-                (response) => {
-                  dispatch(
-                    currentUserActions.updateCurrentUserReducer({
-                      ...response.data,
-                      userId: response.data.id,
-                    }),
-                  )
-                  message.success({
-                    content: "success!",
-                  })
-                },
-                (failure) => {
-                  message.error({
-                    content: t("setting.account.save_fail"),
-                  })
-                },
-                (crash) => {
-                  message.error({
-                    content: t("network_error"),
-                  })
-                },
-                (loading) => {
-                  setIsLoading(loading)
-                },
-              )
-            }}
+            onClick={handleChangeNickname}
             colorScheme="techPurple"
           >
             {t("setting.account.save")}

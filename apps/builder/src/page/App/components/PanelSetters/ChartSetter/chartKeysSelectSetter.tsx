@@ -17,17 +17,7 @@ import { isObject } from "@/utils/typeHelper"
 export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (
   props,
 ) => {
-  const {
-    widgetDisplayName,
-    attrName,
-    isSetterSingleRow,
-    widgetOrAction,
-    widgetType,
-    expectedType,
-    allowClear,
-    value,
-    handleUpdateMultiAttrDSL,
-  } = props
+  const { widgetDisplayName, attrName, value, handleUpdateMultiAttrDSL } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
     (rootState) => {

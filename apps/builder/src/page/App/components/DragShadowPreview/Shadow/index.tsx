@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { FixedCursor } from "@/page/App/components/MousePreview/Cursor"
 import { dragShadowActions } from "@/redux/currentApp/dragShadow/dragShadowSlice"
-import { applyDotLintRectangleStyle, rectangleStyle } from "./style"
+import { dotLintRectangleStyle, rectangleStyle } from "./style"
 import { fixedPosition } from "./utils"
 
 interface DragShadowPreviewProps {
@@ -34,8 +34,6 @@ export const ShadowPreview: FC<DragShadowPreviewProps> = (props) => {
     status,
     userID,
     unitW,
-    displayNames,
-    parentDisplayName,
     columns,
     nickname,
     integerPartX,
@@ -61,11 +59,7 @@ export const ShadowPreview: FC<DragShadowPreviewProps> = (props) => {
   return (
     <>
       <motion.div
-        css={applyDotLintRectangleStyle(
-          landingX * unitW,
-          landingY * UNIT_HEIGHT,
-          true,
-        )}
+        css={dotLintRectangleStyle}
         initial={{
           x: fixedXAndY.x * unitW,
           y: fixedXAndY.y * UNIT_HEIGHT,

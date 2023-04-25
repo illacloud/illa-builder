@@ -159,12 +159,73 @@ export const getDisplayNameMapComponent = createSelector(
   },
 )
 
-export const getAllComponentDisplayNameMapProps = createSelector(
+const getAllDescendantNodeDisplayNames = (node: ComponentNode) => {
+  const queue = [node]
+  let res: string[] = []
+  while (queue.length > 0) {
+    const head = queue[queue.length - 1]
+    res.push(head.displayName)
+    queue.pop()
+    if (head.childrenNode) {
+      head.childrenNode.forEach((child) => {
+        if (child) {
+          queue.push(child)
+        }
+      })
+    }
+  }
+  return res
+}
+
+export const getCurrentAppPageNames = createSelector(
   [getCanvas],
-  (rootDSL) => {
+  (rootNode) => {
+    if (!rootNode || !rootNode.props || !rootNode.props.pageSortedKey)
+      return [] as string[]
+    const pageDisplayNames = rootNode.props.pageSortedKey as string[]
+    const passCheckedDisplayNames: string[] = []
+    pageDisplayNames.forEach((pageDisplayName) => {
+      const pageNode = searchDsl(rootNode, pageDisplayName)
+      if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
+      passCheckedDisplayNames.push(pageNode.displayName)
+    })
+    return passCheckedDisplayNames
+  },
+)
+
+export const getPageNameMapDescendantNodeDisplayNames = createSelector(
+  [getCanvas],
+  (rootNode) => {
+    if (!rootNode || !rootNode.props || !rootNode.props.pageSortedKey) return {}
+    const pageDisplayNames = rootNode.props.pageSortedKey as string[]
+    const pageNameMapHasNodeDisplayNames: Record<string, string[]> = {}
+    pageDisplayNames.forEach((pageDisplayName) => {
+      const pageNode = searchDsl(rootNode, pageDisplayName)
+      if (!pageNode || !Array.isArray(pageNode.childrenNode)) return
+      const descendantNodeDisplayNames =
+        getAllDescendantNodeDisplayNames(pageNode)
+      pageNameMapHasNodeDisplayNames[pageDisplayName] =
+        descendantNodeDisplayNames
+    })
+    return pageNameMapHasNodeDisplayNames
+  },
+)
+
+export const getAllComponentDisplayNameMapProps = createSelector(
+  [getCanvas, getPageNameMapDescendantNodeDisplayNames],
+  (rootDSL, pageNameMapDescendantNodeDisplayNames) => {
     if (rootDSL == null) {
       return null
     }
+    const reversePageNameMapDescendantNodeDisplayNames: Record<string, string> =
+      {}
+
+    Object.keys(pageNameMapDescendantNodeDisplayNames).forEach((pageName) => {
+      pageNameMapDescendantNodeDisplayNames[pageName].forEach((displayName) => {
+        reversePageNameMapDescendantNodeDisplayNames[displayName] = pageName
+      })
+    })
+
     const components = flattenDslToMapExcludeContainerNode(rootDSL)
     if (!components) return
     const res: Record<string, any> = {}
@@ -179,6 +240,7 @@ export const getAllComponentDisplayNameMapProps = createSelector(
         $type: "WIDGET",
         $widgetType: components[key].type,
         $childrenNode: childrenNode,
+        $parentPageName: reversePageNameMapDescendantNodeDisplayNames[key],
       }
     })
     return res

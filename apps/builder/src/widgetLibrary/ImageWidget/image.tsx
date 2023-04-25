@@ -1,4 +1,4 @@
-import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
 import { Image } from "@illa-design/react"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { ImageWrapperStyle } from "@/widgetLibrary/ImageWidget/style"
@@ -31,37 +31,28 @@ WrappedImage.displayName = "WrappedImage"
 export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   const {
     imageSrc,
-    altText,
     radius,
     objectFit,
     handleUpdateDsl,
-    handleDeleteGlobalData,
-    handleUpdateGlobalData,
-    displayName,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     tooltipText,
     triggerEventHandler,
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      imageSrc,
-      altText,
-      radius,
+    updateComponentRuntimeProps({
       setImageUrl: (url: string) => {
         handleUpdateDsl({ imageSrc: url })
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    imageSrc,
-    altText,
-    radius,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
   ])
 
   const finalSrc = useMemo(() => {

@@ -12,18 +12,6 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import {
-  fetchShareAppLink,
-  renewShareAppLink,
-  shareAppByEmail,
-  updateAppPublicConfig,
-} from "@/api/apps"
-import { BuilderApi } from "@/api/base"
-import {
-  changeTeamMembersRole,
-  setInviteLinkEnabled,
-  updateMembers,
-} from "@/api/team"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
@@ -31,18 +19,27 @@ import {
 } from "@/illa-public-component/MixpanelUtils/interface"
 import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import {
-  DashboardItemMenuProps,
-  DeleteDashboardAppResponse,
-} from "@/page/Dashboard/components/DashboardItemMenu/interface"
+import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
+import {
+  fetchDeleteApp,
+  fetchShareAppLink,
+  renewShareAppLink,
+  shareAppByEmail,
+  updateAppPublicConfig,
+} from "@/services/apps"
+import {
+  changeTeamMembersRole,
+  setInviteLinkEnabled,
+  updateMembers,
+} from "@/services/team"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
-import { isCloudVersion } from "@/utils/typeHelper"
+import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { appId, canEditApp, canManageApp, isDeploy } = props
@@ -318,38 +315,39 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                               parameter5: appId,
                             },
                           )
-                          BuilderApi.teamRequest<DeleteDashboardAppResponse>(
-                            {
-                              url: `/apps/${appId}`,
-                              method: "DELETE",
-                            },
-                            (response) => {
-                              dispatch(
-                                dashboardAppActions.removeDashboardAppReducer(
-                                  response.data.appID,
-                                ),
-                              )
-                              message.success({
-                                content: t("dashboard.app.trash_success"),
-                              })
-                              modal.close(modalId)
-                            },
-                            (failure) => {
-                              message.success({
-                                content: t("dashboard.app.trash_failure"),
-                              })
-                            },
-                            (crash) => {
-                              message.error({
-                                content: t("network_error"),
-                              })
-                            },
-                            (loading) => {
+                          modal.update(modalId, {
+                            okLoading: true,
+                          })
+                          fetchDeleteApp(app.appId)
+                            .then(
+                              (response) => {
+                                dispatch(
+                                  dashboardAppActions.removeDashboardAppReducer(
+                                    response.data.appID,
+                                  ),
+                                )
+                                message.success({
+                                  content: t("dashboard.app.trash_success"),
+                                })
+                                modal.close(modalId)
+                              },
+                              (error) => {
+                                if (isILLAAPiError(error)) {
+                                  message.success({
+                                    content: t("dashboard.app.trash_failure"),
+                                  })
+                                } else {
+                                  message.error({
+                                    content: t("network_error"),
+                                  })
+                                }
+                              },
+                            )
+                            .finally(() => {
                               modal.update(modalId, {
-                                okLoading: loading,
+                                okLoading: false,
                               })
-                            },
-                          )
+                            })
                         },
                         onCancel: () => {
                           track(

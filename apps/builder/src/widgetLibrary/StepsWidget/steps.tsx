@@ -42,8 +42,8 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLOtherMultiAttr,
     optionConfigureMode,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
   } = props
 
@@ -58,7 +58,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
   const transformedContainerList = useMemo(() => {
     return (viewList ?? [])
       .map((item) => {
-        const { key, ...others } = item
+        const { key: _key, ...others } = item
         return {
           value: item.key,
           ...others,
@@ -221,7 +221,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
   ])
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
+    updateComponentRuntimeProps({
       setValue: (value: any) => {
         handleSetStepsValue(value)
       },
@@ -230,14 +230,13 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
     handleResetStepsValue,
     handleSetStepsValue,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
   ])
 
   return (

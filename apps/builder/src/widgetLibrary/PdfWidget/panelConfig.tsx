@@ -1,8 +1,6 @@
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { PDF_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/PdfWidget/eventHandlerConfig"
-import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 
 const baseWidgetName = "pdf"
 export const PDF_PANEL_CONFIG: PanelConfig[] = [

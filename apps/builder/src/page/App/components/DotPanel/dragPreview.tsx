@@ -1,4 +1,4 @@
-import { FC, RefObject, memo } from "react"
+import { FC, RefObject } from "react"
 import { useDragDropManager } from "react-dnd"
 import { getDragResult, isAddAction } from "@/page/App/components/DotPanel/calc"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"

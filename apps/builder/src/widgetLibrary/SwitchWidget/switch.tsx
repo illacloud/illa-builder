@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { Switch } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -29,12 +29,9 @@ WrappedSwitch.displayName = "WrappedSwitch"
 export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
   const {
     value,
-    disabled,
-    colorScheme,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    displayName,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -50,10 +47,7 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      value,
-      disabled,
-      colorScheme,
+    updateComponentRuntimeProps({
       setValue: (value: boolean) => {
         handleUpdateDsl({ value })
       },
@@ -65,16 +59,13 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    value,
-    disabled,
-    colorScheme,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

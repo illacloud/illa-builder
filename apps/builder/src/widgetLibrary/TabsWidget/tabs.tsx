@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { TabPane, Tabs } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TabsWidgetProps, WrappedTabsProps } from "./interface"
@@ -6,7 +6,6 @@ import { fullWidthAndFullHeightStyle } from "./style"
 
 export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
   const {
-    value,
     align,
     activeKey,
     disabled,
@@ -62,8 +61,8 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     displayName,
     linkWidgetDisplayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateMultiExecutionResult,
     tooltipText,
     colorScheme,
@@ -72,8 +71,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
+    updateComponentRuntimeProps({
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -83,14 +81,14 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
     displayName,
     value,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
   ])
 
   const list = useMemo(() => {

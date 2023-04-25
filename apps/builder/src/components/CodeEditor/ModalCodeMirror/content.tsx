@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect, useRef, useState } from "react"
+import { FC } from "react"
 import useMeasure from "react-use-measure"
 import { getColor } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -20,6 +20,7 @@ export const ModalContent: FC<ModalBodyContent> = (props) => {
     value,
     placeholder,
     wrappedCodeFunc,
+    scopeOfAutoComplete,
   } = props
 
   const [ref, rect] = useMeasure()
@@ -50,6 +51,7 @@ export const ModalContent: FC<ModalBodyContent> = (props) => {
           onChange={onChange}
           canExpand={false}
           wrappedCodeFunc={wrappedCodeFunc}
+          scopeOfAutoComplete={scopeOfAutoComplete}
         />
       </div>
     </div>

@@ -11,10 +11,7 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   applyConfigItemLabelText,
@@ -45,7 +42,7 @@ import {
 } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
-import { isCloudVersion, isURL } from "@/utils/typeHelper"
+import { isCloudVersion } from "@/utils/typeHelper"
 import { ClickhouseConfigElementProps } from "./interface"
 
 export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (

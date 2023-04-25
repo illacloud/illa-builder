@@ -13,9 +13,7 @@ import {
   ModalGroup,
   NotificationGroup,
 } from "@illa-design/react"
-import "@/api/base"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
-import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import {
   getCurrentConfigLanguage,
@@ -68,19 +66,17 @@ function App() {
     <CacheProvider value={cache}>
       <HelmetProvider>
         <DndProvider backend={TouchBackend} options={dragOptions}>
-          <GlobalDataProvider>
-            <ConfigProvider locale={configLanguage}>
-              <Global styles={globalStyle} />
-              <MessageGroup pt={!isProductMode ? "46px" : "0"} />
-              <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
-              <ModalGroup />
-              <RouterProvider router={ILLARoute} />
-              <div
-                className="illaCodeMirrorWrapper"
-                css={illaCodeMirrorTooltipStyle}
-              />
-            </ConfigProvider>
-          </GlobalDataProvider>
+          <ConfigProvider locale={configLanguage}>
+            <Global styles={globalStyle} />
+            <MessageGroup pt={!isProductMode ? "46px" : "0"} />
+            <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
+            <ModalGroup />
+            <RouterProvider router={ILLARoute} />
+            <div
+              className="illaCodeMirrorWrapper"
+              css={illaCodeMirrorTooltipStyle}
+            />
+          </ConfigProvider>
         </DndProvider>
       </HelmetProvider>
     </CacheProvider>
