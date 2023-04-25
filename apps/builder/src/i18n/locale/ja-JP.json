@@ -1137,7 +1137,7 @@
           "rowSelect": "行を選択",
           "markerSelected": "マーカーを選択",
           "markerCreated": "マーカーを作成",
-          "select": "select"
+          "select": "選択"
         },
         "image_list": {
           "title": "イメージ",
@@ -1223,9 +1223,9 @@
         "secondary_value": "SECONDARY VALUE",
         "resource": "RESOURCE",
         "eventCalendar": {
-          "calendar": "カレンダー",
-          "event": "イベント"
-        }
+          "calendar": "カレンダー"
+        },
+        "event": "イベント"
       },
       "setter_label": {
         "action": "アクション",

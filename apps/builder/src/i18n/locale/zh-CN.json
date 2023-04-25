@@ -1137,7 +1137,7 @@
           "rowSelect": "选择行",
           "markerSelected": "选中点",
           "markerCreated": "创建点",
-          "select": "select"
+          "select": "选择"
         },
         "image_list": {
           "title": "图片",
@@ -1223,9 +1223,9 @@
         "secondary_value": "次要值",
         "resource": "RESOURCE",
         "eventCalendar": {
-          "calendar": "日历",
-          "event": "事件"
-        }
+          "calendar": "日历"
+        },
+        "event": "事件"
       },
       "setter_label": {
         "action": "动作",
