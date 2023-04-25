@@ -197,7 +197,11 @@
             "consider_queries_tha": "行を削除しないクエリを成功と見なす",
             "title_of_spreadsheet": "タイトル",
             "sheet_id_to_copy": "コピーするシートID",
-            "sheet_to_copy_to": "コピー先のシート"
+            "sheet_to_copy_to": "コピー先のシート",
+            "authentication": "認証",
+            "connect_with_oauth": "OAuth で接続して保存",
+            "reconnect_with_oauth": "OAuth で再接続する",
+            "access_type": "アクセスの種類"
           }
         },
         "placeholder": {
@@ -260,7 +264,9 @@
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
             "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。",
-            "copy_to_sheet_name": "必要。 コピーしたシートの名前を変更します。"
+            "copy_to_sheet_name": "必要。 コピーしたシートの名前を変更します。",
+            "successfully_authent": "Successfully authenticated",
+            "failed_to_authentica": "Failed to authenticate"
           },
           "tidb": {
             "ca_certificate": "デフォルトで、サーバーレス層への TLS 接続に使用される CA 証明書を入力します。 Dedicated Tier への TLS 接続が必要な場合は、<0>ここをクリック</0>して構成方法を表示してください。"
@@ -337,7 +343,13 @@
             "filter_by": {
               "use_a1_notation": "A1表記を使用",
               "use_row_filters": "行フィルターを使用"
-            }
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Service account",
+            "read_and_write": "Read and write",
+            "read_only": "Read-only"
           }
         },
         "default": {
@@ -950,7 +962,7 @@
             "hf_endpoint": "Endpoint URL"
           },
           "tips": {
-            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint_token": "<0>Hugging Face プロフィール設定</0>で Organizations API トークンを取得してください。",
             "hf_endpoint": "learn more about <0>Endpoint</0>"
           },
           "placeholder": {
