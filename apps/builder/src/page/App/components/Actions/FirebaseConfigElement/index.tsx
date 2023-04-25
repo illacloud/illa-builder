@@ -149,11 +149,9 @@ export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
           ]}
           tips={
             formState.errors.databaseUrl && (
-              <div css={configItemTip}>
-                <div css={errorMsgStyle}>
-                  <WarningCircleIcon css={errorIconStyle} />
-                  <>{formState.errors.databaseUrl.message}</>
-                </div>
+              <div css={errorMsgStyle}>
+                <WarningCircleIcon css={errorIconStyle} />
+                <>{formState.errors.databaseUrl.message}</>
               </div>
             )
           }
