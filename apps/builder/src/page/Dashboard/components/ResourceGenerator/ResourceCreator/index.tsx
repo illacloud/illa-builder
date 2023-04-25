@@ -13,6 +13,7 @@ import { HuggingFaceEndpointConfigElement } from "@/page/App/components/Actions/
 import { MicrosoftSqlConfigElement } from "@/page/App/components/Actions/MicrosoftSqlConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
+import { NeonConfigElement } from "@/page/App/components/Actions/NeonConfigElement"
 import { OracleDBConfigElement } from "@/page/App/components/Actions/OracleDBConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
@@ -51,6 +52,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             onFinished={onFinished}
           />
         )
+      case "neon":
+        return <NeonConfigElement {...configElementProps} />
       case "mssql":
         return <MicrosoftSqlConfigElement {...configElementProps} />
       case "oracle":

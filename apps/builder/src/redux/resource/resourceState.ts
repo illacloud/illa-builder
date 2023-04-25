@@ -8,6 +8,7 @@ import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
 import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoint"
 import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
 import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
+import { NeonResource } from "@/redux/resource/neonResource"
 import { OracleResource } from "@/redux/resource/oracleResource"
 import { SMTPResource } from "@/redux/resource/smtpResource"
 import {
@@ -40,6 +41,7 @@ export type ResourceType =
   | "postgresql"
   | "mariadb"
   | "tidb"
+  | "neon"
   | "smtp"
   | "googlesheets"
   | "s3"
@@ -59,6 +61,7 @@ export type ResourceContent =
   | ElasticSearchResource
   | DynamoDBResource
   | MysqlLikeResource
+  | NeonResource
   | MicrosoftSqlResource
   | OracleResource
   | GraphQLResource<GraphQLAuth>

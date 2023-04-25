@@ -32,6 +32,10 @@ export const Databases: ResourceDataItem[] = [
     isDraft: false,
   },
   {
+    resourceType: "neon",
+    isDraft: false,
+  },
+  {
     resourceType: "redis",
     isDraft: false,
   },
