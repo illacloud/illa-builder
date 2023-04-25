@@ -1137,7 +1137,7 @@
           "rowSelect": "행 선택",
           "markerSelected": "마커 선택",
           "markerCreated": "마커 만들기",
-          "select": "select"
+          "select": "선택"
         },
         "image_list": {
           "title": "이미지",
@@ -1223,9 +1223,9 @@
         "secondary_value": "SECONDARY VALUE",
         "resource": "RESOURCE",
         "eventCalendar": {
-          "calendar": "달력",
-          "event": "이벤트"
-        }
+          "calendar": "달력"
+        },
+        "event": "이벤트"
       },
       "setter_label": {
         "action": "동작",
