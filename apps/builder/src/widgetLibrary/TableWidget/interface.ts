@@ -26,8 +26,8 @@ export type ColumnType = Lowercase<keyof typeof Columns>
 
 export const ColumnTypeOption = Object.entries(Columns).map(([key, value]) => {
   return {
-    label: key as ColumnType,
-    value: value,
+    label: key,
+    value: value as ColumnType,
   }
 })
 

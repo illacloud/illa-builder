@@ -235,7 +235,29 @@ export const getCellForType = (
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
-        return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
+        const numberFormat = new Intl.NumberFormat(locale, {
+          style: "decimal",
+          minimumFractionDigits: decimalPlaces,
+          maximumFractionDigits: decimalPlaces,
+          useGrouping: showThousandsSeparator,
+        })
+        return isNumber(formatVal) ? numberFormat.format(formatVal) : "-"
+      }
+    case "percent":
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        const formatVal = Number(value)
+        // support showThousandsSeparator
+        const numberFormat = new Intl.NumberFormat(locale, {
+          style: "percent",
+          minimumFractionDigits: decimalPlaces,
+          maximumFractionDigits: decimalPlaces,
+          useGrouping: showThousandsSeparator,
+        })
+
+        return isNumber(formatVal)
+          ? numberFormat.format(formatVal)
+          : "-"
       }
     case "currency":
       return (props: CellContext<any, any>) => {
@@ -253,15 +275,7 @@ export const getCellForType = (
           }),
         })
 
-        return isNumber(formatVal) ? currencyFormatter.format(formatVal):"-"
-      }
-    case "percent":
-      return (props: CellContext<any, any>) => {
-        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        const formatVal = Number(value)
-        return isNumber(formatVal)
-          ? `${(formatVal * 100).toFixed(decimalPlaces)}%`
-          : "-"
+        return isNumber(formatVal) ? currencyFormatter.format(formatVal) : "-"
       }
     case "date":
       return (props: CellContext<any, any>) => {
