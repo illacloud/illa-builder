@@ -6,6 +6,7 @@ export interface ModalBodyContent {
   placeholder?: string
   lang?: CodeEditorProps["lang"]
   expectValueType?: CodeEditorProps["expectValueType"]
+  scopeOfAutoComplete?: CodeEditorProps["scopeOfAutoComplete"]
   onChange?: CodeEditorProps["onChange"]
   wrappedCodeFunc?: CodeEditorProps["wrappedCodeFunc"]
   onFocus?: CodeEditorProps["onFocus"]

@@ -148,6 +148,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
       </div>
       <div css={codeEditorContainerStyle}>
         <CodeEditor
+          scopeOfAutoComplete="page"
           wrapperCss={codeEditorWrapperStyle}
           value={finalValues[0]}
           onChange={(value) => onChange(value, attrName?.[0] || attrName)}
@@ -162,6 +163,7 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
         />
         <div css={dashCharStyle}>~</div>
         <CodeEditor
+          scopeOfAutoComplete="page"
           wrapperCss={codeEditorWrapperStyle}
           value={finalValues[1]}
           onChange={(value) => onChange(value, attrName?.[1] || attrName)}

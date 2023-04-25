@@ -2,7 +2,6 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, Modal, useMessage } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -10,9 +9,10 @@ import {
 import { DuplicateModalProps } from "@/page/Dashboard/components/DuplicateModal/interface"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { fetchCopyApp } from "@/services/apps"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 
 export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
   const { appId, visible, onVisibleChange } = props
@@ -95,41 +95,37 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
           )
           return
         }
+        setLoading(true)
         track(
           ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           { element: "duplicate_modal_save", parameter2: "suc" },
         )
-        BuilderApi.teamRequest<DashboardApp>(
-          {
-            url: `/apps/${app.appId}/duplication`,
-            method: "POST",
-            data: {
-              appName: name,
+        fetchCopyApp(app.appId, name)
+          .then(
+            (response) => {
+              dispatch(
+                dashboardAppActions.addDashboardAppReducer({
+                  app: response.data,
+                }),
+              )
+              onVisibleChange(false)
             },
-          },
-          (response) => {
-            dispatch(
-              dashboardAppActions.addDashboardAppReducer({
-                app: response.data,
-              }),
-            )
-            onVisibleChange(false)
-          },
-          (failure) => {
-            message.error({
-              content: t("dashboard.app.duplicate_fail"),
-            })
-          },
-          (crash) => {
-            message.error({
-              content: t("network_error"),
-            })
-          },
-          (loading) => {
-            setLoading(loading)
-          },
-        )
+            (failure) => {
+              if (isILLAAPiError(failure)) {
+                message.error({
+                  content: t("dashboard.app.duplicate_fail"),
+                })
+              } else {
+                message.error({
+                  content: t("network_error"),
+                })
+              }
+            },
+          )
+          .finally(() => {
+            setLoading(false)
+          })
       }}
       title={`${t("duplicate")} "${app.appName}"`}
       okText={t("save")}

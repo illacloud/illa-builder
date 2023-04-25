@@ -23,7 +23,7 @@ export const Guide: FC<GuideProps> = (props) => {
   const currentStep = useSelector(getCurrentStep)
   const [firstStepElement, setFirstStepElement] = useState<Element | null>()
 
-  const { selector, doItForMe } = GUIDE_STEP[currentStep]
+  const { selector } = GUIDE_STEP[currentStep]
   const postgresqlQuery = document.querySelector(".postgresql1-query")
   const currentElement = selector && document.querySelector(selector)
 

@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs"
-import { FC, useCallback, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect } from "react"
 import { SingleDatePicker } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
@@ -82,18 +82,9 @@ WrappedDate.displayName = "WrappedDate"
 export const DateWidget: FC<DateWidgetProps> = (props) => {
   const {
     value,
-    dateFormat,
-    placeholder,
-    showClear,
-    minDate,
-    disabled,
-    maxDate,
-    colorScheme,
-    readOnly,
     handleUpdateDsl,
-    displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -143,17 +134,7 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      dateFormat,
-      placeholder,
-      showClear,
-      minDate,
-      disabled,
-      maxDate,
-      colorScheme,
-      readOnly,
-      displayName,
+    updateComponentRuntimeProps({
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -165,23 +146,14 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    value,
-    dateFormat,
-    placeholder,
-    showClear,
-    minDate,
-    disabled,
-    maxDate,
-    colorScheme,
-    readOnly,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
     handleValidate,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

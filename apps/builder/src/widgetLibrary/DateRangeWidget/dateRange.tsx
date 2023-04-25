@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from "dayjs"
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { RangeDatePicker } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
@@ -93,17 +93,9 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   const {
     startValue,
     endValue,
-    dateFormat,
-    startPlaceholder,
     endPlaceholder,
-    showClear,
-    minDate,
-    disabled,
-    maxDate,
-    colorScheme,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    displayName,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
     labelPosition,
     labelFull,
@@ -119,7 +111,6 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     validateMessage,
     customRule,
     hideValidationMessage,
-    readOnly,
     triggerEventHandler,
   } = props
 
@@ -151,18 +142,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      startValue,
-      endValue,
-      dateFormat,
-      startPlaceholder,
-      endPlaceholder,
-      showClear,
-      minDate,
-      disabled,
-      maxDate,
-      colorScheme,
-      readOnly,
+    updateComponentRuntimeProps({
       setStartValue: (startValue: string) => {
         handleUpdateDsl({ startValue })
       },
@@ -184,25 +164,16 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    startValue,
-    endValue,
-    dateFormat,
-    startPlaceholder,
+    deleteComponentRuntimeProps,
     endPlaceholder,
-    showClear,
-    minDate,
-    disabled,
-    maxDate,
-    colorScheme,
-    readOnly,
-    handleUpdateGlobalData,
+    endValue,
     handleUpdateDsl,
-    handleDeleteGlobalData,
     handleValidate,
+    startValue,
+    updateComponentRuntimeProps,
   ])
 
   const handleOnChange = useCallback(() => {

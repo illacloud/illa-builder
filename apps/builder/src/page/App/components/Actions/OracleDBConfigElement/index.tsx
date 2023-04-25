@@ -11,10 +11,7 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
@@ -43,7 +40,6 @@ import {
 } from "@/redux/resource/oracleResource"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
-import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
@@ -70,7 +66,7 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
       parameter5: "oracle",
     })
     const data = getValues()
-    const { resourceName, host, ...otherParams } = data
+    const { resourceName: _resourceName, host, ...otherParams } = data
     onActionConfigElementTest(
       data,
       { ...otherParams, host: host.trim() } as OracleResource,

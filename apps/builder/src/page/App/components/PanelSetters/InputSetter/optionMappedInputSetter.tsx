@@ -7,7 +7,7 @@ import { BaseInput } from "./baseInput"
 import { BaseInputSetterProps } from "./interface"
 
 export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
-  const { attrName, handleUpdateDsl, value, widgetDisplayName } = props
+  const { handleUpdateDsl, value, widgetDisplayName } = props
 
   const handleValueChange = useCallback(
     (attrName: string, value: string) => {

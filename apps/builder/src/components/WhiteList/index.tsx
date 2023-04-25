@@ -9,7 +9,7 @@ import {
   UpIcon,
   useMessage,
 } from "@illa-design/react"
-import { Api } from "@/api/base"
+import { requestWhiteListIP } from "@/services/resource"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
   ipListContainerStyle,
@@ -39,13 +39,9 @@ export const WhiteList: FC<IWhiteList> = (props) => {
     if (!isCloudVersion) {
       return
     }
-    Api.request(
-      {
-        url: "https://peripheral-api.illasoft.com/v1/meta",
-        method: "GET",
-      },
-      (data: AxiosResponse<{ resources: string[] }>) => {
-        const { resources } = data.data
+    requestWhiteListIP().then(
+      (response: AxiosResponse<{ resources: string[] }>) => {
+        const { resources } = response.data
         setIPList(resources)
       },
     )

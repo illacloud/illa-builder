@@ -13,13 +13,6 @@ export const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
     widgetDisplayName,
-    attrName,
-    allowClear,
-    componentNode,
-    isSetterSingleRow,
-    widgetOrAction,
-    widgetType,
-    expectedType,
   } = props
   const containers = useSelector(getAllContainerWidget)
 

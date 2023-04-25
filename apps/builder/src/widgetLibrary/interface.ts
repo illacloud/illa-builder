@@ -69,8 +69,6 @@ export interface EventsInProps {
 export interface BaseWidgetProps {
   displayName: string
   childrenNode: ComponentNode[]
-  handleUpdateGlobalData: (key: string, value: any) => void
-  handleDeleteGlobalData: (key: string) => void
   handleUpdateDsl: (value: any) => void
   handleUpdateMultiExecutionResult: (
     updateSlice: {
@@ -95,6 +93,8 @@ export interface BaseWidgetProps {
   h: number
   unitW: number
   unitH: number
+  updateComponentRuntimeProps: (runtimeProps: unknown) => void
+  deleteComponentRuntimeProps: () => void
 }
 
 export interface BaseComponentNodeProps {

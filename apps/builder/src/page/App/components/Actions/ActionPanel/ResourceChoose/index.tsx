@@ -21,7 +21,11 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionTriggerMode } from "@/redux/currentApp/action/actionState"
+import {
+  ACTION_RUN_TIME,
+  ActionTriggerMode,
+  IAdvancedConfig,
+} from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
@@ -137,6 +141,28 @@ export const ResourceChoose: FC = () => {
                   ...action,
                   triggerMode: value as ActionTriggerMode,
                 }),
+              )
+              let updateSlice: Partial<IAdvancedConfig> = {}
+              if (value === "manually") {
+                updateSlice = {
+                  runtime: ACTION_RUN_TIME.NONE,
+                  pages: [],
+                  delayWhenLoaded: "",
+                  displayLoadingPage: false,
+                }
+              }
+              if (value === "automate") {
+                updateSlice = {
+                  runtime: ACTION_RUN_TIME.PAGE_LOADING,
+                  pages: [],
+                  delayWhenLoaded: "",
+                  displayLoadingPage: false,
+                }
+              }
+              dispatch(
+                configActions.updateCachedActionAdvancedConfigReducer(
+                  updateSlice,
+                ),
               )
             }}
             onClick={() => {

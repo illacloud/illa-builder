@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { BuilderApi } from "@/api/base"
-import { getTeamsInfo } from "@/api/team"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
-import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -15,11 +12,18 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import {
+  fetchAPPPublicStatus,
+  fetchPrivateAppInitData,
+  fetchPubicAppInitData,
+} from "@/services/apps"
+import { fetchResources } from "@/services/resource"
+import { getTeamsInfo } from "@/services/team"
 import store from "@/store"
-import { canAutoRunActionWhenInit } from "@/utils/action/canAutoRunAction"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { fixedActionToNewAction } from "./utils/fixedAction"
+import { fixedComponentsToNewComponents } from "./utils/fixedComponents"
 
 export const updateCurrentAppInfo = (
   data: CurrentAppResp,
@@ -30,14 +34,16 @@ export const updateCurrentAppInfo = (
 ) => {
   store.dispatch(configActions.updateIllaMode(mode))
   store.dispatch(appInfoActions.updateAppInfoReducer(data.appInfo))
-  store.dispatch(componentsActions.updateComponentReducer(data.components))
-  store.dispatch(actionActions.updateActionListReducer(data.actions))
+  const fixedComponents = fixedComponentsToNewComponents(data.components)
+  store.dispatch(componentsActions.updateComponentReducer(fixedComponents))
+  const fixedActions = fixedActionToNewAction(data.actions)
+  store.dispatch(actionActions.updateActionListReducer(fixedActions))
 
   DisplayNameGenerator.initApp(appId, teamID, uid)
-  DisplayNameGenerator.updateDisplayNameList(data.components, data.actions)
+  DisplayNameGenerator.updateDisplayNameList(data.components, fixedActions)
   store.dispatch(executionActions.startExecutionReducer())
-  if (mode === "edit" && data.actions.length > 0) {
-    store.dispatch(configActions.changeSelectedAction(data.actions[0]))
+  if (mode === "edit" && fixedActions.length > 0) {
+    store.dispatch(configActions.changeSelectedAction(fixedActions[0]))
   }
 }
 
@@ -69,30 +75,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     [mode, appId, teamID, uid],
   )
 
-  const checkAppStatus = useCallback(
-    (controller: AbortController) => {
-      // don't use asyncTeamRequest here, because we need to mock the team info
-      return BuilderApi.asyncTeamIdentifierRequest<{ isPublic: boolean }>({
-        url: `/publicApps/${appId}/isPublic`,
-        method: "GET",
-        signal: controller.signal,
-      })
-    },
-    [appId],
-  )
-
-  const initPublicApp = useCallback(
-    (controller: AbortController) => {
-      // don't use asyncTeamRequest here, because we need to mock the team info
-      return BuilderApi.asyncTeamIdentifierRequest<CurrentAppResp>({
-        url: `/publicApps/${appId}/versions/${versionId}`,
-        method: "GET",
-        signal: controller.signal,
-      })
-    },
-    [appId, versionId],
-  )
-
   const initApp = useCallback(
     async (
       controller: AbortController,
@@ -100,20 +82,14 @@ export const useInitBuilderApp = (mode: IllaMode) => {
       reject: (reason?: any) => void,
     ) => {
       try {
-        const response = await BuilderApi.asyncTeamRequest<CurrentAppResp>({
-          url: `/apps/${appId}/versions/${versionId}`,
-          method: "GET",
-          signal: controller.signal,
-        })
-        await BuilderApi.teamRequest<Resource<ResourceContent>[]>(
-          {
-            url: "/resources",
-            method: "GET",
-            signal: controller.signal,
-          },
-          (response) => {
-            dispatch(resourceActions.updateResourceListReducer(response.data))
-          },
+        const response = await fetchPrivateAppInitData(
+          appId,
+          versionId,
+          controller.signal,
+        )
+        const resourceResponse = await fetchResources(controller.signal)
+        dispatch(
+          resourceActions.updateResourceListReducer(resourceResponse.data),
         )
         handleCurrentApp(response.data)
         resolve(response.data)
@@ -157,9 +133,16 @@ export const useInitBuilderApp = (mode: IllaMode) => {
         setErrorState(false)
         setLoadingState(true)
         if (mode === "production") {
-          const publicState = await checkAppStatus(controller)
+          const publicState = await fetchAPPPublicStatus(
+            appId,
+            controller.signal,
+          )
           if (publicState.data.isPublic) {
-            const response = await initPublicApp(controller)
+            const response = await fetchPubicAppInitData(
+              appId,
+              versionId,
+              controller.signal,
+            )
             handleCurrentApp(response.data)
             resolve(response.data)
           } else {
@@ -169,13 +152,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           await initApp(controller, resolve, reject)
         }
         setLoadingState(false)
-      }).then((value) => {
-        const autoRunAction = value.actions.filter((action) => {
-          return canAutoRunActionWhenInit(action)
-        })
-        autoRunAction.forEach((action) => {
-          runAction(action)
-        })
       })
     }
 
@@ -193,8 +169,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     handleCurrentApp,
     handleUnPublicApps,
     initApp,
-    checkAppStatus,
-    initPublicApp,
   ])
 
   return { loadingState, errorState }

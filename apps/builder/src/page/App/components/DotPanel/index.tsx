@@ -8,6 +8,10 @@ import {
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
 import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
+import {
   getCanvas,
   getViewportSizeSelector,
 } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -16,9 +20,18 @@ import {
   RootComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import {
+  getAppLoadedActions,
   getExecutionResult,
+  getIntervalActions,
   getRootNodeExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import store from "@/store"
+import {
+  registerActionPeriod,
+  removeAllActionPeriod,
+  runActionWithDelay,
+  runActionWithExecutionResult,
+} from "@/utils/action/runAction"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { MouseHoverProvider } from "./context/mouseHoverContext"
 import { MouseMoveProvider } from "./context/mouseMoveContext"
@@ -60,6 +73,40 @@ export const DotPanel: FC = () => {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.INITIALIZE)
     }
   }, [canRenders])
+
+  useEffect(() => {
+    const rootState = store.getState()
+    const appLoadedAction = getAppLoadedActions(rootState)
+    const request = appLoadedAction
+      .filter((action) => !action.isRunning)
+      .map((action) => {
+        const mergedAction = {
+          ...action,
+          resourceId: action.$resourceId,
+          actionId: action.$actionId,
+        }
+        if (action.config.advancedConfig.delayWhenLoaded > 0) {
+          return runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+        } else {
+          return runActionWithExecutionResult(
+            mergedAction as ActionItem<ActionContent>,
+          )
+        }
+      })
+    Promise.all(request)
+  }, [])
+
+  useEffect(() => {
+    const rootState = store.getState()
+    const appLoadedAction = getIntervalActions(rootState)
+    appLoadedAction.forEach((action) => {
+      registerActionPeriod(action as ActionItem<ActionContent>)
+    })
+
+    return () => {
+      removeAllActionPeriod()
+    }
+  })
 
   if (
     !canvasTree ||

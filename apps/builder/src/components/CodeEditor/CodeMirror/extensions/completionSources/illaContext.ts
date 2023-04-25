@@ -9,6 +9,7 @@ import {
   checkCursorInDynamicFlag,
 } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/TernServer"
 import { CODE_TYPE } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isFunction, isObject } from "@/utils/typeHelper"
 
 const formatUtils = (data: unknown) => {
@@ -91,11 +92,15 @@ export function getDataInfo(data: Record<string, unknown>, path: string) {
 export const buildIllaContextCompletionSource = (
   canShowCompleteInfo: boolean,
   codeType: CODE_TYPE,
-  executionResult: Record<string, unknown>,
+  scopeOfAutoComplete: "global" | "page",
 ): ((
   context: CompletionContext,
 ) => CompletionResult | Promise<CompletionResult | null> | null) => {
   const isFunction = codeType === CODE_TYPE.FUNCTION
+  const executionResult =
+    scopeOfAutoComplete === "global"
+      ? ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContextWithLimit()
+      : ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext()
   return (context: CompletionContext) => {
     const isCursorInDynamicFlag = checkCursorInDynamicFlag(context, isFunction)
     if (!isCursorInDynamicFlag) {
@@ -128,7 +133,7 @@ export const buildIllaContextCompletionSource = (
         boost: 1,
       }
       if (canShowCompleteInfo) {
-        result.info = (complete: Completion) => {
+        result.info = () => {
           let dom = document.createElement("span")
           dom.innerHTML = `<div class="completionInfoCardTitle">
         <span class="cardTitle">${key}</span>

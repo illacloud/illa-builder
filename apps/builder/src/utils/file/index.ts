@@ -1,8 +1,8 @@
 import download from "downloadjs"
 import XLSX from "xlsx"
 import { createMessage, isArray, isObject } from "@illa-design/react"
-import { Api } from "@/api/base"
 import i18n from "@/i18n/config"
+import { fetchDownloadFileFromURL } from "@/services/action"
 import { isURL } from "@/utils/typeHelper"
 import { isBase64 } from "@/utils/url/base64"
 
@@ -250,10 +250,7 @@ const downloadFileFromURL = async (
 ) => {
   const message = createMessage()
   try {
-    const res = await Api.asyncCustomRequest({
-      url: data,
-      method: "GET",
-    })
+    const res = await fetchDownloadFileFromURL(data)
     downloadFileFromEventHandler(contentType, fileDownloadName, res.data)
     return
   } catch (e) {

@@ -142,7 +142,7 @@ export const ternSeverCompletionSource = (
         boost: -1,
       }
       if (completion.doc && canShowCompleteInfo) {
-        completionOption.info = (complete: Completion) => {
+        completionOption.info = () => {
           let dom = document.createElement("span")
           dom.innerHTML = `<div class="completionInfoCardTitle">
         <span class="cardTitle">${completion.name}</span>

@@ -5,6 +5,7 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { destroyExecutionTree } from "@/redux/currentApp/executionTree/executionListener"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { removeAllActionPeriod } from "@/utils/action/runAction"
 
 export const useDestroyApp = () => {
   const dispatch = useDispatch()
@@ -15,6 +16,7 @@ export const useDestroyApp = () => {
       dispatch(actionActions.resetActionReducer())
       dispatch(componentsActions.resetComponentsReducer())
       destroyExecutionTree()
+      removeAllActionPeriod()
     }
   }, [dispatch])
 }

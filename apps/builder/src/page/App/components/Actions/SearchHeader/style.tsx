@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import chroma from "chroma-js"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const searchHeaderStyle = css`
   width: 100%;
@@ -18,8 +18,11 @@ export const searchInputContainerStyle = css`
   justify-content: flex-end;
 `
 
-export const searchHeaderTitleStyle = css`
-  justify-content: flex-start;
+export const applySearchHeaderTitleStyle = (hasBorderBottom: boolean) => css`
+  justify-content: space-between;
+  border-bottom: ${hasBorderBottom
+    ? `1px solid ${getColor("grayBlue", "08")}`
+    : "none"};
 `
 
 export const searchHeaderTitleTextStyle = css`
@@ -51,4 +54,9 @@ export const searchInputStyle = css`
 
 export const searchInputIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+`
+
+export const actionTitleTabsContainerStyle = css`
+  padding: 12px 0;
+  gap: 8px;
 `

@@ -62,7 +62,14 @@ export const OptionListSetterProvider: FC<ProviderProps> = (props) => {
       const updatedArray = [...optionItems, targetOptionItem]
       handleUpdateDsl(attrPath, updatedArray)
     },
-    [optionItems, generateItemId, handleUpdateDsl, attrPath],
+    [
+      optionItems,
+      allViewsKeys,
+      itemName,
+      generateItemId,
+      handleUpdateDsl,
+      attrPath,
+    ],
   )
 
   const handleMoveOptionItem = useCallback(

@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
@@ -12,7 +12,7 @@ import {
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 import { RadioGroupWidgetProps, WrappedRadioGroupProps } from "./interface"
 
-export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
+export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props) => {
   const {
     value,
     disabled,
@@ -60,16 +60,12 @@ WrappedRadioGroup.displayName = "WrappedRadioGroup"
 export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   const {
     value,
-    disabled,
-    direction,
-    colorScheme,
     optionConfigureMode,
     manualOptions,
     mappedOption,
-    displayName,
-    handleUpdateGlobalData,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     label,
@@ -81,7 +77,6 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     labelHidden,
     tooltipText,
     updateComponentHeight,
-    w,
     customRule,
     hideValidationMessage,
     validateMessage,
@@ -120,15 +115,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      disabled,
-      direction,
-      colorScheme,
-      optionConfigureMode,
-      manualOptions,
-      mappedOption,
-      options: finalOptions,
+    updateComponentRuntimeProps({
       setValue: (value: any) => {
         handleUpdateDsl({ value })
       },
@@ -141,22 +128,14 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
       clearValidation: () => {},
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    finalOptions,
-    value,
-    disabled,
-    direction,
-    colorScheme,
-    optionConfigureMode,
-    manualOptions,
-    mappedOption,
-    handleUpdateGlobalData,
+    updateComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
     handleValidate,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

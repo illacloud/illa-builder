@@ -92,6 +92,7 @@ export interface WrappedTableProps
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
 }
 
+// todo: @echoxyc error extends
 export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {
   columns: ColumnItemShape[]
   dataSource: any[]

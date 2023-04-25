@@ -4,7 +4,7 @@ import { ColumnItemProps } from "./interface"
 import { optionListItemStyle } from "./style"
 
 export const ColumnItem: FC<ColumnItemProps> = (props) => {
-  const { accessorKey, header, value, visible, custom, index } = props
+  const { header, visible, custom, index } = props
   const ref = useRef<HTMLDivElement>(null)
 
   return (

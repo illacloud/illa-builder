@@ -33,7 +33,7 @@ const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
   // get resources form resourceIdList, and generate filter
   const resources = GUIDE_RESOURCES.filter((resource) =>
     resourceIdList.includes(resource.resourceId),
-  ).map(({ resourceName, resourceType, content, resourceId }) => ({
+  ).map(({ resourceName, resourceType, content }) => ({
     resourceName,
     resourceType,
     content,

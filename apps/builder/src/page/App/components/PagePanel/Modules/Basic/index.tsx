@@ -46,11 +46,13 @@ export const PageBasic: FC = () => {
     rootExecutionProps
 
   useEffect(() => {
-    if (!homepageControlRef.current) return
-    intersectionObserver.current?.observe(homepageControlRef.current)
+    const homepageControlValue = homepageControlRef.current
+    const intersectionObserverValue = intersectionObserver.current
+    if (!homepageControlValue) return
+    intersectionObserverValue?.observe(homepageControlValue)
     return () => {
-      if (!homepageControlRef.current) return
-      intersectionObserver.current?.unobserve(homepageControlRef.current)
+      if (!homepageControlValue) return
+      intersectionObserverValue?.unobserve(homepageControlValue)
       isReportFlag.current = false
     }
   }, [currentPageIndex])
@@ -74,21 +76,19 @@ export const PageBasic: FC = () => {
       : currentPageDisplayName === "page1"
   }, [currentPageDisplayName, homepageDisplayName])
 
-  const handleChangeIsHomePage = useCallback(
-    (value?: boolean) => {
-      if (currentPageDisplayName !== homepageDisplayName) {
-        dispatch(
-          componentsActions.updateRootNodePropsReducer({
-            homepageDisplayName: currentPageDisplayName,
-          }),
-        )
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-          element: "homepage_switch",
-        })
-      }
-    },
-    [currentPageDisplayName, dispatch, homepageDisplayName],
-  )
+  const handleChangeIsHomePage = useCallback(() => {
+    if (currentPageDisplayName !== homepageDisplayName) {
+      dispatch(
+        componentsActions.updateRootNodePropsReducer({
+          homepageDisplayName: currentPageDisplayName,
+          currentPageIndex: currentPageIndex,
+        }),
+      )
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+        element: "homepage_switch",
+      })
+    }
+  }, [currentPageDisplayName, currentPageIndex, dispatch, homepageDisplayName])
 
   const targetDefaultViewValue = useCallback(
     (showName: string) => {
