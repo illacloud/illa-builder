@@ -19,6 +19,8 @@ import {
 } from "@/widgetLibrary/TableWidget/renderTableCell"
 import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 import { ILLAMarkdown } from "@/components/ILLAMarkdown"
+import { getLocalLanguage } from "@/page/User/Register"
+import { isValidCurrencyCode } from "@/constants/currency"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
@@ -196,7 +198,11 @@ export const getCellForType = (
     mappedValue,
     fromCurrentRow,
     iconName,
+    currencyCode = "XXX",
+    showThousandsSeparator,
   } = data
+
+  const locale = getLocalLanguage()
 
   switch (type) {
     case "text":
@@ -230,6 +236,24 @@ export const getCellForType = (
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
         return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
+      }
+    case "currency":
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        const formatVal = Number(value)
+        const currencyFormatter = new Intl.NumberFormat(locale, {
+          minimumFractionDigits: decimalPlaces,
+          maximumFractionDigits: decimalPlaces,
+          useGrouping: showThousandsSeparator,
+          ...(isValidCurrencyCode(currencyCode) ? {
+            style: "currency",
+            currency: currencyCode,
+          } : {
+            style: "decimal",
+          }),
+        })
+
+        return isNumber(formatVal) ? currencyFormatter.format(formatVal):"-"
       }
     case "percent":
       return (props: CellContext<any, any>) => {

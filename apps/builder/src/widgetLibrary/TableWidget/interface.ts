@@ -19,6 +19,7 @@ enum Columns {
   Rating = "rating",
   Markdown = "markdown",
   HTML = "html",
+  Currency = "currency",
 }
 
 export type ColumnType = Lowercase<keyof typeof Columns>
@@ -52,6 +53,7 @@ export interface ColumnItemShape
   enableSorting?: boolean
   visible?: boolean
   decimalPlaces?: number
+  showThousandsSeparator?: boolean
   format?: string
   mappedValue?: string
   custom?: boolean
@@ -60,6 +62,8 @@ export interface ColumnItemShape
   columnIndex?: number
   // icon type
   iconName?: string
+  // currency type
+  currencyCode?: string
 }
 
 export interface WrappedTableProps
