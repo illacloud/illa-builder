@@ -265,6 +265,8 @@ export const transformEvents = (
         "setMarkers",
         "addEvent",
         "deleteEvent",
+        "setStartTime",
+        "setEndTime",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
