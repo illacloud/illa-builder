@@ -12,20 +12,23 @@ import { BaseSelectSetter } from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
 export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
-  const { attrName, value, componentNode } = props
+  const { attrName, value, componentNode, widgetOrAction, panelConfig } = props
 
   let parentAttrNameArray = toPath(attrName)
   parentAttrNameArray.splice(-1, 1)
 
-  let finalParentPath = `props.${convertPathToString(parentAttrNameArray)}`
+  const parentAttr =
+    widgetOrAction === "WIDGET"
+      ? get(componentNode, `props.${convertPathToString(parentAttrNameArray)}`)
+      : get(panelConfig, convertPathToString(parentAttrNameArray))
 
-  const parentAttr = get(componentNode, finalParentPath)
   const pagePath = get(parentAttr, "pagePath")
   const pageComponent = useSelector<RootState>((state) => {
     const canvas = getCanvas(state)
     if (!canvas) return null
     return searchDsl(canvas, pagePath) || null
   }) as PageNode | null
+
   const finalOptions = useMemo(() => {
     if (!pageComponent) return []
     const options: { label: string; value: string }[] = []

@@ -344,7 +344,12 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   useEffect(() => {
     const rootState = store.getState()
     const currentPageActions = getCurrentPageRunPages(rootState)
-    setIsPageLoading(true)
+    const canShowPageActions = currentPageActions.filter(
+      (action) => action?.config.advancedConfig.displayLoadingPage,
+    )
+    if (canShowPageActions.length > 0) {
+      setIsPageLoading(true)
+    }
     const requests = currentPageActions.map((action) => {
       const mergedAction = {
         ...action,

@@ -31,8 +31,6 @@ basicAxios.interceptors.response.use(
   errorHandlerInterceptor,
 )
 
-actionRuntimeAxios.interceptors.request.use(addToPendingPoolInterceptor)
 actionRuntimeAxios.interceptors.request.use(authInterceptor)
-actionRuntimeAxios.interceptors.response.use(removeFromPendingPoolInterceptor)
 
 export { basicAxios, actionRuntimeAxios }

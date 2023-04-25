@@ -29,6 +29,7 @@ import { SMTPPanel } from "@/page/App/components/Actions/ActionPanel/SMTPPanel"
 import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
 import {
   actionContentStyle,
+  actionPanelContainerStyle,
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import { getCachedAction } from "@/redux/config/configSelector"
@@ -132,31 +133,33 @@ export const ActionPanel: FC = () => {
 
   return (
     <div css={actionPanelStyle}>
-      <ActionTitleBar
-        onResultVisibleChange={(visible) => {
-          setResultVisible(visible)
-        }}
-        onResultValueChange={handleResultValueChange}
-        openState={resultVisible}
-        activeTab={activeKey}
-        handleChangeTab={handleClickChangeTab}
-      />
-      {activeKey === "general" && <div css={actionContentStyle}>{panel}</div>}
-      {activeKey === "advanced" && (
-        <MixpanelTrackProvider
-          basicTrack={basicTrack}
-          pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER}
-        >
-          <AdvancedPanel />
-        </MixpanelTrackProvider>
-      )}
-      <ActionResult
-        visible={resultVisible}
-        results={shownResult}
-        onClose={() => {
-          setResultVisible(false)
-        }}
-      />
+      <div css={actionPanelContainerStyle}>
+        <ActionTitleBar
+          onResultVisibleChange={(visible) => {
+            setResultVisible(visible)
+          }}
+          onResultValueChange={handleResultValueChange}
+          openState={resultVisible}
+          activeTab={activeKey}
+          handleChangeTab={handleClickChangeTab}
+        />
+        {activeKey === "general" && <div css={actionContentStyle}>{panel}</div>}
+        {activeKey === "advanced" && (
+          <MixpanelTrackProvider
+            basicTrack={basicTrack}
+            pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER}
+          >
+            <AdvancedPanel />
+          </MixpanelTrackProvider>
+        )}
+        <ActionResult
+          visible={resultVisible}
+          results={shownResult}
+          onClose={() => {
+            setResultVisible(false)
+          }}
+        />
+      </div>
     </div>
   )
 }
