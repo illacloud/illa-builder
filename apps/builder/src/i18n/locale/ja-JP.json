@@ -229,12 +229,12 @@
             "password": "••••••••"
           },
           "gs": {
-            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "row_filter": {
               "column_name": "column_name",
               "value": "値"
             },
-            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "update_value": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "primary_key_column": "column_name",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
@@ -261,12 +261,12 @@
             "private_key": "Google スプレッドシートへの接続に使用されます。 <0>ここ</0>をクリックしてプロジェクトを作成し、OAuth 認証情報を取得してください。 サービス アカウント認証では、使用されているサービス アカウントに対応するメール アドレスで共有されたスプレッドシートにのみアクセスできます。 サービス アカウントとアクセス キーの作成に関するドキュメントについては、<1>こちら</1>をご覧ください。ユーザーは、スプレッドシートで制御されていないさまざまな処理コンポーネントの制限を経験する場合があります。 <2>割り当て制限</2>の詳細",
             "leave_blank_to_selec": "空白のままにして最初のシートを選択します",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
-            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
             "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。",
             "copy_to_sheet_name": "必要。 コピーしたシートの名前を変更します。",
-            "successfully_authent": "Successfully authenticated",
-            "failed_to_authentica": "Failed to authenticate"
+            "successfully_authent": "認証に成功しました",
+            "failed_to_authentica": "認証に失敗しました"
           },
           "tidb": {
             "ca_certificate": "デフォルトで、サーバーレス層への TLS 接続に使用される CA 証明書を入力します。 Dedicated Tier への TLS 接続が必要な場合は、<0>ここをクリック</0>して構成方法を表示してください。"
@@ -347,9 +347,9 @@
             "oauth_2": {
               "0": "OAuth 2.0"
             },
-            "service_account": "Service account",
-            "read_and_write": "Read and write",
-            "read_only": "Read-only"
+            "service_account": "サービス アカウント",
+            "read_and_write": "読み書き",
+            "read_only": "読み取り専用"
           }
         },
         "default": {
