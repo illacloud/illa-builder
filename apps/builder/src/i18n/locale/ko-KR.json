@@ -197,7 +197,11 @@
             "consider_queries_tha": "행을 삭제하지 않는 쿼리를 성공으로 간주",
             "title_of_spreadsheet": "스프레드시트 제목",
             "sheet_id_to_copy": "복사할 시트 ID",
-            "sheet_to_copy_to": "복사할 시트"
+            "sheet_to_copy_to": "복사할 시트",
+            "authentication": "입증",
+            "connect_with_oauth": "OAuth 와 연결 및 저장",
+            "reconnect_with_oauth": "OAuth로 다시 연결",
+            "access_type": "액세스 유형"
           }
         },
         "placeholder": {
@@ -260,7 +264,9 @@
             "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
             "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
             "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오.",
-            "copy_to_sheet_name": "필수의. 복사된 시트의 이름을 바꿉니다."
+            "copy_to_sheet_name": "필수의. 복사된 시트의 이름을 바꿉니다.",
+            "successfully_authent": "Successfully authenticated",
+            "failed_to_authentica": "Failed to authenticate"
           },
           "tidb": {
             "ca_certificate": "기본적으로 서버리스 계층에 대한 TLS 연결에 사용되는 CA 인증서를 입력합니다. 전용 계층에 대한 TLS 연결이 필요한 경우 구성 방법을 보려면 <0>여기를 클릭</0>하세요."
@@ -337,7 +343,13 @@
             "filter_by": {
               "use_a1_notation": "A1 표기법 사용",
               "use_row_filters": "행 필터 사용"
-            }
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Service account",
+            "read_and_write": "Read and write",
+            "read_only": "Read-only"
           }
         },
         "default": {
@@ -950,7 +962,7 @@
             "hf_endpoint": "Endpoint URL"
           },
           "tips": {
-            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint_token": "<0>Hugging Face 프로필 설정</0>에서 Organizations API 토큰을 받으세요.",
             "hf_endpoint": "learn more about <0>Endpoint</0>"
           },
           "placeholder": {
