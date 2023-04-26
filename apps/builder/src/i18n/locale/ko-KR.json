@@ -275,8 +275,9 @@
             "ca_certificate": "기본적으로 서버리스 계층에 대한 TLS 연결에 사용되는 CA 인증서를 입력합니다. 전용 계층에 대한 TLS 연결이 필요한 경우 구성 방법을 보려면 <0>여기를 클릭</0>하세요."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually."
+            "normal": "Neon 프로젝트를 만들고 <0>프로젝트 대시보드</0>에서 문자열을 가져옵니다.",
+            "failed": "문자열을 구문 분석하지 못했습니다. 문자열을 확인하거나 수동으로 구성하십시오.",
+            "no_password": "비밀번호가 없습니다. Neon 대시보드의 연결 문자열에서 암호 표시줄을 클릭하고 문자열을 복사하십시오."
           }
         },
         "option": {
@@ -359,8 +360,8 @@
             "read_only": "읽기 전용"
           },
           "neon": {
-            "parse": "Parse",
-            "connection_string": "Connection string"
+            "parse": "구문 분석",
+            "connection_string": "연결 문자열"
           }
         },
         "default": {
