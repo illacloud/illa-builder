@@ -1697,6 +1697,14 @@
           "event_background": "이벤트 카드 배경 설정",
           "event_text": "이벤트 카드의 텍스트 색상 설정",
           "couldnot_drag": "드래그하여 시간 범위를 조정하려면 작업 미리보기 페이지로 이동하십시오."
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions."
         }
       },
       "setter_option": {
