@@ -1697,6 +1697,14 @@
           "event_background": "设置事件卡片的背景",
           "event_text": "设置事件卡片的文字颜色",
           "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。"
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions."
         }
       },
       "setter_option": {
