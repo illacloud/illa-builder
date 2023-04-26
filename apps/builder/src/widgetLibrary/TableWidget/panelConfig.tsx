@@ -7,7 +7,10 @@ import {
   TABLE_BUTTON_EVENT_HANDLER_CONFIG,
   TABLE_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/TableWidget/eventHandlerConfig"
-import { Columns, ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
+import {
+  Columns,
+  tagColorSchemeOptions,
+} from "@/widgetLibrary/TableWidget/interface"
 
 const baseWidgetName = "table"
 
@@ -72,7 +75,10 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
             attrName: "decimalPlaces",
             bindAttrName: ["type"],
-            shown: (value) => value === Columns.Number || value === Columns.Percent || value === Columns.Currency,
+            shown: (value) =>
+              value === Columns.Number ||
+              value === Columns.Percent ||
+              value === Columns.Currency,
             placeholder: "{{ 0 }}",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.NUMBER,
@@ -82,7 +88,10 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.format"),
             attrName: "format",
             bindAttrName: ["type"],
-            shown: (value) => value === Columns.Date || value === Columns.DateTime || value === Columns.Time,
+            shown: (value) =>
+              value === Columns.Date ||
+              value === Columns.DateTime ||
+              value === Columns.Time,
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
@@ -93,6 +102,17 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             attrName: "mappedValue",
             setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
             placeholder: "{{currentRow.col}}",
+          },
+          {
+            id: `${baseWidgetName}-column-tag-color`,
+            labelName: i18n.t("editor.inspect.setter_label.column_type"),
+            attrName: "tagColor",
+            selectAttrName: "tagColor",
+            inputAttrName: "tagColorJs",
+            isDynamicAttrName: "tagColorMode",
+            setterType: "DYNAMIC_SELECT_SETTER",
+            options: tagColorSchemeOptions,
+            useCustomLayout: true,
           },
           {
             id: `${baseWidgetName}-column-currencyCode`,
@@ -114,14 +134,19 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: `${baseWidgetName}-column-showThousandsSeparator`,
-            labelName: i18n.t("editor.inspect.setter_label.showThousandsSeparator"),
+            labelName: i18n.t(
+              "editor.inspect.setter_label.showThousandsSeparator",
+            ),
             attrName: "showThousandsSeparator",
             setterType: "DYNAMIC_SWITCH_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
             openDynamic: true,
             useCustomLayout: true,
             bindAttrName: ["type"],
-            shown: (value) => value === Columns.Number || value === Columns.Percent || value === Columns.Currency,
+            shown: (value) =>
+              value === Columns.Number ||
+              value === Columns.Percent ||
+              value === Columns.Currency,
           },
           {
             id: `${baseWidgetName}-column-enableSorting`,
@@ -134,7 +159,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             bindAttrName: ["type"],
-            shown: (value) => value === "button",
+            shown: (value) => value === Columns.Button,
             ...generatorTableEventHandlerConfig(
               baseWidgetName,
               TABLE_BUTTON_EVENT_HANDLER_CONFIG.events,
@@ -148,7 +173,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             attrName: "disabled",
             setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
             bindAttrName: ["type"],
-            shown: (value) => value === "button",
+            shown: (value) => value === Columns.Button,
           },
           {
             id: `${baseWidgetName}-column-colorScheme`,
@@ -157,7 +182,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             attrName: "colorScheme",
             defaultValue: "blue",
             bindAttrName: ["type"],
-            shown: (value) => value === "button",
+            shown: (value) => value === Columns.Button,
           },
           {
             id: `${baseWidgetName}-column-scale-type`,
@@ -166,7 +191,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             setterType: "BASE_SELECT_SETTER",
             options: ["container", "cover", "fill", "none", "scale-down"],
             bindAttrName: ["type"],
-            shown: (value) => value === "image",
+            shown: (value) => value === Columns.Image,
           },
         ],
       },

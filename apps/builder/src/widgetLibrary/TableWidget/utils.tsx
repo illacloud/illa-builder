@@ -1,13 +1,17 @@
 import { CellContext } from "@tanstack/table-core"
 import { isBoolean } from "lodash"
 import {
+  Rate,
   dayjsPro,
   isFunction,
   isNumber,
   isObject,
   isString,
-  Rate,
 } from "@illa-design/react"
+import { ILLAMarkdown } from "@/components/ILLAMarkdown"
+import { isValidCurrencyCode } from "@/constants/currency"
+import { getLocalLanguage } from "@/page/User/Register"
+import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 import {
   ColumnItemShape,
   Columns,
@@ -17,11 +21,8 @@ import {
   RenderTableButton,
   RenderTableImage,
   RenderTableLink,
+  RenderTableTag,
 } from "@/widgetLibrary/TableWidget/renderTableCell"
-import { getIcon } from "@/widgetLibrary/IconWidget/utils"
-import { ILLAMarkdown } from "@/components/ILLAMarkdown"
-import { getLocalLanguage } from "@/page/User/Register"
-import { isValidCurrencyCode } from "@/constants/currency"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
   return oldOrders?.[cur] ?? -1
@@ -147,12 +148,16 @@ const getStringPropertyValue = (
   props: CellContext<any, any>,
   mappedValue?: unknown,
   fromCurrentRow?: Record<string, boolean>,
+  mappedValuePrefix: string = "mappedValue",
 ) => {
   const value = props.getValue()
   const index = props.row.index
 
   if (mappedValue) {
-    if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
+    if (
+      fromCurrentRow?.[`${mappedValuePrefix}`] &&
+      Array.isArray(mappedValue)
+    ) {
       return `${mappedValue[index] ?? "-"}`
     }
     return `${mappedValue}`
@@ -177,11 +182,11 @@ const isValidUrl = (str: unknown) => {
   if (!isString(str)) return false
   const pattern = new RegExp(
     "^(https?:\\/\\/)?" + // protocol
-    "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-    "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-    "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-    "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-    "(\\#[-a-z\\d_]*)?$",
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
     "i",
   )
   return pattern.test(str)
@@ -201,6 +206,9 @@ export const getCellForType = (
     iconName,
     currencyCode = "XXX",
     showThousandsSeparator,
+    tagColor = "auto",
+    tagColorJs,
+    tagColorMode = "select",
   } = data
 
   const locale = getLocalLanguage()
@@ -216,6 +224,16 @@ export const getCellForType = (
         return RenderTableLink({
           cell: props,
           value,
+        })
+      }
+    case Columns.Tag:
+      let color = (tagColorMode === "select" ? tagColor : tagColorJs) || "auto"
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        return RenderTableTag({
+          cell: props,
+          value,
+          color,
         })
       }
     case "image":
@@ -248,7 +266,6 @@ export const getCellForType = (
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
-        // support showThousandsSeparator
         const numberFormat = new Intl.NumberFormat(locale, {
           style: "percent",
           minimumFractionDigits: decimalPlaces,
@@ -256,9 +273,7 @@ export const getCellForType = (
           useGrouping: showThousandsSeparator,
         })
 
-        return isNumber(formatVal)
-          ? numberFormat.format(formatVal)
-          : "-"
+        return isNumber(formatVal) ? numberFormat.format(formatVal) : "-"
       }
     case "currency":
       return (props: CellContext<any, any>) => {
@@ -268,12 +283,14 @@ export const getCellForType = (
           minimumFractionDigits: decimalPlaces,
           maximumFractionDigits: decimalPlaces,
           useGrouping: showThousandsSeparator,
-          ...(isValidCurrencyCode(currencyCode) ? {
-            style: "currency",
-            currency: currencyCode,
-          } : {
-            style: "decimal",
-          }),
+          ...(isValidCurrencyCode(currencyCode)
+            ? {
+                style: "currency",
+                currency: currencyCode,
+              }
+            : {
+                style: "decimal",
+              }),
         })
 
         return isNumber(formatVal) ? currencyFormatter.format(formatVal) : "-"
@@ -301,11 +318,7 @@ export const getCellForType = (
         const value = getPropertyValue(props, mappedValue, fromCurrentRow)
         const maxCount = 5
 
-        return <Rate
-          count={maxCount}
-          readonly
-          value={Number(value) || 0}
-        />
+        return <Rate count={maxCount} readonly value={Number(value) || 0} />
       }
     case "button":
       return (props: CellContext<any, any>) => {

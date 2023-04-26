@@ -1,8 +1,11 @@
 import { CellContext } from "@tanstack/table-core"
 import { FC } from "react"
-import { Button, Image, Link } from "@illa-design/react"
+import { Button, Image, Link, Tag, getColor } from "@illa-design/react"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import {
+  ColumnItemShape,
+  tagColorSchemeOptions,
+} from "@/widgetLibrary/TableWidget/interface"
 import { overFlowStyle } from "@/widgetLibrary/TableWidget/style"
 import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
 
@@ -42,6 +45,29 @@ export const RenderTableImage: FC<{
       objectFit={objectFit}
       draggable={false}
     />
+  )
+}
+
+export const RenderTableTag: FC<{
+  cell: CellContext<any, any>
+  value?: string
+  color: string | "auto"
+}> = (props) => {
+  const { cell, value, color } = props
+  const cellValue = value ?? cell.getValue()
+  const rowIndex = cell.row.index
+  const tagDefaultColor = ["blue", "purple", "red", "green", "orange", "cyan"]
+  const colorScheme =
+    color === "auto"
+      ? tagDefaultColor[rowIndex % tagDefaultColor.length]
+      : tagColorSchemeOptions.includes(color)
+      ? color
+      : getColor(color, "03")
+
+  return cellValue ? (
+    <Tag colorScheme={colorScheme}>{`${cellValue}`}</Tag>
+  ) : (
+    <span>{"-"}</span>
   )
 }
 

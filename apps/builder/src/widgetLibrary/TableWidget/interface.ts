@@ -7,6 +7,7 @@ export enum Columns {
   Auto = "auto",
   Text = "text",
   Date = "date",
+  Tag = "tag",
   Time = "time",
   DateTime = "datetime",
   Number = "number",
@@ -38,6 +39,7 @@ export const defaultColumnItem: Partial<ColumnItemShape> = {
   format: "YYYY-MM-DD",
   colorScheme: "blue",
   objectFit: "scale-down",
+  tagColor: "auto",
 }
 
 export interface ColumnItemShape
@@ -64,7 +66,27 @@ export interface ColumnItemShape
   iconName?: string
   // currency type
   currencyCode?: string
+  // tag type
+  tagColor?: string | "auto"
+  tagColorJs?: string | "auto"
+  tagColorMode?: "select" | "dynamic"
 }
+
+export const tagColorSchemeOptions = [
+  "auto",
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+  "techPurple",
+  "techPink",
+]
 
 export interface WrappedTableProps
   extends HTMLAttributes<HTMLDivElement>,

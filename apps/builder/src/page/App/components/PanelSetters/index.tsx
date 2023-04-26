@@ -17,6 +17,7 @@ import { OptionListSetter } from "@/page/App/components/PanelSetters/OptionListS
 import { CarouselListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/CarouselListSetter"
 import { StepsListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/StepsListSetter"
 import { BaseRadioGroupSetter } from "@/page/App/components/PanelSetters/RadioGroupSetter/baseRadioGroup"
+import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/DynamicSelectSetter"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { DataSourceSetter } from "@/page/App/components/PanelSetters/SelectSetter/dataSourceSelectSetter"
@@ -30,6 +31,7 @@ import { ShadowSelect } from "@/page/App/components/PanelSetters/SelectSetter/sh
 import { BaseSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/baseSwitch"
 import { DynamicSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/dynamicSwitch"
 import { ColumnSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter"
+import { ColumnTypeSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnTypeSelectSetter"
 import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
 import { TableDataSourceSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/tableDataSourceSelectSetter"
 import { TableMappedValueInputSetter } from "@/page/App/components/PanelSetters/TableSetter/tableMappedValueInputSetter"
@@ -40,7 +42,6 @@ import { EditableInputWithMeasureSetter } from "./InputSetter/editableInputSette
 import { EventTargetViewSelect } from "./SelectSetter/eventBodyViewSelect"
 import { EventtargetStateSelect } from "./SelectSetter/eventTargetStateSelect"
 import { EventTargetPageSelect } from "./SelectSetter/pageSelect"
-import { ColumnTypeSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnTypeSelectSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -51,6 +52,7 @@ const SetterTypeMapSetter = {
   INPUT_WITH_SELECT_SETTER: InputWithSelectSetter,
   LIST_SETTER: ListSetter,
   DYNAMIC_SWITCH_SETTER: DynamicSwitchSetter,
+  DYNAMIC_SELECT_SETTER: DynamicSelectSetter,
   BASE_SELECT_SETTER: BaseSelectSetter,
   COLOR_PICKER_SETTER: ColorPickerSetter,
   OPTION_LIST_SETTER: OptionListSetter,
