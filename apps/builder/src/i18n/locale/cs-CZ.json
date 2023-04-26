@@ -276,7 +276,8 @@
           },
           "neon": {
             "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually."
+            "failed": "Failed to parse the string. Please check your string or configure manually.",
+            "no_password": "No password. Please click the password bar on Connection string in the Neon dashboard, and copy the string. "
           }
         },
         "option": {
