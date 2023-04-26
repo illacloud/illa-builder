@@ -1,0 +1,2781 @@
+{
+  "Logout": "Kirjaudu ulos",
+  "Setting": "Asetus",
+  "apps": "Sovellukset",
+  "back": "Takaisin",
+  "btn": {
+    "choose_file": "Valitse tiedosto"
+  },
+  "change_fail": "Muutos epäonnistui",
+  "change_success": "Muutos onnistui",
+  "collision_message": "Paina D tai K ja vedä komponentti astiaan",
+  "create_fail": "Ei voitu luoda",
+  "create_new": "Luo Uusi",
+  "create_new_app": "Luo Uusi",
+  "created_at": "Luotu klo",
+  "dashboard": {
+    "app": {
+      "all_apps": "Kaikki Sovellukset",
+      "create_app": "Luo Sovellus",
+      "duplicate_fail": "Kopiointi epäonnistui",
+      "duplicate_placeholder": "Syötä sovelluksen nimi tähän",
+      "edited_time": "Muokattu {{ time }} käyttäjältä {{ user }}",
+      "name_empty": "Anna nimi",
+      "name_existed": "Nimi on jo käytössä",
+      "rename_app": "Nimeä Sovellus Uudelleen",
+      "rename_fail": "Uudelleennimeäminen epäonnistui",
+      "rename_success": "Uudelleennimeäminen onnistui",
+      "trash_failure": "Poistaminen epäonnistui",
+      "trash_success": "Poistettu onnistuneesti"
+    },
+    "common": {
+      "cancel": "Peruuta",
+      "delete": "Poista",
+      "delete_cancel_text": "Peruuta",
+      "delete_content": "Tämä rikkoo Apps and Query Library -kyselyt, jotka käyttävät tätä resurssia",
+      "delete_ok_text": "Poista",
+      "delete_title": "Oletko varma?",
+      "error_button": "Yritä Uudelleen",
+      "error_description": "Sinun toiminnassasi on ongelma.",
+      "error_title": "Virhe"
+    },
+    "resource": {
+      "create_resource": "Luo Uusi",
+      "created": "Luotu",
+      "dbname": "Tietokannan Nimi",
+      "delete_fail": "Poistaminen epäonnistui",
+      "delete_success": "Poistettu onnistuneesti",
+      "resource_name": "Nimi",
+      "resource_type": "Tyyppi",
+      "save_fail": "Tallennus epäonnistui",
+      "save_success": "Tallennus onnistui",
+      "test_fail": "Testaus epäonnistui",
+      "test_success": "Testi onnistui"
+    }
+  },
+  "dayjs": {
+    "just_now": "Juuri nyt"
+  },
+  "deploy": "Julkaise",
+  "description": {
+    "part1": "Tämä on esimerkki ilman nimiavaruuksia."
+  },
+  "dont_need_save": "ILLA jatkaa työsi automaattista tallentamista.",
+  "duplicate": "Duplicate",
+  "edit": "Muokkaa",
+  "edit_at": "Muokattu osoitteessa",
+  "edit_failed": "Tallennus epäonnistui, tarkista verkkosi.",
+  "edit_success": "Muokattu onnistuneesti",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Takaisin",
+            "create_action": "Luo Toiminto",
+            "new_resource": "Uusi Resurssi"
+          },
+          "selector": {
+            "title": "Valitse toimintotyyppi"
+          },
+          "title": {
+            "choose_resource": "Valitse resurssi "
+          }
+        },
+        "btn": {
+          "close": "sulje",
+          "new": "Uusi"
+        },
+        "contextMenu": {
+          "delete": "Poista",
+          "duplicate": "Duplicate",
+          "rename": "Uudelleennimeä"
+        },
+        "message": {
+          "confirm_switch": "Et tallentanut kyselyäsi. Oletko varma, että haluat hylätä muutokset?",
+          "failed": "Yhteyden muodostaminen palvelimeen epäonnistui",
+          "load_action_list_fail": "Toimintalistan hakeminen epäonnistui: {{message}}",
+          "load_resource_fail": "Resurssilistaa ei voitu hakea: {{message}}",
+          "name_already_exist": "Jo olemassa",
+          "please_input_name": "Anna nimi",
+          "success_created": "Onnistuneesti luotu",
+          "success_deleted": "Onnistuneesti poistettu",
+          "success_saved": "Tallennus onnistui",
+          "valid_name": "Voi sisältää vain kirjaimia, numeroita, '_' tai '$', alkaa '_' tai kirjaimella"
+        },
+        "placeholder": {
+          "search": "Etsi"
+        },
+        "runtime": {
+          "backend": "Taustaosa",
+          "execute_resource": "suorita resurssi",
+          "frontend": "Julkisivu",
+          "handle_response": "käsitellä vastausta",
+          "post_processing": "jälkikäsittely",
+          "prepare_query": "Valmistele kysely",
+          "response_size": "Vastauksen koko",
+          "total": "Yhteensä",
+          "transfer_data": "siirrä tietoja",
+          "transformer": "muuntaja"
+        },
+        "tips": {
+          "empty": "Lisää toiminto aloittaaksesi työskentelyn yhdistetystä resurssista peräisin olevilla tiedoilla.",
+          "not_found": "Ei hakutuloksia"
+        },
+        "title": "Toimintojen Luettelo"
+      },
+      "form": {
+        "btn": {
+          "back": "Takaisin",
+          "save_changes": "Tallenna Resurssi",
+          "test_connection": "Testaa Yhteys"
+        },
+        "required": "Tämä on pakollinen",
+        "title": {
+          "api": "API",
+          "configure": "Määritä {{ name }}",
+          "database": "TIEDOT",
+          "select": "Valitse Resurssin Tyyppi",
+          "huggingface": "Hyljellä Kasvoa",
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "CouchDB"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google Sheets"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} on pakollinen"
+        },
+        "label": {
+          "inference_api": "Inference API",
+          "inference_endpoint": "Päätepiste Päättyessä",
+          "s3": "Virheellinen julkisissa sovelluksissa",
+          "acl": "S3 ACL ladattaville tiedostoille",
+          "appwrite": {
+            "host": "Isäntä",
+            "dbid": "Tietokannan Tunnus",
+            "projectid": "Projektin Tunnus",
+            "secret": "API-avain",
+            "collectionid": "Kokoelman Tunnus",
+            "documentid": "Asiakirjan Tunnus",
+            "data": "Tiedot",
+            "filter": "Suodatin",
+            "order": "Järjestä mukaan",
+            "limit": "Raja"
+          },
+          "oracle": {
+            "sid": "Käsittele tietokannan nimeä nimellä",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Sertifikaatit",
+            "verification_mode": "Vahvistus tila"
+          },
+          "gs": {
+            "private_key": "Yksityinen avain",
+            "action_type": "Toiminnon tyyppi",
+            "spreadsheet": "Laskentataulukko",
+            "sheet_name": "Taulukon nimi",
+            "data_range": "Datan alue",
+            "limit": "Raja",
+            "offset": "Siirtymä",
+            "a1_notation": "A1 merkintä",
+            "values_to_append": "Liitettävät arvot",
+            "filter_by": "Suodata",
+            "update_value": "Päivitä arvo",
+            "primary_key_column": "Ensisijainen avaimen sarake",
+            "array_of_rows_to_upd": "Array rivejä päivitetään",
+            "filters_to_match_row": "Rivin indeksi",
+            "consider_queries_tha": "Harkitse kyselyjä, jotka eivät poista rivejä onnistumisina",
+            "title_of_spreadsheet": "Taulukkolaskentataulukon nimi",
+            "sheet_id_to_copy": "Kopioitava levytunniste",
+            "sheet_to_copy_to": "Taulu, josta kopioidaan",
+            "authentication": "Todennus",
+            "connect_with_oauth": "Yhdistä OAuthiin ja tallenna",
+            "reconnect_with_oauth": "Yhdistä OAuth uudelleen",
+            "access_type": "Pääsyn tyyppi"
+          }
+        },
+        "placeholder": {
+          "url": "Syötä pyynnön URL tähän",
+          "appwrite": {
+            "host": "HOSTNAME TAI IP",
+            "dbid": "Tietokannan Tunnus",
+            "projectid": "Projektin Tunnus",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribuutti",
+              "value": "1234"
+            },
+            "order": "attribuutti",
+            "collectionid": "Valitse kokoelma",
+            "data": "An object enclosed in {{ }}. For example, \n{{ \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "oraakki",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "sarakkeen_nimi",
+              "value": "arvo"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "primary_key_column": "sarakkeen_nimi",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } }}",
+            "filters_to_match_row": {
+              "key": "avain",
+              "value": "arvo"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Annettu sisältö on JULKINEN asetus. Jätä tyhjäksi PRIVATElle. Älä unohda määrittää CORS kauhaasi. <0>Katso Cross-Origin Resurssien jakaminen (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Näyttää siltä, että yrität yhdistää tietokantaan, joka on paikallinen koneeseesi tai osaan yksityistä verkkoa. Se ei ehkä toimi ILLA Cloud -versiossa. Tutustu meidän <0>docs</0> saadaksesi kuinka itse isäntä-versioon.",
+            "selfhost": "Näyttää siltä, että yrität yhdistää tietokantaan, joka on paikallinen koneellesi. Ole hyvä ja käytä koneen paikallisen alueen IP-osoitetta \"localhost\" tai \"127.0.0.1\" sijaan.",
+            "title": {
+              "tips": "Vinkit"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Palvelimesi voi olla altis hyökkäyksille."
+            }
+          },
+          "gs": {
+            "private_key": "Käytetään Google Sheetsiin yhdistämiseen. Napsauta <0>tästä</0> luodaksesi projektin ja saadaksesi OAuth-tunnuksen. Palvelutilin todennuksen avulla meillä on pääsy vain laskentataulukoihin, jotka jaat käytettyä palvelutiliä vastaavan sähköpostiosoitteen kanssa. Katso <1>tästä</1> dokumentaatio palvelutilin ja pääsyavaimen luomisessa.\n\nKäyttäjät saattavat kokea rajoituksia erilaisilta prosessointikomponenteilta, joita ei valvota levyillä. Lue lisää <2>kiintiörajoituksista</2>",
+            "leave_blank_to_selec": "Jätä tyhjäksi valitaksesi ensimmäisen levyn",
+            "to_select_the_first_": "Voit valita viiden ensimmäisen solun ensimmäisessä sarakkeessa arkin otsikko arkki1, A1 notaatio on arkki1!A1:A5. <0>Katso lisätietoja Googlen asiakirjoista. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "a1_notation": "Voit valita viiden ensimmäisen solun ensimmäisessä sarakkeessa arkin otsikko arkki1, A1 notaatio on arkki1!A1:A5. <0>Katso lisätietoja Googlen asiakirjoista. </0>",
+            "sheet_id_to_copy": "Etsi tämä katsomalla ?gid=123123 in the URL of your Google sheets",
+            "copy_to_sheet_name": "Vaadittu. Uudelleennimeä kopioitava levy.",
+            "successfully_authent": "Todennus onnistui",
+            "failed_to_authentica": "Todennus epäonnistui"
+          },
+          "tidb": {
+            "ca_certificate": "Täytämme oletuksena CA-varmenteen, jota käytetään TLS Connections to Serverless Tier -yhteyksiin. Jos tarvitset TLS Connections to Dedicated Tier, <0>Klikkaa tästä</0> nähdäksesi asetusmenetelmän."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Luo asiakirja",
+              "list": "Listaa asiakirjat",
+              "get": "Hanki asiakirja",
+              "update": "Päivitä asiakirja",
+              "delete": "Poista asiakirja"
+            },
+            "filter": {
+              "and": "JA",
+              "or": "TAI",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Palvelun Nimi"
+            },
+            "ssl": "Käytä SSL:ää kun käytettävissä"
+          },
+          "couchdb": {
+            "ssl": "Käytä SSL/TLS kun käytettävissä"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Digest Auth",
+              "auth_1": "OAuth 1,0",
+              "hawk_authentication": "Hawk-todennus",
+              "aws_v4": "Aws Allekirjoitus V4",
+              "session_based_auth": "Istuntopohjainen Auth (vanhentunut)"
+            },
+            "certificates": "Käytä itseallekirjoitettuja varmenteita",
+            "ca_certificate": "Varmenne",
+            "client_key": "Asiakkaan Avain",
+            "client_certificate": "Asiakkaan Varmenne",
+            "verification_mode": {
+              "full_verification": "Täysi vahvistus",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Ohita CA-varmenteen vahvistus"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Lue tiedot taulukkolaskenta",
+              "append_data_to_a_spr": "Lisää tiedot taulukkoon",
+              "update_a_spreadsheet": "Päivitä laskentataulukko",
+              "bulk_update_a_spread": "Bulk päivittää taulukkolaskenta ensisijainen avain",
+              "delete_a_single_row_": "Poista yksi rivi laskentataulukosta",
+              "create_a_spreadsheet": "Luo laskentataulukko",
+              "copy_a_single_sheet_": "Kopioi yksi sivu toiseen taulukkoon",
+              "list_available_sprea": "Listaa saatavilla olevat laskentataulukot",
+              "get_spreadsheet_info": "Hanki laskentataulukon tiedot"
+            },
+            "data_range": {
+              "use_a1_notation": "Käytä A1-merkintää",
+              "use_limit_and_offset": "Käytön raja ja siirtymä"
+            },
+            "filter_by": {
+              "use_a1_notation": "Käytä A1-merkintää",
+              "use_row_filters": "Käytä rivin suodattimia"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Palvelun tili",
+            "read_and_write": "Lue ja kirjoita",
+            "read_only": "Vain Lukutilassa"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Palvelun Tili"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Poista Käytöstä",
+          "enable": "Aktivoi",
+          "new": "Uusi",
+          "run": "Suorita",
+          "save": "Tallenna",
+          "save_and_run": "Tallenna & Suorita",
+          "save_fail": "Tallennus epäonnistui",
+          "test_run": "Testin suoritus"
+        },
+        "elastic": {
+          "action_type": "Toiminnon Tyyppi",
+          "body": "Runko",
+          "id": "Id",
+          "index": "Indeksi",
+          "query": "Kysely"
+        },
+        "error": {
+          "max_file": "Tiedoston koko ei voi ylittää 5M."
+        },
+        "firebase": {
+          "action_type": "Toiminnon Tyyppi",
+          "collection": "Kokoelma",
+          "database_ref": "Tietokannan ref",
+          "document_id": "Asiakirjan Tunnus",
+          "email": "Sähköposti",
+          "end_at": "Loppu Klo",
+          "len_of_list": "Luettelon pituus ",
+          "limit": "raja",
+          "next_page_token": "Seuraava sivun tunnus",
+          "object_to_set": "Aseta kohde",
+          "order_by": "Järjestä mukaan",
+          "ordering_direction": "Järjestyksen suunta",
+          "parent_document_id": "Vanhemman asiakirjan tunnus",
+          "phone_number": "Puhelinnumero",
+          "placeholder": {
+            "asc": "asc",
+            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Syötä kokoelma",
+            "key": "avain",
+            "select_an_action": "Valitse toiminto",
+            "select_collection": "Valitse kokoelma",
+            "value": "arvo"
+          },
+          "service_type": "Palvelun Tyyppi",
+          "start_at": "Aloita Klo",
+          "tips": {
+            "document_id": "Jätä tyhjäksi luodaksesi automaattisen tunnuksen.",
+            "parent_document_id_tips": "Jätä tyhjäksi ylimmän tason kokoelmiin."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Käytä pudotusta",
+          "use_end_at": "Käytä loppua",
+          "use_raw_id": "Käytä raakaa tunnusta",
+          "use_start_at": "Use startAt",
+          "user_object": "Käyttäjän objekti ",
+          "value": "arvo",
+          "where": "missä"
+        },
+        "label": {
+          "event_handler": "Tapahtuman Käsittely",
+          "failure": "Epäonnistuminen",
+          "resource": "Resurssi",
+          "success": "Onnistui",
+          "transformer": "Muuntaja",
+          "couchdb": {
+            "database": "Tietokanta",
+            "action_type": "Toiminnon tyyppi"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Valitse tietokanta",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Kuluttajan avain",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "joitain app-ekstra-tietoja",
+              "app": "Sovelluksen tunnus",
+              "dig": "valtuutettu",
+              "us-east-1": "us-itä-1",
+              "authenticate_using_t": "Todenna käyttäen HTTP Authorization headeria kyselyn parametrien sijasta",
+              "find_instructions_on": "Etsi ohjeita mistä löytää avaimia <0>AWS docs</0>.",
+              "role_to_assume": "Käytä <0>eri rooli</0> käyttäessäsi APIa"
+            },
+            "advanced": {
+              "select_pages": "Valitse sivut"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Listaa tietueet",
+                "retrieve": "Nouda tietuetta",
+                "create": "Luo tapahtuma",
+                "update": "Päivitä tietue",
+                "delete": "Poista tietue",
+                "find": "Etsi",
+                "get": "Hae näkymä"
+              },
+              "skip": "Ohita",
+              "limit": "Raja",
+              "include": "Sisällytä dokumentit",
+              "des": "Tilaus",
+              "id": "_id",
+              "rev": "_rev",
+              "record": "Nauhoita",
+              "mangoquery": "Mangokysely",
+              "ViewURL": "NäkymäURL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Asiakirjat sisältyvät palautettuihin tuloksiin",
+              "des_option": "Käytä laskevaa tilausta"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "PLAINTEKSTI"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Tiedosto",
+                "text": "Teksti"
+              },
+              "method": {
+                "options": "ASETUKSET",
+                "head": "PÄÄTTYÄ"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Kyselyn Parametrit",
+                "header_authorization": "Otsikon Valtuutus"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Käynnistä tämä toiminto, kun sivu latautuu",
+              "show_a_loading_page_": "Näytä lataussivu sivun latauksessa",
+              "on_page_loading": "Sivujen latauksessa",
+              "on_app_loading": "APP ladattu",
+              "none": "Ei Mitään"
+            }
+          },
+          "restapi": {
+            "signature_method": "Allekirjoituksen menetelmä",
+            "consumer_key": "Kuluttajan avain",
+            "consumer_secret": "Kuluttajan salaisuus",
+            "access_token": "Käyttöoikeus tunnus",
+            "token_secret": "Tokenin salaisuus",
+            "private_key": "Yksityinen avain",
+            "realm": "Valtakunta",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Hawk Auth Key",
+            "algorithm": "Algoritmi",
+            "user": "Käyttäjä",
+            "nonce": "Nonce",
+            "ext": "pääte",
+            "app": "sovellus",
+            "dig": "dig",
+            "timestamp": "Aikaleima",
+            "aws_region": "Aws Alue",
+            "aws_service": "AWS Palvelu",
+            "aws_access_key_id": "Aws Pääsyavaimen Tunnus",
+            "aws_secret_key_id": "Aws Salainen Avaimen Tunnus",
+            "role_to_assume": "Oletettava rooli (ARN)",
+            "list_of_cookies_to_f": "Luettelo välitettävistä evästeistä",
+            "add_access_token_to": "Lisää Pääsymerkki"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Joko binary merkkijono tai objekti: {{ data: binary merkkijono, tiedostonimi?: merkkijono } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Mitään toimintoja ei käynnistetä, kun sivu latautuu. Voit manuaalisesti käynnistää toiminnon ja ottaa käyttöön \"Käynnistä tämä toiminto, kun sivu latautuu\" lisäasetuksissa."
+            }
+          },
+          "advanced": {
+            "advanced": "LISÄTTY",
+            "page_trigger": "Käynnistimen Ajoitus",
+            "loading_page": "Ladataan sivua",
+            "page_load_delay": "Viive (ms)",
+            "run_this_action_peri": "Suorita toiminto ajoittain",
+            "interval": "Aikaväli (s)",
+            "actions_running_when": "Toiminnot käynnissä, kun sivu latautuu",
+            "pages": "Sivut",
+            "periodically_run": "Ajoittain ajettava"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Poista",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Toiminnon Tyyppi",
+          "aggregation": "Koordinointi",
+          "collection": "Kokoelma",
+          "document": "Asiakirja",
+          "field": "Kenttä",
+          "filter": "Suodatin",
+          "limit": "Raja",
+          "operations": "Toiminnot",
+          "options": "Valinnat",
+          "projection": "Projektio",
+          "query": "Kysely",
+          "skip": "Ohita",
+          "sort_by": "Järjestä Mukaan",
+          "update": "Päivitä"
+        },
+        "option": {
+          "resource": {
+            "new": "Luo uusi resurssi"
+          },
+          "trigger": {
+            "manually": "Suorita toiminto vain, kun käsin laukaistu",
+            "on_change": "Suorita toiminto automaattisesti, kun syötteet muuttuvat"
+          }
+        },
+        "s3": {
+          "action_type": "Toiminnon Tyyppi",
+          "bucket_name": "Ämpärin nimi",
+          "content_type": "Sisältötyyppi",
+          "delimiter": "Erotin",
+          "error": {
+            "max_file": "Tiedoston koko ei voi ylittää 5M."
+          },
+          "expiry_duration_of_signed_url": "Allekirjoitettujen osoitteiden voimassaoloaika (minuuttia)",
+          "generate_signed_url": "Luo Allekirjoitettu URL",
+          "max_keys": "Maksimi näppäimet",
+          "object_key": "Objektin avain",
+          "object_key_list": "Objektin avainluettelo",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Suodata tulokset etuliite",
+          "tips": {
+            "delimiter": "Erotin on merkki, jota käytät ryhmiteltäessä avaimia.",
+            "max_keys": "Asettaa vastauksessa palautettujen avainten enimmäismäärän. Oletuksena toiminto palauttaa jopa 1000 avaimen nimeä."
+          },
+          "upload_data": "Lataa tiedot",
+          "upload_data_list": "Lataa tietoluettelo",
+          "upload_object_name": "Lataa objektin nimi",
+          "upload_object_name_list": "Lataa objektin nimiluettelo",
+          "timeout_upload": "Aikakatkaisu tiedoston lataamiselle (minuutti)",
+          "timeout_upload_multiple": "Yksittäisen tiedoston lataamisen aikataulu (minuutti) "
+        },
+        "smtp": {
+          "attachment": "Liitteet",
+          "bcc_email": "Piilokopio sähköpostit",
+          "body": "Runko",
+          "cc_email": "Cc email(s)",
+          "from_email": "Lähettäjän sähköpostiosoite",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Käytä pilkkuja erottamaan sähköpostit eli {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Vastaus sähköpostiosoitteeseen",
+          "set_replay_email": "Aseta vastausviesti",
+          "subject": "Aihe",
+          "tips": {
+            "port": "Jotkut palveluntarjoajat voivat estää portin 25.Jos yhteys epäonnistuu, vaihda \nportti."
+          },
+          "to_email": "Sähköpostiin (sähköpostiin)",
+          "use_html": "Käytä HTML",
+          "use_raw": "Käytä raakaa tekstiä"
+        },
+        "tips": {
+          "transformer": "Ota muuntajat käyttöön muuttaaksesi kyselyn tuloksen eri muotoon."
+        },
+        "graphql": {
+          "query": "Kysely",
+          "variables": "Muuttujat",
+          "headers": "Otsikot",
+          "placeholder": {
+            "query": "# Käytä $ lisätäksesi muuttujan kyselysi (esim. $category ) \r\nkysely ($owner: String!, $name: String! {\r\n  repository(omistaja: $owner, name: $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "Malli ID",
+          "placeholder": {
+            "mode_id": "bert-basase-uncased",
+            "text": "Vastaus maailmankaikkeuteen on [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Mikä elokuva on paras ?\"], \r\n\"generated_responses\": [\"Se on Die Hard varmasti.\"], \r\n\"teksti\": \"Voitko selittää?\" \r\n}",
+            "binary": "ts. {{ upload1.file[0] }}. binaaritiedostot ilman tiedoston etuliitettä",
+            "use_cache": "Totuus, jätä tyhjäksi",
+            "min_length": "Kokonaisluku, jonka avulla voidaan määrittää pienin pituus tulopuolen tiivistelmässä",
+            "top_k": "Kokonaisluku ylätunnisteiden määrittämiseksi",
+            "top_p": "Kellu määrittääksesi kuponkia",
+            "temperature": "Kelluva (0,0-100,0),jätä tyhjäksi 1,0",
+            "repetition_penalty": "Liukuluku (0,0–100,0)",
+            "max_time": "Kelluta (0,0-120.0) määrittääksesi ajan määrän sekunteina"
+          },
+          "tips": {
+            "mode_id": "Mene <0>Malli Hub</0> ja valitse malli, jota haluat käyttää.",
+            "use_detail_parameters": "<0>Klikkaa tästä</0> saadaksesi lisätietoja parametreista",
+            "temperature": "1 tarkoittaa säännöllistä näytteenottoa, 0 tarkoittaa aina korkeimman pistemäärän ottamista, 100,0 lähenee yhtenäistä todennäköisyyttä.",
+            "repetition_penalty": "Mitä enemmän symbolia käytetään sukupolvien sisällä, sitä enemmän rangaistaan siitä, että sitä ei poimita peräkkäisissä sukupolvissa."
+          },
+          "parameter": "Parametri",
+          "use_detail_parameters": "Käytä yksityiskohtaisia parametreja",
+          "use_cache": "Käytä välimuistia",
+          "wait_for_model": "Odota mallia",
+          "min_length": "Minimi pituus",
+          "max_length": "Maksimi pituus",
+          "top_k": "Yläosa k",
+          "top_p": "Ylhäällä p",
+          "temperature": "Lämpötila",
+          "repetition_penalty": "Toistorangaistus",
+          "max_time": "Maksimi aika"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Mitä SQL lausunto haluat luoda"
+          },
+          "button": {
+            "text": "SQL Generoi"
+          }
+        },
+        "mssql": {
+          "config_type": "Asetusten Tyyppi",
+          "query": "Kysely",
+          "placeholder": {
+            "query": "valitse * käyttäjistä;",
+            "table": "Valitse taulu",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Taulukko",
+          "insert_record": "Joukko tietueita joihin lisätään",
+          "dropdown": {
+            "retry": "Klikkaa yrittääksesi uudelleen"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Menetelmä",
+            "table": "Taulukko",
+            "json_input": "Käytä JSON-parametrin muokkainta",
+            "parameters": "Parametrit",
+            "index": "Indeksin nimi",
+            "key_condition": "Avaimen kunto lauseke",
+            "projection_expression": "Projektio lauseke",
+            "filter_expression": "Suodattimen lauseke",
+            "attribute_name": "Lausekkeen attribuuttien nimet",
+            "attribute_value": "Lausekkeen attribuuttiarvot",
+            "limit": "Raja",
+            "select": "Valitse",
+            "item": "Kohde",
+            "condition_expression": "Ehtojen lauseke",
+            "key": "Avain",
+            "update_expression": "Päivitä lauseke"
+          },
+          "option": {
+            "query": "kysely",
+            "scan": "skannaa",
+            "put_item": "putItem",
+            "get_item": "getItem",
+            "update_item": "päivitysItem",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, for exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Epäonnistui",
+          "ran_successfully": "Onnistui"
+        },
+        "result": {
+          "restapi": {
+            "status": "Tila",
+            "headers": "Otsikot",
+            "response": "Vastaus"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Tulossa Pian"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Virheellinen yksityinen avain. "
+          },
+          "label": {
+            "ca_certificate": "Varmenne",
+            "client_certificate": "Asiakkaan Varmenne",
+            "client_key": "Asiakkaan Avain",
+            "config_type": "Asetusten Tyyppi",
+            "connect_type": "Yhdistä Tyyppi",
+            "connection_format": "Yhteyden muoto",
+            "connection_string": "Yhteyden Merkkijono",
+            "database": "Tietokanta",
+            "database_index": "Tietokannan Indeksi",
+            "firebase_database_url": "Firebase Database URL",
+            "firebase_project_id": "Fire-Projektin Tunnus",
+            "hostname": "Hostname",
+            "hostname_port": "Palvelinimi/portti",
+            "hosturl": "Isäntäpisteen URL",
+            "mongodb_connection_dns_seed_list": "DNS seed-luettelon yhteys",
+            "mongodb_connection_standard": "Vakio Yhteys",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Asiakkaan Cert ja avain",
+            "name": "Nimi",
+            "port": "Portti",
+            "private_key": "Yksityinen Avain",
+            "private_key_hover": "Yksityinen avain on liitetty Service Account kanssa Firebase oikeuksia.",
+            "ssl_options": "SSL asetukset",
+            "username_password": "Käyttäjänimi/Salasana",
+            "self_signed_certificate": "Käytä itseallekirjoitettua varmennetta",
+            "disable_introspection": "Poista Introspektio Käytöstä",
+            "value": "Arvo",
+            "add_to": "Lisää kohteeseen",
+            "header_prefix": "Otsikon etuliite",
+            "key": "Avain",
+            "introspection": "Esikatselu",
+            "bear_token": "Pääsymerkki",
+            "connection_options": "Yhteyden asetukset",
+            "account_name": "Tilin nimi",
+            "warehouse": "Varasto",
+            "schema": "Skeema",
+            "snowflake_basic_auth": "Perus Auth",
+            "snowflake_key_auth": "Avainpari (vain salattuja yksityisiä avaimia tuetaan)",
+            "role": "Rooli",
+            "username": "Käyttäjätunnus",
+            "password": "Salasana",
+            "dynamo_region": "AWS alue",
+            "dynamo_access_key_id": "Aws Pääsyavaimen Tunnus",
+            "dynamo_secret_key": "Aws Salainen Avain"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_production",
+            "database_index": "oletus 0",
+            "hostname": "Hostname",
+            "hosturl": "esim. https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "Eli \"Käyttäjät DB (vain luku)\" tai \"Sisäinen järjestelmänvalvojan API\"",
+            "password": "Salasana",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Käyttäjätunnus",
+            "default": "oletus",
+            "hugging_face_url": "Käytä absoluuttista URL-osoitetta (esim. https://api-inference.huggingface.co/models/). ",
+            "database_name": "Tietokannan nimi",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "KOMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "JULKINEN",
+            "role": "Rooli",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPYPTED PRIVATE KEY-----\r\n•••••\r\n -----ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
+          },
+          "tip": {
+            "connect_type": "Pilvi: ILLA-palvelimet muodostavat turvallisen yhteyden tietokantaan.",
+            "name": "Resurssin nimi kun luodaan toimia ILLA:ssa.",
+            "private_key": "<0>Klikkaa tästä</0> nähdäksesi miten saat tämän avaimen",
+            "ssl_options": "SSL käytetään, kun käytettävissä",
+            "username_password": "Käyttöoikeustiedot salataan ja tallennetaan turvallisesti palvelimillemme.",
+            "introspection": "Ota tämä käyttöön, jos GraphQL-päätetapahtuma ei tue introspektiokyselyjä. Huomaa, että introspektion poistaminen käytöstä vähentää GraphQL:n käytettävyyttä, koska automaattinen täydellinen ja linkitys tälle resurssille ei enää toimi.",
+            "hugging_face_url": "<0>Klikkaa tästä</0> saadaksesi lisätietoja halkeamasta kasvoista.",
+            "bear_token": "Hanki käyttäjän käyttöoikeus tai API-tunniste <0>hugging Face profiiliasetuksistasi.</0>",
+            "connection_options": "Lisää yhteysasetukset yhteyteesi. Kun SSL-asetus on käytössä, lisäämme oletusarvoisesti salauksen ja trustServerCertificate."
+          },
+          "title": {
+            "advanced_option": "Lisäasetukset",
+            "general_option": "YLEINEN",
+            "graphql_introspection": "GRAFQLIN VALVONTA"
+          }
+        },
+        "error": {
+          "invalid_url": "Anna kelvollinen URL-osoite, esimerkiksi https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Uusi"
+          },
+          "label": {
+            "access_token": "Käyttöoikeus Pääsymerkki",
+            "access_token_lifespan": "Pääsymerkki\n elinikä (optimaalinen)",
+            "access_token_url": "Pääsymerkin URL",
+            "action_type": "Toiminnon Tyyppi",
+            "audience": "Yleisö",
+            "authentication": "Todennus",
+            "authorization_url": "Valtuutuksen URL",
+            "base_url": "Base URL",
+            "basic_auth_password": "Basic Auth salasana",
+            "basic_auth_username": "Perus Auth käyttäjätunnus",
+            "bearerToken": "Haltijan Tunnus",
+            "body": "Runko",
+            "client_id": "Asiakkaan Tunnus",
+            "client_secret": "Asiakkaan Salainen",
+            "configure_oauth2": "OAuth 2.0 -asetukset",
+            "cookies": "Evästeet",
+            "copy_url_to_application": "Kopioi tämä URL sovelluksellesi",
+            "enable_auth_verification_endpoint": "Ota auth vahvistuksen päätepiste käyttöön",
+            "extra_body_values": "Ylimääräiset Vartaloarvot",
+            "forward_all_cookies": "Välitä Kaikki Evästeet",
+            "headers": "Otsikot",
+            "list_of_cookies_to_forward": "Luettelo Evästeistä\n eteenpäin",
+            "name": "Nimi",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Päivitä Token",
+            "scopes": "Scopes (separated by\n a space)",
+            "share_oauth2_credentials_between_users": "Jaa OAuth2.0 käyttäjätunnukset käyttäjien välillä",
+            "url_parameters": "Url-Parametrit",
+            "use_client_credentials_auth": "Käytä asiakkaan tunnistautumistietoja",
+            "digest_auth_username": "Käyttäjätunnus",
+            "digest_auth_password": "Salasana"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Perus Auth",
+              "bearer": "Haltija",
+              "none": "Ei Mitään",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Token Lifespan sekunnissa",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "i.\"Sisäinen järjestelmänvalvojan API\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "Käytä absoluuttista URL-osoitetta (esim. https://example.com)",
+            "database": "eli: \"Käyttäjät DB (vain luku)\"",
+            "name": "Eli \"Käyttäjät DB (vain luku)\" tai \"Sisäinen järjestelmänvalvojan API\"",
+            "param_key": "avain",
+            "param_value": "arvo",
+            "password": "salasana",
+            "username": "käyttäjätunnus"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 on monimutkainen spektri. ILLA tukee tällä hetkellä palvelimen puolella OAuth 2.0 autentikointivirtaa sekä Client Credentials virtausta. Molemmissa tapauksissa sinun on käytettävä OAUTH2_TOKEN placeholderia ilmoittaakseen ILLA:lle, mistä OAuthin pääsymerkki on sijoitettu API-pyyntöön. Yhteinen sijainti tälle on otsikko, kuten valtuutus: Bearer OAUTH2_TOKEN.",
+            "extra_body_values": "Ekstra kehon arvot eivät läpäise GET tai HEAD pyynnöt",
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMAATTISESTI MUKAAN PARAMTER MUUTOKSET",
+            "name": "Resurssin nimi kun luodaan toimia ILLA:ssa."
+          },
+          "title": {
+            "advanced_option": "YLEINEN"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Pääsy avain",
+            "base_url": "Base URL",
+            "bucket_name": "Ämpärin nimi",
+            "custome_s3_endpoint": "Mukautettu S3-päätepiste",
+            "region": "Alue",
+            "secret_access_key": "Salainen käyttöoikeusavain",
+            "use_custome_s3_endpoint": "Käytä mukautettua S3-päätepistettä"
+          },
+          "placeholder": {
+            "base_url": "esim. https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Tätä käytetään yhdistämään muihin kuin S3-palveluihin, kuten digitaalisiin valtameritiloihin tai Wasabiin."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Vinkki: Määritä ulkoiset viittaukset muuttujiin sen sijaan, että ketjuttaisit kiharat pois päältä."
+          },
+          "tip": {
+            "external_reference": "Voit luoda ulkoisia viittauksia määrittämiisi muuttujiin. Esimerkiksi, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Lue lisää hugging Face:",
+            "hf_endpoint": "Päätepiste Päättyessä"
+          },
+          "label": {
+            "hf_endpoint_token": "Pääsymerkki",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Hanki Organisaatioiden API-tunnisteet <0>hugging-Face-profiilin asetuksista</0>.",
+            "hf_endpoint": "lue lisää <0>Loppupisteestä</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Salli IP-osoitteet",
+            "message": "Jos resurssi eivät ole julkisesti saatavilla, ole hyvä ja päivitä verkko- tai palomuuriasetus lisätäksesi ILLA:n IP-osoitteita sallitulle listalle, jotta ILLA voi muodostaa yhteyden resursseihisi."
+          }
+        },
+        "button": {
+          "copy_ip": "Kopioi IP-osoite"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Poistettu"
+      },
+      "result": {
+        "title": {
+          "api_request": "API Pyyntö",
+          "error": "Kysely kesti epäonnistumisen",
+          "json": "JSON",
+          "response": "Vastaus",
+          "success": "Haku kesti onnistuneesti",
+          "table": "Taulukko"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Tietokanta",
+        "js_transformer": "Javascript- Muuntaja"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Taulukoiden näyttäminen epäonnistui. Yritä myöhemmin uudelleen."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "yksityinen",
+          "public_read": "julkinen luku",
+          "public_read_write": "julkinen kirjoitusjärjestelmä",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "todennettu luettu",
+          "bucket_owner_read": "kauha-omistaja-luettu",
+          "bucket_owner_full_control": "ämpäriomistaja-täysipainoinen hallinta"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Peruuta",
+      "delete": "Poista",
+      "delete_content": "Poista se ehkä tehdä joitakin vikoja, ole hyvä ja vahvista.",
+      "delete_title": "Oletko varma, että haluat poistaa {{ displayName}}?",
+      "editor_list": "Nykyiset muokkaajat"
+    },
+    "context_menu": {
+      "delete": "Poista",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "TOIMET JA TRANSFORMERS ",
+      "components_title": "OSAT ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "MAKSUT",
+      "global_data_modal": {
+        "title": "Muokkaa yleisiä tietoja",
+        "variable_name": {
+          "tooltips": "Muuttujan nimi. Käytä alkuarvoa tässä sovelluksessa kohteen {{name}} kautta",
+          "label": "Nimi",
+          "message": "Anna muuttujan nimi"
+        },
+        "initial_value": {
+          "label": "Alkuarvo",
+          "tooltips": "Tukee objekteja tai alkeellisia arvoja. Esimerkki: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Ei voitu ottaa käyttöön"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" on jo olemassa",
+      "validate_error": "\"{{ displayName }}\" täytyy alkaa kirjaimella tai \"_\", ja voi sisältää vain kirjaimia, numeroita, \"_\" tai \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Poista",
+          "reset_state": "Reset state",
+          "view_documentation": "Näytä dokumentaatio"
+        }
+      },
+      "multi_selected_header": "{{ number }} komponenttia valittu",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Palkin kaavio",
+          "line": "Rivin kaavio",
+          "pie": "Pie kaavio",
+          "scatterplot": "Scatterplot"
+        },
+        "color_picker": {
+          "prefabricated": "Tehdasvalmisteinen väri",
+          "title": "Muokkaa väriä"
+        },
+        "column_setter": {
+          "label": "Sarakkeet ({{number}})",
+          "new": "Uusi",
+          "title": "Otsikko"
+        },
+        "event_handler_list": {
+          "empty": "Käynnistää kyselyt, hallita komponentteja tai soittaa muita API vastauksena komponenttitapahtumia.",
+          "incomplete_selection": "Keskeneräinen valinta",
+          "new": "Uusi",
+          "title": "Muokkaa tapahtumankäsittelijää"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Poista",
+          "label": "Menus ({{number}})",
+          "new": "Uusi",
+          "sub": "Ala"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Poista",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Ei tunnistetta",
+          "model_title": "Muokkaa Valintoja",
+          "new": "Uusi",
+          "title": "Valinnat"
+        },
+        "select_page_setter": {
+          "placeholder": "Valitse sivu"
+        },
+        "select_view_setter": {
+          "placeholder": "Valitse näkymä"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Näkymät"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Muuta",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Suodata muutos",
+          "fail": "Epäonnistui",
+          "focus": "Kohdistus",
+          "invalid": "Virheellinen",
+          "paginationChange": "Sivun muutos",
+          "row_select": "Rivin valinta",
+          "sortingChange": "Lajittele muutos",
+          "submit": "Lähetä",
+          "success": "Onnistui",
+          "onOpenModal": "Avaa modaali",
+          "onCloseModal": "Sulje modaali",
+          "play": "Toista",
+          "pause": "Tauko",
+          "ended": "Päättynyt",
+          "loaded": "Ladattu",
+          "rowSelect": "Rivin valinta",
+          "markerSelected": "merkkiValittu",
+          "markerCreated": "merkkiLuotu",
+          "select": "Valitse"
+        },
+        "image_list": {
+          "title": "Kuvat",
+          "empty": "Ei kuvia",
+          "model_title": "Muokkaa kuvia",
+          "config": {
+            "model_label": "Tunniste",
+            "image_url": "Kuvan URL"
+          }
+        },
+        "image_setter": {
+          "new": "Uusi"
+        },
+        "Change": "Muuta",
+        "Select": "Valitse",
+        "eventCalendar": {
+          "no_title": "Ei otsikkoa"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Täytä",
+        "message_type": {
+          "error": "Virhe",
+          "info": "Tiedot",
+          "success": "Onnistui",
+          "warning": "Varoitus"
+        },
+        "outline": "Ääriviiva",
+        "validation_pattern": {
+          "email": "Sähköposti",
+          "regex": "Regex",
+          "url": "URL-osoite"
+        },
+        "height": {
+          "fixed": "Kiinteä",
+          "auto": "Automaattinen"
+        },
+        "upload_type": {
+          "button": "Painike",
+          "dropzone": "Dropsoni"
+        },
+        "selection_types": {
+          "single_file": "Yksittäinen tiedosto",
+          "multiple_files": "Useita tiedostoja",
+          "directory": "Hakemisto"
+        },
+        "size_type": {
+          "kb": "Kt",
+          "mb": "Mt"
+        },
+        "time_picker": {
+          "select_time": "Valitse aika"
+        },
+        "time_range": {
+          "start_placeholder": "Aloitus aika",
+          "end_placeholder": "Loppu aika"
+        }
+      },
+      "setter_group": {
+        "adornments": "LISÄTIEDOT",
+        "basic": "PERUSTE",
+        "column": "SARAKKEET",
+        "data": "TIEDOT",
+        "interaction": "TOIMINTA",
+        "label": "ETIKETTI",
+        "layout": "SÄILYTTÄ",
+        "menu": "MENU",
+        "options": "ASETUKSET",
+        "pagination": "PAGINOINTI",
+        "row_selection": "ROW VALINTA",
+        "sort": "SORT",
+        "style": "STYLE",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "VOIMASSAOLO",
+        "views": "NÄKÖKOHDAT",
+        "images": "KUVAT",
+        "primary_value": "ENSISIJAINEN ARVO",
+        "secValue": "Toissijainen arvo",
+        "border": "Border",
+        "color": "Väri",
+        "icon": "Kuvake",
+        "secondary_value": "SECONDARY Arvo",
+        "resource": "RESURSSI",
+        "eventCalendar": {
+          "calendar": "Kalenteri"
+        },
+        "event": "Tapahtuma"
+      },
+      "setter_label": {
+        "action": "Toiminto",
+        "align": "Align",
+        "allow_clear": "Salli tyhjennys",
+        "allow_half": "Salli puoliksi",
+        "alt_text": "Alt teksti",
+        "alt_text_desc": "Kuvan kuvaus, joka on käytettävissä näytönlukijoille. Tämä tehdään myös varmistuksena, jos kuva ei ole ladattu.",
+        "background": "Tausta",
+        "background_color": "Tausta",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Kuvateksti",
+        "chart_title": "Otsikko",
+        "chart_type": "Kaavion tyyppi",
+        "color": "Väri",
+        "colors": "Värit",
+        "column_title": "Sarakkeen otsikko",
+        "column_type": "Sarakkeen tyyppi",
+        "columns": "Sarakkeet",
+        "component": "Komponentti",
+        "config_type": "Config tyyppi",
+        "container": "Säiliö",
+        "content": "Sisältö",
+        "control_component": "Ohjaimen komponentti",
+        "custom_rule": "Mukautettu sääntö",
+        "data": "Tiedot",
+        "data_source": "Tietolähde",
+        "data_sources": "Tietolähteet",
+        "dataset": {
+          "aggregation_method": "Koostumusmenetelmä",
+          "name": "Dataset nimi",
+          "remove": "Remove dataset",
+          "value": "Datasetin arvot"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Desimaali paikka",
+        "decimal_places": "Desimaalit paikat",
+        "default_sort_key": "Sarake",
+        "default_sort_order": "Suunta",
+        "default_tab": "Default tab",
+        "default_value": "Oletus arvo",
+        "default_views": "Oletus näkymä",
+        "description": "Kuvaus",
+        "direction": "Suunta",
+        "disable_submit": "Poista lähetys käytöstä",
+        "disabled": "Pois Käytöstä",
+        "download": "Lataa",
+        "duration": "Kesto",
+        "empty_state": "Tyhjä tila",
+        "enable_sorting": "Ota Lajittelu Käyttöön",
+        "end_data": "Päättymispäivä",
+        "end_placeholder": "Lopeta paikkamerkki",
+        "event": "Tapahtuma",
+        "event_handler": "Tapahtuman käsittelijä",
+        "expansion_method": "Laajentamismenetelmä",
+        "failure": "Epäonnistuminen",
+        "filter": "Suodatin",
+        "font_size": "Font size",
+        "form_data_key": "Lomakkeen Dataavain",
+        "format": "Muoto",
+        "go_to_url": "Siirry URL-osoitteeseen",
+        "group_by": "Ryhmittele mukaan",
+        "group_layout": "Ryhmän asettelu",
+        "hidden": "Hidden",
+        "hidden_label": "Piilotettu etiketti",
+        "hide_validation_message": "Piilota vahvistusviesti",
+        "hide_value_label": "Piilota arvotunniste",
+        "horizontal_alignment": "Vaakasuora suuntaus",
+        "icon": "Kuvake",
+        "image_source": "Kuvan lähde",
+        "img_height": "Korkeus",
+        "img_width": "Width",
+        "index": "Indeksi",
+        "item_background_color": "Kohteen taus",
+        "items": "Kohteet",
+        "key": "Avain",
+        "label": "Tunniste",
+        "label_alignment": "Tasaus",
+        "label_position": "Sijainti",
+        "label_width": "Width(%)",
+        "layout": "Asettelu",
+        "legend_position": "Selitteen sijainti",
+        "link_to_container": "Linkki konttiin",
+        "links_color": "Linkit",
+        "loading": "Ladataan",
+        "loop_back_to_start": "Toista takaisin käynnistääksesi",
+        "loop_start_to_back": "Silmukka alkaa takaisin",
+        "mapped_option": "Kartoitettu Valinta",
+        "mapped_value": "Kartoitettu Arvo",
+        "max_count": "Maksimi määrä",
+        "max_date": "Maksimi päivämäärä",
+        "max_length": "Maksimi pituus",
+        "maximum": "Maksimi",
+        "method": "Menetelmä",
+        "min_date": "Minimi päivämäärä",
+        "min_length": "Minimi Pituus",
+        "minimum": "Minimi",
+        "multi_row_selection": "Usean Rivin Valinta",
+        "new_tab": "New tab",
+        "only_run_when": "Aja vain kun",
+        "overFlow": "Ylivirtaus",
+        "page": "Sivu",
+        "pageSize": "Sivukoko",
+        "pattern": "Kuvio",
+        "pending": "Odottaa",
+        "placeholder": "Paikkamerkki",
+        "prefix_text": "Etuliite teksti",
+        "radius": "Radius",
+        "read_only": "Vain luku",
+        "regex": "Regex",
+        "required_field": "Vaadittu kenttä",
+        "reset_after_successful_submit": "Nollaa onnistuneen lähetyksen jälkeen",
+        "router": "Reititin",
+        "run_script": "Suorita skripti",
+        "scale_type": "Skaalaa Tyyppi",
+        "set_router": "Aseta reititin",
+        "set_temporary_state": "Aseta väliaikaistila",
+        "shadow": {
+          "shadow": "Varjo"
+        },
+        "show_character_count": "Näytä merkkien määrä",
+        "show_clear_button": "Näytä tyhjennyspainike",
+        "show_footer": "Näytä alatunniste",
+        "show_header": "Näytä ylätunniste",
+        "show_notification": "Näytä ilmoitus",
+        "sort": "Järjestä",
+        "start_date": "Aloitus päivämäärä",
+        "start_placeholder": "Aloita paikkamerkki",
+        "step_size": "Vaiheen koko",
+        "stroke_width": "Aivojen leveys",
+        "style": "Tyyli",
+        "styles": "Styles",
+        "submit_form": "Lähetä lomake",
+        "success": "Onnistui",
+        "suffix_text": "Pääte teksti",
+        "text": "Teksti",
+        "text_align": "Text align",
+        "text_size": "Tekstin koko",
+        "theme_color": "Teeman väri",
+        "thousand_separator": "Tuhat erotin",
+        "time_format": "Ajan muoto",
+        "title": "Otsikko",
+        "tooltip": "Työkaluvihje",
+        "trail_color": "Polun väri",
+        "trigger_query": "Käynnistä kysely",
+        "type": "Tyyppi",
+        "validate_inputs_on_submit": "Vahvista syötteet lähetyksessä",
+        "value": "Arvo",
+        "value_labels": "Arvonimet",
+        "variant": "Variantti",
+        "vertical_alignment": "Pystysuuntainen suuntaus",
+        "width": "Width",
+        "x_axis_name": "X-akselin nimi",
+        "x_axis_title": "X-akselin otsikko",
+        "x_axis_type": "X-akselin tyyppi",
+        "x_axis_value": "X-akselin arvo",
+        "y_axis_name": "Y-akselin nimi",
+        "y_axis_title": "Y-akselin otsikko",
+        "height": "Korkeus",
+        "min_height": "Min height (px)",
+        "show_underline": "Näytä alleviivaus",
+        "auto_play": "Automaattinen toisto",
+        "interval": "Aikaväli (Ms)",
+        "show_button": "Näytä nuolet",
+        "show_dot": "Näytä pisteet alhaalla",
+        "hidden_images": "Piilotetut kuvat",
+        "file_type": "Tiedostotyypit",
+        "selection_types": "Valinnan tyypit",
+        "append_newly_files": "Lisää uudet valitut tiedostot",
+        "file_list": "Tiedoston luettelo",
+        "parse_value": "Jäsennuksen Arvo",
+        "max_files": "Maksimi tiedostot",
+        "min_files": "Minimi tiedostot",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Ylivuoto",
+        "file_url": "PDF Lähde",
+        "show_tool_bar": "Näytä työkalupalkki",
+        "scale": "Skaalaa sivu kohteeseen",
+        "scroll": "Kiinnitä vieritys jokaiselle sivulle",
+        "min_max_size": "Minimi koko ~ Max koko",
+        "video_url": "Videon lähde",
+        "autoplay": "Automaattinen Toisto",
+        "loop": "Silmukka",
+        "volume": "Tilavuus",
+        "show_controls": "Näytä kontrollit",
+        "img_url_array": "Kuvan URL-kaavio",
+        "statistics": {
+          "label": "Tunniste",
+          "primary_value": "Ensisijainen arvo",
+          "secValue": "Toissijainen arvo",
+          "decimal": "Desimaali paikka",
+          "trend_sign": "Näytä trendin merkki",
+          "positive_sign": "Positiivinen merkki",
+          "negative_sign": "Negatiivinen merkki",
+          "thousand_separator": "Näytä tuhat erotin",
+          "trend_color": "Ota trendin väri käyttöön",
+          "prefix_text": "Etuliite teksti",
+          "suffix_text": "Pääte teksti"
+        },
+        "mute": "Mykistä",
+        "collapse": {
+          "type": "Tyyppi",
+          "accordin_mode": "Haitin tila",
+          "header_color": "Otsikko",
+          "body_color": "Runko",
+          "expand_icon": "Laajenna",
+          "collapse_icon": "Kutista",
+          "icon_color": "Väri"
+        },
+        "choose_at_least": "Valitse ainakin",
+        "choose_up_to": "Valitse arvo ylös",
+        "copy_to_clipboard": "Kopioi leikepöydälle",
+        "file_download": {
+          "file_data": "Tiedoston tiedot",
+          "file_name": "Tiedostonimi ja laajennus",
+          "file_type": "Tiedoston tyyppi"
+        },
+        "action_name": "Toiminnon nimi",
+        "variable": {
+          "path_of_value": "Arvon polku",
+          "variable": "Globaalit tiedot"
+        },
+        "code": {
+          "write_code": "Kirjoita koodi"
+        },
+        "slider": {
+          "step_size": "Vaiheen koko",
+          "minimum": "Minimi",
+          "maximum": "Maksimi",
+          "hide_output": "Piilota tuloste",
+          "prefix_icon": "Etuliite kuvake",
+          "suffix_icon": "Pääte kuvake",
+          "allow_wrapping": "Salli kääriminen"
+        },
+        "range_slider": {
+          "start_value": "Aloita arvo",
+          "end_value": "Loppu arvo"
+        },
+        "name": "Nimi",
+        "audio": {
+          "audio_url": "Äänen lähde"
+        },
+        "map": {
+          "markers": "Merkit",
+          "initial_location": "Alkuperäinen sijainti",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Leveysaste kentän nimi",
+          "longitude_field_name": "Pituusaste kentän nimi",
+          "zoom": "Zoomaus",
+          "enable_add_markers": "Ota käyttöön lisämerkit",
+          "enable_search_locati": "Ota haun sijainti käyttöön",
+          "enable_clustering": "Ota ryhmittely käyttöön"
+        },
+        "time_range": {
+          "start_time": "Aloitus aika",
+          "end_time": "Loppu aika"
+        },
+        "eventCalendar": {
+          "event_value": "Tapahtuman arvo",
+          "event_id": "Tapahtuman tunnus",
+          "title": "Otsikko",
+          "description": "Kuvaus",
+          "start": "Aloita",
+          "end": "Loppu",
+          "resource_id": "Resurssin tunnus",
+          "resource_title": "Resurssin otsikko",
+          "all_day": "Koko päivä",
+          "data_source": "Tietolähde",
+          "default_date": "Oletus päivämäärä",
+          "resource_grid": "Resurssi ruudukko",
+          "default_view": "Oletus näkymä",
+          "show_current_time": "Näytä nykyinen aika",
+          "background": "Tausta",
+          "calendar_background": "Tausta",
+          "calendar_border": "Border",
+          "calendar_text": "Teksti",
+          "event_background": "Tausta",
+          "event_text": "Teksti"
+        },
+        "table": {
+          "page_index": "Sivun indeksi",
+          "index": "Indeksi",
+          "scroll_to_the_select": "Vieritä valitulle riville",
+          "filters": "Suodattimet",
+          "filter_mode": "Suodattimen tila",
+          "show_thousands_separ": "Näytä tuhansien erotin",
+          "tag_label": "Tagin nimi",
+          "tag_color": "Tagin väri",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
+        "cascader_data": "Jokaisen valinnan on oltava JSON-formaatti, ja siinä on oltava kaksi näppäintä, arvo ja etiketti. Käyttämällä taulukoita voit luoda vaihtoehtoja samalla tasolla. Ja lapsi vaihtoehtoja voidaan luoda käyttämällä \"lapset\" ominaisuutta. ",
+        "component_default_value": "Komponentin alkuarvo. Voit muuttaa alkuperäistä arvoa dynaamisesti kirjoittamalla JavaScriptin {{}}.",
+        "custom_rule": "Luo vahvistuslogiikka tähän. Sääntöjen tulee olla JavaScriptissä ja ne tulee kattaa {{}}.",
+        "date_format": "Voimassa oleva päivämäärän muoto merkkijono. Ks. [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "Syötteen alkuperäinen arvo. Voit dynaamisesti muuttaa syötekentän alkuperäistä arvoa kirjoittamalla JavaScriptin numeron {{}}.",
+        "disabled": "Hallitse tilaa, onko komponentti poistettu käytöstä. Komponenttia ei voi muokata tai tarkentaa, kun se on pois päältä.",
+        "disabled_submit": "Kun pois päältä, komponentit, jotka kutsuvat form.submit() menetelmä on myös pois päältä.",
+        "download": "Näytä latauspainike työkalurivillä.",
+        "filter": "Näytä suodatinpainike työkalurivissä.",
+        "form_data_key": "Määritä käärintälomakkeen komponentin avain, kun määrite rakennetaan.",
+        "hidden": "Määritä dynaamisesti onko komponentti piilotettu. Voit muuttaa piilotettua tilaa dynaamisen totuusarvon kautta.",
+        "hide_validation_message": "Voit piilottaa virheilmoituksen vaihtamalla piilotetun tilan kun syöte on virheellinen. Voit dynaamisesti muuttaa piilotettua tilaa JavaScriptillä.",
+        "input_default_value": "Syötteen alkuperäinen arvo. Voit dynaamisesti muuttaa syötekentän alkuperäistä arvoa kirjoittamalla JavaScriptin numeron {{}}.",
+        "loading": "Onko komponentissa käytettävä kuormitusindikaattoria.",
+        "map_data_option": "Käytä joko matriisia arvoja tai objekteja jotka on kartoitettu taulukoihin. Jokainen tietolähteesi kohde on kartoitettu jokaiseen vaihtoehtoon.",
+        "mapped_value": "Käytä {{ currentRow }} päästäksesi nykyisen rivin tietoihin. Esimerkiksi laskeaksesi sarakkeiden \"cost\" ja \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }} perusteella \"cost per clickTimes",
+        "multi_row_selection": "Käytä {{table.selectedRow[n].columnName}} päästäksesi tietoihin.",
+        "only_run_when": "Edellytykset, jotka on täytettävä ennen tapahtuman suorittamista.",
+        "placeholder": "Arvo näytetään, kun syöttökenttä on tyhjä.",
+        "progress_percentage": "Prosenttiarvo on välillä 0 ja 100.",
+        "read_only": "Hallitse tilaa, onko komponentti vain luettavissa. Vain luku komponentti voidaan valita ja tarkentaa, mutta sitä ei voi muokata.",
+        "required_field": "Voimassa vain kun kytkin on päällä.",
+        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript. (Automatic Copy)",
+        "table_only_run_when": "Edellytykset, jotka on täytettävä ennen tapahtuman suorittamista. Käytä {{ currentRow }} päästäksesi nykyisen rivin tietoihin. Esimerkiksi ajaa vain kun \"imgSize\" alle 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Käytä nykyistä riviä päästäksesi käsiksi nykyisen rivin tietoihin. Voit esimerkiksi asettaa muokattavan Tekstikomponentin arvon \"email\":  {{ currentRow.email }}.\n  Ja myös, voit asettaa arvon INSPECT komponentin käyttämällä {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Käytä {{ currentRow }} päästäksesi nykyisen rivin tietoihin. Voit esimerkiksi siirtyä osoitteeseen parametrilla \"appid\": {{ \"www.example.com/#\" + currentRow.appid }.",
+        "text_value": "Voit valita arvon joko Markdown-tilassa tai pelkkässä tekstitilassa. Vain markdown-tilassa olevat linkit voidaan tunnistaa.",
+        "timeline_direction": "Muuta aikajanan suuntaa.",
+        "timeline_pending": "Näytetäänkö solmu, jolla on odottava tila.",
+        "tooltip": "Käyttäjä voi syöttää komponentin työkaluvihjeen tähän. Työkaluvihje näytetään, kun se on kohdistettu. Markdown-muoto on tuettu.",
+        "file_types": "Luettelo tiedostopäätteistä on sallittu ladata. Mikään arvo ei salli kaikkia tiedostotyyppejä.",
+        "file_list": "Jos haluat näyttää listan valituista tiedostoista, jotka ovat lataajan alapuolella. Lähettimen korkeus muuttuu dynaamisesti tiedostoluettelon pituuden perusteella.",
+        "parse_value": "Yritetään jäsentää valitut tiedostot, jotka tukevat JSON-, CSV-, TSV-, Excel- ja TXT-tiedostoja.\nJäsennettyjä tietoja voi käyttää {{uploader1.parsedValue}}. Tiedostot, joita ei voi jäsentää, ovat tyhjiä taulukossa.\nKaikki tiedostot ovat saatavilla base64-koodatuina merkkijonona arvotaulukossa, riippumatta tästä vaihtoehdosta.",
+        "file_url": "Tukee PDF URL-osoitteita webissä tai base64-koodattuja PDF-tiedostojen tietoja. Esimerkiksi: \n{{ data:application/pdf;base64, esimerkki-data }}",
+        "scale": "Skaalaa jokainen sivu täyttääksesi osan leveyden tai korkeuden.",
+        "scroll": "Etsi automaattisesti jokaisen sivun alkuun vieritettäessä.",
+        "video_url": "Tukee useimpia videopalveluja tai suoraa linkkiä mihin tahansa yhteiseen videotiedostotyyppiin tai base64-koodattuja videotiedostojen tietoja. Esimerkiksi: {{ data:audio/mp4;base64,esimerkkiPäivämäärä}}",
+        "collapse": {
+          "type": "Tiivistettävät listat: luettelo, kaikki kohteet kopioivat automaattisesti ensimmäisen kohteen tyylin. Voit määrittää komponentin tiedot kunkin kohteen kautta {{ currentItem.columnName }}. Tiivistetty paneeli: jokainen paneeli on riippumaton, voit määrittää komponentin tyyli ja tiedot kunkin kohteen erikseen.",
+          "items": "Kohteiden lukumäärä",
+          "accordin_mode": "Vuonna accordion tilassa, kun tuotetta laajennetaan, muut kohteet romahtavat."
+        }
+      },
+      "tab_title": "Tutki",
+      "unselected_tip1": "Komponentteja ei ole valittu.",
+      "unselected_tip2": "Klikkaa komponenttia valitaksesi sen.",
+      "setter": {
+        "click_mask_close": "Sulje modaali napsauttamalla maskia",
+        "modal": {
+          "blank": "Ei kuvakkeita"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Käytä {{ item }} saadaksesi arvoa tietolähteestä. Esimerkiksi tietolähteessä on kaksi attribuuttia. Ne ovat kuvaURL-osoite ja URL-osoite. Jos haluat mennä toiseen osoitteeseen kun napsautat kuvaa, käytä {{ item.url }} asettaaksesi URL-osoitteen.",
+        "data_source": "Tietolähde kuvan kohteiden määrittämiseksi käyttäen kartoitettua arviointia. Käytä joko array arvoja tai määritystä avaimista, jotka on kartoitettu. Esimerkiksi: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Voit myös käyttää tietoja toiminnoissa. Esimerkiksi: {{ mysql1.data }} ",
+        "img_url_array": "Käytä {{ item.attributeName }} saadaksesi kuvan URL-osoitteen tietolähteestä. ",
+        "carousel": {
+          "data_source": "Tietolähde kuvan kohteiden määrittämiseksi käyttäen kartoitettua arviointia. Käytä joko array arvoja tai määritystä avaimista, jotka on kartoitettu. Esimerkiksi: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Voit myös käyttää tietoja toiminnoissa. Esimerkiksi: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Tuki base64-tiedot, raaka data, kartoitettu tiedot taulukosta. "
+        },
+        "variable": {
+          "available_in_objects": "Saatavilla kohteissa ja taulukoissa. Attribuutin polku objektissa: {{objectName.attributeName}}. Arvon indeksi taulukossa: {{1}}. An array in the object: {{objectName.attributeName.1}}",
+          "the_target_value": "Tavoite arvo"
+        },
+        "slider": {
+          "default_value": "Liukusäätimen alkuarvo. Voit dynaamisesti muuttaa alkuperäistä arvoa kirjoittamalla JavaScriptin {{}}.",
+          "minimum": "Pienin mahdollinen arvo liukusäätimessä",
+          "maximum": "Suurin sallittu arvo liukusäädintä",
+          "step_size": "Pienin sallittu vaihtuva yksikkö liukumäessä",
+          "label": "The name of the field displayed to the user",
+          "caption": "Kuvateksti, jota käytetään kuvaamaan kenttää yksityiskohtaisesti",
+          "hide_label": "Määritä näytetäänkö nimike",
+          "allow_wrapping": "Aseta sallitaanko tarrapaketointi",
+          "position": "Set the position of the label relative to the component",
+          "alignment": "Aseta merkin kohdistus",
+          "width": "Kun merkki on tämän osan vasemmalla puolella, ilmoitetaan merkin leveyden suhde.",
+          "prefix_icon": "Komponentin edessä näytettävä kuvake",
+          "suffix_icon": "Kuvake näytetään komponentin jälkeen",
+          "hide_output": "Määritä piilottaako arvo kun liu'utat"
+        },
+        "step": {
+          "default_step": "Oletus vaihe",
+          "show_step_number": "Näytä vaiheen numerot",
+          "indicate_completed_steps": "Ilmoittakaa valmiit vaiheet"
+        },
+        "range_slider": {
+          "start_value": "Jos haluat määrittää alueen pienimmän arvon",
+          "end_value": "Jos haluat määrittää alueen enimmäisarvon,"
+        },
+        "audio": {
+          "audio_url": "Tukee suoria linkkejä mihin tahansa yhteiseen äänitiedostotyyppiin tai linkkejä joihinkin äänipalveluihin tai base64-koodattuja äänitiedostoja. Esimerkiksi: {{ data:audio/mp3;base64,esimerkkiPäivämäärä}}"
+        },
+        "map": {
+          "markers": "Voit asettaa markkereita kartalla. Merkkien tulee olla joukko esineitä, joilla on samat ominaisuudet kuin Oletus merkitsijöitä.",
+          "initial_location": "Kun kartta käynnistetään, oletuskeskitetty näytön sijainti",
+          "default_markers": "Oletusmerkit näytetään kartan alustuksen yhteydessä. Voit asettaa ne dynaamisesti JavaScriptin avulla {{}}. ",
+          "latitude_field_name": "Latitude on otettu mistä omaisuutta Initial location ja Default markkerit objektit.",
+          "longitude_field_name": "Pituus on otettu mistä omaisuutta Initial sijainti ja Oletus markkereita esineitä.",
+          "zoom": "Määritä kartan zoomaus",
+          "enable_add_markers": "Sallitaanko käyttäjien lisätä markkereita klikkaamalla karttaa",
+          "enable_search_locati": "Sallitaanko käyttäjien etsiä sijaintia",
+          "enable_clustering": "Sallitaanko useita markkereita koota kun kartta on zoomattu ulos"
+        },
+        "time_picker": {
+          "format": "Voimassa oleva aikamuoto merkkijono. Lisätietoja formaatista: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "The span of the value in minutes",
+          "show_a_clear_button_": "Näytä selkeä painike kun hiiri on komponentin päällä. "
+        },
+        "time_range": {
+          "start_time": "Tämän komponentin ensimmäinen aloitusaika ",
+          "end_time": "Osien ensimmäinen päättymisaika on seuraava: ",
+          "start_placeholder": "Arvo näytetään, kun aloitusaika kenttä on tyhjä.",
+          "end_placeholder": "Arvo näytetään, kun lopetusajan kenttä on tyhjä."
+        },
+        "eventCalendar": {
+          "event_value": "Käytä objektia liitteenä {{ asettaaksesi tapahtuman arvon. Esimerkiksi {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "Yksilöllinen tunniste, jota käytetään tapahtuman tunnistamiseen",
+          "title": "The title of the event",
+          "description": "Tapahtuman kuvaus ja kuvaus",
+          "start": "Tapahtuman alkamisajankohta (pvm)",
+          "end": "Tapahtuman päättymispäivä @ info: whatsthis",
+          "resource_id": "Resurssi voi olla henkilö, kokoushuone jne. Voit asettaa resurssitunnuksen ja liittää sen tapahtumaan. ",
+          "resource_title": "Resurssien nimi näytetään resurssinäkymässä",
+          "all_day": "Olipa koko päivän tapahtuma",
+          "data_source": "Tapahtumien tietolähde. Tietolähteen tulee olla joukko esineitä. Jokainen objekti on tapahtuma. Esimerkiksi {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "Oletuspäivämäärä, kun sovellus käynnistetään",
+          "resource_grid": "Näyttääkö resurssiruudukko @ info: whatsthis",
+          "default_view": "Oletusnäkymä, kun sovellus käynnistetään",
+          "show_current_time": "Aseta näytetäänkö nykyinen aikaviiva",
+          "calendar_background": "Set the background of the calendar",
+          "calendar_border": "Aseta reunan väri",
+          "calendar_text": "Aseta tekstin väri",
+          "event_background": "Aseta tapahtumakortin taustakuva",
+          "event_text": "Aseta tapahtumakortin tekstin väri",
+          "couldnot_drag": "Jos haluat muuttaa aikaväliä, ole hyvä ja jatka sen esikatselusivulle toimintoa varten."
+        }
+      },
+      "setter_option": {
+        "fixed": "Kiinteä",
+        "auto_limited": "Automaattinen korkeus rajoilla",
+        "auto_height": "Automaattinen korkeus",
+        "text_ellipsis": "Ellipsi",
+        "text_scroll": "Vieritä",
+        "text_clip": "Clip",
+        "scale_height": "Korkeus",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Tiivistetty paneeli"
+        },
+        "file_download": {
+          "auto": "Automaattinen",
+          "plain_text": "Pelkkä teksti",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Ei Mitään",
+          "large": "Suuri",
+          "medium": "Keskitaso",
+          "small": "Pieni"
+        },
+        "eventCalendar": {
+          "sunday": "Sunnuntai",
+          "monday": "Maanantai",
+          "tuesday": "Tiistai",
+          "wednesday": "Keskiviikko",
+          "thursday": "Torstai",
+          "friday": "Perjantai",
+          "saturday": "Lauantai",
+          "month": "Kuukausi",
+          "week": "Viikko",
+          "day": "Päivä",
+          "agenda": "Esityslista"
+        },
+        "table": {
+          "set_sort": "Aseta laji",
+          "column": "Sarake",
+          "number": "Numero",
+          "percent": "Prosenttia",
+          "currency": "Valuutta",
+          "text": "Teksti",
+          "tag": "Tunniste",
+          "button_group": "Painikkeiden ryhmä",
+          "date": "Päivämäärä",
+          "time": "Aika",
+          "date_time": "Päivämäärä Aika",
+          "link": "Linkki",
+          "rating": "Arvostelu",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Painike",
+          "icon": "Kuvake",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Ei rajoja",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "Positiivinen väri",
+          "negative_color": "Negatiivinen väri"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "new_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Numero väliltä 0 ja 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Valitse vuokrasopimus {{ min }} vaihtoehtoja.",
+        "choose_up_to": "Valitse enintään {{max}} vaihtoehtoa.",
+        "map": {
+          "zoom": "Aseta arvo välillä 1 ja 22"
+        },
+        "upload": {
+          "size_exceed": "Yli 500 Mt tiedostoissa saattaa epäonnistua jäsentäminen.",
+          "single_file": "Vain yksi tiedosto on sallittu.",
+          "file": "Tiedostotyyppejä ei tueta",
+          "directory": "Vain hakemistot ovat sallittuja."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Kirjoita koodisi tähän. Käytä JavaScriptiä {{ }} sisällä"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Lisää",
+        "body": "Runko",
+        "default_view": "Oletus näkymä",
+        "edit_view": "Muokkaa näkymää",
+        "footer": "Alatunniste",
+        "header": "Otsikko",
+        "key": "Avain",
+        "left_panel": "Vasen paneeli",
+        "preset": "Preset",
+        "right_panel": "Oikea paneeli",
+        "set_as_homepage": "Aseta etusivuksi",
+        "show_fold_icon": "Näytä kertakuvake",
+        "view_path": "Näytä polku",
+        "views": "Näkymät",
+        "width": "Width",
+        "height": "Korkeus",
+        "columns": "Sarakkeet"
+      },
+      "model_tips": {
+        "cancel_button": "Peruuta",
+        "change_layout_message": "Ulkoasun vaihtamisen jälkeen kaikki tiedot tyhjennetään. Tätä toimintoa ei voi palauttaa, vahvista",
+        "delete_section_message": "Piilottamisen jälkeen tämän osion tiedot tyhjennetään. Tätä toimintoa ei voi palauttaa, vahvista",
+        "ok_button": "Vahvista"
+      },
+      "panel_bar_title": {
+        "basic": "PERUSTE",
+        "frame": "FRAME"
+      },
+      "tab_title": "Sivu",
+      "tooltips": {
+        "show_fold_icon": "Näytä painike tiivistääksesi tai laajentaaksesi paneelia",
+        "view_path": "Merkkijono esimerkki.com/app/page/ päästäksesi tähän näkymään",
+        "auto_canvas_width": "Sivujen leveys prosentteina selaimen leveydestä. @ action: button"
+      }
+    },
+    "validate_message": {
+      "email": "Syötä voimassa oleva sähköpostiosoite",
+      "max_length": "Ei saa olla enempää kuin {{ number }} merkkiä",
+      "max_value": "Täytyy olla pienempi kuin {{ number }}",
+      "min_length": "Täytyy olla vähintään {{ number }} merkkiä",
+      "min_value": "Täytyy olla suurempi kuin {{ number }}",
+      "regex": "Ole hyvä ja vastaa pyydettyä muotoa",
+      "required": "Tämä kenttä on pakollinen",
+      "url": "Anna kelvollinen URL-osoite",
+      "max_size": "Tiedoston koko ei voi ylittää {{maxSize }} {{ type }}.",
+      "min_files": "Vähintään {{ minFiles }} tiedostoa vaaditaan.",
+      "max_files": "Tue jopa {{ maxFiles }} tiedostoa.",
+      "min_size": "Tiedoston koko ei voi olla pienempi kuin {{minSize }} {{ type }}.",
+      "min_max_size": "Minimi koko ~ Max koko"
+    },
+    "widget_picker": {
+      "empty_tip": "Anteeksi, ei hakutuloksia",
+      "search_placeholder": "Etsi",
+      "sessions": {
+        "calendar": "Kalenterin syötteet",
+        "commonly": "Yleiset komponentit",
+        "container": "Kontti ja lomake",
+        "data": "Tiedot",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Esitys",
+        "selects": "Valitse syötteet"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Aseta piilotettu",
+      "set_file_url": "Aseta PDF-lähde",
+      "play": "Toista",
+      "pause": "Tauko",
+      "seek_to": {
+        "time": "Aika",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "Videon lähde"
+      },
+      "speed": {
+        "speed": "Nopeus",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Pysäytä",
+      "mute": "Mykistä",
+      "loop": "Silmukka",
+      "show_controls": "Näytä kontrollit",
+      "set_volumn": "Aseta Äänenvoimakkuus",
+      "set_volume": {
+        "volume": "Tilavuus",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "nollausPrimaryValue",
+        "primary_value": "Ensisijainen arvo"
+      },
+      "collapse": {
+        "expand_all_items": "Laajenna kaikki kohteet",
+        "collapse_all_items": "Tiivistä kaikki kohteet"
+      },
+      "carousel": {
+        "showNext": "Näytä seuraava näkyvä kuva",
+        "showPrevious": "Näytä edellinen näkyvä kuva"
+      },
+      "file_download": {
+        "download": "Lataa",
+        "message": {
+          "suc": "Aloita lataaminen",
+          "fail": "Pyyntö epäonnistui",
+          "download_failed": "Lataaminen epäonnistui"
+        }
+      },
+      "setGlobalData": "Aseta yleiset tiedot",
+      "setLocalStorage": "Aseta paikallinen tallennustila",
+      "audio": {
+        "set_audio_url": "Aseta äänen lähde"
+      },
+      "map": {
+        "marker_selected": "Merkki valittu",
+        "marker_created": "Merkki luotu",
+        "markers_changed": "Merkit vaihdettu"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
+      },
+      "table": {
+        "clear_filters": "Tyhjennä suodattimet",
+        "clear_column_setting": "Tyhjennä sarakkeen asetus",
+        "refresh": "Päivitä",
+        "select_page": "Valitse sivu",
+        "select_row": "Valitse rivi",
+        "clear_selection": "Tyhjennä valinta",
+        "set_filters": "Aseta suodattimet"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Opastus"
+          },
+          "title": {
+            "tutorial": "Opastus",
+            "templates": "Mallit"
+          },
+          "onboarding_app": {
+            "name": "Perehdytyksen sovellus",
+            "description": "Seuraa ILLAn opetusohjelmaa ja opi kehittämään sovelluksen.",
+            "action": "Siirry"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Muokkaa tämä malli uudeksi sovellukseksi"
+          },
+          "templates_name": {
+            "table": "Hallintapaneeli",
+            "form": "Kysely",
+            "list": "Ylläpito paneeli"
+          },
+          "templates_description": {
+            "table": "Käytä taulukoita luodaksesi dashboards.",
+            "form": "Käytä lomakkeen ja syötteen komponentteja lomakkeen sovellusten luomiseen.",
+            "list": "Käytä listan komponenttia tietojen näyttämiseen ja hallintaan"
+          },
+          "modal": {
+            "title": "Haarukka ja käyttöönotto",
+            "placeholder": "Sovelluksen nimi",
+            "cancel": "Peruuta",
+            "fork": "Haarukka ja käyttöönotto"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Vaihe 1: Vedä syöte tähän",
+          "drag_button": "Vaihe 2: Vedä painike tähän",
+          "drag_table": "Vaihe 3: Vedä pöytä tähän",
+          "exit": "Peruuta",
+          "do_it": "Tee se minulle",
+          "drag_title": "Vedä osat kehykseen",
+          "modify_action_title": "Muokkaa toimintoa",
+          "modify_action_description_modify": "Muokkaa datan saamiseen tarvittavaa toimintoa. Voimme käyttää {{input1.value}} saadaksemme syötettävän datan komponenttiin. \n\nvalitse * \nkäyttäjiltä\nliity tilauksiin\nkäyttäjille.id = tilaus.id\njossa {{!input1.value}} tai alempi(users.name) kuten '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Klikkaa Tallenna ja sitten Suorita",
+          "display_data_title": "Näytä tiedot taulukossa",
+          "display_data_description_select": "Valitse kehys taulukko",
+          "display_data_description_modify": "Muokkaa tietolähdettä oikeassa paneelissa. Voimme käyttää {{postgresql1.data}} saadaksemme tietoja.",
+          "event_handler_title": "Napsauta painiketta käynnistääksesi toiminnon",
+          "event_handler_description_1": "Valitse kehikon painike",
+          "event_handler_description_2": "Lisää tapahtumankäsittelijä",
+          "event_handler_description_3": "Klikkaa tapahtuman käsittelijää",
+          "event_handler_description_4": "Muuta toiminto käynnistääksesi toiminnon",
+          "event_handler_description_5": "Muuta kysely postgre1:ksi",
+          "test_it_title": "Testaa se",
+          "test_it_description": "Syötä käyttäjänimi, jonka haluat etsiä ja klikkaa painiketta",
+          "test_it_button": "Seuraava",
+          "congratulations_title": "Onnittelut 🎉",
+          "congratulations_description": "Rakensit juuri ensimmäisen sovelluksesi. Jos sinulla on kysyttävää käytön aikana, voit ottaa meihin yhteyttä <0>Discord</0>. ",
+          "congratulations_button": "Valmis",
+          "event_handler_description_all": "1. Lisää tapahtuman käsittelijä\r\n2. Klikkaa tapahtuman käsittelijää\r\n3. Muuta toimintoa käynnistääksesi toiminnon\r\n4. Vaihda kysely gresql1:een"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Datan koko ylittää rajan (nykyinen koko: {{current_size}} tavua, raja: {{limit_size}} tavua)"
+    }
+  },
+  "exit_preview": "Poistu Esikatselusta",
+  "freeze_collision": "Jäädytä törmäys",
+  "freeze_messages": "Kanava on jäätynyt. Voit vetää osia säiliöihin tai ulos niistä.",
+  "freeze_tips": "Kanava on jäätynyt. Paina tästä vapauttaaksesi sen.",
+  "link_copied": "Linkki Kopioitu",
+  "network_error": "Yhteys katkesi. Tarkista laitteen verkko",
+  "not_online_tips": "Yhteys katkesi. Tarkista laitteen verkko",
+  "preview": {
+    "viewport": {
+      "size": "Koko",
+      "reset": "Reset",
+      "save": "Tallenna",
+      "tooltip": {
+        "fluid_width": "Nesteen leveys",
+        "desktop": "Desktop(leveys = 1280px)",
+        "tablet": "Tabletti (leveys = 1080px)",
+        "custom": "Mukautettu"
+      }
+    },
+    "button_text": "Esikatselu"
+  },
+  "remove_fail": "Poistaminen epäonnistui",
+  "rename": "Uudelleennimeä",
+  "resources": "Resurssit",
+  "retry": "Yritä Uudelleen",
+  "save": "Tallenna",
+  "setting": {
+    "account": {
+      "email": "Sähköposti",
+      "empty_username": "Ole hyvä ja syötä käyttäjänimesi",
+      "error_username": "Käyttäjänimen on oltava 3~15 merkkiä",
+      "save": "Tallenna Muutokset",
+      "save_fail": "Tallennus epäonnistui",
+      "title": "TILI",
+      "username": "Käyttäjätunnus"
+    },
+    "other": {
+      "language": "Kieli",
+      "save": "Tallenna Muutokset",
+      "title": "ASETUS"
+    },
+    "password": {
+      "confirm_password": "Vahvistuksen salasana",
+      "current_password": "Vanha salasana",
+      "empty_password": "Anna salasanasi",
+      "error_format_password": "Salasanan on oltava 6 ~ 20 merkkiä",
+      "error_match_password": "Salasanasi ja vahvistussalasanasi eivät täsmää",
+      "error_password_has_empty": "Salasana ei voi sisältää välilyöntejä",
+      "error_validate_password": "Salasanasi voi sisältää vain numeroita, kirjaimia ja välimerkkejä",
+      "new_password": "Uusi salasana",
+      "submit_button": "Lähetä",
+      "title": "SALASANA"
+    }
+  },
+  "share": "Jaa",
+  "status": {
+    "403": {
+      "des": "Pääsy estetty"
+    },
+    "404": {
+      "again": "Päivitä",
+      "des": "Näyttää siltä, että sivua, jota etsit ei löytynyt."
+    },
+    "500": {
+      "des": "Hups, jokin meni pieleen. Yritä myöhemmin uudelleen."
+    },
+    "back": "Takaisin kotisivulle",
+    "mobile_forbidden": "Saadaksesi paremman editointikokemuksen, vieraile tällä sivulla työpöydällä",
+    "back_to_cloud": "Takaisin ILLA-pilveen",
+    "no_permission_title": "Riittämättömät oikeudet",
+    "no_permission_description": "Sinulla ei ole oikeuksia pyydetyn toiminnon suorittamiseen. Ota yhteyttä tiimisi ylläpitäjiin."
+  },
+  "title": "Tervetuloa iltaan",
+  "unfreeze_tips": "Jäädytä kangas ja vedä osat säiliöihin tai ulos niistä. (D tai K)",
+  "user": {
+    "description": "Avoimen lähdekoodin matalan koodin alusta kehittäjille.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Lähetä koodi"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Syötä voimassa oleva sähköpostiosoite",
+          "registered": "Sähköpostiosoite ei liity tiliin.",
+          "require": "Ole hyvä ja syötä sähköpostiosoitteesi"
+        },
+        "newPassword": {
+          "require": "Anna salasanasi"
+        },
+        "verification_code": {
+          "expired": "Vahvistuskoodi vanhentunut",
+          "invalid": "Virheellinen vahvistuskoodi",
+          "require": "Syötä vahvistuskoodi"
+        }
+      },
+      "fields": {
+        "email": "Sähköposti",
+        "newPassword": "Uusi Salasana",
+        "verification_code": "Vahvistuskoodi"
+      },
+      "placeholder": {
+        "email": "Syötä sähköpostiosoitteesi",
+        "verification_code": "Syötä vahvistuskoodi"
+      },
+      "subtitle": "Takaisin sisään",
+      "tips": {
+        "fail": "Salasanan vaihtaminen epäonnistui",
+        "fail_sent": "Vahvistuskoodin lähettäminen epäonnistui",
+        "success": "Salasanan palauttaminen onnistui",
+        "verification_code": "Vahvistuskoodi lähetetty"
+      },
+      "title": "Nollaa Salasana"
+    },
+    "password": {
+      "placeholder": "Anna uusi salasanasi (vähintään 6 merkkiä)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Kirjaudu sisään"
+      },
+      "description": {
+        "forgot_password": "Unohditko Salasanan?",
+        "policy": "Klikkaamalla Kirjaudu sisään, hyväksyn <0>Tietosuojakäytännön</0> ja <1>ehdon</1>",
+        "register": "Uusi käyttäjä? <0>Luo käyttäjä</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Syötä voimassa oleva sähköpostiosoite",
+          "registered": "Sähköpostiosoite ei liity tiliin.",
+          "require": "Ole hyvä ja syötä sähköpostiosoitteesi"
+        },
+        "password": {
+          "incorrect": "Väärä sähköpostiosoite tai salasana",
+          "locked": "Liian monta huonoa yritystä, nollaa salasanasi tai yritä uudelleen 1 tunnin kuluttua",
+          "min_length": "Salasanan on oltava vähintään 6 merkkiä",
+          "require": "Anna salasana"
+        }
+      },
+      "fields": {
+        "email": "Sähköposti",
+        "password": "Salasana"
+      },
+      "placeholder": {
+        "email": "Syötä sähköpostiosoitteesi"
+      },
+      "tips": {
+        "fail": "Kirjautuminen epäonnistui",
+        "success": "Kirjauduttu onnistuneesti"
+      },
+      "title": "Tervetuloa takaisin"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Luo Tili",
+        "send": "Lähetä koodi"
+      },
+      "description": {
+        "login": "Onko sinulla jo tili? <0>Kirjaudu sisään</0>",
+        "policy": "Klikkaamalla Luo tili, hyväksyn <0>Tietosuojakäytäntö</0> ja <1>ehdot</1>",
+        "subscribe": "Olen valmis vastaanottamaan päivityksiä ja uutisia ILLA:sta"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Syötä voimassa oleva sähköpostiosoite",
+          "registered": "Tällä sähköpostiosoitteella varustettu tili on jo olemassa.",
+          "require": "Ole hyvä ja syötä sähköpostiosoitteesi"
+        },
+        "password": {
+          "require": "Anna salasana"
+        },
+        "username": {
+          "length": "Käyttäjänimen on oltava 3~15 merkkiä",
+          "require": "Syötä käyttäjänimi"
+        },
+        "verification_code": {
+          "expired": "Vahvistuskoodi vanhentunut",
+          "invalid": "Virheellinen vahvistuskoodi",
+          "require": "Syötä vahvistuskoodi"
+        }
+      },
+      "fields": {
+        "email": "Sähköposti",
+        "password": "Salasana",
+        "username": "Käyttäjätunnus",
+        "verification_code": "Vahvistuskoodi"
+      },
+      "placeholder": {
+        "email": "Syötä sähköpostiosoitteesi",
+        "username": "Syötä käyttäjänimesi",
+        "verification_code": "Syötä vahvistuskoodi"
+      },
+      "tips": {
+        "fail": "Rekisteröityminen epäonnistui",
+        "fail_sent": "Vahvistuskoodin lähettäminen epäonnistui",
+        "success": "Rekisteröityminen onnistui",
+        "verification_code": "Vahvistuskoodi lähetetty"
+      },
+      "title": "Rekisteröidy nyt",
+      "agreement": {
+        "privacy_policy": "yksityisyyden suoja",
+        "terms_of_service": "palvelun ehdot"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Palkin Edistyminen"
+    },
+    "button": {
+      "default_text": "Painike",
+      "name": "Painike"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Kaavio"
+    },
+    "check_box_group": {
+      "name": "Valintaruutu Ryhmä"
+    },
+    "circle_progress": {
+      "name": "Ympyrän Edistyminen"
+    },
+    "container": {
+      "empty": "Paina <keyPress>D</keyPress> tai <keyPress>K</keyPress> ja vedä osat tähän",
+      "key_duplicated": "Avain on kopioitu. Ole hyvä ja käytä ainutlaatuisia avaimia välttääksesi virheitä.",
+      "name": "Säiliö",
+      "value_duplicated": "Arvo on kopioitu. Käytä yksilöllisiä arvoja välttääksesi virheitä."
+    },
+    "date": {
+      "name": "Päivämäärä"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Päivämäärä Aika",
+      "placeholder": "Valitse aika"
+    },
+    "divider_progress": {
+      "name": "Jakaja"
+    },
+    "editable_text": {
+      "name": "Muokattava Teksti"
+    },
+    "form": {
+      "name": "Lomake"
+    },
+    "image": {
+      "name": "Kuva"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Käytä {{ currentItem }} päästäksesi nykyisen kohteen tietoihin. Esimerkiksi, asettaa arvo tekstissä komponentti, joka on luettelon komponentti perustuu \"userName\": {{ currentItem.userName }}",
+      "doc2": "Käytä {{list.selectedItem.data}} päästäksesi käsiksi valitun kohteen tietoihin luettelon osassa. Esimerkiksi asettaa tekstin osan arvon, joka on loppu luettelosta komponentin perusteella \"käyttäjänimi\" valitun kohteen luettelossa: {{ list.selectedItem.userName }}",
+      "name": "Lista"
+    },
+    "menu": {
+      "name": "Valikko"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Vasen",
+      "right": "Oikea",
+      "select_options": {
+        "manual": "Manuaalinen",
+        "mapped": "Yhdistetty"
+      },
+      "top": "Ylhäällä"
+    },
+    "radio_button": {
+      "name": "Radion Painike"
+    },
+    "radio_group": {
+      "name": "Radion ryhmä"
+    },
+    "rate": {
+      "name": "Arvostele"
+    },
+    "select": {
+      "name": "Valitse"
+    },
+    "switch": {
+      "name": "Vaihda"
+    },
+    "table": {
+      "ascend": "Asc",
+      "descend": "Desc",
+      "name": "Taulukko",
+      "pagination": "Sivutus",
+      "scroll": "Vieritä"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Hei!",
+      "name": "Teksti",
+      "text_model": "Pelkkä teksti"
+    },
+    "timeline": {
+      "horizontal": "Vaakasuora",
+      "name": "Aikajana",
+      "vertical": "pystysuora"
+    },
+    "modal": {
+      "name": "Modaali"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Lähetä",
+      "default_button_text": "Lähetä",
+      "default_dropzone_text": "Valitse tai pudota tiedosto tähän"
+    },
+    "icon": {
+      "name": "Kuvake"
+    },
+    "pdf": {
+      "empty": "Ei PDF-tiedostoja",
+      "failed": "PDF ei voitu ladata"
+    },
+    "video": {
+      "name": "Video",
+      "empty": "Ei videoita",
+      "fail": "Lataaminen epäonnistui"
+    },
+    "statistics": {
+      "name": "Tilastot"
+    },
+    "collapse": {
+      "name": "Kutista"
+    },
+    "multiselect": {
+      "name": "Monivalinta"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Vaiheet"
+    },
+    "slider": {
+      "name": "Liukusäädin"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Ääni",
+      "no_audio": "Ei ääntä"
+    },
+    "collaborative": {
+      "no_name": "Ei nimeä"
+    },
+    "map": {
+      "name": "Kartta"
+    },
+    "time_picker": {
+      "name": "Aika poimija"
+    },
+    "time_range": {
+      "name": "Aikaväli"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Tapahtuman kalenteri"
+      },
+      "name_duplicated": "Tämä resurssitunniste ristiriidat näissä tapahtumissa, käytä samaa nimeä tai eri tunnusta"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Kiinteä",
+        "auto": "Automaattinen"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Lähetä koodi"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Syötä voimassa oleva sähköpostiosoite",
+            "registered": "Sähköpostiosoite ei liity tiliin.",
+            "require": "Ole hyvä ja syötä sähköpostiosoitteesi"
+          },
+          "newPassword": {
+            "require": "Anna salasanasi"
+          },
+          "verification_code": {
+            "expired": "Vahvistuskoodi vanhentunut",
+            "invalid": "Virheellinen vahvistuskoodi",
+            "require": "Syötä vahvistuskoodi"
+          }
+        },
+        "fields": {
+          "email": "Sähköposti",
+          "newPassword": "Uusi Salasana",
+          "verification_code": "Vahvistuskoodi"
+        },
+        "placeholder": {
+          "email": "Syötä sähköpostiosoitteesi",
+          "verification_code": "Syötä vahvistuskoodi"
+        },
+        "subtitle": "Takaisin sisään",
+        "tips": {
+          "fail": "Salasanan vaihtaminen epäonnistui",
+          "fail_sent": "Vahvistuskoodin lähettäminen epäonnistui",
+          "success": "Salasanan palauttaminen onnistui",
+          "verification_code": "Vahvistuskoodi lähetetty"
+        },
+        "title": "Nollaa Salasana"
+      },
+      "password": {
+        "placeholder": "Anna uusi salasanasi (vähintään 6 merkkiä)"
+      },
+      "policy": "Käyttämällä ILLAa hyväksyt meidän <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Kirjaudu sisään"
+        },
+        "description": {
+          "forgot_password": "Unohditko Salasanan?",
+          "policy": "Klikkaamalla Kirjaudu sisään, hyväksyn <0>Tietosuojakäytännön</0> ja <1>ehdon</1>",
+          "register": "Uusi käyttäjä? <0>Luo käyttäjä</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Syötä voimassa oleva sähköpostiosoite",
+            "registered": "Sähköpostiosoite ei liity tiliin.",
+            "require": "Ole hyvä ja syötä sähköpostiosoitteesi"
+          },
+          "password": {
+            "incorrect": "Väärä sähköpostiosoite tai salasana",
+            "locked": "Liian monta huonoa yritystä, nollaa salasanasi tai yritä uudelleen 1 tunnin kuluttua",
+            "min_length": "Salasanan on oltava vähintään 6 merkkiä",
+            "require": "Anna salasana"
+          }
+        },
+        "fields": {
+          "email": "Sähköposti",
+          "password": "Salasana"
+        },
+        "placeholder": {
+          "email": "Syötä sähköpostiosoitteesi"
+        },
+        "tips": {
+          "fail": "Kirjautuminen epäonnistui",
+          "success": "Kirjauduttu onnistuneesti",
+          "fail_account": "Väärä sähköpostiosoite tai salasana"
+        },
+        "title": "Tervetuloa takaisin",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Rekisteröinti onnistui. Voit asettaa salasanan sähköpostitilillesi myöhemmin",
+            "auth_failed": "Todennus epäonnistui"
+          }
+        },
+        "option": {
+          "github": "Kirjaudu sisään GitHubilla",
+          "google": "Kirjaudu sisään Googlella",
+          "or": "TAI"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Luo Tili",
+          "send": "Lähetä koodi"
+        },
+        "description": {
+          "login": "Onko sinulla jo tili? <0>Kirjaudu sisään</0>",
+          "policy": "Klikkaamalla Luo tili, hyväksyn <0>Tietosuojakäytäntö</0> ja <1>ehdot</1>",
+          "subscribe": "Olen valmis vastaanottamaan päivityksiä ja uutisia ILLA:sta"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Syötä voimassa oleva sähköpostiosoite",
+            "registered": "Tällä sähköpostiosoitteella varustettu tili on jo olemassa.",
+            "require": "Ole hyvä ja syötä sähköpostiosoitteesi"
+          },
+          "password": {
+            "require": "Anna salasana"
+          },
+          "username": {
+            "length": "Käyttäjänimen on oltava 3~15 merkkiä",
+            "require": "Syötä käyttäjänimi"
+          },
+          "verification_code": {
+            "expired": "Vahvistuskoodi vanhentunut",
+            "invalid": "Virheellinen vahvistuskoodi",
+            "require": "Syötä vahvistuskoodi"
+          }
+        },
+        "fields": {
+          "email": "Sähköposti",
+          "password": "Salasana",
+          "username": "Käyttäjätunnus",
+          "verification_code": "Vahvistuskoodi"
+        },
+        "placeholder": {
+          "email": "Syötä sähköpostiosoitteesi",
+          "username": "Syötä käyttäjänimesi",
+          "verification_code": "Syötä vahvistuskoodi"
+        },
+        "tips": {
+          "fail": "Rekisteröityminen epäonnistui",
+          "fail_sent": "Vahvistuskoodin lähettäminen epäonnistui",
+          "success": "Rekisteröityminen onnistui",
+          "verification_code": "Vahvistuskoodi lähetetty"
+        },
+        "title": "Rekisteröidy nyt",
+        "option": {
+          "github": "Rekisteröidy GitHubilla",
+          "google": "Rekisteröidy käyttäen Googlea"
+        }
+      },
+      "description": "Avoimen lähdekoodin matalan koodin alusta kehittäjille."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Opastus"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Anna arvo vähintään {{ size }}."
+  },
+  "failed_to_copy": "Kopiointi epäonnistui",
+  "copied": "Kopioitu!",
+  "user_management": {
+    "role": {
+      "owner": "Omistaja",
+      "admin": "Administer",
+      "editor": "Muokkain",
+      "viewer": "Katsoja"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Kutsu jäseniä"
+      },
+      "link": {
+        "invite_title": "Kutsu linkki",
+        "copy": "Kopioi",
+        "turn_off": "Poista kutsulinkit käytöstä",
+        "update": "Päivitä kutsulinkit",
+        "description": "Jaa salainen linkki, jonka avulla ihmiset voivat liittyä tiimiisi.",
+        "turn_on": "Ota kutsulinkit käyttöön",
+        "fail": "Linkin hankkiminen epäonnistui, yritä myöhemmin uudelleen",
+        "copied_suc": "Kopioitu!",
+        "failed_to_copy": "Kopiointi epäonnistui",
+        "turn_off_fail": "Ei voitu poistaa käytöstä",
+        "turn_on_fail": "Ei voitu ottaa käyttöön",
+        "make_public_title": "Tee sovellus julkiseksi",
+        "make_public_copy": "Kopioi"
+      },
+      "email": {
+        "invite_title": "Kutsu sähköpostitse",
+        "invite": "Kutsu",
+        "placeholder": "Syötä sähköpostiosoite",
+        "invited": "Kutsuttu",
+        "in_list": "Tämä käyttäjä on jo tiimissäsi.",
+        "notmail": "{{ email }} ei ole sähköposti",
+        "duplicate": "{{ email }} on kopioitu"
+      },
+      "invalid_email": "Syötä voimassa oleva sähköpostiosoite",
+      "message": {
+        "make_public_suc": "Aseta onnistuneesti",
+        "make_public_failed": "Ei voitu asettaa",
+        "app_share_in_team": "{{ email }} on jo tiimissäsi, ole hyvä ja jaa linkki hänen kanssaan. "
+      },
+      "tab": {
+        "invite": "Kutsu",
+        "public": "Julkinen"
+      }
+    },
+    "mes": {
+      "invite_suc": "Kutsuttu onnistuneesti",
+      "invite_fail": "Kutsuminen epäonnistui",
+      "update_suc": "Päivitetty onnistuneesti",
+      "update_fail": "Päivitys epäonnistui",
+      "transfer_suc": "Siirretty onnistuneesti",
+      "transfer_fail": "Siirto epäonnistui",
+      "remove_suc": "Poistettu onnistuneesti",
+      "remove_fail": "Poistaminen epäonnistui",
+      "change_role_fail": "Päivitys epäonnistui",
+      "change_role_suc": "Päivitetty onnistuneesti"
+    },
+    "page": {
+      "member": "Jäsen",
+      "invite": "Kutsu",
+      "permission": "Käyttöoikeus",
+      "operation": "Toiminto",
+      "transfer": "Siirrä omistajuus",
+      "remove": "Poista"
+    },
+    "transfer_modal": {
+      "title": "Oletko varma, että haluat siirtää omistajuutta?",
+      "description": "Siirtämisen jälkeen käyttöoikeutesi muuttuu järjestelmänvalvojaksi.",
+      "transfer": "Siirto",
+      "cancel": "Peruuta"
+    },
+    "remove_modal": {
+      "title": "Oletko varma, että haluat poistaa {{ username }}?",
+      "description": "Poistamisen jälkeen käyttäjä ei voi käyttää tiimiä.",
+      "remove": "Poista",
+      "cancel": "Peruuta"
+    },
+    "status": {
+      "pending": "Odottaa"
+    },
+    "settings": {
+      "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä"
+    }
+  },
+  "copy_failed": "Kopiointi epäonnistui",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Tiimin asetukset",
+      "member": "Jäsen",
+      "leave": "Poistu tiimistä",
+      "delete": "Poista joukkue"
+    },
+    "leave_modal": {
+      "title": "Oletko varma, että haluat lähteä tästä tiimistä?",
+      "description": "Et voi käyttää mitään tiimin resursseja poistumisen jälkeen.",
+      "leave": "Poistu",
+      "cancel": "Peruuta"
+    },
+    "delete_modal": {
+      "title": "Oletko varma, että haluat poistaa tämän tiimin?",
+      "delete": "Poista",
+      "cancel": "Peruuta",
+      "desctiption": "Tiimin tunniste ei ole käytettävissä poistamisen jälkeen, ja kaikki jäsenet poistetaan tästä tiimistä."
+    },
+    "team_info": {
+      "title": "Tiimin tiedot",
+      "team_name": "Tiimin nimi",
+      "domain": ".illacloud.com",
+      "existed": "Jo olemassa",
+      "available": "Saatavilla",
+      "edit": "Muokkaa",
+      "save": "Tallenna Muutokset",
+      "adjust_avater": "Säädä avateria",
+      "avater_crop": "Rajaa",
+      "team_name_empty": "Syötä tiimin nimi",
+      "team_id_empty": "Ole hyvä ja syötä tiimin tunniste",
+      "team_name_placeholder": "Syötä tiimin nimi",
+      "team_id_placeholder": "Syötä tiimin tunniste",
+      "leave_title": "Poistu tiimistä",
+      "leave_button": "Poistu tiimistä",
+      "delete_title": "Poista joukkue",
+      "delete_button": "Poista joukkue",
+      "team_domain": "Tiimin Tunniste"
+    },
+    "message": {
+      "save_suc": "Tallennus onnistui",
+      "save_fail": "Tallennus epäonnistui"
+    },
+    "mes": {
+      "domain_suc": "Luonti onnistui.",
+      "delete_suc": "Poistettu onnistuneesti",
+      "delete_fail": "Poistaminen epäonnistui",
+      "leave_suc": "Poistu onnistuneesti",
+      "leave_fail": "Poistuminen epäonnistui"
+    }
+  },
+  "members": "Jäsenet",
+  "invite_new_member": "Kutsu",
+  "launch": "Käynnistä",
+  "homepage": {
+    "message": {
+      "join_failed": "Liittyminen tiimiin epäonnistui: sähköpostiosoitteesi ei ole kutsuttu sähköposti."
+    }
+  },
+  "image_exceed": "Kuvan koko ei voi ylittää 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Rajaa",
+        "save": "Tallenna",
+        "cancel": "Peruuta"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Tallennus onnistui",
+        "save_fail": "Tallennus epäonnistui"
+      },
+      "password": {
+        "title": "Salasana"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Supistuttava lista"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "Pyöreä riippuvuus tapahtuu {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Yksityisyyden Suoja",
+      "description": "Tämä tietosuojakäytäntö selittää käytäntöjämme, jotka koskevat palveluidemme kautta saamiemme tietojen keräämistä, käyttöä ja paljastamista."
+    },
+    "terms": {
+      "description": "Nämä käyttöehdot säätelevät sivustomme käyttöoikeutta ja sen käyttöä sekä sitä, että tarjoamme erilaisia palveluita.",
+      "title": "Palvelun ehdot"
+    }
+  },
+  "empty_copied_tips": "Kopioitava sisältö on tyhjä",
+  "copy_empty": "Kopioitava sisältö on tyhjä",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Opi kuinka rakentaa sovellus 5 minuutissa",
+          "description": "Seuraa ILLAn opetusohjelmaa ja opi kehittämään sovelluksen. Tämä kestää noin 5 minuuttia.",
+          "cancel": "Peruuta",
+          "take": "Ota opetusohjelma"
+        },
+        "exit_confirm": {
+          "title": "Pysäytetäänkö opetusohjelma?",
+          "description": "Kun seuraavan kerran syötät onboarding -sovelluksen, ohjatut vaiheet toistetaan ",
+          "cancel": "Peruuta",
+          "exit": "Pysäytä se"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Uudelleenohjaus",
+  "oauth_redirect_description": "Uudelleenohjataan <0>ILLA Cloud</0>"
+}
