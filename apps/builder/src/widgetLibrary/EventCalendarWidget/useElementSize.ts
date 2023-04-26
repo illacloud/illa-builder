@@ -11,7 +11,7 @@ export const useElementSize = (
   slotBackground: string,
   displayName: string,
 ) => {
-  const [slotHeight, setSlotHeight] = useState(39)
+  const [slotHeight, setSlotHeight] = useState(79)
   const [indicatorTop, setIndicatorTop] = useState(0)
   const [currentTime, setCurrentTime] = useState<Date>()
   const [isLight, setIsLight] = useState(true)
@@ -22,7 +22,7 @@ export const useElementSize = (
     }
     let observer: ResizeObserver | null = new ResizeObserver((entries) => {
         const { height } = entries[0].contentRect
-        height && height > 40 && setSlotHeight(height)
+        height && height > 80 && setSlotHeight(height)
       }),
       timeSlot = document.querySelector(".rbc-timeslot-group")
     if (timeSlot) {

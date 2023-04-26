@@ -25,8 +25,8 @@ const date = new Date(),
 export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
   displayName: "eventCalendar",
   widgetName: i18n.t("widget.eventCalendar.name.event_calendar"),
-  h: 55,
-  w: 45,
+  h: 70,
+  w: 60,
   type: "EVENT_CALENDAR_WIDGET",
   icon: <EventCalendarWidgetIcon />,
   keywords: ["EventCalendar", "活动日历"],
@@ -113,5 +113,15 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
     deleteEventValue: emptyEvent,
     selectEventValue: emptyEvent,
     changeEventValue: emptyEvent,
+    selectStartTime: "",
+    selectEndTime: "",
+    draggable: "{{true}}",
+    resizable: "{{true}}",
+    dragMsg: i18n.t(
+      "editor.inspect.setter_label.eventCalendar.default_message_draggable",
+    ),
+    resizeMsg: i18n.t(
+      "editor.inspect.setter_label.eventCalendar.default_message_resizable",
+    ),
   },
 }
