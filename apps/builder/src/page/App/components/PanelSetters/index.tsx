@@ -40,6 +40,7 @@ import { EditableInputWithMeasureSetter } from "./InputSetter/editableInputSette
 import { EventTargetViewSelect } from "./SelectSetter/eventBodyViewSelect"
 import { EventtargetStateSelect } from "./SelectSetter/eventTargetStateSelect"
 import { EventTargetPageSelect } from "./SelectSetter/pageSelect"
+import { ColumnTypeSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnTypeSelectSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -56,6 +57,7 @@ const SetterTypeMapSetter = {
   STEPS_LIST_SETTER: StepsListSetter,
   CAROUSEL_LIST_SETTER: CarouselListSetter,
   COLUMN_SETTER: ColumnSetter,
+  COLUMN_TYPE_SELECT_SETTER: ColumnTypeSelectSetter,
   COLUMNS_SELECT_SETTER: ColumnsSelectSetter,
   TABS_LIST_SETTER: TabListSetter,
   TABS_DEFAULT_KEY_SETTER: TabsDefaultKeySetter,

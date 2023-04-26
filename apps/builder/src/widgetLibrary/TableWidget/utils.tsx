@@ -10,6 +10,7 @@ import {
 } from "@illa-design/react"
 import {
   ColumnItemShape,
+  Columns,
   defaultColumnItem,
 } from "@/widgetLibrary/TableWidget/interface"
 import {
@@ -277,7 +278,9 @@ export const getCellForType = (
 
         return isNumber(formatVal) ? currencyFormatter.format(formatVal) : "-"
       }
-    case "date":
+    case Columns.Date:
+    case Columns.Time:
+    case Columns.DateTime:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = dayjsPro(value).format(format)

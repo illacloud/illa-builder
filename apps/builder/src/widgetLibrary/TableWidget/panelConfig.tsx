@@ -7,7 +7,7 @@ import {
   TABLE_BUTTON_EVENT_HANDLER_CONFIG,
   TABLE_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/TableWidget/eventHandlerConfig"
-import { ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
+import { Columns, ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
 
 const baseWidgetName = "table"
 
@@ -65,15 +65,14 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-column-type`,
             labelName: i18n.t("editor.inspect.setter_label.column_type"),
             attrName: "type",
-            setterType: "BASE_SELECT_SETTER",
-            options: ColumnTypeOption,
+            setterType: "COLUMN_TYPE_SELECT_SETTER",
           },
           {
             id: `${baseWidgetName}-column-decimalPlaces`,
             labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
             attrName: "decimalPlaces",
             bindAttrName: ["type"],
-            shown: (value) => value === "number" || value === "percent" || value === "currency",
+            shown: (value) => value === Columns.Number || value === Columns.Percent || value === Columns.Currency,
             placeholder: "{{ 0 }}",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.NUMBER,
@@ -83,7 +82,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.format"),
             attrName: "format",
             bindAttrName: ["type"],
-            shown: (value) => value === "date",
+            shown: (value) => value === Columns.Date || value === Columns.DateTime || value === Columns.Time,
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
@@ -102,7 +101,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             attrName: "currencyCode",
             setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
             bindAttrName: ["type"],
-            shown: (value) => value === "currency",
+            shown: (value) => value === Columns.Currency,
           },
           {
             id: `${baseWidgetName}-column-iconName`,
@@ -111,7 +110,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.STRING,
             setterType: "ICON_SETTER",
             bindAttrName: ["type"],
-            shown: (value) => value === "icon",
+            shown: (value) => value === Columns.Icon,
           },
           {
             id: `${baseWidgetName}-column-showThousandsSeparator`,
@@ -122,7 +121,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             openDynamic: true,
             useCustomLayout: true,
             bindAttrName: ["type"],
-            shown: (value) => value === "number" || value === "percent" || value === "currency",
+            shown: (value) => value === Columns.Number || value === Columns.Percent || value === Columns.Currency,
           },
           {
             id: `${baseWidgetName}-column-enableSorting`,

@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react"
 import { ButtonColorScheme, ImageProps, TableProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
-enum Columns {
+export enum Columns {
   Auto = "auto",
   Text = "text",
   Date = "date",
