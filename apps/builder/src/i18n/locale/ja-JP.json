@@ -275,8 +275,9 @@
             "ca_certificate": "デフォルトで、サーバーレス層への TLS 接続に使用される CA 証明書を入力します。 Dedicated Tier への TLS 接続が必要な場合は、<0>ここをクリック</0>して構成方法を表示してください。"
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually."
+            "normal": "Neon プロジェクトを作成し、<0>プロジェクト ダッシュボード</0>で文字列を取得します。",
+            "failed": "文字列の解析に失敗しました。 文字列を確認するか、手動で構成してください。",
+            "no_password": "文字列にはパスワードがありません。 コピーする前に Neon ダッシュボードにパスワードを表示してください。"
           }
         },
         "option": {
@@ -359,8 +360,8 @@
             "read_only": "読み取り専用"
           },
           "neon": {
-            "parse": "Parse",
-            "connection_string": "Connection string"
+            "parse": "パース",
+            "connection_string": "接続文字列"
           }
         },
         "default": {

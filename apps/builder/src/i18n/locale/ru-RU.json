@@ -276,7 +276,8 @@
           },
           "neon": {
             "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Не удалось разобрать строку. Проверьте строку или настройте вручную."
+            "failed": "Не удалось разобрать строку. Проверьте строку или настройте вручную.",
+            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
           }
         },
         "option": {
