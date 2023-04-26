@@ -1507,6 +1507,13 @@
           "calendar_text": "텍스트 양",
           "event_background": "배경",
           "event_text": "프레임"
+        },
+        "table": {
+          "page_index": "Page index",
+          "index": "Index",
+          "scroll_to_the_select": "Scroll to the selected row",
+          "filters": "Filters",
+          "filter_mode": "Filter mode"
         }
       },
       "setter_tooltip": {
@@ -1691,6 +1698,9 @@
           "week": "주",
           "day": "낮",
           "agenda": "의제"
+        },
+        "table": {
+          "set_sort": "Set sort"
         }
       },
       "setter_placeholder": {
@@ -1872,6 +1882,15 @@
       "eventCalendar": {
         "addevent": "addEvent",
         "deleteevent": "deleteEvent"
+      },
+      "table": {
+        "clear_filters": "Clear filters",
+        "clear_column_setting": "Clear column setting",
+        "refresh": "Refresh",
+        "select_page": "Select page",
+        "select_row": "Select row",
+        "clear_selection": "Clear selection",
+        "set_filters": "Set filters"
       }
     },
     "tutorial": {
