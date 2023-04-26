@@ -1,7 +1,9 @@
 import dayjs from "dayjs"
 import {
+  ComponentType,
   FC,
   MouseEvent,
+  ReactNode,
   TouchEvent,
   useCallback,
   useEffect,
@@ -9,7 +11,14 @@ import {
   useRef,
   useState,
 } from "react"
-import { Calendar, EventProps, View, dayjsLocalizer } from "react-big-calendar"
+import {
+  Calendar,
+  EventProps,
+  EventWrapperProps,
+  SlotInfo,
+  View,
+  dayjsLocalizer,
+} from "react-big-calendar"
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop"
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css"
 import "react-big-calendar/lib/css/react-big-calendar.css"
@@ -26,6 +35,7 @@ import {
 import {
   ApplyCustomStyle,
   applyEventStyle,
+  applyEventWrapper,
 } from "@/widgetLibrary/EventCalendarWidget/style"
 import { useElementSize } from "@/widgetLibrary/EventCalendarWidget/useElementSize"
 import {
@@ -92,6 +102,12 @@ const CustomEvent: FC<EventProps<Event>> = ({ event }) => {
   )
 }
 
+const CustomEventWrapper: FC<
+  EventWrapperProps<Event> & { children: ReactNode }
+> = ({ children }) => {
+  return <div css={applyEventWrapper}>{children}</div>
+}
+
 export const WrappedEventCalendar: FC<WrappedEventCalendarProps> = (props) => {
   const {
     eventList,
@@ -109,6 +125,7 @@ export const WrappedEventCalendar: FC<WrappedEventCalendarProps> = (props) => {
     resizeEvent,
     selectEvent,
     onDragStart,
+    selectSlot,
   } = props
 
   const [view, setView] = useState<View>(defaultView)
@@ -125,6 +142,7 @@ export const WrappedEventCalendar: FC<WrappedEventCalendarProps> = (props) => {
       }
     }
   }, [showResource, view])
+
   return (
     <div
       className={displayName}
@@ -139,6 +157,7 @@ export const WrappedEventCalendar: FC<WrappedEventCalendarProps> = (props) => {
         isLight,
         displayName,
         showResource,
+        view,
       )}
     >
       <DragAndDropCalendar
@@ -157,8 +176,14 @@ export const WrappedEventCalendar: FC<WrappedEventCalendarProps> = (props) => {
         resourceTitleAccessor={(resource: Event) => resource.resourceTitle}
         selectable
         onSelectEvent={(ev) => selectEvent(ev)}
+        onSelectSlot={(ev: SlotInfo) => selectSlot(ev)}
         showMultiDayTimes={false}
-        components={{ event: CustomEvent }}
+        components={{
+          event: CustomEvent,
+          eventWrapper: CustomEventWrapper as ComponentType<
+            EventWrapperProps<object>
+          >,
+        }}
         onDragStart={onDragStart}
       />
     </div>
@@ -175,11 +200,13 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
     defaultDate = new Date(),
     mappedOption,
     resourceMapList,
+    displayName,
+    dragMsg,
+    resizeMsg,
+    triggerEventHandler,
     handleUpdateMultiExecutionResult,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    displayName,
-    triggerEventHandler,
   } = props
 
   const currentDefaultDate = useMemo(() => {
@@ -274,6 +301,16 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
       resourceId,
       isAllDay: droppedOnAllDaySlot = false,
     }: EventInteractionArgs) => {
+      if (!event.draggable) {
+        message.info({
+          content:
+            dragMsg ??
+            i18n.t(
+              "editor.inspect.setter_label.eventCalendar.default_message_draggable",
+            ),
+        })
+        return
+      }
       const { allDay } = event
       if (allDay && droppedOnAllDaySlot) {
         event.allDay = true
@@ -311,6 +348,8 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
     [
       displayName,
       eventList,
+      dragMsg,
+      message,
       handleUpdateMultiExecutionResult,
       triggerEventHandler,
     ],
@@ -318,8 +357,24 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
 
   const resizeEvent = useCallback(
     ({ event, start, end }: EventInteractionArgs) => {
+      if (!event.resizable) {
+        message.info({
+          content:
+            resizeMsg ??
+            i18n.t(
+              "editor.inspect.setter_label.eventCalendar.default_message_resizable",
+            ),
+        })
+        return
+      }
+      const minStep = 180000
       const existing = eventList.find((ev) => ev.id === event.id) ?? {}
       const filtered = eventList.filter((ev) => ev.id !== event.id)
+      let startTime = new Date(start).getTime(),
+        endTime = new Date(end).getTime()
+      if (endTime - startTime < minStep) {
+        return
+      }
       new Promise((resolve) => {
         handleUpdateMultiExecutionResult([
           {
@@ -349,6 +404,8 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
     [
       displayName,
       eventList,
+      resizeMsg,
+      message,
       handleUpdateMultiExecutionResult,
       triggerEventHandler,
     ],
@@ -387,6 +444,31 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
     isInEdit && showMessageOnEdit()
   }
 
+  const selectSlot = (e: SlotInfo) => {
+    if (isInEdit && e.action === "select") {
+      showMessageOnEdit()
+      return
+    }
+    const { start, end } = e
+    new Promise((resolve) => {
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            selectStartTime: dayjs(start).format(formatDateTime),
+            selectEndTime: dayjs(end).format(formatDateTime),
+            selectResource: resourceMapList.find(
+              (v) => v.resourceId === e.resourceId,
+            ),
+          },
+        },
+      ])
+      resolve(true)
+    }).then(() => {
+      triggerEventHandler("DragOrClickNoEventArea")
+    })
+  }
+
   return (
     <WrappedEventCalendar
       {...props}
@@ -398,6 +480,7 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
       defaultDate={currentDefaultDate}
       onDragStart={onDragStart}
       isInEdit={isInEdit}
+      selectSlot={selectSlot}
     />
   )
 }
