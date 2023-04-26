@@ -126,8 +126,3 @@ export const privateKeyItem = css`
   padding-left: 24px;
   align-items: flex-start;
 `
-
-export const neonTipContainerStyle = css`
-  display: flex;
-  justify-content: space-between;
-`

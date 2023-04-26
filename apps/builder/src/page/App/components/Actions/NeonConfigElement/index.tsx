@@ -1,11 +1,12 @@
 import { FC, useCallback, useContext, useState } from "react"
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
   Alert,
   Button,
   ButtonGroup,
+  Input,
   PreviousIcon,
   WarningCircleIcon,
   getColor,
@@ -20,7 +21,7 @@ import {
 import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
   applyConfigItemLabelText,
-  configItemTip,
+  configItem,
   connectType,
   connectTypeStyle,
   container,
@@ -29,9 +30,12 @@ import {
   errorMsgStyle,
   footerStyle,
   labelContainer,
-  neonTipContainerStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
+import {
+  configItemTip,
+  hostInputContainer,
+} from "@/page/App/components/ControlledElement/style"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
   NeonResource,
@@ -45,7 +49,7 @@ import { handleLinkOpen } from "@/utils/navigate"
 import { isCloudVersion, isURL } from "@/utils/typeHelper"
 
 const getParsedStringValue = (inputString: string) => {
-  const regex = /^postgres:\/\/([^:]+):([^@]+)@([^\/]+)\/(.+)$/
+  const regex = /^postgres:\/\/([^:]+)(?::([^@]*))?@([^\/]+)\/(.+)$/
   const match = inputString.match(regex)
   if (!match) {
     return {
@@ -68,7 +72,6 @@ const handleConnectionStringValidate = (inputString: string) => {
     return ""
   }
   const errorMsg = "editor.action.form.tips.neon.failed"
-
   const isPostgres = /^postgres:/i.test(inputString)
   if (!isPostgres) {
     return errorMsg
@@ -78,14 +81,15 @@ const handleConnectionStringValidate = (inputString: string) => {
 
   if (
     roleName === null ||
-    password === null ||
     hostWithoutPort === null ||
     (hostWithoutPort && !isURL(hostWithoutPort)) ||
     dbName === null
   ) {
     return errorMsg
   }
-
+  if (password === null) {
+    return "editor.action.form.tips.neon.no_password"
+  }
   return ""
 }
 
@@ -196,43 +200,56 @@ export const NeonConfigElement: FC<ConfigElementProps> = (props) => {
           tips={t("editor.action.resource.restapi.tip.name")}
         />
         <ResourceDivider type="General Option" />
-        <ControlledElement
-          controlledType="input"
-          control={control}
-          defaultValue=""
-          title={t("editor.action.form.option.neon.connection_string")}
-          rules={[
-            {
-              validate: () => {
-                return !connectionStringErrorMsg
-              },
-            },
-          ]}
-          placeholders={[
-            "postgres://testUser:abcdefg@ep-restless-rice-862380.us-east-2.aws.neon.tech/neondb",
-          ]}
-          name="connectionString"
-          tips={
-            <div css={neonTipContainerStyle}>
-              {!!connectionStringErrorMsg ? (
-                <div css={errorMsgStyle}>
-                  <WarningCircleIcon css={errorIconStyle} />
-                  <>{t(connectionStringErrorMsg)}</>
-                </div>
-              ) : (
-                <ConnectionStringTips />
+        <div css={configItem}>
+          <div css={labelContainer}>
+            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
+              {t("editor.action.form.option.neon.connection_string")}
+            </span>
+          </div>
+          <div css={hostInputContainer}>
+            <Controller
+              control={control}
+              defaultValue=""
+              rules={{
+                validate: () => {
+                  return !connectionStringErrorMsg
+                },
+              }}
+              render={({ field: { value, onChange, onBlur } }) => (
+                <Input
+                  w="100%"
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  error={!!connectionStringErrorMsg}
+                  value={value}
+                  colorScheme="techPurple"
+                  placeholder="postgres://testUser:abcdefg@ep-restless-rice-862380.us-east-2.aws.neon.tech/neondb"
+                />
               )}
-              <Button
-                disabled={!!connectionStringErrorMsg || !connectionString}
-                onClick={handleConnectionStringParse}
-                colorScheme="techPurple"
-                h="32px"
-              >
-                {t("editor.action.form.option.neon.parse")}
-              </Button>
+              name="connectionString"
+            />
+            <Button
+              disabled={!!connectionStringErrorMsg || !connectionString}
+              onClick={handleConnectionStringParse}
+              colorScheme="techPurple"
+              h="32px"
+            >
+              {t("editor.action.form.option.neon.parse")}
+            </Button>
+          </div>
+        </div>
+        <div css={configItemTip}>
+          {!!connectionStringErrorMsg ? (
+            <div css={errorMsgStyle}>
+              <WarningCircleIcon css={errorIconStyle} />
+              <>{t(connectionStringErrorMsg)}</>
             </div>
-          }
-        />
+          ) : (
+            <div>
+              <ConnectionStringTips />
+            </div>
+          )}
+        </div>
 
         <ControlledElement
           title={t("editor.action.resource.db.label.hostname_port")}
