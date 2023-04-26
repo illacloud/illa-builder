@@ -10,6 +10,7 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { GraphQLAuth, GraphQLAuthValue } from "@/redux/resource/graphqlResource"
+import { neonSSLInitialValue } from "@/redux/resource/neonResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   ResourceContent,
@@ -352,6 +353,21 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
           privateKey: data.privateKey,
         },
       }
+    case "neon": {
+      const {
+        resourceName: _neonResourceName,
+        connectionString: _connectionString,
+        host,
+        port,
+        ...otherNeonParams
+      } = data
+      return {
+        ...otherNeonParams,
+        host: host.trim(),
+        port: port.toString(),
+        ssl: neonSSLInitialValue,
+      }
+    }
   }
 }
 

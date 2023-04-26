@@ -37,6 +37,7 @@ import {
   MongoDbResource,
 } from "@/redux/resource/mongodbResource"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import { NeonResource } from "@/redux/resource/neonResource"
 import { OracleResource } from "@/redux/resource/oracleResource"
 import { RedisResource } from "@/redux/resource/redisResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
@@ -90,6 +91,9 @@ export const DashboardResources: FC = () => {
         case "mariadb":
           dbName = (resource as Resource<MysqlLikeResource>).content
             .databaseName
+          break
+        case "neon":
+          dbName = (resource as Resource<NeonResource>).content.databaseName
           break
         case "redis":
           dbName = (
