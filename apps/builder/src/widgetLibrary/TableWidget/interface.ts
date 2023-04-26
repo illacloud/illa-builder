@@ -1,6 +1,11 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { HTMLAttributes } from "react"
-import { ButtonColorScheme, ImageProps, TableProps } from "@illa-design/react"
+import {
+  ButtonColorScheme,
+  ButtonProps,
+  ImageProps,
+  TableProps,
+} from "@illa-design/react"
 import { CellItemProps } from "@/page/App/components/PanelSetters/TableSetter/CellSetter/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
@@ -79,10 +84,13 @@ export interface ColumnItemShape
 
 export interface TableCellButtonGroupItemProps extends CellItemProps {
   colorScheme?: ButtonColorScheme
+  disabled?: boolean
+  variant?: ButtonProps["variant"]
 }
 
 export interface TableCellIconGroupItemProps extends CellItemProps {
   colorScheme?: string
+  disabled?: boolean
 }
 
 export const tagColorSchemeOptions = [

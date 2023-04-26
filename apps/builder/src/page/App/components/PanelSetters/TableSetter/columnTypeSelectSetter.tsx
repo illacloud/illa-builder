@@ -40,7 +40,6 @@ export const ColumnTypeSelectSetter: FC<ColumnTypeSelectSetterProps> = (
         case Columns.IconGroup:
           columnProps[`${parentAttrName}.iconGroupContent`] = [
             generateNewIconCellContent(1),
-            generateNewIconCellContent(2),
           ]
           break
       }

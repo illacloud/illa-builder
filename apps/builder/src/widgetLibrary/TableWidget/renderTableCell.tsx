@@ -8,7 +8,6 @@ import {
   Tag,
   getColor,
 } from "@illa-design/react"
-import { CellItemProps } from "@/page/App/components/PanelSetters/TableSetter/CellSetter/interface"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 import {
@@ -17,7 +16,10 @@ import {
   TableCellIconGroupItemProps,
   tagColorSchemeOptions,
 } from "@/widgetLibrary/TableWidget/interface"
-import { overFlowStyle } from "@/widgetLibrary/TableWidget/style"
+import {
+  applyIconContainerStyle,
+  overFlowStyle,
+} from "@/widgetLibrary/TableWidget/style"
 import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
 
 export const RenderTableLink: FC<{
@@ -138,9 +140,14 @@ export const RenderTableButtonGroup: FC<{
   return value ? (
     <ButtonGroup>
       {value.map((item, index) => {
-        const { label, cellValue, colorScheme } = item
+        const { label, cellValue, colorScheme, disabled, variant } = item
         return (
-          <Button key={index} colorScheme={colorScheme}>
+          <Button
+            key={index}
+            colorScheme={colorScheme}
+            disabled={disabled}
+            variant={variant}
+          >
             {cellValue}
           </Button>
         )
@@ -160,10 +167,17 @@ export const RenderTableIconGroup: FC<{
   return value ? (
     <div>
       {value.map((item, index) => {
-        const { label, cellValue, colorScheme } = item
-
+        const { label, cellValue, colorScheme, disabled } = item
         const Icon = getIcon(cellValue)
-        return Icon ? <Icon key={index} /> : "-"
+
+        return Icon ? (
+          <Icon
+            css={applyIconContainerStyle(colorScheme, disabled)}
+            key={index}
+          />
+        ) : (
+          "-"
+        )
       })}
     </div>
   ) : (

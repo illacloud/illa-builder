@@ -123,6 +123,33 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
                 expectedType: VALIDATION_TYPES.STRING,
               },
               {
+                id: `${baseWidgetName}-column-buttonGroupContent-variant`,
+                setterType: "RADIO_GROUP_SETTER",
+                labelName: i18n.t("editor.inspect.setter_label.variant"),
+                attrName: "variant",
+                options: [
+                  {
+                    label: i18n.t("editor.inspect.setter_default_value.fill"),
+                    value: "fill",
+                  },
+                  {
+                    label: i18n.t(
+                      "editor.inspect.setter_default_value.outline",
+                    ),
+                    value: "outline",
+                  },
+                ],
+              },
+              {
+                id: `${baseWidgetName}-column-buttonGroupContent-disabled`,
+                labelName: i18n.t("editor.inspect.setter_label.disabled"),
+                attrName: "disabled",
+                setterType: "DYNAMIC_SWITCH_SETTER",
+                expectedType: VALIDATION_TYPES.BOOLEAN,
+                openDynamic: true,
+                useCustomLayout: true,
+              },
+              {
                 id: `${baseWidgetName}-column-buttonGroupContent-colorScheme`,
                 labelName: i18n.t("editor.inspect.setter_label.theme_color"),
                 setterType: "COLOR_PICKER_SETTER",
@@ -151,6 +178,15 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
                 labelName: i18n.t("editor.inspect.setter_label.theme_color"),
                 setterType: "COLOR_PICKER_SETTER",
                 attrName: "colorScheme",
+              },
+              {
+                id: `${baseWidgetName}-column-buttonGroupContent-disabled`,
+                labelName: i18n.t("editor.inspect.setter_label.disabled"),
+                attrName: "disabled",
+                setterType: "DYNAMIC_SWITCH_SETTER",
+                expectedType: VALIDATION_TYPES.BOOLEAN,
+                openDynamic: true,
+                useCustomLayout: true,
               },
             ],
           },

@@ -8,6 +8,7 @@ export const generateNewButtonCellContent = (number: number) => {
     label: `Button${number}`,
     cellValue: `Button${number}`,
     colorScheme: "blue",
+    variant: "fill",
     id,
     index: number - 1,
   }
@@ -18,6 +19,7 @@ export const generateNewIconCellContent = (number: number) => {
   return {
     label: `Icon${number}`,
     cellValue: "BsHandThumbsUp",
+    colorScheme: "grayBlue",
     id,
     index: number - 1,
   }
