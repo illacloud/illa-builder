@@ -277,7 +277,7 @@
           "neon": {
             "normal": "创建一个 Neon 项目并在 <0>project dashboard</0> 中获取字符串。",
             "failed": "无法解析字符串。 请检查您的字符串或手动配置。",
-            "no_password": "没有密码。 请在 Neon Dashboard中单击连接字符串上的密码栏，然后复制该字符串。"
+            "no_password": "该字符串没有密码。 复制前请在 Neon 仪表板中显示密码。"
           }
         },
         "option": {
