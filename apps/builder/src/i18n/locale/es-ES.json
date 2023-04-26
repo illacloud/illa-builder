@@ -1697,6 +1697,15 @@
           "event_background": "Establecer el fondo de la tarjeta de eventos",
           "event_text": "Establecer el color del texto de la tarjeta de evento",
           "couldnot_drag": "Si desea arrastrar para ajustar el intervalo de tiempo, por favor proceda a la página de vista previa de la operación."
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button"
         }
       },
       "setter_option": {
