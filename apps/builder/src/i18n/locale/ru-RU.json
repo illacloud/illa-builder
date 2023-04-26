@@ -276,7 +276,7 @@
           },
           "neon": {
             "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually."
+            "failed": "Не удалось разобрать строку. Проверьте строку или настройте вручную."
           }
         },
         "option": {
@@ -360,7 +360,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Строка подключения"
           }
         },
         "default": {
@@ -1173,7 +1173,7 @@
         "filterChange": "filterChange",
         "sortChange": "sortChange",
         "pageChange": "pageChange",
-        "refresh": "refresh"
+        "refresh": "обновить"
       },
       "setter_default_value": {
         "fill": "Заполнить",
@@ -1535,24 +1535,24 @@
           "show_thousands_separ": "Показать тысячи разделителей",
           "tag_label": "Метка метки",
           "tag_color": "Цвет тега",
-          "open_in_new_tab": "Open in new tab",
+          "open_in_new_tab": "Открыть в новой вкладке",
           "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
+          "icon": "Иконка",
+          "color": "Цвет",
           "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
-          "width": "Width",
+          "background": "Фон",
+          "alignment": "Выравнивание",
+          "column_width": "Ширина колонки",
+          "width": "Ширина",
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "refresh": "Обновить",
           "download_row_data": "Download Row data",
-          "column_setting": "Column setting",
+          "column_setting": "Настройка колонки",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
           "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
+          "total_row_count": "Общее количество строк",
           "next_cursor": "Next cursor",
           "has_next_page": "Has next page"
         }
@@ -1760,7 +1760,7 @@
           "icon": "Иконка",
           "solid": "Solid",
           "outline": "Outline",
-          "auto": "Auto",
+          "auto": "Авто",
           "limited": "Limited",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
