@@ -1697,6 +1697,14 @@
           "event_background": "イベントカードの背景を設定する",
           "event_text": "イベントカードの文字色を設定",
           "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。"
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions."
         }
       },
       "setter_option": {
