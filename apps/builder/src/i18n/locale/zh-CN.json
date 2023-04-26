@@ -1528,7 +1528,7 @@
           "event_text": "文本"
         },
         "table": {
-          "page_index": "Page index",
+          "page_index": "页面索引",
           "index": "Index",
           "scroll_to_the_select": "Scroll to the selected row",
           "filters": "Filters",
@@ -1555,7 +1555,8 @@
           "pagination_type": "Pagination type",
           "total_row_count": "Total row count",
           "next_cursor": "Next cursor",
-          "has_next_page": "Has next page"
+          "has_next_page": "Has next page",
+          "currency_code": "Currency code"
         }
       },
       "setter_tooltip": {
@@ -1704,7 +1705,29 @@
           "scroll_to_the_select": "Whether to scroll to the row.",
           "show_thousands_separ": "Whether to show the thousands separator",
           "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions."
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "表中显示的图标",
+          "color": "Set the color.",
+          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "alignment": "Set the alignment of the column.",
+          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
+          "width": "Set the adaptation method of column width.",
+          "disable_user_selecti": "是否禁用用户选择。 如果禁用，您可以通过事件处理程序控制表组件来选择行。",
+          "default_selected_row": "The row selected by default.  ",
+          "refresh": "Whether to show the refresh icon. ",
+          "download_row_data": "Whether to show the download row data icon.",
+          "column_setting": "是否显示列设置。 列设置将允许用户设置要显示的列和列排序。 此设置不会更改表数据。",
+          "cell_overflow": "How to display when cell overflow. ",
+          "enable_server_side_p": "Whether to enable server pagination",
+          "pagination_type": "The pagination type. ",
+          "total_row_count": "The number of rows used to count the page number.",
+          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
+          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "filters": "An array of object. Set the original column name as key ",
+          "filter_mode": "The filter mode. AND or OR.",
+          "currency_code": "USD"
         }
       },
       "setter_option": {
@@ -1797,6 +1820,9 @@
         },
         "variable": {
           "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
