@@ -6324,7 +6324,7 @@ packages:
     dependencies:
       '@types/date-arithmetic': 4.1.1
       '@types/prop-types': 15.7.5
-      '@types/react': 18.0.37
+      '@types/react': 18.0.38
     dev: false
 
   /@types/react-dom@18.0.10:
@@ -10714,6 +10714,11 @@ packages:
     resolution: {integrity: sha512-Pn9cox5CsMYngeDbmChANltQl+5pi6XmTrraMSzhPmMBbmgcxmqWry0U3PGapCU1yB4/LqCcom7qhHZiF/jGfQ==}
     dev: true
 
+  /luxon@3.3.0:
+    resolution: {integrity: sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==}
+    engines: {node: '>=12'}
+    dev: false
+
   /lz-string@1.4.4:
     resolution: {integrity: sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==}
     hasBin: true
@@ -14008,7 +14013,7 @@ packages:
       react: '>=15.0.0'
     dependencies:
       '@babel/runtime': 7.21.0
-      '@types/react': 18.0.37
+      '@types/react': 18.0.38
       invariant: 2.2.4
       react: 18.2.0
       react-lifecycles-compat: 3.0.4
