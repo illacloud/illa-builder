@@ -1,0 +1,2781 @@
+{
+  "Logout": "Odhlásit se",
+  "Setting": "Nastavení",
+  "apps": "Aplikace",
+  "back": "Zpět",
+  "btn": {
+    "choose_file": "Vyberte soubor"
+  },
+  "change_fail": "Změna se nezdařila",
+  "change_success": "Změna byla úspěšná",
+  "collision_message": "Stiskněte D nebo K a přetáhněte komponentu do kontejneru",
+  "create_fail": "Vytvoření se nezdařilo",
+  "create_new": "Vytvořit nový",
+  "create_new_app": "Vytvořit nový",
+  "created_at": "Vytvořeno v",
+  "dashboard": {
+    "app": {
+      "all_apps": "Všechny aplikace",
+      "create_app": "Vytvořit aplikaci",
+      "duplicate_fail": "Duplikace se nezdařila",
+      "duplicate_placeholder": "Zde zadejte název aplikace",
+      "edited_time": "Upraveno v {{ time }} uživatelem {{ user }}",
+      "name_empty": "Zadejte název",
+      "name_existed": "Jméno je již obsazeno",
+      "rename_app": "Přejmenovat aplikaci",
+      "rename_fail": "Nepodařilo se přejmenovat",
+      "rename_success": "Přejmenování bylo úspěšné",
+      "trash_failure": "Odstranění se nezdařilo",
+      "trash_success": "Úspěšně odstraněno"
+    },
+    "common": {
+      "cancel": "Zrušit",
+      "delete": "Vymazat",
+      "delete_cancel_text": "Zrušit",
+      "delete_content": "Toto rozbije aplikace a knihovny dotazů, které používají tento zdroj",
+      "delete_ok_text": "Vymazat",
+      "delete_title": "Jste si jisti?",
+      "error_button": "Opakovat",
+      "error_description": "Vyskytl se problém s vaší operací.",
+      "error_title": "Chyba"
+    },
+    "resource": {
+      "create_resource": "Vytvořit nový",
+      "created": "Vytvořeno",
+      "dbname": "Název databáze",
+      "delete_fail": "Odstranění se nezdařilo",
+      "delete_success": "Úspěšně odstraněno",
+      "resource_name": "Název",
+      "resource_type": "Typ",
+      "save_fail": "Uložení se nezdařilo",
+      "save_success": "Úspěšně uloženo",
+      "test_fail": "Test se nezdařil",
+      "test_success": "Test byl úspěšný"
+    }
+  },
+  "dayjs": {
+    "just_now": "Právě teď"
+  },
+  "deploy": "Publikovat",
+  "description": {
+    "part1": "To je příklad bez jmenných prostor."
+  },
+  "dont_need_save": "ILLA bude i nadále zkoušet automatické ukládání vaší práce.",
+  "duplicate": "Duplicate",
+  "edit": "Upravit",
+  "edit_at": "Upraveno v",
+  "edit_failed": "Uložení se nezdařilo, zkontrolujte svou síť.",
+  "edit_success": "Úspěšně upraveno",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Zpět",
+            "create_action": "Vytvořit akci",
+            "new_resource": "Nový dokument"
+          },
+          "selector": {
+            "title": "Vyberte typ akce"
+          },
+          "title": {
+            "choose_resource": "Vyberte zdroj "
+          }
+        },
+        "btn": {
+          "close": "zavřít",
+          "new": "Nové"
+        },
+        "contextMenu": {
+          "delete": "Vymazat",
+          "duplicate": "Duplicate",
+          "rename": "Přejmenovat"
+        },
+        "message": {
+          "confirm_switch": "Neuložili jste svůj dotaz. Jste si jisti, že chcete odstranit změny?",
+          "failed": "Nepodařilo se připojit k serveru",
+          "load_action_list_fail": "Nepodařilo se získat seznam akcí: {{message}}",
+          "load_resource_fail": "Nepodařilo se získat seznam zdrojů: {{message}}",
+          "name_already_exist": "Již existuje",
+          "please_input_name": "Zadejte název",
+          "success_created": "Úspěšně vytvořeno",
+          "success_deleted": "Úspěšně smazáno",
+          "success_saved": "Úspěšně uloženo",
+          "valid_name": "Může obsahovat pouze písmena, číslice, '_' nebo '$', začínající '_' nebo písmeno"
+        },
+        "placeholder": {
+          "search": "Hledat"
+        },
+        "runtime": {
+          "backend": "Administrace",
+          "execute_resource": "spustit zdroj",
+          "frontend": "Frontend",
+          "handle_response": "odpověď na rukojeť",
+          "post_processing": "po zpracování",
+          "prepare_query": "Připravit dotaz",
+          "response_size": "Velikost odpovědi",
+          "total": "Celkem",
+          "transfer_data": "přenos údajů",
+          "transformer": "transformátor"
+        },
+        "tips": {
+          "empty": "Přidejte akci a začněte pracovat s daty z připojeného zdroje.",
+          "not_found": "Žádné výsledky hledání"
+        },
+        "title": "Seznam akcí"
+      },
+      "form": {
+        "btn": {
+          "back": "Zpět",
+          "save_changes": "Uložit dokument",
+          "test_connection": "Testovat připojení"
+        },
+        "required": "Toto je vyžadováno",
+        "title": {
+          "api": "API",
+          "configure": "Konfigurace {{ name }}",
+          "database": "DATABÁZE",
+          "select": "Vyberte typ dokumentu",
+          "huggingface": "Obrovská tvář",
+          "appwrite": "Zápis aplikací",
+          "couchdb": {
+            "couchdb": "KouchDB"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google List"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} je povinné"
+        },
+        "label": {
+          "inference_api": "API Inference",
+          "inference_endpoint": "Inferenční koncový bod",
+          "s3": "Neplatné ve veřejných aplikacích",
+          "acl": "S3 ACL pro nahrané soubory",
+          "appwrite": {
+            "host": "Hostitel",
+            "dbid": "ID databáze",
+            "projectid": "ID projektu",
+            "secret": "Api klíč",
+            "collectionid": "ID kolekce",
+            "documentid": "ID dokumentu",
+            "data": "Údaje",
+            "filter": "Filtr",
+            "order": "Řadit podle",
+            "limit": "Limit"
+          },
+          "oracle": {
+            "sid": "Považovat název databáze za",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Certifikáty",
+            "verification_mode": "Ověřovací režim"
+          },
+          "gs": {
+            "private_key": "Soukromý klíč",
+            "action_type": "Typ akce",
+            "spreadsheet": "Tabulkový list",
+            "sheet_name": "Název desku",
+            "data_range": "Rozsah dat",
+            "limit": "Limit",
+            "offset": "Odsazení",
+            "a1_notation": "Označení A1",
+            "values_to_append": "Hodnoty k připojení",
+            "filter_by": "Filtrovat podle",
+            "update_value": "Aktualizovat hodnotu",
+            "primary_key_column": "Sloupec hlavního klíče",
+            "array_of_rows_to_upd": "Pole řádků k aktualizaci",
+            "filters_to_match_row": "Seznam řádků",
+            "consider_queries_tha": "Považovat dotazy, které neodstraňují žádné řádky za úspěchy",
+            "title_of_spreadsheet": "Název tabulky",
+            "sheet_id_to_copy": "ID listu ke kopírování",
+            "sheet_to_copy_to": "List ke zkopírování do",
+            "authentication": "Ověření",
+            "connect_with_oauth": "Připojit se k OAuth a uložit",
+            "reconnect_with_oauth": "Znovu připojit s OAuth",
+            "access_type": "Typ přístupu"
+          }
+        },
+        "placeholder": {
+          "url": "Zde zadejte adresu URL požadavku",
+          "appwrite": {
+            "host": "HOSTNAME NEBO IP",
+            "dbid": "ID databáze",
+            "projectid": "ID projektu",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "atribut",
+              "value": "1234"
+            },
+            "order": "atribut",
+            "collectionid": "Vybrat kolekci",
+            "data": "Objekt je přiložen v {{ }}. Například \n{{ { { \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "oracle",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"1000000000000000000000000\",\r\n  \"auth_uri\": \"https://accounts oogle.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "jméno_sloupce",
+              "value": "hodnota"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "primary_key_column": "jméno_sloupce",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
+            "filters_to_match_row": {
+              "key": "klíč",
+              "value": "hodnota"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Zadaný obsah je konfigurace VEŘEJNÉ. Ponechte prázdné pro PRIVATE. Nezapomeňte nakonfigurovat CORS na vašem bloku. <0>Viz Cross-Origin Resource Sharing (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Vypadá to, že se pokoušíte připojit k databázi, která je lokální ve vašem počítači nebo v části soukromé sítě. Nemusí to fungovat ve verzi ILLA Cloud. Podívejte se na naše <0>dokumenty</0> pro to, jak na vlastní verzi.",
+            "selfhost": "Vypadá to, že se pokoušíte připojit k databázi, která je lokální k tvému počítači. Použijte prosím IP adresu lokální sítě počítače namísto \"localhost\" nebo \"127.0.0.1\".",
+            "title": {
+              "tips": "Tipy"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Váš server může být zranitelný vůči útokům."
+            }
+          },
+          "gs": {
+            "private_key": "Slouží k připojení k Google List . Klikněte <0>zde</0> pro vytvoření projektu a získání pověření OAuth. S ověřením servisního účtu budeme mít přístup pouze k tabulkám, které sdílíte s e-mailovou adresou odpovídající použitému servisnímu účtu. Dokumentace o vytvoření účtu služeb a přístupového klíče viz <1>zde</1>.\n\nUživatelé mohou mít limity z různých částí zpracování, které nejsou kontrolovány tabulkami. Zjistěte více o <2>limitech kvóty</2>",
+            "leave_blank_to_selec": "Nechte prázdné pro výběr prvního listu",
+            "to_select_the_first_": "Pro výběr prvních pěti buněk v prvním sloupci listu s názvem list s názvem list je zápis A1 listu1!A1:A5. <0>Podívejte se na dokumenty Googlu pro více informací. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "a1_notation": "Pro výběr prvních pěti buněk v prvním sloupci listu s názvem list s názvem list je zápis A1 listu1!A1:A5. <0>Podívejte se na dokumenty Googlu pro více informací. </0>",
+            "sheet_id_to_copy": "Najděte to tak, že se podívejte na ?gid=123123 v URL adresy vašich Google sheets",
+            "copy_to_sheet_name": "Povinné. Přejmenujte zkopírovaný list.",
+            "successfully_authent": "Úspěšně ověřeno",
+            "failed_to_authentica": "Ověření se nezdařilo"
+          },
+          "tidb": {
+            "ca_certificate": "Ve výchozím nastavení vyplňujeme certifikát CA používaný pro TLS připojení k úrovni bez serveru. Pokud potřebujete TLS připojení k Dedicated Tier, <0>Klikněte zde</0> pro zobrazení konfigurační metody."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Vytvořit dokument",
+              "list": "Seznam dokumentů",
+              "get": "Získat dokument",
+              "update": "Aktualizovat dokument",
+              "delete": "Odstranit dokument"
+            },
+            "filter": {
+              "and": "A",
+              "or": "NEBO",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Název služby"
+            },
+            "ssl": "Použít SSL, pokud je k dispozici"
+          },
+          "couchdb": {
+            "ssl": "Použít SSL/TLS, pokud je k dispozici"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Auth výběru",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk ověření",
+              "aws_v4": "Podpis AWS V4",
+              "session_based_auth": "Ověření založené na relaci (zastaralé)"
+            },
+            "certificates": "Použít certifikáty podepsané sám",
+            "ca_certificate": "Certifikát CA",
+            "client_key": "Klíč klienta",
+            "client_certificate": "Certifikát klienta",
+            "verification_mode": {
+              "full_verification": "Úplné ověření",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Přeskočit ověření CA certifikátu"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Číst data z tabulky",
+              "append_data_to_a_spr": "Připojit data do tabulky",
+              "update_a_spreadsheet": "Aktualizovat tabulku",
+              "bulk_update_a_spread": "Hromadná aktualizace tabulky pomocí primárního klíče",
+              "delete_a_single_row_": "Odstranit jeden řádek z tabulky",
+              "create_a_spreadsheet": "Vytvořit tabulku",
+              "copy_a_single_sheet_": "Kopírovat jeden list do jiné tabulky",
+              "list_available_sprea": "Seznam dostupných tabulek",
+              "get_spreadsheet_info": "Získat informace o tabulkách"
+            },
+            "data_range": {
+              "use_a1_notation": "Použít poznámku A1",
+              "use_limit_and_offset": "Použít limit a posun"
+            },
+            "filter_by": {
+              "use_a1_notation": "Použít poznámku A1",
+              "use_row_filters": "Použít filtry řádků"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Účet služby",
+            "read_and_write": "Číst a psát",
+            "read_only": "Pouze pro čtení"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Účet služby"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Zakázat",
+          "enable": "Povolit",
+          "new": "Nové",
+          "run": "Spustit",
+          "save": "Uložit",
+          "save_and_run": "Uložit a spustit",
+          "save_fail": "Uložení se nezdařilo",
+          "test_run": "Zkušební jízda"
+        },
+        "elastic": {
+          "action_type": "Typ akce",
+          "body": "Tělo",
+          "id": "Id",
+          "index": "Objem dovozu (v tunách)",
+          "query": "Dotaz"
+        },
+        "error": {
+          "max_file": "Velikost souboru nesmí přesáhnout 5 M."
+        },
+        "firebase": {
+          "action_type": "Typ akce",
+          "collection": "Sbírka",
+          "database_ref": "Ref databáze",
+          "document_id": "ID dokumentu",
+          "email": "E-mailová adresa",
+          "end_at": "Konec v",
+          "len_of_list": "Délka seznamu ",
+          "limit": "mez",
+          "next_page_token": "Token další stránky",
+          "object_to_set": "Objekt k nastavení",
+          "order_by": "Řadit podle",
+          "ordering_direction": "Směr řazení",
+          "parent_document_id": "ID nadřazeného dokumentu",
+          "phone_number": "Telefonní číslo",
+          "placeholder": {
+            "asc": "vzestup",
+            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Vložit kolekci",
+            "key": "klíč",
+            "select_an_action": "Vyberte akci",
+            "select_collection": "Vybrat kolekci",
+            "value": "hodnota"
+          },
+          "service_type": "Typ služby",
+          "start_at": "Začít",
+          "tips": {
+            "document_id": "Ponechte prázdné pro automatické generování ID.",
+            "parent_document_id_tips": "Nechte prázdné pro kolekce nejvyšší úrovně."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Použít rozevírací seznam",
+          "use_end_at": "Použít koncovku",
+          "use_raw_id": "Použít nezpracované ID",
+          "use_start_at": "Use startAt",
+          "user_object": "Objekt uživatele ",
+          "value": "hodnota",
+          "where": "kde:"
+        },
+        "label": {
+          "event_handler": "Zpracovatel událostí",
+          "failure": "Selhání",
+          "resource": "Zdroj",
+          "success": "Úspěšně",
+          "transformer": "Transformátor",
+          "couchdb": {
+            "database": "Databáze",
+            "action_type": "Typ akce"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Vyberte databázi",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Spotřebitelský klíč",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "některá další data aplikace",
+              "app": "ID aplikace",
+              "dig": "delegováno",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "Ověřit pomocí hlavičky HTTP autorizace namísto parametrů dotazu",
+              "find_instructions_on": "V dokumentaci AWS, kde najdete přístupové klíče <0>.",
+              "role_to_assume": "Při přístupu k API použijte <0>jinou roli</0>"
+            },
+            "advanced": {
+              "select_pages": "Vybrat stránky"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Seznam záznamů",
+                "retrieve": "Načíst záznam",
+                "create": "Vytvořit záznam",
+                "update": "Aktualizovat záznam",
+                "delete": "Odstranit záznam",
+                "find": "Najít",
+                "get": "Zobrazit"
+              },
+              "skip": "Přeskočit",
+              "limit": "Limit",
+              "include": "Zahrnout dokumenty",
+              "des": "Objednávka",
+              "id": "_id",
+              "rev": "_rev",
+              "record": "Nahrávat",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "URL zobrazení",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Dokumenty zahrnuté do vrácených výsledků",
+              "des_option": "Použít sestupně"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "HRAINTEXT"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Soubor",
+                "text": "Text"
+              },
+              "method": {
+                "options": "VOLBY",
+                "head": "HLAVA"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Parametry dotazu",
+                "header_authorization": "Autorizace hlavičky"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Aktivovat tuto akci při načítání stránky",
+              "show_a_loading_page_": "Zobrazit načítání stránky při načítání stránky",
+              "on_page_loading": "Při načítání stránky",
+              "on_app_loading": "Při načtení APP",
+              "none": "Nic"
+            }
+          },
+          "restapi": {
+            "signature_method": "Metoda podpisu",
+            "consumer_key": "Spotřebitelský klíč",
+            "consumer_secret": "Tajný klíč spotřebitele",
+            "access_token": "Přístupový token",
+            "token_secret": "Tajný token",
+            "private_key": "Soukromý klíč",
+            "realm": "Říše",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Autentizační klíč Hawk",
+            "algorithm": "Algoritmus",
+            "user": "Uživatel",
+            "nonce": "Nonce",
+            "ext": "Souvislost",
+            "app": "aplikace",
+            "dig": "dig",
+            "timestamp": "Časové razítko",
+            "aws_region": "Region AWS",
+            "aws_service": "Služba AWS",
+            "aws_access_key_id": "AWS přístupový klíč ID",
+            "aws_secret_key_id": "ID tajného klíče AWS",
+            "role_to_assume": "Role k převzetí (ARN)",
+            "list_of_cookies_to_f": "Seznam cookies k přeposlání",
+            "add_access_token_to": "Přidat přístupový token do"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Buď binární řetězec nebo objekt: {{ { data: binární řetězec, filename?: string } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Při načítání stránky nebudou spuštěny žádné akce. Můžete ručně spustit akci a povolit \"Spustit tuto akci při načítání stránky\" v pokročilém nastavení."
+            }
+          },
+          "advanced": {
+            "advanced": "PŘIDANÉ",
+            "page_trigger": "Časování spouštěče",
+            "loading_page": "Načítání stránky",
+            "page_load_delay": "Zpoždění (ms)",
+            "run_this_action_peri": "Spustit tuto akci pravidelně",
+            "interval": "Interval (s)",
+            "actions_running_when": "Akce spuštěné při načtení stránky",
+            "pages": "Stránky",
+            "periodically_run": "Pravidelně spuštěno"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Vymazat",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Typ akce",
+          "aggregation": "Agregace",
+          "collection": "Sbírka",
+          "document": "Dokument",
+          "field": "Pole",
+          "filter": "Filtr",
+          "limit": "Limit",
+          "operations": "Operace",
+          "options": "Možnosti",
+          "projection": "Projekce",
+          "query": "Dotaz",
+          "skip": "Přeskočit",
+          "sort_by": "Seřadit podle",
+          "update": "Aktualizovat"
+        },
+        "option": {
+          "resource": {
+            "new": "Vytvořit nový zdroj"
+          },
+          "trigger": {
+            "manually": "Spusťte akci pouze při manuálním spuštění",
+            "on_change": "Automaticky spustit akci při změně vstupů"
+          }
+        },
+        "s3": {
+          "action_type": "Typ akce",
+          "bucket_name": "Název kbelíku",
+          "content_type": "Typ obsahu",
+          "delimiter": "Oddělovač",
+          "error": {
+            "max_file": "Velikost souboru nesmí přesáhnout 5 M."
+          },
+          "expiry_duration_of_signed_url": "Doba trvání vypršení platnosti podepsané URL(minuty)",
+          "generate_signed_url": "Generovat podepsanou URL",
+          "max_keys": "Maximální počet klíčů",
+          "object_key": "Klíč objektu",
+          "object_key_list": "Seznam klíčů objektů",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Prefix pro filtrování výsledků",
+          "tips": {
+            "delimiter": "Oddělovač je postava, kterou používáte pro sdružování klíčů.",
+            "max_keys": "Nastaví maximální počet klíčů vrácených v odpovědi. Ve výchozím nastavení akce vrátí až 1000 klíčů."
+          },
+          "upload_data": "Nahrát data",
+          "upload_data_list": "Nahrát datový seznam",
+          "upload_object_name": "Nahrát název objektu",
+          "upload_object_name_list": "Nahrát seznam názvů objektů",
+          "timeout_upload": "Časový limit pro nahrání souboru (Minute)",
+          "timeout_upload_multiple": "Časový limit pro nahrání jednoho souboru (Minute) "
+        },
+        "smtp": {
+          "attachment": "Příloha (přílohy)",
+          "bcc_email": "Bcc e-mail(y)",
+          "body": "Tělo",
+          "cc_email": "Cc email(s)",
+          "from_email": "Z e-mailu",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Použijte čárky k oddělení e-mailů. Tj. {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Odpovědět na e-mail",
+          "set_replay_email": "Nastavit odpověď na e-mail",
+          "subject": "Předmět",
+          "tips": {
+            "port": "Někteří poskytovatelé internetových služeb mohou blokovat port 25.Pokud připojení selže, změňte \nport."
+          },
+          "to_email": "Na emaily",
+          "use_html": "Použít HTML",
+          "use_raw": "Použít syrový text"
+        },
+        "tips": {
+          "transformer": "Povolit transformátorům transformovat výsledek dotazu na jiný formát."
+        },
+        "graphql": {
+          "query": "Dotaz",
+          "variables": "Proměnné",
+          "headers": "Záhlaví",
+          "placeholder": {
+            "query": "# Použijte $ pro přidání proměnné do vašeho dotazu (např. $category ) \r\ndotaz ($owner: Řetězec!, $name: Řetězec! {\r\n  repozitář (vlastník: $owner, jméno: $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "ID modelu",
+          "placeholder": {
+            "mode_id": "bert-base-bedn",
+            "text": "Odpověď na vesmír je [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Který film je nejlepší?\"], \r\n\"generated_responses\": [\"Je to tvrdé pro jistí.\"], \r\n\"text\": \"Dokážeš vysvětlit, proč ?\" \r\n}",
+            "binary": "např. {{ upload1.file[0] }}. binární soubory bez prefixu souboru",
+            "use_cache": "Boolean, nechte prázdné pro pravdu",
+            "min_length": "Celé číslo pro definování minimální délky v tokenech výstupního souhrnu",
+            "top_k": "Celé číslo pro definování top tokenů",
+            "top_p": "Plovoucí pro definování tokenů",
+            "temperature": "Float(0.0-100.0),nechte prázdné pro 1.0",
+            "repetition_penalty": "Plovoucí (0.0–100.0)",
+            "max_time": "Plovte (0.0-120.0) pro definování času v sekundách"
+          },
+          "tips": {
+            "mode_id": "Přejděte na <0>Model Hub</0> a vyberte model, který chcete použít.",
+            "use_detail_parameters": "<0>Klikněte zde</0> pro více informací o parametrech",
+            "temperature": "1 znamená pravidelný odběr vzorků, 0 znamená vždy nejvyšší skóre, 100.0 se přibližuje jednotné pravděpodobnosti.",
+            "repetition_penalty": "Čím více se token používá uvnitř generace, tím více je penalizováno, aby nebyl vybrán v následných generacích pasáží."
+          },
+          "parameter": "Parametr",
+          "use_detail_parameters": "Použít parametry detailu",
+          "use_cache": "Použít keš",
+          "wait_for_model": "Čekat na model",
+          "min_length": "Minimální délka",
+          "max_length": "Maximální délka",
+          "top_k": "Horní k",
+          "top_p": "Horní p",
+          "temperature": "Teplota",
+          "repetition_penalty": "Penále za opakování",
+          "max_time": "Maximální čas"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Jaký SQL příkaz chcete vygenerovat"
+          },
+          "button": {
+            "text": "Vygenerovat SQL"
+          }
+        },
+        "mssql": {
+          "config_type": "Typ konfigurace",
+          "query": "Dotaz",
+          "placeholder": {
+            "query": "vybírat * od uživatelů;",
+            "table": "Vyberte tabulku",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Stupeň úvěrové kvality 1",
+          "insert_record": "Pole záznamů k vložení",
+          "dropdown": {
+            "retry": "Klikněte pro opakování"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Metoda",
+            "table": "Stupeň úvěrové kvality 1",
+            "json_input": "Použít JSON parametr editor",
+            "parameters": "Parametry",
+            "index": "Název indexu",
+            "key_condition": "Výraz klíčové podmínky",
+            "projection_expression": "Výraz projekce",
+            "filter_expression": "Filtrovat výraz",
+            "attribute_name": "Názvy atributů výrazu",
+            "attribute_value": "Hodnoty atributu výrazu",
+            "limit": "Limit",
+            "select": "Vybrat",
+            "item": "Položka",
+            "condition_expression": "Výraz počasí",
+            "key": "Klíč",
+            "update_expression": "Aktualizovat výraz"
+          },
+          "option": {
+            "query": "dotaz",
+            "scan": "skenovat",
+            "put_item": "vložit položku",
+            "get_item": "getItem",
+            "update_item": "aktualizovatPoložka",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, pro mapu:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Selhalo",
+          "ran_successfully": "Úspěšně"
+        },
+        "result": {
+          "restapi": {
+            "status": "Stav",
+            "headers": "Záhlaví",
+            "response": "Odpověď"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Již brzy"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Neplatný soukromý klíč. "
+          },
+          "label": {
+            "ca_certificate": "Certifikát CA",
+            "client_certificate": "Certifikát klienta",
+            "client_key": "Klíč klienta",
+            "config_type": "Typ konfigurace",
+            "connect_type": "Typ připojení",
+            "connection_format": "Formát připojení",
+            "connection_string": "Řetězec připojení",
+            "database": "Databáze",
+            "database_index": "Databázový index",
+            "firebase_database_url": "Adresa URL databáze Firebase",
+            "firebase_project_id": "ID projektu Fireshopu",
+            "hostname": "Hostname",
+            "hostname_port": "Název hostitele/port",
+            "hosturl": "Adresa url serveru",
+            "mongodb_connection_dns_seed_list": "Připojení seznamu DNS seedů",
+            "mongodb_connection_standard": "Standardní připojení",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Klient Cert a klíč",
+            "name": "Název",
+            "port": "Přístav",
+            "private_key": "Soukromý klíč",
+            "private_key_hover": "Soukromý klíč je spojen se servisním účtem s oprávněním Firebase.",
+            "ssl_options": "Možnosti SSL",
+            "username_password": "Uživatelské jméno / heslo",
+            "self_signed_certificate": "Použít certifikát podepsaný sám",
+            "disable_introspection": "Zakázat Introspection",
+            "value": "Hodnota",
+            "add_to": "Přidat do",
+            "header_prefix": "Předpona záhlaví",
+            "key": "Klíč",
+            "introspection": "Introspection",
+            "bear_token": "Token",
+            "connection_options": "Možnosti připojení",
+            "account_name": "Název účtu",
+            "warehouse": "Sklad",
+            "schema": "Schéma",
+            "snowflake_basic_auth": "Základní ověření",
+            "snowflake_key_auth": "Párování klíčů (jsou podporovány pouze šifrované soukromé klíče)",
+            "role": "Role",
+            "username": "Uživatelské jméno",
+            "password": "Heslo",
+            "dynamo_region": "Region AWS",
+            "dynamo_access_key_id": "AWS přístupový klíč ID",
+            "dynamo_secret_key": "Tajný klíč AWS"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "Produkce acme_",
+            "database_index": "výchozí 0",
+            "hostname": "Hostname",
+            "hosturl": "např. https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "Tj. \"Uživatelé DB (ke čtení)\" nebo \"Interní administrátorské API\"",
+            "password": "Heslo",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"1000000000000000000000000\",\n  \"auth_uri\": \"https://accounts oogle.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Uživatelské jméno",
+            "default": "výchozí",
+            "hugging_face_url": "Použijte absolutní URL (např. https://api-inference.huggingface.co/models/). ",
+            "database_name": "Název databáze",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "Pojistit WH",
+            "snowflake_database": "Nejnovější data",
+            "schema": "VEŘEJNÁ",
+            "role": "Role",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n•••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
+          },
+          "tip": {
+            "connect_type": "Cloud: ILLA servery se bezpečně připojí k vaší databázi.",
+            "name": "Název zdroje při vytváření akcí v ILLA.",
+            "private_key": "<0>Klikněte zde</0> a uvidíte, jak získat tento klíč",
+            "ssl_options": "SSL se používá, když je k dispozici",
+            "username_password": "Pověření budou na našich serverech bezpečně šifrována a uložena.",
+            "introspection": "Zapněte, pokud váš koncový bod GraphQL nepodporuje dotazy na introspection. Upozorňujeme, že vypnutí introspection snižuje použitelnost grafu QL, protože auto-kompletní a obložení tohoto zdroje již nebude fungovat.",
+            "hugging_face_url": "<0>Klikněte zde</0> pro více informací o obličejích.",
+            "bear_token": "Získejte přístup uživatele nebo API token <0>v nastavení profilu obličeje.</0>",
+            "connection_options": "Přidejte možnosti připojení k Vašemu připojení. Pokud je volba SSL povolena, přidáme šifrování a důvěryhodný ServerCertifikát."
+          },
+          "title": {
+            "advanced_option": "Pokročilé možnosti",
+            "general_option": "OBECNÁ USTANOVENÍ",
+            "graphql_introspection": "INTROSPEKCE GRAFICKÉHO PROSTŘEDKU"
+          }
+        },
+        "error": {
+          "invalid_url": "Zadejte prosím platnou adresu URL, například https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Nové"
+          },
+          "label": {
+            "access_token": "Přístupový token",
+            "access_token_lifespan": "Token přístupu\n lifespan(optiinal)",
+            "access_token_url": "URL přístupového tokenu",
+            "action_type": "Typ akce",
+            "audience": "Audience",
+            "authentication": "Ověření",
+            "authorization_url": "Autorizační URL",
+            "base_url": "Základní URL",
+            "basic_auth_password": "Základní ověřovací heslo",
+            "basic_auth_username": "Základní uživatelské jméno",
+            "bearerToken": "Token na doručitele",
+            "body": "Tělo",
+            "client_id": "ID klienta",
+            "client_secret": "Tajný klíč klienta",
+            "configure_oauth2": "Konfigurace OAuth 2.0",
+            "cookies": "Cookies",
+            "copy_url_to_application": "Zkopírovat tuto URL do vaší aplikace",
+            "enable_auth_verification_endpoint": "Povolit koncový bod ověření ověření",
+            "extra_body_values": "Dodatečné hodnoty těla",
+            "forward_all_cookies": "Přeposlat všechny cookies",
+            "headers": "Záhlaví",
+            "list_of_cookies_to_forward": "Seznam cookies na\n Přeposlat",
+            "name": "Název",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Obnovit token",
+            "scopes": "Rozsahy (oddělené\n mezerou)",
+            "share_oauth2_credentials_between_users": "Sdílet OAuth2.0 pověření mezi uživateli",
+            "url_parameters": "Parametry URL",
+            "use_client_credentials_auth": "Použít ověření přihlašovacích údajů klienta",
+            "digest_auth_username": "Uživatelské jméno",
+            "digest_auth_password": "Heslo"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Základní ověření",
+              "bearer": "Nosič",
+              "none": "Nic",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Životnost tokenů v sekundách",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "Tj. „Interní API administrátora“",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "Použijte absolutní URL (např. https://example.com)",
+            "database": "Tj. \"Uživatelé DB (pouze ke čtení)\"",
+            "name": "Tj. \"Uživatelé DB (ke čtení)\" nebo \"Interní administrátorské API\"",
+            "param_key": "klíč",
+            "param_value": "hodnota",
+            "password": "heslo",
+            "username": "uživatelské jméno"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 je komplexní spektrum. ILLA v současné době podporuje server-side OAuth 2.0 autentizační tok a také tok Client Credentials. V obou případech musíte použít zástupné symboly OAUTH2_TOKEN, abyste informovali ILLA, kde umístit přístupový token OAuth do žádosti API. Společné umístění je jako hlavička jako autorizace: Bearer OAUTH2_TOKEN.",
+            "extra_body_values": "Dodatečné hodnoty těla nejsou předány pro požadavky GET nebo HEAD",
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICLLY, KDE JSOU ZMĚNY PARAMETRU PARAMETR.",
+            "name": "Název zdroje při vytváření akcí v ILLA."
+          },
+          "title": {
+            "advanced_option": "OBECNÁ USTANOVENÍ"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Přístupový klíč",
+            "base_url": "Základní URL",
+            "bucket_name": "Název kbelíku",
+            "custome_s3_endpoint": "Vlastní koncový bod S3",
+            "region": "Oblasti",
+            "secret_access_key": "Tajný přístupový klíč",
+            "use_custome_s3_endpoint": "Použít vlastní koncový bod S3"
+          },
+          "placeholder": {
+            "base_url": "např. https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Používá se k připojení k dalším službám, které nepatří do S3, jako jsou Digitální oceánské prostory nebo Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tip: přiřadit externí reference k proměnným namísto řetězení zadních závorek."
+          },
+          "tip": {
+            "external_reference": "Můžete vytvořit externí odkazy na proměnné, které jste definovali. Například {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Zjistěte více o Hugging Face:",
+            "hf_endpoint": "Inferenční koncový bod"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Získejte API tokeny organizace <0>v nastavení profilu obličeje</0>.",
+            "hf_endpoint": "Další informace o <0>koncovém bod</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Povolit IP adresy",
+            "message": "Nejsou-li vaše zdroje veřejně dostupné, aktualizujte prosím nastavení sítě nebo firewallu a přidejte do seznamu povolených IP adresy ILLA, aby se ILLA mohla připojit k vašim zdrojům."
+          }
+        },
+        "button": {
+          "copy_ip": "Kopírovat IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Odstraněno"
+      },
+      "result": {
+        "title": {
+          "api_request": "API požadavek",
+          "error": "Spuštění dotazu se nezdařilo",
+          "json": "JSON",
+          "response": "Odpověď",
+          "success": "Dotaz byl úspěšně spuštěn",
+          "table": "Stupeň úvěrové kvality 1"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Databáze",
+        "js_transformer": "Transformátor JavaScriptu"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Nepodařilo se zobrazit tabulky. Opakujte akci později."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "soukromý",
+          "public_read": "veřejné čtení",
+          "public_read_write": "veřejné čtení",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "ověřené čtení",
+          "bucket_owner_read": "Čtení bucket-majitelem",
+          "bucket_owner_full_control": "plná kontrola ze strany majitelů kbelíku"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Zrušit",
+      "delete": "Vymazat",
+      "delete_content": "Odstranění možná udělá nějaké chyby, prosím potvrďte.",
+      "delete_title": "Jste si jisti, že chcete odstranit {{ displayName}}?",
+      "editor_list": "Aktuální editory"
+    },
+    "context_menu": {
+      "delete": "Vymazat",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "AKCE a TRANSFORMERY ",
+      "components_title": "SLOŽENÍ ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "STRANY",
+      "global_data_modal": {
+        "title": "Upravit globální data",
+        "variable_name": {
+          "tooltips": "Název proměnné. Používejte počáteční hodnotu v této aplikaci prostřednictvím {{name}}",
+          "label": "Název",
+          "message": "Zadejte název proměnné"
+        },
+        "initial_value": {
+          "label": "Počáteční hodnota",
+          "tooltips": "Podporuje objekty nebo primitivní hodnoty. Příklad: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Nepodařilo se nasadit"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" již existuje",
+      "validate_error": "\"{{ displayName }}\" musí začínat písmenem nebo \"_\" a může obsahovat pouze písmena, číslice, \"_\", nebo \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Vymazat",
+          "reset_state": "Reset state",
+          "view_documentation": "Zobrazit dokumentaci"
+        }
+      },
+      "multi_selected_header": "Vybráno {{ number }} komponent",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Bar graf",
+          "line": "Řádkový graf",
+          "pie": "Koláčový graf",
+          "scatterplot": "Obvyklá plocha"
+        },
+        "color_picker": {
+          "prefabricated": "Montovaná barva",
+          "title": "Upravit barvu"
+        },
+        "column_setter": {
+          "label": "Sloupce ({{number}})",
+          "new": "Nové",
+          "title": "Hlava 1 – Celkem"
+        },
+        "event_handler_list": {
+          "empty": "Spouštěcí dotazy, ovládací prvky nebo volání jiných API v reakci na události komponenty.",
+          "incomplete_selection": "Neúplný výběr",
+          "new": "Nové",
+          "title": "Upravit obsluhu události"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Vymazat",
+          "label": "Menus ({{number}})",
+          "new": "Nové",
+          "sub": "Pod"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Vymazat",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Žádný štítek",
+          "model_title": "Upravit možnosti",
+          "new": "Nové",
+          "title": "Možnosti"
+        },
+        "select_page_setter": {
+          "placeholder": "Vyberte stránku"
+        },
+        "select_view_setter": {
+          "placeholder": "Vyberte zobrazení"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Zobrazení"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Změnit",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Změna filtru",
+          "fail": "Neuspěl",
+          "focus": "Zaměřit",
+          "invalid": "Neplatné",
+          "paginationChange": "Změna stránky",
+          "row_select": "Výběr řádku",
+          "sortingChange": "Seřadit změnu",
+          "submit": "Odeslat",
+          "success": "Úspěšně",
+          "onOpenModal": "Otevřít modal",
+          "onCloseModal": "Zavřít modal",
+          "play": "Hrát",
+          "pause": "Pozastavit",
+          "ended": "Ukončeno",
+          "loaded": "Načteno",
+          "rowSelect": "Výběr řádku",
+          "markerSelected": "markerVybráno",
+          "markerCreated": "markerCreated",
+          "select": "Vybrat"
+        },
+        "image_list": {
+          "title": "Obrázky",
+          "empty": "Žádné obrázky",
+          "model_title": "Upravit obrázky",
+          "config": {
+            "model_label": "Popisek",
+            "image_url": "URL obrázku"
+          }
+        },
+        "image_setter": {
+          "new": "Nové"
+        },
+        "Change": "Změnit",
+        "Select": "Vybrat",
+        "eventCalendar": {
+          "no_title": "Bez názvu"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Vyplnit",
+        "message_type": {
+          "error": "Chyba",
+          "info": "Info",
+          "success": "Úspěšně",
+          "warning": "Varování"
+        },
+        "outline": "Obrys",
+        "validation_pattern": {
+          "email": "E-mailová adresa",
+          "regex": "Regex",
+          "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixní",
+          "auto": "Automaticky"
+        },
+        "upload_type": {
+          "button": "Tlačítko",
+          "dropzone": "Dropzona"
+        },
+        "selection_types": {
+          "single_file": "Jeden soubor",
+          "multiple_files": "Více souborů",
+          "directory": "Adresář"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "Vyberte čas"
+        },
+        "time_range": {
+          "start_placeholder": "Čas zahájení",
+          "end_placeholder": "Čas ukončení"
+        }
+      },
+      "setter_group": {
+        "adornments": "ADORNY",
+        "basic": "ZÁKLADNÍ",
+        "column": "SLOUPCE",
+        "data": "ÚDAJE",
+        "interaction": "INTERAKCE",
+        "label": "ENERGETICKÝ ŠTÍTEK",
+        "layout": "NABÍDKA",
+        "menu": "MENU",
+        "options": "VOLBY",
+        "pagination": "OZNAČOVÁNÍ",
+        "row_selection": "VÝBĚR PLOCHY",
+        "sort": "SEŘADIT",
+        "style": "STYL",
+        "tabs": "TABS",
+        "toolbar": "JEDNACÍ ŘÁD",
+        "validation": "PLATNOST",
+        "views": "ZOBRAZENÍ",
+        "images": "OBRAZY",
+        "primary_value": "PRIMÁRNÍ HODNOTA",
+        "secValue": "Sekundární hodnota",
+        "border": "Border",
+        "color": "Barva",
+        "icon": "Ikona",
+        "secondary_value": "DRUHÁ HODNOTA",
+        "resource": "ZDROJE",
+        "eventCalendar": {
+          "calendar": "Kalendář"
+        },
+        "event": "Událost"
+      },
+      "setter_label": {
+        "action": "Akce",
+        "align": "Align",
+        "allow_clear": "Povolit vymazání",
+        "allow_half": "Povolit polovinu",
+        "alt_text": "Alternativní text",
+        "alt_text_desc": "Dostupný popis obrázku pro čtečky obrazovky. Pokud se obrázek nepodaří načíst, je také vykreslen jako záložní obrázek.",
+        "background": "Pozadí",
+        "background_color": "Pozadí",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Titulek",
+        "chart_title": "Hlava 1 – Celkem",
+        "chart_type": "Typ grafu",
+        "color": "Barva",
+        "colors": "Barvy",
+        "column_title": "Název sloupce",
+        "column_type": "Typ sloupce",
+        "columns": "Sloupce",
+        "component": "Komponenty",
+        "config_type": "Typ konfigurace",
+        "container": "Kontejner",
+        "content": "Obsah",
+        "control_component": "Ovládací součást",
+        "custom_rule": "Vlastní pravidlo",
+        "data": "Údaje",
+        "data_source": "Zdroj údajů",
+        "data_sources": "Zdroje údajů",
+        "dataset": {
+          "aggregation_method": "Agregační metoda",
+          "name": "Název datového souboru",
+          "remove": "Remove dataset",
+          "value": "Hodnoty datového souboru"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Desetinné místo",
+        "decimal_places": "Desetinná místa",
+        "default_sort_key": "Sloupec",
+        "default_sort_order": "Směr",
+        "default_tab": "Default tab",
+        "default_value": "Výchozí hodnota",
+        "default_views": "Výchozí zobrazení",
+        "description": "L 343, 22.12.2009, s. 1).",
+        "direction": "Směr",
+        "disable_submit": "Zakázat odesílání",
+        "disabled": "Zakázáno",
+        "download": "Stáhnout",
+        "duration": "Doba trvání",
+        "empty_state": "Prázdný stav",
+        "enable_sorting": "Povolit řazení",
+        "end_data": "Datum ukončení",
+        "end_placeholder": "Konec zástupného symbolu",
+        "event": "Událost",
+        "event_handler": "Manažer událostí",
+        "expansion_method": "Rozšiřovací metoda",
+        "failure": "Selhání",
+        "filter": "Filtr",
+        "font_size": "Font size",
+        "form_data_key": "Datový klíč formuláře",
+        "format": "Formát",
+        "go_to_url": "Přejít na URL",
+        "group_by": "Seskupit podle",
+        "group_layout": "Rozložení skupiny",
+        "hidden": "Hidden",
+        "hidden_label": "Skrytý štítek",
+        "hide_validation_message": "Skrýt ověřovací zprávu",
+        "hide_value_label": "Skrýt popisek hodnoty",
+        "horizontal_alignment": "Vodorovné zarovnání",
+        "icon": "Ikona",
+        "image_source": "Zdroj obrázku",
+        "img_height": "Výška",
+        "img_width": "Width",
+        "index": "Objem dovozu (v tunách)",
+        "item_background_color": "Pozadí položky",
+        "items": "Položky",
+        "key": "Klíč",
+        "label": "Popisek",
+        "label_alignment": "Zarovnání",
+        "label_position": "Pozice",
+        "label_width": "Width(%)",
+        "layout": "Rozložení",
+        "legend_position": "Pozice legendy",
+        "link_to_container": "Odkaz na kontejner",
+        "links_color": "Odkazy",
+        "loading": "Načítání",
+        "loop_back_to_start": "Opakovat pro začátek",
+        "loop_start_to_back": "Smyčka začíná zpět",
+        "mapped_option": "Mapovaná volba",
+        "mapped_value": "Mapovaná hodnota",
+        "max_count": "Maximální počet",
+        "max_date": "Maximální datum",
+        "max_length": "Maximální délka",
+        "maximum": "Maximální množství",
+        "method": "Metoda",
+        "min_date": "Minimální datum",
+        "min_length": "Minimální délka",
+        "minimum": "Minimální",
+        "multi_row_selection": "Výběr více řádků",
+        "new_tab": "New tab",
+        "only_run_when": "Spustit pouze, když",
+        "overFlow": "Nadtok",
+        "page": "Stránka",
+        "pageSize": "Velikost stránky",
+        "pattern": "Vzor",
+        "pending": "Nevyřízeno",
+        "placeholder": "Zástupný symbol",
+        "prefix_text": "Text prefixu",
+        "radius": "Radius",
+        "read_only": "Pouze pro čtení",
+        "regex": "Regex",
+        "required_field": "Povinné pole",
+        "reset_after_successful_submit": "Obnovit po úspěšném odeslání",
+        "router": "Router",
+        "run_script": "Spustit skript",
+        "scale_type": "Typ měřítka",
+        "set_router": "Nastavit router",
+        "set_temporary_state": "Nastavit dočasný stav",
+        "shadow": {
+          "shadow": "Stín"
+        },
+        "show_character_count": "Zobrazit počet znaků",
+        "show_clear_button": "Zobrazit tlačítko \"Vyčistit\"",
+        "show_footer": "Zobrazit zápatí",
+        "show_header": "Zobrazit záhlaví",
+        "show_notification": "Zobrazit upozornění",
+        "sort": "Seřadit",
+        "start_date": "Datum zahájení",
+        "start_placeholder": "Začít zástupný znak",
+        "step_size": "Velikost kroku",
+        "stroke_width": "Šířka tahu",
+        "style": "Styl",
+        "styles": "Styles",
+        "submit_form": "Odeslat formulář",
+        "success": "Úspěšně",
+        "suffix_text": "Přípona",
+        "text": "Text",
+        "text_align": "Text align",
+        "text_size": "Velikost textu",
+        "theme_color": "Barva motivu",
+        "thousand_separator": "Oddělovač tisíců",
+        "time_format": "Formát času",
+        "title": "Hlava 1 – Celkem",
+        "tooltip": "Šipka nástroje",
+        "trail_color": "Barva stopy",
+        "trigger_query": "Spouštěč dotaz",
+        "type": "Typ",
+        "validate_inputs_on_submit": "Ověřit vstupy při odeslání",
+        "value": "Hodnota",
+        "value_labels": "Popisky hodnot",
+        "variant": "Varianta",
+        "vertical_alignment": "Svislé zarovnání",
+        "width": "Width",
+        "x_axis_name": "Název osy X",
+        "x_axis_title": "Název osy X",
+        "x_axis_type": "Typ osy X",
+        "x_axis_value": "Hodnota osy X",
+        "y_axis_name": "Název osy Y",
+        "y_axis_title": "Název osy Y",
+        "height": "Výška",
+        "min_height": "Min height (px)",
+        "show_underline": "Zobrazit podtržení",
+        "auto_play": "Automatické přehrávání",
+        "interval": "Interval(ms)",
+        "show_button": "Zobrazit šipky",
+        "show_dot": "Zobrazit tečky v dolní části",
+        "hidden_images": "Skryté obrázky",
+        "file_type": "Typy souborů",
+        "selection_types": "Typy výběru",
+        "append_newly_files": "Připojit nově vybrané soubory",
+        "file_list": "Seznam souborů",
+        "parse_value": "Parsovat hodnotu",
+        "max_files": "Maximální počet souborů",
+        "min_files": "Min soubory",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Přechodný",
+        "file_url": "PDF zdroj",
+        "show_tool_bar": "Zobrazit panel nástrojů",
+        "scale": "Měřítko stránky na",
+        "scroll": "Přichytit posun na každou stránku",
+        "min_max_size": "Min. velikost ~ Maximální velikost",
+        "video_url": "Zdroj videa",
+        "autoplay": "Automatické přehrávání",
+        "loop": "Smyčka",
+        "volume": "Objem",
+        "show_controls": "Zobrazit ovládací prvky",
+        "img_url_array": "URL adresa obrázku",
+        "statistics": {
+          "label": "Popisek",
+          "primary_value": "Primární hodnota",
+          "secValue": "Sekundární hodnota",
+          "decimal": "Desetinné místo",
+          "trend_sign": "Zobrazit znak trendu",
+          "positive_sign": "Příloha V část 2 odst.",
+          "negative_sign": "Nehodící se škrtněte.",
+          "thousand_separator": "Zobrazit tisícovku oddělovače",
+          "trend_color": "Povolit barvu trendu",
+          "prefix_text": "Text prefixu",
+          "suffix_text": "Přípona"
+        },
+        "mute": "Ztlumit",
+        "collapse": {
+          "type": "Typ",
+          "accordin_mode": "Dočasný režim",
+          "header_color": "Záhlaví",
+          "body_color": "Tělo",
+          "expand_icon": "Rozbalit",
+          "collapse_icon": "Sbalit",
+          "icon_color": "Barva"
+        },
+        "choose_at_least": "Vyberte alespoň",
+        "choose_up_to": "Vyberte si až",
+        "copy_to_clipboard": "Kopírovat do schránky",
+        "file_download": {
+          "file_data": "Data souboru",
+          "file_name": "Název souboru s příponou",
+          "file_type": "Typ souboru"
+        },
+        "action_name": "Název akce",
+        "variable": {
+          "path_of_value": "Cesta hodnoty",
+          "variable": "Globální data"
+        },
+        "code": {
+          "write_code": "Napsat kód"
+        },
+        "slider": {
+          "step_size": "Velikost kroku",
+          "minimum": "Minimální",
+          "maximum": "Maximální množství",
+          "hide_output": "Skrýt výstup",
+          "prefix_icon": "Ikona prefixu",
+          "suffix_icon": "Ikona za příponou",
+          "allow_wrapping": "Povolit balení"
+        },
+        "range_slider": {
+          "start_value": "Počáteční hodnota",
+          "end_value": "Konečná hodnota"
+        },
+        "name": "Název",
+        "audio": {
+          "audio_url": "Zdroj zvuku"
+        },
+        "map": {
+          "markers": "Značky",
+          "initial_location": "Počáteční umístění",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Název pole zeměpisné šířky",
+          "longitude_field_name": "Název pole zeměpisné délky",
+          "zoom": "Přiblížení",
+          "enable_add_markers": "Povolit přidání značek",
+          "enable_search_locati": "Povolit umístění hledání",
+          "enable_clustering": "Povolit clusterování"
+        },
+        "time_range": {
+          "start_time": "Čas zahájení",
+          "end_time": "Čas ukončení"
+        },
+        "eventCalendar": {
+          "event_value": "Hodnota události",
+          "event_id": "ID události",
+          "title": "Hlava 1 – Celkem",
+          "description": "L 343, 22.12.2009, s. 1).",
+          "start": "Začít",
+          "end": "Ukončit",
+          "resource_id": "ID zdroje",
+          "resource_title": "Název dokumentu",
+          "all_day": "Celý den",
+          "data_source": "Zdroj údajů",
+          "default_date": "Výchozí datum",
+          "resource_grid": "Zdrojová mřížka",
+          "default_view": "Výchozí zobrazení",
+          "show_current_time": "Zobrazit aktuální čas",
+          "background": "Pozadí",
+          "calendar_background": "Pozadí",
+          "calendar_border": "Border",
+          "calendar_text": "Text",
+          "event_background": "Pozadí",
+          "event_text": "Text"
+        },
+        "table": {
+          "page_index": "Index stránky",
+          "index": "Objem dovozu (v tunách)",
+          "scroll_to_the_select": "Přejít na vybraný řádek",
+          "filters": "Filtry",
+          "filter_mode": "Režim filtru",
+          "show_thousands_separ": "Zobrazit tisíce oddělovače",
+          "tag_label": "Popisek štítku",
+          "tag_color": "Barva štítku",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
+        "cascader_data": "Každá možnost musí být formátu JSON a musí obsahovat dvě klíče, hodnotu a popisek. Používáním polí můžete vytvořit možnosti na stejné úrovni. A podřízené možnosti lze vytvořit pomocí atributu \"děti\". ",
+        "component_default_value": "Počáteční hodnota komponenty. Počáteční hodnotu můžete dynamicky změnit zadáním JavaScriptu do {{}}.",
+        "custom_rule": "Zde vytvořte svou validační logiku. Pravidla by měla být vytvořena v JavaScriptu a pokryta {{}}.",
+        "date_format": "Platný formát data. Viz [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "Počáteční hodnota vstupního pole. Počáteční hodnotu vstupního pole můžete dynamicky změnit zadáním JavaScriptu v {{}}.",
+        "disabled": "Určuje, zda je zakázaná komponenta. Komponenta nemůže být upravena nebo zacílena, pokud je vypnuta.",
+        "disabled_submit": "Pokud je zakázáno, komponenty, které volají metodu form.submit(), budou také zakázány.",
+        "download": "Zobrazit tlačítko stahování v panelu nástrojů.",
+        "filter": "Zobrazit tlačítko filtru v panelu nástrojů.",
+        "form_data_key": "Zadejte klíč pro balicí komponentu při vytváření atributu dat.",
+        "hidden": "Dynamicky ovládat, zda je komponenta skrytá. Skrytý stav můžete změnit pomocí dynamické logické hodnoty.",
+        "hide_validation_message": "Chybová zpráva můžete skrýt přepnutím skrytého stavu, pokud je zadaná hodnota nesprávná. Skrytý stav můžete dynamicky změnit pomocí JavaScript.",
+        "input_default_value": "Počáteční hodnota vstupního pole. Počáteční hodnotu vstupního pole můžete dynamicky změnit zadáním JavaScriptu v {{}}.",
+        "loading": "Zda má komponenta zobrazit indikátor načítání.",
+        "map_data_option": "Použijte buď pole hodnot nebo objekt klíčů namapovaných pro pole. Každá položka ve vašem zdroji dat je namapována na každou možnost.",
+        "mapped_value": "Pomocí {{ currentRow }} získáte přístup k datům aktuálního řádku. Například, pro výpočet \"cost per click\" podle sloupců \"cost\" a \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Pro přístup k datům použijte {{table.selectedRow[n].columnName}}.",
+        "only_run_when": "Podmínky, které musí být splněny před provedením události.",
+        "placeholder": "Hodnota bude zobrazena, když je vstupní pole prázdné.",
+        "progress_percentage": "Procentuální hodnota je mezi 0 a 100.",
+        "read_only": "Určuje, zda je komponenta pouze pro čtení. Může být vybrána a zaměřena pouze pro čtení, ale nelze ji upravit.",
+        "required_field": "Platné pouze při zapnutí přepínače",
+        "switch_default_value": "Nastavte počáteční stav přepínače. Výchozí hodnotu můžete dynamicky změnit pomocí JavaScript.",
+        "table_only_run_when": "Podmínky, které musí být splněny před spuštěním události. Použijte {{ currentRow }} pro přístup k datům aktuálního řádku. Například, pouze když \"imgSize\" menší než 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Použijte aktuální řádek pro přístup k datům aktuálního řádku. Například pro nastavení hodnoty editovatelného textu komponenty na základě \"emailu\":  {{ currentRow.email }}.\n  A také můžete nastavit hodnotu v INSPEKT komponenty pomocí {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Pomocí {{ currentRow }} získáte přístup k datům aktuálního řádku. Například přejděte na url s parametrem \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "Můžete zadat hodnotu buď v textovém režimu Markdown nebo prostý režim. V režimu markdown lze rozpoznat pouze odkazy.",
+        "timeline_direction": "Změňte směr časové osy.",
+        "timeline_pending": "Zvolte, zda zobrazit uzel s nevyřízeným stavem.",
+        "tooltip": "Uživatel zde může zadat pomocný popisek. Popisek bude zobrazen, když bude zaostřen. Formát Markdown je podporován.",
+        "file_types": "Seznam přípon souborů povolených k nahrávání. Žádná hodnota neumožňuje všechny typy souborů.",
+        "file_list": "Chcete-li zobrazit seznam vybraných souborů pod nahrávacím zařízením. Výška nahrávání se dynamicky změní v závislosti na délce seznamu souborů.",
+        "parse_value": "Pokusit se analyzovat vybrané soubory s podporou pro JSON, CSV, TSV, Excel a TXT soubory.\nParsovaná data mohou být přístupná přes {{uploader1.parsedValue}}. Soubory, které nelze analyzovat, budou v poli neplatné.\nVšechny soubory jsou k dispozici jako base64 kódované řetězce na poli hodnot, bez ohledu na tuto možnost.",
+        "file_url": "Podporuje URL PDF na webu, nebo base64 kódovaných dat pdf souborů. Například: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Velikost každé stránky pro vyplnění šířky nebo výšky komponenty.",
+        "scroll": "Automaticky lokalizovat na začátek každé stránky při posouvání.",
+        "video_url": "Podporuje většinu video služeb nebo přímý odkaz na jakýkoli běžný typ video souboru nebo základní kódovaná data video souborů. Například: {{ data:audio/mp4;base64,exampleDate}}",
+        "collapse": {
+          "type": "Sbalitelný seznam: seznam, všechny položky automaticky zkopírují styl první položky. Data komponenty můžete zadat v každé položce prostřednictvím {{ currentItem.columnName }}. Sbalitelný panel: každý panel je nezávislý, můžete zadat dílčí styl a data každé položky zvlášť.",
+          "items": "Počet položek",
+          "accordin_mode": "V režimu accordion, když je položka rozšířena, ostatní položky se zhroutí."
+        }
+      },
+      "tab_title": "Kontrolovat",
+      "unselected_tip1": "Nebyly vybrány žádné komponenty.",
+      "unselected_tip2": "Kliknutím na komponentu ji vyberete.",
+      "setter": {
+        "click_mask_close": "Klepněte na masku pro zavření modálu",
+        "modal": {
+          "blank": "Žádné ikony"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Pomocí {{ item }} získáte hodnotu ze zdroje dat. Například ve zdroji dat jsou dva atributy. Jsou to imageUrl a url. Pokud chcete přejít na jinou url po kliknutí na obrázek, použijte {{ item.url }} pro nastavení url.",
+        "data_source": "Zdroj dat pro definování položek obrázku pomocí mapovaného vyhodnocení. Použijte buď pole hodnot nebo objekt klíčů mapovaných pro pole. Například: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Můžete také použít data při akcích. Například: {{ mysql1.data }} ",
+        "img_url_array": "Pomocí {{ item.attributeName }} získáte URL obrázku ze zdroje dat. ",
+        "carousel": {
+          "data_source": "Zdroj dat pro definování položek obrázku pomocí mapovaného vyhodnocení. Použijte buď pole hodnot nebo objekt klíčů mapovaných pro pole. Například: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Můžete také použít data při akcích. Například: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Podporovat base64 data, nezpracovaná data, mapovaná data tabulky. "
+        },
+        "variable": {
+          "available_in_objects": "Dostupné v objektech a polech. Cesta atributu v objektu: {{objectName.attributeName}}. Index hodnoty v poli: {{1}}. Pole v objektu: {{objectName.attributeName.1}}",
+          "the_target_value": "Cílová hodnota"
+        },
+        "slider": {
+          "default_value": "Počáteční hodnota slideru. Počáteční hodnotu můžete dynamicky změnit zadáním JavaScriptu v {{}}.",
+          "minimum": "Minimální hodnota posuvníku",
+          "maximum": "Maximální hodnota posuvníku",
+          "step_size": "Minimální jednotka změny sklíčka",
+          "label": "Název pole zobrazeného uživateli",
+          "caption": "Popisek použitý k podrobnému popisu pole",
+          "hide_label": "Nastavte, zda chcete zobrazit štítek",
+          "allow_wrapping": "Nastavte, zda povolit balení štítků",
+          "position": "Nastavte pozici štítku vzhledem k komponentě.",
+          "alignment": "Nastavit zarovnání štítku",
+          "width": "Pokud je štítek na levé straně komponenty, nastavte poměr šířky štítku",
+          "prefix_icon": "Ikona zobrazená před komponentou",
+          "suffix_icon": "Ikona zobrazená za komponentou",
+          "hide_output": "Nastavte, zda skrýt hodnotu při posunutí"
+        },
+        "step": {
+          "default_step": "Výchozí krok",
+          "show_step_number": "Zobrazit čísla kroků",
+          "indicate_completed_steps": "Uveďte dokončené kroky"
+        },
+        "range_slider": {
+          "start_value": "Pro nastavení minimální hodnoty rozsahu",
+          "end_value": "Pro nastavení maximální hodnoty rozsahu"
+        },
+        "audio": {
+          "audio_url": "Podporuje přímé odkazy na jakýkoli běžný typ zvukového souboru nebo odkazy na některé zvukové služby nebo na zakódovaná data zvukových souborů. Například: {{ data:audio/mp3;base64,exampleDate}}"
+        },
+        "map": {
+          "markers": "Pro nastavení značek na mapě. Značky by měly být pole objektů se stejnými vlastnostmi jako výchozí značky.",
+          "initial_location": "Při inicializaci mapy, výchozí středová pozice zobrazení",
+          "default_markers": "Výchozí značky zobrazené při inicializaci mapy. Můžete je nastavit dynamicky pomocí JavaScriptu v {{}}. ",
+          "latitude_field_name": "Zeměpisná šířka je převzata, ze které vlastnosti objektů počátečního umístění a výchozích značek.",
+          "longitude_field_name": "Zeměpisná délka je převzata, ze které vlastnosti objektů počátečního umístění a výchozích značek.",
+          "zoom": "Pro nastavení přiblížení mapy",
+          "enable_add_markers": "Zvolte, zda povolit uživatelům přidávat značky kliknutím na mapu",
+          "enable_search_locati": "Určuje, zda povolit uživatelům vyhledávat polohu",
+          "enable_clustering": "Zda povolit více značek agregovat, když je mapa oddálena"
+        },
+        "time_picker": {
+          "format": "platný formát času. Pro více informací o formátu: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "Rozsah hodnoty v minutách",
+          "show_a_clear_button_": "Zobrazit tlačítko \"Vyčistit\", když je myš nad komponentou. "
+        },
+        "time_range": {
+          "start_time": "Počáteční čas komponenty. ",
+          "end_time": "Počáteční čas ukončení komponenty. ",
+          "start_placeholder": "Hodnota bude zobrazena, když je pole počátečního času prázdné.",
+          "end_placeholder": "Hodnota bude zobrazena, když je pole času ukončení prázdné."
+        },
+        "eventCalendar": {
+          "event_value": "Použij objekt v {{ k nastavení hodnoty události. Například {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "Jedinečné ID používané k identifikaci události",
+          "title": "Název události",
+          "description": "Popis události",
+          "start": "Počáteční čas události",
+          "end": "Čas ukončení události",
+          "resource_id": "Zdroj může být osoba, zasedací místnost atd. Můžete nastavit ID zdroje a připojit jej k události. ",
+          "resource_title": "Název zdroje zobrazený v zobrazení zdroje",
+          "all_day": "Zda celodenní událost",
+          "data_source": "Zdroj dat událostí. Zdrojem dat by měl být soubor objektů. Každý objekt je událost. Například, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\"} ]}}",
+          "default_date": "Výchozí datum při spuštění aplikace",
+          "resource_grid": "Zda zobrazit zdrojovou mřížku",
+          "default_view": "Výchozí zobrazení při spuštění aplikace",
+          "show_current_time": "Nastavte, zda má být zobrazen aktuální časový úsek",
+          "calendar_background": "Nastavit pozadí kalendáře",
+          "calendar_border": "Nastavit barvu okraje",
+          "calendar_text": "Nastavit barvu textu",
+          "event_background": "Nastavit pozadí karty události",
+          "event_text": "Nastavit barvu textu karty události",
+          "couldnot_drag": "Pokud chcete změnit časové rozmezí, přejděte na náhled pro danou operaci."
+        }
+      },
+      "setter_option": {
+        "fixed": "Fixní",
+        "auto_limited": "Automatická výška s limity",
+        "auto_height": "Automatická výška",
+        "text_ellipsis": "Elipsis",
+        "text_scroll": "Posunout",
+        "text_clip": "Clip",
+        "scale_height": "Výška",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Sbalitelný panel"
+        },
+        "file_download": {
+          "auto": "Automaticky",
+          "plain_text": "Prostý text",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Nic",
+          "large": "Velký",
+          "medium": "Střední",
+          "small": "Malá"
+        },
+        "eventCalendar": {
+          "sunday": "Neděle",
+          "monday": "Pondělí",
+          "tuesday": "úterý",
+          "wednesday": "Středa",
+          "thursday": "Čtvrtek",
+          "friday": "Pátek",
+          "saturday": "Sobota",
+          "month": "Měsíc",
+          "week": "Týden",
+          "day": "Den",
+          "agenda": "Pořad jednání"
+        },
+        "table": {
+          "set_sort": "Nastavit řazení",
+          "column": "Sloupec",
+          "number": "Číslo",
+          "percent": "Procento",
+          "currency": "Měna",
+          "text": "Text",
+          "tag": "Značka",
+          "button_group": "Skupina tlačítek",
+          "date": "Datum:",
+          "time": "Čas",
+          "date_time": "Datum a čas",
+          "link": "Odkaz",
+          "rating": "Hodnocení",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Tlačítko",
+          "icon": "Ikona",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Bez omezení",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "Pozitivní barva",
+          "negative_color": "Negativní barva"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "nové_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Číslo mezi 0 a 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Vyberte si prosím z {{ min }} možností.",
+        "choose_up_to": "Vyberte si až {{max}} možností.",
+        "map": {
+          "zoom": "Nastavte hodnotu mezi 1 a 22"
+        },
+        "upload": {
+          "size_exceed": "Soubory s více než 500MB se nemusí analyzovat.",
+          "single_file": "Je povolen pouze jeden soubor.",
+          "file": "Nepodporované typy souborů jsou odstraněny",
+          "directory": "Jsou povoleny pouze adresáře."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Napište svůj kód zde. Použijte JavaScript uvnitř {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Přidat",
+        "body": "Tělo",
+        "default_view": "Výchozí zobrazení",
+        "edit_view": "Upravit zobrazení",
+        "footer": "Zápatí",
+        "header": "Záhlaví",
+        "key": "Klíč",
+        "left_panel": "Levý panel",
+        "preset": "Preset",
+        "right_panel": "Pravý panel",
+        "set_as_homepage": "Nastavit jako domovskou stránku",
+        "show_fold_icon": "Zobrazit fold ikonu",
+        "view_path": "Zobrazit cestu",
+        "views": "Zobrazení",
+        "width": "Width",
+        "height": "Výška",
+        "columns": "Sloupce"
+      },
+      "model_tips": {
+        "cancel_button": "Zrušit",
+        "change_layout_message": "Po změně rozvržení budou všechna data vymazána. Tuto operaci nelze obnovit, potvrďte",
+        "delete_section_message": "Po skrytí budou data v této sekci vymazána. Tuto operaci nelze obnovit, potvrďte",
+        "ok_button": "Potvrdit"
+      },
+      "panel_bar_title": {
+        "basic": "ZÁKLADNÍ",
+        "frame": "FRAME"
+      },
+      "tab_title": "Stránka",
+      "tooltips": {
+        "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
+        "view_path": "Řetězec za příkladem./app/page/ pro přístup k tomuto zobrazení",
+        "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
+      }
+    },
+    "validate_message": {
+      "email": "Zadejte prosím platnou e-mailovou adresu",
+      "max_length": "Nesmí být více než {{ number }} znaků",
+      "max_value": "Musí být menší než {{ number }}",
+      "min_length": "Musí mít alespoň {{ number }} znaků",
+      "min_value": "Musí být větší než {{ number }}",
+      "regex": "Porovnejte prosím požadovaný formát",
+      "required": "Toto pole je povinné",
+      "url": "Zadejte prosím platnou URL",
+      "max_size": "Velikost souboru nesmí přesáhnout {{maxSize }} {{ type }}.",
+      "min_files": "Alespoň {{ minFiles }} souborů je povinné.",
+      "max_files": "Podpořte až {{ maxFiles }} souborů.",
+      "min_size": "Velikost souboru nemůže být menší než {{minSize }} {{ type }}.",
+      "min_max_size": "Min. velikost ~ Maximální velikost"
+    },
+    "widget_picker": {
+      "empty_tip": "Omlouváme se, žádné výsledky hledání",
+      "search_placeholder": "Hledat",
+      "sessions": {
+        "calendar": "Vstupy kalendáře",
+        "commonly": "Komponenty",
+        "container": "Kontejner a forma",
+        "data": "Údaje",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Zobrazení",
+        "selects": "Vybrat vstupy"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Nastavit skryté",
+      "set_file_url": "Nastavit zdroj PDF",
+      "play": "Hrát",
+      "pause": "Pozastavit",
+      "seek_to": {
+        "time": "Čas",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "Zdroj videa"
+      },
+      "speed": {
+        "speed": "Rychlost",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Zastavit",
+      "mute": "Ztlumit",
+      "loop": "Smyčka",
+      "show_controls": "Zobrazit ovládací prvky",
+      "set_volumn": "Nastavit sloupec",
+      "set_volume": {
+        "volume": "Objem",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "resetPrimaryValue",
+        "primary_value": "Primární hodnota"
+      },
+      "collapse": {
+        "expand_all_items": "Rozbalit všechny položky",
+        "collapse_all_items": "Sbalit všechny položky"
+      },
+      "carousel": {
+        "showNext": "Zobrazit další viditelný obrázek",
+        "showPrevious": "Zobrazit předchozí viditelný obrázek"
+      },
+      "file_download": {
+        "download": "Stáhnout",
+        "message": {
+          "suc": "Začít stahovat",
+          "fail": "Požadavek se nezdařil",
+          "download_failed": "Stahování se nezdařilo"
+        }
+      },
+      "setGlobalData": "Nastavit globální data",
+      "setLocalStorage": "Nastavit místní úložiště",
+      "audio": {
+        "set_audio_url": "Nastavit zdroj zvuku"
+      },
+      "map": {
+        "marker_selected": "Značka vybrána",
+        "marker_created": "Značka vytvořena",
+        "markers_changed": "Značky změněny"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
+      },
+      "table": {
+        "clear_filters": "Vymazat filtry",
+        "clear_column_setting": "Vymazat nastavení sloupce",
+        "refresh": "Aktualizovat",
+        "select_page": "Vybrat stránku",
+        "select_row": "Vybrat řádek",
+        "clear_selection": "Vymazat výběr",
+        "set_filters": "Nastavit filtry"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Návod"
+          },
+          "title": {
+            "tutorial": "Návod",
+            "templates": "Šablony"
+          },
+          "onboarding_app": {
+            "name": "Zapojovací aplikace",
+            "description": "Postupujte podle návodu ILLA, abyste se naučili, jak vytvořit aplikaci.",
+            "action": "Přejít"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Rozštěpit tuto šablonu jako novou aplikaci"
+          },
+          "templates_name": {
+            "table": "Nástěnka",
+            "form": "Anketa",
+            "list": "Panel administrace"
+          },
+          "templates_description": {
+            "table": "Pro vytvoření řídicích panelů použijte tabulky.",
+            "form": "Použijte formuláře a vstupní komponenty k vytvoření aplikací.",
+            "list": "Použít komponentu seznamu k zobrazení a správě informací"
+          },
+          "modal": {
+            "title": "Rozštěpení a nasazení",
+            "placeholder": "Název aplikace",
+            "cancel": "Zrušit",
+            "fork": "Rozštěpení a nasazení"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Krok 1: Přetáhněte vstup zde",
+          "drag_button": "Krok 2: Přetáhněte tlačítko sem",
+          "drag_table": "Krok 3: Přetáhněte tabulku zde",
+          "exit": "Zrušit",
+          "do_it": "Udělejte to pro mě",
+          "drag_title": "Přetáhněte komponenty do rámečku",
+          "modify_action_title": "Upravit akci",
+          "modify_action_description_modify": "Upravte akci pro získání dat. Můžeme použít {{input1.value}} pro získání dat zadaných do vstupní komponenty. \n\nvyberte * \nod uživatelů\npřipojit se k objednávkám\nna uživatele.id = objednávky.id\n, kde {{!input1.value}} nebo lower(users.name) jako '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Klepněte na tlačítko Uložit a klepněte na tlačítko Spustit",
+          "display_data_title": "Zobrazit data v tabulce",
+          "display_data_description_select": "Vyberte tabulku na rámečku",
+          "display_data_description_modify": "Upravte zdroj dat na pravém panelu. K získání dat můžeme použít {{postgresql1.data}}.",
+          "event_handler_title": "Klikněte na tlačítko pro spuštění akce",
+          "event_handler_description_1": "Vyberte tlačítko na rámečku",
+          "event_handler_description_2": "Přidat obsluhu události",
+          "event_handler_description_3": "Klikněte na obsluhu události",
+          "event_handler_description_4": "Změnit akci pro spuštění",
+          "event_handler_description_5": "Změnit dotaz na postgre1",
+          "test_it_title": "Vyzkoušejte",
+          "test_it_description": "Zadejte uživatelské jméno, které chcete vyhledat a klikněte na tlačítko",
+          "test_it_button": "Další",
+          "congratulations_title": "Gratulujeme 🎉",
+          "congratulations_description": "Právě jste vytvořili svou první aplikaci. Pokud máte během používání nějaké dotazy, můžete nás kontaktovat prostřednictvím <0>Discord</0>. ",
+          "congratulations_button": "Hotovo",
+          "event_handler_description_all": "1. Přidejte obsluhu události\r\n2. Klikněte na obsluhu události\r\n3. Změňte akci pro spuštění akce\r\n4. Změňte dotaz na postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Velikost dat překračuje limit (současná velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)"
+    }
+  },
+  "exit_preview": "Ukončit náhled",
+  "freeze_collision": "Zmrazit srážku",
+  "freeze_messages": "Plátno je zmrazené. Můžete přetáhnout komponenty do kontejnerů nebo z nich.",
+  "freeze_tips": "Plátno je zmražené. Klikněte zde pro jeho rozmrazení.",
+  "link_copied": "Odkaz zkopírován",
+  "network_error": "Síť je odpojena. Zkontrolujte síť tohoto zařízení",
+  "not_online_tips": "Síť je odpojena. Zkontrolujte síť tohoto zařízení",
+  "preview": {
+    "viewport": {
+      "size": "Velikost",
+      "reset": "Reset",
+      "save": "Uložit",
+      "tooltip": {
+        "fluid_width": "Šířka kapaliny",
+        "desktop": "Stolní počítač (šířka = 1280px)",
+        "tablet": "Tablety (šířka = 1080px)",
+        "custom": "Vlastní"
+      }
+    },
+    "button_text": "Náhled"
+  },
+  "remove_fail": "Odstranění se nezdařilo",
+  "rename": "Přejmenovat",
+  "resources": "Zdroje",
+  "retry": "Opakovat",
+  "save": "Uložit",
+  "setting": {
+    "account": {
+      "email": "E-mailová adresa",
+      "empty_username": "Zadejte své uživatelské jméno",
+      "error_username": "Uživatelské jméno musí být 3 ~15 znaků",
+      "save": "Uložit změny",
+      "save_fail": "Uložení se nezdařilo",
+      "title": "ÚČET",
+      "username": "Uživatelské jméno"
+    },
+    "other": {
+      "language": "Jazyk",
+      "save": "Uložit změny",
+      "title": "NASTAVENÍ"
+    },
+    "password": {
+      "confirm_password": "Potvrzovací heslo",
+      "current_password": "Staré heslo",
+      "empty_password": "Zadejte prosím své heslo",
+      "error_format_password": "Heslo musí obsahovat 6 ~20 znaků",
+      "error_match_password": "Vaše heslo a potvrzovací heslo se neshodují",
+      "error_password_has_empty": "Heslo nemůže obsahovat mezery",
+      "error_validate_password": "Vaše heslo může obsahovat pouze čísla, písmena a interpunkce",
+      "new_password": "Nové heslo",
+      "submit_button": "Odeslat",
+      "title": "PASSWORD"
+    }
+  },
+  "share": "Sdílet",
+  "status": {
+    "403": {
+      "des": "Přístup odepřen"
+    },
+    "404": {
+      "again": "Aktualizovat",
+      "des": "Zdá se, že stránka, kterou hledáte, nebyla nalezena."
+    },
+    "500": {
+      "des": "Jejda, něco se pokazilo. Zkuste to prosím znovu později."
+    },
+    "back": "Zpět na domovskou stránku",
+    "mobile_forbidden": "Pro lepší úpravy navštivte prosím tuto stránku na ploše",
+    "back_to_cloud": "Zpět na ILLA Cloud",
+    "no_permission_title": "Nedostatečná oprávnění",
+    "no_permission_description": "Nemáte oprávnění k provedení požadované operace. Kontaktujte prosím správce ve vašem týmu."
+  },
+  "title": "Vítejte v illa",
+  "unfreeze_tips": "Zmrazte plátno a přetáhněte součásti do kontejnerů nebo z nich (D nebo K)",
+  "user": {
+    "description": "Open-source nízkoprogramová platforma pro vývojáře.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Poslat kód"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Zadejte prosím platnou e-mailovou adresu",
+          "registered": "E-mailová adresa není spojena s účtem.",
+          "require": "Prosím, zadejte svůj e-mail"
+        },
+        "newPassword": {
+          "require": "Zadejte prosím své heslo"
+        },
+        "verification_code": {
+          "expired": "Ověřovací kód vypršel",
+          "invalid": "Neplatný ověřovací kód",
+          "require": "Zadejte prosím ověřovací kód"
+        }
+      },
+      "fields": {
+        "email": "E-mailová adresa",
+        "newPassword": "Nové heslo",
+        "verification_code": "Ověřovací kód"
+      },
+      "placeholder": {
+        "email": "Zadejte svůj e-mail",
+        "verification_code": "Zadejte prosím ověřovací kód"
+      },
+      "subtitle": "Zpět k přihlášení",
+      "tips": {
+        "fail": "Obnovení hesla se nezdařilo",
+        "fail_sent": "Nepodařilo se odeslat ověřovací kód",
+        "success": "Obnovení hesla úspěšné",
+        "verification_code": "Ověřovací kód byl odeslán"
+      },
+      "title": "Obnovit heslo"
+    },
+    "password": {
+      "placeholder": "Zadejte své nové heslo (alespoň 6 znaků)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Přihlásit se"
+      },
+      "description": {
+        "forgot_password": "Zapomněli jste heslo?",
+        "policy": "Kliknutím na přihlášení souhlasím s <0>Zásadami ochrany osobních údajů</0> a <1>Výslovy</1>",
+        "register": "Nový uživatel? <0>Vytvořit účet</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Zadejte prosím platnou e-mailovou adresu",
+          "registered": "E-mailová adresa není spojena s účtem.",
+          "require": "Prosím, zadejte svůj e-mail"
+        },
+        "password": {
+          "incorrect": "Nesprávný e-mail nebo heslo",
+          "locked": "Příliš mnoho chybných pokusů, obnovte prosím své heslo nebo to zkuste znovu po 1 hodině",
+          "min_length": "Heslo musí mít alespoň 6 znaků",
+          "require": "Zadejte prosím heslo"
+        }
+      },
+      "fields": {
+        "email": "E-mailová adresa",
+        "password": "Heslo"
+      },
+      "placeholder": {
+        "email": "Zadejte svůj e-mail"
+      },
+      "tips": {
+        "fail": "Přihlášení se nezdařilo",
+        "success": "Úspěšně přihlášen"
+      },
+      "title": "Vítejte zpět"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Vytvořit účet",
+        "send": "Poslat kód"
+      },
+      "description": {
+        "login": "Již máte účet? <0>Přihlaste se</0>",
+        "policy": "Kliknutím na tlačítko Vytvořit účet souhlasím se zásadami ochrany osobních údajů</0> a <1>podmínkami</1>",
+        "subscribe": "Jsem ochoten dostávat aktualizace a novinky o ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Zadejte prosím platnou e-mailovou adresu",
+          "registered": "Účet s touto e-mailovou adresou již existuje.",
+          "require": "Prosím, zadejte svůj e-mail"
+        },
+        "password": {
+          "require": "Zadejte prosím heslo"
+        },
+        "username": {
+          "length": "Uživatelské jméno musí mít 3~15 znaků",
+          "require": "Zadejte prosím uživatelské jméno"
+        },
+        "verification_code": {
+          "expired": "Ověřovací kód vypršel",
+          "invalid": "Neplatný ověřovací kód",
+          "require": "Zadejte prosím ověřovací kód"
+        }
+      },
+      "fields": {
+        "email": "E-mailová adresa",
+        "password": "Heslo",
+        "username": "Uživatelské jméno",
+        "verification_code": "Ověřovací kód"
+      },
+      "placeholder": {
+        "email": "Zadejte svůj e-mail",
+        "username": "Zadejte své uživatelské jméno",
+        "verification_code": "Zadejte prosím ověřovací kód"
+      },
+      "tips": {
+        "fail": "Registrace se nezdařila",
+        "fail_sent": "Nepodařilo se odeslat ověřovací kód",
+        "success": "Úspěšně zaregistrováno",
+        "verification_code": "Ověřovací kód byl odeslán"
+      },
+      "title": "Zaregistrovat se",
+      "agreement": {
+        "privacy_policy": "zásady ochrany osobních údajů",
+        "terms_of_service": "podmínky služby"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Průběh lišty"
+    },
+    "button": {
+      "default_text": "Tlačítko",
+      "name": "Tlačítko"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Graf"
+    },
+    "check_box_group": {
+      "name": "Skupina zaškrtávacích políček"
+    },
+    "circle_progress": {
+      "name": "Průběh kruhu"
+    },
+    "container": {
+      "empty": "Stiskněte <keyPress>D</keyPress> nebo <keyPress>K</keyPress> a přetáhněte součásti sem",
+      "key_duplicated": "Klíč je duplikován. Použijte prosím unikátní klíče, abyste se vyhnuli chybám.",
+      "name": "Kontejner",
+      "value_duplicated": "Hodnota je duplicitní. Použijte prosím unikátní hodnoty, abyste se vyhnuli chybám."
+    },
+    "date": {
+      "name": "Datum:"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Datum a čas",
+      "placeholder": "Vyberte čas"
+    },
+    "divider_progress": {
+      "name": "Dělič"
+    },
+    "editable_text": {
+      "name": "Upravitelný text"
+    },
+    "form": {
+      "name": "Formulář"
+    },
+    "image": {
+      "name": "Obrázek"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Pro přístup k datům aktuální položky použijte {{ currentItem }} . Například nastavit hodnotu textové komponenty, která je v komponentě seznamu na základě \"uživatelského jména\": {{ currentItem.userName }}",
+      "doc2": "Pomocí {{list.selectedItem.data}} získáte přístup k datům vybraných položek v komponentě. Například pro nastavení hodnoty textové komponenty, která není součástí seznamu na základě \"uživatelského jména\" vybrané položky v seznamu: {{ list.selectedItem.userName }}",
+      "name": "Seznam"
+    },
+    "menu": {
+      "name": "Menu"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Vlevo",
+      "right": "Vpravo",
+      "select_options": {
+        "manual": "Ruční",
+        "mapped": "Mapováno"
+      },
+      "top": "Nahoře"
+    },
+    "radio_button": {
+      "name": "Přepínač"
+    },
+    "radio_group": {
+      "name": "Rozhlasová skupina"
+    },
+    "rate": {
+      "name": "Ohodnotit"
+    },
+    "select": {
+      "name": "Vybrat"
+    },
+    "switch": {
+      "name": "Přepínač"
+    },
+    "table": {
+      "ascend": "Asc",
+      "descend": "Desc",
+      "name": "Stupeň úvěrové kvality 1",
+      "pagination": "Stránkování",
+      "scroll": "Posunout"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Ahoj!",
+      "name": "Text",
+      "text_model": "Prostý text"
+    },
+    "timeline": {
+      "horizontal": "Horizontální",
+      "name": "Časová osa",
+      "vertical": "svislé"
+    },
+    "modal": {
+      "name": "Modál"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Nahrát",
+      "default_button_text": "Nahrát",
+      "default_dropzone_text": "Vyberte nebo přetáhněte soubor zde"
+    },
+    "icon": {
+      "name": "Ikona"
+    },
+    "pdf": {
+      "empty": "Žádné PDF soubory",
+      "failed": "PDF nelze načíst"
+    },
+    "video": {
+      "name": "Video",
+      "empty": "Žádná videa",
+      "fail": "Nepodařilo se načíst"
+    },
+    "statistics": {
+      "name": "Statistiky"
+    },
+    "collapse": {
+      "name": "Sbalit"
+    },
+    "multiselect": {
+      "name": "Vícenásobný výběr"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Kroky"
+    },
+    "slider": {
+      "name": "Posuvník"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Zvuk",
+      "no_audio": "Žádný zvuk"
+    },
+    "collaborative": {
+      "no_name": "Bez jména"
+    },
+    "map": {
+      "name": "Mapa"
+    },
+    "time_picker": {
+      "name": "Výběr času"
+    },
+    "time_range": {
+      "name": "Časový rozsah"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Kalendář událostí"
+      },
+      "name_duplicated": "Tento zdroj ID konfliktů v těchto událostech, použijte prosím stejné jméno nebo jiné ID"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Fixní",
+        "auto": "Automaticky"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Poslat kód"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Zadejte prosím platnou e-mailovou adresu",
+            "registered": "E-mailová adresa není spojena s účtem.",
+            "require": "Prosím, zadejte svůj e-mail"
+          },
+          "newPassword": {
+            "require": "Zadejte prosím své heslo"
+          },
+          "verification_code": {
+            "expired": "Ověřovací kód vypršel",
+            "invalid": "Neplatný ověřovací kód",
+            "require": "Zadejte prosím ověřovací kód"
+          }
+        },
+        "fields": {
+          "email": "E-mailová adresa",
+          "newPassword": "Nové heslo",
+          "verification_code": "Ověřovací kód"
+        },
+        "placeholder": {
+          "email": "Zadejte svůj e-mail",
+          "verification_code": "Zadejte prosím ověřovací kód"
+        },
+        "subtitle": "Zpět k přihlášení",
+        "tips": {
+          "fail": "Obnovení hesla se nezdařilo",
+          "fail_sent": "Nepodařilo se odeslat ověřovací kód",
+          "success": "Obnovení hesla úspěšné",
+          "verification_code": "Ověřovací kód byl odeslán"
+        },
+        "title": "Obnovit heslo"
+      },
+      "password": {
+        "placeholder": "Zadejte své nové heslo (alespoň 6 znaků)"
+      },
+      "policy": "Používáním ILLA souhlasíte s našimi <0>Zásadami ochrany osobních údajů</0> a <1>Podmínkami služby</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Přihlásit se"
+        },
+        "description": {
+          "forgot_password": "Zapomněli jste heslo?",
+          "policy": "Kliknutím na přihlášení souhlasím s <0>Zásadami ochrany osobních údajů</0> a <1>Výslovy</1>",
+          "register": "Nový uživatel? <0>Vytvořit účet</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Zadejte prosím platnou e-mailovou adresu",
+            "registered": "E-mailová adresa není spojena s účtem.",
+            "require": "Prosím, zadejte svůj e-mail"
+          },
+          "password": {
+            "incorrect": "Nesprávný e-mail nebo heslo",
+            "locked": "Příliš mnoho chybných pokusů, obnovte prosím své heslo nebo to zkuste znovu po 1 hodině",
+            "min_length": "Heslo musí mít alespoň 6 znaků",
+            "require": "Zadejte prosím heslo"
+          }
+        },
+        "fields": {
+          "email": "E-mailová adresa",
+          "password": "Heslo"
+        },
+        "placeholder": {
+          "email": "Zadejte svůj e-mail"
+        },
+        "tips": {
+          "fail": "Přihlášení se nezdařilo",
+          "success": "Úspěšně přihlášen",
+          "fail_account": "Nesprávný e-mail nebo heslo"
+        },
+        "title": "Vítejte zpět",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Registrace proběhla úspěšně. Heslo k vašemu e-mailovému účtu si můžete nastavit později",
+            "auth_failed": "Ověření se nezdařilo"
+          }
+        },
+        "option": {
+          "github": "Přihlásit se pomocí GitHub",
+          "google": "Přihlásit se pomocí Google",
+          "or": "NEBO"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Vytvořit účet",
+          "send": "Poslat kód"
+        },
+        "description": {
+          "login": "Již máte účet? <0>Přihlaste se</0>",
+          "policy": "Kliknutím na tlačítko Vytvořit účet souhlasím se zásadami ochrany osobních údajů</0> a <1>podmínkami</1>",
+          "subscribe": "Jsem ochoten dostávat aktualizace a novinky o ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Zadejte prosím platnou e-mailovou adresu",
+            "registered": "Účet s touto e-mailovou adresou již existuje.",
+            "require": "Prosím, zadejte svůj e-mail"
+          },
+          "password": {
+            "require": "Zadejte prosím heslo"
+          },
+          "username": {
+            "length": "Uživatelské jméno musí mít 3~15 znaků",
+            "require": "Zadejte prosím uživatelské jméno"
+          },
+          "verification_code": {
+            "expired": "Ověřovací kód vypršel",
+            "invalid": "Neplatný ověřovací kód",
+            "require": "Zadejte prosím ověřovací kód"
+          }
+        },
+        "fields": {
+          "email": "E-mailová adresa",
+          "password": "Heslo",
+          "username": "Uživatelské jméno",
+          "verification_code": "Ověřovací kód"
+        },
+        "placeholder": {
+          "email": "Zadejte svůj e-mail",
+          "username": "Zadejte své uživatelské jméno",
+          "verification_code": "Zadejte prosím ověřovací kód"
+        },
+        "tips": {
+          "fail": "Registrace se nezdařila",
+          "fail_sent": "Nepodařilo se odeslat ověřovací kód",
+          "success": "Úspěšně zaregistrováno",
+          "verification_code": "Ověřovací kód byl odeslán"
+        },
+        "title": "Zaregistrovat se",
+        "option": {
+          "github": "Zaregistrujte se pomocí GitHub",
+          "google": "Zaregistrovat se přes Google"
+        }
+      },
+      "description": "Open-source nízkoprogramová platforma pro vývojáře."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Návod"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Zadejte hodnotu ne menší než {{ size }}."
+  },
+  "failed_to_copy": "Kopírování se nezdařilo",
+  "copied": "Zkopírováno!",
+  "user_management": {
+    "role": {
+      "owner": "Vlastník",
+      "admin": "Administer",
+      "editor": "Editor",
+      "viewer": "Prohlížeč"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Pozvat členy"
+      },
+      "link": {
+        "invite_title": "Odkaz na pozvání",
+        "copy": "Kopírovat",
+        "turn_off": "Vypnout odkazy pozvánky",
+        "update": "Aktualizovat odkazy pozvánky",
+        "description": "Sdílejte tajné odkazy lidí mohou použít pro připojení k vašemu týmu.",
+        "turn_on": "Zapnout odkazy pozvánky",
+        "fail": "Nepodařilo se získat odkaz, zkuste to prosím později",
+        "copied_suc": "Zkopírováno!",
+        "failed_to_copy": "Kopírování se nezdařilo",
+        "turn_off_fail": "Vypnutí se nezdařilo",
+        "turn_on_fail": "Zapnutí se nezdařilo",
+        "make_public_title": "Zveřejnit aplikaci",
+        "make_public_copy": "Kopírovat"
+      },
+      "email": {
+        "invite_title": "Pozvat e-mailem",
+        "invite": "Pozvat",
+        "placeholder": "Zadejte e-mailovou adresu",
+        "invited": "Pozvali",
+        "in_list": "Tento uživatel je již ve vašem týmu.",
+        "notmail": "{{ email }} není e-mail",
+        "duplicate": "{{ email }} je duplikován"
+      },
+      "invalid_email": "Zadejte prosím platný e-mail",
+      "message": {
+        "make_public_suc": "Úspěšně nastaveno",
+        "make_public_failed": "Nastavení se nezdařilo",
+        "app_share_in_team": "{{ email }} je již ve vašem týmu, prosím sdílejte odkaz s ním. "
+      },
+      "tab": {
+        "invite": "Pozvat",
+        "public": "Veřejnost"
+      }
+    },
+    "mes": {
+      "invite_suc": "Pozvánka úspěšně",
+      "invite_fail": "Pozvání se nezdařilo",
+      "update_suc": "Úspěšně aktualizováno",
+      "update_fail": "Aktualizace se nezdařila",
+      "transfer_suc": "Úspěšně převedeno",
+      "transfer_fail": "Přenos se nezdařil",
+      "remove_suc": "Úspěšně odstraněno",
+      "remove_fail": "Odstranění se nezdařilo",
+      "change_role_fail": "Aktualizace se nezdařila",
+      "change_role_suc": "Úspěšně aktualizováno"
+    },
+    "page": {
+      "member": "Člen",
+      "invite": "Pozvat",
+      "permission": "Právo",
+      "operation": "Operace",
+      "transfer": "Převést vlastnictví",
+      "remove": "Odebrat"
+    },
+    "transfer_modal": {
+      "title": "Jste si jisti, že chcete převést vlastnictví?",
+      "description": "Po přenosu se vaše oprávnění změní na správce.",
+      "transfer": "Převod",
+      "cancel": "Zrušit"
+    },
+    "remove_modal": {
+      "title": "Jste si jisti, že chcete odstranit {{ username }}?",
+      "description": "Po odstranění uživatel nebude mít přístup k týmu.",
+      "remove": "Odebrat",
+      "cancel": "Zrušit"
+    },
+    "status": {
+      "pending": "Nevyřízeno"
+    },
+    "settings": {
+      "allow_editors_invite": "Povolit editorům a divákům spravovat členy"
+    }
+  },
+  "copy_failed": "Kopírování se nezdařilo",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Nastavení týmu",
+      "member": "Člen",
+      "leave": "Opustit tým",
+      "delete": "Odstranit tým"
+    },
+    "leave_modal": {
+      "title": "Jste si jisti, že chcete opustit tento tým?",
+      "description": "Po opuštění nebudete mít přístup k žádným materiálům týmu.",
+      "leave": "Opustit",
+      "cancel": "Zrušit"
+    },
+    "delete_modal": {
+      "title": "Jste si jisti, že chcete odstranit tento tým?",
+      "delete": "Vymazat",
+      "cancel": "Zrušit",
+      "desctiption": "Identifikátor týmu nebude po odstranění k dispozici a všichni členové budou z tohoto týmu odebráni."
+    },
+    "team_info": {
+      "title": "Informace o týmu",
+      "team_name": "Název týmu",
+      "domain": ".illacloud.com",
+      "existed": "Již existuje",
+      "available": "Dostupné",
+      "edit": "Upravit",
+      "save": "Uložit změny",
+      "adjust_avater": "Upravit avater",
+      "avater_crop": "Plodiny",
+      "team_name_empty": "Zadejte prosím název týmu",
+      "team_id_empty": "Zadejte prosím identifikátor týmu",
+      "team_name_placeholder": "Zadejte název týmu",
+      "team_id_placeholder": "Zadejte identifikátor týmu",
+      "leave_title": "Opustit tým",
+      "leave_button": "Opustit tým",
+      "delete_title": "Odstranit tým",
+      "delete_button": "Odstranit tým",
+      "team_domain": "Identifikátor týmu"
+    },
+    "message": {
+      "save_suc": "Úspěšně uloženo",
+      "save_fail": "Uložení se nezdařilo"
+    },
+    "mes": {
+      "domain_suc": "Vytvoření bylo úspěšné.",
+      "delete_suc": "Úspěšně odstraněno",
+      "delete_fail": "Odstranění se nezdařilo",
+      "leave_suc": "Odejít úspěšně",
+      "leave_fail": "Nepodařilo se opustit"
+    }
+  },
+  "members": "Členové",
+  "invite_new_member": "Pozvat",
+  "launch": "Spustit",
+  "homepage": {
+    "message": {
+      "join_failed": "Nepodařilo se připojit k týmu: váš e-mail není pozvaný e-mail."
+    }
+  },
+  "image_exceed": "Velikost obrázku nesmí překročit 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Plodiny",
+        "save": "Uložit",
+        "cancel": "Zrušit"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Úspěšně uloženo",
+        "save_fail": "Uložení se nezdařilo"
+      },
+      "password": {
+        "title": "Heslo"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Sbalitelný seznam"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "Na {{ nodeName }} existuje kruhová závislost"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Ochrana osobních údajů",
+      "description": "Tyto zásady ochrany osobních údajů vysvětlují naše postupy týkající se shromažďování, používání a zveřejňování informací, které dostáváme prostřednictvím našich služeb."
+    },
+    "terms": {
+      "description": "Tyto podmínky služby upravují váš přístup k našim Stránkám a jejich používání.",
+      "title": "Podmínky služby"
+    }
+  },
+  "empty_copied_tips": "Obsah ke zkopírování je prázdný",
+  "copy_empty": "Obsah ke zkopírování je prázdný",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Naučte se vytvořit aplikaci za 5 minut",
+          "description": "Postupujte podle návodu ILLA, abyste se dozvěděli jak vytvořit aplikaci. Bude to trvat asi 5 minut.",
+          "cancel": "Zrušit",
+          "take": "Udělat výukový kurz"
+        },
+        "exit_confirm": {
+          "title": "Zastavit tutoriál?",
+          "description": "Při příštím vstupu do aplikace pro zapojení budou navázané kroky znovu přehrány ",
+          "cancel": "Zrušit",
+          "exit": "Zastavit"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Přesměrování",
+  "oauth_redirect_description": "Přesměrování na <0>ILLA Cloud</0>"
+}

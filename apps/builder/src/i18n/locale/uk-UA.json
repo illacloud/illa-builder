@@ -1,0 +1,2781 @@
+{
+  "Logout": "Вийти з системи",
+  "Setting": "Налаштування",
+  "apps": "Застосунки",
+  "back": "Відмінити",
+  "btn": {
+    "choose_file": "Виберіть файл"
+  },
+  "change_fail": "Не вдалося змінити",
+  "change_success": "Зміни успішно змінені",
+  "collision_message": "Натисніть D або K і перетягніть компонент у контейнер",
+  "create_fail": "Не вдалося створити",
+  "create_new": "Створити новий",
+  "create_new_app": "Створити новий",
+  "created_at": "Створений в",
+  "dashboard": {
+    "app": {
+      "all_apps": "Всі додатки",
+      "create_app": "Створити застосунок",
+      "duplicate_fail": "Не вдалося продублювати",
+      "duplicate_placeholder": "Введіть тут назву додатку",
+      "edited_time": "Відредаговано в {{ time }} від {{ user }}",
+      "name_empty": "Будь ласка, введіть ім'я",
+      "name_existed": "Ім'я вже взяте",
+      "rename_app": "Перейменувати додаток",
+      "rename_fail": "Не вдалося перейменувати",
+      "rename_success": "Перейменовано успішно",
+      "trash_failure": "Не вдалося вилучити",
+      "trash_success": "Успішно вилучено"
+    },
+    "common": {
+      "cancel": "Скасувати",
+      "delete": "Видалити",
+      "delete_cancel_text": "Скасувати",
+      "delete_content": "Це порушить запити додатків і запитів до бібліотеки, що використовують цей ресурс",
+      "delete_ok_text": "Видалити",
+      "delete_title": "Ви впевнені?",
+      "error_button": "Повторити спробу",
+      "error_description": "Виникла проблема з вашою операцією.",
+      "error_title": "Помилка"
+    },
+    "resource": {
+      "create_resource": "Створити новий",
+      "created": "Створений",
+      "dbname": "Ім'я бази даних",
+      "delete_fail": "Не вдалося вилучити",
+      "delete_success": "Успішно вилучено",
+      "resource_name": "Ім'я",
+      "resource_type": "Тип",
+      "save_fail": "Не вдалося зберегти",
+      "save_success": "Успішно збережено",
+      "test_fail": "Не вдалося протестувати",
+      "test_success": "Перевірка пройшла успішно"
+    }
+  },
+  "dayjs": {
+    "just_now": "Щойно"
+  },
+  "deploy": "Розгортання",
+  "description": {
+    "part1": "Це приклад без простору імен."
+  },
+  "dont_need_save": "ILLA буде продовжувати використовувати автозбереження вашої роботи.",
+  "duplicate": "Duplicate",
+  "edit": "Редагувати",
+  "edit_at": "Відредаговано",
+  "edit_failed": "Не вдалося зберегти, будь ласка, перевірте вашу мережу.",
+  "edit_success": "Успішно відредаговано",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Відмінити",
+            "create_action": "Створити дію",
+            "new_resource": "Новий ресурс"
+          },
+          "selector": {
+            "title": "Виберіть тип дії"
+          },
+          "title": {
+            "choose_resource": "Виберіть ресурс "
+          }
+        },
+        "btn": {
+          "close": "закрити",
+          "new": "Новий"
+        },
+        "contextMenu": {
+          "delete": "Видалити",
+          "duplicate": "Duplicate",
+          "rename": "Перейменувати"
+        },
+        "message": {
+          "confirm_switch": "Ви не зберегли свій запит. Ви дійсно бажаєте скасувати зміни?",
+          "failed": "Не вдалося підключитися до сервера",
+          "load_action_list_fail": "Не вдалося отримати список дій: {{message}}",
+          "load_resource_fail": "Не вдалося отримати список ресурсів: {{message}}",
+          "name_already_exist": "Уже існує",
+          "please_input_name": "Будь ласка, введіть назву",
+          "success_created": "Успішно створено",
+          "success_deleted": "Успішно видалено",
+          "success_saved": "Успішно збережено",
+          "valid_name": "Може містити лише літери, цифри, '_' або '$', починаються з символу '_' чи букви"
+        },
+        "placeholder": {
+          "search": "Пошук"
+        },
+        "runtime": {
+          "backend": "Бекенд",
+          "execute_resource": "виконати ресурс",
+          "frontend": "Зовнішній інтерфейс",
+          "handle_response": "обробляти відповідь",
+          "post_processing": "обробка посту",
+          "prepare_query": "Підготувати запит",
+          "response_size": "Розмір відповіді",
+          "total": "Загальна сума замовлення",
+          "transfer_data": "передати дані",
+          "transformer": "трансформатор"
+        },
+        "tips": {
+          "empty": "Додайте дію, щоб розпочати роботу з даними з відповідного ресурсу.",
+          "not_found": "Пошук не дав результатів"
+        },
+        "title": "Список дій"
+      },
+      "form": {
+        "btn": {
+          "back": "Відмінити",
+          "save_changes": "Зберегти ресурс",
+          "test_connection": "Перевірка підключення"
+        },
+        "required": "Це необхідно",
+        "title": {
+          "api": "ОЗ",
+          "configure": "Налаштування {{ name }}",
+          "database": "ДАНІ",
+          "select": "Виберіть тип ресурсу",
+          "huggingface": "Затискаючи обличчя",
+          "appwrite": "Аплікація",
+          "couchdb": {
+            "couchdb": "БД каучків"
+          },
+          "oracle": {
+            "oracle": "Оракул БД"
+          },
+          "gs": {
+            "google_sheets": "Таблиці Google"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} обов'язковий"
+        },
+        "label": {
+          "inference_api": "API висновків",
+          "inference_endpoint": "Контрольна точка",
+          "s3": "Невірно в публічних додатках",
+          "acl": "S3 ACL для завантажених файлів",
+          "appwrite": {
+            "host": "Хост",
+            "dbid": "ID бази даних",
+            "projectid": "Ідентифікатор проекту",
+            "secret": "Ключ API",
+            "collectionid": "ID колекції",
+            "documentid": "ID документа",
+            "data": "Дані",
+            "filter": "Фільтр",
+            "order": "Сортування за",
+            "limit": "Ліміт"
+          },
+          "oracle": {
+            "sid": "Врахувати ім'я бази даних як",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Сертифікати",
+            "verification_mode": "Режим перевірки"
+          },
+          "gs": {
+            "private_key": "Приватний ключ",
+            "action_type": "Тип дії",
+            "spreadsheet": "Електронна таблиця",
+            "sheet_name": "Назва листа",
+            "data_range": "Діапазон даних",
+            "limit": "Ліміт",
+            "offset": "Зміщення",
+            "a1_notation": "Нотація A1",
+            "values_to_append": "Значення для додавання",
+            "filter_by": "Сортування за",
+            "update_value": "Значення оновлення",
+            "primary_key_column": "Стовпець первинного ключа",
+            "array_of_rows_to_upd": "Масив рядків для оновлення",
+            "filters_to_match_row": "Індекс рядка",
+            "consider_queries_tha": "Розглянемо запити, які не видаляють рядки як виконані успішно",
+            "title_of_spreadsheet": "Заголовок таблиці",
+            "sheet_id_to_copy": "ID листа для копіювання",
+            "sheet_to_copy_to": "Аркуш для копіювання",
+            "authentication": "Автентифікація",
+            "connect_with_oauth": "З'єднатися з OAuth і зберегти",
+            "reconnect_with_oauth": "Повторне підключення з OAuth",
+            "access_type": "Тип доступу"
+          }
+        },
+        "placeholder": {
+          "url": "Введіть URL запит",
+          "appwrite": {
+            "host": "ІМ'Я ГОТОВОМ АБО",
+            "dbid": "ID бази даних",
+            "projectid": "Ідентифікатор проекту",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "атрибут",
+              "value": "1234"
+            },
+            "order": "атрибут",
+            "collectionid": "Обрати колекцію",
+            "data": "Об'єкт закритий в {{ }}. Наприклад, \n{{ \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "оракул",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"10000000000000000\",\r\n  \"auth_uri\": \"https://Облікові записи. oogle.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "назва_стовпця",
+              "value": "значення"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "назва_стовпця",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
+            "filters_to_match_row": {
+              "key": "ключ",
+              "value": "значення"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Наданий контент - конфігурація PUBLC. Залиште порожнім для PRIVATE. Не забудьте налаштувати CORS у своєму відрі. <0>Переглянути обмін ресурсами з стороннього джерела (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Схоже, ви намагаєтеся підключитися до бази даних локальної до вашого комп'ютера або частини приватної мережі. Ця версія може не працювати в ILLA Cloud. Перевірте наші <0>документації</0> як зробити самоконтрольну версію.",
+            "selfhost": "Схоже, ви намагаєтеся підключитися до бази даних з вашою машиною. Будь ласка, використовуйте локальну IP-адресу мережі комп'ютера замість \"localhost\" або \"127.0.0.1\".",
+            "title": {
+              "tips": "Рекомендації"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Ваш сервер може бути вразливим до атак."
+            }
+          },
+          "gs": {
+            "private_key": "Використовується для з'єднання з таблицями Google. Натисніть <0>тут</0> для створення проекту та отримання облікових даних OAuth. При аутентифікації сервісного облікового запису у нас буде тільки доступ до електронних таблиць, які ви поділяєте з адресою електронної пошти, що відповідає використаній сервісним обліковим записом. Дивіться <1>тут</1> по документації щодо створення акаунта й доступу до ключа.\n\nКористувачі можуть користуватись обмеженнями різних компонентів обробки, які не контролюються листами. Дізнайтеся більше про ліміти <2>квоти</2>",
+            "leave_blank_to_selec": "Залиште поле порожнім, щоб вибрати першу аркуш",
+            "to_select_the_first_": "Щоб вибрати перші п'ять клітин в першій колонці листа аркуші1, нотація A1 - простима!A1:A5. <0>Перегляньте документи Google для отримання додаткової інформації. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "Щоб вибрати перші п'ять клітин в першій колонці листа аркуші1, нотація A1 - простима!A1:A5. <0>Перегляньте документи Google для отримання додаткової інформації. </0>",
+            "sheet_id_to_copy": "Знайдіть це, глянувши на ?gid=123123 з URL ваших таблиць",
+            "copy_to_sheet_name": "Обов'язково. Перейменуйте скопійований лист.",
+            "successfully_authent": "Успішно автентифіковано",
+            "failed_to_authentica": "Не вдалося здійснити автентифікацію"
+          },
+          "tidb": {
+            "ca_certificate": "Ми заповнюємо CA сертифікат, який використовується для TLS з'єднань за замовчуванням на сервер. Якщо вам потрібні TLS підключення до виділеного Tier, <0>Натисніть тут</0> для перегляду методу конфігурації."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Створити документ",
+              "list": "Список документів",
+              "get": "Отримати документ",
+              "update": "Оновити документ",
+              "delete": "Видалити документ"
+            },
+            "filter": {
+              "and": "І",
+              "or": "АБО",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "За зростанням",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "СІД",
+              "service": "Ім'я Сервісу"
+            },
+            "ssl": "Використовувати SSL при наявності"
+          },
+          "couchdb": {
+            "ssl": "Використовувати SSL/TLS при наявності"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Дайджест Авторизація",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Апагонська автентифікація",
+              "aws_v4": "Підпис AWS V4",
+              "session_based_auth": "Сесія, на основі (застаріла)"
+            },
+            "certificates": "Використовувати самопідписані сертифікати",
+            "ca_certificate": "Сертифікат центру сертифікації",
+            "client_key": "Ключ клієнта",
+            "client_certificate": "Сертифікат клієнта",
+            "verification_mode": {
+              "full_verification": "Повна перевірка",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Пропустити перевірку СКС"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Читання даних з таблиці",
+              "append_data_to_a_spr": "Додати дані до таблиці",
+              "update_a_spreadsheet": "Оновити таблицю",
+              "bulk_update_a_spread": "Масове оновлення таблиці за основним ключем",
+              "delete_a_single_row_": "Видаліть один рядок з таблиці",
+              "create_a_spreadsheet": "Створити таблицю",
+              "copy_a_single_sheet_": "Копіювати одну таблицю",
+              "list_available_sprea": "Список доступних електронних таблиць",
+              "get_spreadsheet_info": "Отримати інформацію про таблицю"
+            },
+            "data_range": {
+              "use_a1_notation": "Використовувати позначення A1",
+              "use_limit_and_offset": "Використати ліміт і зсув"
+            },
+            "filter_by": {
+              "use_a1_notation": "Використовувати позначення A1",
+              "use_row_filters": "Використовувати фільтри рядків"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Обліковий запис служби",
+            "read_and_write": "Читання і запис",
+            "read_only": "Тільки для перегляду"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Обліковий запис служби"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Вимкнено",
+          "enable": "Увімкнено",
+          "new": "Новий",
+          "run": "Ран",
+          "save": "Зберегти",
+          "save_and_run": "Зберегти і запустити",
+          "save_fail": "Не вдалося зберегти",
+          "test_run": "Тест запуску"
+        },
+        "elastic": {
+          "action_type": "Тип дії",
+          "body": "Тіло",
+          "id": "Id",
+          "index": "Покажчик",
+          "query": "Запит"
+        },
+        "error": {
+          "max_file": "Розмір файлу не може перевищувати 5П."
+        },
+        "firebase": {
+          "action_type": "Тип дії",
+          "collection": "Колекція",
+          "database_ref": "Оновлення бази даних",
+          "document_id": "ID документа",
+          "email": "Ел. пошта",
+          "end_at": "Завершиться о",
+          "len_of_list": "Довжина списку ",
+          "limit": "обмеження",
+          "next_page_token": "Токен наступної сторінки",
+          "object_to_set": "Об'єкт для встановлення",
+          "order_by": "Сортування за",
+          "ordering_direction": "Напрямок сортування",
+          "parent_document_id": "ID батьківського документа",
+          "phone_number": "Номер телефону",
+          "placeholder": {
+            "asc": "зростання",
+            "document_value": "{{ \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Ввести колекцію",
+            "key": "ключ",
+            "select_an_action": "Виберіть дію",
+            "select_collection": "Обрати колекцію",
+            "value": "значення"
+          },
+          "service_type": "Тип послуги",
+          "start_at": "Почати в",
+          "tips": {
+            "document_id": "Залиште пустим для автоматичного створеного ID.",
+            "parent_document_id_tips": "Залиште порожнім для колекцій верхнього рівня."
+          },
+          "uid": "ІД UID",
+          "use_a_dropdown": "Використати випадаючий список",
+          "use_end_at": "Використовувати endAt",
+          "use_raw_id": "Використовувати неформатований ідентифікатор",
+          "use_start_at": "Use startAt",
+          "user_object": "Об'єкт користувача ",
+          "value": "значення",
+          "where": "де"
+        },
+        "label": {
+          "event_handler": "Обробник подій",
+          "failure": "Невдача",
+          "resource": "Ресурси",
+          "success": "Успіх",
+          "transformer": "Трансформатор",
+          "couchdb": {
+            "database": "База даних",
+            "action_type": "Тип дії"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Обрати базу даних",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Ключ користувача",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "дані деяких додатків",
+              "app": "ID заявки",
+              "dig": "делегато-по",
+              "us-east-1": "нев-схід-1",
+              "authenticate_using_t": "Автентифікуйтесь за допомогою заголовка авторизації HTTP замість параметрів запиту",
+              "find_instructions_on": "Шукайте інструкції для пошуку ключів доступу <0>в документах AWS</0>.",
+              "role_to_assume": "Використовуйте <0>іншу роль</0> при доступі до API"
+            },
+            "advanced": {
+              "select_pages": "Вибрати сторінки"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Список записів",
+                "retrieve": "Отримати запис",
+                "create": "Створити запис",
+                "update": "Оновити запис",
+                "delete": "Видалити запис",
+                "find": "Знайти",
+                "get": "Отримати вигляд"
+              },
+              "skip": "Пропустити",
+              "limit": "Ліміт",
+              "include": "Включити документацію",
+              "des": "Ордер",
+              "id": "_id",
+              "rev": "_описати",
+              "record": "Запис",
+              "mangoquery": "Мангопривод",
+              "ViewURL": "Перегляд URL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Документи в результатах, що повертаються",
+              "des_option": "Використовувати упорядкування за спаданням"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "РСА-ША512",
+                "plaintext": "ВІДТВОРИТИ"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Файл",
+                "text": "Текст"
+              },
+              "method": {
+                "options": "НАЛАШТУВАННЯ",
+                "head": "ГОЛОВА"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Параметри запиту",
+                "header_authorization": "Авторизація заголовку"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Запустити цю дію, коли завантажується сторінка",
+              "show_a_loading_page_": "Показувати завантаження сторінки на форумі",
+              "on_page_loading": "При завантаженні сторінки",
+              "on_app_loading": "При завантаженні застосунків",
+              "none": "Без ефекту"
+            }
+          },
+          "restapi": {
+            "signature_method": "Метод підпису",
+            "consumer_key": "Ключ користувача",
+            "consumer_secret": "Секретний ключ",
+            "access_token": "Маркер доступу",
+            "token_secret": "Секретний ключ",
+            "private_key": "Приватний ключ",
+            "realm": "Реалм",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Гок Auth ключ",
+            "algorithm": "Алгоритм",
+            "user": "Користувач",
+            "nonce": "Nonce",
+            "ext": "Текст",
+            "app": "додаток",
+            "dig": "dig",
+            "timestamp": "Часові відмітки",
+            "aws_region": "Регіон AWS",
+            "aws_service": "Служба AWS",
+            "aws_access_key_id": "ID ключа доступу AWS",
+            "aws_secret_key_id": "AWS ID Секретного ключа",
+            "role_to_assume": "Роль для припущення (ARN)",
+            "list_of_cookies_to_f": "Список куків наперед",
+            "add_access_token_to": "Додати токен доступу для"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Або бінарний рядок, або об'єкт: {{ data: binary string, filename?: стрічка } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Дія не буде викликана під час завантаження сторінки. Ви можете вручну викликати дію і увімкнути опцію \"Запустити цю дію, коли завантажується сторінка\" в розширених налаштуваннях."
+            }
+          },
+          "advanced": {
+            "advanced": "ПРОСУНУТІ",
+            "page_trigger": "Таймінг",
+            "loading_page": "Завантаження сторінки",
+            "page_load_delay": "Затримка (мс)",
+            "run_this_action_peri": "Періодично виконувати цю дію",
+            "interval": "Інтервал (ів)",
+            "actions_running_when": "Дії виконуються, коли сторінка завантажується",
+            "pages": "Сторінки",
+            "periodically_run": "Періодично запускати"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Видалити",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Тип дії",
+          "aggregation": "Агрегація",
+          "collection": "Колекція",
+          "document": "Документ",
+          "field": "Поле",
+          "filter": "Фільтр",
+          "limit": "Ліміт",
+          "operations": "Операції",
+          "options": "Опції",
+          "projection": "Проекція",
+          "query": "Запит",
+          "skip": "Пропустити",
+          "sort_by": "Сортувати за",
+          "update": "Оновити"
+        },
+        "option": {
+          "resource": {
+            "new": "Створити новий ресурс"
+          },
+          "trigger": {
+            "manually": "Виконати дію лише за умови активації вручну",
+            "on_change": "Виконати дію автоматично при зміні входів"
+          }
+        },
+        "s3": {
+          "action_type": "Тип дії",
+          "bucket_name": "Найменування",
+          "content_type": "Тип вмісту",
+          "delimiter": "Роздільний знак",
+          "error": {
+            "max_file": "Розмір файлу не може перевищувати 5П."
+          },
+          "expiry_duration_of_signed_url": "Термін дії позначеного URL (Хвилин)",
+          "generate_signed_url": "Згенерувати підписану URL-адресу",
+          "max_keys": "Максимум ключів",
+          "object_key": "Ключ об'єкта",
+          "object_key_list": "Список ключів об'єктів",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "Експорт .csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Префікс для фільтрації результатів",
+          "tips": {
+            "delimiter": "Роздільник - це символ, який ви використовуєте для групових ключів.",
+            "max_keys": "Встановлює максимальну кількість ключів, що повертаються у відповідь. За замовчуванням дія повертає до 1000 імен ключів."
+          },
+          "upload_data": "Відправити дані",
+          "upload_data_list": "Вивантажити список даних",
+          "upload_object_name": "Завантажити ім'я об'єкта",
+          "upload_object_name_list": "Завантажити список імен об'єкта",
+          "timeout_upload": "Тайм-аут за завантаження файлу (Хвилин)",
+          "timeout_upload_multiple": "Тайм-аут за завантаження одного файлу (Хвилин) "
+        },
+        "smtp": {
+          "attachment": "Вкладення",
+          "bcc_email": "Бк. е-пошта(и)",
+          "body": "Тіло",
+          "cc_email": "Cc email(s)",
+          "from_email": "З електронної пошти",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Використовувати коми для розділення листів. Наприклад, {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Адреса електронної пошти для відповіді",
+          "set_replay_email": "Установити ел. пошту для відповіді",
+          "subject": "Тема",
+          "tips": {
+            "port": "Деякі провайдери можуть блокувати порт 25.Якщо підключення не вдалося, змініть порт \n."
+          },
+          "to_email": "Ел. пошта(и)",
+          "use_html": "Використовувати HTML",
+          "use_raw": "Використовувати сирий текст"
+        },
+        "tips": {
+          "transformer": "Увімкнути перетворювачів для перетворення результату запиту в інший формат."
+        },
+        "graphql": {
+          "query": "Запит",
+          "variables": "Змінні",
+          "headers": "Заголовки",
+          "placeholder": {
+            "query": "# Використовуйте $ щоб додати змінну до запиту (наприклад, $category ) \r\nзапит ($owner: рядок!, $name: рядок! {\r\n  репозиторій(власник: $owner, ім'я: $name) \r\n"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "ID моделі",
+          "placeholder": {
+            "mode_id": "нижній основа берта",
+            "text": "Відповідь на Всесвіт — [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Який фільм є найкращим ?\"], \r\n\"generated_respons\": [\"Це померти важко, щоб дізнатися.\"], \r\n\"текст\": \"Ти можеш пояснити, чому?\" \r\n",
+            "binary": "тобто {{ upload1.file[0] }}. двійкові файли без префіксу файлу",
+            "use_cache": "Логічний об’єкт, залиште порожнім для значення true",
+            "min_length": "Ціле число для визначення мінімальної довжини в токенах вихідного резюме",
+            "top_k": "Ціле число для визначення верхнього токену",
+            "top_p": "Плавати для визначення токенів",
+            "temperature": "Плаваюча (0.0-100.0),залиште порожнім для 1.0",
+            "repetition_penalty": "Поверх (0.0-100.0)",
+            "max_time": "Поверх (0.0-120.0) для визначення часу в секундах"
+          },
+          "tips": {
+            "mode_id": "Перейдіть до <0>моделі Hub</0> та оберіть модель, яку ви хочете використати.",
+            "use_detail_parameters": "<0>Натисніть тут</0> щоб дізнатись більше про параметри деталей",
+            "temperature": "1 означає звичайний вибірка, 0 означає завжди брати найбільшу оцінку, 100.0 - отримати ближче до однорідної ймовірності.",
+            "repetition_penalty": "Чим більше токена використовується в генерації тим більше він буде штрафований, щоб не бути обраний в переході послідовного покоління."
+          },
+          "parameter": "Параметр",
+          "use_detail_parameters": "Використовувати параметри деталізації",
+          "use_cache": "Використання кешу",
+          "wait_for_model": "Очікування моделі",
+          "min_length": "Мінімальна довжина",
+          "max_length": "Максимальна довжина",
+          "top_k": "Верхнє k",
+          "top_p": "Топ",
+          "temperature": "Температура",
+          "repetition_penalty": "Штраф повтору",
+          "max_time": "Макс час"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Який SQL-оператор ви хочете створити"
+          },
+          "button": {
+            "text": "Генерація SQL"
+          }
+        },
+        "mssql": {
+          "config_type": "Тип конфігурації",
+          "query": "Запит",
+          "placeholder": {
+            "query": "вибрати * з користувачів;",
+            "table": "Вибрати таблицю",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Стіл",
+          "insert_record": "Масив записів для вставлення",
+          "dropdown": {
+            "retry": "Натисніть, щоб повторити"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Метод",
+            "table": "Стіл",
+            "json_input": "Використовувати редактор параметрів JSON",
+            "parameters": "Параметри",
+            "index": "Назва індекса",
+            "key_condition": "Вираз стану ключа",
+            "projection_expression": "Вираз проекції",
+            "filter_expression": "Фільтр виразу",
+            "attribute_name": "Назви атрибутів виразів",
+            "attribute_value": "Значення атрибуту виразу",
+            "limit": "Ліміт",
+            "select": "Вибрати",
+            "item": "Елемент",
+            "condition_expression": "Вираз стану",
+            "key": "Ключ",
+            "update_expression": "Оновити вираз"
+          },
+          "option": {
+            "query": "запит",
+            "scan": "пошук",
+            "put_item": "викид",
+            "get_item": "getItem",
+            "update_item": "оновити елемент",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, для експорту:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"Вираз прося...\n"
+          }
+        },
+        "status": {
+          "ran_failed": "Не вдалося",
+          "ran_successfully": "Успіх"
+        },
+        "result": {
+          "restapi": {
+            "status": "Статус",
+            "headers": "Заголовки",
+            "response": "Відповідь"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Скоро"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Недійсний приватний ключ. "
+          },
+          "label": {
+            "ca_certificate": "Сертифікат центру сертифікації",
+            "client_certificate": "Сертифікат клієнта",
+            "client_key": "Ключ клієнта",
+            "config_type": "Тип конфігурації",
+            "connect_type": "Тип підключення",
+            "connection_format": "Формат зв’язку",
+            "connection_string": "Рядок підключення",
+            "database": "База даних",
+            "database_index": "Індекс бази даних",
+            "firebase_database_url": "URL-адреса бази даних Firebase",
+            "firebase_project_id": "Ідентифікатор проекту Firestore",
+            "hostname": "Hostname",
+            "hostname_port": "Ім'я хоста/Порт",
+            "hosturl": "Посилання на Хост",
+            "mongodb_connection_dns_seed_list": "З’єднання зі списком DNS",
+            "mongodb_connection_standard": "Стандартне з'єднання",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Сертифікат клієнта і ключ",
+            "name": "Ім'я",
+            "port": "Порт",
+            "private_key": "Приватний ключ",
+            "private_key_hover": "Приватний ключ пов'язаний з обліковим записом служби із правами Firebase.",
+            "ssl_options": "Опції SSL",
+            "username_password": "Ім'я користувача/Пароль",
+            "self_signed_certificate": "Використати самопідписаний сертифікат",
+            "disable_introspection": "Вимкнути інтроспекцію",
+            "value": "Цінність",
+            "add_to": "Додати до",
+            "header_prefix": "Префікс заголовка",
+            "key": "Ключ",
+            "introspection": "Інтроспекція",
+            "bear_token": "Маркер",
+            "connection_options": "З'єднання",
+            "account_name": "Контрагент",
+            "warehouse": "Склад",
+            "schema": "Схема",
+            "snowflake_basic_auth": "Базова авторизація",
+            "snowflake_key_auth": "Ключові пари (підтримуються лише зашифровані приватні ключі)",
+            "role": "Роль",
+            "username": "Ім'я користувача",
+            "password": "Пароль",
+            "dynamo_region": "Регіон AWS",
+            "dynamo_access_key_id": "ID ключа доступу AWS",
+            "dynamo_secret_key": "Секретний ключ AWS"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_production",
+            "database_index": "за замовчуванням 0",
+            "hostname": "Hostname",
+            "hosturl": "тобто https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "тобто \"Користувачі DB(лише для читання)\" або \"Внутрішній Адміністратор\"",
+            "password": "Пароль",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"10000000000000000\",\n  \"auth_uri\": \"https://Облікові записи. oogle.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Ім'я користувача",
+            "default": "за замовчуванням",
+            "hugging_face_url": "Використовуйте абсолютний URL (наприклад https://api-inference.huggingface.co/models/). ",
+            "database_name": "Назва бази даних",
+            "account_name": "xy12345.us-східних рівнин",
+            "warehouse": "Комісійний тиждень",
+            "snowflake_database": "Відмітка",
+            "schema": "ПУБЛІЧНА",
+            "role": "Роль",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED KEYATE KEY-----\r\n••• • •\r\n -----ENCRYPTED KEY-----",
+            "dynamo_region": "рів-західне 1"
+          },
+          "tip": {
+            "connect_type": "Хмари: ILLA сервери надійно підключаться до вашої бази даних.",
+            "name": "Назва ресурсу при створенні дій в ILLA.",
+            "private_key": "<0>Натисніть тут</0> щоб побачити як отримати цей ключ",
+            "ssl_options": "SSL використовується, якщо можливо",
+            "username_password": "Облікові дані будуть зашифровані та зберігаються надійно на наших серверах.",
+            "introspection": "Увімкніть це, якщо ваша кінцева точка GraphQL не підтримує пошуки інтроспекцій. Зверніть увагу, що вимкнення інтроспекції зменшує зручність використання GraphQL, оскільки автоматичне виконання та підкладання для цього ресурсу більше не спрацює.",
+            "hugging_face_url": "<0>Натисніть тут</0> щоб дізнатися більше про Нескінченну Фаса.",
+            "bear_token": "Отримати доступ до користувача або ключ API <0>у налаштуваннях профілю Hugging Face </0>",
+            "connection_options": "Додати параметри підключення до вашого підключення. Якщо параметр SSL увімкнено, ми додамо користувацькі паролі та довірчий сертифікат за замовчуванням."
+          },
+          "title": {
+            "advanced_option": "Розширені налаштування",
+            "general_option": "ЗАГАЛЬНІ",
+            "graphql_introspection": "ГАПХQL ІНТРОПЕКТРИ"
+          }
+        },
+        "error": {
+          "invalid_url": "Введіть припустимий URL, наприклад, https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Новий"
+          },
+          "label": {
+            "access_token": "Маркер Доступу",
+            "access_token_lifespan": "Ключ доступу\n по всій панелі життя (необов'язково)",
+            "access_token_url": "URL маркера доступу",
+            "action_type": "Тип дії",
+            "audience": "Аудиторія",
+            "authentication": "Автентифікація",
+            "authorization_url": "URL авторизації",
+            "base_url": "Базова URL-адреса",
+            "basic_auth_password": "Основний пароль авторизації",
+            "basic_auth_username": "Основне ім'я користувача автентифікації",
+            "bearerToken": "Маркер",
+            "body": "Тіло",
+            "client_id": "ID клієнта",
+            "client_secret": "Секретний ключ",
+            "configure_oauth2": "Налаштування OAuth 2.0",
+            "cookies": "Файли Cookies",
+            "copy_url_to_application": "Скопіюйте цей URL до вашого застосунку",
+            "enable_auth_verification_endpoint": "Увімкнути кінцеву точку верифікації автора",
+            "extra_body_values": "Додаткові значення тіла",
+            "forward_all_cookies": "Переслати всі куки",
+            "headers": "Заголовки",
+            "list_of_cookies_to_forward": "Список кук на\n вперед",
+            "name": "Ім'я",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Оновити токен",
+            "scopes": "Області (розділені\n область)",
+            "share_oauth2_credentials_between_users": "Надсилати облікові дані OAuth2.0 між користувачами",
+            "url_parameters": "Параметри URL",
+            "use_client_credentials_auth": "Використовувати перевірку облікових даних клієнта",
+            "digest_auth_username": "Ім'я користувача",
+            "digest_auth_password": "Пароль"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Базова авторизація",
+              "bearer": "Власник",
+              "none": "Без ефекту",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Тривалість життя токена в секундах",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "тобто \"Внутрішня API адміністратора\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/auth",
+            "base_url": "Використовуйте абсолютний URL (наприклад https://example.com)",
+            "database": "тобто \"Користувачі DB(лише читання)\"",
+            "name": "тобто \"Користувачі DB(лише для читання)\" або \"Внутрішній Адміністратор\"",
+            "param_key": "ключ",
+            "param_value": "значення",
+            "password": "пароль",
+            "username": "ім'я користувача"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 - це складна специфікація. ILLA наразі підтримує серверний потік автентифікації OAuth 2.0, а також потік облікових даних клієнта. В обох випадках ви повинні використовувати OAUTH2_TOKEN наповнювача, щоб повідомити ILLA, де розмістити маркер доступу OAuth у запиті API. Спільне місце для цього - це заголовок, такий як авторизація: ближче OUTH2_TOKEN.",
+            "extra_body_values": "Додаткові значення тіла не передаються для запитів GET або HEAD",
+            "get_req_auto_run": "(GET REQ) БУДЬ ЛАСКА, АВТОМАТИЧНО ДОСТУПНО ЗМЕНЕСТІ.",
+            "name": "Назва ресурсу при створенні дій в ILLA."
+          },
+          "title": {
+            "advanced_option": "ЗАГАЛЬНІ"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Код доступу",
+            "base_url": "Базова URL-адреса",
+            "bucket_name": "Найменування",
+            "custome_s3_endpoint": "Користувальницька кінцева точка S3",
+            "region": "Регіон",
+            "secret_access_key": "Секретний ключ доступу",
+            "use_custome_s3_endpoint": "Використовувати користувацьку кінцеву точку S3"
+          },
+          "placeholder": {
+            "base_url": "тобто https://example.com",
+            "region": "рів-західне 1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Це використовується для підключення до інших не-S3 служб, таких як Digital Ocean пробіли або Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Порада: призначте зовнішні посилання на змінні, а не обмежують фігурні дужки."
+          },
+          "tip": {
+            "external_reference": "Ви можете створити зовнішні посилання на змінні, які визначали. Наприклад, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Дізнатися більше про племінництво:",
+            "hf_endpoint": "Контрольна точка"
+          },
+          "label": {
+            "hf_endpoint_token": "Маркер",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Отримайте токени API Організації (організацій) <0>у налаштуваннях профілю Hugging Face </0>.",
+            "hf_endpoint": "Дізнатися більше про <0>Кінцеву точку</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Дозволити IP-адреси",
+            "message": "Якщо ваші ресурси не є загальнодоступними, будь ласка, оновіть налаштування мережі або брандмауера, щоб додати IP-адреси ILLA, до списку дозволених, щоб ILLA міг підключити ваші ресурси."
+          }
+        },
+        "button": {
+          "copy_ip": "Копіювати IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Видалено"
+      },
+      "result": {
+        "title": {
+          "api_request": "API запит",
+          "error": "Помилка запуску запиту",
+          "json": "JSON",
+          "response": "Відповідь",
+          "success": "Запит успішно запущено",
+          "table": "Стіл"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "База даних",
+        "js_transformer": "Переформер JavaScript"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Не вдалося показати таблиці. Будь ласка, спробуйте ще раз пізніше."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "приватна",
+          "public_read": "публічне читання",
+          "public_read_write": "публічне читання",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "автентифікований",
+          "bucket_owner_read": "відро власника прочитане",
+          "bucket_owner_full_control": "повністю контролюйте сховища"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Скасувати",
+      "delete": "Видалити",
+      "delete_content": "Видалити це, можливо, зробить деякі помилки, будь ласка, підтвердіть.",
+      "delete_title": "Ви дійсно бажаєте видалити {{ displayName}}?",
+      "editor_list": "Поточні редактори"
+    },
+    "context_menu": {
+      "delete": "Видалити",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "АКТИВНІ і ТРАНСФОРМИ ",
+      "components_title": "КОМПОНИ ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "ФАРИ",
+      "global_data_modal": {
+        "title": "Редагування глобальних даних",
+        "variable_name": {
+          "tooltips": "Назва змінної. Використовуйте початкове значення в цій програмі через {{name}}",
+          "label": "Ім'я",
+          "message": "Будь ласка, введіть ім'я змінної"
+        },
+        "initial_value": {
+          "label": "Початкове значення",
+          "tooltips": "Підтримує об'єкти або примітивні значення. Приклад: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Не вдалося розгорнути"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" вже існує",
+      "validate_error": "\"{{ displayName }}\" має починатися з літери чи \"_\", і може містити лише літери, цифри, \"_\" або \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Видалити",
+          "reset_state": "Reset state",
+          "view_documentation": "Переглянути документацію"
+        }
+      },
+      "multi_selected_header": "вибрано {{ number }} компонентів",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Гістограма",
+          "line": "Лінійний графік",
+          "pie": "Кругова діаграма",
+          "scatterplot": "Точковий графік"
+        },
+        "color_picker": {
+          "prefabricated": "Напівнасичений колір",
+          "title": "Редагувати колір"
+        },
+        "column_setter": {
+          "label": "Стовпці ({{number}})",
+          "new": "Новий",
+          "title": "Найменування"
+        },
+        "event_handler_list": {
+          "empty": "Тригер запит, компоненти керування, тобто виклик інших API-файлів у відповідь на події компонента.",
+          "incomplete_selection": "Неповний вибір",
+          "new": "Новий",
+          "title": "Редагувати обробник подій"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Видалити",
+          "label": "Menus ({{number}})",
+          "new": "Новий",
+          "sub": "Під"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Видалити",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Без мітки",
+          "model_title": "Редагувати параметри",
+          "new": "Новий",
+          "title": "Опції"
+        },
+        "select_page_setter": {
+          "placeholder": "Вибрати сторінку"
+        },
+        "select_view_setter": {
+          "placeholder": "Виберіть вид"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Перегляди"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Змінити",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Зміна фільтра",
+          "fail": "Невдача",
+          "focus": "Фокус",
+          "invalid": "Недійсний",
+          "paginationChange": "Зміна сторінки",
+          "row_select": "Змінити рядок",
+          "sortingChange": "Впорядкувати",
+          "submit": "Ввести",
+          "success": "Успіх",
+          "onOpenModal": "Відкриті плавні",
+          "onCloseModal": "Закрити вікно",
+          "play": "Відтворити",
+          "pause": "Пауза",
+          "ended": "Завершено",
+          "loaded": "Завантажено",
+          "rowSelect": "Змінити рядок",
+          "markerSelected": "виділений маркер",
+          "markerCreated": "маркер створено",
+          "select": "Вибрати"
+        },
+        "image_list": {
+          "title": "Малюнки",
+          "empty": "Немає зображень",
+          "model_title": "Редагувати зображення",
+          "config": {
+            "model_label": "Мітка",
+            "image_url": "URL-адреса зображення"
+          }
+        },
+        "image_setter": {
+          "new": "Новий"
+        },
+        "Change": "Змінити",
+        "Select": "Вибрати",
+        "eventCalendar": {
+          "no_title": "Без назви"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Заливка рядка",
+        "message_type": {
+          "error": "Помилка",
+          "info": "Інформація",
+          "success": "Успіх",
+          "warning": "Застереження"
+        },
+        "outline": "Контур",
+        "validation_pattern": {
+          "email": "Ел. пошта",
+          "regex": "Регулярний вираз",
+          "url": "Адреса"
+        },
+        "height": {
+          "fixed": "Виправлена",
+          "auto": "Авто"
+        },
+        "upload_type": {
+          "button": "Кнопка",
+          "dropzone": "Дропзона"
+        },
+        "selection_types": {
+          "single_file": "Один файл",
+          "multiple_files": "Кілька файлів",
+          "directory": "Каталог"
+        },
+        "size_type": {
+          "kb": "КБ",
+          "mb": "МБ"
+        },
+        "time_picker": {
+          "select_time": "Оберіть час"
+        },
+        "time_range": {
+          "start_placeholder": "Час початку",
+          "end_placeholder": "Час завершення"
+        }
+      },
+      "setter_group": {
+        "adornments": "ДОПОВІДІ",
+        "basic": "БАСИК",
+        "column": "КОЛЮМЕНД",
+        "data": "ДАНІ",
+        "interaction": "Інтеракція",
+        "label": "ЛАБЕЛ",
+        "layout": "ПЛАЙН",
+        "menu": "МЕНЮ",
+        "options": "НАЛАШТУВАННЯ",
+        "pagination": "ПАГІНАЦІЯ",
+        "row_selection": "ROW ВИБІР",
+        "sort": "СОРТ",
+        "style": "СТИЛЬ",
+        "tabs": "TABS",
+        "toolbar": "ЗАТРИМКА",
+        "validation": "VALIDATION",
+        "views": "ОГЛЯД",
+        "images": "ЗОБРАЖЕННЯ",
+        "primary_value": "ПЕРВИННА ЗА",
+        "secValue": "Вторинне значення",
+        "border": "Border",
+        "color": "Колір",
+        "icon": "Іконка",
+        "secondary_value": "ВЕЛИЧЕЙ ГРА",
+        "resource": "РЕСУРЦІЯ",
+        "eventCalendar": {
+          "calendar": "Календар"
+        },
+        "event": "Подія"
+      },
+      "setter_label": {
+        "action": "Дія",
+        "align": "Align",
+        "allow_clear": "Дозволити очищення",
+        "allow_half": "Дозволити половину",
+        "alt_text": "Alt-текст",
+        "alt_text_desc": "Доступний опис зображення для читачів з екрану. Це також подається як зворотне положення, якщо зображення не завантажується.",
+        "background": "Фон",
+        "background_color": "Фон",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Підпис",
+        "chart_title": "Найменування",
+        "chart_type": "Тип графіка",
+        "color": "Колір",
+        "colors": "Кольори",
+        "column_title": "Назва стовпця",
+        "column_type": "Тип стовпця",
+        "columns": "Стовпці",
+        "component": "Компонент",
+        "config_type": "Тип конфігурації",
+        "container": "Контейнер",
+        "content": "Зміст",
+        "control_component": "Керування компонентами",
+        "custom_rule": "Користувацьке правило",
+        "data": "Дані",
+        "data_source": "Джерело даних",
+        "data_sources": "Джерела даних",
+        "dataset": {
+          "aggregation_method": "Агрегаційний метод",
+          "name": "Ім'я дати",
+          "remove": "Remove dataset",
+          "value": "Значення Dataset"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Десяткове місце",
+        "decimal_places": "Десяткові розряди",
+        "default_sort_key": "Колонка",
+        "default_sort_order": "Напрямок",
+        "default_tab": "Default tab",
+        "default_value": "Значення за замовчуванням",
+        "default_views": "Вигляд за замовчуванням",
+        "description": "Опис",
+        "direction": "Напрямок",
+        "disable_submit": "Вимкнути сабміт",
+        "disabled": "Вимкнено",
+        "download": "Звантажити",
+        "duration": "Тривалість",
+        "empty_state": "Порожній стан",
+        "enable_sorting": "Увімкнути сортування",
+        "end_data": "Дата закінчення",
+        "end_placeholder": "Кінцевий заповнювач",
+        "event": "Подія",
+        "event_handler": "Обробник подій",
+        "expansion_method": "Метод розширення",
+        "failure": "Невдача",
+        "filter": "Фільтр",
+        "font_size": "Font size",
+        "form_data_key": "Ключ даних форми",
+        "format": "Форматувати",
+        "go_to_url": "Перейти за URL-адресою",
+        "group_by": "Групувати за",
+        "group_layout": "Група макета",
+        "hidden": "Hidden",
+        "hidden_label": "Прихована мітка",
+        "hide_validation_message": "Приховати повідомлення перевірки",
+        "hide_value_label": "Приховати значення мітки",
+        "horizontal_alignment": "Горизонтальне вирівнювання",
+        "icon": "Іконка",
+        "image_source": "Джерело зображення",
+        "img_height": "Висота",
+        "img_width": "Width",
+        "index": "Покажчик",
+        "item_background_color": "Тло елемента",
+        "items": "Елементи",
+        "key": "Ключ",
+        "label": "Мітка",
+        "label_alignment": "Вирівнювання",
+        "label_position": "Позиція",
+        "label_width": "Width(%)",
+        "layout": "Макет",
+        "legend_position": "Положення легенди",
+        "link_to_container": "Посилання на контейнер",
+        "links_color": "Посилання",
+        "loading": "Завантаження",
+        "loop_back_to_start": "Повернутись до початку",
+        "loop_start_to_back": "Повертатися назад",
+        "mapped_option": "Опція зіставлення",
+        "mapped_value": "Зведене значення",
+        "max_count": "Максимальна кількість",
+        "max_date": "Максимальна дата",
+        "max_length": "Максимальна довжина",
+        "maximum": "Максимум",
+        "method": "Метод",
+        "min_date": "Мінімальна дата",
+        "min_length": "Мінімальна довжина",
+        "minimum": "Мінімум",
+        "multi_row_selection": "Вибір декількох рядків",
+        "new_tab": "New tab",
+        "only_run_when": "Лише в той час коли",
+        "overFlow": "Перевищення потоку",
+        "page": "Сторінка",
+        "pageSize": "Розмір сторінки",
+        "pattern": "Графічний ключ",
+        "pending": "Очікує підтвердження",
+        "placeholder": "Мітка-заповнювач",
+        "prefix_text": "Текст префікса",
+        "radius": "Radius",
+        "read_only": "Тільки для читання",
+        "regex": "Регулярний вираз",
+        "required_field": "Обов'язкове поле",
+        "reset_after_successful_submit": "Скинути після успішної відправки",
+        "router": "Маршрутизатор",
+        "run_script": "Запустити скрипт",
+        "scale_type": "Шкала типу",
+        "set_router": "Встановити маршрутизатор",
+        "set_temporary_state": "Встановити тимчасовий стан",
+        "shadow": {
+          "shadow": "Тінь"
+        },
+        "show_character_count": "Показувати кількість символів",
+        "show_clear_button": "Показувати кнопку очищення",
+        "show_footer": "Показати футер",
+        "show_header": "Відображати заголовок",
+        "show_notification": "Показувати сповіщення",
+        "sort": "Упорядкувати",
+        "start_date": "Дата закінчення",
+        "start_placeholder": "Запустити заповнювач",
+        "step_size": "Розмір кроку",
+        "stroke_width": "Ширина штриха",
+        "style": "Стиль",
+        "styles": "Styles",
+        "submit_form": "Підтвердити форму",
+        "success": "Успіх",
+        "suffix_text": "Підсуфікс тексту",
+        "text": "Текст",
+        "text_align": "Text align",
+        "text_size": "Розмір шрифту",
+        "theme_color": "Колір теми",
+        "thousand_separator": "Роздільник тисяч",
+        "time_format": "Формат часу",
+        "title": "Найменування",
+        "tooltip": "Підказка",
+        "trail_color": "Колір сліду",
+        "trigger_query": "Тригер запит",
+        "type": "Тип",
+        "validate_inputs_on_submit": "Перевірити вхідні дані під час надсилання",
+        "value": "Цінність",
+        "value_labels": "Назви значень",
+        "variant": "Варіант",
+        "vertical_alignment": "Вертикальне вирівнювання",
+        "width": "Width",
+        "x_axis_name": "Назва осі X",
+        "x_axis_title": "Назва осі X",
+        "x_axis_type": "Тип осі X",
+        "x_axis_value": "Значення осі X",
+        "y_axis_name": "Назва осі Y",
+        "y_axis_title": "Назва осі Y",
+        "height": "Висота",
+        "min_height": "Min height (px)",
+        "show_underline": "Показувати підкреслювання",
+        "auto_play": "Автовідтворення",
+        "interval": "Інтервал (у мілісекундах)",
+        "show_button": "Показати стрілки",
+        "show_dot": "Показувати крапки внизу",
+        "hidden_images": "Приховані зображення",
+        "file_type": "Типи файлів",
+        "selection_types": "Вибір типів",
+        "append_newly_files": "Додати нещодавно вибрані файли",
+        "file_list": "Список файлів",
+        "parse_value": "Розбір значення",
+        "max_files": "Максимум файлів",
+        "min_files": "Мін. файли",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Переповнення",
+        "file_url": "Джерело PDF",
+        "show_tool_bar": "Показати панель інструментів",
+        "scale": "Масштабувати сторінку до",
+        "scroll": "Зробити знімок прокручування для кожної сторінки",
+        "min_max_size": "Мінімальний розмір ~ Максимальний розмір",
+        "video_url": "Джерело відео",
+        "autoplay": "Авто",
+        "loop": "Петля",
+        "volume": "Об'єм",
+        "show_controls": "Показати елементи керування",
+        "img_url_array": "Масив URL зображення",
+        "statistics": {
+          "label": "Мітка",
+          "primary_value": "Основне значення",
+          "secValue": "Вторинне значення",
+          "decimal": "Десяткове місце",
+          "trend_sign": "Показати тренд",
+          "positive_sign": "Знак здачі",
+          "negative_sign": "Знаки негативу",
+          "thousand_separator": "Показувати роздільник тисяч",
+          "trend_color": "Увімкнути тренд колір",
+          "prefix_text": "Текст префікса",
+          "suffix_text": "Підсуфікс тексту"
+        },
+        "mute": "Вимкнути звук",
+        "collapse": {
+          "type": "Тип",
+          "accordin_mode": "Режим акордеона",
+          "header_color": "Заголовок рядка стану",
+          "body_color": "Тіло",
+          "expand_icon": "Розгорнути",
+          "collapse_icon": "Згорнути",
+          "icon_color": "Колір"
+        },
+        "choose_at_least": "Вибрати принаймні",
+        "choose_up_to": "Оберіть до",
+        "copy_to_clipboard": "Скопіювати до буферу обміну",
+        "file_download": {
+          "file_data": "Дані файлу",
+          "file_name": "Ім'я файлу з розширенням",
+          "file_type": "Тип файлу"
+        },
+        "action_name": "Назва дії",
+        "variable": {
+          "path_of_value": "Шлях значення",
+          "variable": "Глобальні дані"
+        },
+        "code": {
+          "write_code": "Написати код"
+        },
+        "slider": {
+          "step_size": "Розмір кроку",
+          "minimum": "Мінімум",
+          "maximum": "Максимум",
+          "hide_output": "Сховати вивід",
+          "prefix_icon": "Значок префікса",
+          "suffix_icon": "Піктограма суфіксу",
+          "allow_wrapping": "Дозволити упаковку"
+        },
+        "range_slider": {
+          "start_value": "Початкове значення",
+          "end_value": "Кінцеве значення"
+        },
+        "name": "Ім'я",
+        "audio": {
+          "audio_url": "Джерело звуку"
+        },
+        "map": {
+          "markers": "Маркери",
+          "initial_location": "Початкове розташування",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Широта поля",
+          "longitude_field_name": "Назва поля довготи",
+          "zoom": "Масштабування",
+          "enable_add_markers": "Увімкнути додавання маркерів",
+          "enable_search_locati": "Увімкнути місце пошуку",
+          "enable_clustering": "Увімкнути кластеризацію"
+        },
+        "time_range": {
+          "start_time": "Час початку",
+          "end_time": "Час завершення"
+        },
+        "eventCalendar": {
+          "event_value": "Значення події",
+          "event_id": "ID події",
+          "title": "Найменування",
+          "description": "Опис",
+          "start": "Старт",
+          "end": "Кінець",
+          "resource_id": "ID ресурсу",
+          "resource_title": "Заголовок ресурсу",
+          "all_day": "Увесь день",
+          "data_source": "Джерело даних",
+          "default_date": "Дата за замовчуванням",
+          "resource_grid": "Сітка ресурсу",
+          "default_view": "Вигляд за замовчуванням",
+          "show_current_time": "Показати поточний час",
+          "background": "Фон",
+          "calendar_background": "Фон",
+          "calendar_border": "Border",
+          "calendar_text": "Текст",
+          "event_background": "Фон",
+          "event_text": "Текст"
+        },
+        "table": {
+          "page_index": "Індекс сторінки",
+          "index": "Покажчик",
+          "scroll_to_the_select": "Прокрутити до вибраного рядка",
+          "filters": "Фільтри",
+          "filter_mode": "Режим фільтру",
+          "show_thousands_separ": "Показувати розділювач розрядів",
+          "tag_label": "Мітка тегу",
+          "tag_color": "Колір мітки",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
+        "cascader_data": "Кожна опція повинна бути у форматі JSON і містити два ключі, значення та мітку. Використовуючи масиви, ви можете створювати варіанти на одному рівні. І параметри дітей можна створити за допомогою атрибуту \"дітей\". ",
+        "component_default_value": "Початкове значення компонента. Ви можете динамічно змінити початкове значення, набравши JavaScript у {{}}.",
+        "custom_rule": "Тут створюйте логіку перевірки. Правила повинні бути зроблені в JavaScript і покриті {{}}.",
+        "date_format": "Дійсний формат дати. Дивіться [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "Початкове значення вхідного поля. Ви можете динамічно змінити початкове значення поля вводу, ввівши JavaScript у {{}}.",
+        "disabled": "Керування статусом того, чи відключений компонент. Компонент не може бути змінений або сфокусований, якщо він вимкнений.",
+        "disabled_submit": "Якщо вимкнено, компоненти, які викликають форму.submit() також будуть вимкнені.",
+        "download": "Показувати кнопку завантаження на панелі інструментів.",
+        "filter": "Показувати кнопку фільтру на панелі інструментів.",
+        "form_data_key": "Вкажіть ключ форми обгортання компонентів при конструюванні атрибуту даних.",
+        "hidden": "Динамічне керування прихованим компонентом. Ви можете змінити прихований статус за допомогою динамічного булевого значення.",
+        "hide_validation_message": "Ви можете приховати повідомлення про помилку, перемикнувши прихований статус, коли вхідне значення неправильне. Ви можете динамічно змінити прихований стан на JavaScript.",
+        "input_default_value": "Початкове значення вхідного поля. Ви можете динамічно змінити початкове значення поля вводу, ввівши JavaScript у {{}}.",
+        "loading": "Чи повинен компонент показати завантажувальний індикатор зображення.",
+        "map_data_option": "Використовуйте або масив значень або об’єкта кнопок, для масиву. Кожен елемент з ваших даних буде відображений для кожної опції.",
+        "mapped_value": "Використовуйте {{ currentRow }} для доступу до даних поточного рядка. Наприклад, для розрахунку вартості \"за клік\" на основі стовпців \"cost\" і \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Використовувати {{table.selectedRow[n].columnName}} для доступу до даних.",
+        "only_run_when": "Умови, які повинні бути виконані перед виконанням події.",
+        "placeholder": "Значення буде показано, коли поле вводу порожнє.",
+        "progress_percentage": "Відсоткове значення - від 0 до 100.",
+        "read_only": "Керування статусом того, чи є цей компонент лише для читання. Ви можете вибрати тільки ті компоненти, але вони не зможуть бути змінені.",
+        "required_field": "Дійсний лише при увімкненому перемикачі.",
+        "switch_default_value": "Встановіть початковий стан перемикача. Ви можете динамічно змінювати значення за замовчуванням JavaScript.",
+        "table_only_run_when": "Умови, які повинні бути виконані перед виконанням події. Використовуйте {{ currentRow }} для доступу до даних поточного рядка. Наприклад, виконуватися тільки коли \"imgSize\" менше 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Використовуйте currentRow для доступу до даних поточного рядка. Наприклад, для встановлення значення редагованого тексту на основі \"email\":  {{ currentRow.email }}.\n  також ви можете встановити значення в INSPECT в компоненті використовуючи {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Використовуйте {{ currentRow }} для доступу до даних поточного рядка. Наприклад, щоб перейти до URL з параметром \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "Ви можете ввести значення або в режимі Markdown або звичайний текстовий режим. Тільки посилання в режимі markdown можна розпізнати.",
+        "timeline_direction": "Змініть напрямок часової шкали.",
+        "timeline_pending": "Чи показувати вузол з статус очікування.",
+        "tooltip": "Користувач може ввести інформацію про компоненти тут. Підказка буде показана, коли вона фокусована. Формат Markdown підтримується.",
+        "file_types": "Список розширень файлів, дозволених для завантаження. Значення не дозволить всі типи файлів.",
+        "file_list": "Щоб показати список вибраних файлів під завантажувачем. Висота завантажувача буде змінюватися динамічно, виходячи з довжини списку файлів.",
+        "parse_value": "Спроба аналізу обраних файлів з підтримкою для JSON, CSV, TSV, Excel і TXT файлів.\nОброблені дані доступні через {{uploader1.parsedValue}}. Файли, які не можуть бути оброблені в масиві - null.\nВсі файли доступні як закодовані рядки в масиві значень, незалежно від цієї опції.",
+        "file_url": "Підтримує URL-адреси PDF в Інтернеті, або base64 закодовані дані файлів у pdf. Наприклад: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Масштаб кожної сторінки для заповнення ширини або висоти компонента.",
+        "scroll": "Автоматично знаходить розташування на початку кожної сторінки при прокручуванні.",
+        "video_url": "Підтримує більшість відеосервісів або пряме посилання на будь-який загальний тип відео файлів або кодовані дані відеофайлів. Наприклад: {{ data:audio/mp4;base64,exampleDate}}",
+        "collapse": {
+          "type": "Закритий список: список всіх елементів автоматично скопіює стиль першого елементу. Ви можете вказати дані компонента в кожному елементі через {{ currentItem.columnName }}. Закрита панель: кожна панель є незалежною, ви можете вказати стиль компонента та дані кожного елемента окремо.",
+          "items": "Кількість товарів",
+          "accordin_mode": "У режимі акордіону, коли предмет збільшується, інші предмети згортаються."
+        }
+      },
+      "tab_title": "Оглянути",
+      "unselected_tip1": "Немає вибраних компонентів.",
+      "unselected_tip2": "Натисніть на компонент для вибору.",
+      "setter": {
+        "click_mask_close": "Маска для закриття",
+        "modal": {
+          "blank": "Без піктограм"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Використовуйте {{ item }} , щоб отримати значення з джерела даних. Наприклад, є два атрибути з джерела даних. Вони є imageUrl і url. Якщо ви хочете перейти до іншої адреси при натисканні на зображення, використовуйте {{ item.url }} для встановлення URL-адреси.",
+        "data_source": "Джерело даних для визначення елементів зображення за допомогою зіставленої оцінки. Використовуйте масив значень або об’єкта клавіш, які відображені в масивах. Наприклад: {{[{ x:1, y:1 },{ x:2, y:2 },...]}. Також ви можете використовувати дані в дії. Наприклад: {{ mysql1.data }} ",
+        "img_url_array": "Використовуйте {{ item.attributeName }} , щоб отримати URL зображення з джерела даних. ",
+        "carousel": {
+          "data_source": "Джерело даних для визначення елементів зображення за допомогою зіставленої оцінки. Використовуйте масив значень або об’єкта клавіш, які відображені в масивах. Наприклад: {{[{ x:1, y:1 },{ x:2, y:2 },...]}. Також ви можете використовувати дані в дії. Наприклад: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Підтримка даних base64, необроблені дані, зіставлені дані таблиці. "
+        },
+        "variable": {
+          "available_in_objects": "Доступно в об'єктах і масивах. Шлях до атрибуту в об’єкті: {{objectName.attributeName}}. Індекс значення в масиві: {{1}}. Масив в об’єкті: {{objectName.attributeName.1}}",
+          "the_target_value": "Цільове значення"
+        },
+        "slider": {
+          "default_value": "Початкове значення повзунка. Ви можете динамічно змінити початкове значення, ввівши JavaScript у {{}}.",
+          "minimum": "Мінімальне значення слайдера",
+          "maximum": "Максимальне значення слайдера",
+          "step_size": "Мінімальна одиниця вимірювання слайду",
+          "label": "Ім'я поля, яке відображається користувачеві",
+          "caption": "Заголовок використовується для опису поля докладно",
+          "hide_label": "Вкажіть, чи показувати мітки",
+          "allow_wrapping": "Укажіть, чи дозволено вигортання міток",
+          "position": "Встановіть позицію мітки щодо компонента",
+          "alignment": "Встановити вирівнювання мітки",
+          "width": "Коли етикетка розташована в лівій частині компонента, встановіть співвідношення ширини мітки",
+          "prefix_icon": "Піктограма, яка відображається перед компонентом",
+          "suffix_icon": "Значок, що відображається після компонента",
+          "hide_output": "Визначає, чи слід приховувати значення при проведенні слайда"
+        },
+        "step": {
+          "default_step": "Крок за замовчуванням",
+          "show_step_number": "Показати покрокові номери",
+          "indicate_completed_steps": "Відображати завершені кроки"
+        },
+        "range_slider": {
+          "start_value": "Щоб встановити мінімальне значення діапазону",
+          "end_value": "Щоб встановити максимальне значення діапазону"
+        },
+        "audio": {
+          "audio_url": "Підтримує прямі посилання на будь-який загальний тип аудіо файлу або посилання на деякі аудіосервіси або кодовані дані аудіофайлів base64. Наприклад: {{ data:audio/mp3;base64,exampleDate}}"
+        },
+        "map": {
+          "markers": "Для встановлення маркерів на карті. Маркери повинні бути масивом об'єктів з такими ж властивостями, що і маркери за замовчуванням.",
+          "initial_location": "При ініціалізації карти - позиція по центру-екрані за замовчуванням",
+          "default_markers": "Маркери за замовчуванням, які відображаються під час ініціалізації карти. Ви можете встановити їх динамічно на JavaScript у {{}}. ",
+          "latitude_field_name": "Висота приймається з якої властивості початкового розташування і маркерів за замовчуванням.",
+          "longitude_field_name": "Довгота береться з якої власності на початкове розташування і маркери за замовчуванням.",
+          "zoom": "Щоб встановити масштаб карти",
+          "enable_add_markers": "Дозволити користувачам додавати маркери, натискаючи на карті",
+          "enable_search_locati": "Дозволити користувачам шукати місцезнаходження",
+          "enable_clustering": "Чи дозволяти кілька маркерів агрегатувати при збільшенні карти"
+        },
+        "time_picker": {
+          "format": "Правильний формат часу. Для отримання додаткової інформації формату: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "ширина вартості в хвилинах",
+          "show_a_clear_button_": "Показувати кнопку очищення при наведенні мишки над компонентом. "
+        },
+        "time_range": {
+          "start_time": "Початковий час початку компонента. ",
+          "end_time": "Початковий час завершення компонента. ",
+          "start_placeholder": "Значення буде показано, коли початковий час не заповнено.",
+          "end_placeholder": "Значення буде показано, коли поле закінчення часу не заповнено."
+        },
+        "eventCalendar": {
+          "event_value": "Використайте Об'єкт вкладений в {{ щоб встановити значення події. Наприклад, {{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "Унікальний ID що використовується для ідентифікації події",
+          "title": "Назва події",
+          "description": "Опис події",
+          "start": "Час початку події",
+          "end": "Час завершення події",
+          "resource_id": "Ресурс може бути людина, кімната зустрічей, і т. д. Ви можете встановити ідентифікатор ресурсу та під'єднати її до заходу. ",
+          "resource_title": "Ім'я ресурсу, що відображається в режимі перегляду ресурсів",
+          "all_day": "Чи подіям на цілий день",
+          "data_source": "Джерело даних для подій. Джерело даних має бути масивом об'єктів. Кожен об'єкт є подією. Наприклад, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\":\"description\"}]}}",
+          "default_date": "Дата за замовчуванням при запуску програми",
+          "resource_grid": "Чи показувати сітку ресурсів",
+          "default_view": "Подання за замовчуванням під час запуску програми",
+          "show_current_time": "Визначає, чи показувати поточний часовий рядок",
+          "calendar_background": "Встановити фон календаря",
+          "calendar_border": "Встановити колір межі",
+          "calendar_text": "Встановити колір тексту",
+          "event_background": "Встановити тло картки подій",
+          "event_text": "Встановити колір текстової карти події",
+          "couldnot_drag": "Якщо ви хочете перетягнути для зміни діапазону часу, будь ласка, перейдіть на сторінку попереднього перегляду операцій."
+        }
+      },
+      "setter_option": {
+        "fixed": "Виправлена",
+        "auto_limited": "Автоматична висота меж",
+        "auto_height": "Автоматична висота",
+        "text_ellipsis": "Еліпс",
+        "text_scroll": "Прокрутка",
+        "text_clip": "Clip",
+        "scale_height": "Висота",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Згорнута панель"
+        },
+        "file_download": {
+          "auto": "Авто",
+          "plain_text": "Простий текст",
+          "jpeg": "СТЕГНО",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV-файл",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Без ефекту",
+          "large": "Великий",
+          "medium": "Медіум",
+          "small": "Маленький"
+        },
+        "eventCalendar": {
+          "sunday": "Неділя",
+          "monday": "Понеділок",
+          "tuesday": "Вівторок",
+          "wednesday": "Середа",
+          "thursday": "Четвер",
+          "friday": "П'ятниця",
+          "saturday": "Субота",
+          "month": "Місяць",
+          "week": "Тижні",
+          "day": "День",
+          "agenda": "Порядок денний"
+        },
+        "table": {
+          "set_sort": "Устан. сортування",
+          "column": "Колонка",
+          "number": "Номер",
+          "percent": "Відсоток",
+          "currency": "Валюта",
+          "text": "Текст",
+          "tag": "Тег",
+          "button_group": "Група кнопок",
+          "date": "Дата",
+          "time": "Час",
+          "date_time": "Дата",
+          "link": "Лінк",
+          "rating": "Рейтинг",
+          "markdown": "Markdown",
+          "html": "Вікі формату HTML",
+          "button": "Кнопка",
+          "icon": "Іконка",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Без обмежень",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "ВИКОРИСТАННЯМ",
+          "suffix_text": "%",
+          "positive_color": "Додатні кольори",
+          "negative_color": "Від'ємний колір"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "нова_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Число від 0 до 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Будь ласка, виберіть параметри оренди {{ min }}.",
+        "choose_up_to": "Будь ласка виберіть додаткові {{max}} опції.",
+        "map": {
+          "zoom": "Будь ласка, встановіть значення від 1 до 22"
+        },
+        "upload": {
+          "size_exceed": "Файли більш ніж 500МБ можуть не паруватися.",
+          "single_file": "Допускається лише один файл.",
+          "file": "Непідтримувані типи файлів видалено",
+          "directory": "Дозволено лише каталоги."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Запишіть свій код тут. Використовуйте JavaScript всередині {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Додати",
+        "body": "Тіло",
+        "default_view": "Вигляд за замовчуванням",
+        "edit_view": "Редагування представлення",
+        "footer": "Нижній колонтитул",
+        "header": "Заголовок рядка стану",
+        "key": "Ключ",
+        "left_panel": "Ліва панель",
+        "preset": "Preset",
+        "right_panel": "Права панель",
+        "set_as_homepage": "Встановити як домашню сторінку",
+        "show_fold_icon": "Показати складну іконку",
+        "view_path": "Дивитись шлях",
+        "views": "Перегляди",
+        "width": "Width",
+        "height": "Висота",
+        "columns": "Стовпці"
+      },
+      "model_tips": {
+        "cancel_button": "Скасувати",
+        "change_layout_message": "Після зміни розкладки всі дані буде видалено. Цю операцію неможливо відновити, будь ласка, підтвердіть",
+        "delete_section_message": "Після приховування, дані в цьому розділі будуть очищені. Цю операцію неможливо відновити, будь ласка, підтвердіть",
+        "ok_button": "Підтвердити"
+      },
+      "panel_bar_title": {
+        "basic": "БАСИК",
+        "frame": "FRAME"
+      },
+      "tab_title": "Сторінка",
+      "tooltips": {
+        "show_fold_icon": "Показувати кнопку згортання або розширення панелі",
+        "view_path": "Рядок за прикладом.com/app/page/ для доступу до цього перегляду",
+        "auto_canvas_width": "Ширина сторінки у відсотках від ширини браузера."
+      }
+    },
+    "validate_message": {
+      "email": "Будь ласка, введіть коректну адресу електронної пошти",
+      "max_length": "Не повинно бути більше {{ number }} символів",
+      "max_value": "Має бути менше ніж {{ number }}",
+      "min_length": "Повинно мати якнайменше {{ number }} символів",
+      "min_value": "Має бути більше ніж {{ number }}",
+      "regex": "Будь ласка, використовуйте відповідний формат запиту",
+      "required": "Це поле обов'язкове для заповнення",
+      "url": "Будь ласка, введіть правильний URL",
+      "max_size": "Розмір файлу не може перевищувати {{maxSize }} {{ type }}.",
+      "min_files": "Потрібно хоча б {{ minFiles }} файлів.",
+      "max_files": "Підтримка до {{ maxFiles }} файлів.",
+      "min_size": "Розмір файлу не може бути меншим за {{minSize }} {{ type }}.",
+      "min_max_size": "Мінімальний розмір ~ Максимальний розмір"
+    },
+    "widget_picker": {
+      "empty_tip": "На жаль, нічого не знайдено",
+      "search_placeholder": "Пошук",
+      "sessions": {
+        "calendar": "Запис з календаря",
+        "commonly": "Компоненти",
+        "container": "Контейнер та форма",
+        "data": "Дані",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Презентація",
+        "selects": "Виберіть входи"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Встановити приховану",
+      "set_file_url": "Встановити джерело PDF",
+      "play": "Відтворити",
+      "pause": "Пауза",
+      "seek_to": {
+        "time": "Час",
+        "unit": "(ів)"
+      },
+      "set_video_url": {
+        "video": "Джерело відео"
+      },
+      "speed": {
+        "speed": "Швидкість",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Зупинити",
+      "mute": "Вимкнути звук",
+      "loop": "Петля",
+      "show_controls": "Показати елементи керування",
+      "set_volumn": "Установити Томп",
+      "set_volume": {
+        "volume": "Об'єм",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "значення setPrimaryValue",
+        "reset_primary_value": "змінити Первинне значення",
+        "primary_value": "Основне значення"
+      },
+      "collapse": {
+        "expand_all_items": "Розгорнути всі елементи",
+        "collapse_all_items": "Згорнути всі елементи"
+      },
+      "carousel": {
+        "showNext": "Показати наступне видиме зображення",
+        "showPrevious": "Показати попереднє зображення"
+      },
+      "file_download": {
+        "download": "Звантажити",
+        "message": {
+          "suc": "Почати завантаження",
+          "fail": "Не вдалося виконати запит",
+          "download_failed": "Не вдалося завантажити"
+        }
+      },
+      "setGlobalData": "Встановити глобальні дані",
+      "setLocalStorage": "Установити локальне сховище",
+      "audio": {
+        "set_audio_url": "Встановити джерело аудіо"
+      },
+      "map": {
+        "marker_selected": "Маркер вибрано",
+        "marker_created": "Маркер створено",
+        "markers_changed": "Маркери змінено"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "додати подію",
+        "deleteevent": "видалення події"
+      },
+      "table": {
+        "clear_filters": "Очистити фільтри",
+        "clear_column_setting": "Очистити налаштування стовпців",
+        "refresh": "Оновити",
+        "select_page": "Вибрати сторінку",
+        "select_row": "Виберіть рядок",
+        "clear_selection": "Очистити вибране",
+        "set_filters": "Встановити фільтри"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Навчальний посібник"
+          },
+          "title": {
+            "tutorial": "Навчальний посібник",
+            "templates": "Шаблони"
+          },
+          "onboarding_app": {
+            "name": "Додаток для адаптації",
+            "description": "Слідкуйте за підручником ILLA, щоб дізнатися, як створити додаток.",
+            "action": "Вперед"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Перегалуження цього шаблону як нової програми"
+          },
+          "templates_name": {
+            "table": "Приладна дошка",
+            "form": "Опитування",
+            "list": "Панель адміністратора"
+          },
+          "templates_description": {
+            "table": "Використовувати таблиці для створення панелі керування.",
+            "form": "Використовуйте компоненти для створення форм додатків.",
+            "list": "Використовувати список компонентів для відображення і керування інформацією"
+          },
+          "modal": {
+            "title": "Форк та розгортання",
+            "placeholder": "Назва застосунка",
+            "cancel": "Скасувати",
+            "fork": "Форк та розгортання"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Крок 1: Перетягни сюди ввід",
+          "drag_button": "Крок 2: Перетягни кнопку сюди",
+          "drag_table": "Крок 3: Перетягни сюди таблицю",
+          "exit": "Скасувати",
+          "do_it": "Зробіть це для мене",
+          "drag_title": "Перетягувати компоненти до кадру",
+          "modify_action_title": "Змініть дію",
+          "modify_action_description_modify": "Змініть дію, щоб отримати дані. Ми можемо використовувати {{input1.value}} для отримання даних, введених в вхідний компонент. \n\nоберіть * \nвід користувачів\nприймати замовлення\nна users.id = замовлення.id\nде {{!input1.value}} або менші (users.name) на зразок '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Клацніть \"Зберегти\" та клацніть \"Запустити\"",
+          "display_data_title": "Відображення даних на таблиці",
+          "display_data_description_select": "Вибір таблиці на кадрі",
+          "display_data_description_modify": "Змініть джерело даних на правій панелі. Ми можемо використовувати {{postgresql1.data}} для отримання даних.",
+          "event_handler_title": "Натисніть кнопку, щоб увімкнути дію",
+          "event_handler_description_1": "Виберіть кнопку на кадрі",
+          "event_handler_description_2": "Додати обробник подій",
+          "event_handler_description_3": "Натисніть на обробник події",
+          "event_handler_description_4": "Змініть дію для тригера",
+          "event_handler_description_5": "Змінити запит на postgre1",
+          "test_it_title": "Протестувати",
+          "test_it_description": "Введіть ім'я користувача, якого Ви хочете знайти, і натисніть кнопку",
+          "test_it_button": "Уперед",
+          "congratulations_title": "Вітаю 🎉",
+          "congratulations_description": "Ви тільки що створили свою першу програму. Якщо у вас виникли питання під час використання, то ви можете зв'язатися з нами через <0>Discord</0>. ",
+          "congratulations_button": "Виконано",
+          "event_handler_description_all": "1. Додайте обробник подій\r\n2. Натисніть обробник подій\r\n3. Змініть дію на тригер\r\n4. Змініть Запит на postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Розмір даних перевищує ліміт (поточний розмір: {{current_size}} байт, ліміт: {{limit_size}} байт)"
+    }
+  },
+  "exit_preview": "Вийти з режиму перегляду",
+  "freeze_collision": "Крижане зіткнення",
+  "freeze_messages": "Полотно заморожено. Ви можете перетягнути компоненти в або з контейнерів.",
+  "freeze_tips": "Полотно заморожено. Натисніть тут аби заморозити.",
+  "link_copied": "Лінк скопійовано",
+  "network_error": "Мережа відключена. Будь ласка, перевірте мережу цього пристрою",
+  "not_online_tips": "Мережа відключена. Будь ласка, перевірте мережу цього пристрою",
+  "preview": {
+    "viewport": {
+      "size": "Розмір",
+      "reset": "Reset",
+      "save": "Зберегти",
+      "tooltip": {
+        "fluid_width": "Ширина рідини",
+        "desktop": "Desktop(ширина = 1280 пікселів)",
+        "tablet": "Tablet(ширина = 1080 пікселів)",
+        "custom": "Користувацька"
+      }
+    },
+    "button_text": "Прев'ю"
+  },
+  "remove_fail": "Не вдалося вилучити",
+  "rename": "Перейменувати",
+  "resources": "Ресурси",
+  "retry": "Повторити спробу",
+  "save": "Зберегти",
+  "setting": {
+    "account": {
+      "email": "Ел. пошта",
+      "empty_username": "Будь ласка, введіть ім'я користувача",
+      "error_username": "Ім'я користувача повинно бути 3~15 символів",
+      "save": "Зберегти зміни",
+      "save_fail": "Не вдалося зберегти",
+      "title": "РАХУНОК",
+      "username": "Ім'я користувача"
+    },
+    "other": {
+      "language": "Мова:",
+      "save": "Зберегти зміни",
+      "title": "НАЛАШТУВАННЯ"
+    },
+    "password": {
+      "confirm_password": "Пароль підтвердження",
+      "current_password": "Старий пароль",
+      "empty_password": "Будь ласка, введіть ваш пароль",
+      "error_format_password": "Пароль повинен бути 6~20 символів",
+      "error_match_password": "Паролі не співпадають",
+      "error_password_has_empty": "Пароль не може містити пробіли",
+      "error_validate_password": "Ваш пароль може містити тільки цифри, літери та знаки пунктуації",
+      "new_password": "Новий пароль",
+      "submit_button": "Ввести",
+      "title": "ПАРОЛЬ"
+    }
+  },
+  "share": "Поділитись",
+  "status": {
+    "403": {
+      "des": "Відмовлено у доступі"
+    },
+    "404": {
+      "again": "Оновити",
+      "des": "Схоже, сторінка, яку ви шукали, не знайдена."
+    },
+    "500": {
+      "des": "Ой, щось пішло не так. Будь ласка, спробуйте ще раз пізніше."
+    },
+    "back": "Повернутися на головну сторінку",
+    "mobile_forbidden": "Для кращого редагування, відвідайте цю сторінку на робочому столі",
+    "back_to_cloud": "Повернутися до хмарки ILLA",
+    "no_permission_title": "Недостатньо прав",
+    "no_permission_description": "У вас немає прав для виконання запитуваної операції. Будь ласка, зверніться до адміністраторів вашої команди."
+  },
+  "title": "Ласкаво просимо до illa",
+  "unfreeze_tips": "Заморозити полотно та перетягнути компоненти у контейнери (D або K)",
+  "user": {
+    "description": "Відкрита платформа з низьким кодом для розробників.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Надіслати код"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Будь ласка, введіть коректну адресу електронної пошти",
+          "registered": "Адреса електронної пошти не пов'язана з обліковим записом.",
+          "require": "Введіть адресу електронної пошти"
+        },
+        "newPassword": {
+          "require": "Будь ласка, введіть ваш пароль"
+        },
+        "verification_code": {
+          "expired": "Термін дії коду підтвердження минув",
+          "invalid": "Хибний код підтвердження",
+          "require": "Будь ласка, введіть код підтвердження"
+        }
+      },
+      "fields": {
+        "email": "Ел. пошта",
+        "newPassword": "Новий пароль",
+        "verification_code": "Код підтвердження"
+      },
+      "placeholder": {
+        "email": "Введіть адресу електронної пошти",
+        "verification_code": "Будь ласка, введіть код підтвердження"
+      },
+      "subtitle": "Повернутися до авторизації",
+      "tips": {
+        "fail": "Не вдалося скинути пароль",
+        "fail_sent": "Не вдалося надіслати код підтвердження",
+        "success": "Пароль скинуто успішно",
+        "verification_code": "Код підтвердження надіслано"
+      },
+      "title": "Скидання пароля"
+    },
+    "password": {
+      "placeholder": "Введіть ваш новий пароль (не менше 6 символів)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Увійти"
+      },
+      "description": {
+        "forgot_password": "Забули пароль?",
+        "policy": "Натискаючи кнопку \"Увійти\", я погоджуюся з <0>Політикою конфіденційності</0> та <1>умовами</1>",
+        "register": "Новий користувач? <0>Створіть обліковий запис</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Будь ласка, введіть коректну адресу електронної пошти",
+          "registered": "Адреса електронної пошти не пов'язана з обліковим записом.",
+          "require": "Введіть адресу електронної пошти"
+        },
+        "password": {
+          "incorrect": "Неправильна адреса електронної пошти чи пароль",
+          "locked": "Забагато невдалих спроб, будь ласка, виконайте скидання пароля або спробуйте ще раз через 1 годину",
+          "min_length": "Пароль повинен містити не менше 6 символів",
+          "require": "Будь ласка, введіть пароль"
+        }
+      },
+      "fields": {
+        "email": "Ел. пошта",
+        "password": "Пароль"
+      },
+      "placeholder": {
+        "email": "Введіть адресу електронної пошти"
+      },
+      "tips": {
+        "fail": "Не вдалося увійти",
+        "success": "Ви успішно увійшли"
+      },
+      "title": "З поверненням"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Створити обл. запис",
+        "send": "Надіслати код"
+      },
+      "description": {
+        "login": "Вже зареєстровані? <0>Вхід</0>",
+        "policy": "Натискаючи на \"Створити обліковий запис\", я погоджуюсь з <0>Політикою конфіденційності</0> та <1>умовами</1>",
+        "subscribe": "Я готовий отримувати оновлення та новини про ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Будь ласка, введіть коректну адресу електронної пошти",
+          "registered": "Обліковий запис з такою електронною адресою вже існує.",
+          "require": "Введіть адресу електронної пошти"
+        },
+        "password": {
+          "require": "Будь ласка, введіть пароль"
+        },
+        "username": {
+          "length": "Ім'я користувача має бути 3~15 символів",
+          "require": "Будь ласка, введіть ім'я користувача"
+        },
+        "verification_code": {
+          "expired": "Термін дії коду підтвердження минув",
+          "invalid": "Хибний код підтвердження",
+          "require": "Будь ласка, введіть код підтвердження"
+        }
+      },
+      "fields": {
+        "email": "Ел. пошта",
+        "password": "Пароль",
+        "username": "Ім'я користувача",
+        "verification_code": "Код підтвердження"
+      },
+      "placeholder": {
+        "email": "Введіть адресу електронної пошти",
+        "username": "Введіть ваше ім'я користувача",
+        "verification_code": "Будь ласка, введіть код підтвердження"
+      },
+      "tips": {
+        "fail": "Не вдалося зареєструватися",
+        "fail_sent": "Не вдалося надіслати код підтвердження",
+        "success": "Ви успішно зареєструвалися",
+        "verification_code": "Код підтвердження надіслано"
+      },
+      "title": "Зареєструватися",
+      "agreement": {
+        "privacy_policy": "політика конфіденційності",
+        "terms_of_service": "умови обслуговування"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Прогрес панелі"
+    },
+    "button": {
+      "default_text": "Кнопка",
+      "name": "Кнопка"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Діаграма"
+    },
+    "check_box_group": {
+      "name": "Група прапорців"
+    },
+    "circle_progress": {
+      "name": "Прогрес кола"
+    },
+    "container": {
+      "empty": "Натисніть <keyPress>D</keyPress> або <keyPress>K</keyPress> і перетягніть деталі",
+      "key_duplicated": "Ключ дублюється. Будь ласка, використовуйте унікальні ключі, щоб уникнути помилок.",
+      "name": "Контейнер",
+      "value_duplicated": "Значення дублюється. Будь ласка, використовуйте унікальні значення, щоб уникнути помилок."
+    },
+    "date": {
+      "name": "Дата"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Дата",
+      "placeholder": "Оберіть час"
+    },
+    "divider_progress": {
+      "name": "Роздільник"
+    },
+    "editable_text": {
+      "name": "Текст, що редагується"
+    },
+    "form": {
+      "name": "Форма"
+    },
+    "image": {
+      "name": "Зображення"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Використовуйте {{ currentItem }} для доступу до даних поточного предмету. Наприклад, щоб задати значення текстового компонента, що знаходиться в списку компонентів, заснованих на \"userName\": {{ currentItem.userName }}",
+      "doc2": "Використовувати {{list.selectedItem.data}} для доступу до даних вибраного елемента в списку компонентів. Наприклад, щоб встановити значення текстового компонента, що не входить в список, засноване на \"ім'я користувача\" вибраного в списку: {{ list.selectedItem.userName }}",
+      "name": "Список"
+    },
+    "menu": {
+      "name": "Меню"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Ліворуч",
+      "right": "Праворуч",
+      "select_options": {
+        "manual": "Вручну",
+        "mapped": "Зроблено"
+      },
+      "top": "Верх"
+    },
+    "radio_button": {
+      "name": "Перемикач"
+    },
+    "radio_group": {
+      "name": "Радіогрупа"
+    },
+    "rate": {
+      "name": "Оцінка"
+    },
+    "select": {
+      "name": "Вибрати"
+    },
+    "switch": {
+      "name": "Перемкнути"
+    },
+    "table": {
+      "ascend": "За зростанням",
+      "descend": "Desc",
+      "name": "Стіл",
+      "pagination": "Розбивка на сторінки",
+      "scroll": "Прокрутка"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Привіт!",
+      "name": "Текст",
+      "text_model": "Простий текст"
+    },
+    "timeline": {
+      "horizontal": "Горизонтально",
+      "name": "Хронологія",
+      "vertical": "вертикальний"
+    },
+    "modal": {
+      "name": "Модал"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Вивантажити",
+      "default_button_text": "Вивантажити",
+      "default_dropzone_text": "Виберіть або викиньте файл тут"
+    },
+    "icon": {
+      "name": "Іконка"
+    },
+    "pdf": {
+      "empty": "Немає PDF файлів",
+      "failed": "Не вдалося завантажити PDF"
+    },
+    "video": {
+      "name": "Відео",
+      "empty": "Відео немає",
+      "fail": "Не вдалося завантажити"
+    },
+    "statistics": {
+      "name": "Статистика"
+    },
+    "collapse": {
+      "name": "Згорнути"
+    },
+    "multiselect": {
+      "name": "Множинний вибір"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Кроки"
+    },
+    "slider": {
+      "name": "Слайдер"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Аудіо",
+      "no_audio": "Немає аудіо"
+    },
+    "collaborative": {
+      "no_name": "Без імені"
+    },
+    "map": {
+      "name": "Карта"
+    },
+    "time_picker": {
+      "name": "Вибір часу"
+    },
+    "time_range": {
+      "name": "Проміжок часу"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Календар подій"
+      },
+      "name_duplicated": "Цей ID ресурсу конфліктує в цих подіях. Будь ласка, використовуйте однакову назву або іншу ідентифікатор"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Виправлена",
+        "auto": "Авто"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Надіслати код"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Будь ласка, введіть коректну адресу електронної пошти",
+            "registered": "Адреса електронної пошти не пов'язана з обліковим записом.",
+            "require": "Введіть адресу електронної пошти"
+          },
+          "newPassword": {
+            "require": "Будь ласка, введіть ваш пароль"
+          },
+          "verification_code": {
+            "expired": "Термін дії коду підтвердження минув",
+            "invalid": "Хибний код підтвердження",
+            "require": "Будь ласка, введіть код підтвердження"
+          }
+        },
+        "fields": {
+          "email": "Ел. пошта",
+          "newPassword": "Новий пароль",
+          "verification_code": "Код підтвердження"
+        },
+        "placeholder": {
+          "email": "Введіть адресу електронної пошти",
+          "verification_code": "Будь ласка, введіть код підтвердження"
+        },
+        "subtitle": "Повернутися до авторизації",
+        "tips": {
+          "fail": "Не вдалося скинути пароль",
+          "fail_sent": "Не вдалося надіслати код підтвердження",
+          "success": "Пароль скинуто успішно",
+          "verification_code": "Код підтвердження надіслано"
+        },
+        "title": "Скидання пароля"
+      },
+      "password": {
+        "placeholder": "Введіть ваш новий пароль (не менше 6 символів)"
+      },
+      "policy": "Використовуючи ILLA ви погоджуєтеся з нашими <0>Політикою конфіденційності</0> та <1>Умовами надання послуг</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Увійти"
+        },
+        "description": {
+          "forgot_password": "Забули пароль?",
+          "policy": "Натискаючи кнопку \"Увійти\", я погоджуюся з <0>Політикою конфіденційності</0> та <1>умовами</1>",
+          "register": "Новий користувач? <0>Створіть обліковий запис</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Будь ласка, введіть коректну адресу електронної пошти",
+            "registered": "Адреса електронної пошти не пов'язана з обліковим записом.",
+            "require": "Введіть адресу електронної пошти"
+          },
+          "password": {
+            "incorrect": "Неправильна адреса електронної пошти чи пароль",
+            "locked": "Забагато невдалих спроб, будь ласка, виконайте скидання пароля або спробуйте ще раз через 1 годину",
+            "min_length": "Пароль повинен містити не менше 6 символів",
+            "require": "Будь ласка, введіть пароль"
+          }
+        },
+        "fields": {
+          "email": "Ел. пошта",
+          "password": "Пароль"
+        },
+        "placeholder": {
+          "email": "Введіть адресу електронної пошти"
+        },
+        "tips": {
+          "fail": "Не вдалося увійти",
+          "success": "Ви успішно увійшли",
+          "fail_account": "Неправильна адреса електронної пошти чи пароль"
+        },
+        "title": "З поверненням",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Успішно зареєстровано. Ви можете встановити пароль для вашого облікового запису електронної пошти пізніше",
+            "auth_failed": "Помилка аутентифікації"
+          }
+        },
+        "option": {
+          "github": "Увійти за допомогою GitHub",
+          "google": "Увійти через Google",
+          "or": "АБО"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Створити обл. запис",
+          "send": "Надіслати код"
+        },
+        "description": {
+          "login": "Вже зареєстровані? <0>Вхід</0>",
+          "policy": "Натискаючи на \"Створити обліковий запис\", я погоджуюсь з <0>Політикою конфіденційності</0> та <1>умовами</1>",
+          "subscribe": "Я готовий отримувати оновлення та новини про ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Будь ласка, введіть коректну адресу електронної пошти",
+            "registered": "Обліковий запис з такою електронною адресою вже існує.",
+            "require": "Введіть адресу електронної пошти"
+          },
+          "password": {
+            "require": "Будь ласка, введіть пароль"
+          },
+          "username": {
+            "length": "Ім'я користувача має бути 3~15 символів",
+            "require": "Будь ласка, введіть ім'я користувача"
+          },
+          "verification_code": {
+            "expired": "Термін дії коду підтвердження минув",
+            "invalid": "Хибний код підтвердження",
+            "require": "Будь ласка, введіть код підтвердження"
+          }
+        },
+        "fields": {
+          "email": "Ел. пошта",
+          "password": "Пароль",
+          "username": "Ім'я користувача",
+          "verification_code": "Код підтвердження"
+        },
+        "placeholder": {
+          "email": "Введіть адресу електронної пошти",
+          "username": "Введіть ваше ім'я користувача",
+          "verification_code": "Будь ласка, введіть код підтвердження"
+        },
+        "tips": {
+          "fail": "Не вдалося зареєструватися",
+          "fail_sent": "Не вдалося надіслати код підтвердження",
+          "success": "Ви успішно зареєструвалися",
+          "verification_code": "Код підтвердження надіслано"
+        },
+        "title": "Зареєструватися",
+        "option": {
+          "github": "Зареєструйтеся через GitHub",
+          "google": "Увійти через Google"
+        }
+      },
+      "description": "Відкрита платформа з низьким кодом для розробників."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Навчальний посібник"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Будь ласка, введіть значення не менше за {{ size }}."
+  },
+  "failed_to_copy": "Не вдалося скопіювати",
+  "copied": "Скопійовано!",
+  "user_management": {
+    "role": {
+      "owner": "Власник",
+      "admin": "Administer",
+      "editor": "Редактор",
+      "viewer": "Переглядач"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Запросити учасників"
+      },
+      "link": {
+        "invite_title": "Запрошувальне посилання",
+        "copy": "Копія",
+        "turn_off": "Вимкнути запрошувальні посилання",
+        "update": "Оновити посилання-запрошення",
+        "description": "Поділіться секретним посиланням для вашої команди.",
+        "turn_on": "Увімкнути запрошені посилання",
+        "fail": "Не вдалося отримати посилання, будь ласка, спробуйте ще раз пізніше",
+        "copied_suc": "Скопійовано!",
+        "failed_to_copy": "Не вдалося скопіювати",
+        "turn_off_fail": "Не вдалося вимкнути",
+        "turn_on_fail": "Не вдалося увімкнути",
+        "make_public_title": "Зробити програму загальнодоступною",
+        "make_public_copy": "Копія"
+      },
+      "email": {
+        "invite_title": "Запросити по електронній пошті",
+        "invite": "Запросити",
+        "placeholder": "Введіть адресу електронної пошти",
+        "invited": "Запрошені",
+        "in_list": "Цей користувач вже в вашій команді.",
+        "notmail": "{{ email }} не є електронною поштою",
+        "duplicate": "{{ email }} продубльований"
+      },
+      "invalid_email": "Будь ласка, введіть дійсну адресу електронної пошти",
+      "message": {
+        "make_public_suc": "Успішно встановлено",
+        "make_public_failed": "Не вдалося встановити",
+        "app_share_in_team": "{{ email }} уже у вашій команді, будь ласка, поділіться посиланням з ним. "
+      },
+      "tab": {
+        "invite": "Запросити",
+        "public": "Загальнодоступна"
+      }
+    },
+    "mes": {
+      "invite_suc": "Успішно запрошений",
+      "invite_fail": "Не вдалося запросити",
+      "update_suc": "Оновлено успішно",
+      "update_fail": "Не вдалося оновити",
+      "transfer_suc": "Успішно переміщено",
+      "transfer_fail": "Не вдалося передати",
+      "remove_suc": "Успішно видалено",
+      "remove_fail": "Не вдалося вилучити",
+      "change_role_fail": "Не вдалося оновити",
+      "change_role_suc": "Оновлено успішно"
+    },
+    "page": {
+      "member": "Гравець",
+      "invite": "Запросити",
+      "permission": "Дозвіл",
+      "operation": "Операція",
+      "transfer": "Змінити відповідального",
+      "remove": "Видалити"
+    },
+    "transfer_modal": {
+      "title": "Ви впевнені, що хочете передати власність?",
+      "description": "Після перенесення, ваш дозвіл буде змінено на адміністратора.",
+      "transfer": "Переказ",
+      "cancel": "Скасувати"
+    },
+    "remove_modal": {
+      "title": "Ви дійсно бажаєте видалити {{ username }}?",
+      "description": "Після видалення користувач не зможе отримати доступ до команди.",
+      "remove": "Видалити",
+      "cancel": "Скасувати"
+    },
+    "status": {
+      "pending": "Очікує підтвердження"
+    },
+    "settings": {
+      "allow_editors_invite": "Дозволити редакторам та глядачам керувати учасниками"
+    }
+  },
+  "copy_failed": "Не вдалося скопіювати",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Налаштування команди",
+      "member": "Гравець",
+      "leave": "Залишити команду",
+      "delete": "Видалити команду"
+    },
+    "leave_modal": {
+      "title": "Ви впевнені, що хочете покинути цю команду?",
+      "description": "Ви не зможете отримати доступ до будь-яких ресурсів команди після виходу.",
+      "leave": "Залишити",
+      "cancel": "Скасувати"
+    },
+    "delete_modal": {
+      "title": "Ви впевнені, що хочете видалити цю команду?",
+      "delete": "Видалити",
+      "cancel": "Скасувати",
+      "desctiption": "Після видалення ідентифікатор команди буде недоступним, і всі члени будуть видалені з цієї команди."
+    },
+    "team_info": {
+      "title": "Інформація про команду",
+      "team_name": "Назва команди",
+      "domain": ".illacloud.com",
+      "existed": "Уже існує",
+      "available": "Доступно",
+      "edit": "Редагувати",
+      "save": "Зберегти зміни",
+      "adjust_avater": "Регулювання аватара",
+      "avater_crop": "Кадрування",
+      "team_name_empty": "Будь ласка, введіть назву команди",
+      "team_id_empty": "Введіть ідентифікатор команди",
+      "team_name_placeholder": "Введіть назву команди",
+      "team_id_placeholder": "Введіть ідентифікатор команди",
+      "leave_title": "Залишити команду",
+      "leave_button": "Залишити команду",
+      "delete_title": "Видалити команду",
+      "delete_button": "Видалити команду",
+      "team_domain": "Ідентифікатор групи"
+    },
+    "message": {
+      "save_suc": "Успішно збережено",
+      "save_fail": "Не вдалося зберегти"
+    },
+    "mes": {
+      "domain_suc": "Успішно створено.",
+      "delete_suc": "Успішно вилучено",
+      "delete_fail": "Не вдалося вилучити",
+      "leave_suc": "Успішно проведено",
+      "leave_fail": "Не вдалося вийти"
+    }
+  },
+  "members": "Члени",
+  "invite_new_member": "Запросити",
+  "launch": "Запустити",
+  "homepage": {
+    "message": {
+      "join_failed": "Не вдалося приєднатися до команди: електронна пошта не є запрошеною."
+    }
+  },
+  "image_exceed": "Розмір зображення не може перевищувати 500 Кб",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Кадрування",
+        "save": "Зберегти",
+        "cancel": "Скасувати"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Успішно збережено",
+        "save_fail": "Не вдалося зберегти"
+      },
+      "password": {
+        "title": "Пароль"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Згорнутий список"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "Виявляється кругова залежність від {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Політика конфіденційності",
+      "description": "Ця політика конфіденційності пояснює нашу практику щодо колекції, використання та розкриття інформації, яку ми отримуємо через наші Сервіси."
+    },
+    "terms": {
+      "description": "Ці Умови надання послуг керують Вашим доступом і використанням нашого Сайту, і нашим забезпеченням різних послуг.",
+      "title": "Умови надання послуг"
+    }
+  },
+  "empty_copied_tips": "Вміст для копіювання порожній",
+  "copy_empty": "Вміст для копіювання порожній",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Дізнайтеся, як створити додаток за 5 хвилин",
+          "description": "Слідкуйте за підручником ILLLA, щоб дізнатися, як створити додаток. Це займе близько 5 хвилин.",
+          "cancel": "Скасувати",
+          "take": "Візьмемо підручник"
+        },
+        "exit_confirm": {
+          "title": "Зупинити навчання?",
+          "description": "Наступного разу, коли ви введете додаток для наборства, швидкі кроки будуть відтворені ",
+          "cancel": "Скасувати",
+          "exit": "Припини"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Перенаправлення",
+  "oauth_redirect_description": "Перенаправлення на <0>ILLA Cloud</0>"
+}
