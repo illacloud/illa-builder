@@ -1,0 +1,2805 @@
+{
+  "Logout": "Αποσύνδεση",
+  "Setting": "Ρύθμιση",
+  "apps": "Εφαρμογές",
+  "back": "Πίσω",
+  "btn": {
+    "choose_file": "Επιλέξτε ένα αρχείο"
+  },
+  "change_fail": "Αποτυχία αλλαγής",
+  "change_success": "Επιτυχής αλλαγή",
+  "collision_message": "Πατήστε D ή K και σύρετε το στοιχείο μέσα στο δοχείο",
+  "create_fail": "Αποτυχία δημιουργίας",
+  "create_new": "Δημιουργία Νέου",
+  "create_new_app": "Δημιουργία Νέου",
+  "created_at": "Δημιουργήθηκε στις",
+  "dashboard": {
+    "app": {
+      "all_apps": "Όλες Οι Εφαρμογές",
+      "create_app": "Δημιουργία Εφαρμογής",
+      "duplicate_fail": "Αποτυχία διπλασιασμού",
+      "duplicate_placeholder": "Εισάγετε το όνομα εφαρμογής σας εδώ",
+      "edited_time": "Επεξεργασία στις {{ time }} από {{ user }}",
+      "name_empty": "Παρακαλώ εισάγετε ένα όνομα",
+      "name_existed": "Το όνομα έχει ήδη ληφθεί",
+      "rename_app": "Μετονομασία Εφαρμογής",
+      "rename_fail": "Αποτυχία μετονομασίας",
+      "rename_success": "Μετονομάστηκε με επιτυχία",
+      "trash_failure": "Αποτυχία διαγραφής",
+      "trash_success": "Διαγράφηκε επιτυχώς"
+    },
+    "common": {
+      "cancel": "Ακύρωση",
+      "delete": "Διαγραφή",
+      "delete_cancel_text": "Ακύρωση",
+      "delete_content": "Αυτό θα διαλείψει ερωτήματα της Βιβλιοθήκης Εφαρμογών και Ερωτημάτων που χρησιμοποιούν αυτόν τον πόρο",
+      "delete_ok_text": "Διαγραφή",
+      "delete_title": "Είσαι σίγουρος?",
+      "error_button": "Επανάληψη",
+      "error_description": "Υπάρχει ένα πρόβλημα με τη λειτουργία σας.",
+      "error_title": "Σφάλμα"
+    },
+    "resource": {
+      "create_resource": "Δημιουργία Νέου",
+      "created": "Δημιουργήθηκε",
+      "dbname": "Όνομα Βάσης Δεδομένων",
+      "delete_fail": "Αποτυχία διαγραφής",
+      "delete_success": "Διαγράφηκε επιτυχώς",
+      "resource_name": "Όνομα",
+      "resource_type": "Τύπος",
+      "save_fail": "Αποτυχία αποθήκευσης",
+      "save_success": "Επιτυχής αποθήκευση",
+      "test_fail": "Αποτυχία δοκιμής",
+      "test_success": "Επιτυχής δοκιμή"
+    }
+  },
+  "dayjs": {
+    "just_now": "Μόλις τώρα"
+  },
+  "deploy": "Ανάπτυξη",
+  "description": {
+    "part1": "Αυτό είναι ένα παράδειγμα χωρίς χώρους ονοματοδοσίας."
+  },
+  "dont_need_save": "Το ILLA θα συνεχίσει να προσπαθεί να αποθηκεύει αυτόματα την εργασία σας.",
+  "duplicate": "Duplicate",
+  "edit": "Επεξεργασία",
+  "edit_at": "Επεξεργάστηκε στις",
+  "edit_failed": "Αποτυχία αποθήκευσης, παρακαλώ ελέγξτε το δίκτυό σας.",
+  "edit_success": "Επεξεργασία με επιτυχία",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Πίσω",
+            "create_action": "Δημιουργία Ενέργειας",
+            "new_resource": "Νέος Πόρος"
+          },
+          "selector": {
+            "title": "Επιλέξτε τύπο ενέργειας"
+          },
+          "title": {
+            "choose_resource": "Επιλέξτε έναν πόρο "
+          }
+        },
+        "btn": {
+          "close": "Κλείσιμο",
+          "new": "Νέο"
+        },
+        "contextMenu": {
+          "delete": "Διαγραφή",
+          "duplicate": "Duplicate",
+          "rename": "Μετονομασία"
+        },
+        "message": {
+          "confirm_switch": "Δεν αποθηκεύσατε το ερώτημά σας. Είστε βέβαιοι ότι θέλετε να απορρίψετε τις αλλαγές?",
+          "failed": "Αποτυχία σύνδεσης με το διακομιστή",
+          "load_action_list_fail": "Αποτυχία λήψης λίστας ενεργειών: {{message}}",
+          "load_resource_fail": "Αποτυχία λήψης της λίστας πόρων: {{message}}",
+          "name_already_exist": "Υπάρχει ήδη",
+          "please_input_name": "Παρακαλώ εισάγετε όνομα",
+          "success_created": "Δημιουργήθηκε με επιτυχία",
+          "success_deleted": "Επιτυχής διαγραφή",
+          "success_saved": "Επιτυχής αποθήκευση",
+          "valid_name": "Μπορεί να περιέχει μόνο γράμματα, αριθμούς, '_' ή '$', ξεκινώντας με '_' ή ένα γράμμα"
+        },
+        "placeholder": {
+          "search": "Αναζήτηση"
+        },
+        "runtime": {
+          "backend": "Σύστημα Υποστήριξης",
+          "execute_resource": "εκτέλεση πόρου",
+          "frontend": "Frontend",
+          "handle_response": "χειρίζεται την απάντηση",
+          "post_processing": "μετά την επεξεργασία",
+          "prepare_query": "Ετοιμάστε το ερώτημα",
+          "response_size": "Μέγεθος απόκρισης",
+          "total": "Σύνολο",
+          "transfer_data": "μεταφορά δεδομένων",
+          "transformer": "μετασχηματιστής"
+        },
+        "tips": {
+          "empty": "Προσθέστε μια ενέργεια για να αρχίσετε να εργάζεστε με δεδομένα από έναν συνδεδεμένο πόρο.",
+          "not_found": "Δεν υπάρχουν αποτελέσματα αναζήτησης"
+        },
+        "title": "Λίστα Ενεργειών"
+      },
+      "form": {
+        "btn": {
+          "back": "Πίσω",
+          "save_changes": "Αποθήκευση Πόρου",
+          "test_connection": "Δοκιμή Σύνδεσης"
+        },
+        "required": "Αυτό απαιτείται",
+        "title": {
+          "api": "APIs",
+          "configure": "Ρύθμιση παραμέτρων {{ name }}",
+          "database": "ΣΤΟΙΧΕΙΑ",
+          "select": "Επιλογή Τύπου Πόρου",
+          "huggingface": "Σχολιάζοντας Πρόσωπο",
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "Κουπόνι"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Φύλλα Google"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} απαιτείται"
+        },
+        "label": {
+          "inference_api": "API Εισαγωγής",
+          "inference_endpoint": "Τελικό Σημείο Εισόδου",
+          "s3": "Μη έγκυρο σε δημόσιες εφαρμογές",
+          "acl": "S3 ACL για ανεβασμένα αρχεία",
+          "appwrite": {
+            "host": "Διακομιστής",
+            "dbid": "Id Βάσης Δεδομένων",
+            "projectid": "ID Έργου",
+            "secret": "Κλειδί API",
+            "collectionid": "Id Συλλογής",
+            "documentid": "Αναγνωριστικό Εγγράφου",
+            "data": "Δεδομένα",
+            "filter": "Φίλτρο",
+            "order": "Ταξινόμηση κατά",
+            "limit": "Όριο"
+          },
+          "oracle": {
+            "sid": "Αντιμετώπιση ονόματος βάσης δεδομένων ως",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Πιστοποιητικά",
+            "verification_mode": "Λειτουργία επαλήθευσης"
+          },
+          "gs": {
+            "private_key": "Ιδιωτικό κλειδί",
+            "action_type": "Τύπος ενέργειας",
+            "spreadsheet": "Υπολογιστικό Φύλλο",
+            "sheet_name": "Όνομα φύλλου",
+            "data_range": "Εύρος δεδομένων",
+            "limit": "Όριο",
+            "offset": "Μετατόπιση",
+            "a1_notation": "Ένδειξη Α1",
+            "values_to_append": "Τιμές για προσάρτηση",
+            "filter_by": "Φιλτράρισμα κατά",
+            "update_value": "Ενημέρωση τιμής",
+            "primary_key_column": "Κύρια στήλη πλήκτρου",
+            "array_of_rows_to_upd": "Διάταξη των γραμμών για ενημέρωση",
+            "filters_to_match_row": "Δείκτης γραμμής",
+            "consider_queries_tha": "Εξετάστε ερωτήματα που δεν διαγράφουν γραμμές ως επιτυχίες",
+            "title_of_spreadsheet": "Τίτλος λογιστικού φύλλου",
+            "sheet_id_to_copy": "Αναγνωριστικό φύλλου για αντιγραφή",
+            "sheet_to_copy_to": "Φύλλο για αντιγραφή σε",
+            "authentication": "Ταυτοποίηση",
+            "connect_with_oauth": "Σύνδεση με OAuth & αποθήκευση",
+            "reconnect_with_oauth": "Επανασύνδεση με OAuth",
+            "access_type": "Τύπος πρόσβασης"
+          }
+        },
+        "placeholder": {
+          "url": "Εισάγετε εδώ το URL αιτήματος",
+          "appwrite": {
+            "host": "HOSTNAME OR IP",
+            "dbid": "Id Βάσης Δεδομένων",
+            "projectid": "ID Έργου",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "χαρακτηριστικό",
+              "value": "1234"
+            },
+            "order": "χαρακτηριστικό",
+            "collectionid": "Επιλέξτε μια συλλογή",
+            "data": "Ένα αντικείμενο που εσώκλεισε στο {{ }}. Για παράδειγμα, \n{mp {{{{\"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "oracle",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "◆\r\n  \"τύπος\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"1000000000000000000\",\r\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "στήλη_όνομα",
+              "value": "τιμή"
+            },
+            "update_value": "{ņ[ {{\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "primary_key_column": "στήλη_όνομα",
+            "array_of_rows_to_upd": "{Ş[ \"column1\":\"newValue1\", \"column2\":\"newValue2\" } }}",
+            "filters_to_match_row": {
+              "key": "κλειδί",
+              "value": "τιμή"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Το παρεχόμενο περιεχόμενο είναι μια ρύθμιση παραμέτρων PUBLIC. Αφήστε το κενό για το PRIVATE. Μην ξεχάσετε να ρυθμίσετε το CORS στον κάδο σας. <0>Βλέπε Cross-Origin Resource Sharing (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Φαίνεται ότι προσπαθείτε να συνδεθείτε σε μια βάση δεδομένων που είναι τοπική στον υπολογιστή σας ή μέρος ενός ιδιωτικού δικτύου. Μπορεί να μην λειτουργεί στην έκδοση ILLA Cloud. Δείτε τα <0>docs</0> μας για το πώς να την έκδοση self-host.",
+            "selfhost": "Φαίνεται ότι προσπαθείτε να συνδεθείτε σε μια βάση δεδομένων που είναι τοπική στον υπολογιστή σας. Παρακαλούμε χρησιμοποιήστε τη διεύθυνση IP του τοπικού δικτύου της μηχανής αντί για \"localhost\" ή \"127.0.0.1\".",
+            "title": {
+              "tips": "Συμβουλές"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Ο διακομιστής σας μπορεί να είναι ευάλωτος σε επιθέσεις."
+            }
+          },
+          "gs": {
+            "private_key": "Χρησιμοποιείται για να συνδεθεί με τα Φύλλα Google. Κάντε κλικ <0>εδώ</0> για να δημιουργήσετε ένα έργο και να πάρετε τα διαπιστευτήρια OAuth. Με τον έλεγχο ταυτότητας λογαριασμού υπηρεσιών, θα έχουμε πρόσβαση μόνο σε υπολογιστικά φύλλα που μοιράζεστε με τη διεύθυνση ηλεκτρονικού ταχυδρομείου που αντιστοιχεί στον λογαριασμό υπηρεσίας που χρησιμοποιείται. Δείτε <1>εδώ</1> για τεκμηρίωση σχετικά με τη δημιουργία λογαριασμού υπηρεσίας και το κλειδί πρόσβασης.\n\nΟι χρήστες μπορεί να βιώσουν όρια από διαφορετικά συστατικά επεξεργασίας που δεν ελέγχονται από φύλλα. Μάθετε περισσότερα για τα όρια <2>ποσόστωσης </2>",
+            "leave_blank_to_selec": "Αφήστε κενό για να επιλέξετε το πρώτο φύλλο",
+            "to_select_the_first_": "Για να επιλέξετε τα πρώτα πέντε κελιά στην πρώτη στήλη ενός φύλλου με τίτλο φύλλο1, A1 σημειογραφία είναι φύλλο1!A1:A5. <0>Δείτε τα έγγραφα της Google για περισσότερες πληροφορίες. </0>",
+            "values_to_append": "{ņ[ {{\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "a1_notation": "Για να επιλέξετε τα πρώτα πέντε κελιά στην πρώτη στήλη ενός φύλλου με τίτλο φύλλο1, A1 σημειογραφία είναι φύλλο1!A1:A5. <0>Δείτε τα έγγραφα της Google για περισσότερες πληροφορίες. </0>",
+            "sheet_id_to_copy": "Βρείτε αυτό κοιτάζοντας το ?gid=123123 στη διεύθυνση URL των φύλλων Google σας",
+            "copy_to_sheet_name": "Απαιτείται. Μετονομάστε το αντιγραμμένο φύλλο.",
+            "successfully_authent": "Επιτυχής ταυτοποίηση",
+            "failed_to_authentica": "Αποτυχία ταυτοποίησης"
+          },
+          "tidb": {
+            "ca_certificate": "Συμπληρώνουμε το Πιστοποιητικό CA που χρησιμοποιείται για συνδέσεις TLS σε Serverless Tier από προεπιλογή. Αν χρειάζεστε TLS Συνδέσεις σε Dedicated Tier, <0>Κάντε κλικ εδώ</0> για να δείτε τη μέθοδο διαμόρφωσης."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually.",
+            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Δημιουργία εγγράφου",
+              "list": "Λίστα εγγράφων",
+              "get": "Λήψη εγγράφου",
+              "update": "Ενημέρωση ενός εγγράφου",
+              "delete": "Διαγραφή εγγράφου"
+            },
+            "filter": {
+              "and": "ΚΑΙ",
+              "or": "Ή",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Όνομα Υπηρεσίας"
+            },
+            "ssl": "Χρήση SSL όταν είναι διαθέσιμο"
+          },
+          "couchdb": {
+            "ssl": "Χρήση SSL/TLS όταν είναι διαθέσιμο"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Επαλήθευση Σύνοψης",
+              "auth_1": "Oauth 1.0",
+              "hawk_authentication": "Ταυτοποίηση Hawk",
+              "aws_v4": "Υπογραφή AWS V4",
+              "session_based_auth": "Επαλήθευση Με Βάση Συνεδρίας (Κατασχεθεί)"
+            },
+            "certificates": "Χρήση αυτο-υπογεγραμμένων πιστοποιητικών",
+            "ca_certificate": "Πιστοποιητικό CA",
+            "client_key": "Κλειδί Πελάτη",
+            "client_certificate": "Πιστοποιητικό Πελάτη",
+            "verification_mode": {
+              "full_verification": "Πλήρης επαλήθευση",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Παράλειψη επαλήθευσης πιστοποιητικού CA"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Ανάγνωση δεδομένων από υπολογιστικό φύλλο",
+              "append_data_to_a_spr": "Προσάρτηση δεδομένων σε υπολογιστικό φύλλο",
+              "update_a_spreadsheet": "Ενημέρωση υπολογιστικού φύλλου",
+              "bulk_update_a_spread": "Μαζική ενημέρωση ενός υπολογιστικού φύλλου με βάση το πρωτεύον κλειδί",
+              "delete_a_single_row_": "Διαγραφή μιας γραμμής από ένα υπολογιστικό φύλλο",
+              "create_a_spreadsheet": "Δημιουργήστε ένα υπολογιστικό φύλλο",
+              "copy_a_single_sheet_": "Αντιγραφή ενός ενιαίου φύλλου σε άλλο υπολογιστικό φύλλο",
+              "list_available_sprea": "Λίστα διαθέσιμων υπολογιστικών φύλλων",
+              "get_spreadsheet_info": "Λήψη πληροφοριών υπολογιστικού φύλλου"
+            },
+            "data_range": {
+              "use_a1_notation": "Χρήση σημειογραφίας Α1",
+              "use_limit_and_offset": "Χρήση ορίου και μετατόπισης"
+            },
+            "filter_by": {
+              "use_a1_notation": "Χρήση σημειογραφίας Α1",
+              "use_row_filters": "Χρήση φίλτρων γραμμών"
+            },
+            "oauth_2": {
+              "0": "Oauth 2.0"
+            },
+            "service_account": "Λογαριασμός υπηρεσίας",
+            "read_and_write": "Διαβάστε και γράψτε",
+            "read_only": "Μόνο για ανάγνωση"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Λογαριασμός Υπηρεσίας"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Απενεργοποίηση",
+          "enable": "Ενεργοποίηση",
+          "new": "Νέο",
+          "run": "Εκτέλεση",
+          "save": "Αποθήκευση",
+          "save_and_run": "Αποθήκευση & Εκτέλεση",
+          "save_fail": "Αποτυχία αποθήκευσης",
+          "test_run": "Δοκιμή εκτέλεσης"
+        },
+        "elastic": {
+          "action_type": "Τύπος Ενέργειας",
+          "body": "Σώμα",
+          "id": "Id",
+          "index": "Δείκτης",
+          "query": "Ερώτημα"
+        },
+        "error": {
+          "max_file": "Το μέγεθος του αρχείου δεν μπορεί να υπερβαίνει τα 5M."
+        },
+        "firebase": {
+          "action_type": "Τύπος Ενέργειας",
+          "collection": "Συλλογή",
+          "database_ref": "Βάση δεδομένων ref",
+          "document_id": "Αναγνωριστικό Εγγράφου",
+          "email": "E-mail",
+          "end_at": "Τέλος Σε",
+          "len_of_list": "Μήκος της λίστας ",
+          "limit": "όριο",
+          "next_page_token": "Επόμενη σελίδα διακριτικό",
+          "object_to_set": "Αντικείμενο για ορισμό",
+          "order_by": "Ταξινόμηση κατά",
+          "ordering_direction": "Κατεύθυνση ταξινόμησης",
+          "parent_document_id": "Αναγνωριστικό γονικού εγγράφου",
+          "phone_number": "Αριθμός τηλεφώνου",
+          "placeholder": {
+            "asc": "asc",
+            "document_value": "{Şos. \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Εισάγετε μια συλλογή",
+            "key": "κλειδί",
+            "select_an_action": "Επιλέξτε μια ενέργεια",
+            "select_collection": "Επιλέξτε μια συλλογή",
+            "value": "τιμή"
+          },
+          "service_type": "Τύπος Υπηρεσίας",
+          "start_at": "Έναρξη Από",
+          "tips": {
+            "document_id": "Αφήστε κενό για την αυτόματη δημιουργία ID.",
+            "parent_document_id_tips": "Αφήστε κενό για συλλογές ανωτάτου επιπέδου."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Χρησιμοποιήστε ένα αναπτυσσόμενο μενού",
+          "use_end_at": "Χρήση endAt",
+          "use_raw_id": "Χρήση ακατέργαστου id",
+          "use_start_at": "Use startAt",
+          "user_object": "Αντικείμενο χρήστη ",
+          "value": "τιμή",
+          "where": "όπου"
+        },
+        "label": {
+          "event_handler": "Χειριστής Συμβάντων",
+          "failure": "Αποτυχία",
+          "resource": "Πόρος",
+          "success": "Επιτυχία",
+          "transformer": "Μετασχηματιστής",
+          "couchdb": {
+            "database": "Βάση Δεδομένων",
+            "action_type": "Τύπος ενέργειας"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Επιλέξτε μια βάση δεδομένων",
+              "record": "{{{\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{Şis:\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Κλειδί καταναλωτή",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "extra-δεδομένα κάποιας εφαρμογής",
+              "app": "Ταυτότητα εφαρμογής",
+              "dig": "εντολή-by",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "Ταυτοποίηση χρησιμοποιώντας την κεφαλίδα εξουσιοδότησης HTTP αντί για παραμέτρους ερωτήματος",
+              "find_instructions_on": "Βρείτε οδηγίες για το πού θα βρείτε τα κλειδιά πρόσβασης <0>στα έγγραφα AWS</0>.",
+              "role_to_assume": "Χρησιμοποιήστε έναν <0>διαφορετικό ρόλο</0> κατά την πρόσβαση στο API"
+            },
+            "advanced": {
+              "select_pages": "Επιλογή σελίδων"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Λίστα εγγραφών",
+                "retrieve": "Ανάκτηση εγγραφής",
+                "create": "Δημιουργία εγγραφής",
+                "update": "Ενημέρωση εγγραφής",
+                "delete": "Διαγραφή εγγραφής",
+                "find": "Εύρεση",
+                "get": "Λήψη προβολής"
+              },
+              "skip": "Παράλειψη",
+              "limit": "Όριο",
+              "include": "Συμπερίληψη εγγράφων",
+              "des": "Σειρά",
+              "id": "_id",
+              "rev": "_αναθ.",
+              "record": "Εγγραφή",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "ViewURL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Έγγραφα που περιλαμβάνονται στα αποτελέσματα που επιστρέφονται",
+              "des_option": "Χρήση φθίνουσας παραγγελίας"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "ΠΑΙΧΝΕΙΜΕΝΟ"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Αρχείο",
+                "text": "Κείμενο"
+              },
+              "method": {
+                "options": "ΕΠΙΛΟΓΕΣ",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Παράμετροι Ερωτήματος",
+                "header_authorization": "Εξουσιοδότηση Κεφαλίδας"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Ενεργοποίηση αυτής της ενέργειας όταν φορτώνει η σελίδα",
+              "show_a_loading_page_": "Εμφάνιση σελίδας φόρτωσης κατά την φόρτωση της σελίδας",
+              "on_page_loading": "Κατά τη φόρτωση σελίδας",
+              "on_app_loading": "Το APP φορτώθηκε",
+              "none": "Κανένα"
+            }
+          },
+          "restapi": {
+            "signature_method": "Μέθοδος υπογραφής",
+            "consumer_key": "Κλειδί καταναλωτή",
+            "consumer_secret": "Καταναλωτικό απόρρητο",
+            "access_token": "Διακριτικό πρόσβασης",
+            "token_secret": "Μυστικό διακριτικό",
+            "private_key": "Ιδιωτικό κλειδί",
+            "realm": "Realm",
+            "hawk_auth_id": "Ταυτότητα Πιστοποίησης Hawk",
+            "hawk_auth_key": "Κλειδί Πιστοποίησης Hawk",
+            "algorithm": "Αλγόριθμος",
+            "user": "Χρήστης",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "εφαρμογή",
+            "dig": "dig",
+            "timestamp": "Χρονοσήμανση",
+            "aws_region": "Περιοχή AWS",
+            "aws_service": "Υπηρεσία AWS",
+            "aws_access_key_id": "Id Κλειδιού Πρόσβασης Aws",
+            "aws_secret_key_id": "Αναγνωριστικό Μυστικού Κλειδιού Aws",
+            "role_to_assume": "Ρόλος υποθέτοντας (ARN)",
+            "list_of_cookies_to_f": "Λίστα των cookies για προώθηση",
+            "add_access_token_to": "Προσθήκη Διακριτικού Πρόσβασης Σε"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Είτε πρόκειται για δυαδική συμβολοσειρά, είτε για ένα αντικείμενο: {mp data: binary string, filename?: string } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Καμία ενέργεια δεν θα ενεργοποιηθεί όταν φορτώσει η σελίδα. Μπορείτε να ενεργοποιήσετε χειροκίνητα την ενέργεια και να ενεργοποιήσετε την \"Ενεργοποίηση αυτής της ενέργειας όταν φορτώνει η σελίδα\" στις ρυθμίσεις για προχωρημένους."
+            }
+          },
+          "advanced": {
+            "advanced": "ADVANCED",
+            "page_trigger": "Χρονισμός Ενεργοποίησης",
+            "loading_page": "Φόρτωση σελίδας",
+            "page_load_delay": "Καθυστέρηση (ms)",
+            "run_this_action_peri": "Εκτέλεση αυτής της ενέργειας περιοδικά",
+            "interval": "Διάστημα (s)",
+            "actions_running_when": "Ενέργειες όταν φορτώνει η σελίδα",
+            "pages": "Σελίδες",
+            "periodically_run": "Περιοδικά εκτέλεση"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Διαγραφή",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Τύπος Ενέργειας",
+          "aggregation": "Άθροιση",
+          "collection": "Συλλογή",
+          "document": "Έγγραφο",
+          "field": "Πεδίο",
+          "filter": "Φίλτρο",
+          "limit": "Όριο",
+          "operations": "Λειτουργίες",
+          "options": "Επιλογές",
+          "projection": "Προβολή",
+          "query": "Ερώτημα",
+          "skip": "Παράλειψη",
+          "sort_by": "Ταξινόμηση Κατά",
+          "update": "Ενημέρωση"
+        },
+        "option": {
+          "resource": {
+            "new": "Δημιουργία νέου πόρου"
+          },
+          "trigger": {
+            "manually": "Εκτέλεση ενέργειας μόνο όταν ενεργοποιείται χειροκίνητα",
+            "on_change": "Αυτόματη εκτέλεση ενέργειας όταν οι είσοδοι αλλάζουν"
+          }
+        },
+        "s3": {
+          "action_type": "Τύπος Ενέργειας",
+          "bucket_name": "Όνομα κουπονιού",
+          "content_type": "Τύπος Περιεχομένου",
+          "delimiter": "Οριοθέτης",
+          "error": {
+            "max_file": "Το μέγεθος του αρχείου δεν μπορεί να υπερβαίνει τα 5M."
+          },
+          "expiry_duration_of_signed_url": "Διάρκεια λήξης της υπογεγραμμένης διεύθυνσης URL (λεπτά)",
+          "generate_signed_url": "Δημιουργία Υπογεγραμμένου URL",
+          "max_keys": "Μέγιστα πλήκτρα",
+          "object_key": "Πλήκτρο αντικειμένου",
+          "object_key_list": "Λίστα κλειδιών αντικειμένων",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Πρόθεμα φιλτραρίσματος αποτελεσμάτων",
+          "tips": {
+            "delimiter": "Ένας οριοθέτης είναι ένας χαρακτήρας που χρησιμοποιείτε για την ομάδα κλειδιών.",
+            "max_keys": "Ορίζει τον μέγιστο αριθμό κλειδιών που επιστρέφονται στην απάντηση. Εξ ορισμού η ενέργεια επιστρέφει μέχρι και 1000 ονόματα κλειδιών."
+          },
+          "upload_data": "Μεταφόρτωση δεδομένων",
+          "upload_data_list": "Μεταφόρτωση λίστας δεδομένων",
+          "upload_object_name": "Ανεβάστε όνομα αντικειμένου",
+          "upload_object_name_list": "Μεταφόρτωση λίστας ονόματος αντικειμένου",
+          "timeout_upload": "Χρονικό όριο για το ανέβασμα ενός αρχείου (λεπτά)",
+          "timeout_upload_multiple": "Χρονικό όριο για το ανέβασμα ενός αρχείου (λεπτά) "
+        },
+        "smtp": {
+          "attachment": "Συνημμένα",
+          "bcc_email": "Ηλεκτρονικό ταχυδρομείο Bcc",
+          "body": "Σώμα",
+          "cc_email": "Cc email(s)",
+          "from_email": "Από email",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Χρησιμοποιήστε κόμμα για να διαχωρίσετε τα μηνύματα. π.χ. {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Email απάντησης",
+          "set_replay_email": "Ορισμός email απάντησης",
+          "subject": "Θέμα",
+          "tips": {
+            "port": "Ορισμένοι πάροχοι ενδέχεται να αποκλείσουν τη θύρα 25.Εάν η σύνδεση αποτύχει, παρακαλώ αλλάξτε τη θύρα \n."
+          },
+          "to_email": "Προς email(s)",
+          "use_html": "Χρήση HTML",
+          "use_raw": "Χρήση ακατέργαστου κειμένου"
+        },
+        "tips": {
+          "transformer": "Ενεργοποιήστε τους μετασχηματιστές για να μετατρέψει το αποτέλεσμα του ερωτήματος σε διαφορετική μορφή."
+        },
+        "graphql": {
+          "query": "Ερώτημα",
+          "variables": "Μεταβλητές",
+          "headers": "Κεφαλίδες",
+          "placeholder": {
+            "query": "# Χρησιμοποίησε $ για να προσθέσεις μια μεταβλητή στο ερώτημά σου (π.χ. $category ) \r\nερώτημα ($owner: Συμβολοσειρά!, $name: Συμβολοσειρά! ◆\r\n  αποθετήριο (ιδιοκτήτης: $owner, όνομα: $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "Αναγνωριστικό Μοντέλο",
+          "placeholder": {
+            "mode_id": "bert-base-uncased",
+            "text": "Η απάντηση στο σύμπαν είναι [MASK].",
+            "json": "◆ \r\n\"past_user_inputs\": [\"Ποια ταινία είναι η καλύτερη ?\"], \r\n\"generated_responses\": [\"Είναι δύσκολο για σίγουρο.\"], \r\n\"κείμενο\": \"Μπορείς να εξηγήσεις γιατί ?\" \r\n}",
+            "binary": "π.χ. {{ upload1.file[0] }}. Ένα δυαδικό αρχείο χωρίς πρόθεμα αρχείου",
+            "use_cache": "Boolean, αφήστε κενό για true",
+            "min_length": "Ακέραιος αριθμός για τον ορισμό του ελάχιστου μήκους σε νομίσματα της περίληψης εξόδου",
+            "top_k": "Ακέραιος αριθμός για τον ορισμό των κορυφαίων σημείων",
+            "top_p": "Επιπλέουν για να ορίσουν τα διακριτικά",
+            "temperature": "Float(0.0-100.0), αφήστε κενό για 1.0",
+            "repetition_penalty": "Επιπλέουν (0.0-100.0)",
+            "max_time": "Επιπλέουν (0.0-120.0) για να ορίσετε το χρονικό διάστημα σε δευτερόλεπτα"
+          },
+          "tips": {
+            "mode_id": "Πηγαίνετε στο <0>Model Hub</0> και επιλέξτε το μοντέλο που θέλετε να χρησιμοποιήσετε.",
+            "use_detail_parameters": "<0>Κάντε κλικ εδώ</0> για να μάθετε περισσότερα σχετικά με τις παραμέτρους λεπτομέρειας",
+            "temperature": "1 σημαίνει τακτική δειγματοληψία, 0 σημαίνει πάντα τη λήψη της υψηλότερης βαθμολογίας, 100.0 πλησιάζει στην ομοιόμορφη πιθανότητα.",
+            "repetition_penalty": "Όσο περισσότερο χρησιμοποιείται ένα διακριτικό μέσα στη γενιά τόσο περισσότερο τιμωρείται να μην επιλέγεται σε διαδοχικές περάσματα γενιάς."
+          },
+          "parameter": "Παράμετρος",
+          "use_detail_parameters": "Χρήση παραμέτρων λεπτομερειών",
+          "use_cache": "Χρήση προσωρινής μνήμης",
+          "wait_for_model": "Περιμένετε για το μοντέλο",
+          "min_length": "Ελάχιστο μήκος",
+          "max_length": "Μέγιστο μήκος",
+          "top_k": "Πάνω k",
+          "top_p": "Πάνω p",
+          "temperature": "Θερμοκρασία",
+          "repetition_penalty": "Πρόστιμο επανάληψης",
+          "max_time": "Μέγιστος χρόνος"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Τι δήλωση SQL θέλετε να δημιουργήσετε"
+          },
+          "button": {
+            "text": "Δημιουργία SQL"
+          }
+        },
+        "mssql": {
+          "config_type": "Τύπος Ρυθμίσεων",
+          "query": "Ερώτημα",
+          "placeholder": {
+            "query": "επιλέξτε * από τους χρήστες;",
+            "table": "Επιλέξτε έναν πίνακα",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Πίνακας",
+          "insert_record": "Διάταξη των εγγραφών για εισαγωγή",
+          "dropdown": {
+            "retry": "Κλικ για επανάληψη"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Μέθοδος",
+            "table": "Πίνακας",
+            "json_input": "Χρήση επεξεργαστή παραμέτρων JSON",
+            "parameters": "Παράμετρος",
+            "index": "Όνομα ευρετηρίου",
+            "key_condition": "Έκφραση συνθηκών κλειδιού",
+            "projection_expression": "Έκφραση προβολής",
+            "filter_expression": "Εκφράσεις φίλτρου",
+            "attribute_name": "Ονόματα χαρακτηριστικών έκφρασης",
+            "attribute_value": "Τιμές χαρακτηριστικού έκφρασης",
+            "limit": "Όριο",
+            "select": "Επιλογή",
+            "item": "Αντικείμενο",
+            "condition_expression": "Εκφράσεις συνθηκών",
+            "key": "Κλειδί",
+            "update_expression": "Ενημέρωση έκφρασης"
+          },
+          "option": {
+            "query": "ερώτημα",
+            "scan": "σάρωση",
+            "put_item": "Στοιχείο",
+            "get_item": "getItem",
+            "update_item": "ενημέρωσηΣτοιχείο",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, για exmaple:\n Ş\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Απέτυχε",
+          "ran_successfully": "Επιτυχία"
+        },
+        "result": {
+          "restapi": {
+            "status": "Κατάσταση",
+            "headers": "Κεφαλίδες",
+            "response": "Απάντηση"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Έρχεται Σύντομα"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Μη έγκυρο ιδιωτικό κλειδί. "
+          },
+          "label": {
+            "ca_certificate": "Πιστοποιητικό CA",
+            "client_certificate": "Πιστοποιητικό Πελάτη",
+            "client_key": "Κλειδί Πελάτη",
+            "config_type": "Τύπος Ρυθμίσεων",
+            "connect_type": "Τύπος Σύνδεσης",
+            "connection_format": "Μορφή σύνδεσης",
+            "connection_string": "Συμβολοσειρά Σύνδεσης",
+            "database": "Βάση Δεδομένων",
+            "database_index": "Ευρετήριο Βάσης Δεδομένων",
+            "firebase_database_url": "Url Βάσης Δεδομένων Firebase",
+            "firebase_project_id": "Id Έργου Firestore",
+            "hostname": "Hostname",
+            "hostname_port": "Όνομα Υπολογιστή/Θύρα",
+            "hosturl": "Διεύθυνση Φιλοξενητή",
+            "mongodb_connection_dns_seed_list": "Σύνδεση λίστας σπόρων DNS",
+            "mongodb_connection_standard": "Τυπική Σύνδεση",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Κήπος και κλειδί πελάτη",
+            "name": "Όνομα",
+            "port": "Θύρα",
+            "private_key": "Ιδιωτικό Κλειδί",
+            "private_key_hover": "Το ιδιωτικό κλειδί συνδέεται με λογαριασμό υπηρεσίας με δικαιώματα Firebase.",
+            "ssl_options": "Επιλογές SSL",
+            "username_password": "Όνομα Χρήστη/Κωδικός",
+            "self_signed_certificate": "Χρήση αυτο-υπογεγραμμένου πιστοποιητικού",
+            "disable_introspection": "Απενεργοποίηση Εισαγωγής",
+            "value": "Τιμή",
+            "add_to": "Προσθήκη σε",
+            "header_prefix": "Πρόθεμα κεφαλίδας",
+            "key": "Κλειδί",
+            "introspection": "Εισαγωγή",
+            "bear_token": "Διακριτικό",
+            "connection_options": "Επιλογές σύνδεσης",
+            "account_name": "Όνομα λογαριασμού",
+            "warehouse": "Αποθήκη",
+            "schema": "Σχήμα",
+            "snowflake_basic_auth": "Βασική Πιστοποίηση",
+            "snowflake_key_auth": "Ζεύγος Κλειδιών (υποστηρίζονται μόνο τα κρυπτογραφημένα ιδιωτικά κλειδιά)",
+            "role": "Ρόλος",
+            "username": "Όνομα Χρήστη",
+            "password": "Κωδικός",
+            "dynamo_region": "Περιοχή AWS",
+            "dynamo_access_key_id": "Id Κλειδιού Πρόσβασης Aws",
+            "dynamo_secret_key": "Μυστικό Κλειδί AWS"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_παραγωγή",
+            "database_index": "προεπιλογή 0",
+            "hostname": "Hostname",
+            "hosturl": "π.χ. https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "π.χ. \"Users DB (readonly)\" ή \"Εσωτερικό API Διαχειριστή\"",
+            "password": "Κωδικός",
+            "private_key": "◆\n  \"τύπος\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"1000000000000000000\",\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Όνομα Χρήστη",
+            "default": "προεπιλογή",
+            "hugging_face_url": "Χρησιμοποιήστε την απόλυτη διεύθυνση URL (e.g https://api-inference.huggingface.co/models/). ",
+            "database_name": "Όνομα βάσης δεδομένων",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "ΣΗΜΕΙΩΣΗ_ΔΕΙΓΜΑΤΟΣ_ΔΕΔΟΜΕΝΑ",
+            "schema": "ΔΗΜΟΣΙΑ",
+            "role": "Ρόλος",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----ΒEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
+          },
+          "tip": {
+            "connect_type": "Cloud: Οι διακομιστές ILLA θα συνδεθούν με ασφάλεια στη βάση δεδομένων σας.",
+            "name": "Το όνομα του πόρου κατά τη δημιουργία ενεργειών στο ILLA.",
+            "private_key": "<0>Κάντε κλικ εδώ</0> για να δείτε πώς να αποκτήσετε αυτό το κλειδί",
+            "ssl_options": "SSL χρησιμοποιείται όταν είναι διαθέσιμο",
+            "username_password": "Τα διαπιστευτήρια θα κρυπτογραφούνται και θα αποθηκεύονται με ασφάλεια στους διακομιστές μας.",
+            "introspection": "Ενεργοποιήστε το αν το GraphQL τελικό σημείο σας δεν υποστηρίζει ερωτήσεις ενδοσκόπησης. Σημειώστε ότι η απενεργοποίηση της ενδοσκόπησης μειώνει τη χρηστικότητα του GraphQL, καθώς η αυτόματη συμπλήρωση και η επένδυση για αυτόν τον πόρο δεν θα λειτουργούν πλέον.",
+            "hugging_face_url": "<0>Κάντε κλικ εδώ</0> για να μάθετε περισσότερα για το Hugging Face.",
+            "bear_token": "Αποκτήστε ένα κλειδί πρόσβασης χρήστη ή API <0>στις ρυθμίσεις προφίλ Hugging Face .</0>",
+            "connection_options": "Προσθέστε επιλογές σύνδεσης για τη σύνδεσή σας. Όταν είναι ενεργοποιημένη η επιλογή SSL, θα προσθέσουμε από προεπιλογή κρυπτογράφηση και trustServerCertificate."
+          },
+          "title": {
+            "advanced_option": "Προηγμένες Επιλογές",
+            "general_option": "ΓΕΝΙΚΑ",
+            "graphql_introspection": "ΕΠΙΘΕΩΡΗΣΗ ΤΟΥ GRAPHQL"
+          }
+        },
+        "error": {
+          "invalid_url": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση URL, για παράδειγμα, https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Νέο"
+          },
+          "label": {
+            "access_token": "Διακριτικό Πρόσβασης",
+            "access_token_lifespan": "Διακριτικό πρόσβασης\n διάρκεια ζωής(οπτική)",
+            "access_token_url": "Διεύθυνση URL Διακριτικού Πρόσβασης",
+            "action_type": "Τύπος Ενέργειας",
+            "audience": "Ακρόαση",
+            "authentication": "Ταυτοποίηση",
+            "authorization_url": "URL Εξουσιοδότησης",
+            "base_url": "Βασικό URL",
+            "basic_auth_password": "Βασική πιστοποίηση κωδικού πρόσβασης",
+            "basic_auth_username": "Βασικό όνομα χρήστη ταυτοποίησης",
+            "bearerToken": "Διακριτικό Φορέα",
+            "body": "Σώμα",
+            "client_id": "Ταυτότητα Πελάτη",
+            "client_secret": "Μυστικό Πελάτη",
+            "configure_oauth2": "Ρύθμιση Του Oauth 2.0",
+            "cookies": "Cookies",
+            "copy_url_to_application": "Αντιγράψτε αυτή τη διεύθυνση URL στην εφαρμογή σας",
+            "enable_auth_verification_endpoint": "Ενεργοποίηση ενός τελικού σημείου επαλήθευσης ταυτοποίησης",
+            "extra_body_values": "Επιπλέον Τιμές Σώματος",
+            "forward_all_cookies": "Προώθηση Όλων Των Cookies",
+            "headers": "Κεφαλίδες",
+            "list_of_cookies_to_forward": "Κατάλογος Cookies προς\n",
+            "name": "Όνομα",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Ανανέωση Διακριτικού",
+            "scopes": "Πεδία (διαχωρισμένα με\n ένα κενό)",
+            "share_oauth2_credentials_between_users": "Κοινή χρήση OAuth2.0 διαπιστευτηρίων μεταξύ χρηστών",
+            "url_parameters": "Παράμετροι URL",
+            "use_client_credentials_auth": "Χρήση ταυτοποίησης διαπιστευτηρίων πελάτη",
+            "digest_auth_username": "Όνομα Χρήστη",
+            "digest_auth_password": "Κωδικός"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Βασική Πιστοποίηση",
+              "bearer": "Φορέας",
+              "none": "Κανένα",
+              "oauth2": "Oauth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Διάρκεια ζωής Token σε δευτερόλεπτα",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "i.e.\"Εσωτερικό API Διαχειριστή\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "Χρήση της απόλυτης διεύθυνσης URL (π.χ https://example.com)",
+            "database": "π.χ. \"Χρήστες DB(μόνο για ανάγνωση)\"",
+            "name": "π.χ. \"Users DB (readonly)\" ή \"Εσωτερικό API Διαχειριστή\"",
+            "param_key": "κλειδί",
+            "param_value": "τιμή",
+            "password": "κωδικός",
+            "username": "όνομα χρήστη"
+          },
+          "tip": {
+            "configure_oauth2": "Το OAuth 2.0 είναι ένα σύνθετο spec. Το ILLA υποστηρίζει επί του παρόντος τη ροή ελέγχου ταυτότητας OAuth 2.0, καθώς και τη ροή των διαπιστευτηρίων πελατών. Και στις δύο περιπτώσεις, θα πρέπει να χρησιμοποιήσετε το placeholder OGalax2_TOKEN για να ενημερώσετε το ILLA πού να τοποθετήσετε το διακριτικό πρόσβασης OAuth στο αίτημα API. Μια κοινή θέση για αυτό είναι ως μια κεφαλίδα όπως η εξουσιοδότηση: Bearer OGalax2_TOKEN.",
+            "extra_body_values": "Επιπλέον τιμές σώματος δεν έχουν περάσει για αιτήσεις GET ή HEAD",
+            "get_req_auto_run": "(GET REQ) ΘΑ ΑΝΑΓΝΩΡΙΖΟΝΤΑΙ ΑΥΤΟΜΑΤΙΚΕΣ ΟΠΟΙΕΣ ΑΛΛΑΓΕΣ ΠΑΡΑΜΕΤΡΟ.",
+            "name": "Το όνομα του πόρου κατά τη δημιουργία ενεργειών στο ILLA."
+          },
+          "title": {
+            "advanced_option": "ΓΕΝΙΚΑ"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Κλειδί πρόσβασης",
+            "base_url": "Βασικό URL",
+            "bucket_name": "Όνομα κουπονιού",
+            "custome_s3_endpoint": "Προσαρμοσμένο τελικό σημείο S3",
+            "region": "Περιοχή",
+            "secret_access_key": "Μυστικό κλειδί πρόσβασης",
+            "use_custome_s3_endpoint": "Χρήση προσαρμοσμένου τελικού σημείου S3"
+          },
+          "placeholder": {
+            "base_url": "π.χ. https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Αυτό χρησιμοποιείται για τη σύνδεση με άλλες υπηρεσίες εκτός S3, όπως οι Digital Ocean Spaces ή Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Συμβουλή: εκχωρήστε τις εξωτερικές αναφορές σας σε μεταβλητές αντί να αλυσοδέψετε τα σγουρά στηρίγματα."
+          },
+          "tip": {
+            "external_reference": "Μπορείς να δημιουργήσεις εξωτερικές αναφορές σε μεταβλητές που έχεις ορίσει. Για παράδειγμα, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Μάθετε περισσότερα για το Hugging Face:",
+            "hf_endpoint": "Τελικό Σημείο Εισόδου"
+          },
+          "label": {
+            "hf_endpoint_token": "Διακριτικό",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Αποκτήστε ένα API Tokens Οργανισμός <0>στις ρυθμίσεις προφίλ Hugging Face </0>.",
+            "hf_endpoint": "μάθετε περισσότερα για το <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uuu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Επιτρέψτε διευθύνσεις IP",
+            "message": "Εάν οι πόροι σας δεν είναι προσβάσιμοι στο κοινό, ενημερώστε τη ρύθμιση του δικτύου ή του τείχους προστασίας για να προσθέσετε τις διευθύνσεις IP του ILLA στη λίστα επιτρεπτών ώστε η ILLA να μπορεί να συνδεθεί με τους πόρους σας."
+          }
+        },
+        "button": {
+          "copy_ip": "Αντιγραφή IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Διαγράφηκε"
+      },
+      "result": {
+        "title": {
+          "api_request": "Αίτημα API",
+          "error": "Αποτυχία εκτέλεσης ερωτήματος",
+          "json": "JSON",
+          "response": "Απάντηση",
+          "success": "Επιτυχής εκτέλεση ερωτήματος",
+          "table": "Πίνακας"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Βάση Δεδομένων",
+        "js_transformer": "Μετασχηματιστής JavaScript"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Αποτυχία εμφάνισης πινάκων. Παρακαλώ προσπαθήστε ξανά αργότερα."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "απόρρητο",
+          "public_read": "δημόσια αναγνωσμένα",
+          "public_read_write": "δημόσια ανάγνωση-εγγραφή",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "ταυτοποίηση-ανάγνωση",
+          "bucket_owner_read": "bucket-owner-ανάγνωση",
+          "bucket_owner_full_control": "bucket-owner-full-control"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Ακύρωση",
+      "delete": "Διαγραφή",
+      "delete_content": "Διαγράψτε το ίσως κάνει κάποια σφάλματα, παρακαλώ επιβεβαιώστε.",
+      "delete_title": "Είστε βέβαιοι ότι θέλετε να διαγράψετε {{ displayName}}?",
+      "editor_list": "Τρέχοντες συντάκτες"
+    },
+    "context_menu": {
+      "delete": "Διαγραφή",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "ΔΡΑΣΕΙΣ & ΜΕΤΑΦΟΡΕΣ ",
+      "components_title": "ΣΤΟΙΧΕΙΑ ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "ΣΤΟΙΧΕΙΑ",
+      "global_data_modal": {
+        "title": "Επεξεργασία καθολικών δεδομένων",
+        "variable_name": {
+          "tooltips": "Όνομα της μεταβλητής. Χρησιμοποιήστε την αρχική τιμή σε αυτήν την εφαρμογή μέσω {{name}}",
+          "label": "Όνομα",
+          "message": "Παρακαλώ εισάγετε το όνομα της μεταβλητής"
+        },
+        "initial_value": {
+          "label": "Αρχική τιμή",
+          "tooltips": "Υποστηρίζει αντικείμενα ή πρωτόγονες τιμές. Παράδειγμα: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Αποτυχία ανάπτυξης"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" υπάρχει ήδη",
+      "validate_error": "\"{{ displayName }}\" πρέπει να αρχίζει με ένα γράμμα ή \"_\", και μπορεί να περιέχει μόνο γράμματα, αριθμούς, \"_\", ή \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Διαγραφή",
+          "reset_state": "Reset state",
+          "view_documentation": "Προβολή τεκμηρίωσης"
+        }
+      },
+      "multi_selected_header": "{{ number }} συστατικά επιλέχθηκαν",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Γράφημα μπάρας",
+          "line": "Διάγραμμα γραμμής",
+          "pie": "Διάγραμμα πίτας",
+          "scatterplot": "Σδιασπορά"
+        },
+        "color_picker": {
+          "prefabricated": "Προκατασκευασμένο χρώμα",
+          "title": "Επεξεργασία χρώματος"
+        },
+        "column_setter": {
+          "label": "Στήλες ({{number}})",
+          "new": "Νέο",
+          "title": "Τίτλος"
+        },
+        "event_handler_list": {
+          "empty": "Ερωτήματα ενεργοποίησης, έλεγχος εφαρμογών, ή κλήση άλλων API σε απόκριση σε συμβάντα εφαρμογής.",
+          "incomplete_selection": "Ελλιπής επιλογή",
+          "new": "Νέο",
+          "title": "Επεξεργασία χειριστή συμβάντων"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Διαγραφή",
+          "label": "Menus ({{number}})",
+          "new": "Νέο",
+          "sub": "Υπό"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Διαγραφή",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Χωρίς ετικέτα",
+          "model_title": "Επεξεργασία Επιλογών",
+          "new": "Νέο",
+          "title": "Επιλογές"
+        },
+        "select_page_setter": {
+          "placeholder": "Επιλέξτε μια σελίδα"
+        },
+        "select_view_setter": {
+          "placeholder": "Επιλέξτε μια προβολή"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Προβολές"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Αλλαγή",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Αλλαγή φίλτρου",
+          "fail": "Αποτυχία",
+          "focus": "Εστίαση",
+          "invalid": "Μη Έγκυρο",
+          "paginationChange": "Αλλαγή σελίδας",
+          "row_select": "Επιλογή γραμμής",
+          "sortingChange": "Αλλαγή ταξινόμησης",
+          "submit": "Υποβολή",
+          "success": "Επιτυχία",
+          "onOpenModal": "Άνοιγμα τρόπου λειτουργίας",
+          "onCloseModal": "Κλείσιμο modal",
+          "play": "Αναπαραγωγή",
+          "pause": "Παύση",
+          "ended": "Τελείωσε",
+          "loaded": "Φορτώθηκε",
+          "rowSelect": "Επιλογή γραμμής",
+          "markerSelected": "markerSelected",
+          "markerCreated": "markerΔημιουργήθηκε",
+          "select": "Επιλογή"
+        },
+        "image_list": {
+          "title": "Εικόνες",
+          "empty": "Δεν υπάρχουν εικόνες",
+          "model_title": "Επεξεργασία εικόνων",
+          "config": {
+            "model_label": "Ετικέτα",
+            "image_url": "Url Εικόνας"
+          }
+        },
+        "image_setter": {
+          "new": "Νέο"
+        },
+        "Change": "Αλλαγή",
+        "Select": "Επιλογή",
+        "eventCalendar": {
+          "no_title": "Χωρίς τίτλο"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Γέμισμα",
+        "message_type": {
+          "error": "Σφάλμα",
+          "info": "Πληροφορίες",
+          "success": "Επιτυχία",
+          "warning": "Προειδοποίηση"
+        },
+        "outline": "Περίγραμμα",
+        "validation_pattern": {
+          "email": "E-mail",
+          "regex": "Regex",
+          "url": "URL"
+        },
+        "height": {
+          "fixed": "Σταθερό",
+          "auto": "Αυτόματο"
+        },
+        "upload_type": {
+          "button": "Κουμπί",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Μονό αρχείο",
+          "multiple_files": "Πολλαπλά αρχεία",
+          "directory": "Κατάλογος"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "Επιλογή ώρας"
+        },
+        "time_range": {
+          "start_placeholder": "Ώρα έναρξης",
+          "end_placeholder": "Ώρα λήξης"
+        }
+      },
+      "setter_group": {
+        "adornments": "ΠΡΟΣΑΡΜΟΓΕΣ",
+        "basic": "ΒΑΣΙΚΟ",
+        "column": "ΧΡΩΜΑΤΑ",
+        "data": "ΔΕΔΟΜΕΝΑ",
+        "interaction": "ΔΙΑΔΡΑΣΗ",
+        "label": "ΕΤΙΚΕΤΑ",
+        "layout": "LAYOUT",
+        "menu": "ΜΕΝΟΥ",
+        "options": "ΕΠΙΛΟΓΕΣ",
+        "pagination": "ΠΑΙΧΝΙΔΙΑ",
+        "row_selection": "ΕΠΙΛΟΓΗ ROW",
+        "sort": "SORT",
+        "style": "ΣΤΥΛΟ",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "ΕΠΙΚΥΡΩΣΗ",
+        "views": "VIEWS",
+        "images": "ΕΙΚΟΝΕΣ",
+        "primary_value": "ΑΡΧΙΚΗ ΑΞΙΑ",
+        "secValue": "Δευτερεύουσα αξία",
+        "border": "Border",
+        "color": "Χρώμα",
+        "icon": "Εικονίδιο",
+        "secondary_value": "ΔΕΥΤΕΡΙΚΗ ΑΞΙΑ",
+        "resource": "ΠΟΡΟΣ",
+        "eventCalendar": {
+          "calendar": "Ημερολόγιο"
+        },
+        "event": "Γεγονός"
+      },
+      "setter_label": {
+        "action": "Ενέργεια",
+        "align": "Align",
+        "allow_clear": "Επιτρέπεται η εκκαθάριση",
+        "allow_half": "Επιτρέπεται η μισή",
+        "alt_text": "Εναλλακτικό κείμενο",
+        "alt_text_desc": "Μια προσβάσιμη περιγραφή της εικόνας για τους αναγνώστες οθόνης. Αυτό εμφανίζεται επίσης ως εναλλακτική επιλογή αν η εικόνα αποτύχει να φορτώσει.",
+        "background": "Φόντο",
+        "background_color": "Φόντο",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Λεζάντα",
+        "chart_title": "Τίτλος",
+        "chart_type": "Τύπος γραφήματος",
+        "color": "Χρώμα",
+        "colors": "Χρώματα",
+        "column_title": "Τίτλος στήλης",
+        "column_type": "Τύπος στήλης",
+        "columns": "Στήλες",
+        "component": "Συστατικό",
+        "config_type": "Τύπος ρύθμισης",
+        "container": "Περιέκτης",
+        "content": "Περιεχόμενο",
+        "control_component": "Στοιχείο ελέγχου",
+        "custom_rule": "Προσαρμοσμένοι κανόνες",
+        "data": "Δεδομένα",
+        "data_source": "Πηγή δεδομένων",
+        "data_sources": "Πηγές δεδομένων",
+        "dataset": {
+          "aggregation_method": "Μέθοδος συγκέντρωσης",
+          "name": "Όνομα συνόλου δεδομένων",
+          "remove": "Remove dataset",
+          "value": "Τιμές συνόλου δεδομένων"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Δεκαδικό ψηφίο",
+        "decimal_places": "Δεκαδικά ψηφία",
+        "default_sort_key": "Στήλη",
+        "default_sort_order": "Κατεύθυνση",
+        "default_tab": "Default tab",
+        "default_value": "Προεπιλεγμένη τιμή",
+        "default_views": "Προεπιλεγμένη προβολή",
+        "description": "Περιγραφή",
+        "direction": "Κατεύθυνση",
+        "disable_submit": "Απενεργοποίηση υποβολής",
+        "disabled": "Απενεργοποιημένο",
+        "download": "Λήψη",
+        "duration": "Διάρκεια",
+        "empty_state": "Κενή κατάσταση",
+        "enable_sorting": "Ενεργοποίηση Ταξινόμησης",
+        "end_data": "Ημερομηνία λήξης",
+        "end_placeholder": "Κράτος κράτησης θέσης",
+        "event": "Γεγονός",
+        "event_handler": "Χειριστής συμβάντων",
+        "expansion_method": "Μέθοδος επέκτασης",
+        "failure": "Αποτυχία",
+        "filter": "Φίλτρο",
+        "font_size": "Font size",
+        "form_data_key": "Πλήκτρο Δεδομένων Φόρμας",
+        "format": "Μορφή",
+        "go_to_url": "Μετάβαση στο URL",
+        "group_by": "Ομαδοποίηση κατά",
+        "group_layout": "Διάταξη ομάδας",
+        "hidden": "Hidden",
+        "hidden_label": "Κρυφή ετικέτα",
+        "hide_validation_message": "Απόκρυψη μηνύματος επικύρωσης",
+        "hide_value_label": "Απόκρυψη ετικέτας τιμής",
+        "horizontal_alignment": "Οριζόντια στοίχιση",
+        "icon": "Εικονίδιο",
+        "image_source": "Πηγή εικόνας",
+        "img_height": "Ύψος",
+        "img_width": "Width",
+        "index": "Δείκτης",
+        "item_background_color": "Φόντο αντικειμένου",
+        "items": "Στοιχεία",
+        "key": "Κλειδί",
+        "label": "Ετικέτα",
+        "label_alignment": "Ευθυγράμμιση",
+        "label_position": "Θέση",
+        "label_width": "Width(%)",
+        "layout": "Διάταξη",
+        "legend_position": "Θέση υπομνήματος",
+        "link_to_container": "Σύνδεσμος σε ένα εμπορευματοκιβώτιο",
+        "links_color": "Σύνδεσμοι",
+        "loading": "Φόρτωση",
+        "loop_back_to_start": "Επανάληψη για εκκίνηση",
+        "loop_start_to_back": "Επανάληψη έναρξης για επιστροφή",
+        "mapped_option": "Χαρτογραφημένη Επιλογή",
+        "mapped_value": "Αντιστοιχούμενη Τιμή",
+        "max_count": "Μέγιστο πλήθος",
+        "max_date": "Μέγιστη ημερομηνία",
+        "max_length": "Μέγιστο μήκος",
+        "maximum": "Μέγιστο",
+        "method": "Μέθοδος",
+        "min_date": "Ελάχιστη ημερομηνία",
+        "min_length": "Ελάχιστο Μήκος",
+        "minimum": "Ελάχιστο",
+        "multi_row_selection": "Επιλογή Πολλαπλών Γραμμών",
+        "new_tab": "New tab",
+        "only_run_when": "Εκτέλεση μόνο όταν",
+        "overFlow": "Υπερροή",
+        "page": "Σελίδα",
+        "pageSize": "Μέγεθος Σελίδας",
+        "pattern": "Μοτίβο",
+        "pending": "Εκκρεμεί",
+        "placeholder": "Υποκατάστατο",
+        "prefix_text": "Πρόθεμα κειμένου",
+        "radius": "Radius",
+        "read_only": "Μόνο για ανάγνωση",
+        "regex": "Regex",
+        "required_field": "Απαιτούμενο πεδίο",
+        "reset_after_successful_submit": "Επαναφορά μετά από επιτυχή υποβολή",
+        "router": "Router",
+        "run_script": "Εκτέλεση σεναρίου",
+        "scale_type": "Τύπος Κλίμακας",
+        "set_router": "Ορισμός δρομολογητή",
+        "set_temporary_state": "Ορισμός προσωρινής κατάστασης",
+        "shadow": {
+          "shadow": "Σκιά"
+        },
+        "show_character_count": "Εμφάνιση αριθμού χαρακτήρων",
+        "show_clear_button": "Εμφάνιση κουμπιού καθαρισμού",
+        "show_footer": "Εμφάνιση υποσέλιδου",
+        "show_header": "Εμφάνιση κεφαλίδας",
+        "show_notification": "Εμφάνιση ειδοποίησης",
+        "sort": "Ταξινόμηση",
+        "start_date": "Ημερομηνία έναρξης",
+        "start_placeholder": "Έναρξη κράτησης θέσης",
+        "step_size": "Μέγεθος βήματος",
+        "stroke_width": "Πλάτος περιγράμματος",
+        "style": "Στυλ",
+        "styles": "Styles",
+        "submit_form": "Υποβολή φόρμας",
+        "success": "Επιτυχία",
+        "suffix_text": "Κείμενο επιθέματος",
+        "text": "Κείμενο",
+        "text_align": "Text align",
+        "text_size": "Μέγεθος κειμένου",
+        "theme_color": "Χρώμα θέματος",
+        "thousand_separator": "Χιλιάδες διαχωριστικό",
+        "time_format": "Μορφή ώρας",
+        "title": "Τίτλος",
+        "tooltip": "Υπόδειξη",
+        "trail_color": "Χρώμα ίχνους",
+        "trigger_query": "Ερώτημα ενεργοποίησης",
+        "type": "Τύπος",
+        "validate_inputs_on_submit": "Επικύρωση εισόδων κατά την υποβολή",
+        "value": "Τιμή",
+        "value_labels": "Ετικέτες τιμής",
+        "variant": "Παραλλαγή",
+        "vertical_alignment": "Κατακόρυφη στοίχιση",
+        "width": "Width",
+        "x_axis_name": "Όνομα άξονα Χ",
+        "x_axis_title": "Τίτλος άξονα Χ",
+        "x_axis_type": "Τύπος άξονα Χ",
+        "x_axis_value": "Τιμή άξονα Χ",
+        "y_axis_name": "Όνομα άξονα Υ",
+        "y_axis_title": "Τίτλος άξονα Υ",
+        "height": "Ύψος",
+        "min_height": "Min height (px)",
+        "show_underline": "Εμφάνιση υπογράμμισης",
+        "auto_play": "Αυτόματη αναπαραγωγή",
+        "interval": "Διάστημα(ms)",
+        "show_button": "Εμφάνιση βελών",
+        "show_dot": "Εμφάνιση κουκκίδων στο κάτω μέρος",
+        "hidden_images": "Κρυφές εικόνες",
+        "file_type": "Τύποι αρχείων",
+        "selection_types": "Τύποι επιλογής",
+        "append_newly_files": "Προσάρτηση νέων επιλεγμένων αρχείων",
+        "file_list": "Λίστα αρχείων",
+        "parse_value": "Τιμή Ανάλυσης",
+        "max_files": "Μέγιστος αριθμός αρχείων",
+        "min_files": "Ελάχιστα αρχεία",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Υπερχείλιση",
+        "file_url": "Πηγή PDF",
+        "show_tool_bar": "Εμφάνιση γραμμής εργαλείων",
+        "scale": "Κλιμάκωση σελίδας σε",
+        "scroll": "Σύλληψη κύλισης σε κάθε σελίδα",
+        "min_max_size": "Ελάχιστο μέγεθος ~ Μέγιστο μέγεθος",
+        "video_url": "Πηγή βίντεο",
+        "autoplay": "Αυτόματο Μηχάνημα",
+        "loop": "Επανάληψη",
+        "volume": "Όγκος",
+        "show_controls": "Εμφάνιση στοιχείων ελέγχου",
+        "img_url_array": "Array URL Εικόνας",
+        "statistics": {
+          "label": "Ετικέτα",
+          "primary_value": "Κύρια τιμή",
+          "secValue": "Δευτερεύουσα αξία",
+          "decimal": "Δεκαδικό ψηφίο",
+          "trend_sign": "Εμφάνιση σημαδιού τάσης",
+          "positive_sign": "Θετικό σημάδι",
+          "negative_sign": "Αρνητικό σημάδι",
+          "thousand_separator": "Εμφάνιση διαχωριστικού χιλιάδων",
+          "trend_color": "Ενεργοποίηση χρώματος τάσης",
+          "prefix_text": "Πρόθεμα κειμένου",
+          "suffix_text": "Κείμενο επιθέματος"
+        },
+        "mute": "Σίγαση",
+        "collapse": {
+          "type": "Τύπος",
+          "accordin_mode": "Λειτουργία ακορντεόν",
+          "header_color": "Κεφαλίδα",
+          "body_color": "Σώμα",
+          "expand_icon": "Ανάπτυξη",
+          "collapse_icon": "Σύμπτυξη",
+          "icon_color": "Χρώμα"
+        },
+        "choose_at_least": "Επιλέξτε τουλάχιστον",
+        "choose_up_to": "Επιλογή μέχρι",
+        "copy_to_clipboard": "Αντιγραφή στο πρόχειρο",
+        "file_download": {
+          "file_data": "Δεδομένα αρχείου",
+          "file_name": "Όνομα αρχείου με επέκταση",
+          "file_type": "Τύπος αρχείου"
+        },
+        "action_name": "Όνομα ενέργειας",
+        "variable": {
+          "path_of_value": "Διαδρομή τιμής",
+          "variable": "Καθολικά δεδομένα"
+        },
+        "code": {
+          "write_code": "Εγγραφή κωδικού"
+        },
+        "slider": {
+          "step_size": "Μέγεθος βήματος",
+          "minimum": "Ελάχιστο",
+          "maximum": "Μέγιστο",
+          "hide_output": "Απόκρυψη εξόδου",
+          "prefix_icon": "Εικονίδιο προθέματος",
+          "suffix_icon": "Εικονίδιο επιθέματος",
+          "allow_wrapping": "Επίτρεψε αναδίπλωση"
+        },
+        "range_slider": {
+          "start_value": "Τιμή έναρξης",
+          "end_value": "Τελική τιμή"
+        },
+        "name": "Όνομα",
+        "audio": {
+          "audio_url": "Πηγή ήχου"
+        },
+        "map": {
+          "markers": "Δείκτες",
+          "initial_location": "Αρχική θέση",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Όνομα πεδίου πλάτους",
+          "longitude_field_name": "Όνομα πεδίου γεωγραφικού μήκους",
+          "zoom": "Εστίαση",
+          "enable_add_markers": "Ενεργοποίηση προσθήκης δεικτών",
+          "enable_search_locati": "Ενεργοποίηση αναζήτησης τοποθεσίας",
+          "enable_clustering": "Ενεργοποίηση ομαδοποίησης"
+        },
+        "time_range": {
+          "start_time": "Ώρα έναρξης",
+          "end_time": "Ώρα λήξης"
+        },
+        "eventCalendar": {
+          "event_value": "Τιμή συμβάντος",
+          "event_id": "Id συμβάντος",
+          "title": "Τίτλος",
+          "description": "Περιγραφή",
+          "start": "Έναρξη",
+          "end": "Τέλος",
+          "resource_id": "Id πόρου",
+          "resource_title": "Τίτλος πόρου",
+          "all_day": "Όλη την ημέρα",
+          "data_source": "Πηγή δεδομένων",
+          "default_date": "Προεπιλεγμένη ημερομηνία",
+          "resource_grid": "Κάνναβος πόρων",
+          "default_view": "Προεπιλεγμένη προβολή",
+          "show_current_time": "Εμφάνιση τρέχουσας ώρας",
+          "background": "Φόντο",
+          "calendar_background": "Φόντο",
+          "calendar_border": "Border",
+          "calendar_text": "Κείμενο",
+          "event_background": "Φόντο",
+          "event_text": "Κείμενο"
+        },
+        "table": {
+          "page_index": "Ευρετήριο σελίδας",
+          "index": "Δείκτης",
+          "scroll_to_the_select": "Μετακίνηση στην επιλεγμένη γραμμή",
+          "filters": "Φίλτρα",
+          "filter_mode": "Λειτουργία φίλτρου",
+          "show_thousands_separ": "Εμφάνιση διαχωριστικού χιλιάδων",
+          "tag_label": "Ετικέτα ετικέτας",
+          "tag_color": "Χρώμα ετικέτας",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
+        "cascader_data": "Κάθε επιλογή πρέπει να είναι μορφή JSON και να περιέχει δύο κλειδιά, τιμή και ετικέτα. Χρησιμοποιώντας πίνακες, μπορείτε να δημιουργήσετε επιλογές στο ίδιο επίπεδο. Και οι επιλογές για παιδιά μπορούν να δημιουργηθούν χρησιμοποιώντας το χαρακτηριστικό \"παιδιά\". ",
+        "component_default_value": "Η αρχική τιμή του στοιχείου. Μπορείτε να αλλάξετε δυναμικά την αρχική τιμή πληκτρολογώντας JavaScript στο {}}.",
+        "custom_rule": "Δημιούργησε εδώ τη λογική επικύρωσής σου. Οι κανόνες θα πρέπει να γίνονται σε JavaScript και να καλύπτονται από {}}.",
+        "date_format": "Μια έγκυρη συμβολοσειρά μορφής ημερομηνίας. Δείτε [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "Η αρχική τιμή του πλαισίου εισαγωγής. Μπορείτε να αλλάξετε δυναμικά την αρχική τιμή του πεδίου εισαγωγής πληκτρολογώντας JavaScript στην {{}}.",
+        "disabled": "Ελέγξτε την κατάσταση του αν το στοιχείο είναι απενεργοποιημένο. Το στοιχείο δεν μπορεί να τροποποιηθεί ή να εστιαστεί όταν είναι απενεργοποιημένο.",
+        "disabled_submit": "Όταν απενεργοποιηθεί, τα στοιχεία που καλούν τη μέθοδο form.submit() θα είναι επίσης απενεργοποιημένα.",
+        "download": "Εμφάνιση κουμπιού λήψης στη γραμμή εργαλείων.",
+        "filter": "Εμφάνιση κουμπιού φίλτρου στη γραμμή εργαλείων.",
+        "form_data_key": "Καθορίστε ένα κλειδί ενός στοιχείου φόρμας περιτυλίγματος κατά την κατασκευή του χαρακτηριστικού δεδομένων.",
+        "hidden": "Δυναμικό έλεγχο της απόκρυψης του συστατικού. Μπορείτε να αλλάξετε την κρυφή κατάσταση μέσω δυναμικής δυαδικής τιμής.",
+        "hide_validation_message": "Μπορείτε να αποκρύψετε το μήνυμα σφάλματος αλλάζοντας την κρυφή κατάσταση όταν η τιμή εισόδου είναι εσφαλμένη. Μπορείτε να αλλάξετε δυναμικά την κρυφή κατάσταση από JavaScript.",
+        "input_default_value": "Η αρχική τιμή του πλαισίου εισαγωγής. Μπορείτε να αλλάξετε δυναμικά την αρχική τιμή του πεδίου εισαγωγής πληκτρολογώντας JavaScript στην {{}}.",
+        "loading": "Αν το στοιχείο θα εμφανίζει μια ένδειξη φόρτωσης.",
+        "map_data_option": "Χρησιμοποιήστε είτε έναν πίνακα τιμών ή ένα αντικείμενο πλήκτρων που αντιστοιχίζεται σε πίνακες. Κάθε στοιχείο στην πηγή δεδομένων σας αντιστοιχίζεται σε κάθε επιλογή.",
+        "mapped_value": "Χρησιμοποιήστε {{ currentRow }} για να αποκτήσετε πρόσβαση στα δεδομένα της τρέχουσας γραμμής. Για παράδειγμα, για να υπολογίσετε το \"κόστος ανά κλικ\" με βάση τις στήλες \"κόστος\" και \"clickTimes\": \n  {◆ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Χρησιμοποιήστε {{table.selectedRow[n].columnName}} για πρόσβαση στα δεδομένα.",
+        "only_run_when": "Προϋποθέσεις που πρέπει να πληρούνται πριν από την εκτέλεση του γεγονότος.",
+        "placeholder": "Η τιμή θα εμφανίζεται όταν το πεδίο εισαγωγής είναι κενό.",
+        "progress_percentage": "Η ποσοστιαία τιμή είναι μεταξύ 0 και 100.",
+        "read_only": "Ελέγξτε την κατάσταση του αν το στοιχείο διαβάζεται μόνο. Ένα στοιχείο μόνο για ανάγνωση μπορεί να επιλεγεί και να εστιασθεί αλλά δεν μπορεί να τροποποιηθεί.",
+        "required_field": "Ισχύει μόνο όταν ο διακόπτης είναι ενεργοποιημένος.",
+        "switch_default_value": "Ορίστε την αρχική κατάσταση του διακόπτη. Μπορείτε να αλλάξετε δυναμικά την προεπιλεγμένη τιμή από JavaScript. (Automatic Translation)",
+        "table_only_run_when": "Προϋποθέσεις που πρέπει να πληρούνται πριν από την εκτέλεση του γεγονότος. Χρησιμοποιήστε το {{ currentRow }} για πρόσβαση στα δεδομένα της τρέχουσας γραμμής. Για παράδειγμα, εκτελείται μόνο όταν το \"imgSize\" είναι μικρότερο από 5120: {„currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Χρησιμοποιήστε το currentRow για να αποκτήσετε πρόσβαση στα δεδομένα της τρέχουσας γραμμής. Για παράδειγμα, για να ορίσετε την τιμή της συνιστώσας editableText με βάση το \"email\":  {{ currentRow.email }}.\n  Και επίσης, μπορείτε να ορίσετε τιμή στο INSPECT του στοιχείου χρησιμοποιώντας {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Χρησιμοποίησε το {{ currentRow }} για να αποκτήσεις πρόσβαση στα δεδομένα της τρέχουσας γραμμής. Για παράδειγμα, για να μεταβείς στο url με την παράμετρο \"appid\": \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "Μπορείτε να επιλέξετε να εισάγετε την τιμή είτε στη λειτουργία Markdown είτε στη λειτουργία απλού κειμένου. Μπορούν να αναγνωριστούν μόνο συνδέσεις σε λειτουργία markdown .",
+        "timeline_direction": "Αλλαγή της κατεύθυνσης του χρονοδιαγράμματος.",
+        "timeline_pending": "Αν θα εμφανίζεται ένας κόμβος με κατάσταση σε εκκρεμότητα.",
+        "tooltip": "Ο χρήστης μπορεί να εισάγει εδώ την υπόδειξη συστατικού. Η υπόδειξη θα εμφανίζεται όταν είναι εστιασμένη. Υποστηρίζεται μορφή Markdown.",
+        "file_types": "Μια λίστα με επεκτάσεις αρχείων που επιτρέπεται να μεταφορτώσουν. Καμία τιμή δεν θα επιτρέψει όλους τους τύπους αρχείων.",
+        "file_list": "Για να εμφανίσετε μια λίστα με τα επιλεγμένα αρχεία κάτω από το uploader. Το ύψος του uploader θα αλλάξει δυναμικά ανάλογα με το μήκος της λίστας αρχείων.",
+        "parse_value": "Προσπάθεια ανάλυσης των επιλεγμένων αρχείων, με υποστήριξη για αρχεία JSON, CSV, TSV, Excel, και TXT.\nΑναλυμένα δεδομένα μπορούν να προσπελαστούν μέσω {{uploader1.parsedValue}}. Τα αρχεία που δεν μπορούν να αναλυθούν θα είναι κενά στον πίνακα.\nΌλα τα αρχεία είναι διαθέσιμα ως κωδικοποιημένες συμβολοσειρές base64 στον πίνακα τιμών, ανεξάρτητα από αυτή την επιλογή.",
+        "file_url": "Υποστηρίζει URL PDF στον ιστό, ή base64 κωδικοποιημένα δεδομένα αρχείων pdf. Για παράδειγμα: \n{{ņdata:application/pdf;base64, example-data }}",
+        "scale": "Κλιμάκωση κάθε σελίδας για να συμπληρώσετε το πλάτος ή το ύψος του εξαρτήματος.",
+        "scroll": "Εντοπίστε αυτόματα στην αρχή κάθε σελίδας κατά την κύλιση.",
+        "video_url": "Υποστηρίζει τις περισσότερες υπηρεσίες βίντεο ή απευθείας σύνδεση με οποιοδήποτε κοινό τύπο αρχείου βίντεο ή με base64 κωδικοποιημένα δεδομένα αρχείων βίντεο. Για παράδειγμα: {Řdata:audio/mp4;base64, exampleDate}}",
+        "collapse": {
+          "type": "Πτυσσόμενη λίστα: λίστα, όλα τα αντικείμενα θα αντιγράψουν αυτόματα το στυλ του πρώτου στοιχείου. Μπορείτε να καθορίσετε τα δεδομένα εφαρμογής σε κάθε στοιχείο μέσω του {{ currentItem.columnName }}. Πτυσσόμενος πίνακας: κάθε πίνακας είναι ανεξάρτητος, μπορείτε να καθορίσετε το στυλ και τα δεδομένα του κάθε στοιχείου ξεχωριστά.",
+          "items": "Αριθμός ειδών",
+          "accordin_mode": "Στη λειτουργία ακορντεόν, όταν επεκταθεί ένα στοιχείο, θα καταρρεύσουν άλλα αντικείμενα."
+        }
+      },
+      "tab_title": "Επιθεώρηση",
+      "unselected_tip1": "Δεν επιλέχθηκαν εξαρτήματα.",
+      "unselected_tip2": "Κάντε κλικ σε ένα στοιχείο για να το επιλέξετε.",
+      "setter": {
+        "click_mask_close": "Κάντε κλικ στη μάσκα για να κλείσετε το modal",
+        "modal": {
+          "blank": "Χωρίς εικονίδια"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Χρησιμοποιήστε {{ item }} για να πάρετε την τιμή από την πηγή δεδομένων. Για παράδειγμα, υπάρχουν δύο χαρακτηριστικά στην πηγή δεδομένων. Είναι imageUrl και url. Αν θέλετε να πάτε σε διαφορετική διεύθυνση url όταν κάνετε κλικ στην εικόνα, χρησιμοποιήστε {{ item.url }} για να ορίσετε το url.",
+        "data_source": "Μια πηγή δεδομένων για να ορίσετε στοιχεία εικόνας χρησιμοποιώντας αντιστοιχισμένη αξιολόγηση. Χρησιμοποιήστε είτε έναν πίνακα τιμών είτε ένα αντικείμενο πλήκτρων που αντιστοιχίζονται σε πίνακες. Για παράδειγμα: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Μπορείτε επίσης να χρησιμοποιήσετε τα δεδομένα σε πράξεις. Για παράδειγμα: {{ mysql1.data }} ",
+        "img_url_array": "Χρησιμοποίησε το {{ item.attributeName }} για να πάρεις το URL εικόνας από την πηγή δεδομένων. ",
+        "carousel": {
+          "data_source": "Μια πηγή δεδομένων για να ορίσετε στοιχεία εικόνας χρησιμοποιώντας αντιστοιχισμένη αξιολόγηση. Χρησιμοποιήστε είτε έναν πίνακα τιμών είτε ένα αντικείμενο πλήκτρων που αντιστοιχίζονται σε πίνακες. Για παράδειγμα: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Μπορείτε επίσης να χρησιμοποιήσετε τα δεδομένα σε πράξεις. Για παράδειγμα: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Δεδομένα base64 υποστήριξης, ακατέργαστα δεδομένα, χαρτογραφημένα δεδομένα του πίνακα. "
+        },
+        "variable": {
+          "available_in_objects": "Διατίθεται σε αντικείμενα και πίνακες. Η διαδρομή του χαρακτηριστικού στο αντικείμενο: {{objectName.attributeName}}. The index of the value in an array: {{1}}. An array in the object: {{objectName.attributeName.1}}",
+          "the_target_value": "Η τιμή προορισμού"
+        },
+        "slider": {
+          "default_value": "Η αρχική τιμή του slider. Μπορείτε να αλλάξετε δυναμικά την αρχική τιμή πληκτρολογώντας JavaScript στο {}}.",
+          "minimum": "Η ελάχιστη τιμή του ρυθμιστικού",
+          "maximum": "Η μέγιστη τιμή του ρυθμιστικού",
+          "step_size": "Η ελάχιστη μονάδα αλλαγής του slide",
+          "label": "Το όνομα του πεδίου που εμφανίζεται στο χρήστη",
+          "caption": "Μια λεζάντα που χρησιμοποιείται για να περιγράψει λεπτομερώς το πεδίο",
+          "hide_label": "Ορίστε αν θα εμφανίζεται η ετικέτα",
+          "allow_wrapping": "Ορίστε αν θα επιτρέπεται η αναδίπλωση ετικετών",
+          "position": "Ορίστε τη θέση της ετικέτας σε σχέση με το στοιχείο",
+          "alignment": "Ορίστε την ευθυγράμμιση της ετικέτας",
+          "width": "Όταν η ετικέτα βρίσκεται στην αριστερή πλευρά του εξαρτήματος, ορίστε τον λόγο πλάτους της ετικέτας",
+          "prefix_icon": "Το εικονίδιο που εμφανίζεται μπροστά από το εξάρτημα",
+          "suffix_icon": "Το εικονίδιο που εμφανίζεται μετά το στοιχείο",
+          "hide_output": "Ορίστε αν θα γίνει απόκρυψη της τιμής κατά την ολίσθηση"
+        },
+        "step": {
+          "default_step": "Προεπιλεγμένο βήμα",
+          "show_step_number": "Εμφάνιση αριθμών βημάτων",
+          "indicate_completed_steps": "Υποδείξτε τα ολοκληρωμένα βήματα"
+        },
+        "range_slider": {
+          "start_value": "Για να ορίσετε την ελάχιστη τιμή του εύρους",
+          "end_value": "Για να ορίσετε τη μέγιστη τιμή του εύρους"
+        },
+        "audio": {
+          "audio_url": "Υποστηρίζει απευθείας συνδέσεις με οποιοδήποτε κοινό τύπο αρχείου ήχου ή τους συνδέσμους σε ορισμένες υπηρεσίες ήχου ή base64 κωδικοποιημένα δεδομένα των αρχείων ήχου. Για παράδειγμα: {Řdata:audio/mp3;base64, exampleDate}}"
+        },
+        "map": {
+          "markers": "Για να ορίσετε δείκτες στο χάρτη. Οι δείκτες θα πρέπει να είναι ένας πίνακας αντικειμένων με τις ίδιες ιδιότητες με τους προεπιλεγμένους δείκτες.",
+          "initial_location": "Κατά την προετοιμασία του χάρτη, η προεπιλεγμένη κεντραρισμένη θέση εμφάνισης",
+          "default_markers": "Οι προεπιλεγμένοι δείκτες που εμφανίζονται κατά την προετοιμασία του χάρτη. Μπορείτε να τον ορίσετε δυναμικά με την JavaScript στο {}}. ",
+          "latitude_field_name": "Το γεωγραφικό πλάτος λαμβάνεται από ποια ιδιότητα των αντικειμένων αρχικής τοποθεσίας και προεπιλεγμένων δεικτών.",
+          "longitude_field_name": "Το γεωγραφικό μήκος λαμβάνεται από ποια ιδιότητα της αρχικής τοποθεσίας και των προεπιλεγμένων αντικειμένων δεικτών.",
+          "zoom": "Για να ορίσετε μεγέθυνση του χάρτη",
+          "enable_add_markers": "Αν θα επιτρέπεται στους χρήστες να προσθέτουν δείκτες κάνοντας κλικ στο χάρτη",
+          "enable_search_locati": "Αν θα επιτρέπεται στους χρήστες η αναζήτηση τοποθεσίας",
+          "enable_clustering": "Αν θα επιτρέπεται η συγκέντρωση πολλαπλών δεικτών όταν ο χάρτης σβήνει"
+        },
+        "time_picker": {
+          "format": "Μια έγκυρη συμβολοσειρά μορφής ώρας. Για περισσότερες πληροφορίες σχετικά με τη μορφή: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "Η διάρκεια της τιμής σε λεπτά",
+          "show_a_clear_button_": "Εμφάνιση ενός κουμπιού εκκαθάρισης όταν το ποντίκι είναι πάνω από το στοιχείο. "
+        },
+        "time_range": {
+          "start_time": "Ο αρχικός χρόνος έναρξης του στοιχείου. ",
+          "end_time": "Ο αρχικός χρόνος λήξης του στοιχείου. ",
+          "start_placeholder": "Η τιμή θα εμφανίζεται όταν το πεδίο ώρας έναρξης είναι κενό.",
+          "end_placeholder": "Η τιμή θα εμφανίζεται όταν το πεδίο ώρας λήξης είναι κενό."
+        },
+        "eventCalendar": {
+          "event_value": "Χρησιμοποιήστε το Αντικείμενο που εσώκλεισε στο {{{{{{{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "Ένα μοναδικό αναγνωριστικό που χρησιμοποιείται για την αναγνώριση του συμβάντος",
+          "title": "Ο τίτλος της εκδήλωσης",
+          "description": "Η περιγραφή του γεγονότος",
+          "start": "Ώρα έναρξης της εκδήλωσης",
+          "end": "Ώρα λήξης της εκδήλωσης",
+          "resource_id": "Ο πόρος θα μπορούσε να είναι ένα πρόσωπο, μια αίθουσα συνεδριάσεων, κλπ. Μπορείτε να ορίσετε ένα id πόρων και να το συνδέσετε με την εκδήλωση. ",
+          "resource_title": "Το όνομα πόρου που εμφανίζεται στην προβολή πόρων",
+          "all_day": "Αν ένα ολοήμερο συμβάν",
+          "data_source": "Πηγή δεδομένων των γεγονότων. Μια πηγή δεδομένων θα πρέπει να είναι μια σειρά αντικειμένων. Κάθε αντικείμενο είναι ένα γεγονός. Για παράδειγμα, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "Η προεπιλεγμένη ημερομηνία κατά την εκκίνηση της εφαρμογής",
+          "resource_grid": "Αν θα εμφανίζεται ένας κάνναβος πόρων",
+          "default_view": "Η προεπιλεγμένη προβολή κατά την εκκίνηση της εφαρμογής",
+          "show_current_time": "Ορίστε αν θα εμφανίζεται η τρέχουσα γραμμή ώρας",
+          "calendar_background": "Ορίστε το φόντο του ημερολογίου",
+          "calendar_border": "Ορισμός χρώματος του περιγράμματος",
+          "calendar_text": "Ορισμός χρώματος του κειμένου",
+          "event_background": "Ορίστε το φόντο της κάρτας συμβάντων",
+          "event_text": "Ορίστε το χρώμα κειμένου της κάρτας συμβάντων",
+          "couldnot_drag": "Αν θέλετε να σύρετε για να προσαρμόσετε το χρονικό εύρος, παρακαλούμε προχωρήστε στη σελίδα προεπισκόπησης για τη λειτουργία."
+        }
+      },
+      "setter_option": {
+        "fixed": "Σταθερό",
+        "auto_limited": "Αυτόματο ύψος με όρια",
+        "auto_height": "Αυτόματο ύψος",
+        "text_ellipsis": "Έλλειψη",
+        "text_scroll": "Κύλιση",
+        "text_clip": "Clip",
+        "scale_height": "Ύψος",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Πάνελ πτυσσόμενου"
+        },
+        "file_download": {
+          "auto": "Αυτόματο",
+          "plain_text": "Απλό κείμενο",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Κανένα",
+          "large": "Μεγάλο",
+          "medium": "Μεσαίο",
+          "small": "Μικρό"
+        },
+        "eventCalendar": {
+          "sunday": "Κυριακή",
+          "monday": "Δευτέρα",
+          "tuesday": "Τρίτη",
+          "wednesday": "Τετάρτη",
+          "thursday": "Πέμπτη",
+          "friday": "Παρασκευή",
+          "saturday": "Σάββατο",
+          "month": "Μήνας",
+          "week": "Εβδομάδα",
+          "day": "Ημέρα",
+          "agenda": "Ατζέντα"
+        },
+        "table": {
+          "set_sort": "Ορισμός ταξινόμησης",
+          "column": "Στήλη",
+          "number": "Αριθμός",
+          "percent": "Ποσοστό",
+          "currency": "Νόμισμα",
+          "text": "Κείμενο",
+          "tag": "Ετικέτα",
+          "button_group": "Ομάδα πλήκτρων",
+          "date": "Ημερομηνία",
+          "time": "Ώρα",
+          "date_time": "Ώρα Ημερομηνίας",
+          "link": "Σύνδεσμος",
+          "rating": "Βαθμολογία",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Κουμπί",
+          "icon": "Εικονίδιο",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Χωρίς όρια",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "Θετικό χρώμα",
+          "negative_color": "Αρνητικό χρώμα"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "new_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Ένας αριθμός μεταξύ 0 και 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Παρακαλώ επιλέξτε κατά τη μίσθωση {{ min }} επιλογές.",
+        "choose_up_to": "Παρακαλώ επιλέξτε μέχρι {{max}} επιλογές.",
+        "map": {
+          "zoom": "Παρακαλώ ορίστε μια τιμή μεταξύ 1 και 22"
+        },
+        "upload": {
+          "size_exceed": "Αρχεία άνω των 500MB μπορεί να αποτύχουν να συμμετάσχουν.",
+          "single_file": "Μόνο ένα μόνο αρχείο επιτρέπεται.",
+          "file": "Οι μη υποστηριζόμενοι τύποι αρχείων καταργούνται",
+          "directory": "Επιτρέπονται μόνο κατάλογοι."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Γράψτε τον κώδικά σας εδώ. Χρησιμοποιήστε JavaScript μέσα από {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Προσθήκη",
+        "body": "Σώμα",
+        "default_view": "Προεπιλεγμένη προβολή",
+        "edit_view": "Επεξεργασία προβολής",
+        "footer": "Υποσέλιδο",
+        "header": "Κεφαλίδα",
+        "key": "Κλειδί",
+        "left_panel": "Αριστερός πίνακας",
+        "preset": "Preset",
+        "right_panel": "Δεξιός πίνακας",
+        "set_as_homepage": "Ορισμός ως αρχική σελίδα",
+        "show_fold_icon": "Εμφάνιση εικονιδίου διπλώματος",
+        "view_path": "Προβολή διαδρομής",
+        "views": "Προβολές",
+        "width": "Width",
+        "height": "Ύψος",
+        "columns": "Στήλες"
+      },
+      "model_tips": {
+        "cancel_button": "Ακύρωση",
+        "change_layout_message": "Μετά την αλλαγή της διάταξης, όλα τα δεδομένα θα εκκαθαριστούν. Αυτή η λειτουργία δεν μπορεί να ανακτηθεί, παρακαλώ επιβεβαιώστε",
+        "delete_section_message": "Μετά την απόκρυψη, τα δεδομένα σε αυτήν την ενότητα θα εκκαθαριστούν. Αυτή η λειτουργία δεν μπορεί να ανακτηθεί, παρακαλώ επιβεβαιώστε",
+        "ok_button": "Επιβεβαίωση"
+      },
+      "panel_bar_title": {
+        "basic": "ΒΑΣΙΚΟ",
+        "frame": "FRAME"
+      },
+      "tab_title": "Σελίδα",
+      "tooltips": {
+        "show_fold_icon": "Εμφάνιση ενός κουμπιού για σύμπτυξη ή επέκταση του πίνακα",
+        "view_path": "Μια συμβολοσειρά μετά το example.com/app/page/ για πρόσβαση σε αυτήν την προβολή",
+        "auto_canvas_width": "Το πλάτος της σελίδας ως ποσοστό του πλάτους του περιηγητή."
+      }
+    },
+    "validate_message": {
+      "email": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email",
+      "max_length": "Πρέπει να μην υπερβαίνει τους {{ number }} χαρακτήρες",
+      "max_value": "Πρέπει να είναι μικρότερο από {{ number }}",
+      "min_length": "Πρέπει να περιέχει τουλάχιστον {{ number }} χαρακτήρες",
+      "min_value": "Πρέπει να είναι μεγαλύτερο από {{ number }}",
+      "regex": "Παρακαλώ ταιριάζει με την απαιτούμενη μορφή",
+      "required": "Αυτό το πεδίο είναι υποχρεωτικό",
+      "url": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση URL",
+      "max_size": "Το μέγεθος του αρχείου δεν μπορεί να υπερβαίνει το {{maxSize }} {{ type }}.",
+      "min_files": "Απαιτούνται τουλάχιστον {{ minFiles }} αρχεία.",
+      "max_files": "Υποστήριξη έως και {{ maxFiles }} αρχείων.",
+      "min_size": "Το μέγεθος του αρχείου δεν μπορεί να είναι μικρότερο από {{minSize }} {{ type }}.",
+      "min_max_size": "Ελάχιστο μέγεθος ~ Μέγιστο μέγεθος"
+    },
+    "widget_picker": {
+      "empty_tip": "Συγνώμη, κανένα αποτέλεσμα αναζήτησης",
+      "search_placeholder": "Αναζήτηση",
+      "sessions": {
+        "calendar": "Εισροές ημερολογίου",
+        "commonly": "Συνηθισμένα συστατικά",
+        "container": "Εμπορευματοκιβώτιο και έντυπο",
+        "data": "Δεδομένα",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Παρουσίαση",
+        "selects": "Επιλογή εισόδων"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Ορισμός κρυφών",
+      "set_file_url": "Ορισμός πηγής PDF",
+      "play": "Αναπαραγωγή",
+      "pause": "Παύση",
+      "seek_to": {
+        "time": "Ώρα",
+        "unit": "(α)"
+      },
+      "set_video_url": {
+        "video": "Πηγή βίντεο"
+      },
+      "speed": {
+        "speed": "Ταχύτητα",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Διακοπή",
+      "mute": "Σίγαση",
+      "loop": "Επανάληψη",
+      "show_controls": "Εμφάνιση στοιχείων ελέγχου",
+      "set_volumn": "Ορισμός Έντασης",
+      "set_volume": {
+        "volume": "Όγκος",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "resetPrimaryValue",
+        "primary_value": "Κύρια τιμή"
+      },
+      "collapse": {
+        "expand_all_items": "Ανάπτυξη όλων των αντικειμένων",
+        "collapse_all_items": "Σύμπτυξη όλων των αντικειμένων"
+      },
+      "carousel": {
+        "showNext": "Εμφάνιση της επόμενης ορατής εικόνας",
+        "showPrevious": "Εμφάνιση προηγούμενης ορατής εικόνας"
+      },
+      "file_download": {
+        "download": "Λήψη",
+        "message": {
+          "suc": "Έναρξη για λήψη",
+          "fail": "Το αίτημα απέτυχε",
+          "download_failed": "Αποτυχία λήψης"
+        }
+      },
+      "setGlobalData": "Ορισμός καθολικών δεδομένων",
+      "setLocalStorage": "Ορισμός τοπικής αποθήκευσης",
+      "audio": {
+        "set_audio_url": "Ορισμός πηγής ήχου"
+      },
+      "map": {
+        "marker_selected": "Επιλέχθηκε δείκτης",
+        "marker_created": "Ο δείκτης δημιουργήθηκε",
+        "markers_changed": "Οι δείκτες άλλαξαν"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "Προσθήκη συμβάντος",
+        "deleteevent": "διαγραφήΓεγονός"
+      },
+      "table": {
+        "clear_filters": "Εκκαθάριση φίλτρων",
+        "clear_column_setting": "Εκκαθάριση ρύθμισης στήλης",
+        "refresh": "Ανανέωση",
+        "select_page": "Επιλέξτε σελίδα",
+        "select_row": "Επιλογή γραμμής",
+        "clear_selection": "Καθαρισμός επιλογής",
+        "set_filters": "Ορισμός φίλτρων"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Εκμάθηση"
+          },
+          "title": {
+            "tutorial": "Εκμάθηση",
+            "templates": "Πρότυπα"
+          },
+          "onboarding_app": {
+            "name": "Εφαρμογή εισόδου",
+            "description": "Ακολουθήστε το σεμινάριο της ILLA για να μάθετε πώς να κατασκευάσετε μια εφαρμογή.",
+            "action": "Μετάβαση"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Πιέστε αυτό το πρότυπο ως νέα εφαρμογή"
+          },
+          "templates_name": {
+            "table": "Ταμπλό",
+            "form": "Έρευνα",
+            "list": "Πίνακας διαχείρισης"
+          },
+          "templates_description": {
+            "table": "Χρησιμοποιήστε πίνακες για να δημιουργήσετε πινακίδες.",
+            "form": "Χρησιμοποιήστε τη φόρμα και τα συστατικά εισόδου για να δημιουργήσετε εφαρμογές φόρμας.",
+            "list": "Χρησιμοποιήστε ένα στοιχείο λίστας για να εμφανίσετε και να διαχειριστείτε πληροφορίες"
+          },
+          "modal": {
+            "title": "Πιρούνι και ανάπτυξη",
+            "placeholder": "Όνομα εφαρμογής",
+            "cancel": "Ακύρωση",
+            "fork": "Πιρούνι και ανάπτυξη"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Βήμα 1: Σύρετε μια είσοδο εδώ",
+          "drag_button": "Βήμα 2: Σύρετε ένα κουμπί εδώ",
+          "drag_table": "Βήμα 3: Σύρετε έναν πίνακα εδώ",
+          "exit": "Ακύρωση",
+          "do_it": "Κάντε το για μένα",
+          "drag_title": "Σύρετε τα στοιχεία στο πλαίσιο",
+          "modify_action_title": "Τροποποίηση της ενέργειας",
+          "modify_action_description_modify": "Τροποποίηση ενέργειας για λήψη δεδομένων. Μπορούμε να χρησιμοποιήσουμε το {{input1.value}} για να λάβουμε τα δεδομένα που εισάγονται στο στοιχείο εισαγωγής. \n\nεπιλέξτε * \nαπό τους χρήστες\nεγγραφείτε παραγγελίες\nστο users.id = orders.id\nόπου {!input1.value}} ή χαμηλότερα (users.name) όπως '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Κάντε κλικ στο κουμπί Αποθήκευση και, στη συνέχεια, κάντε κλικ στο κουμπί Εκτέλεση",
+          "display_data_title": "Εμφάνιση δεδομένων στον πίνακα",
+          "display_data_description_select": "Επιλέξτε τον πίνακα στο πλαίσιο",
+          "display_data_description_modify": "Τροποποίηση της πηγής δεδομένων στον δεξιό πίνακα. Μπορούμε να χρησιμοποιήσουμε το {{postgresql1.data}} για να λάβουμε τα δεδομένα.",
+          "event_handler_title": "Κάντε κλικ στο κουμπί για την ενεργοποίηση ενέργειας",
+          "event_handler_description_1": "Επιλέξτε το κουμπί στο πλαίσιο",
+          "event_handler_description_2": "Προσθήκη ενός χειριστή γεγονότων",
+          "event_handler_description_3": "Κάντε κλικ στο χειριστή συμβάντων",
+          "event_handler_description_4": "Αλλαγή της ενέργειας ενεργοποίησης",
+          "event_handler_description_5": "Αλλαγή του ερωτήματος σε postgre1",
+          "test_it_title": "Δοκιμάστε το",
+          "test_it_description": "Εισάγετε ένα όνομα χρήστη που θέλετε να αναζητήσετε και κάντε κλικ στο κουμπί",
+          "test_it_button": "Επόμενο",
+          "congratulations_title": "Συγχαρητήρια 🎉",
+          "congratulations_description": "Μόλις κατασκευάσατε την πρώτη σας εφαρμογή. Αν έχετε οποιεσδήποτε ερωτήσεις κατά τη χρήση, μπορείτε να επικοινωνήσετε μαζί μας μέσω <0>Discord</0>. ",
+          "congratulations_button": "Ολοκληρώθηκε",
+          "event_handler_description_all": "1. Προσθέστε έναν χειριστή συμβάντων\r\n2. Κάντε κλικ στο χειριστή συμβάντων\r\n3. Αλλαγή της ενέργειας ενεργοποίησης\r\n4. Αλλάξτε το ερώτημα σε postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Το μέγεθος των δεδομένων υπερβαίνει το όριο (τρέχον μέγεθος: {{current_size}} bytes, όριο: {{limit_size}} bytes)"
+    }
+  },
+  "exit_preview": "Έξοδος Προεπισκόπησης",
+  "freeze_collision": "Πάγωμα σύγκρουσης",
+  "freeze_messages": "Ο καμβάς είναι παγωμένος. Μπορείτε να σύρετε συστατικά μέσα ή έξω από δοχεία.",
+  "freeze_tips": "Ο καμβάς είναι παγωμένος. Κάντε κλικ εδώ για να τον αποδεσμεύσετε.",
+  "link_copied": "Ο Σύνδεσμος Αντιγράφηκε",
+  "network_error": "Το δίκτυο αποσυνδέθηκε. Παρακαλώ ελέγξτε το δίκτυο αυτής της συσκευής",
+  "not_online_tips": "Το δίκτυο αποσυνδέθηκε. Παρακαλώ ελέγξτε το δίκτυο αυτής της συσκευής",
+  "preview": {
+    "viewport": {
+      "size": "Μέγεθος",
+      "reset": "Reset",
+      "save": "Αποθήκευση",
+      "tooltip": {
+        "fluid_width": "Πλάτος υγρού",
+        "desktop": "Επιφάνεια Εργασίας (Πλάτος = 1280px)",
+        "tablet": "Δισκίο (πλάτος = 1080px)",
+        "custom": "Προσαρμοσμένο"
+      }
+    },
+    "button_text": "Προεπισκόπηση"
+  },
+  "remove_fail": "Αποτυχία κατάργησης",
+  "rename": "Μετονομασία",
+  "resources": "Πόροι",
+  "retry": "Επανάληψη",
+  "save": "Αποθήκευση",
+  "setting": {
+    "account": {
+      "email": "E-mail",
+      "empty_username": "Παρακαλώ εισάγετε το όνομα χρήστη σας",
+      "error_username": "Το όνομα χρήστη πρέπει να είναι 3~15 χαρακτήρες",
+      "save": "Αποθήκευση Αλλαγών",
+      "save_fail": "Αποτυχία αποθήκευσης",
+      "title": "ΛΟΓΑΡΙΑΣΜΟΣ",
+      "username": "Όνομα Χρήστη"
+    },
+    "other": {
+      "language": "Γλώσσα",
+      "save": "Αποθήκευση Αλλαγών",
+      "title": "ΡΥΘΜΙΣΗ"
+    },
+    "password": {
+      "confirm_password": "Κωδικός επιβεβαίωσης",
+      "current_password": "Παλιός κωδικός πρόσβασης",
+      "empty_password": "Παρακαλώ εισάγετε τον κωδικό σας",
+      "error_format_password": "Ο κωδικός πρόσβασης πρέπει να είναι 6~20 χαρακτήρες",
+      "error_match_password": "Ο κωδικός πρόσβασής σας και ο κωδικός επιβεβαίωσης δεν ταιριάζουν",
+      "error_password_has_empty": "Κωδικός πρόσβασης δεν μπορεί να περιλαμβάνει κενά",
+      "error_validate_password": "Ο κωδικός πρόσβασης μπορεί να περιέχει μόνο αριθμούς, γράμματα και στίξεις",
+      "new_password": "Νέος κωδικός πρόσβασης",
+      "submit_button": "Υποβολή",
+      "title": "PASSWORD"
+    }
+  },
+  "share": "Κοινοποίηση",
+  "status": {
+    "403": {
+      "des": "Απαγορεύεται η Πρόσβαση"
+    },
+    "404": {
+      "again": "Ανανέωση",
+      "des": "Φαίνεται ότι η σελίδα που ψάχνατε δεν βρέθηκε."
+    },
+    "500": {
+      "des": "Ωχ, κάτι πήγε στραβά. Παρακαλώ προσπαθήστε ξανά αργότερα."
+    },
+    "back": "Πίσω στην αρχική σελίδα",
+    "mobile_forbidden": "Για την καλύτερη εμπειρία επεξεργασίας, παρακαλώ επισκεφθείτε αυτή τη σελίδα στην επιφάνεια εργασίας",
+    "back_to_cloud": "Πίσω στο Cloud ILLA",
+    "no_permission_title": "Ανεπαρκή δικαιώματα",
+    "no_permission_description": "Δεν έχετε δικαιώματα για να εκτελέσετε την ζητούμενη λειτουργία. Επικοινωνήστε με τους διαχειριστές της ομάδας σας."
+  },
+  "title": "Καλώς ήρθατε στην illa",
+  "unfreeze_tips": "Παγώστε τον καμβά και σύρετε τα συστατικά του μέσα ή έξω από δοχεία. (D ή K)",
+  "user": {
+    "description": "Μια πλατφόρμα χαμηλού κώδικα ανοιχτού κώδικα για τους προγραμματιστές.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Αποστολή κωδικού"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email",
+          "registered": "Η διεύθυνση ηλεκτρονικού ταχυδρομείου δεν συσχετίζεται με λογαριασμό.",
+          "require": "Παρακαλώ εισάγετε το email σας"
+        },
+        "newPassword": {
+          "require": "Παρακαλώ εισάγετε τον κωδικό σας"
+        },
+        "verification_code": {
+          "expired": "Ο κωδικός επαλήθευσης έληξε",
+          "invalid": "Μη έγκυρος κωδικός επαλήθευσης",
+          "require": "Παρακαλώ εισάγετε τον κωδικό επαλήθευσης"
+        }
+      },
+      "fields": {
+        "email": "E-mail",
+        "newPassword": "Νέος Κωδικός Πρόσβασης",
+        "verification_code": "Κωδικός επαλήθευσης"
+      },
+      "placeholder": {
+        "email": "Εισάγετε το email σας",
+        "verification_code": "Παρακαλώ εισάγετε τον κωδικό επαλήθευσης"
+      },
+      "subtitle": "Πίσω για είσοδο",
+      "tips": {
+        "fail": "Αποτυχία επαναφοράς κωδικού πρόσβασης",
+        "fail_sent": "Αποτυχία αποστολής κωδικού επαλήθευσης",
+        "success": "Επιτυχής επαναφορά κωδικού πρόσβασης",
+        "verification_code": "Ο κωδικός επαλήθευσης στάλθηκε"
+      },
+      "title": "Επαναφορά Κωδικού Πρόσβασης"
+    },
+    "password": {
+      "placeholder": "Εισάγετε τον νέο κωδικό πρόσβασης (τουλάχιστον 6 χαρακτήρες)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Σύνδεση"
+      },
+      "description": {
+        "forgot_password": "Ξεχάσατε Τον Κωδικό Πρόσβασης?",
+        "policy": "Κάνοντας κλικ στο στοιχείο Σύνδεση, συμφωνώ με <0>Πολιτική Απορρήτου</0> και <1>Όροι Χρήσης</1>",
+        "register": "Νέος χρήστης? <0>Δημιουργία λογαριασμού</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email",
+          "registered": "Η διεύθυνση ηλεκτρονικού ταχυδρομείου δεν συσχετίζεται με λογαριασμό.",
+          "require": "Παρακαλώ εισάγετε το email σας"
+        },
+        "password": {
+          "incorrect": "Εσφαλμένο email ή κωδικός πρόσβασης",
+          "locked": "Πάρα πολλές άσχημες προσπάθειες, παρακαλώ επαναφέρετε τον κωδικό πρόσβασής σας ή προσπαθήστε ξανά μετά από 1 ώρα",
+          "min_length": "Ο κωδικός πρόσβασης πρέπει να είναι τουλάχιστον 6 χαρακτήρες",
+          "require": "Παρακαλώ εισάγετε κωδικό πρόσβασης"
+        }
+      },
+      "fields": {
+        "email": "E-mail",
+        "password": "Κωδικός"
+      },
+      "placeholder": {
+        "email": "Εισάγετε το email σας"
+      },
+      "tips": {
+        "fail": "Αποτυχία σύνδεσης",
+        "success": "Σύνδεση με επιτυχία"
+      },
+      "title": "Καλωσορίσατε πίσω"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Δημιουργία Λογαριασμού",
+        "send": "Αποστολή κωδικού"
+      },
+      "description": {
+        "login": "Έχουν ήδη λογαριασμό? <0>Είσοδος σε </0>",
+        "policy": "Κάνοντας κλικ στην επιλογή Δημιουργία Λογαριασμού, συμφωνώ με <0>Πολιτική Απορρήτου</0> και <1>Όροι Χρήσης</1>",
+        "subscribe": "Είμαι πρόθυμος να λάβω τις ενημερώσεις και τις ειδήσεις σχετικά με ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email",
+          "registered": "Υπάρχει ήδη λογαριασμός με αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου.",
+          "require": "Παρακαλώ εισάγετε το email σας"
+        },
+        "password": {
+          "require": "Παρακαλώ εισάγετε κωδικό πρόσβασης"
+        },
+        "username": {
+          "length": "Το όνομα χρήστη πρέπει να είναι 3~15 χαρακτήρες",
+          "require": "Παρακαλώ εισάγετε όνομα χρήστη"
+        },
+        "verification_code": {
+          "expired": "Ο κωδικός επαλήθευσης έληξε",
+          "invalid": "Μη έγκυρος κωδικός επαλήθευσης",
+          "require": "Παρακαλώ εισάγετε τον κωδικό επαλήθευσης"
+        }
+      },
+      "fields": {
+        "email": "E-mail",
+        "password": "Κωδικός",
+        "username": "Όνομα Χρήστη",
+        "verification_code": "Κωδικός επαλήθευσης"
+      },
+      "placeholder": {
+        "email": "Εισάγετε το email σας",
+        "username": "Εισάγετε το όνομα χρήστη σας",
+        "verification_code": "Παρακαλώ εισάγετε τον κωδικό επαλήθευσης"
+      },
+      "tips": {
+        "fail": "Αποτυχία εγγραφής",
+        "fail_sent": "Αποτυχία αποστολής κωδικού επαλήθευσης",
+        "success": "Εγγραφείτε με επιτυχία",
+        "verification_code": "Ο κωδικός επαλήθευσης στάλθηκε"
+      },
+      "title": "Εγγραφείτε",
+      "agreement": {
+        "privacy_policy": "πολιτική απορρήτου",
+        "terms_of_service": "όροι υπηρεσίας"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Πρόοδος Γραμμής"
+    },
+    "button": {
+      "default_text": "Κουμπί",
+      "name": "Κουμπί"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Γράφημα"
+    },
+    "check_box_group": {
+      "name": "Ομάδα Πλαισίων Ελέγχου"
+    },
+    "circle_progress": {
+      "name": "Πρόοδος Κύκλου"
+    },
+    "container": {
+      "empty": "Πατήστε <keyPress>D</keyPress> ή <keyPress>K</keyPress> και σύρετε τα στοιχεία εδώ",
+      "key_duplicated": "Το κλειδί είναι διπλό. Παρακαλούμε χρησιμοποιήστε μοναδικά κλειδιά για να αποφύγετε σφάλματα.",
+      "name": "Περιέκτης",
+      "value_duplicated": "Η τιμή είναι διπλότυπη. Παρακαλούμε χρησιμοποιήστε μοναδικές τιμές για να αποφύγετε σφάλματα."
+    },
+    "date": {
+      "name": "Ημερομηνία"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Ώρα Ημερομηνίας",
+      "placeholder": "Επιλογή ώρας"
+    },
+    "divider_progress": {
+      "name": "Διαχωριστικό"
+    },
+    "editable_text": {
+      "name": "Επεξεργάσιμο Κείμενο"
+    },
+    "form": {
+      "name": "Φόρμα"
+    },
+    "image": {
+      "name": "Εικόνα"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Χρησιμοποιήστε {{ currentItem }} για να αποκτήσετε πρόσβαση στα δεδομένα του τρέχοντος αντικειμένου. Για παράδειγμα, για να ορίσετε την τιμή της συνιστώσας κειμένου που βρίσκεται στη λίστα με βάση το \"όνομα χρήστη\": {{ currentItem.userName }}",
+      "doc2": "Χρησιμοποιήστε το {{list.selectedItem.data}} για να αποκτήσετε πρόσβαση στα δεδομένα του επιλεγμένου στοιχείου στη λίστα. Για παράδειγμα, για να ορίσετε την τιμή της συνιστώσας κειμένου που είναι εκτός λίστας με βάση το \"όνομα χρήστη\" του επιλεγμένου αντικειμένου στη λίστα: {{ list.selectedItem.userName }}",
+      "name": "Λίστα"
+    },
+    "menu": {
+      "name": "Μενού"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Αριστερά",
+      "right": "Δεξιά",
+      "select_options": {
+        "manual": "Χειροκίνητα",
+        "mapped": "Αντιστοιχισμένο"
+      },
+      "top": "Πάνω"
+    },
+    "radio_button": {
+      "name": "Κουμπί Επιλογής"
+    },
+    "radio_group": {
+      "name": "Ομάδα ραδιοφώνου"
+    },
+    "rate": {
+      "name": "Βαθμολογήστε"
+    },
+    "select": {
+      "name": "Επιλογή"
+    },
+    "switch": {
+      "name": "Εναλλαγή"
+    },
+    "table": {
+      "ascend": "Asc",
+      "descend": "Desc",
+      "name": "Πίνακας",
+      "pagination": "Σελιδοποίηση",
+      "scroll": "Κύλιση"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Γεια Σας!",
+      "name": "Κείμενο",
+      "text_model": "Απλό κείμενο"
+    },
+    "timeline": {
+      "horizontal": "Οριζόντια",
+      "name": "Χρονοδιάγραμμα",
+      "vertical": "κάθετη"
+    },
+    "modal": {
+      "name": "Μοντάλ"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Ανέβασμα",
+      "default_button_text": "Ανέβασμα",
+      "default_dropzone_text": "Επιλέξτε ή αποθέστε ένα αρχείο εδώ"
+    },
+    "icon": {
+      "name": "Εικονίδιο"
+    },
+    "pdf": {
+      "empty": "Δεν υπάρχουν αρχεία PDF",
+      "failed": "Το PDF δεν μπόρεσε να φορτωθεί"
+    },
+    "video": {
+      "name": "Βίντεο",
+      "empty": "Δεν υπάρχουν βίντεο",
+      "fail": "Αποτυχία φόρτωσης"
+    },
+    "statistics": {
+      "name": "Στατιστικά"
+    },
+    "collapse": {
+      "name": "Σύμπτυξη"
+    },
+    "multiselect": {
+      "name": "Πολλαπλής επιλογής"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Βήματα"
+    },
+    "slider": {
+      "name": "Ρυθμιστικό"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Ήχος",
+      "no_audio": "Χωρίς ήχο"
+    },
+    "collaborative": {
+      "no_name": "Χωρίς όνομα"
+    },
+    "map": {
+      "name": "Χάρτης"
+    },
+    "time_picker": {
+      "name": "Επιλογέας χρόνου"
+    },
+    "time_range": {
+      "name": "Χρονικό εύρος"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Ημερολόγιο εκδηλώσεων"
+      },
+      "name_duplicated": "Αυτό το ID πόρου συγκρούεται σε αυτά τα γεγονότα, παρακαλώ χρησιμοποιήστε το ίδιο όνομα ή διαφορετικό id"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Σταθερό",
+        "auto": "Αυτόματο"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Αποστολή κωδικού"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email",
+            "registered": "Η διεύθυνση ηλεκτρονικού ταχυδρομείου δεν συσχετίζεται με λογαριασμό.",
+            "require": "Παρακαλώ εισάγετε το email σας"
+          },
+          "newPassword": {
+            "require": "Παρακαλώ εισάγετε τον κωδικό σας"
+          },
+          "verification_code": {
+            "expired": "Ο κωδικός επαλήθευσης έληξε",
+            "invalid": "Μη έγκυρος κωδικός επαλήθευσης",
+            "require": "Παρακαλώ εισάγετε τον κωδικό επαλήθευσης"
+          }
+        },
+        "fields": {
+          "email": "E-mail",
+          "newPassword": "Νέος Κωδικός Πρόσβασης",
+          "verification_code": "Κωδικός επαλήθευσης"
+        },
+        "placeholder": {
+          "email": "Εισάγετε το email σας",
+          "verification_code": "Παρακαλώ εισάγετε τον κωδικό επαλήθευσης"
+        },
+        "subtitle": "Πίσω για είσοδο",
+        "tips": {
+          "fail": "Αποτυχία επαναφοράς κωδικού πρόσβασης",
+          "fail_sent": "Αποτυχία αποστολής κωδικού επαλήθευσης",
+          "success": "Επιτυχής επαναφορά κωδικού πρόσβασης",
+          "verification_code": "Ο κωδικός επαλήθευσης στάλθηκε"
+        },
+        "title": "Επαναφορά Κωδικού Πρόσβασης"
+      },
+      "password": {
+        "placeholder": "Εισάγετε τον νέο κωδικό πρόσβασης (τουλάχιστον 6 χαρακτήρες)"
+      },
+      "policy": "Χρησιμοποιώντας το ILLA συμφωνείτε με την <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Σύνδεση"
+        },
+        "description": {
+          "forgot_password": "Ξεχάσατε Τον Κωδικό Πρόσβασης?",
+          "policy": "Κάνοντας κλικ στο στοιχείο Σύνδεση, συμφωνώ με <0>Πολιτική Απορρήτου</0> και <1>Όροι Χρήσης</1>",
+          "register": "Νέος χρήστης? <0>Δημιουργία λογαριασμού</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email",
+            "registered": "Η διεύθυνση ηλεκτρονικού ταχυδρομείου δεν συσχετίζεται με λογαριασμό.",
+            "require": "Παρακαλώ εισάγετε το email σας"
+          },
+          "password": {
+            "incorrect": "Εσφαλμένο email ή κωδικός πρόσβασης",
+            "locked": "Πάρα πολλές άσχημες προσπάθειες, παρακαλώ επαναφέρετε τον κωδικό πρόσβασής σας ή προσπαθήστε ξανά μετά από 1 ώρα",
+            "min_length": "Ο κωδικός πρόσβασης πρέπει να είναι τουλάχιστον 6 χαρακτήρες",
+            "require": "Παρακαλώ εισάγετε κωδικό πρόσβασης"
+          }
+        },
+        "fields": {
+          "email": "E-mail",
+          "password": "Κωδικός"
+        },
+        "placeholder": {
+          "email": "Εισάγετε το email σας"
+        },
+        "tips": {
+          "fail": "Αποτυχία σύνδεσης",
+          "success": "Σύνδεση με επιτυχία",
+          "fail_account": "Εσφαλμένο email ή κωδικός πρόσβασης"
+        },
+        "title": "Καλωσορίσατε πίσω",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Επιτυχής εγγραφή. Μπορείτε να ορίσετε έναν κωδικό πρόσβασης για το λογαριασμό email σας αργότερα",
+            "auth_failed": "Αποτυχία ταυτοποίησης"
+          }
+        },
+        "option": {
+          "github": "Συνδεθείτε με το GitHub",
+          "google": "Συνδεθείτε μέσω Google",
+          "or": "Ή"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Δημιουργία Λογαριασμού",
+          "send": "Αποστολή κωδικού"
+        },
+        "description": {
+          "login": "Έχουν ήδη λογαριασμό? <0>Είσοδος σε </0>",
+          "policy": "Κάνοντας κλικ στην επιλογή Δημιουργία Λογαριασμού, συμφωνώ με <0>Πολιτική Απορρήτου</0> και <1>Όροι Χρήσης</1>",
+          "subscribe": "Είμαι πρόθυμος να λάβω τις ενημερώσεις και τις ειδήσεις σχετικά με ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση email",
+            "registered": "Υπάρχει ήδη λογαριασμός με αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου.",
+            "require": "Παρακαλώ εισάγετε το email σας"
+          },
+          "password": {
+            "require": "Παρακαλώ εισάγετε κωδικό πρόσβασης"
+          },
+          "username": {
+            "length": "Το όνομα χρήστη πρέπει να είναι 3~15 χαρακτήρες",
+            "require": "Παρακαλώ εισάγετε όνομα χρήστη"
+          },
+          "verification_code": {
+            "expired": "Ο κωδικός επαλήθευσης έληξε",
+            "invalid": "Μη έγκυρος κωδικός επαλήθευσης",
+            "require": "Παρακαλώ εισάγετε τον κωδικό επαλήθευσης"
+          }
+        },
+        "fields": {
+          "email": "E-mail",
+          "password": "Κωδικός",
+          "username": "Όνομα Χρήστη",
+          "verification_code": "Κωδικός επαλήθευσης"
+        },
+        "placeholder": {
+          "email": "Εισάγετε το email σας",
+          "username": "Εισάγετε το όνομα χρήστη σας",
+          "verification_code": "Παρακαλώ εισάγετε τον κωδικό επαλήθευσης"
+        },
+        "tips": {
+          "fail": "Αποτυχία εγγραφής",
+          "fail_sent": "Αποτυχία αποστολής κωδικού επαλήθευσης",
+          "success": "Εγγραφείτε με επιτυχία",
+          "verification_code": "Ο κωδικός επαλήθευσης στάλθηκε"
+        },
+        "title": "Εγγραφείτε",
+        "option": {
+          "github": "Εγγραφείτε με το GitHub",
+          "google": "Εγγραφείτε μέσω Google"
+        }
+      },
+      "description": "Μια πλατφόρμα χαμηλού κώδικα ανοιχτού κώδικα για τους προγραμματιστές."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Εκμάθηση"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Παρακαλώ εισάγετε μια τιμή όχι μικρότερη από {{ size }}."
+  },
+  "failed_to_copy": "Αποτυχία αντιγραφής",
+  "copied": "Αντιγράφηκε!",
+  "user_management": {
+    "role": {
+      "owner": "Ιδιοκτήτης",
+      "admin": "Administer",
+      "editor": "Επεξεργαστής",
+      "viewer": "Προβολέας"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Πρόσκληση μελών"
+      },
+      "link": {
+        "invite_title": "Σύνδεσμος πρόσκλησης",
+        "copy": "Αντιγραφή",
+        "turn_off": "Απενεργοποίηση συνδέσμων πρόσκλησης",
+        "update": "Ενημέρωση συνδέσμων προσκλήσεων",
+        "description": "Μοιραστείτε έναν μυστικό σύνδεσμο, οι άνθρωποι μπορούν να χρησιμοποιήσουν για να συμμετάσχουν στην ομάδα σας.",
+        "turn_on": "Ενεργοποίηση συνδέσμων προσκλήσεων",
+        "fail": "Αποτυχία λήψης του συνδέσμου, παρακαλώ προσπαθήστε ξανά αργότερα",
+        "copied_suc": "Αντιγράφηκε!",
+        "failed_to_copy": "Αποτυχία αντιγραφής",
+        "turn_off_fail": "Αποτυχία απενεργοποίησης",
+        "turn_on_fail": "Αποτυχία ενεργοποίησης",
+        "make_public_title": "Κάντε την εφαρμογή δημόσια",
+        "make_public_copy": "Αντιγραφή"
+      },
+      "email": {
+        "invite_title": "Πρόσκληση μέσω email",
+        "invite": "Πρόσκληση",
+        "placeholder": "Εισάγετε διεύθυνση email",
+        "invited": "Έχουν προσκληθεί",
+        "in_list": "Αυτός ο χρήστης είναι ήδη στην ομάδα σας.",
+        "notmail": "{{ email }} δεν είναι email",
+        "duplicate": "{{ email }} είναι διπλότυπη"
+      },
+      "invalid_email": "Παρακαλώ εισάγετε ένα έγκυρο email",
+      "message": {
+        "make_public_suc": "Επιτυχής ρύθμιση",
+        "make_public_failed": "Αποτυχία ορισμού",
+        "app_share_in_team": "{{ email }} είναι ήδη στην ομάδα σας, παρακαλώ μοιραστείτε το σύνδεσμο μαζί του. "
+      },
+      "tab": {
+        "invite": "Πρόσκληση",
+        "public": "Δημόσιο"
+      }
+    },
+    "mes": {
+      "invite_suc": "Επιτυχής πρόσκληση",
+      "invite_fail": "Αποτυχία πρόσκλησης",
+      "update_suc": "Επιτυχής ενημέρωση",
+      "update_fail": "Αποτυχία ενημέρωσης",
+      "transfer_suc": "Επιτυχής μεταφορά",
+      "transfer_fail": "Αποτυχία μεταφοράς",
+      "remove_suc": "Επιτυχής αφαίρεση",
+      "remove_fail": "Αποτυχία κατάργησης",
+      "change_role_fail": "Αποτυχία ενημέρωσης",
+      "change_role_suc": "Επιτυχής ενημέρωση"
+    },
+    "page": {
+      "member": "Κράτος",
+      "invite": "Πρόσκληση",
+      "permission": "Άδεια",
+      "operation": "Λειτουργία",
+      "transfer": "Μεταβίβαση κυριότητας",
+      "remove": "Αφαίρεση"
+    },
+    "transfer_modal": {
+      "title": "Είστε σίγουροι ότι θέλετε να μεταφέρετε ιδιοκτησία?",
+      "description": "Μετά τη μεταφορά, η άδειά σας θα αλλάξει σε διαχειριστή.",
+      "transfer": "Μεταφορά",
+      "cancel": "Ακύρωση"
+    },
+    "remove_modal": {
+      "title": "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε {{ username }}?",
+      "description": "Μετά την αφαίρεση, ο χρήστης δεν θα μπορεί να έχει πρόσβαση στην ομάδα.",
+      "remove": "Αφαίρεση",
+      "cancel": "Ακύρωση"
+    },
+    "status": {
+      "pending": "Εκκρεμεί"
+    },
+    "settings": {
+      "allow_editors_invite": "Επιτρέψτε στους συντάκτες και τους θεατές να διαχειρίζονται μέλη"
+    }
+  },
+  "copy_failed": "Αποτυχία αντιγραφής",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Ρυθμίσεις ομάδας",
+      "member": "Κράτος",
+      "leave": "Αποχώρηση από ομάδα",
+      "delete": "Διαγραφή ομάδας"
+    },
+    "leave_modal": {
+      "title": "Είστε βέβαιοι ότι θέλετε να φύγετε από αυτήν την ομάδα?",
+      "description": "Δεν θα μπορείτε να έχετε πρόσβαση σε πόρους της ομάδας μετά την αναχώρηση.",
+      "leave": "Αποχώρηση",
+      "cancel": "Ακύρωση"
+    },
+    "delete_modal": {
+      "title": "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την ομάδα?",
+      "delete": "Διαγραφή",
+      "cancel": "Ακύρωση",
+      "desctiption": "Το αναγνωριστικό ομάδας δεν θα είναι διαθέσιμο μετά τη διαγραφή, και όλα τα μέλη θα αφαιρεθούν από αυτή την ομάδα."
+    },
+    "team_info": {
+      "title": "Πληροφορίες ομάδας",
+      "team_name": "Όνομα ομάδας",
+      "domain": ".illacloud.com",
+      "existed": "Ήδη υπήρχε",
+      "available": "Διαθέσιμο",
+      "edit": "Επεξεργασία",
+      "save": "Αποθήκευση Αλλαγών",
+      "adjust_avater": "Προσαρμόστε το avater",
+      "avater_crop": "Περικοπή",
+      "team_name_empty": "Παρακαλώ εισάγετε το όνομα της ομάδας",
+      "team_id_empty": "Παρακαλώ εισάγετε το αναγνωριστικό ομάδας",
+      "team_name_placeholder": "Εισάγετε το όνομα της ομάδας",
+      "team_id_placeholder": "Εισάγετε το αναγνωριστικό ομάδας",
+      "leave_title": "Αποχώρηση από ομάδα",
+      "leave_button": "Αποχώρηση από ομάδα",
+      "delete_title": "Διαγραφή ομάδας",
+      "delete_button": "Διαγραφή ομάδας",
+      "team_domain": "Αναγνωριστικό Ομάδας"
+    },
+    "message": {
+      "save_suc": "Επιτυχής αποθήκευση",
+      "save_fail": "Αποτυχία αποθήκευσης"
+    },
+    "mes": {
+      "domain_suc": "Επιτυχής δημιουργία",
+      "delete_suc": "Διαγράφηκε επιτυχώς",
+      "delete_fail": "Αποτυχία διαγραφής",
+      "leave_suc": "Επιτυχής έξοδος",
+      "leave_fail": "Αποτυχία αποχώρησης"
+    }
+  },
+  "members": "Μέλη",
+  "invite_new_member": "Πρόσκληση",
+  "launch": "Εκκίνηση",
+  "homepage": {
+    "message": {
+      "join_failed": "Απέτυχε η συμμετοχή στην ομάδα: το email σας δεν είναι το προσκεκλημένο email."
+    }
+  },
+  "image_exceed": "Το μέγεθος της εικόνας δεν μπορεί να υπερβαίνει τα 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Περικοπή",
+        "save": "Αποθήκευση",
+        "cancel": "Ακύρωση"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Επιτυχής αποθήκευση",
+        "save_fail": "Αποτυχία αποθήκευσης"
+      },
+      "password": {
+        "title": "Κωδικός"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Πτυσσόμενη λίστα"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "Μια κυκλική εξάρτηση συμβαίνει στο {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Πολιτική Απορρήτου",
+      "description": "Αυτή η Πολιτική Απορρήτου εξηγεί τις πρακτικές μας σχετικά με τη συλλογή, χρήση και αποκάλυψη των πληροφοριών που λαμβάνουμε μέσω των Υπηρεσιών μας."
+    },
+    "terms": {
+      "description": "Οι παρόντες Όροι Παροχής Υπηρεσιών διέπουν την πρόσβαση και τη χρήση του Ιστότοπου μας και την παροχή ποικίλων υπηρεσιών.",
+      "title": "Όροι παροχής υπηρεσιών"
+    }
+  },
+  "empty_copied_tips": "Το περιεχόμενο που θα αντιγραφεί είναι κενό",
+  "copy_empty": "Το περιεχόμενο που θα αντιγραφεί είναι κενό",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Μάθετε πώς να χτίσετε μια εφαρμογή σε 5 λεπτά",
+          "description": "Ακολουθήστε το σεμινάριο του ILLA για να μάθετε πώς να κατασκευάσετε μια εφαρμογή. Αυτό θα διαρκέσει περίπου 5 λεπτά.",
+          "cancel": "Ακύρωση",
+          "take": "Πάρτε ένα σεμινάριο"
+        },
+        "exit_confirm": {
+          "title": "Σταματήστε το σεμινάριο?",
+          "description": "Την επόμενη φορά που θα μπείτε στην εφαρμογή επιβίβασης, θα επαναληφθούν τα καθοδηγούμενα βήματα ",
+          "cancel": "Ακύρωση",
+          "exit": "Σταματήστε το"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Ανακατεύθυνση",
+  "oauth_redirect_description": "Ανακατεύθυνση σε <0>ILLA Cloud</0>",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
+}

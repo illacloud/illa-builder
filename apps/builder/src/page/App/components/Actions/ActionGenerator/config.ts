@@ -32,6 +32,10 @@ export const Databases: ActionDataItem[] = [
     isDraft: false,
   },
   {
+    actionType: "neon",
+    isDraft: false,
+  },
+  {
     actionType: "redis",
     isDraft: false,
   },

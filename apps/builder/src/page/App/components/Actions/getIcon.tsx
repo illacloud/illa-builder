@@ -12,6 +12,7 @@ import { MariaDbIcon } from "@/page/App/components/Icons/mariadb"
 import { MicrosoftSqlIcon } from "@/page/App/components/Icons/microsoftsql"
 import { MongoDbIcon } from "@/page/App/components/Icons/mongodb"
 import { MySqlIcon } from "@/page/App/components/Icons/mysql"
+import { NeonIcon } from "@/page/App/components/Icons/neon"
 import { OracleDBIcon } from "@/page/App/components/Icons/oracle"
 import { PostgreSqlIcon } from "@/page/App/components/Icons/postgresql"
 import { RedisIcon } from "@/page/App/components/Icons/redis"
@@ -51,6 +52,8 @@ export function getIconFromResourceType(
       return <MariaDbIcon size={size} />
     case "tidb":
       return <TidbIcon size={size} />
+    case "neon":
+      return <NeonIcon size={size} />
     case "s3":
       return <S3Icon size={size} />
     case "mysql":
@@ -107,6 +110,8 @@ export function getIconFromActionType(
       return <MariaDbIcon size={size} />
     case "tidb":
       return <TidbIcon size={size} />
+    case "neon":
+      return <NeonIcon size={size} />
     case "s3":
       return <S3Icon size={size} />
     case "mysql":

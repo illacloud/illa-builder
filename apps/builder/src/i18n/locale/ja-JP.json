@@ -146,6 +146,9 @@
           },
           "gs": {
             "google_sheets": "Google Sheets"
+          },
+          "neon": {
+            "neon": "Neon"
           }
         },
         "validate": {
@@ -270,6 +273,11 @@
           },
           "tidb": {
             "ca_certificate": "デフォルトで、サーバーレス層への TLS 接続に使用される CA 証明書を入力します。 Dedicated Tier への TLS 接続が必要な場合は、<0>ここをクリック</0>して構成方法を表示してください。"
+          },
+          "neon": {
+            "normal": "Neon プロジェクトを作成し、<0>プロジェクト ダッシュボード</0>で文字列を取得します。",
+            "failed": "文字列の解析に失敗しました。 文字列を確認するか、手動で構成してください。",
+            "no_password": "文字列にはパスワードがありません。 コピーする前に Neon ダッシュボードにパスワードを表示してください。"
           }
         },
         "option": {
@@ -350,6 +358,10 @@
             "service_account": "サービス アカウント",
             "read_and_write": "読み書き",
             "read_only": "読み取り専用"
+          },
+          "neon": {
+            "parse": "パース",
+            "connection_string": "接続文字列"
           }
         },
         "default": {
@@ -1155,7 +1167,14 @@
         "Select": "Select",
         "eventCalendar": {
           "no_title": "タイトルなし"
-        }
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
       },
       "setter_default_value": {
         "fill": "充填",
@@ -1507,6 +1526,36 @@
           "calendar_text": "テクストヤン",
           "event_background": "バックグラウンド",
           "event_text": "テクストヤン"
+        },
+        "table": {
+          "page_index": "Page index",
+          "index": "Index",
+          "scroll_to_the_select": "Scroll to the selected row",
+          "filters": "Filters",
+          "filter_mode": "Filter mode",
+          "show_thousands_separ": "Show thousands separator ",
+          "tag_label": "Tag label",
+          "tag_color": "Tag color",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
         }
       },
       "setter_tooltip": {
@@ -1691,6 +1740,32 @@
           "week": "週",
           "day": "日",
           "agenda": "議題"
+        },
+        "table": {
+          "set_sort": "Set sort",
+          "column": "Column",
+          "number": "Number",
+          "percent": "Percent",
+          "currency": "Currency",
+          "text": "Text",
+          "tag": "Tag",
+          "button_group": "Button group",
+          "date": "Date",
+          "time": "Time",
+          "date_time": "Date Time",
+          "link": "Link",
+          "rating": "Rating",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Button",
+          "icon": "Icon",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
         }
       },
       "setter_placeholder": {
@@ -1872,6 +1947,15 @@
       "eventCalendar": {
         "addevent": "addEvent",
         "deleteevent": "deleteEvent"
+      },
+      "table": {
+        "clear_filters": "Clear filters",
+        "clear_column_setting": "Clear column setting",
+        "refresh": "Refresh",
+        "select_page": "Select page",
+        "select_row": "Select row",
+        "clear_selection": "Clear selection",
+        "set_filters": "Set filters"
       }
     },
     "tutorial": {
@@ -2694,5 +2778,28 @@
     }
   },
   "oauth_redirect_title": "이동",
-  "oauth_redirect_description": "<0>ILLA Cloud</0> にリダイレクトしています..."
+  "oauth_redirect_description": "<0>ILLA Cloud</0> にリダイレクトしています...",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
 }

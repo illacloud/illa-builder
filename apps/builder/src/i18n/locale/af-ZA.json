@@ -276,8 +276,7 @@
           },
           "neon": {
             "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "failed": "Failed to parse the string. Please check your string or configure manually."
           }
         },
         "option": {
@@ -2778,28 +2777,5 @@
     }
   },
   "oauth_redirect_title": "Redirect",
-  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud</0>",
-  "language": {
-    "en-US": "English",
-    "zh-CN": "简体中文",
-    "ko-KR": "한국인",
-    "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
-    "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
-    "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
-    "no-NO": "norsk",
-    "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
-    "sv-SE": "svenska",
-    "uk-UA": "українська"
-  }
+  "oauth_redirect_description": "Redirecting to <0>ILLA Cloud</0>"
 }

@@ -84,6 +84,7 @@ export const ActionPanel: FC = () => {
       case "mariadb":
       case "postgresql":
       case "snowflake":
+      case "neon":
         return <MysqlLikePanel />
       case "mssql":
         return <MicrosoftSqlPanel />
