@@ -1,19 +1,24 @@
 import { v4 } from "uuid"
-import {
-  ColumnItemShape,
-  defaultColumnItem,
-} from "@/widgetLibrary/TableWidget/interface"
 
-export const generateColumnItemId = () => `column-${v4()}`
+export const generateCellItemId = () => `cell-${v4()}`
 
-export const generateNewColumnItem = (number: number): ColumnItemShape => {
-  const id = generateColumnItemId()
+export const generateNewButtonCellContent = (number: number) => {
+  const id = generateCellItemId()
   return {
-    ...defaultColumnItem,
-    custom: true,
-    header: `Column ${number}`,
+    label: `Button${number}`,
+    cellValue: `Button${number}`,
+    colorScheme: "blue",
     id,
-    accessorKey: id,
-    columnIndex: number - 1,
-  } as ColumnItemShape
+    index: number - 1,
+  }
+}
+
+export const generateNewIconCellContent = (number: number) => {
+  const id = generateCellItemId()
+  return {
+    label: `Icon${number}`,
+    cellValue: "BsHandThumbsUp",
+    id,
+    index: number - 1,
+  }
 }

@@ -1,6 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { HTMLAttributes } from "react"
 import { ButtonColorScheme, ImageProps, TableProps } from "@illa-design/react"
+import { CellItemProps } from "@/page/App/components/PanelSetters/TableSetter/CellSetter/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export enum Columns {
@@ -14,9 +15,10 @@ export enum Columns {
   Percent = "percent",
   Link = "link",
   Button = "button",
+  ButtonGroup = "buttongroup",
   Boolean = "boolean",
   Image = "image",
-  Icon = "icon",
+  IconGroup = "icongroup",
   Rating = "rating",
   Markdown = "markdown",
   HTML = "html",
@@ -64,12 +66,23 @@ export interface ColumnItemShape
   columnIndex?: number
   // icon type
   iconName?: string
+  iconGroupContent?: TableCellIconGroupItemProps[]
   // currency type
   currencyCode?: string
   // tag type
   tagColor?: string | "auto"
   tagColorJs?: string | "auto"
   tagColorMode?: "select" | "dynamic"
+  // button group type
+  buttonGroupContent?: TableCellButtonGroupItemProps[]
+}
+
+export interface TableCellButtonGroupItemProps extends CellItemProps {
+  colorScheme?: ButtonColorScheme
+}
+
+export interface TableCellIconGroupItemProps extends CellItemProps {
+  colorScheme?: string
 }
 
 export const tagColorSchemeOptions = [

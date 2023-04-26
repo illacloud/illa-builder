@@ -4,16 +4,16 @@ import { ColumnItemProps } from "./interface"
 import { optionListItemStyle } from "./style"
 
 export const ColumnItem: FC<ColumnItemProps> = (props) => {
-  const { accessorKey, header, value, visible, custom, index } = props
+  const { index, cellValue, label, id } = props
   const ref = useRef<HTMLDivElement>(null)
 
   return (
     <div ref={ref} css={optionListItemStyle}>
       <DragIconAndLabel
+        id={id}
         index={index}
-        label={header}
-        visible={visible}
-        custom={custom}
+        label={label}
+        cellValue={cellValue}
       />
     </div>
   )

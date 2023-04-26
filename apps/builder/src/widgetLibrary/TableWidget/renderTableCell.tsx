@@ -1,9 +1,20 @@
 import { CellContext } from "@tanstack/table-core"
 import { FC } from "react"
-import { Button, Image, Link, Tag, getColor } from "@illa-design/react"
+import {
+  Button,
+  ButtonGroup,
+  Image,
+  Link,
+  Tag,
+  getColor,
+} from "@illa-design/react"
+import { CellItemProps } from "@/page/App/components/PanelSetters/TableSetter/CellSetter/interface"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
+import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 import {
   ColumnItemShape,
+  TableCellButtonGroupItemProps,
+  TableCellIconGroupItemProps,
   tagColorSchemeOptions,
 } from "@/widgetLibrary/TableWidget/interface"
 import { overFlowStyle } from "@/widgetLibrary/TableWidget/style"
@@ -56,7 +67,14 @@ export const RenderTableTag: FC<{
   const { cell, value, color } = props
   const cellValue = value ?? cell.getValue()
   const rowIndex = cell.row.index
-  const tagDefaultColor = ["blue", "purple", "red", "green", "orange", "cyan"]
+  const tagDefaultColor = [
+    "techPink",
+    "purple",
+    "red",
+    "green",
+    "orange",
+    "cyan",
+  ]
   const colorScheme =
     color === "auto"
       ? tagDefaultColor[rowIndex % tagDefaultColor.length]
@@ -108,5 +126,47 @@ export const RenderTableButton: FC<{
     >
       {`${value ?? "-"}`}
     </Button>
+  )
+}
+
+export const RenderTableButtonGroup: FC<{
+  cell: CellContext<any, any>
+  value?: TableCellButtonGroupItemProps[]
+}> = (props) => {
+  const { cell, value } = props
+
+  return value ? (
+    <ButtonGroup>
+      {value.map((item, index) => {
+        const { label, cellValue, colorScheme } = item
+        return (
+          <Button key={index} colorScheme={colorScheme}>
+            {cellValue}
+          </Button>
+        )
+      })}
+    </ButtonGroup>
+  ) : (
+    <span>{"-"}</span>
+  )
+}
+
+export const RenderTableIconGroup: FC<{
+  cell: CellContext<any, any>
+  value?: TableCellIconGroupItemProps[]
+}> = (props) => {
+  const { cell, value } = props
+
+  return value ? (
+    <div>
+      {value.map((item, index) => {
+        const { label, cellValue, colorScheme } = item
+
+        const Icon = getIcon(cellValue)
+        return Icon ? <Icon key={index} /> : "-"
+      })}
+    </div>
+  ) : (
+    <span>{"-"}</span>
   )
 }

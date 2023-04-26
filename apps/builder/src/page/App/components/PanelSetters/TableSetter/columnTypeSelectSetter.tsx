@@ -1,16 +1,22 @@
-import { FC, useCallback, useMemo } from "react"
+import { FC, useCallback } from "react"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
-import { ColumnItemShape, Columns, ColumnType, ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
 import { BaseSelectSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
+import {
+  generateNewButtonCellContent,
+  generateNewIconCellContent,
+} from "@/page/App/components/PanelSetters/TableSetter/CellSetter/utils/generateNewColumns"
+import {
+  ColumnType,
+  ColumnTypeOption,
+  Columns,
+} from "@/widgetLibrary/TableWidget/interface"
 
-interface ColumnTypeSelectSetterProps extends BaseSelectSetterProps {
-}
+interface ColumnTypeSelectSetterProps extends BaseSelectSetterProps {}
 
 export const ColumnTypeSelectSetter: FC<ColumnTypeSelectSetterProps> = (
   props,
 ) => {
   const { widgetDisplayName, parentAttrName, handleUpdateMultiAttrDSL } = props
-
 
   const handleUpdateDsl = useCallback(
     (attrName: string, value: ColumnType) => {
@@ -24,6 +30,18 @@ export const ColumnTypeSelectSetter: FC<ColumnTypeSelectSetterProps> = (
           break
         case Columns.Time:
           columnProps[`${parentAttrName}.format`] = "HH:mm:ss"
+          break
+        case Columns.ButtonGroup:
+          columnProps[`${parentAttrName}.buttonGroupContent`] = [
+            generateNewButtonCellContent(1),
+            generateNewButtonCellContent(2),
+          ]
+          break
+        case Columns.IconGroup:
+          columnProps[`${parentAttrName}.iconGroupContent`] = [
+            generateNewIconCellContent(1),
+            generateNewIconCellContent(2),
+          ]
           break
       }
       handleUpdateMultiAttrDSL?.({

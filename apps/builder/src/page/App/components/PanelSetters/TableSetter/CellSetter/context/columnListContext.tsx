@@ -1,10 +1,10 @@
 import { FC, ReactNode, createContext, useCallback } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
-import { generateColumnItemId } from "../utils/generateNewColumns"
+import { CellItemProps } from "@/page/App/components/PanelSetters/TableSetter/CellSetter/interface"
+import { generateCellItemId } from "../utils/generateNewColumns"
 
 interface ProviderProps {
-  columnItems: ColumnItemShape[]
+  columnItems: CellItemProps[]
   childrenSetter: PanelFieldConfig[]
   widgetDisplayName: string
   attrPath: string
@@ -46,7 +46,7 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
       if (!targetOptionItem) return
       targetOptionItem = {
         ...targetOptionItem,
-        accessorKey: generateColumnItemId(),
+        id: generateCellItemId(),
       }
       const updatedArray = [...columnItems, targetOptionItem]
       handleUpdateDsl(attrPath, updatedArray)

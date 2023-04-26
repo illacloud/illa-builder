@@ -30,8 +30,9 @@ import { SearchSelectSetter } from "@/page/App/components/PanelSetters/SelectSet
 import { ShadowSelect } from "@/page/App/components/PanelSetters/SelectSetter/shadowSelect"
 import { BaseSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/baseSwitch"
 import { DynamicSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/dynamicSwitch"
+import { CellSetter } from "@/page/App/components/PanelSetters/TableSetter/CellSetter"
 import { ColumnSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter"
-import { ColumnTypeSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnTypeSelectSetter"
+import { ColumnTypeSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columnTypeSelectSetter"
 import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
 import { TableDataSourceSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/tableDataSourceSelectSetter"
 import { TableMappedValueInputSetter } from "@/page/App/components/PanelSetters/TableSetter/tableMappedValueInputSetter"
@@ -58,6 +59,7 @@ const SetterTypeMapSetter = {
   OPTION_LIST_SETTER: OptionListSetter,
   STEPS_LIST_SETTER: StepsListSetter,
   CAROUSEL_LIST_SETTER: CarouselListSetter,
+  CELL_SETTER: CellSetter,
   COLUMN_SETTER: ColumnSetter,
   COLUMN_TYPE_SELECT_SETTER: ColumnTypeSelectSetter,
   COLUMNS_SELECT_SETTER: ColumnsSelectSetter,

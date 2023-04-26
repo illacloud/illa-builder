@@ -1,14 +1,8 @@
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import {
-  DragPointIcon,
-  EyeOffIcon,
-  EyeOnIcon,
-  ReduceIcon,
-  Trigger,
-} from "@illa-design/react"
+import { DragPointIcon, ReduceIcon, Trigger } from "@illa-design/react"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/context/columnListContext"
+import { ColumnListSetterContext } from "./context/columnListContext"
 import { DragIconAndLabelProps } from "./interface"
 import {
   baseIconStyle,
@@ -20,9 +14,10 @@ import {
 } from "./style"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
-  const { index, label, visible, custom } = props
+  const { index, label, cellValue } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
+    columnItems,
     widgetDisplayName,
     attrPath,
     childrenSetter,
@@ -69,7 +64,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
           </span>
         </div>
         <div css={iconAreaStyle}>
-          {custom ? (
+          {columnItems?.length > 1 ? (
             <span
               css={baseIconStyle}
               onClick={(event) => {

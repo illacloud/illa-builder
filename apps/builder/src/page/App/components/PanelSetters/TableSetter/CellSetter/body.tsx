@@ -1,8 +1,8 @@
 import { AnimatePresence, Reorder } from "framer-motion"
 import { isEqual } from "lodash"
 import { FC, useContext, useEffect, useState } from "react"
+import { CellItemProps } from "@/page/App/components/PanelSetters/TableSetter/CellSetter/interface"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { ColumnItem } from "./columnItem"
 import { ColumnListSetterContext } from "./context/columnListContext"
 import { EmptyBody } from "./empty"
@@ -19,7 +19,7 @@ export const ListBody: FC = () => {
     }
   }, [columnItems])
 
-  const updateItem = (values: ColumnItemShape[]) => {
+  const updateItem = (values: CellItemProps[]) => {
     if (isEqual(values, items)) return
     setItems(values)
   }
@@ -37,13 +37,12 @@ export const ListBody: FC = () => {
         css={removeNativeStyle}
       >
         {items.map((item, index) => {
-          const { label, value, header, accessorKey, visible, custom, id } =
-            item
+          const { cellValue, id, label } = item
           return (
             <Reorder.Item
               initial={false}
               css={removeNativeStyle}
-              key={item.accessorKey}
+              key={id}
               value={item}
               onDragEnd={() => {
                 const orderItems = items.map((item, index) => {
@@ -53,12 +52,9 @@ export const ListBody: FC = () => {
               }}
             >
               <ColumnItem
-                key={accessorKey}
-                accessorKey={accessorKey}
-                header={header}
-                value={value}
-                visible={visible}
-                custom={custom}
+                key={id}
+                label={label}
+                cellValue={cellValue}
                 index={index}
                 id={id}
               />

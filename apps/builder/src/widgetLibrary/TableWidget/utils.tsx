@@ -19,6 +19,8 @@ import {
 } from "@/widgetLibrary/TableWidget/interface"
 import {
   RenderTableButton,
+  RenderTableButtonGroup,
+  RenderTableIconGroup,
   RenderTableImage,
   RenderTableLink,
   RenderTableTag,
@@ -209,16 +211,18 @@ export const getCellForType = (
     tagColor = "auto",
     tagColorJs,
     tagColorMode = "select",
+    buttonGroupContent,
+    iconGroupContent,
   } = data
 
   const locale = getLocalLanguage()
 
   switch (type) {
-    case "text":
+    case Columns.Text:
       return (props: CellContext<any, any>) => {
         return getStringPropertyValue(props, mappedValue, fromCurrentRow)
       }
-    case "link":
+    case Columns.Link:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         return RenderTableLink({
@@ -236,7 +240,7 @@ export const getCellForType = (
           color,
         })
       }
-    case "image":
+    case Columns.Image:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         return RenderTableImage({
@@ -245,12 +249,12 @@ export const getCellForType = (
           data,
         })
       }
-    case "boolean":
+    case Columns.Boolean:
       return (props: CellContext<any, any>) => {
         const value = getPropertyValue(props, mappedValue, fromCurrentRow)
         return isBoolean(value) ? value.toString() : "-"
       }
-    case "number":
+    case Columns.Number:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
@@ -262,7 +266,7 @@ export const getCellForType = (
         })
         return isNumber(formatVal) ? numberFormat.format(formatVal) : "-"
       }
-    case "percent":
+    case Columns.Percent:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
@@ -275,7 +279,7 @@ export const getCellForType = (
 
         return isNumber(formatVal) ? numberFormat.format(formatVal) : "-"
       }
-    case "currency":
+    case Columns.Currency:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         const formatVal = Number(value)
@@ -303,24 +307,19 @@ export const getCellForType = (
         const formatVal = dayjsPro(value).format(format)
         return formatVal ? formatVal : "-"
       }
-    case "icon":
-      return (props: CellContext<any, any>) => {
-        const Icon = getIcon(iconName)
-        return Icon ? <Icon /> : "-"
-      }
-    case "markdown":
+    case Columns.Markdown:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         return value ? <ILLAMarkdown textString={value} /> : "-"
       }
-    case "rating":
+    case Columns.Rating:
       return (props: CellContext<any, any>) => {
         const value = getPropertyValue(props, mappedValue, fromCurrentRow)
         const maxCount = 5
 
         return <Rate count={maxCount} readonly value={Number(value) || 0} />
       }
-    case "button":
+    case Columns.Button:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
 
@@ -330,6 +329,22 @@ export const getCellForType = (
           data,
           eventPath,
           handleOnClickMenuItem,
+        })
+      }
+    case Columns.ButtonGroup:
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+
+        return RenderTableButtonGroup({
+          cell: props,
+          value: buttonGroupContent,
+        })
+      }
+    case Columns.IconGroup:
+      return (props: CellContext<any, any>) => {
+        return RenderTableIconGroup({
+          cell: props,
+          value: iconGroupContent,
         })
       }
     default:

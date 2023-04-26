@@ -11,20 +11,24 @@ export interface HeaderProps {
   handleAddOption: () => void
 }
 
-export interface ColumnItemProps
-  extends Omit<ColumnItemShape, "disabled" | "cell"> {
+export interface CellItemProps {
+  cellValue: string
+  id: string
+  label?: string
   index: number
 }
 
-export interface DragIconAndLabelProps {
-  index: number
-  label?: string
-  visible?: boolean
-  custom?: boolean
-}
+export interface ColumnItemProps extends CellItemProps {}
+
+export interface DragIconAndLabelProps extends CellItemProps {}
 
 export interface ColumnListSetterProps extends BaseSetter {
   value: ColumnItemShape[]
+  childrenSetter?: PanelFieldConfig[]
+}
+
+export interface CellSetterProps extends BaseSetter {
+  value: CellItemProps[]
   childrenSetter?: PanelFieldConfig[]
 }
 
