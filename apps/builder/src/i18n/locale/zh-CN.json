@@ -275,8 +275,9 @@
             "ca_certificate": "我们默认填写用于与无服务器层的TLS连接的证书。如需与专用层的TLS连接，<0>点击这里</0>查看配置方法"
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually."
+            "normal": "创建一个 Neon 项目并在 <0>project dashboard</0> 中获取字符串。",
+            "failed": "无法解析字符串。 请检查您的字符串或手动配置。",
+            "no_password": "没有密码。 请在 Neon Dashboard中单击连接字符串上的密码栏，然后复制该字符串。"
           }
         },
         "option": {
@@ -359,8 +360,8 @@
             "read_only": "只读"
           },
           "neon": {
-            "parse": "Parse",
-            "connection_string": "Connection string"
+            "parse": "解析",
+            "connection_string": "连接字符串"
           }
         },
         "default": {
