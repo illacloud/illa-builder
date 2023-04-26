@@ -1,0 +1,2781 @@
+{
+  "Logout": "Deconectare",
+  "Setting": "Setare",
+  "apps": "Aplicații",
+  "back": "Înapoi",
+  "btn": {
+    "choose_file": "Alege un fișier"
+  },
+  "change_fail": "Schimbarea nu a reușit",
+  "change_success": "Modificare reușită",
+  "collision_message": "Apăsați D sau K și trageți componenta în container",
+  "create_fail": "Crearea a eșuat",
+  "create_new": "Creare nou",
+  "create_new_app": "Creare nou",
+  "created_at": "Creat la",
+  "dashboard": {
+    "app": {
+      "all_apps": "Toate aplicațiile",
+      "create_app": "Creare aplicație",
+      "duplicate_fail": "Esuare duplicare",
+      "duplicate_placeholder": "Introdu numele aplicației tale aici",
+      "edited_time": "Editat la {{ time }} de {{ user }}",
+      "name_empty": "Te rugăm să introduci un nume",
+      "name_existed": "Nume deja luat",
+      "rename_app": "Redenumiţi aplicaţia",
+      "rename_fail": "Redenumirea a eșuat",
+      "rename_success": "Redenumit cu succes",
+      "trash_failure": "Ștergerea a eșuat",
+      "trash_success": "Șters cu succes"
+    },
+    "common": {
+      "cancel": "Anulează",
+      "delete": "Ștergere",
+      "delete_cancel_text": "Anulează",
+      "delete_content": "Acest lucru va întrerupe aplicațiile și interogarea bibliotecii care utilizează această resursă",
+      "delete_ok_text": "Ștergere",
+      "delete_title": "Ești sigur?",
+      "error_button": "Reîncercați",
+      "error_description": "Există o problemă cu operația dvs.",
+      "error_title": "Eroare"
+    },
+    "resource": {
+      "create_resource": "Creare nou",
+      "created": "Creat",
+      "dbname": "Numele bazei de date",
+      "delete_fail": "Ștergerea a eșuat",
+      "delete_success": "Șters cu succes",
+      "resource_name": "Nume",
+      "resource_type": "Tip",
+      "save_fail": "Salvarea nu a reușit",
+      "save_success": "Salvare reușită",
+      "test_fail": "Nu a reușit să testeze",
+      "test_success": "Test cu succes"
+    }
+  },
+  "dayjs": {
+    "just_now": "Chiar acum"
+  },
+  "deploy": "Desfășurare",
+  "description": {
+    "part1": "Acesta este un exemplu fără spații de nume."
+  },
+  "dont_need_save": "ILLA va continua să încerce salvarea automată a muncii dumneavoastră.",
+  "duplicate": "Duplicate",
+  "edit": "Editare",
+  "edit_at": "Editat la",
+  "edit_failed": "Salvare eșuată, te rugăm să verifici rețeaua.",
+  "edit_success": "Editat cu succes",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Înapoi",
+            "create_action": "Crează acțiune",
+            "new_resource": "Resursă nouă"
+          },
+          "selector": {
+            "title": "Selectați tipul de acțiune"
+          },
+          "title": {
+            "choose_resource": "Alege o resursă "
+          }
+        },
+        "btn": {
+          "close": "închide",
+          "new": "Nou"
+        },
+        "contextMenu": {
+          "delete": "Ștergere",
+          "duplicate": "Duplicate",
+          "rename": "Redenumire"
+        },
+        "message": {
+          "confirm_switch": "Nu ai salvat interogarea. Ești sigur că vrei să renunți la modificări?",
+          "failed": "Conectarea la server a eșuat",
+          "load_action_list_fail": "Obținerea listei de acțiuni a eșuat: {{message}}",
+          "load_resource_fail": "Obținerea listei de resurse a eșuat: {{message}}",
+          "name_already_exist": "Deja există",
+          "please_input_name": "Vă rugăm să introduceți numele",
+          "success_created": "Creat cu succes",
+          "success_deleted": "Eliminat cu succes",
+          "success_saved": "Salvat cu succes",
+          "valid_name": "Poate conține doar litere, numere, '_' sau '$', începe cu '_' sau o literă"
+        },
+        "placeholder": {
+          "search": "Caută"
+        },
+        "runtime": {
+          "backend": "Backend",
+          "execute_resource": "execută resursa",
+          "frontend": "Frontend",
+          "handle_response": "gestionează răspunsul",
+          "post_processing": "postare procesare",
+          "prepare_query": "Pregătire interogare",
+          "response_size": "Dimensiune răspuns",
+          "total": "Total",
+          "transfer_data": "transfer date",
+          "transformer": "transformator"
+        },
+        "tips": {
+          "empty": "Adăugați o acțiune pentru a începe să lucrați cu date dintr-o resursă conectată.",
+          "not_found": "Niciun rezultat de căutare"
+        },
+        "title": "Listă de acțiuni"
+      },
+      "form": {
+        "btn": {
+          "back": "Înapoi",
+          "save_changes": "Salvează resursa",
+          "test_connection": "Testare conexiune"
+        },
+        "required": "Acest lucru este necesar",
+        "title": {
+          "api": "API",
+          "configure": "Configurare {{ name }}",
+          "database": "DATELE",
+          "select": "Selectaţi tipul de resursă",
+          "huggingface": "Față de captare",
+          "appwrite": "Aplică",
+          "couchdb": {
+            "couchdb": "CouchDB"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Plăci Google"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} este necesar"
+        },
+        "label": {
+          "inference_api": "API-ul pentru interferență",
+          "inference_endpoint": "Criteriu de evaluare",
+          "s3": "Invalid în aplicațiile publice",
+          "acl": "S3 ACL pentru fişierele încărcate",
+          "appwrite": {
+            "host": "Gazdă",
+            "dbid": "ID-ul bazei de date",
+            "projectid": "ID Proiect",
+            "secret": "Cheia Api",
+            "collectionid": "ID colecție",
+            "documentid": "ID document",
+            "data": "Date",
+            "filter": "Filtrare",
+            "order": "Ordonare după",
+            "limit": "Limită"
+          },
+          "oracle": {
+            "sid": "Tratează numele bazei de date ca",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Certificate",
+            "verification_mode": "Mod verificare"
+          },
+          "gs": {
+            "private_key": "Cheie privată",
+            "action_type": "Tip de acțiune",
+            "spreadsheet": "Foaie",
+            "sheet_name": "Nume placă",
+            "data_range": "Interval de date",
+            "limit": "Limită",
+            "offset": "Decalaj",
+            "a1_notation": "Nota A1",
+            "values_to_append": "Valori de adăugat",
+            "filter_by": "Filtrare după",
+            "update_value": "Valoare actualizare",
+            "primary_key_column": "Coloana cheii primare",
+            "array_of_rows_to_upd": "Array de rânduri pentru actualizare",
+            "filters_to_match_row": "Indexul rândului",
+            "consider_queries_tha": "Luați în considerare interogările care șterg niciun rând ca succese",
+            "title_of_spreadsheet": "Titlul foii de calcul",
+            "sheet_id_to_copy": "ID placă de copiat",
+            "sheet_to_copy_to": "Placă pentru copiere la",
+            "authentication": "Autentificare",
+            "connect_with_oauth": "Conectează-te cu OAuth & Salvează",
+            "reconnect_with_oauth": "Reconectați cu OAuth",
+            "access_type": "Tip de acces"
+          }
+        },
+        "placeholder": {
+          "url": "Introduceți aici URL-ul solicitării",
+          "appwrite": {
+            "host": "CUM SAU IP",
+            "dbid": "ID-ul bazei de date",
+            "projectid": "ID Proiect",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "atribut",
+              "value": "1234"
+            },
+            "order": "atribut",
+            "collectionid": "Selectează o colecție",
+            "data": "Un obiect închis în {{ }}. De exemplu, \n{{ \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "oracol",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"1000000000000000000000000000000\",\r\n  \"auth_uri\": \"https://accountts. oogle.com/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "nume coloană_",
+              "value": "valoare"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "nume coloană_",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
+            "filters_to_match_row": {
+              "key": "cheie",
+              "value": "valoare"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Conținutul furnizat este o configurație PUBLIC. Lăsați necompletat pentru PRIVATE. Nu uitați să configurați CORS pe găleata dvs. <0>Vezi partajarea resurselor Cross-Origin (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Se pare că încerci să te conectezi la o bază de date care este locală aparatului tău sau parte a unei rețele private. S-ar putea să nu funcționeze în versiunea ILLA Cloud. Verificați documentele noastre <0></0> pentru a vedea versiunea auto-gazdă.",
+            "selfhost": "Se pare că încerci să te conectezi la o bază de date locală pentru mașinăria ta. Vă rugăm să utilizați adresa IP a mașinii locale în loc de \"localhost\" sau \"127.0.0.1\".",
+            "title": {
+              "tips": "Sfaturi"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Serverul tău poate fi vulnerabil la atacuri."
+            }
+          },
+          "gs": {
+            "private_key": "Folosit pentru conectarea la Google Sheets. Faceți clic <0>aici</0> pentru a crea un proiect și pentru a obține acreditările OAuth. Cu autentificarea contului de serviciu, vom avea acces doar la foile de calcul pe care le partajați cu adresa de e-mail corespunzătoare contului de servicii utilizat. Vezi <1>aici</1> pentru documentația necesară creării unui cont de servicii și a unei chei de acces.\n\nUtilizatorii pot experimenta limite pentru diferite componente de procesare care nu sunt controlate de plăci. Aflați mai multe despre limitele <2>contingente</2>",
+            "leave_blank_to_selec": "Lăsați necompletat pentru a selecta prima foaie",
+            "to_select_the_first_": "Pentru a selecta primele cinci celule din prima coloană a unei foi cu titlu de pagină1, notația A1 este foaia1!A1:A5. <0>Vezi documentele Google pentru mai multe informații. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "Pentru a selecta primele cinci celule din prima coloană a unei foi cu titlu de pagină1, notația A1 este foaia1!A1:A5. <0>Vezi documentele Google pentru mai multe informații. </0>",
+            "sheet_id_to_copy": "Găsiți acest lucru uitându-vă la ?gid=123123 în URL-ul paginilor Google",
+            "copy_to_sheet_name": "Necesar. Redenumiţi foaia copiată.",
+            "successfully_authent": "Autentificat cu succes",
+            "failed_to_authentica": "Autentificare eșuată"
+          },
+          "tidb": {
+            "ca_certificate": "Completăm Certificatul CA folosit implicit pentru conexiunile TLS la nivelul server-ului. Dacă ai nevoie de conexiuni TLS la nivelul dedicat, <0>Apasă aici</0> pentru a vedea metoda de configurare."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Creează un document",
+              "list": "Listare documente",
+              "get": "Obțineți un document",
+              "update": "Actualizează un document",
+              "delete": "Șterge un document"
+            },
+            "filter": {
+              "and": "ȘI",
+              "or": "SAU",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Nume Serviciu"
+            },
+            "ssl": "Utilizează SSL atunci când este disponibil"
+          },
+          "couchdb": {
+            "ssl": "Utilizați SSL/TLS atunci când este disponibil"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Autentificare Digest",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Autentificare Hawk",
+              "aws_v4": "Semnătură AWS V4",
+              "session_based_auth": "Auth pe Sesiune (învechit)"
+            },
+            "certificates": "Utilizați certificate auto-semnate",
+            "ca_certificate": "Certificat CA",
+            "client_key": "Cheie client",
+            "client_certificate": "Certificat client",
+            "verification_mode": {
+              "full_verification": "Verificare completă",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Sari peste verificarea certificatului CA"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Citește datele dintr-o foaie de calcul",
+              "append_data_to_a_spr": "Adăugare date la o foaie de calcul",
+              "update_a_spreadsheet": "Actualizează o foaie de calcul",
+              "bulk_update_a_spread": "Actualizează în masă o foaie de calcul după cheia primară",
+              "delete_a_single_row_": "Ștergeți un singur rând dintr-o foaie de calcul",
+              "create_a_spreadsheet": "Creați o foaie de calcul",
+              "copy_a_single_sheet_": "Copiați o singură foaie de calcul într-o altă foaie de calcul",
+              "list_available_sprea": "Listează foile de calcul disponibile",
+              "get_spreadsheet_info": "Obțineți informații de foaie de calcul"
+            },
+            "data_range": {
+              "use_a1_notation": "Folosește notația A1",
+              "use_limit_and_offset": "Limită de utilizare și compensare"
+            },
+            "filter_by": {
+              "use_a1_notation": "Folosește notația A1",
+              "use_row_filters": "Foloseste filtre rand"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Cont de serviciu",
+            "read_and_write": "Citește și scrie",
+            "read_only": "Doar citire"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Cont de serviciu"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Dezactivează",
+          "enable": "Activare",
+          "new": "Nou",
+          "run": "Rulează",
+          "save": "Salvează",
+          "save_and_run": "Salvează și rulează",
+          "save_fail": "Salvarea nu a reușit",
+          "test_run": "Test rulat"
+        },
+        "elastic": {
+          "action_type": "Tip de acțiune",
+          "body": "Corp",
+          "id": "Id",
+          "index": "Indice",
+          "query": "Interogare"
+        },
+        "error": {
+          "max_file": "Dimensiunea fișierului nu poate depăși 5M."
+        },
+        "firebase": {
+          "action_type": "Tip de acțiune",
+          "collection": "Colectare",
+          "database_ref": "Date ref",
+          "document_id": "ID document",
+          "email": "E-mail",
+          "end_at": "Sfârșit la",
+          "len_of_list": "Lungimea listei ",
+          "limit": "limită",
+          "next_page_token": "Token-ul paginii următoare",
+          "object_to_set": "Obiect de setat",
+          "order_by": "Ordonare după",
+          "ordering_direction": "Direcție ordine",
+          "parent_document_id": "ID document părinte",
+          "phone_number": "Număr de telefon",
+          "placeholder": {
+            "asc": "asc",
+            "document_value": "{{ \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Introduceți o colecție",
+            "key": "cheie",
+            "select_an_action": "Selectați o acțiune",
+            "select_collection": "Selectează o colecție",
+            "value": "valoare"
+          },
+          "service_type": "Tip de serviciu",
+          "start_at": "Începe de la",
+          "tips": {
+            "document_id": "Lăsați necompletat pentru ID-ul autogenerat.",
+            "parent_document_id_tips": "Lăsați necompletat pentru colecțiile de vârf."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Folosește un dropdown",
+          "use_end_at": "Terminare de utilizare",
+          "use_raw_id": "Utilizare ID brut",
+          "use_start_at": "Use startAt",
+          "user_object": "Obiect utilizator ",
+          "value": "valoare",
+          "where": "unde"
+        },
+        "label": {
+          "event_handler": "Gestionar de evenimente",
+          "failure": "Eșec",
+          "resource": "Resursă",
+          "success": "Succes",
+          "transformer": "Transformator",
+          "couchdb": {
+            "database": "Baza de date",
+            "action_type": "Tip de acțiune"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Selectați o bază de date",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Cheie de consum",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@exemplu.com",
+              "ext": "unele aplicații-plus date",
+              "app": "Id aplicație",
+              "dig": "delegat de",
+              "us-east-1": "us-est-1",
+              "authenticate_using_t": "Autentifică-te folosind antetul de autorizare HTTP în loc de parametrii interogării",
+              "find_instructions_on": "Găsiți instrucțiuni de unde să găsiți cheile de acces <0>în documentele AWS</0>.",
+              "role_to_assume": "Folosește un <0>rol diferit</0> când accesezi API"
+            },
+            "advanced": {
+              "select_pages": "Selecteaza pagini"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Listeaza inregistrarile",
+                "retrieve": "Recuperează înregistrarea",
+                "create": "Creeaza inregistrare",
+                "update": "Actualizeaza inregistrare",
+                "delete": "Ștergeți înregistrarea",
+                "find": "Găsește",
+                "get": "Obțineți vizualizarea"
+              },
+              "skip": "Omitere",
+              "limit": "Limită",
+              "include": "Include documente",
+              "des": "Comanda",
+              "id": "_id",
+              "rev": "_rev",
+              "record": "Înregistrare",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "Vizualizare",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Documente incluse în rezultatele returnate",
+              "des_option": "Folosește ordine descrescătoare"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "SAR-SHA512",
+                "plaintext": "PLAINTEXT"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Fişier",
+                "text": "Text"
+              },
+              "method": {
+                "options": "OPȚIUNI",
+                "head": "BRICA"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Parametri interogare",
+                "header_authorization": "Autorizare antet"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Declanșează această acțiune când pagina se încarcă",
+              "show_a_loading_page_": "Arată o pagină de încărcare la încărcarea paginii",
+              "on_page_loading": "Încărcarea pe pagină",
+              "on_app_loading": "La APP încărcat",
+              "none": "Niciunul"
+            }
+          },
+          "restapi": {
+            "signature_method": "Metoda semnăturii",
+            "consumer_key": "Cheie de consum",
+            "consumer_secret": "Secret de consum",
+            "access_token": "Token de acces",
+            "token_secret": "Token secret",
+            "private_key": "Cheie privată",
+            "realm": "Tărâm",
+            "hawk_auth_id": "ID autentificare Hawk",
+            "hawk_auth_key": "Cheie autentificare Hawk",
+            "algorithm": "Algoritm",
+            "user": "Utilizator",
+            "nonce": "Nonce",
+            "ext": "Text:",
+            "app": "aplicație",
+            "dig": "dig",
+            "timestamp": "Ora",
+            "aws_region": "Regiunea AWS",
+            "aws_service": "Serviciu AWS",
+            "aws_access_key_id": "ID cheie acces AWS",
+            "aws_secret_key_id": "ID-ul cheii secrete AWS",
+            "role_to_assume": "Rolul de presupus (ARN)",
+            "list_of_cookies_to_f": "Lista cookie-urilor de redirecționat",
+            "add_access_token_to": "Adaugă simbol de acces la"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Fie un șir binar, fie un obiect: {{ data: șir binar, nume de fișier?: șir }"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Nici o acțiune nu va fi declanșată când pagina se încarcă. Aveţi posibilitatea să declanşaţi manual acţiunea şi să activaţi \"Declanşaţi această acţiune atunci când pagina se încarcă\" în setările avansate."
+            }
+          },
+          "advanced": {
+            "advanced": "AVANSAT",
+            "page_trigger": "Declanșare cronometru",
+            "loading_page": "Încărcare pagină",
+            "page_load_delay": "Întârziere (ms)",
+            "run_this_action_peri": "Rulează periodic această acțiune",
+            "interval": "Interval (s)",
+            "actions_running_when": "Acțiuni rulează când pagina se încarcă",
+            "pages": "Pagini",
+            "periodically_run": "Executat periodic"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Ștergere",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Tip de acțiune",
+          "aggregation": "Agregare",
+          "collection": "Colectare",
+          "document": "Document",
+          "field": "Câmp",
+          "filter": "Filtrare",
+          "limit": "Limită",
+          "operations": "Operațiuni",
+          "options": "Opţiuni",
+          "projection": "Proiecție",
+          "query": "Interogare",
+          "skip": "Omitere",
+          "sort_by": "Sortează după",
+          "update": "Actualizare"
+        },
+        "option": {
+          "resource": {
+            "new": "Creează o resursă nouă"
+          },
+          "trigger": {
+            "manually": "Execută acțiunea numai când este declanșată manual",
+            "on_change": "Rulează acțiunea automat când se schimbă intrările"
+          }
+        },
+        "s3": {
+          "action_type": "Tip de acțiune",
+          "bucket_name": "Nume găleată",
+          "content_type": "Tip Conținut",
+          "delimiter": "Delimitator",
+          "error": {
+            "max_file": "Dimensiunea fișierului nu poate depăși 5M."
+          },
+          "expiry_duration_of_signed_url": "Durata de expirare a URL-ului semnat (Minute)",
+          "generate_signed_url": "Generează URL Semnat",
+          "max_keys": "Taste maxime",
+          "object_key": "Cheie obiect",
+          "object_key_list": "Lista de obiecte",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Prefix pentru filtrarea rezultatelor",
+          "tips": {
+            "delimiter": "Un delimitator este un personaj pe care îl utilizați pentru tastele de grup.",
+            "max_keys": "Setează numărul maxim de chei returnate în răspuns. Implicit acţiunea returnează până la 1000 de nume cheie."
+          },
+          "upload_data": "Încarcă date",
+          "upload_data_list": "Încarcă lista de date",
+          "upload_object_name": "Încărcați numele obiectului",
+          "upload_object_name_list": "Încărcați lista de nume de obiecte",
+          "timeout_upload": "Timeout pentru încărcarea unui fișier (Minute)",
+          "timeout_upload_multiple": "Timeout pentru încărcarea unui singur fișier (Minute) "
+        },
+        "smtp": {
+          "attachment": "Atașament(e)",
+          "bcc_email": "E-mailuri Bcc",
+          "body": "Corp",
+          "cc_email": "Cc email(s)",
+          "from_email": "De la e-mail",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Foloseste virgula pentru a separa email-urile. Ex: {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Răspundeți la e-mail",
+          "set_replay_email": "Setează Răspuns la e-mail",
+          "subject": "Subiect",
+          "tips": {
+            "port": "Unii furnizori de internet pot bloca portul 25.Dacă conexiunea eșuează, vă rugăm să schimbați portul \n"
+          },
+          "to_email": "La e-mail(uri)",
+          "use_html": "Foloseste HTML",
+          "use_raw": "Utilizare text brut"
+        },
+        "tips": {
+          "transformer": "Permite transformatorilor să transforme rezultatul interogării într-un format diferit."
+        },
+        "graphql": {
+          "query": "Interogare",
+          "variables": "Variabile",
+          "headers": "Antete",
+          "placeholder": {
+            "query": "# Folosește $ pentru a adăuga o variabilă în interogarea ta (de ex. $category ) \r\ninterogare ($owner: String!, $name: String! {\r\n  repo(proprietar: $owner, nume: $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "ID model",
+          "placeholder": {
+            "mode_id": "bert-base-unased",
+            "text": "Răspunsul la univers este [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Care film este cel mai bun ?\"], \r\n\"generat_respones\": [\"Este dur pentru sigur.\"], \r\n\"text\": \"Puteţi explica de ce?\" \r\n}",
+            "binary": "Exact {{ upload1.file[0] }}. Fişiere binare fără prefix de fişiere",
+            "use_cache": "Boolean, lasă necompletat pentru adevărat",
+            "min_length": "Integer pentru a defini lungimea minimă în jetoanele rezumatului de ieșire",
+            "top_k": "Integer pentru a defini tokenurile de sus",
+            "top_p": "Float pentru a defini jetoanele",
+            "temperature": "Float(0,0-100,0), lăsaţi necompletat pentru 1,0",
+            "repetition_penalty": "Float (0,0-100,0)",
+            "max_time": "Float (0,0-120.0) pentru a defini cantitatea de timp în secunde"
+          },
+          "tips": {
+            "mode_id": "Mergeți la <0>Model Hub</0> și selectați modelul pe care doriți să îl folosiți.",
+            "use_detail_parameters": "<0>Faceți clic aici</0> pentru a afla mai multe despre parametrii de detaliu",
+            "temperature": "1 înseamnă eșantionare regulată, 0 înseamnă a lua întotdeauna cel mai mare scor, 100,0 se apropie de o probabilitate uniformă.",
+            "repetition_penalty": "Cu cât un token este folosit mai mult în generație, cu atât mai mult este penalizat pentru a nu fi ales în generațiile succesive."
+          },
+          "parameter": "Parametru",
+          "use_detail_parameters": "Utilizați parametrii de detaliu",
+          "use_cache": "Utilizare geocutie",
+          "wait_for_model": "Așteptați modelul",
+          "min_length": "Lungime minimă",
+          "max_length": "Lungime maximă",
+          "top_k": "Top k",
+          "top_p": "Top p",
+          "temperature": "Temperatură",
+          "repetition_penalty": "Sancțiuni de respingere",
+          "max_time": "Timp maxim"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Ce declarație SQL doriți să generați"
+          },
+          "button": {
+            "text": "Generare SQL"
+          }
+        },
+        "mssql": {
+          "config_type": "Tip de configurare",
+          "query": "Interogare",
+          "placeholder": {
+            "query": "selectează * de la utilizatori;",
+            "table": "Selectați un tabel",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Tabel",
+          "insert_record": "Array of records to insert",
+          "dropdown": {
+            "retry": "Click pentru a reîncerca"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Metodă",
+            "table": "Tabel",
+            "json_input": "Folosește editorul de parametru JSON",
+            "parameters": "Parametri",
+            "index": "Nume index",
+            "key_condition": "Condiție expresie cheie",
+            "projection_expression": "Expresie de proiecție",
+            "filter_expression": "Filtrează expresia",
+            "attribute_name": "Expresie nume de atribute",
+            "attribute_value": "Valori atribut de expresie",
+            "limit": "Limită",
+            "select": "Selectare",
+            "item": "Obiect",
+            "condition_expression": "Expresie stare",
+            "key": "Cheie",
+            "update_expression": "Actualizează expresia"
+          },
+          "option": {
+            "query": "interogare",
+            "scan": "scanare",
+            "put_item": "Introducere",
+            "get_item": "getItem",
+            "update_item": "actualizareElement",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, pentru exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Eșuat",
+          "ran_successfully": "Succes"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status",
+            "headers": "Antete",
+            "response": "Răspuns"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "În curând"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Cheie privată invalidă. "
+          },
+          "label": {
+            "ca_certificate": "Certificat CA",
+            "client_certificate": "Certificat client",
+            "client_key": "Cheie client",
+            "config_type": "Tip de configurare",
+            "connect_type": "Tip de conectare",
+            "connection_format": "Format conexiune",
+            "connection_string": "Șirul de conexiune",
+            "database": "Baza de date",
+            "database_index": "Indexul bazei de date",
+            "firebase_database_url": "Firebase Baza URL (Automatic Translation)",
+            "firebase_project_id": "Firestare proiect ID",
+            "hostname": "Hostname",
+            "hostname_port": "Nume gazdă/port",
+            "hosturl": "Url Gazdă",
+            "mongodb_connection_dns_seed_list": "Conexiune listă de seed-uri DNS",
+            "mongodb_connection_standard": "Conexiune standard",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Cert client și cheie",
+            "name": "Nume",
+            "port": "Portul",
+            "private_key": "Cheie privată",
+            "private_key_hover": "Cheia privată este asociată cu un Cont de Serviciu cu privilegii Firebase.",
+            "ssl_options": "Opțiuni SSL",
+            "username_password": "Nume utilizator/parolă",
+            "self_signed_certificate": "Folosește certificat auto-semnat",
+            "disable_introspection": "Dezactivare introducere",
+            "value": "Valoare",
+            "add_to": "Adaugă la",
+            "header_prefix": "Prefix antet",
+            "key": "Cheie",
+            "introspection": "Introspecţie",
+            "bear_token": "Token",
+            "connection_options": "Opțiuni conexiune",
+            "account_name": "Nume cont",
+            "warehouse": "Depozit",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Autorizare de bază",
+            "snowflake_key_auth": "Pereche cheie (doar cheile private criptate sunt acceptate)",
+            "role": "Rol",
+            "username": "Nume",
+            "password": "Parolă",
+            "dynamo_region": "Regiune WS",
+            "dynamo_access_key_id": "ID cheie acces AWS",
+            "dynamo_secret_key": "Cheie secretă AWS"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_producție",
+            "database_index": "implicit 0",
+            "hostname": "Hostname",
+            "hosturl": "ex. https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "i.e.\"DB(doar citire)\" sau \"API administrator intern\"",
+            "password": "Parolă",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"1000000000000000000000000000000\",\n  \"auth_uri\": \"https://accountts. oogle.com/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Nume",
+            "default": "implicit",
+            "hugging_face_url": "Folosiți URL-ul absolut (ex. https://api-inference.huggingface.co/models/). ",
+            "database_name": "Nume bază de date",
+            "account_name": "xy12345.us-est-2.aws",
+            "warehouse": "ComPUTE_WH",
+            "snowflake_database": "DATE",
+            "schema": "PUBLICĂ",
+            "role": "Rol",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGINĂ ÎNSCRISE PRIVATĂ -----\r\n• • • • • • •\r\n KETICHETĂ DE PRIVATĂ-----",
+            "dynamo_region": "us-vest--1"
+          },
+          "tip": {
+            "connect_type": "Cloud: serverele ILLA se vor conecta în siguranță la baza ta de date.",
+            "name": "Numele pentru resurse la crearea de acțiuni în ILLA.",
+            "private_key": "<0>Apasă aici</0> pentru a vedea cum poți obține această cheie",
+            "ssl_options": "SSL este folosit atunci când este disponibil",
+            "username_password": "Acreditările vor fi criptate și stocate în siguranță pe serverele noastre.",
+            "introspection": "Activați acest lucru dacă obiectivul dumneavoastră GraphQL nu suportă interogări introspecționale. Țineți cont că dezactivarea introspecției reduce capacitatea de utilizare a GraphQL, deoarece automatizarea și nuanța acestei resurse nu vor mai funcționa.",
+            "hugging_face_url": "<0>Faceți clic aici</0> pentru a afla mai multe despre Înțelegerea în Huging.",
+            "bear_token": "Obține un token de Acces Utilizator sau API <0>în setările de profil Face Hugging </0>",
+            "connection_options": "Adăugați opțiuni de conexiune pentru conexiunea dvs. Când opțiunea SSL este activată, vom adăuga criptare și trustverCertificate în mod implicit."
+          },
+          "title": {
+            "advanced_option": "Opțiuni avansate",
+            "general_option": "GENERALĂ",
+            "graphql_introspection": "INTROSPECȚIA DE GRAPHQL"
+          }
+        },
+        "error": {
+          "invalid_url": "Te rog introdu un URL valid de exemplu, https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Nou"
+          },
+          "label": {
+            "access_token": "Token de acces",
+            "access_token_lifespan": "Token de acces\n lifespan(optiinal)",
+            "access_token_url": "URL Token de acces",
+            "action_type": "Tip de acțiune",
+            "audience": "Audienţă",
+            "authentication": "Autentificare",
+            "authorization_url": "URL-ul de autorizare",
+            "base_url": "URL de bază",
+            "basic_auth_password": "Parola de bază autentificare",
+            "basic_auth_username": "Nume utilizator autentificare de bază",
+            "bearerToken": "Token purtător",
+            "body": "Corp",
+            "client_id": "ID client",
+            "client_secret": "Secret client",
+            "configure_oauth2": "Configurarea OAuth 2.0",
+            "cookies": "Cookie-uri",
+            "copy_url_to_application": "Copiați acest URL în aplicația dvs.",
+            "enable_auth_verification_endpoint": "Activați un criteriu de verificare auth",
+            "extra_body_values": "Valori suplimentare ale corpului",
+            "forward_all_cookies": "Redirecționează toate cookie-urile",
+            "headers": "Antete",
+            "list_of_cookies_to_forward": "Lista de cookie-uri la\n Redirecționare",
+            "name": "Nume",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Reîmprospătare jeton",
+            "scopes": "Scopuri (separate prin\n un spațiu)",
+            "share_oauth2_credentials_between_users": "Distribuie acreditările OAuth2.0 între utilizatori",
+            "url_parameters": "Parametri URL",
+            "use_client_credentials_auth": "Utilizați autentificarea clientului",
+            "digest_auth_username": "Nume",
+            "digest_auth_password": "Parolă"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Autorizare de bază",
+              "bearer": "Purtător",
+              "none": "Niciunul",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Token Lifespan în secunde",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "adică, \"API-ul intern al administratorului\"",
+            "authorization_url": "https://accounts.google.com/oauth2/v2/auth",
+            "base_url": "Folosiți URL-ul absolut (ex. https://example.com)",
+            "database": "i.e.\"Doar pentru utilizatori DB(doar citire)\"",
+            "name": "i.e.\"DB(doar citire)\" sau \"API administrator intern\"",
+            "param_key": "cheie",
+            "param_value": "valoare",
+            "password": "parolă",
+            "username": "utilizator"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 este un specie complexă. ILLA acceptă în prezent fluxul de autentificare OAuth 2.0 din partea serverului, precum și fluxul de acreditare al clientului. În ambele cazuri, trebuie să folosiți substituentul OAUTH2_TOKEN pentru a informa ILLA unde să plasați token-ul de acces OAuth în cererea API. O locatie comuna pentru aceasta este ca un antet cum ar fi Autorizatia: Purtator OAUTH2_TOKEN.",
+            "extra_body_values": "Valorile suplimentare ale corpului nu sunt trecute pentru cererile GET sau HEAD",
+            "get_req_auto_run": "(Întrebări generale) VA FI AUTOMAT CÂND O MUNCĂ PARAME.",
+            "name": "Numele pentru resurse la crearea de acțiuni în ILLA."
+          },
+          "title": {
+            "advanced_option": "GENERALĂ"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Cheie de acces",
+            "base_url": "URL de bază",
+            "bucket_name": "Nume găleată",
+            "custome_s3_endpoint": "Obiectiv personalizat S3",
+            "region": "Regiune",
+            "secret_access_key": "Cheie de acces secret",
+            "use_custome_s3_endpoint": "Folosește obiectiv personalizat S3"
+          },
+          "placeholder": {
+            "base_url": "ex. https://example.com",
+            "region": "us-vest--1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Acest lucru este folosit pentru conectarea la alte servicii non-S3, cum ar fi spațiile oceanice digitale sau Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Sfat: atribuie referințele tale externe la variabile în loc să alunece de pe paranteze curly."
+          },
+          "tip": {
+            "external_reference": "Puteți crea referințe externe la variabilele pe care le-ați definit. De exemplu, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Află mai multe despre Înțelepături:",
+            "hf_endpoint": "Criteriu de evaluare"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Obțineți un API Tokens pentru Organizații <0>în setările dvs. de profil Față</0>.",
+            "hf_endpoint": "află mai multe despre <0>Punct final </0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://u149rez6gw9ehej.eu-west 1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Permite adrese IP",
+            "message": "Dacă resursele tale nu sunt accesibile publicului, vă rugăm să actualizați setarea de rețea sau Firewall pentru a adăuga adresele IP ale ILLA-ului la lista de permise astfel încât ILLA să se poată conecta la resursele dvs."
+          }
+        },
+        "button": {
+          "copy_ip": "Copiază IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Șters"
+      },
+      "result": {
+        "title": {
+          "api_request": "Cerere API",
+          "error": "Interogarea a eșuat",
+          "json": "JSON",
+          "response": "Răspuns",
+          "success": "Interogare cu succes",
+          "table": "Tabel"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Baza de date",
+        "js_transformer": "Transformator JavaScript"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Eșuare afișare tabele. Te rugăm să încerci din nou mai târziu."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "privat",
+          "public_read": "citire publică",
+          "public_read_write": "scriere publică",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "citire autentificată",
+          "bucket_owner_read": "citește-proprietar-găleată",
+          "bucket_owner_full_control": "control complet-găleată"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Anulează",
+      "delete": "Ștergere",
+      "delete_content": "Șterge-l poate face niște erori,vă rugăm să confirmați.",
+      "delete_title": "Ești sigur că vrei să ștergi {{ displayName}}?",
+      "editor_list": "Editori actuali"
+    },
+    "context_menu": {
+      "delete": "Ștergere",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "ACȚIUNI ȘI TRANSFORMER ",
+      "components_title": "COMPONENTE ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "PAGURI",
+      "global_data_modal": {
+        "title": "Editare date globale",
+        "variable_name": {
+          "tooltips": "Numele variabilei. Utilizați valoarea inițială din această aplicație prin intermediul {{name}}",
+          "label": "Nume",
+          "message": "Te rugăm să introduci numele variabilei"
+        },
+        "initial_value": {
+          "label": "Valoare iniţială",
+          "tooltips": "Suportă obiecte sau valori primitive. Exemplu: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Lansarea a eșuat"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}există deja",
+      "validate_error": "\"{{ displayName }}\" trebuie să înceapă cu o literă sau \"_\", și poate conține doar litere, numere, \"_\" sau \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Ștergere",
+          "reset_state": "Reset state",
+          "view_documentation": "Vizualizare documentație"
+        }
+      },
+      "multi_selected_header": "{{ number }} componente selectate",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Grafic bare",
+          "line": "Grafic linii",
+          "pie": "Grafic evantai",
+          "scatterplot": "Diagramă"
+        },
+        "color_picker": {
+          "prefabricated": "Culoare prefabricată",
+          "title": "Editare culoare"
+        },
+        "column_setter": {
+          "label": "Coloane ({{number}})",
+          "new": "Nou",
+          "title": "Titlu"
+        },
+        "event_handler_list": {
+          "empty": "Declanșează interogări, controlează componente sau apelează alte API-uri ca răspuns la evenimentele componentei.",
+          "incomplete_selection": "Selecţie incompletă",
+          "new": "Nou",
+          "title": "Editați gestionarul de evenimente"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Ștergere",
+          "label": "Menus ({{number}})",
+          "new": "Nou",
+          "sub": "Apartament"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Ștergere",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Fără etichetă",
+          "model_title": "Editează Opțiuni",
+          "new": "Nou",
+          "title": "Opţiuni"
+        },
+        "select_page_setter": {
+          "placeholder": "Selectaţi o pagină"
+        },
+        "select_view_setter": {
+          "placeholder": "Selectaţi o vizualizare"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Vizualizări"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Schimbă",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Modificare filtru",
+          "fail": "Eșec",
+          "focus": "Focalizare",
+          "invalid": "Nevalid",
+          "paginationChange": "Modificare pagină",
+          "row_select": "Selectare rând",
+          "sortingChange": "Modificare de sortare",
+          "submit": "Trimiteți",
+          "success": "Succes",
+          "onOpenModal": "Deschide fereastra",
+          "onCloseModal": "Închide fereastra",
+          "play": "Redare",
+          "pause": "Întrerupeți",
+          "ended": "Terminat",
+          "loaded": "Încărcat",
+          "rowSelect": "Selectare rând",
+          "markerSelected": "markerSelectate",
+          "markerCreated": "markerCreat",
+          "select": "Selectare"
+        },
+        "image_list": {
+          "title": "Imagini",
+          "empty": "Nicio imagine",
+          "model_title": "Editare imagini",
+          "config": {
+            "model_label": "Etichetă",
+            "image_url": "URL imagine"
+          }
+        },
+        "image_setter": {
+          "new": "Nou"
+        },
+        "Change": "Schimbă",
+        "Select": "Selectare",
+        "eventCalendar": {
+          "no_title": "Nici un titlu"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Completează",
+        "message_type": {
+          "error": "Eroare",
+          "info": "Info",
+          "success": "Succes",
+          "warning": "Avertizare"
+        },
+        "outline": "Conturul",
+        "validation_pattern": {
+          "email": "E-mail",
+          "regex": "Regex",
+          "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixat",
+          "auto": "Automat"
+        },
+        "upload_type": {
+          "button": "Buton",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Fişier unic",
+          "multiple_files": "Fișiere multiple",
+          "directory": "Director"
+        },
+        "size_type": {
+          "kb": "KO",
+          "mb": "MO"
+        },
+        "time_picker": {
+          "select_time": "Selectați ora"
+        },
+        "time_range": {
+          "start_placeholder": "Ora de începere",
+          "end_placeholder": "Ora de încheiere"
+        }
+      },
+      "setter_group": {
+        "adornments": "ADORNĂRI",
+        "basic": "Bază",
+        "column": "COLUMURI",
+        "data": "DATE",
+        "interaction": "INTERACȚIUNE",
+        "label": "ETICHETĂ",
+        "layout": "ÎNTREPRINDERE",
+        "menu": "MENIU",
+        "options": "OPȚIUNI",
+        "pagination": "PAGINAȚIE",
+        "row_selection": "SELECTAREA ROW-ului",
+        "sort": "SORT",
+        "style": "STYLE",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "VALIDARE",
+        "views": "VIZE",
+        "images": "IMAGINI",
+        "primary_value": "VALOAREA PRIMARĂ",
+        "secValue": "Valoare secundară",
+        "border": "Border",
+        "color": "Culoare",
+        "icon": "Iconiță",
+        "secondary_value": "VALOAREA SECUNDARĂ",
+        "resource": "RESURSE",
+        "eventCalendar": {
+          "calendar": "Calendar"
+        },
+        "event": "Eveniment"
+      },
+      "setter_label": {
+        "action": "Acțiune",
+        "align": "Align",
+        "allow_clear": "Permite curățarea",
+        "allow_half": "Permite jumătate",
+        "alt_text": "Text alternativ",
+        "alt_text_desc": "O descriere accesibilă a imaginii pentru cititorii de ecran. Aceasta este, de asemenea, redată ca rezervă dacă imaginea nu se încarcă.",
+        "background": "Context",
+        "background_color": "Context",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Legendă",
+        "chart_title": "Titlu",
+        "chart_type": "Tipul graficului",
+        "color": "Culoare",
+        "colors": "Culori",
+        "column_title": "Titlul coloanei",
+        "column_type": "Tip coloană",
+        "columns": "Coloane",
+        "component": "Componentă",
+        "config_type": "Tip configurație",
+        "container": "Recipient",
+        "content": "Conținut",
+        "control_component": "Componenta de control",
+        "custom_rule": "Regulă personalizată",
+        "data": "Date",
+        "data_source": "Sursă de date",
+        "data_sources": "Surse de date",
+        "dataset": {
+          "aggregation_method": "Metoda de agregare",
+          "name": "Nume bază de date",
+          "remove": "Remove dataset",
+          "value": "Valori date"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Loc zecimal",
+        "decimal_places": "Zecimale",
+        "default_sort_key": "Coloana",
+        "default_sort_order": "Direcție",
+        "default_tab": "Default tab",
+        "default_value": "Valoare implicită",
+        "default_views": "Vizualizare implicită",
+        "description": "Descriere",
+        "direction": "Direcție",
+        "disable_submit": "Dezactivează remiterea",
+        "disabled": "Dezactivat",
+        "download": "Descărcare",
+        "duration": "Durată",
+        "empty_state": "Stare goală",
+        "enable_sorting": "Activează sortarea",
+        "end_data": "Data de încheiere",
+        "end_placeholder": "Înlocuitor final",
+        "event": "Eveniment",
+        "event_handler": "Gestionar de evenimente",
+        "expansion_method": "Metoda de extindere",
+        "failure": "Eșec",
+        "filter": "Filtrare",
+        "font_size": "Font size",
+        "form_data_key": "Formular cheie date",
+        "format": "Format",
+        "go_to_url": "Du-te la URL",
+        "group_by": "Grupează după",
+        "group_layout": "Aspect grup",
+        "hidden": "Hidden",
+        "hidden_label": "Etichetă ascunsă",
+        "hide_validation_message": "Ascunde mesajul de validare",
+        "hide_value_label": "Ascunde eticheta de valoare",
+        "horizontal_alignment": "Aliniere orizontală",
+        "icon": "Iconiță",
+        "image_source": "Sursa imaginii",
+        "img_height": "Înălțime",
+        "img_width": "Width",
+        "index": "Indice",
+        "item_background_color": "Fundal articol",
+        "items": "Articole",
+        "key": "Cheie",
+        "label": "Etichetă",
+        "label_alignment": "Aliniere",
+        "label_position": "Poziție",
+        "label_width": "Width(%)",
+        "layout": "Aspect",
+        "legend_position": "Poziție legendă",
+        "link_to_container": "Link către un container",
+        "links_color": "Link-uri",
+        "loading": "Încărcare",
+        "loop_back_to_start": "Repetă înapoi pentru a începe",
+        "loop_start_to_back": "Buclă de pornire înapoi",
+        "mapped_option": "Opțiune minusculă",
+        "mapped_value": "Valoare minuțioasă",
+        "max_count": "Număr maxim",
+        "max_date": "Data maxima",
+        "max_length": "Lungime maximă",
+        "maximum": "Maxim",
+        "method": "Metodă",
+        "min_date": "Dată minimă",
+        "min_length": "Lungime minimă",
+        "minimum": "Minim",
+        "multi_row_selection": "Selectare multi-rând",
+        "new_tab": "New tab",
+        "only_run_when": "Rulează doar când",
+        "overFlow": "Suprapunere",
+        "page": "Pagină",
+        "pageSize": "Dimensiune pagină",
+        "pattern": "Model",
+        "pending": "In asteptare",
+        "placeholder": "Substituent",
+        "prefix_text": "Prefix text",
+        "radius": "Radius",
+        "read_only": "Doar citire",
+        "regex": "Regex",
+        "required_field": "Câmp obligatoriu",
+        "reset_after_successful_submit": "Resetare după trimiterea cu succes",
+        "router": "Ruter",
+        "run_script": "Rulează scriptul",
+        "scale_type": "Tip scară",
+        "set_router": "Setare router",
+        "set_temporary_state": "Setează stare temporară",
+        "shadow": {
+          "shadow": "Umbră"
+        },
+        "show_character_count": "Arată numărul de caractere",
+        "show_clear_button": "Afişare buton ştergere",
+        "show_footer": "Arată subsol",
+        "show_header": "Arată antet",
+        "show_notification": "Arată notificare",
+        "sort": "Sortează",
+        "start_date": "Data de început",
+        "start_placeholder": "Începe substituentul",
+        "step_size": "Dimensiune pas",
+        "stroke_width": "Lățimea conturului",
+        "style": "Stil",
+        "styles": "Styles",
+        "submit_form": "Trimite formularul",
+        "success": "Succes",
+        "suffix_text": "Text în completare",
+        "text": "Text",
+        "text_align": "Text align",
+        "text_size": "Dimensiune text",
+        "theme_color": "Culoarea temei",
+        "thousand_separator": "Separator de mii",
+        "time_format": "Format oră",
+        "title": "Titlu",
+        "tooltip": "Tooltip",
+        "trail_color": "Culoare traseu",
+        "trigger_query": "Declanșare interogare",
+        "type": "Tip",
+        "validate_inputs_on_submit": "Validare intrări la remitere",
+        "value": "Valoare",
+        "value_labels": "Etichete de valoare",
+        "variant": "Variantă",
+        "vertical_alignment": "Aliniere verticală",
+        "width": "Width",
+        "x_axis_name": "Numele axei X",
+        "x_axis_title": "Titlul axei X",
+        "x_axis_type": "Tipul axei X",
+        "x_axis_value": "Valoarea axei X",
+        "y_axis_name": "Numele axei Y",
+        "y_axis_title": "Titlul axei Y",
+        "height": "Înălțime",
+        "min_height": "Min height (px)",
+        "show_underline": "Arată evidențierea",
+        "auto_play": "Redare automată",
+        "interval": "Interval(ms)",
+        "show_button": "Arată săgeţi",
+        "show_dot": "Arată punctele în partea de jos",
+        "hidden_images": "Imagini ascunse",
+        "file_type": "Tipuri de fișiere",
+        "selection_types": "Tipuri de selecţie",
+        "append_newly_files": "Adăugaţi fişierele noi selectate",
+        "file_list": "Listă de fișiere",
+        "parse_value": "Valoare de analiză",
+        "max_files": "Fișiere maxime",
+        "min_files": "Fișiere minime",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Recuperare",
+        "file_url": "Sursă PDF",
+        "show_tool_bar": "Arată bara de unelte",
+        "scale": "Scalează pagina la",
+        "scroll": "Pozează derularea fiecărei pagini",
+        "min_max_size": "Dimensiune min ~ Dimensiune max.",
+        "video_url": "Sursă video",
+        "autoplay": "Auto-redare",
+        "loop": "Buclă",
+        "volume": "Volum",
+        "show_controls": "Arată comenzile",
+        "img_url_array": "Array URL imagine",
+        "statistics": {
+          "label": "Etichetă",
+          "primary_value": "Valoare primară",
+          "secValue": "Valoare secundară",
+          "decimal": "Loc zecimal",
+          "trend_sign": "Arată semnul tendinței",
+          "positive_sign": "Semn pozitiv",
+          "negative_sign": "Semn negativ",
+          "thousand_separator": "Arată separatorul de mii",
+          "trend_color": "Activează culoarea tendinței",
+          "prefix_text": "Prefix text",
+          "suffix_text": "Text în completare"
+        },
+        "mute": "Amuțit",
+        "collapse": {
+          "type": "Tip",
+          "accordin_mode": "Mod Accordion",
+          "header_color": "Antet",
+          "body_color": "Corp",
+          "expand_icon": "Extinde",
+          "collapse_icon": "Restrânge",
+          "icon_color": "Culoare"
+        },
+        "choose_at_least": "Alegeți cel puțin",
+        "choose_up_to": "Alege până la",
+        "copy_to_clipboard": "Copiază în clipboard",
+        "file_download": {
+          "file_data": "Date fișier",
+          "file_name": "Nume fișier cu extensie",
+          "file_type": "Tip fișier"
+        },
+        "action_name": "Nume acţiune",
+        "variable": {
+          "path_of_value": "Calea de valoare",
+          "variable": "Date globale"
+        },
+        "code": {
+          "write_code": "Scrie cod"
+        },
+        "slider": {
+          "step_size": "Dimensiune pas",
+          "minimum": "Minim",
+          "maximum": "Maxim",
+          "hide_output": "Ascunde ieșirea",
+          "prefix_icon": "Pictograma prefixului",
+          "suffix_icon": "Pictogramă de completare",
+          "allow_wrapping": "Permite ambalare"
+        },
+        "range_slider": {
+          "start_value": "Valoare de început",
+          "end_value": "Valoare finală"
+        },
+        "name": "Nume",
+        "audio": {
+          "audio_url": "Sursă audio"
+        },
+        "map": {
+          "markers": "Markeri",
+          "initial_location": "Locație inițială",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Nume câmp latitudine",
+          "longitude_field_name": "Numele câmpului Longitudine",
+          "zoom": "Mareste",
+          "enable_add_markers": "Activează marcajele de adăugare",
+          "enable_search_locati": "Activați locația de căutare",
+          "enable_clustering": "Activează gruparea"
+        },
+        "time_range": {
+          "start_time": "Ora de începere",
+          "end_time": "Ora de încheiere"
+        },
+        "eventCalendar": {
+          "event_value": "Valoarea evenimentului",
+          "event_id": "Id eveniment",
+          "title": "Titlu",
+          "description": "Descriere",
+          "start": "Pornire",
+          "end": "Sfârșit",
+          "resource_id": "Id resursă",
+          "resource_title": "Titlul resurselor",
+          "all_day": "Toată ziua",
+          "data_source": "Sursă de date",
+          "default_date": "Data implicită",
+          "resource_grid": "Grila de resurse",
+          "default_view": "Vizualizare implicită",
+          "show_current_time": "Arată ora curentă",
+          "background": "Context",
+          "calendar_background": "Context",
+          "calendar_border": "Border",
+          "calendar_text": "Text",
+          "event_background": "Context",
+          "event_text": "Text"
+        },
+        "table": {
+          "page_index": "Indexul paginii",
+          "index": "Indice",
+          "scroll_to_the_select": "Derulează la rândul selectat",
+          "filters": "Filtre",
+          "filter_mode": "Mod filtru",
+          "show_thousands_separ": "Arată separator mii",
+          "tag_label": "Etichetă etichetă",
+          "tag_color": "Culoare etichetă",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
+        "cascader_data": "Fiecare opțiune trebuie să aibă format JSON și să conțină două chei, valoare și etichetă. Folosind array-uri, poți crea opțiuni la același nivel. Iar opțiunile pentru copii pot fi create folosind atributul \"copii\". ",
+        "component_default_value": "Valoarea iniţială a componentei. Puteţi schimba dinamic valoarea iniţială tastând JavaScript în {{}}.",
+        "custom_rule": "Creați logica dvs. de validare aici. Regulile ar trebui să fie făcute în JavaScript și acoperite de {{}}.",
+        "date_format": "Un șir de format de dată valid. Vezi [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "Valoarea iniţială a casetei de intrare. Puteţi schimba dinamic valoarea iniţială a câmpului de intrare tastând JavaScript în {{}}.",
+        "disabled": "Controlează starea dacă componenta este dezactivată. Componenta nu poate fi modificată sau focalizată atunci când este dezactivată.",
+        "disabled_submit": "Când este dezactivat, componentele care apelează metoda formular.submit() vor fi, de asemenea, dezactivate.",
+        "download": "Arată butonul de descărcare în bara de instrumente.",
+        "filter": "Arată butonul de filtrare în bara de instrumente.",
+        "form_data_key": "Specificați o cheie a unei componente de împachetare a formei la construirea atributului de date.",
+        "hidden": "Controlează dinamic dacă componenta este ascunsă. Poți schimba starea ascunsă printr-o valoare booleană dinamică.",
+        "hide_validation_message": "Puteți ascunde eroarea prin comutarea stării ascunse atunci când valoarea de intrare este incorectă. Poți schimba dinamic starea ascunsă de JavaScript.",
+        "input_default_value": "Valoarea iniţială a casetei de intrare. Puteţi schimba dinamic valoarea iniţială a câmpului de intrare tastând JavaScript în {{}}.",
+        "loading": "Dacă componenta ar trebui să afișeze un indicator de încărcare.",
+        "map_data_option": "Utilizați fie o serie de valori, fie un obiect de chei mapate la matrice. Fiecare element din sursa de date este cartografiat la fiecare opțiune.",
+        "mapped_value": "Folosește {{ currentRow }} pentru a accesa datele rândului curent. De exemplu, pentru a calcula \"cost per click\" pe baza coloanelor \"cost\" şi \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Folosește {{table.selectedRow[n].columnName}} pentru a accesa datele.",
+        "only_run_when": "Condiţii care trebuie îndeplinite înainte de executarea evenimentului.",
+        "placeholder": "Valoarea va fi afișată când câmpul de intrare este gol.",
+        "progress_percentage": "Valoarea procentuală este între 0 și 100.",
+        "read_only": "Controlați starea dacă componenta este doar citită. Doar o componentă citită poate fi selectată și focalizată dar nu poate fi modificată.",
+        "required_field": "Valid numai când comutatorul este pornit.",
+        "switch_default_value": "Setați starea inițială a comutatorului. Puteți schimba dinamic valoarea implicită cu JavaScript.",
+        "table_only_run_when": "Condițiile care trebuie îndeplinite înainte de executarea evenimentului. Utilizați {{ currentRow }} pentru a accesa datele rândului curent. De exemplu, rulați numai atunci când \"imgSize\" mai puțin de 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Utilizaţi curentRow pentru a accesa datele rândului curent. De exemplu, pentru a seta valoarea componentei editabileText bazat pe \"email\":  {{ currentRow.email }}.\n  De asemenea, poți seta valoarea în INSPECT a componentei folosind {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Folosiți {{ currentRow }} pentru a accesa datele rândului curent. De exemplu, pentru a merge la url cu parametrul \"appid\": {{ \"www.example.com/#\" + currentRow.appid }.",
+        "text_value": "Puteți alege să introduceți valoarea fie în modul Markdown sau în modul text simplu. Numai link-urile din modul markdown pot fi recunoscute.",
+        "timeline_direction": "Schimbați direcția cronologiei.",
+        "timeline_pending": "Dacă se afișează un nod cu o stare în așteptare.",
+        "tooltip": "Utilizatorul poate introduce aici vârful de unelte. Nota de unealtă va fi afișată când este concentrată. Formatul de Markdown este suportat.",
+        "file_types": "O listă de extensii de fișiere permise pentru încărcare. Nici o valoare nu va permite toate tipurile de fișiere.",
+        "file_list": "Pentru a afișa o listă de fișiere selectate sub încărcător. Înălțimea încărcătorului se va schimba dinamic în funcție de lungimea listei de fișiere.",
+        "parse_value": "Încercați să analizați fișierele selectate, cu suport pentru fișierele JSON, CSV, TSV, Excel și TXT.\nDatele analizate pot fi accesate prin {{uploader1.parsedValue}}. Fișierele care nu pot fi analizate vor fi nule în matrice.\nToate fișierele sunt disponibile ca șiruri codate base64 pe matricea valorilor, indiferent de această opțiune.",
+        "file_url": "Suportă URL-urile PDF pe web sau datele codificate base64 ale fișierelor pdf. De exemplu: \n{{ dat:application/pdf;base64, example-data }}",
+        "scale": "Scalează fiecare pagină pentru a umple lățimea sau înălțimea componentei.",
+        "scroll": "Localizează automat la începutul fiecărei pagini la derulare.",
+        "video_url": "Suportă majoritatea serviciilor video sau un link direct către orice tip obișnuit de fișier video sau datele codate base64 ale fișierelor video. De exemplu: {{ dat:audio/mp4;base64, exampleDate}}",
+        "collapse": {
+          "type": "Listă colorată: lista, toate elementele vor copia automat stilul primului element. Puteți specifica datele componentei pentru fiecare element prin intermediul {{ currentItem.columnName }}. Panou colorat: fiecare panou este independent, puteți specifica stilul componentei și datele fiecărui element separat.",
+          "items": "Numărul de articole",
+          "accordin_mode": "În modul accordion, atunci când un obiect este extins, alte elemente se vor restrânge."
+        }
+      },
+      "tab_title": "Inspectează",
+      "unselected_tip1": "Nicio componentă selectată.",
+      "unselected_tip2": "Faceți clic pe o componentă pentru a o selecta.",
+      "setter": {
+        "click_mask_close": "Faceți clic pe mască pentru a închide fereastra",
+        "modal": {
+          "blank": "Fără pictograme"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Folosește {{ item }} pentru a obține valoare de la sursa datelor. De exemplu, există două atribute în sursa datelor. Sunt imageUrl și url. Dacă vrei să mergi la url diferit când faci clic pe imagine, folosește {{ item.url }} pentru a seta urlul.",
+        "data_source": "O sursă de date pentru a defini elementele imaginii folosind evaluarea cartografiată. Utilizați fie o serie de valori, fie un obiect de chei mapate pe arrays. De exemplu: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . De asemenea, puteți utiliza datele în acțiuni. De exemplu: {{ mysql1.data }} ",
+        "img_url_array": "Folosește {{ item.attributeName }} pentru a obține URL-ul imaginii din sursa datelor. ",
+        "carousel": {
+          "data_source": "O sursă de date pentru a defini elementele imaginii folosind evaluarea cartografiată. Utilizați fie o serie de valori, fie un obiect de chei mapate pe arrays. De exemplu: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . De asemenea, puteți utiliza datele în acțiuni. De exemplu: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Suportă date base64, date brute, date mapate din tabel. "
+        },
+        "variable": {
+          "available_in_objects": "Disponibil în obiecte și matrice. Calea atributului din obiect: {{objectName.attributeName}}. Indexul valorii dintr-un array: {{1}}. Un array în obiect: {{objectName.attributeName.1}}",
+          "the_target_value": "Valoarea ţintă"
+        },
+        "slider": {
+          "default_value": "Valoarea iniţială a glisorului. Puteţi schimba dinamic valoarea iniţială tastând JavaScript în {{}}.",
+          "minimum": "Valoarea minimă a cursorului",
+          "maximum": "Valoarea maximă a slider-ului",
+          "step_size": "Unitatea minimă de schimbare a slide-ului",
+          "label": "Numele câmpului afişat utilizatorului",
+          "caption": "O legendă folosită pentru a descrie câmpul în detaliu",
+          "hide_label": "Setează dacă se afișează eticheta",
+          "allow_wrapping": "Setați dacă să permiteți ambalarea etichetei",
+          "position": "Setați poziția etichetei în raport cu componenta",
+          "alignment": "Setați alinierea etichetei",
+          "width": "Când eticheta este pe partea stângă a componentei, setați raportul lățimii etichetei",
+          "prefix_icon": "Pictograma afișată în fața componentei",
+          "suffix_icon": "Pictograma afișată după componentă",
+          "hide_output": "Setați dacă să ascundeți valoarea atunci când glisați"
+        },
+        "step": {
+          "default_step": "Pasul implicit",
+          "show_step_number": "Arată numerele de trepte",
+          "indicate_completed_steps": "Indică pașii finalizați"
+        },
+        "range_slider": {
+          "start_value": "Pentru a stabili valoarea minimă a intervalului",
+          "end_value": "Pentru a stabili valoarea maximă a intervalului"
+        },
+        "audio": {
+          "audio_url": "Suportă link-uri directe către orice tip comun de fișier audio sau link-uri către unele servicii audio sau datele codificate base64 ale fișierelor audio. De exemplu: {{ dat:audio/mp3;base64, exampleDate}}"
+        },
+        "map": {
+          "markers": "Pentru a seta marcajele pe hartă. Markerii ar trebui să fie o serie de obiecte cu aceleași proprietăți ca markerii impliciți.",
+          "initial_location": "La inițializarea hărții, poziția implicită centrată pe afișare",
+          "default_markers": "Markerii impliciți afișați la inițializarea hărții. O puteți seta dinamic cu JavaScript în {{}. ",
+          "latitude_field_name": "Se ia în considerare latitudinea din care proprietatea locației inițiale și a marcajelor implicite.",
+          "longitude_field_name": "Longitudinea este luată din care proprietatea locației inițiale și a marcajelor implicite.",
+          "zoom": "Pentru a seta zoom hartă",
+          "enable_add_markers": "Dacă se permite utilizatorilor să adauge marcaje făcând clic pe hartă",
+          "enable_search_locati": "Posibilitatea de a permite utilizatorilor să caute locația",
+          "enable_clustering": "Dacă se permit mai multe markeri să agrege atunci când harta este mărită"
+        },
+        "time_picker": {
+          "format": "Un șir de format valid pentru mai multe informații de format: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "Intervalul valorii în minute",
+          "show_a_clear_button_": "Arată un buton curat când mouse-ul este deasupra componentei. "
+        },
+        "time_range": {
+          "start_time": "Data inițială de începere a componentei. ",
+          "end_time": "Timpul de finalizare inițial al componentei. ",
+          "start_placeholder": "Valoarea va fi afișată atunci când câmpul timp de pornire este gol.",
+          "end_placeholder": "Valoarea va fi afișată atunci când câmpul de sfârșit este gol."
+        },
+        "eventCalendar": {
+          "event_value": "Folosiți obiectul închis în {{ pentru a seta valoarea evenimentului. De exemplu, {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"}",
+          "event_id": "Un ID unic utilizat pentru identificarea evenimentului",
+          "title": "Titlul evenimentului",
+          "description": "Descrierea evenimentului",
+          "start": "Ora începerii evenimentului",
+          "end": "Ora de încheiere a evenimentului",
+          "resource_id": "Resursele ar putea fi o persoană, o sală de ședințe, etc. Puteți seta un id de resurse și să-l conectați la eveniment. ",
+          "resource_title": "Numele resursei afișat în vizualizarea resurselor",
+          "all_day": "Dacă este vorba despre un eveniment de o zi întreagă",
+          "data_source": "Sursa de date a evenimentelor. O sursă de date ar trebui să fie o serie de obiecte. Fiecare obiect este un eveniment. De exemplu, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "Data implicită la lansarea aplicației",
+          "resource_grid": "Dacă se afișează o grilă de resurse",
+          "default_view": "Vizualizarea implicită la lansarea aplicației",
+          "show_current_time": "Setați dacă să afișați linia de timp curentă",
+          "calendar_background": "Setaţi fundalul calendarului",
+          "calendar_border": "Setează culoarea conturului",
+          "calendar_text": "Setează culoarea textului",
+          "event_background": "Setaţi fundalul cardului de eveniment",
+          "event_text": "Setaţi culoarea textului cardului de eveniment",
+          "couldnot_drag": "Dacă doriți să glisați pentru a ajusta intervalul de timp, continuați la pagina de previzualizare pentru operațiune."
+        }
+      },
+      "setter_option": {
+        "fixed": "Fixat",
+        "auto_limited": "Înălțime automată cu limite",
+        "auto_height": "Înălțime automată",
+        "text_ellipsis": "Elipză",
+        "text_scroll": "Derulează",
+        "text_clip": "Clip",
+        "scale_height": "Înălțime",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Panou colapsibil"
+        },
+        "file_download": {
+          "auto": "Automat",
+          "plain_text": "Text simplu",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "VSG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Niciunul",
+          "large": "Mare",
+          "medium": "Medie",
+          "small": "Mică"
+        },
+        "eventCalendar": {
+          "sunday": "Duminică",
+          "monday": "Luni",
+          "tuesday": "Marţi",
+          "wednesday": "Miercuri",
+          "thursday": "Joi",
+          "friday": "Vineri",
+          "saturday": "Sâmbătă",
+          "month": "Lună",
+          "week": "Saptamana",
+          "day": "Zi",
+          "agenda": "Agendă"
+        },
+        "table": {
+          "set_sort": "Setează sortare",
+          "column": "Coloana",
+          "number": "Număr",
+          "percent": "Procent",
+          "currency": "Monedă",
+          "text": "Text",
+          "tag": "Etichetă",
+          "button_group": "Grup butoane",
+          "date": "Data",
+          "time": "Timp",
+          "date_time": "Data Ora",
+          "link": "Link-ul",
+          "rating": "Clasificare",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Buton",
+          "icon": "Iconiță",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Fără limite",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "Culoare pozitivă",
+          "negative_color": "Culoare negativă"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "nou_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Un număr între 0 și 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Te rugăm să alegi la opțiunile de închiriere {{ min }}.",
+        "choose_up_to": "Te rugăm să alegi până la {{max}} opțiuni.",
+        "map": {
+          "zoom": "Setați o valoare între 1 și 22"
+        },
+        "upload": {
+          "size_exceed": "Este posibil ca fişierele de peste 500MB să nu fie analizate.",
+          "single_file": "Doar un singur fișier este permis.",
+          "file": "Tipurile de fișiere neacceptate sunt șterse",
+          "directory": "Doar directoarele sunt permise."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Scrie codul tău aici. Folosește JavaScript în interiorul {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Adăugare",
+        "body": "Corp",
+        "default_view": "Vizualizare implicită",
+        "edit_view": "Editare vizualizare",
+        "footer": "Subsol",
+        "header": "Antet",
+        "key": "Cheie",
+        "left_panel": "Panou stânga",
+        "preset": "Preset",
+        "right_panel": "Panoul din dreapta",
+        "set_as_homepage": "Setează ca website",
+        "show_fold_icon": "Afișare pictogramă pli",
+        "view_path": "Vizualizare cale",
+        "views": "Vizualizări",
+        "width": "Width",
+        "height": "Înălțime",
+        "columns": "Coloane"
+      },
+      "model_tips": {
+        "cancel_button": "Anulează",
+        "change_layout_message": "După schimbarea aspectului, toate datele vor fi șterse. Această operație nu poate fi recuperată, vă rugăm să confirmați",
+        "delete_section_message": "După ascundere, datele din această secțiune vor fi șterse. Această operație nu poate fi recuperată, vă rugăm să confirmați",
+        "ok_button": "Confirmare"
+      },
+      "panel_bar_title": {
+        "basic": "Bază",
+        "frame": "FRAME"
+      },
+      "tab_title": "Pagină",
+      "tooltips": {
+        "show_fold_icon": "Arată un buton pentru a restrânge sau extinde panoul",
+        "view_path": "Un șir după exemplu.ro/app/page/ pentru a accesa această vizualizare",
+        "auto_canvas_width": "Lățimea paginii ca procent din lățimea browserului."
+      }
+    },
+    "validate_message": {
+      "email": "Vă rugăm să introduceți o adresă de e-mail validă",
+      "max_length": "Trebuie să nu fie mai mult de {{ number }} caractere",
+      "max_value": "Trebuie să fie mai mic de {{ number }}",
+      "min_length": "Trebuie să aibă cel puțin {{ number }} caractere",
+      "min_value": "Trebuie să fie mai mare de {{ number }}",
+      "regex": "Vă rugăm să potriviți formatul solicitat",
+      "required": "Acest câmp este necesar",
+      "url": "Te rog introdu un URL valid",
+      "max_size": "Dimensiunea fișierului nu poate depăși {{maxSize }} {{ type }}.",
+      "min_files": "Sunt necesare cel puțin {{ minFiles }} fișiere.",
+      "max_files": "Suport până la {{ maxFiles }} fișiere.",
+      "min_size": "Dimensiunea fișierului nu poate fi mai mică de {{minSize }} {{ type }}.",
+      "min_max_size": "Dimensiune min ~ Dimensiune max."
+    },
+    "widget_picker": {
+      "empty_tip": "Ne pare rău, nu există rezultate de căutare",
+      "search_placeholder": "Caută",
+      "sessions": {
+        "calendar": "Intrări calendar",
+        "commonly": "Componente comune",
+        "container": "Container şi formular",
+        "data": "Date",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Prezentare",
+        "selects": "Selectați intrările"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Setează ascuns",
+      "set_file_url": "Setare sursă PDF",
+      "play": "Redare",
+      "pause": "Întrerupeți",
+      "seek_to": {
+        "time": "Timp",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "Sursă video"
+      },
+      "speed": {
+        "speed": "Viteză",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Oprește",
+      "mute": "Amuțit",
+      "loop": "Buclă",
+      "show_controls": "Arată comenzile",
+      "set_volumn": "Setează Volumele",
+      "set_volume": {
+        "volume": "Volum",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValoare",
+        "reset_primary_value": "resetare ValoareValoare",
+        "primary_value": "Valoare primară"
+      },
+      "collapse": {
+        "expand_all_items": "Extinde toate elementele",
+        "collapse_all_items": "Restrânge toate articolele"
+      },
+      "carousel": {
+        "showNext": "Arată următoarea imagine vizibilă",
+        "showPrevious": "Arată imaginea vizibilă anterioară"
+      },
+      "file_download": {
+        "download": "Descărcare",
+        "message": {
+          "suc": "Începe să descarci",
+          "fail": "Solicitare eșuată",
+          "download_failed": "Descărcarea a eșuat"
+        }
+      },
+      "setGlobalData": "Setare date globale",
+      "setLocalStorage": "Setați stocarea locală",
+      "audio": {
+        "set_audio_url": "Setaţi sursa audio"
+      },
+      "map": {
+        "marker_selected": "Marker selectat",
+        "marker_created": "Marker creat",
+        "markers_changed": "Markere schimbate"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "Eveniment",
+        "deleteevent": "ştergeEveniment"
+      },
+      "table": {
+        "clear_filters": "Ștergeți filtrele",
+        "clear_column_setting": "Șterge setarea coloanei",
+        "refresh": "Împrospătează",
+        "select_page": "Selectați pagina",
+        "select_row": "Selectare rând",
+        "clear_selection": "Ștergeți selecția",
+        "set_filters": "Setare filtre"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Tutorial"
+          },
+          "title": {
+            "tutorial": "Tutorial",
+            "templates": "Şabloane"
+          },
+          "onboarding_app": {
+            "name": "Aplicația de înregistrare",
+            "description": "Urmăriți tutorialul ILLA pentru a învăța cum să construiți o aplicație.",
+            "action": "Mergi"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Formați acest șablon ca o aplicație nouă"
+          },
+          "templates_name": {
+            "table": "Panou",
+            "form": "Sondaj",
+            "list": "Panou de administrare"
+          },
+          "templates_description": {
+            "table": "Utilizați tabele pentru a crea tablouri de bord.",
+            "form": "Folosiți componente de intrare și formular pentru a crea aplicații de formular.",
+            "list": "Utilizați o componentă de listă pentru a afișa și gestiona informațiile"
+          },
+          "modal": {
+            "title": "Furcă și implementare",
+            "placeholder": "Numele aplicației",
+            "cancel": "Anulează",
+            "fork": "Furcă și implementare"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Pasul 1: Trage o intrare aici",
+          "drag_button": "Pasul 2: Trageţi un buton aici",
+          "drag_table": "Pasul 3: Trage un tabel aici",
+          "exit": "Anulează",
+          "do_it": "Fă asta pentru mine",
+          "drag_title": "Trage componentele în cadru",
+          "modify_action_title": "Modifică acțiunea",
+          "modify_action_description_modify": "Modifică acțiunea pentru a obține date. Putem folosi {{input1.value}} pentru a obține datele introduse în componenta de intrare. \n\nselectați * \nde la utilizatorii\nalăturați comenzilor\npe users.id = orders.id\nunde {{!input1.value}} sau mai mic (users.name) ca '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Apasă Salvează și apoi apasă Rulează",
+          "display_data_title": "Afişare date în tabel",
+          "display_data_description_select": "Selectează tabelul de pe cadru",
+          "display_data_description_modify": "Modifică sursa de date în panoul corect. Putem folosi {{postgresql1.data}} pentru a obține datele.",
+          "event_handler_title": "Apăsați butonul pentru a declanșa acțiunea",
+          "event_handler_description_1": "Selectați butonul din cadru",
+          "event_handler_description_2": "Adăugați un gestionar de evenimente",
+          "event_handler_description_3": "Faceți clic pe gestionarul de evenimente",
+          "event_handler_description_4": "Schimbă acțiunea pentru a declanșa acțiunea",
+          "event_handler_description_5": "Schimbă interogarea în postgre1",
+          "test_it_title": "Testeaz-o afară",
+          "test_it_description": "Introduceți un nume de utilizator pentru care doriți să căutați și faceți clic pe buton",
+          "test_it_button": "Următoarea",
+          "congratulations_title": "Felicitări 🎉",
+          "congratulations_description": "Tocmai ai construit prima ta aplicație. Dacă ai întrebări în timpul utilizării, ne poți contacta prin <0>Discord</0>. ",
+          "congratulations_button": "Terminat",
+          "event_handler_description_all": "1. Adăugați un gestionar de evenimente\r\n2. Faceți clic pe managerul de evenimente\r\n3. Schimbă acțiunea pentru a declanșa acțiunea\r\n4. Schimbă interogarea în postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Dimensiunea datelor depășește limita (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)"
+    }
+  },
+  "exit_preview": "Ieșiți din previzualizare",
+  "freeze_collision": "Îngheață coliziunea",
+  "freeze_messages": "Pânza este îngheţată. Puteţi trage componente în sau în afara containerelor.",
+  "freeze_tips": "Pânza este îngheţată. Click aici pentru a o dezgheţa.",
+  "link_copied": "Link copiat",
+  "network_error": "Rețea deconectată. Verificați rețeaua acestui dispozitiv",
+  "not_online_tips": "Rețea deconectată. Verificați rețeaua acestui dispozitiv",
+  "preview": {
+    "viewport": {
+      "size": "Dimensiune",
+      "reset": "Reset",
+      "save": "Salvează",
+      "tooltip": {
+        "fluid_width": "Lățime lichid",
+        "desktop": "Desktop(lățime = 1280px)",
+        "tablet": "Comprimat(lăţime = 1080px)",
+        "custom": "Personalizat"
+      }
+    },
+    "button_text": "Previzualizare"
+  },
+  "remove_fail": "Ștergerea a eșuat",
+  "rename": "Redenumire",
+  "resources": "Resurse",
+  "retry": "Reîncercați",
+  "save": "Salvează",
+  "setting": {
+    "account": {
+      "email": "E-mail",
+      "empty_username": "Vă rugăm să introduceţi numele de utilizator",
+      "error_username": "Numele de utilizator trebuie să aibă 3~15 caractere",
+      "save": "Salvează modificările",
+      "save_fail": "Salvarea nu a reușit",
+      "title": "CONT",
+      "username": "Nume"
+    },
+    "other": {
+      "language": "Limba",
+      "save": "Salvează modificările",
+      "title": "SETĂRI"
+    },
+    "password": {
+      "confirm_password": "Parola de confirmare",
+      "current_password": "Parola veche",
+      "empty_password": "Vă rugăm să introduceţi parola",
+      "error_format_password": "Parola trebuie să conțină 6~20 de caractere",
+      "error_match_password": "Parola și confirmarea parolei nu se potrivesc",
+      "error_password_has_empty": "Parola nu poate include spații",
+      "error_validate_password": "Parola ta poate conține doar numere, litere și punctuații",
+      "new_password": "Parola nouă",
+      "submit_button": "Trimiteți",
+      "title": "PAROLĂ"
+    }
+  },
+  "share": "Distribuie",
+  "status": {
+    "403": {
+      "des": "Acces interzis"
+    },
+    "404": {
+      "again": "Împrospătează",
+      "des": "Se pare că pagina pe care o căutați nu a putut fi găsită."
+    },
+    "500": {
+      "des": "Hopa, ceva nu a mers bine. Te rugăm să încerci din nou mai târziu."
+    },
+    "back": "Înapoi la pagina principală",
+    "mobile_forbidden": "Pentru o mai bună experiență de editare, vă rugăm să vizitați această pagină pe desktop",
+    "back_to_cloud": "Înapoi la ILLA Cloud",
+    "no_permission_title": "Permisiuni insuficiente",
+    "no_permission_description": "Nu aveți permisiunea de a efectua operațiunea solicitată. Vă rugăm să contactați administratorii din echipa dvs."
+  },
+  "title": "Bine ai venit la illa",
+  "unfreeze_tips": "Îngheață pânza și trage componentele în sau în afara containerelor. (D sau K)",
+  "user": {
+    "description": "O platformă open-source low--code pentru dezvoltatori.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Trimite codul"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Vă rugăm să introduceți o adresă de e-mail validă",
+          "registered": "Adresa de e-mail nu se asociază cu un cont.",
+          "require": "Te rugăm să introduci adresa de e-mail"
+        },
+        "newPassword": {
+          "require": "Vă rugăm să introduceţi parola"
+        },
+        "verification_code": {
+          "expired": "Codul de verificare a expirat",
+          "invalid": "Cod de verificare nevalid",
+          "require": "Te rugăm să introduci codul de verificare"
+        }
+      },
+      "fields": {
+        "email": "E-mail",
+        "newPassword": "Parolă nouă",
+        "verification_code": "Cod de verificare"
+      },
+      "placeholder": {
+        "email": "Introduceți adresa de e-mail",
+        "verification_code": "Te rugăm să introduci codul de verificare"
+      },
+      "subtitle": "Înapoi la autentificare",
+      "tips": {
+        "fail": "Resetarea parolei a eșuat",
+        "fail_sent": "Trimiterea codului de verificare a eșuat",
+        "success": "Resetare parola cu succes",
+        "verification_code": "Cod de verificare trimis"
+      },
+      "title": "Resetare parolă"
+    },
+    "password": {
+      "placeholder": "Introduceți parola nouă (cel puțin 6 caractere)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Autentificare"
+      },
+      "description": {
+        "forgot_password": "Parolă uitată?",
+        "policy": "Apăsând pe Conectare, sunt de acord cu <0>Politica de Confidențialitate</0> și <1>termeni</1>",
+        "register": "Utilizator nou? <0>Creați un cont</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Vă rugăm să introduceți o adresă de e-mail validă",
+          "registered": "Adresa de e-mail nu se asociază cu un cont.",
+          "require": "Te rugăm să introduci adresa de e-mail"
+        },
+        "password": {
+          "incorrect": "E-mail sau parolă incorecte",
+          "locked": "Prea multe încercări incorecte, vă rugăm resetați parola sau încercați din nou după 1 oră",
+          "min_length": "Parola trebuie să aibă cel puțin 6 caractere",
+          "require": "Vă rugăm să introduceţi parola"
+        }
+      },
+      "fields": {
+        "email": "E-mail",
+        "password": "Parolă"
+      },
+      "placeholder": {
+        "email": "Introduceți adresa de e-mail"
+      },
+      "tips": {
+        "fail": "Autentificare eșuată",
+        "success": "Conectat cu succes"
+      },
+      "title": "Bine ai revenit"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Creare cont",
+        "send": "Trimite codul"
+      },
+      "description": {
+        "login": "Ai deja un cont? <0>Conectează</0>",
+        "policy": "Apăsând pe Creează cont, sunt de acord cu <0>Politica de Confidențialitate</0> și <1>termeni</1>",
+        "subscribe": "Sunt dispus să primesc actualizări și știri despre ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Vă rugăm să introduceți o adresă de e-mail validă",
+          "registered": "Există deja un cont cu această adresă de e-mail.",
+          "require": "Te rugăm să introduci adresa de e-mail"
+        },
+        "password": {
+          "require": "Vă rugăm să introduceţi parola"
+        },
+        "username": {
+          "length": "Numele de utilizator trebuie să aibă 3~15 caractere",
+          "require": "Introdu numele de utilizator"
+        },
+        "verification_code": {
+          "expired": "Codul de verificare a expirat",
+          "invalid": "Cod de verificare nevalid",
+          "require": "Te rugăm să introduci codul de verificare"
+        }
+      },
+      "fields": {
+        "email": "E-mail",
+        "password": "Parolă",
+        "username": "Nume",
+        "verification_code": "Cod de verificare"
+      },
+      "placeholder": {
+        "email": "Introduceți adresa de e-mail",
+        "username": "Introdu numele de utilizator",
+        "verification_code": "Te rugăm să introduci codul de verificare"
+      },
+      "tips": {
+        "fail": "Înregistrare nereușită",
+        "fail_sent": "Trimiterea codului de verificare a eșuat",
+        "success": "Înregistrare reușită",
+        "verification_code": "Cod de verificare trimis"
+      },
+      "title": "Înscrie-te",
+      "agreement": {
+        "privacy_policy": "politica de confidenţialitate",
+        "terms_of_service": "termenii serviciului"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Progresul barei"
+    },
+    "button": {
+      "default_text": "Buton",
+      "name": "Buton"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Grafic"
+    },
+    "check_box_group": {
+      "name": "Grup de căsuțe"
+    },
+    "circle_progress": {
+      "name": "Progresul cercului"
+    },
+    "container": {
+      "empty": "Apăsați <keyPress>D</keyPress> sau <keyPress>K</keyPress> și trageți componentele aici",
+      "key_duplicated": "Cheia este duplicată. Utilizați chei unice pentru a evita erorile.",
+      "name": "Recipient",
+      "value_duplicated": "Valoarea este duplicată. Vă rugăm să folosiţi valori unice pentru a evita erorile."
+    },
+    "date": {
+      "name": "Data"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Data Ora",
+      "placeholder": "Selectați ora"
+    },
+    "divider_progress": {
+      "name": "Divider"
+    },
+    "editable_text": {
+      "name": "Text editabil"
+    },
+    "form": {
+      "name": "Formular"
+    },
+    "image": {
+      "name": "Imagine"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Folosește {{ currentItem }} pentru a accesa datele articolului curent. De exemplu, pentru a seta valoarea componentei de text care este în componenta de listă bazată pe \"Nume utilizator\": {{ currentItem.userName }}",
+      "doc2": "Utilizați {{list.selectedItem.data}} pentru a accesa datele articolului selectat în componenta listă. De exemplu, pentru a seta valoarea componentei de text care nu este în lista de componente bazate pe \"nume de utilizator\" a elementului selectat din listă: {{ list.selectedItem.userName }}",
+      "name": "Listă"
+    },
+    "menu": {
+      "name": "Meniu"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Stânga",
+      "right": "Dreapta",
+      "select_options": {
+        "manual": "Manual",
+        "mapped": "Mapat"
+      },
+      "top": "Sus"
+    },
+    "radio_button": {
+      "name": "Buton radio"
+    },
+    "radio_group": {
+      "name": "Grup radio"
+    },
+    "rate": {
+      "name": "Evaluează"
+    },
+    "select": {
+      "name": "Selectare"
+    },
+    "switch": {
+      "name": "Comutare"
+    },
+    "table": {
+      "ascend": "Asc",
+      "descend": "Desc",
+      "name": "Tabel",
+      "pagination": "Paginare",
+      "scroll": "Derulează"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Salut!",
+      "name": "Text",
+      "text_model": "Text simplu"
+    },
+    "timeline": {
+      "horizontal": "Orizontal",
+      "name": "Cronologie",
+      "vertical": "vertical"
+    },
+    "modal": {
+      "name": "Modale"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Incarca",
+      "default_button_text": "Incarca",
+      "default_dropzone_text": "Selectați sau plasați un fișier aici"
+    },
+    "icon": {
+      "name": "Iconiță"
+    },
+    "pdf": {
+      "empty": "Niciun fișier PDF",
+      "failed": "PDF nu a putut fi încărcat"
+    },
+    "video": {
+      "name": "Video",
+      "empty": "Fără videoclipuri",
+      "fail": "Încărcarea a eșuat"
+    },
+    "statistics": {
+      "name": "Statistici"
+    },
+    "collapse": {
+      "name": "Restrânge"
+    },
+    "multiselect": {
+      "name": "Multi-selectare"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Pași"
+    },
+    "slider": {
+      "name": "Slider"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Audio",
+      "no_audio": "Fără audio"
+    },
+    "collaborative": {
+      "no_name": "Nici un nume"
+    },
+    "map": {
+      "name": "Hartă"
+    },
+    "time_picker": {
+      "name": "Selector de timp"
+    },
+    "time_range": {
+      "name": "Interval de timp"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Calendar eveniment"
+      },
+      "name_duplicated": "Acest ID de resurse este în conflict în aceste evenimente, vă rugăm să folosiți același nume sau un ID diferit"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Fixat",
+        "auto": "Automat"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Trimite codul"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Vă rugăm să introduceți o adresă de e-mail validă",
+            "registered": "Adresa de e-mail nu se asociază cu un cont.",
+            "require": "Te rugăm să introduci adresa de e-mail"
+          },
+          "newPassword": {
+            "require": "Vă rugăm să introduceţi parola"
+          },
+          "verification_code": {
+            "expired": "Codul de verificare a expirat",
+            "invalid": "Cod de verificare nevalid",
+            "require": "Te rugăm să introduci codul de verificare"
+          }
+        },
+        "fields": {
+          "email": "E-mail",
+          "newPassword": "Parolă nouă",
+          "verification_code": "Cod de verificare"
+        },
+        "placeholder": {
+          "email": "Introduceți adresa de e-mail",
+          "verification_code": "Te rugăm să introduci codul de verificare"
+        },
+        "subtitle": "Înapoi la autentificare",
+        "tips": {
+          "fail": "Resetarea parolei a eșuat",
+          "fail_sent": "Trimiterea codului de verificare a eșuat",
+          "success": "Resetare parola cu succes",
+          "verification_code": "Cod de verificare trimis"
+        },
+        "title": "Resetare parolă"
+      },
+      "password": {
+        "placeholder": "Introduceți parola nouă (cel puțin 6 caractere)"
+      },
+      "policy": "Folosind ILLA ești de acord cu <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Autentificare"
+        },
+        "description": {
+          "forgot_password": "Parolă uitată?",
+          "policy": "Apăsând pe Conectare, sunt de acord cu <0>Politica de Confidențialitate</0> și <1>termeni</1>",
+          "register": "Utilizator nou? <0>Creați un cont</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Vă rugăm să introduceți o adresă de e-mail validă",
+            "registered": "Adresa de e-mail nu se asociază cu un cont.",
+            "require": "Te rugăm să introduci adresa de e-mail"
+          },
+          "password": {
+            "incorrect": "E-mail sau parolă incorecte",
+            "locked": "Prea multe încercări incorecte, vă rugăm resetați parola sau încercați din nou după 1 oră",
+            "min_length": "Parola trebuie să aibă cel puțin 6 caractere",
+            "require": "Vă rugăm să introduceţi parola"
+          }
+        },
+        "fields": {
+          "email": "E-mail",
+          "password": "Parolă"
+        },
+        "placeholder": {
+          "email": "Introduceți adresa de e-mail"
+        },
+        "tips": {
+          "fail": "Autentificare eșuată",
+          "success": "Conectat cu succes",
+          "fail_account": "E-mail sau parolă incorecte"
+        },
+        "title": "Bine ai revenit",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Înregistrează-te cu succes. Poți seta o parolă pentru contul tău de e-mail mai târziu",
+            "auth_failed": "Autentificare eșuată"
+          }
+        },
+        "option": {
+          "github": "Conectați-vă cu GitHub",
+          "google": "Autentificare cu Google",
+          "or": "SAU"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Creare cont",
+          "send": "Trimite codul"
+        },
+        "description": {
+          "login": "Ai deja un cont? <0>Conectează</0>",
+          "policy": "Apăsând pe Creează cont, sunt de acord cu <0>Politica de Confidențialitate</0> și <1>termeni</1>",
+          "subscribe": "Sunt dispus să primesc actualizări și știri despre ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Vă rugăm să introduceți o adresă de e-mail validă",
+            "registered": "Există deja un cont cu această adresă de e-mail.",
+            "require": "Te rugăm să introduci adresa de e-mail"
+          },
+          "password": {
+            "require": "Vă rugăm să introduceţi parola"
+          },
+          "username": {
+            "length": "Numele de utilizator trebuie să aibă 3~15 caractere",
+            "require": "Introdu numele de utilizator"
+          },
+          "verification_code": {
+            "expired": "Codul de verificare a expirat",
+            "invalid": "Cod de verificare nevalid",
+            "require": "Te rugăm să introduci codul de verificare"
+          }
+        },
+        "fields": {
+          "email": "E-mail",
+          "password": "Parolă",
+          "username": "Nume",
+          "verification_code": "Cod de verificare"
+        },
+        "placeholder": {
+          "email": "Introduceți adresa de e-mail",
+          "username": "Introdu numele de utilizator",
+          "verification_code": "Te rugăm să introduci codul de verificare"
+        },
+        "tips": {
+          "fail": "Înregistrare nereușită",
+          "fail_sent": "Trimiterea codului de verificare a eșuat",
+          "success": "Înregistrare reușită",
+          "verification_code": "Cod de verificare trimis"
+        },
+        "title": "Înscrie-te",
+        "option": {
+          "github": "Înscrie-te cu GitHub",
+          "google": "Înregistrați-vă cu Google"
+        }
+      },
+      "description": "O platformă open-source low--code pentru dezvoltatori."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Tutorial"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Te rugăm să introduci o valoare de cel puțin {{ size }}."
+  },
+  "failed_to_copy": "Copierea a eșuat",
+  "copied": "Copiat!",
+  "user_management": {
+    "role": {
+      "owner": "Proprietar",
+      "admin": "Administer",
+      "editor": "Editor",
+      "viewer": "Vizualizator"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Invită membri"
+      },
+      "link": {
+        "invite_title": "Link de invitație",
+        "copy": "Copiază",
+        "turn_off": "Oprește link-urile de invitație",
+        "update": "Actualizează link-urile de invitație",
+        "description": "Partajează un link secret pe care oamenii îl pot folosi pentru a se alătura echipei tale.",
+        "turn_on": "Pornește link-urile de invitație",
+        "fail": "Eșec la obținerea link-ului, te rugăm să încerci din nou mai târziu",
+        "copied_suc": "Copiat!",
+        "failed_to_copy": "Copierea a eșuat",
+        "turn_off_fail": "Oprirea esuata",
+        "turn_on_fail": "Pornire eșuată",
+        "make_public_title": "Faceți aplicația publică",
+        "make_public_copy": "Copiază"
+      },
+      "email": {
+        "invite_title": "Invită prin e-mail",
+        "invite": "Invită",
+        "placeholder": "Introduceți adresa de e-mail",
+        "invited": "Au invitat",
+        "in_list": "Acest utilizator este deja în echipa dvs.",
+        "notmail": "{{ email }} nu este un e-mail",
+        "duplicate": "{{ email }} este duplicat"
+      },
+      "invalid_email": "Te rog introdu un email valid",
+      "message": {
+        "make_public_suc": "Setat cu succes",
+        "make_public_failed": "Setare eșuată",
+        "app_share_in_team": "{{ email }} este deja în echipa ta, te rugăm să îi distribui linkul. "
+      },
+      "tab": {
+        "invite": "Invită",
+        "public": "Publice"
+      }
+    },
+    "mes": {
+      "invite_suc": "Invitat cu succes",
+      "invite_fail": "Invitația a eșuat",
+      "update_suc": "Actualizat cu succes",
+      "update_fail": "Actualizarea a eșuat",
+      "transfer_suc": "Transferat cu succes",
+      "transfer_fail": "Transferul a eșuat",
+      "remove_suc": "Eliminat cu succes",
+      "remove_fail": "Ștergerea a eșuat",
+      "change_role_fail": "Actualizarea a eșuat",
+      "change_role_suc": "Actualizat cu succes"
+    },
+    "page": {
+      "member": "Membru",
+      "invite": "Invită",
+      "permission": "Permisiune",
+      "operation": "Operațiune",
+      "transfer": "Transferă proprietate",
+      "remove": "Elimină"
+    },
+    "transfer_modal": {
+      "title": "Sunteţi sigur că doriţi să transferaţi dreptul de proprietate?",
+      "description": "După transferare, permisiunea dumneavoastră se va schimba în administrator.",
+      "transfer": "Transfer",
+      "cancel": "Anulează"
+    },
+    "remove_modal": {
+      "title": "Ești sigur că vrei să îl ștergi pe {{ username }}?",
+      "description": "După ştergere, utilizatorul nu va putea accesa echipa.",
+      "remove": "Elimină",
+      "cancel": "Anulează"
+    },
+    "status": {
+      "pending": "In asteptare"
+    },
+    "settings": {
+      "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii"
+    }
+  },
+  "copy_failed": "Copierea a eșuat",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Setările echipei",
+      "member": "Membru",
+      "leave": "Părăsește echipa",
+      "delete": "Șterge echipa"
+    },
+    "leave_modal": {
+      "title": "Ești sigur că vrei să părăsești această echipă?",
+      "description": "Nu vei putea accesa resursele echipei după plecare.",
+      "leave": "Părăsește",
+      "cancel": "Anulează"
+    },
+    "delete_modal": {
+      "title": "Sunteţi sigur că doriţi să ştergeţi această echipă?",
+      "delete": "Ștergere",
+      "cancel": "Anulează",
+      "desctiption": "Identificatorul echipei nu va fi disponibil după ștergere, și toți membrii vor fi șterși din această echipă."
+    },
+    "team_info": {
+      "title": "Informații echipă",
+      "team_name": "Numele echipei",
+      "domain": ".illacloud.com",
+      "existed": "Deja există",
+      "available": "Disponibil",
+      "edit": "Editare",
+      "save": "Salvează modificările",
+      "adjust_avater": "Reglaţi avatarul",
+      "avater_crop": "Decupați",
+      "team_name_empty": "Te rugăm să introduci numele echipei",
+      "team_id_empty": "Vă rugăm să introduceţi identificatorul echipei",
+      "team_name_placeholder": "Introduceți numele echipei",
+      "team_id_placeholder": "Introduceți identificatorul echipei",
+      "leave_title": "Părăsește echipa",
+      "leave_button": "Părăsește echipa",
+      "delete_title": "Șterge echipa",
+      "delete_button": "Șterge echipa",
+      "team_domain": "Identificator echipă"
+    },
+    "message": {
+      "save_suc": "Salvat cu succes",
+      "save_fail": "Salvarea nu a reușit"
+    },
+    "mes": {
+      "domain_suc": "Creare reușită.",
+      "delete_suc": "Șters cu succes",
+      "delete_fail": "Ștergerea a eșuat",
+      "leave_suc": "Părăsește cu succes",
+      "leave_fail": "Esuare iesire"
+    }
+  },
+  "members": "Membri",
+  "invite_new_member": "Invită",
+  "launch": "Lansare",
+  "homepage": {
+    "message": {
+      "join_failed": "Nu s-a putut alătura echipei: e-mailul dvs. nu este e-mailul de invitare."
+    }
+  },
+  "image_exceed": "Dimensiunea imaginii nu poate depăşi 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Decupați",
+        "save": "Salvează",
+        "cancel": "Anulează"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Salvat cu succes",
+        "save_fail": "Salvarea nu a reușit"
+      },
+      "password": {
+        "title": "Parolă"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Listă colorată"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "O dependență circulară are loc la {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Politica de confidenţialitate",
+      "description": "Această politică de confidențialitate explică practicile noastre privind colectarea, utilizarea și divulgarea informațiilor pe care le primim prin intermediul serviciilor noastre."
+    },
+    "terms": {
+      "description": "Acești Termeni de Utilizare vă guvernează accesul la Site-ul nostru și utilizarea acestuia și furnizarea unei varietăți de servicii.",
+      "title": "Termenii serviciului"
+    }
+  },
+  "empty_copied_tips": "Conținutul care va fi copiat este gol",
+  "copy_empty": "Conținutul care va fi copiat este gol",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Învață cum să construiești o aplicație în 5 minute",
+          "description": "Urmați tutorialul ILLA pentru a învăța cum să construiți o aplicație. Acest lucru va dura aproximativ 5 minute.",
+          "cancel": "Anulează",
+          "take": "Ia un tutorial"
+        },
+        "exit_confirm": {
+          "title": "Opriți tutorialul?",
+          "description": "Data viitoare când introduceți aplicația de înregistrare, pașii ghidați vor fi reluați ",
+          "cancel": "Anulează",
+          "exit": "Oprește"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Redirecționare",
+  "oauth_redirect_description": "Redirecționare către <0>Cloud ILLA </0>"
+}
