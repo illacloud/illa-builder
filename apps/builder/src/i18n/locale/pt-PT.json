@@ -1697,6 +1697,16 @@
           "event_background": "Definir o plano de fundo do cartão de evento",
           "event_text": "Definir a cor do texto do cartão do evento",
           "couldnot_drag": "Se você deseja arrastar para ajustar o intervalo de tempo, por favor, prossiga para a página de pré-visualização para a operação."
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "The icon displayed in the table"
         }
       },
       "setter_option": {
