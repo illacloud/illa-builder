@@ -11,6 +11,7 @@ import {
 import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 import { isValidCurrencyCode } from "@/constants/currency"
 import { getLocalLanguage } from "@/page/User/Register"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 import {
   ColumnItemShape,
@@ -128,6 +129,24 @@ export const getConfigFromColumnShapeData = <K extends keyof ColumnItemShape>(
   return value
 }
 
+const getMappedValue = (
+  rowIndex: number,
+  mappedValue: unknown,
+  fromCurrentRow?: Record<string, boolean>,
+  mappedValuePrefix: string = "mappedValue",
+) => {
+  if (mappedValue !== undefined && mappedValue !== null) {
+    if (
+      fromCurrentRow?.[`${mappedValuePrefix}`] &&
+      Array.isArray(mappedValue)
+    ) {
+      return mappedValue[rowIndex] ?? "-"
+    }
+    return mappedValue ?? "-"
+  }
+  return "-"
+}
+
 const getPropertyValue = (
   props: CellContext<any, any>,
   mappedValue: unknown,
@@ -197,7 +216,8 @@ const isValidUrl = (str: unknown) => {
 export const getCellForType = (
   data: ColumnItemShape,
   eventPath: string,
-  handleOnClickMenuItem?: (path: string) => void,
+  handleOnClickMenuItem: (path: string) => void,
+  columnIndex: number,
 ) => {
   const {
     type = "text",
@@ -216,6 +236,7 @@ export const getCellForType = (
   } = data
 
   const locale = getLocalLanguage()
+  const columnEventPath = convertPathToString(["columns", `${columnIndex}`])
 
   switch (type) {
     case Columns.Text:
@@ -333,11 +354,25 @@ export const getCellForType = (
       }
     case Columns.ButtonGroup:
       return (props: CellContext<any, any>) => {
-        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        const rowIndex = props.row.index
+        const value = buttonGroupContent?.map((content) => {
+          const { cellValue, fromCurrentRow } = content
+          return {
+            ...content,
+            cellValue: `${getMappedValue(
+              rowIndex,
+              cellValue,
+              fromCurrentRow,
+              "cellValue",
+            )}`,
+          }
+        })
 
         return RenderTableButtonGroup({
           cell: props,
-          value: buttonGroupContent,
+          value: value,
+          eventPath: columnEventPath,
+          handleOnClick: handleOnClickMenuItem,
         })
       }
     case Columns.IconGroup:
@@ -345,6 +380,8 @@ export const getCellForType = (
         return RenderTableIconGroup({
           cell: props,
           value: iconGroupContent,
+          eventPath: columnEventPath,
+          handleOnClick: handleOnClickMenuItem,
         })
       }
     default:

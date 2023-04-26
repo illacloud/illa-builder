@@ -119,8 +119,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
                 id: `${baseWidgetName}-column-buttonGroupContent-cellValue`,
                 labelName: i18n.t("editor.inspect.setter_label.column_title"),
                 attrName: "cellValue",
-                setterType: "INPUT_SETTER",
-                expectedType: VALIDATION_TYPES.STRING,
+                setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
               },
               {
                 id: `${baseWidgetName}-column-buttonGroupContent-variant`,
@@ -139,6 +138,12 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
                     value: "outline",
                   },
                 ],
+              },
+              {
+                ...generatorEventHandlerConfig(
+                  baseWidgetName,
+                  TABLE_BUTTON_EVENT_HANDLER_CONFIG.events,
+                ),
               },
               {
                 id: `${baseWidgetName}-column-buttonGroupContent-disabled`,
@@ -178,6 +183,12 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
                 labelName: i18n.t("editor.inspect.setter_label.theme_color"),
                 setterType: "COLOR_PICKER_SETTER",
                 attrName: "colorScheme",
+              },
+              {
+                ...generatorEventHandlerConfig(
+                  baseWidgetName,
+                  TABLE_BUTTON_EVENT_HANDLER_CONFIG.events,
+                ),
               },
               {
                 id: `${baseWidgetName}-column-buttonGroupContent-disabled`,

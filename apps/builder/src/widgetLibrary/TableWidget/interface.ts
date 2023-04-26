@@ -86,11 +86,13 @@ export interface TableCellButtonGroupItemProps extends CellItemProps {
   colorScheme?: ButtonColorScheme
   disabled?: boolean
   variant?: ButtonProps["variant"]
+  fromCurrentRow?: Record<string, boolean>
 }
 
 export interface TableCellIconGroupItemProps extends CellItemProps {
   colorScheme?: string
   disabled?: boolean
+  fromCurrentRow?: Record<string, boolean>
 }
 
 export const tagColorSchemeOptions = [

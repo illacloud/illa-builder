@@ -134,21 +134,28 @@ export const RenderTableButton: FC<{
 export const RenderTableButtonGroup: FC<{
   cell: CellContext<any, any>
   value?: TableCellButtonGroupItemProps[]
+  eventPath: string
+  handleOnClick?: (path: string) => void
 }> = (props) => {
-  const { cell, value } = props
+  const { cell, value, eventPath, handleOnClick } = props
 
+  const handleOnClickButtonItem = (index: number) => {
+    const paths = [`${eventPath}`, "buttonGroupContent", `${index}`, "events"]
+    handleOnClick?.(convertPathToString(paths))
+  }
   return value ? (
     <ButtonGroup>
       {value.map((item, index) => {
-        const { label, cellValue, colorScheme, disabled, variant } = item
+        const { cellValue, colorScheme, disabled, variant } = item
         return (
           <Button
             key={index}
             colorScheme={colorScheme}
             disabled={disabled}
             variant={variant}
+            onClick={() => handleOnClickButtonItem(index)}
           >
-            {cellValue}
+            {cellValue ? cellValue : "-"}
           </Button>
         )
       })}
@@ -161,8 +168,15 @@ export const RenderTableButtonGroup: FC<{
 export const RenderTableIconGroup: FC<{
   cell: CellContext<any, any>
   value?: TableCellIconGroupItemProps[]
+  eventPath: string
+  handleOnClick?: (path: string) => void
 }> = (props) => {
-  const { cell, value } = props
+  const { cell, value, eventPath, handleOnClick } = props
+
+  const handleOnClickIconItem = (index: number) => {
+    const paths = [`${eventPath}`, "iconGroupContent", `${index}`, "events"]
+    handleOnClick?.(convertPathToString(paths))
+  }
 
   return value ? (
     <div>
@@ -174,6 +188,7 @@ export const RenderTableIconGroup: FC<{
           <Icon
             css={applyIconContainerStyle(colorScheme, disabled)}
             key={index}
+            onClick={() => !disabled && handleOnClickIconItem(index)}
           />
         ) : (
           "-"
