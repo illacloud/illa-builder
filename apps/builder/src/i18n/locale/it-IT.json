@@ -1149,7 +1149,8 @@
           "rowSelect": "Selezione riga",
           "markerSelected": "markerSelezionato",
           "markerCreated": "markerCreato",
-          "select": "Seleziona"
+          "select": "Seleziona",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Immagini",
