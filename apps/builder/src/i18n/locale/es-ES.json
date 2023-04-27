@@ -1149,7 +1149,8 @@
           "rowSelect": "Selección de fila",
           "markerSelected": "marcador seleccionado",
           "markerCreated": "marcador creado",
-          "select": "Seleccionar"
+          "select": "Seleccionar",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Imágenes",
