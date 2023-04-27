@@ -126,3 +126,24 @@ export const privateKeyItem = css`
   padding-left: 24px;
   align-items: flex-start;
 `
+
+export const oAuthStatusContentStyle = css`
+  width: 100%;
+  padding: 9px 16px;
+  display: flex;
+  gap: 8px;
+  height: 40px;
+  background: ${getColor("orange", "07")};
+  border-radius: 4px;
+  align-items: center;
+`
+
+export const oAuthStatusContainerStyle = css`
+  width: 100%;
+  padding: 8px 24px;
+`
+
+export const oAuthErrorIconStyle: SerializedStyles = css`
+  font-size: 16px;
+  color: ${getColor("orange", "03")};
+`

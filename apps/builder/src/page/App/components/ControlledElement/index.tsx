@@ -195,6 +195,28 @@ export const ControlledElement: FC<ControlledElementProps> = (props) => {
               name={name}
             />
           )
+        case "radio":
+          return (
+            <Controller
+              control={control}
+              defaultValue={defaultValue}
+              rules={rules}
+              render={({ field: { value, onChange, onBlur } }) => (
+                <RadioGroup
+                  colorScheme="techPurple"
+                  w="100%"
+                  type="radio"
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  value={value}
+                  placeholder={placeholder}
+                  options={options}
+                  {...style}
+                />
+              )}
+              name={name}
+            />
+          )
         case "radio-group":
           return (
             <Controller

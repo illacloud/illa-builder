@@ -1149,7 +1149,8 @@
           "rowSelect": "Vælg række",
           "markerSelected": "markerValgt",
           "markerCreated": "markerOprettet",
-          "select": "Vælg"
+          "select": "Vælg",
+          "DragOrClickNoEventArea": "Drag or click no event area"
         },
         "image_list": {
           "title": "Billeder",
@@ -2842,5 +2843,6 @@
     "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
-  }
+  },
+  "logout_failed": "Failed to log out. Please try again later."
 }

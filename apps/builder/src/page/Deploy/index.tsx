@@ -2,7 +2,7 @@ import { Unsubscribe } from "@reduxjs/toolkit"
 import { FC, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useBeforeUnload } from "react-router-dom"
-import { Loading } from "@illa-design/react"
+import { Loading, TriggerProvider } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import {
@@ -64,7 +64,9 @@ export const Deploy: FC = () => {
           <Loading colorScheme="techPurple" />
         </div>
       )}
-      {!loadingState && <CanvasPanel />}
+      <TriggerProvider renderInBody zIndex={10}>
+        {!loadingState && <CanvasPanel />}
+      </TriggerProvider>
       <div
         css={deployLogoStyle}
         onClick={() => {
