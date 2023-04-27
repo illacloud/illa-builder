@@ -1527,8 +1527,8 @@
           "calendar_text": "テクストヤン",
           "event_background": "バックグラウンド",
           "event_text": "テクストヤン",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "ドラッグ可能",
+          "resizable": "サイズ変更可能"
         },
         "table": {
           "page_index": "ページの索引",
@@ -1701,8 +1701,8 @@
           "event_background": "イベントカードの背景を設定する",
           "event_text": "イベントカードの文字色を設定",
           "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "ドラッグしてイベントを移動することにより、ユーザーがイベントの時間範囲を更新できるようにするかどうか",
+          "resizable": "ユーザーがイベントの時間範囲を更新し、イベントの境界線をドラッグして期間を延長または短縮して期間を変更できるようにするかどうか"
         },
         "table": {
           "page_index": "Index of the page you wish to select.",
@@ -1730,7 +1730,7 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
         }
@@ -2444,7 +2444,7 @@
       "name": {
         "event_calendar": "イベントカレンダー"
       },
-      "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
+      "name_duplicated": "このリソース ID はこれらのイベントで競合します。同じ名前または別の ID を使用してください"
     }
   },
   "page": {
