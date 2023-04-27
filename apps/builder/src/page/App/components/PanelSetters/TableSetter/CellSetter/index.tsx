@@ -18,7 +18,6 @@ import {
 export const CellSetter: FC<CellSetterProps> = (props) => {
   const {
     attrName,
-    parentAttrName,
     handleUpdateDsl,
     value = [],
     childrenSetter,

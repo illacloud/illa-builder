@@ -1,0 +1,2805 @@
+{
+  "Logout": "Déconnexion",
+  "Setting": "Réglages",
+  "apps": "Applications",
+  "back": "Précédent",
+  "btn": {
+    "choose_file": "Choisir un fichier"
+  },
+  "change_fail": "Échec de la modification",
+  "change_success": "Changement réussi",
+  "collision_message": "Appuyez sur D ou K et faites glisser le composant dans le conteneur",
+  "create_fail": "Échec de la création",
+  "create_new": "Créer un nouveau",
+  "create_new_app": "Créer un nouveau",
+  "created_at": "Créé le",
+  "dashboard": {
+    "app": {
+      "all_apps": "Toutes les applications",
+      "create_app": "Créer une application",
+      "duplicate_fail": "Impossible de dupliquer",
+      "duplicate_placeholder": "Entrez le nom de votre application ici",
+      "edited_time": "Modifié le {{ time }} par {{ user }}",
+      "name_empty": "Veuillez entrer un nom",
+      "name_existed": "Nom déjà pris",
+      "rename_app": "Renommer l'application",
+      "rename_fail": "Impossible de renommer",
+      "rename_success": "Renommé avec succès",
+      "trash_failure": "Échec de la suppression",
+      "trash_success": "Supprimé avec succès"
+    },
+    "common": {
+      "cancel": "Abandonner",
+      "delete": "Supprimez",
+      "delete_cancel_text": "Abandonner",
+      "delete_content": "Cela cassera les requêtes des applications et de la bibliothèque de requêtes qui utilisent cette ressource",
+      "delete_ok_text": "Supprimez",
+      "delete_title": "Êtes-vous sûr(e) ?",
+      "error_button": "Réessayer",
+      "error_description": "Il y a un problème avec votre opération.",
+      "error_title": "Erreur"
+    },
+    "resource": {
+      "create_resource": "Créer un nouveau",
+      "created": "Créé",
+      "dbname": "Nom de la base de données",
+      "delete_fail": "Échec de la suppression",
+      "delete_success": "Supprimé avec succès",
+      "resource_name": "Nom",
+      "resource_type": "Type de texte",
+      "save_fail": "Échec de l'enregistrement",
+      "save_success": "Sauvegarde réussie",
+      "test_fail": "Échec du test",
+      "test_success": "Test réussi"
+    }
+  },
+  "dayjs": {
+    "just_now": "Juste maintenant"
+  },
+  "deploy": "Déployer",
+  "description": {
+    "part1": "C'est un exemple sans espaces de noms."
+  },
+  "dont_need_save": "ILLA continuera à essayer de sauvegarder automatiquement votre travail.",
+  "duplicate": "Duplicate",
+  "edit": "Editer",
+  "edit_at": "Modifié le",
+  "edit_failed": "Échec de l'enregistrement, veuillez vérifier votre réseau.",
+  "edit_success": "Modifié avec succès",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Précédent",
+            "create_action": "Créer une action",
+            "new_resource": "Nouvelle ressource"
+          },
+          "selector": {
+            "title": "Sélectionner le type d'action"
+          },
+          "title": {
+            "choose_resource": "Choisir une ressource "
+          }
+        },
+        "btn": {
+          "close": "Fermer",
+          "new": "Nouveau"
+        },
+        "contextMenu": {
+          "delete": "Supprimez",
+          "duplicate": "Duplicate",
+          "rename": "Renommer"
+        },
+        "message": {
+          "confirm_switch": "Vous n'avez pas enregistré votre requête. Êtes-vous sûr de vouloir annuler les modifications ?",
+          "failed": "Échec de la connexion au serveur",
+          "load_action_list_fail": "Impossible d'obtenir la liste d'Action : {{message}}",
+          "load_resource_fail": "Impossible d'obtenir la liste des ressources: {{message}}",
+          "name_already_exist": "Existe déjà",
+          "please_input_name": "Veuillez saisir un nom",
+          "success_created": "Créé avec succès",
+          "success_deleted": "Supprimé avec succès",
+          "success_saved": "Sauvegardé avec succès",
+          "valid_name": "Ne peut contenir que des lettres, chiffres, '_' ou '$', commencer par '_' ou une lettre"
+        },
+        "placeholder": {
+          "search": "Chercher"
+        },
+        "runtime": {
+          "backend": "Backend",
+          "execute_resource": "exécuter la ressource",
+          "frontend": "Frontend",
+          "handle_response": "gérer la réponse",
+          "post_processing": "post-traitement",
+          "prepare_query": "Préparer la requête",
+          "response_size": "Taille de la réponse",
+          "total": "Total",
+          "transfer_data": "transférer des données",
+          "transformer": "transformateur"
+        },
+        "tips": {
+          "empty": "Ajouter une action pour commencer à travailler avec les données d'une ressource connectée.",
+          "not_found": "Aucun résultat de recherche"
+        },
+        "title": "Liste des actions"
+      },
+      "form": {
+        "btn": {
+          "back": "Précédent",
+          "save_changes": "Enregistrer la ressource",
+          "test_connection": "Tester la connexion"
+        },
+        "required": "Ceci est requis",
+        "title": {
+          "api": "APIs",
+          "configure": "Configurer {{ name }}",
+          "database": "DONNÉES",
+          "select": "Sélectionner le type de ressource",
+          "huggingface": "Visage d'embrassage",
+          "appwrite": "Écriture de l'application",
+          "couchdb": {
+            "couchdb": "CouchDB"
+          },
+          "oracle": {
+            "oracle": "Base de données Oracle"
+          },
+          "gs": {
+            "google_sheets": "Feuilles Google"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} est requis"
+        },
+        "label": {
+          "inference_api": "Inférence API",
+          "inference_endpoint": "Point d'extrémité d'inférence",
+          "s3": "Invalide dans les applications publiques",
+          "acl": "ACL S3 pour les fichiers téléchargés",
+          "appwrite": {
+            "host": "Hôte",
+            "dbid": "ID de la base de données",
+            "projectid": "ID du projet",
+            "secret": "Clé Api",
+            "collectionid": "ID de la collection",
+            "documentid": "ID du document",
+            "data": "Donnée",
+            "filter": "Filtre",
+            "order": "Trier par",
+            "limit": "Limite"
+          },
+          "oracle": {
+            "sid": "Traiter le nom de la base de données comme",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Certificats",
+            "verification_mode": "Mode de vérification"
+          },
+          "gs": {
+            "private_key": "Clé privée",
+            "action_type": "Type d'action",
+            "spreadsheet": "Feuille de calcul",
+            "sheet_name": "Nom de la feuille",
+            "data_range": "Plage de données",
+            "limit": "Limite",
+            "offset": "Décalage",
+            "a1_notation": "Note A1",
+            "values_to_append": "Valeurs à ajouter",
+            "filter_by": "Filtrer par",
+            "update_value": "Mettre à jour la valeur",
+            "primary_key_column": "Colonne principale de la clé",
+            "array_of_rows_to_upd": "Tableau de lignes à mettre à jour",
+            "filters_to_match_row": "Index de la ligne",
+            "consider_queries_tha": "Considérer les requêtes qui ne suppriment aucune ligne comme des succès",
+            "title_of_spreadsheet": "Titre de la feuille de calcul",
+            "sheet_id_to_copy": "ID de la feuille à copier",
+            "sheet_to_copy_to": "Feuille à copier vers",
+            "authentication": "Authentification",
+            "connect_with_oauth": "Se connecter avec OAuth & Enregistrer",
+            "reconnect_with_oauth": "Reconnecter avec OAuth",
+            "access_type": "Type d'accès"
+          }
+        },
+        "placeholder": {
+          "url": "Entrez l'URL de la requête ici",
+          "appwrite": {
+            "host": "NOM DE MAISON OU IP",
+            "dbid": "ID de la base de données",
+            "projectid": "ID du projet",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribut",
+              "value": "1234"
+            },
+            "order": "attribut",
+            "collectionid": "Sélectionnez une collection",
+            "data": "Un objet joint dans {{ }}. Par exemple, \n{{ { \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "oracle",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"10000000000000000\",\r\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "nom_colonne",
+              "value": "valeur"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "nom_colonne",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
+            "filters_to_match_row": {
+              "key": "Touche",
+              "value": "valeur"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Le contenu fourni est une configuration PUBLIQUE. Laissez vide pour PRIVATE. N'oubliez pas de configurer CORS sur votre seau. <0>Voir Partage de Ressource Cross-Origin (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "On dirait que vous essayez de vous connecter à une base de données locale à votre machine ou à un réseau privé. Il se peut que cela ne fonctionne pas dans la version du nuage ILLA. Consultez notre <0>docs</0> pour savoir comment utiliser la version de l'auto-hôte.",
+            "selfhost": "On dirait que vous essayez de vous connecter à une base de données locale à votre machine. Veuillez utiliser l'adresse IP du réseau local de la machine au lieu de \"localhost\" ou \"127.0.0.1\".",
+            "title": {
+              "tips": "Conseils"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Votre serveur peut être vulnérable aux attaques."
+            }
+          },
+          "gs": {
+            "private_key": "Utilisé pour se connecter à Google Sheets. Cliquez <0>ici</0> pour créer un projet et obtenir les identifiants OAuth. Avec l'authentification du compte de service, nous n'aurons accès qu'aux feuilles de calcul que vous partagez avec l'adresse e-mail correspondant au compte de service utilisé. Voir <1>ici</1> pour la documentation sur la création d'un compte de service et la clé d'accès.\n\nLes utilisateurs peuvent expérimenter des limites de composants de traitement différents non contrôlés par des Feuilles. En savoir plus sur les <2>limites de quotas</2>",
+            "leave_blank_to_selec": "Laisser vide pour sélectionner la première feuille",
+            "to_select_the_first_": "Pour sélectionner les cinq premières cellules dans la première colonne d'une feuille intitulée1, la notation A1 est la feuille1!A1:A5. <0>Voir la documentation de Google pour plus d'informations. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "Pour sélectionner les cinq premières cellules dans la première colonne d'une feuille intitulée1, la notation A1 est la feuille1!A1:A5. <0>Voir la documentation de Google pour plus d'informations. </0>",
+            "sheet_id_to_copy": "Trouvez ceci en regardant le ?gid=123123 dans l'URL de vos feuilles Google",
+            "copy_to_sheet_name": "Requis. Renommer la feuille copiée.",
+            "successfully_authent": "Authentifié avec succès",
+            "failed_to_authentica": "Échec de l'authentification"
+          },
+          "tidb": {
+            "ca_certificate": "Nous remplissons par défaut le certificat d’AC utilisé pour les connexions TLS à un niveau sans serveur. Si vous avez besoin de TLS Connections to Dedicated Tier, <0>Cliquez ici</0> pour voir la méthode de configuration."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually.",
+            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Créer un document",
+              "list": "Liste des documents",
+              "get": "Obtenir un document",
+              "update": "Mettre à jour un document",
+              "delete": "Supprimer un document"
+            },
+            "filter": {
+              "and": "ET",
+              "or": "OU",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Ascendant",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Nom du service"
+            },
+            "ssl": "Utiliser SSL lorsque disponible"
+          },
+          "couchdb": {
+            "ssl": "Utiliser SSL/TLS lorsque disponible"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Résumé de l'authentification",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Authentification Hawk",
+              "aws_v4": "Signature AWS V4",
+              "session_based_auth": "Authentification basée sur une session (obsolète)"
+            },
+            "certificates": "Utiliser les certificats auto-signés",
+            "ca_certificate": "Certificat d'AC",
+            "client_key": "Clé du client",
+            "client_certificate": "Certificat client",
+            "verification_mode": {
+              "full_verification": "Vérification complète",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Ignorer la vérification du certificat d’AC"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Lire les données depuis une feuille de calcul",
+              "append_data_to_a_spr": "Ajouter des données à une feuille de calcul",
+              "update_a_spreadsheet": "Mettre à jour une feuille de calcul",
+              "bulk_update_a_spread": "Mettre à jour une feuille de calcul par clé primaire",
+              "delete_a_single_row_": "Supprimer une seule ligne d'une feuille de calcul",
+              "create_a_spreadsheet": "Créer une feuille de calcul",
+              "copy_a_single_sheet_": "Copier une seule feuille dans une autre feuille de calcul",
+              "list_available_sprea": "Liste des feuilles de calcul disponibles",
+              "get_spreadsheet_info": "Obtenir des informations sur la feuille de calcul"
+            },
+            "data_range": {
+              "use_a1_notation": "Utiliser une notation A1",
+              "use_limit_and_offset": "Utiliser limite et décalage"
+            },
+            "filter_by": {
+              "use_a1_notation": "Utiliser une notation A1",
+              "use_row_filters": "Utiliser les filtres de ligne"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Compte de service",
+            "read_and_write": "Lire et écrire",
+            "read_only": "Lecture seule"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Compte de service"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Désactiver",
+          "enable": "Activer",
+          "new": "Nouveau",
+          "run": "Exécuter",
+          "save": "Enregistrer",
+          "save_and_run": "Enregistrer & Exécuter",
+          "save_fail": "Échec de l'enregistrement",
+          "test_run": "Exécution de test"
+        },
+        "elastic": {
+          "action_type": "Type d'action",
+          "body": "Corps",
+          "id": "Id",
+          "index": "Index",
+          "query": "Requête"
+        },
+        "error": {
+          "max_file": "La taille du fichier ne peut pas excéder 5M."
+        },
+        "firebase": {
+          "action_type": "Type d'action",
+          "collection": "Collecte",
+          "database_ref": "Référence de la base de données",
+          "document_id": "ID du document",
+          "email": "Courriel",
+          "end_at": "Finir à",
+          "len_of_list": "Longueur de la liste ",
+          "limit": "limite",
+          "next_page_token": "Jeton de la page suivante",
+          "object_to_set": "Objet à définir",
+          "order_by": "Trier par",
+          "ordering_direction": "Direction du tri",
+          "parent_document_id": "ID du document parent",
+          "phone_number": "Numéro de téléphone",
+          "placeholder": {
+            "asc": "asc",
+            "document_value": "{{ \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}",
+            "input_collection": "Entrer une collection",
+            "key": "Touche",
+            "select_an_action": "Sélectionnez une action",
+            "select_collection": "Sélectionnez une collection",
+            "value": "valeur"
+          },
+          "service_type": "Type de service",
+          "start_at": "Commencer à",
+          "tips": {
+            "document_id": "Laisser vide pour l'identifiant généré automatiquement.",
+            "parent_document_id_tips": "Laissez vide pour les collections de niveau supérieur."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Utiliser un menu déroulant",
+          "use_end_at": "Utiliser endat",
+          "use_raw_id": "Utiliser l'id brut",
+          "use_start_at": "Use startAt",
+          "user_object": "Objet utilisateur ",
+          "value": "valeur",
+          "where": "où"
+        },
+        "label": {
+          "event_handler": "Gestionnaire d'événements",
+          "failure": "Échec",
+          "resource": "Ressource",
+          "success": "Succès",
+          "transformer": "Transformateur",
+          "couchdb": {
+            "database": "Base de données",
+            "action_type": "Type d'action"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Sélectionner une base de données",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Clé de consommation",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@exemple.com",
+              "ext": "quelques données supplémentaires de l'application",
+              "app": "Identifiant de l'application",
+              "dig": "délégué par",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "Authentifier en utilisant l'en-tête d'autorisation HTTP au lieu des paramètres de requête",
+              "find_instructions_on": "Trouvez des instructions sur l'emplacement des clés d'accès <0>dans la documentation AWS</0>.",
+              "role_to_assume": "Utilisez un <0>rôle différent</0> lors de l'accès à l'API"
+            },
+            "advanced": {
+              "select_pages": "Sélectionner les pages"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Liste des enregistrements",
+                "retrieve": "Récupérer l'enregistrement",
+                "create": "Créer un enregistrement",
+                "update": "Mettre à jour l'enregistrement",
+                "delete": "Supprimer l'enregistrement",
+                "find": "Chercher",
+                "get": "Obtenir la vue"
+              },
+              "skip": "Ignorer",
+              "limit": "Limite",
+              "include": "Inclure les docs",
+              "des": "Commandes",
+              "id": "_id",
+              "rev": "_rév",
+              "record": "Enregistrements",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "Voir l'URL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Documents inclus dans les résultats retournés",
+              "des_option": "Utiliser l'ordre décroissant"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "PLAINTEXTE"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Fichier",
+                "text": "Texte du texte"
+              },
+              "method": {
+                "options": "OPTIONS",
+                "head": "TÊTE"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Paramètres de requête",
+                "header_authorization": "Autorisation de l'en-tête"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Déclencher cette action lors du chargement de la page",
+              "show_a_loading_page_": "Afficher une page de chargement lors du chargement de la page",
+              "on_page_loading": "Lors du chargement de la page",
+              "on_app_loading": "Si l'APP est chargé",
+              "none": "Aucun"
+            }
+          },
+          "restapi": {
+            "signature_method": "Méthode de signature",
+            "consumer_key": "Clé de consommation",
+            "consumer_secret": "Secret du consommateur",
+            "access_token": "Jeton d'accès",
+            "token_secret": "Secret du jeton",
+            "private_key": "Clé privée",
+            "realm": "Domaine",
+            "hawk_auth_id": "ID d'authentification Hawk",
+            "hawk_auth_key": "Clé d'authentification Hawk",
+            "algorithm": "Algorithme",
+            "user": "Utilisateur",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "application",
+            "dig": "dig",
+            "timestamp": "Horodatage",
+            "aws_region": "Région AWS",
+            "aws_service": "Service AWS",
+            "aws_access_key_id": "ID de la clé d'accès AWS",
+            "aws_secret_key_id": "ID de la clé secrète AWS",
+            "role_to_assume": "Rôle à assumer (ARN)",
+            "list_of_cookies_to_f": "Liste des cookies à transmettre",
+            "add_access_token_to": "Ajouter un jeton d'accès à"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Soit une chaîne binaire, soit un objet: {{ data: chaîne binaire, nom de fichier?: string } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Aucune action ne sera déclenchée lors du chargement de la page. Vous pouvez déclencher manuellement l'action et activer \"Déclencher cette action lorsque la page se charge\" dans les paramètres avancés."
+            }
+          },
+          "advanced": {
+            "advanced": "AVANCÉ",
+            "page_trigger": "Déclencher Timing",
+            "loading_page": "Chargement de la page",
+            "page_load_delay": "Délai (ms)",
+            "run_this_action_peri": "Exécuter cette action périodiquement",
+            "interval": "Intervalle (s)",
+            "actions_running_when": "Actions en cours d'exécution lors du chargement de la page",
+            "pages": "Pages",
+            "periodically_run": "Exécuter périodiquement"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Supprimez",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Type d'action",
+          "aggregation": "Agrégation",
+          "collection": "Collecte",
+          "document": "Document",
+          "field": "Champ",
+          "filter": "Filtre",
+          "limit": "Limite",
+          "operations": "Opérations",
+          "options": "Options",
+          "projection": "Projection",
+          "query": "Requête",
+          "skip": "Ignorer",
+          "sort_by": "Trier par",
+          "update": "Mise à jour"
+        },
+        "option": {
+          "resource": {
+            "new": "Créer une nouvelle ressource"
+          },
+          "trigger": {
+            "manually": "Exécuter une action uniquement lorsque déclenchée manuellement",
+            "on_change": "Exécuter une action automatiquement lorsque les entrées changent"
+          }
+        },
+        "s3": {
+          "action_type": "Type d'action",
+          "bucket_name": "Nom du seau",
+          "content_type": "Type de contenu",
+          "delimiter": "Délimiteur",
+          "error": {
+            "max_file": "La taille du fichier ne peut pas excéder 5M."
+          },
+          "expiry_duration_of_signed_url": "Durée d'expiration de l'URL signée (Minutes)",
+          "generate_signed_url": "Générer une URL signée",
+          "max_keys": "Clés maximales",
+          "object_key": "Clé de l'objet",
+          "object_key_list": "Liste des clés d'objet",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "Exporter au format CSV",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Préfixe pour filtrer les résultats",
+          "tips": {
+            "delimiter": "Un délimiteur est un caractère que vous utilisez pour regrouper les clés.",
+            "max_keys": "Définit le nombre maximum de clés retournées dans la réponse. Par défaut, l'action retourne jusqu'à 1 000 noms de clés."
+          },
+          "upload_data": "Charger des données",
+          "upload_data_list": "Charger une liste de données",
+          "upload_object_name": "Télécharger le nom de l'objet",
+          "upload_object_name_list": "Télécharger la liste des noms d'objet",
+          "timeout_upload": "Délai de chargement d'un fichier (Minute)",
+          "timeout_upload_multiple": "Délai de chargement d'un seul fichier (Minute) "
+        },
+        "smtp": {
+          "attachment": "Pièce(s) jointe(s)",
+          "bcc_email": "E-mail(s) Cci",
+          "body": "Corps",
+          "cc_email": "Cc email(s)",
+          "from_email": "De l'e-mail",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Utilisez des virgules pour séparer les e-mails. i.e. {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Courriel de réponse",
+          "set_replay_email": "Définir l'email de réponse à la réponse",
+          "subject": "Sujet",
+          "tips": {
+            "port": "Certains FAI peuvent bloquer le port 25.Si la connexion échoue, veuillez changer le port \n."
+          },
+          "to_email": "Aux email(s)",
+          "use_html": "Utiliser le HTML",
+          "use_raw": "Utiliser le texte brut"
+        },
+        "tips": {
+          "transformer": "Permettre aux transformateurs de transformer le résultat de la requête en un autre format."
+        },
+        "graphql": {
+          "query": "Requête",
+          "variables": "Variables",
+          "headers": "En-têtes",
+          "placeholder": {
+            "query": "# Utilisez $ pour ajouter une variable dans votre requête (par ex. $category ) \r\nquery ($owner: String!, $name: String! {\r\n  Dépôt (propriétaire : $owner, nom : $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "ID du modèle",
+          "placeholder": {
+            "mode_id": "bert-base-uncased",
+            "text": "La réponse à l'univers est [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Quel film est le meilleur ?\"], \r\n\"generated_respones\": [\"It's Die hard for sure.\"], \r\n\"text\": \"Pouvez-vous expliquer pourquoi ?\" \r\n}",
+            "binary": "par exemple {{ upload1.file[0] }}. Un fichier binaire sans préfixe de fichier",
+            "use_cache": "Booléen, laisser vide pour vrai",
+            "min_length": "Nombre entier pour définir la longueur minimale des jetons du résumé de sortie",
+            "top_k": "Entier pour définir les meilleurs jetons",
+            "top_p": "Flotter pour définir les jetons",
+            "temperature": "Float(0.0-100.0),laisser vide pour 1.0",
+            "repetition_penalty": "Flottant (0.0-100.0)",
+            "max_time": "Float (0.0-120.0) pour définir la durée en secondes"
+          },
+          "tips": {
+            "mode_id": "Allez dans le <0>hub de modèles</0> et sélectionnez le modèle que vous souhaitez utiliser.",
+            "use_detail_parameters": "<0>Cliquez ici</0> pour en savoir plus sur les paramètres de détail",
+            "temperature": "1 signifie l'échantillonnage régulier, 0 signifie toujours prendre le plus haut score, 100.0 se rapproche de la probabilité uniforme.",
+            "repetition_penalty": "Plus un jeton est utilisé dans la génération de génération, plus il est pénalisé pour ne pas être sélectionné dans les passes de génération successive."
+          },
+          "parameter": "Paramètre",
+          "use_detail_parameters": "Utiliser les paramètres de détail",
+          "use_cache": "Utiliser le cache",
+          "wait_for_model": "Attendre le modèle",
+          "min_length": "Longueur minimale",
+          "max_length": "Longueur max",
+          "top_k": "Haut de page",
+          "top_p": "Haut p",
+          "temperature": "Température",
+          "repetition_penalty": "Peine de répétition",
+          "max_time": "Temps maximum"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Quelle requête SQL voulez-vous générer"
+          },
+          "button": {
+            "text": "Générer SQL"
+          }
+        },
+        "mssql": {
+          "config_type": "Type de configuration",
+          "query": "Requête",
+          "placeholder": {
+            "query": "sélectionner * parmi les utilisateurs ;",
+            "table": "Sélectionnez une table",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Tableau",
+          "insert_record": "Tableau des enregistrements à insérer",
+          "dropdown": {
+            "retry": "Cliquez pour réessayer"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Méthode",
+            "table": "Tableau",
+            "json_input": "Utiliser l'éditeur de paramètres JSON",
+            "parameters": "Paramètres",
+            "index": "Nom de l'index",
+            "key_condition": "Expression de la condition clé",
+            "projection_expression": "Expression de projection",
+            "filter_expression": "Expression du filtre",
+            "attribute_name": "Noms des attributs de l'expression",
+            "attribute_value": "Valeurs des attributs de l'expression",
+            "limit": "Limite",
+            "select": "Sélectionner",
+            "item": "Élément",
+            "condition_expression": "Expression de la condition",
+            "key": "Clés",
+            "update_expression": "Mettre à jour l'expression"
+          },
+          "option": {
+            "query": "Requête",
+            "scan": "balayage",
+            "put_item": "mettre un élément",
+            "get_item": "getItem",
+            "update_item": "Élément de mise à jour",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, pour exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Echoué",
+          "ran_successfully": "Succès"
+        },
+        "result": {
+          "restapi": {
+            "status": "Statut",
+            "headers": "En-têtes",
+            "response": "Réponse"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Bientôt disponible"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Clé privée invalide. "
+          },
+          "label": {
+            "ca_certificate": "Certificat d'AC",
+            "client_certificate": "Certificat client",
+            "client_key": "Clé du client",
+            "config_type": "Type de configuration",
+            "connect_type": "Type de connexion",
+            "connection_format": "Format de connexion",
+            "connection_string": "Chaîne de connexion",
+            "database": "Base de données",
+            "database_index": "Index de la base de données",
+            "firebase_database_url": "URL de la base de données Firebase",
+            "firebase_project_id": "ID du projet Firestore",
+            "hostname": "Hostname",
+            "hostname_port": "Nom d'hôte/Port",
+            "hosturl": "Url de l'hôte",
+            "mongodb_connection_dns_seed_list": "Connexion à la liste des graines DNS",
+            "mongodb_connection_standard": "Connexion standard",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Cert client et clé",
+            "name": "Nom",
+            "port": "Port",
+            "private_key": "Clé privée",
+            "private_key_hover": "La clé privée est associée à un compte de service avec les privilèges de Firebase.",
+            "ssl_options": "Options SSL",
+            "username_password": "Nom d'utilisateur/mot de passe",
+            "self_signed_certificate": "Utiliser un certificat auto-signé",
+            "disable_introspection": "Désactiver l'introduction",
+            "value": "Valeur",
+            "add_to": "Ajouter à",
+            "header_prefix": "Préfixe d'en-tête",
+            "key": "Clés",
+            "introspection": "Introspection",
+            "bear_token": "Jeton",
+            "connection_options": "Options de connexion",
+            "account_name": "Nom du compte",
+            "warehouse": "Entrepôt",
+            "schema": "Schéma",
+            "snowflake_basic_auth": "Authentification basique",
+            "snowflake_key_auth": "Paire de clés (seules les clés privées cryptées sont prises en charge)",
+            "role": "Rôle",
+            "username": "Nom d'utilisateur",
+            "password": "Mot de passe",
+            "dynamo_region": "Région AWS",
+            "dynamo_access_key_id": "ID de la clé d'accès AWS",
+            "dynamo_secret_key": "Clé secrète AWS"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_production",
+            "database_index": "0 par défaut",
+            "hostname": "Hostname",
+            "hosturl": "par exemple https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "i.e.\"Utilisateurs DB(readonly)\" ou \"API d'administration interne\"",
+            "password": "Mot de passe",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"10000000000000000\",\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Nom d'utilisateur",
+            "default": "par défaut",
+            "hugging_face_url": "Utilisez l'URL absolue (par exemple https://api-inference.huggingface.co/models/). ",
+            "database_name": "Nom de la base de données",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "Calculer",
+            "snowflake_database": "SNOWFLAKE_SAMPLE",
+            "schema": "PUBLIQUE",
+            "role": "Rôle",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-ouest-1"
+          },
+          "tip": {
+            "connect_type": "Cloud : Les serveurs ILLA se connecteront de façon sécurisée à votre base de données.",
+            "name": "Le nom de la ressource lors de la création d'actions dans l'ILLA.",
+            "private_key": "<0>Cliquez ici</0> pour voir comment obtenir cette clé",
+            "ssl_options": "SSL est utilisé lorsque disponible",
+            "username_password": "Les identifiants seront cryptés et stockés de façon sécurisée sur nos serveurs.",
+            "introspection": "Activez cette option si votre point de terminaison GraphQL ne supporte pas les requêtes d'introspection. Notez que la désactivation de l'introspection réduit l'utilisation de GraphQL, comme auto-complétion et linting pour cette ressource ne fonctionnera plus.",
+            "hugging_face_url": "<0>Cliquez ici</0> pour en savoir plus sur la face d'accouchement.",
+            "bear_token": "Obtenez un jeton d'accès utilisateur ou d'API <0>dans les paramètres de votre profil face câlinage.</0>",
+            "connection_options": "Ajoutez des options de connexion à votre connexion. Lorsque l’option SSL est activée, nous ajouterons encrypt et trustServerCertificate par défaut."
+          },
+          "title": {
+            "advanced_option": "Options avancées",
+            "general_option": "GÉNÉRAL",
+            "graphql_introspection": "INTROSPECTION GRAPHQL"
+          }
+        },
+        "error": {
+          "invalid_url": "Veuillez entrer une URL valide, par exemple, https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Nouveau"
+          },
+          "label": {
+            "access_token": "Jeton d'accès",
+            "access_token_lifespan": "Jeton d'accès\n durée de vie (optiinal)",
+            "access_token_url": "URL du jeton d'accès",
+            "action_type": "Type d'action",
+            "audience": "Audience",
+            "authentication": "Authentification",
+            "authorization_url": "URL d'autorisation",
+            "base_url": "URL de base",
+            "basic_auth_password": "Mot de passe d'authentification basique",
+            "basic_auth_username": "Nom d'utilisateur d'authentification basique",
+            "bearerToken": "Jeton de Porteur",
+            "body": "Corps",
+            "client_id": "ID du client",
+            "client_secret": "Secret du client",
+            "configure_oauth2": "Configuration d'OAuth 2.0",
+            "cookies": "Cookies",
+            "copy_url_to_application": "Copiez cette URL vers votre application",
+            "enable_auth_verification_endpoint": "Activer un point de terminaison de vérification d'authentification",
+            "extra_body_values": "Valeurs du corps supplémentaire",
+            "forward_all_cookies": "Transférer tous les cookies",
+            "headers": "En-têtes",
+            "list_of_cookies_to_forward": "Liste des cookies vers\n Transférer",
+            "name": "Nom",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Actualiser le jeton",
+            "scopes": "Portées (séparées par\n un espace)",
+            "share_oauth2_credentials_between_users": "Partager les identifiants OAuth2.0 entre les utilisateurs",
+            "url_parameters": "Paramètres d'URL",
+            "use_client_credentials_auth": "Utiliser l'authentification des identifiants du client",
+            "digest_auth_username": "Nom d'utilisateur",
+            "digest_auth_password": "Mot de passe"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Authentification basique",
+              "bearer": "Porteur",
+              "none": "Aucun",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Durée de vie du jeton en secondes",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "i.e.\"API d'administrateur interne\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "Utiliser l'URL absolue (par exemple https://example.com)",
+            "database": "i.e.\"Utilisateurs DB(readonly)\"",
+            "name": "i.e.\"Utilisateurs DB(readonly)\" ou \"API d'administration interne\"",
+            "param_key": "Touche",
+            "param_value": "valeur",
+            "password": "mot de passe",
+            "username": "nom d'utilisateur"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 est une spécification complexe. ILLA prend actuellement en charge le flux d'authentification OAuth 2.0 côté serveur ainsi que le flux des identifiants du client. Dans les deux cas, vous devez utiliser le placeholder OAUTH2_TOKEN afin d'informer ILLA où placer le jeton d'accès OAuth dans la requête API. Un emplacement commun pour cela est comme un en-tête comme Authorization: Bearer OAUTH2_TOKEN.",
+            "extra_body_values": "Les valeurs de corps supplémentaires ne sont pas passées pour les requêtes GET ou HEAD",
+            "get_req_auto_run": "(GET REQ) PARAMETTRE AUTOMATIQUEMENT DES MODIFICATIONS DE PARAMETRE.",
+            "name": "Le nom de la ressource lors de la création d'actions dans l'ILLA."
+          },
+          "title": {
+            "advanced_option": "GÉNÉRAL"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Clé d'accès",
+            "base_url": "URL de base",
+            "bucket_name": "Nom du seau",
+            "custome_s3_endpoint": "Point de terminaison S3 personnalisé",
+            "region": "Région",
+            "secret_access_key": "Clé d'accès secrète",
+            "use_custome_s3_endpoint": "Utiliser un point de terminaison S3 personnalisé"
+          },
+          "placeholder": {
+            "base_url": "par exemple https://example.com",
+            "region": "us-ouest-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Il est utilisé pour se connecter à d'autres services autres que S3, comme les espaces numériques de l'océan ou Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Astuce : assignez vos références externes à des variables au lieu de chaîner les accolades."
+          },
+          "tip": {
+            "external_reference": "Vous pouvez créer des références externes aux variables que vous avez définies. Par exemple, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "En savoir plus sur l'agrandissement de Face:",
+            "hf_endpoint": "Point d'extrémité d'inférence"
+          },
+          "label": {
+            "hf_endpoint_token": "Jeton",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Obtenez un jeton API d'organisations <0>dans les paramètres de votre profil d'Hugging Visage</0>.",
+            "hf_endpoint": "en savoir plus sur <0>Point de termination</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Autoriser les adresses IP",
+            "message": "Si vos ressources ne sont pas accessibles au public, mettez à jour vos paramètres de réseau ou de pare-feu pour ajouter les adresses IP d'ILLA à la liste d'autorisations afin que ILLA puisse se connecter à vos ressources."
+          }
+        },
+        "button": {
+          "copy_ip": "Copier l'IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Supprimé"
+      },
+      "result": {
+        "title": {
+          "api_request": "Requête API",
+          "error": "La requête a échoué",
+          "json": "JSON",
+          "response": "Réponse",
+          "success": "Requête exécutée avec succès",
+          "table": "Tableau"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Base de données",
+        "js_transformer": "Transformateur JavaScript"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Impossible d'afficher les tables. Veuillez réessayer plus tard."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "privé",
+          "public_read": "lu en public",
+          "public_read_write": "lecture-écriture publique",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "authentifié-lu",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Abandonner",
+      "delete": "Supprimez",
+      "delete_content": "Supprimez-le peut faire quelques bugs, s'il vous plaît confirmer.",
+      "delete_title": "Êtes-vous sûr de vouloir supprimer {{ displayName}}?",
+      "editor_list": "Éditeurs actuels"
+    },
+    "context_menu": {
+      "delete": "Supprimez",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "ACTIONS & TRANSFORMATIONS ",
+      "components_title": "COMPONENTS ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "PAGES",
+      "global_data_modal": {
+        "title": "Modifier les données globales",
+        "variable_name": {
+          "tooltips": "Nom de la variable. Utilisez la valeur initiale dans cette application via {{name}}",
+          "label": "Nom",
+          "message": "Veuillez entrer le nom de la variable"
+        },
+        "initial_value": {
+          "label": "Valeur initiale",
+          "tooltips": "Supporte des objets ou des valeurs primitives. Exemple: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Échec du déploiement"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" existe déjà",
+      "validate_error": "\"{{ displayName }}\" doit commencer par une lettre ou \"_\", et ne peut contenir que des lettres, des chiffres, \"_\", ou \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Supprimez",
+          "reset_state": "Reset state",
+          "view_documentation": "Voir la documentation"
+        }
+      },
+      "multi_selected_header": "{{ number }} composants sélectionnés",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Graphique à barres",
+          "line": "Graphique en ligne",
+          "pie": "Graphique à l'arc",
+          "scatterplot": "Scatterplot"
+        },
+        "color_picker": {
+          "prefabricated": "Couleur préfabriquée",
+          "title": "Modifier la couleur"
+        },
+        "column_setter": {
+          "label": "Colonnes ({{number}})",
+          "new": "Nouveau",
+          "title": "Titre de la page"
+        },
+        "event_handler_list": {
+          "empty": "Déclencher des requêtes, contrôler des composants ou appeler d'autres APIs en réponse aux événements des composants.",
+          "incomplete_selection": "Sélection incomplète",
+          "new": "Nouveau",
+          "title": "Modifier le gestionnaire d'événements"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Supprimez",
+          "label": "Menus ({{number}})",
+          "new": "Nouveau",
+          "sub": "Sous-catégorie"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Supprimez",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Pas d'étiquette",
+          "model_title": "Modifier les options",
+          "new": "Nouveau",
+          "title": "Options"
+        },
+        "select_page_setter": {
+          "placeholder": "Sélectionnez une page"
+        },
+        "select_view_setter": {
+          "placeholder": "Sélectionner une vue"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Vues"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Changement",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Changement de filtre",
+          "fail": "Échoué",
+          "focus": "Concentration",
+          "invalid": "Invalide",
+          "paginationChange": "Changement de page",
+          "row_select": "Sélection de ligne",
+          "sortingChange": "Trier le changement",
+          "submit": "Soumettre",
+          "success": "Succès",
+          "onOpenModal": "Ouvrir la fenêtre modale",
+          "onCloseModal": "Fermer la fenêtre modale",
+          "play": "Jouer",
+          "pause": "Mettre en pause",
+          "ended": "Terminé",
+          "loaded": "Chargé",
+          "rowSelect": "Sélection de ligne",
+          "markerSelected": "marqueur sélectionné",
+          "markerCreated": "marqueur créé",
+          "select": "Sélectionner"
+        },
+        "image_list": {
+          "title": "Images",
+          "empty": "Aucune image",
+          "model_title": "Modifier les images",
+          "config": {
+            "model_label": "Étiquette",
+            "image_url": "URL de l'image"
+          }
+        },
+        "image_setter": {
+          "new": "Nouveau"
+        },
+        "Change": "Changement",
+        "Select": "Sélectionner",
+        "eventCalendar": {
+          "no_title": "Pas de titre"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Remplir",
+        "message_type": {
+          "error": "Erreur",
+          "info": "Infos",
+          "success": "Succès",
+          "warning": "Avertissement"
+        },
+        "outline": "Contour",
+        "validation_pattern": {
+          "email": "Courriel",
+          "regex": "Regex",
+          "url": "URL"
+        },
+        "height": {
+          "fixed": "Fixe",
+          "auto": "Automatique"
+        },
+        "upload_type": {
+          "button": "Bouton",
+          "dropzone": "Zone de dépôt"
+        },
+        "selection_types": {
+          "single_file": "Fichier unique",
+          "multiple_files": "Plusieurs fichiers",
+          "directory": "Répertoire"
+        },
+        "size_type": {
+          "kb": "Ko",
+          "mb": "MO"
+        },
+        "time_picker": {
+          "select_time": "Sélectionnez l'heure"
+        },
+        "time_range": {
+          "start_placeholder": "Heure de début",
+          "end_placeholder": "Heure de fin"
+        }
+      },
+      "setter_group": {
+        "adornments": "ADORNEMENTS",
+        "basic": "BASIQUE",
+        "column": "COULEURS",
+        "data": "DONNEES",
+        "interaction": "INTERACTION",
+        "label": "LABEL",
+        "layout": "LAYOUT",
+        "menu": "MENU",
+        "options": "OPTIONS",
+        "pagination": "PAGINATION",
+        "row_selection": "SÉLECTION DE LA SUITE",
+        "sort": "TRIER",
+        "style": "STYLE",
+        "tabs": "TABS",
+        "toolbar": "BARRE D'OUTIL",
+        "validation": "VALIDATION",
+        "views": "VUE",
+        "images": "IMAGES",
+        "primary_value": "VALEUR PRIMAIRE",
+        "secValue": "Valeur secondaire",
+        "border": "Border",
+        "color": "Couleur",
+        "icon": "Icône",
+        "secondary_value": "VALEUR SECONDAIRE",
+        "resource": "RESSOURCE",
+        "eventCalendar": {
+          "calendar": "Calendrier"
+        },
+        "event": "Evénement"
+      },
+      "setter_label": {
+        "action": "Action",
+        "align": "Align",
+        "allow_clear": "Autoriser la suppression",
+        "allow_half": "Autoriser la moitié",
+        "alt_text": "Texte Alt",
+        "alt_text_desc": "Une description accessible de l'image pour les lecteurs d'écran. Ceci est également rendu comme une valeur de secours si l'image ne parvient pas à être chargée.",
+        "background": "Arrière-plan",
+        "background_color": "Arrière-plan",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Légende",
+        "chart_title": "Titre de la page",
+        "chart_type": "Type de graphique",
+        "color": "Couleur",
+        "colors": "Couleurs",
+        "column_title": "Titre de la colonne",
+        "column_type": "Type de colonne",
+        "columns": "Colonnes",
+        "component": "Composant",
+        "config_type": "Type de configuration",
+        "container": "Conteneur",
+        "content": "Contenus",
+        "control_component": "Composant de contrôle",
+        "custom_rule": "Règle personnalisée",
+        "data": "Donnée",
+        "data_source": "Source de données",
+        "data_sources": "Sources de données",
+        "dataset": {
+          "aggregation_method": "Méthode d'agrégation",
+          "name": "Nom du jeu de données",
+          "remove": "Remove dataset",
+          "value": "Valeurs du jeu de données"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Lieu des décimales",
+        "decimal_places": "Emplacements décimaux",
+        "default_sort_key": "Colonne",
+        "default_sort_order": "Orientation",
+        "default_tab": "Default tab",
+        "default_value": "Valeur par défaut",
+        "default_views": "Vue par défaut",
+        "description": "Libellé",
+        "direction": "Orientation",
+        "disable_submit": "Désactiver la soumission",
+        "disabled": "Désactivé",
+        "download": "Télécharger",
+        "duration": "Durée",
+        "empty_state": "Etat vide",
+        "enable_sorting": "Activer le tri",
+        "end_data": "Date de fin",
+        "end_placeholder": "Placeholder de fin",
+        "event": "Evénement",
+        "event_handler": "Gestionnaire d'événements",
+        "expansion_method": "Méthode d'extension",
+        "failure": "Échec",
+        "filter": "Filtre",
+        "font_size": "Font size",
+        "form_data_key": "Clé de données du formulaire",
+        "format": "Formater",
+        "go_to_url": "Aller à l'URL",
+        "group_by": "Regrouper par",
+        "group_layout": "Mise en page du groupe",
+        "hidden": "Hidden",
+        "hidden_label": "Libellé masqué",
+        "hide_validation_message": "Masquer le message de validation",
+        "hide_value_label": "Masquer le libellé de la valeur",
+        "horizontal_alignment": "Alignement horizontal",
+        "icon": "Icône",
+        "image_source": "Source de l'image",
+        "img_height": "Hauteur",
+        "img_width": "Width",
+        "index": "Index",
+        "item_background_color": "Arrière-plan de l'élément",
+        "items": "Éléments",
+        "key": "Clés",
+        "label": "Étiquette",
+        "label_alignment": "Alignement",
+        "label_position": "Position",
+        "label_width": "Width(%)",
+        "layout": "Mise en page",
+        "legend_position": "Position de la légende",
+        "link_to_container": "Lien vers un conteneur",
+        "links_color": "Liens",
+        "loading": "En cours de chargement",
+        "loop_back_to_start": "Revenir en boucle au démarrage",
+        "loop_start_to_back": "Boucler le début à l'arrière",
+        "mapped_option": "Option de mappage",
+        "mapped_value": "Valeur Mappée",
+        "max_count": "Nombre maximum",
+        "max_date": "Date max",
+        "max_length": "Longueur max",
+        "maximum": "Maximum",
+        "method": "Méthode",
+        "min_date": "Date minimale",
+        "min_length": "Longueur minimale",
+        "minimum": "Minimum",
+        "multi_row_selection": "Sélection multi-ligne",
+        "new_tab": "New tab",
+        "only_run_when": "Exécuter uniquement lorsque",
+        "overFlow": "Surflux",
+        "page": "Page",
+        "pageSize": "Taille de la page",
+        "pattern": "Schéma",
+        "pending": "En attente",
+        "placeholder": "Placeholder",
+        "prefix_text": "Texte du préfixe",
+        "radius": "Radius",
+        "read_only": "Lecture seule",
+        "regex": "Regex",
+        "required_field": "Champ obligatoire",
+        "reset_after_successful_submit": "Remise à zéro après l'envoi réussi",
+        "router": "Routeur",
+        "run_script": "Exécuter le script",
+        "scale_type": "Type d'échelle",
+        "set_router": "Définir le routeur",
+        "set_temporary_state": "Définir l'état temporaire",
+        "shadow": {
+          "shadow": "Ombre"
+        },
+        "show_character_count": "Afficher le nombre de caractères",
+        "show_clear_button": "Afficher le bouton de nettoyage",
+        "show_footer": "Afficher le pied de page",
+        "show_header": "Afficher l'en-tête",
+        "show_notification": "Afficher la notification",
+        "sort": "Trier",
+        "start_date": "Date de début",
+        "start_placeholder": "Lancer le placeholder",
+        "step_size": "Taille de l'étape",
+        "stroke_width": "Largeur du trait",
+        "style": "Style",
+        "styles": "Styles",
+        "submit_form": "Soumettre le formulaire",
+        "success": "Succès",
+        "suffix_text": "Suffixe de texte",
+        "text": "Texte du texte",
+        "text_align": "Text align",
+        "text_size": "Taille du texte",
+        "theme_color": "Couleur du thème",
+        "thousand_separator": "Séparateur de milliers",
+        "time_format": "Format de l'heure",
+        "title": "Titre de la page",
+        "tooltip": "Info-bulle",
+        "trail_color": "Couleur de la trace",
+        "trigger_query": "Requête de déclenchement",
+        "type": "Type de texte",
+        "validate_inputs_on_submit": "Valider les entrées sur la soumission",
+        "value": "Valeur",
+        "value_labels": "Étiquettes de valeur",
+        "variant": "Variante",
+        "vertical_alignment": "Alignement vertical",
+        "width": "Width",
+        "x_axis_name": "Nom de l'axe X",
+        "x_axis_title": "Titre de l'axe X",
+        "x_axis_type": "Type d'axe X",
+        "x_axis_value": "Valeur de l'axe X",
+        "y_axis_name": "Nom de l'axe Y",
+        "y_axis_title": "Titre de l'axe Y",
+        "height": "Hauteur",
+        "min_height": "Min height (px)",
+        "show_underline": "Afficher le soulignement",
+        "auto_play": "Lecture automatique",
+        "interval": "Intervalle(ms)",
+        "show_button": "Afficher les flèches",
+        "show_dot": "Afficher les points en bas",
+        "hidden_images": "Images masquées",
+        "file_type": "Types de fichiers",
+        "selection_types": "Types de sélection",
+        "append_newly_files": "Ajouter les fichiers nouvellement sélectionnés",
+        "file_list": "Liste des fichiers",
+        "parse_value": "Analyser la valeur",
+        "max_files": "Nombre maximum de fichiers",
+        "min_files": "Fichiers min",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Dépassement",
+        "file_url": "Source du PDF",
+        "show_tool_bar": "Afficher la barre d'outils",
+        "scale": "Mettre à l'échelle de la page à",
+        "scroll": "Faire défiler vers chaque page",
+        "min_max_size": "Taille min ~ Taille max",
+        "video_url": "Source vidéo",
+        "autoplay": "Lecture automatique",
+        "loop": "Boucle",
+        "volume": "Volume",
+        "show_controls": "Afficher les commandes",
+        "img_url_array": "Tableau d'URL de l'image",
+        "statistics": {
+          "label": "Étiquette",
+          "primary_value": "Valeur principale",
+          "secValue": "Valeur secondaire",
+          "decimal": "Lieu des décimales",
+          "trend_sign": "Afficher le panneau de tendance",
+          "positive_sign": "Panneau positif",
+          "negative_sign": "Signal négatif",
+          "thousand_separator": "Afficher le séparateur de mille",
+          "trend_color": "Activer la couleur de tendance",
+          "prefix_text": "Texte du préfixe",
+          "suffix_text": "Suffixe de texte"
+        },
+        "mute": "Couper le son",
+        "collapse": {
+          "type": "Type de texte",
+          "accordin_mode": "Mode Accordéon",
+          "header_color": "En-tête",
+          "body_color": "Corps",
+          "expand_icon": "Agrandir",
+          "collapse_icon": "Réduire",
+          "icon_color": "Couleur"
+        },
+        "choose_at_least": "Choisissez au moins",
+        "choose_up_to": "Choisir jusqu'à",
+        "copy_to_clipboard": "Copier dans le presse-papiers",
+        "file_download": {
+          "file_data": "Données du fichier",
+          "file_name": "Nom du fichier avec extension",
+          "file_type": "Type de fichier"
+        },
+        "action_name": "Nom de l'action",
+        "variable": {
+          "path_of_value": "Chemin de la valeur",
+          "variable": "Données globales"
+        },
+        "code": {
+          "write_code": "Écrire un code"
+        },
+        "slider": {
+          "step_size": "Taille de l'étape",
+          "minimum": "Minimum",
+          "maximum": "Maximum",
+          "hide_output": "Masquer la sortie",
+          "prefix_icon": "Icône de préfixe",
+          "suffix_icon": "Icône du suffixe",
+          "allow_wrapping": "Autoriser l'emballage"
+        },
+        "range_slider": {
+          "start_value": "Valeur de départ",
+          "end_value": "Valeur de fin"
+        },
+        "name": "Nom",
+        "audio": {
+          "audio_url": "Source audio"
+        },
+        "map": {
+          "markers": "Marqueurs",
+          "initial_location": "Emplacement initial",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Nom du champ Latitude",
+          "longitude_field_name": "Nom du champ Longitude",
+          "zoom": "Zoom",
+          "enable_add_markers": "Activer l'ajout de marqueurs",
+          "enable_search_locati": "Activer la localisation de recherche",
+          "enable_clustering": "Activer le clustering"
+        },
+        "time_range": {
+          "start_time": "Heure de début",
+          "end_time": "Heure de fin"
+        },
+        "eventCalendar": {
+          "event_value": "Valeur de l'événement",
+          "event_id": "Id de l'événement",
+          "title": "Titre de la page",
+          "description": "Libellé",
+          "start": "Début",
+          "end": "Fin",
+          "resource_id": "Identifiant de la ressource",
+          "resource_title": "Titre de la ressource",
+          "all_day": "Toute la journée",
+          "data_source": "Source de données",
+          "default_date": "Date par défaut",
+          "resource_grid": "Grille de ressources",
+          "default_view": "Vue par défaut",
+          "show_current_time": "Afficher l'heure actuelle",
+          "background": "Arrière-plan",
+          "calendar_background": "Arrière-plan",
+          "calendar_border": "Border",
+          "calendar_text": "Texte du texte",
+          "event_background": "Arrière-plan",
+          "event_text": "Texte du texte"
+        },
+        "table": {
+          "page_index": "Index de la page",
+          "index": "Index",
+          "scroll_to_the_select": "Défiler vers la ligne sélectionnée",
+          "filters": "Filtres",
+          "filter_mode": "Mode filtre",
+          "show_thousands_separ": "Afficher le séparateur de milliers",
+          "tag_label": "Étiquette d'étiquette",
+          "tag_color": "Couleur du tag",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
+        "cascader_data": "Chaque option doit être au format JSON et contenir deux clés, valeur et étiquette. En utilisant des tableaux, vous pouvez créer des options au même niveau. Et les options enfants peuvent être créées en utilisant l'attribut \"children\". ",
+        "component_default_value": "La valeur initiale du composant, vous pouvez changer dynamiquement la valeur initiale en tapant JavaScript dans {{}}.",
+        "custom_rule": "Créez votre logique de validation ici. Les règles doivent être faites en JavaScript et couvertes par {{}}.",
+        "date_format": "Une chaîne de format de date valide. Voir [dayJS](https://day.js.org/docs/fr/parse/string-format).",
+        "default_value": "La valeur initiale de la zone de saisie. Vous pouvez modifier dynamiquement la valeur initiale du champ de saisie en tapant JavaScript dans {{}}.",
+        "disabled": "Contrôle l'état de la désactivation du composant. Le composant ne peut pas être modifié ou concentré lorsqu'il est désactivé.",
+        "disabled_submit": "Lorsque désactivé, les composants qui appellent la méthode form.submit() seront également désactivés.",
+        "download": "Afficher le bouton de téléchargement dans la barre d'outils.",
+        "filter": "Afficher le bouton de filtre dans la barre d'outils.",
+        "form_data_key": "Spécifie une clé d'un composant de formulaire d'emballage lors de la construction de l'attribut de données.",
+        "hidden": "Contrôle dynamiquement si le composant est caché. Vous pouvez changer l'état caché par la valeur booléenne dynamique.",
+        "hide_validation_message": "Vous pouvez masquer le message d'erreur en changeant l'état caché lorsque la valeur d'entrée est incorrecte. Vous pouvez modifier dynamiquement le statut caché par JavaScript.",
+        "input_default_value": "La valeur initiale de la zone de saisie. Vous pouvez modifier dynamiquement la valeur initiale du champ de saisie en tapant JavaScript dans {{}}.",
+        "loading": "Si le composant doit afficher un indicateur de chargement.",
+        "map_data_option": "Utilisez un tableau de valeurs ou un objet de clés associé à des tableaux. Chaque élément de votre source de données est mappé à chaque option.",
+        "mapped_value": "Utilisez {{ currentRow }} pour accéder aux données de la ligne courante. Par exemple, pour calculer \"coût par clic\" en fonction des colonnes \"coût\" et \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Utilisez {{table.selectedRow[n].columnName}} pour accéder aux données.",
+        "only_run_when": "Les conditions qui doivent être remplies avant l'exécution de l'événement.",
+        "placeholder": "La valeur sera affichée lorsque le champ de saisie est vide.",
+        "progress_percentage": "La valeur en pourcentage est comprise entre 0 et 100.",
+        "read_only": "Contrôle l'état du composant en lecture seule. Un composant en lecture seule peut être sélectionné et concentré mais ne peut pas être modifié.",
+        "required_field": "Valable uniquement lorsque le commutateur est allumé.",
+        "switch_default_value": "Définit le statut initial du commutateur. Vous pouvez changer dynamiquement la valeur par défaut par JavaScript.",
+        "table_only_run_when": "Conditions qui doivent être remplies avant l'exécution de l'événement. Utilisez {{ currentRow }} pour accéder aux données de la ligne courante. Par exemple, ne fonctionne que si \"imgSize\" est inférieur à 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Utilisez currentRow pour accéder aux données de la ligne courante. Par exemple, pour définir la valeur du composant editableText basé sur \"email\":  {{ currentRow.email }}.\n  Et aussi, vous pouvez définir la valeur en INSPECT de la composante en utilisant {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Utilisez {{ currentRow }} pour accéder aux données de la ligne courante. Par exemple, pour aller à l'URL avec le paramètre \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "Vous pouvez choisir d'entrer une valeur en mode Markdown ou en mode texte brut. Seuls les liens en mode markdown peuvent être reconnus.",
+        "timeline_direction": "Changer la direction de la ligne de temps.",
+        "timeline_pending": "Afficher ou non un noeud avec un statut en attente.",
+        "tooltip": "L'utilisateur peut entrer l'info-bulle des composants ici. L'infobulle s'affichera quand elle sera mise au point. Le format Markdown est pris en charge.",
+        "file_types": "Une liste des extensions de fichier autorisées à télécharger. Aucune valeur n'autorisera tous les types de fichiers.",
+        "file_list": "Pour afficher une liste des fichiers sélectionnés en dessous de l'uploader. La hauteur de l'uploader changera dynamiquement en fonction de la longueur de la liste de fichiers.",
+        "parse_value": "Tentative d'analyser les fichiers sélectionnés, avec le support des fichiers JSON, CSV, TSV, Excel et TXT.\nLes données analysées sont accessibles via {{uploader1.parsedValue}}. Les fichiers qui ne peuvent pas être analysés seront nuls dans le tableau.\nTous les fichiers sont disponibles sous forme de chaînes encodées en base64 sur la table de valeurs, quelle que soit cette option.",
+        "file_url": "Prise en charge des URL PDF sur le web, ou des données encodées en base64 des fichiers pdf. Par exemple: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Mettre à l'échelle chaque page pour remplir la largeur ou la hauteur du composant.",
+        "scroll": "Se localiser automatiquement au début de chaque page lors du défilement.",
+        "video_url": "Supporte la plupart des services vidéo ou un lien direct vers tout type de fichier vidéo commun ou les données encodées en base64 des fichiers vidéo. Par exemple: {{ data:audio/mp4;base64,exampleDate}}",
+        "collapse": {
+          "type": "Liste repliable : liste, tous les éléments copieront automatiquement le style du premier élément. Vous pouvez spécifier les données des composants dans chaque élément via {{ currentItem.columnName }}. Panneau pliable : chaque panneau est indépendant, vous pouvez spécifier le style de composant et les données de chaque élément séparément.",
+          "items": "Nombre d'éléments",
+          "accordin_mode": "En mode accordéon, quand un élément est étendu, les autres éléments se réduisent."
+        }
+      },
+      "tab_title": "Inspecter",
+      "unselected_tip1": "Aucun composant sélectionné.",
+      "unselected_tip2": "Cliquez sur un composant pour le sélectionner.",
+      "setter": {
+        "click_mask_close": "Cliquez sur masque pour fermer la fenêtre modale",
+        "modal": {
+          "blank": "Aucune icône"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Utilisez {{ item }} pour obtenir la valeur de la source de données. Par exemple, il y a deux attributs dans la source de données. Ce sont des URLs et des URL. Si vous voulez aller à une URL différente lorsque vous cliquez sur l'image, utilisez {{ item.url }} pour définir l'URL.",
+        "data_source": "Une source de données pour définir des éléments d'image en utilisant une évaluation mappée. Utilisez soit un tableau de valeurs, soit un objet de clés mappé à des tableaux. Par exemple: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Vous pouvez également utiliser les données dans des actions. Par exemple: {{ mysql1.data }} ",
+        "img_url_array": "Utilisez {{ item.attributeName }} pour obtenir l'URL de l'image à partir de la source de données. ",
+        "carousel": {
+          "data_source": "Une source de données pour définir des éléments d'image en utilisant une évaluation mappée. Utilisez soit un tableau de valeurs, soit un objet de clés mappé à des tableaux. Par exemple: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Vous pouvez également utiliser les données dans des actions. Par exemple: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Prise en charge des données base64, des données brutes, des données cartographiées de la table. "
+        },
+        "variable": {
+          "available_in_objects": "Disponible dans les objets et les tableaux. Le chemin de l'attribut dans l'objet : {{objectName.attributeName}}. L'index de la valeur dans un tableau : {{1}}. Un tableau dans l'objet : {{objectName.attributeName.1}}",
+          "the_target_value": "La valeur cible"
+        },
+        "slider": {
+          "default_value": "La valeur initiale du curseur. Vous pouvez changer dynamiquement la valeur initiale en tapant JavaScript dans {{}}.",
+          "minimum": "La valeur minimale du slider",
+          "maximum": "La valeur maximale du curseur",
+          "step_size": "L'unité de changement minimum de la diapositive",
+          "label": "Le nom du champ affiché à l'utilisateur",
+          "caption": "Une légende utilisée pour décrire le champ en détail",
+          "hide_label": "Définir si le libellé doit être affiché",
+          "allow_wrapping": "Définir s'il faut autoriser le recouvrement des libellés",
+          "position": "Définir la position de l'étiquette par rapport au composant",
+          "alignment": "Définir l'alignement du libellé",
+          "width": "Lorsque l'étiquette est sur le côté gauche du composant, définissez le rapport de largeur de l'étiquette",
+          "prefix_icon": "L'icône affichée devant le composant",
+          "suffix_icon": "L'icône affichée après le composant",
+          "hide_output": "Définir si la valeur doit être masquée lors du glissement"
+        },
+        "step": {
+          "default_step": "Étape par défaut",
+          "show_step_number": "Afficher les numéros d'étapes",
+          "indicate_completed_steps": "Indiquer les étapes complétées"
+        },
+        "range_slider": {
+          "start_value": "Définir la valeur minimale de l'intervalle",
+          "end_value": "Définir la valeur maximale de l'intervalle"
+        },
+        "audio": {
+          "audio_url": "Supporte les liens directs vers tout type de fichier audio courant ou les liens vers certains services audio ou les données encodées en base64 des fichiers audio. Par exemple: {{ data:audio/mp3;base64,exampleDate}}"
+        },
+        "map": {
+          "markers": "Pour définir des marqueurs sur la carte. Les marqueurs doivent être un tableau d'objets avec les mêmes propriétés que les marqueurs par défaut.",
+          "initial_location": "Lors de l'initialisation de la carte, la position centrée par défaut",
+          "default_markers": "Les marqueurs par défaut affichés lors de l'initialisation de la carte. Vous pouvez le définir dynamiquement avec le JavaScript dans {{}}. ",
+          "latitude_field_name": "La latitude est tirée à partir de laquelle la propriété de l'emplacement initial et des objets marqueurs par défaut.",
+          "longitude_field_name": "La longitude est prélevée à partir de laquelle la propriété de l'emplacement initial et des objets marqueurs par défaut.",
+          "zoom": "Pour définir le zoom de la carte",
+          "enable_add_markers": "Permettre aux utilisateurs d'ajouter des marqueurs en cliquant sur la carte",
+          "enable_search_locati": "Permettre aux utilisateurs de rechercher un emplacement",
+          "enable_clustering": "Permettre à plusieurs marqueurs d'agréger lorsque la carte est zoomée"
+        },
+        "time_picker": {
+          "format": "Une chaîne de format horaire valide. Pour plus d'informations sur le format: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "La durée de la valeur en minutes",
+          "show_a_clear_button_": "Afficher un bouton d'effacement lorsque la souris est au-dessus du composant. "
+        },
+        "time_range": {
+          "start_time": "L'heure de début initiale du composant. ",
+          "end_time": "L'heure de fin initiale du composant. ",
+          "start_placeholder": "La valeur sera affichée lorsque le champ heure de début est vide.",
+          "end_placeholder": "La valeur sera affichée lorsque le champ heure de fin est vide."
+        },
+        "eventCalendar": {
+          "event_value": "Utilisez l'objet inclus dans {{ pour définir la valeur de l'événement. Par exemple, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "Un identifiant unique utilisé pour identifier l'événement",
+          "title": "Le titre de l'événement",
+          "description": "La description de l'événement",
+          "start": "Heure de début de l'événement",
+          "end": "Heure de fin de l'événement",
+          "resource_id": "La ressource peut être une personne, une salle de réunion, etc. Vous pouvez définir un identifiant de ressource et le connecter à l'événement. ",
+          "resource_title": "Le nom de la ressource affiché dans la vue des ressources",
+          "all_day": "Si un événement d'une journée entière",
+          "data_source": "Source de données des événements. Une source de données doit être un tableau d'objets. Chaque objet est un événement. Par exemple, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "La date par défaut lors du lancement de l'application",
+          "resource_grid": "Afficher/Masquer une grille de ressources",
+          "default_view": "La vue par défaut lors du lancement de l'application",
+          "show_current_time": "Définir si la ligne de temps actuelle doit être affichée",
+          "calendar_background": "Définir l'arrière-plan du calendrier",
+          "calendar_border": "Définir la couleur de la bordure",
+          "calendar_text": "Définir la couleur du texte",
+          "event_background": "Définir l'arrière-plan de la carte d'événement",
+          "event_text": "Définir la couleur du texte de la fiche d'événement",
+          "couldnot_drag": "Si vous souhaitez faire glisser pour ajuster la plage de temps, veuillez passer à la page d'aperçu pour l'opération."
+        }
+      },
+      "setter_option": {
+        "fixed": "Fixe",
+        "auto_limited": "Hauteur automatique avec limites",
+        "auto_height": "Hauteur automatique",
+        "text_ellipsis": "Ellipse",
+        "text_scroll": "Défilement",
+        "text_clip": "Clip",
+        "scale_height": "Hauteur",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Panneau pliable"
+        },
+        "file_download": {
+          "auto": "Automatique",
+          "plain_text": "Texte brut",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Aucun",
+          "large": "Gros",
+          "medium": "Moyenne",
+          "small": "Petit"
+        },
+        "eventCalendar": {
+          "sunday": "Dimanche",
+          "monday": "Lundi",
+          "tuesday": "Mardi",
+          "wednesday": "Mercredi",
+          "thursday": "Jeudi",
+          "friday": "Vendredi",
+          "saturday": "Samedi",
+          "month": "Mois",
+          "week": "Semaine",
+          "day": "Jour",
+          "agenda": "Ordre du jour"
+        },
+        "table": {
+          "set_sort": "Régler le tri",
+          "column": "Colonne",
+          "number": "Numéros",
+          "percent": "Pourcentage",
+          "currency": "Devise",
+          "text": "Texte du texte",
+          "tag": "Étiquette",
+          "button_group": "Groupe de boutons",
+          "date": "Date",
+          "time": "Date et heure",
+          "date_time": "Date et heure",
+          "link": "Lier",
+          "rating": "Évaluation",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Bouton",
+          "icon": "Icône",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Aucune limite",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "$US",
+          "suffix_text": "%",
+          "positive_color": "Couleur positive",
+          "negative_color": "Couleur négative"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "nouveau_données.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Un nombre entre 0 et 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Veuillez choisir au moins {{ min }} options.",
+        "choose_up_to": "Veuillez choisir jusqu'à {{max}} options.",
+        "map": {
+          "zoom": "Veuillez définir une valeur entre 1 et 22"
+        },
+        "upload": {
+          "size_exceed": "Les fichiers de plus de 500 Mo risquent de ne pas pouvoir être analysés.",
+          "single_file": "Seul un seul fichier est autorisé.",
+          "file": "Les types de fichiers non pris en charge sont supprimés",
+          "directory": "Seuls les répertoires sont autorisés."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Écrivez votre code ici. Utilisez JavaScript à l'intérieur de {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Ajouter",
+        "body": "Corps",
+        "default_view": "Vue par défaut",
+        "edit_view": "Modifier la vue",
+        "footer": "Pied de page",
+        "header": "En-tête",
+        "key": "Clés",
+        "left_panel": "Panneau gauche",
+        "preset": "Preset",
+        "right_panel": "Panneau droit",
+        "set_as_homepage": "Définir comme page d'accueil",
+        "show_fold_icon": "Afficher l'icône du pli",
+        "view_path": "Voir le chemin d'accès",
+        "views": "Vues",
+        "width": "Width",
+        "height": "Hauteur",
+        "columns": "Colonnes"
+      },
+      "model_tips": {
+        "cancel_button": "Abandonner",
+        "change_layout_message": "Après avoir modifié la mise en page, toutes les données seront effacées. Cette opération ne peut pas être récupérée, veuillez confirmer",
+        "delete_section_message": "Après le masquage, les données de cette section seront effacées. Cette opération ne peut pas être récupérée, veuillez confirmer",
+        "ok_button": "Valider"
+      },
+      "panel_bar_title": {
+        "basic": "BASIQUE",
+        "frame": "FRAME"
+      },
+      "tab_title": "Page",
+      "tooltips": {
+        "show_fold_icon": "Afficher un bouton pour réduire ou agrandir le panneau",
+        "view_path": "Une chaîne après exemple.com/app/page/ pour accéder à cette vue",
+        "auto_canvas_width": "La largeur de la page en pourcentage de la largeur du navigateur."
+      }
+    },
+    "validate_message": {
+      "email": "Veuillez entrer une adresse e-mail valide",
+      "max_length": "Ne doit pas contenir plus de {{ number }} caractères",
+      "max_value": "Doit être inférieur à {{ number }}",
+      "min_length": "Doit comporter au moins {{ number }} caractères",
+      "min_value": "Doit être supérieur à {{ number }}",
+      "regex": "Veuillez correspondre au format demandé",
+      "required": "Ce champ est obligatoire",
+      "url": "Veuillez entrer une URL valide",
+      "max_size": "La taille du fichier ne peut pas dépasser {{maxSize }} {{ type }}.",
+      "min_files": "Au moins {{ minFiles }} fichiers sont requis.",
+      "max_files": "Prise en charge jusqu'à {{ maxFiles }} fichiers.",
+      "min_size": "La taille du fichier ne peut pas être inférieure à {{minSize }} {{ type }}.",
+      "min_max_size": "Taille min ~ Taille max"
+    },
+    "widget_picker": {
+      "empty_tip": "Désolé, aucun résultat de recherche",
+      "search_placeholder": "Chercher",
+      "sessions": {
+        "calendar": "Entrées du calendrier",
+        "commonly": "Composants communs",
+        "container": "Conteneur et formulaire",
+        "data": "Donnée",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Présentation",
+        "selects": "Sélectionner les entrées"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Définir masqué",
+      "set_file_url": "Définir la source du PDF",
+      "play": "Jouer",
+      "pause": "Mettre en pause",
+      "seek_to": {
+        "time": "Date et heure",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "Source vidéo"
+      },
+      "speed": {
+        "speed": "Rapidité",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Arrêter",
+      "mute": "Couper le son",
+      "loop": "Boucle",
+      "show_controls": "Afficher les commandes",
+      "set_volumn": "Régler le volume",
+      "set_volume": {
+        "volume": "Volume",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "format@@0 setPrimaryValue",
+        "reset_primary_value": "réinitialisation de la valeur primaire",
+        "primary_value": "Valeur principale"
+      },
+      "collapse": {
+        "expand_all_items": "Développer tous les éléments",
+        "collapse_all_items": "Réduire tous les éléments"
+      },
+      "carousel": {
+        "showNext": "Afficher la prochaine image visible",
+        "showPrevious": "Afficher l'image visible précédente"
+      },
+      "file_download": {
+        "download": "Télécharger",
+        "message": {
+          "suc": "Commencer à télécharger",
+          "fail": "La requête a échoué",
+          "download_failed": "Échec du téléchargement"
+        }
+      },
+      "setGlobalData": "Définir les données globales",
+      "setLocalStorage": "Définir le stockage local",
+      "audio": {
+        "set_audio_url": "Définir la source audio"
+      },
+      "map": {
+        "marker_selected": "Marqueur sélectionné",
+        "marker_created": "Marqueur créé",
+        "markers_changed": "Marqueurs modifiés"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "Ajouter un événement",
+        "deleteevent": "Supprimer l'événement"
+      },
+      "table": {
+        "clear_filters": "Effacer les filtres",
+        "clear_column_setting": "Effacer les paramètres de colonne",
+        "refresh": "Rafraîchir",
+        "select_page": "Sélectionner une page",
+        "select_row": "Sélectionner une ligne",
+        "clear_selection": "Effacer la sélection",
+        "set_filters": "Définir les filtres"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Tutoriel"
+          },
+          "title": {
+            "tutorial": "Tutoriel",
+            "templates": "Modèles"
+          },
+          "onboarding_app": {
+            "name": "Application d'intégration",
+            "description": "Suivez le tutoriel d'ILLA pour apprendre comment construire une application.",
+            "action": "Aller"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Fork this template as a new app"
+          },
+          "templates_name": {
+            "table": "Tableau de bord",
+            "form": "Enquête",
+            "list": "Panneau d'administration"
+          },
+          "templates_description": {
+            "table": "Utiliser des tables pour créer des tableaux de bord.",
+            "form": "Utilisez les composants de formulaire et de saisie pour créer des applications de formulaire.",
+            "list": "Utiliser un composant de liste pour afficher et gérer les informations"
+          },
+          "modal": {
+            "title": "Fourche et déploiement",
+            "placeholder": "Nom de l'application",
+            "cancel": "Abandonner",
+            "fork": "Fourche et déploiement"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Étape 1 : Faites glisser une entrée ici",
+          "drag_button": "Étape 2: Faites glisser un bouton ici",
+          "drag_table": "Étape 3 : Faites glisser une table ici",
+          "exit": "Abandonner",
+          "do_it": "Faites-le pour moi",
+          "drag_title": "Faites glisser les composants vers le cadre",
+          "modify_action_title": "Modifier l'action",
+          "modify_action_description_modify": "Modifier l'action pour obtenir des données. Nous pouvons utiliser {{input1.value}} pour obtenir les données entrées dans le composant d'entrée. \n\nsélectionnez * \nà partir des utilisateurs\nrejoindre les ordres\nsur users.id = orders.id\noù {{!input1.value}} ou lower(users.name) comme '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Cliquez sur Enregistrer puis sur Exécuter",
+          "display_data_title": "Afficher les données sur le tableau",
+          "display_data_description_select": "Sélectionnez la table sur le cadre",
+          "display_data_description_modify": "Modifier la source de données sur le panneau de droite. Nous pouvons utiliser {{postgresql1.data}} pour obtenir les données.",
+          "event_handler_title": "Cliquez sur le bouton pour déclencher l'action",
+          "event_handler_description_1": "Sélectionnez le bouton sur le cadre",
+          "event_handler_description_2": "Ajouter un gestionnaire d'événements",
+          "event_handler_description_3": "Cliquez sur le gestionnaire d'événements",
+          "event_handler_description_4": "Changer l'action pour déclencher l'action",
+          "event_handler_description_5": "Changer la requête en postgre1",
+          "test_it_title": "Testez-le",
+          "test_it_description": "Entrez un nom d'utilisateur que vous souhaitez rechercher et cliquez sur le bouton",
+          "test_it_button": "Suivant",
+          "congratulations_title": "Félicitations 🎉",
+          "congratulations_description": "Vous venez de construire votre première application. Si vous avez des questions pendant l'utilisation, vous pouvez nous contacter via <0>Discord</0>. ",
+          "congratulations_button": "Fait",
+          "event_handler_description_all": "1. Ajouter un gestionnaire d'événements\r\n2. Cliquez sur le gestionnaire d'événements\r\n3. Changez l'action pour déclencher l'action\r\n4. Changez la requête en postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "La taille des données dépasse la limite (taille actuelle: {{current_size}} octets, limite: {{limit_size}} octets)"
+    }
+  },
+  "exit_preview": "Quitter l'aperçu",
+  "freeze_collision": "Geler la collision",
+  "freeze_messages": "La toile est gelée. Vous pouvez faire glisser des composants à l'intérieur ou à l'extérieur des conteneurs.",
+  "freeze_tips": "La toile est gelée. Cliquez ici pour la dégeler.",
+  "link_copied": "Lien copié",
+  "network_error": "Réseau déconnecté. Veuillez vérifier le réseau de cet appareil",
+  "not_online_tips": "Réseau déconnecté. Veuillez vérifier le réseau de cet appareil",
+  "preview": {
+    "viewport": {
+      "size": "Taille",
+      "reset": "Reset",
+      "save": "Enregistrer",
+      "tooltip": {
+        "fluid_width": "Largeur du fluide",
+        "desktop": "Ordinateur de bureau(largeur = 1280px)",
+        "tablet": "Tablette(largeur = 1080px)",
+        "custom": "Personnalisé"
+      }
+    },
+    "button_text": "Aperçu"
+  },
+  "remove_fail": "Échec de la suppression",
+  "rename": "Renommer",
+  "resources": "Ressource",
+  "retry": "Réessayer",
+  "save": "Enregistrer",
+  "setting": {
+    "account": {
+      "email": "Courriel",
+      "empty_username": "Veuillez entrer votre nom d'utilisateur",
+      "error_username": "Le nom d'utilisateur doit contenir entre 3 et 15 caractères",
+      "save": "Enregistrer les modifications",
+      "save_fail": "Échec de l'enregistrement",
+      "title": "COMPTE",
+      "username": "Nom d'utilisateur"
+    },
+    "other": {
+      "language": "Langue",
+      "save": "Enregistrer les modifications",
+      "title": "PARAMÈTRES"
+    },
+    "password": {
+      "confirm_password": "Mot de passe de confirmation",
+      "current_password": "Ancien mot de passe",
+      "empty_password": "Veuillez entrer votre mot de passe",
+      "error_format_password": "Le mot de passe doit contenir entre 6 et 20 caractères",
+      "error_match_password": "Votre mot de passe et votre mot de passe de confirmation ne correspondent pas",
+      "error_password_has_empty": "Le mot de passe ne peut pas inclure d'espaces",
+      "error_validate_password": "Votre mot de passe ne peut contenir que des chiffres, des lettres et des signes de ponctuation",
+      "new_password": "Nouveau mot de passe",
+      "submit_button": "Soumettre",
+      "title": "MOT DE PASSE"
+    }
+  },
+  "share": "Partager",
+  "status": {
+    "403": {
+      "des": "Accès refusé"
+    },
+    "404": {
+      "again": "Rafraîchir",
+      "des": "Il semble que la page que vous recherchiez soit introuvable."
+    },
+    "500": {
+      "des": "Oups, une erreur s'est produite. Veuillez réessayer plus tard."
+    },
+    "back": "Retour à la page d'accueil",
+    "mobile_forbidden": "Pour une meilleure expérience d'édition, veuillez visiter cette page sur le bureau",
+    "back_to_cloud": "Retour au Cloud ILLA",
+    "no_permission_title": "Autorisations insuffisantes",
+    "no_permission_description": "Vous n'avez pas la permission d'effectuer l'opération demandée. Veuillez contacter les administrateurs de votre équipe."
+  },
+  "title": "Bienvenue à la illa",
+  "unfreeze_tips": "Geler la toile et faire glisser les composants dans ou hors des conteneurs. (D ou K)",
+  "user": {
+    "description": "Une plateforme open-source à code bas pour les développeurs.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Envoyer le code"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Veuillez entrer une adresse e-mail valide",
+          "registered": "L'adresse e-mail n'est pas associée à un compte.",
+          "require": "Veuillez saisir votre adresse e-mail"
+        },
+        "newPassword": {
+          "require": "Veuillez entrer votre mot de passe"
+        },
+        "verification_code": {
+          "expired": "Code de vérification expiré",
+          "invalid": "Code de vérification invalide",
+          "require": "Veuillez entrer le code de vérification"
+        }
+      },
+      "fields": {
+        "email": "Courriel",
+        "newPassword": "Nouveau mot de passe",
+        "verification_code": "Code de vérification"
+      },
+      "placeholder": {
+        "email": "Entrez votre adresse e-mail",
+        "verification_code": "Veuillez entrer le code de vérification"
+      },
+      "subtitle": "Retour à la connexion",
+      "tips": {
+        "fail": "Échec de la réinitialisation du mot de passe",
+        "fail_sent": "Impossible d'envoyer le code de vérification",
+        "success": "Mot de passe réinitialisé avec succès",
+        "verification_code": "Code de vérification envoyé"
+      },
+      "title": "Réinitialiser le mot de passe"
+    },
+    "password": {
+      "placeholder": "Entrez votre nouveau mot de passe (au moins 6 caractères)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Se connecter"
+      },
+      "description": {
+        "forgot_password": "Mot de passe oublié ?",
+        "policy": "En cliquant sur Connexion, j'accepte la <0>Politique de confidentialité</0> et les <1>conditions</1>",
+        "register": "Nouvel utilisateur? <0>Créer un compte</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Veuillez entrer une adresse e-mail valide",
+          "registered": "L'adresse e-mail n'est pas associée à un compte.",
+          "require": "Veuillez saisir votre adresse e-mail"
+        },
+        "password": {
+          "incorrect": "E-mail ou mot de passe incorrect",
+          "locked": "Trop de mauvaises tentatives, veuillez réinitialiser votre mot de passe ou réessayer après 1 heure",
+          "min_length": "Le mot de passe doit comporter au moins 6 caractères",
+          "require": "Veuillez entrer le mot de passe"
+        }
+      },
+      "fields": {
+        "email": "Courriel",
+        "password": "Mot de passe"
+      },
+      "placeholder": {
+        "email": "Entrez votre adresse e-mail"
+      },
+      "tips": {
+        "fail": "Échec de la connexion",
+        "success": "Connecté avec succès"
+      },
+      "title": "Bienvenue de retour"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Créer un compte",
+        "send": "Envoyer le code"
+      },
+      "description": {
+        "login": "Vous avez déjà un compte ? <0>Connectez-vous </0>",
+        "policy": "En cliquant sur Créer un compte, j'accepte <0>Politique de confidentialité</0> et <1>conditions</1>",
+        "subscribe": "Je suis prêt à recevoir les mises à jour et les nouvelles concernant ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Veuillez entrer une adresse e-mail valide",
+          "registered": "Un compte avec cette adresse e-mail existe déjà.",
+          "require": "Veuillez saisir votre adresse e-mail"
+        },
+        "password": {
+          "require": "Veuillez entrer le mot de passe"
+        },
+        "username": {
+          "length": "Le nom d'utilisateur doit contenir entre 3 et 15 caractères",
+          "require": "Veuillez entrer le nom d'utilisateur"
+        },
+        "verification_code": {
+          "expired": "Code de vérification expiré",
+          "invalid": "Code de vérification invalide",
+          "require": "Veuillez entrer le code de vérification"
+        }
+      },
+      "fields": {
+        "email": "Courriel",
+        "password": "Mot de passe",
+        "username": "Nom d'utilisateur",
+        "verification_code": "Code de vérification"
+      },
+      "placeholder": {
+        "email": "Entrez votre adresse e-mail",
+        "username": "Entrez votre nom d'utilisateur",
+        "verification_code": "Veuillez entrer le code de vérification"
+      },
+      "tips": {
+        "fail": "Échec de l'inscription",
+        "fail_sent": "Impossible d'envoyer le code de vérification",
+        "success": "Inscription réussie",
+        "verification_code": "Code de vérification envoyé"
+      },
+      "title": "S'inscrire",
+      "agreement": {
+        "privacy_policy": "Politique de confidentialité",
+        "terms_of_service": "conditions de service"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Progression de la barre"
+    },
+    "button": {
+      "default_text": "Bouton",
+      "name": "Bouton"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Graphique"
+    },
+    "check_box_group": {
+      "name": "Groupe de case à cocher"
+    },
+    "circle_progress": {
+      "name": "Progression du cercle"
+    },
+    "container": {
+      "empty": "Appuyez sur <keyPress>D</keyPress> ou <keyPress>K</keyPress> et faites glisser les composants ici",
+      "key_duplicated": "La clé est dupliquée. Veuillez utiliser des clés uniques pour éviter les erreurs.",
+      "name": "Conteneur",
+      "value_duplicated": "La valeur est dupliquée. Veuillez utiliser des valeurs uniques pour éviter les erreurs."
+    },
+    "date": {
+      "name": "Date"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Date et heure",
+      "placeholder": "Sélectionnez l'heure"
+    },
+    "divider_progress": {
+      "name": "Diviseur"
+    },
+    "editable_text": {
+      "name": "Texte modifiable"
+    },
+    "form": {
+      "name": "Forme"
+    },
+    "image": {
+      "name": "Image"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Utilisez {{ currentItem }} pour accéder aux données de l'élément actuel. Par exemple, pour définir la valeur du composant de texte qui est dans la liste du composant basé sur \"userName\": {{ currentItem.userName }}",
+      "doc2": "Utilisez {{list.selectedItem.data}} pour accéder aux données de l'élément sélectionné dans le composant de la liste. Par exemple, pour définir la valeur du composant de texte qui est en dehors du composant de liste basé sur \"nom d'utilisateur\" de l'élément sélectionné dans la liste : {{ list.selectedItem.userName }}",
+      "name": "Liste"
+    },
+    "menu": {
+      "name": "Menu"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Gauche",
+      "right": "Droite",
+      "select_options": {
+        "manual": "Manuelle",
+        "mapped": "Mappé"
+      },
+      "top": "En haut"
+    },
+    "radio_button": {
+      "name": "Bouton radio"
+    },
+    "radio_group": {
+      "name": "Groupe radio"
+    },
+    "rate": {
+      "name": "Évaluer"
+    },
+    "select": {
+      "name": "Sélectionner"
+    },
+    "switch": {
+      "name": "Commuter"
+    },
+    "table": {
+      "ascend": "Ascendant",
+      "descend": "Desc",
+      "name": "Tableau",
+      "pagination": "Pagination",
+      "scroll": "Défilement"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Bonjour!",
+      "name": "Texte du texte",
+      "text_model": "Texte brut"
+    },
+    "timeline": {
+      "horizontal": "Horizontal",
+      "name": "Échéancier",
+      "vertical": "verticale"
+    },
+    "modal": {
+      "name": "Modal"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Charger",
+      "default_button_text": "Charger",
+      "default_dropzone_text": "Sélectionner ou déposer un fichier ici"
+    },
+    "icon": {
+      "name": "Icône"
+    },
+    "pdf": {
+      "empty": "Aucun fichier PDF",
+      "failed": "Le fichier PDF n'a pas pu être chargé"
+    },
+    "video": {
+      "name": "Vidéo",
+      "empty": "Aucune vidéo",
+      "fail": "Impossible de charger"
+    },
+    "statistics": {
+      "name": "Statistiques"
+    },
+    "collapse": {
+      "name": "Réduire"
+    },
+    "multiselect": {
+      "name": "Sélection multiple"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Étapes"
+    },
+    "slider": {
+      "name": "Curseur"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Audio",
+      "no_audio": "Pas de son"
+    },
+    "collaborative": {
+      "no_name": "Pas de nom"
+    },
+    "map": {
+      "name": "Carte"
+    },
+    "time_picker": {
+      "name": "Sélecteur de temps"
+    },
+    "time_range": {
+      "name": "Intervalle de temps"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Calendrier des événements"
+      },
+      "name_duplicated": "Cet ID de ressource entre en conflit dans ces événements, veuillez utiliser le même nom ou l'identifiant différent"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Fixe",
+        "auto": "Automatique"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Envoyer le code"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Veuillez entrer une adresse e-mail valide",
+            "registered": "L'adresse e-mail n'est pas associée à un compte.",
+            "require": "Veuillez saisir votre adresse e-mail"
+          },
+          "newPassword": {
+            "require": "Veuillez entrer votre mot de passe"
+          },
+          "verification_code": {
+            "expired": "Code de vérification expiré",
+            "invalid": "Code de vérification invalide",
+            "require": "Veuillez entrer le code de vérification"
+          }
+        },
+        "fields": {
+          "email": "Courriel",
+          "newPassword": "Nouveau mot de passe",
+          "verification_code": "Code de vérification"
+        },
+        "placeholder": {
+          "email": "Entrez votre adresse e-mail",
+          "verification_code": "Veuillez entrer le code de vérification"
+        },
+        "subtitle": "Retour à la connexion",
+        "tips": {
+          "fail": "Échec de la réinitialisation du mot de passe",
+          "fail_sent": "Impossible d'envoyer le code de vérification",
+          "success": "Mot de passe réinitialisé avec succès",
+          "verification_code": "Code de vérification envoyé"
+        },
+        "title": "Réinitialiser le mot de passe"
+      },
+      "password": {
+        "placeholder": "Entrez votre nouveau mot de passe (au moins 6 caractères)"
+      },
+      "policy": "En utilisant ILLA, vous acceptez notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Se connecter"
+        },
+        "description": {
+          "forgot_password": "Mot de passe oublié ?",
+          "policy": "En cliquant sur Connexion, j'accepte la <0>Politique de confidentialité</0> et les <1>conditions</1>",
+          "register": "Nouvel utilisateur? <0>Créer un compte</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Veuillez entrer une adresse e-mail valide",
+            "registered": "L'adresse e-mail n'est pas associée à un compte.",
+            "require": "Veuillez saisir votre adresse e-mail"
+          },
+          "password": {
+            "incorrect": "E-mail ou mot de passe incorrect",
+            "locked": "Trop de mauvaises tentatives, veuillez réinitialiser votre mot de passe ou réessayer après 1 heure",
+            "min_length": "Le mot de passe doit comporter au moins 6 caractères",
+            "require": "Veuillez entrer le mot de passe"
+          }
+        },
+        "fields": {
+          "email": "Courriel",
+          "password": "Mot de passe"
+        },
+        "placeholder": {
+          "email": "Entrez votre adresse e-mail"
+        },
+        "tips": {
+          "fail": "Échec de la connexion",
+          "success": "Connecté avec succès",
+          "fail_account": "E-mail ou mot de passe incorrect"
+        },
+        "title": "Bienvenue de retour",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Inscription réussie. Vous pourrez définir un mot de passe pour votre compte e-mail plus tard",
+            "auth_failed": "Échec de l'authentification"
+          }
+        },
+        "option": {
+          "github": "Se connecter avec GitHub",
+          "google": "Se connecter avec Google",
+          "or": "OU"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Créer un compte",
+          "send": "Envoyer le code"
+        },
+        "description": {
+          "login": "Vous avez déjà un compte ? <0>Connectez-vous </0>",
+          "policy": "En cliquant sur Créer un compte, j'accepte <0>Politique de confidentialité</0> et <1>conditions</1>",
+          "subscribe": "Je suis prêt à recevoir les mises à jour et les nouvelles concernant ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Veuillez entrer une adresse e-mail valide",
+            "registered": "Un compte avec cette adresse e-mail existe déjà.",
+            "require": "Veuillez saisir votre adresse e-mail"
+          },
+          "password": {
+            "require": "Veuillez entrer le mot de passe"
+          },
+          "username": {
+            "length": "Le nom d'utilisateur doit contenir entre 3 et 15 caractères",
+            "require": "Veuillez entrer le nom d'utilisateur"
+          },
+          "verification_code": {
+            "expired": "Code de vérification expiré",
+            "invalid": "Code de vérification invalide",
+            "require": "Veuillez entrer le code de vérification"
+          }
+        },
+        "fields": {
+          "email": "Courriel",
+          "password": "Mot de passe",
+          "username": "Nom d'utilisateur",
+          "verification_code": "Code de vérification"
+        },
+        "placeholder": {
+          "email": "Entrez votre adresse e-mail",
+          "username": "Entrez votre nom d'utilisateur",
+          "verification_code": "Veuillez entrer le code de vérification"
+        },
+        "tips": {
+          "fail": "Échec de l'inscription",
+          "fail_sent": "Impossible d'envoyer le code de vérification",
+          "success": "Inscription réussie",
+          "verification_code": "Code de vérification envoyé"
+        },
+        "title": "S'inscrire",
+        "option": {
+          "github": "S'inscrire avec GitHub",
+          "google": "S'inscrire avec Google"
+        }
+      },
+      "description": "Une plateforme open-source à code bas pour les développeurs."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Tutoriel"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Veuillez entrer une valeur d'au moins {{ size }}."
+  },
+  "failed_to_copy": "Échec de la copie",
+  "copied": "Copié!",
+  "user_management": {
+    "role": {
+      "owner": "Propriétaire",
+      "admin": "Administer",
+      "editor": "Editeur",
+      "viewer": "Visionneuse"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Inviter des membres"
+      },
+      "link": {
+        "invite_title": "Lien d'invitation",
+        "copy": "Copie",
+        "turn_off": "Désactiver les liens d'invitation",
+        "update": "Mettre à jour les liens d'invitation",
+        "description": "Partagez un lien secret que les gens peuvent utiliser pour rejoindre votre équipe.",
+        "turn_on": "Activer les liens d'invitation",
+        "fail": "Impossible d'obtenir le lien, veuillez réessayer plus tard",
+        "copied_suc": "Copié!",
+        "failed_to_copy": "Échec de la copie",
+        "turn_off_fail": "Échec de la désactivation",
+        "turn_on_fail": "Échec de l'activation",
+        "make_public_title": "Rendre l'application publique",
+        "make_public_copy": "Copie"
+      },
+      "email": {
+        "invite_title": "Inviter par e-mail",
+        "invite": "Inviter",
+        "placeholder": "Entrez votre adresse e-mail",
+        "invited": "Ont invité",
+        "in_list": "Cet utilisateur est déjà dans votre équipe.",
+        "notmail": "{{ email }} n'est pas un email",
+        "duplicate": "{{ email }} est dupliqué"
+      },
+      "invalid_email": "Veuillez entrer une adresse e-mail valide",
+      "message": {
+        "make_public_suc": "Défini avec succès",
+        "make_public_failed": "Impossible de définir",
+        "app_share_in_team": "{{ email }} est déjà dans votre équipe, veuillez partager le lien avec lui. "
+      },
+      "tab": {
+        "invite": "Inviter",
+        "public": "Publique"
+      }
+    },
+    "mes": {
+      "invite_suc": "Invité avec succès",
+      "invite_fail": "Échec de l'invitation",
+      "update_suc": "Mis à jour avec succès",
+      "update_fail": "Échec de la mise à jour",
+      "transfer_suc": "transféré avec succès",
+      "transfer_fail": "Échec du transfert",
+      "remove_suc": "Enlevé avec succès",
+      "remove_fail": "Échec de la suppression",
+      "change_role_fail": "Échec de la mise à jour",
+      "change_role_suc": "Mis à jour avec succès"
+    },
+    "page": {
+      "member": "Membre",
+      "invite": "Inviter",
+      "permission": "Permission",
+      "operation": "Opération",
+      "transfer": "Transférer la propriété",
+      "remove": "Retirer"
+    },
+    "transfer_modal": {
+      "title": "Êtes-vous sûr de vouloir transférer la propriété ?",
+      "description": "Après le transfert, votre permission passera à l'administrateur.",
+      "transfer": "Transférer",
+      "cancel": "Abandonner"
+    },
+    "remove_modal": {
+      "title": "Êtes-vous sûr de vouloir supprimer {{ username }}?",
+      "description": "Après la suppression, l'utilisateur ne pourra plus accéder à l'équipe.",
+      "remove": "Retirer",
+      "cancel": "Abandonner"
+    },
+    "status": {
+      "pending": "En attente"
+    },
+    "settings": {
+      "allow_editors_invite": "Autoriser les éditeurs et les utilisateurs à gérer les membres"
+    }
+  },
+  "copy_failed": "Échec de la copie",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Paramètres de l'équipe",
+      "member": "Membre",
+      "leave": "Quitter l'équipe",
+      "delete": "Supprimer l'équipe"
+    },
+    "leave_modal": {
+      "title": "Êtes-vous sûr de vouloir quitter cette équipe?",
+      "description": "Vous ne pourrez pas accéder aux ressources de l'équipe après votre départ.",
+      "leave": "Quitter",
+      "cancel": "Abandonner"
+    },
+    "delete_modal": {
+      "title": "Êtes-vous sûr de vouloir supprimer cette équipe?",
+      "delete": "Supprimez",
+      "cancel": "Abandonner",
+      "desctiption": "L'identifiant de l'équipe sera indisponible après la suppression, et tous les membres seront supprimés de cette équipe."
+    },
+    "team_info": {
+      "title": "Infos sur l'équipe",
+      "team_name": "Nom de l'équipe",
+      "domain": ".illacloud.com",
+      "existed": "Déjà existant",
+      "available": "Disponible",
+      "edit": "Editer",
+      "save": "Enregistrer les modifications",
+      "adjust_avater": "Ajuster l'avatar",
+      "avater_crop": "Rogner",
+      "team_name_empty": "Veuillez entrer le nom de l'équipe",
+      "team_id_empty": "Veuillez entrer l'identifiant de l'équipe",
+      "team_name_placeholder": "Entrez le nom de l'équipe",
+      "team_id_placeholder": "Entrez l'identifiant de l'équipe",
+      "leave_title": "Quitter l'équipe",
+      "leave_button": "Quitter l'équipe",
+      "delete_title": "Supprimer l'équipe",
+      "delete_button": "Supprimer l'équipe",
+      "team_domain": "Identifiant de l'équipe"
+    },
+    "message": {
+      "save_suc": "Sauvegardé avec succès",
+      "save_fail": "Échec de l'enregistrement"
+    },
+    "mes": {
+      "domain_suc": "Création réussie.",
+      "delete_suc": "Supprimé avec succès",
+      "delete_fail": "Échec de la suppression",
+      "leave_suc": "Quitter avec succès",
+      "leave_fail": "Échec du départ"
+    }
+  },
+  "members": "Membres",
+  "invite_new_member": "Inviter",
+  "launch": "Lancer",
+  "homepage": {
+    "message": {
+      "join_failed": "Impossible de rejoindre l'équipe: votre e-mail n'est pas l'e-mail invité."
+    }
+  },
+  "image_exceed": "La taille de l'image ne peut pas dépasser 500Ko",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Rogner",
+        "save": "Enregistrer",
+        "cancel": "Abandonner"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Sauvegardé avec succès",
+        "save_fail": "Échec de l'enregistrement"
+      },
+      "password": {
+        "title": "Mot de passe"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Liste pliable"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "Une dépendance circulaire se produit sur {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "description": "La présente politique de confidentialité explique nos pratiques en matière de collecte, d'utilisation et de divulgation des renseignements que nous recevons par l'intermédiaire de nos Services."
+    },
+    "terms": {
+      "description": "Les présentes conditions de service régissent votre accès et votre utilisation de notre Site ainsi que notre prestation de divers services.",
+      "title": "Conditions d'utilisation"
+    }
+  },
+  "empty_copied_tips": "Le contenu à copier est vide",
+  "copy_empty": "Le contenu à copier est vide",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Apprenez à construire une application en 5 minutes",
+          "description": "Suivez le tutoriel d'ILLA pour apprendre comment construire une application. Cela prendra environ 5 minutes.",
+          "cancel": "Abandonner",
+          "take": "Suivez un tutoriel"
+        },
+        "exit_confirm": {
+          "title": "Arrêter le tutoriel?",
+          "description": "La prochaine fois que vous entrez dans l'application d'intégration, les étapes guidées seront rejouées ",
+          "cancel": "Abandonner",
+          "exit": "Arrêter"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Rediriger",
+  "oauth_redirect_description": "Redirection vers <0>ILLA Cloud</0>",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
+}

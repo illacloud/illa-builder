@@ -2,7 +2,6 @@ import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, Select, useMessage } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { ReactComponent as OpenAIIcon } from "@/assets/openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
@@ -21,7 +20,10 @@ import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { fetchGenerateSQL } from "@/services/action"
+import { fetchResourceMeta } from "@/services/resource"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const MysqlLikePanel: FC = () => {
@@ -33,17 +35,11 @@ export const MysqlLikePanel: FC = () => {
   const { t } = useTranslation()
 
   useEffect(() => {
-    BuilderApi.teamRequest(
-      {
-        url: `/resources/${currentAction.resourceId}/meta`,
-        method: "GET",
-      },
+    if (currentAction.resourceId == undefined) return
+    fetchResourceMeta(currentAction.resourceId).then(
       ({ data }: { data: ResourcesData }) => {
         setSqlTable(data?.schema ?? {})
       },
-      () => {},
-      () => {},
-      () => {},
     )
   }, [currentAction.resourceId])
 
@@ -96,6 +92,48 @@ export const MysqlLikePanel: FC = () => {
       parameter3: value.length,
     })
   }, [])
+  const handleClickGenerate = useCallback(async () => {
+    setGenerateLoading(true)
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "sql_generation",
+      parameter1: currentAction.actionType,
+      parameter4: {
+        type: currentSqlAction,
+        content: inputRef.current?.value,
+      },
+    })
+    const data = {
+      description: inputRef.current?.value,
+      resourceID: currentAction.resourceId,
+      action: currentSqlAction,
+    }
+    try {
+      const response = await fetchGenerateSQL(appInfo.appId, data)
+      dispatch(
+        configActions.updateCachedAction({
+          ...currentAction,
+          content: {
+            ...mysqlContent,
+            query: response.data.payload,
+          },
+        }),
+      )
+    } catch (e) {
+      if (isILLAAPiError(e)) {
+        message.error({
+          content: e.data.errorMessage,
+        })
+      }
+    }
+    setGenerateLoading(false)
+  }, [
+    appInfo.appId,
+    currentAction,
+    currentSqlAction,
+    dispatch,
+    message,
+    mysqlContent,
+  ])
 
   return (
     <div css={mysqlContainerStyle}>
@@ -153,51 +191,7 @@ export const MysqlLikePanel: FC = () => {
             pd="9px 24px"
             bg="linear-gradient(90deg, #FF53D9 0%, #AE47FF 100%);"
             leftIcon={<OpenAIIcon />}
-            onClick={() => {
-              setGenerateLoading(true)
-              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                element: "sql_generation",
-                parameter1: currentAction.actionType,
-                parameter4: {
-                  type: currentSqlAction,
-                  content: inputRef.current?.value,
-                },
-              })
-              BuilderApi.teamRequest<{ payload: string }>(
-                {
-                  url: `/apps/${appInfo.appId}/internalActions/generateSQL`,
-                  method: "POST",
-                  data: {
-                    description: inputRef.current?.value,
-                    resourceID: currentAction.resourceId,
-                    action: currentSqlAction,
-                  },
-                },
-                ({ data }) => {
-                  dispatch(
-                    configActions.updateCachedAction({
-                      ...currentAction,
-                      content: {
-                        ...mysqlContent,
-                        query: data.payload,
-                      },
-                    }),
-                  )
-                },
-                (error) => {
-                  message.error({
-                    content: error.data.errorMessage,
-                  })
-                  setGenerateLoading(false)
-                },
-                () => {
-                  setGenerateLoading(false)
-                },
-                (loading) => {
-                  setGenerateLoading(loading)
-                },
-              )
-            }}
+            onClick={handleClickGenerate}
           >
             {t("editor.action.panel.sqlgc.button.text")}
           </Button>

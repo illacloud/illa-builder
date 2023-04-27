@@ -1,4 +1,4 @@
-import { FC, forwardRef, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import useMeasure from "react-use-measure"
 import { Progress } from "@illa-design/react"
 import { applyContainerCss } from "@/widgetLibrary/CircleProgressWidget/style"
@@ -8,10 +8,9 @@ import {
   WrappedCircleProgressProps,
 } from "./interface"
 
-export const WrappedCircleProgress = forwardRef<
-  any,
-  WrappedCircleProgressProps
->((props, ref) => {
+export const WrappedCircleProgress: FC<WrappedCircleProgressProps> = (
+  props,
+) => {
   const {
     value,
     showText,
@@ -40,32 +39,21 @@ export const WrappedCircleProgress = forwardRef<
       strokeWidth={_strokeWidth}
     />
   )
-})
+}
 
 WrappedCircleProgress.displayName = "WrappedCircleProgress"
 
 export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
   const {
-    value,
-    showText,
-    color,
-    trailColor,
-    strokeWidth,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    displayName,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     alignment,
     tooltipText,
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      showText,
-      color,
-      trailColor,
-      strokeWidth,
+    updateComponentRuntimeProps({
       setValue: (value: number) => {
         handleUpdateDsl({ value })
       },
@@ -75,18 +63,12 @@ export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    value,
-    showText,
-    color,
-    trailColor,
-    strokeWidth,
-    displayName,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
   ])
 
   const [wrapperRef, bounds] = useMeasure()

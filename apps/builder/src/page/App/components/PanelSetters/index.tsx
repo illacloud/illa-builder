@@ -14,6 +14,7 @@ import { ListSetter } from "@/page/App/components/PanelSetters/ListSetter"
 import { MappedOptionSetter } from "@/page/App/components/PanelSetters/MappedOptionSetter"
 import { MenuOptionSetter } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter"
 import { OptionListSetter } from "@/page/App/components/PanelSetters/OptionListSetter"
+import { CalendarEventListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/CalendarEventListSetter"
 import { CarouselListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/CarouselListSetter"
 import { StepsListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/StepsListSetter"
 import { BaseRadioGroupSetter } from "@/page/App/components/PanelSetters/RadioGroupSetter/baseRadioGroup"
@@ -22,6 +23,7 @@ import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSett
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { DataSourceSetter } from "@/page/App/components/PanelSetters/SelectSetter/dataSourceSelectSetter"
 import { EventActionTypeSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventActionTypeSelect"
+import { EventCalendarSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventCalendarSelect"
 import { EventTargetActionSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventTargetActionSelect"
 import { EventTargetWidgetSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventTargetWidgetSelect"
 import { EventWidgetMethodSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventWidgetMethodSelect"
@@ -90,6 +92,8 @@ const SetterTypeMapSetter = {
   HEIGHT_MODE_SELECT: HeightModeSelect,
   SHADOW_SELECT_SETTER: ShadowSelect,
   EVENT_TARGET_STATE_SELECT_SETTER: EventtargetStateSelect,
+  CALENDAR_EVENT_LIST_SETTER: CalendarEventListSetter,
+  EVENT_CALENDAR_SELECT: EventCalendarSelect,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

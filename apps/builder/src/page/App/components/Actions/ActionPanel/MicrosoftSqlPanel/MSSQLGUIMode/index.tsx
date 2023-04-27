@@ -1,12 +1,12 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { createMessage } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { MSSQLModeProps } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel/interface"
 import { SingleTypeComponent } from "@/page/App/components/Actions/ActionPanel/SingleTypeComponent"
 import { InputEditor } from "@/page/App/components/InputEditor"
 import { MicrosoftSqlActionGUIMode } from "@/redux/currentApp/action/microsoftSqlAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
@@ -31,27 +31,22 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
     if (!resourceId) {
       return
     }
-    BuilderApi.teamRequest(
-      {
-        url: `/resources/${resourceId}/meta`,
-        method: "GET",
-      },
-      ({ data }: { data: ResourcesData }) => {
-        const tables = Object.keys(data.schema ?? {}).map((key) => key)
-        setCollectionSelect(tables)
+    setLoading(true)
+    fetchResourceMeta(resourceId)
+      .then(
+        ({ data }: { data: ResourcesData }) => {
+          const tables = Object.keys(data.schema ?? {}).map((key) => key)
+          setCollectionSelect(tables)
+          setLoading(false)
+          setError(false)
+        },
+        () => {
+          handleRequestError()
+        },
+      )
+      .finally(() => {
         setLoading(false)
-        setError(false)
-      },
-      () => {
-        handleRequestError()
-      },
-      () => {
-        handleRequestError()
-      },
-      () => {
-        setLoading(true)
-      },
-    )
+      })
   }, [handleRequestError, resourceId])
 
   return (

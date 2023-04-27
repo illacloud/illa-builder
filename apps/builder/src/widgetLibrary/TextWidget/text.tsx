@@ -37,12 +37,12 @@ export const Text: FC<TextProps> = (props) => {
           css={applyMarkdownStyle(horizontalAlign)}
           remarkPlugins={[remarkGfm]}
           components={{
-            a: ({ node, ...props }) => (
-              <Link href={props.href} colorScheme={colorScheme} target="_blank">
-                {props.children}
+            a: ({ href, children }) => (
+              <Link href={href} colorScheme={colorScheme} target="_blank">
+                {children}
               </Link>
             ),
-            p: ({ children, ...props }) => (
+            p: ({ children }) => (
               <Paragraph colorScheme={colorScheme} fs={fs}>
                 {children}
               </Paragraph>
@@ -63,10 +63,9 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     value,
     horizontalAlign,
     verticalAlign = "start",
-    displayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     updateComponentHeight,
     disableMarkdown,
     tooltipText,
@@ -79,10 +78,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
   } = props
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      horizontalAlign,
-      verticalAlign,
+    updateComponentRuntimeProps({
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -92,16 +88,12 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    value,
-    horizontalAlign,
-    verticalAlign,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
   ])
 
   const enableAutoHeight = useMemo(() => {

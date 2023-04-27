@@ -178,11 +178,10 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
     primaryValue,
     triggerEventHandler,
     handleUpdateDsl,
-    displayName,
     tooltipText,
     updateComponentHeight,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
   } = props
 
   const previousValueRef = useRef<number | undefined>(primaryValue)
@@ -197,7 +196,7 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
   }, [primaryValue])
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
+    updateComponentRuntimeProps({
       setPrimaryValue: (value: number) => {
         signalRef.current = true
         handleUpdateDsl({ primaryValue: value })
@@ -209,14 +208,12 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    displayName,
-    handleDeleteGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    primaryValue,
+    updateComponentRuntimeProps,
   ])
 
   const handleOnClick = useCallback(() => {

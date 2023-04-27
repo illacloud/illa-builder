@@ -2,11 +2,11 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, useMessage } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { AppNameEditorModalProps } from "@/page/App/components/PageNavBar/interface"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { fetchChangeAppName } from "@/services/apps"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   appNameEditorSaveButtonWrapperStyle,
@@ -47,35 +47,25 @@ export const AppNameEditModal: FC<AppNameEditorModalProps> = (props) => {
       parameter2: "suc",
       parameter3: appNewName.length,
     })
-    BuilderApi.teamRequest(
-      {
-        url: `/apps/${appInfo.appId}`,
-        method: "PUT",
-        data: {
-          appName: appNewName,
+    setSaveLoading(true)
+    fetchChangeAppName(appInfo.appId, appNewName)
+      .then(
+        (response) => {
+          dispatch(appInfoActions.updateAppNameReducer(response.data))
+          message.success({
+            content: t("dashboard.app.rename_success"),
+          })
+          onSuccess()
         },
-      },
-      (response) => {
-        dispatch(appInfoActions.updateAppNameReducer(response.data))
-        message.success({
-          content: t("dashboard.app.rename_success"),
-        })
-        onSuccess()
-      },
-      (failure) => {
-        message.error({
-          content: t("dashboard.app.rename_fail"),
-        })
-      },
-      (crash) => {
-        message.error({
-          content: t("network_error"),
-        })
-      },
-      (loading) => {
-        setSaveLoading(loading)
-      },
-    )
+        () => {
+          message.error({
+            content: t("dashboard.app.rename_fail"),
+          })
+        },
+      )
+      .finally(() => {
+        setSaveLoading(false)
+      })
   }, [appInfo.appId, appNewName, dispatch, message, onSuccess, t])
 
   const handleOnNewNameChange = useCallback((value: string) => {

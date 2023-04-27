@@ -146,6 +146,9 @@
           },
           "gs": {
             "google_sheets": "Google Sheets"
+          },
+          "neon": {
+            "neon": "Neon"
           }
         },
         "validate": {
@@ -169,7 +172,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "Treat Database name as SID/Service Name",
+            "sid": "データベース名",
             "ssl": "SSL"
           },
           "couchdb": {
@@ -197,7 +200,11 @@
             "consider_queries_tha": "行を削除しないクエリを成功と見なす",
             "title_of_spreadsheet": "タイトル",
             "sheet_id_to_copy": "コピーするシートID",
-            "sheet_to_copy_to": "コピー先のシート"
+            "sheet_to_copy_to": "コピー先のシート",
+            "authentication": "認証",
+            "connect_with_oauth": "OAuth で接続して保存",
+            "reconnect_with_oauth": "OAuth で再接続する",
+            "access_type": "アクセスの種類"
           }
         },
         "placeholder": {
@@ -225,12 +232,12 @@
             "password": "••••••••"
           },
           "gs": {
-            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "row_filter": {
               "column_name": "column_name",
               "value": "値"
             },
-            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "update_value": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "primary_key_column": "column_name",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
@@ -257,13 +264,20 @@
             "private_key": "Google スプレッドシートへの接続に使用されます。 <0>ここ</0>をクリックしてプロジェクトを作成し、OAuth 認証情報を取得してください。 サービス アカウント認証では、使用されているサービス アカウントに対応するメール アドレスで共有されたスプレッドシートにのみアクセスできます。 サービス アカウントとアクセス キーの作成に関するドキュメントについては、<1>こちら</1>をご覧ください。ユーザーは、スプレッドシートで制御されていないさまざまな処理コンポーネントの制限を経験する場合があります。 <2>割り当て制限</2>の詳細",
             "leave_blank_to_selec": "空白のままにして最初のシートを選択します",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
-            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
             "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。",
-            "copy_to_sheet_name": "必要。 コピーしたシートの名前を変更します。"
+            "copy_to_sheet_name": "必要。 コピーしたシートの名前を変更します。",
+            "successfully_authent": "認証に成功しました",
+            "failed_to_authentica": "認証に失敗しました"
           },
           "tidb": {
             "ca_certificate": "デフォルトで、サーバーレス層への TLS 接続に使用される CA 証明書を入力します。 Dedicated Tier への TLS 接続が必要な場合は、<0>ここをクリック</0>して構成方法を表示してください。"
+          },
+          "neon": {
+            "normal": "Neon プロジェクトを作成し、<0>プロジェクト ダッシュボード</0>で文字列を取得します。",
+            "failed": "文字列の解析に失敗しました。 文字列を確認するか、手動で構成してください。",
+            "no_password": "文字列にはパスワードがありません。 コピーする前に Neon ダッシュボードにパスワードを表示してください。"
           }
         },
         "option": {
@@ -337,7 +351,17 @@
             "filter_by": {
               "use_a1_notation": "A1表記を使用",
               "use_row_filters": "行フィルターを使用"
-            }
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "サービス アカウント",
+            "read_and_write": "読み書き",
+            "read_only": "読み取り専用"
+          },
+          "neon": {
+            "parse": "パース",
+            "connection_string": "接続文字列"
           }
         },
         "default": {
@@ -438,6 +462,9 @@
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
               "find_instructions_on": "<0>AWS ドキュメント</0>でアクセス キーの場所に関する説明を見つけてください。",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "ページを選択"
             }
           },
           "option": {
@@ -491,6 +518,13 @@
                 "query_parameters": "Query Parameters",
                 "header_authorization": "Header Authorization"
               }
+            },
+            "advanced": {
+              "trigger_this_action_": "ページの読み込み時にこのアクションを実行します",
+              "show_a_loading_page_": "ページの読み込み時にローディングページを表示します",
+              "on_page_loading": "ページの読み込み時",
+              "on_app_loading": "APP搭載後",
+              "none": "なし"
             }
           },
           "restapi": {
@@ -523,7 +557,21 @@
               "body_type": {
                 "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
               }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "このページの読み込み時には何のアクションも実行されません。アクションを手動でトリガーに設定し、「ページの読み込み時に実行する」を高度な設定で有効にしてください。"
             }
+          },
+          "advanced": {
+            "advanced": "高度な設定",
+            "page_trigger": "トリガータイミング",
+            "loading_page": "ローディングページ",
+            "page_load_delay": "遅延時間 (ms)",
+            "run_this_action_peri": "このアクションを定期的に実行します",
+            "interval": "インターバル (s)",
+            "actions_running_when": "ページの読み込み時に実行される",
+            "pages": "ページ",
+            "periodically_run": "定期的に実行"
           }
         },
         "menu": {
@@ -706,8 +754,8 @@
           }
         },
         "status": {
-          "ran_failed": "実行に失敗しました",
-          "ran_successfully": "正常に実行"
+          "ran_failed": "実行に失敗",
+          "ran_successfully": "実行成功"
         },
         "result": {
           "restapi": {
@@ -926,7 +974,7 @@
             "hf_endpoint": "Endpoint URL"
           },
           "tips": {
-            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint_token": "<0>Hugging Face プロフィール設定</0>で Organizations API トークンを取得してください。",
             "hf_endpoint": "learn more about <0>Endpoint</0>"
           },
           "placeholder": {
@@ -1100,7 +1148,8 @@
           "loaded": "ロード済み",
           "rowSelect": "行を選択",
           "markerSelected": "マーカーを選択",
-          "markerCreated": "マーカーを作成"
+          "markerCreated": "マーカーを作成",
+          "select": "選択"
         },
         "image_list": {
           "title": "イメージ",
@@ -1113,7 +1162,19 @@
         },
         "image_setter": {
           "new": "追加"
-        }
+        },
+        "Change": "Change",
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "タイトルなし"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
       },
       "setter_default_value": {
         "fill": "充填",
@@ -1178,7 +1239,12 @@
         "border": "フレーム",
         "color": "色",
         "icon": "アイコン",
-        "secondary_value": "SECONDARY VALUE"
+        "secondary_value": "SECONDARY VALUE",
+        "resource": "RESOURCE",
+        "eventCalendar": {
+          "calendar": "カレンダー"
+        },
+        "event": "イベント"
       },
       "setter_label": {
         "action": "アクション",
@@ -1438,6 +1504,58 @@
         "time_range": {
           "start_time": "始まる時間",
           "end_time": "終了時間"
+        },
+        "eventCalendar": {
+          "event_value": "イベント値",
+          "event_id": "イベントID",
+          "title": "タイトル",
+          "description": "説明",
+          "start": "開始時間",
+          "end": "終了時間",
+          "resource_id": "リソース ID",
+          "resource_title": "リソースのタイトル",
+          "all_day": "終日イベント",
+          "data_source": "データ元",
+          "default_date": "デフォルトの日付",
+          "resource_grid": "リソース グリッド",
+          "default_view": "デフォルトビュー",
+          "show_current_time": "現在の時刻を表示",
+          "background": "バックグラウンド",
+          "calendar_background": "バックグラウンド",
+          "calendar_border": "フレーム",
+          "calendar_text": "テクストヤン",
+          "event_background": "バックグラウンド",
+          "event_text": "テクストヤン"
+        },
+        "table": {
+          "page_index": "Page index",
+          "index": "Index",
+          "scroll_to_the_select": "Scroll to the selected row",
+          "filters": "Filters",
+          "filter_mode": "Filter mode",
+          "show_thousands_separ": "Show thousands separator ",
+          "tag_label": "Tag label",
+          "tag_color": "Tag color",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
         }
       },
       "setter_tooltip": {
@@ -1557,6 +1675,28 @@
           "end_time": "コンポーネントの初期化時に入力される終了時刻",
           "start_placeholder": "開始時刻が入力されていない場合に表示される情報。",
           "end_placeholder": "終了時刻が入力されていない場合に表示される情報。"
+        },
+        "eventCalendar": {
+          "event_value": "{{で囲まれたオブジェクトを使用して、イベント値を設定します。 たとえば、{{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "イベントを識別するために使用される一意の ID",
+          "title": "イベントのタイトル",
+          "description": "イベントの説明",
+          "start": "イベント開始時間",
+          "end": "イベント終了時間",
+          "resource_id": "リソースは、人、会議室などです。リソース ID を設定して、イベントに関連付けることができます。",
+          "resource_title": "リソース ビューに表示されるリソース名",
+          "all_day": "終日イベントかどうか",
+          "data_source": "イベントのデータ ソース。 データ ソースは、オブジェクトの配列である必要があります。 すべてのオブジェクトはイベントです。 たとえば、{{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description \"：\"説明\"} ]}}",
+          "default_date": "アプリ起動時のデフォルトの日付",
+          "resource_grid": "リソース グリッドを表示するかどうか",
+          "default_view": "アプリ起動時のデフォルトビュー",
+          "show_current_time": "現在のタイムラインを表示するかどうかを設定します",
+          "calendar_background": "カレンダーの背景を設定する",
+          "calendar_border": "ボーダーの色を設定する",
+          "calendar_text": "テキストの色を設定する",
+          "event_background": "イベントカードの背景を設定する",
+          "event_text": "イベントカードの文字色を設定",
+          "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。"
         }
       },
       "setter_option": {
@@ -1587,6 +1727,45 @@
           "large": "大型",
           "medium": "中型",
           "small": "小型"
+        },
+        "eventCalendar": {
+          "sunday": "日曜日",
+          "monday": "月曜日",
+          "tuesday": "火曜日",
+          "wednesday": "水曜日",
+          "thursday": "木曜日",
+          "friday": "金曜日",
+          "saturday": "土曜日",
+          "month": "月",
+          "week": "週",
+          "day": "日",
+          "agenda": "議題"
+        },
+        "table": {
+          "set_sort": "Set sort",
+          "column": "Column",
+          "number": "Number",
+          "percent": "Percent",
+          "currency": "Currency",
+          "text": "Text",
+          "tag": "Tag",
+          "button_group": "Button group",
+          "date": "Date",
+          "time": "Time",
+          "date_time": "Date Time",
+          "link": "Link",
+          "rating": "Rating",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Button",
+          "icon": "Icon",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
         }
       },
       "setter_placeholder": {
@@ -1622,7 +1801,7 @@
           "zoom": "1 から 22 までの値を設定してください"
         },
         "upload": {
-          "size_exceed": "500MB を超えるファイルは解析に失敗する場合があります。",
+          "size_exceed": "Files over 500MB may fail to parse.",
           "single_file": "許可されるファイルは 1 つだけです。",
           "file": "ファイルのみが許可されます。 ディレクトリをアップロードしないでください。",
           "directory": "ディレクトリのみが許可されます。"
@@ -1703,7 +1882,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set PDF source",
+      "set_file_url": "Set file URL",
       "play": "Play",
       "pause": "Pause",
       "seek_to": {
@@ -1764,6 +1943,19 @@
       "time_range": {
         "setstarttime": "setStartTime",
         "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
+      },
+      "table": {
+        "clear_filters": "Clear filters",
+        "clear_column_setting": "Clear column setting",
+        "refresh": "Refresh",
+        "select_page": "Select page",
+        "select_row": "Select row",
+        "clear_selection": "Clear selection",
+        "set_filters": "Set filters"
       }
     },
     "tutorial": {
@@ -2205,6 +2397,12 @@
     },
     "time_range": {
       "name": "時間範囲"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "イベントカレンダー"
+      },
+      "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
     }
   },
   "page": {
@@ -2580,5 +2778,28 @@
     }
   },
   "oauth_redirect_title": "이동",
-  "oauth_redirect_description": "<0>ILLA Cloud</0> にリダイレクトしています..."
+  "oauth_redirect_description": "<0>ILLA Cloud</0> にリダイレクトしています...",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
 }

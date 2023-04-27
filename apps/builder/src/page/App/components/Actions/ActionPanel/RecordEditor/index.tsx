@@ -33,9 +33,20 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
     onAdd,
     onChangeKey,
     onChangeValue,
+    valueInputType,
   } = props
 
   const { t } = useTranslation()
+
+  const valueExpectedType = useMemo(
+    () =>
+      valueInputType
+        ? valueInputType === "any"
+          ? undefined
+          : valueInputType
+        : VALIDATION_TYPES.STRING,
+    [valueInputType],
+  )
 
   const recordList = useMemo(() => {
     return (
@@ -79,7 +90,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 lang={CODE_LANG.JAVASCRIPT}
                 placeholder="value"
                 value={record.value}
-                expectValueType={VALIDATION_TYPES.STRING}
+                expectValueType={valueExpectedType}
                 singleLine
                 onChange={(value) => {
                   onChangeValue(index, record.key, value, name)
@@ -101,7 +112,15 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
         })}
       </>
     )
-  }, [customRender, name, onChangeKey, onChangeValue, onDelete, records])
+  }, [
+    customRender,
+    name,
+    onChangeKey,
+    onChangeValue,
+    onDelete,
+    records,
+    valueExpectedType,
+  ])
 
   return (
     <div css={applyRecordEditorContainerStyle(label)}>

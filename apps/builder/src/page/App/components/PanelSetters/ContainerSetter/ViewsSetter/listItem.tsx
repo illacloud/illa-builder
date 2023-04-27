@@ -23,7 +23,7 @@ interface ListItemProps {
 }
 
 export const ListItem: FC<ListItemProps> = (props) => {
-  const { value, label, index, isSelected } = props
+  const { label, index, isSelected } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
     handleDeleteOptionItem,

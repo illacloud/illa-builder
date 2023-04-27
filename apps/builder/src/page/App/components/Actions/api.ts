@@ -1,7 +1,6 @@
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
 import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
-import { ActionApi, BuilderApi } from "@/api/base"
 import i18n from "@/i18n/config"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -10,30 +9,32 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { GraphQLAuth, GraphQLAuthValue } from "@/redux/resource/graphqlResource"
+import { neonSSLInitialValue } from "@/redux/resource/neonResource"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
-  Resource,
   ResourceContent,
   ResourceType,
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
 import { RestApiAuth } from "@/redux/resource/restapiResource"
+import {
+  fetchActionTestConnection,
+  fetchCreateAction,
+  fetchDeleteAction,
+} from "@/services/action"
+import {
+  requestCreateResource,
+  requestUpdateResource,
+} from "@/services/resource"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-
-function getBaseActionUrl() {
-  const rootState = store.getState()
-  const appId = getAppId(rootState)
-  return `/apps/${appId}/actions`
-}
+import { isILLAAPiError } from "@/utils/typeHelper"
 
 const message = createMessage()
 
-export function onCopyActionItem(action: ActionItem<ActionContent>) {
+export async function onCopyActionItem(action: ActionItem<ActionContent>) {
   const isGuideMode = getIsILLAGuideMode(store.getState())
-  const baseActionUrl = getBaseActionUrl()
   const newAction = omit(action, ["displayName", "actionId"])
   const displayName = DisplayNameGenerator.generateDisplayName(
     action.actionType,
@@ -54,35 +55,27 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
     })
     return
   }
-  BuilderApi.teamRequest(
-    {
-      url: baseActionUrl,
-      method: "POST",
-      data,
-    },
-    ({ data }: { data: ActionItem<ActionContent> }) => {
-      message.success({
-        content: i18n.t("editor.action.action_list.message.success_created"),
-      })
-      store.dispatch(actionActions.addActionItemReducer(data))
-      store.dispatch(configActions.changeSelectedAction(data))
-    },
-    () => {
+  try {
+    const response = await fetchCreateAction(data)
+    message.success({
+      content: i18n.t("editor.action.action_list.message.success_created"),
+    })
+    store.dispatch(actionActions.addActionItemReducer(response.data))
+    store.dispatch(configActions.changeSelectedAction(response.data))
+  } catch (e) {
+    if (isILLAAPiError(e)) {
       message.error({
         content: i18n.t("editor.action.action_list.message.failed"),
       })
       DisplayNameGenerator.removeDisplayName(displayName)
-    },
-    () => {
+    } else {
       DisplayNameGenerator.removeDisplayName(displayName)
-    },
-    (loading) => {},
-  )
+    }
+  }
 }
 
-export function onDeleteActionItem(action: ActionItem<ActionContent>) {
+export async function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const isGuideMode = getIsILLAGuideMode(store.getState())
-  const baseActionUrl = getBaseActionUrl()
   const { actionId, displayName } = action
 
   if (isGuideMode) {
@@ -93,27 +86,20 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
     })
     return
   }
-
-  BuilderApi.teamRequest(
-    {
-      url: `${baseActionUrl}/${actionId}`,
-      method: "DELETE",
-    },
-    ({ data }: { data: ActionItem<ActionContent> }) => {
-      DisplayNameGenerator.removeDisplayName(displayName)
-      store.dispatch(actionActions.removeActionItemReducer(displayName))
-      message.success({
-        content: i18n.t("editor.action.action_list.message.success_deleted"),
-      })
-    },
-    () => {
+  try {
+    await fetchDeleteAction(actionId)
+    DisplayNameGenerator.removeDisplayName(displayName)
+    store.dispatch(actionActions.removeActionItemReducer(displayName))
+    message.success({
+      content: i18n.t("editor.action.action_list.message.success_deleted"),
+    })
+  } catch (e) {
+    if (isILLAAPiError(e)) {
       message.error({
         content: i18n.t("editor.action.action_list.message.failed"),
       })
-    },
-    () => {},
-    (loading) => {},
-  )
+    }
+  }
 }
 
 export function generateGraphQLAuthContent(data: {
@@ -282,7 +268,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         ssl: generateSSLConfig(!!data.ssl, data, "mssql"),
       }
     case "oracle": {
-      const { resourceName, host, ...otherParams } = data
+      const { resourceName: _resourceName, host, ...otherParams } = data
       return {
         ...otherParams,
         host: host.trim(),
@@ -324,7 +310,11 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         secretAccessKey,
       }
     case "couchdb": {
-      const { resourceName: couchDBResName, host, ...otherCouchDBParams } = data
+      const {
+        resourceName: _couchDBResName,
+        host,
+        ...otherCouchDBParams
+      } = data
       return { ...otherCouchDBParams, host: host.trim() }
     }
     case "appwrite":
@@ -337,7 +327,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       }
     case "restapi":
       const {
-        resourceName: restApiResName,
+        resourceName: _restApiResName,
         baseUrl,
         caCert = "",
         clientKey = "",
@@ -363,6 +353,21 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
           privateKey: data.privateKey,
         },
       }
+    case "neon": {
+      const {
+        resourceName: _neonResourceName,
+        connectionString: _connectionString,
+        host,
+        port,
+        ...otherNeonParams
+      } = data
+      return {
+        ...otherNeonParams,
+        host: host.trim(),
+        port: port.toString(),
+        ssl: neonSSLInitialValue,
+      }
+    }
   }
 }
 
@@ -373,11 +378,9 @@ export function onActionConfigElementSubmit(
   finishedHandler: (resourceId: string) => void,
   loadingHandler: (value: boolean) => void,
 ) {
-  const method = resourceId != undefined ? "PUT" : "POST"
-  const url =
-    resourceId != undefined ? `/resources/${resourceId}` : `/resources`
+  const isUpdate = resourceId != undefined
 
-  return handleSubmit((data: FieldValues) => {
+  return handleSubmit(async (data: FieldValues) => {
     let content
     try {
       content = getActionContentByType(data, resourceType)
@@ -387,82 +390,71 @@ export function onActionConfigElementSubmit(
       })
       return
     }
-    BuilderApi.teamRequest<Resource<ResourceContent>>(
-      {
-        method,
-        url,
-        data: {
-          ...(resourceId !== undefined && { resourceId: data.resourceId }),
-          resourceName: data.resourceName,
-          resourceType: resourceType,
-          content,
-        },
-      },
-      (response) => {
-        if (resourceId !== undefined) {
-          store.dispatch(
-            resourceActions.updateResourceItemReducer(response.data),
-          )
-        } else {
-          store.dispatch(resourceActions.addResourceItemReducer(response.data))
-        }
-        message.success({
-          content: i18n.t("dashboard.resource.save_success"),
-        })
+    const requestData = {
+      ...(isUpdate && { resourceId: data.resourceId }),
+      resourceName: data.resourceName,
+      resourceType: resourceType,
+      content,
+    }
+    loadingHandler(true)
+
+    try {
+      if (isUpdate) {
+        const response = await requestUpdateResource(resourceId, requestData)
+        store.dispatch(resourceActions.updateResourceItemReducer(response.data))
         finishedHandler(response.data.resourceId)
-      },
-      (error) => {
+      } else {
+        const response = await requestCreateResource(requestData)
+        store.dispatch(resourceActions.addResourceItemReducer(response.data))
+        finishedHandler(response.data.resourceId)
+      }
+      message.success({
+        content: i18n.t("dashboard.resource.save_success"),
+      })
+    } catch (e) {
+      if (isILLAAPiError(e)) {
         message.error({
           content:
-            error.data.errorMessage || i18n.t("dashboard.resource.save_fail"),
+            e.data.errorMessage || i18n.t("dashboard.resource.save_fail"),
         })
-      },
-      () => {
+      } else {
         message.error({
           content: i18n.t("dashboard.resource.save_fail"),
         })
-      },
-      (loading) => {
-        loadingHandler(loading)
-      },
-    )
+      }
+    }
+    loadingHandler(false)
   })
 }
 
-export function onActionConfigElementTest(
+export async function onActionConfigElementTest(
   data: FieldValues,
   content: ResourceContent,
   resourceType: ResourceType,
   loadingHandler: (value: boolean) => void,
 ) {
-  return ActionApi.teamRequest<Resource<ResourceContent>>(
-    {
-      method: "POST",
-      url: `/resources/testConnection`,
-      data: {
-        resourceId: data.resourceId,
-        resourceName: data.resourceName,
-        resourceType,
-        content,
-      },
-    },
-    (response) => {
-      message.success({
-        content: i18n.t("dashboard.resource.test_success"),
-      })
-    },
-    (error) => {
+  loadingHandler(true)
+  const requestBody = {
+    resourceId: data.resourceId,
+    resourceName: data.resourceName,
+    resourceType,
+    content,
+  }
+  try {
+    await fetchActionTestConnection(requestBody)
+    message.success({
+      content: i18n.t("dashboard.resource.test_success"),
+    })
+  } catch (error) {
+    if (isILLAAPiError(error)) {
       message.error({
         content: error.data.errorMessage,
       })
-    },
-    () => {
+    } else {
       message.error({
         content: i18n.t("dashboard.resource.test_fail"),
       })
-    },
-    (loading) => {
-      loadingHandler(loading)
-    },
-  )
+    }
+  }
+  loadingHandler(false)
 }

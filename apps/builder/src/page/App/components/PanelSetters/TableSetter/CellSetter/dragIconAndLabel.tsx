@@ -14,14 +14,13 @@ import {
 } from "./style"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
-  const { index, label, cellValue } = props
+  const { index, label } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
     columnItems,
     widgetDisplayName,
     attrPath,
     childrenSetter,
-    handleUpdateItemVisible,
     handleDeleteColumnItem,
   } = useContext(ColumnListSetterContext)
 

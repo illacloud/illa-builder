@@ -49,7 +49,7 @@ export const GraphQLPanel: FC = () => {
             ...cachedAction,
             content: {
               ...content,
-              variables: newList,
+              [name]: newList,
             },
           }),
         )
@@ -72,7 +72,7 @@ export const GraphQLPanel: FC = () => {
             ...cachedAction,
             content: {
               ...content,
-              variables: newList,
+              [name]: newList,
             },
           }),
         )
@@ -92,7 +92,7 @@ export const GraphQLPanel: FC = () => {
             ...cachedAction,
             content: {
               ...content,
-              variables: newList,
+              [name]: newList,
             },
           }),
         )
@@ -116,6 +116,7 @@ export const GraphQLPanel: FC = () => {
           expectedType={VALIDATION_TYPES.STRING}
         />
         <RecordEditor
+          key="variables"
           label={t("editor.action.panel.graphql.variables")}
           records={content.variables}
           name="variables"
@@ -123,8 +124,10 @@ export const GraphQLPanel: FC = () => {
           onDelete={handleOnDeleteKeyValue}
           onChangeKey={handleOnChangeKeyOrValue}
           onChangeValue={handleOnChangeKeyOrValue}
+          valueInputType="any"
         />
         <RecordEditor
+          key="headers"
           label={t("editor.action.panel.graphql.headers")}
           name="headers"
           records={content.headers}

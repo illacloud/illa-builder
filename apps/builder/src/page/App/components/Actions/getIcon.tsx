@@ -2,7 +2,6 @@ import { ReactElement } from "react"
 import { AppwriteIcon } from "@/page/App/components/Icons/appwrite"
 import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
 import { CouchDBIcon } from "@/page/App/components/Icons/couchdb"
-import { DataDogIcon } from "@/page/App/components/Icons/datadog"
 import { DynamoIcon } from "@/page/App/components/Icons/dynamo"
 import { ElasticIcon } from "@/page/App/components/Icons/elastic"
 import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
@@ -13,6 +12,7 @@ import { MariaDbIcon } from "@/page/App/components/Icons/mariadb"
 import { MicrosoftSqlIcon } from "@/page/App/components/Icons/microsoftsql"
 import { MongoDbIcon } from "@/page/App/components/Icons/mongodb"
 import { MySqlIcon } from "@/page/App/components/Icons/mysql"
+import { NeonIcon } from "@/page/App/components/Icons/neon"
 import { OracleDBIcon } from "@/page/App/components/Icons/oracle"
 import { PostgreSqlIcon } from "@/page/App/components/Icons/postgresql"
 import { RedisIcon } from "@/page/App/components/Icons/redis"
@@ -23,7 +23,6 @@ import { SnowflakeIcon } from "@/page/App/components/Icons/snowflake"
 import { SupabaseIcon } from "@/page/App/components/Icons/supabase"
 import { TidbIcon } from "@/page/App/components/Icons/tidb"
 import { TransformerIcon } from "@/page/App/components/Icons/transformer"
-import { ZapierIcon } from "@/page/App/components/Icons/zapier"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
 
@@ -53,6 +52,8 @@ export function getIconFromResourceType(
       return <MariaDbIcon size={size} />
     case "tidb":
       return <TidbIcon size={size} />
+    case "neon":
+      return <NeonIcon size={size} />
     case "s3":
       return <S3Icon size={size} />
     case "mysql":
@@ -109,6 +110,8 @@ export function getIconFromActionType(
       return <MariaDbIcon size={size} />
     case "tidb":
       return <TidbIcon size={size} />
+    case "neon":
+      return <NeonIcon size={size} />
     case "s3":
       return <S3Icon size={size} />
     case "mysql":

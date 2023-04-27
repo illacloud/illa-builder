@@ -52,6 +52,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "MariaDB"
       case "tidb":
         return "TiDB"
+      case "neon":
+        return "Neon"
       case "smtp":
         return "SMTP"
       case "googlesheets":
@@ -127,6 +129,8 @@ export function getResourceNameFromResourceType(
         return "MariaDB"
       case "tidb":
         return "TiDB"
+      case "neon":
+        return "Neon"
       case "smtp":
         return "SMTP"
       case "googlesheets":

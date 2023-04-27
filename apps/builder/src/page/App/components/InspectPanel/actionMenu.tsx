@@ -1,12 +1,7 @@
 import { FC, useCallback, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import {
-  DropList,
-  DropListItem,
-  globalColor,
-  illaPrefix,
-} from "@illa-design/react"
+import { DropList, DropListItem } from "@illa-design/react"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"

@@ -113,15 +113,15 @@ const buildSqlKeywordSources = (lang: CODE_LANG) => {
 const buildCompletionSources = (
   codeType: CODE_TYPE,
   lang: CODE_LANG,
-  executionResult: Record<string, unknown>,
   canShowCompleteInfo: boolean,
   sqlScheme: Record<string, unknown>,
+  scopeOfAutoComplete: "global" | "page",
 ) => {
   const ternSource = ternSeverCompletionSource(canShowCompleteInfo, codeType)
   const illaSources = buildIllaContextCompletionSource(
     canShowCompleteInfo,
     codeType,
-    executionResult,
+    scopeOfAutoComplete,
   )
   const completionSources = [ternSource, illaSources]
 
@@ -164,16 +164,16 @@ const keyMapExtensions = Prec.highest(
 const getAutoCompletionExtension = (
   codeType: CODE_TYPE,
   lang: CODE_LANG,
-  executionResult: Record<string, unknown>,
   canShowCompleteInfo: boolean,
   sqlScheme: Record<string, unknown>,
+  scopeOfAutoComplete: "global" | "page",
 ) => {
   const completionSources = buildCompletionSources(
     codeType,
     lang,
-    executionResult,
     canShowCompleteInfo,
     sqlScheme,
+    scopeOfAutoComplete,
   )
   return [
     autocompletion({
@@ -190,10 +190,10 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
     showLineNumbers,
     lang = CODE_LANG.JAVASCRIPT,
     codeType = CODE_TYPE.EXPRESSION,
-    executionResult = {},
     canShowCompleteInfo = false,
     sqlScheme = {},
     expressions = [],
+    scopeOfAutoComplete = "global",
   } = options
 
   const autocompletionExtension = useMemo(
@@ -201,11 +201,11 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
       getAutoCompletionExtension(
         codeType,
         lang,
-        executionResult,
         canShowCompleteInfo,
         sqlScheme,
+        scopeOfAutoComplete,
       ),
-    [canShowCompleteInfo, codeType, executionResult, lang, sqlScheme],
+    [canShowCompleteInfo, codeType, lang, scopeOfAutoComplete, sqlScheme],
   )
 
   const showLinNUmberExtension = useMemo(

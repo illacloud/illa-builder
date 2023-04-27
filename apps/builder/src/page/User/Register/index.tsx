@@ -5,15 +5,15 @@ import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
-import { CloudApi } from "@/api/cloudApi"
-import { sendEmail } from "@/api/users"
 import { formatLanguage } from "@/i18n/config"
 import RegisterPage from "@/illa-public-component/User/register"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { fetchSignUp } from "@/services/auth"
+import { sendEmail } from "@/services/users"
 import { mobileAdaptationStyle } from "@/style"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { isCloudVersion } from "@/utils/typeHelper"
-import { RegisterFields, RegisterResult } from "./interface"
+import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { RegisterFields } from "./interface"
 
 export function getLocalLanguage(): string {
   const lang = window.localStorage.getItem("i18nextLng") || "en-US"
@@ -33,49 +33,45 @@ const UserRegister: FC = () => {
   const appID = searchParams.get("appID")
   const teamIdentifier = searchParams.get("teamIdentifier")
 
-  const onSubmit: SubmitHandler<RegisterFields> = (data) => {
+  const onSubmit: SubmitHandler<RegisterFields> = async (data) => {
     const verificationToken =
       ILLABuilderStorage.getSessionStorage("verificationToken")
-    CloudApi.request<RegisterResult>(
-      {
-        method: "POST",
-        url: "/auth/signup",
-        data: {
-          verificationToken,
-          language: getLocalLanguage(),
-          inviteToken,
-          ...data,
-        },
-      },
-      (res) => {
-        message.success({
-          content: t("user.sign_up.tips.success"),
+    setSubmitLoading(true)
+    try {
+      const res = await fetchSignUp({
+        verificationToken,
+        language: getLocalLanguage(),
+        inviteToken,
+        ...data,
+      })
+      message.success({
+        content: t("user.sign_up.tips.success"),
+      })
+      const token = res.headers["illa-token"]
+      if (!token) return
+      ILLABuilderStorage.setLocalStorage("token", token, -1)
+      dispatch(
+        currentUserActions.updateCurrentUserReducer({
+          ...res.data,
+          userId: res.data.id,
+          nickname: res.data.nickname,
+          language: res.data.language,
+          email: res.data.email,
+        }),
+      )
+      if (!isCloudVersion && appID && teamIdentifier) {
+        navigate(`/${teamIdentifier}/deploy/app/${appID}`)
+      } else {
+        navigate("/", {
+          replace: true,
         })
-        const token = res.headers["illa-token"]
-        if (!token) return
-        ILLABuilderStorage.setLocalStorage("token", token, -1)
-        dispatch(
-          currentUserActions.updateCurrentUserReducer({
-            ...res.data,
-            userId: res.data.id,
-            nickname: res.data.nickname,
-            language: res.data.language,
-            email: res.data.email,
-          }),
-        )
-        if (!isCloudVersion && appID && teamIdentifier) {
-          navigate(`/${teamIdentifier}/deploy/app/${appID}`)
-        } else {
-          navigate("/", {
-            replace: true,
-          })
-        }
-      },
-      (res) => {
+      }
+    } catch (error) {
+      if (isILLAAPiError(error)) {
         message.error({
           content: t("user.sign_up.tips.fail"),
         })
-        switch (res.data.errorMessage) {
+        switch (error.data.errorMessage) {
           case "duplicate email address":
             setErrorMsg({
               ...errorMsg,
@@ -92,16 +88,13 @@ const UserRegister: FC = () => {
             break
           default:
         }
-      },
-      () => {
+      } else {
         message.warning({
           content: t("network_error"),
         })
-      },
-      (loading) => {
-        setSubmitLoading(loading)
-      },
-    )
+      }
+    }
+    setSubmitLoading(false)
   }
 
   return (

@@ -1,9 +1,9 @@
 import download from "downloadjs"
 import XLSX from "xlsx"
 import { createMessage, isArray, isObject } from "@illa-design/react"
-import { Api } from "@/api/base"
 import i18n from "@/i18n/config"
-import { isURL } from "@/utils/typeHelper"
+import { fetchDownloadFileFromURL } from "@/services/action"
+import { isBlobURLOrUrl } from "@/utils/typeHelper"
 import { isBase64 } from "@/utils/url/base64"
 
 export const calculateFileSize = (data: string | string[]) => {
@@ -250,10 +250,7 @@ const downloadFileFromURL = async (
 ) => {
   const message = createMessage()
   try {
-    const res = await Api.asyncCustomRequest({
-      url: data,
-      method: "GET",
-    })
+    const res = await fetchDownloadFileFromURL(data)
     downloadFileFromEventHandler(contentType, fileDownloadName, res.data)
     return
   } catch (e) {
@@ -278,7 +275,7 @@ export const downloadFileFromEventHandler = (
     const isBase64Suffix = typeof data === "string" && isBase64(data)
     const isValidBase64 = typeof data === "string" && isBase64(data, true)
     const formatData = isArray(data) ? data : isObject(data) ? [data] : data
-    const isValidUrl = typeof data === "string" && isURL(data)
+    const isValidUrl = typeof data === "string" && isBlobURLOrUrl(data)
 
     let params
 

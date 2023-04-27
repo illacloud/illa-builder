@@ -65,7 +65,6 @@ export const panelHeaderIconWrapperStyle = css`
 export function applySetterWrapperStyle(
   isSetterSingleRow: boolean = false,
   isInList: boolean = false,
-  isSetterSingleRowWrapper: boolean = false,
   useCustomLayout: boolean = false,
 ): SerializedStyles {
   if (useCustomLayout) {

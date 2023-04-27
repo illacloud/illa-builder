@@ -18,7 +18,7 @@ export const componentsOperationReport = (
   teamID: string,
   uid: string,
   prevRootState: RootState,
-  nextRootState: RootState,
+  _nextRootState: RootState,
 ) => {
   switch (reduxAction) {
     case "addComponentReducer": {

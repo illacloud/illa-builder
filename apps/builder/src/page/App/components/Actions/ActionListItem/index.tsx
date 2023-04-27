@@ -11,7 +11,6 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
@@ -21,8 +20,8 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -57,7 +56,6 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
       return false
     })
 
-    const currentApp = useSelector(getAppInfo)
     const isGuideMode = useSelector(getIsILLAGuideMode)
     const executionResult = useSelector(getExecutionResult)
 
@@ -98,7 +96,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     const dispatch = useDispatch()
 
     const changeDisplayName = useCallback(
-      (newName: string) => {
+      async (newName: string) => {
         if (newName === action.displayName) {
           setEditName(false)
           return
@@ -136,40 +134,27 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
           setEditName(false)
           return
         }
-        BuilderApi.teamRequest(
-          {
-            method: "PUT",
-            url: `/apps/${currentApp.appId}/actions/${action.actionId}`,
-            data: newAction,
-          },
-          () => {
-            dispatch(
-              actionActions.updateActionDisplayNameReducer({
-                newDisplayName: newName,
-                oldDisplayName: action.displayName,
-                actionID: newAction.actionId,
-              }),
-            )
-            setEditName(false)
-          },
-          () => {
-            message.error({
-              content: t("change_fail"),
-            })
-            setEditName(false)
-          },
-          () => {
-            message.error({
-              content: t("change_fail"),
-            })
-            setEditName(false)
-          },
-          (l) => {
-            setChanging(l)
-          },
-        )
+        setChanging(true)
+        try {
+          await fetchUpdateAction(newAction)
+          dispatch(
+            actionActions.updateActionDisplayNameReducer({
+              newDisplayName: newName,
+              oldDisplayName: action.displayName,
+              actionID: newAction.actionId,
+            }),
+          )
+          setEditName(false)
+        } catch (_e) {
+          message.error({
+            content: t("change_fail"),
+          })
+          setEditName(false)
+        }
+
+        setChanging(false)
       },
-      [action, currentApp.appId, isGuideMode, dispatch, message, t],
+      [action, isGuideMode, dispatch, message, t],
     )
 
     const calcTimeString = useCallback(
@@ -206,7 +191,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               onClick={() => {
                 trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.RENAME, {
                   element: "action_rename",
-                  parameter1: selectedAction.actionType,
+                  parameter1: action.actionType,
                   parameter2: "manage",
                 })
                 setEditName(true)
@@ -219,7 +204,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               onClick={() => {
                 trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DUPLICATE, {
                   element: "action_duplicate",
-                  parameter1: selectedAction.actionType,
+                  parameter1: action.actionType,
                 })
                 onCopyItem(action)
               }}
@@ -232,7 +217,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               onClick={() => {
                 trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DELETE, {
                   element: "action_delete",
-                  parameter1: selectedAction.actionType,
+                  parameter1: action.actionType,
                 })
                 onDeleteItem(action)
               }}

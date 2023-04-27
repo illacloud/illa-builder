@@ -1,7 +1,6 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { BuilderApi } from "@/api/base"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { DeleteItemPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel/DeleteItemPanel"
@@ -32,6 +31,7 @@ import {
   StructParams,
 } from "@/redux/currentApp/action/dynamoDBAction"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const DynamoActionMap = {
@@ -58,17 +58,11 @@ export const DynamoDBPanel: FC = () => {
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
 
   useEffect(() => {
-    BuilderApi.teamRequest(
-      {
-        url: `/resources/${cachedAction.resourceId}/meta`,
-        method: "GET",
-      },
+    if (cachedAction.resourceId == undefined) return
+    fetchResourceMeta(cachedAction.resourceId).then(
       ({ data }: { data: ResourcesData }) => {
         setSqlTable(data?.schema ?? {})
       },
-      () => {},
-      () => {},
-      () => {},
     )
   }, [cachedAction.resourceId])
 

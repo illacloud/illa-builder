@@ -1,8 +1,8 @@
 import { LoaderFunctionArgs, redirect } from "react-router-dom"
-import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
-import { updateTeamsInfo } from "@/api/team"
+import { clearRequestPendingPool } from "@/api/http/utils/axiosPendingPool"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getUserInfo } from "@/router/loader"
+import { updateTeamsInfo } from "@/services/team"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { filterURLSearch } from "@/utils/url"
@@ -30,7 +30,7 @@ export const requireSelfAuth = async (args: LoaderFunctionArgs) => {
       }
       return redirect(loginUrl)
     } else {
-      const userInfo = await getUserInfo(token)
+      const userInfo = await getUserInfo()
       if (!userInfo) {
         return redirect(loginUrl)
       }

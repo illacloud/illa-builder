@@ -4,7 +4,7 @@ import i18n from "@/i18n/config"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"
 import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
-import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const MODAL_WIDGET_CONFIG: WidgetConfig = {
   type: "MODAL_WIDGET",

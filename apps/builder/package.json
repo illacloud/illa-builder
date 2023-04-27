@@ -5,7 +5,7 @@
   "private": true,
   "author": "ILLA Cloud <opensource@illasoft.com>",
   "license": "Apache-2.0",
-  "version": "2.2.3",
+  "version": "2.3.2",
   "scripts": {
     "dev": "vite",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode cloud",
@@ -45,6 +45,7 @@
     "@tanstack/react-table": "^8.5.11",
     "@tanstack/table-core": "^8.7.0",
     "@types/google.maps": "^3.52.4",
+    "@types/react-big-calendar": "^1.6.3",
     "@uiw/codemirror-theme-github": "^4.19.6",
     "@uiw/react-color": "^1.1.0",
     "@uiw/react-color-sketch": "^1.1.0",
@@ -68,10 +69,13 @@
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.0",
     "mixpanel-browser": "^2.46.0",
+    "numbro": "^2.3.6",
     "overlap-area": "^1.1.0",
+    "papaparse": "^5.4.1",
     "pdfjs-dist": "2.16.105",
     "qs": "^6.11.0",
     "re-resizable": "^6.9.9",
+    "react-big-calendar": "^1.6.9",
     "react-chartjs-2": "^4.3.1",
     "react-dnd": "^16.0.1",
     "react-dnd-touch-backend": "^16.0.1",
@@ -107,6 +111,7 @@
     "@changesets/changelog-github": "^0.4.2",
     "@changesets/cli": "^2.18.1",
     "@mdx-js/rollup": "^2.3.0",
+    "@sentry/vite-plugin": "^0.7.2",
     "@types/chroma-js": "^2.1.4",
     "@types/codemirror": "^5.60.5",
     "@types/deep-diff": "^1.0.1",
@@ -117,6 +122,7 @@
     "@types/mdx": "^2.0.3",
     "@types/mixpanel-browser": "^2.38.1",
     "@types/node": "^18.14.4",
+    "@types/papaparse": "^5.3.7",
     "@types/qs": "^6.9.7",
     "@types/react-pdf": "^6.2.0",
     "@types/react-slick": "^0.23.10",
@@ -127,12 +133,14 @@
     "@types/uuid": "^8.3.4",
     "@types/ws": "^8.5.3",
     "@vitejs/plugin-basic-ssl": "^0.1.2",
-    "@vitejs/plugin-react-swc": "^3.1.0",
+    "@vitejs/plugin-react-swc": "^3.3.0",
     "cross-env": "^7.0.3",
     "e2e": "workspace:*",
     "rollup-plugin-visualizer": "^5.9.0",
-    "typescript": "^4.9.3",
     "vite-plugin-checker": "^0.5.3",
     "vite-plugin-svgr": "^2.1.0"
+  },
+  "engines": {
+    "pnpm": "^8"
   }
 }

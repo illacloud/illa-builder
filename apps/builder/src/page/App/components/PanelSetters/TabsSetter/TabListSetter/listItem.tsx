@@ -20,7 +20,7 @@ interface ListItemProps {
 }
 
 export const ListItem: FC<ListItemProps> = (props) => {
-  const { value, index } = props
+  const { index } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
     handleDeleteOptionItem,

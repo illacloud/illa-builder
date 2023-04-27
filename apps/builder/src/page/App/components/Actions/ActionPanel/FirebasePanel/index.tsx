@@ -1,7 +1,7 @@
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Select, SelectValue } from "@illa-design/react"
+import { SelectValue } from "@illa-design/react"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { AppendDataToListPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/AppendDataToList"
 import { CreateOneUserPart } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/CreateOneUser"
@@ -45,12 +45,7 @@ import {
   ServiceTypeInitialValue,
   ServiceTypeValue,
 } from "@/redux/currentApp/action/firebaseAction"
-import {
-  actionContainerStyle,
-  actionItemContainer,
-  actionItemLabelStyle,
-  actionItemStyle,
-} from "./style"
+import { actionContainerStyle, actionItemContainer } from "./style"
 
 export const FirebasePanel: FC = () => {
   const { t } = useTranslation()

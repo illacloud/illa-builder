@@ -1,7 +1,7 @@
 import { SerializedStyles } from "@emotion/react"
 import { ReactNode } from "react"
 import { Control, RegisterOptions } from "react-hook-form"
-import { AlertProps, SelectOptionObject } from "@illa-design/react"
+import { SelectOptionObject } from "@illa-design/react"
 
 export type ControlledType =
   | "checkbox"

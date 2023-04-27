@@ -1,0 +1,2805 @@
+{
+  "Logout": "Выйти",
+  "Setting": "Настройка",
+  "apps": "Приложения",
+  "back": "Назад",
+  "btn": {
+    "choose_file": "Выберите файл"
+  },
+  "change_fail": "Не удалось изменить",
+  "change_success": "Успешно изменено",
+  "collision_message": "Нажмите D или K и перетащите компонент в контейнер",
+  "create_fail": "Не удалось создать",
+  "create_new": "Создать новый",
+  "create_new_app": "Создать новый",
+  "created_at": "Создано в",
+  "dashboard": {
+    "app": {
+      "all_apps": "Все приложения",
+      "create_app": "Создать приложение",
+      "duplicate_fail": "Не удалось дублировать",
+      "duplicate_placeholder": "Введите имя приложения здесь",
+      "edited_time": "Изменено в {{ time }} пользователем {{ user }}",
+      "name_empty": "Пожалуйста, введите имя",
+      "name_existed": "Имя уже занято",
+      "rename_app": "Переименовать приложение",
+      "rename_fail": "Не удалось переименовать",
+      "rename_success": "Успешно переименовано",
+      "trash_failure": "Не удалось удалить",
+      "trash_success": "Успешно удален"
+    },
+    "common": {
+      "cancel": "Отмена",
+      "delete": "Удалить",
+      "delete_cancel_text": "Отмена",
+      "delete_content": "Это нарушит запросы к библиотеке приложений и запросов, которые используют этот ресурс",
+      "delete_ok_text": "Удалить",
+      "delete_title": "Вы уверены?",
+      "error_button": "Повторить",
+      "error_description": "Возникла проблема с вашей операцией.",
+      "error_title": "Ошибка"
+    },
+    "resource": {
+      "create_resource": "Создать новый",
+      "created": "Создано",
+      "dbname": "Имя базы данных",
+      "delete_fail": "Не удалось удалить",
+      "delete_success": "Успешно удален",
+      "resource_name": "Наименование",
+      "resource_type": "Тип",
+      "save_fail": "Не удалось сохранить",
+      "save_success": "Успешно сохранено",
+      "test_fail": "Не удалось проверить",
+      "test_success": "Тест успешно пройден"
+    }
+  },
+  "dayjs": {
+    "just_now": "Только что"
+  },
+  "deploy": "Развертывание",
+  "description": {
+    "part1": "Это пример без пространства имен."
+  },
+  "dont_need_save": "ILLA продолжит пытаться автоматически сохранить вашу работу.",
+  "duplicate": "Duplicate",
+  "edit": "Редактирование",
+  "edit_at": "Изменено в",
+  "edit_failed": "Не удалось сохранить, проверьте сеть.",
+  "edit_success": "Успешно изменено",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Назад",
+            "create_action": "Создать действие",
+            "new_resource": "Новый ресурс"
+          },
+          "selector": {
+            "title": "Выберите тип действия"
+          },
+          "title": {
+            "choose_resource": "Выберите ресурс "
+          }
+        },
+        "btn": {
+          "close": "закрыть",
+          "new": "Новый"
+        },
+        "contextMenu": {
+          "delete": "Удалить",
+          "duplicate": "Duplicate",
+          "rename": "Переименовать"
+        },
+        "message": {
+          "confirm_switch": "Вы не сохранили запрос. Вы уверены, что хотите отменить изменения?",
+          "failed": "Не удалось подключиться к серверу",
+          "load_action_list_fail": "Не удалось получить список действий: {{message}}",
+          "load_resource_fail": "Не удалось получить список ресурсов: {{message}}",
+          "name_already_exist": "Уже существует",
+          "please_input_name": "Пожалуйста, введите имя",
+          "success_created": "Успешно создано",
+          "success_deleted": "Успешно удален",
+          "success_saved": "Успешно сохранено",
+          "valid_name": "Может содержать только буквы, цифры, '_' или '$', начинаться с '_' или буквы"
+        },
+        "placeholder": {
+          "search": "Искать"
+        },
+        "runtime": {
+          "backend": "Бэкенд",
+          "execute_resource": "выполнить ресурс",
+          "frontend": "Интерфейс",
+          "handle_response": "ручка ответ",
+          "post_processing": "постобработка",
+          "prepare_query": "Подготовить запрос",
+          "response_size": "Размер ответа",
+          "total": "Итого",
+          "transfer_data": "передача данных",
+          "transformer": "трансформатор"
+        },
+        "tips": {
+          "empty": "Добавьте действие для начала работы с данными из подключенного ресурса.",
+          "not_found": "Поиск не дал результатов"
+        },
+        "title": "Список действий"
+      },
+      "form": {
+        "btn": {
+          "back": "Назад",
+          "save_changes": "Сохранить ресурс",
+          "test_connection": "Проверить соединение"
+        },
+        "required": "Требуется",
+        "title": {
+          "api": "API",
+          "configure": "Настроить {{ name }}",
+          "database": "ДАННЫЕ",
+          "select": "Выберите тип ресурса",
+          "huggingface": "Грязное лицо",
+          "appwrite": "Приложение",
+          "couchdb": {
+            "couchdb": "Купон"
+          },
+          "oracle": {
+            "oracle": "Oracle БД"
+          },
+          "gs": {
+            "google_sheets": "Google листы"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} обязательно"
+        },
+        "label": {
+          "inference_api": "API рекомендаций",
+          "inference_endpoint": "Исходная точка входа",
+          "s3": "Недопустимые в публичных приложениях",
+          "acl": "S3 ACL для загруженных файлов",
+          "appwrite": {
+            "host": "Хост",
+            "dbid": "ID базы данных",
+            "projectid": "ID проекта",
+            "secret": "Api ключ",
+            "collectionid": "ID коллекции",
+            "documentid": "ID документа",
+            "data": "Данные",
+            "filter": "Фильтр",
+            "order": "Сортировать по",
+            "limit": "Лимит"
+          },
+          "oracle": {
+            "sid": "Считать имя базы данных как",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Сертификаты",
+            "verification_mode": "Режим проверки"
+          },
+          "gs": {
+            "private_key": "Приватный ключ",
+            "action_type": "Тип действия",
+            "spreadsheet": "Электронная таблица",
+            "sheet_name": "Название листа",
+            "data_range": "Диапазон данных",
+            "limit": "Лимит",
+            "offset": "Смещение",
+            "a1_notation": "А1 нотация",
+            "values_to_append": "Значения для добавления",
+            "filter_by": "Фильтровать по",
+            "update_value": "Обновить значение",
+            "primary_key_column": "Основная колонка",
+            "array_of_rows_to_upd": "Массив строк для обновления",
+            "filters_to_match_row": "Индекс строки",
+            "consider_queries_tha": "Подумайте о запросах, удаленных без строк как успешных",
+            "title_of_spreadsheet": "Заголовок электронной таблицы",
+            "sheet_id_to_copy": "ID листа для копирования",
+            "sheet_to_copy_to": "Лист для копирования",
+            "authentication": "Проверка подлинности",
+            "connect_with_oauth": "Подключиться к OAuth и сохранить",
+            "reconnect_with_oauth": "Переподключаться с OAuth",
+            "access_type": "Тип доступа"
+          }
+        },
+        "placeholder": {
+          "url": "Введите URL запроса здесь",
+          "appwrite": {
+            "host": "НАЗВАНИЕ ИЛИ IP",
+            "dbid": "ID базы данных",
+            "projectid": "ID проекта",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "атрибут",
+              "value": "1234"
+            },
+            "order": "атрибут",
+            "collectionid": "Выберите коллекцию",
+            "data": "Объект заключен в {{ }}. Например, \n{{ { \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "оракул",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "имя столбца",
+              "value": "значение"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "primary_key_column": "имя столбца",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
+            "filters_to_match_row": {
+              "key": "ключ",
+              "value": "значение"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Предоставленное содержимое является конфигурацией PUBLIC. Оставьте пустым для PRIVATE. Не забудьте настроить CORS на вашем сегменте. <0>См. Поделиться ресурсами между источниками (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Похоже, вы пытаетесь подключиться к базе данных, локальной к вашей машине или части частной сети. Она может не работать в ILLA Cloud версии. Посмотрите <0>docs</0> для того, чтобы узнать, как работать с самостоятельной версией.",
+            "selfhost": "Похоже, вы пытаетесь подключиться к базе данных, локальной к вашей машине. Пожалуйста, используйте IP адрес локальной сети машины вместо \"localhost\" или \"127.0.0.1\".",
+            "title": {
+              "tips": "Советы"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Ваш сервер может быть уязвим к атакам."
+            }
+          },
+          "gs": {
+            "private_key": "Используется для подключения к Google Sheets. Нажмите <0>здесь</0>, чтобы создать проект и получить учетные данные OAuth. При аутентификации сервисной учетной записи, у нас будет доступ только к электронным таблицам с адресом электронной почты, соответствующим используемой учетной записи службы. См. <1>здесь</1> для документации по созданию учетной записи службы и ключа доступа.\n\nПользователи могут наблюдать ограничения от различных компонентов обработки, не контролируемых листами. Подробнее о пределах квоты</2>",
+            "leave_blank_to_selec": "Оставьте пустым, чтобы выбрать первую таблицу",
+            "to_select_the_first_": "Для выбора первых пяти ячеек в первом столбце листа под названием лист 1, нотация А1 это лист 1!A1:A5. <0>Смотрите документы Google для получения дополнительной информации. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "a1_notation": "Для выбора первых пяти ячеек в первом столбце листа под названием лист 1, нотация А1 это лист 1!A1:A5. <0>Смотрите документы Google для получения дополнительной информации. </0>",
+            "sheet_id_to_copy": "Найдите это, взглянув на ?gid=123123 в URL ваших таблиц Google",
+            "copy_to_sheet_name": "Обязательно. Переименуйте скопированный лист.",
+            "successfully_authent": "Аутентификация прошла успешно",
+            "failed_to_authentica": "Ошибка аутентификации"
+          },
+          "tidb": {
+            "ca_certificate": "Мы заполняем сертификат CA для TLS соединений к серверному уровню по умолчанию. Если вам нужны TLS подключения к выделенному уровню, <0>Нажмите здесь</0> для просмотра метода конфигурации."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Не удалось разобрать строку. Проверьте строку или настройте вручную.",
+            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Создать документ",
+              "list": "Список документов",
+              "get": "Получить документ",
+              "update": "Обновить документ",
+              "delete": "Удалить документ"
+            },
+            "filter": {
+              "and": "И",
+              "or": "ИЛИ",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Аск",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Имя сервиса"
+            },
+            "ssl": "Использовать SSL при наличии"
+          },
+          "couchdb": {
+            "ssl": "Использовать SSL/TLS при наличии"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Аутентификация Дайджеста",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Аутентификация Яука",
+              "aws_v4": "Подпись AWS V4",
+              "session_based_auth": "Сессия по Аутенту (устарело)"
+            },
+            "certificates": "Использовать самоподписанные сертификаты",
+            "ca_certificate": "Сертификат ЦС",
+            "client_key": "Ключ клиента",
+            "client_certificate": "Сертификат клиента",
+            "verification_mode": {
+              "full_verification": "Полная проверка",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Пропустить проверку сертификата ЦС"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Чтение данных из электронной таблицы",
+              "append_data_to_a_spr": "Добавить данные в электронную таблицу",
+              "update_a_spreadsheet": "Изменить электронную таблицу",
+              "bulk_update_a_spread": "Массовое обновление электронной таблицы по первичному ключу",
+              "delete_a_single_row_": "Удалить одну строку из электронной таблицы",
+              "create_a_spreadsheet": "Создать электронную таблицу",
+              "copy_a_single_sheet_": "Скопировать одну таблицу в другую электронную таблицу",
+              "list_available_sprea": "Список доступных таблиц",
+              "get_spreadsheet_info": "Получить электронную таблицу"
+            },
+            "data_range": {
+              "use_a1_notation": "Использовать нотацию А1",
+              "use_limit_and_offset": "Использовать лимит и смещение"
+            },
+            "filter_by": {
+              "use_a1_notation": "Использовать нотацию А1",
+              "use_row_filters": "Использовать строковые фильтры"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Аккаунт службы",
+            "read_and_write": "Чтение и запись",
+            "read_only": "Только чтение"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Строка подключения"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Аккаунт службы"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Отключено",
+          "enable": "Включить",
+          "new": "Новый",
+          "run": "Запустить",
+          "save": "Сохранить",
+          "save_and_run": "Сохранить и запустить",
+          "save_fail": "Не удалось сохранить",
+          "test_run": "Запуск теста"
+        },
+        "elastic": {
+          "action_type": "Тип действия",
+          "body": "Тело",
+          "id": "Id",
+          "index": "Индекс",
+          "query": "Запрос"
+        },
+        "error": {
+          "max_file": "Размер файла не может превышать 5M."
+        },
+        "firebase": {
+          "action_type": "Тип действия",
+          "collection": "Коллекция",
+          "database_ref": "База данных",
+          "document_id": "ID документа",
+          "email": "Почта",
+          "end_at": "Окончание",
+          "len_of_list": "Длина списка ",
+          "limit": "предел",
+          "next_page_token": "Токен следующей страницы",
+          "object_to_set": "Объект для установки",
+          "order_by": "Сортировать по",
+          "ordering_direction": "Направление сортировки",
+          "parent_document_id": "ID родительского документа",
+          "phone_number": "Номер телефона",
+          "placeholder": {
+            "asc": "ск",
+            "document_value": "{{ \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Ввести коллекцию",
+            "key": "ключ",
+            "select_an_action": "Выберите действие",
+            "select_collection": "Выберите коллекцию",
+            "value": "значение"
+          },
+          "service_type": "Тип сервиса",
+          "start_at": "Начать в",
+          "tips": {
+            "document_id": "Оставьте пустым для автоматически сгенерированного ID.",
+            "parent_document_id_tips": "Оставьте пустым для коллекций верхнего уровня."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Использовать раскрывающийся список",
+          "use_end_at": "Использовать endat",
+          "use_raw_id": "Использовать сырый id",
+          "use_start_at": "Use startAt",
+          "user_object": "Объект пользователя ",
+          "value": "значение",
+          "where": "где"
+        },
+        "label": {
+          "event_handler": "Обработчик событий",
+          "failure": "Сбой",
+          "resource": "Ресурс",
+          "success": "Успешно",
+          "transformer": "Трансформатор",
+          "couchdb": {
+            "database": "База данных",
+            "action_type": "Тип действия"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Выберите базу данных",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Ключ потребителя",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "some-app-extra-data",
+              "app": "Идентификатор приложения",
+              "dig": "делегатское",
+              "us-east-1": "-восток-1",
+              "authenticate_using_t": "Аутентифицироваться с помощью заголовка авторизации HTTP вместо параметров запроса",
+              "find_instructions_on": "Найдите инструкции по нахождению ключей доступа <0>в документах AWS</0>.",
+              "role_to_assume": "Использовать <0>другую роль</0> при доступе к API"
+            },
+            "advanced": {
+              "select_pages": "Выберите страницы"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Список записей",
+                "retrieve": "Получить запись",
+                "create": "Создать запись",
+                "update": "Обновить запись",
+                "delete": "Удалить запись",
+                "find": "Найти",
+                "get": "Смотреть"
+              },
+              "skip": "Пропустить",
+              "limit": "Лимит",
+              "include": "Включить документы",
+              "des": "Заказ",
+              "id": "_id",
+              "rev": "_рев",
+              "record": "Запись",
+              "mangoquery": "Мангазывание",
+              "ViewURL": "URL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Доски, включенные в возвращенные результаты",
+              "des_option": "Использовать по убыванию"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-HA512",
+                "plaintext": "ИГРОКА"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Файл",
+                "text": "Текст"
+              },
+              "method": {
+                "options": "НАСТРОЙКИ",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Параметры запроса",
+                "header_authorization": "Авторизация заголовка"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Запустить это действие при загрузке страницы",
+              "show_a_loading_page_": "Показывать загрузку страницы при загрузке страницы",
+              "on_page_loading": "При загрузке страницы",
+              "on_app_loading": "При загрузке приложения",
+              "none": "Нет"
+            }
+          },
+          "restapi": {
+            "signature_method": "Способ подписи",
+            "consumer_key": "Ключ потребителя",
+            "consumer_secret": "Секрет потребителя",
+            "access_token": "Маркер доступа",
+            "token_secret": "Секрет токена",
+            "private_key": "Приватный ключ",
+            "realm": "Область",
+            "hawk_auth_id": "Hawk ID аутентификации",
+            "hawk_auth_key": "Ключ авторизации ястреба",
+            "algorithm": "Алгоритм",
+            "user": "Пользователь",
+            "nonce": "Nonce",
+            "ext": "Дополнительный",
+            "app": "приложение",
+            "dig": "dig",
+            "timestamp": "Отметка времени",
+            "aws_region": "Регион AWS",
+            "aws_service": "Служба AWS",
+            "aws_access_key_id": "ID ключа доступа AWS",
+            "aws_secret_key_id": "Секретный ID AWS",
+            "role_to_assume": "Роль, которую предполагать (ARN)",
+            "list_of_cookies_to_f": "Список Cookie для пересылки",
+            "add_access_token_to": "Добавить маркер доступа в"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Либо бинарная строка, либо объект: {{ data: binary string, filename?: string } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Никакие действия не будут срабатывать при загрузке страницы. Вы можете вручную запустить действие и включить «Запустить это действие при загрузке страницы» в расширенных настройках."
+            }
+          },
+          "advanced": {
+            "advanced": "ДОБАВЛЕНО",
+            "page_trigger": "Тайминг триггера",
+            "loading_page": "Загрузка страницы",
+            "page_load_delay": "Задержка (мс)",
+            "run_this_action_peri": "Периодически запускать это действие",
+            "interval": "Интервал (ы)",
+            "actions_running_when": "Действия при загрузке страницы",
+            "pages": "Страницы",
+            "periodically_run": "Периодически запускать"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Удалить",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Тип действия",
+          "aggregation": "Агрегация",
+          "collection": "Коллекция",
+          "document": "Документ",
+          "field": "Поле",
+          "filter": "Фильтр",
+          "limit": "Лимит",
+          "operations": "Операции",
+          "options": "Варианты",
+          "projection": "Проекция",
+          "query": "Запрос",
+          "skip": "Пропустить",
+          "sort_by": "Сортировать по",
+          "update": "Обновить"
+        },
+        "option": {
+          "resource": {
+            "new": "Создать новый ресурс"
+          },
+          "trigger": {
+            "manually": "Выполнять действие только при ручном запуске",
+            "on_change": "Выполнять действие автоматически при смене ввода"
+          }
+        },
+        "s3": {
+          "action_type": "Тип действия",
+          "bucket_name": "Имя ведра",
+          "content_type": "Тип содержимого",
+          "delimiter": "Разделитель",
+          "error": {
+            "max_file": "Размер файла не может превышать 5M."
+          },
+          "expiry_duration_of_signed_url": "Продолжительность подписи URL (минуты)",
+          "generate_signed_url": "Генерировать Подписанный URL",
+          "max_keys": "Макс. клавиш",
+          "object_key": "Ключ объекта",
+          "object_key_list": "Список ключей объекта",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "Экспорт в csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Префикс для фильтра результатов",
+          "tips": {
+            "delimiter": "Разделитель — это символ, который вы используете для группировки ключей.",
+            "max_keys": "Устанавливает максимальное количество ключей, возвращаемых в ответе. По умолчанию действие возвращает до 1000 имен ключей."
+          },
+          "upload_data": "Загрузить данные",
+          "upload_data_list": "Загрузить список данных",
+          "upload_object_name": "Загрузить имя объекта",
+          "upload_object_name_list": "Загрузить список имени объекта",
+          "timeout_upload": "Таймаут для загрузки файла (Минут)",
+          "timeout_upload_multiple": "Таймаут для загрузки одного файла (Минут) "
+        },
+        "smtp": {
+          "attachment": "Вложение",
+          "bcc_email": "Скрытая почта(и)",
+          "body": "Тело",
+          "cc_email": "Cc email(s)",
+          "from_email": "От email",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Используйте запятую для разделения писем, например {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Ответить по электронной почте",
+          "set_replay_email": "Установить ответ на email",
+          "subject": "Тема",
+          "tips": {
+            "port": "Некоторые провайдеры могут блокировать 25. Если соединение не удалось, пожалуйста, измените \nпорт."
+          },
+          "to_email": "К электронной почте(ам)",
+          "use_html": "Использовать HTML",
+          "use_raw": "Использовать текст"
+        },
+        "tips": {
+          "transformer": "Разрешить преобразователям преобразовывать результат запроса в другой формат."
+        },
+        "graphql": {
+          "query": "Запрос",
+          "variables": "Переменные",
+          "headers": "Заголовки",
+          "placeholder": {
+            "query": "# Используйте $ для добавления переменной в ваш запрос (т.е. $category ) \r\nзапрос ($owner: Строка!, $name: Строка! {\r\n  репозиторий(владелец: $owner, имя: $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "ID модели",
+          "placeholder": {
+            "mode_id": "Береговая база",
+            "text": "Ответ на вселенную: [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Какой фильм лучший ?\"], \r\n\"generated_responses\": [\"Это трудно убедиться.\"], \r\n\"text\": \"Может объяснить, почему ?\" \r\n}",
+            "binary": "например {{ upload1.file[0] }}. Двоичные файлы без префикса файла",
+            "use_cache": "Булев, оставьте пустым для истины",
+            "min_length": "Целое число для определения минимальной длины в токенах сводки вывода",
+            "top_k": "Целое число для определения верхних токенов",
+            "top_p": "Плавающий для определения токенов",
+            "temperature": "Float(0.0-100.0),оставьте пустым для 1.0",
+            "repetition_penalty": "Float (0.0-100.0)",
+            "max_time": "Float (0.0-120.0) для определения количества времени в секундах"
+          },
+          "tips": {
+            "mode_id": "Перейдите на <0>Модель Хаба</0> и выберите модель, которую вы хотите использовать.",
+            "use_detail_parameters": "<0>Нажмите здесь</0>, чтобы узнать подробности о параметрах",
+            "temperature": "1 означает, что регулярная выборка, 0 означает, что всегда отбирается наивысший результат, 100.0 ближе к однородной вероятности.",
+            "repetition_penalty": "Чем больше токен используется в поколении, тем больше он наказывается, чтобы не выбирался в последовательных пропусках поколения."
+          },
+          "parameter": "Параметр",
+          "use_detail_parameters": "Использовать параметры деталей",
+          "use_cache": "Использовать кэш",
+          "wait_for_model": "Ожидание модели",
+          "min_length": "Мин. длина",
+          "max_length": "Максимальная длина",
+          "top_k": "Верхний K",
+          "top_p": "Верх p",
+          "temperature": "Температура",
+          "repetition_penalty": "Повторить штраф",
+          "max_time": "Макс. время"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Какое выражение SQL вы хотите сгенерировать"
+          },
+          "button": {
+            "text": "Сгенерировать SQL"
+          }
+        },
+        "mssql": {
+          "config_type": "Тип конфигурации",
+          "query": "Запрос",
+          "placeholder": {
+            "query": "выберите * от пользователей;",
+            "table": "Выберите таблицу",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Таблица",
+          "insert_record": "Массив записей для вставки",
+          "dropdown": {
+            "retry": "Повторить попытку"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Метод",
+            "table": "Таблица",
+            "json_input": "Использовать редактор параметров JSON",
+            "parameters": "Параметры",
+            "index": "Название индекса",
+            "key_condition": "Ключевое выражение условия",
+            "projection_expression": "Выражение проекции",
+            "filter_expression": "Выражение фильтра",
+            "attribute_name": "Имена атрибутов выражения",
+            "attribute_value": "Значения атрибута выражения",
+            "limit": "Лимит",
+            "select": "Выбрать",
+            "item": "Пункт 1",
+            "condition_expression": "Условное выражение",
+            "key": "Спецификация",
+            "update_expression": "Обновить выражение"
+          },
+          "option": {
+            "query": "запрос",
+            "scan": "сканирование",
+            "put_item": "элемент",
+            "get_item": "getItem",
+            "update_item": "обновить элемент",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, для exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Неудачный",
+          "ran_successfully": "Успешно"
+        },
+        "result": {
+          "restapi": {
+            "status": "Статус",
+            "headers": "Заголовки",
+            "response": "Замечание"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Скоро"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Неверный приватный ключ. "
+          },
+          "label": {
+            "ca_certificate": "Сертификат ЦС",
+            "client_certificate": "Сертификат клиента",
+            "client_key": "Ключ клиента",
+            "config_type": "Тип конфигурации",
+            "connect_type": "Тип соединения",
+            "connection_format": "Формат подключения",
+            "connection_string": "Строка подключения",
+            "database": "База данных",
+            "database_index": "Индекс базы данных",
+            "firebase_database_url": "URL базы данных Firebase",
+            "firebase_project_id": "Идентификатор проекта Firestore",
+            "hostname": "Hostname",
+            "hostname_port": "Имя хоста/порт",
+            "hosturl": "Адрес хоста",
+            "mongodb_connection_dns_seed_list": "Подключение к списку DNS сидов",
+            "mongodb_connection_standard": "Стандартное соединение",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Сертификат и ключ клиента",
+            "name": "Наименование",
+            "port": "Порт",
+            "private_key": "Приватный ключ",
+            "private_key_hover": "Закрытый ключ связан с учетной записью сервиса с привилегиями Firebase.",
+            "ssl_options": "Опции SSL",
+            "username_password": "Имя пользователя/Пароль",
+            "self_signed_certificate": "Использовать самоподписанный сертификат",
+            "disable_introspection": "Отключить интроспективы",
+            "value": "Значение",
+            "add_to": "Добавить в",
+            "header_prefix": "Префикс заголовка",
+            "key": "Спецификация",
+            "introspection": "Интроспектива",
+            "bear_token": "Токен",
+            "connection_options": "Параметры соединения",
+            "account_name": "Имя аккаунта",
+            "warehouse": "Склад",
+            "schema": "Схема",
+            "snowflake_basic_auth": "Базовая авторизация",
+            "snowflake_key_auth": "Пара ключей (поддерживаются только закрытые ключи шифрования)",
+            "role": "Роль",
+            "username": "Имя пользователя",
+            "password": "Пароль",
+            "dynamo_region": "Область AWS",
+            "dynamo_access_key_id": "ID ключа доступа AWS",
+            "dynamo_secret_key": "Секретный ключ AWS"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_производство",
+            "database_index": "по умолчанию 0",
+            "hostname": "Hostname",
+            "hosturl": "напр. https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "напр. \"DB(только для чтения)\" или \"Internal Admin API\"",
+            "password": "Пароль",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Имя пользователя",
+            "default": "стандартный",
+            "hugging_face_url": "Используйте абсолютный URL (например https://api-inference.huggingface.co/models/). ",
+            "database_name": "Имя базы данных",
+            "account_name": "xy12345.us-east-2.aws",
+            "warehouse": "Счёт",
+            "snowflake_database": "SONG_SAMPLE_DATA",
+            "schema": "ПУБЛИЧНЫЕ",
+            "role": "Роль",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
+          },
+          "tip": {
+            "connect_type": "Облачные: серверы ILLA безопасно подключаются к вашей базе данных.",
+            "name": "Название ресурса при создании действий в ILLA.",
+            "private_key": "<0>Нажмите здесь</0>, чтобы увидеть, как получить этот ключ",
+            "ssl_options": "SSL используется при наличии",
+            "username_password": "Учетные данные будут зашифрованы и сохранены на наших серверах.",
+            "introspection": "Включите это, если ваша конечная точка GraphQL не поддерживает запросы интроспекции. Заметьте, что отключение интроспекции снижает удобство использования GraphQL, так как автозаполнение и соединение для этого ресурса больше не работает.",
+            "hugging_face_url": "<0>Нажмите здесь</0>, чтобы узнать больше о вырезке лица.",
+            "bear_token": "Получить маркер доступа пользователя или API <0>в настройках профиля Hugging Facees.</0>",
+            "connection_options": "Добавьте параметры подключения к вашему соединению. Если включена опция SSL, по умолчанию мы добавим сертификат сервера шифрования и доверия."
+          },
+          "title": {
+            "advanced_option": "Расширенные настройки",
+            "general_option": "ОБЩИЙ",
+            "graphql_introspection": "ГРАФКЛЬНАЯ ИНТРОСПЕЦИЯ"
+          }
+        },
+        "error": {
+          "invalid_url": "Пожалуйста, введите правильный URL, например, https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Новый"
+          },
+          "label": {
+            "access_token": "Маркер доступа",
+            "access_token_lifespan": "Маркер доступа\n продолжительности жизни (optiinal)",
+            "access_token_url": "Маркер доступа URL",
+            "action_type": "Тип действия",
+            "audience": "Аудитория",
+            "authentication": "Проверка подлинности",
+            "authorization_url": "URL авторизации",
+            "base_url": "Базовый URL",
+            "basic_auth_password": "Базовый пароль проверки",
+            "basic_auth_username": "Базовое имя пользователя",
+            "bearerToken": "Жетон носителя",
+            "body": "Тело",
+            "client_id": "ID клиента",
+            "client_secret": "Секрет клиента",
+            "configure_oauth2": "Настройка OAuth 2.0",
+            "cookies": "Печенье",
+            "copy_url_to_application": "Скопировать этот URL в ваше приложение",
+            "enable_auth_verification_endpoint": "Включить конечную точку проверки авторизации",
+            "extra_body_values": "Дополнительные значения тела",
+            "forward_all_cookies": "Переслать все Cookie",
+            "headers": "Заголовки",
+            "list_of_cookies_to_forward": "Список Cookies для\n вперед",
+            "name": "Наименование",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Обновить токен",
+            "scopes": "Области (разделенные\n пробелом)",
+            "share_oauth2_credentials_between_users": "Поделиться учетными данными OAuth2.0 между пользователями",
+            "url_parameters": "Параметры URL",
+            "use_client_credentials_auth": "Использовать авторизацию клиента",
+            "digest_auth_username": "Имя пользователя",
+            "digest_auth_password": "Пароль"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Базовая авторизация",
+              "bearer": "Зеркал",
+              "none": "Нет",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Время жизни токена в секундах",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "например: \"Внутренний API администратора\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "Использовать абсолютный URL (например https://example.com)",
+            "database": "напр. \"БД пользователей (только для чтения)\"",
+            "name": "напр. \"DB(только для чтения)\" или \"Internal Admin API\"",
+            "param_key": "ключ",
+            "param_value": "значение",
+            "password": "пароль",
+            "username": "имя пользователя"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 - сложная специфика. В обоих случаях вы должны использовать плейсхолдер OAUTH2_TOKEN для информирования ILLA где размещать токен доступа OAuth в API запросе. Чаще всего для этого используется заголовок, такой как Authorization: Bearer OAUTH2_TOKEN.",
+            "extra_body_values": "Дополнительные значения тела не передаются для GET или HEAD запросов",
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER PARAMETER CHANGES.",
+            "name": "Название ресурса при создании действий в ILLA."
+          },
+          "title": {
+            "advanced_option": "ОБЩИЙ"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Ключ доступа",
+            "base_url": "Базовый URL",
+            "bucket_name": "Имя ведра",
+            "custome_s3_endpoint": "Пользовательская S3 конечная точка",
+            "region": "Регион",
+            "secret_access_key": "Секретный ключ доступа",
+            "use_custome_s3_endpoint": "Пользовательская S3 конечная точка"
+          },
+          "placeholder": {
+            "base_url": "напр. https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Используется для подключения к другим не-S3 службам, таким как \"цифровые океанические пространства\" или \"Wasabi\"."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Подсказка: назначьте переменные внешние ссылки на переменные, а не цепь на фигурные скобки."
+          },
+          "tip": {
+            "external_reference": "Вы можете создать внешние ссылки на заданные переменные. Например, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Узнать больше о малышах Face:",
+            "hf_endpoint": "Исходная точка входа"
+          },
+          "label": {
+            "hf_endpoint_token": "Токен",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Получить токены API организаций <0>в профиле Hugging Face settings</0>.",
+            "hf_endpoint": "подробнее о <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Разрешить IP-адреса",
+            "message": "Если ваши ресурсы не доступны для публичного доступа, обновите настройки вашей сети или брандмауэра, чтобы добавить IP адреса ILLA's в разрешительный список, чтобы ILLA могла подключаться к вашим ресурсам."
+          }
+        },
+        "button": {
+          "copy_ip": "Копировать IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Удалено"
+      },
+      "result": {
+        "title": {
+          "api_request": "API запрос",
+          "error": "Запрос побег не удался",
+          "json": "JSON",
+          "response": "Замечание",
+          "success": "Запрос успешно завершен",
+          "table": "Таблица"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "База данных",
+        "js_transformer": "Трансформатор JavaScript"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Не удалось показать таблицы. Пожалуйста, повторите попытку позже."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "приватный",
+          "public_read": "публичное чтение",
+          "public_read_write": "публичное чтение",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "прочтение аутентификации",
+          "bucket_owner_read": "прочитано владельцем контейнера",
+          "bucket_owner_full_control": "полноправное управление ведром-владельцем"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Отмена",
+      "delete": "Удалить",
+      "delete_content": "Удалите его, возможно, создайте ошибки, пожалуйста, подтвердите.",
+      "delete_title": "Вы уверены, что хотите удалить {{ displayName}}?",
+      "editor_list": "Текущие редакторы"
+    },
+    "context_menu": {
+      "delete": "Удалить",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "ДЕЙСТВИЯ И ПРЕОБРАЗОВАНИЯ ",
+      "components_title": "КОМПОНЕНТЫ ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "СТРАНИЦА",
+      "global_data_modal": {
+        "title": "Изменить глобальные данные",
+        "variable_name": {
+          "tooltips": "Имя переменной. Используйте начальное значение в этом приложении через {{name}}",
+          "label": "Наименование",
+          "message": "Пожалуйста, введите имя переменной"
+        },
+        "initial_value": {
+          "label": "Начальное значение",
+          "tooltips": "Поддерживает объекты или примитивные значения. Пример: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Не удалось развернуть"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" уже существует",
+      "validate_error": "{{ displayName }}\" должен начинаться с буквы или \"_\", и может содержать только буквы, цифры, \"_\" или \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Удалить",
+          "reset_state": "Reset state",
+          "view_documentation": "Посмотреть документацию"
+        }
+      },
+      "multi_selected_header": "Выбрано {{ number }} компонентов",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Гистограмма",
+          "line": "Линейный график",
+          "pie": "Pie диаграмма",
+          "scatterplot": "Диаграмма рассеяния"
+        },
+        "color_picker": {
+          "prefabricated": "Готовый цвет",
+          "title": "Изменить цвет"
+        },
+        "column_setter": {
+          "label": "Столбцы ({{number}})",
+          "new": "Новый",
+          "title": "Заголовок"
+        },
+        "event_handler_list": {
+          "empty": "Триггеры запросов, управляющих компонентов или вызвать другие API в ответ на события компонента.",
+          "incomplete_selection": "Неполный выбор",
+          "new": "Новый",
+          "title": "Редактировать обработчик события"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Удалить",
+          "label": "Menus ({{number}})",
+          "new": "Новый",
+          "sub": "Суб"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Удалить",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Нет метки",
+          "model_title": "Изменить параметры",
+          "new": "Новый",
+          "title": "Варианты"
+        },
+        "select_page_setter": {
+          "placeholder": "Выберите страницу"
+        },
+        "select_view_setter": {
+          "placeholder": "Выберите вид"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Просмотров"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Изменить",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Изменение фильтра",
+          "fail": "Сбой",
+          "focus": "Фокус",
+          "invalid": "Некорректный",
+          "paginationChange": "Изменение страницы",
+          "row_select": "Выбор строки",
+          "sortingChange": "Изменить сортировку",
+          "submit": "Отправить",
+          "success": "Успешно",
+          "onOpenModal": "Открыть модаль",
+          "onCloseModal": "Закрыть окно",
+          "play": "Играть",
+          "pause": "Пауза",
+          "ended": "Завершено",
+          "loaded": "Загружено",
+          "rowSelect": "Выбор строки",
+          "markerSelected": "маркер выбран",
+          "markerCreated": "маркер создан",
+          "select": "Выбрать"
+        },
+        "image_list": {
+          "title": "Изображения",
+          "empty": "Нет изображений",
+          "model_title": "Редактировать изображения",
+          "config": {
+            "model_label": "Метка",
+            "image_url": "URL изображения"
+          }
+        },
+        "image_setter": {
+          "new": "Новый"
+        },
+        "Change": "Изменить",
+        "Select": "Выбрать",
+        "eventCalendar": {
+          "no_title": "Нет заголовка"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "обновить"
+      },
+      "setter_default_value": {
+        "fill": "Заполнить",
+        "message_type": {
+          "error": "Ошибка",
+          "info": "Инфо",
+          "success": "Успешно",
+          "warning": "Предупреждение"
+        },
+        "outline": "Контур",
+        "validation_pattern": {
+          "email": "Почта",
+          "regex": "Регенерация",
+          "url": "URL"
+        },
+        "height": {
+          "fixed": "Исправлено",
+          "auto": "Авто"
+        },
+        "upload_type": {
+          "button": "Кнопка",
+          "dropzone": "Зона выпадения"
+        },
+        "selection_types": {
+          "single_file": "Один файл",
+          "multiple_files": "Несколько файлов",
+          "directory": "Каталог"
+        },
+        "size_type": {
+          "kb": "КБ",
+          "mb": "МБ"
+        },
+        "time_picker": {
+          "select_time": "Выберите время"
+        },
+        "time_range": {
+          "start_placeholder": "Время начала",
+          "end_placeholder": "Время окончания"
+        }
+      },
+      "setter_group": {
+        "adornments": "АДРЕС",
+        "basic": "БАЗИЯ",
+        "column": "КОЛУМНЫ",
+        "data": "ДАТА",
+        "interaction": "ИНТЕРАЦИЯ",
+        "label": "ЗАТРАТЬ",
+        "layout": "ПОЛУЧИТЬ",
+        "menu": "Меню",
+        "options": "НАСТРОЙКИ",
+        "pagination": "ПАССАЖИРОВАНИЕ",
+        "row_selection": "Выбор ROW",
+        "sort": "СОРТ",
+        "style": "СТИЛЬ",
+        "tabs": "TABS",
+        "toolbar": "ТОЛЬКО",
+        "validation": "ВАЛИДАЦИЯ",
+        "views": "ПРОСМОТР",
+        "images": "ИЗОБРАЖЕНИЯ",
+        "primary_value": "ЗНАЧЕНИЕ ПРИМАРЕНИЯ",
+        "secValue": "Вторичное значение",
+        "border": "Border",
+        "color": "Цвет",
+        "icon": "Иконка",
+        "secondary_value": "ЗНАЧЕНИЕ СЕКУЛЬТА",
+        "resource": "РЕСУРС",
+        "eventCalendar": {
+          "calendar": "Календарь"
+        },
+        "event": "Событие"
+      },
+      "setter_label": {
+        "action": "Действие",
+        "align": "Align",
+        "allow_clear": "Разрешить очистку",
+        "allow_half": "Разрешить половину",
+        "alt_text": "Alt текст",
+        "alt_text_desc": "Доступное описание изображения для экранных читателей. Это также отображается как резервная копия, если изображение не загружается.",
+        "background": "Справочная информация",
+        "background_color": "Справочная информация",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Подпись",
+        "chart_title": "Заголовок",
+        "chart_type": "Тип диаграммы",
+        "color": "Цвет",
+        "colors": "Цвета",
+        "column_title": "Название столбца",
+        "column_type": "Тип столбца",
+        "columns": "Столбцы",
+        "component": "Компонент",
+        "config_type": "Тип конфигурации",
+        "container": "Контейнер",
+        "content": "Содержание",
+        "control_component": "Компонент управления",
+        "custom_rule": "Пользовательское правило",
+        "data": "Данные",
+        "data_source": "Источник данных",
+        "data_sources": "Источники данных",
+        "dataset": {
+          "aggregation_method": "Метод агрегации",
+          "name": "Имя набора данных",
+          "remove": "Remove dataset",
+          "value": "Значения набора данных"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Десятичное место",
+        "decimal_places": "Десятичные знаки",
+        "default_sort_key": "Столбец",
+        "default_sort_order": "Направление",
+        "default_tab": "Default tab",
+        "default_value": "Значение по умолчанию",
+        "default_views": "Вид по умолчанию",
+        "description": "Описание",
+        "direction": "Направление",
+        "disable_submit": "Отключить отправку",
+        "disabled": "Отключено",
+        "download": "Скачать",
+        "duration": "Продолжительность",
+        "empty_state": "Не указан статус",
+        "enable_sorting": "Включить сортировку",
+        "end_data": "Конечная дата",
+        "end_placeholder": "Конечный плейсхолдер",
+        "event": "Событие",
+        "event_handler": "Обработчик события",
+        "expansion_method": "Метод расширения",
+        "failure": "Сбой",
+        "filter": "Фильтр",
+        "font_size": "Font size",
+        "form_data_key": "Ключ данных формы",
+        "format": "Формат",
+        "go_to_url": "Перейти по URL",
+        "group_by": "Группировать по",
+        "group_layout": "Макет группы",
+        "hidden": "Hidden",
+        "hidden_label": "Скрытая метка",
+        "hide_validation_message": "Скрыть сообщение проверки",
+        "hide_value_label": "Скрыть метку значения",
+        "horizontal_alignment": "Выравнивание по горизонтали",
+        "icon": "Иконка",
+        "image_source": "Источник изображения",
+        "img_height": "Высота",
+        "img_width": "Width",
+        "index": "Индекс",
+        "item_background_color": "Фон элемента",
+        "items": "Предметы",
+        "key": "Спецификация",
+        "label": "Метка",
+        "label_alignment": "Выравнивание",
+        "label_position": "Позиция",
+        "label_width": "Width(%)",
+        "layout": "Макет",
+        "legend_position": "Расположение легенды",
+        "link_to_container": "Ссылка на контейнер",
+        "links_color": "Ссылки",
+        "loading": "Загрузка",
+        "loop_back_to_start": "Вернуться к началу",
+        "loop_start_to_back": "Начать цикл назад",
+        "mapped_option": "Опция сопоставления",
+        "mapped_value": "Сопоставленное значение",
+        "max_count": "Максимальный счетчик",
+        "max_date": "Макс. дата",
+        "max_length": "Максимальная длина",
+        "maximum": "Максимум",
+        "method": "Метод",
+        "min_date": "Мин. дата",
+        "min_length": "Мин. длина",
+        "minimum": "Минимум",
+        "multi_row_selection": "Выбор нескольких строк",
+        "new_tab": "New tab",
+        "only_run_when": "Запускать только при",
+        "overFlow": "Перерыв",
+        "page": "Страница",
+        "pageSize": "Размер страницы",
+        "pattern": "Шаблон",
+        "pending": "В ожидании",
+        "placeholder": "Заполнитель",
+        "prefix_text": "Префикс текста",
+        "radius": "Radius",
+        "read_only": "Только для чтения",
+        "regex": "Регенерация",
+        "required_field": "Обязательное поле",
+        "reset_after_successful_submit": "Сброс после успешной отправки",
+        "router": "Роутер",
+        "run_script": "Выполнить скрипт",
+        "scale_type": "Тип масштаба",
+        "set_router": "Установить маршрутизатор",
+        "set_temporary_state": "Установить временное состояние",
+        "shadow": {
+          "shadow": "Тень"
+        },
+        "show_character_count": "Показывать количество символов",
+        "show_clear_button": "Показать кнопку \"Очистить\"",
+        "show_footer": "Показать нижний колонтитул",
+        "show_header": "Показать заголовок",
+        "show_notification": "Показать уведомление",
+        "sort": "Сортировка",
+        "start_date": "Начальная дата",
+        "start_placeholder": "Запуск заполнителя",
+        "step_size": "Размер шага",
+        "stroke_width": "Ширина штриха",
+        "style": "Стиль",
+        "styles": "Styles",
+        "submit_form": "Отправить форму",
+        "success": "Успешно",
+        "suffix_text": "Текст суффикса",
+        "text": "Текст",
+        "text_align": "Text align",
+        "text_size": "Размер текста",
+        "theme_color": "Цвет темы",
+        "thousand_separator": "Разделитель тысяч",
+        "time_format": "Формат времени",
+        "title": "Заголовок",
+        "tooltip": "Подсказка",
+        "trail_color": "Цвет следа",
+        "trigger_query": "Запрос триггера",
+        "type": "Тип",
+        "validate_inputs_on_submit": "Проверка входов при отправке",
+        "value": "Значение",
+        "value_labels": "Метки значения",
+        "variant": "Вариант",
+        "vertical_alignment": "Вертикальное выравнивание",
+        "width": "Width",
+        "x_axis_name": "Имя оси X",
+        "x_axis_title": "Название оси X",
+        "x_axis_type": "Тип оси X",
+        "x_axis_value": "Значение оси X",
+        "y_axis_name": "Имя оси Y",
+        "y_axis_title": "Название оси Y",
+        "height": "Высота",
+        "min_height": "Min height (px)",
+        "show_underline": "Показывать подчёркивание",
+        "auto_play": "Автовоспроизведение",
+        "interval": "Интервал (мс)",
+        "show_button": "Показать стрелки",
+        "show_dot": "Показывать точки снизу",
+        "hidden_images": "Скрытые изображения",
+        "file_type": "Типы файлов",
+        "selection_types": "Выбранные типы",
+        "append_newly_files": "Добавить новые выбранные файлы",
+        "file_list": "Список файлов",
+        "parse_value": "Разбор значения",
+        "max_files": "Макс. файлов",
+        "min_files": "Мин. файлов",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Переполнение",
+        "file_url": "Источник PDF",
+        "show_tool_bar": "Показать панель инструментов",
+        "scale": "Масштабировать страницу до",
+        "scroll": "Привязка к каждой странице",
+        "min_max_size": "Мин. размер ~ максимальный размер",
+        "video_url": "Источник видео",
+        "autoplay": "Автозапуск",
+        "loop": "Цикл",
+        "volume": "Объем",
+        "show_controls": "Показать элементы управления",
+        "img_url_array": "Массив URL изображения",
+        "statistics": {
+          "label": "Метка",
+          "primary_value": "Первичное значение",
+          "secValue": "Вторичное значение",
+          "decimal": "Десятичное место",
+          "trend_sign": "Показать знак тренда",
+          "positive_sign": "Положительный знак",
+          "negative_sign": "Отрицательный знак",
+          "thousand_separator": "Показать разделитель тысяч",
+          "trend_color": "Включить цвет тренда",
+          "prefix_text": "Префикс текста",
+          "suffix_text": "Текст суффикса"
+        },
+        "mute": "Заглушить",
+        "collapse": {
+          "type": "Тип",
+          "accordin_mode": "Режим аккордеона",
+          "header_color": "Заголовок",
+          "body_color": "Тело",
+          "expand_icon": "Развернуть",
+          "collapse_icon": "Свернуть",
+          "icon_color": "Цвет"
+        },
+        "choose_at_least": "Выберите по крайней мере",
+        "choose_up_to": "Выберите до",
+        "copy_to_clipboard": "Копировать в буфер обмена",
+        "file_download": {
+          "file_data": "Данные файла",
+          "file_name": "Имя файла с расширением",
+          "file_type": "Тип файла"
+        },
+        "action_name": "Название действия",
+        "variable": {
+          "path_of_value": "Путь значения",
+          "variable": "Глобальные данные"
+        },
+        "code": {
+          "write_code": "Написать код"
+        },
+        "slider": {
+          "step_size": "Размер шага",
+          "minimum": "Минимум",
+          "maximum": "Максимум",
+          "hide_output": "Скрыть вывод",
+          "prefix_icon": "Значок префикса",
+          "suffix_icon": "Суффиксный значок",
+          "allow_wrapping": "Разрешить упаковку"
+        },
+        "range_slider": {
+          "start_value": "Начальное значение",
+          "end_value": "Конечное значение"
+        },
+        "name": "Наименование",
+        "audio": {
+          "audio_url": "Источник аудио"
+        },
+        "map": {
+          "markers": "Метки",
+          "initial_location": "Начальное местоположение",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Название поля Широта",
+          "longitude_field_name": "Долгота названия поля",
+          "zoom": "Масштаб",
+          "enable_add_markers": "Включить добавление маркеров",
+          "enable_search_locati": "Включить поиск местоположения",
+          "enable_clustering": "Включить кластеризацию"
+        },
+        "time_range": {
+          "start_time": "Время начала",
+          "end_time": "Время окончания"
+        },
+        "eventCalendar": {
+          "event_value": "Значение события",
+          "event_id": "ID события",
+          "title": "Заголовок",
+          "description": "Описание",
+          "start": "Начать",
+          "end": "Конец",
+          "resource_id": "Идентификатор ресурса",
+          "resource_title": "Название ресурса",
+          "all_day": "Весь день",
+          "data_source": "Источник данных",
+          "default_date": "Дата по умолчанию",
+          "resource_grid": "Сетка ресурсов",
+          "default_view": "Вид по умолчанию",
+          "show_current_time": "Показать текущее время",
+          "background": "Справочная информация",
+          "calendar_background": "Справочная информация",
+          "calendar_border": "Border",
+          "calendar_text": "Текст",
+          "event_background": "Справочная информация",
+          "event_text": "Текст"
+        },
+        "table": {
+          "page_index": "Индекс страницы",
+          "index": "Индекс",
+          "scroll_to_the_select": "Прокрутка к выбранной строке",
+          "filters": "Фильтры",
+          "filter_mode": "Режим фильтра",
+          "show_thousands_separ": "Показать тысячи разделителей",
+          "tag_label": "Метка метки",
+          "tag_color": "Цвет тега",
+          "open_in_new_tab": "Открыть в новой вкладке",
+          "variant": "Variant",
+          "icon": "Иконка",
+          "color": "Цвет",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Фон",
+          "alignment": "Выравнивание",
+          "column_width": "Ширина колонки",
+          "width": "Ширина",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Обновить",
+          "download_row_data": "Download Row data",
+          "column_setting": "Настройка колонки",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Общее количество строк",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
+        "cascader_data": "Каждая опция должна быть в формате JSON и содержать два ключа, значение и метку. Используя массивы, вы можете создать параметры на том же уровне. А дочерние параметры могут быть созданы с помощью атрибута «Детский». ",
+        "component_default_value": "Начальное значение компонента. Вы можете динамически изменить начальное значение, набрав JavaScript в {{}}.",
+        "custom_rule": "Создайте здесь логику проверки. Правила должны быть сделаны в JavaScript и покрыты {{}}.",
+        "date_format": "Правильная строка формата даты. Смотрите [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "Начальное значение поля ввода. Вы можете динамически изменить начальное значение поля ввода, набрав JavaScript в {{}}.",
+        "disabled": "Контролируйте статус отключения компонента. При отключении компонента нельзя изменять или фокусироваться.",
+        "disabled_submit": "Когда отключено, компоненты, вызывающие метод form.submit(), также будут отключены.",
+        "download": "Показывать кнопку загрузки на панели инструментов.",
+        "filter": "Показывать кнопку фильтра на панели инструментов.",
+        "form_data_key": "Укажите ключ компонента оберточной формы при создании атрибута данных.",
+        "hidden": "Динамическое управление скрытым компонентом. Вы можете изменить скрытый статус через динамическое логическое значение.",
+        "hide_validation_message": "Вы можете скрыть сообщение об ошибке, переключившись на скрытый статус, когда введенное значение неверно. Вы можете динамически изменить скрытый статус с помощью JavaScript.",
+        "input_default_value": "Начальное значение поля ввода. Вы можете динамически изменить начальное значение поля ввода, набрав JavaScript в {{}}.",
+        "loading": "Должен ли компонент показывать индикатор загрузки.",
+        "map_data_option": "Используйте либо массив значений, либо объект ключей, сопоставленных с массивами. Каждый элемент в вашем источнике данных сопоставляется с каждым параметром.",
+        "mapped_value": "Используйте {{ currentRow }} для доступа к данным текущей строки. Например, для расчета \"cost per click\" на основе колонок \"cost\" и \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Используйте {{table.selectedRow[n].columnName}} для доступа к данным.",
+        "only_run_when": "Условия, которые должны быть выполнены до выполнения события.",
+        "placeholder": "Значение будет показано, когда поле ввода пустое.",
+        "progress_percentage": "Процентное значение между 0 и 100.",
+        "read_only": "Контролируйте статус того, доступен ли компонент только для чтения. Можно выбрать компонент только для чтения и сфокусироваться, но его нельзя изменить.",
+        "required_field": "Действителен только когда выключатель включен.",
+        "switch_default_value": "Устанавливает начальный статус переключателя. Вы можете динамически изменить значение по умолчанию с помощью JavaScript.",
+        "table_only_run_when": "Условия, которые должны быть выполнены до выполнения события. Используйте {{ currentRow }} , чтобы получить доступ к данным текущей строки. Например, запускать только тогда, когда \"imgSize\" меньше, чем 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Используйте currentRow для доступа к данным текущей строки. Например, чтобы установить значение компонента editableText на основе \"email\":  {{ currentRow.email }}.\n  Кроме того, вы можете установить значение компонента в INSPECT с помощью {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Используйте {{ currentRow }} для доступа к данным текущей строки. Например, чтобы перейти в url с параметром \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "Вы можете ввести значение в режиме Markdown или в текстовом режиме Plain. Можно распознавать только ссылки в режиме markdown.",
+        "timeline_direction": "Изменить направление по графику.",
+        "timeline_pending": "Показывать ли узел с статусом ожидания.",
+        "tooltip": "Здесь пользователь может ввести подсказку компонента. Подсказка будет показана при фокусировке. Формат Markdown поддерживается.",
+        "file_types": "Список расширений файлов, разрешённых для загрузки. Значение не будет разрешено для всех типов файлов.",
+        "file_list": "Для показа списка выбранных файлов под загрузчиком. Высота загрузки будет изменяться динамически в зависимости от длины списка файлов.",
+        "parse_value": "Попытка разобрать выбранные файлы с поддержкой JSON, CSV, TSV, Excel, TXT файлов.\nДоступ к анализируемым данным возможен через {{uploader1.parsedValue}}. Файлы, которые не могут быть обработаны, будут пустыми в массиве.\nВсе файлы доступны как строки, закодированные в формате base64, вне зависимости от этой опции.",
+        "file_url": "Поддерживает URL PDF в веб-или base64-кодированных данных pdf файлов. Например: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Масштабируйте каждую страницу для заполнения ширины или высоты компонента.",
+        "scroll": "Автоматически размещать до начала каждой страницы при прокрутке.",
+        "video_url": "Поддерживает большинство видеосервисов или прямую ссылку на любой общий тип видеофайлов или данные в кодировке base64 видеофайлов. Например: {{ data:audio/mp4;base64,exampleDate}}",
+        "collapse": {
+          "type": "Свернутый список: список, все элементы будут автоматически копировать стиль первого элемента. Вы можете указать данные компонента в каждом элементе через {{ currentItem.columnName }}. Сворачиваемая панель: каждая панель независима, вы можете указать стиль компонента и данные каждого элемента отдельно.",
+          "items": "Количество элементов",
+          "accordin_mode": "В аккордеонном режиме, когда элемент разворачивается, другие элементы свернуты."
+        }
+      },
+      "tab_title": "Инспекция",
+      "unselected_tip1": "Компоненты не выбраны.",
+      "unselected_tip2": "Нажмите на компонент, чтобы выбрать его.",
+      "setter": {
+        "click_mask_close": "Нажмите на маску, чтобы закрыть модаль",
+        "modal": {
+          "blank": "Нет значков"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Используйте {{ item }} , чтобы получить значение из источника данных. Например, в источнике данных есть два атрибута. Они являются imageUrl и url. Если вы хотите перейти к другому url при клике на изображение, используйте {{ item.url }} , чтобы установить url.",
+        "data_source": "Источник данных для определения элементов изображения, используя вычисление. Используйте либо массив значений или объект ключей, сопоставленный с массивами. Например: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Вы также можете использовать данные в действиях. Например: {{ mysql1.data }} ",
+        "img_url_array": "Используйте {{ item.attributeName }} , чтобы получить URL изображения из источника данных. ",
+        "carousel": {
+          "data_source": "Источник данных для определения элементов изображения, используя вычисление. Используйте либо массив значений или объект ключей, сопоставленный с массивами. Например: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Вы также можете использовать данные в действиях. Например: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Поддержка данных base64, необработанные данные, сопоставленные данные таблицы. "
+        },
+        "variable": {
+          "available_in_objects": "Доступно в объектах и массивах. Путь атрибута объекта: {{objectName.attributeName}}. Индекс значения в массиве: {{1}}. Массив в объекте: {{objectName.attributeName.1}}",
+          "the_target_value": "Целевое значение"
+        },
+        "slider": {
+          "default_value": "Начальное значение ползунка. Вы можете динамически изменить начальное значение, набрав JavaScript в {{}}.",
+          "minimum": "Минимальное значение ползунка",
+          "maximum": "Максимальное значение ползунка",
+          "step_size": "Минимальное изменение единицы слайда",
+          "label": "Имя поля, отображаемого пользователю",
+          "caption": "Заголовок, используемый для описания поля в деталях",
+          "hide_label": "Выберите, показывать ли метку",
+          "allow_wrapping": "Разрешить ли упаковку меток",
+          "position": "Установить положение метки относительно компонента",
+          "alignment": "Задать выравнивание метки",
+          "width": "Когда метка находится в левой части компонента, установите ширину метки",
+          "prefix_icon": "Значок, отображаемый перед компонентом",
+          "suffix_icon": "Иконка, отображаемая после компонента",
+          "hide_output": "Укажите, скрывать ли значение при скольжении"
+        },
+        "step": {
+          "default_step": "Шаг по умолчанию",
+          "show_step_number": "Показать номера шагов",
+          "indicate_completed_steps": "Указать выполненные шаги"
+        },
+        "range_slider": {
+          "start_value": "Установить минимальное значение диапазона",
+          "end_value": "Установить максимальное значение диапазона"
+        },
+        "audio": {
+          "audio_url": "Поддерживает прямые ссылки на любой тип аудио файла, ссылки на некоторые аудио сервисы или на файлы в кодировке base64. Например: {{ data:audio/mp3;base64,exampleDate}}"
+        },
+        "map": {
+          "markers": "Чтобы установить маркеры на карте. Маркеры должны быть массивом объектов с теми же свойствами, что и маркеры по умолчанию.",
+          "initial_location": "При инициализации карты положение по центру экрана по умолчанию",
+          "default_markers": "Маркеры по умолчанию, отображаемые при инициализации карты. Вы можете установить их динамически с помощью JavaScript в {{}}. ",
+          "latitude_field_name": "Широта берется из каких свойств объектов начального местоположения и маркеров по умолчанию.",
+          "longitude_field_name": "Долгота берется из каких свойств объектов исходного местоположения и маркеров по умолчанию.",
+          "zoom": "Установка масштаба карты",
+          "enable_add_markers": "Разрешить ли пользователям добавлять маркеры нажатием на карте",
+          "enable_search_locati": "Разрешить ли пользователям поиск местоположения",
+          "enable_clustering": "Разрешить множественные маркеры объединять при увеличении карты"
+        },
+        "time_picker": {
+          "format": "Правильная строка формата времени. Для получения дополнительной информации в формате: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "Диапазон значений в минутах",
+          "show_a_clear_button_": "Показывать кнопку очистки, когда мышь над компонентом. "
+        },
+        "time_range": {
+          "start_time": "Начальное время начала компонента. ",
+          "end_time": "Начальное время окончания компонента. ",
+          "start_placeholder": "Значение будет показано, когда поле времени начала пустое.",
+          "end_placeholder": "Значение будет показано, когда поле конечного времени пустое."
+        },
+        "eventCalendar": {
+          "event_value": "Используйте Object enclosed in {{ для установки значения события. Например, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "Уникальный идентификатор, используемый для идентификации события",
+          "title": "Название события",
+          "description": "Описание события",
+          "start": "Время начала события",
+          "end": "Время окончания события",
+          "resource_id": "Ресурсом может быть человек, конференц-зал и т. д. Вы можете задать идентификатор ресурса и подключить его к мероприятию. ",
+          "resource_title": "Название ресурса, отображаемое при просмотре ресурса",
+          "all_day": "Событие на весь день",
+          "data_source": "Источником данных событий. Источником данных должен быть массив объектов. Каждый объект является событием. Например, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "Дата по умолчанию при запуске приложения",
+          "resource_grid": "Показывать ли сетку ресурсов",
+          "default_view": "Вид по умолчанию при запуске приложения",
+          "show_current_time": "Укажите, показывать ли текущую строку времени",
+          "calendar_background": "Установить фон календаря",
+          "calendar_border": "Установить цвет границы",
+          "calendar_text": "Установить цвет текста",
+          "event_background": "Установить фон карты событий",
+          "event_text": "Установить цвет текста карты событий",
+          "couldnot_drag": "Если вы хотите перетащить интервал времени, перейдите на страницу предварительного просмотра для этой операции."
+        }
+      },
+      "setter_option": {
+        "fixed": "Исправлено",
+        "auto_limited": "Авто высота с ограничениями",
+        "auto_height": "Авто высота",
+        "text_ellipsis": "Эллипсис",
+        "text_scroll": "Прокрутка",
+        "text_clip": "Clip",
+        "scale_height": "Высота",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Сворачивающаяся панель"
+        },
+        "file_download": {
+          "auto": "Авто",
+          "plain_text": "Обычный текст",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Нет",
+          "large": "Большой",
+          "medium": "Средний",
+          "small": "Маленький"
+        },
+        "eventCalendar": {
+          "sunday": "Воскресенье",
+          "monday": "Понедельник",
+          "tuesday": "Вторник",
+          "wednesday": "Среда",
+          "thursday": "Четверг",
+          "friday": "Пятница",
+          "saturday": "Суббота",
+          "month": "Месяц",
+          "week": "Неделя",
+          "day": "День",
+          "agenda": "Повестка дня"
+        },
+        "table": {
+          "set_sort": "Установить сортировку",
+          "column": "Столбец",
+          "number": "Номер",
+          "percent": "Процент",
+          "currency": "Валюта",
+          "text": "Текст",
+          "tag": "Тег",
+          "button_group": "Группа кнопок",
+          "date": "Дата",
+          "time": "Время",
+          "date_time": "Дата Время",
+          "link": "Ссылка",
+          "rating": "Рейтинг",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Кнопка",
+          "icon": "Иконка",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Авто",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Без ограничений",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "США",
+          "suffix_text": "%",
+          "positive_color": "Положительный цвет",
+          "negative_color": "Отрицательный цвет"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "new_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Число между 0 и 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Пожалуйста, выберите по крайней мере {{ min }} вариантов.",
+        "choose_up_to": "Пожалуйста, выберите до {{max}} вариантов.",
+        "map": {
+          "zoom": "Пожалуйста, установите значение между 1 и 22"
+        },
+        "upload": {
+          "size_exceed": "Файлы более 500 МБ могут не обрабатываться.",
+          "single_file": "Допускается только один файл.",
+          "file": "Неподдерживаемые типы файлов удалены",
+          "directory": "Разрешены только каталоги."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Напишите ваш код здесь. Используйте JavaScript внутри {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Добавить",
+        "body": "Тело",
+        "default_view": "Вид по умолчанию",
+        "edit_view": "Изменить вид",
+        "footer": "Колонтитул",
+        "header": "Заголовок",
+        "key": "Спецификация",
+        "left_panel": "Левая панель",
+        "preset": "Preset",
+        "right_panel": "Правая панель",
+        "set_as_homepage": "Сделать домашней страницей",
+        "show_fold_icon": "Показать значок складки",
+        "view_path": "Показать путь",
+        "views": "Просмотров",
+        "width": "Width",
+        "height": "Высота",
+        "columns": "Столбцы"
+      },
+      "model_tips": {
+        "cancel_button": "Отмена",
+        "change_layout_message": "После изменения макета все данные будут очищены. Эта операция не может быть восстановлена, пожалуйста, подтвердите",
+        "delete_section_message": "После скрытия данные в этом разделе будут очищены. Эта операция не может быть восстановлена, пожалуйста, подтвердите",
+        "ok_button": "Подтвердить"
+      },
+      "panel_bar_title": {
+        "basic": "БАЗИЯ",
+        "frame": "FRAME"
+      },
+      "tab_title": "Страница",
+      "tooltips": {
+        "show_fold_icon": "Показать кнопку, чтобы свернуть или развернуть панель",
+        "view_path": "Строка после example.com/app/page/ для доступа к этому виду",
+        "auto_canvas_width": "Ширина страницы в процентах от ширины браузера."
+      }
+    },
+    "validate_message": {
+      "email": "Пожалуйста, введите действительный адрес электронной почты",
+      "max_length": "Должно быть не более {{ number }} символов",
+      "max_value": "Должно быть меньше {{ number }}",
+      "min_length": "Должно быть не менее {{ number }} символов",
+      "min_value": "Должно быть больше {{ number }}",
+      "regex": "Сопоставьте запрошенный формат",
+      "required": "Это поле является обязательным",
+      "url": "Пожалуйста, введите правильный URL",
+      "max_size": "Размер файла не может превышать {{maxSize }} {{ type }}.",
+      "min_files": "Требуется по крайней мере {{ minFiles }} файлов.",
+      "max_files": "Поддержка до {{ maxFiles }} файлов.",
+      "min_size": "Размер файла не может быть меньше, чем {{minSize }} {{ type }}.",
+      "min_max_size": "Мин. размер ~ максимальный размер"
+    },
+    "widget_picker": {
+      "empty_tip": "К сожалению, результатов поиска нет",
+      "search_placeholder": "Искать",
+      "sessions": {
+        "calendar": "Входы календаря",
+        "commonly": "Компоненты командной строки",
+        "container": "Контейнер и форма",
+        "data": "Данные",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Представление",
+        "selects": "Выбрать ввод"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Задать скрытые",
+      "set_file_url": "Установить источник PDF",
+      "play": "Играть",
+      "pause": "Пауза",
+      "seek_to": {
+        "time": "Время",
+        "unit": "(с.)"
+      },
+      "set_video_url": {
+        "video": "Источник видео"
+      },
+      "speed": {
+        "speed": "Скорость",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Остановить",
+      "mute": "Заглушить",
+      "loop": "Цикл",
+      "show_controls": "Показать элементы управления",
+      "set_volumn": "Задать объём",
+      "set_volume": {
+        "volume": "Объем",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "установить Основное Значение",
+        "reset_primary_value": "сбросить первичное значение",
+        "primary_value": "Первичное значение"
+      },
+      "collapse": {
+        "expand_all_items": "Развернуть все элементы",
+        "collapse_all_items": "Свернуть все элементы"
+      },
+      "carousel": {
+        "showNext": "Показать следующее видимое изображение",
+        "showPrevious": "Показать предыдущее видимое изображение"
+      },
+      "file_download": {
+        "download": "Скачать",
+        "message": {
+          "suc": "Начать загрузку",
+          "fail": "Запрос не удался",
+          "download_failed": "Не удалось загрузить"
+        }
+      },
+      "setGlobalData": "Установить глобальные данные",
+      "setLocalStorage": "Установка локального хранилища",
+      "audio": {
+        "set_audio_url": "Установить источник звука"
+      },
+      "map": {
+        "marker_selected": "Отметка выбрана",
+        "marker_created": "Маркер создан",
+        "markers_changed": "Метки изменены"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "Добавить событие",
+        "deleteevent": "удалить событие"
+      },
+      "table": {
+        "clear_filters": "Очистить фильтры",
+        "clear_column_setting": "Очистить настройки столбцов",
+        "refresh": "Обновить",
+        "select_page": "Выберите страницу",
+        "select_row": "Выберите строку",
+        "clear_selection": "Очистить выделенное",
+        "set_filters": "Установить фильтры"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Обучение"
+          },
+          "title": {
+            "tutorial": "Обучение",
+            "templates": "Шаблоны"
+          },
+          "onboarding_app": {
+            "name": "Регистрация приложения",
+            "description": "Следуйте инструкциям ILLA, чтобы научиться создавать приложение.",
+            "action": "Идти"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Форкнуть этот шаблон как новое приложение"
+          },
+          "templates_name": {
+            "table": "Панель",
+            "form": "Опрос",
+            "list": "Админ панель"
+          },
+          "templates_description": {
+            "table": "Используйте таблицы для создания панелей.",
+            "form": "Используйте форму и компоненты ввода для создания форм приложений.",
+            "list": "Использовать компонент списка для отображения и управления информацией"
+          },
+          "modal": {
+            "title": "Форк и развертывание",
+            "placeholder": "Название приложения",
+            "cancel": "Отмена",
+            "fork": "Форк и развертывание"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Шаг 1: Перетащите ввод здесь",
+          "drag_button": "Шаг 2: Перетащите кнопку здесь",
+          "drag_table": "Шаг 3: Перетащите таблицу здесь",
+          "exit": "Отмена",
+          "do_it": "Сделайте это для меня",
+          "drag_title": "Перетащите компоненты в рамку",
+          "modify_action_title": "Изменить действие",
+          "modify_action_description_modify": "Измените действие для получения данных. Мы можем использовать {{input1.value}} , чтобы получить данные, введенные в компонент ввода. \n\nselect * \nfrom users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Нажмите кнопку \"Сохранить\" и затем нажмите \"Выполнить\"",
+          "display_data_title": "Отображать данные в таблице",
+          "display_data_description_select": "Выберите таблицу на кадре",
+          "display_data_description_modify": "Изменить источник данных на правой панели. Мы можем использовать {{postgresql1.data}} , чтобы получить данные.",
+          "event_handler_title": "Нажмите кнопку, чтобы запустить действие",
+          "event_handler_description_1": "Выберите кнопку на кадре",
+          "event_handler_description_2": "Добавить обработчик событий",
+          "event_handler_description_3": "Нажмите на обработчик событий",
+          "event_handler_description_4": "Изменить действие для триггера",
+          "event_handler_description_5": "Изменить запрос на postgre1",
+          "test_it_title": "Протестировать",
+          "test_it_description": "Введите имя пользователя для поиска и нажмите кнопку",
+          "test_it_button": "Следующий",
+          "congratulations_title": "Поздравляем 🎉",
+          "congratulations_description": "Вы только что создали свое первое приложение. Если у вас есть какие-либо вопросы во время использования, вы можете связаться с нами через <0>Discord</0>. ",
+          "congratulations_button": "Готово",
+          "event_handler_description_all": "1. Добавьте обработчик событий\r\n2. Нажмите на обработчик событий\r\n3. Изменить действие на действие\r\n4. Измените запрос на postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Размер данных превышает лимит (текущий размер: {{current_size}} байт, лимит: {{limit_size}} байт)"
+    }
+  },
+  "exit_preview": "Выйти из предпросмотра",
+  "freeze_collision": "Заморозить столкновение",
+  "freeze_messages": "Холст заморожен. Вы можете перетащить компоненты в контейнеры или из них.",
+  "freeze_tips": "Холст заморожен. Нажмите здесь, чтобы разморозить его.",
+  "link_copied": "Ссылка скопирована",
+  "network_error": "Сеть отключена. Пожалуйста, проверьте сеть этого устройства",
+  "not_online_tips": "Сеть отключена. Пожалуйста, проверьте сеть этого устройства",
+  "preview": {
+    "viewport": {
+      "size": "Размер",
+      "reset": "Reset",
+      "save": "Сохранить",
+      "tooltip": {
+        "fluid_width": "Ширина жидкости",
+        "desktop": "Рабочий стол(ширина = 1280px)",
+        "tablet": "Планшет (ширина = 1080px)",
+        "custom": "Свой"
+      }
+    },
+    "button_text": "Предпросмотр"
+  },
+  "remove_fail": "Не удалось удалить",
+  "rename": "Переименовать",
+  "resources": "Ресурсы",
+  "retry": "Повторить",
+  "save": "Сохранить",
+  "setting": {
+    "account": {
+      "email": "Почта",
+      "empty_username": "Пожалуйста, введите ваше имя пользователя",
+      "error_username": "Имя пользователя должно быть 3~15 символов",
+      "save": "Сохранить изменения",
+      "save_fail": "Не удалось сохранить",
+      "title": "АККАУНТ",
+      "username": "Имя пользователя"
+    },
+    "other": {
+      "language": "Язык",
+      "save": "Сохранить изменения",
+      "title": "НАСТРОЙКИ"
+    },
+    "password": {
+      "confirm_password": "Подтверждение пароля",
+      "current_password": "Старый пароль",
+      "empty_password": "Пожалуйста, введите ваш пароль",
+      "error_format_password": "Пароль должен быть от 6 до 20 символов",
+      "error_match_password": "Пароль и подтверждение пароля не совпадают",
+      "error_password_has_empty": "Пароль не может включать пробелы",
+      "error_validate_password": "Ваш пароль может содержать только цифры, буквы и знаки препинания",
+      "new_password": "Новый пароль",
+      "submit_button": "Отправить",
+      "title": "ПАРОЛЬ"
+    }
+  },
+  "share": "Поделиться",
+  "status": {
+    "403": {
+      "des": "Доступ запрещен"
+    },
+    "404": {
+      "again": "Обновить",
+      "des": "Похоже, страница, которую вы ищете, не может быть найдена."
+    },
+    "500": {
+      "des": "Ой, что-то пошло не так. Пожалуйста, повторите попытку позже."
+    },
+    "back": "Вернуться на домашнюю страницу",
+    "mobile_forbidden": "Для улучшения редактирования, пожалуйста, посетите эту страницу на рабочем столе",
+    "back_to_cloud": "Вернуться в облако ILLA",
+    "no_permission_title": "Недостаточно прав",
+    "no_permission_description": "У вас нет разрешения на выполнение запрошенной операции. Обратитесь к администраторам в вашей команде."
+  },
+  "title": "Добро пожаловать в illa",
+  "unfreeze_tips": "Заморозить холст и перетащить компоненты в контейнеры или из них. (D или K)",
+  "user": {
+    "description": "Открытая платформа с низким кодом для разработчиков.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Отправить код"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Пожалуйста, введите действительный адрес электронной почты",
+          "registered": "Адрес электронной почты не связан с учетной записью.",
+          "require": "Пожалуйста, введите ваш email"
+        },
+        "newPassword": {
+          "require": "Пожалуйста, введите ваш пароль"
+        },
+        "verification_code": {
+          "expired": "Срок действия проверочного кода истек",
+          "invalid": "Неверный код подтверждения",
+          "require": "Введите проверочный код"
+        }
+      },
+      "fields": {
+        "email": "Почта",
+        "newPassword": "Новый пароль",
+        "verification_code": "Проверочный код"
+      },
+      "placeholder": {
+        "email": "Введите ваш email",
+        "verification_code": "Введите проверочный код"
+      },
+      "subtitle": "Вернуться к входу",
+      "tips": {
+        "fail": "Не удалось сбросить пароль",
+        "fail_sent": "Не удалось отправить код подтверждения",
+        "success": "Сброс пароля успешно завершен",
+        "verification_code": "Код подтверждения отправлен"
+      },
+      "title": "Сбросить пароль"
+    },
+    "password": {
+      "placeholder": "Введите новый пароль (не менее 6 символов)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Войти"
+      },
+      "description": {
+        "forgot_password": "Забыли пароль?",
+        "policy": "Нажав кнопку Войти, я соглашаюсь с <0>Политикой конфиденциальности</0> и <1>условиями</1>",
+        "register": "Новый пользователь? <0>Создать учетную запись</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Пожалуйста, введите действительный адрес электронной почты",
+          "registered": "Адрес электронной почты не связан с учетной записью.",
+          "require": "Пожалуйста, введите ваш email"
+        },
+        "password": {
+          "incorrect": "Неверный e-mail или пароль",
+          "locked": "Слишком много неудачных попыток, пожалуйста, сбросьте пароль или повторите попытку через 1 час",
+          "min_length": "Пароль должен содержать не менее 6 символов",
+          "require": "Введите пароль"
+        }
+      },
+      "fields": {
+        "email": "Почта",
+        "password": "Пароль"
+      },
+      "placeholder": {
+        "email": "Введите ваш email"
+      },
+      "tips": {
+        "fail": "Не удалось войти",
+        "success": "Вход выполнен успешно"
+      },
+      "title": "С возвращением"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Создать Аккаунт",
+        "send": "Отправить код"
+      },
+      "description": {
+        "login": "Уже зарегистрированы? <0>Войти</0>",
+        "policy": "Нажав кнопку Создать учетную запись, я соглашаюсь с <0>Политикой конфиденциальности</0> и <1>условия</1>",
+        "subscribe": "Я готов получать обновления и новости о ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Пожалуйста, введите действительный адрес электронной почты",
+          "registered": "Учетная запись с таким адресом электронной почты уже существует.",
+          "require": "Пожалуйста, введите ваш email"
+        },
+        "password": {
+          "require": "Введите пароль"
+        },
+        "username": {
+          "length": "Имя пользователя должно быть 3~15 символов",
+          "require": "Пожалуйста, введите имя пользователя"
+        },
+        "verification_code": {
+          "expired": "Срок действия проверочного кода истек",
+          "invalid": "Неверный код подтверждения",
+          "require": "Введите проверочный код"
+        }
+      },
+      "fields": {
+        "email": "Почта",
+        "password": "Пароль",
+        "username": "Имя пользователя",
+        "verification_code": "Проверочный код"
+      },
+      "placeholder": {
+        "email": "Введите ваш email",
+        "username": "Введите имя пользователя",
+        "verification_code": "Введите проверочный код"
+      },
+      "tips": {
+        "fail": "Не удалось зарегистрироваться",
+        "fail_sent": "Не удалось отправить код подтверждения",
+        "success": "Регистрация прошла успешно",
+        "verification_code": "Код подтверждения отправлен"
+      },
+      "title": "Регистрация",
+      "agreement": {
+        "privacy_policy": "политика конфиденциальности",
+        "terms_of_service": "условия предоставления услуг"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Прогресс бара"
+    },
+    "button": {
+      "default_text": "Кнопка",
+      "name": "Кнопка"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Диаграмма"
+    },
+    "check_box_group": {
+      "name": "Группа флажков"
+    },
+    "circle_progress": {
+      "name": "Прогресс круга"
+    },
+    "container": {
+      "empty": "Нажмите <keyPress>D</keyPress> или <keyPress>K</keyPress> и перетащите компоненты сюда",
+      "key_duplicated": "Ключ дублируется. Пожалуйста, используйте уникальные ключи для избежания ошибок.",
+      "name": "Контейнер",
+      "value_duplicated": "Значение дублируется. Пожалуйста, используйте уникальные значения, чтобы избежать ошибок."
+    },
+    "date": {
+      "name": "Дата"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Дата Время",
+      "placeholder": "Выберите время"
+    },
+    "divider_progress": {
+      "name": "Разделитель"
+    },
+    "editable_text": {
+      "name": "Редактируемый текст"
+    },
+    "form": {
+      "name": "Форма"
+    },
+    "image": {
+      "name": "Изображение"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Используйте {{ currentItem }} для доступа к данным текущего элемента. Например, чтобы задать значение текстового компонента, который находится в компоненте списка, на основе \"userName\": {{ currentItem.userName }}",
+      "doc2": "Используйте {{list.selectedItem.data}} для доступа к данным выбранного элемента в компоненте списка. Например, задать значение текстового компонента, который находится вне списка компонента, основанного на \"имени пользователя\" выбранного элемента списка: {{ list.selectedItem.userName }}",
+      "name": "Список"
+    },
+    "menu": {
+      "name": "Меню"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Слева",
+      "right": "Справа",
+      "select_options": {
+        "manual": "Ручной",
+        "mapped": "Сопоставлено"
+      },
+      "top": "Сверху"
+    },
+    "radio_button": {
+      "name": "Кнопка Радио"
+    },
+    "radio_group": {
+      "name": "Группа радио"
+    },
+    "rate": {
+      "name": "Оценить"
+    },
+    "select": {
+      "name": "Выбрать"
+    },
+    "switch": {
+      "name": "Переключатель"
+    },
+    "table": {
+      "ascend": "Аск",
+      "descend": "Desc",
+      "name": "Таблица",
+      "pagination": "Пагинация",
+      "scroll": "Прокрутка"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Привет!",
+      "name": "Текст",
+      "text_model": "Обычный текст"
+    },
+    "timeline": {
+      "horizontal": "Горизонтально",
+      "name": "Хронология",
+      "vertical": "вертикально"
+    },
+    "modal": {
+      "name": "Модаль"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Выгрузить",
+      "default_button_text": "Выгрузить",
+      "default_dropzone_text": "Выберите или поместите файл здесь"
+    },
+    "icon": {
+      "name": "Иконка"
+    },
+    "pdf": {
+      "empty": "Нет PDF файлов",
+      "failed": "Не удалось загрузить PDF"
+    },
+    "video": {
+      "name": "Видео",
+      "empty": "Нет видео",
+      "fail": "Не удалось загрузить"
+    },
+    "statistics": {
+      "name": "Статистика"
+    },
+    "collapse": {
+      "name": "Свернуть"
+    },
+    "multiselect": {
+      "name": "Множественный выбор"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Шаги"
+    },
+    "slider": {
+      "name": "Слайдер"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Аудио",
+      "no_audio": "Нет аудио"
+    },
+    "collaborative": {
+      "no_name": "Нет имени"
+    },
+    "map": {
+      "name": "Карта"
+    },
+    "time_picker": {
+      "name": "Выбор времени"
+    },
+    "time_range": {
+      "name": "Диапазон времени"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Календарь событий"
+      },
+      "name_duplicated": "Этот идентификатор ресурса конфликтует в ходе этих событий, пожалуйста, используйте одно и то же имя или другой идентификатор"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Исправлено",
+        "auto": "Авто"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Отправить код"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Пожалуйста, введите действительный адрес электронной почты",
+            "registered": "Адрес электронной почты не связан с учетной записью.",
+            "require": "Пожалуйста, введите ваш email"
+          },
+          "newPassword": {
+            "require": "Пожалуйста, введите ваш пароль"
+          },
+          "verification_code": {
+            "expired": "Срок действия проверочного кода истек",
+            "invalid": "Неверный код подтверждения",
+            "require": "Введите проверочный код"
+          }
+        },
+        "fields": {
+          "email": "Почта",
+          "newPassword": "Новый пароль",
+          "verification_code": "Проверочный код"
+        },
+        "placeholder": {
+          "email": "Введите ваш email",
+          "verification_code": "Введите проверочный код"
+        },
+        "subtitle": "Вернуться к входу",
+        "tips": {
+          "fail": "Не удалось сбросить пароль",
+          "fail_sent": "Не удалось отправить код подтверждения",
+          "success": "Сброс пароля успешно завершен",
+          "verification_code": "Код подтверждения отправлен"
+        },
+        "title": "Сбросить пароль"
+      },
+      "password": {
+        "placeholder": "Введите новый пароль (не менее 6 символов)"
+      },
+      "policy": "Используя ILLA вы соглашаетесь с нашей <0>Политикой конфиденциальности</0> и <1>Условиями обслуживания</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Войти"
+        },
+        "description": {
+          "forgot_password": "Забыли пароль?",
+          "policy": "Нажав кнопку Войти, я соглашаюсь с <0>Политикой конфиденциальности</0> и <1>условиями</1>",
+          "register": "Новый пользователь? <0>Создать учетную запись</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Пожалуйста, введите действительный адрес электронной почты",
+            "registered": "Адрес электронной почты не связан с учетной записью.",
+            "require": "Пожалуйста, введите ваш email"
+          },
+          "password": {
+            "incorrect": "Неверный e-mail или пароль",
+            "locked": "Слишком много неудачных попыток, пожалуйста, сбросьте пароль или повторите попытку через 1 час",
+            "min_length": "Пароль должен содержать не менее 6 символов",
+            "require": "Введите пароль"
+          }
+        },
+        "fields": {
+          "email": "Почта",
+          "password": "Пароль"
+        },
+        "placeholder": {
+          "email": "Введите ваш email"
+        },
+        "tips": {
+          "fail": "Не удалось войти",
+          "success": "Вход выполнен успешно",
+          "fail_account": "Неверный e-mail или пароль"
+        },
+        "title": "С возвращением",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Регистрация прошла успешно. Вы можете установить пароль для вашей учетной записи электронной почты позже",
+            "auth_failed": "Аутентификация не удалась"
+          }
+        },
+        "option": {
+          "github": "Войти через GitHub",
+          "google": "Войти через Google",
+          "or": "ИЛИ"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Создать Аккаунт",
+          "send": "Отправить код"
+        },
+        "description": {
+          "login": "Уже зарегистрированы? <0>Войти</0>",
+          "policy": "Нажав кнопку Создать учетную запись, я соглашаюсь с <0>Политикой конфиденциальности</0> и <1>условия</1>",
+          "subscribe": "Я готов получать обновления и новости о ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Пожалуйста, введите действительный адрес электронной почты",
+            "registered": "Учетная запись с таким адресом электронной почты уже существует.",
+            "require": "Пожалуйста, введите ваш email"
+          },
+          "password": {
+            "require": "Введите пароль"
+          },
+          "username": {
+            "length": "Имя пользователя должно быть 3~15 символов",
+            "require": "Пожалуйста, введите имя пользователя"
+          },
+          "verification_code": {
+            "expired": "Срок действия проверочного кода истек",
+            "invalid": "Неверный код подтверждения",
+            "require": "Введите проверочный код"
+          }
+        },
+        "fields": {
+          "email": "Почта",
+          "password": "Пароль",
+          "username": "Имя пользователя",
+          "verification_code": "Проверочный код"
+        },
+        "placeholder": {
+          "email": "Введите ваш email",
+          "username": "Введите имя пользователя",
+          "verification_code": "Введите проверочный код"
+        },
+        "tips": {
+          "fail": "Не удалось зарегистрироваться",
+          "fail_sent": "Не удалось отправить код подтверждения",
+          "success": "Регистрация прошла успешно",
+          "verification_code": "Код подтверждения отправлен"
+        },
+        "title": "Регистрация",
+        "option": {
+          "github": "Зарегистрироваться с GitHub",
+          "google": "Войти через Google"
+        }
+      },
+      "description": "Открытая платформа с низким кодом для разработчиков."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Обучение"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Пожалуйста, введите значение не менее {{ size }}."
+  },
+  "failed_to_copy": "Не удалось скопировать",
+  "copied": "Скопировано!",
+  "user_management": {
+    "role": {
+      "owner": "Владелец",
+      "admin": "Administer",
+      "editor": "Редактор",
+      "viewer": "Просмотрщик"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Пригласить участников"
+      },
+      "link": {
+        "invite_title": "Ссылка на приглашение",
+        "copy": "Копировать",
+        "turn_off": "Выключить пригласительные ссылки",
+        "update": "Обновить ссылки на приглашения",
+        "description": "Поделитесь секретной ссылкой, которую люди могут использовать для вступления в вашу команду.",
+        "turn_on": "Включить ссылки на приглашения",
+        "fail": "Не удалось получить ссылку, повторите попытку позже",
+        "copied_suc": "Скопировано!",
+        "failed_to_copy": "Не удалось скопировать",
+        "turn_off_fail": "Не удалось выключить",
+        "turn_on_fail": "Не удалось включить",
+        "make_public_title": "Сделать приложение публичным",
+        "make_public_copy": "Копировать"
+      },
+      "email": {
+        "invite_title": "Пригласить по электронной почте",
+        "invite": "Пригласить",
+        "placeholder": "Введите адрес электронной почты",
+        "invited": "Приглашены",
+        "in_list": "Этот пользователь уже в вашей команде.",
+        "notmail": "{{ email }} не является электронной почтой",
+        "duplicate": "{{ email }} дублируется"
+      },
+      "invalid_email": "Введите действительный адрес электронной почты",
+      "message": {
+        "make_public_suc": "Успешно установлено",
+        "make_public_failed": "Не удалось задать",
+        "app_share_in_team": "{{ email }} уже в вашей команде, пожалуйста, поделитесь с ним ссылкой. "
+      },
+      "tab": {
+        "invite": "Пригласить",
+        "public": "Публичный"
+      }
+    },
+    "mes": {
+      "invite_suc": "Приглашение успешно отправлено",
+      "invite_fail": "Не удалось пригласить",
+      "update_suc": "Успешно обновлено",
+      "update_fail": "Не удалось обновить",
+      "transfer_suc": "Успешно передано",
+      "transfer_fail": "Не удалось передать",
+      "remove_suc": "Успешно удален",
+      "remove_fail": "Не удалось удалить",
+      "change_role_fail": "Не удалось обновить",
+      "change_role_suc": "Успешно обновлено"
+    },
+    "page": {
+      "member": "Участник",
+      "invite": "Пригласить",
+      "permission": "Разрешение",
+      "operation": "Операция",
+      "transfer": "Передать владельца",
+      "remove": "Удалить"
+    },
+    "transfer_modal": {
+      "title": "Вы уверены, что хотите передать собственность?",
+      "description": "После передачи ваше разрешение изменится на администратора.",
+      "transfer": "Перевод",
+      "cancel": "Отмена"
+    },
+    "remove_modal": {
+      "title": "Вы уверены, что хотите удалить {{ username }}?",
+      "description": "После удаления пользователь не сможет получить доступ к команде.",
+      "remove": "Удалить",
+      "cancel": "Отмена"
+    },
+    "status": {
+      "pending": "В ожидании"
+    },
+    "settings": {
+      "allow_editors_invite": "Разрешить редакторам и зрителям управлять участниками"
+    }
+  },
+  "copy_failed": "Не удалось скопировать",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Настройки команды",
+      "member": "Участник",
+      "leave": "Покинуть команду",
+      "delete": "Удалить команду"
+    },
+    "leave_modal": {
+      "title": "Вы уверены, что хотите покинуть эту команду?",
+      "description": "Вы не сможете получить доступ к никаким командным ресурсам после выхода.",
+      "leave": "Покинуть",
+      "cancel": "Отмена"
+    },
+    "delete_modal": {
+      "title": "Вы уверены, что хотите удалить эту команду?",
+      "delete": "Удалить",
+      "cancel": "Отмена",
+      "desctiption": "Идентификатор команды будет недоступен после удаления, и все участники будут удалены из этой команды."
+    },
+    "team_info": {
+      "title": "Информация о команде",
+      "team_name": "Название команды",
+      "domain": ".illacloud.com",
+      "existed": "Уже существует",
+      "available": "Доступно",
+      "edit": "Редактирование",
+      "save": "Сохранить изменения",
+      "adjust_avater": "Регулировка аватара",
+      "avater_crop": "Обрезать",
+      "team_name_empty": "Пожалуйста, введите название команды",
+      "team_id_empty": "Пожалуйста, введите идентификатор команды",
+      "team_name_placeholder": "Введите название команды",
+      "team_id_placeholder": "Введите идентификатор команды",
+      "leave_title": "Покинуть команду",
+      "leave_button": "Покинуть команду",
+      "delete_title": "Удалить команду",
+      "delete_button": "Удалить команду",
+      "team_domain": "Идентификатор команды"
+    },
+    "message": {
+      "save_suc": "Успешно сохранено",
+      "save_fail": "Не удалось сохранить"
+    },
+    "mes": {
+      "domain_suc": "Создано успешно.",
+      "delete_suc": "Успешно удален",
+      "delete_fail": "Не удалось удалить",
+      "leave_suc": "Покинуть успешно",
+      "leave_fail": "Не удалось выйти"
+    }
+  },
+  "members": "Члены Комитета",
+  "invite_new_member": "Пригласить",
+  "launch": "Запуск",
+  "homepage": {
+    "message": {
+      "join_failed": "Не удалось присоединиться к команде: ваше письмо не является приглашенным."
+    }
+  },
+  "image_exceed": "Размер изображения не может превышать 500КБ",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Обрезать",
+        "save": "Сохранить",
+        "cancel": "Отмена"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Успешно сохранено",
+        "save_fail": "Не удалось сохранить"
+      },
+      "password": {
+        "title": "Пароль"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Свернутый список"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "Циклическая зависимость возникла на {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Политика конфиденциальности",
+      "description": "Настоящая Политика конфиденциальности разъясняет нашу практику сбора, использования и раскрытия информации, которую мы получаем через наши Сервисы."
+    },
+    "terms": {
+      "description": "Настоящие Условия обслуживания регулируют доступ к нашему сайту и его использование и предоставление целого ряда услуг.",
+      "title": "Условия предоставления услуг"
+    }
+  },
+  "empty_copied_tips": "Копируемое содержимое пустое",
+  "copy_empty": "Копируемое содержимое пустое",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Узнайте, как построить приложение за 5 минут",
+          "description": "Следуйте инструкциям ILLA, чтобы научиться создавать приложение. Это займет около 5 минут.",
+          "cancel": "Отмена",
+          "take": "Пройти обучение"
+        },
+        "exit_confirm": {
+          "title": "Остановить обучение?",
+          "description": "При следующем входе в посадочный талон, инструкции будут воспроизведены ",
+          "cancel": "Отмена",
+          "exit": "Остановить"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Перенаправление",
+  "oauth_redirect_description": "Перенаправление на облако <0>ILLA </0>",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
+}

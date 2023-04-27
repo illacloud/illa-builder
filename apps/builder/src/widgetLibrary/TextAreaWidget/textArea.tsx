@@ -45,7 +45,7 @@ export const WrappedTextarea = forwardRef<
   const handleClear = () => handleUpdateDsl({ value: "" })
 
   const handleChange = useCallback(
-    (value: string, e: any) => {
+    (value: string) => {
       new Promise((resolve) => {
         const message = getValidateMessage(value)
         handleUpdateMultiExecutionResult([
@@ -112,16 +112,9 @@ WrappedTextarea.displayName = "WrappedTextarea"
 export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   const {
     value,
-    placeholder,
-    disabled,
-    readOnly,
-    showCharacterCount,
-    colorScheme,
-    displayName,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    allowClear,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     minLength,
     maxLength,
     labelPosition,
@@ -197,16 +190,7 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      value,
-      placeholder,
-      disabled,
-      readOnly,
-      showCharacterCount,
-      colorScheme,
-      allowClear,
-      minLength,
-      maxLength,
+    updateComponentRuntimeProps({
       focus: () => {
         textareaRef.current?.focus()
       },
@@ -226,23 +210,14 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
-    value,
-    placeholder,
-    disabled,
-    readOnly,
-    showCharacterCount,
-    colorScheme,
-    displayName,
-    allowClear,
-    minLength,
-    maxLength,
-    handleUpdateGlobalData,
+    deleteComponentRuntimeProps,
     handleUpdateDsl,
-    handleDeleteGlobalData,
     handleValidate,
+    updateComponentRuntimeProps,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

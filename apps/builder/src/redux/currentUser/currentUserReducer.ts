@@ -6,10 +6,12 @@ export const updateCurrentUserReducer: CaseReducer<
   CurrentUser,
   PayloadAction<CurrentUser>
 > = (state, action) => {
+  const { userId, nickname, email } = action.payload
   Sentry.setUser({
-    id: state.userId,
-    email: state.email,
-    username: state.nickname,
+    id: userId,
+    email: email,
+    username: nickname,
+    ip_address: "",
   })
   state = action.payload
   return state

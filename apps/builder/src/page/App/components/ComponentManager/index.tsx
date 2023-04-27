@@ -1,43 +1,17 @@
-import {
-  FC,
-  HTMLAttributes,
-  MouseEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
-import { useTranslation } from "react-i18next"
+import { FC, HTMLAttributes, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
+import { SimpleTabs, getRenderBody } from "@/components/Tabs"
+import { COMPONENT_MANAGER_TABS } from "@/components/Tabs/constant"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { ComponentPanel } from "@/page/App/components/ComponentPanel"
-import { ConfigPanel } from "@/page/App/components/ConfigPanel"
-import { PagePanel } from "@/page/App/components/PagePanel"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { applyTabItemStyle, menuHeaderWrapperStyle } from "./style"
-
-const getRenderBody = (activeKey: string) => {
-  switch (activeKey) {
-    case "Inspect": {
-      return <ConfigPanel />
-    }
-    case "Page": {
-      return <PagePanel />
-    }
-    case "Insert":
-    default: {
-      return <ComponentPanel />
-    }
-  }
-}
 
 export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   props,
 ) => {
   const { className, onClick, ...rest } = props
-  const { t } = useTranslation()
 
   const [activeKey, setActiveKey] = useState("Insert")
 
@@ -65,16 +39,13 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
     isClickChange.current = false
   }, [activeKey, currentPageDisplayName, selectedDisplayNames])
 
-  const handleClickChangeTab: MouseEventHandler<HTMLDivElement> = (e) => {
-    const activeKey = (e.target as HTMLSpanElement)?.dataset?.key
-    if (activeKey) {
-      isClickChange.current = true
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-        element: "right_tab",
-        parameter2: activeKey,
-      })
-      setActiveKey(activeKey)
-    }
+  const handleClickChangeTab = (activeKey: string) => {
+    setActiveKey(activeKey)
+    isClickChange.current = true
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "right_tab",
+      parameter2: activeKey,
+    })
   }
 
   return (
@@ -86,21 +57,12 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
         onClick?.(e)
       }}
     >
-      <div css={menuHeaderWrapperStyle} onClick={handleClickChangeTab}>
-        <span css={applyTabItemStyle(activeKey === "Page")} data-key="Page">
-          {t("editor.page.tab_title")}
-        </span>
-        <span
-          css={applyTabItemStyle(activeKey === "Inspect")}
-          data-key="Inspect"
-        >
-          {t("editor.inspect.tab_title")}
-        </span>
-        <span css={applyTabItemStyle(activeKey === "Insert")} data-key="Insert">
-          {t("editor.widget_picker.tab_title")}
-        </span>
-      </div>
-      <>{getRenderBody(activeKey)}</>
+      <SimpleTabs
+        items={COMPONENT_MANAGER_TABS}
+        activeKey={activeKey}
+        handleClickChangeTab={handleClickChangeTab}
+      />
+      {getRenderBody(activeKey, COMPONENT_MANAGER_TABS)}
     </div>
   )
 }

@@ -1,0 +1,2805 @@
+{
+  "Logout": "Logg ut",
+  "Setting": "Innstilling",
+  "apps": "Apper",
+  "back": "Tilbake",
+  "btn": {
+    "choose_file": "Velg en fil"
+  },
+  "change_fail": "Kan ikke endre",
+  "change_success": "Endring vellykket",
+  "collision_message": "Trykk D eller K og dra komponenten til beholderen",
+  "create_fail": "Kunne ikke opprette",
+  "create_new": "Opprett ny",
+  "create_new_app": "Opprett ny",
+  "created_at": "Opprettet i",
+  "dashboard": {
+    "app": {
+      "all_apps": "Alle apper",
+      "create_app": "Lag App",
+      "duplicate_fail": "Kunne ikke duplisere",
+      "duplicate_placeholder": "Tast inn ditt appnavn her",
+      "edited_time": "Redigert {{ time }} av {{ user }}",
+      "name_empty": "Vennligst skriv inn et navn",
+      "name_existed": "Navnet er allerede tatt",
+      "rename_app": "Endre app-navn",
+      "rename_fail": "Kunne ikke gi nytt navn",
+      "rename_success": "Omdøpt vellykket",
+      "trash_failure": "Kan ikke slette",
+      "trash_success": "Slettet med hell"
+    },
+    "common": {
+      "cancel": "Avbryt",
+      "delete": "Slett",
+      "delete_cancel_text": "Avbryt",
+      "delete_content": "Dette vil bryte app- og spørringsbibliotekets spørringer som bruker denne ressursen",
+      "delete_ok_text": "Slett",
+      "delete_title": "Er du sikker?",
+      "error_button": "Prøv igjen",
+      "error_description": "Det er et problem med operasjonen din.",
+      "error_title": "Feil"
+    },
+    "resource": {
+      "create_resource": "Opprett ny",
+      "created": "Opprettet",
+      "dbname": "Database navn",
+      "delete_fail": "Kan ikke slette",
+      "delete_success": "Slettet med hell",
+      "resource_name": "Navn",
+      "resource_type": "Type:",
+      "save_fail": "Kunne ikke lagre",
+      "save_success": "Lagring vellykket",
+      "test_fail": "Kan ikke teste",
+      "test_success": "Test vellykket"
+    }
+  },
+  "dayjs": {
+    "just_now": "Nå nettopp"
+  },
+  "deploy": "Installer",
+  "description": {
+    "part1": "Dette er et eksempel uten navneområder."
+  },
+  "dont_need_save": "ILLA vil fortsette å prøve å spare arbeidet ditt automatisk.",
+  "duplicate": "Duplicate",
+  "edit": "Rediger",
+  "edit_at": "Redigert den",
+  "edit_failed": "Lagring mislyktes, vennligst sjekk nettverket ditt.",
+  "edit_success": "Redigering vellykket",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Tilbake",
+            "create_action": "Opprett handling",
+            "new_resource": "Ny ressurs"
+          },
+          "selector": {
+            "title": "Velg handlingstype"
+          },
+          "title": {
+            "choose_resource": "Velg en ressurs "
+          }
+        },
+        "btn": {
+          "close": "lukk",
+          "new": "Ny"
+        },
+        "contextMenu": {
+          "delete": "Slett",
+          "duplicate": "Duplicate",
+          "rename": "Omdøp"
+        },
+        "message": {
+          "confirm_switch": "Du lagret ikke forespørselen din. Er du sikker på at du vil forkaste endringene?",
+          "failed": "Kan ikke koble til serveren",
+          "load_action_list_fail": "Kan ikke hente handlingsliste: {{message}}",
+          "load_resource_fail": "Kan ikke hente ressurslisten: {{message}}",
+          "name_already_exist": "Finnes allerede",
+          "please_input_name": "Skriv inn navn",
+          "success_created": "Opprettet",
+          "success_deleted": "Sletting var vellykket",
+          "success_saved": "Lagring vellykket",
+          "valid_name": "Kan bare inneholde bokstaver, tall, '_' eller '$', starte med '_' eller en bokstav"
+        },
+        "placeholder": {
+          "search": "Søk"
+        },
+        "runtime": {
+          "backend": "Backend",
+          "execute_resource": "utfør ressurs",
+          "frontend": "Frontend",
+          "handle_response": "håndter respons",
+          "post_processing": "etterbehandling",
+          "prepare_query": "Forbered spørring",
+          "response_size": "Respons størrelse",
+          "total": "Totalt",
+          "transfer_data": "overfør data",
+          "transformer": "transformator"
+        },
+        "tips": {
+          "empty": "Legg til en handling for å begynne å arbeide med data fra en tilkoblet ressurs.",
+          "not_found": "Ingen søkeresultater"
+        },
+        "title": "Liste over handlinger"
+      },
+      "form": {
+        "btn": {
+          "back": "Tilbake",
+          "save_changes": "Lagre ressurs",
+          "test_connection": "Test tilkoblingen"
+        },
+        "required": "Dette er påkrevd",
+        "title": {
+          "api": "API`er",
+          "configure": "Konfigurer {{ name }}",
+          "database": "DATABASER",
+          "select": "Velg ressurstype",
+          "huggingface": "Gomp Ansikt",
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "CouchDB"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google ark"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} er påkrevd"
+        },
+        "label": {
+          "inference_api": "Preferanser API",
+          "inference_endpoint": "Preferansens endepunkt",
+          "s3": "Ugyldig i offentlige apper",
+          "acl": "S3 ACL for opplastede filer",
+          "appwrite": {
+            "host": "Vert",
+            "dbid": "Database ID",
+            "projectid": "Prosjekt ID",
+            "secret": "Api nøkkel",
+            "collectionid": "Samling ID",
+            "documentid": "Dokument ID",
+            "data": "Data",
+            "filter": "Filtrer",
+            "order": "Sorter etter",
+            "limit": "Grense"
+          },
+          "oracle": {
+            "sid": "Behandle databasenavn som",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Sertifikater",
+            "verification_mode": "Verifiseringsmodus"
+          },
+          "gs": {
+            "private_key": "Privat nøkkel",
+            "action_type": "Type handling",
+            "spreadsheet": "Regneark",
+            "sheet_name": "Navn på ark",
+            "data_range": "Datamaskin rekkevidde",
+            "limit": "Grense",
+            "offset": "Forskyvning",
+            "a1_notation": "A1 betegnelse",
+            "values_to_append": "Verdier å legge til",
+            "filter_by": "Filtrer etter",
+            "update_value": "Oppdater verdi",
+            "primary_key_column": "Kolonne for primærnøkkel",
+            "array_of_rows_to_upd": "Rekke av rader å oppdatere",
+            "filters_to_match_row": "Rad indeks",
+            "consider_queries_tha": "Vurder spørringer som ikke sletter noen rader som vellykkede",
+            "title_of_spreadsheet": "Tittel på regneark",
+            "sheet_id_to_copy": "Arkiv-ID for kopiering",
+            "sheet_to_copy_to": "Delark å kopiere til",
+            "authentication": "Autentisering",
+            "connect_with_oauth": "Koble til med OAuth & Lagre",
+            "reconnect_with_oauth": "Koble til OAuth på nytt",
+            "access_type": "Adgangstype (Automatic Translation)"
+          }
+        },
+        "placeholder": {
+          "url": "Skriv inn forespørselens URL her",
+          "appwrite": {
+            "host": "HOSTNAME ELLER IP",
+            "dbid": "Database ID",
+            "projectid": "Prosjekt ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "Attributt",
+              "value": "1234"
+            },
+            "order": "Attributt",
+            "collectionid": "Velg en samling",
+            "data": "Et objekt vedlagt i {{ }}. For eksempel, \n{{ \"nøkkel\": \"verdi\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "orakel",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivatnøkkel\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"1000000000000000000\",\r\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "kolonne_navn",
+              "value": "verdi"
+            },
+            "update_value": "{{ [\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n}",
+            "primary_key_column": "kolonne_navn",
+            "array_of_rows_to_upd": "{{ [ \"column1\":\"newValue1\", \"column2\":\"newValue2\" }",
+            "filters_to_match_row": {
+              "key": "nøkkel",
+              "value": "verdi"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Det oppgitte innholdet er en PUBLIC konfigurasjon. La stå tomt for PRIVATE. Ikke glem å konfigurere ORS på din bøtte. <0>Se Cross-Origin-Resource Sharing (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Det ser ut til at du prøver å koble til en database som er lokal for maskinen eller en del av et privat nettverk. Det fungerer kanskje ikke i ILLA Sky-versjonen. Sjekk ut vår <0>docs</0> for hvordan du kan bruke versjonen selv.",
+            "selfhost": "Det ser ut som at du prøver å koble til en database som er lokal for maskinen. Vennligst bruk IP-adressen til lokalt område for maskinen i stedet for \"localhost\" eller \"127.0.1\".",
+            "title": {
+              "tips": "Tips"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Serveren din kan være sårbar for angrep."
+            }
+          },
+          "gs": {
+            "private_key": "Brukes til å koble til Google Sheets. klikk <0>her</0> for å opprette et prosjekt og få OAuth legitimasjon. Med autentiseringen av tjenestekontoen vil vi bare ha tilgang til regneark du deler med e-postadressen som tilsvarer tjenestekontoen som er brukt. Se <1>her</1> for dokumentasjon om å opprette en tjenestekonto og tilgangsnøkkel.\n\nBrukere kan oppleve grenser fra ulike prosesseringskomponenter som ikke kontrolleres av ark. Lær mer om <2>kvotegrensene </2>",
+            "leave_blank_to_selec": "La stå tomt for å velge det første ark",
+            "to_select_the_first_": "For å velge de første fem cellene i den første kolonnen på et ark med tittel1, er A1 notasjonsark 1!A1:A5. <0>Se Googles dokumenter for mer informasjon. </0>",
+            "values_to_append": "{{ [\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n}",
+            "a1_notation": "For å velge de første fem cellene i den første kolonnen på et ark med tittel1, er A1 notasjonsark 1!A1:A5. <0>Se Googles dokumenter for mer informasjon. </0>",
+            "sheet_id_to_copy": "Finn dette ved å se på ?gid=123123 URL i Google-arkene dine",
+            "copy_to_sheet_name": "Påkrevd. Gi nytt navn til det kopierte skjemaet.",
+            "successfully_authent": "Godkjent",
+            "failed_to_authentica": "Kunne ikke autentisere"
+          },
+          "tidb": {
+            "ca_certificate": "Vi fyller inn CA-sertifikatet som brukes for TLS-tilkoblinger til Servermindre nivå som standard. Hvis du trenger TLS-tilkobling til Dedicated Tier, <0>Klikk her</0> for å se konfigurasjonsmetoden."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually.",
+            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Opprett et dokument",
+              "list": "Liste opp dokumenter",
+              "get": "Få et dokument",
+              "update": "Oppdater et dokument",
+              "delete": "Slett et dokument"
+            },
+            "filter": {
+              "and": "OG",
+              "or": "ELLER",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Stigende",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Tjeneste navn"
+            },
+            "ssl": "Bruk SSL når tilgjengelig"
+          },
+          "couchdb": {
+            "ssl": "Bruk SSL/TLS når tilgjengelig"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Fordøye autentisering",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk godkjenning",
+              "aws_v4": "AWS signatur V4",
+              "session_based_auth": "Sesjonsbasert autentisering (foreldet)"
+            },
+            "certificates": "Bruk selvsignerte sertifikater",
+            "ca_certificate": "CA sertifikat",
+            "client_key": "Klient nøkkel",
+            "client_certificate": "Klient sertifikat",
+            "verification_mode": {
+              "full_verification": "Full verifisering",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Hopp over CA-sertifikatverifisering"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Les data fra et regneark",
+              "append_data_to_a_spr": "Legg data til et regneark",
+              "update_a_spreadsheet": "Oppdater et regneark",
+              "bulk_update_a_spread": "Masseoppdater et regneark med hovednøkkel",
+              "delete_a_single_row_": "Slett en enkelt rad fra et regneark",
+              "create_a_spreadsheet": "Opprett et regneark",
+              "copy_a_single_sheet_": "Kopier et enkelt ark til et annet regneark",
+              "list_available_sprea": "Liste over tilgjengelige regneark",
+              "get_spreadsheet_info": "Få regneark info"
+            },
+            "data_range": {
+              "use_a1_notation": "Bruk A1 merknader",
+              "use_limit_and_offset": "Bruksgrense og -forskyvning"
+            },
+            "filter_by": {
+              "use_a1_notation": "Bruk A1 merknader",
+              "use_row_filters": "Bruk radfiltre"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Tjenestekonto",
+            "read_and_write": "Lese og skrive",
+            "read_only": "Skrivebeskyttet"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Tjenestekonto (Automatic Translation)"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Deaktiver",
+          "enable": "Aktiver",
+          "new": "Ny",
+          "run": "Kjør",
+          "save": "Lagre",
+          "save_and_run": "Lagre & kjør",
+          "save_fail": "Kunne ikke lagre",
+          "test_run": "Test kjøring"
+        },
+        "elastic": {
+          "action_type": "Type handling",
+          "body": "Innhold",
+          "id": "Id",
+          "index": "Indeks",
+          "query": "Spørring"
+        },
+        "error": {
+          "max_file": "Størrelsen på filen kan ikke overstige 5M."
+        },
+        "firebase": {
+          "action_type": "Type handling",
+          "collection": "Samling",
+          "database_ref": "Database ref",
+          "document_id": "Dokument ID",
+          "email": "E-post",
+          "end_at": "Slutt på",
+          "len_of_list": "Lengde på liste ",
+          "limit": "grense",
+          "next_page_token": "Neste sidekoden",
+          "object_to_set": "Objekt som skal settes",
+          "order_by": "Sorter etter",
+          "ordering_direction": "Sortering av retning",
+          "parent_document_id": "Overordnet dokument-ID",
+          "phone_number": "Telefon nummer",
+          "placeholder": {
+            "asc": "stigende",
+            "document_value": "{{ \"stringField\":\"value\", \"number\": 42, \"doc\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Angi en samling",
+            "key": "nøkkel",
+            "select_an_action": "Velg en handling",
+            "select_collection": "Velg en samling",
+            "value": "verdi"
+          },
+          "service_type": "Tjeneste type",
+          "start_at": "Start på",
+          "tips": {
+            "document_id": "La stå tomt for autogenerert ID.",
+            "parent_document_id_tips": "La være tom for toppnivåsamlinger."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Bruk en nedtrekksmeny",
+          "use_end_at": "Bruk endat",
+          "use_raw_id": "Bruk rå id",
+          "use_start_at": "Use startAt",
+          "user_object": "Bruker objekt ",
+          "value": "verdi",
+          "where": "hvor"
+        },
+        "label": {
+          "event_handler": "Arrangementshåndterer",
+          "failure": "Feil",
+          "resource": "Ressurs",
+          "success": "Vellykket",
+          "transformer": "Transformator",
+          "couchdb": {
+            "database": "Databasen",
+            "action_type": "Type handling"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Velg en database",
+              "record": "{{\"x\":1, \"y\":2, ..}}",
+              "mangoquery": "{{\n  \"selector\": {},\n  \"grense\": 5\n}"
+            },
+            "restapi": {
+              "consumer_key": "Konsument nøkkel",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "som-app-ekstra-data",
+              "app": "Applikasjons ID",
+              "dig": "delegert av",
+              "us-east-1": "us-øster-1",
+              "authenticate_using_t": "Autentiser ved hjelp av HTTP-autoriserings topptekst i stedet for spørringsparametere",
+              "find_instructions_on": "Finn instruksjoner på hvor du kan finne tilgangsnøkler <0>i AWS docs</0>.",
+              "role_to_assume": "Bruk en <0>forskjellige rolle</0> ved tilgang til API"
+            },
+            "advanced": {
+              "select_pages": "Velg sider"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Vis poster",
+                "retrieve": "Hent post",
+                "create": "Opprett post",
+                "update": "Oppdater post",
+                "delete": "Slett post",
+                "find": "Finn",
+                "get": "Hent visning"
+              },
+              "skip": "Hopp",
+              "limit": "Grense",
+              "include": "Inkluder dokumenter",
+              "des": "Ordre",
+              "id": "_id",
+              "rev": "_rund",
+              "record": "Registrer",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "Visnings URL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Dokumenter inkludert i de returnerte resultatene",
+              "des_option": "Bruk synkende rekkefølge"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "PLAINTEXT"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Fil",
+                "text": "Tekst"
+              },
+              "method": {
+                "options": "ALTERNATIVER",
+                "head": "HODE"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Spørrings parametere",
+                "header_authorization": "Autorisasjon under overskrift"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Utløs denne handlingen når siden har lastet",
+              "show_a_loading_page_": "Vis en lasteside når siden lastes",
+              "on_page_loading": "Ved lasting av side",
+              "on_app_loading": "På APP lastet",
+              "none": "Ingen"
+            }
+          },
+          "restapi": {
+            "signature_method": "Metode for signatur:",
+            "consumer_key": "Konsument nøkkel",
+            "consumer_secret": "Konsument hemmelig",
+            "access_token": "Tilgang token",
+            "token_secret": "Token hemmelig",
+            "private_key": "Privat nøkkel",
+            "realm": "Verdener",
+            "hawk_auth_id": "Hawk autoriserings ID",
+            "hawk_auth_key": "Hawk autoriserings nøkkel",
+            "algorithm": "Algoritme",
+            "user": "Bruker",
+            "nonce": "Nonce",
+            "ext": "tekst",
+            "app": "app",
+            "dig": "dig",
+            "timestamp": "Tidsstempel",
+            "aws_region": "AWS region",
+            "aws_service": "AWS tjeneste",
+            "aws_access_key_id": "AWS tilgangsnøkkel-ID",
+            "aws_secret_key_id": "AWS hemmelig nøkkel ID",
+            "role_to_assume": "Rollen som skal antas (ARN)",
+            "list_of_cookies_to_f": "Liste over informasjonskapsler som skal videresendes",
+            "add_access_token_to": "Legg til tilgangsnøkkel til"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Enten en binær streng eller et objekt: {{ data: binær streng, filnavn?: string }"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Ingen handlinger utløses når siden lastes inn. Du kan manuelt utløse handlingen og aktivere \"Utløs denne handlingen når side laster\" i avanserte innstillinger."
+            }
+          },
+          "advanced": {
+            "advanced": "AVANSERT",
+            "page_trigger": "Trigger Timing",
+            "loading_page": "Laster side",
+            "page_load_delay": "Forsinkelse (ms)",
+            "run_this_action_peri": "Kjør denne handlingen periodisk",
+            "interval": "Intervall (s)",
+            "actions_running_when": "Handlinger som kjører når siden laster",
+            "pages": "Sider",
+            "periodically_run": "Periodisk kjøring"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Slett",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Type handling",
+          "aggregation": "Aggregering",
+          "collection": "Samling",
+          "document": "Dokument",
+          "field": "Felt",
+          "filter": "Filtrer",
+          "limit": "Grense",
+          "operations": "Aktiviteter",
+          "options": "Alternativer",
+          "projection": "Projeksjon",
+          "query": "Spørring",
+          "skip": "Hopp",
+          "sort_by": "Sorter etter",
+          "update": "Oppdater"
+        },
+        "option": {
+          "resource": {
+            "new": "Lag en ny ressurs"
+          },
+          "trigger": {
+            "manually": "Kjør handling bare når manuelt utløses",
+            "on_change": "Kjør handling automatisk når innstillingene endres"
+          }
+        },
+        "s3": {
+          "action_type": "Type handling",
+          "bucket_name": "Bøtte navn",
+          "content_type": "Innholdstype",
+          "delimiter": "Skilletegn",
+          "error": {
+            "max_file": "Størrelsen på filen kan ikke overstige 5M."
+          },
+          "expiry_duration_of_signed_url": "Gyldig varighet av signert URL (minutter)",
+          "generate_signed_url": "Generere signert URL",
+          "max_keys": "Maks nøkler",
+          "object_key": "Objekt nøkkel",
+          "object_key_list": "Nøkkelliste for objekt",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "eksport.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Prefiks til filtrering av resultater",
+          "tips": {
+            "delimiter": "En skilletegn er et tegn som du bruker til gruppetaster.",
+            "max_keys": "Angir maksimalt antall nøkler som returneres i svaret. Som standard returnerer handlingen opp til 1000 nøkkelnavn."
+          },
+          "upload_data": "Laste opp data",
+          "upload_data_list": "Laste opp dataliste",
+          "upload_object_name": "Last opp objektnavn",
+          "upload_object_name_list": "Laste opp navn på objekter",
+          "timeout_upload": "Tidsavbrudd for opplasting av fil (minutt)",
+          "timeout_upload_multiple": "Tidsavbrudd for opplasting av en enkelt fil (minutt) "
+        },
+        "smtp": {
+          "attachment": "Vedlegg",
+          "bcc_email": "Blindkopi epost(er)",
+          "body": "Innhold",
+          "cc_email": "Cc email(s)",
+          "from_email": "Fra e-post",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Bruk komma for å skille e-poster, dvs. {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Svar til e-post",
+          "set_replay_email": "Angi svar til e-post",
+          "subject": "Emne",
+          "tips": {
+            "port": "Noen internettleverandører kan blokkere port 25.Hvis tilkoblingen mislykkes, vennligst endre \n-porten."
+          },
+          "to_email": "Til e-post(er)",
+          "use_html": "Bruk HTML",
+          "use_raw": "Bruk rå tekst"
+        },
+        "tips": {
+          "transformer": "Aktiver transformatorer for å endre resultatet av spørringen til et annet format."
+        },
+        "graphql": {
+          "query": "Spørring",
+          "variables": "Variabler",
+          "headers": "Overskrifter",
+          "placeholder": {
+            "query": "# Bruk $ for å legge til en variabel i spørringen (f.eks $category ) \r\nspørring ($owner: streng!, $name: String! {\r\n  depot (eier: $owner, navn: $name) \r\n"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "Modell ID",
+          "placeholder": {
+            "mode_id": "bobasert basefelt",
+            "text": "Svaret på universet er [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Hvilken film er den beste ?\"], \r\n\"generated_respons\": [\"It's Die Hard for sure.\"], \r\n\"tekst\": \"Kan du forklare hvorfor ? \r\n",
+            "binary": "f.eks {{ upload1.file[0] }}. En binær fil uten prefiks",
+            "use_cache": "Boolsk, la stå tomt for å være ekte",
+            "min_length": "Heltall for å definere minimum lengde i tokens i sammendraget",
+            "top_k": "Heltall for å definere tokens topp",
+            "top_p": "Flyten for å definere symbolene",
+            "temperature": "Float(0.0-100.0),la stå tom for 1.0",
+            "repetition_penalty": "Flytende (0,0-100,0)",
+            "max_time": "Gulv (0,0-120.0) for å definere tiden i sekunder"
+          },
+          "tips": {
+            "mode_id": "Gå til <0>Model Hub</0> og velg modellen du vil bruke.",
+            "use_detail_parameters": "<0>Klikk her</0> for å lære mer om detaljparametrene",
+            "temperature": "1 betyr vanlig prøvetaking, 0 betyr at man hele tiden tar høyeste poengsum, 100.0 kommer nærmere en jevn sannsynlighet.",
+            "repetition_penalty": "Jo mer et token som brukes i generasjonen desto mer er det for at det ikke skal velges i påfølgende generasjons passasjer."
+          },
+          "parameter": "Parametre",
+          "use_detail_parameters": "Bruk detaljparametere",
+          "use_cache": "Bruk buffer",
+          "wait_for_model": "Vent på modell",
+          "min_length": "Minimum lengde",
+          "max_length": "Maks lengde",
+          "top_k": "Topp k",
+          "top_p": "Topp p",
+          "temperature": "Temperatur",
+          "repetition_penalty": "Repetisjon straff",
+          "max_time": "Maks tid"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Hva SQL-setning vil du generere"
+          },
+          "button": {
+            "text": "SQL generere"
+          }
+        },
+        "mssql": {
+          "config_type": "Konfigurasjons type",
+          "query": "Spørring",
+          "placeholder": {
+            "query": "velg * fra brukere;",
+            "table": "Velg en tabell",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Tabell",
+          "insert_record": "Liste med poster som skal settes inn",
+          "dropdown": {
+            "retry": "Klikk for å prøve igjen"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Metode",
+            "table": "Tabell",
+            "json_input": "Bruk JSON parameter editor",
+            "parameters": "Parametere",
+            "index": "Indeks navn",
+            "key_condition": "Uttrykk i nøkkeltilstand",
+            "projection_expression": "Projeksjoner uttrykk",
+            "filter_expression": "Filtrer uttrykk",
+            "attribute_name": "Navn på uttrykk",
+            "attribute_value": "Atributtverdier for uttrykk",
+            "limit": "Grense",
+            "select": "Velg",
+            "item": "Element",
+            "condition_expression": "Betingelse uttrykk",
+            "key": "Nøkkel",
+            "update_expression": "Oppdater uttrykk"
+          },
+          "option": {
+            "query": "spørring",
+            "scan": "skann",
+            "put_item": "putputElement",
+            "get_item": "getItem",
+            "update_item": "oppdateringselement",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, for exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Mislyktes",
+          "ran_successfully": "Vellykket"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status:",
+            "headers": "Overskrifter",
+            "response": "Respons"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Kommer snart"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Ugyldig privat nøkkel. "
+          },
+          "label": {
+            "ca_certificate": "CA sertifikat",
+            "client_certificate": "Klient sertifikat",
+            "client_key": "Klient nøkkel",
+            "config_type": "Konfigurasjons type",
+            "connect_type": "Tilknytt type",
+            "connection_format": "Format for tilkobling",
+            "connection_string": "Tilkobling streng",
+            "database": "Databasen",
+            "database_index": "Database Indeks",
+            "firebase_database_url": "Firebase database URL",
+            "firebase_project_id": "Gjenopprett prosjekt-ID",
+            "hostname": "Hostname",
+            "hostname_port": "Vertsnavn/Port",
+            "hosturl": "URL til verten",
+            "mongodb_connection_dns_seed_list": "Tilkobling med DNS-frøliste",
+            "mongodb_connection_standard": "Standard tilkobling",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Klient^kert og nøkkel",
+            "name": "Navn",
+            "port": "Port",
+            "private_key": "Privat nøkkel",
+            "private_key_hover": "Den private nøkkelen er tilknyttet en tjenestekonto med Firebase privilegier.",
+            "ssl_options": "SSL valg",
+            "username_password": "Brukernavn/Passord",
+            "self_signed_certificate": "Bruk selv-signert sertifikat",
+            "disable_introspection": "Deaktiver introduksjon",
+            "value": "Verdi",
+            "add_to": "Legg til i",
+            "header_prefix": "Prefiks for topptekst",
+            "key": "Nøkkel",
+            "introspection": "Innledning",
+            "bear_token": "Sjetong",
+            "connection_options": "Tilkobling valg",
+            "account_name": "Konto navn",
+            "warehouse": "Lager",
+            "schema": "Skjema",
+            "snowflake_basic_auth": "Standard Auth",
+            "snowflake_key_auth": "Nøkkelnøkkel (bare kryptert private nøkler støttes)",
+            "role": "Rolle",
+            "username": "Brukernavn",
+            "password": "Passord",
+            "dynamo_region": "AWS område",
+            "dynamo_access_key_id": "AWS tilgangsnøkkel-ID",
+            "dynamo_secret_key": "AWS hemmelig nøkkel"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_produksjon",
+            "database_index": "standard 0",
+            "hostname": "Hostname",
+            "hosturl": "f.eks https://eksempel.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "dB(skrivebare)\" eller \"intern administrator-API\"",
+            "password": "Passord",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivatnøkkel\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"1000000000000000000\",\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Brukernavn",
+            "default": "standard",
+            "hugging_face_url": "Bruk absolutt URL (f.eks. https://api-inference.huggingface.co/models/). ",
+            "database_name": "Database navn",
+            "account_name": "xy12345.us-øst-2.aws",
+            "warehouse": "COMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "OFFENTLIGE",
+            "role": "Rolle",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN KRYPTET PRIVATE KEY-----\r\n• • • • • • • •\r\n -----END KRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-viste-1"
+          },
+          "tip": {
+            "connect_type": "Cloud: ILLA-servere vil sikkert koble til databasen din.",
+            "name": "Navnet på ressursen når det skapes handlinger i ILLA.",
+            "private_key": "<0>Klikk her</0> for å se hvordan du får denne nøkkelen",
+            "ssl_options": "SSL brukes når tilgjengelig",
+            "username_password": "Legitimasjon vil krypteres og lagres sikkert på våre servere.",
+            "introspection": "Slå på dette hvis ditt GraphQL endepunkt ikke støtter spørringer om introspektering. Merk at å deaktivere introspektering reduserer brukervennligheten til GrafQL, da automatisk fullføring og utskrift på denne ressursen ikke lenger fungerer.",
+            "hugging_face_url": "<0>Klikk her</0> for å lære mer om Hugging Face.",
+            "bear_token": "Få en brukertilgang eller API-token <0>i dine Hugging Face profilinnstillinger.</0>",
+            "connection_options": "Legge til tilkoblingsalternativer for tilkoblingen. Når SSL-valget er aktivert legger vi til kryptering og pålitelighetserversertifikat som standard."
+          },
+          "title": {
+            "advanced_option": "Avanserte innstillinger",
+            "general_option": "GENERELT",
+            "graphql_introspection": "GRAPHQL INTROSPEKSJON"
+          }
+        },
+        "error": {
+          "invalid_url": "Skriv inn en gyldig nettadresse, for eksempel https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Ny"
+          },
+          "label": {
+            "access_token": "Tilgang til kode",
+            "access_token_lifespan": "Tilgangstoken\n levetid (åpent)",
+            "access_token_url": "Tilgang til tokenets URL",
+            "action_type": "Type handling",
+            "audience": "Publikum",
+            "authentication": "Autentisering",
+            "authorization_url": "Autorisasjons URL",
+            "base_url": "Standard URL",
+            "basic_auth_password": "Grunnleggende Auth passord",
+            "basic_auth_username": "Grunnleggende Auth brukernavn",
+            "bearerToken": "Bærer Symbol",
+            "body": "Innhold",
+            "client_id": "Klient ID",
+            "client_secret": "Klient hemmelighet",
+            "configure_oauth2": "Konfigurering OAuth 2.0",
+            "cookies": "Informasjonskapsler",
+            "copy_url_to_application": "Kopier denne URLen til din applikasjon",
+            "enable_auth_verification_endpoint": "Aktiver et endepunkt for godkjennelse",
+            "extra_body_values": "Ekstra kroppsverdier",
+            "forward_all_cookies": "Videresend alle informasjonskapsler",
+            "headers": "Overskrifter",
+            "list_of_cookies_to_forward": "Liste over informasjonskapsler som\n Videresend",
+            "name": "Navn",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Oppdater Token",
+            "scopes": "Omfang (adskilt med\n et mellomrom)",
+            "share_oauth2_credentials_between_users": "Del OAuth2.0 legitimasjon mellom brukere",
+            "url_parameters": "URL-parametre (Automatic Translation)",
+            "use_client_credentials_auth": "Bruk klientens legitimasjon",
+            "digest_auth_username": "Brukernavn",
+            "digest_auth_password": "Passord"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Standard Auth",
+              "bearer": "Bærer",
+              "none": "Ingen",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Token levetid i sekunder",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "dvs. \"intern administrator-API\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "Bruk absolutt URL (f.eks. https://example.com)",
+            "database": "dvs. \"Brukere DB(skrivebeskyttet)\"",
+            "name": "dB(skrivebare)\" eller \"intern administrator-API\"",
+            "param_key": "nøkkel",
+            "param_value": "verdi",
+            "password": "passord",
+            "username": "brukernavn"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 er et komplekst spekt. ILLA støtter for øyeblikket serversiden OAuth 2.0-godkjenningsflyten samt strømmen av klientlegitimasjoner. I begge tilfeller må du bruke OAUTH2_TOKEN plassholderen for å informere ILLA om at adgangen til OAuth-koden skal plasseres i API-forespørselen. Et vanlig sted for dette er som f.eks. en overskrift, som for eksempel Autorisasjon: OAUTH2_TOKEN.",
+            "extra_body_values": "Ekstra kroppsverdier er ikke oppfylt for GET eller HEAD-forespørsler",
+            "get_req_auto_run": "(GET REQ) VIL AUTOMATIKALE HVOR EN PARAMETER KOMMET.",
+            "name": "Navnet på ressursen når det skapes handlinger i ILLA."
+          },
+          "title": {
+            "advanced_option": "GENERELT"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Tilgangsnøkkel",
+            "base_url": "Standard URL",
+            "bucket_name": "Bøtte navn",
+            "custome_s3_endpoint": "Egendefinert S3 endepunkt",
+            "region": "Fylke",
+            "secret_access_key": "Hemmelig tilgangsnøkkel",
+            "use_custome_s3_endpoint": "Bruk egendefinert S3 endepunkt"
+          },
+          "placeholder": {
+            "base_url": "f.eks https://eksempel.com",
+            "region": "us-viste-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Den brukes til å kople seg til andre ikke-S3-tjenester, som for eksempel Digital Ocean Spaces eller Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tips: tildel dine eksterne referanser til variabler i stedet for å kjede av krølllparentesene."
+          },
+          "tip": {
+            "external_reference": "Du kan opprette eksterne referanser til variabler du har definert. For eksempel, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Lær mer om Hugging Face:",
+            "hf_endpoint": "Preferansens endepunkt"
+          },
+          "label": {
+            "hf_endpoint_token": "Sjetong",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Få en organisasjon API Tokens <0>i dine Hugging Face profilinnstillinger</0>.",
+            "hf_endpoint": "les om <0>Endepunkt</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.over..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Tillat IP-adresse",
+            "message": "Hvis ressursene dine ikke er offentlig tilgjengelige, Oppdater nettverk eller brannmur-innstillingen for å legge til ILLAs IP-adresser til tillatelseslisten slik at ILLA kan koble til ressursene dine."
+          }
+        },
+        "button": {
+          "copy_ip": "Kopier IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Slettet"
+      },
+      "result": {
+        "title": {
+          "api_request": "API forespørsel",
+          "error": "Spørringen løp feil",
+          "json": "JSON",
+          "response": "Respons",
+          "success": "Spørringen gikk vellykket",
+          "table": "Tabell"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Databasen",
+        "js_transformer": "Javascript-transformator"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Kan ikke vise tabeller. Prøv igjen senere."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "privat",
+          "public_read": "offentlig-lese",
+          "public_read_write": "offentlig-lese-skrive",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "autentisert lest",
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Avbryt",
+      "delete": "Slett",
+      "delete_content": "Slett den kan gjøre noen feil, vennligst bekreft.",
+      "delete_title": "Er du sikker på at du vil slette {{ displayName}}?",
+      "editor_list": "Gjeldende editorer"
+    },
+    "context_menu": {
+      "delete": "Slett",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "INNSTILLINGER OG TRANSFORMER ",
+      "components_title": "KOMPONENER ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "SIDER",
+      "global_data_modal": {
+        "title": "Rediger globale data",
+        "variable_name": {
+          "tooltips": "Navnet på variabelen. Bruk den opprinnelige verdien i denne appen via {{name}}",
+          "label": "Navn",
+          "message": "Skriv inn variabelnavnet"
+        },
+        "initial_value": {
+          "label": "Opprinnelig verdi",
+          "tooltips": "Støtter objekter eller primitive verdier. Eksempel: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Kunne ikke distribuere"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" finnes allerede",
+      "validate_error": "\"{{ displayName }}\" må starte med en bokstav eller \"_\", og kan bare inneholde bokstaver, tall, \"_\" eller \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Slett",
+          "reset_state": "Reset state",
+          "view_documentation": "Vis dokumentasjon"
+        }
+      },
+      "multi_selected_header": "{{ number }} komponenter valgt",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Stolpediagram",
+          "line": "Linje diagram",
+          "pie": "Stolpe diagram",
+          "scatterplot": "Punkt"
+        },
+        "color_picker": {
+          "prefabricated": "Prefabrikkert farge",
+          "title": "Endre farge"
+        },
+        "column_setter": {
+          "label": "Kolonner ({{number}})",
+          "new": "Ny",
+          "title": "Tittel"
+        },
+        "event_handler_list": {
+          "empty": "Utløse spørringer, kontroll-komponenter eller ringe andre APIer som respons på komponenthendelser.",
+          "incomplete_selection": "Ufullstendig utvalg",
+          "new": "Ny",
+          "title": "Rediger hendelsesbehandler"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Slett",
+          "label": "Menus ({{number}})",
+          "new": "Ny",
+          "sub": "Underordnet"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Slett",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Ingen merkelapp",
+          "model_title": "Rediger alternativer",
+          "new": "Ny",
+          "title": "Alternativer"
+        },
+        "select_page_setter": {
+          "placeholder": "Velg en side"
+        },
+        "select_view_setter": {
+          "placeholder": "Velg en visning"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Visninger"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Endre",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Endre filter",
+          "fail": "Mislykkes",
+          "focus": "Fokus",
+          "invalid": "Ugyldig",
+          "paginationChange": "Side endring",
+          "row_select": "Velg rad",
+          "sortingChange": "Endre sortering",
+          "submit": "Send",
+          "success": "Vellykket",
+          "onOpenModal": "Åpen modal",
+          "onCloseModal": "Lukk modal",
+          "play": "Spill",
+          "pause": "pause",
+          "ended": "Avsluttet",
+          "loaded": "Lastet",
+          "rowSelect": "Velg rad",
+          "markerSelected": "markervalgt",
+          "markerCreated": "markeropprettet",
+          "select": "Velg"
+        },
+        "image_list": {
+          "title": "Bilder",
+          "empty": "Ingen bilder",
+          "model_title": "Rediger bilder",
+          "config": {
+            "model_label": "Etikett",
+            "image_url": "Bilde URL"
+          }
+        },
+        "image_setter": {
+          "new": "Ny"
+        },
+        "Change": "Endre",
+        "Select": "Velg",
+        "eventCalendar": {
+          "no_title": "Ingen tittel"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Fyll",
+        "message_type": {
+          "error": "Feil",
+          "info": "Informasjon",
+          "success": "Vellykket",
+          "warning": "Advarsel"
+        },
+        "outline": "Omriss",
+        "validation_pattern": {
+          "email": "E-post",
+          "regex": "Regex",
+          "url": "Nettadresse"
+        },
+        "height": {
+          "fixed": "Fast",
+          "auto": "Automatisk"
+        },
+        "upload_type": {
+          "button": "Knapp",
+          "dropzone": "Slippsone"
+        },
+        "selection_types": {
+          "single_file": "Enkel fil",
+          "multiple_files": "Flere filer",
+          "directory": "Katalog"
+        },
+        "size_type": {
+          "kb": "kB",
+          "mb": "Mb"
+        },
+        "time_picker": {
+          "select_time": "Velg tid"
+        },
+        "time_range": {
+          "start_placeholder": "Start tidspunkt",
+          "end_placeholder": "Slutt tid"
+        }
+      },
+      "setter_group": {
+        "adornments": "RETNINGSLINJER",
+        "basic": "GRUNN",
+        "column": "KOLONNER",
+        "data": "DATA",
+        "interaction": "KONTAKT",
+        "label": "ETIKETT",
+        "layout": "OPPSETT",
+        "menu": "MENY",
+        "options": "ALTERNATIVER",
+        "pagination": "INNHOLD",
+        "row_selection": "ROW SELECTION",
+        "sort": "SORTER",
+        "style": "STYLE",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "BEGRENSNING",
+        "views": "SYKDOER",
+        "images": "BILDER",
+        "primary_value": "PRIMARY VERDI",
+        "secValue": "Sekundær verdi",
+        "border": "Border",
+        "color": "Farge",
+        "icon": "Ikon",
+        "secondary_value": "SEKONDERING VERDI",
+        "resource": "RESSURSER",
+        "eventCalendar": {
+          "calendar": "Kalender"
+        },
+        "event": "Hendelse"
+      },
+      "setter_label": {
+        "action": "Handling",
+        "align": "Align",
+        "allow_clear": "Tillat tømming",
+        "allow_half": "Tillat halvparten",
+        "alt_text": "Alt. tekst",
+        "alt_text_desc": "En tilgjengelig beskrivelse av bildet for skjermlesere. Dette vises også som en reserveløsning hvis bildet ikke lastes inn.",
+        "background": "Bakgrunn",
+        "background_color": "Bakgrunn",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Bildetekst",
+        "chart_title": "Tittel",
+        "chart_type": "Diagram type",
+        "color": "Farge",
+        "colors": "Farger",
+        "column_title": "Tittel på kolonne",
+        "column_type": "Kolonne type",
+        "columns": "Kolonner",
+        "component": "Komponent",
+        "config_type": "Konfigurasjons type",
+        "container": "Beholder",
+        "content": "Innhold",
+        "control_component": "Styre komponent",
+        "custom_rule": "Egendefinert regel",
+        "data": "Data",
+        "data_source": "Data kilde",
+        "data_sources": "Datakilder",
+        "dataset": {
+          "aggregation_method": "Aggregering metode",
+          "name": "Datasett navn",
+          "remove": "Remove dataset",
+          "value": "Datasett verdier"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Desimal plass",
+        "decimal_places": "Antall desimaler",
+        "default_sort_key": "Kolonne",
+        "default_sort_order": "Retning",
+        "default_tab": "Default tab",
+        "default_value": "Standard verdi",
+        "default_views": "Standard visning",
+        "description": "Beskrivelse",
+        "direction": "Retning",
+        "disable_submit": "Deaktiver innsending",
+        "disabled": "Deaktivert",
+        "download": "Nedlasting",
+        "duration": "Varighet",
+        "empty_state": "Tom tilstand",
+        "enable_sorting": "Aktiver sortering",
+        "end_data": "Sluttdato for",
+        "end_placeholder": "Avslutt plassholder",
+        "event": "Hendelse",
+        "event_handler": "Arrangement behandler",
+        "expansion_method": "Utvidelse metode",
+        "failure": "Feil",
+        "filter": "Filtrer",
+        "font_size": "Font size",
+        "form_data_key": "Skjema Datastøkkel",
+        "format": "Formatér",
+        "go_to_url": "Gå til adressen",
+        "group_by": "Gruppér etter",
+        "group_layout": "Gruppe oppsett",
+        "hidden": "Hidden",
+        "hidden_label": "Skjult etikett",
+        "hide_validation_message": "Skjul valideringsmelding",
+        "hide_value_label": "Skjul verdi etikett",
+        "horizontal_alignment": "Horisontal justering",
+        "icon": "Ikon",
+        "image_source": "Bilde kilde",
+        "img_height": "Høyde",
+        "img_width": "Width",
+        "index": "Indeks",
+        "item_background_color": "Element bakgrunn",
+        "items": "Elementer",
+        "key": "Nøkkel",
+        "label": "Etikett",
+        "label_alignment": "Justering",
+        "label_position": "Posisjon",
+        "label_width": "Width(%)",
+        "layout": "Oppsett",
+        "legend_position": "Plassering av forklaring",
+        "link_to_container": "Koble til en beholder",
+        "links_color": "Lenker",
+        "loading": "Laster",
+        "loop_back_to_start": "Gjenta tilbake for å starte",
+        "loop_start_to_back": "Sløyfe starter på nytt",
+        "mapped_option": "Tilordnet alternativ",
+        "mapped_value": "Mappet verdi",
+        "max_count": "Maks antall",
+        "max_date": "Maks dato",
+        "max_length": "Maks lengde",
+        "maximum": "Maksimum",
+        "method": "Metode",
+        "min_date": "Min dato",
+        "min_length": "Min lengde",
+        "minimum": "Minimum",
+        "multi_row_selection": "Valg for flere rader",
+        "new_tab": "New tab",
+        "only_run_when": "Bare kjør når",
+        "overFlow": "Overflyt",
+        "page": "Side",
+        "pageSize": "Sidestørrelse",
+        "pattern": "Mønster",
+        "pending": "Ventende",
+        "placeholder": "Plassholder",
+        "prefix_text": "Prefiks tekst",
+        "radius": "Radius",
+        "read_only": "Kun lesetilgang",
+        "regex": "Regex",
+        "required_field": "Obligatorisk felt",
+        "reset_after_successful_submit": "Tilbakestilling etter vellykket innsending",
+        "router": "Ruter",
+        "run_script": "Kjøre skript",
+        "scale_type": "Skala type",
+        "set_router": "Angi router",
+        "set_temporary_state": "Angi midlertidig tilstand",
+        "shadow": {
+          "shadow": "Skygge"
+        },
+        "show_character_count": "Vis antall tegn",
+        "show_clear_button": "Vis null-knapp",
+        "show_footer": "Vis bunntekst",
+        "show_header": "Vis topptekst",
+        "show_notification": "Vis varsel",
+        "sort": "Sorter",
+        "start_date": "Start dato",
+        "start_placeholder": "Start plassholder",
+        "step_size": "Størrelse på steg",
+        "stroke_width": "Bredde på slagbredde",
+        "style": "Stil",
+        "styles": "Styles",
+        "submit_form": "Send skjema",
+        "success": "Vellykket",
+        "suffix_text": "Suffiks tekst",
+        "text": "Tekst",
+        "text_align": "Text align",
+        "text_size": "Størrelse på tekst",
+        "theme_color": "Tema farge",
+        "thousand_separator": "Tusen skilletegn",
+        "time_format": "Format for tid",
+        "title": "Tittel",
+        "tooltip": "Verktøytips",
+        "trail_color": "Farge på etterslep",
+        "trigger_query": "Utløs spørring",
+        "type": "Type:",
+        "validate_inputs_on_submit": "Valider inndata ved innsending",
+        "value": "Verdi",
+        "value_labels": "Verdi etiketter",
+        "variant": "Variant",
+        "vertical_alignment": "Vertikal justering",
+        "width": "Width",
+        "x_axis_name": "X-akse navn",
+        "x_axis_title": "X-akse tittel",
+        "x_axis_type": "X-akse- type",
+        "x_axis_value": "X-akseverdi",
+        "y_axis_name": "Y-akse navn",
+        "y_axis_title": "Y-akse tittel",
+        "height": "Høyde",
+        "min_height": "Min height (px)",
+        "show_underline": "Vis understreking",
+        "auto_play": "Start spilling automatisk",
+        "interval": "Intervall (ms)",
+        "show_button": "Vis piler",
+        "show_dot": "Vis prikker på bunnen",
+        "hidden_images": "Skjulte bilder",
+        "file_type": "Fil typer",
+        "selection_types": "Utvalg typer",
+        "append_newly_files": "Legg til nylig valgte filer",
+        "file_list": "Liste over filer",
+        "parse_value": "Analysere verdi",
+        "max_files": "Maks antall filer",
+        "min_files": "Min. filer",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Overflyt",
+        "file_url": "PDF kilde",
+        "show_tool_bar": "Vis verktøylinje",
+        "scale": "Skaler siden til",
+        "scroll": "Fest rull til hver side",
+        "min_max_size": "Minimumstørrelse ~ maks størrelse",
+        "video_url": "Video kilde",
+        "autoplay": "Autoavspilling",
+        "loop": "Sløyfe",
+        "volume": "Volum",
+        "show_controls": "Vis kontroller",
+        "img_url_array": "Bilde URL liste",
+        "statistics": {
+          "label": "Etikett",
+          "primary_value": "Primær verdi",
+          "secValue": "Sekundær verdi",
+          "decimal": "Desimal plass",
+          "trend_sign": "Vis trendskilt",
+          "positive_sign": "Positivt skilt",
+          "negative_sign": "Negativt skilt",
+          "thousand_separator": "Vis tusenskilletegn",
+          "trend_color": "Aktiver trendfarge",
+          "prefix_text": "Prefiks tekst",
+          "suffix_text": "Suffiks tekst"
+        },
+        "mute": "Demp",
+        "collapse": {
+          "type": "Type:",
+          "accordin_mode": "Trekkspill modus",
+          "header_color": "Topptekst",
+          "body_color": "Innhold",
+          "expand_icon": "Utvid",
+          "collapse_icon": "Skjul",
+          "icon_color": "Farge"
+        },
+        "choose_at_least": "Velg minst",
+        "choose_up_to": "Velg opp til",
+        "copy_to_clipboard": "Kopier til utklippstavlen",
+        "file_download": {
+          "file_data": "Fil data",
+          "file_name": "Filnavn med filtype",
+          "file_type": "Fil type"
+        },
+        "action_name": "Navn på handlingen",
+        "variable": {
+          "path_of_value": "Sti til verdi",
+          "variable": "Globale data"
+        },
+        "code": {
+          "write_code": "Skriv kode"
+        },
+        "slider": {
+          "step_size": "Størrelse på steg",
+          "minimum": "Minimum",
+          "maximum": "Maksimum",
+          "hide_output": "Skjul utdata",
+          "prefix_icon": "Prefiks ikon",
+          "suffix_icon": "Suffiks ikon",
+          "allow_wrapping": "Tillat innpakning"
+        },
+        "range_slider": {
+          "start_value": "Start verdi",
+          "end_value": "Slutt verdi"
+        },
+        "name": "Navn",
+        "audio": {
+          "audio_url": "Lyd kilde"
+        },
+        "map": {
+          "markers": "Markører",
+          "initial_location": "Første plassering",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Breddegrad felt navn",
+          "longitude_field_name": "Lengdegrad feltnavn",
+          "zoom": "Forstørre",
+          "enable_add_markers": "Aktiver legg til markører",
+          "enable_search_locati": "Aktiver søkefeltet",
+          "enable_clustering": "Aktiver gruppering"
+        },
+        "time_range": {
+          "start_time": "Start tidspunkt",
+          "end_time": "Slutt tid"
+        },
+        "eventCalendar": {
+          "event_value": "Event verdi",
+          "event_id": "Arrangement ID",
+          "title": "Tittel",
+          "description": "Beskrivelse",
+          "start": "Begynn",
+          "end": "Slutt",
+          "resource_id": "Ressurs ID",
+          "resource_title": "Ressurs tittel",
+          "all_day": "Hele dagen",
+          "data_source": "Data kilde",
+          "default_date": "Standard dato",
+          "resource_grid": "Ressurs rutenett",
+          "default_view": "Standard visning",
+          "show_current_time": "Vis gjeldende tid",
+          "background": "Bakgrunn",
+          "calendar_background": "Bakgrunn",
+          "calendar_border": "Border",
+          "calendar_text": "Tekst",
+          "event_background": "Bakgrunn",
+          "event_text": "Tekst"
+        },
+        "table": {
+          "page_index": "Sideindeks (Automatic Translation)",
+          "index": "Indeks",
+          "scroll_to_the_select": "Rull til den markerte raden",
+          "filters": "Filtre",
+          "filter_mode": "Filtrere modus",
+          "show_thousands_separ": "Vis tusenskilletegn",
+          "tag_label": "Etikett etikett",
+          "tag_color": "Tagg farge",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
+        "cascader_data": "Hvert alternativ må være JSON-format og inneholde to nøkler, verdi og etikett. Ved å bruke matriser kan du opprette alternativer på samme nivå. Og underalternativer kan opprettes ved å bruke \"barn\"-attributt. ",
+        "component_default_value": "Den innledende verdien til komponenten. Du kan dynamisk endre den opprinnelige verdien ved å skrive JavaScript i {{}}.",
+        "custom_rule": "Opprett din valideringslogikk her. Reglene burde gjøres i JavaScript og dekkes av {{}}.",
+        "date_format": "Et gyldig datoformat streng. Se [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "Opprinnelig verdi i inngangsboksen. Du kan dynamisk endre den opprinnelige verdien i inntastingsfeltet ved å skrive JavaScript i {{}}.",
+        "disabled": "Kontroller status for hvorvidt komponenten er deaktivert. Komponenten kan ikke endres eller fokuseres når den er deaktivert.",
+        "disabled_submit": "Når deaktivert, vil komponentene som ringer form.submit() metoden også bli deaktivert.",
+        "download": "Vis nedlastingsknappen i verktøylinjen.",
+        "filter": "Vis filterknapp i verktøylinjen.",
+        "form_data_key": "Angi en nøkkel til en 'wrapping form'-komponent når du konstruerer dataattributtet.",
+        "hidden": "Dynamisk kontrollere om komponenten er skjult. Du kan endre skjult status gjennom dynamisk boolsk verdi.",
+        "hide_validation_message": "Du kan skjule feilmeldingen ved å bytte den skjulte statusen når inntastingsverdien er feil. Du kan dynamisk endre den skjulte statusen etter JavaScript.",
+        "input_default_value": "Opprinnelig verdi i inngangsboksen. Du kan dynamisk endre den opprinnelige verdien i inntastingsfeltet ved å skrive JavaScript i {{}}.",
+        "loading": "Om komponenten skal vise en belastningsindikator.",
+        "map_data_option": "Bruk enten en liste med verdier eller et objekt med nøkler tilordnet til lister. Hvert element i datakilden er tilordnet hvert alternativ.",
+        "mapped_value": "Bruk {{ currentRow }} for å få tilgang til dataene i gjeldende rad. For eksempel for å beregne \"kostnad per klikk\" basert på kolonner \"kostnader\" og \"klikkTimer\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Bruk {{table.selectedRow[n].columnName}} for å få tilgang til dataene.",
+        "only_run_when": "Forhold som må være oppfylt før hendelsen kjører.",
+        "placeholder": "Verdien vil bli vist når inndatafeltet er tomt.",
+        "progress_percentage": "prosentverdien er mellom 0 og 100.",
+        "read_only": "Kontroller om komponenten bare er skrivebeskyttet. En skrivebeskyttet komponent kan velges og fokuseres men kan ikke endres.",
+        "required_field": "Gyldig bare når bryteren er på.",
+        "switch_default_value": "Angi den første statusen for bryteren. Du kan dynamisk endre standardverdien ved hjelp av JavaScript. (Automatic Translation)",
+        "table_only_run_when": "Forhold som må oppfylles før hendelsen kjører. Bruk {{ currentRow }} for å få tilgang til dataene på gjeldende rad. For eksempel kjøres bare når \"imgSize\" mindre enn 5120: {{ currentRow.imgsize <= 5120 }}.",
+        "table_set_value": "Bruk gjeldende rad for å få tilgang til dataene i gjeldende rad. For eksempel kan du angi verdien for redigerbar tekstkomponent basert på \"e-post\":  {{ currentRow.email }}.\n  Og så kan du sette verdien i INSPECT for komponenten ved å bruke {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Bruk {{ currentRow }} for å få tilgang til dataene på gjeldende rad. For eksempel, gå til url med parameteren \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "Du kan velge å angi verdi enten i Markdown modus eller i ren tekstmodus. Kun linker i markørmodus gjenkjennes.",
+        "timeline_direction": "Endre retningen til tidslinjen.",
+        "timeline_pending": "Om en node med en ventende status skal vises.",
+        "tooltip": "Brukeren kan angi komponentens verktøytips her. Verktøytips vises når det er i fokus. Markdown format er støttet.",
+        "file_types": "En liste over filtyper som har lov til å laste opp. Ingen verdi vil tillate alle filtyper.",
+        "file_list": "Hvis du vil vise en liste over valgte filer under opplasteren. Høyden på opplasteren vil endres dynamisk basert på lengden på fillisten.",
+        "parse_value": "Forsøk på å analysere valgte filer, med støtte for JSON, CSV, TSV, Excel, og TXT filer.\nParkerte data kan nås via {{uploader1.parsedValue}}. Filer som ikke kan analyseres er null i listen.\nAlle filer er tilgjengelig som base64 kodet strenger på verdien matrisen, uavhengig av dette alternativet.",
+        "file_url": "Støtter PDF nettadresser på nettet, eller base64 kodet data for pdf filer. For eksempel: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Skaler hver side til å fylle komponentens bredde eller høyde.",
+        "scroll": "Finn automatisk til begynnelsen på hver side når du scroller.",
+        "video_url": "Støtter de fleste videotjenester eller en direkte lenke til en felles videofiltype eller base64-kodet data for videofiler. For eksempel: {{ data:audio/mp4;base64,exampleDate}}",
+        "collapse": {
+          "type": "Sammenleggbar liste: liste, alle elementer vil automatisk kopiere stilen til det første elementet. Du kan spesifisere komponentdata i hvert element via {{ currentItem.columnName }}. Sammenhengende panel: Hvert panel er uavhengig, du kan angi komponentstil og data for hvert element separat.",
+          "items": "Antall elementer",
+          "accordin_mode": "I aksordionmodus vil andre gjenstander kollapse når en vare er utvidet."
+        }
+      },
+      "tab_title": "Undersøk",
+      "unselected_tip1": "Ingen komponenter er valgt.",
+      "unselected_tip2": "Klikk på en komponent for å velge den.",
+      "setter": {
+        "click_mask_close": "Klikk på maske for å lukke modal",
+        "modal": {
+          "blank": "Ingen ikoner"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Bruk {{ item }} for å få verdien fra datakilden. For eksempel er det to attributter i datakilden. De er bilde-Url og nettadresse. Hvis du vil gå til en annen URL når du klikker bilde, bruk {{ item.url }} for å angi URL-en.",
+        "data_source": "En datakilde til å definere bildeelementer ved hjelp av en kartlagt evaluering. Bruk enten en liste med verdier eller et objekt med nøkler tilordnet til listen. For eksempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan også bruke dataene i handlinger. For eksempel: {{ mysql1.data }} ",
+        "img_url_array": "Bruk {{ item.attributeName }} for å få bildet URL fra datakilden. ",
+        "carousel": {
+          "data_source": "En datakilde til å definere bildeelementer ved hjelp av en kartlagt evaluering. Bruk enten en liste med verdier eller et objekt med nøkler tilordnet til listen. For eksempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan også bruke dataene i handlinger. For eksempel: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Støtt base64 data, rå data, kartlagte data for tabellen. "
+        },
+        "variable": {
+          "available_in_objects": "Tilgjengelig i objekter og lister. Stien til attributtet i objektet: {{objectName.attributeName}}. Indeksen for verdien i en liste. {{1}}. En liste i objektet: {{objectName.attributeName.1}}",
+          "the_target_value": "Mål verdien"
+        },
+        "slider": {
+          "default_value": "Den innledende verdien til skyveknappen. Du kan dynamisk endre den opprinnelige verdien ved å skrive JavaScript i {{}}.",
+          "minimum": "Minste verdi for glidebryteren",
+          "maximum": "Maksimal verdi for glidebryteren",
+          "step_size": "Minste endring av lysbildeenhet for lysbilde",
+          "label": "Navnet på feltet som vises til brukeren",
+          "caption": "Bildetekst som brukes til å beskrive feltet i detalj",
+          "hide_label": "Angi om etiketten skal vises",
+          "allow_wrapping": "Angi om etiketten skal brytes",
+          "position": "Still plasseringen av etiketten i forhold til komponenten",
+          "alignment": "Sett innretting av etikett",
+          "width": "Når etiketten er på venstre side av komponenten, angir du forholdet bredden på etiketten",
+          "prefix_icon": "Ikonet som vises foran komponenten",
+          "suffix_icon": "Ikonet som vises etter komponenten",
+          "hide_output": "Angi om du vil skjule verdien når du glir"
+        },
+        "step": {
+          "default_step": "Standard trinn",
+          "show_step_number": "Vis trinnnummer",
+          "indicate_completed_steps": "Angi fullførte trinn"
+        },
+        "range_slider": {
+          "start_value": "For å angi minimumsverdien i området",
+          "end_value": "For å angi maksimumsverdien i området"
+        },
+        "audio": {
+          "audio_url": "Støtter direktelinker til en felles lydfiltype eller linker til noen lydtjenester eller base64 kodet data for lydfiler. For eksempel: {{ data:audio/mp3;base64,exampleDate}}"
+        },
+        "map": {
+          "markers": "For å angi markører på kartet. Markørene skal være et utvalg av objekter med samme egenskaper som standardmarkørene.",
+          "initial_location": "Når du initialiserer kartet, settes standard midtvist posisjon",
+          "default_markers": "Standard markører vist når du initialiserer kartet. Du kan sette det dynamisk med JavaScript i {{}}. ",
+          "latitude_field_name": "Breddegraden hentes fra hvilken egenskap opprinnelig plassering og standardmarkører objekter.",
+          "longitude_field_name": "Lengdegraden hentes fra hvilken egenskap av den opprinnelige plasseringen og standardmarkørens objekter.",
+          "zoom": "For å sette kartets zoom",
+          "enable_add_markers": "Om brukere skal legge til markører ved å klikke på kartet",
+          "enable_search_locati": "Om brukere skal søke etter plassering",
+          "enable_clustering": "Om flere markører skal tiltre når kartet er zoomet ut"
+        },
+        "time_picker": {
+          "format": "Et gyldig tidsformat format. For mer informasjon av formatet: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "Verdien gjennom hele spennet i minutter",
+          "show_a_clear_button_": "Vis en tøm knapp når musen er over komponenten. "
+        },
+        "time_range": {
+          "start_time": "Første starttid for komponenten. ",
+          "end_time": "Første sluttidspunkt for komponenten. ",
+          "start_placeholder": "Verdien vil bli vist når starttidsfeltet er tomt.",
+          "end_placeholder": "Verdien vil bli vist når sluttfeltet er tomt."
+        },
+        "eventCalendar": {
+          "event_value": "Bruk objekt vedlagt {{ til å sette hendelsesverdien. For eksempel, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\";\"event_description\":\"description\"}",
+          "event_id": "En unik ID brukes til å identifisere hendelsen",
+          "title": "Tittelen på arrangementet",
+          "description": "Beskrivelsen av arrangementet",
+          "start": "Start tidspunkt for arrangementet",
+          "end": "Slutttidspunkt for arrangementet",
+          "resource_id": "Ressursen kan være en person, et møterom, osv. Du kan angi en ressurs-id og koble den til arrangementet. ",
+          "resource_title": "Ressursnavnet som vises i ressursvisning",
+          "all_day": "Om en endagshendelse",
+          "data_source": "Datakilden for hendelsene. En datakilde skal være en liste med objekter. Hvert objekt er en hendelse. For eksempel, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\";\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\";\"event_description\":\"description\"}",
+          "default_date": "Standarddatoen når appen starter",
+          "resource_grid": "Om du vil vise et ressurs nett",
+          "default_view": "Standardvisning når appen startes",
+          "show_current_time": "Angi om du skal vise den gjeldende tidslinjen",
+          "calendar_background": "Velg bakgrunn for kalenderen",
+          "calendar_border": "Angi farge på kanten",
+          "calendar_text": "Angi farge for teksten",
+          "event_background": "Angi bakgrunn for hendelseskort",
+          "event_text": "Angi fargen for tekstfargen for hendelseskortet",
+          "couldnot_drag": "Hvis du vil dra for å justere tidsintervallet, kan du fortsette til forhåndsvisningssiden for operasjonen."
+        }
+      },
+      "setter_option": {
+        "fixed": "Fast",
+        "auto_limited": "Automatisk høyde med grenser",
+        "auto_height": "Automatisk høyde",
+        "text_ellipsis": "Ellipsis",
+        "text_scroll": "Rull",
+        "text_clip": "Clip",
+        "scale_height": "Høyde",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Sammenleggbart panel"
+        },
+        "file_download": {
+          "auto": "Automatisk",
+          "plain_text": "Ren tekst",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "Svg",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Ingen",
+          "large": "Stor",
+          "medium": "Middels",
+          "small": "Liten"
+        },
+        "eventCalendar": {
+          "sunday": "Søndag",
+          "monday": "Mandag",
+          "tuesday": "Tirsdag",
+          "wednesday": "Onsdag",
+          "thursday": "Torsdag",
+          "friday": "Fredag",
+          "saturday": "Lørdag",
+          "month": "Måned",
+          "week": "Uke",
+          "day": "Dag",
+          "agenda": "Dagsorden"
+        },
+        "table": {
+          "set_sort": "Angi sortering",
+          "column": "Kolonne",
+          "number": "Nummer",
+          "percent": "Prosent",
+          "currency": "Valuta",
+          "text": "Tekst",
+          "tag": "Tagg",
+          "button_group": "Knappegruppe",
+          "date": "Dato",
+          "time": "Tid",
+          "date_time": "Dato / Tid",
+          "link": "Lenke",
+          "rating": "Vurdering",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Knapp",
+          "icon": "Ikon",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Ingen grenser",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "Positiv farge",
+          "negative_color": "Negativ farge"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "new_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Et tall mellom 0 og 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Vennligst velg på {{ min }} leieopsjoner.",
+        "choose_up_to": "Velg opptil {{max}} valg.",
+        "map": {
+          "zoom": "Angi en verdi mellom 1 og 22"
+        },
+        "upload": {
+          "size_exceed": "Det kan hende at filer over 500MB ikke analyseres.",
+          "single_file": "Bare én enkelt fil er tillatt.",
+          "file": "Filtyper som ikke støttes fjernes",
+          "directory": "Bare mapper er tillatt."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Skriv koden din her. Bruk JavaScript innenfor {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Legg til",
+        "body": "Innhold",
+        "default_view": "Standard visning",
+        "edit_view": "Rediger visning",
+        "footer": "Bunntekst",
+        "header": "Topptekst",
+        "key": "Nøkkel",
+        "left_panel": "Venstre panel",
+        "preset": "Preset",
+        "right_panel": "Høyre panel",
+        "set_as_homepage": "Bruk som startside",
+        "show_fold_icon": "Vis foldeikon",
+        "view_path": "Vis sti",
+        "views": "Visninger",
+        "width": "Width",
+        "height": "Høyde",
+        "columns": "Kolonner"
+      },
+      "model_tips": {
+        "cancel_button": "Avbryt",
+        "change_layout_message": "Etter endring av layout, alle data vil bli slettet. Denne operasjonen kan ikke gjenopprettes, vennligst bekreft",
+        "delete_section_message": "Etter å ha gjemt data i denne seksjonen vil bli slettet. Denne operasjonen kan ikke gjenopprettes, vennligst bekreft",
+        "ok_button": "Bekreft"
+      },
+      "panel_bar_title": {
+        "basic": "GRUNN",
+        "frame": "FRAME"
+      },
+      "tab_title": "Side",
+      "tooltips": {
+        "show_fold_icon": "Vis en knapp for å skjule eller utvide panelet",
+        "view_path": "En streng etter eksempel.no/app/page/ for å få tilgang til denne visningen",
+        "auto_canvas_width": "Bredden på siden som prosentandel av nettleserbredden."
+      }
+    },
+    "validate_message": {
+      "email": "Vennligst skriv inn en gyldig e-postadresse",
+      "max_length": "Må ikke være mer enn {{ number }} tegn",
+      "max_value": "Må være mindre enn {{ number }}",
+      "min_length": "Må bestå av minst {{ number }} tegn",
+      "min_value": "Må være større enn {{ number }}",
+      "regex": "Vennligst match det forespurte formatet",
+      "required": "Dette feltet er obligatorisk",
+      "url": "Vennligst skriv inn en gyldig URL",
+      "max_size": "Filstørrelsen kan ikke overstige {{maxSize }} {{ type }}.",
+      "min_files": "Minst {{ minFiles }} filer er nødvendig.",
+      "max_files": "Støtt opp til {{ maxFiles }} filer.",
+      "min_size": "Filstørrelsen kan ikke være mindre enn {{minSize }} {{ type }}.",
+      "min_max_size": "Minimumstørrelse ~ maks størrelse"
+    },
+    "widget_picker": {
+      "empty_tip": "Beklager, ingen søkeresultater",
+      "search_placeholder": "Søk",
+      "sessions": {
+        "calendar": "Brukerdata for kalender",
+        "commonly": "Vanlige komponenter",
+        "container": "Beholder og skjema",
+        "data": "Data",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Presentasjon",
+        "selects": "Velg inndata"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Velg skjult",
+      "set_file_url": "Sett PDF kilde",
+      "play": "Spill",
+      "pause": "pause",
+      "seek_to": {
+        "time": "Tid",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "Video kilde"
+      },
+      "speed": {
+        "speed": "Hastighet",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Stopp",
+      "mute": "Demp",
+      "loop": "Sløyfe",
+      "show_controls": "Vis kontroller",
+      "set_volumn": "Angi spenning",
+      "set_volume": {
+        "volume": "Volum",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "PrimaryVerdi",
+        "reset_primary_value": "Nullstillings PrimaryVerdi",
+        "primary_value": "Primær verdi"
+      },
+      "collapse": {
+        "expand_all_items": "Utvid alle produkter",
+        "collapse_all_items": "Skjul alle elementer"
+      },
+      "carousel": {
+        "showNext": "Vis neste synlige bilde",
+        "showPrevious": "Vis forrige synlige bilde"
+      },
+      "file_download": {
+        "download": "Nedlasting",
+        "message": {
+          "suc": "Start å laste ned",
+          "fail": "Forespørselen mislyktes",
+          "download_failed": "Kan ikke laste ned"
+        }
+      },
+      "setGlobalData": "Angi globale data",
+      "setLocalStorage": "Angi lokal lagring",
+      "audio": {
+        "set_audio_url": "Angi lydkilde"
+      },
+      "map": {
+        "marker_selected": "Markør valgt",
+        "marker_created": "Markør opprettet",
+        "markers_changed": "Markører endret"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "slette-hendelse"
+      },
+      "table": {
+        "clear_filters": "Nullstill filtre",
+        "clear_column_setting": "Fjern kolonneinnstillinger",
+        "refresh": "Oppdater",
+        "select_page": "Velg side",
+        "select_row": "Velg rad",
+        "clear_selection": "Tøm valg",
+        "set_filters": "Angi filtre"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Opplæring"
+          },
+          "title": {
+            "tutorial": "Opplæring",
+            "templates": "Maler"
+          },
+          "onboarding_app": {
+            "name": "Onboarding app",
+            "description": "Følg ILLAs opplæring for å lære å bygge en app.",
+            "action": "Gå"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Fork denne malen som en ny app"
+          },
+          "templates_name": {
+            "table": "Kontrollpanel",
+            "form": "Undersøkelse",
+            "list": "Panel for admin"
+          },
+          "templates_description": {
+            "table": "Bruk tabellene for å lage dashbord.",
+            "form": "Bruk skjema- og inngangskomponenter for å lage skjemaapper.",
+            "list": "Bruk en listekomponent for å vise og administrere informasjon"
+          },
+          "modal": {
+            "title": "Fork og distribuere",
+            "placeholder": "Navn på app",
+            "cancel": "Avbryt",
+            "fork": "Fork og distribuere"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Trinn 1: Dra et inndata hit",
+          "drag_button": "Trinn 2: Dra en knapp hit",
+          "drag_table": "Trinn 3: Dra en tabell hit",
+          "exit": "Avbryt",
+          "do_it": "Gjør det for meg",
+          "drag_title": "Dra komponenter til rammen",
+          "modify_action_title": "Endre handlingen",
+          "modify_action_description_modify": "Endre handling for å hente data. Vi kan bruke {{input1.value}} for å hente dataene som er skrevet inn i input komponenten. \n\nvelg * \nfra brukerne\nblir med i ordre\npå brukere.id = orders.id\nder {{!input1.value}} eller lavere (brukere.name) som '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Klikk Lagre og klikk deretter Kjør",
+          "display_data_title": "Vise data i tabellen",
+          "display_data_description_select": "Velg tabell i rammen",
+          "display_data_description_modify": "Endre datakilden i det høyre panelet. Vi kan bruke {{postgresql1.data}} for å hente data.",
+          "event_handler_title": "Klikk knappen for å utløse handling",
+          "event_handler_description_1": "Velg knappen på rammen",
+          "event_handler_description_2": "Legg til en hendelsesbehandler",
+          "event_handler_description_3": "Klikk på hendelsesbehandler",
+          "event_handler_description_4": "Endre handlingen du vil utløse",
+          "event_handler_description_5": "Endre spørringen til postgrønn1",
+          "test_it_title": "Test det ut",
+          "test_it_description": "Skriv inn et brukernavn du vil søke etter og klikk på knappen",
+          "test_it_button": "Neste",
+          "congratulations_title": "Gratulerer 🎉",
+          "congratulations_description": "Du har nettopp laget din første app. Hvis du har spørsmål under bruk, kan du kontakte oss via <0>Discord</0>. ",
+          "congratulations_button": "Ferdig",
+          "event_handler_description_all": "1. Legg til en hendelsesbehandler\r\n2. Klikk på hendelsesbehandleren\r\n3. Endre handlingen til å utløse\r\n4. Endre Query til postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Størrelsen på dataene overskrider grensen (nåværende størrelse: {{current_size}} byte, grense: {{limit_size}} byte)"
+    }
+  },
+  "exit_preview": "Avslutt forhåndsvisning",
+  "freeze_collision": "Frys kollisjon",
+  "freeze_messages": "lerret er frosset. Du kan dra komponenter inn eller ut av beholderen.",
+  "freeze_tips": "lerret er frosset. Klikk her for å frigjøre det.",
+  "link_copied": "Kobling kopiert",
+  "network_error": "Nettverk frakoblet. Kontroller nettverket til denne enheten",
+  "not_online_tips": "Nettverk frakoblet. Kontroller nettverket til denne enheten",
+  "preview": {
+    "viewport": {
+      "size": "Størrelse",
+      "reset": "Reset",
+      "save": "Lagre",
+      "tooltip": {
+        "fluid_width": "Væske bredde",
+        "desktop": "Skrivebord(bredde = 1280px)",
+        "tablet": "Tabell(bredde = 1080px)",
+        "custom": "Egendefinert"
+      }
+    },
+    "button_text": "Forhåndsvisning"
+  },
+  "remove_fail": "Kan ikke fjerne",
+  "rename": "Omdøp",
+  "resources": "Ressurser",
+  "retry": "Prøv igjen",
+  "save": "Lagre",
+  "setting": {
+    "account": {
+      "email": "E-post",
+      "empty_username": "Skriv inn brukernavn",
+      "error_username": "Brukernavnet må være på 3 ~15 tegn",
+      "save": "Lagre endringer",
+      "save_fail": "Kunne ikke lagre",
+      "title": "KONTO",
+      "username": "Brukernavn"
+    },
+    "other": {
+      "language": "Språk",
+      "save": "Lagre endringer",
+      "title": "INNSTILLING"
+    },
+    "password": {
+      "confirm_password": "Bekreftelse passord",
+      "current_password": "Gammelt passord",
+      "empty_password": "Vennligst skriv inn passordet ditt",
+      "error_format_password": "Passord må bestå av 6~20 tegn",
+      "error_match_password": "Ditt passord samsvarer ikke med det bekreftede passordet",
+      "error_password_has_empty": "Passord kan ikke inkludere mellomrom",
+      "error_validate_password": "Passordet kan kun inneholde tall, bokstaver og tegnsettinger",
+      "new_password": "Nytt passord",
+      "submit_button": "Send",
+      "title": "Passord"
+    }
+  },
+  "share": "Del",
+  "status": {
+    "403": {
+      "des": "Ingen tilgang"
+    },
+    "404": {
+      "again": "Oppdater",
+      "des": "Det ser ut til at siden du lette etter ikke ble funnet."
+    },
+    "500": {
+      "des": "Oops, noe gikk galt. Prøv igjen senere."
+    },
+    "back": "Tilbake til hjemmesiden",
+    "mobile_forbidden": "For den bedre redigeringsopplevelsen, besøk denne siden på skrivebordet",
+    "back_to_cloud": "Tilbake til ILLA Sky",
+    "no_permission_title": "Utilstrekkelige rettigheter",
+    "no_permission_description": "Du har ikke rettigheter til å utføre den forespurte operasjonen. Vennligst kontakt administratoren i teamet ditt."
+  },
+  "title": "Velkommen til illa",
+  "unfreeze_tips": "Frys lerretet og dra komponenter inn i eller ut av beholderne. (D eller K)",
+  "user": {
+    "description": "En plattform med lav kildekode for utviklere.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Send kode"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Vennligst skriv inn en gyldig e-postadresse",
+          "registered": "E-postadressen er ikke knyttet til en konto.",
+          "require": "Skriv inn din e-post"
+        },
+        "newPassword": {
+          "require": "Vennligst skriv inn passordet ditt"
+        },
+        "verification_code": {
+          "expired": "Bekreftelseskoden er utløpt",
+          "invalid": "Ugyldig bekreftelseskode",
+          "require": "Angi bekreftelseskode"
+        }
+      },
+      "fields": {
+        "email": "E-post",
+        "newPassword": "Nytt passord",
+        "verification_code": "Bekreftelseskode"
+      },
+      "placeholder": {
+        "email": "Skriv inn e-postadressen din",
+        "verification_code": "Angi bekreftelseskode"
+      },
+      "subtitle": "Tilbake til å logge på",
+      "tips": {
+        "fail": "Kan ikke tilbakestille passord",
+        "fail_sent": "Klarte ikke å sende bekreftelseskoden",
+        "success": "Tilbakestilling av passord vellykket",
+        "verification_code": "Bekreftelseskode er sendt"
+      },
+      "title": "Tilbakestill passord"
+    },
+    "password": {
+      "placeholder": "Skriv inn det nye passordet ditt (minst 6 tegn)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Logg inn"
+      },
+      "description": {
+        "forgot_password": "Glemt passord?",
+        "policy": "Ved å klikke på Logg inn, godtar jeg <0>Personvern</0> og <1>vilkår</1>",
+        "register": "Ny bruker? <0>Opprett en konto</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Vennligst skriv inn en gyldig e-postadresse",
+          "registered": "E-postadressen er ikke knyttet til en konto.",
+          "require": "Skriv inn din e-post"
+        },
+        "password": {
+          "incorrect": "Feil epostadresse eller passord",
+          "locked": "For mange dårlige forsøk, vennligst resett passordet eller prøv igjen etter 1 time",
+          "min_length": "Passordet må bestå av minst 6 tegn",
+          "require": "Vennligst angi passord"
+        }
+      },
+      "fields": {
+        "email": "E-post",
+        "password": "Passord"
+      },
+      "placeholder": {
+        "email": "Skriv inn e-postadressen din"
+      },
+      "tips": {
+        "fail": "Kunne ikke logge inn",
+        "success": "Logget inn"
+      },
+      "title": "Velkommen tilbake"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Opprett konto",
+        "send": "Send kode"
+      },
+      "description": {
+        "login": "Har du allerede en konto? <0>Logg inn</0>",
+        "policy": "Ved å klikke Opprett konto godtar jeg <0>Personvern</0> og <1>Betingelser </1>",
+        "subscribe": "Jeg er villig til å motta oppdateringer og nyheter om ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Vennligst skriv inn en gyldig e-postadresse",
+          "registered": "En konto med den e-postadressen finnes allerede.",
+          "require": "Skriv inn din e-post"
+        },
+        "password": {
+          "require": "Vennligst angi passord"
+        },
+        "username": {
+          "length": "Brukernavnet må være på 3~15 tegn",
+          "require": "Skriv inn brukernavn"
+        },
+        "verification_code": {
+          "expired": "Bekreftelseskoden er utløpt",
+          "invalid": "Ugyldig bekreftelseskode",
+          "require": "Angi bekreftelseskode"
+        }
+      },
+      "fields": {
+        "email": "E-post",
+        "password": "Passord",
+        "username": "Brukernavn",
+        "verification_code": "Bekreftelseskode"
+      },
+      "placeholder": {
+        "email": "Skriv inn e-postadressen din",
+        "username": "Skriv inn ditt brukernavn",
+        "verification_code": "Angi bekreftelseskode"
+      },
+      "tips": {
+        "fail": "Kunne ikke registrere deg",
+        "fail_sent": "Klarte ikke å sende bekreftelseskoden",
+        "success": "Registrering vellykket",
+        "verification_code": "Bekreftelseskode er sendt"
+      },
+      "title": "Registrer deg",
+      "agreement": {
+        "privacy_policy": "retningslinjer for personvern",
+        "terms_of_service": "vilkår for tjenesten"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Bar fremgang"
+    },
+    "button": {
+      "default_text": "Knapp",
+      "name": "Knapp"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Diagram"
+    },
+    "check_box_group": {
+      "name": "Avkrysningsboks gruppe"
+    },
+    "circle_progress": {
+      "name": "Sirkel fremgang"
+    },
+    "container": {
+      "empty": "Trykk <keyPress>D</keyPress> eller <keyPress>K</keyPress> og dra komponenter her",
+      "key_duplicated": "Nøkkelen er duplisert. Vennligst bruk unike nøkler for å unngå feil.",
+      "name": "Beholder",
+      "value_duplicated": "Verdien er duplisert. Vennligst bruk unike verdier for å unngå feil."
+    },
+    "date": {
+      "name": "Dato"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Dato / Tid",
+      "placeholder": "Velg tid"
+    },
+    "divider_progress": {
+      "name": "Skillelinje"
+    },
+    "editable_text": {
+      "name": "Redigerbar tekst"
+    },
+    "form": {
+      "name": "Skjema"
+    },
+    "image": {
+      "name": "Bilde"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Bruk {{ currentItem }} for å få tilgang til dataene til gjeldende element. For eksempel, for å sette verdien for tekstkomponenten i listekomponenten basert på \"userName\": {{ currentItem.userName }}",
+      "doc2": "Bruk {{list.selectedItem.data}} for å få tilgang til dataene for det valgte elementet i listekomponenten. For eksempel, for å angi verdien til tekstkomponenten som er utenfor listekomponenten basert på \"brukernavn\" for det valgte elementet i listen: {{ list.selectedItem.userName }}",
+      "name": "Liste"
+    },
+    "menu": {
+      "name": "Meny"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Venstre",
+      "right": "Høyre",
+      "select_options": {
+        "manual": "Manuell",
+        "mapped": "Tilordnet"
+      },
+      "top": "Topp"
+    },
+    "radio_button": {
+      "name": "Radio knapp"
+    },
+    "radio_group": {
+      "name": "Radio gruppe"
+    },
+    "rate": {
+      "name": "Sats"
+    },
+    "select": {
+      "name": "Velg"
+    },
+    "switch": {
+      "name": "Bytt"
+    },
+    "table": {
+      "ascend": "Stigende",
+      "descend": "Desc",
+      "name": "Tabell",
+      "pagination": "Paginering",
+      "scroll": "Rull"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Hei!",
+      "name": "Tekst",
+      "text_model": "Ren tekst"
+    },
+    "timeline": {
+      "horizontal": "Horisontal",
+      "name": "Tidslinje",
+      "vertical": "vertikal"
+    },
+    "modal": {
+      "name": "Modell"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Last opp",
+      "default_button_text": "Last opp",
+      "default_dropzone_text": "Velg eller slipp en fil her"
+    },
+    "icon": {
+      "name": "Ikon"
+    },
+    "pdf": {
+      "empty": "Ingen PDF-filer",
+      "failed": "PDF kunne ikke lastes"
+    },
+    "video": {
+      "name": "Video",
+      "empty": "Ingen videoer",
+      "fail": "Kunne ikke laste"
+    },
+    "statistics": {
+      "name": "Statistikk"
+    },
+    "collapse": {
+      "name": "Skjul"
+    },
+    "multiselect": {
+      "name": "Flervalg"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Skritt"
+    },
+    "slider": {
+      "name": "Glidebryter"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Lyd",
+      "no_audio": "Ingen lyd"
+    },
+    "collaborative": {
+      "no_name": "Uten navn"
+    },
+    "map": {
+      "name": "Kart"
+    },
+    "time_picker": {
+      "name": "Velger tid"
+    },
+    "time_range": {
+      "name": "Tidsintervall"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Arrangement kalender"
+      },
+      "name_duplicated": "Denne ressurs-ID-en er i konflikt med disse hendelsene, bruk samme navn eller annen id"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Fast",
+        "auto": "Automatisk"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Send kode"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Vennligst skriv inn en gyldig e-postadresse",
+            "registered": "E-postadressen er ikke knyttet til en konto.",
+            "require": "Skriv inn din e-post"
+          },
+          "newPassword": {
+            "require": "Vennligst skriv inn passordet ditt"
+          },
+          "verification_code": {
+            "expired": "Bekreftelseskoden er utløpt",
+            "invalid": "Ugyldig bekreftelseskode",
+            "require": "Angi bekreftelseskode"
+          }
+        },
+        "fields": {
+          "email": "E-post",
+          "newPassword": "Nytt passord",
+          "verification_code": "Bekreftelseskode"
+        },
+        "placeholder": {
+          "email": "Skriv inn e-postadressen din",
+          "verification_code": "Angi bekreftelseskode"
+        },
+        "subtitle": "Tilbake til å logge på",
+        "tips": {
+          "fail": "Kan ikke tilbakestille passord",
+          "fail_sent": "Klarte ikke å sende bekreftelseskoden",
+          "success": "Tilbakestilling av passord vellykket",
+          "verification_code": "Bekreftelseskode er sendt"
+        },
+        "title": "Tilbakestill passord"
+      },
+      "password": {
+        "placeholder": "Skriv inn det nye passordet ditt (minst 6 tegn)"
+      },
+      "policy": "Ved å bruke ILLA godtar du våre <0>Personvernerklæring</0> og <1>Tjenestevilkår</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Logg inn"
+        },
+        "description": {
+          "forgot_password": "Glemt passord?",
+          "policy": "Ved å klikke på Logg inn, godtar jeg <0>Personvern</0> og <1>vilkår</1>",
+          "register": "Ny bruker? <0>Opprett en konto</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Vennligst skriv inn en gyldig e-postadresse",
+            "registered": "E-postadressen er ikke knyttet til en konto.",
+            "require": "Skriv inn din e-post"
+          },
+          "password": {
+            "incorrect": "Feil epostadresse eller passord",
+            "locked": "For mange dårlige forsøk, vennligst resett passordet eller prøv igjen etter 1 time",
+            "min_length": "Passordet må bestå av minst 6 tegn",
+            "require": "Vennligst angi passord"
+          }
+        },
+        "fields": {
+          "email": "E-post",
+          "password": "Passord"
+        },
+        "placeholder": {
+          "email": "Skriv inn e-postadressen din"
+        },
+        "tips": {
+          "fail": "Kunne ikke logge inn",
+          "success": "Logget inn",
+          "fail_account": "Feil epostadresse eller passord"
+        },
+        "title": "Velkommen tilbake",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Registrer deg vellykket. Du kan angi et passord for e-postkontoen senere",
+            "auth_failed": "Godkjenning mislyktes"
+          }
+        },
+        "option": {
+          "github": "Logg på med GitHub",
+          "google": "Logg på med Google",
+          "or": "ELLER"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Opprett konto",
+          "send": "Send kode"
+        },
+        "description": {
+          "login": "Har du allerede en konto? <0>Logg inn</0>",
+          "policy": "Ved å klikke Opprett konto godtar jeg <0>Personvern</0> og <1>Betingelser </1>",
+          "subscribe": "Jeg er villig til å motta oppdateringer og nyheter om ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Vennligst skriv inn en gyldig e-postadresse",
+            "registered": "En konto med den e-postadressen finnes allerede.",
+            "require": "Skriv inn din e-post"
+          },
+          "password": {
+            "require": "Vennligst angi passord"
+          },
+          "username": {
+            "length": "Brukernavnet må være på 3~15 tegn",
+            "require": "Skriv inn brukernavn"
+          },
+          "verification_code": {
+            "expired": "Bekreftelseskoden er utløpt",
+            "invalid": "Ugyldig bekreftelseskode",
+            "require": "Angi bekreftelseskode"
+          }
+        },
+        "fields": {
+          "email": "E-post",
+          "password": "Passord",
+          "username": "Brukernavn",
+          "verification_code": "Bekreftelseskode"
+        },
+        "placeholder": {
+          "email": "Skriv inn e-postadressen din",
+          "username": "Skriv inn ditt brukernavn",
+          "verification_code": "Angi bekreftelseskode"
+        },
+        "tips": {
+          "fail": "Kunne ikke registrere deg",
+          "fail_sent": "Klarte ikke å sende bekreftelseskoden",
+          "success": "Registrering vellykket",
+          "verification_code": "Bekreftelseskode er sendt"
+        },
+        "title": "Registrer deg",
+        "option": {
+          "github": "Registrer deg med GitHub",
+          "google": "Registrer deg med Google"
+        }
+      },
+      "description": "En plattform med lav kildekode for utviklere."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Opplæring"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Vennligst skriv inn en verdi ikke mindre enn {{ size }}."
+  },
+  "failed_to_copy": "Kunne ikke kopiere",
+  "copied": "Kopiert!",
+  "user_management": {
+    "role": {
+      "owner": "Eier",
+      "admin": "Administer",
+      "editor": "Redaktør",
+      "viewer": "Bruker"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Inviter medlemmer"
+      },
+      "link": {
+        "invite_title": "Inviter lenke",
+        "copy": "Kopier",
+        "turn_off": "Slå av invitasjonslenker",
+        "update": "Oppdater invitasjonslenker",
+        "description": "Del en hemmelig link folk kan bruke for å bli med i teamet ditt.",
+        "turn_on": "Slå på invitasjonslenker",
+        "fail": "Kunne ikke finne koblingen, prøv igjen senere",
+        "copied_suc": "Kopiert!",
+        "failed_to_copy": "Kunne ikke kopiere",
+        "turn_off_fail": "Kunne ikke slå av",
+        "turn_on_fail": "Kunne ikke slå på",
+        "make_public_title": "Gjør appen offentlig",
+        "make_public_copy": "Kopier"
+      },
+      "email": {
+        "invite_title": "Inviter via e-post",
+        "invite": "Inviter",
+        "placeholder": "Skriv inn e-postadresse",
+        "invited": "Har invitert",
+        "in_list": "Denne brukeren er allerede i teamet ditt.",
+        "notmail": "{{ email }} er ikke en e-post",
+        "duplicate": "{{ email }} er duplisert"
+      },
+      "invalid_email": "Vennligst skriv inn en gyldig e-post",
+      "message": {
+        "make_public_suc": "Angi vellykket",
+        "make_public_failed": "Kan ikke angi",
+        "app_share_in_team": "{{ email }} er allerede i ditt lag, vennligst del linken med ham. "
+      },
+      "tab": {
+        "invite": "Inviter",
+        "public": "Offentlig"
+      }
+    },
+    "mes": {
+      "invite_suc": "Invitert vellykket",
+      "invite_fail": "Kunne ikke invitere",
+      "update_suc": "Oppdatering vellykket",
+      "update_fail": "Kunne ikke oppdatere",
+      "transfer_suc": "Overføringen vellykket",
+      "transfer_fail": "Kunne ikke overføre",
+      "remove_suc": "Fjernet",
+      "remove_fail": "Kan ikke fjerne",
+      "change_role_fail": "Kunne ikke oppdatere",
+      "change_role_suc": "Oppdatering vellykket"
+    },
+    "page": {
+      "member": "Medlem",
+      "invite": "Inviter",
+      "permission": "Tillatelse",
+      "operation": "Operasjon",
+      "transfer": "Overfør eierskap",
+      "remove": "Fjern"
+    },
+    "transfer_modal": {
+      "title": "Er du sikker på at du vil overføre eierskap?",
+      "description": "Etter overføring, vil din tillatelse endre til administrator.",
+      "transfer": "Overfør",
+      "cancel": "Avbryt"
+    },
+    "remove_modal": {
+      "title": "Er du sikker på at du vil fjerne {{ username }}?",
+      "description": "Etter sletting vil ikke brukeren få tilgang til teamet.",
+      "remove": "Fjern",
+      "cancel": "Avbryt"
+    },
+    "status": {
+      "pending": "Ventende"
+    },
+    "settings": {
+      "allow_editors_invite": "Tillat redaktører og seere å administrere medlemmer"
+    }
+  },
+  "copy_failed": "Kunne ikke kopiere",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Innstillinger for team",
+      "member": "Medlem",
+      "leave": "Forlat laget",
+      "delete": "Slett team"
+    },
+    "leave_modal": {
+      "title": "Er du sikker på at du vil forlate dette teamet?",
+      "description": "Du vil ikke få tilgang til noen team-ressurser etter at du har forlatt den.",
+      "leave": "Forlat",
+      "cancel": "Avbryt"
+    },
+    "delete_modal": {
+      "title": "Er du sikker på at du vil slette dette teamet?",
+      "delete": "Slett",
+      "cancel": "Avbryt",
+      "desctiption": "Gruppe-identifikatoren vil ikke være tilgjengelig etter sletting, og alle medlemmer vil bli fjernet fra dette teamet."
+    },
+    "team_info": {
+      "title": "Team informasjon",
+      "team_name": "Lag navn",
+      "domain": ".illacloud.com",
+      "existed": "Allerede eksisterende",
+      "available": "Tilgjengelig",
+      "edit": "Rediger",
+      "save": "Lagre endringer",
+      "adjust_avater": "Juster averet",
+      "avater_crop": "Beskjær",
+      "team_name_empty": "Vennligst skriv inn lagnavnet",
+      "team_id_empty": "Vennligst skriv inn team-ID",
+      "team_name_placeholder": "Skriv inn teamnavn",
+      "team_id_placeholder": "Skriv inn lag-ID",
+      "leave_title": "Forlat laget",
+      "leave_button": "Forlat laget",
+      "delete_title": "Slett team",
+      "delete_button": "Slett team",
+      "team_domain": "Team identifikator"
+    },
+    "message": {
+      "save_suc": "Lagring vellykket",
+      "save_fail": "Kunne ikke lagre"
+    },
+    "mes": {
+      "domain_suc": "Opprettelse vellykket.",
+      "delete_suc": "Slettet med hell",
+      "delete_fail": "Kan ikke slette",
+      "leave_suc": "Forlat uten hell",
+      "leave_fail": "Kan ikke forlate"
+    }
+  },
+  "members": "Medlemmer",
+  "invite_new_member": "Inviter",
+  "launch": "Start",
+  "homepage": {
+    "message": {
+      "join_failed": "Kunne ikke bli med i teamet: E-posten din er ikke den inviterte e-posten."
+    }
+  },
+  "image_exceed": "Bildestørrelsen kan ikke overstige 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Beskjær",
+        "save": "Lagre",
+        "cancel": "Avbryt"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Lagring vellykket",
+        "save_fail": "Kunne ikke lagre"
+      },
+      "password": {
+        "title": "Passord"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Sammenleggbar liste"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "En sirkulær avhengighet forekommer hos {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Retningslinjer for personvern",
+      "description": "Personvernerklæringen forklarer vår praksis vedrørende innsamling, bruk og offentliggjøring av informasjon vi mottar gjennom våre tjenester."
+    },
+    "terms": {
+      "description": "Disse tjenestevilkårene styrer din tilgang til og bruk av siden og vår tilrettelegging for en rekke tjenester.",
+      "title": "Vilkår for bruk"
+    }
+  },
+  "empty_copied_tips": "Innholdet som skal kopieres er tomt",
+  "copy_empty": "Innholdet som skal kopieres er tomt",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Lær hvordan du kan bygge en app på 5 minutter",
+          "description": "Følg ILLAs opplæringsvideo for å lære hvordan du lager en app. Dette vil ta cirka 5 minutter.",
+          "cancel": "Avbryt",
+          "take": "Ta en veiledning"
+        },
+        "exit_confirm": {
+          "title": "Stopp veiledningen?",
+          "description": "Neste gang du skriver inn onboarding-appen, vil de guidede trinnene bli spilt på nytt ",
+          "cancel": "Avbryt",
+          "exit": "Stopp"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Omdiriger",
+  "oauth_redirect_description": "Omdirigerer til <0>ILLA Cloud</0>",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
+}

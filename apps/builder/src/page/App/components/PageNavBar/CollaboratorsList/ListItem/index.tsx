@@ -1,7 +1,6 @@
 import { FC } from "react"
 import { Avatar } from "@/page/App/components/Avatar"
 import {
-  avatarStyle,
   getListItemContainerStyle,
   nicknameStyle,
 } from "@/page/App/components/PageNavBar/CollaboratorsList/ListItem/style"

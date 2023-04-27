@@ -30,7 +30,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
     } = props
     const { t } = useTranslation()
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
+    const [_error, setError] = useState(false)
 
     if (url === "") {
       return <div css={loadingStyle}>{t("widget.audio.no_audio")}</div>
@@ -62,7 +62,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
           loop={loop}
           playing={autoPlay || playing}
           draggable={false}
-          onReady={(player) => {
+          onReady={() => {
             setLoading(false)
             setError(false)
             onReady()
@@ -87,19 +87,17 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
   const {
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
     displayName,
     tooltipText,
     triggerEventHandler,
-    controls,
-    muted,
+    deleteComponentRuntimeProps,
+    updateComponentRuntimeProps,
   } = props
 
   const audioRef = useRef<ReactPlayer>(null)
 
   useEffect(() => {
-    handleUpdateGlobalData(displayName, {
+    updateComponentRuntimeProps({
       play: () => {
         handleUpdateMultiExecutionResult([
           {
@@ -199,14 +197,14 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
     displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
     handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLMultiAttr,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
   ])
 
   const onPlay = useCallback(() => {

@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Spin, useMessage } from "@illa-design/react"
-import { BuilderApi } from "@/api/base"
 import { WhiteList } from "@/components/WhiteList"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
@@ -19,7 +18,7 @@ import {
   actionItemInitial,
 } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { track } from "@/utils/mixpanelHelper"
 import { ActionCard } from "../ActionCard"
@@ -30,7 +29,6 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { onSelect } = props
 
   const [loading, setLoading] = useState(false)
-  const appInfo = useSelector(getAppInfo)
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const message = useMessage()
@@ -44,7 +42,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
             {item.map((prop) => (
               <ActionCard
                 key={prop.actionType}
-                onSelect={(item) => {
+                onSelect={async (item) => {
                   if (item === "transformer") {
                     const displayName =
                       DisplayNameGenerator.generateDisplayName(item)
@@ -69,37 +67,26 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                       onSelect(item)
                       return
                     }
-                    BuilderApi.teamRequest(
-                      {
-                        url: `/apps/${appInfo.appId}/actions`,
-                        method: "POST",
+                    setLoading(true)
+                    try {
+                      const { data: responseData } = await fetchCreateAction(
                         data,
-                      },
-                      ({ data }: { data: ActionItem<ActionContent> }) => {
-                        message.success({
-                          content: t(
-                            "editor.action.action_list.message.success_created",
-                          ),
-                        })
-                        dispatch(actionActions.addActionItemReducer(data))
-                        dispatch(configActions.changeSelectedAction(data))
-                        onSelect(item)
-                      },
-                      () => {
-                        message.error({
-                          content: t(
-                            "editor.action.action_list.message.failed",
-                          ),
-                        })
-                        DisplayNameGenerator.removeDisplayName(displayName)
-                      },
-                      () => {
-                        DisplayNameGenerator.removeDisplayName(displayName)
-                      },
-                      (loading) => {
-                        setLoading(loading)
-                      },
-                    )
+                      )
+                      message.success({
+                        content: t(
+                          "editor.action.action_list.message.success_created",
+                        ),
+                      })
+                      dispatch(actionActions.addActionItemReducer(responseData))
+                      dispatch(configActions.changeSelectedAction(responseData))
+                      onSelect(item)
+                    } catch (_e) {
+                      message.error({
+                        content: t("editor.action.action_list.message.failed"),
+                      })
+                      DisplayNameGenerator.removeDisplayName(displayName)
+                    }
+                    setLoading(false)
                   } else {
                     onSelect(item)
                   }

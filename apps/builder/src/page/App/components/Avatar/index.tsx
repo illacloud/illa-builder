@@ -1,11 +1,13 @@
 import { FC } from "react"
 import { Popover } from "@illa-design/react"
+import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@/api/http/constant"
 import { AvatarProps } from "@/page/App/components/Avatar/interface"
 import {
   applyUserAvatarStyle,
   getAvatarStyle,
 } from "@/page/App/components/Avatar/style"
 import { getColorByString } from "@/utils/colorHelper"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 const getFirstChar = (str: string | undefined) => {
   if (!str) return "U"
@@ -22,7 +24,13 @@ export const Avatar: FC<AvatarProps> = (props) => {
   const avatarText = getFirstChar(nickname)
   const node = avatar ? (
     <img
-      src={avatar}
+      src={
+        avatar
+          ? isCloudVersion
+            ? avatar
+            : `${HTTP_REQUEST_PUBLIC_BASE_URL}${avatar}`
+          : undefined
+      }
       css={getAvatarStyle(showType, type)}
       className={className}
     />

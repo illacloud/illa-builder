@@ -2,7 +2,7 @@ import { toPath } from "lodash"
 import { extractIdentifiersFromCode } from "@/utils/ast/ast"
 import { isInt } from "@/utils/typeHelper"
 
-const ignorePathsForEvalRegex = /.(\$dynamicAttrPaths|\$validationPaths)/
+const _ignorePathsForEvalRegex = /.(\$dynamicAttrPaths|\$validationPaths)/
 const IMMEDIATE_PARENT_REGEX = /^(.*)(\..*|\[.*\])$/
 
 export const convertPathToString = (attrPath: string[] | number[]) => {

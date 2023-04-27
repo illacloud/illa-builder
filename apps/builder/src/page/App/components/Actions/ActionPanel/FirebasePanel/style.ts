@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/react"
+import { getColor } from "@illa-design/react"
 
 export const actionContainerStyle = css`
   display: flex;
@@ -20,7 +20,7 @@ export const actionItemLabelStyle = css`
   flex-direction: column;
   font-weight: 500;
   text-align: right;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const actionItemContainer = css`
@@ -28,7 +28,7 @@ export const actionItemContainer = css`
 `
 
 export const actionBodyTypeStyle = css`
-  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+  color: ${getColor("techPurple", "01")};
   cursor: pointer;
   margin-top: 5px;
 `
@@ -39,7 +39,7 @@ export const checkboxItemStyle = css`
   font-weight: 500;
   margin-left: 10px;
   text-align: left;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const actionItemCodeEditorStyle = css`
@@ -63,7 +63,7 @@ export const codeEditorLabelStyle = css`
   font-size: 14px;
   font-weight: 500;
   text-align: right;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
   height: 48px;
   display: flex;
   flex-direction: row;

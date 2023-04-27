@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { BaseDynamicSelectSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
@@ -31,7 +30,7 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
     parentAttrName,
     options,
   } = props
-  const actions = useSelector(getActionList)
+
   const isError = useSelector<RootState, boolean>((state) => {
     const errors = getExecutionError(state)
     const thisError = get(errors, `${parentAttrName}.${selectAttrName}`)
@@ -50,7 +49,7 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
       "select",
     )
     return dataSourceMode === "dynamic"
-  }, [targetComponentProps])
+  }, [targetComponentProps, parentAttrName, isDynamicAttrName])
 
   const finalValue = useMemo(() => {
     if (isDynamic) {
@@ -58,14 +57,13 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
     } else {
       return get(targetComponentProps, `${parentAttrName}.${selectAttrName}`)
     }
-  }, [isDynamic, targetComponentProps])
-
-  const selectedOptions = useMemo(() => {
-    return actions.map((action) => ({
-      label: action.displayName,
-      value: `{{${action.displayName}.data}}`,
-    }))
-  }, [actions])
+  }, [
+    isDynamic,
+    targetComponentProps,
+    parentAttrName,
+    inputAttrName,
+    selectAttrName,
+  ])
 
   const handleClickFxButton = useCallback(() => {
     const isInOption =
@@ -83,20 +81,29 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
         handleUpdateDsl(`${parentAttrName}.${inputAttrName}`, finalValue)
       }
     }
-  }, [handleUpdateDsl, isDynamic, selectedOptions, finalValue])
+  }, [
+    handleUpdateDsl,
+    isDynamic,
+    finalValue,
+    parentAttrName,
+    selectAttrName,
+    inputAttrName,
+    options,
+    isDynamicAttrName,
+  ])
 
   const handleChangeInput = useCallback(
     (value: string) => {
       handleUpdateDsl(`${parentAttrName}.${inputAttrName}`, value)
     },
-    [handleUpdateDsl],
+    [handleUpdateDsl, parentAttrName, inputAttrName],
   )
 
   const handleChangeSelect = useCallback(
     (value: any) => {
       handleUpdateDsl(`${parentAttrName}.${selectAttrName}`, value)
     },
-    [handleUpdateDsl],
+    [handleUpdateDsl, parentAttrName, selectAttrName],
   )
 
   return (

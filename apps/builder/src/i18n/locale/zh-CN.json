@@ -146,6 +146,9 @@
           },
           "gs": {
             "google_sheets": "Google Sheets"
+          },
+          "neon": {
+            "neon": "Neon"
           }
         },
         "validate": {
@@ -169,7 +172,7 @@
             "limit": "Limit"
           },
           "oracle": {
-            "sid": "Treat Database name as SID/Service Name",
+            "sid": "将数据库名称视为",
             "ssl": "SSL"
           },
           "couchdb": {
@@ -197,7 +200,11 @@
             "consider_queries_tha": "将不删除任何行的查询视为成功",
             "title_of_spreadsheet": "电子表格的标题",
             "sheet_id_to_copy": "要复制的工作表ID",
-            "sheet_to_copy_to": "要复制到的工作表"
+            "sheet_to_copy_to": "要复制到的工作表",
+            "authentication": "验证",
+            "connect_with_oauth": "连接 OAuth 并保存",
+            "reconnect_with_oauth": "重新连接 OAuth",
+            "access_type": "接入类型"
           }
         },
         "placeholder": {
@@ -225,12 +232,12 @@
             "password": "••••••••"
           },
           "gs": {
-            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "row_filter": {
               "column_name": "column_name",
               "value": "值"
             },
-            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "update_value": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "primary_key_column": "column_name",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
@@ -257,13 +264,20 @@
             "private_key": "用于连接到 Google 表格。 单击<0>此处</0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处</1>。用户可能会遇到不受表格控制的不同处理组件的限制。 详细了解<2>配额限制</2>",
             "leave_blank_to_selec": "留空以选择第一张表",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
-            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
             "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
-            "copy_to_sheet_name": "必填。重命名复制后的表"
+            "copy_to_sheet_name": "必填。重命名复制后的表",
+            "successfully_authent": "认证成功",
+            "failed_to_authentica": "认证失败"
           },
           "tidb": {
             "ca_certificate": "我们默认填写用于与无服务器层的TLS连接的证书。如需与专用层的TLS连接，<0>点击这里</0>查看配置方法"
+          },
+          "neon": {
+            "normal": "创建一个 Neon 项目并在 <0>project dashboard</0> 中获取字符串。",
+            "failed": "无法解析字符串。 请检查您的字符串或手动配置。",
+            "no_password": "该字符串没有密码。 复制前请在 Neon 仪表板中显示密码。"
           }
         },
         "option": {
@@ -337,7 +351,17 @@
             "filter_by": {
               "use_a1_notation": "使用 A1 表示法",
               "use_row_filters": "使用行过滤器"
-            }
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "服务帐号",
+            "read_and_write": "读写",
+            "read_only": "只读"
+          },
+          "neon": {
+            "parse": "解析",
+            "connection_string": "连接字符串"
           }
         },
         "default": {
@@ -438,6 +462,9 @@
               "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
               "find_instructions_on": "<0>在 AWS 文档</0>中找到关于在哪里可以找到访问密钥的说明。",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
+            },
+            "advanced": {
+              "select_pages": "选择页面"
             }
           },
           "option": {
@@ -491,6 +518,13 @@
                 "query_parameters": "Query Parameters",
                 "header_authorization": "Header Authorization"
               }
+            },
+            "advanced": {
+              "trigger_this_action_": "页面加载时触发此操作",
+              "show_a_loading_page_": "在页面加载时显示加载页面",
+              "on_page_loading": "页面加载时",
+              "on_app_loading": "APP加载后",
+              "none": "无"
             }
           },
           "restapi": {
@@ -523,7 +557,21 @@
               "body_type": {
                 "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
               }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "这个页面加载时不会触发任何操作。 您可以将Action设置为手动触发，并在高级设置中启用“页面加载时触发此操作”。"
             }
+          },
+          "advanced": {
+            "advanced": "高级配置",
+            "page_trigger": "触发时机",
+            "loading_page": "加载页",
+            "page_load_delay": "延迟时间 (ms)",
+            "run_this_action_peri": "定期运行此Action",
+            "interval": "间隔时间 (s)",
+            "actions_running_when": "页面加载时运行的操作",
+            "pages": "页面",
+            "periodically_run": "定期运行"
           }
         },
         "menu": {
@@ -926,7 +974,7 @@
             "hf_endpoint": "Endpoint URL"
           },
           "tips": {
-            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint_token": "<0>在您的 Hugging Face 配置文件设置</0>中获取 Organizations API 令牌。",
             "hf_endpoint": "learn more about <0>Endpoint</0>"
           },
           "placeholder": {
@@ -1100,7 +1148,8 @@
           "loaded": "已载入",
           "rowSelect": "选择行",
           "markerSelected": "选中点",
-          "markerCreated": "创建点"
+          "markerCreated": "创建点",
+          "select": "选择"
         },
         "image_list": {
           "title": "图片",
@@ -1113,7 +1162,19 @@
         },
         "image_setter": {
           "new": "新增"
-        }
+        },
+        "Change": "Change",
+        "Select": "Select",
+        "eventCalendar": {
+          "no_title": "无标题"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
       },
       "setter_default_value": {
         "fill": "填充",
@@ -1178,7 +1239,12 @@
         "border": "描边",
         "color": "颜色",
         "icon": "图标",
-        "secondary_value": "次要值"
+        "secondary_value": "次要值",
+        "resource": "RESOURCE",
+        "eventCalendar": {
+          "calendar": "日历"
+        },
+        "event": "事件"
       },
       "setter_label": {
         "action": "动作",
@@ -1438,6 +1504,58 @@
         "time_range": {
           "start_time": "开始时间",
           "end_time": "结束时间"
+        },
+        "eventCalendar": {
+          "event_value": "事件值",
+          "event_id": "事件ID",
+          "title": "标题",
+          "description": "描述",
+          "start": "开始时间",
+          "end": "结束时间",
+          "resource_id": "资源ID",
+          "resource_title": "资源标题",
+          "all_day": "全天事件",
+          "data_source": "数据源",
+          "default_date": "默认日期",
+          "resource_grid": "资源网格",
+          "default_view": "默认视图",
+          "show_current_time": "显示当前时间",
+          "background": "背景",
+          "calendar_background": "背景",
+          "calendar_border": "边框",
+          "calendar_text": "文本",
+          "event_background": "背景",
+          "event_text": "文本"
+        },
+        "table": {
+          "page_index": "Page index",
+          "index": "Index",
+          "scroll_to_the_select": "Scroll to the selected row",
+          "filters": "Filters",
+          "filter_mode": "Filter mode",
+          "show_thousands_separ": "Show thousands separator ",
+          "tag_label": "Tag label",
+          "tag_color": "Tag color",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page"
         }
       },
       "setter_tooltip": {
@@ -1557,6 +1675,28 @@
           "end_time": "组件初始化时填入的结束时间",
           "start_placeholder": "当没有输入开始时间时，展示的信息。",
           "end_placeholder": "当没有输入结束时间时，展示的信息。"
+        },
+        "eventCalendar": {
+          "event_value": "使用包含在 {{ 中的对象来设置事件值。 例如，{{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "用于标识事件的唯一 ID",
+          "title": "活动名称",
+          "description": "事件描述",
+          "start": "活动开始时间",
+          "end": "活动结束时间",
+          "resource_id": "资源可以是人、会议室等。您可以设置资源 ID 并将其连接到事件。",
+          "resource_title": "资源网格中显示的资源名称",
+          "all_day": "是否全天活动",
+          "data_source": "事件的数据源。 数据源应该是一个对象数组, 每个对象都是一个事件。 例如，{{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description “：“描述”} ]}}",
+          "default_date": "启动应用程序时显示的默认日期",
+          "resource_grid": "是否显示资源网格",
+          "default_view": "启动应用程序时的默认视图",
+          "show_current_time": "设置是否显示当前时间线",
+          "calendar_background": "设置日历的背景色",
+          "calendar_border": "设置边框颜色",
+          "calendar_text": "设置文字颜色",
+          "event_background": "设置事件卡片的背景",
+          "event_text": "设置事件卡片的文字颜色",
+          "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。"
         }
       },
       "setter_option": {
@@ -1587,6 +1727,45 @@
           "large": "大",
           "medium": "中",
           "small": "小"
+        },
+        "eventCalendar": {
+          "sunday": "周日",
+          "monday": "周一",
+          "tuesday": "周二",
+          "wednesday": "周三",
+          "thursday": "周四",
+          "friday": "周五",
+          "saturday": "周六",
+          "month": "月",
+          "week": "星期",
+          "day": "天",
+          "agenda": "议程"
+        },
+        "table": {
+          "set_sort": "Set sort",
+          "column": "Column",
+          "number": "Number",
+          "percent": "Percent",
+          "currency": "Currency",
+          "text": "Text",
+          "tag": "Tag",
+          "button_group": "Button group",
+          "date": "Date",
+          "time": "Time",
+          "date_time": "Date Time",
+          "link": "Link",
+          "rating": "Rating",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Button",
+          "icon": "Icon",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
         }
       },
       "setter_placeholder": {
@@ -1622,7 +1801,7 @@
           "zoom": "请设置一个介于 1 和 22 之间的值"
         },
         "upload": {
-          "size_exceed": "超过 500MB 的文件可能无法解析。",
+          "size_exceed": "Files over 500MB may fail to parse.",
           "single_file": "只允许一个文件。",
           "file": "サポートされていないファイル タイプは削除されます",
           "directory": "只允许目录。"
@@ -1703,7 +1882,7 @@
     },
     "method": {
       "set_hidden": "Set hidden",
-      "set_file_url": "Set PDF source",
+      "set_file_url": "Set file URL",
       "play": "播放",
       "pause": "暂停",
       "seek_to": {
@@ -1764,6 +1943,19 @@
       "time_range": {
         "setstarttime": "setStartTime",
         "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "addEvent",
+        "deleteevent": "deleteEvent"
+      },
+      "table": {
+        "clear_filters": "Clear filters",
+        "clear_column_setting": "Clear column setting",
+        "refresh": "Refresh",
+        "select_page": "Select page",
+        "select_row": "Select row",
+        "clear_selection": "Clear selection",
+        "set_filters": "Set filters"
       }
     },
     "tutorial": {
@@ -2205,6 +2397,12 @@
     },
     "time_range": {
       "name": "时间范围选择器"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "事件日历"
+      },
+      "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
     }
   },
   "page": {
@@ -2580,5 +2778,28 @@
     }
   },
   "oauth_redirect_title": "重定向",
-  "oauth_redirect_description": "正在重定向到<0>ILLA Cloud</0>"
+  "oauth_redirect_description": "正在重定向到<0>ILLA Cloud</0>",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
 }

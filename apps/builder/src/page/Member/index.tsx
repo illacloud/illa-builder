@@ -1,31 +1,32 @@
-import { FC, useEffect, useState, useCallback } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { BuilderApi } from "@/api/base"
+import { useParams } from "react-router-dom"
+import { MemberList } from "@/illa-public-component/MemberList"
+import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
+import { MemberProps } from "@/page/Member/interface"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
+import { getBuilderDesc } from "@/services/public"
 import {
   changeTeamMembersRole,
   fetchInviteLink,
+  fetchRenewInviteLink,
   inviteByEmail,
   removeTeam,
   removeTeamMembers,
-  renewInviteLink,
   setInviteLinkEnabled,
   updateMembers,
-  updateTeamPermissionConfig, updateTeamsInfo,
-} from "@/api/team"
-import { MemberList } from "@/illa-public-component/MemberList"
-import { BuilderCardInfo, MemberProps } from "@/page/Member/interface"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
+  updateTeamPermissionConfig,
+  updateTeamsInfo,
+} from "@/services/team"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import { useParams } from "react-router-dom"
 
-export const Member: FC<MemberProps> = (props) => {
+export const Member: FC<MemberProps> = () => {
   const { teamIdentifier } = useParams()
   const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
   const members = useSelector(getMemberList) ?? []
-  const [hasAppOrResource, setHasAppOrResource] = useState(false)
+  const [_hasAppOrResource, setHasAppOrResource] = useState(false)
   const [loading, setLoading] = useState<boolean>(false)
   const teamId = teamInfo?.id
   const currentTeamMemberID = teamInfo?.teamMemberID
@@ -35,33 +36,32 @@ export const Member: FC<MemberProps> = (props) => {
   const allowViewerManageTeamMember =
     teamInfo?.permission.allowViewerManageTeamMember ?? false
 
-  const updateMemberList = async () => {
+  const updateMemberList = useCallback(async () => {
     if (!loading) {
       setLoading(true)
       await updateMembers()
       setLoading(false)
     }
-  }
+  }, [loading])
 
-  const handleRemoveTeamMembers = (teamMemberID: string) => {
-    return removeTeamMembers(teamMemberID).then((res) => {
+  const handleRemoveTeamMembers = useCallback(
+    async (teamMemberID: string) => {
+      const res = await removeTeamMembers(teamMemberID)
       if (teamMemberID === currentTeamMemberID) {
         window.location.reload()
       }
       return res
-    })
-  }
+    },
+    [currentTeamMemberID],
+  )
 
-  const getBuilderInfo = async () => {
-    const res = await BuilderApi.asyncTeamRequest<BuilderCardInfo>({
-      method: "get",
-      url: `/builder/desc`,
-    })
+  const getBuilderInfo = useCallback(async () => {
+    const res = await getBuilderDesc()
     if (res.data) {
       const { appNum, resourceNum } = res.data
       setHasAppOrResource(appNum > 0 || resourceNum > 0)
     }
-  }
+  }, [])
 
   const handleChangeTeamMembersRole = useCallback(
     (teamMemberID: string, userRole: USER_ROLE) => {
@@ -81,7 +81,8 @@ export const Member: FC<MemberProps> = (props) => {
       updateMemberList()
       getBuilderInfo()
     }
-  }, [teamId])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getBuilderInfo, teamId])
 
   if (!userInfo?.userId || !teamInfo) {
     return null
@@ -97,7 +98,7 @@ export const Member: FC<MemberProps> = (props) => {
       currentTeamMemberID={teamInfo?.teamMemberID}
       removeTeam={removeTeam}
       fetchInviteLink={fetchInviteLink}
-      renewInviteLink={renewInviteLink}
+      renewInviteLink={fetchRenewInviteLink}
       configInviteLink={setInviteLinkEnabled}
       allowInviteByLink={inviteLinkEnabled}
       allowEditorManageTeamMember={allowEditorManageTeamMember}

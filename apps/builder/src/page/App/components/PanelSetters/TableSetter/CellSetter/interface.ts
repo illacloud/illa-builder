@@ -1,8 +1,4 @@
-import {
-  PanelFieldConfig,
-  PanelLabelProps,
-} from "@/page/App/components/InspectPanel/interface"
-import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
+import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 

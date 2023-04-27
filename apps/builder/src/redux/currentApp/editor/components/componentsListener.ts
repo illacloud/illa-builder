@@ -62,14 +62,52 @@ async function handleChangeCurrentPageWhenDelete(
   const rootState = listenerApi.getState()
   const executionTree = getExecutionResult(rootState)
   const rootNode = executionTree.root
+  const { currentPageIndex, homepageDisplayName, pageSortedKey } = rootNode
   const { displayName, originPageSortedKey } = action.payload
-  const oldIndex = originPageSortedKey.findIndex((key) => key === displayName)
-  if (oldIndex === rootNode.currentPageIndex) {
+  const newSortedKey = originPageSortedKey.filter((key) => key !== displayName)
+  const currentPageDisplayName = originPageSortedKey[currentPageIndex]
+  if (displayName === homepageDisplayName) {
+    if (currentPageDisplayName === homepageDisplayName) {
+      listenerApi.dispatch(
+        componentsActions.updateRootNodePropsReducer({
+          currentPageIndex: 0,
+          homepageDisplayName: pageSortedKey[0],
+          pageSortedKey,
+        }),
+      )
+    } else {
+      listenerApi.dispatch(
+        componentsActions.updateRootNodePropsReducer({
+          currentPageIndex: 0,
+          homepageDisplayName: pageSortedKey[0],
+          pageSortedKey,
+        }),
+      )
+      setTimeout(() => {
+        const newIndex = pageSortedKey.findIndex(
+          (key: string) => key === currentPageDisplayName,
+        )
+        const currentIndex = newIndex === -1 ? 0 : newIndex
+        listenerApi.dispatch(
+          executionActions.updateExecutionByDisplayNameReducer({
+            displayName: "root",
+            value: {
+              currentPageIndex: currentIndex,
+            },
+          }),
+        )
+      })
+    }
+  } else {
+    const newIndex = pageSortedKey.findIndex(
+      (key: string) => key === currentPageDisplayName,
+    )
     listenerApi.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: "root",
         value: {
-          currentPageIndex: 0,
+          currentPageIndex: newIndex === -1 ? 0 : newIndex,
+          pageSortedKey: newSortedKey,
         },
       }),
     )

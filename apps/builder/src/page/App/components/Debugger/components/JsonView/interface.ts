@@ -2,6 +2,6 @@ import { HTMLAttributes } from "react"
 
 export interface JsonViewProps extends HTMLAttributes<HTMLDivElement> {
   name: string
-  value: unknown
+  value: Record<string, unknown>
   level?: number
 }

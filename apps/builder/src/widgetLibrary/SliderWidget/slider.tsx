@@ -81,16 +81,14 @@ export const WrappedSlider = forwardRef<HTMLDivElement, WrappedSliderProps>(
 
 WrappedSlider.displayName = "WrappedSlider"
 
-export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
+export const SliderWidget: FC<SliderWidgetProps> = (props) => {
   const {
     value,
     min,
-    disabled,
-    colorScheme,
     displayName,
     handleUpdateMultiExecutionResult,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
     labelPosition,
     labelFull,
     labelWrapping,
@@ -145,8 +143,7 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
   )
 
   useEffect(() => {
-    handleUpdateGlobalData?.(displayName, {
-      value,
+    updateComponentRuntimeProps({
       setValue: (value: number) => {
         handleUpdateMultiExecutionResult([
           {
@@ -189,19 +186,17 @@ export const SliderWidget: FC<SliderWidgetProps> = (props, ref) => {
       },
     })
     return () => {
-      handleDeleteGlobalData(displayName)
+      deleteComponentRuntimeProps()
     }
   }, [
+    defaultValue,
+    deleteComponentRuntimeProps,
     displayName,
-    value,
-    disabled,
-    colorScheme,
-    handleUpdateGlobalData,
     handleUpdateMultiExecutionResult,
-    handleDeleteGlobalData,
     handleValidate,
     min,
-    defaultValue,
+    updateComponentRuntimeProps,
+    value,
   ])
 
   const handleOnChange = useCallback(() => {

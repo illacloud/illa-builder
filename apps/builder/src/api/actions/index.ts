@@ -1,7 +1,4 @@
 import { isEqual } from "lodash"
-import { createApp } from "@/api/apps"
-import { BuilderApi } from "@/api/base"
-import { GUIDE_CONFIG } from "@/config/guide"
 import { getTemplateConfig } from "@/config/template"
 import { TemplateName } from "@/config/template/interface"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -16,19 +13,24 @@ import {
   ResourceContent,
   ResourceInitialConfig,
 } from "@/redux/resource/resourceState"
+import { createApp } from "@/services/apps"
 import store from "@/store"
+import { builderRequest } from "../http"
 
 export const createResource = async (
   data: ResourceInitialConfig<ResourceContent>,
 ) => {
-  const response = await BuilderApi.asyncTeamRequest<Resource<ResourceContent>>(
+  const response = await builderRequest<Resource<ResourceContent>>(
     {
       method: "POST",
       url: "/resources",
       data,
     },
+    {
+      needTeamID: true,
+    },
   )
-  store.dispatch(resourceActions.updateResourceItemReducer(response.data))
+  store.dispatch(resourceActions.addResourceItemReducer(response.data))
   return response.data.resourceId
 }
 
@@ -36,12 +38,13 @@ export const createAction = async (
   appId: string,
   data: Partial<ActionItem<ActionContent>>,
 ) => {
-  const response = await BuilderApi.asyncTeamRequest<ActionItem<ActionContent>>(
+  const response = await builderRequest<ActionItem<ActionContent>>(
     {
       url: `/apps/${appId}/actions`,
       method: "POST",
       data,
     },
+    { needTeamID: true },
   )
   store.dispatch(actionActions.addActionItemReducer(response.data))
   return response.data.actionId
@@ -69,7 +72,7 @@ export const forkTemplateApp = async (
   )
   const appId = await createApp(appName, appConfig)
   if (resourceList.length) {
-    const actionList = await Promise.all(
+    await Promise.all(
       actions.map((data) => {
         const { resourceIndex, ...actionData } = data
         const resourceId = resourceList[resourceIndex] || ""
