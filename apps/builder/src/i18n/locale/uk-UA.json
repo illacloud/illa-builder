@@ -1149,7 +1149,8 @@
           "rowSelect": "Змінити рядок",
           "markerSelected": "виділений маркер",
           "markerCreated": "маркер створено",
-          "select": "Вибрати"
+          "select": "Вибрати",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Малюнки",
