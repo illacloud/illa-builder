@@ -22,6 +22,7 @@ import {
 import { RestApiAuth } from "@/redux/resource/restapiResource"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { ILLABuilderStorage } from "@/utils/storage"
 
 function getBaseActionUrl() {
   const rootState = store.getState()
@@ -357,10 +358,22 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         },
       }
     case "googlesheets":
+      const status =
+        data.authentication === "oauth2" &&
+        ILLABuilderStorage.getLocalStorage("oAuthStatus")
+      let oAuthOpts = {}
+      if (status) {
+        ILLABuilderStorage.removeLocalStorage("oAuthStatus")
+        oAuthOpts = {
+          status,
+        }
+      }
       return {
-        authentication: "serviceAccount",
+        authentication: data.authentication,
         opts: {
           privateKey: data.privateKey,
+          accessType: data.accessType,
+          ...oAuthOpts,
         },
       }
   }

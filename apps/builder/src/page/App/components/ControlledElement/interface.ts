@@ -12,6 +12,7 @@ export type ControlledType =
   | "textarea"
   | "select"
   | "radio-group"
+  | "radio"
   | "none"
 
 export type DefaultValueType = string | boolean | number
