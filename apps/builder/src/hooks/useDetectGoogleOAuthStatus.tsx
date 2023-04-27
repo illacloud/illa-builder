@@ -89,7 +89,7 @@ export const useDetectGoogleOAuthStatus = () => {
       message.success({
         content: i18n.t("editor.action.form.tips.gs.successfully_authent"),
       })
-      setOAuthStatus(GoogleSheetAuthStatus.Authenticated)
+      setOAuthStatus(GoogleSheetAuthStatus.NotAuthenticated)
     } else {
       message.error({
         content: i18n.t("editor.action.form.tips.gs.failed_to_authentica"),
