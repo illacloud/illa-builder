@@ -84,7 +84,10 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
       const { accessToken } = response.data
       if (accessToken) {
         ILLABuilderStorage.setLocalStorage("accessToken", accessToken)
-        await redirectToGoogleOAuth(id, accessToken)
+        const res = await redirectToGoogleOAuth(id, accessToken)
+        if (res.data.url) {
+          window.location.assign(res.data.url)
+        }
       }
     } catch (e) {
       ILLABuilderStorage.removeLocalStorage("accessToken")
