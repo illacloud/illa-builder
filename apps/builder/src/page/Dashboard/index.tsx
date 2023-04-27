@@ -107,9 +107,17 @@ export const IllaApp: FC = () => {
     }
   }, [dispatch])
 
+  const handleLoadingCallBack = (loading: boolean) => {
+    if (loading) {
+      setPageState("loading")
+    } else {
+      setPageState("success")
+    }
+  }
+
   return (
     <div css={containerStyle}>
-      <DashboardTitleBar />
+      <DashboardTitleBar loadingCallBack={handleLoadingCallBack} />
       {pageState === "loading" && (
         <Loading _css={loadingStyle} colorScheme="techPurple" />
       )}
