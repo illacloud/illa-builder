@@ -1551,15 +1551,15 @@
           "disable_user_selecti": "사용자 선택 비활성화",
           "default_selected_row": "기본 선택 행",
           "refresh": "새로 고치다",
-          "download_row_data": "Download raw data",
-          "column_setting": "Column settings",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "download_row_data": "원시 데이터 다운로드",
+          "column_setting": "열 설정",
+          "cell_overflow": "셀 오버플로",
+          "enable_server_side_p": "서버 측 페이지 매김 활성화",
+          "pagination_type": "페이지 매김 유형",
+          "total_row_count": "총 행 수",
+          "next_cursor": "다음 커서",
+          "has_next_page": "다음 페이지 있음",
+          "currency_code": "통화 코드"
         }
       },
       "setter_tooltip": {
@@ -1705,9 +1705,9 @@
           "resizable": "사용자가 이벤트 시간 범위를 업데이트하고 이벤트의 테두리를 드래그하여 시간 범위를 늘리거나 줄이는 방식으로 시간 범위를 변경할 수 있도록 허용할지 여부"
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
+          "page_index": "선택하려는 페이지의 인덱스입니다.",
+          "index": "선택하려는 행의 인덱스입니다. 인덱스는 여러 행을 지정하는 데 사용할 수 있는 배열이어야 합니다.",
+          "scroll_to_the_select": "행으로 스크롤할지 여부입니다.",
           "show_thousands_separ": "Whether to show the thousands separator",
           "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
