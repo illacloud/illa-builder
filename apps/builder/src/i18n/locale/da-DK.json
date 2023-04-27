@@ -1149,7 +1149,8 @@
           "rowSelect": "Vælg række",
           "markerSelected": "markerValgt",
           "markerCreated": "markerOprettet",
-          "select": "Vælg"
+          "select": "Vælg",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Billeder",
